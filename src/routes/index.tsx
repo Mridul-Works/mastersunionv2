@@ -31,7 +31,7 @@ function Index() {
           <img
             src={heroBuilding}
             alt="Masters' Union campus at dusk"
-            className="h-[78vh] min-h-[560px] w-full object-cover"
+            className="h-full w-full object-cover"
           />
 
           {/* Soft top gradient for header legibility */}
