@@ -45,7 +45,7 @@ function Index() {
               <img
                 src={logoAsset.url}
                 alt="Masters' Union"
-                className="h-5 w-auto"
+                className="h-7 w-auto"
               />
             </div>
 
