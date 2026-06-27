@@ -27,6 +27,8 @@ export const Route = createFileRoute("/")({
 const NAV = ["Programs", "Faculty", "Admissions", "Campus", "About"];
 
 function Index() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <main className="min-h-screen bg-background">
       <section className="px-4 pt-4 sm:px-6 sm:pt-6">
