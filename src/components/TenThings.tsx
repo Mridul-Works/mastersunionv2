@@ -200,8 +200,8 @@ function CardItem({ card }: { card: Card }) {
                 {card.stats.map((s) => (
                   <div
                     key={s.label}
-                    className="border-t pt-3"
-                    style={{ borderColor: card.ink, borderOpacity: 0.25 } as React.CSSProperties}
+                    className="pt-3"
+                    style={{ borderTop: `1px solid ${card.ink}40` }}
                   >
                     <div className="font-display text-[clamp(1.5rem,2.2vw,2rem)] font-light leading-none tracking-tight">
                       {s.value}
