@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
+import { Plus } from "lucide-react";
 import img01 from "@/assets/mu-01.jpg";
 import img02 from "@/assets/mu-02.jpg";
 import img03 from "@/assets/mu-03.jpg";
@@ -139,91 +140,159 @@ const CARDS: Card[] = [
   },
 ];
 
-function CardItem({ card }: { card: Card }) {
-  const [open, setOpen] = useState(false);
+const EASE = [0.22, 1, 0.36, 1] as const;
 
+function CardRow({
+  card,
+  isOpen,
+  onToggle,
+}: {
+  card: Card;
+  isOpen: boolean;
+  onToggle: () => void;
+}) {
   return (
-    <article
-      className="overflow-hidden rounded-3xl shadow-[0_10px_40px_-20px_rgba(0,0,0,0.35)] transition-all duration-500"
+    <motion.article
+      layout
+      transition={{ duration: 0.6, ease: EASE }}
       style={{ backgroundColor: card.bg, color: card.ink }}
+      className="overflow-hidden rounded-3xl shadow-[0_20px_60px_-30px_rgba(0,0,0,0.45)]"
     >
-      {/* HOOK */}
-      <div className="p-7 sm:p-9">
-        <div
-          className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.28em] opacity-70"
-        >
-          <span>{card.n}</span>
-          <span className="h-px w-8" style={{ backgroundColor: card.ink, opacity: 0.4 }} />
-          <span>{card.tag}</span>
-        </div>
-        <h3 className="mt-5 max-w-[22ch] font-display text-[clamp(1.6rem,2.6vw,2.4rem)] font-light leading-[1.1] tracking-tight">
-          {card.headline}
-        </h3>
-        <button
-          type="button"
-          onClick={() => setOpen((s) => !s)}
-          aria-expanded={open}
-          className="mt-7 inline-flex items-center gap-3 rounded-full border px-5 py-2.5 text-[12px] font-medium uppercase tracking-[0.18em] transition-all hover:gap-4"
-          style={{ borderColor: card.ink, color: card.ink }}
-        >
-          {open ? "Hide" : card.cta}
-          <ChevronDown
-            className={`size-4 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
-          />
-        </button>
-      </div>
-
-      {/* EXPAND */}
-      <div
-        className={`grid transition-[grid-template-rows] duration-500 ease-out ${
-          open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-        }`}
+      {/* HOOK ROW — always visible, clickable */}
+      <motion.button
+        layout
+        type="button"
+        onClick={onToggle}
+        aria-expanded={isOpen}
+        className="group flex w-full items-center gap-6 px-7 py-7 text-left sm:gap-10 sm:px-10 sm:py-9"
       >
-        <div className="overflow-hidden">
-          <div className="grid gap-7 px-7 pb-9 sm:grid-cols-2 sm:gap-9 sm:px-9">
-            <div
-              className="aspect-[4/3] overflow-hidden rounded-2xl"
-              style={{ backgroundColor: "rgba(0,0,0,0.2)" }}
-            >
-              <img
-                src={card.image}
-                alt={card.tag}
-                loading="lazy"
-                className="h-full w-full object-cover"
-              />
-            </div>
-            <div className="flex flex-col justify-between gap-7">
-              <p className="text-[15px] leading-relaxed opacity-90 sm:text-[16px]">
-                {card.body}
-              </p>
-              <div className="grid grid-cols-2 gap-5">
-                {card.stats.map((s) => (
-                  <div
-                    key={s.label}
-                    className="pt-3"
-                    style={{ borderTop: `1px solid ${card.ink}40` }}
+        <motion.span
+          layout
+          className="font-display text-[clamp(2rem,4vw,3.25rem)] font-light leading-none tabular-nums opacity-80"
+        >
+          {card.n}
+        </motion.span>
+
+        <motion.div layout className="min-w-0 flex-1">
+          <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.28em] opacity-65">
+            {card.tag}
+          </div>
+          <h3 className="font-display text-[clamp(1.25rem,2.2vw,1.95rem)] font-light leading-[1.15] tracking-tight">
+            {card.headline}
+          </h3>
+        </motion.div>
+
+        <motion.span
+          layout
+          className="grid size-12 shrink-0 place-items-center rounded-full border transition-colors group-hover:bg-white/10"
+          style={{ borderColor: `${card.ink}55` }}
+        >
+          <motion.span
+            animate={{ rotate: isOpen ? 45 : 0 }}
+            transition={{ duration: 0.4, ease: EASE }}
+            className="inline-flex"
+          >
+            <Plus className="size-5" />
+          </motion.span>
+        </motion.span>
+      </motion.button>
+
+      {/* EXPAND PANEL */}
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key="panel"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.55, ease: EASE }}
+            className="overflow-hidden"
+          >
+            <div className="grid gap-8 px-7 pb-10 sm:grid-cols-[1.05fr_1fr] sm:gap-12 sm:px-10 sm:pb-12">
+              <motion.div
+                initial={{ opacity: 0, y: 24, scale: 0.97 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 12 }}
+                transition={{ duration: 0.55, ease: EASE, delay: 0.08 }}
+                className="aspect-[4/3] overflow-hidden rounded-2xl"
+                style={{ backgroundColor: "rgba(0,0,0,0.22)" }}
+              >
+                <motion.img
+                  initial={{ scale: 1.12 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 1.1, ease: EASE }}
+                  src={card.image}
+                  alt={card.tag}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+              </motion.div>
+
+              <div className="flex flex-col justify-between gap-8">
+                <motion.p
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.45, ease: EASE, delay: 0.18 }}
+                  className="text-[15px] leading-relaxed opacity-90 sm:text-[17px]"
+                >
+                  {card.body}
+                </motion.p>
+
+                <div className="grid grid-cols-2 gap-5">
+                  {card.stats.map((s, i) => (
+                    <motion.div
+                      key={s.label}
+                      initial={{ opacity: 0, y: 18 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0 }}
+                      transition={{
+                        duration: 0.45,
+                        ease: EASE,
+                        delay: 0.26 + i * 0.07,
+                      }}
+                      className="pt-3"
+                      style={{ borderTop: `1px solid ${card.ink}40` }}
+                    >
+                      <div className="font-display text-[clamp(1.5rem,2.2vw,2rem)] font-light leading-none tracking-tight">
+                        {s.value}
+                      </div>
+                      <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.22em] opacity-65">
+                        {s.label}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.45, ease: EASE, delay: 0.45 }}
+                >
+                  <span
+                    className="inline-flex items-center gap-3 rounded-full border px-5 py-2.5 text-[12px] font-medium uppercase tracking-[0.18em]"
+                    style={{ borderColor: card.ink }}
                   >
-                    <div className="font-display text-[clamp(1.5rem,2.2vw,2rem)] font-light leading-none tracking-tight">
-                      {s.value}
-                    </div>
-                    <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.22em] opacity-65">
-                      {s.label}
-                    </div>
-                  </div>
-                ))}
+                    {card.cta}
+                    <span aria-hidden>→</span>
+                  </span>
+                </motion.div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </article>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.article>
   );
 }
 
 export function TenThings() {
+  const [openId, setOpenId] = useState<string | null>("01");
+
   return (
     <section id="ten-things" className="bg-background px-4 py-20 sm:px-6 sm:py-28">
-      <div className="mx-auto max-w-[1400px]">
+      <div className="mx-auto max-w-[1200px]">
         <div className="mb-14 flex flex-col gap-5 sm:mb-20 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.32em] text-foreground/55">
@@ -239,16 +308,22 @@ export function TenThings() {
             </h2>
           </div>
           <p className="max-w-sm text-[14px] leading-relaxed text-foreground/60">
-            Tap any card to see the receipts — numbers, names, and what
-            actually happens here.
+            Tap any row to open it — the receipts unfold inside.
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          {CARDS.map((c) => (
-            <CardItem key={c.n} card={c} />
-          ))}
-        </div>
+        <LayoutGroup>
+          <motion.div layout className="flex flex-col gap-4">
+            {CARDS.map((c) => (
+              <CardRow
+                key={c.n}
+                card={c}
+                isOpen={openId === c.n}
+                onToggle={() => setOpenId((curr) => (curr === c.n ? null : c.n))}
+              />
+            ))}
+          </motion.div>
+        </LayoutGroup>
       </div>
     </section>
   );
