@@ -66,10 +66,6 @@ function Index() {
             </button>
           </header>
 
-          {/* Display headline */}
-          <h1 className="pointer-events-none absolute inset-x-0 top-[88px] z-10 px-4 text-center font-display text-[18vw] leading-[0.88] tracking-[-0.04em] text-background sm:top-[110px] sm:text-[16vw] lg:text-[13.5vw]">
-            Ambition
-          </h1>
 
           {/* Left info strip */}
           <div className="absolute bottom-24 left-6 z-10 max-w-[260px] text-background sm:left-10">
