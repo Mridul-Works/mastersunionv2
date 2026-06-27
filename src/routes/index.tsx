@@ -26,12 +26,12 @@ function Index() {
   return (
     <main className="min-h-screen bg-background">
       <section className="px-4 pt-4 sm:px-6 sm:pt-6">
-        <div className="relative mx-auto aspect-[4/3] w-full max-w-[1400px] overflow-hidden rounded-[28px] max-h-[90vh]">
+        <div className="relative mx-auto h-full min-h-[calc(100vh-2rem)] w-full max-w-[1400px] overflow-hidden rounded-[28px]">
           {/* Hero image */}
           <img
             src={heroBuilding}
             alt="Masters' Union campus at dusk"
-            className="h-full w-full object-contain"
+            className="h-full w-full object-cover"
           />
 
           {/* Soft top gradient for header legibility */}
