@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
-import { Plus } from "lucide-react";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import img01 from "@/assets/mu-01.jpg";
 import img02 from "@/assets/mu-02.jpg";
 import img03 from "@/assets/mu-03.jpg";
@@ -11,6 +11,8 @@ import img07 from "@/assets/mu-07.jpg";
 import img08 from "@/assets/mu-08.jpg";
 import img09 from "@/assets/mu-09.jpg";
 import img10 from "@/assets/mu-10.jpg";
+
+gsap.registerPlugin(ScrollTrigger);
 
 type Card = {
   n: string;
@@ -140,160 +142,102 @@ const CARDS: Card[] = [
   },
 ];
 
-const EASE = [0.22, 1, 0.36, 1] as const;
-
-function CardRow({
-  card,
-  isOpen,
-  onToggle,
-}: {
-  card: Card;
-  isOpen: boolean;
-  onToggle: () => void;
-}) {
-  return (
-    <motion.article
-      layout
-      transition={{ duration: 0.6, ease: EASE }}
-      style={{ backgroundColor: card.bg, color: card.ink }}
-      className="overflow-hidden rounded-3xl shadow-[0_20px_60px_-30px_rgba(0,0,0,0.45)]"
-    >
-      {/* HOOK ROW — always visible, clickable */}
-      <motion.button
-        layout
-        type="button"
-        onClick={onToggle}
-        aria-expanded={isOpen}
-        className="group flex w-full items-center gap-6 px-7 py-7 text-left sm:gap-10 sm:px-10 sm:py-9"
-      >
-        <motion.span
-          layout
-          className="font-display text-[clamp(2rem,4vw,3.25rem)] font-light leading-none tabular-nums opacity-80"
-        >
-          {card.n}
-        </motion.span>
-
-        <motion.div layout className="min-w-0 flex-1">
-          <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.28em] opacity-65">
-            {card.tag}
-          </div>
-          <h3 className="font-display text-[clamp(1.25rem,2.2vw,1.95rem)] font-light leading-[1.15] tracking-tight">
-            {card.headline}
-          </h3>
-        </motion.div>
-
-        <motion.span
-          layout
-          className="grid size-12 shrink-0 place-items-center rounded-full border transition-colors group-hover:bg-white/10"
-          style={{ borderColor: `${card.ink}55` }}
-        >
-          <motion.span
-            animate={{ rotate: isOpen ? 45 : 0 }}
-            transition={{ duration: 0.4, ease: EASE }}
-            className="inline-flex"
-          >
-            <Plus className="size-5" />
-          </motion.span>
-        </motion.span>
-      </motion.button>
-
-      {/* EXPAND PANEL */}
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            key="panel"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.55, ease: EASE }}
-            className="overflow-hidden"
-          >
-            <div className="grid gap-8 px-7 pb-10 sm:grid-cols-[1.05fr_1fr] sm:gap-12 sm:px-10 sm:pb-12">
-              <motion.div
-                initial={{ opacity: 0, y: 24, scale: 0.97 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 12 }}
-                transition={{ duration: 0.55, ease: EASE, delay: 0.08 }}
-                className="aspect-[4/3] overflow-hidden rounded-2xl"
-                style={{ backgroundColor: "rgba(0,0,0,0.22)" }}
-              >
-                <motion.img
-                  initial={{ scale: 1.12 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 1.1, ease: EASE }}
-                  src={card.image}
-                  alt={card.tag}
-                  loading="lazy"
-                  className="h-full w-full object-cover"
-                />
-              </motion.div>
-
-              <div className="flex flex-col justify-between gap-8">
-                <motion.p
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.45, ease: EASE, delay: 0.18 }}
-                  className="text-[15px] leading-relaxed opacity-90 sm:text-[17px]"
-                >
-                  {card.body}
-                </motion.p>
-
-                <div className="grid grid-cols-2 gap-5">
-                  {card.stats.map((s, i) => (
-                    <motion.div
-                      key={s.label}
-                      initial={{ opacity: 0, y: 18 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0 }}
-                      transition={{
-                        duration: 0.45,
-                        ease: EASE,
-                        delay: 0.26 + i * 0.07,
-                      }}
-                      className="pt-3"
-                      style={{ borderTop: `1px solid ${card.ink}40` }}
-                    >
-                      <div className="font-display text-[clamp(1.5rem,2.2vw,2rem)] font-light leading-none tracking-tight">
-                        {s.value}
-                      </div>
-                      <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.22em] opacity-65">
-                        {s.label}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.45, ease: EASE, delay: 0.45 }}
-                >
-                  <span
-                    className="inline-flex items-center gap-3 rounded-full border px-5 py-2.5 text-[12px] font-medium uppercase tracking-[0.18em]"
-                    style={{ borderColor: card.ink }}
-                  >
-                    {card.cta}
-                    <span aria-hidden>→</span>
-                  </span>
-                </motion.div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.article>
-  );
-}
-
 export function TenThings() {
-  const [openId, setOpenId] = useState<string | null>("01");
+  const rootRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!rootRef.current) return;
+    const ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray<HTMLElement>(".mu-card");
+
+      cards.forEach((card) => {
+        const image = card.querySelector(".mu-card-image");
+        const meta = card.querySelector(".mu-card-meta");
+        const headline = card.querySelector(".mu-card-headline");
+        const body = card.querySelector(".mu-card-body");
+        const stats = card.querySelectorAll(".mu-card-stat");
+        const cta = card.querySelector(".mu-card-cta");
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: card,
+            start: "top 78%",
+            toggleActions: "play none none reverse",
+          },
+        });
+
+        tl.from(card, {
+          y: 80,
+          opacity: 0,
+          duration: 0.9,
+          ease: "power3.out",
+        })
+          .from(
+            image,
+            { scale: 1.18, duration: 1.4, ease: "power3.out" },
+            "<"
+          )
+          .from(
+            meta,
+            { y: 24, opacity: 0, duration: 0.6, ease: "power2.out" },
+            "-=0.55"
+          )
+          .from(
+            headline,
+            { y: 36, opacity: 0, duration: 0.75, ease: "power3.out" },
+            "-=0.45"
+          )
+          .from(
+            body,
+            { y: 24, opacity: 0, duration: 0.6, ease: "power2.out" },
+            "-=0.5"
+          )
+          .from(
+            stats,
+            {
+              y: 22,
+              opacity: 0,
+              duration: 0.5,
+              ease: "power2.out",
+              stagger: 0.08,
+            },
+            "-=0.4"
+          )
+          .from(
+            cta,
+            { y: 16, opacity: 0, duration: 0.5, ease: "power2.out" },
+            "-=0.25"
+          );
+      });
+
+      // gentle parallax on each image
+      cards.forEach((card) => {
+        const image = card.querySelector(".mu-card-image");
+        if (!image) return;
+        gsap.to(image, {
+          yPercent: -8,
+          ease: "none",
+          scrollTrigger: {
+            trigger: card,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      });
+    }, rootRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section id="ten-things" className="bg-background px-4 py-20 sm:px-6 sm:py-28">
+    <section
+      id="ten-things"
+      ref={rootRef}
+      className="bg-background px-4 py-20 sm:px-6 sm:py-28"
+    >
       <div className="mx-auto max-w-[1200px]">
-        <div className="mb-14 flex flex-col gap-5 sm:mb-20 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mb-16 flex flex-col gap-5 sm:mb-24 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.32em] text-foreground/55">
               <span className="h-px w-10 bg-foreground/30" />
@@ -308,22 +252,85 @@ export function TenThings() {
             </h2>
           </div>
           <p className="max-w-sm text-[14px] leading-relaxed text-foreground/60">
-            Tap any row to open it — the receipts unfold inside.
+            Scroll. Each one unfolds as you go.
           </p>
         </div>
 
-        <LayoutGroup>
-          <motion.div layout className="flex flex-col gap-4">
-            {CARDS.map((c) => (
-              <CardRow
-                key={c.n}
-                card={c}
-                isOpen={openId === c.n}
-                onToggle={() => setOpenId((curr) => (curr === c.n ? null : c.n))}
-              />
-            ))}
-          </motion.div>
-        </LayoutGroup>
+        <div className="flex flex-col gap-10 sm:gap-16">
+          {CARDS.map((card, idx) => {
+            const reverse = idx % 2 === 1;
+            return (
+              <article
+                key={card.n}
+                className="mu-card overflow-hidden rounded-3xl shadow-[0_30px_80px_-40px_rgba(0,0,0,0.55)]"
+                style={{ backgroundColor: card.bg, color: card.ink }}
+              >
+                <div
+                  className={`grid gap-0 sm:grid-cols-2 ${
+                    reverse ? "sm:[&>*:first-child]:order-2" : ""
+                  }`}
+                >
+                  <div
+                    className="relative aspect-[4/3] overflow-hidden sm:aspect-auto sm:min-h-[460px]"
+                    style={{ backgroundColor: "rgba(0,0,0,0.25)" }}
+                  >
+                    <img
+                      src={card.image}
+                      alt={card.tag}
+                      loading="lazy"
+                      className="mu-card-image absolute inset-0 h-[115%] w-full object-cover"
+                    />
+                  </div>
+
+                  <div className="flex flex-col justify-between gap-10 p-8 sm:p-12">
+                    <div>
+                      <div className="mu-card-meta mb-6 flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.28em] opacity-70">
+                        <span className="font-display text-[2rem] font-light leading-none tabular-nums opacity-90">
+                          {card.n}
+                        </span>
+                        <span className="h-px w-8 bg-current opacity-40" />
+                        <span>{card.tag}</span>
+                      </div>
+                      <h3 className="mu-card-headline font-display text-[clamp(1.5rem,2.6vw,2.4rem)] font-light leading-[1.1] tracking-tight">
+                        {card.headline}
+                      </h3>
+                      <p className="mu-card-body mt-6 text-[15px] leading-relaxed opacity-90 sm:text-[17px]">
+                        {card.body}
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-5">
+                      {card.stats.map((s) => (
+                        <div
+                          key={s.label}
+                          className="mu-card-stat pt-3"
+                          style={{ borderTop: `1px solid ${card.ink}40` }}
+                        >
+                          <div className="font-display text-[clamp(1.5rem,2.2vw,2rem)] font-light leading-none tracking-tight">
+                            {s.value}
+                          </div>
+                          <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.22em] opacity-65">
+                            {s.label}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="mu-card-cta">
+                      <span
+                        className="inline-flex items-center gap-3 rounded-full border px-5 py-2.5 text-[12px] font-medium uppercase tracking-[0.18em]"
+                        style={{ borderColor: card.ink }}
+                      >
+                        {card.cta}
+                        <span aria-hidden>→</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
