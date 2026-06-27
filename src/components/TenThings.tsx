@@ -231,7 +231,7 @@ export function TenThings() {
               <span>A field guide</span>
             </div>
             <h2 className="mt-6 max-w-[20ch] font-display text-[clamp(2.2rem,5.5vw,4.5rem)] font-light leading-[0.98] tracking-tight">
-              Cut marketing.
+              Cut the marketing.
               <br />
               <span className="italic text-foreground/70">
                 10 things you should know about Masters&rsquo; Union.
