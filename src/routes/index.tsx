@@ -41,10 +41,12 @@ function Index() {
 
           {/* Header */}
           <header className="absolute inset-x-0 top-0 z-10 flex items-center justify-between px-5 pt-5 sm:px-8 sm:pt-6">
-            <div className="flex items-center gap-2 rounded-full bg-background/85 px-5 py-2.5 backdrop-blur-md">
-              <span className="text-[15px] font-semibold tracking-tight text-foreground">
-                MASTERS&rsquo; UNION
-              </span>
+            <div className="flex items-center gap-2 rounded-full bg-background/85 px-4 py-2 backdrop-blur-md">
+              <img
+                src={logoAsset.url}
+                alt="Masters' Union"
+                className="h-5 w-auto"
+              />
             </div>
 
             <nav className="hidden items-center gap-1 rounded-full bg-background/70 px-2 py-1.5 backdrop-blur-md md:flex">
