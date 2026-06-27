@@ -86,19 +86,27 @@ function Index() {
             </p>
           </div>
 
-          {/* Right info strip */}
-          <div className="absolute bottom-24 right-6 z-10 hidden max-w-[280px] text-right text-background sm:right-10 md:block">
-            <p className="text-[13px] leading-relaxed text-background/90">
-              Learn from CEOs, founders and operators at companies you read about
-              every morning — not from textbooks written decades ago.
-            </p>
-            <button
-              type="button"
-              className="mt-4 inline-flex items-center gap-2 rounded-full bg-background px-5 py-2.5 text-[12px] font-semibold uppercase tracking-wider text-foreground shadow-sm"
-            >
-              Explore programs
-              <span aria-hidden>→</span>
-            </button>
+          {/* Right info strip — autoplay video card */}
+          <div className="absolute bottom-24 right-6 z-10 hidden max-w-[280px] sm:right-10 md:block">
+            <div className="group relative overflow-hidden rounded-2xl border border-background/20 bg-background/10 shadow-2xl backdrop-blur-md">
+              <video
+                src={heroVideo.url}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                className="aspect-[3/4] w-[260px] object-cover"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10" />
+              <div className="absolute left-3 top-3 flex items-center gap-2 rounded-full bg-black/30 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-background backdrop-blur-sm">
+                <span className="relative flex size-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
+                  <span className="relative inline-flex size-2 rounded-full bg-red-500" />
+                </span>
+                Live campus
+              </div>
+            </div>
           </div>
 
           {/* Bottom status bar */}
