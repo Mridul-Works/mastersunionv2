@@ -87,10 +87,8 @@ function Index() {
 
 
           {/* Bottom status bar */}
-          <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-between border-t border-background/20 bg-background/10 px-6 py-4 text-[11px] uppercase tracking-[0.2em] text-background backdrop-blur-sm sm:px-10">
-            <span>Gurugram Campus</span>
-            <span className="hidden sm:inline">Cohort 2026 · Applications Open</span>
-            <span>Ranked among India&rsquo;s top new-age B-schools</span>
+          <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-center border-t border-background/20 bg-background/10 px-6 py-4 text-[11px] uppercase tracking-[0.2em] text-background backdrop-blur-sm sm:px-10">
+            <span>Scroll to explore</span>
           </div>
         </div>
       </section>
