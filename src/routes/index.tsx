@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import heroBuilding from "@/assets/hero-building.jpg";
 import logoAsset from "@/assets/logo-2.png.asset.json";
+import { TenThings } from "@/components/TenThings";
 
 
 export const Route = createFileRoute("/")({
@@ -130,6 +131,8 @@ function Index() {
 
         </div>
       </section>
+
+      <TenThings />
     </main>
   );
 }
