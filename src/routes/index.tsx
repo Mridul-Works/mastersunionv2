@@ -26,7 +26,7 @@ function Index() {
   return (
     <main className="min-h-screen bg-background">
       <section className="px-4 pt-4 sm:px-6 sm:pt-6">
-        <div className="relative mx-auto max-w-[1400px] overflow-hidden rounded-[28px]">
+        <div className="relative mx-auto aspect-[4/3] w-full max-w-[1400px] overflow-hidden rounded-[28px] md:aspect-[16/10] lg:aspect-[4/3]">
           {/* Hero image */}
           <img
             src={heroBuilding}
