@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import heroBuilding from "@/assets/hero-building.jpg";
 import logoAsset from "@/assets/logo-2.png.asset.json";
-import heroVideo from "@/assets/hero-info-video.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -86,28 +85,6 @@ function Index() {
             </p>
           </div>
 
-          {/* Right info strip — autoplay video card */}
-          <div className="absolute bottom-24 right-6 z-10 hidden max-w-[280px] sm:right-10 md:block">
-            <div className="group relative overflow-hidden rounded-2xl border border-background/20 bg-background/10 shadow-2xl backdrop-blur-md">
-              <video
-                src={heroVideo.url}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
-                className="aspect-[3/4] w-[260px] object-cover"
-              />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10" />
-              <div className="absolute left-3 top-3 flex items-center gap-2 rounded-full bg-black/30 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-background backdrop-blur-sm">
-                <span className="relative flex size-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
-                  <span className="relative inline-flex size-2 rounded-full bg-red-500" />
-                </span>
-                Live campus
-              </div>
-            </div>
-          </div>
 
           {/* Bottom status bar */}
           <div className="absolute inset-x-0 bottom-0 z-10 flex items-center justify-between border-t border-background/20 bg-background/10 px-6 py-4 text-[11px] uppercase tracking-[0.2em] text-background backdrop-blur-sm sm:px-10">
