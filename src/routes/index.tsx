@@ -86,6 +86,15 @@ function Index() {
           },
         },
       );
+
+      // Once About's top reaches viewport top, pin it so it covers the video
+      ScrollTrigger.create({
+        trigger: aboutRef.current,
+        start: "top top",
+        end: "+=100%",
+        pin: true,
+        pinSpacing: true,
+      });
     }, wrapRef);
 
     return () => ctx.revert();
