@@ -52,14 +52,15 @@ function Index() {
             anticipatePin: 1,
             onUpdate: (self) => {
               setNavVisible(self.progress > 0.6);
-              const covered = self.progress >= 0.999;
-              setShowRewatch(covered);
-              if (covered && lockYRef.current === null && !unlockingRef.current) {
-                lockYRef.current = window.scrollY;
+            },
+            onLeave: (self) => {
+              setShowRewatch(true);
+              if (!unlockingRef.current) {
+                lockYRef.current = self.end;
               }
-              if (!covered && lockYRef.current !== null) {
-                lockYRef.current = null;
-              }
+            },
+            onEnterBack: () => {
+              // Only the Watch intro button unlocks; keep lock active.
             },
             onLeaveBack: () => {
               setNavVisible(false);
