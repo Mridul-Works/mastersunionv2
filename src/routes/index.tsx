@@ -5,7 +5,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import logoAsset from "@/assets/logo-2.png.asset.json";
 import heroVideo from "@/assets/hero-info-video.mp4.asset.json";
-import { TenThings } from "@/components/TenThings";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -190,7 +189,54 @@ function Index() {
         </div>
       </div>
 
-      <TenThings />
+      {/* Text + Stats section */}
+      <section id="about" className="bg-background px-5 py-24 sm:px-8 sm:py-32">
+        <div className="mx-auto max-w-[1200px]">
+          <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
+            <div>
+              <div className="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.32em] text-foreground/55">
+                <span className="h-px w-10 bg-foreground/30" />
+                <span>About Masters&apos; Union</span>
+              </div>
+              <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-light leading-[1.05] tracking-tight">
+                Business education,
+                <br />
+                <span className="italic text-foreground/70">built in public.</span>
+              </h2>
+            </div>
+            <div className="flex flex-col gap-6 text-[15px] leading-[1.7] text-foreground/75 sm:text-[17px]">
+              <p>
+                We don&apos;t teach from textbooks. Our students run real companies, pitch live deals, and learn from the CEOs, founders, and operators who are building India&apos;s next decade.
+              </p>
+              <p>
+                From a food incubator inside the campus to immersions across India and the world, every part of the program is designed around one idea: the best way to learn business is to do business.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-20 grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-border/60 bg-border/60 sm:grid-cols-4">
+            {[
+              { value: "₹3.38 Cr", label: "Cohort revenue" },
+              { value: "₹593 Cr", label: "Startup valuation" },
+              { value: "500+", label: "Mentors on call" },
+              { value: "40%", label: "Faculty are CEOs" },
+            ].map((stat, i) => (
+              <div
+                key={stat.label}
+                className="flex flex-col justify-between gap-4 bg-background p-6 sm:p-8"
+                style={{ transitionDelay: `${i * 60}ms` }}
+              >
+                <div className="font-display text-[clamp(2rem,4vw,3rem)] font-light leading-none tracking-tight text-foreground">
+                  {stat.value}
+                </div>
+                <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/55">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
