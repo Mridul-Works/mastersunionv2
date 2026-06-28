@@ -228,7 +228,7 @@ const RAW_CHAPTERS = [
     chips: ["Zepto", "McKinsey", "a16z", "Razorpay", "Google", "Peak XV"],
     cta: "See salaries", route: "/placements", bg: "#4A5A1E", ink: "#EFE7D0", image: mu10,
   },
-] as const;
+];
 
 export const CHAPTERS: Chapter[] = RAW_CHAPTERS.map((c) => withSections(c));
 
