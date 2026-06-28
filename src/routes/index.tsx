@@ -39,18 +39,18 @@ function Index() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Phase 1 — pin the hero, shrink curtain into card, fade headline
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: wrapRef.current,
           start: "top top",
-          end: "+=220%",
+          end: "+=120%",
           scrub: 1,
           pin: true,
           anticipatePin: 1,
         },
       });
 
-      // Phase 1 — headline fades & lifts away, curtain morphs into hero card
       tl.to(
         headlineRef.current,
         { opacity: 0, y: -60, filter: "blur(8px)", ease: "power2.in", duration: 0.4 },
@@ -71,16 +71,26 @@ function Index() {
         0.1,
       );
 
-      // Phase 2 — About section rises as a curtain over the video and sticks as the new hero
-      tl.to(
+      // Phase 2 — About rises as curtain and pins as new hero
+      gsap.fromTo(
         aboutRef.current,
-        { yPercent: 0, ease: "power3.inOut", duration: 1.2 },
-        1.1,
+        { yPercent: 100 },
+        {
+          yPercent: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: aboutRef.current,
+            start: "top bottom",
+            end: "top top",
+            scrub: 1,
+          },
+        },
       );
     }, wrapRef);
 
     return () => ctx.revert();
   }, []);
+
 
 
   return (
