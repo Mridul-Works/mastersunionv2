@@ -205,7 +205,22 @@ function Index() {
           freely both ways. */}
       <div className="relative">
         <section className="video-aurora sticky top-0 z-0 flex h-[92vh] w-full items-center justify-center overflow-hidden px-4 pb-6 pt-6 sm:px-8 sm:pb-8 sm:pt-8">
-          <div className="relative mx-auto aspect-video w-full max-w-6xl overflow-hidden rounded-[2.5rem] border border-black/5 bg-black shadow-[0_40px_80px_-15px_rgba(0,0,0,0.25)] transition-all duration-700 hover:shadow-[0_48px_96px_-20px_rgba(0,0,0,0.35)]">
+          {/* Floating super-colorful aurora blobs */}
+          <div className="pointer-events-none absolute inset-0 overflow-hidden">
+            <div className="aurora-blob left-[-10%] top-[-10%] h-[55vw] w-[55vw] bg-fuchsia-500 [animation-delay:0s]" />
+            <div className="aurora-blob right-[-15%] top-[-5%] h-[45vw] w-[45vw] bg-cyan-400 [animation-delay:-2s]" />
+            <div className="aurora-blob bottom-[-10%] left-[10%] h-[50vw] w-[50vw] bg-lime-400 [animation-delay:-4s]" />
+            <div className="aurora-blob bottom-[-5%] right-[5%] h-[40vw] w-[40vw] bg-amber-400 [animation-delay:-6s]" />
+            <div className="aurora-blob left-[25%] top-[30%] h-[35vw] w-[35vw] bg-violet-500 [animation-delay:-8s]" />
+            <div className="aurora-blob right-[20%] top-[40%] h-[30vw] w-[30vw] bg-rose-500 [animation-delay:-10s]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(0,0,0,0.25)_100%)]" />
+            <div className="absolute inset-0 opacity-[0.08] mix-blend-overlay" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E')" }} />
+          </div>
+
+          <div className="relative mx-auto aspect-video w-full max-w-6xl overflow-hidden rounded-[2.5rem] border border-white/15 bg-black shadow-[0_40px_80px_-15px_rgba(0,0,0,0.25)] transition-all duration-700 hover:shadow-[0_48px_96px_-20px_rgba(0,0,0,0.35)]">
+            {/* Colorful glow behind the video canvas */}
+            <div className="pointer-events-none absolute -inset-[3px] z-[-1] rounded-[2.6rem] bg-gradient-to-tr from-fuchsia-500 via-cyan-400 to-lime-400 opacity-60 blur-xl" />
+            <div className="pointer-events-none absolute -inset-1 z-[-1] rounded-[2.55rem] bg-gradient-to-br from-amber-400 via-violet-500 to-rose-500 opacity-40 blur-lg" />
             {/* Background building image */}
             <img
               src={heroBuilding}
