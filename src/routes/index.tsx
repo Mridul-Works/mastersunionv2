@@ -191,62 +191,62 @@ function Index() {
             <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-[0.3em] text-background/70">
               Scroll ↓
             </div>
-          </div>
         </div>
+
+        {/* About curtain — rises within pinned wrapper and becomes the new hero */}
+        <section
+          ref={aboutRef}
+          id="about"
+          className="absolute inset-0 z-30 flex h-screen w-full flex-col bg-background px-5 pt-24 pb-8 shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.5)] sm:px-8 sm:pt-28 sm:pb-10"
+          style={{ transform: "translateY(100%)" }}
+        >
+          <div className="mx-auto flex w-full max-w-[1200px] flex-1 flex-col justify-center">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-20">
+              <div>
+                <div className="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.32em] text-foreground/55">
+                  <span className="h-px w-10 bg-foreground/30" />
+                  <span>About Masters&apos; Union</span>
+                </div>
+                <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-light leading-[1.05] tracking-tight">
+                  Business education,
+                  <br />
+                  <span className="italic text-foreground/70">built in public.</span>
+                </h2>
+              </div>
+              <div className="flex flex-col gap-4 text-[15px] leading-[1.65] text-foreground/75 sm:text-[17px]">
+                <p>
+                  We don&apos;t teach from textbooks. Our students run real companies, pitch live deals, and learn from the CEOs, founders, and operators who are building India&apos;s next decade.
+                </p>
+                <p>
+                  From a food incubator inside the campus to immersions across India and the world, every part of the program is designed around one idea: the best way to learn business is to do business.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-border/60 bg-border/60 sm:grid-cols-4 lg:mt-14">
+              {[
+                { value: "₹3.38 Cr", label: "Cohort revenue" },
+                { value: "₹593 Cr", label: "Startup valuation" },
+                { value: "500+", label: "Mentors on call" },
+                { value: "40%", label: "Faculty are CEOs" },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="flex flex-col justify-between gap-3 bg-background p-5 sm:p-7"
+                >
+                  <div className="font-display text-[clamp(2rem,4vw,3rem)] font-light leading-none tracking-tight text-foreground">
+                    {stat.value}
+                  </div>
+                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/55">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
       </div>
 
-
-      {/* About curtain — rises over the hero on scroll and becomes the new hero */}
-      <section
-        ref={aboutRef}
-        id="about"
-        className="sticky top-0 z-30 flex min-h-screen bg-background px-5 pt-24 pb-8 shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.5)] sm:px-8 sm:pt-28 sm:pb-10"
-      >
-        <div className="mx-auto flex min-h-[calc(100vh-8rem)] max-w-[1200px] flex-col justify-center">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-20">
-            <div>
-              <div className="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.32em] text-foreground/55">
-                <span className="h-px w-10 bg-foreground/30" />
-                <span>About Masters&apos; Union</span>
-              </div>
-              <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] font-light leading-[1.05] tracking-tight">
-                Business education,
-                <br />
-                <span className="italic text-foreground/70">built in public.</span>
-              </h2>
-            </div>
-            <div className="flex flex-col gap-4 text-[15px] leading-[1.65] text-foreground/75 sm:text-[17px]">
-              <p>
-                We don&apos;t teach from textbooks. Our students run real companies, pitch live deals, and learn from the CEOs, founders, and operators who are building India&apos;s next decade.
-              </p>
-              <p>
-                From a food incubator inside the campus to immersions across India and the world, every part of the program is designed around one idea: the best way to learn business is to do business.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-border/60 bg-border/60 sm:grid-cols-4 lg:mt-14">
-            {[
-              { value: "₹3.38 Cr", label: "Cohort revenue" },
-              { value: "₹593 Cr", label: "Startup valuation" },
-              { value: "500+", label: "Mentors on call" },
-              { value: "40%", label: "Faculty are CEOs" },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="flex flex-col justify-between gap-3 bg-background p-5 sm:p-7"
-              >
-                <div className="font-display text-[clamp(2rem,4vw,3rem)] font-light leading-none tracking-tight text-foreground">
-                  {stat.value}
-                </div>
-                <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/55">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </main>
   );
 }
