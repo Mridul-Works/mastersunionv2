@@ -29,53 +29,108 @@ function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [navVisible, setNavVisible] = useState(false);
   const [showRewatch, setShowRewatch] = useState(false);
-  
+
   const videoElRef = useRef<HTMLVideoElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
-  const unlockedRef = useRef(false);
+  const lockedRef = useRef(false);
+  const lockYRef = useRef(0);
+  const unlockingRef = useRef(false);
 
-  // GSAP ScrollTrigger: once the hero's top reaches the viewport top,
-  // toggle nav + rewatch and clamp scrollY so the user can't go back up
-  // into the video. Scrolling DOWN through the hero stays free.
   useEffect(() => {
     const hero = heroRef.current;
     if (!hero) return;
 
-    const st = ScrollTrigger.create({
-      trigger: hero,
-      start: "top top",
-      end: "max",
-      onEnter: () => {
-        setNavVisible(true);
-        setShowRewatch(true);
-      },
-      onEnterBack: () => {
-        setNavVisible(true);
-        setShowRewatch(true);
-      },
-      onLeaveBack: () => {
-        // Only the rewatch button is allowed to take us back above the hero.
-        if (unlockedRef.current) {
-          setNavVisible(false);
-          setShowRewatch(false);
-          return;
-        }
-        const lockY = hero.getBoundingClientRect().top + window.scrollY;
-        window.scrollTo(0, lockY);
-      },
+    const getLockY = () => hero.getBoundingClientRect().top + window.scrollY;
+
+    const engage = () => {
+      lockYRef.current = getLockY();
+      lockedRef.current = true;
+      setNavVisible(true);
+      setShowRewatch(true);
+    };
+
+    const disengage = () => {
+      lockedRef.current = false;
+      setNavVisible(false);
+      setShowRewatch(false);
+    };
+
+    const onScroll = () => {
+      if (unlockingRef.current) return;
+      if (!lockedRef.current) {
+        // Engage as soon as hero hits the top.
+        if (window.scrollY >= getLockY() - 1) engage();
+        return;
+      }
+      if (window.scrollY < lockYRef.current) {
+        window.scrollTo(0, lockYRef.current);
+      }
+    };
+
+    const blockUpward = (e: Event, deltaY: number) => {
+      if (!lockedRef.current || unlockingRef.current) return;
+      if (deltaY < 0 && window.scrollY <= lockYRef.current + 1) {
+        e.preventDefault();
+      }
+    };
+
+    const onWheel = (e: WheelEvent) => blockUpward(e, e.deltaY);
+
+    let touchStartY = 0;
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0]?.clientY ?? 0;
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      const y = e.touches[0]?.clientY ?? 0;
+      // swipe down (finger moves down) => scroll up
+      blockUpward(e, touchStartY - y);
+    };
+
+    const blockedKeys = new Set([
+      "ArrowUp",
+      "PageUp",
+      "Home",
+    ]);
+    const onKey = (e: KeyboardEvent) => {
+      if (!lockedRef.current || unlockingRef.current) return;
+      if (blockedKeys.has(e.key) || (e.key === " " && e.shiftKey)) {
+        if (window.scrollY <= lockYRef.current + 1) e.preventDefault();
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("resize", () => {
+      if (lockedRef.current) lockYRef.current = getLockY();
     });
 
-    return () => st.kill();
+    // Initial check (e.g. page reload mid-scroll).
+    onScroll();
+
+    (window as any).__muDisengage = disengage;
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("keydown", onKey);
+    };
   }, []);
 
   const rewatchVideo = () => {
-    unlockedRef.current = true;
+    unlockingRef.current = true;
+    lockedRef.current = false;
+    setNavVisible(false);
+    setShowRewatch(false);
     window.scrollTo({ top: 0, behavior: "smooth" });
     setTimeout(() => {
       videoElRef.current?.play().catch(() => {});
-      // Re-arm: once the user scrolls hero back over video, lock re-engages.
-      unlockedRef.current = false;
-    }, 1200);
+      unlockingRef.current = false;
+    }, 1400);
   };
 
   return (
