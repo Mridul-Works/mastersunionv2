@@ -87,13 +87,12 @@ function Index() {
         },
       );
 
-      // Once About's top reaches viewport top, pin it so it covers the video
+      // Once About's top reaches viewport top, remove the video layer completely.
       ScrollTrigger.create({
         trigger: aboutRef.current,
         start: "top top",
-        end: "+=100%",
-        pin: true,
-        pinSpacing: true,
+        onEnter: () => gsap.set(curtainRef.current, { autoAlpha: 0 }),
+        onLeaveBack: () => gsap.set(curtainRef.current, { autoAlpha: 1 }),
       });
     }, wrapRef);
 
@@ -104,6 +103,59 @@ function Index() {
 
   return (
     <main className="min-h-screen bg-background">
+      <header className="fixed inset-x-0 top-0 z-[100] px-5 pt-5 sm:px-8 sm:pt-6">
+        <div className="mx-auto flex max-w-[1320px] items-center justify-between rounded-full border border-background/20 bg-background/85 px-2 py-2 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.22)] backdrop-blur-xl md:px-3">
+          <a href="/" className="flex items-center gap-2 rounded-full px-3 py-1.5 transition-colors hover:bg-foreground/5">
+            <img src={logoAsset.url} alt="Masters' Union" className="h-7 w-auto" />
+          </a>
+          <nav className="hidden items-center gap-0.5 md:flex">
+            {NAV.map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="group relative rounded-full px-4 py-2 text-[13px] font-medium text-foreground/80 transition-colors hover:bg-foreground/5 hover:text-foreground"
+              >
+                {item}
+                <span className="absolute inset-x-4 -bottom-0.5 h-px scale-x-0 bg-current transition-transform duration-300 group-hover:scale-x-100" />
+              </a>
+            ))}
+          </nav>
+          <div className="flex items-center gap-1">
+            <button
+              type="button"
+              className="rounded-full bg-primary px-5 py-2.5 text-[12px] font-semibold uppercase tracking-wide text-primary-foreground shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
+            >
+              Apply Now
+            </button>
+            <button
+              type="button"
+              aria-label="Toggle menu"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((s) => !s)}
+              className="flex size-10 items-center justify-center rounded-full text-foreground/80 transition-colors hover:bg-foreground/5 hover:text-foreground md:hidden"
+            >
+              {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+            </button>
+          </div>
+        </div>
+        {menuOpen && (
+          <div className="mt-3 rounded-3xl border border-background/20 bg-background/95 p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.2)] backdrop-blur-xl md:hidden">
+            <nav className="flex flex-col gap-1">
+              {NAV.map((item) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded-2xl px-4 py-3 text-[14px] font-medium text-foreground/80 transition-colors hover:bg-foreground/5 hover:text-foreground"
+                >
+                  {item}
+                </a>
+              ))}
+            </nav>
+          </div>
+        )}
+      </header>
+
       {/* PIN WRAPPER — curtain reveal */}
       <div ref={wrapRef} className="relative h-screen w-full overflow-hidden">
         {/* Curtain / video stage — starts full-bleed, shrinks into hero card */}
@@ -128,60 +180,6 @@ function Index() {
 
           {/* Hero section content (visible once curtain settles) */}
           <div ref={heroRef} className="absolute inset-0">
-            {/* Header */}
-            <header className="absolute inset-x-0 top-0 z-10 px-5 pt-5 sm:px-8 sm:pt-6">
-              <div className="mx-auto flex max-w-[1320px] items-center justify-between rounded-full border border-background/20 bg-background/75 px-2 py-2 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.18)] backdrop-blur-xl md:px-3">
-                <a href="/" className="flex items-center gap-2 rounded-full px-3 py-1.5 transition-colors hover:bg-foreground/5">
-                  <img src={logoAsset.url} alt="Masters' Union" className="h-7 w-auto" />
-                </a>
-                <nav className="hidden items-center gap-0.5 md:flex">
-                  {NAV.map((item) => (
-                    <a
-                      key={item}
-                      href={`#${item.toLowerCase()}`}
-                      className="group relative rounded-full px-4 py-2 text-[13px] font-medium text-foreground/80 transition-colors hover:bg-foreground/5 hover:text-foreground"
-                    >
-                      {item}
-                      <span className="absolute inset-x-4 -bottom-0.5 h-px scale-x-0 bg-current transition-transform duration-300 group-hover:scale-x-100" />
-                    </a>
-                  ))}
-                </nav>
-                <div className="flex items-center gap-1">
-                  <button
-                    type="button"
-                    className="rounded-full bg-primary px-5 py-2.5 text-[12px] font-semibold uppercase tracking-wide text-primary-foreground shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
-                  >
-                    Apply Now
-                  </button>
-                  <button
-                    type="button"
-                    aria-label="Toggle menu"
-                    aria-expanded={menuOpen}
-                    onClick={() => setMenuOpen((s) => !s)}
-                    className="flex size-10 items-center justify-center rounded-full text-foreground/80 transition-colors hover:bg-foreground/5 hover:text-foreground md:hidden"
-                  >
-                    {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
-                  </button>
-                </div>
-              </div>
-              {menuOpen && (
-                <div className="mt-3 rounded-3xl border border-background/20 bg-background/90 p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.2)] backdrop-blur-xl md:hidden">
-                  <nav className="flex flex-col gap-1">
-                    {NAV.map((item) => (
-                      <a
-                        key={item}
-                        href={`#${item.toLowerCase()}`}
-                        onClick={() => setMenuOpen(false)}
-                        className="rounded-2xl px-4 py-3 text-[14px] font-medium text-foreground/80 transition-colors hover:bg-foreground/5 hover:text-foreground"
-                      >
-                        {item}
-                      </a>
-                    ))}
-                  </nav>
-                </div>
-              )}
-            </header>
-
             {/* Left info strip (hero card state) */}
             <div className="absolute bottom-10 left-6 z-10 max-w-[280px] text-background sm:left-10">
               <div className="mb-3 flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-background/80">
@@ -220,7 +218,7 @@ function Index() {
       <section
         ref={aboutRef}
         id="about"
-        className="relative z-30 min-h-screen bg-background px-5 py-24 shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.5)] sm:px-8 sm:py-32"
+        className="sticky top-0 z-30 min-h-screen bg-background px-5 py-24 shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.5)] sm:px-8 sm:py-32"
       >
         <div className="mx-auto max-w-[1200px]">
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
