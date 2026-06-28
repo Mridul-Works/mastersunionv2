@@ -189,11 +189,12 @@ function Index() {
               <em className="italic text-background/95">operators.</em>
             </h1>
             <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-[0.3em] text-background/70">
-              Scroll ↓
             </div>
+          </div>
         </div>
 
         {/* About curtain — rises within pinned wrapper and becomes the new hero */}
+
         <section
           ref={aboutRef}
           id="about"
