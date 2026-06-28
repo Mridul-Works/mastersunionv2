@@ -167,12 +167,11 @@ function Index() {
           </div>
         </section>
 
-        {/* Sentinel sits at the top of the curtain — once it scrolls out of
-            view the hero has fully covered the video. */}
-        <div ref={sentinelRef} className="absolute left-0 top-[100vh] h-px w-full" />
-
         {/* The hero. Rises over the sticky video as the user scrolls. */}
-        <div className="relative z-10 bg-[#090909] shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.7)]">
+        <div
+          ref={heroRef}
+          className="relative z-10 bg-[#090909] shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.7)]"
+        >
           <TenThings />
         </div>
       </div>
