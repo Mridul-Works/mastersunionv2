@@ -113,18 +113,18 @@ export default function TenThings() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="relative bg-[#090909] py-20 sm:py-28" style={{ fontFamily: "Georgia, serif" }}>
+    <section className="relative bg-[#FAF8F4] py-20 sm:py-28" style={{ fontFamily: "Georgia, serif" }}>
       {/* Heading */}
       <div className="mx-auto max-w-[1280px] px-5 sm:px-8">
         <div className="mb-3 flex items-center gap-3" style={{ fontFamily: "Arial, sans-serif" }}>
           <span className="h-px w-10" style={{ background: GOLD }} />
           <span className="text-[10px] tracking-[0.28em]" style={{ color: GOLD }}>CUT THE MARKETING</span>
         </div>
-        <h2 className="max-w-3xl text-[clamp(2rem,5vw,3.75rem)] leading-[1.05] tracking-tight text-[#F5F2EC]">
+        <h2 className="max-w-3xl text-[clamp(2rem,5vw,3.75rem)] leading-[1.05] tracking-tight text-[#141414]">
           10 things you should know about{" "}
-          <em className="italic text-[#F5F2EC]/70">Masters&apos; Union.</em>
+          <em className="italic text-[#141414]/55">Masters&apos; Union.</em>
         </h2>
-        <p className="mt-5 max-w-xl text-[14px] leading-[1.6] text-[#F5F2EC]/45" style={{ fontFamily: "Arial, sans-serif" }}>
+        <p className="mt-5 max-w-xl text-[14px] leading-[1.6] text-[#141414]/55" style={{ fontFamily: "Arial, sans-serif" }}>
           No glossy brochure copy. Tap a card to see the numbers, the partners, and the proof behind each claim.
         </p>
       </div>
@@ -136,7 +136,7 @@ export default function TenThings() {
           return (
             <article
               key={c.n}
-              className={`group relative overflow-hidden rounded-[14px] border border-white/[0.08] bg-[#0f0f0f] transition-all duration-300 hover:border-[color:var(--tt-gold)]/40 ${
+              className={`group relative overflow-hidden rounded-[14px] border border-black/[0.08] bg-white shadow-[0_2px_12px_-4px_rgba(0,0,0,0.08)] transition-all duration-300 hover:border-[color:var(--tt-gold)]/50 hover:shadow-[0_8px_28px_-8px_rgba(0,0,0,0.14)] ${
                 isOpen ? "sm:col-span-2 lg:col-span-3 xl:col-span-4" : ""
               }`}
               style={{ ["--tt-gold" as never]: GOLD }}
@@ -155,33 +155,33 @@ export default function TenThings() {
                       loading="lazy"
                       width={1024}
                       height={1024}
-                      className="absolute inset-0 h-full w-full object-cover opacity-70 transition-transform duration-700 group-hover:scale-105"
+                      className="absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] via-[#0f0f0f]/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white via-white/30 to-transparent" />
                     <div
                       className="absolute left-3 top-3 rounded-[3px] border px-2 py-1 text-[9px] tracking-[0.18em]"
-                      style={{ borderColor: "rgba(201,168,76,0.35)", background: "rgba(0,0,0,0.55)", color: GOLD, fontFamily: "Arial, sans-serif" }}
+                      style={{ borderColor: "rgba(201,168,76,0.45)", background: "rgba(255,255,255,0.85)", color: GOLD, fontFamily: "Arial, sans-serif" }}
                     >
                       {c.tag}
                     </div>
-                    <div className="absolute right-3 top-3 text-[10px] tracking-[0.1em] text-white/30" style={{ fontFamily: "Arial, sans-serif" }}>
+                    <div className="absolute right-3 top-3 text-[10px] tracking-[0.1em] text-black/30" style={{ fontFamily: "Arial, sans-serif" }}>
                       {c.n}
                     </div>
                   </div>
                   <div className="flex flex-1 flex-col justify-between p-5">
                     <div>
-                      <h3 className="text-[22px] leading-[1.15] tracking-[-0.5px] text-[#F5F2EC]">
+                      <h3 className="text-[22px] leading-[1.15] tracking-[-0.5px] text-[#141414]">
                         {c.headline}
                       </h3>
                       <div className="mt-5 flex items-baseline gap-3">
                         <div className="text-[32px] leading-none tracking-[-1px]" style={{ color: GOLD }}>{c.stat}</div>
-                        <div className="text-[11px] leading-snug text-white/45" style={{ fontFamily: "Arial, sans-serif" }}>
+                        <div className="text-[11px] leading-snug text-black/45" style={{ fontFamily: "Arial, sans-serif" }}>
                           {c.label}
                         </div>
                       </div>
                     </div>
                     <div
-                      className="mt-6 inline-flex items-center gap-2 self-start rounded-full border border-white/15 px-3 py-1.5 text-[10px] tracking-[0.14em] text-white/60 transition-all group-hover:border-[color:var(--tt-gold)]/60 group-hover:text-[color:var(--tt-gold)]"
+                      className="mt-6 inline-flex items-center gap-2 self-start rounded-full border border-black/10 px-3 py-1.5 text-[10px] tracking-[0.14em] text-black/60 transition-all group-hover:border-[color:var(--tt-gold)]/60 group-hover:text-[color:var(--tt-gold)] group-hover:bg-[color:var(--tt-gold)]/[0.06]"
                       style={{ fontFamily: "Arial, sans-serif" }}
                     >
                       <Plus className="size-3" /> Read the proof
@@ -193,10 +193,10 @@ export default function TenThings() {
                 <div className="grid grid-cols-1 md:grid-cols-2">
                   <div className="relative h-56 w-full overflow-hidden md:h-full md:min-h-[320px]">
                     <img src={c.image} alt={c.tag} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0f0f0f]/60" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/70" />
                     <div
                       className="absolute left-4 top-4 rounded-[3px] border px-2 py-1 text-[9px] tracking-[0.18em]"
-                      style={{ borderColor: "rgba(201,168,76,0.35)", background: "rgba(0,0,0,0.55)", color: GOLD, fontFamily: "Arial, sans-serif" }}
+                      style={{ borderColor: "rgba(201,168,76,0.45)", background: "rgba(255,255,255,0.9)", color: GOLD, fontFamily: "Arial, sans-serif" }}
                     >
                       {c.tag}
                     </div>
@@ -206,28 +206,28 @@ export default function TenThings() {
                       type="button"
                       onClick={() => setOpen(null)}
                       aria-label="Close"
-                      className="absolute right-4 top-4 flex size-9 items-center justify-center rounded-full border border-white/10 text-white/50 transition-colors hover:border-[color:var(--tt-gold)]/60 hover:text-[color:var(--tt-gold)]"
+                      className="absolute right-4 top-4 flex size-9 items-center justify-center rounded-full border border-black/10 text-black/45 transition-colors hover:border-[color:var(--tt-gold)]/60 hover:text-[color:var(--tt-gold)]"
                       style={{ ["--tt-gold" as never]: GOLD }}
                     >
                       <X className="size-4" />
                     </button>
-                    <div className="text-[10px] tracking-[0.18em] text-white/30" style={{ fontFamily: "Arial, sans-serif" }}>
+                    <div className="text-[10px] tracking-[0.18em] text-black/30" style={{ fontFamily: "Arial, sans-serif" }}>
                       {c.n} / 10
                     </div>
                     <div className="mt-4 flex items-baseline gap-4">
-                      <div className="text-[64px] leading-none tracking-[-2px] text-[#F5F2EC]">{c.stat}</div>
+                      <div className="text-[64px] leading-none tracking-[-2px] text-[#141414]">{c.stat}</div>
                       <div className="text-[11px] uppercase tracking-[0.16em]" style={{ color: GOLD, fontFamily: "Arial, sans-serif" }}>
                         {c.label}
                       </div>
                     </div>
-                    <p className="mt-5 max-w-prose text-[14px] leading-[1.65] text-white/60" style={{ fontFamily: "Arial, sans-serif" }}>
+                    <p className="mt-5 max-w-prose text-[14px] leading-[1.65] text-black/60" style={{ fontFamily: "Arial, sans-serif" }}>
                       {c.body}
                     </p>
-                    <div className="mt-6 grid grid-cols-3 gap-px overflow-hidden rounded-md border border-white/10 bg-white/10">
+                    <div className="mt-6 grid grid-cols-3 gap-px overflow-hidden rounded-md border border-black/[0.08] bg-black/[0.08]">
                       {c.substats.map((s) => (
-                        <div key={s.l} className="bg-[#0f0f0f] p-4">
-                          <div className="text-[22px] leading-none tracking-[-0.5px] text-[#F5F2EC]">{s.v}</div>
-                          <div className="mt-2 text-[9px] uppercase tracking-[0.1em] text-white/35" style={{ fontFamily: "Arial, sans-serif" }}>
+                        <div key={s.l} className="bg-[#FAF8F4] p-4">
+                          <div className="text-[22px] leading-none tracking-[-0.5px] text-[#141414]">{s.v}</div>
+                          <div className="mt-2 text-[9px] uppercase tracking-[0.1em] text-black/40" style={{ fontFamily: "Arial, sans-serif" }}>
                             {s.l}
                           </div>
                         </div>
@@ -240,8 +240,9 @@ export default function TenThings() {
                           className="rounded-full border px-2.5 py-1 text-[10px]"
                           style={{
                             fontFamily: "Arial, sans-serif",
-                            borderColor: c.chipStyle[ci] ? "rgba(201,168,76,0.35)" : "rgba(255,255,255,0.1)",
-                            color: c.chipStyle[ci] ? GOLD : "rgba(255,255,255,0.5)",
+                            borderColor: c.chipStyle[ci] ? "rgba(201,168,76,0.45)" : "rgba(0,0,0,0.10)",
+                            color: c.chipStyle[ci] ? GOLD : "rgba(0,0,0,0.55)",
+                            background: c.chipStyle[ci] ? "rgba(201,168,76,0.06)" : "transparent",
                           }}
                         >
                           {chip}
