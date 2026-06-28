@@ -1,9 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Menu, X, ArrowUp } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import logoAsset from "@/assets/logo-2.png.asset.json";
 import heroVideo from "@/assets/hero-info-video.mp4.asset.json";
 import TenThings from "@/components/TenThings";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const Route = createFileRoute("/")({
   head: () => ({
