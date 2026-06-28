@@ -170,9 +170,14 @@ export default function TenThings() {
                   </div>
                   <div className="flex flex-1 flex-col justify-between p-5">
                     <div>
-                      <div className="text-[44px] leading-none tracking-[-1.5px] text-[#F5F2EC]">{c.stat}</div>
-                      <div className="mt-2 text-[12px] leading-snug text-white/45" style={{ fontFamily: "Arial, sans-serif" }}>
-                        {c.label}
+                      <h3 className="text-[22px] leading-[1.15] tracking-[-0.5px] text-[#F5F2EC]">
+                        {c.headline}
+                      </h3>
+                      <div className="mt-5 flex items-baseline gap-3">
+                        <div className="text-[32px] leading-none tracking-[-1px]" style={{ color: GOLD }}>{c.stat}</div>
+                        <div className="text-[11px] leading-snug text-white/45" style={{ fontFamily: "Arial, sans-serif" }}>
+                          {c.label}
+                        </div>
                       </div>
                     </div>
                     <div
