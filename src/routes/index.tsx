@@ -39,6 +39,12 @@ function Index() {
   const unlockingRef = useRef(false);
 
   useEffect(() => {
+    if (navVisible && videoElRef.current) {
+      videoElRef.current.pause();
+    }
+  }, [navVisible]);
+
+  useEffect(() => {
     const hero = heroRef.current;
     if (!hero) return;
 
