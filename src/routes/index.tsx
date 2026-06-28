@@ -29,42 +29,39 @@ function Index() {
   const [navVisible, setNavVisible] = useState(false);
   const [showRewatch, setShowRewatch] = useState(false);
 
-  const videoSectionRef = useRef<HTMLDivElement>(null);
-  const heroSectionRef = useRef<HTMLElement>(null);
-  const videoHeadlineRef = useRef<HTMLDivElement>(null);
+  const curtainWrapRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
   const videoElRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Curtain reveal: hero rises from bottom over the pinned video section.
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: videoSectionRef.current,
-          start: "top top",
-          end: "+=120%",
-          scrub: 1,
-          pin: true,
-          anticipatePin: 1,
-          onUpdate: (self) => {
-            setNavVisible(self.progress > 0.6);
-            setShowRewatch(self.progress > 0.95);
+      // Curtain wrapper pins as soon as it hits the top of the viewport.
+      // While pinned, the hero slides up from below (yPercent 100 -> 0),
+      // covering the video. Once fully on top, the wrapper unpins and the
+      // hero continues as normal flow content.
+      gsap.fromTo(
+        heroRef.current,
+        { yPercent: 100 },
+        {
+          yPercent: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: curtainWrapRef.current,
+            start: "top top",
+            end: "+=100%",
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1,
+            onUpdate: (self) => {
+              setNavVisible(self.progress > 0.6);
+              setShowRewatch(self.progress > 0.95);
+            },
+            onLeaveBack: () => {
+              setNavVisible(false);
+              setShowRewatch(false);
+            },
           },
         },
-      });
-
-      tl.to(videoHeadlineRef.current, {
-        opacity: 0,
-        y: -80,
-        filter: "blur(10px)",
-        ease: "power2.in",
-        duration: 0.4,
-      }, 0);
-
-      tl.fromTo(
-        heroSectionRef.current,
-        { yPercent: 100 },
-        { yPercent: 0, ease: "power3.inOut", duration: 1 },
-        0.1,
       );
     });
 
@@ -75,12 +72,12 @@ function Index() {
     window.scrollTo({ top: 0, behavior: "smooth" });
     setTimeout(() => {
       videoElRef.current?.play().catch(() => {});
-    }, 600);
+    }, 800);
   };
 
   return (
     <main className="min-h-screen bg-background">
-      {/* NAV — only after video ends */}
+      {/* NAV — only after video section ends */}
       <header
         className={`fixed inset-x-0 top-0 z-[100] px-5 pt-5 sm:px-8 sm:pt-6 transition-all duration-500 ${
           navVisible
@@ -140,40 +137,36 @@ function Index() {
         )}
       </header>
 
-      {/* PIN WRAPPER — video stays pinned; hero rises over it */}
-      <div ref={videoSectionRef} className="relative h-screen w-full overflow-hidden bg-black">
-        {/* VIDEO SECTION (z-0) */}
-        <div className="absolute inset-0 z-0">
-          <video
-            ref={videoElRef}
-            src={heroVideo.url}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 h-full w-full object-cover opacity-80"
-          />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/80" />
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.75)_100%)]" />
+      {/* VIDEO SECTION — scrolls normally */}
+      <section className="relative h-screen w-full overflow-hidden bg-black">
+        <video
+          ref={videoElRef}
+          src={heroVideo.url}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover opacity-80"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/80" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.75)_100%)]" />
 
-          <div
-            ref={videoHeadlineRef}
-            className="absolute inset-0 flex items-center justify-center px-6 text-center"
-          >
-            <h1 className="font-display text-[14vw] leading-[0.95] tracking-tight text-background drop-shadow-[0_8px_40px_rgba(0,0,0,0.6)] sm:text-[11vw] md:text-[9vw]">
-              Built by
-              <br />
-              <em className="italic text-background/95">operators.</em>
-            </h1>
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-[0.3em] text-background/70">
-              Scroll to enter
-            </div>
+        <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
+          <h1 className="font-display text-[14vw] leading-[0.95] tracking-tight text-background drop-shadow-[0_8px_40px_rgba(0,0,0,0.6)] sm:text-[11vw] md:text-[9vw]">
+            Built by
+            <br />
+            <em className="italic text-background/95">operators.</em>
+          </h1>
+          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-[0.3em] text-background/70">
+            Scroll to enter
           </div>
         </div>
+      </section>
 
-        {/* HERO SECTION — rises over the video */}
+      {/* CURTAIN WRAPPER — pins while hero rises over the video, then unpins */}
+      <div ref={curtainWrapRef} className="relative h-screen w-full overflow-hidden">
         <section
-          ref={heroSectionRef}
+          ref={heroRef}
           id="hero"
           className="absolute inset-0 z-20 flex h-screen w-full flex-col bg-background px-5 pt-24 pb-8 shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.5)] sm:px-8 sm:pt-28 sm:pb-10"
           style={{ transform: "translateY(100%)" }}
