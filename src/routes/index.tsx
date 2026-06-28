@@ -187,8 +187,25 @@ function Index() {
                 who built business.
               </p>
             </div>
+          </div>
+
+          {/* Full-screen headline (visible before scroll) */}
+          <div
+            ref={headlineRef}
+            className="absolute inset-0 z-20 flex items-center justify-center px-6 text-center"
+          >
+            <h1 className="font-display text-[14vw] leading-[0.95] tracking-tight text-background drop-shadow-[0_8px_40px_rgba(0,0,0,0.6)] sm:text-[11vw] md:text-[9vw]">
+              Built by
+              <br />
+              <em className="italic text-background/95">operators.</em>
+            </h1>
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-[0.3em] text-background/70">
+              Scroll ↓
+            </div>
+          </div>
         </div>
       </div>
+
 
       {/* About curtain — rises over the hero on scroll and becomes the new hero */}
       <section
