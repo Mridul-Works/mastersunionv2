@@ -218,6 +218,9 @@ function Index() {
           </div>
 
           <div className="relative mx-auto aspect-video w-full max-w-6xl overflow-hidden rounded-[2.5rem] border border-white/15 bg-black shadow-[0_40px_80px_-15px_rgba(0,0,0,0.25)] transition-all duration-700 hover:shadow-[0_48px_96px_-20px_rgba(0,0,0,0.35)]">
+            {/* Colorful glow behind the video canvas */}
+            <div className="pointer-events-none absolute -inset-[3px] z-[-1] rounded-[2.6rem] bg-gradient-to-tr from-fuchsia-500 via-cyan-400 to-lime-400 opacity-60 blur-xl" />
+            <div className="pointer-events-none absolute -inset-1 z-[-1] rounded-[2.55rem] bg-gradient-to-br from-amber-400 via-violet-500 to-rose-500 opacity-40 blur-lg" />
             {/* Background building image */}
             <img
               src={heroBuilding}
