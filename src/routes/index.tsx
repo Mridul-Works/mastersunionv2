@@ -35,6 +35,7 @@ function Index() {
   const curtainRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -42,21 +43,19 @@ function Index() {
         scrollTrigger: {
           trigger: wrapRef.current,
           start: "top top",
-          end: "+=110%",
+          end: "+=220%",
           scrub: 1,
           pin: true,
           anticipatePin: 1,
         },
       });
 
-      // Headline fades & lifts away
+      // Phase 1 — headline fades & lifts away, curtain morphs into hero card
       tl.to(
         headlineRef.current,
         { opacity: 0, y: -60, filter: "blur(8px)", ease: "power2.in", duration: 0.4 },
-        0
+        0,
       );
-
-      // Curtain drops & shrinks into the hero card shape
       tl.to(
         curtainRef.current,
         {
@@ -69,12 +68,20 @@ function Index() {
           ease: "power3.inOut",
           duration: 1,
         },
-        0.1
+        0.1,
+      );
+
+      // Phase 2 — About section rises as a curtain over the video and sticks as the new hero
+      tl.to(
+        aboutRef.current,
+        { yPercent: 0, ease: "power3.inOut", duration: 1.2 },
+        1.1,
       );
     }, wrapRef);
 
     return () => ctx.revert();
   }, []);
+
 
   return (
     <main className="min-h-screen bg-background">
