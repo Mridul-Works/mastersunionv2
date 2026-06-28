@@ -83,17 +83,12 @@ function Index() {
             start: "top bottom",
             end: "top top",
             scrub: 1,
+            onUpdate: (self) => {
+              gsap.set(curtainRef.current, { autoAlpha: self.progress >= 0.99 ? 0 : 1 });
+            },
           },
         },
       );
-
-      // Once About's top reaches viewport top, remove the video layer completely.
-      ScrollTrigger.create({
-        trigger: aboutRef.current,
-        start: "top top",
-        onEnter: () => gsap.set(curtainRef.current, { autoAlpha: 0 }),
-        onLeaveBack: () => gsap.set(curtainRef.current, { autoAlpha: 1 }),
-      });
     }, wrapRef);
 
     return () => ctx.revert();
@@ -218,9 +213,9 @@ function Index() {
       <section
         ref={aboutRef}
         id="about"
-        className="sticky top-0 z-30 min-h-screen bg-background px-5 py-24 shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.5)] sm:px-8 sm:py-32"
+        className="sticky top-0 z-30 flex h-screen overflow-hidden bg-background px-5 pt-28 pb-10 shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.5)] sm:px-8 sm:pt-32 sm:pb-12"
       >
-        <div className="mx-auto max-w-[1200px]">
+        <div className="mx-auto flex h-full max-w-[1200px] flex-col justify-center">
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
             <div>
               <div className="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.32em] text-foreground/55">
