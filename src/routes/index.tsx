@@ -32,13 +32,11 @@ function Index() {
   const curtainWrapRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   const videoElRef = useRef<HTMLVideoElement>(null);
+  const lockYRef = useRef<number | null>(null);
+  const unlockingRef = useRef(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Curtain wrapper pins as soon as it hits the top of the viewport.
-      // While pinned, the hero slides up from below (yPercent 100 -> 0),
-      // covering the video. Once fully on top, the wrapper unpins and the
-      // hero continues as normal flow content.
       gsap.fromTo(
         heroRef.current,
         { yPercent: 100 },
@@ -54,25 +52,47 @@ function Index() {
             anticipatePin: 1,
             onUpdate: (self) => {
               setNavVisible(self.progress > 0.6);
-              setShowRewatch(self.progress > 0.95);
+              const covered = self.progress >= 0.999;
+              setShowRewatch(covered);
+              if (covered && lockYRef.current === null && !unlockingRef.current) {
+                lockYRef.current = window.scrollY;
+              }
+              if (!covered && lockYRef.current !== null) {
+                lockYRef.current = null;
+              }
             },
             onLeaveBack: () => {
               setNavVisible(false);
               setShowRewatch(false);
+              lockYRef.current = null;
             },
           },
         },
       );
     });
 
-    return () => ctx.revert();
+    const onScroll = () => {
+      if (unlockingRef.current) return;
+      if (lockYRef.current !== null && window.scrollY < lockYRef.current) {
+        window.scrollTo(0, lockYRef.current);
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      ctx.revert();
+    };
   }, []);
 
   const rewatchVideo = () => {
+    unlockingRef.current = true;
+    lockYRef.current = null;
     window.scrollTo({ top: 0, behavior: "smooth" });
     setTimeout(() => {
+      unlockingRef.current = false;
       videoElRef.current?.play().catch(() => {});
-    }, 800);
+    }, 900);
   };
 
   return (
