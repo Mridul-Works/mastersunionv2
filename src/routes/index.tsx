@@ -4,7 +4,9 @@ import { Menu, X, ArrowUp } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import logoAsset from "@/assets/logo-2.png.asset.json";
-import heroVideo from "@/assets/hero-info-video.mp4.asset.json";
+import campusVideo from "@/assets/campusFilm.mp4.asset.json";
+import heroBuilding from "@/assets/hero-building-light.jpg";
+import { Play, Pause } from "lucide-react";
 import TenThings from "@/components/TenThings";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -29,6 +31,7 @@ function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [navVisible, setNavVisible] = useState(false);
   const [showRewatch, setShowRewatch] = useState(false);
+  const [playing, setPlaying] = useState(false);
 
   const videoElRef = useRef<HTMLVideoElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -202,27 +205,68 @@ function Index() {
           freely both ways. */}
       <div className="relative">
         <section className="sticky top-0 z-0 h-screen w-full overflow-hidden bg-black">
+          {/* Background building image */}
+          <img
+            src={heroBuilding}
+            alt=""
+            aria-hidden
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${playing ? "opacity-0" : "opacity-100"}`}
+          />
+          {/* Video (no autoplay) */}
           <video
             ref={videoElRef}
-            src={heroVideo.url}
-            autoPlay
-            muted
-            loop
+            src={campusVideo.url}
             playsInline
-            className="absolute inset-0 h-full w-full object-cover opacity-80"
+            preload="metadata"
+            onPlay={() => setPlaying(true)}
+            onPause={() => setPlaying(false)}
+            onEnded={() => setPlaying(false)}
+            controls={playing}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${playing ? "opacity-100" : "opacity-0 pointer-events-none"}`}
           />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/80" />
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.75)_100%)]" />
-          <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
-            <h1 className="font-display text-[14vw] leading-[0.95] tracking-tight text-white drop-shadow-[0_8px_40px_rgba(0,0,0,0.6)] sm:text-[11vw] md:text-[9vw]">
-              Built by
-              <br />
-              <em className="italic text-white/95">operators.</em>
-            </h1>
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-[0.3em] text-white/70">
+          {/* Subtle vignette for legibility (only when video isn't playing) */}
+          <div
+            className={`pointer-events-none absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 transition-opacity duration-500 ${playing ? "opacity-0" : "opacity-100"}`}
+          />
+
+          {/* Overlay: logo + tagline + play button */}
+          <div
+            className={`absolute inset-0 flex flex-col items-center justify-center gap-8 px-6 text-center transition-opacity duration-500 ${playing ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+          >
+            <img
+              src={logoAsset.url}
+              alt="Masters' Union"
+              className="h-20 w-auto opacity-50 brightness-0 invert sm:h-28 md:h-36"
+            />
+            <div className="font-display text-[10vw] leading-[0.95] tracking-tight text-white/85 drop-shadow-[0_8px_40px_rgba(0,0,0,0.6)] sm:text-[7vw] md:text-[5.5vw]">
+              Learn by <em className="italic">Doing</em>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                videoElRef.current?.play().catch(() => {});
+              }}
+              aria-label="Play campus film"
+              className="group mt-2 flex size-20 items-center justify-center rounded-full border border-white/40 bg-white/10 opacity-50 backdrop-blur-md transition-all duration-300 hover:opacity-100 hover:scale-110 hover:bg-white/20 sm:size-24"
+            >
+              <Play className="size-8 fill-white text-white sm:size-10" />
+            </button>
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-[0.3em] text-white/60">
               Scroll to enter
             </div>
           </div>
+
+          {/* Pause overlay button when playing */}
+          {playing && (
+            <button
+              type="button"
+              onClick={() => videoElRef.current?.pause()}
+              aria-label="Pause"
+              className="absolute right-6 top-6 z-10 flex size-11 items-center justify-center rounded-full border border-white/30 bg-black/40 text-white opacity-70 backdrop-blur-md transition-opacity hover:opacity-100"
+            >
+              <Pause className="size-4" />
+            </button>
+          )}
         </section>
 
         {/* The hero. Rises over the sticky video as the user scrolls. */}
