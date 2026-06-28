@@ -31,9 +31,42 @@ function Index() {
   const [showRewatch, setShowRewatch] = useState(false);
   const sentinelRef = useRef<HTMLDivElement>(null);
   const videoElRef = useRef<HTMLVideoElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const unlockedRef = useRef(false);
 
-  // Reveal nav + rewatch button once the video is fully covered.
+  // GSAP ScrollTrigger: once the hero's top reaches the viewport top,
+  // toggle nav + rewatch and clamp scrollY so the user can't go back up
+  // into the video. Scrolling DOWN through the hero stays free.
   useEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+
+    const st = ScrollTrigger.create({
+      trigger: hero,
+      start: "top top",
+      end: "max",
+      onEnter: () => {
+        setNavVisible(true);
+        setShowRewatch(true);
+      },
+      onEnterBack: () => {
+        setNavVisible(true);
+        setShowRewatch(true);
+      },
+      onLeaveBack: () => {
+        // Only the rewatch button is allowed to take us back above the hero.
+        if (unlockedRef.current) {
+          setNavVisible(false);
+          setShowRewatch(false);
+          return;
+        }
+        const lockY = hero.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo(0, lockY);
+      },
+    });
+
+    return () => st.kill();
+  }, []);
     const el = sentinelRef.current;
     if (!el) return;
     const io = new IntersectionObserver(
