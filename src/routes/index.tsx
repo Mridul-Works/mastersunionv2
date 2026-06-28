@@ -67,34 +67,37 @@ function Index() {
       }
     };
 
-    const blockUpward = (e: Event, deltaY: number) => {
+    const onWheel = (e: WheelEvent) => {
       if (!lockedRef.current || unlockingRef.current) return;
-      if (deltaY < 0 && window.scrollY <= lockYRef.current + 1) {
+      if (e.deltaY < 0) {
         e.preventDefault();
+        if (window.scrollY < lockYRef.current) {
+          window.scrollTo(0, lockYRef.current);
+        }
       }
     };
-
-    const onWheel = (e: WheelEvent) => blockUpward(e, e.deltaY);
 
     let touchStartY = 0;
     const onTouchStart = (e: TouchEvent) => {
       touchStartY = e.touches[0]?.clientY ?? 0;
     };
     const onTouchMove = (e: TouchEvent) => {
+      if (!lockedRef.current || unlockingRef.current) return;
       const y = e.touches[0]?.clientY ?? 0;
-      // swipe down (finger moves down) => scroll up
-      blockUpward(e, touchStartY - y);
+      // finger moves down => page would scroll up => block
+      if (y - touchStartY > 0) {
+        e.preventDefault();
+        if (window.scrollY < lockYRef.current) {
+          window.scrollTo(0, lockYRef.current);
+        }
+      }
     };
 
-    const blockedKeys = new Set([
-      "ArrowUp",
-      "PageUp",
-      "Home",
-    ]);
+    const blockedKeys = new Set(["ArrowUp", "PageUp", "Home"]);
     const onKey = (e: KeyboardEvent) => {
       if (!lockedRef.current || unlockingRef.current) return;
       if (blockedKeys.has(e.key) || (e.key === " " && e.shiftKey)) {
-        if (window.scrollY <= lockYRef.current + 1) e.preventDefault();
+        e.preventDefault();
       }
     };
 
