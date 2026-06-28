@@ -1,13 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Menu, X, ArrowUp } from "lucide-react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import logoAsset from "@/assets/logo-2.png.asset.json";
 import heroVideo from "@/assets/hero-info-video.mp4.asset.json";
 import TenThings from "@/components/TenThings";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -29,41 +25,23 @@ function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [navVisible, setNavVisible] = useState(false);
   const [showRewatch, setShowRewatch] = useState(false);
-
-  const curtainWrapRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
+  const sentinelRef = useRef<HTMLDivElement>(null);
   const videoElRef = useRef<HTMLVideoElement>(null);
 
+  // Reveal nav + rewatch button once the video is fully covered.
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        heroRef.current,
-        { yPercent: 100 },
-        {
-          yPercent: 0,
-          ease: "none",
-          scrollTrigger: {
-            trigger: curtainWrapRef.current,
-            start: "top top",
-            end: "+=100%",
-            scrub: 1,
-            pin: true,
-            anticipatePin: 1,
-            onUpdate: (self) => {
-              setNavVisible(self.progress > 0.6);
-            },
-            onLeave: () => {
-              setShowRewatch(true);
-            },
-            onLeaveBack: () => {
-              setNavVisible(false);
-              setShowRewatch(false);
-            },
-          },
-        },
-      );
-    });
-    return () => ctx.revert();
+    const el = sentinelRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        const covered = !entry.isIntersecting;
+        setNavVisible(covered);
+        setShowRewatch(covered);
+      },
+      { threshold: 0, rootMargin: "0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
   const rewatchVideo = () => {
@@ -132,47 +110,43 @@ function Index() {
         )}
       </header>
 
-      {/* VIDEO SECTION */}
-      <section className="relative h-screen w-full overflow-hidden bg-black">
-        <video
-          ref={videoElRef}
-          src={heroVideo.url}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 h-full w-full object-cover opacity-80"
-        />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/80" />
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.75)_100%)]" />
-        <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
-          <h1 className="font-display text-[14vw] leading-[0.95] tracking-tight text-white drop-shadow-[0_8px_40px_rgba(0,0,0,0.6)] sm:text-[11vw] md:text-[9vw]">
-            Built by
-            <br />
-            <em className="italic text-white/95">operators.</em>
-          </h1>
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-[0.3em] text-white/70">
-            Scroll to enter
+      {/* Curtain wrapper: video is sticky at top while the hero (TenThings)
+          naturally scrolls up over it. No JS scroll-locking — page scrolls
+          freely both ways. */}
+      <div className="relative">
+        <section className="sticky top-0 z-0 h-screen w-full overflow-hidden bg-black">
+          <video
+            ref={videoElRef}
+            src={heroVideo.url}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 h-full w-full object-cover opacity-80"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/80" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.75)_100%)]" />
+          <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
+            <h1 className="font-display text-[14vw] leading-[0.95] tracking-tight text-white drop-shadow-[0_8px_40px_rgba(0,0,0,0.6)] sm:text-[11vw] md:text-[9vw]">
+              Built by
+              <br />
+              <em className="italic text-white/95">operators.</em>
+            </h1>
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-[0.3em] text-white/70">
+              Scroll to enter
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CURTAIN: pins for one viewport while TenThings rises to cover the video,
-          then unpins so the page scrolls normally through the cards. */}
-      <div ref={curtainWrapRef} className="relative h-screen w-full overflow-hidden bg-[#090909]">
-        <div
-          ref={heroRef}
-          className="absolute inset-0 z-20 overflow-hidden bg-[#090909]"
-          style={{ transform: "translateY(100%)" }}
-        >
-          {/* Preview of the hero section that will continue after unpin */}
-          <TenThings preview />
+        {/* Sentinel sits at the top of the curtain — once it scrolls out of
+            view the hero has fully covered the video. */}
+        <div ref={sentinelRef} className="absolute left-0 top-[100vh] h-px w-full" />
+
+        {/* The hero. Rises over the sticky video as the user scrolls. */}
+        <div className="relative z-10 bg-[#090909] shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.7)]">
+          <TenThings />
         </div>
       </div>
-
-      {/* Full hero section — flows naturally after the curtain wrap.
-          No scroll lock; user can scroll back up to the video any time. */}
-      <TenThings />
 
       {/* Rewatch button */}
       <button
