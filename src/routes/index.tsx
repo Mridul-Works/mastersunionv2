@@ -272,6 +272,9 @@ function Index() {
         </section>
       </div>
 
+      <TenThings />
+
+
       {/* Bouncing rewatch button — appears once hero has taken over */}
       <button
         type="button"
