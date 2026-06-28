@@ -2,6 +2,16 @@
 @source "../src";
 @import "tw-animate-css";
 
+@utility video-aurora {
+  background:
+    radial-gradient(at 0% 0%, color-mix(in oklab, oklch(0.72 0.12 45) 22%, transparent) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, color-mix(in oklab, oklch(0.75 0.1 250) 18%, transparent) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, color-mix(in oklab, oklch(0.78 0.09 135) 20%, transparent) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, color-mix(in oklab, oklch(0.8 0.08 300) 16%, transparent) 0px, transparent 50%),
+    linear-gradient(135deg, oklch(0.97 0.02 80) 0%, oklch(0.94 0.03 95) 100%);
+}
+
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

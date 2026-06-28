@@ -204,7 +204,7 @@ function Index() {
           naturally scrolls up over it. No JS scroll-locking — page scrolls
           freely both ways. */}
       <div className="relative">
-        <section className="sticky top-0 z-0 flex h-[92vh] w-full items-center justify-center overflow-hidden bg-[#FAF8F4] px-4 pb-6 pt-6 sm:px-8 sm:pb-8 sm:pt-8">
+        <section className="video-aurora sticky top-0 z-0 flex h-[92vh] w-full items-center justify-center overflow-hidden px-4 pb-6 pt-6 sm:px-8 sm:pb-8 sm:pt-8">
           <div className="relative mx-auto aspect-video w-full max-w-6xl overflow-hidden rounded-[2.5rem] border border-black/5 bg-black shadow-[0_40px_80px_-15px_rgba(0,0,0,0.25)] transition-all duration-700 hover:shadow-[0_48px_96px_-20px_rgba(0,0,0,0.35)]">
             {/* Background building image */}
             <img
