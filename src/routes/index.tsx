@@ -83,18 +83,12 @@ function Index() {
             start: "top bottom",
             end: "top top",
             scrub: 1,
+            onUpdate: (self) => {
+              gsap.set(curtainRef.current, { autoAlpha: self.progress >= 0.99 ? 0 : 1 });
+            },
           },
         },
       );
-
-      // Once About's top reaches viewport top, pin it so it covers the video
-      ScrollTrigger.create({
-        trigger: aboutRef.current,
-        start: "top top",
-        end: "+=100%",
-        pin: true,
-        pinSpacing: true,
-      });
     }, wrapRef);
 
     return () => ctx.revert();
@@ -104,6 +98,59 @@ function Index() {
 
   return (
     <main className="min-h-screen bg-background">
+      <header className="fixed inset-x-0 top-0 z-[100] px-5 pt-5 sm:px-8 sm:pt-6">
+        <div className="mx-auto flex max-w-[1320px] items-center justify-between rounded-full border border-background/20 bg-background/85 px-2 py-2 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.22)] backdrop-blur-xl md:px-3">
+          <a href="/" className="flex items-center gap-2 rounded-full px-3 py-1.5 transition-colors hover:bg-foreground/5">
+            <img src={logoAsset.url} alt="Masters' Union" className="h-7 w-auto" />
+          </a>
+          <nav className="hidden items-center gap-0.5 md:flex">
+            {NAV.map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="group relative rounded-full px-4 py-2 text-[13px] font-medium text-foreground/80 transition-colors hover:bg-foreground/5 hover:text-foreground"
+              >
+                {item}
+                <span className="absolute inset-x-4 -bottom-0.5 h-px scale-x-0 bg-current transition-transform duration-300 group-hover:scale-x-100" />
+              </a>
+            ))}
+          </nav>
+          <div className="flex items-center gap-1">
+            <button
+              type="button"
+              className="rounded-full bg-primary px-5 py-2.5 text-[12px] font-semibold uppercase tracking-wide text-primary-foreground shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
+            >
+              Apply Now
+            </button>
+            <button
+              type="button"
+              aria-label="Toggle menu"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((s) => !s)}
+              className="flex size-10 items-center justify-center rounded-full text-foreground/80 transition-colors hover:bg-foreground/5 hover:text-foreground md:hidden"
+            >
+              {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+            </button>
+          </div>
+        </div>
+        {menuOpen && (
+          <div className="mt-3 rounded-3xl border border-background/20 bg-background/95 p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.2)] backdrop-blur-xl md:hidden">
+            <nav className="flex flex-col gap-1">
+              {NAV.map((item) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded-2xl px-4 py-3 text-[14px] font-medium text-foreground/80 transition-colors hover:bg-foreground/5 hover:text-foreground"
+                >
+                  {item}
+                </a>
+              ))}
+            </nav>
+          </div>
+        )}
+      </header>
+
       {/* PIN WRAPPER — curtain reveal */}
       <div ref={wrapRef} className="relative h-screen w-full overflow-hidden">
         {/* Curtain / video stage — starts full-bleed, shrinks into hero card */}
@@ -128,60 +175,6 @@ function Index() {
 
           {/* Hero section content (visible once curtain settles) */}
           <div ref={heroRef} className="absolute inset-0">
-            {/* Header */}
-            <header className="absolute inset-x-0 top-0 z-10 px-5 pt-5 sm:px-8 sm:pt-6">
-              <div className="mx-auto flex max-w-[1320px] items-center justify-between rounded-full border border-background/20 bg-background/75 px-2 py-2 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.18)] backdrop-blur-xl md:px-3">
-                <a href="/" className="flex items-center gap-2 rounded-full px-3 py-1.5 transition-colors hover:bg-foreground/5">
-                  <img src={logoAsset.url} alt="Masters' Union" className="h-7 w-auto" />
-                </a>
-                <nav className="hidden items-center gap-0.5 md:flex">
-                  {NAV.map((item) => (
-                    <a
-                      key={item}
-                      href={`#${item.toLowerCase()}`}
-                      className="group relative rounded-full px-4 py-2 text-[13px] font-medium text-foreground/80 transition-colors hover:bg-foreground/5 hover:text-foreground"
-                    >
-                      {item}
-                      <span className="absolute inset-x-4 -bottom-0.5 h-px scale-x-0 bg-current transition-transform duration-300 group-hover:scale-x-100" />
-                    </a>
-                  ))}
-                </nav>
-                <div className="flex items-center gap-1">
-                  <button
-                    type="button"
-                    className="rounded-full bg-primary px-5 py-2.5 text-[12px] font-semibold uppercase tracking-wide text-primary-foreground shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
-                  >
-                    Apply Now
-                  </button>
-                  <button
-                    type="button"
-                    aria-label="Toggle menu"
-                    aria-expanded={menuOpen}
-                    onClick={() => setMenuOpen((s) => !s)}
-                    className="flex size-10 items-center justify-center rounded-full text-foreground/80 transition-colors hover:bg-foreground/5 hover:text-foreground md:hidden"
-                  >
-                    {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
-                  </button>
-                </div>
-              </div>
-              {menuOpen && (
-                <div className="mt-3 rounded-3xl border border-background/20 bg-background/90 p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.2)] backdrop-blur-xl md:hidden">
-                  <nav className="flex flex-col gap-1">
-                    {NAV.map((item) => (
-                      <a
-                        key={item}
-                        href={`#${item.toLowerCase()}`}
-                        onClick={() => setMenuOpen(false)}
-                        className="rounded-2xl px-4 py-3 text-[14px] font-medium text-foreground/80 transition-colors hover:bg-foreground/5 hover:text-foreground"
-                      >
-                        {item}
-                      </a>
-                    ))}
-                  </nav>
-                </div>
-              )}
-            </header>
-
             {/* Left info strip (hero card state) */}
             <div className="absolute bottom-10 left-6 z-10 max-w-[280px] text-background sm:left-10">
               <div className="mb-3 flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-background/80">
@@ -220,10 +213,10 @@ function Index() {
       <section
         ref={aboutRef}
         id="about"
-        className="relative z-30 min-h-screen bg-background px-5 py-24 shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.5)] sm:px-8 sm:py-32"
+        className="sticky top-0 z-30 flex min-h-screen bg-background px-5 pt-24 pb-8 shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.5)] sm:px-8 sm:pt-28 sm:pb-10"
       >
-        <div className="mx-auto max-w-[1200px]">
-          <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-24">
+        <div className="mx-auto flex min-h-[calc(100vh-8rem)] max-w-[1200px] flex-col justify-center">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-20">
             <div>
               <div className="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.32em] text-foreground/55">
                 <span className="h-px w-10 bg-foreground/30" />
@@ -235,7 +228,7 @@ function Index() {
                 <span className="italic text-foreground/70">built in public.</span>
               </h2>
             </div>
-            <div className="flex flex-col gap-6 text-[15px] leading-[1.7] text-foreground/75 sm:text-[17px]">
+            <div className="flex flex-col gap-4 text-[15px] leading-[1.65] text-foreground/75 sm:text-[17px]">
               <p>
                 We don&apos;t teach from textbooks. Our students run real companies, pitch live deals, and learn from the CEOs, founders, and operators who are building India&apos;s next decade.
               </p>
@@ -245,7 +238,7 @@ function Index() {
             </div>
           </div>
 
-          <div className="mt-20 grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-border/60 bg-border/60 sm:grid-cols-4">
+          <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-border/60 bg-border/60 sm:grid-cols-4 lg:mt-14">
             {[
               { value: "₹3.38 Cr", label: "Cohort revenue" },
               { value: "₹593 Cr", label: "Startup valuation" },
@@ -254,7 +247,7 @@ function Index() {
             ].map((stat) => (
               <div
                 key={stat.label}
-                className="flex flex-col justify-between gap-4 bg-background p-6 sm:p-8"
+                className="flex flex-col justify-between gap-3 bg-background p-5 sm:p-7"
               >
                 <div className="font-display text-[clamp(2rem,4vw,3rem)] font-light leading-none tracking-tight text-foreground">
                   {stat.value}
