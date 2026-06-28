@@ -14,6 +14,7 @@ import mu10 from "@/assets/mu-10.jpg";
 type Card = {
   n: string;
   tag: string;
+  headline: string;
   stat: string;
   label: string;
   body: string;
@@ -25,61 +26,81 @@ type Card = {
 
 const CARDS: Card[] = [
   {
-    n: "01", tag: "CURRICULUM", stat: "₹3.38 Cr", label: "Cohort revenue — before midterms",
+    n: "01", tag: "CURRICULUM",
+    headline: "Your grade depends on how much money you made.",
+    stat: "₹3.38 Cr", label: "Cohort revenue — before midterms",
     body: "Forget GPA. Your report card is your P&L. 50 teams ran real e-commerce stores and made ₹3.38 Cr — before their first midterm. The market doesn't accept late submissions.",
     substats: [{ v: "₹45L", l: "Top team" }, { v: "50", l: "Competing teams" }, { v: "0", l: "Late submissions accepted" }],
     chips: ["Real P&L", "Live stores", "Shopify", "Meta Ads", "Stripe", "Razorpay"], chipStyle: [1,0,1,0,1,0], image: mu01,
   },
   {
-    n: "02", tag: "ENTREPRENEURSHIP", stat: "₹593 Cr", label: "Total valuation of student startups",
+    n: "02", tag: "ENTREPRENEURSHIP",
+    headline: "Our students built startups worth ₹593 crore.",
+    stat: "₹593 Cr", label: "Total valuation of student startups",
     body: "30+ startups. 6 Shark Tank India appearances. One founder was still figuring out his hostel mess timetable. We don't incubate ideas. We incubate revenue.",
     substats: [{ v: "₹480 Cr", l: "Projected revenue, FY26" }, { v: "6", l: "On Shark Tank India" }, { v: "180+", l: "Jobs created" }],
     chips: ["Shark Tank", "Sequoia Spark", "Blume", "Titan Capital", "Y Combinator"], chipStyle: [1,1,1,1,1], image: mu03,
   },
   {
-    n: "03", tag: "MENTORS", stat: "500+", label: "Mentors who actually pick up",
+    n: "03", tag: "MENTORS",
+    headline: "500+ mentors. One hour or less.",
+    stat: "500+", label: "Mentors who actually pick up",
     body: "Burning cash faster than you planned? Talk to a founder who's been there twice. Need a GTM playbook? Ask someone who launched last quarter. 500+ mentors who actually pick up. No office hours. No waiting lists. Just answers.",
     substats: [{ v: "<1 hr", l: "Average response" }, { v: "On demand", l: "Not on stage" }, { v: "24/7", l: "Hotline open" }],
     chips: ["Kunal Shah", "Nikhil Kamath", "Varun Dua", "Ritesh Malik", "Peyush Bansal"], chipStyle: [0,0,0,0,0], image: mu02,
   },
   {
-    n: "04", tag: "FOOD LAB", stat: "₹1 Cr+", label: "ARR from a student food brand",
+    n: "04", tag: "FOOD LAB",
+    headline: "We built a food incubator with real kitchens inside a B-school.",
+    stat: "₹1 Cr+", label: "ARR from a student food brand",
     body: "Other B-schools have cafeterias. We have a commercial kitchen where students launch actual food brands. Lexi's went from classroom concept to Gurgaon's highest-rated sandwich brand.",
     substats: [{ v: "4.5+", l: "Lexi's Zomato rating" }, { v: "Cohort '24", l: "Founded" }, { v: "1", l: "Commercial kitchen on campus" }],
     chips: ["Lexi's", "Zomato", "Swiggy", "Real kitchens", "Student-run"], chipStyle: [1,0,0,1,0], image: mu04,
   },
   {
-    n: "05", tag: "IMMERSIONS", stat: "7,000 km", label: "Bharat route across India — for credits",
+    n: "05", tag: "IMMERSIONS",
+    headline: "A term travelling 7,000 km across India. Or flying to INSEAD. Your call.",
+    stat: "7,000 km", label: "Bharat route across India — for credits",
     body: "Choose your adventure: 7,000 km across India meeting CXOs, or 7 countries with INSEAD and BMW. Both count for credits. Both look better on your LinkedIn than 'summer internship at dad's office.'",
     substats: [{ v: "7", l: "Countries" }, { v: "40+", l: "CXO sessions" }, { v: "50+", l: "1-day immersions" }],
     chips: ["INSEAD", "BMW", "Bharat route", "CXO access", "Global"], chipStyle: [1,1,0,1,0], image: mu05,
   },
   {
-    n: "06", tag: "FACULTY", stat: "40%", label: "Faculty who are sitting CEOs & MDs",
+    n: "06", tag: "FACULTY",
+    headline: "40% of our faculty are sitting CEOs and MDs. Not retired. Sitting.",
+    stat: "40%", label: "Faculty who are sitting CEOs & MDs",
     body: "Your finance professor is the MD of Morgan Stanley. Your marketing prof runs a unicorn. They're not retired luminaries dropping wisdom from a podium — they're currently running the companies you're learning about.",
     substats: [{ v: "200+", l: "Industry experts" }, { v: "30%", l: "Ivy-league visiting" }, { v: "0", l: "Pure academic-only tracks" }],
     chips: ["Morgan Stanley", "Harvard", "Wharton", "Unicorn CEOs", "Sitting MDs"], chipStyle: [1,0,0,1,1], image: mu06,
   },
   {
-    n: "07", tag: "CREATOR CHALLENGE", stat: "46M+", label: "Aggregate reach built in one term",
+    n: "07", tag: "CREATOR CHALLENGE",
+    headline: "The assignment: grow a real audience. Some got very, very good at it.",
+    stat: "46M+", label: "Aggregate reach built in one term",
     body: "One student made ₹45L selling socks on Instagram. Another hit 5M+ views while still figuring out hostel wifi. Here, your 'extracurricular' might pay your tuition.",
     substats: [{ v: "100+", l: "Channels built" }, { v: "5 Mn+", l: "Cumulative followers" }, { v: "150+", l: "Active creators" }],
     chips: ["Instagram", "YouTube", "LinkedIn", "Shorts", "Brand deals"], chipStyle: [1,1,0,0,1], image: mu07,
   },
   {
-    n: "08", tag: "CAMPUS", stat: "85%", label: "Fortune 500 within 2 km of class",
+    n: "08", tag: "CAMPUS",
+    headline: "Your classroom is inside DLF Cyberpark. So is your future employer.",
+    stat: "85%", label: "Fortune 500 within 2 km of class",
     body: "Your classroom is in DLF Cyberpark. So is Google. So is Microsoft. Your commute to the recruiter is shorter than your commute to the canteen.",
     substats: [{ v: "DLF", l: "Cyberpark, Gurugram" }, { v: "LEED", l: "Platinum certified" }, { v: "2 km", l: "To your next interview" }],
     chips: ["Google", "Microsoft", "DLF Cyberpark", "Gurugram", "LEED Platinum"], chipStyle: [1,1,0,0,1], image: mu08,
   },
   {
-    n: "09", tag: "LIFE AT MU", stat: "24/7", label: "Campus access — sleep is optional",
+    n: "09", tag: "LIFE AT MU",
+    headline: "A day here can rather be a bit unusual.",
+    stat: "24/7", label: "Campus access — sleep is optional",
     body: "9 AM: Strategy with a sitting CEO. 2 PM: Shoot content in our studio. 6 PM: Call with a Sequoia partner. 11 PM: Kitchen experiments in Food Lab. Sleep is optional. Building is mandatory.",
     substats: [{ v: "40%", l: "Faculty are sitting CEOs" }, { v: "500+", l: "Mentors on call" }, { v: "1", l: "Studio, kitchen, fund — all on-site" }],
     chips: ["Content studio", "Food Lab", "Sequoia calls", "Always-on", "Build mode"], chipStyle: [0,1,1,0,1], image: mu09,
   },
   {
-    n: "10", tag: "PLACEMENTS", stat: "₹61.98L", label: "Highest CTC — and it keeps growing",
+    n: "10", tag: "PLACEMENTS",
+    headline: "Our alumni salaries grow 10–20% every single year after they leave.",
+    stat: "₹61.98L", label: "Highest CTC — and it keeps growing",
     body: "₹61.98L highest CTC. 3x average salary jump. But the real flex? 28% of grads join as Founder's Office or Chief of Staff — because they already built things, not just studied them.",
     substats: [{ v: "3×", l: "Pre-MBA salary jump" }, { v: "10–20%", l: "Annual growth post-grad" }, { v: "28%", l: "Founder's Office / CoS" }],
     chips: ["Zepto", "McKinsey", "a16z", "Razorpay", "Google", "Peak XV"], chipStyle: [1,1,0,1,1,0], image: mu10,
