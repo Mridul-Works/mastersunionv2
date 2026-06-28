@@ -189,65 +189,132 @@ export default function TenThings() {
                   </div>
                 </button>
               ) : (
-                // ── EXPANDED ──
-                <div className="grid grid-cols-1 md:grid-cols-2">
-                  <div className="relative h-56 w-full overflow-hidden md:h-full md:min-h-[320px]">
-                    <img src={c.image} alt={c.tag} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/70" />
-                    <div
-                      className="absolute left-4 top-4 rounded-[3px] border px-2 py-1 text-[9px] tracking-[0.18em]"
-                      style={{ borderColor: "rgba(201,168,76,0.45)", background: "rgba(255,255,255,0.9)", color: GOLD, fontFamily: "Arial, sans-serif" }}
-                    >
-                      {c.tag}
+                // ── EXPANDED · editorial spread ──
+                <div className="relative bg-[#FCFBF7]">
+                  {/* Close */}
+                  <button
+                    type="button"
+                    onClick={() => setOpen(null)}
+                    aria-label="Close"
+                    className="absolute right-5 top-5 z-20 flex size-10 items-center justify-center rounded-full bg-white/90 text-black/55 shadow-[0_2px_10px_-2px_rgba(0,0,0,0.15)] backdrop-blur transition-colors hover:text-[color:var(--tt-gold)]"
+                    style={{ ["--tt-gold" as never]: GOLD }}
+                  >
+                    <X className="size-4" />
+                  </button>
+
+                  {/* Masthead */}
+                  <div className="flex items-center justify-between border-b border-black/[0.08] px-6 py-3 sm:px-10" style={{ fontFamily: "Arial, sans-serif" }}>
+                    <div className="flex items-center gap-3 text-[10px] tracking-[0.22em] text-black/45">
+                      <span style={{ color: GOLD }}>● {c.n} / 10</span>
+                      <span className="h-px w-8 bg-black/15" />
+                      <span>{c.tag}</span>
+                    </div>
+                    <div className="hidden text-[10px] tracking-[0.22em] text-black/35 sm:block">
+                      MASTERS&apos; UNION · FIELD NOTES
                     </div>
                   </div>
-                  <div className="relative p-6 sm:p-8">
-                    <button
-                      type="button"
-                      onClick={() => setOpen(null)}
-                      aria-label="Close"
-                      className="absolute right-4 top-4 flex size-9 items-center justify-center rounded-full border border-black/10 text-black/45 transition-colors hover:border-[color:var(--tt-gold)]/60 hover:text-[color:var(--tt-gold)]"
-                      style={{ ["--tt-gold" as never]: GOLD }}
-                    >
-                      <X className="size-4" />
-                    </button>
-                    <div className="text-[10px] tracking-[0.18em] text-black/30" style={{ fontFamily: "Arial, sans-serif" }}>
-                      {c.n} / 10
-                    </div>
-                    <div className="mt-4 flex items-baseline gap-4">
-                      <div className="text-[64px] leading-none tracking-[-2px] text-[#141414]">{c.stat}</div>
-                      <div className="text-[11px] uppercase tracking-[0.16em]" style={{ color: GOLD, fontFamily: "Arial, sans-serif" }}>
-                        {c.label}
+
+                  {/* Body */}
+                  <div className="grid grid-cols-1 gap-0 md:grid-cols-12">
+                    {/* Left: oversized stat + image */}
+                    <div className="relative md:col-span-5 md:border-r md:border-black/[0.08]">
+                      <div className="relative px-6 pt-10 sm:px-10">
+                        <div
+                          className="text-[clamp(4.5rem,9vw,8.5rem)] leading-[0.85] tracking-[-3px] text-[#141414]"
+                          style={{ fontFamily: "Georgia, serif" }}
+                        >
+                          {c.stat}
+                        </div>
+                        <div
+                          className="mt-3 max-w-[260px] text-[11px] uppercase tracking-[0.18em]"
+                          style={{ color: GOLD, fontFamily: "Arial, sans-serif" }}
+                        >
+                          {c.label}
+                        </div>
+                      </div>
+                      <div className="relative mx-6 mt-8 mb-6 aspect-[4/5] overflow-hidden sm:mx-10">
+                        <img src={c.image} alt={c.tag} loading="lazy" className="absolute inset-0 h-full w-full object-cover grayscale-[0.15]" />
+                        <div className="absolute inset-0 ring-1 ring-inset ring-black/10" />
+                        <div className="absolute bottom-3 left-3 rounded-sm bg-white/85 px-2 py-1 text-[9px] tracking-[0.18em] text-black/60 backdrop-blur" style={{ fontFamily: "Arial, sans-serif" }}>
+                          Plate {c.n}
+                        </div>
                       </div>
                     </div>
-                    <p className="mt-5 max-w-prose text-[14px] leading-[1.65] text-black/60" style={{ fontFamily: "Arial, sans-serif" }}>
-                      {c.body}
-                    </p>
-                    <div className="mt-6 grid grid-cols-3 gap-px overflow-hidden rounded-md border border-black/[0.08] bg-black/[0.08]">
-                      {c.substats.map((s) => (
-                        <div key={s.l} className="bg-[#FAF8F4] p-4">
-                          <div className="text-[22px] leading-none tracking-[-0.5px] text-[#141414]">{s.v}</div>
-                          <div className="mt-2 text-[9px] uppercase tracking-[0.1em] text-black/40" style={{ fontFamily: "Arial, sans-serif" }}>
-                            {s.l}
+
+                    {/* Right: pull-quote + narrative + dossier */}
+                    <div className="md:col-span-7">
+                      <div className="px-6 pt-10 sm:px-12">
+                        {/* Drop-cap pull quote */}
+                        <div className="relative">
+                          <span
+                            className="float-left mr-3 -mt-1 leading-[0.8] text-[#141414]"
+                            style={{ fontFamily: "Georgia, serif", fontSize: "5.5rem" }}
+                          >
+                            “
+                          </span>
+                          <h4
+                            className="text-[clamp(1.5rem,2.4vw,2.1rem)] leading-[1.18] tracking-[-0.5px] text-[#141414]"
+                            style={{ fontFamily: "Georgia, serif" }}
+                          >
+                            <em className="not-italic">{c.headline}</em>
+                          </h4>
+                        </div>
+
+                        {/* Narrative columns */}
+                        <p
+                          className="mt-8 text-[14.5px] leading-[1.75] text-black/70 first-letter:font-semibold first-letter:text-[#141414] md:columns-2 md:gap-8"
+                          style={{ fontFamily: "Georgia, serif" }}
+                        >
+                          {c.body}
+                        </p>
+
+                        {/* Dossier strip */}
+                        <div className="mt-10 border-t border-black/[0.1] pt-6">
+                          <div className="mb-4 flex items-center gap-3 text-[10px] tracking-[0.22em] text-black/40" style={{ fontFamily: "Arial, sans-serif" }}>
+                            <span className="h-px w-6" style={{ background: GOLD }} />
+                            THE DOSSIER
+                          </div>
+                          <div className="grid grid-cols-3 gap-6">
+                            {c.substats.map((s, si) => (
+                              <div key={s.l} className="relative">
+                                <div className="absolute -left-3 top-1 text-[9px] tracking-[0.16em] text-black/25" style={{ fontFamily: "Arial, sans-serif" }}>
+                                  0{si + 1}
+                                </div>
+                                <div className="text-[26px] leading-none tracking-[-1px] text-[#141414]" style={{ fontFamily: "Georgia, serif" }}>
+                                  {s.v}
+                                </div>
+                                <div className="mt-2 text-[10px] uppercase tracking-[0.14em] text-black/45" style={{ fontFamily: "Arial, sans-serif" }}>
+                                  {s.l}
+                                </div>
+                              </div>
+                            ))}
                           </div>
                         </div>
-                      ))}
-                    </div>
-                    <div className="mt-5 flex flex-wrap gap-1.5">
-                      {c.chips.map((chip, ci) => (
-                        <span
-                          key={chip}
-                          className="rounded-full border px-2.5 py-1 text-[10px]"
-                          style={{
-                            fontFamily: "Arial, sans-serif",
-                            borderColor: c.chipStyle[ci] ? "rgba(201,168,76,0.45)" : "rgba(0,0,0,0.10)",
-                            color: c.chipStyle[ci] ? GOLD : "rgba(0,0,0,0.55)",
-                            background: c.chipStyle[ci] ? "rgba(201,168,76,0.06)" : "transparent",
-                          }}
-                        >
-                          {chip}
-                        </span>
-                      ))}
+                      </div>
+
+                      {/* Footer · partners */}
+                      <div className="mt-10 border-t border-black/[0.1] bg-[#FAF8F4] px-6 py-5 sm:px-12">
+                        <div className="mb-3 text-[10px] tracking-[0.22em] text-black/40" style={{ fontFamily: "Arial, sans-serif" }}>
+                          IN THE ROOM
+                        </div>
+                        <div className="flex flex-wrap items-center gap-x-5 gap-y-2" style={{ fontFamily: "Arial, sans-serif" }}>
+                          {c.chips.map((chip, ci) => (
+                            <span
+                              key={chip}
+                              className="text-[12px] tracking-[0.02em]"
+                              style={{
+                                color: c.chipStyle[ci] ? GOLD : "rgba(0,0,0,0.65)",
+                                fontWeight: c.chipStyle[ci] ? 600 : 400,
+                              }}
+                            >
+                              {chip}
+                              {ci < c.chips.length - 1 && (
+                                <span className="ml-5 inline-block h-1 w-1 -translate-y-[3px] rounded-full bg-black/20 align-middle" />
+                              )}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
