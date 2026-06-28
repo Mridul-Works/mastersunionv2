@@ -134,7 +134,7 @@ function Index() {
   };
 
   return (
-    <main className="min-h-screen bg-[#090909]">
+    <main className="min-h-screen bg-[#FAF8F4]">
       {/* NAV */}
       <header
         className={`fixed inset-x-0 top-0 z-[100] px-5 pt-5 sm:px-8 sm:pt-6 transition-all duration-500 ${
@@ -143,16 +143,16 @@ function Index() {
             : "opacity-0 -translate-y-4 pointer-events-none"
         }`}
       >
-        <div className="mx-auto flex max-w-[1320px] items-center justify-between rounded-full border border-white/10 bg-[#0f0f0f]/90 px-2 py-2 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.5)] backdrop-blur-xl md:px-3">
+        <div className="mx-auto flex max-w-[1320px] items-center justify-between rounded-full border border-black/10 bg-white/90 px-2 py-2 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.12)] backdrop-blur-xl md:px-3">
           <a href="/" className="flex items-center gap-2 rounded-full px-3 py-1.5">
-            <img src={logoAsset.url} alt="Masters' Union" className="h-7 w-auto brightness-0 invert" />
+            <img src={logoAsset.url} alt="Masters' Union" className="h-7 w-auto" />
           </a>
           <nav className="hidden items-center gap-0.5 md:flex">
             {NAV.map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="rounded-full px-4 py-2 text-[13px] font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+                className="rounded-full px-4 py-2 text-[13px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
               >
                 {item}
               </a>
@@ -170,21 +170,21 @@ function Index() {
               aria-label="Toggle menu"
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((s) => !s)}
-              className="flex size-10 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/10 hover:text-white md:hidden"
+              className="flex size-10 items-center justify-center rounded-full text-black/60 transition-colors hover:bg-black/5 hover:text-black md:hidden"
             >
               {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
             </button>
           </div>
         </div>
         {menuOpen && (
-          <div className="mt-3 rounded-3xl border border-white/10 bg-[#0f0f0f]/95 p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.5)] backdrop-blur-xl md:hidden">
+          <div className="mt-3 rounded-3xl border border-black/10 bg-white/95 p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.12)] backdrop-blur-xl md:hidden">
             <nav className="flex flex-col gap-1">
               {NAV.map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-2xl px-4 py-3 text-[14px] font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+                  className="rounded-2xl px-4 py-3 text-[14px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
                 >
                   {item}
                 </a>
@@ -225,7 +225,7 @@ function Index() {
         {/* The hero. Rises over the sticky video as the user scrolls. */}
         <div
           ref={heroRef}
-          className="relative z-10 bg-[#090909] shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.7)]"
+          className="relative z-10 bg-[#FAF8F4] shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.12)]"
         >
           <TenThings />
         </div>
@@ -236,7 +236,7 @@ function Index() {
         type="button"
         onClick={rewatchVideo}
         aria-label="Rewatch intro video"
-        className={`fixed bottom-6 right-6 z-[90] flex items-center gap-2 rounded-full border border-white/15 bg-[#0f0f0f]/95 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white shadow-[0_12px_32px_-8px_rgba(0,0,0,0.5)] backdrop-blur-xl transition-all duration-500 hover:scale-105 ${
+        className={`fixed bottom-6 right-6 z-[90] flex items-center gap-2 rounded-full border border-black/10 bg-white/95 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-black shadow-[0_12px_32px_-8px_rgba(0,0,0,0.12)] backdrop-blur-xl transition-all duration-500 hover:scale-105 ${
           showRewatch ? "opacity-100 translate-y-0 pointer-events-auto animate-bounce" : "opacity-0 translate-y-6 pointer-events-none"
         }`}
       >
