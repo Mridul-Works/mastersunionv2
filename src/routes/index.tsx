@@ -44,9 +44,49 @@ function Index() {
     return () => io.disconnect();
   }, []);
 
+  // Lock scroll so the user can't scroll back up into the video once the
+  // hero has reached the top. Only the "Watch intro" button releases it.
+  const unlockedRef = useRef(false);
+  useEffect(() => {
+    if (!navVisible) return;
+    const lockY = window.innerHeight; // top edge of hero (curtain)
+    const onScroll = () => {
+      if (unlockedRef.current) return;
+      if (window.scrollY < lockY) window.scrollTo(0, lockY);
+    };
+    const onWheel = (e: WheelEvent) => {
+      if (unlockedRef.current) return;
+      if (window.scrollY <= lockY && e.deltaY < 0) e.preventDefault();
+    };
+    const onTouch = (e: TouchEvent) => {
+      if (unlockedRef.current) return;
+      if (window.scrollY <= lockY) {
+        // allow downward scrolls only — rough heuristic via preventDefault on top
+        const t = e.touches[0];
+        if (t && (t.clientY ?? 0) > 0) {
+          // can't easily detect direction here, so only block when fully at lockY
+          if (window.scrollY === lockY) e.preventDefault();
+        }
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("touchmove", onTouch, { passive: false });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchmove", onTouch);
+    };
+  }, [navVisible]);
+
   const rewatchVideo = () => {
+    unlockedRef.current = true;
     window.scrollTo({ top: 0, behavior: "smooth" });
-    setTimeout(() => videoElRef.current?.play().catch(() => {}), 700);
+    setTimeout(() => {
+      videoElRef.current?.play().catch(() => {});
+      // Re-arm: once the user scrolls hero back over video, lock re-engages.
+      unlockedRef.current = false;
+    }, 1200);
   };
 
   return (
