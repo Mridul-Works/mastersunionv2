@@ -29,7 +29,7 @@ function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [navVisible, setNavVisible] = useState(false);
   const [showRewatch, setShowRewatch] = useState(false);
-  const sentinelRef = useRef<HTMLDivElement>(null);
+  
   const videoElRef = useRef<HTMLVideoElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const unlockedRef = useRef(false);
