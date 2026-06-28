@@ -1,9 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Menu, X, ArrowUp } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import logoAsset from "@/assets/logo-2.png.asset.json";
 import heroVideo from "@/assets/hero-info-video.mp4.asset.json";
 import TenThings from "@/components/TenThings";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,59 +29,44 @@ function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [navVisible, setNavVisible] = useState(false);
   const [showRewatch, setShowRewatch] = useState(false);
-  const sentinelRef = useRef<HTMLDivElement>(null);
+  
   const videoElRef = useRef<HTMLVideoElement>(null);
-
-  // Reveal nav + rewatch button once the video is fully covered.
-  useEffect(() => {
-    const el = sentinelRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        const covered = !entry.isIntersecting;
-        setNavVisible(covered);
-        setShowRewatch(covered);
-      },
-      { threshold: 0, rootMargin: "0px" },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  // Lock scroll so the user can't scroll back up into the video once the
-  // hero has reached the top. Only the "Watch intro" button releases it.
+  const heroRef = useRef<HTMLDivElement>(null);
   const unlockedRef = useRef(false);
+
+  // GSAP ScrollTrigger: once the hero's top reaches the viewport top,
+  // toggle nav + rewatch and clamp scrollY so the user can't go back up
+  // into the video. Scrolling DOWN through the hero stays free.
   useEffect(() => {
-    if (!navVisible) return;
-    const lockY = window.innerHeight; // top edge of hero (curtain)
-    const onScroll = () => {
-      if (unlockedRef.current) return;
-      if (window.scrollY < lockY) window.scrollTo(0, lockY);
-    };
-    const onWheel = (e: WheelEvent) => {
-      if (unlockedRef.current) return;
-      if (window.scrollY <= lockY && e.deltaY < 0) e.preventDefault();
-    };
-    const onTouch = (e: TouchEvent) => {
-      if (unlockedRef.current) return;
-      if (window.scrollY <= lockY) {
-        // allow downward scrolls only — rough heuristic via preventDefault on top
-        const t = e.touches[0];
-        if (t && (t.clientY ?? 0) > 0) {
-          // can't easily detect direction here, so only block when fully at lockY
-          if (window.scrollY === lockY) e.preventDefault();
+    const hero = heroRef.current;
+    if (!hero) return;
+
+    const st = ScrollTrigger.create({
+      trigger: hero,
+      start: "top top",
+      end: "max",
+      onEnter: () => {
+        setNavVisible(true);
+        setShowRewatch(true);
+      },
+      onEnterBack: () => {
+        setNavVisible(true);
+        setShowRewatch(true);
+      },
+      onLeaveBack: () => {
+        // Only the rewatch button is allowed to take us back above the hero.
+        if (unlockedRef.current) {
+          setNavVisible(false);
+          setShowRewatch(false);
+          return;
         }
-      }
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("wheel", onWheel, { passive: false });
-    window.addEventListener("touchmove", onTouch, { passive: false });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("wheel", onWheel);
-      window.removeEventListener("touchmove", onTouch);
-    };
-  }, [navVisible]);
+        const lockY = hero.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo(0, lockY);
+      },
+    });
+
+    return () => st.kill();
+  }, []);
 
   const rewatchVideo = () => {
     unlockedRef.current = true;
@@ -178,12 +167,11 @@ function Index() {
           </div>
         </section>
 
-        {/* Sentinel sits at the top of the curtain — once it scrolls out of
-            view the hero has fully covered the video. */}
-        <div ref={sentinelRef} className="absolute left-0 top-[100vh] h-px w-full" />
-
         {/* The hero. Rises over the sticky video as the user scrolls. */}
-        <div className="relative z-10 bg-[#090909] shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.7)]">
+        <div
+          ref={heroRef}
+          className="relative z-10 bg-[#090909] shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.7)]"
+        >
           <TenThings />
         </div>
       </div>
