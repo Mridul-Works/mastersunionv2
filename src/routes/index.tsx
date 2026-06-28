@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Menu, X, ArrowUp } from "lucide-react";
+import { Menu, X, ArrowUp, Play, Pause } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import logoAsset from "@/assets/logo-2.png.asset.json";
 import campusVideo from "@/assets/campusFilm.mp4.asset.json";
 import heroBuilding from "@/assets/hero-building-light.jpg";
-import { Play, Pause } from "lucide-react";
 import TenThings from "@/components/TenThings";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -38,6 +37,12 @@ function Index() {
   const lockedRef = useRef(false);
   const lockYRef = useRef(0);
   const unlockingRef = useRef(false);
+
+  useEffect(() => {
+    if (navVisible && videoElRef.current) {
+      videoElRef.current.pause();
+    }
+  }, [navVisible]);
 
   useEffect(() => {
     const hero = heroRef.current;
