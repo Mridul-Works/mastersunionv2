@@ -89,8 +89,8 @@ function Index() {
         }`}
       >
         <div className="mx-auto flex max-w-[1320px] items-center justify-between rounded-full border border-white/10 bg-[#0f0f0f]/90 px-2 py-2 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.5)] backdrop-blur-xl md:px-3">
-          <a href="/" className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5">
-            <img src={logoAsset.url} alt="Masters' Union" className="h-7 w-auto" />
+          <a href="/" className="flex items-center gap-2 rounded-full px-3 py-1.5">
+            <img src={logoAsset.url} alt="Masters' Union" className="h-7 w-auto brightness-0 invert" />
           </a>
           <nav className="hidden items-center gap-0.5 md:flex">
             {NAV.map((item) => (
