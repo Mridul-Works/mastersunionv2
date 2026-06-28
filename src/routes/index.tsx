@@ -60,8 +60,7 @@ function Index() {
               }
             },
             onEnterBack: () => {
-              setShowRewatch(false);
-              lockYRef.current = null;
+              // Only the Watch intro button unlocks; keep lock active.
             },
             onLeaveBack: () => {
               setNavVisible(false);
