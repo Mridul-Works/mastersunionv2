@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowUp } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import logoAsset from "@/assets/logo-2.png.asset.json";
@@ -17,11 +17,6 @@ export const Route = createFileRoute("/")({
         content:
           "Masters' Union is a new-age business school where industry leaders teach the next generation of CEOs, founders and operators.",
       },
-      { property: "og:title", content: "Masters' Union — Business education, reimagined" },
-      {
-        property: "og:description",
-        content: "A new-age business school built and taught by industry leaders.",
-      },
     ],
   }),
   component: Index,
@@ -31,61 +26,68 @@ const NAV = ["Programs", "Faculty", "Admissions", "Campus", "About"];
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const wrapRef = useRef<HTMLDivElement>(null);
-  const curtainRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const headlineRef = useRef<HTMLDivElement>(null);
-  const aboutRef = useRef<HTMLElement>(null);
+  const [navVisible, setNavVisible] = useState(false);
+  const [showRewatch, setShowRewatch] = useState(false);
+
+  const videoSectionRef = useRef<HTMLDivElement>(null);
+  const heroSectionRef = useRef<HTMLElement>(null);
+  const videoHeadlineRef = useRef<HTMLDivElement>(null);
+  const videoElRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Curtain reveal: hero rises from bottom over the pinned video section.
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: wrapRef.current,
+          trigger: videoSectionRef.current,
           start: "top top",
-          end: "+=220%",
+          end: "+=120%",
           scrub: 1,
           pin: true,
           anticipatePin: 1,
+          onUpdate: (self) => {
+            setNavVisible(self.progress > 0.6);
+            setShowRewatch(self.progress > 0.95);
+          },
         },
       });
 
-      tl.to(
-        headlineRef.current,
-        { opacity: 0, y: -60, filter: "blur(8px)", ease: "power2.in", duration: 0.4 },
-        0,
-      );
-      tl.to(
-        curtainRef.current,
-        {
-          top: "1rem",
-          left: "1rem",
-          right: "1rem",
-          bottom: "auto",
-          height: "calc(100vh - 2rem)",
-          borderRadius: "28px",
-          ease: "power3.inOut",
-          duration: 1,
-        },
+      tl.to(videoHeadlineRef.current, {
+        opacity: 0,
+        y: -80,
+        filter: "blur(10px)",
+        ease: "power2.in",
+        duration: 0.4,
+      }, 0);
+
+      tl.fromTo(
+        heroSectionRef.current,
+        { yPercent: 100 },
+        { yPercent: 0, ease: "power3.inOut", duration: 1 },
         0.1,
       );
-      // About rises within the same pinned wrapper and stays
-      tl.fromTo(
-        aboutRef.current,
-        { yPercent: 100 },
-        { yPercent: 0, ease: "power3.inOut", duration: 1.2 },
-        1.1,
-      );
-    }, wrapRef);
+    });
 
     return () => ctx.revert();
   }, []);
 
-
+  const rewatchVideo = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => {
+      videoElRef.current?.play().catch(() => {});
+    }, 600);
+  };
 
   return (
     <main className="min-h-screen bg-background">
-      <header className="fixed inset-x-0 top-0 z-[100] px-5 pt-5 sm:px-8 sm:pt-6">
+      {/* NAV — only after video ends */}
+      <header
+        className={`fixed inset-x-0 top-0 z-[100] px-5 pt-5 sm:px-8 sm:pt-6 transition-all duration-500 ${
+          navVisible
+            ? "opacity-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 -translate-y-4 pointer-events-none"
+        }`}
+      >
         <div className="mx-auto flex max-w-[1320px] items-center justify-between rounded-full border border-background/20 bg-background/85 px-2 py-2 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.22)] backdrop-blur-xl md:px-3">
           <a href="/" className="flex items-center gap-2 rounded-full px-3 py-1.5 transition-colors hover:bg-foreground/5">
             <img src={logoAsset.url} alt="Masters' Union" className="h-7 w-auto" />
@@ -138,16 +140,12 @@ function Index() {
         )}
       </header>
 
-      {/* PIN WRAPPER — curtain reveal */}
-      <div ref={wrapRef} className="relative h-screen w-full overflow-hidden">
-        {/* Curtain / video stage — starts full-bleed, shrinks into hero card */}
-        <div
-          ref={curtainRef}
-          className="absolute inset-0 z-[5] overflow-hidden bg-black shadow-[0_40px_120px_-20px_rgba(0,0,0,0.6)]"
-          style={{ borderRadius: 0 }}
-        >
-          {/* Video placeholder */}
+      {/* PIN WRAPPER — video stays pinned; hero rises over it */}
+      <div ref={videoSectionRef} className="relative h-screen w-full overflow-hidden bg-black">
+        {/* VIDEO SECTION (z-0) */}
+        <div className="absolute inset-0 z-0">
           <video
+            ref={videoElRef}
             src={heroVideo.url}
             autoPlay
             muted
@@ -155,33 +153,12 @@ function Index() {
             playsInline
             className="absolute inset-0 h-full w-full object-cover opacity-80"
           />
-
-          {/* Deep shadow vignettes */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/80" />
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(0,0,0,0.75)_100%)]" />
 
-          {/* Hero section content (visible once curtain settles) */}
-          <div ref={heroRef} className="absolute inset-0">
-            {/* Left info strip (hero card state) */}
-            <div className="absolute bottom-10 left-6 z-10 max-w-[280px] text-background sm:left-10">
-              <div className="mb-3 flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-background/80">
-                <span className="size-1.5 rounded-full bg-background/80" />
-                India&rsquo;s new-age B-school
-              </div>
-              <p className="font-display text-2xl leading-tight sm:text-3xl">
-                Business education,
-                <br />
-                taught by the people
-                <br />
-                who built business.
-              </p>
-            </div>
-          </div>
-
-          {/* Full-screen headline (visible before scroll) */}
           <div
-            ref={headlineRef}
-            className="absolute inset-0 z-20 flex items-center justify-center px-6 text-center"
+            ref={videoHeadlineRef}
+            className="absolute inset-0 flex items-center justify-center px-6 text-center"
           >
             <h1 className="font-display text-[14vw] leading-[0.95] tracking-tight text-background drop-shadow-[0_8px_40px_rgba(0,0,0,0.6)] sm:text-[11vw] md:text-[9vw]">
               Built by
@@ -189,16 +166,16 @@ function Index() {
               <em className="italic text-background/95">operators.</em>
             </h1>
             <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-[0.3em] text-background/70">
+              Scroll to enter
             </div>
           </div>
         </div>
 
-        {/* About curtain — rises within pinned wrapper and becomes the new hero */}
-
+        {/* HERO SECTION — rises over the video */}
         <section
-          ref={aboutRef}
-          id="about"
-          className="absolute inset-0 z-30 flex h-screen w-full flex-col bg-background px-5 pt-24 pb-8 shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.5)] sm:px-8 sm:pt-28 sm:pb-10"
+          ref={heroSectionRef}
+          id="hero"
+          className="absolute inset-0 z-20 flex h-screen w-full flex-col bg-background px-5 pt-24 pb-8 shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.5)] sm:px-8 sm:pt-28 sm:pb-10"
           style={{ transform: "translateY(100%)" }}
         >
           <div className="mx-auto flex w-full max-w-[1200px] flex-1 flex-col justify-center">
@@ -231,10 +208,7 @@ function Index() {
                 { value: "500+", label: "Mentors on call" },
                 { value: "40%", label: "Faculty are CEOs" },
               ].map((stat) => (
-                <div
-                  key={stat.label}
-                  className="flex flex-col justify-between gap-3 bg-background p-5 sm:p-7"
-                >
+                <div key={stat.label} className="flex flex-col justify-between gap-3 bg-background p-5 sm:p-7">
                   <div className="font-display text-[clamp(2rem,4vw,3rem)] font-light leading-none tracking-tight text-foreground">
                     {stat.value}
                   </div>
@@ -248,8 +222,18 @@ function Index() {
         </section>
       </div>
 
+      {/* Bouncing rewatch button — appears once hero has taken over */}
+      <button
+        type="button"
+        onClick={rewatchVideo}
+        aria-label="Rewatch intro video"
+        className={`fixed bottom-6 right-6 z-[90] flex items-center gap-2 rounded-full border border-foreground/15 bg-background/95 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-foreground shadow-[0_12px_32px_-8px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all duration-500 hover:scale-105 ${
+          showRewatch ? "opacity-100 translate-y-0 pointer-events-auto animate-bounce" : "opacity-0 translate-y-6 pointer-events-none"
+        }`}
+      >
+        <ArrowUp className="size-4" />
+        Watch intro
+      </button>
     </main>
   );
 }
-
-
