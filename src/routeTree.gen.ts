@@ -9,8 +9,68 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as StartupsRouteImport } from './routes/startups'
+import { Route as PlacementsRouteImport } from './routes/placements'
+import { Route as MentorsRouteImport } from './routes/mentors'
+import { Route as LifeAtMuRouteImport } from './routes/life-at-mu'
+import { Route as ImmersionsRouteImport } from './routes/immersions'
+import { Route as HowWeTeachRouteImport } from './routes/how-we-teach'
+import { Route as FoodLabRouteImport } from './routes/food-lab'
+import { Route as FacultyRouteImport } from './routes/faculty'
+import { Route as CreatorChallengeRouteImport } from './routes/creator-challenge'
+import { Route as CampusRouteImport } from './routes/campus'
 import { Route as IndexRouteImport } from './routes/index'
 
+const StartupsRoute = StartupsRouteImport.update({
+  id: '/startups',
+  path: '/startups',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlacementsRoute = PlacementsRouteImport.update({
+  id: '/placements',
+  path: '/placements',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentorsRoute = MentorsRouteImport.update({
+  id: '/mentors',
+  path: '/mentors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LifeAtMuRoute = LifeAtMuRouteImport.update({
+  id: '/life-at-mu',
+  path: '/life-at-mu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImmersionsRoute = ImmersionsRouteImport.update({
+  id: '/immersions',
+  path: '/immersions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowWeTeachRoute = HowWeTeachRouteImport.update({
+  id: '/how-we-teach',
+  path: '/how-we-teach',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FoodLabRoute = FoodLabRouteImport.update({
+  id: '/food-lab',
+  path: '/food-lab',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FacultyRoute = FacultyRouteImport.update({
+  id: '/faculty',
+  path: '/faculty',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreatorChallengeRoute = CreatorChallengeRouteImport.update({
+  id: '/creator-challenge',
+  path: '/creator-challenge',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CampusRoute = CampusRouteImport.update({
+  id: '/campus',
+  path: '/campus',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +79,172 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/campus': typeof CampusRoute
+  '/creator-challenge': typeof CreatorChallengeRoute
+  '/faculty': typeof FacultyRoute
+  '/food-lab': typeof FoodLabRoute
+  '/how-we-teach': typeof HowWeTeachRoute
+  '/immersions': typeof ImmersionsRoute
+  '/life-at-mu': typeof LifeAtMuRoute
+  '/mentors': typeof MentorsRoute
+  '/placements': typeof PlacementsRoute
+  '/startups': typeof StartupsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/campus': typeof CampusRoute
+  '/creator-challenge': typeof CreatorChallengeRoute
+  '/faculty': typeof FacultyRoute
+  '/food-lab': typeof FoodLabRoute
+  '/how-we-teach': typeof HowWeTeachRoute
+  '/immersions': typeof ImmersionsRoute
+  '/life-at-mu': typeof LifeAtMuRoute
+  '/mentors': typeof MentorsRoute
+  '/placements': typeof PlacementsRoute
+  '/startups': typeof StartupsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/campus': typeof CampusRoute
+  '/creator-challenge': typeof CreatorChallengeRoute
+  '/faculty': typeof FacultyRoute
+  '/food-lab': typeof FoodLabRoute
+  '/how-we-teach': typeof HowWeTeachRoute
+  '/immersions': typeof ImmersionsRoute
+  '/life-at-mu': typeof LifeAtMuRoute
+  '/mentors': typeof MentorsRoute
+  '/placements': typeof PlacementsRoute
+  '/startups': typeof StartupsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/campus'
+    | '/creator-challenge'
+    | '/faculty'
+    | '/food-lab'
+    | '/how-we-teach'
+    | '/immersions'
+    | '/life-at-mu'
+    | '/mentors'
+    | '/placements'
+    | '/startups'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/campus'
+    | '/creator-challenge'
+    | '/faculty'
+    | '/food-lab'
+    | '/how-we-teach'
+    | '/immersions'
+    | '/life-at-mu'
+    | '/mentors'
+    | '/placements'
+    | '/startups'
+  id:
+    | '__root__'
+    | '/'
+    | '/campus'
+    | '/creator-challenge'
+    | '/faculty'
+    | '/food-lab'
+    | '/how-we-teach'
+    | '/immersions'
+    | '/life-at-mu'
+    | '/mentors'
+    | '/placements'
+    | '/startups'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CampusRoute: typeof CampusRoute
+  CreatorChallengeRoute: typeof CreatorChallengeRoute
+  FacultyRoute: typeof FacultyRoute
+  FoodLabRoute: typeof FoodLabRoute
+  HowWeTeachRoute: typeof HowWeTeachRoute
+  ImmersionsRoute: typeof ImmersionsRoute
+  LifeAtMuRoute: typeof LifeAtMuRoute
+  MentorsRoute: typeof MentorsRoute
+  PlacementsRoute: typeof PlacementsRoute
+  StartupsRoute: typeof StartupsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/startups': {
+      id: '/startups'
+      path: '/startups'
+      fullPath: '/startups'
+      preLoaderRoute: typeof StartupsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/placements': {
+      id: '/placements'
+      path: '/placements'
+      fullPath: '/placements'
+      preLoaderRoute: typeof PlacementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentors': {
+      id: '/mentors'
+      path: '/mentors'
+      fullPath: '/mentors'
+      preLoaderRoute: typeof MentorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/life-at-mu': {
+      id: '/life-at-mu'
+      path: '/life-at-mu'
+      fullPath: '/life-at-mu'
+      preLoaderRoute: typeof LifeAtMuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/immersions': {
+      id: '/immersions'
+      path: '/immersions'
+      fullPath: '/immersions'
+      preLoaderRoute: typeof ImmersionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-we-teach': {
+      id: '/how-we-teach'
+      path: '/how-we-teach'
+      fullPath: '/how-we-teach'
+      preLoaderRoute: typeof HowWeTeachRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/food-lab': {
+      id: '/food-lab'
+      path: '/food-lab'
+      fullPath: '/food-lab'
+      preLoaderRoute: typeof FoodLabRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faculty': {
+      id: '/faculty'
+      path: '/faculty'
+      fullPath: '/faculty'
+      preLoaderRoute: typeof FacultyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/creator-challenge': {
+      id: '/creator-challenge'
+      path: '/creator-challenge'
+      fullPath: '/creator-challenge'
+      preLoaderRoute: typeof CreatorChallengeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/campus': {
+      id: '/campus'
+      path: '/campus'
+      fullPath: '/campus'
+      preLoaderRoute: typeof CampusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +257,16 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CampusRoute: CampusRoute,
+  CreatorChallengeRoute: CreatorChallengeRoute,
+  FacultyRoute: FacultyRoute,
+  FoodLabRoute: FoodLabRoute,
+  HowWeTeachRoute: HowWeTeachRoute,
+  ImmersionsRoute: ImmersionsRoute,
+  LifeAtMuRoute: LifeAtMuRoute,
+  MentorsRoute: MentorsRoute,
+  PlacementsRoute: PlacementsRoute,
+  StartupsRoute: StartupsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
