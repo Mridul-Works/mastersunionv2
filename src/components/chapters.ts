@@ -137,7 +137,7 @@ function withSections<T extends { route: string }>(c: T): T & { pullQuote: strin
   return { ...c, ...s };
 }
 
-export const CHAPTERS: Chapter[] = [
+const RAW_CHAPTERS = [
   {
     n: "01", tag: "Curriculum",
     headline: "Your grade depends on how much money you made.",
@@ -228,7 +228,9 @@ export const CHAPTERS: Chapter[] = [
     chips: ["Zepto", "McKinsey", "a16z", "Razorpay", "Google", "Peak XV"],
     cta: "See salaries", route: "/placements", bg: "#4A5A1E", ink: "#EFE7D0", image: mu10,
   },
-];
+] as const;
+
+export const CHAPTERS: Chapter[] = RAW_CHAPTERS.map((c) => withSections(c));
 
 export const CHAPTERS_BY_ROUTE: Record<string, Chapter> = Object.fromEntries(
   CHAPTERS.map((c) => [c.route, c])
