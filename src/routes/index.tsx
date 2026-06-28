@@ -39,12 +39,11 @@ function Index() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Phase 1 — pin the hero, shrink curtain into card, fade headline
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: wrapRef.current,
           start: "top top",
-          end: "+=120%",
+          end: "+=220%",
           scrub: 1,
           pin: true,
           anticipatePin: 1,
@@ -70,24 +69,12 @@ function Index() {
         },
         0.1,
       );
-
-      // Phase 2 — About rises as curtain and pins as new hero
-      gsap.fromTo(
+      // About rises within the same pinned wrapper and stays
+      tl.fromTo(
         aboutRef.current,
         { yPercent: 100 },
-        {
-          yPercent: 0,
-          ease: "none",
-          scrollTrigger: {
-            trigger: aboutRef.current,
-            start: "top bottom",
-            end: "top top",
-            scrub: 1,
-            onUpdate: (self) => {
-              gsap.set(curtainRef.current, { autoAlpha: self.progress >= 0.99 ? 0 : 1 });
-            },
-          },
-        },
+        { yPercent: 0, ease: "power3.inOut", duration: 1.2 },
+        1.1,
       );
     }, wrapRef);
 
