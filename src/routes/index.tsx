@@ -71,16 +71,51 @@ function Index() {
       );
     });
 
+    const isLocked = () => lockYRef.current !== null && !unlockingRef.current;
+
     const onScroll = () => {
-      if (unlockingRef.current) return;
-      if (lockYRef.current !== null && window.scrollY < lockYRef.current) {
-        window.scrollTo(0, lockYRef.current);
+      if (!isLocked()) return;
+      if (window.scrollY < (lockYRef.current ?? 0)) {
+        window.scrollTo(0, lockYRef.current ?? 0);
       }
     };
+    const onWheel = (e: WheelEvent) => {
+      if (isLocked() && e.deltaY < 0) e.preventDefault();
+    };
+    let touchStartY = 0;
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0]?.clientY ?? 0;
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      if (!isLocked()) return;
+      const y = e.touches[0]?.clientY ?? 0;
+      // finger moving down = scrolling up
+      if (y > touchStartY) e.preventDefault();
+    };
+    const BLOCKED_KEYS = new Set([
+      "ArrowUp",
+      "PageUp",
+      "Home",
+    ]);
+    const onKey = (e: KeyboardEvent) => {
+      if (!isLocked()) return;
+      if (BLOCKED_KEYS.has(e.key) || (e.key === " " && e.shiftKey)) {
+        e.preventDefault();
+      }
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("keydown", onKey);
 
     return () => {
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("keydown", onKey);
       ctx.revert();
     };
   }, []);
