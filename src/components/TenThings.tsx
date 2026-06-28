@@ -108,9 +108,6 @@ const CARDS: Card[] = [
 ];
 
 const GOLD = "#C9A84C";
-const INK = "#141414";
-const MIST = "#FAF8F4";
-const PAPER = "#FFFFFF";
 
 export default function TenThings() {
   const [open, setOpen] = useState<number | null>(null);
