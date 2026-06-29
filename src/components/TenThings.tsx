@@ -6,13 +6,13 @@ const EASE = [0.7, 0, 0.2, 1] as const;
 const SLIDE_DURATION = 0.95;
 
 export default function TenThings() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const widgetRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState<1 | -1>(1);
   const lastIdx = useRef(0);
 
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
+    target: widgetRef,
     offset: ["start start", "end end"],
   });
 
@@ -33,7 +33,7 @@ export default function TenThings() {
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   const goTo = (i: number) => {
-    const el = sectionRef.current;
+    const el = widgetRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
     const totalScroll = el.offsetHeight - window.innerHeight;
@@ -45,103 +45,135 @@ export default function TenThings() {
   const project = CHAPTERS[index];
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative bg-[#0A0A0A] text-white"
-      style={{ height: `${CHAPTERS.length * 100}vh`, fontFamily: "'Inter', system-ui, sans-serif" }}
-    >
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
-        {/* Section headline */}
-        <div className="pointer-events-none absolute left-0 right-0 top-7 z-30 flex flex-col items-center text-center">
-          <span
-            className="text-[11px] uppercase tracking-[0.35em] text-white/50"
-            style={{ fontFamily: "'JetBrains Mono', monospace" }}
-          >
-            Cut the marketing
-          </span>
-          <h3
-            className="mt-2 max-w-[90vw] text-[clamp(22px,3.2vw,42px)] font-black uppercase leading-[1.05] tracking-tight text-white"
-            style={{ letterSpacing: "-0.02em" }}
-          >
-            Here are 10 things about Masters' Union
-          </h3>
+    <section className="relative bg-[#0A0A0A] text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+      {/* Intro headline — sits above the scroll widget */}
+      <div className="relative flex min-h-[70vh] flex-col items-center justify-center px-6 py-24 text-center">
+        <div className="absolute inset-0 pointer-events-none opacity-40">
+          <div className="absolute left-1/2 top-1/2 h-[60vh] w-[60vh] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.03] blur-3xl" />
         </div>
 
-        {/* Counter top-left */}
-        <div
-          className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[12px] tracking-[0.15em] text-white/70 md:left-10"
+        <span
+          className="relative z-10 text-[11px] uppercase tracking-[0.35em] text-white/50"
           style={{ fontFamily: "'JetBrains Mono', monospace" }}
         >
-          <AnimatePresence mode="popLayout">
-            <motion.span
-              key={index}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.4 }}
-              className="inline-block"
-            >
-              {String(index + 1).padStart(2, "0")}
-            </motion.span>
-          </AnimatePresence>
-          <span className="mx-1 text-white/30">/</span>
-          <span className="text-white/30">{String(CHAPTERS.length).padStart(2, "0")}</span>
-        </div>
+          Cut the marketing
+        </span>
+        <h2
+          className="relative z-10 mt-4 max-w-[90vw] text-[clamp(28px,4.5vw,64px)] font-black uppercase leading-[1.05] tracking-tight text-white"
+          style={{ letterSpacing: "-0.02em" }}
+        >
+          Here are 10 things <br className="hidden md:block" />
+          about Masters' Union
+        </h2>
+        <p
+          className="relative z-10 mt-6 max-w-xl text-[14px] leading-relaxed text-white/50"
+          style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+        >
+          Scroll through the dossier. No ads. No fluff. Just what actually matters.
+        </p>
 
-        {/* Giant ghost numeral */}
-        <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
-          <AnimatePresence mode="popLayout">
-            <motion.span
-              key={`ghost-${index}`}
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 0.06, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.6, ease: EASE }}
-              className="select-none font-black tracking-tighter text-white"
-              style={{ fontSize: "clamp(280px, 48vw, 720px)", lineHeight: 1 }}
-            >
-              {String(index + 1).padStart(2, "0")}
-            </motion.span>
-          </AnimatePresence>
-        </div>
-
-        {/* Slide stack */}
-        <AnimatePresence mode="popLayout" custom={direction}>
-          <Slide key={project.n} project={project} direction={direction} index={index} />
-        </AnimatePresence>
-
-        {/* Hint + progress bars bottom-center */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-8 z-30 flex flex-col items-center gap-5 px-6">
-          <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-white/50">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-white" />
-            <span>Scroll</span>
-            <span className="text-white/20">·</span>
-            <span>Drag</span>
-            <span className="text-white/20">·</span>
-            <span>Jump</span>
-          </div>
-          <div className="flex items-center gap-2">
-            {CHAPTERS.map((p, i) => (
-              <button
-                key={p.n}
-                onClick={() => goTo(i)}
-                aria-label={`Go to chapter ${i + 1}`}
-                className="pointer-events-auto group h-[2px] w-9 cursor-pointer overflow-hidden bg-white/15"
-              >
-                <span
-                  className="block h-full origin-left bg-white transition-transform duration-[700ms] ease-out"
-                  style={{ transform: `scaleX(${i === index ? 1 : 0})` }}
-                />
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Top-edge scroll progress bar */}
+        {/* Scroll hint pointing down to the widget */}
         <motion.div
-          className="absolute left-0 top-0 z-30 h-px bg-white/70"
-          style={{ width: progressWidth }}
-        />
+          className="relative z-10 mt-12 flex flex-col items-center gap-2"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <span
+            className="text-[9px] uppercase tracking-[0.25em] text-white/40"
+            style={{ fontFamily: "'JetBrains Mono', monospace" }}
+          >
+            Scroll to explore
+          </span>
+          <svg width="18" height="28" viewBox="0 0 18 28" fill="none" className="text-white/30">
+            <rect x="1" y="1" width="16" height="26" rx="8" stroke="currentColor" strokeWidth="1.5" />
+            <motion.circle cx="9" cy="9" r="2" fill="currentColor" animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }} />
+          </svg>
+        </motion.div>
+      </div>
+
+      {/* Scroll-driven widget */}
+      <div
+        ref={widgetRef}
+        className="relative bg-[#0A0A0A]"
+        style={{ height: `${CHAPTERS.length * 100}vh` }}
+      >
+        <div className="sticky top-0 h-screen w-full overflow-hidden">
+          {/* Counter top-left */}
+          <div
+            className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[12px] tracking-[0.15em] text-white/70 md:left-10"
+            style={{ fontFamily: "'JetBrains Mono', monospace" }}
+          >
+            <AnimatePresence mode="popLayout">
+              <motion.span
+                key={index}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.4 }}
+                className="inline-block"
+              >
+                {String(index + 1).padStart(2, "0")}
+              </motion.span>
+            </AnimatePresence>
+            <span className="mx-1 text-white/30">/</span>
+            <span className="text-white/30">{String(CHAPTERS.length).padStart(2, "0")}</span>
+          </div>
+
+          {/* Giant ghost numeral */}
+          <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
+            <AnimatePresence mode="popLayout">
+              <motion.span
+                key={`ghost-${index}`}
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 0.06, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.6, ease: EASE }}
+                className="select-none font-black tracking-tighter text-white"
+                style={{ fontSize: "clamp(280px, 48vw, 720px)", lineHeight: 1 }}
+              >
+                {String(index + 1).padStart(2, "0")}
+              </motion.span>
+            </AnimatePresence>
+          </div>
+
+          {/* Slide stack */}
+          <AnimatePresence mode="popLayout" custom={direction}>
+            <Slide key={project.n} project={project} direction={direction} index={index} />
+          </AnimatePresence>
+
+          {/* Hint + progress bars bottom-center */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-8 z-30 flex flex-col items-center gap-5 px-6">
+            <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-white/50">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-white" />
+              <span>Scroll</span>
+              <span className="text-white/20">·</span>
+              <span>Drag</span>
+              <span className="text-white/20">·</span>
+              <span>Jump</span>
+            </div>
+            <div className="flex items-center gap-2">
+              {CHAPTERS.map((p, i) => (
+                <button
+                  key={p.n}
+                  onClick={() => goTo(i)}
+                  aria-label={`Go to chapter ${i + 1}`}
+                  className="pointer-events-auto group h-[2px] w-9 cursor-pointer overflow-hidden bg-white/15"
+                >
+                  <span
+                    className="block h-full origin-left bg-white transition-transform duration-[700ms] ease-out"
+                    style={{ transform: `scaleX(${i === index ? 1 : 0})` }}
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Top-edge scroll progress bar */}
+          <motion.div
+            className="absolute left-0 top-0 z-30 h-px bg-white/70"
+            style={{ width: progressWidth }}
+          />
+        </div>
       </div>
     </section>
   );
