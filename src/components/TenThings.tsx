@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import { CHAPTERS } from "./chapters";
+
 
 const EASE = [0.7, 0, 0.2, 1] as const;
 const SLIDE_DURATION = 0.85;
@@ -144,24 +144,25 @@ export default function TenThings() {
                 <span className="min-w-[80px] text-center">{project.tag}</span>
               </div>
 
-              <div className="flex items-center gap-0">
+              <div className="flex items-center gap-1">
                 <button
                   type="button"
                   onClick={() => go(-1)}
                   aria-label="Previous chapter"
-                  className="p-2 text-white/50 transition-colors hover:text-white"
+                  className="p-2 opacity-70 transition-opacity hover:opacity-100"
                 >
-                  <ArrowLeft className="size-4" strokeWidth={2} />
+                  <GradientArrow direction="left" className="size-4" />
                 </button>
                 <button
                   type="button"
                   onClick={() => go(1)}
                   aria-label="Next chapter"
-                  className="p-2 text-white/50 transition-colors hover:text-white"
+                  className="p-2 opacity-70 transition-opacity hover:opacity-100"
                 >
-                  <ArrowRight className="size-4" strokeWidth={2} />
+                  <GradientArrow direction="right" className="size-4" />
                 </button>
               </div>
+
             </div>
 
             <div className="flex items-center gap-2">
@@ -327,3 +328,44 @@ function StaggeredText({
     </motion.div>
   );
 }
+
+function GradientArrow({
+  className,
+  direction = "right",
+}: {
+  className?: string;
+  direction?: "left" | "right";
+}) {
+  const id = useId();
+  const gradientId = `arrow-grad-${id}`;
+  const d =
+    direction === "right"
+      ? "M5 12h14M14 7l5 5-5 5"
+      : "M19 12H5M10 7l-5 5 5 5";
+
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#14b8a6" />
+          <stop offset="50%" stopColor="#f59e0b" />
+          <stop offset="100%" stopColor="#f97316" />
+        </linearGradient>
+      </defs>
+      <path
+        d={d}
+        stroke={`url(#${gradientId})`}
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
