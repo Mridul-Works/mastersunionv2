@@ -270,13 +270,13 @@ function Index() {
                     className="group relative flex cursor-pointer flex-col items-center gap-4 focus:outline-none md:items-end"
                   >
                     <div className="relative flex items-center justify-center">
-                      {/* Outer pulsing ring */}
-                      <div className="mu-ping-gold absolute inset-0 rounded-full border border-[#C9A84C]/40" />
+                      {/* Outer pulsing square */}
+                      <div className="mu-ping-gold absolute inset-0 rounded-none border border-[#C9A84C]/40" />
 
                       {/* Main button body */}
-                      <div className="relative flex size-24 items-center justify-center rounded-full border border-[#C9A84C]/40 bg-[#1F4D3F]/20 backdrop-blur-xl transition-all duration-700 group-hover:scale-110 group-hover:border-[#C9A84C] group-hover:bg-[#6B1F2A]/30">
+                      <div className="relative flex size-24 items-center justify-center rounded-none border border-[#C9A84C]/40 bg-[#1F4D3F]/20 backdrop-blur-xl transition-all duration-700 group-hover:scale-110 group-hover:border-[#C9A84C] group-hover:bg-[#6B1F2A]/30">
                         {/* Inner glow */}
-                        <div className="absolute inset-0 rounded-full shadow-[inset_0_0_24px_rgba(201,168,76,0.15)] transition-all duration-500 group-hover:shadow-[inset_0_0_32px_rgba(201,168,76,0.35)]" />
+                        <div className="absolute inset-0 rounded-none shadow-[inset_0_0_24px_rgba(201,168,76,0.15)] transition-all duration-500 group-hover:shadow-[inset_0_0_32px_rgba(201,168,76,0.35)]" />
 
                         {/* Play icon */}
                         <svg
