@@ -148,7 +148,7 @@ function Index() {
   };
 
   return (
-    <main className="min-h-screen bg-[#F9F9F9] font-['Geist']">
+    <main className="min-h-screen bg-[#F9F9F9] font-['Inter']">
       {/* NAV — Swiss pill */}
       <header
         className={`fixed inset-x-0 top-0 z-[100] px-4 pt-3 sm:px-6 sm:pt-4 transition-all duration-500 ${
@@ -168,7 +168,7 @@ function Index() {
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="px-3 py-2 font-['Geist'] text-[11px] font-medium uppercase tracking-[0.18em] text-[#111111]/70 transition-colors hover:text-[#FF4D00]"
+                className="px-3 py-2 font-['Inter'] text-[11px] font-medium uppercase tracking-[0.18em] text-[#111111]/70 transition-colors hover:text-[#FF4D00]"
               >
                 {item}
               </a>
@@ -200,7 +200,7 @@ function Index() {
                   key={item}
                   href={`#${item.toLowerCase()}`}
                   onClick={() => setMenuOpen(false)}
-                  className="px-4 py-3 font-['Geist'] text-[12px] font-medium uppercase tracking-[0.18em] text-[#111111]/70 transition-colors hover:bg-[#111111] hover:text-white"
+                  className="px-4 py-3 font-['Inter'] text-[12px] font-medium uppercase tracking-[0.18em] text-[#111111]/70 transition-colors hover:bg-[#111111] hover:text-white"
                 >
                   {item}
                 </a>
@@ -259,7 +259,7 @@ function Index() {
                   />
                 </div>
                 <span
-                  className="hidden font-['Geist'] text-[10px] uppercase tracking-[0.22em] text-white/70 md:block"
+                  className="hidden font-['Inter'] text-[10px] uppercase tracking-[0.22em] text-white/70 md:block"
                 >
                   Gurugram Campus
                 </span>
@@ -269,7 +269,7 @@ function Index() {
               <div className="mb-12 grid grid-cols-12 items-end gap-8 md:mb-20">
                 <div className="col-span-12 md:col-span-9 lg:col-span-8">
                   <h1
-                    className="font-['Clash_Display'] text-7xl font-extrabold uppercase leading-[0.85] tracking-tighter text-white md:text-[120px] lg:text-[140px]"
+                    className="font-['Inter'] text-7xl font-extrabold uppercase leading-[0.85] tracking-tighter text-white md:text-[120px] lg:text-[140px]"
                   >
                     Learn by <br />
                     <span className="mt-2 block md:ml-24">Doing.</span>
@@ -298,12 +298,12 @@ function Index() {
                     </div>
                     <div className="text-center md:text-right">
                       <span
-                        className="block font-['Geist'] text-[11px] font-bold uppercase tracking-[0.22em] text-white"
+                        className="block font-['Inter'] text-[11px] font-bold uppercase tracking-[0.22em] text-white"
                       >
                         Play Experience
                       </span>
                       <span
-                        className="mt-1 block font-['Geist'] text-[9px] uppercase tracking-[0.22em] text-white/60"
+                        className="mt-1 block font-['Inter'] text-[9px] uppercase tracking-[0.22em] text-white/60"
                       >
                         02:45 Mini Film
                       </span>
@@ -315,14 +315,14 @@ function Index() {
               {/* Footer */}
               <div className="flex items-end justify-between border-t border-white/15 pt-8">
                 <p
-                  className="hidden max-w-[320px] font-['Geist'] text-[10px] uppercase leading-relaxed tracking-[0.22em] text-white md:block"
+                  className="hidden max-w-[320px] font-['Inter'] text-[10px] uppercase leading-relaxed tracking-[0.22em] text-white md:block"
                 >
                   A new-age business school where industry leaders mentor the next generation.
                 </p>
 
                 <div className="mx-auto flex flex-col items-center gap-4 md:mx-0">
                   <span
-                    className="font-['Geist'] text-[9px] font-bold uppercase tracking-[0.3em] text-white"
+                    className="font-['Inter'] text-[9px] font-bold uppercase tracking-[0.3em] text-white"
                   >
                     Scroll
                   </span>
@@ -365,7 +365,7 @@ function Index() {
         type="button"
         onClick={rewatchVideo}
         aria-label="Rewatch intro video"
-        className={`fixed bottom-6 right-6 z-[90] flex items-center gap-2 border border-[#111111] bg-white px-4 py-3 font-['Geist'] text-[10px] font-bold uppercase tracking-[0.22em] text-[#111111] transition-all duration-500 hover:bg-[#FF4D00] hover:text-white ${
+        className={`fixed bottom-6 right-6 z-[90] flex items-center gap-2 border border-[#111111] bg-white px-4 py-3 font-['Inter'] text-[10px] font-bold uppercase tracking-[0.22em] text-[#111111] transition-all duration-500 hover:bg-[#FF4D00] hover:text-white ${
           showRewatch ? "opacity-100 translate-y-0 pointer-events-auto animate-bounce" : "opacity-0 translate-y-6 pointer-events-none"
         }`}
       >
