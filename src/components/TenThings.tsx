@@ -127,7 +127,7 @@ export default function TenThings() {
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.6, ease: EASE }}
                 className="select-none bg-gradient-to-b from-neutral-300/20 via-neutral-400/8 to-transparent bg-clip-text font-black tracking-tighter text-transparent"
-                style={{ fontSize: "clamp(120px, 28vw, 360px)", lineHeight: 1, filter: "drop-shadow(0 0 60px rgba(255,255,255,0.06))" }}
+                style={{ fontSize: "clamp(90px, 22vw, 260px)", lineHeight: 1, filter: "drop-shadow(0 0 60px rgba(255,255,255,0.06))" }}
               >
                 {String(index + 1).padStart(2, "0")}
               </motion.span>
@@ -140,11 +140,11 @@ export default function TenThings() {
           </AnimatePresence>
 
           {/* Bottom nav: tag + arrows */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-6 z-30 flex flex-col items-center gap-3 px-6 md:bottom-10">
-            <div className="pointer-events-auto flex w-full max-w-[520px] items-center justify-between">
-              <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-white/70">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-white" />
-                <span className="min-w-[80px] text-center">{project.tag}</span>
+          <div className="pointer-events-none absolute inset-x-0 bottom-4 z-30 flex flex-col items-center gap-2 px-5 md:bottom-7">
+            <div className="pointer-events-auto flex w-full max-w-[440px] items-center justify-between">
+              <div className="flex items-center gap-2 text-[9px] uppercase tracking-[0.22em] text-white/70">
+                <span className="inline-block h-1 w-1 rounded-full bg-white" />
+                <span className="min-w-[70px] text-center">{project.tag}</span>
               </div>
 
               <div className="flex items-center gap-1 rounded-full border border-white/10 bg-white/10 px-2 py-1 backdrop-blur-md">
@@ -177,7 +177,7 @@ export default function TenThings() {
                   key={p.n}
                   onClick={() => jump(i)}
                   aria-label={`Go to chapter ${i + 1}`}
-                  className="pointer-events-auto group h-[2px] w-7 cursor-pointer overflow-hidden bg-white/15"
+                  className="pointer-events-auto group h-[2px] w-6 cursor-pointer overflow-hidden bg-white/15"
                 >
                   <span
                     className="block h-full origin-left bg-white transition-transform duration-[500ms] ease-out"
