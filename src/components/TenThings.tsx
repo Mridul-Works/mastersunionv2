@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CHAPTERS } from "./chapters";
 
@@ -25,50 +25,74 @@ export default function TenThings() {
 
   return (
     <section className="relative bg-[#0A0A0A] text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-      {/* Intro headline — Swiss High-Contrast */}
-      <div className="relative overflow-hidden border-b border-[#111111] bg-[#F9F9F9] px-6 py-28 text-[#111111] md:px-16 md:py-40">
-        <div className="relative z-10 mx-auto max-w-[1280px]">
-          <div className="mb-10 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <span className="h-px w-10 bg-[#111111]" />
-              <span className="font-['Inter'] text-[11px] font-medium uppercase tracking-[0.22em] text-[#FF4D00]">
-                [ Field Notes // Vol. 01 ]
-              </span>
-            </div>
-            <span className="hidden font-['Inter'] text-[11px] uppercase tracking-[0.22em] text-[#111111]/50 md:inline">
-              Index 01 — 10
+      {/* Intro headline — editorial, matches site theme */}
+      <div className="relative overflow-hidden bg-[#FAF8F4] px-6 py-28 md:py-40 text-[#1a1a1a]">
+        <div className="pointer-events-none absolute -left-40 top-20 h-[50vh] w-[50vh] rounded-full bg-[#C9A84C]/12 blur-[140px]" />
+        <div className="pointer-events-none absolute -right-40 bottom-0 h-[50vh] w-[50vh] rounded-full bg-[#87a878]/10 blur-[140px]" />
+
+        <div className="relative z-10 mx-auto max-w-[1180px]">
+          <div className="mb-12 flex items-center gap-4">
+            <span className="h-px w-12 bg-[#1a1a1a]/40" />
+            <span
+              className="text-[11px] uppercase tracking-[0.32em] text-[#1a1a1a]/55"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
+            >
+              Field Notes — Vol. 01
             </span>
           </div>
 
           <h2
-            className="font-['Inter'] font-extrabold uppercase leading-[0.88] tracking-tighter text-[#111111]"
-            style={{ fontSize: "clamp(56px, 10vw, 140px)" }}
+            className="leading-[0.98] tracking-[-0.02em] text-[#1a1a1a]"
+            style={{
+              fontFamily: "'Instrument Serif', 'Cormorant Garamond', serif",
+              fontWeight: 400,
+              fontSize: "clamp(52px, 9vw, 124px)",
+            }}
           >
-            Cut the<br />
-            <span className="font-['IvyPresto_Display','DM_Serif_Display',serif] italic font-normal normal-case tracking-normal text-[#FF4D00]">marketing.</span>
+            Cut the{" "}
+            <em
+              className="text-[#8b7355]"
+              style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 300 }}
+            >
+              marketing.
+            </em>
             <br />
             <span className="block">
-              10 things about Masters' Union.
+              10 things about{" "}
+              <span className="relative inline-block">
+                <span
+                  className="relative z-10 italic"
+                  style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}
+                >
+                  Masters' Union
+                </span>
+                <span className="absolute inset-x-0 bottom-2 z-0 h-[6px] bg-[#C9A84C]/45" />
+              </span>
             </span>
           </h2>
 
           <div className="mt-14 grid grid-cols-1 gap-10 md:grid-cols-[1.3fr_1fr] md:items-end">
-            <p className="max-w-[560px] font-['Inter'] text-[18px] font-medium leading-[1.55] text-[#111111]/75">
+            <p
+              className="max-w-[560px] text-[18px] leading-[1.65] text-[#1a1a1a]/70"
+              style={{ fontFamily: "'Instrument Serif', serif", fontWeight: 400 }}
+            >
               No ads. No fluff. Just the dossier — ten chapters that actually
               explain how the school works, who teaches, and what gets built.
             </p>
 
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-[#111111] pt-5 font-['Inter'] text-[11px] uppercase tracking-[0.22em] text-[#111111]/70">
+            <div
+              className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-[#1a1a1a]/20 pt-5 text-[11px] uppercase tracking-[0.28em] text-[#1a1a1a]/55"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
+            >
               <span>{String(CHAPTERS.length).padStart(2, "0")} Chapters</span>
-              <span className="h-1.5 w-1.5 bg-[#FF4D00]" />
+              <span className="h-1 w-1 rounded-full bg-[#C9A84C]" />
               <span>≈ 8 min read</span>
-              <span className="h-1.5 w-1.5 bg-[#FF4D00]" />
+              <span className="h-1 w-1 rounded-full bg-[#C9A84C]" />
               <span>Updated 2026</span>
             </div>
           </div>
         </div>
       </div>
-
 
       {/* Card widget — manual prev/next */}
       <div className="relative bg-[#0A0A0A]">
@@ -76,7 +100,7 @@ export default function TenThings() {
           {/* Counter top-left */}
           <div
             className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[12px] tracking-[0.15em] text-neutral-400 md:left-10"
-            style={{ fontFamily: "'Inter', sans-serif", textShadow: "0 0 24px rgba(255,255,255,0.10)" }}
+            style={{ fontFamily: "'JetBrains Mono', monospace", textShadow: "0 0 24px rgba(255,255,255,0.10)" }}
           >
             <AnimatePresence mode="popLayout">
               <motion.span
@@ -242,7 +266,7 @@ function Slide({
           <StaggeredText delay={0.15} k={`meta-${index}`}>
             <p
               className="text-[11px] uppercase tracking-[0.2em] text-white/60"
-              style={{ fontFamily: "'Inter', sans-serif" }}
+              style={{ fontFamily: "'JetBrains Mono', monospace" }}
             >
               <span className="text-neutral-400">{String(index + 1).padStart(2, "0")}</span>
               <span className="mx-2 text-white/25">·</span>
@@ -276,7 +300,7 @@ function Slide({
                   <div className="text-2xl font-black tracking-tighter text-white">{s.value}</div>
                   <div
                     className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/50"
-                    style={{ fontFamily: "'Inter', sans-serif" }}
+                    style={{ fontFamily: "'JetBrains Mono', monospace" }}
                   >
                     {s.label}
                   </div>
@@ -319,6 +343,9 @@ function GradientArrow({
   className?: string;
   direction?: "left" | "right";
 }) {
+  const id = useId();
+  const gradientId = `arrow-grad-${id}`;
+  const glowId = `arrow-glow-${id}`;
   const d =
     direction === "right"
       ? "M4 12h16M13 6l6 6-6 6"
@@ -331,10 +358,25 @@ function GradientArrow({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
+      style={{ filter: `drop-shadow(0 0 4px rgba(249, 115, 22, 0.45))` }}
     >
+      <defs>
+        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#2dd4bf" />
+          <stop offset="50%" stopColor="#fbbf24" />
+          <stop offset="100%" stopColor="#fb923c" />
+        </linearGradient>
+        <filter id={glowId} x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
+          <feMerge>
+            <feMergeNode in="coloredBlur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
       <path
         d={d}
-        stroke="#FF4D00"
+        stroke={`url(#${gradientId})`}
         strokeWidth="2.25"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -342,6 +384,4 @@ function GradientArrow({
     </svg>
   );
 }
-
-
 
