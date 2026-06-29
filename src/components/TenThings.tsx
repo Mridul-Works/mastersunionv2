@@ -439,7 +439,7 @@ function Gallery({
   });
 
   return (
-    <group ref={groupRef}>
+    <group ref={groupRef} userData={{ __isGallery: true }}>
       {CHAPTERS.map((c, i) => (
         <Card
           key={c.n}
