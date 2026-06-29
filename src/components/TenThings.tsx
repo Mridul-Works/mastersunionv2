@@ -25,29 +25,29 @@ export default function TenThings() {
 
   return (
     <section className="relative bg-[#F1EFE7] text-[#1A211A]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-      {/* Intro headline — compact editorial */}
-      <div className="relative overflow-hidden bg-[#F1EFE7] px-6 py-5 text-[#1A211A] md:py-6">
-        <div className="pointer-events-none absolute -left-40 top-4 h-[14vh] w-[14vh] rounded-full bg-[#1A211A]/[0.04] blur-[50px]" />
-        <div className="pointer-events-none absolute -right-40 bottom-0 h-[14vh] w-[14vh] rounded-full bg-[#1A211A]/[0.04] blur-[50px]" />
+      {/* Intro headline — editorial */}
+      <div className="relative overflow-hidden bg-[#F1EFE7] px-6 py-12 text-[#1A211A] md:py-16">
+        <div className="pointer-events-none absolute -left-40 top-4 h-[20vh] w-[20vh] rounded-full bg-[#1A211A]/[0.04] blur-[60px]" />
+        <div className="pointer-events-none absolute -right-40 bottom-0 h-[20vh] w-[20vh] rounded-full bg-[#1A211A]/[0.04] blur-[60px]" />
 
         <div className="relative z-10 mx-auto max-w-[1180px]">
-          <div className="mb-2 flex items-center gap-3">
-            <span className="h-px w-8 bg-[#1A211A]/40" />
+          <div className="mb-4 flex items-center gap-3">
+            <span className="h-px w-10 bg-[#1A211A]/40" />
             <span
-              className="text-[8px] uppercase tracking-[0.3em] text-[#1A211A]/55"
+              className="text-[9px] uppercase tracking-[0.3em] text-[#1A211A]/55"
               style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
             >
               Field Notes — Vol. 01
             </span>
           </div>
 
-          <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <h2
               className="leading-[1.02] tracking-[-0.02em] text-[#1A211A]"
               style={{
                 fontFamily: "'Inter', system-ui, sans-serif",
                 fontWeight: 400,
-                fontSize: "clamp(18px, 3vw, 34px)",
+                fontSize: "clamp(26px, 4.5vw, 52px)",
               }}
             >
               Cut the{" "}
@@ -65,20 +65,20 @@ export default function TenThings() {
                 >
                   10 things about Masters' Union
                 </span>
-                <span className="absolute inset-x-0 bottom-1 z-0 h-[2px] bg-[#1A211A]/15" />
+                <span className="absolute inset-x-0 bottom-2 z-0 h-[3px] bg-[#1A211A]/15" />
               </span>
             </h2>
 
-            <div className="flex flex-col gap-1 md:items-end">
+            <div className="flex flex-col gap-3 md:items-end">
               <p
-                className="max-w-[300px] text-[11px] leading-[1.45] text-[#1A211A]/70"
+                className="max-w-[360px] text-[13px] leading-[1.5] text-[#1A211A]/70"
                 style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 400 }}
               >
-                No ads. No fluff. Just the dossier — ten chapters that explain how the school works.
+                No ads. No fluff. Just the dossier — ten chapters that actually explain how the school works, who teaches, and what gets built.
               </p>
 
               <div
-                className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[8px] uppercase tracking-[0.24em] text-[#1A211A]/55"
+                className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[9px] uppercase tracking-[0.26em] text-[#1A211A]/55"
                 style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
               >
                 <span>{String(CHAPTERS.length).padStart(2, "0")} Chapters</span>
@@ -91,6 +91,7 @@ export default function TenThings() {
           </div>
         </div>
       </div>
+
 
 
       {/* Card widget — manual prev/next, compact, centered */}
