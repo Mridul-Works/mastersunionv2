@@ -95,42 +95,58 @@ export default function HomeSections() {
         </div>
       </section>
 
-      {/* APPLICATION DEADLINES */}
-      <section id="deadlines" className="border-t border-black/10 bg-[#1A211A] text-[#F4EFE3]">
-        <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-10 md:py-32">
-          <div className="flex flex-col gap-12 md:flex-row md:items-end md:justify-between">
-            <div className="max-w-xl">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#C9A84C]">Admissions · Cohort 2026</p>
-              <h2 className="mt-5 text-5xl leading-[0.95] tracking-tight md:text-7xl" style={{ fontFamily: "'Fraunces', serif" }}>
-                Three rounds.<br />
-                <span className="italic text-[#C9A84C]">One decision.</span>
-              </h2>
-              <p className="mt-6 max-w-md text-[15px] leading-relaxed text-white/70">
-                Apply early. Scholarship pools shrink with every round, and ~80% of seats are filled by the time Round 3 opens.
-              </p>
-            </div>
-            <button type="button" className="self-start rounded-full bg-[#C9A84C] px-7 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-black transition-transform hover:scale-[1.02]">
-              Start application
-            </button>
-          </div>
-
-          <div className="mt-16 grid gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10 md:grid-cols-3">
-            {DEADLINES.map((d, i) => (
-              <div key={d.round} className="flex flex-col gap-6 bg-[#1A211A] p-8 md:p-10">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">{String(i + 1).padStart(2, "0")} · {d.round}</span>
-                  <span className={`rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] ${d.status === "Open" ? "bg-[#C9A84C]/20 text-[#C9A84C]" : "bg-white/10 text-white/60"}`}>{d.status}</span>
-                </div>
-                <div className="flex items-baseline gap-3">
-                  <Calendar className="size-5 text-[#C9A84C]" />
-                  <span className="text-3xl tracking-tight md:text-4xl" style={{ fontFamily: "'Fraunces', serif" }}>{d.date}</span>
-                </div>
-                <p className="text-[14px] leading-relaxed text-white/70">{d.note}</p>
+      {/* PROGRAMS / APPLICATIONS */}
+      <section id="deadlines" className="border-t border-black/10 bg-[#FAF8F4]">
+        <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10 md:py-28">
+          <div className="border-t-4 border-[#1F4D3F] pt-8">
+            <div className="flex items-end justify-between gap-4 mb-10">
+              <div>
+                <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-[#1F4D3F] mb-1">Admissions · Cohort 2026</p>
+                <h2 className="font-display text-[1.35rem] font-bold leading-tight text-[#16140F] md:text-[1.8rem]">
+                  Programmes Accepting Applications
+                </h2>
               </div>
-            ))}
+              <a href="#" className="hidden font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-[#16140F] underline-offset-4 hover:underline md:inline-flex items-center gap-1.5">
+                View all programmes <ArrowUpRight className="size-3.5" />
+              </a>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              {PROGRAMS.map((p) => (
+                <article
+                  key={p.title}
+                  className="group flex flex-col gap-5 rounded-2xl border border-black/8 bg-white p-4 transition-all hover:-translate-y-1 hover:shadow-[0_20px_50px_-25px_rgba(0,0,0,0.25)] sm:flex-row sm:items-stretch sm:gap-5"
+                >
+                  <div className="relative h-44 w-full flex-shrink-0 overflow-hidden rounded-xl sm:h-auto sm:w-[44%]">
+                    <img src={p.image} alt={p.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  </div>
+                  <div className="flex min-w-0 flex-1 flex-col">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="rounded-full bg-[#16140F] px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-white">{p.mode}</span>
+                      <span className="rounded-full bg-black/5 px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-black/70">{p.duration}</span>
+                    </div>
+                    <h3 className="font-display mt-4 text-[1.15rem] font-bold leading-snug text-[#16140F] md:text-[1.25rem]">
+                      {p.title}
+                    </h3>
+                    <div className="mt-4 inline-flex w-fit items-center gap-2 rounded-md bg-[#E6F0E4] px-3 py-1.5">
+                      <Hourglass className="size-3.5 text-[#1F4D3F]" />
+                      <span className="font-sans text-[12px] font-semibold text-[#1F4D3F]">{p.round}</span>
+                    </div>
+                    <div className="mt-auto pt-5">
+                      <div className="border-t border-black/10 pt-3">
+                        <a href="#" className="inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-[#16140F] transition-colors group-hover:text-[#6B1F2A]">
+                          Apply Now <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
+
 
       {/* FOUNDER'S MESSAGE */}
       <section id="founders" className="border-t border-black/10">
