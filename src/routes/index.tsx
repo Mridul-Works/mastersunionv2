@@ -270,7 +270,7 @@ function Index() {
                 <div className="col-span-12 md:col-span-9 lg:col-span-8">
                   <h1
                     className="text-7xl italic leading-[0.8] tracking-tighter text-white md:text-[110px] lg:text-[130px]"
-                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                    style={{ fontFamily: "'Fraunces', serif" }}
                   >
                     Learn by <br />
                     <span className="mt-2 block not-italic md:ml-24">Doing.</span>

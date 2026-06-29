@@ -30,8 +30,8 @@
   --color-cream: var(--cream);
   --color-ink: var(--ink);
 
-  --font-display: "Instrument Serif", "Times New Roman", serif;
-  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Fraunces", "Times New Roman", serif;
+  --font-sans: "Montserrat", system-ui, sans-serif;
 }
 
 :root {
