@@ -249,11 +249,11 @@ function Slide({
           />
         </motion.div>
 
-        <div className="pointer-events-none absolute left-5 bottom-5 z-10 md:left-8 md:bottom-8">
+        <div className="pointer-events-none absolute left-4 bottom-4 z-10 md:left-7 md:bottom-7">
           <StaggeredText delay={0.05} k={`bignum-${index}`}>
             <span
               className="block bg-gradient-to-b from-neutral-100 via-neutral-400 to-neutral-700 bg-clip-text font-black leading-none tracking-tighter text-transparent"
-              style={{ fontSize: "clamp(56px, 7vw, 110px)", filter: "drop-shadow(0 0 30px rgba(255,255,255,0.08))" }}
+              style={{ fontSize: "clamp(42px, 5.5vw, 78px)", filter: "drop-shadow(0 0 30px rgba(255,255,255,0.08))" }}
             >
               {String(index + 1).padStart(2, "0")}
             </span>
