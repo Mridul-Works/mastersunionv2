@@ -1,8 +1,4 @@
 import { ArrowUpRight, ChevronLeft, ChevronRight, Hourglass, Quote, GraduationCap, Rocket, Briefcase, Users, Mic, ChefHat, Building2, Send, Instagram, Linkedin, Youtube, Twitter } from "lucide-react";
-import prog01 from "@/assets/mu-08.jpg";
-import prog02 from "@/assets/mu-03.jpg";
-import prog03 from "@/assets/mu-05.jpg";
-import prog04 from "@/assets/mu-07.jpg";
 
 const NEWS = [
   { tag: "Press", month: "Jun", day: "15", time: "09:00 AM", title: "Masters' Union ranked among India's top new-age B-schools", source: "Forbes India" },
@@ -12,10 +8,10 @@ const NEWS = [
 ];
 
 const PROGRAMS = [
-  { image: prog01, mode: "ON CAMPUS", duration: "2 YEARS", title: "PGP in Technology & Business Management", round: "Round 1 Applications Open" },
-  { image: prog02, mode: "ON CAMPUS", duration: "1 YEAR", title: "PGP in Quantitative Finance & Business", round: "Round 2 Applications Open" },
-  { image: prog03, mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Technology & Business Management", round: "Round 4 Applications Open" },
-  { image: prog04, mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Psychology & Marketing", round: "Round 4 Applications Open" },
+  { mode: "ON CAMPUS", duration: "2 YEARS", title: "PGP in Technology & Business Management", round: "Round 1 Applications Open" },
+  { mode: "ON CAMPUS", duration: "1 YEAR", title: "PGP in Quantitative Finance & Business", round: "Round 2 Applications Open" },
+  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Technology & Business Management", round: "Round 4 Applications Open" },
+  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Psychology & Marketing", round: "Round 4 Applications Open" },
 ];
 
 const PEDAGOGY = [
@@ -111,34 +107,29 @@ export default function HomeSections() {
               </a>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2">
-              {PROGRAMS.map((p) => (
+            <div className="flex flex-nowrap overflow-x-auto snap-x border-y border-black/10 md:overflow-x-visible">
+              {PROGRAMS.map((p, i) => (
                 <article
                   key={p.title}
-                  className="group flex flex-col gap-5 rounded-2xl border border-black/8 bg-white p-4 transition-all hover:-translate-y-1 hover:shadow-[0_20px_50px_-25px_rgba(0,0,0,0.25)] sm:flex-row sm:items-stretch sm:gap-5"
+                  className={`group flex min-w-[280px] flex-1 cursor-pointer snap-start flex-col gap-6 bg-white p-6 transition-all hover:bg-[#F7F6F2] md:min-w-0 ${
+                    i !== PROGRAMS.length - 1 ? "border-b border-black/10 md:border-b-0 md:border-r" : ""
+                  }`}
                 >
-                  <div className="relative h-44 w-full flex-shrink-0 overflow-hidden rounded-xl sm:h-auto sm:w-[44%]">
-                    <img src={p.image} alt={p.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="rounded-full bg-[#16140F] px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-white">{p.mode}</span>
+                    <span className="rounded-full bg-black/5 px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-black/70">{p.duration}</span>
                   </div>
-                  <div className="flex min-w-0 flex-1 flex-col">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="rounded-full bg-[#16140F] px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-white">{p.mode}</span>
-                      <span className="rounded-full bg-black/5 px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-black/70">{p.duration}</span>
-                    </div>
-                    <h3 className="font-display mt-4 text-[1.15rem] font-bold leading-snug text-[#16140F] md:text-[1.25rem]">
-                      {p.title}
-                    </h3>
-                    <div className="mt-4 inline-flex w-fit items-center gap-2 rounded-md bg-[#E6F0E4] px-3 py-1.5">
-                      <Hourglass className="size-3.5 text-[#1F4D3F]" />
-                      <span className="font-sans text-[12px] font-semibold text-[#1F4D3F]">{p.round}</span>
-                    </div>
-                    <div className="mt-auto pt-5">
-                      <div className="border-t border-black/10 pt-3">
-                        <a href="#" className="inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-[#16140F] transition-colors group-hover:text-[#6B1F2A]">
-                          Apply Now <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                        </a>
-                      </div>
-                    </div>
+                  <h3 className="font-display text-[1.15rem] font-bold leading-snug text-[#16140F] md:text-[1.25rem]">
+                    {p.title}
+                  </h3>
+                  <div className="inline-flex w-fit items-center gap-2 rounded-md bg-[#E6F0E4] px-3 py-1.5">
+                    <Hourglass className="size-3.5 text-[#1F4D3F]" />
+                    <span className="font-sans text-[12px] font-semibold text-[#1F4D3F]">{p.round}</span>
+                  </div>
+                  <div className="mt-auto pt-4 border-t border-black/10">
+                    <a href="#" className="inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-[#16140F] transition-colors group-hover:text-[#6B1F2A]">
+                      Apply Now <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    </a>
                   </div>
                 </article>
               ))}
