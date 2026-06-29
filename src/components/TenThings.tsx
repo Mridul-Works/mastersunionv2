@@ -151,25 +151,25 @@ export default function TenThings() {
                 <span className="min-w-[80px] text-center">{project.tag}</span>
               </div>
 
-              <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1.5 backdrop-blur-md">
+              <div className="ml-auto flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-2 py-1 backdrop-blur-md">
                 <button
                   type="button"
                   onClick={() => go(-1)}
                   aria-label="Previous chapter"
-                  className="group flex items-center gap-2 rounded-full px-3 py-1.5 text-white/80 transition-all hover:bg-white/10 hover:text-white"
+                  className="group flex items-center gap-2 rounded-full px-2 py-1 text-white/80 transition-all hover:bg-white/10 hover:text-white"
                 >
-                  <GradientArrow direction="left" className="size-5" />
-                  <span className="hidden text-[11px] font-medium uppercase tracking-wider sm:inline">Prev</span>
+                  <GradientArrow direction="left" className="size-4" />
+                  <span className="hidden text-[10px] font-medium uppercase tracking-wider sm:inline">Prev</span>
                 </button>
-                <span className="h-4 w-px bg-white/15" />
+                <span className="h-3.5 w-px bg-white/15" />
                 <button
                   type="button"
                   onClick={() => go(1)}
                   aria-label="Next chapter"
-                  className="group flex items-center gap-2 rounded-full px-3 py-1.5 text-white/80 transition-all hover:bg-white/10 hover:text-white"
+                  className="group flex items-center gap-2 rounded-full px-2 py-1 text-white/80 transition-all hover:bg-white/10 hover:text-white"
                 >
-                  <span className="hidden text-[11px] font-medium uppercase tracking-wider sm:inline">Next</span>
-                  <GradientArrow direction="right" className="size-5" />
+                  <span className="hidden text-[10px] font-medium uppercase tracking-wider sm:inline">Next</span>
+                  <GradientArrow direction="right" className="size-4" />
                 </button>
               </div>
 
