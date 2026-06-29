@@ -276,10 +276,14 @@ function Index() {
                   >
                     <div className="relative flex size-24 items-center justify-center">
                       <div className="absolute inset-0 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm transition-transform duration-500 ease-out group-hover:scale-110" />
-                      <div className="relative flex size-14 items-center justify-center rounded-full bg-white shadow-lg transition-transform duration-300 group-hover:scale-90">
+                      <div
+                        className="relative flex size-14 items-center justify-center rounded-full shadow-lg transition-transform duration-300 group-hover:scale-90"
+                        style={{ background: "linear-gradient(91deg, #39B5D7 -6.14%, #F7D544 47.02%, #E38330 99.71%)" }}
+                      >
                         <svg
-                          className="size-5 translate-x-0.5 fill-current text-[#2A312A]"
+                          className="size-5 fill-current text-[#1A211A]"
                           viewBox="0 0 24 24"
+                          style={{ marginLeft: "3px" }}
                         >
                           <path d="M8 5v14l11-7z" />
                         </svg>
