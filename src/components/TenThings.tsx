@@ -245,15 +245,36 @@ function Slide({
       <div className="relative z-10 flex items-end px-6 pb-32 md:items-center md:px-12 md:pb-0">
         <div className="max-w-[560px]">
           <StaggeredText delay={0.15} k={`meta-${index}`}>
-            <p
-              className="text-[11px] uppercase tracking-[0.2em] text-white/60"
-              style={{ fontFamily: "'JetBrains Mono', monospace" }}
-            >
-              <span className="text-neutral-400">{String(index + 1).padStart(2, "0")}</span>
-              <span className="mx-2 text-white/25">·</span>
-              {project.tag}
-            </p>
+            <div className="flex items-center gap-3">
+              <p
+                className="text-[11px] uppercase tracking-[0.2em] text-white/60"
+                style={{ fontFamily: "'JetBrains Mono', monospace" }}
+              >
+                <span className="text-neutral-400">{String(index + 1).padStart(2, "0")}</span>
+                <span className="mx-2 text-white/25">·</span>
+                {project.tag}
+              </p>
+              <div className="flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-1.5 py-1 backdrop-blur-md">
+                <button
+                  type="button"
+                  onClick={onPrev}
+                  aria-label="Previous chapter"
+                  className="flex size-6 items-center justify-center rounded-full text-white/80 transition hover:bg-white/10 hover:text-white"
+                >
+                  <GradientArrow direction="left" className="size-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={onNext}
+                  aria-label="Next chapter"
+                  className="flex size-6 items-center justify-center rounded-full text-white/80 transition hover:bg-white/10 hover:text-white"
+                >
+                  <GradientArrow direction="right" className="size-4" />
+                </button>
+              </div>
+            </div>
           </StaggeredText>
+
 
           <StaggeredText delay={0.25} k={`title-${index}`}>
             <h2
