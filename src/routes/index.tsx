@@ -142,8 +142,8 @@ function Index() {
             : "opacity-0 -translate-y-4 pointer-events-none"
         }`}
       >
-        <div className="mx-auto flex max-w-[1180px] items-center justify-between rounded-full border border-black/10 bg-white/80 px-2 py-1.5 shadow-[0_6px_24px_-12px_rgba(0,0,0,0.15)] backdrop-blur-xl">
-          <a href="/" className="flex items-center gap-2 rounded-full px-2.5 py-1">
+        <div className="mx-auto flex max-w-[1180px] items-center justify-between rounded-none border border-black/10 bg-white/80 px-2 py-1.5 shadow-[0_6px_24px_-12px_rgba(0,0,0,0.15)] backdrop-blur-xl">
+          <a href="/" className="flex items-center gap-2 rounded-none px-2.5 py-1">
             <img src={logoAsset.url} alt="Masters' Union" className="h-5 w-auto" />
           </a>
           <nav className="hidden items-center gap-0.5 md:flex">
@@ -151,7 +151,7 @@ function Index() {
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="rounded-full px-3 py-1.5 text-[12px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
+                className="rounded-none px-3 py-1.5 text-[12px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
               >
                 {item}
               </a>
@@ -160,7 +160,7 @@ function Index() {
           <div className="flex items-center gap-1">
             <button
               type="button"
-              className="rounded-full bg-black px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-white shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
+              className="rounded-none bg-black px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-white shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
             >
               Apply
             </button>
@@ -170,21 +170,21 @@ function Index() {
               aria-label="Toggle menu"
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((s) => !s)}
-              className="flex size-8 items-center justify-center rounded-full text-black/60 transition-colors hover:bg-black/5 hover:text-black md:hidden"
+              className="flex size-8 items-center justify-center rounded-none text-black/60 transition-colors hover:bg-black/5 hover:text-black md:hidden"
             >
               {menuOpen ? <X className="size-4" /> : <Menu className="size-4" />}
             </button>
           </div>
         </div>
         {menuOpen && (
-          <div className="mt-3 rounded-3xl border border-black/10 bg-white/95 p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.12)] backdrop-blur-xl md:hidden">
+          <div className="mt-3 rounded-none border border-black/10 bg-white/95 p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.12)] backdrop-blur-xl md:hidden">
             <nav className="flex flex-col gap-1">
               {NAV.map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-2xl px-4 py-3 text-[14px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
+                  className="rounded-none px-4 py-3 text-[14px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
                 >
                   {item}
                 </a>
@@ -270,13 +270,13 @@ function Index() {
                     className="group relative flex cursor-pointer flex-col items-center gap-4 focus:outline-none md:items-end"
                   >
                     <div className="relative flex items-center justify-center">
-                      {/* Outer pulsing ring */}
-                      <div className="mu-ping-gold absolute inset-0 rounded-full border border-[#C9A84C]/40" />
+                      {/* Outer pulsing square */}
+                      <div className="mu-ping-gold absolute inset-0 rounded-none border border-[#C9A84C]/40" />
 
                       {/* Main button body */}
-                      <div className="relative flex size-24 items-center justify-center rounded-full border border-[#C9A84C]/40 bg-[#1F4D3F]/20 backdrop-blur-xl transition-all duration-700 group-hover:scale-110 group-hover:border-[#C9A84C] group-hover:bg-[#6B1F2A]/30">
+                      <div className="relative flex size-24 items-center justify-center rounded-none border border-[#C9A84C]/40 bg-[#1F4D3F]/20 backdrop-blur-xl transition-all duration-700 group-hover:scale-110 group-hover:border-[#C9A84C] group-hover:bg-[#6B1F2A]/30">
                         {/* Inner glow */}
-                        <div className="absolute inset-0 rounded-full shadow-[inset_0_0_24px_rgba(201,168,76,0.15)] transition-all duration-500 group-hover:shadow-[inset_0_0_32px_rgba(201,168,76,0.35)]" />
+                        <div className="absolute inset-0 rounded-none shadow-[inset_0_0_24px_rgba(201,168,76,0.15)] transition-all duration-500 group-hover:shadow-[inset_0_0_32px_rgba(201,168,76,0.35)]" />
 
                         {/* Play icon */}
                         <svg
@@ -351,7 +351,7 @@ function Index() {
               type="button"
               onClick={() => videoElRef.current?.pause()}
               aria-label="Pause"
-              className="absolute right-6 top-6 z-10 flex size-11 items-center justify-center rounded-full border border-white/30 bg-black/40 text-white opacity-70 backdrop-blur-md transition-opacity hover:opacity-100"
+              className="absolute right-6 top-6 z-10 flex size-11 items-center justify-center rounded-none border border-white/30 bg-black/40 text-white opacity-70 backdrop-blur-md transition-opacity hover:opacity-100"
             >
               <Pause className="size-4" />
             </button>
@@ -373,7 +373,7 @@ function Index() {
         type="button"
         onClick={rewatchVideo}
         aria-label="Rewatch intro video"
-        className={`fixed bottom-6 right-6 z-[90] flex items-center gap-2 rounded-full border border-black/10 bg-white/95 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-black shadow-[0_12px_32px_-8px_rgba(0,0,0,0.12)] backdrop-blur-xl transition-all duration-500 hover:scale-105 ${
+        className={`fixed bottom-6 right-6 z-[90] flex items-center gap-2 rounded-none border border-black/10 bg-white/95 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-black shadow-[0_12px_32px_-8px_rgba(0,0,0,0.12)] backdrop-blur-xl transition-all duration-500 hover:scale-105 ${
           showRewatch ? "opacity-100 translate-y-0 pointer-events-auto animate-bounce" : "opacity-0 translate-y-6 pointer-events-none"
         }`}
       >
