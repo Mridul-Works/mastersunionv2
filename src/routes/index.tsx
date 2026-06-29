@@ -353,7 +353,7 @@ function Index() {
         {/* The hero. Rises over the sticky video as the user scrolls. */}
         <div
           ref={heroRef}
-          className="relative z-10 bg-[#FAF8F4] shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.12)]"
+          className="relative z-10 bg-[#F9F9F9] shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.18)]"
         >
           <TenThings />
           <HomeSections />
@@ -365,7 +365,7 @@ function Index() {
         type="button"
         onClick={rewatchVideo}
         aria-label="Rewatch intro video"
-        className={`fixed bottom-6 right-6 z-[90] flex items-center gap-2 rounded-full border border-black/10 bg-white/95 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-black shadow-[0_12px_32px_-8px_rgba(0,0,0,0.12)] backdrop-blur-xl transition-all duration-500 hover:scale-105 ${
+        className={`fixed bottom-6 right-6 z-[90] flex items-center gap-2 border border-[#111111] bg-white px-4 py-3 font-['JetBrains_Mono'] text-[10px] font-bold uppercase tracking-[0.22em] text-[#111111] transition-all duration-500 hover:bg-[#FF4D00] hover:text-white ${
           showRewatch ? "opacity-100 translate-y-0 pointer-events-auto animate-bounce" : "opacity-0 translate-y-6 pointer-events-none"
         }`}
       >
