@@ -24,7 +24,7 @@ export default function TenThings() {
   const project = CHAPTERS[index];
 
   return (
-    <section className="relative bg-[#0A0A0A] text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+    <section className="relative bg-[#0A0A0A] text-white" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>
       {/* Intro headline — editorial, matches site theme */}
       <div className="relative overflow-hidden bg-[#FAF8F4] px-6 py-28 md:py-40 text-[#1a1a1a]">
         <div className="pointer-events-none absolute -left-40 top-20 h-[50vh] w-[50vh] rounded-full bg-[#C9A84C]/12 blur-[140px]" />
@@ -35,7 +35,7 @@ export default function TenThings() {
             <span className="h-px w-12 bg-[#1a1a1a]/40" />
             <span
               className="text-[11px] uppercase tracking-[0.32em] text-[#1a1a1a]/55"
-              style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
+              style={{ fontFamily: "'Montserrat', system-ui, sans-serif", fontWeight: 500 }}
             >
               Field Notes — Vol. 01
             </span>
@@ -44,7 +44,7 @@ export default function TenThings() {
           <h2
             className="leading-[0.98] tracking-[-0.02em] text-[#1a1a1a]"
             style={{
-              fontFamily: "'Instrument Serif', 'Cormorant Garamond', serif",
+              fontFamily: "'Fraunces', serif",
               fontWeight: 400,
               fontSize: "clamp(52px, 9vw, 124px)",
             }}
@@ -52,7 +52,7 @@ export default function TenThings() {
             Cut the{" "}
             <em
               className="text-[#8b7355]"
-              style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 300 }}
+              style={{ fontFamily: "'Fraunces', serif", fontStyle: "italic", fontWeight: 300 }}
             >
               marketing.
             </em>
@@ -62,7 +62,7 @@ export default function TenThings() {
               <span className="relative inline-block">
                 <span
                   className="relative z-10 italic"
-                  style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}
+                  style={{ fontFamily: "'Fraunces', serif", fontWeight: 400 }}
                 >
                   Masters' Union
                 </span>
@@ -74,7 +74,7 @@ export default function TenThings() {
           <div className="mt-14 grid grid-cols-1 gap-10 md:grid-cols-[1.3fr_1fr] md:items-end">
             <p
               className="max-w-[560px] text-[18px] leading-[1.65] text-[#1a1a1a]/70"
-              style={{ fontFamily: "'Instrument Serif', serif", fontWeight: 400 }}
+              style={{ fontFamily: "'Fraunces', serif", fontWeight: 400 }}
             >
               No ads. No fluff. Just the dossier — ten chapters that actually
               explain how the school works, who teaches, and what gets built.
@@ -82,7 +82,7 @@ export default function TenThings() {
 
             <div
               className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-[#1a1a1a]/20 pt-5 text-[11px] uppercase tracking-[0.28em] text-[#1a1a1a]/55"
-              style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
+              style={{ fontFamily: "'Montserrat', system-ui, sans-serif", fontWeight: 500 }}
             >
               <span>{String(CHAPTERS.length).padStart(2, "0")} Chapters</span>
               <span className="h-1 w-1 rounded-full bg-[#C9A84C]" />

@@ -37,7 +37,7 @@ export default function HomeSections() {
                   <span className="rounded-full bg-black/5 px-3 py-1">{n.tag}</span>
                   <span>{n.date}</span>
                 </div>
-                <h3 className="text-2xl leading-snug tracking-tight md:text-[28px]" style={{ fontFamily: "'Instrument Serif', serif" }}>
+                <h3 className="text-2xl leading-snug tracking-tight md:text-[28px]" style={{ fontFamily: "'Fraunces', serif" }}>
                   {n.title}
                 </h3>
                 <div className="mt-auto flex items-center justify-between border-t border-black/10 pt-5 text-[12px] text-black/60">
@@ -56,7 +56,7 @@ export default function HomeSections() {
           <div className="flex flex-col gap-12 md:flex-row md:items-end md:justify-between">
             <div className="max-w-xl">
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#C9A84C]">Admissions · Cohort 2026</p>
-              <h2 className="mt-5 text-5xl leading-[0.95] tracking-tight md:text-7xl" style={{ fontFamily: "'Instrument Serif', serif" }}>
+              <h2 className="mt-5 text-5xl leading-[0.95] tracking-tight md:text-7xl" style={{ fontFamily: "'Fraunces', serif" }}>
                 Three rounds.<br />
                 <span className="italic text-[#C9A84C]">One decision.</span>
               </h2>
@@ -78,7 +78,7 @@ export default function HomeSections() {
                 </div>
                 <div className="flex items-baseline gap-3">
                   <Calendar className="size-5 text-[#C9A84C]" />
-                  <span className="text-3xl tracking-tight md:text-4xl" style={{ fontFamily: "'Instrument Serif', serif" }}>{d.date}</span>
+                  <span className="text-3xl tracking-tight md:text-4xl" style={{ fontFamily: "'Fraunces', serif" }}>{d.date}</span>
                 </div>
                 <p className="text-[14px] leading-relaxed text-white/70">{d.note}</p>
               </div>
@@ -103,7 +103,7 @@ export default function HomeSections() {
             </div>
 
             <div className="md:col-span-8">
-              <h2 className="text-4xl leading-[1.05] tracking-tight md:text-[64px]" style={{ fontFamily: "'Instrument Serif', serif" }}>
+              <h2 className="text-4xl leading-[1.05] tracking-tight md:text-[64px]" style={{ fontFamily: "'Fraunces', serif" }}>
                 "We didn't build another <span className="italic text-[#8A3A12]">business school</span>. We built the school we wished existed when we were starting up."
               </h2>
               <div className="mt-10 space-y-5 text-[16px] leading-[1.75] text-black/75 md:text-[17px]">
@@ -152,7 +152,7 @@ export default function HomeSections() {
                   </div>
 
                   <div className="mt-12">
-                    <h3 className={`text-3xl leading-[1.05] tracking-tight md:text-[34px] ${featured ? "text-white" : ""}`} style={{ fontFamily: "'Instrument Serif', serif" }}>
+                    <h3 className={`text-3xl leading-[1.05] tracking-tight md:text-[34px] ${featured ? "text-white" : ""}`} style={{ fontFamily: "'Fraunces', serif" }}>
                       {p.title}
                     </h3>
                     <p className={`mt-5 text-[14px] leading-relaxed ${featured ? "text-white/70" : "text-black/65"}`}>{p.body}</p>
@@ -179,7 +179,7 @@ export default function HomeSections() {
             <div className="relative grid items-center gap-12 md:grid-cols-12">
               <div className="md:col-span-8">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#C9A84C]">PGP · Cohort 2026</p>
-                <h2 className="mt-6 text-5xl leading-[0.95] tracking-tight md:text-[88px]" style={{ fontFamily: "'Instrument Serif', serif" }}>
+                <h2 className="mt-6 text-5xl leading-[0.95] tracking-tight md:text-[88px]" style={{ fontFamily: "'Fraunces', serif" }}>
                   Apply to <span className="italic">Masters' Union.</span>
                 </h2>
                 <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-white/75">
@@ -190,7 +190,7 @@ export default function HomeSections() {
               <div className="md:col-span-4">
                 <div className="rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur-xl">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/60">Next deadline</p>
-                  <p className="mt-3 text-3xl tracking-tight" style={{ fontFamily: "'Instrument Serif', serif" }}>15 Aug 2026</p>
+                  <p className="mt-3 text-3xl tracking-tight" style={{ fontFamily: "'Fraunces', serif" }}>15 Aug 2026</p>
                   <p className="mt-2 text-[12px] text-white/60">Round 1 · Early admit + scholarship</p>
                   <button type="button" className="mt-6 flex w-full items-center justify-center gap-2 rounded-full bg-[#C9A84C] px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-black transition-transform hover:scale-[1.02]">
                     Start application <Send className="size-3.5" />
@@ -210,7 +210,7 @@ export default function HomeSections() {
         <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10">
           <div className="grid gap-12 md:grid-cols-12">
             <div className="md:col-span-5">
-              <p className="text-3xl leading-tight tracking-tight md:text-4xl" style={{ fontFamily: "'Instrument Serif', serif" }}>
+              <p className="text-3xl leading-tight tracking-tight md:text-4xl" style={{ fontFamily: "'Fraunces', serif" }}>
                 Masters' Union — <span className="italic text-[#C9A84C]">business education,<br />rebuilt for the next decade.</span>
               </p>
               <p className="mt-8 max-w-sm text-[13px] leading-relaxed text-white/55">
@@ -254,7 +254,7 @@ function SectionHead({ eyebrow, title, lede, icon: Icon }: { eyebrow: string; ti
           {Icon && <Icon className="size-4 text-[#8A3A12]" />}
           <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-black/50">{eyebrow}</p>
         </div>
-        <h2 className="mt-5 text-5xl leading-[0.95] tracking-tight md:text-7xl" style={{ fontFamily: "'Instrument Serif', serif" }}>
+        <h2 className="mt-5 text-5xl leading-[0.95] tracking-tight md:text-7xl" style={{ fontFamily: "'Fraunces', serif" }}>
           {title}
         </h2>
       </div>
