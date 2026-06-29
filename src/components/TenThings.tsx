@@ -18,23 +18,73 @@ export default function TenThings() {
 
   useEffect(() => {
     if (!pinRef.current || !widgetRef.current) return;
-    const ctx = gsap.context(() => {
-      gsap.set(widgetRef.current, { xPercent: 100 });
-      gsap.to(widgetRef.current, {
-        xPercent: 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: pinRef.current,
-          start: "top top",
-          end: "+=100%",
-          pin: true,
-          scrub: 0.6,
-          anticipatePin: 1,
+
+    let ctx: gsap.Context | null = null;
+
+    const setup = (loco: any) => {
+      const scrollerEl = document.querySelector("[data-scroll-container]") as HTMLElement | null;
+      if (!scrollerEl || !loco) return;
+
+      ScrollTrigger.scrollerProxy(scrollerEl, {
+        scrollTop(value) {
+          if (arguments.length && typeof value === "number") {
+            loco.scrollTo(value, { duration: 0, disableLerp: true });
+          }
+          return loco.scroll?.instance?.scroll?.y ?? 0;
         },
+        getBoundingClientRect() {
+          return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+        },
+        pinType: scrollerEl.style.transform ? "transform" : "fixed",
       });
-    }, pinRef);
-    return () => ctx.revert();
+
+      loco.on("scroll", ScrollTrigger.update);
+      const refresh = () => loco.update();
+      ScrollTrigger.addEventListener("refresh", refresh);
+
+      ctx = gsap.context(() => {
+        gsap.set(widgetRef.current, { xPercent: 100 });
+        gsap.to(widgetRef.current, {
+          xPercent: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: pinRef.current,
+            scroller: scrollerEl,
+            start: "top top",
+            end: "+=100%",
+            pin: true,
+            scrub: 0.6,
+            anticipatePin: 1,
+          },
+        });
+      }, pinRef);
+
+      ScrollTrigger.refresh();
+
+      return () => {
+        ScrollTrigger.removeEventListener("refresh", refresh);
+      };
+    };
+
+    let teardownProxy: (() => void) | undefined;
+    const existing = (window as any).__loco;
+    if (existing) {
+      teardownProxy = setup(existing) || undefined;
+    } else {
+      const onReady = (e: Event) => {
+        teardownProxy = setup((e as CustomEvent).detail) || undefined;
+      };
+      window.addEventListener("loco:ready", onReady, { once: true });
+      return () => window.removeEventListener("loco:ready", onReady);
+    }
+
+    return () => {
+      teardownProxy?.();
+      ctx?.revert();
+    };
   }, []);
+
+
 
 
 
