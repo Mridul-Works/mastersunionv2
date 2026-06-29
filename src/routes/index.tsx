@@ -71,14 +71,18 @@ function Index() {
         return;
       }
       if (y < lockY) {
-        // Snap back synchronously and stop any smooth scroll momentum.
+        // Snap back synchronously and override Lenis's smooth target so it
+        // does not keep animating upward.
         const lenis = (window as any).__lenis;
-        try { lenis?.stop?.(); } catch {}
-        window.scrollTo(0, lockY);
-        try { lenis?.start?.(); } catch {}
+        if (lenis?.scrollTo) {
+          lenis.scrollTo(lockY, { immediate: true, force: true, lock: true });
+        } else {
+          window.scrollTo(0, lockY);
+        }
         lastY = lockY;
         return;
       }
+
       const delta = y - lastY;
       if (delta > 6 && y > lockY + 40) setNavHidden(true);
       else if (delta < -4) setNavHidden(false);
