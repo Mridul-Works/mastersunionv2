@@ -237,15 +237,18 @@ function Slide({
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(90deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0) 35%, rgba(10,10,10,0) 60%, rgba(10,10,10,0.85) 100%)",
+                "linear-gradient(90deg, rgba(42,49,42,0.55) 0%, rgba(42,49,42,0) 35%, rgba(42,49,42,0) 60%, rgba(26,33,26,0.85) 100%)",
             }}
           />
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, rgba(10,10,10,0.7) 0%, rgba(10,10,10,0) 28%, rgba(10,10,10,0) 70%, rgba(10,10,10,0.9) 100%)",
+                "linear-gradient(180deg, rgba(42,49,42,0.7) 0%, rgba(42,49,42,0) 28%, rgba(42,49,42,0) 70%, rgba(26,33,26,0.9) 100%)",
             }}
+          />
+          <div
+            className="absolute inset-0 bg-[#2A312A]/10 mix-blend-multiply"
           />
         </motion.div>
 
