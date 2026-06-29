@@ -148,7 +148,7 @@ function Index() {
   };
 
   return (
-    <main className="min-h-screen bg-[#FAF8F4]">
+    <main className="min-h-screen bg-white">
       {/* NAV */}
       <header
         className={`fixed inset-x-0 top-0 z-[100] px-4 pt-3 sm:px-6 sm:pt-4 transition-all duration-500 ${
@@ -177,10 +177,11 @@ function Index() {
           <div className="flex items-center gap-1">
             <button
               type="button"
-              className="rounded-full bg-[#C9A84C] px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-black shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
+              className="rounded-full bg-black px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-white shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
             >
               Apply
             </button>
+
             <button
               type="button"
               aria-label="Toggle menu"
@@ -376,7 +377,7 @@ function Index() {
         {/* The hero. Rises over the sticky video as the user scrolls. */}
         <div
           ref={heroRef}
-          className="relative z-10 bg-[#FAF8F4] shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.12)]"
+          className="relative z-10 bg-white shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.12)]"
         >
           <TenThings />
           <HomeSections />
