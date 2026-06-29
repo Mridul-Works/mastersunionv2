@@ -290,9 +290,8 @@ function Index() {
                         style={{ background: "linear-gradient(91deg, rgb(57,181,215) -6.14%, rgb(247,213,68) 47.02%, rgb(227,131,48) 99.71%)" }}
                       >
                         <svg
-                          className="size-5 fill-current text-white"
+                          className="size-5 fill-current text-white translate-x-0.5"
                           viewBox="0 0 24 24"
-                          style={{ marginLeft: "3px" }}
                         >
                           <path d="M8 5v14l11-7z" />
                         </svg>
