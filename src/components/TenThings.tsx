@@ -259,7 +259,7 @@ function Slide({
               className="text-[11px] uppercase tracking-[0.2em] text-white/60"
               style={{ fontFamily: "'JetBrains Mono', monospace" }}
             >
-              <span style={{ color: project.bg }}>{String(index + 1).padStart(2, "0")}</span>
+              <span className="text-neutral-400">{String(index + 1).padStart(2, "0")}</span>
               <span className="mx-2 text-white/25">·</span>
               {project.tag}
             </p>
