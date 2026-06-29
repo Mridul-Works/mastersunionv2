@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, ArrowLeft, ArrowRight, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CHAPTERS, type Chapter } from "./chapters";
@@ -77,12 +77,13 @@ export default function TenThings() {
         <ul className="flex w-max gap-5 px-5 sm:px-8 snap-x snap-mandatory">
           {CHAPTERS.map((c, i) => {
             const accent = ACCENTS[i] ?? "#0F172A";
+            const isOpen = openIdx === i;
             return (
               <li key={c.n} className="snap-start">
                 <button
-                  onClick={() => setOpenIdx(i)}
-                  className="group relative flex h-[480px] w-[340px] flex-col overflow-hidden border border-black/10 bg-white text-left transition-all duration-300 hover:-translate-y-1 hover:border-black hover:shadow-[12px_12px_0_0_#0F172A]"
-                  style={{ fontFamily: FONT }}
+                  onClick={() => setOpenIdx(isOpen ? null : i)}
+                  className={`group relative flex flex-col overflow-hidden border border-black/10 bg-white text-left transition-all duration-300 hover:-translate-y-1 hover:border-black hover:shadow-[12px_12px_0_0_#0F172A] ${isOpen ? "ring-2 ring-black" : ""}`}
+                  style={{ fontFamily: FONT, height: "480px", width: "340px" }}
                 >
                   <div className="relative h-[220px] w-full overflow-hidden">
                     <img
@@ -117,8 +118,8 @@ export default function TenThings() {
                         className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.2em]"
                         style={{ color: accent }}
                       >
-                        Expand
-                        <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        {isOpen ? "Close" : "Expand"}
+                        <ArrowUpRight className={`size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${isOpen ? "rotate-180" : ""}`} />
                       </span>
                     </div>
                   </div>
@@ -133,9 +134,10 @@ export default function TenThings() {
         </ul>
       </div>
 
+      {/* Inline expanded dossier — lives inside the page flow, not a popup */}
       <AnimatePresence>
         {openIdx !== null && (
-          <ExpandedCard
+          <ExpandedPanel
             chapter={CHAPTERS[openIdx]}
             accent={ACCENTS[openIdx] ?? "#0F172A"}
             onClose={() => setOpenIdx(null)}
@@ -146,62 +148,61 @@ export default function TenThings() {
   );
 }
 
-function ExpandedCard({ chapter, accent, onClose }: { chapter: Chapter; accent: string; onClose: () => void }) {
+function ExpandedPanel({ chapter, accent, onClose }: { chapter: Chapter; accent: string; onClose: () => void }) {
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    panelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
+
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.25 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 p-4 sm:p-8"
-      onClick={onClose}
+      ref={panelRef}
+      initial={{ opacity: 0, y: 20, height: 0 }}
+      animate={{ opacity: 1, y: 0, height: "auto" }}
+      exit={{ opacity: 0, y: 20, height: 0 }}
+      transition={{ type: "spring", damping: 26, stiffness: 240 }}
+      className="overflow-hidden border-y border-black/10 bg-white"
       style={{ fontFamily: FONT }}
     >
-      <motion.div
-        initial={{ scale: 0.92, y: 24, opacity: 0 }}
-        animate={{ scale: 1, y: 0, opacity: 1 }}
-        exit={{ scale: 0.95, opacity: 0 }}
-        transition={{ type: "spring", damping: 26, stiffness: 240 }}
-        onClick={(e) => e.stopPropagation()}
-        className="relative max-h-[92vh] w-full max-w-[1100px] overflow-y-auto bg-white shadow-2xl"
-      >
-        {/* Hero strip */}
-        <div className="relative h-[260px] w-full overflow-hidden sm:h-[340px]">
-          <img src={chapter.image} alt={chapter.headline} className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-          <span
-            className="absolute left-0 top-0 px-4 py-2 text-[10px] font-black uppercase tracking-[0.3em] text-white"
-            style={{ background: accent }}
-          >
-            Chapter {chapter.n} · {chapter.tag}
-          </span>
-          <button
-            onClick={onClose}
-            aria-label="Close"
-            className="absolute right-4 top-4 flex size-10 items-center justify-center bg-white text-black transition-colors hover:bg-black hover:text-white"
-          >
-            <X className="size-4" />
-          </button>
-          <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
-            <h3 className="max-w-[24ch] text-[clamp(1.4rem,3.5vw,2.6rem)] font-black uppercase leading-[1.05] tracking-tight text-white">
+      <div className="mx-auto max-w-[1280px] px-5 py-8 sm:px-8 sm:py-12">
+        {/* Masthead */}
+        <div className="mb-8 flex items-start justify-between gap-4">
+          <div>
+            <span
+              className="inline-block px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.3em] text-white"
+              style={{ background: accent }}
+            >
+              Chapter {chapter.n} · {chapter.tag}
+            </span>
+            <h3 className="mt-4 max-w-[24ch] text-[clamp(1.6rem,3.5vw,2.8rem)] font-black uppercase leading-[1.05] tracking-tight text-black">
               {chapter.headline}
             </h3>
           </div>
+          <button
+            onClick={onClose}
+            aria-label="Close"
+            className="flex size-10 items-center justify-center border border-black/10 bg-white text-black transition-colors hover:bg-black hover:text-white"
+          >
+            <X className="size-4" />
+          </button>
         </div>
 
-        {/* Body */}
-        <div className="grid grid-cols-1 gap-8 p-6 sm:p-10 md:grid-cols-12">
+        {/* Hero image */}
+        <div className="relative mb-10 h-[260px] w-full overflow-hidden sm:h-[360px]">
+          <img src={chapter.image} alt={chapter.headline} className="h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+          <div className="absolute bottom-0 left-0 p-6 sm:p-10">
+            <blockquote className="max-w-[40ch] text-[clamp(1.1rem,1.6vw,1.4rem)] font-medium italic leading-[1.3] text-white">
+              &ldquo;{chapter.pullQuote}&rdquo;
+            </blockquote>
+          </div>
+        </div>
+
+        {/* Body grid */}
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
           <div className="md:col-span-7">
             <p className="text-[15px] leading-[1.65] text-black/80">{chapter.body}</p>
-
-            <div className="mt-8 border-l-2 pl-5" style={{ borderColor: accent }}>
-              <div className="text-[9px] font-black uppercase tracking-[0.3em]" style={{ color: accent }}>
-                The point
-              </div>
-              <blockquote className="mt-2 text-[clamp(1.1rem,1.6vw,1.4rem)] font-medium italic leading-[1.3] text-black">
-                &ldquo;{chapter.pullQuote}&rdquo;
-              </blockquote>
-            </div>
 
             <div className="mt-10 space-y-6">
               {chapter.sections.map((s, i) => (
@@ -210,9 +211,7 @@ function ExpandedCard({ chapter, accent, onClose }: { chapter: Chapter; accent: 
                     <span className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <h4 className="text-[15px] font-black uppercase tracking-tight text-black">
-                      {s.heading}
-                    </h4>
+                    <h4 className="text-[15px] font-black uppercase tracking-tight text-black">{s.heading}</h4>
                   </div>
                   <p className="mt-2 text-[14px] leading-[1.65] text-black/75">{s.body}</p>
                 </div>
@@ -220,19 +219,14 @@ function ExpandedCard({ chapter, accent, onClose }: { chapter: Chapter; accent: 
             </div>
           </div>
 
-          {/* Right column: Stats */}
           <aside className="md:col-span-5">
             <div className="border border-black/10 bg-[#FAF8F4]">
               <div className="border-b border-black/10 px-5 py-3 text-[10px] font-black uppercase tracking-[0.3em] text-black/60">
                 The dossier
               </div>
               <div className="px-5 py-6">
-                <div className="text-[clamp(2.6rem,5vw,3.6rem)] font-black leading-none text-black">
-                  {chapter.stat}
-                </div>
-                <div className="mt-2 text-[10px] font-bold uppercase tracking-[0.25em] text-black/55">
-                  {chapter.label}
-                </div>
+                <div className="text-[clamp(2.6rem,5vw,3.6rem)] font-black leading-none text-black">{chapter.stat}</div>
+                <div className="mt-2 text-[10px] font-bold uppercase tracking-[0.25em] text-black/55">{chapter.label}</div>
               </div>
               <div className="grid grid-cols-2 border-t border-black/10">
                 {chapter.stats.map((s, i) => (
@@ -241,18 +235,14 @@ function ExpandedCard({ chapter, accent, onClose }: { chapter: Chapter; accent: 
                     className="border-black/10 px-5 py-5 [&:nth-child(odd)]:border-r [&:not(:nth-last-child(-n+2))]:border-b"
                   >
                     <div className="text-[20px] font-black leading-none text-black">{s.value}</div>
-                    <div className="mt-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-black/55">
-                      {s.label}
-                    </div>
+                    <div className="mt-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-black/55">{s.label}</div>
                   </div>
                 ))}
               </div>
             </div>
 
             <div className="mt-6">
-              <div className="text-[10px] font-black uppercase tracking-[0.3em] text-black/60">
-                Proof
-              </div>
+              <div className="text-[10px] font-black uppercase tracking-[0.3em] text-black/60">Proof</div>
               <ul className="mt-3 space-y-2">
                 {chapter.proof.map((p) => (
                   <li key={p} className="flex items-start gap-2 text-[13px] leading-snug text-black/80">
@@ -264,9 +254,7 @@ function ExpandedCard({ chapter, accent, onClose }: { chapter: Chapter; accent: 
             </div>
 
             <div className="mt-6">
-              <div className="text-[10px] font-black uppercase tracking-[0.3em] text-black/60">
-                In the room
-              </div>
+              <div className="text-[10px] font-black uppercase tracking-[0.3em] text-black/60">In the room</div>
               <div className="mt-3 flex flex-wrap gap-1.5">
                 {chapter.chips.map((chip) => (
                   <span
@@ -282,12 +270,14 @@ function ExpandedCard({ chapter, accent, onClose }: { chapter: Chapter; accent: 
         </div>
 
         {/* Closing */}
-        <div className="border-t border-black/10 px-6 py-8 sm:px-10" style={{ background: accent }}>
-          <p className="max-w-[60ch] text-[clamp(1rem,1.5vw,1.25rem)] font-medium italic leading-snug text-white">
-            {chapter.closing}
-          </p>
+        <div className="mt-10 border-t border-black/10 px-0 py-6 sm:py-8">
+          <div className="max-w-[60ch] border-l-2 pl-5" style={{ borderColor: accent }}>
+            <p className="text-[clamp(1rem,1.5vw,1.25rem)] font-medium italic leading-snug text-black">
+              {chapter.closing}
+            </p>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </motion.div>
   );
 }
