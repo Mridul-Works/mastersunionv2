@@ -26,35 +26,36 @@
   --color-border: var(--border);
   --color-ring: var(--ring);
 
-  --color-sage: var(--sage);
-  --color-cream: var(--cream);
   --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-signal: var(--signal);
 
-  --font-display: "Instrument Serif", "Times New Roman", serif;
+  --font-display: "Inter", system-ui, sans-serif;
   --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 :root {
-  --radius: 0.875rem;
-  /* Editorial palette pulled from the Mindora reference + recolored building */
-  --background: oklch(0.985 0.005 90);          /* warm off-white */
-  --foreground: oklch(0.18 0.01 80);            /* near-black ink */
+  --radius: 0;
+  /* Swiss High-Contrast palette */
+  --background: oklch(0.975 0 0);   /* #F9F9F9 */
+  --foreground: oklch(0.18 0 0);    /* #111111 */
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.01 80);
-  --primary: oklch(0.22 0.01 80);               /* deep ink */
-  --primary-foreground: oklch(0.985 0.005 90);
-  --secondary: oklch(0.94 0.015 110);
-  --secondary-foreground: oklch(0.22 0.01 80);
-  --muted: oklch(0.94 0.012 100);
-  --muted-foreground: oklch(0.5 0.02 90);
-  --accent: oklch(0.82 0.09 135);               /* sage-lime CTA from Mindora */
-  --accent-foreground: oklch(0.2 0.02 130);
-  --border: oklch(0.9 0.01 90);
-  --ring: oklch(0.7 0.04 130);
+  --card-foreground: oklch(0.18 0 0);
+  --primary: oklch(0.18 0 0);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.94 0 0);
+  --secondary-foreground: oklch(0.18 0 0);
+  --muted: oklch(0.94 0 0);
+  --muted-foreground: oklch(0.5 0 0);
+  --accent: oklch(0.66 0.22 38);    /* #FF4D00 signal orange */
+  --accent-foreground: oklch(1 0 0);
+  --border: oklch(0.18 0 0);
+  --ring: oklch(0.66 0.22 38);
 
-  --sage: oklch(0.82 0.04 150);
-  --cream: oklch(0.94 0.025 80);
-  --ink: oklch(0.16 0.01 80);
+  --ink: #111111;
+  --paper: #F9F9F9;
+  --signal: #FF4D00;
 }
 
 @layer base {
