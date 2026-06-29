@@ -205,7 +205,7 @@ function Slide({
 }) {
   return (
     <motion.div
-      className="absolute inset-0 z-10 grid grid-cols-1 md:grid-cols-[1fr_min(520px,38vw)]"
+      className="absolute inset-0 z-10 grid grid-cols-1 md:grid-cols-[1.2fr_0.85fr]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
