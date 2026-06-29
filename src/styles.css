@@ -87,3 +87,13 @@
 .mu-scroll-line {
   animation: mu-pan-down 3s infinite cubic-bezier(0.65, 0, 0.35, 1);
 }
+
+.mu-gradient-text {
+  background: linear-gradient(91deg, #39B5D7 -6%, #F7D544 47%, #E38330 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.font-display {
+  font-family: var(--font-display);
+}
