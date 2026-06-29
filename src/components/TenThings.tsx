@@ -238,9 +238,11 @@ export default function TenThings() {
 
         </div>
       </div>
+      </div>
     </section>
   );
 }
+
 
 
 function Slide({
