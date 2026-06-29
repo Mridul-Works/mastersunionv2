@@ -233,68 +233,121 @@ function Index() {
             className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${playing ? "opacity-100" : "opacity-0 pointer-events-none"}`}
           />
 
-          {/* Editorial overlay */}
+          {/* Editorial overlay — Asymmetric split */}
           <div
-            className={`absolute inset-0 flex flex-col items-center justify-between px-6 py-12 text-center transition-opacity duration-500 ${playing ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+            className={`absolute inset-0 transition-opacity duration-500 ${playing ? "opacity-0 pointer-events-none" : "opacity-100"}`}
           >
-            {/* Top branding */}
-            <div className="relative z-10 opacity-50 transition-opacity hover:opacity-100">
-              <h2
-                className="text-[10px] font-light uppercase tracking-[0.4em] text-[#2D3027]"
-                style={{ fontFamily: "Inter, sans-serif" }}
-              >
-                Masters' Union
-              </h2>
-            </div>
-
-            {/* Central editorial content */}
-            <div className="relative z-10 flex flex-col items-center">
-              <h1
-                className="mb-16 text-6xl font-light leading-[0.9] tracking-tight text-[#2D3027] md:text-8xl lg:text-9xl"
-                style={{ fontFamily: "'Cormorant Garamond', serif" }}
-              >
-                Learn by <span className="font-normal italic">Doing</span>
-              </h1>
-
-              {/* Refined play interface */}
-              <button
-                type="button"
-                onClick={() => videoElRef.current?.play().catch(() => {})}
-                aria-label="Play campus film"
-                className="group flex flex-col items-center"
-              >
-                <span className="relative flex size-24 items-center justify-center rounded-full border border-[#2D3027]/20 bg-white/5 backdrop-blur-md transition-all duration-1000 group-hover:scale-105 group-hover:bg-white/20">
-                  <svg
-                    className="ml-1.5 size-6 text-[#2D3027]/70"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
+            <div className="relative mx-auto flex h-full w-full max-w-[1320px] flex-col justify-between px-6 py-10 md:px-12 md:py-12">
+              {/* Top branding */}
+              <div className="flex items-start justify-between">
+                <div className="flex flex-col">
+                  <span
+                    className="text-[10px] font-medium uppercase tracking-[0.3em] text-[#2A312A]/80"
+                    style={{ fontFamily: "Inter, sans-serif" }}
                   >
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                  <span className="absolute inset-0 scale-125 rounded-full border border-[#2D3027]/10 opacity-0 transition-opacity duration-1000 group-hover:opacity-100" />
-                </span>
+                    Established 2019
+                  </span>
+                  <h2
+                    className="mt-1 text-lg font-medium uppercase tracking-tight text-[#2A312A]"
+                    style={{ fontFamily: "Inter, sans-serif" }}
+                  >
+                    Masters' Union
+                  </h2>
+                </div>
                 <span
-                  className="mt-6 text-[9px] font-medium uppercase tracking-[0.3em] text-[#2D3027]/40"
+                  className="hidden text-[10px] uppercase tracking-[0.2em] text-[#2A312A]/60 md:block"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
-                  Play Experience
+                  Gurugram Campus
                 </span>
-              </button>
-            </div>
+              </div>
 
-            {/* Footer / scroll hint */}
-            <div className="relative z-10 flex flex-col items-center gap-4">
-              <span
-                className="text-[10px] uppercase tracking-[0.4em] text-[#2D3027]/40"
-                style={{ fontFamily: "Inter, sans-serif" }}
-              >
-                Scroll to enter
-              </span>
-              <div className="relative h-16 w-px overflow-hidden bg-gradient-to-b from-[#2D3027]/30 to-transparent">
-                <div className="mu-scroll-line absolute left-0 top-0 h-1/2 w-full bg-[#2D3027]/60" />
+              {/* Hero row */}
+              <div className="mb-12 grid grid-cols-12 items-end gap-8 md:mb-20">
+                <div className="col-span-12 md:col-span-9 lg:col-span-8">
+                  <h1
+                    className="text-7xl italic leading-[0.8] tracking-tighter text-[#2A312A] md:text-[110px] lg:text-[130px]"
+                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                  >
+                    Learn by <br />
+                    <span className="mt-2 block not-italic md:ml-24">Doing.</span>
+                  </h1>
+                </div>
+
+                <div className="col-span-12 flex md:col-span-3 md:justify-end lg:col-span-4">
+                  <button
+                    type="button"
+                    onClick={() => videoElRef.current?.play().catch(() => {})}
+                    aria-label="Play campus film"
+                    className="group flex cursor-pointer flex-col items-center gap-4 focus:outline-none md:items-end"
+                  >
+                    <div className="relative flex size-24 items-center justify-center">
+                      <div className="absolute inset-0 rounded-full border border-[#2A312A]/10 bg-[#2A312A]/5 backdrop-blur-sm transition-transform duration-500 ease-out group-hover:scale-110" />
+                      <div className="relative flex size-14 items-center justify-center rounded-full bg-[#2A312A] shadow-lg transition-transform duration-300 group-hover:scale-90">
+                        <svg
+                          className="size-5 translate-x-0.5 fill-current text-[#F5F2E8]"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="text-center md:text-right">
+                      <span
+                        className="block text-xs font-semibold uppercase tracking-widest text-[#2A312A]"
+                        style={{ fontFamily: "Inter, sans-serif" }}
+                      >
+                        Play Experience
+                      </span>
+                      <span
+                        className="mt-1 block text-[9px] uppercase tracking-widest text-[#2A312A]/60"
+                        style={{ fontFamily: "Inter, sans-serif" }}
+                      >
+                        02:45 Mini Film
+                      </span>
+                    </div>
+                  </button>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="flex items-end justify-between border-t border-[#2A312A]/10 pt-8">
+                <p
+                  className="hidden max-w-[240px] text-[11px] uppercase leading-relaxed tracking-wider text-[#2A312A]/70 md:block"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  A new-age business school where industry leaders mentor the next generation.
+                </p>
+
+                <div className="mx-auto flex flex-col items-center gap-4 md:mx-0">
+                  <span
+                    className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#2A312A]"
+                    style={{ fontFamily: "Inter, sans-serif" }}
+                  >
+                    Scroll
+                  </span>
+                  <div className="relative h-12 w-px overflow-hidden bg-[#2A312A]/20">
+                    <div className="mu-scroll-line absolute left-0 top-0 h-1/2 w-full bg-[#2A312A]" />
+                  </div>
+                </div>
+
+                <div className="hidden flex-col items-end md:flex">
+                  <span
+                    className="mb-1 text-[10px] font-semibold tracking-[0.1em] text-[#2A312A]"
+                    style={{ fontFamily: "Inter, sans-serif" }}
+                  >
+                    Cohort 2026
+                  </span>
+                  <div className="flex gap-2">
+                    <span className="size-1.5 rounded-full bg-[#2A312A]" />
+                    <span className="size-1.5 rounded-full bg-[#2A312A]/20" />
+                    <span className="size-1.5 rounded-full bg-[#2A312A]/20" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+
 
           {/* Pause overlay button when playing */}
           {playing && (
