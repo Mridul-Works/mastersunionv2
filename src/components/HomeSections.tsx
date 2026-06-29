@@ -32,105 +32,101 @@ export default function HomeSections() {
     <div className="bg-white text-black" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       {/* NEWS */}
       <section id="news" className="border-t border-black/10">
-        <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10 md:py-28">
-          <div className="pt-8">
-            <div className="flex items-end justify-between gap-4 mb-10">
-              <div>
-                <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-black/60 mb-1">The Dispatch</p>
-                <h2 className="font-display text-[1.35rem] font-bold leading-tight text-black md:text-[1.8rem]">
-                  Latest News
-                </h2>
-              </div>
-              <div className="hidden gap-2 md:flex">
-                <button type="button" className="p-2 border border-black/10 transition-colors hover:bg-black/5">
-                  <ChevronLeft className="size-4 text-black/60" />
-                </button>
-                <button type="button" className="p-2 border border-black/10 transition-colors hover:bg-black/5">
-                  <ChevronRight className="size-4 text-black/60" />
-                </button>
-              </div>
+        <div className="mx-auto max-w-[1280px] px-6 py-14 md:px-10 md:py-18">
+          <div className="flex items-end justify-between gap-4 mb-8">
+            <div>
+              <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-black/60 mb-1">The Dispatch</p>
+              <h2 className="font-display text-[1.35rem] font-bold leading-tight text-black md:text-[1.8rem]">
+                Latest News
+              </h2>
             </div>
-
-            <div className="flex flex-nowrap gap-4 overflow-x-auto snap-x md:overflow-x-visible md:gap-6">
-              {NEWS.map((n) => (
-                <article
-                  key={n.title}
-                  className="group flex min-w-[300px] flex-1 cursor-pointer snap-start gap-5 p-5 transition-all hover:bg-black/[0.03] md:min-w-0"
-                >
-                  <div className="flex h-16 w-14 flex-shrink-0 flex-col items-center justify-center bg-black text-white shadow-sm transition-colors group-hover:bg-neutral-700">
-                    <span className="font-sans text-[10px] font-bold uppercase tracking-tighter opacity-80">{n.month}</span>
-                    <span className="font-display text-2xl font-extrabold leading-none">
-                      {n.day}
-                    </span>
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="font-sans mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50">
-                      {n.time} &bull; {n.tag}
-                    </span>
-                    <h3 className="font-display text-lg font-semibold leading-snug text-black/90 transition-colors group-hover:text-black">
-                      {n.title}
-                    </h3>
-                    <p className="font-sans mt-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-black/40">
-                      Source: {n.source}
-                    </p>
-                  </div>
-                </article>
-              ))}
+            <div className="hidden gap-2 md:flex">
+              <button type="button" className="p-2 border border-black/10 transition-colors hover:bg-black/5">
+                <ChevronLeft className="size-4 text-black/60" />
+              </button>
+              <button type="button" className="p-2 border border-black/10 transition-colors hover:bg-black/5">
+                <ChevronRight className="size-4 text-black/60" />
+              </button>
             </div>
+          </div>
 
-            <div className="mt-8 flex justify-center">
-              <a
-                href="#"
-                className="font-sans border-b-2 border-black pb-1 text-xs font-semibold uppercase tracking-[0.3em] text-black transition-colors hover:border-black/50 hover:text-black/60"
+          <div className="flex flex-nowrap gap-4 overflow-x-auto snap-x md:overflow-x-visible md:gap-6">
+            {NEWS.map((n) => (
+              <article
+                key={n.title}
+                className="group flex min-w-[300px] flex-1 cursor-pointer snap-start gap-5 p-5 transition-all hover:bg-black/[0.03] md:min-w-0"
               >
-                Enter Full Archive
-              </a>
-            </div>
+                <div className="flex h-16 w-14 flex-shrink-0 flex-col items-center justify-center bg-black text-white shadow-sm transition-colors group-hover:bg-neutral-700">
+                  <span className="font-sans text-[10px] font-bold uppercase tracking-tighter opacity-80">{n.month}</span>
+                  <span className="font-display text-2xl font-extrabold leading-none">
+                    {n.day}
+                  </span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-sans mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50">
+                    {n.time} &bull; {n.tag}
+                  </span>
+                  <h3 className="font-display text-lg font-semibold leading-snug text-black/90 transition-colors group-hover:text-black">
+                    {n.title}
+                  </h3>
+                  <p className="font-sans mt-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-black/40">
+                    Source: {n.source}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-6 flex justify-center">
+            <a
+              href="#"
+              className="font-sans border-b-2 border-black pb-1 text-xs font-semibold uppercase tracking-[0.3em] text-black transition-colors hover:border-black/50 hover:text-black/60"
+            >
+              Enter Full Archive
+            </a>
           </div>
         </div>
       </section>
 
       {/* PROGRAMS / APPLICATIONS */}
       <section id="deadlines" className="border-t border-black/10 bg-white">
-        <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10 md:py-28">
-          <div className="pt-8">
-            <div className="flex items-end justify-between gap-4 mb-10">
-              <div>
-                <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-black/60 mb-1">Admissions · Cohort 2026</p>
-                <h2 className="font-display text-[1.35rem] font-bold leading-tight text-black md:text-[1.8rem]">
-                  Programmes Accepting Applications
-                </h2>
-              </div>
-              <a href="#" className="hidden font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-black underline-offset-4 hover:underline md:inline-flex items-center gap-1.5">
-                View all programmes <ArrowUpRight className="size-3.5" />
-              </a>
+        <div className="mx-auto max-w-[1280px] px-6 py-14 md:px-10 md:py-18">
+          <div className="flex items-end justify-between gap-4 mb-8">
+            <div>
+              <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-black/60 mb-1">Admissions · Cohort 2026</p>
+              <h2 className="font-display text-[1.35rem] font-bold leading-tight text-black md:text-[1.8rem]">
+                Programmes Accepting Applications
+              </h2>
             </div>
+            <a href="#" className="hidden font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-black underline-offset-4 hover:underline md:inline-flex items-center gap-1.5">
+              View all programmes <ArrowUpRight className="size-3.5" />
+            </a>
+          </div>
 
-            <div className="flex flex-nowrap gap-4 overflow-x-auto snap-x md:overflow-x-visible md:gap-6">
-              {PROGRAMS.map((p) => (
-                <article
-                  key={p.title}
-                  className="group flex min-w-[280px] flex-1 cursor-pointer snap-start flex-col gap-6 border border-black/10 bg-white p-6 transition-all hover:bg-black/[0.03] md:min-w-0"
-                >
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-full bg-black px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-white">{p.mode}</span>
-                    <span className="rounded-full bg-black/5 px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-black/70">{p.duration}</span>
-                  </div>
-                  <h3 className="font-display text-[1.15rem] font-bold leading-snug text-black md:text-[1.25rem]">
-                    {p.title}
-                  </h3>
-                  <div className="inline-flex w-fit items-center gap-2 rounded-md bg-black/5 px-3 py-1.5">
-                    <Hourglass className="size-3.5 text-black/70" />
-                    <span className="font-sans text-[12px] font-semibold text-black/80">{p.round}</span>
-                  </div>
-                  <div className="mt-auto pt-4">
-                    <a href="#" className="inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-black transition-colors group-hover:text-black/70">
-                      Apply Now <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                    </a>
-                  </div>
-                </article>
-              ))}
-            </div>
+          <div className="flex flex-nowrap gap-4 overflow-x-auto snap-x md:overflow-x-visible md:gap-6">
+            {PROGRAMS.map((p) => (
+              <article
+                key={p.title}
+                className="group flex min-w-[280px] flex-1 cursor-pointer snap-start flex-col gap-6 border border-black/10 bg-white p-6 transition-all hover:bg-black/[0.03] md:min-w-0"
+              >
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="rounded-full bg-black px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-white">{p.mode}</span>
+                  <span className="rounded-full bg-black/5 px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-black/70">{p.duration}</span>
+                </div>
+                <h3 className="font-display text-[1.15rem] font-bold leading-snug text-black md:text-[1.25rem]">
+                  {p.title}
+                </h3>
+                <div className="inline-flex w-fit items-center gap-2 rounded-md bg-black/5 px-3 py-1.5">
+                  <Hourglass className="size-3.5 text-black/70" />
+                  <span className="font-sans text-[12px] font-semibold text-black/80">{p.round}</span>
+                </div>
+                <div className="mt-auto pt-4">
+                  <a href="#" className="inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-black transition-colors group-hover:text-black/70">
+                    Apply Now <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </a>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -138,23 +134,23 @@ export default function HomeSections() {
 
       {/* FOUNDER'S MESSAGE */}
       <section id="founders" className="border-t border-black/10 bg-white">
-        <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-10 md:py-24">
-          <div className="grid overflow-hidden rounded-[32px] bg-black md:grid-cols-12">
+        <div className="mx-auto max-w-[1280px] px-6 py-10 md:px-10 md:py-14">
+          <div className="grid max-h-[420px] overflow-hidden rounded-[32px] bg-black md:grid-cols-12">
             <div className="relative md:col-span-5">
               <img
                 src={founderPhoto.url}
                 alt="Pratham Mittal"
-                className="h-72 w-full object-cover md:h-full grayscale"
+                className="h-56 w-full object-cover md:h-full grayscale"
               />
               <div className="absolute inset-0 hidden bg-gradient-to-r from-transparent via-transparent to-black/90 md:block" />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent md:hidden" />
             </div>
-            <div className="flex flex-col justify-center p-8 md:col-span-7 md:p-12 lg:p-16">
-              <Quote className="mb-5 size-8 text-white/70" />
-              <h2 className="text-3xl leading-[1.05] tracking-tight text-white md:text-[44px] lg:text-[52px]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+            <div className="flex flex-col justify-center p-8 md:col-span-7 md:p-10 lg:p-12">
+              <Quote className="mb-4 size-7 text-white/70" />
+              <h2 className="text-2xl leading-[1.05] tracking-tight text-white md:text-[34px] lg:text-[40px]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
                 "If education was working, we wouldn't have built <span className="italic text-white">Masters' Union.</span>"
               </h2>
-              <div className="mt-8 flex items-center gap-3">
+              <div className="mt-6 flex items-center gap-3">
                 <div className="h-px w-10 bg-white/40" />
                 <div>
                   <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white/80">Pratham Mittal</p>
