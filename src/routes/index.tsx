@@ -30,6 +30,7 @@ const NAV = ["Programs", "Faculty", "Admissions", "Campus", "About"];
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [navVisible, setNavVisible] = useState(false);
+  const [navHidden, setNavHidden] = useState(false);
   const [showRewatch, setShowRewatch] = useState(false);
   const [playing, setPlaying] = useState(false);
 
