@@ -46,27 +46,27 @@ export default function TenThings() {
 
   return (
     <section className="relative bg-[#0A0A0A] text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-      {/* Intro headline — sits above the scroll widget */}
-      <div className="relative flex min-h-[70vh] flex-col items-center justify-center px-6 py-24 text-center">
-        <div className="absolute inset-0 pointer-events-none opacity-40">
-          <div className="absolute left-1/2 top-1/2 h-[60vh] w-[60vh] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.03] blur-3xl" />
+      {/* Intro headline — sits above the scroll widget, white theme */}
+      <div className="relative flex min-h-[70vh] flex-col items-center justify-center bg-[#FAF8F4] px-6 py-24 text-center text-[#111]">
+        <div className="absolute inset-0 pointer-events-none opacity-30">
+          <div className="absolute left-1/2 top-1/2 h-[60vh] w-[60vh] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#111111]/[0.04] blur-3xl" />
         </div>
 
         <span
-          className="relative z-10 text-[11px] uppercase tracking-[0.35em] text-white/50"
+          className="relative z-10 text-[11px] uppercase tracking-[0.35em] text-[#111]/55"
           style={{ fontFamily: "'JetBrains Mono', monospace" }}
         >
           Cut the marketing
         </span>
         <h2
-          className="relative z-10 mt-4 max-w-[90vw] text-[clamp(28px,4.5vw,64px)] font-black uppercase leading-[1.05] tracking-tight text-white"
+          className="relative z-10 mt-4 max-w-[90vw] text-[clamp(28px,4.5vw,64px)] font-black uppercase leading-[1.05] tracking-tight text-[#111]"
           style={{ letterSpacing: "-0.02em" }}
         >
           Here are 10 things <br className="hidden md:block" />
           about Masters' Union
         </h2>
         <p
-          className="relative z-10 mt-6 max-w-xl text-[14px] leading-relaxed text-white/50"
+          className="relative z-10 mt-6 max-w-xl text-[14px] leading-relaxed text-[#111]/60"
           style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
         >
           Scroll through the dossier. No ads. No fluff. Just what actually matters.
@@ -79,17 +79,18 @@ export default function TenThings() {
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
           <span
-            className="text-[9px] uppercase tracking-[0.25em] text-white/40"
+            className="text-[9px] uppercase tracking-[0.25em] text-[#111]/50"
             style={{ fontFamily: "'JetBrains Mono', monospace" }}
           >
             Scroll to explore
           </span>
-          <svg width="18" height="28" viewBox="0 0 18 28" fill="none" className="text-white/30">
+          <svg width="18" height="28" viewBox="0 0 18 28" fill="none" className="text-[#111]/40">
             <rect x="1" y="1" width="16" height="26" rx="8" stroke="currentColor" strokeWidth="1.5" />
             <motion.circle cx="9" cy="9" r="2" fill="currentColor" animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }} />
           </svg>
         </motion.div>
       </div>
+
 
       {/* Scroll-driven widget */}
       <div
