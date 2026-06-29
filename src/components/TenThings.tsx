@@ -26,28 +26,28 @@ export default function TenThings() {
   return (
     <section className="relative bg-[#0A0A0A] text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       {/* Intro headline — compact editorial */}
-      <div className="relative overflow-hidden bg-white px-6 py-7 text-black md:py-9">
-        <div className="pointer-events-none absolute -left-40 top-6 h-[16vh] w-[16vh] rounded-full bg-black/[0.04] blur-[60px]" />
-        <div className="pointer-events-none absolute -right-40 bottom-0 h-[16vh] w-[16vh] rounded-full bg-black/[0.04] blur-[60px]" />
+      <div className="relative overflow-hidden bg-white px-6 py-5 text-black md:py-6">
+        <div className="pointer-events-none absolute -left-40 top-4 h-[14vh] w-[14vh] rounded-full bg-black/[0.04] blur-[50px]" />
+        <div className="pointer-events-none absolute -right-40 bottom-0 h-[14vh] w-[14vh] rounded-full bg-black/[0.04] blur-[50px]" />
 
         <div className="relative z-10 mx-auto max-w-[1180px]">
-          <div className="mb-3 flex items-center gap-3">
+          <div className="mb-2 flex items-center gap-3">
             <span className="h-px w-8 bg-black/40" />
             <span
-              className="text-[9px] uppercase tracking-[0.3em] text-black/55"
+              className="text-[8px] uppercase tracking-[0.3em] text-black/55"
               style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
             >
               Field Notes — Vol. 01
             </span>
           </div>
 
-          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <h2
               className="leading-[1.02] tracking-[-0.02em] text-black"
               style={{
                 fontFamily: "'Inter', system-ui, sans-serif",
                 fontWeight: 400,
-                fontSize: "clamp(22px, 3.8vw, 42px)",
+                fontSize: "clamp(18px, 3vw, 34px)",
               }}
             >
               Cut the{" "}
@@ -65,20 +65,20 @@ export default function TenThings() {
                 >
                   10 things about Masters' Union
                 </span>
-                <span className="absolute inset-x-0 bottom-1 z-0 h-[3px] bg-black/15" />
+                <span className="absolute inset-x-0 bottom-1 z-0 h-[2px] bg-black/15" />
               </span>
             </h2>
 
-            <div className="flex flex-col gap-3 md:items-end">
+            <div className="flex flex-col gap-1 md:items-end">
               <p
-                className="max-w-[360px] text-[12px] leading-[1.5] text-black/70"
+                className="max-w-[300px] text-[11px] leading-[1.45] text-black/70"
                 style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 400 }}
               >
-                No ads. No fluff. Just the dossier — ten chapters that actually explain how the school works.
+                No ads. No fluff. Just the dossier — ten chapters that explain how the school works.
               </p>
 
               <div
-                className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[9px] uppercase tracking-[0.26em] text-black/55"
+                className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[8px] uppercase tracking-[0.24em] text-black/55"
                 style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
               >
                 <span>{String(CHAPTERS.length).padStart(2, "0")} Chapters</span>
