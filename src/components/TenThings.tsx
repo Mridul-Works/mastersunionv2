@@ -26,81 +26,79 @@ export default function TenThings() {
   return (
     <section className="relative bg-[#0A0A0A] text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       {/* Intro headline — compact editorial */}
-      <div className="relative overflow-hidden bg-white px-6 py-12 text-black md:py-16">
-        <div className="pointer-events-none absolute -left-40 top-10 h-[30vh] w-[30vh] rounded-full bg-black/[0.04] blur-[100px]" />
-        <div className="pointer-events-none absolute -right-40 bottom-0 h-[30vh] w-[30vh] rounded-full bg-black/[0.04] blur-[100px]" />
+      <div className="relative overflow-hidden bg-white px-6 py-5 text-black md:py-6">
+        <div className="pointer-events-none absolute -left-40 top-4 h-[14vh] w-[14vh] rounded-full bg-black/[0.04] blur-[50px]" />
+        <div className="pointer-events-none absolute -right-40 bottom-0 h-[14vh] w-[14vh] rounded-full bg-black/[0.04] blur-[50px]" />
 
         <div className="relative z-10 mx-auto max-w-[1180px]">
-          <div className="mb-6 flex items-center gap-4">
-            <span className="h-px w-10 bg-black/40" />
+          <div className="mb-2 flex items-center gap-3">
+            <span className="h-px w-8 bg-black/40" />
             <span
-              className="text-[10px] uppercase tracking-[0.32em] text-black/55"
+              className="text-[8px] uppercase tracking-[0.3em] text-black/55"
               style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
             >
               Field Notes — Vol. 01
             </span>
           </div>
 
-          <h2
-            className="leading-[0.98] tracking-[-0.02em] text-black"
-            style={{
-              fontFamily: "'Inter', system-ui, sans-serif",
-              fontWeight: 400,
-              fontSize: "clamp(36px, 6vw, 80px)",
-            }}
-          >
-            Cut the{" "}
-            <em
-              className="text-black/60"
-              style={{ fontFamily: "'Inter', system-ui, sans-serif", fontStyle: "italic", fontWeight: 300 }}
+          <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+            <h2
+              className="leading-[1.02] tracking-[-0.02em] text-black"
+              style={{
+                fontFamily: "'Inter', system-ui, sans-serif",
+                fontWeight: 400,
+                fontSize: "clamp(18px, 3vw, 34px)",
+              }}
             >
-              marketing.
-            </em>
-            <br />
-            <span className="block">
-              10 things about{" "}
+              Cut the{" "}
+              <em
+                className="text-black/60"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif", fontStyle: "italic", fontWeight: 300 }}
+              >
+                marketing.
+              </em>
+              <br className="hidden md:block" />
               <span className="relative inline-block">
                 <span
                   className="relative z-10 italic"
                   style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 400 }}
                 >
-                  Masters' Union
+                  10 things about Masters' Union
                 </span>
-                <span className="absolute inset-x-0 bottom-1 z-0 h-[4px] bg-black/15" />
+                <span className="absolute inset-x-0 bottom-1 z-0 h-[2px] bg-black/15" />
               </span>
-            </span>
-          </h2>
+            </h2>
 
-          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-[1.3fr_1fr] md:items-end">
-            <p
-              className="max-w-[480px] text-[14px] leading-[1.6] text-black/70"
-              style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 400 }}
-            >
-              No ads. No fluff. Just the dossier — ten chapters that actually
-              explain how the school works, who teaches, and what gets built.
-            </p>
+            <div className="flex flex-col gap-1 md:items-end">
+              <p
+                className="max-w-[300px] text-[11px] leading-[1.45] text-black/70"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 400 }}
+              >
+                No ads. No fluff. Just the dossier — ten chapters that explain how the school works.
+              </p>
 
-            <div
-              className="flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-black/20 pt-4 text-[10px] uppercase tracking-[0.28em] text-black/55"
-              style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
-            >
-              <span>{String(CHAPTERS.length).padStart(2, "0")} Chapters</span>
-              <span className="h-1 w-1 rounded-full bg-black/60" />
-              <span>≈ 8 min read</span>
-              <span className="h-1 w-1 rounded-full bg-black/60" />
-              <span>Updated 2026</span>
+              <div
+                className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[8px] uppercase tracking-[0.24em] text-black/55"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
+              >
+                <span>{String(CHAPTERS.length).padStart(2, "0")} Chapters</span>
+                <span className="h-1 w-1 rounded-full bg-black/60" />
+                <span>≈ 8 min read</span>
+                <span className="h-1 w-1 rounded-full bg-black/60" />
+                <span>Updated 2026</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
 
-      {/* Card widget — manual prev/next, compact */}
-      <div className="relative bg-[#0A0A0A]">
-        <div className="relative h-[60svh] min-h-[480px] w-full overflow-hidden md:h-[55vh] md:min-h-[420px]">
+      {/* Card widget — manual prev/next, compact, centered */}
+      <div className="relative bg-[#0A0A0A] px-4 py-4 md:px-6 md:py-6">
+        <div className="relative mx-auto h-[40vh] min-h-[300px] w-full max-w-[720px] overflow-hidden rounded-lg bg-[#111] md:h-[46vh] md:min-h-[360px] md:max-w-[800px]">
           {/* Counter top-left */}
           <div
-            className="pointer-events-none absolute left-5 top-5 z-30 font-mono text-[11px] tracking-[0.15em] text-neutral-400 md:left-8"
+            className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[10px] tracking-[0.15em] text-neutral-400 md:left-10 md:top-10"
             style={{ fontFamily: "'JetBrains Mono', monospace", textShadow: "0 0 24px rgba(255,255,255,0.10)" }}
           >
             <AnimatePresence mode="popLayout">
@@ -129,7 +127,7 @@ export default function TenThings() {
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.6, ease: EASE }}
                 className="select-none bg-gradient-to-b from-neutral-300/20 via-neutral-400/8 to-transparent bg-clip-text font-black tracking-tighter text-transparent"
-                style={{ fontSize: "clamp(180px, 36vw, 480px)", lineHeight: 1, filter: "drop-shadow(0 0 60px rgba(255,255,255,0.06))" }}
+                style={{ fontSize: "clamp(90px, 22vw, 260px)", lineHeight: 1, filter: "drop-shadow(0 0 60px rgba(255,255,255,0.06))" }}
               >
                 {String(index + 1).padStart(2, "0")}
               </motion.span>
@@ -142,11 +140,11 @@ export default function TenThings() {
           </AnimatePresence>
 
           {/* Bottom nav: tag + arrows */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-5 z-30 flex flex-col items-center gap-3 px-6">
-            <div className="pointer-events-auto flex w-full max-w-[520px] items-center justify-between">
-              <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-white/70">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-white" />
-                <span className="min-w-[80px] text-center">{project.tag}</span>
+          <div className="pointer-events-none absolute inset-x-0 bottom-4 z-30 flex flex-col items-center gap-2 px-5 md:bottom-7">
+            <div className="pointer-events-auto flex w-full max-w-[440px] items-center justify-between">
+              <div className="flex items-center gap-2 text-[9px] uppercase tracking-[0.22em] text-white/70">
+                <span className="inline-block h-1 w-1 rounded-full bg-white" />
+                <span className="min-w-[70px] text-center">{project.tag}</span>
               </div>
 
               <div className="flex items-center gap-1 rounded-full border border-white/10 bg-white/10 px-2 py-1 backdrop-blur-md">
@@ -179,7 +177,7 @@ export default function TenThings() {
                   key={p.n}
                   onClick={() => jump(i)}
                   aria-label={`Go to chapter ${i + 1}`}
-                  className="pointer-events-auto group h-[2px] w-7 cursor-pointer overflow-hidden bg-white/15"
+                  className="pointer-events-auto group h-[2px] w-6 cursor-pointer overflow-hidden bg-white/15"
                 >
                   <span
                     className="block h-full origin-left bg-white transition-transform duration-[500ms] ease-out"
@@ -195,6 +193,7 @@ export default function TenThings() {
   );
 }
 
+
 function Slide({
   project,
   direction,
@@ -206,7 +205,7 @@ function Slide({
 }) {
   return (
     <motion.div
-      className="absolute inset-0 z-10 grid grid-cols-1 md:grid-cols-[1fr_min(520px,38vw)]"
+      className="absolute inset-0 z-10 grid grid-cols-1 md:grid-cols-[1.1fr_1fr]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -250,11 +249,11 @@ function Slide({
           />
         </motion.div>
 
-        <div className="pointer-events-none absolute left-5 bottom-5 z-10 md:left-8 md:bottom-8">
+        <div className="pointer-events-none absolute left-4 bottom-4 z-10 md:left-7 md:bottom-7">
           <StaggeredText delay={0.05} k={`bignum-${index}`}>
             <span
               className="block bg-gradient-to-b from-neutral-100 via-neutral-400 to-neutral-700 bg-clip-text font-black leading-none tracking-tighter text-transparent"
-              style={{ fontSize: "clamp(56px, 7vw, 110px)", filter: "drop-shadow(0 0 30px rgba(255,255,255,0.08))" }}
+              style={{ fontSize: "clamp(42px, 5.5vw, 78px)", filter: "drop-shadow(0 0 30px rgba(255,255,255,0.08))" }}
             >
               {String(index + 1).padStart(2, "0")}
             </span>
@@ -262,11 +261,11 @@ function Slide({
         </div>
       </div>
 
-      <div className="relative z-10 flex items-end px-6 pb-24 md:items-center md:px-10 md:pb-0">
-        <div className="max-w-[460px]">
+      <div className="relative z-10 flex items-end px-5 pb-20 md:items-center md:px-8 md:pb-0">
+        <div className="max-w-[360px]">
           <StaggeredText delay={0.15} k={`meta-${index}`}>
             <p
-              className="text-[10px] uppercase tracking-[0.2em] text-white/60"
+              className="text-[9px] uppercase tracking-[0.2em] text-white/60"
               style={{ fontFamily: "'JetBrains Mono', monospace" }}
             >
               <span className="text-neutral-400">{String(index + 1).padStart(2, "0")}</span>
@@ -277,9 +276,9 @@ function Slide({
 
           <StaggeredText delay={0.25} k={`title-${index}`}>
             <h2
-              className="mt-3 font-black uppercase text-white"
+              className="mt-2 font-black uppercase text-white"
               style={{
-                fontSize: "clamp(28px, 3.6vw, 44px)",
+                fontSize: "clamp(16px, 2.2vw, 24px)",
                 lineHeight: 1.05,
                 letterSpacing: "-0.02em",
               }}
@@ -289,18 +288,18 @@ function Slide({
           </StaggeredText>
 
           <StaggeredText delay={0.46} k={`desc-${index}`}>
-            <p className="mt-4 text-[13px] text-white/70" style={{ lineHeight: 1.6 }}>
+            <p className="mt-3 text-[12px] text-white/70" style={{ lineHeight: 1.5 }}>
               {project.body}
             </p>
           </StaggeredText>
 
           <StaggeredText delay={0.56} k={`stats-${index}`}>
-            <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-3 border-t border-white/10 pt-4">
+            <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-2 border-t border-white/10 pt-3">
               {project.stats.slice(0, 3).map((s) => (
                 <li key={s.label}>
-                  <div className="text-xl font-black tracking-tighter text-white">{s.value}</div>
+                  <div className="text-base font-black tracking-tighter text-white">{s.value}</div>
                   <div
-                    className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/50"
+                    className="mt-0.5 text-[9px] uppercase tracking-[0.18em] text-white/50"
                     style={{ fontFamily: "'JetBrains Mono', monospace" }}
                   >
                     {s.label}
