@@ -377,7 +377,7 @@ function Index() {
         {/* The hero. Rises over the sticky video as the user scrolls. */}
         <div
           ref={heroRef}
-          className="relative z-10 bg-[#FAF8F4] shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.12)]"
+          className="relative z-10 bg-white shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.12)]"
         >
           <TenThings />
           <HomeSections />
