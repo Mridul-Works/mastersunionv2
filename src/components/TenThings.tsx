@@ -205,7 +205,7 @@ function Slide({
 }) {
   return (
     <motion.div
-      className="absolute inset-0 z-10 grid grid-cols-1 md:grid-cols-[1.2fr_0.85fr]"
+      className="absolute inset-0 z-10 grid grid-cols-1 md:grid-cols-[1.1fr_1fr]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -278,7 +278,7 @@ function Slide({
             <h2
               className="mt-2 font-black uppercase text-white"
               style={{
-                fontSize: "clamp(18px, 2.4vw, 28px)",
+                fontSize: "clamp(16px, 2.2vw, 24px)",
                 lineHeight: 1.05,
                 letterSpacing: "-0.02em",
               }}
@@ -294,10 +294,10 @@ function Slide({
           </StaggeredText>
 
           <StaggeredText delay={0.56} k={`stats-${index}`}>
-            <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2 border-t border-white/10 pt-3">
+            <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-2 border-t border-white/10 pt-3">
               {project.stats.slice(0, 3).map((s) => (
                 <li key={s.label}>
-                  <div className="text-lg font-black tracking-tighter text-white">{s.value}</div>
+                  <div className="text-base font-black tracking-tighter text-white">{s.value}</div>
                   <div
                     className="mt-0.5 text-[9px] uppercase tracking-[0.18em] text-white/50"
                     style={{ fontFamily: "'JetBrains Mono', monospace" }}
