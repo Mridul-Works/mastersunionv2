@@ -30,10 +30,11 @@
   --color-paper: var(--paper);
   --color-signal: var(--signal);
 
-  --font-display: "Clash Display", "Geist", system-ui, sans-serif;
-  --font-sans: "Geist", system-ui, sans-serif;
-  --font-serif: "Instrument Serif", Georgia, serif;
-  --font-mono: "Geist Mono", "Geist", ui-monospace, monospace;
+  --font-display: "IvyPresto Display", "DM Serif Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-serif: "IvyPresto Display", "DM Serif Display", Georgia, serif;
+  --font-mono: "Inter", ui-monospace, monospace;
+
 
 }
 
