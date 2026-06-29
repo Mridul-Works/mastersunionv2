@@ -16,7 +16,6 @@ import { Route as MentorsRouteImport } from './routes/mentors'
 import { Route as LifeAtMuRouteImport } from './routes/life-at-mu'
 import { Route as ImmersionsRouteImport } from './routes/immersions'
 import { Route as HowWeTeachRouteImport } from './routes/how-we-teach'
-import { Route as HowToTeachRouteImport } from './routes/how-to-teach'
 import { Route as FoodLabRouteImport } from './routes/food-lab'
 import { Route as FacultyRouteImport } from './routes/faculty'
 import { Route as CreatorChallengeRouteImport } from './routes/creator-challenge'
@@ -58,11 +57,6 @@ const HowWeTeachRoute = HowWeTeachRouteImport.update({
   path: '/how-we-teach',
   getParentRoute: () => rootRouteImport,
 } as any)
-const HowToTeachRoute = HowToTeachRouteImport.update({
-  id: '/how-to-teach',
-  path: '/how-to-teach',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const FoodLabRoute = FoodLabRouteImport.update({
   id: '/food-lab',
   path: '/food-lab',
@@ -95,7 +89,6 @@ export interface FileRoutesByFullPath {
   '/creator-challenge': typeof CreatorChallengeRoute
   '/faculty': typeof FacultyRoute
   '/food-lab': typeof FoodLabRoute
-  '/how-to-teach': typeof HowToTeachRoute
   '/how-we-teach': typeof HowWeTeachRoute
   '/immersions': typeof ImmersionsRoute
   '/life-at-mu': typeof LifeAtMuRoute
@@ -110,7 +103,6 @@ export interface FileRoutesByTo {
   '/creator-challenge': typeof CreatorChallengeRoute
   '/faculty': typeof FacultyRoute
   '/food-lab': typeof FoodLabRoute
-  '/how-to-teach': typeof HowToTeachRoute
   '/how-we-teach': typeof HowWeTeachRoute
   '/immersions': typeof ImmersionsRoute
   '/life-at-mu': typeof LifeAtMuRoute
@@ -126,7 +118,6 @@ export interface FileRoutesById {
   '/creator-challenge': typeof CreatorChallengeRoute
   '/faculty': typeof FacultyRoute
   '/food-lab': typeof FoodLabRoute
-  '/how-to-teach': typeof HowToTeachRoute
   '/how-we-teach': typeof HowWeTeachRoute
   '/immersions': typeof ImmersionsRoute
   '/life-at-mu': typeof LifeAtMuRoute
@@ -143,7 +134,6 @@ export interface FileRouteTypes {
     | '/creator-challenge'
     | '/faculty'
     | '/food-lab'
-    | '/how-to-teach'
     | '/how-we-teach'
     | '/immersions'
     | '/life-at-mu'
@@ -158,7 +148,6 @@ export interface FileRouteTypes {
     | '/creator-challenge'
     | '/faculty'
     | '/food-lab'
-    | '/how-to-teach'
     | '/how-we-teach'
     | '/immersions'
     | '/life-at-mu'
@@ -173,7 +162,6 @@ export interface FileRouteTypes {
     | '/creator-challenge'
     | '/faculty'
     | '/food-lab'
-    | '/how-to-teach'
     | '/how-we-teach'
     | '/immersions'
     | '/life-at-mu'
@@ -189,7 +177,6 @@ export interface RootRouteChildren {
   CreatorChallengeRoute: typeof CreatorChallengeRoute
   FacultyRoute: typeof FacultyRoute
   FoodLabRoute: typeof FoodLabRoute
-  HowToTeachRoute: typeof HowToTeachRoute
   HowWeTeachRoute: typeof HowWeTeachRoute
   ImmersionsRoute: typeof ImmersionsRoute
   LifeAtMuRoute: typeof LifeAtMuRoute
@@ -250,13 +237,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HowWeTeachRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/how-to-teach': {
-      id: '/how-to-teach'
-      path: '/how-to-teach'
-      fullPath: '/how-to-teach'
-      preLoaderRoute: typeof HowToTeachRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/food-lab': {
       id: '/food-lab'
       path: '/food-lab'
@@ -301,7 +281,6 @@ const rootRouteChildren: RootRouteChildren = {
   CreatorChallengeRoute: CreatorChallengeRoute,
   FacultyRoute: FacultyRoute,
   FoodLabRoute: FoodLabRoute,
-  HowToTeachRoute: HowToTeachRoute,
   HowWeTeachRoute: HowWeTeachRoute,
   ImmersionsRoute: ImmersionsRoute,
   LifeAtMuRoute: LifeAtMuRoute,
