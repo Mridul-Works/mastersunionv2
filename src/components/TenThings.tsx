@@ -95,8 +95,8 @@ export default function TenThings() {
         <div className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
           {/* Counter top-left */}
           <div
-            className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[12px] tracking-[0.15em] text-white/70 md:left-10"
-            style={{ fontFamily: "'JetBrains Mono', monospace" }}
+            className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[12px] tracking-[0.15em] text-neutral-400 md:left-10"
+            style={{ fontFamily: "'JetBrains Mono', monospace", textShadow: "0 0 24px rgba(255,255,255,0.10)" }}
           >
             <AnimatePresence mode="popLayout">
               <motion.span
@@ -110,8 +110,8 @@ export default function TenThings() {
                 {String(index + 1).padStart(2, "0")}
               </motion.span>
             </AnimatePresence>
-            <span className="mx-1 text-white/30">/</span>
-            <span className="text-white/30">{String(CHAPTERS.length).padStart(2, "0")}</span>
+            <span className="mx-1 text-neutral-600">/</span>
+            <span className="text-neutral-600">{String(CHAPTERS.length).padStart(2, "0")}</span>
           </div>
 
           {/* Giant ghost numeral */}
@@ -120,11 +120,11 @@ export default function TenThings() {
               <motion.span
                 key={`ghost-${index}`}
                 initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 0.06, scale: 1 }}
+                animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.6, ease: EASE }}
-                className="select-none font-black tracking-tighter text-white"
-                style={{ fontSize: "clamp(280px, 48vw, 720px)", lineHeight: 1 }}
+                className="select-none bg-gradient-to-b from-neutral-300/20 via-neutral-400/8 to-transparent bg-clip-text font-black tracking-tighter text-transparent"
+                style={{ fontSize: "clamp(280px, 48vw, 720px)", lineHeight: 1, filter: "drop-shadow(0 0 60px rgba(255,255,255,0.06))" }}
               >
                 {String(index + 1).padStart(2, "0")}
               </motion.span>
@@ -243,8 +243,8 @@ function Slide({
         <div className="pointer-events-none absolute left-6 bottom-6 md:left-10 md:bottom-10 z-10">
           <StaggeredText delay={0.05} k={`bignum-${index}`}>
             <span
-              className="block font-black leading-none tracking-tighter"
-              style={{ fontSize: "clamp(72px, 9vw, 140px)", color: project.bg }}
+              className="block bg-gradient-to-b from-neutral-100 via-neutral-400 to-neutral-700 bg-clip-text font-black leading-none tracking-tighter text-transparent"
+              style={{ fontSize: "clamp(72px, 9vw, 140px)", filter: "drop-shadow(0 0 30px rgba(255,255,255,0.08))" }}
             >
               {String(index + 1).padStart(2, "0")}
             </span>
@@ -259,7 +259,7 @@ function Slide({
               className="text-[11px] uppercase tracking-[0.2em] text-white/60"
               style={{ fontFamily: "'JetBrains Mono', monospace" }}
             >
-              <span style={{ color: project.bg }}>{String(index + 1).padStart(2, "0")}</span>
+              <span className="text-neutral-400">{String(index + 1).padStart(2, "0")}</span>
               <span className="mx-2 text-white/25">·</span>
               {project.tag}
             </p>
