@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/programs")({
+export const Route = createFileRoute("/pg-programs")({
   head: () => ({
     meta: [
       { title: "Postgraduate Programs — Masters' Union" },

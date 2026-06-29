@@ -10,8 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StartupsRouteImport } from './routes/startups'
-import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as PlacementsRouteImport } from './routes/placements'
+import { Route as PgProgramsRouteImport } from './routes/pg-programs'
 import { Route as MentorsRouteImport } from './routes/mentors'
 import { Route as LifeAtMuRouteImport } from './routes/life-at-mu'
 import { Route as ImmersionsRouteImport } from './routes/immersions'
@@ -27,14 +27,14 @@ const StartupsRoute = StartupsRouteImport.update({
   path: '/startups',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProgramsRoute = ProgramsRouteImport.update({
-  id: '/programs',
-  path: '/programs',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const PlacementsRoute = PlacementsRouteImport.update({
   id: '/placements',
   path: '/placements',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PgProgramsRoute = PgProgramsRouteImport.update({
+  id: '/pg-programs',
+  path: '/pg-programs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MentorsRoute = MentorsRouteImport.update({
@@ -93,8 +93,8 @@ export interface FileRoutesByFullPath {
   '/immersions': typeof ImmersionsRoute
   '/life-at-mu': typeof LifeAtMuRoute
   '/mentors': typeof MentorsRoute
+  '/pg-programs': typeof PgProgramsRoute
   '/placements': typeof PlacementsRoute
-  '/programs': typeof ProgramsRoute
   '/startups': typeof StartupsRoute
 }
 export interface FileRoutesByTo {
@@ -107,8 +107,8 @@ export interface FileRoutesByTo {
   '/immersions': typeof ImmersionsRoute
   '/life-at-mu': typeof LifeAtMuRoute
   '/mentors': typeof MentorsRoute
+  '/pg-programs': typeof PgProgramsRoute
   '/placements': typeof PlacementsRoute
-  '/programs': typeof ProgramsRoute
   '/startups': typeof StartupsRoute
 }
 export interface FileRoutesById {
@@ -122,8 +122,8 @@ export interface FileRoutesById {
   '/immersions': typeof ImmersionsRoute
   '/life-at-mu': typeof LifeAtMuRoute
   '/mentors': typeof MentorsRoute
+  '/pg-programs': typeof PgProgramsRoute
   '/placements': typeof PlacementsRoute
-  '/programs': typeof ProgramsRoute
   '/startups': typeof StartupsRoute
 }
 export interface FileRouteTypes {
@@ -138,8 +138,8 @@ export interface FileRouteTypes {
     | '/immersions'
     | '/life-at-mu'
     | '/mentors'
+    | '/pg-programs'
     | '/placements'
-    | '/programs'
     | '/startups'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -152,8 +152,8 @@ export interface FileRouteTypes {
     | '/immersions'
     | '/life-at-mu'
     | '/mentors'
+    | '/pg-programs'
     | '/placements'
-    | '/programs'
     | '/startups'
   id:
     | '__root__'
@@ -166,8 +166,8 @@ export interface FileRouteTypes {
     | '/immersions'
     | '/life-at-mu'
     | '/mentors'
+    | '/pg-programs'
     | '/placements'
-    | '/programs'
     | '/startups'
   fileRoutesById: FileRoutesById
 }
@@ -181,8 +181,8 @@ export interface RootRouteChildren {
   ImmersionsRoute: typeof ImmersionsRoute
   LifeAtMuRoute: typeof LifeAtMuRoute
   MentorsRoute: typeof MentorsRoute
+  PgProgramsRoute: typeof PgProgramsRoute
   PlacementsRoute: typeof PlacementsRoute
-  ProgramsRoute: typeof ProgramsRoute
   StartupsRoute: typeof StartupsRoute
 }
 
@@ -195,18 +195,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StartupsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/programs': {
-      id: '/programs'
-      path: '/programs'
-      fullPath: '/programs'
-      preLoaderRoute: typeof ProgramsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/placements': {
       id: '/placements'
       path: '/placements'
       fullPath: '/placements'
       preLoaderRoute: typeof PlacementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pg-programs': {
+      id: '/pg-programs'
+      path: '/pg-programs'
+      fullPath: '/pg-programs'
+      preLoaderRoute: typeof PgProgramsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mentors': {
@@ -285,8 +285,8 @@ const rootRouteChildren: RootRouteChildren = {
   ImmersionsRoute: ImmersionsRoute,
   LifeAtMuRoute: LifeAtMuRoute,
   MentorsRoute: MentorsRoute,
+  PgProgramsRoute: PgProgramsRoute,
   PlacementsRoute: PlacementsRoute,
-  ProgramsRoute: ProgramsRoute,
   StartupsRoute: StartupsRoute,
 }
 export const routeTree = rootRouteImport
