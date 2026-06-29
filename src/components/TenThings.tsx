@@ -103,7 +103,7 @@ export default function TenThings() {
 
       {/* Card widget — manual prev/next */}
       <div className="relative bg-[#0A0A0A]">
-        <div className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
+        <div className="relative h-[70svh] min-h-[450px] w-full overflow-hidden">
           {/* Counter top-left */}
           <div
             className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[12px] tracking-[0.15em] text-neutral-400 md:left-10"
