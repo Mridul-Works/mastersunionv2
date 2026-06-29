@@ -49,12 +49,12 @@ export default function TenThings() {
 
           {/* Big headline */}
           <h2
-            className="font-black uppercase leading-[0.92] tracking-[-0.03em] text-[#111]"
-            style={{ fontSize: "clamp(44px,8vw,128px)" }}
+            className="font-black leading-[0.95] tracking-[-0.03em] text-[#111]"
+            style={{ fontSize: "clamp(44px,8vw,108px)" }}
           >
             Cut the
             <span
-              className="ml-3 italic font-light text-[#C9A84C]"
+              className="ml-2 italic font-light text-[#C9A84C]"
               style={{ fontFamily: "'Cormorant Garamond', serif", letterSpacing: "-0.01em" }}
             >
               marketing.
