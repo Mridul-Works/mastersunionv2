@@ -226,13 +226,22 @@ function ExpandedPanel({ chapter, accent, onClose }: { chapter: Chapter; accent:
                   {headB && <span className="block md:ml-12 text-white/50">{headB}</span>}
                 </h3>
               </div>
-              <div className="flex flex-col items-start md:items-end gap-1">
-                <p className="font-mono text-[11px] text-white/40 uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                  Categorization
-                </p>
-                <p className="text-sm font-bold text-white uppercase tracking-wider">
-                  {chapter.tag}
-                </p>
+              <div className="flex items-center gap-4">
+                <div className="flex flex-col items-start md:items-end gap-1">
+                  <p className="font-mono text-[11px] text-white/40 uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                    Categorization
+                  </p>
+                  <p className="text-sm font-bold text-white uppercase tracking-wider">
+                    {chapter.tag}
+                  </p>
+                </div>
+                <button
+                  onClick={onClose}
+                  aria-label="Close"
+                  className="flex size-10 items-center justify-center border border-white/20 text-white/60 transition-colors hover:border-white/50 hover:text-white"
+                >
+                  <span className="text-lg leading-none">×</span>
+                </button>
               </div>
             </div>
 
