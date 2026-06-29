@@ -168,7 +168,7 @@ export default function HomeSections() {
       {/* PEDAGOGY */}
       <section id="pedagogy" className="border-t border-black/10 bg-neutral-50">
         <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-10 md:py-32">
-          <SectionHead eyebrow="The pedagogy" title={<>How Masters' Union <span className="italic">actually</span> teaches.</>} lede="Seven systems that work in concert — built so theory never outpaces practice." />
+          <SectionHead eyebrow="The pedagogy" title={<>How Masters' Union <span className="italic">actually</span> teaches.</>} lede="Eight systems that work in concert — built so theory never outpaces practice." />
 
           <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {PEDAGOGY.map((p, i) => {
