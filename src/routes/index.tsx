@@ -204,7 +204,7 @@ function Index() {
           naturally scrolls up over it. No JS scroll-locking — page scrolls
           freely both ways. */}
       <div className="relative">
-        <section className="sticky top-0 z-0 h-screen w-full overflow-hidden bg-black">
+        <section className="sticky top-0 z-0 h-screen w-full overflow-hidden bg-[#F1EFE7] select-none">
           {/* Background building image */}
           <img
             src={heroBuilding}
@@ -212,6 +212,14 @@ function Index() {
             aria-hidden
             className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${playing ? "opacity-0" : "opacity-100"}`}
           />
+          {/* Sophisticated overlay tints (hidden when playing) */}
+          <div
+            className={`pointer-events-none absolute inset-0 transition-opacity duration-700 ${playing ? "opacity-0" : "opacity-100"}`}
+          >
+            <div className="absolute inset-0 bg-gradient-to-b from-[#F1EFE7]/60 via-transparent to-[#F1EFE7]/80" />
+            <div className="absolute inset-0 bg-[#A3B18A]/10 mix-blend-multiply" />
+          </div>
+
           {/* Video (no autoplay) */}
           <video
             ref={videoElRef}
@@ -224,35 +232,67 @@ function Index() {
             controls={playing}
             className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${playing ? "opacity-100" : "opacity-0 pointer-events-none"}`}
           />
-          {/* Subtle vignette for legibility (only when video isn't playing) */}
-          <div
-            className={`pointer-events-none absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 transition-opacity duration-500 ${playing ? "opacity-0" : "opacity-100"}`}
-          />
 
-          {/* Overlay: logo + tagline + play button */}
+          {/* Editorial overlay */}
           <div
-            className={`absolute inset-0 flex flex-col items-center justify-center gap-8 px-6 text-center transition-opacity duration-500 ${playing ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+            className={`absolute inset-0 flex flex-col items-center justify-between px-6 py-12 text-center transition-opacity duration-500 ${playing ? "opacity-0 pointer-events-none" : "opacity-100"}`}
           >
-            <img
-              src={logoAsset.url}
-              alt="Masters' Union"
-              className="h-20 w-auto opacity-50 brightness-0 invert sm:h-28 md:h-36"
-            />
-            <div className="font-display text-[10vw] leading-[0.95] tracking-tight text-white/85 drop-shadow-[0_8px_40px_rgba(0,0,0,0.6)] sm:text-[7vw] md:text-[5.5vw]">
-              Learn by <em className="italic">Doing</em>
+            {/* Top branding */}
+            <div className="relative z-10 opacity-50 transition-opacity hover:opacity-100">
+              <h2
+                className="text-[10px] font-light uppercase tracking-[0.4em] text-[#2D3027]"
+                style={{ fontFamily: "Inter, sans-serif" }}
+              >
+                Masters' Union
+              </h2>
             </div>
-            <button
-              type="button"
-              onClick={() => {
-                videoElRef.current?.play().catch(() => {});
-              }}
-              aria-label="Play campus film"
-              className="group mt-2 flex size-20 items-center justify-center rounded-full border border-white/40 bg-white/10 opacity-50 backdrop-blur-md transition-all duration-300 hover:opacity-100 hover:scale-110 hover:bg-white/20 sm:size-24"
-            >
-              <Play className="size-8 fill-white text-white sm:size-10" />
-            </button>
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[11px] uppercase tracking-[0.3em] text-white/60">
-              Scroll to enter
+
+            {/* Central editorial content */}
+            <div className="relative z-10 flex flex-col items-center">
+              <h1
+                className="mb-16 text-6xl font-light leading-[0.9] tracking-tight text-[#2D3027] md:text-8xl lg:text-9xl"
+                style={{ fontFamily: "'Cormorant Garamond', serif" }}
+              >
+                Learn by <span className="font-normal italic">Doing</span>
+              </h1>
+
+              {/* Refined play interface */}
+              <button
+                type="button"
+                onClick={() => videoElRef.current?.play().catch(() => {})}
+                aria-label="Play campus film"
+                className="group flex flex-col items-center"
+              >
+                <span className="relative flex size-24 items-center justify-center rounded-full border border-[#2D3027]/20 bg-white/5 backdrop-blur-md transition-all duration-1000 group-hover:scale-105 group-hover:bg-white/20">
+                  <svg
+                    className="ml-1.5 size-6 text-[#2D3027]/70"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                  <span className="absolute inset-0 scale-125 rounded-full border border-[#2D3027]/10 opacity-0 transition-opacity duration-1000 group-hover:opacity-100" />
+                </span>
+                <span
+                  className="mt-6 text-[9px] font-medium uppercase tracking-[0.3em] text-[#2D3027]/40"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  Play Experience
+                </span>
+              </button>
+            </div>
+
+            {/* Footer / scroll hint */}
+            <div className="relative z-10 flex flex-col items-center gap-4">
+              <span
+                className="text-[10px] uppercase tracking-[0.4em] text-[#2D3027]/40"
+                style={{ fontFamily: "Inter, sans-serif" }}
+              >
+                Scroll to enter
+              </span>
+              <div className="relative h-16 w-px overflow-hidden bg-gradient-to-b from-[#2D3027]/30 to-transparent">
+                <div className="mu-scroll-line absolute left-0 top-0 h-1/2 w-full bg-[#2D3027]/60" />
+              </div>
             </div>
           </div>
 
