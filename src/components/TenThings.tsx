@@ -1,104 +1,98 @@
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { CHAPTERS } from "./chapters";
 
 const EASE = [0.7, 0, 0.2, 1] as const;
-const SLIDE_DURATION = 0.95;
+const SLIDE_DURATION = 0.85;
 
 export default function TenThings() {
-  const widgetRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState<1 | -1>(1);
-  const lastIdx = useRef(0);
 
-  const { scrollYProgress } = useScroll({
-    target: widgetRef,
-    offset: ["start start", "end end"],
-  });
+  const go = (delta: number) => {
+    setDirection(delta > 0 ? 1 : -1);
+    setIndex((i) => (i + delta + CHAPTERS.length) % CHAPTERS.length);
+  };
 
-  // Map progress -> slide index. We use (n) slides over a (n)-step track.
-  useEffect(() => {
-    const unsub = scrollYProgress.on("change", (p) => {
-      const raw = Math.floor(p * CHAPTERS.length);
-      const next = Math.max(0, Math.min(CHAPTERS.length - 1, raw));
-      if (next !== lastIdx.current) {
-        setDirection(next > lastIdx.current ? 1 : -1);
-        lastIdx.current = next;
-        setIndex(next);
-      }
-    });
-    return () => unsub();
-  }, [scrollYProgress]);
-
-  const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-
-  const goTo = (i: number) => {
-    const el = widgetRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const totalScroll = el.offsetHeight - window.innerHeight;
-    const targetWithin = (i / CHAPTERS.length) * totalScroll + totalScroll / CHAPTERS.length / 2;
-    const targetY = window.scrollY + rect.top + targetWithin;
-    window.scrollTo({ top: targetY, behavior: "smooth" });
+  const jump = (i: number) => {
+    if (i === index) return;
+    setDirection(i > index ? 1 : -1);
+    setIndex(i);
   };
 
   const project = CHAPTERS[index];
 
   return (
     <section className="relative bg-[#0A0A0A] text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-      {/* Intro headline — sits above the scroll widget, white theme */}
-      <div className="relative flex min-h-[70vh] flex-col items-center justify-center bg-[#FAF8F4] px-6 py-24 text-center text-[#111]">
-        <div className="absolute inset-0 pointer-events-none opacity-30">
-          <div className="absolute left-1/2 top-1/2 h-[60vh] w-[60vh] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#111111]/[0.04] blur-3xl" />
-        </div>
+      {/* Intro headline — editorial, light theme */}
+      <div className="relative overflow-hidden bg-[#FAF8F4] px-6 py-28 md:py-36 text-[#111]">
+        {/* Decorative grid + glow */}
+        <div className="pointer-events-none absolute inset-0 opacity-[0.04]" style={{
+          backgroundImage: "linear-gradient(#111 1px, transparent 1px), linear-gradient(90deg, #111 1px, transparent 1px)",
+          backgroundSize: "64px 64px",
+        }} />
+        <div className="pointer-events-none absolute -left-32 top-1/3 h-[40vh] w-[40vh] rounded-full bg-[#C9A84C]/15 blur-[120px]" />
+        <div className="pointer-events-none absolute -right-32 bottom-0 h-[40vh] w-[40vh] rounded-full bg-[#111]/[0.04] blur-[100px]" />
 
-        <span
-          className="relative z-10 text-[11px] uppercase tracking-[0.35em] text-[#111]/55"
-          style={{ fontFamily: "'JetBrains Mono', monospace" }}
-        >
-          Cut the marketing
-        </span>
-        <h2
-          className="relative z-10 mt-4 max-w-[90vw] text-[clamp(28px,4.5vw,64px)] font-black uppercase leading-[1.05] tracking-tight text-[#111]"
-          style={{ letterSpacing: "-0.02em" }}
-        >
-          Here are 10 things <br className="hidden md:block" />
-          about Masters' Union
-        </h2>
-        <p
-          className="relative z-10 mt-6 max-w-xl text-[14px] leading-relaxed text-[#111]/60"
-          style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-        >
-          Scroll through the dossier. No ads. No fluff. Just what actually matters.
-        </p>
+        <div className="relative z-10 mx-auto max-w-[1180px]">
+          {/* Eyebrow */}
+          <div className="mb-10 flex items-center gap-3">
+            <span className="h-px w-10 bg-[#111]/30" />
+            <span
+              className="text-[10px] uppercase tracking-[0.4em] text-[#111]/55"
+              style={{ fontFamily: "'JetBrains Mono', monospace" }}
+            >
+              Field Notes · Vol. 01
+            </span>
+          </div>
 
-        {/* Scroll hint pointing down to the widget */}
-        <motion.div
-          className="relative z-10 mt-12 flex flex-col items-center gap-2"
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <span
-            className="text-[9px] uppercase tracking-[0.25em] text-[#111]/50"
-            style={{ fontFamily: "'JetBrains Mono', monospace" }}
+          {/* Big headline */}
+          <h2
+            className="font-black uppercase leading-[0.92] tracking-[-0.03em] text-[#111]"
+            style={{ fontSize: "clamp(44px,8vw,128px)" }}
           >
-            Scroll to explore
-          </span>
-          <svg width="18" height="28" viewBox="0 0 18 28" fill="none" className="text-[#111]/40">
-            <rect x="1" y="1" width="16" height="26" rx="8" stroke="currentColor" strokeWidth="1.5" />
-            <motion.circle cx="9" cy="9" r="2" fill="currentColor" animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }} />
-          </svg>
-        </motion.div>
+            Cut the
+            <span
+              className="ml-3 italic font-light text-[#C9A84C]"
+              style={{ fontFamily: "'Cormorant Garamond', serif", letterSpacing: "-0.01em" }}
+            >
+              marketing.
+            </span>
+            <br />
+            <span className="block">
+              10 things about{" "}
+              <span className="relative inline-block">
+                <span className="relative z-10">Masters' Union</span>
+                <span className="absolute inset-x-0 bottom-1 z-0 h-3 bg-[#C9A84C]/40" />
+              </span>
+            </span>
+          </h2>
+
+          {/* Sub copy + meta row */}
+          <div className="mt-12 grid grid-cols-1 gap-10 md:grid-cols-[1.4fr_1fr] md:items-end">
+            <p className="max-w-[560px] text-[15px] leading-[1.7] text-[#111]/65">
+              No ads. No fluff. Just the dossier — ten chapters that actually
+              explain how the school works, who teaches, and what gets built.
+            </p>
+
+            <div
+              className="flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-[#111]/15 pt-5 text-[11px] uppercase tracking-[0.22em] text-[#111]/55"
+              style={{ fontFamily: "'JetBrains Mono', monospace" }}
+            >
+              <span>{String(CHAPTERS.length).padStart(2, "0")} chapters</span>
+              <span className="text-[#111]/25">·</span>
+              <span>≈ 8 min read</span>
+              <span className="text-[#111]/25">·</span>
+              <span>Updated 2026</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-
-      {/* Scroll-driven widget */}
-      <div
-        ref={widgetRef}
-        className="relative bg-[#0A0A0A]"
-        style={{ height: `${CHAPTERS.length * 100}vh` }}
-      >
-        <div className="sticky top-0 h-screen w-full overflow-hidden">
+      {/* Card widget — manual prev/next */}
+      <div className="relative bg-[#0A0A0A]">
+        <div className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
           {/* Counter top-left */}
           <div
             className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[12px] tracking-[0.15em] text-white/70 md:left-10"
@@ -137,43 +131,51 @@ export default function TenThings() {
             </AnimatePresence>
           </div>
 
-          {/* Slide stack */}
+          {/* Slide */}
           <AnimatePresence mode="popLayout" custom={direction}>
             <Slide key={project.n} project={project} direction={direction} index={index} />
           </AnimatePresence>
 
-          {/* Hint + progress bars bottom-center */}
+          {/* Prev / Next buttons */}
+          <button
+            type="button"
+            onClick={() => go(-1)}
+            aria-label="Previous chapter"
+            className="group absolute left-4 top-1/2 z-40 flex size-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/40 text-white backdrop-blur-md transition-all hover:scale-110 hover:border-white/40 hover:bg-black/60 md:left-8 md:size-14"
+          >
+            <ArrowLeft className="size-5 transition-transform group-hover:-translate-x-0.5" />
+          </button>
+          <button
+            type="button"
+            onClick={() => go(1)}
+            aria-label="Next chapter"
+            className="group absolute right-4 top-1/2 z-40 flex size-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/40 text-white backdrop-blur-md transition-all hover:scale-110 hover:border-white/40 hover:bg-black/60 md:right-8 md:size-14"
+          >
+            <ArrowRight className="size-5 transition-transform group-hover:translate-x-0.5" />
+          </button>
+
+          {/* Pagination ticks bottom-center */}
           <div className="pointer-events-none absolute inset-x-0 bottom-8 z-30 flex flex-col items-center gap-5 px-6">
             <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-white/50">
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-white" />
-              <span>Scroll</span>
-              <span className="text-white/20">·</span>
-              <span>Drag</span>
-              <span className="text-white/20">·</span>
-              <span>Jump</span>
+              <span>{project.tag}</span>
             </div>
             <div className="flex items-center gap-2">
               {CHAPTERS.map((p, i) => (
                 <button
                   key={p.n}
-                  onClick={() => goTo(i)}
+                  onClick={() => jump(i)}
                   aria-label={`Go to chapter ${i + 1}`}
                   className="pointer-events-auto group h-[2px] w-9 cursor-pointer overflow-hidden bg-white/15"
                 >
                   <span
-                    className="block h-full origin-left bg-white transition-transform duration-[700ms] ease-out"
+                    className="block h-full origin-left bg-white transition-transform duration-[500ms] ease-out"
                     style={{ transform: `scaleX(${i === index ? 1 : 0})` }}
                   />
                 </button>
               ))}
             </div>
           </div>
-
-          {/* Top-edge scroll progress bar */}
-          <motion.div
-            className="absolute left-0 top-0 z-30 h-px bg-white/70"
-            style={{ width: progressWidth }}
-          />
         </div>
       </div>
     </section>
@@ -195,9 +197,8 @@ function Slide({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
     >
-      {/* Image side */}
       <div className="relative h-full w-full overflow-hidden">
         <motion.div
           key={project.image}
@@ -236,11 +237,10 @@ function Slide({
           />
         </motion.div>
 
-        {/* In-image big number */}
         <div className="pointer-events-none absolute left-6 bottom-6 md:left-10 md:bottom-10 z-10">
           <StaggeredText delay={0.05} k={`bignum-${index}`}>
             <span
-              className="block font-black leading-none tracking-tighter text-white"
+              className="block font-black leading-none tracking-tighter"
               style={{ fontSize: "clamp(72px, 9vw, 140px)", color: project.bg }}
             >
               {String(index + 1).padStart(2, "0")}
@@ -249,7 +249,6 @@ function Slide({
         </div>
       </div>
 
-      {/* Text rail */}
       <div className="relative z-10 flex items-end px-6 pb-32 md:items-center md:px-12 md:pb-0">
         <div className="max-w-[420px]">
           <StaggeredText delay={0.15} k={`meta-${index}`}>
