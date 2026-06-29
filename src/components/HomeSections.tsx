@@ -48,13 +48,11 @@ export default function HomeSections() {
               </div>
             </div>
 
-            <div className="flex flex-nowrap overflow-x-auto snap-x border-y border-black/10 md:overflow-x-visible">
-              {NEWS.map((n, i) => (
+            <div className="flex flex-nowrap gap-4 overflow-x-auto snap-x md:overflow-x-visible md:gap-6">
+              {NEWS.map((n) => (
                 <article
                   key={n.title}
-                  className={`group flex min-w-[300px] flex-1 cursor-pointer snap-start gap-5 p-5 transition-all hover:bg-white md:min-w-0 ${
-                    i !== NEWS.length - 1 ? "border-b border-black/10 md:border-b-0 md:border-r" : ""
-                  }`}
+                  className="group flex min-w-[300px] flex-1 cursor-pointer snap-start gap-5 p-5 transition-all hover:bg-white md:min-w-0"
                 >
                   <div className="flex h-16 w-14 flex-shrink-0 flex-col items-center justify-center bg-[#6B1F2A] text-white shadow-sm transition-colors group-hover:bg-[#16140F]">
                     <span className="font-sans text-[10px] font-bold uppercase tracking-tighter opacity-80">{n.month}</span>
