@@ -26,15 +26,15 @@ export default function TenThings() {
   return (
     <section className="relative bg-[#0A0A0A] text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       {/* Intro headline — compact editorial */}
-      <div className="relative overflow-hidden bg-white px-6 py-12 text-black md:py-16">
-        <div className="pointer-events-none absolute -left-40 top-10 h-[30vh] w-[30vh] rounded-full bg-black/[0.04] blur-[100px]" />
-        <div className="pointer-events-none absolute -right-40 bottom-0 h-[30vh] w-[30vh] rounded-full bg-black/[0.04] blur-[100px]" />
+      <div className="relative overflow-hidden bg-white px-6 py-8 text-black md:py-10">
+        <div className="pointer-events-none absolute -left-40 top-10 h-[20vh] w-[20vh] rounded-full bg-black/[0.04] blur-[80px]" />
+        <div className="pointer-events-none absolute -right-40 bottom-0 h-[20vh] w-[20vh] rounded-full bg-black/[0.04] blur-[80px]" />
 
         <div className="relative z-10 mx-auto max-w-[1180px]">
-          <div className="mb-6 flex items-center gap-4">
-            <span className="h-px w-10 bg-black/40" />
+          <div className="mb-4 flex items-center gap-3">
+            <span className="h-px w-8 bg-black/40" />
             <span
-              className="text-[10px] uppercase tracking-[0.32em] text-black/55"
+              className="text-[9px] uppercase tracking-[0.3em] text-black/55"
               style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
             >
               Field Notes — Vol. 01
@@ -42,11 +42,11 @@ export default function TenThings() {
           </div>
 
           <h2
-            className="leading-[0.98] tracking-[-0.02em] text-black"
+            className="leading-[1.0] tracking-[-0.02em] text-black"
             style={{
               fontFamily: "'Inter', system-ui, sans-serif",
               fontWeight: 400,
-              fontSize: "clamp(36px, 6vw, 80px)",
+              fontSize: "clamp(28px, 5vw, 56px)",
             }}
           >
             Cut the{" "}
@@ -66,14 +66,14 @@ export default function TenThings() {
                 >
                   Masters' Union
                 </span>
-                <span className="absolute inset-x-0 bottom-1 z-0 h-[4px] bg-black/15" />
+                <span className="absolute inset-x-0 bottom-1 z-0 h-[3px] bg-black/15" />
               </span>
             </span>
           </h2>
 
-          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-[1.3fr_1fr] md:items-end">
+          <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <p
-              className="max-w-[480px] text-[14px] leading-[1.6] text-black/70"
+              className="max-w-[420px] text-[13px] leading-[1.5] text-black/70"
               style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 400 }}
             >
               No ads. No fluff. Just the dossier — ten chapters that actually
@@ -81,7 +81,7 @@ export default function TenThings() {
             </p>
 
             <div
-              className="flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-black/20 pt-4 text-[10px] uppercase tracking-[0.28em] text-black/55"
+              className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[9px] uppercase tracking-[0.26em] text-black/55"
               style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
             >
               <span>{String(CHAPTERS.length).padStart(2, "0")} Chapters</span>
@@ -95,12 +95,12 @@ export default function TenThings() {
       </div>
 
 
-      {/* Card widget — manual prev/next, compact */}
-      <div className="relative bg-[#0A0A0A]">
-        <div className="relative h-[60svh] min-h-[480px] w-full overflow-hidden md:h-[55vh] md:min-h-[420px]">
+      {/* Card widget — manual prev/next, compact, centered */}
+      <div className="relative bg-[#0A0A0A] px-4 py-6 md:px-6 md:py-8">
+        <div className="mx-auto w-full max-w-[900px] overflow-hidden rounded-lg md:max-w-[1000px]" style={{ aspectRatio: "16/9" }}>
           {/* Counter top-left */}
           <div
-            className="pointer-events-none absolute left-5 top-5 z-30 font-mono text-[11px] tracking-[0.15em] text-neutral-400 md:left-8"
+            className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[10px] tracking-[0.15em] text-neutral-400 md:left-10 md:top-10"
             style={{ fontFamily: "'JetBrains Mono', monospace", textShadow: "0 0 24px rgba(255,255,255,0.10)" }}
           >
             <AnimatePresence mode="popLayout">
@@ -129,7 +129,7 @@ export default function TenThings() {
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.6, ease: EASE }}
                 className="select-none bg-gradient-to-b from-neutral-300/20 via-neutral-400/8 to-transparent bg-clip-text font-black tracking-tighter text-transparent"
-                style={{ fontSize: "clamp(180px, 36vw, 480px)", lineHeight: 1, filter: "drop-shadow(0 0 60px rgba(255,255,255,0.06))" }}
+                style={{ fontSize: "clamp(120px, 28vw, 360px)", lineHeight: 1, filter: "drop-shadow(0 0 60px rgba(255,255,255,0.06))" }}
               >
                 {String(index + 1).padStart(2, "0")}
               </motion.span>
@@ -142,7 +142,7 @@ export default function TenThings() {
           </AnimatePresence>
 
           {/* Bottom nav: tag + arrows */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-5 z-30 flex flex-col items-center gap-3 px-6">
+          <div className="pointer-events-none absolute inset-x-0 bottom-6 z-30 flex flex-col items-center gap-3 px-6 md:bottom-10">
             <div className="pointer-events-auto flex w-full max-w-[520px] items-center justify-between">
               <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-white/70">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-white" />
@@ -194,6 +194,7 @@ export default function TenThings() {
     </section>
   );
 }
+
 
 function Slide({
   project,
