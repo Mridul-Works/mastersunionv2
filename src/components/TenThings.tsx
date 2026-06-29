@@ -1,17 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowUpRight, ArrowLeft, ArrowRight, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CHAPTERS, type Chapter } from "./chapters";
-
-const ACCENTS = [
-  "#4F46E5", "#F43F5E", "#F59E0B", "#10B981", "#0EA5E9",
-  "#8B5CF6", "#F97316", "#0F172A", "#EC4899", "#65A30D",
-];
 
 const FONT = "'Inter', system-ui, sans-serif";
 
 export default function TenThings() {
   const railRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   const scrollBy = (dir: 1 | -1) => {
@@ -34,8 +30,15 @@ export default function TenThings() {
     }
   };
 
+  const handleClose = () => {
+    setOpenIdx(null);
+    requestAnimationFrame(() => {
+      sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  };
+
   return (
-    <section className="relative bg-[#FAF8F4] py-20 sm:py-28" style={{ fontFamily: FONT }}>
+    <section ref={sectionRef} className="relative bg-[#FAF8F4] py-20 sm:py-28" style={{ fontFamily: FONT }}>
       <div className="mx-auto max-w-[1280px] px-5 sm:px-8">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -50,112 +53,151 @@ export default function TenThings() {
               No glossy brochure copy. Ten chapters. Tap any card to open the full dossier.
             </p>
           </div>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => scrollBy(-1)}
-              aria-label="Scroll left"
-              className="flex size-11 items-center justify-center border border-black/20 bg-white text-black transition-colors hover:bg-black hover:text-white"
-            >
-              <ArrowLeft className="size-4" />
-            </button>
-            <button
-              onClick={() => scrollBy(1)}
-              aria-label="Scroll right"
-              className="flex size-11 items-center justify-center border border-black bg-black text-white transition-colors hover:bg-white hover:text-black"
-            >
-              <ArrowRight className="size-4" />
-            </button>
-          </div>
+          {openIdx === null && (
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => scrollBy(-1)}
+                aria-label="Scroll left"
+                className="flex size-11 items-center justify-center border border-black/20 bg-white text-black transition-colors hover:bg-black hover:text-white"
+              >
+                <ArrowLeft className="size-4" />
+              </button>
+              <button
+                onClick={() => scrollBy(1)}
+                aria-label="Scroll right"
+                className="flex size-11 items-center justify-center border border-black bg-black text-white transition-colors hover:bg-white hover:text-black"
+              >
+                <ArrowRight className="size-4" />
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
-      <div
-        ref={railRef}
-        data-tenthings-rail
-        onWheel={onWheel}
-        className="mt-14 overflow-x-auto overflow-y-hidden pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        <ul className="flex w-max gap-5 px-5 sm:px-8 snap-x snap-mandatory">
-          {CHAPTERS.map((c, i) => {
-            const accent = ACCENTS[i] ?? "#0F172A";
-            const isOpen = openIdx === i;
-            return (
-              <li key={c.n} className="snap-start">
-                <button
-                  onClick={() => setOpenIdx(isOpen ? null : i)}
-                  className={`group relative flex flex-col overflow-hidden border border-black/10 bg-white text-left transition-all duration-300 hover:-translate-y-1 hover:border-black hover:shadow-[12px_12px_0_0_#0F172A] ${isOpen ? "ring-2 ring-black" : ""}`}
-                  style={{ fontFamily: FONT, height: "480px", width: "340px" }}
-                >
-                  <div className="relative h-[220px] w-full overflow-hidden">
-                    <img
-                      src={c.image}
-                      alt={c.headline}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <span
-                      className="absolute left-0 top-0 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.25em] text-white"
-                      style={{ background: accent }}
-                    >
-                      Chapter {c.n}
-                    </span>
-                    <span className="absolute right-3 top-3 bg-white/95 px-2 py-1 text-[9px] font-black uppercase tracking-widest text-black">
-                      {c.tag}
-                    </span>
-                  </div>
-
-                  <div className="flex flex-1 flex-col justify-between p-5">
-                    <h3 className="text-[19px] font-black leading-[1.1] tracking-tight text-black uppercase">
-                      {c.headline}
-                    </h3>
-                    <div className="mt-4 flex items-end justify-between border-t border-black/10 pt-4">
-                      <div>
-                        <div className="text-2xl font-black leading-none text-black">{c.stat}</div>
-                        <div className="mt-1 text-[9px] font-bold uppercase tracking-[0.2em] text-black/50">
-                          {c.label}
-                        </div>
-                      </div>
+      <AnimatePresence mode="wait" initial={false}>
+        {openIdx === null ? (
+          <motion.div
+            key="rail"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            ref={railRef}
+            data-tenthings-rail
+            onWheel={onWheel}
+            className="mt-14 overflow-x-auto overflow-y-hidden pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            <ul className="flex w-max gap-5 px-5 sm:px-8 snap-x snap-mandatory">
+              {CHAPTERS.map((c, i) => (
+                <li key={c.n} className="snap-start">
+                  <button
+                    onClick={() => setOpenIdx(i)}
+                    className="group relative flex flex-col overflow-hidden border border-black/10 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-[12px_12px_0_0_#0F172A]"
+                    style={{ fontFamily: FONT, height: "520px", width: "360px", background: c.bg, color: c.ink }}
+                  >
+                    {/* Top meta row */}
+                    <div className="flex items-center justify-between px-6 pt-6">
                       <span
-                        className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.2em]"
-                        style={{ color: accent }}
+                        className="font-mono text-[10px] font-bold uppercase tracking-[0.3em]"
+                        style={{ color: c.ink, opacity: 0.7, fontFamily: "'JetBrains Mono', monospace" }}
                       >
-                        {isOpen ? "Close" : "Expand"}
-                        <ArrowUpRight className={`size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${isOpen ? "rotate-180" : ""}`} />
+                        {c.n} / 10
+                      </span>
+                      <span
+                        className="border px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.25em]"
+                        style={{ borderColor: c.ink + "55", color: c.ink }}
+                      >
+                        {c.tag}
                       </span>
                     </div>
-                  </div>
-                  <div
-                    className="absolute bottom-0 left-0 h-1 w-0 transition-all duration-500 group-hover:w-full"
-                    style={{ background: accent }}
-                  />
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
 
-      {/* Inline expanded dossier — lives inside the page flow, not a popup */}
-      <AnimatePresence>
-        {openIdx !== null && (
-          <ExpandedPanel
-            chapter={CHAPTERS[openIdx]}
-            accent={ACCENTS[openIdx] ?? "#0F172A"}
-            onClose={() => setOpenIdx(null)}
-          />
+                    {/* Headline */}
+                    <div className="flex flex-1 flex-col justify-between px-6 pb-6 pt-10">
+                      <h3
+                        className="text-balance text-[26px] font-black leading-[1.05] tracking-tight"
+                        style={{ color: c.ink }}
+                      >
+                        {c.headline}
+                      </h3>
+
+                      <div className="space-y-5">
+                        <p className="line-clamp-3 text-[13px] leading-[1.55]" style={{ color: c.ink, opacity: 0.75 }}>
+                          {c.body}
+                        </p>
+
+                        {/* Stats row */}
+                        <div className="flex flex-wrap gap-x-5 gap-y-3 border-t pt-4" style={{ borderColor: c.ink + "33" }}>
+                          {c.stats.slice(0, 3).map((s) => (
+                            <div key={s.label}>
+                              <div className="text-xl font-black leading-none tracking-tight" style={{ color: c.ink }}>
+                                {s.value}
+                              </div>
+                              <div
+                                className="mt-1 text-[9px] font-bold uppercase tracking-[0.18em]"
+                                style={{ color: c.ink, opacity: 0.6 }}
+                              >
+                                {s.label}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* CTA */}
+                        <div className="flex items-center justify-between pt-2">
+                          <span
+                            className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.25em]"
+                            style={{ color: c.ink }}
+                          >
+                            {c.cta}
+                            <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                          </span>
+                          <span
+                            className="text-[10px] font-bold uppercase tracking-[0.25em]"
+                            style={{ color: c.ink, opacity: 0.5 }}
+                          >
+                            Expand →
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      className="absolute bottom-0 left-0 h-1 w-0 transition-all duration-500 group-hover:w-full"
+                      style={{ background: c.ink }}
+                    />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="expanded"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 30 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-14"
+          >
+            <ExpandedPanel
+              chapter={CHAPTERS[openIdx]}
+              accent={CHAPTERS[openIdx].ink}
+              onClose={handleClose}
+              onNext={() => setOpenIdx((openIdx + 1) % CHAPTERS.length)}
+            />
+          </motion.div>
         )}
       </AnimatePresence>
     </section>
   );
 }
 
-function ExpandedPanel({ chapter, accent, onClose }: { chapter: Chapter; accent: string; onClose: () => void }) {
+function ExpandedPanel({ chapter, accent, onClose, onNext }: { chapter: Chapter; accent: string; onClose: () => void; onNext: () => void }) {
   const panelRef = useRef<HTMLDivElement>(null);
-  const nextIdx = (parseInt(chapter.n, 10) % 10);
 
   useEffect(() => {
     panelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, []);
+  }, [chapter.n]);
 
   const splitHeadline = (text: string) => {
     const splitters = [". ", " — ", ": ", ", "];
@@ -170,12 +212,8 @@ function ExpandedPanel({ chapter, accent, onClose }: { chapter: Chapter; accent:
   const [headA, headB] = splitHeadline(chapter.headline);
 
   return (
-    <motion.div
+    <div
       ref={panelRef}
-      initial={{ opacity: 0, y: 20, height: 0 }}
-      animate={{ opacity: 1, y: 0, height: "auto" }}
-      exit={{ opacity: 0, y: 20, height: 0 }}
-      transition={{ type: "spring", damping: 26, stiffness: 240 }}
       className="overflow-hidden border-y border-black/10 bg-[#0A0A0A]"
       style={{ fontFamily: FONT }}
     >
@@ -187,8 +225,8 @@ function ExpandedPanel({ chapter, accent, onClose }: { chapter: Chapter; accent:
               Dossier {chapter.n} // 10
             </div>
             <div className="flex flex-1 flex-col gap-3">
-              {CHAPTERS.map((c, i) => {
-                const active = parseInt(c.n, 10) === parseInt(chapter.n, 10);
+              {CHAPTERS.map((c) => {
+                const active = c.n === chapter.n;
                 return (
                   <div
                     key={c.n}
@@ -198,13 +236,6 @@ function ExpandedPanel({ chapter, accent, onClose }: { chapter: Chapter; accent:
                 );
               })}
             </div>
-            <button
-              onClick={onClose}
-              aria-label="Close"
-              className="flex size-8 items-center justify-center rounded-full border border-white/20 text-white/50 transition-colors hover:border-white/50 hover:text-white"
-            >
-              <div className="w-1 h-1 rounded-full bg-current" />
-            </button>
           </div>
 
           {/* Main dossier area */}
@@ -219,37 +250,28 @@ function ExpandedPanel({ chapter, accent, onClose }: { chapter: Chapter; accent:
                   >
                     [ {chapter.tag.toUpperCase()} ]
                   </span>
-                  <div className="h-px w-12" style={{ background: `${accent}30` }} />
+                  <div className="h-px w-12" style={{ background: `${accent}55` }} />
                 </div>
                 <h3 className="text-3xl md:text-4xl lg:text-5xl font-extrabold uppercase tracking-tighter leading-none text-white">
                   {headA}
                   {headB && <span className="block md:ml-12 text-white/50">{headB}</span>}
                 </h3>
               </div>
-              <div className="flex items-center gap-4">
-                <div className="flex flex-col items-start md:items-end gap-1">
-                  <p className="font-mono text-[11px] text-white/40 uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                    Categorization
-                  </p>
-                  <p className="text-sm font-bold text-white uppercase tracking-wider">
-                    {chapter.tag}
-                  </p>
-                </div>
-                <button
-                  onClick={onClose}
-                  aria-label="Close"
-                  className="flex size-10 items-center justify-center border border-white/20 text-white/60 transition-colors hover:border-white/50 hover:text-white"
-                >
-                  <span className="text-lg leading-none">×</span>
-                </button>
-              </div>
+              <button
+                onClick={onClose}
+                aria-label="Close dossier"
+                className="group inline-flex items-center gap-2 self-start border border-white/20 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.2em] text-white/70 transition-colors hover:border-white/60 hover:text-white"
+              >
+                <X className="size-3.5" />
+                Close
+              </button>
             </div>
 
             {/* Body */}
             <div className="flex flex-1 flex-col lg:flex-row">
               <div className="flex-[3] border-b border-white/10 px-6 py-8 lg:border-b-0 lg:border-r lg:px-10 lg:py-10 space-y-8">
                 {/* Hero image */}
-                <div className="relative aspect-video w-full overflow-hidden border border-white/10 bg-white/5 group">
+                <div className="relative aspect-video w-full overflow-hidden border border-white/10 bg-white/5">
                   <img
                     src={chapter.image}
                     alt={chapter.headline}
@@ -336,7 +358,7 @@ function ExpandedPanel({ chapter, accent, onClose }: { chapter: Chapter; accent:
                       Indicator 01
                     </p>
                     <h4 className="text-sm font-bold uppercase text-white/80">{chapter.label}</h4>
-                    <div className="pt-2 text-5xl font-black tracking-tighter text-white" style={{ fontFamily: "'Inter', sans-serif" }}>
+                    <div className="pt-2 text-5xl font-black tracking-tighter text-white">
                       {chapter.stat}
                     </div>
                   </div>
@@ -371,20 +393,20 @@ function ExpandedPanel({ chapter, accent, onClose }: { chapter: Chapter; accent:
                   </div>
                 </div>
 
-                <div className="mt-10 pt-8">
+                <div className="mt-10 flex flex-col gap-3 pt-8">
                   <button
-                    onClick={() => {
-                      const rail = document.querySelector('[data-tenthings-rail]') as HTMLElement | null;
-                      if (rail) {
-                        rail.scrollTo({ left: nextIdx * 360, behavior: 'smooth' });
-                      }
-                      onClose();
-                    }}
+                    onClick={onNext}
                     className="group flex w-full items-center justify-between bg-white px-6 py-4 text-xs font-bold uppercase tracking-[0.2em] text-black transition-colors hover:opacity-90"
-                    style={{ color: "#0A0A0A" }}
                   >
                     Explore Next
                     <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                  </button>
+                  <button
+                    onClick={onClose}
+                    className="flex w-full items-center justify-between border border-white/20 px-6 py-4 text-xs font-bold uppercase tracking-[0.2em] text-white/70 transition-colors hover:border-white/60 hover:text-white"
+                  >
+                    Back to all chapters
+                    <X className="size-4" />
                   </button>
                 </div>
               </div>
@@ -392,6 +414,6 @@ function ExpandedPanel({ chapter, accent, onClose }: { chapter: Chapter; accent:
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
