@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, ArrowLeft, ArrowRight, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CHAPTERS, type Chapter } from "./chapters";
 
@@ -85,90 +85,131 @@ export default function TenThings() {
             ref={railRef}
             data-tenthings-rail
             onWheel={onWheel}
-            className="mt-14 overflow-x-auto overflow-y-hidden pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="mt-14 overflow-x-auto overflow-y-hidden pb-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
-            <ul className="flex w-max gap-5 px-5 sm:px-8 snap-x snap-mandatory">
-              {CHAPTERS.map((c, i) => (
-                <li key={c.n} className="snap-start">
-                  <button
-                    onClick={() => setOpenIdx(i)}
-                    className="group relative flex flex-col overflow-hidden border border-black/10 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-[12px_12px_0_0_#0F172A]"
-                    style={{ fontFamily: FONT, height: "520px", width: "360px", background: c.bg, color: c.ink }}
-                  >
-                    {/* Top meta row */}
-                    <div className="flex items-center justify-between px-6 pt-6">
-                      <span
-                        className="font-mono text-[10px] font-bold uppercase tracking-[0.3em]"
-                        style={{ color: c.ink, opacity: 0.7, fontFamily: "'JetBrains Mono', monospace" }}
-                      >
-                        {c.n} / 10
-                      </span>
-                      <span
-                        className="border px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.25em]"
-                        style={{ borderColor: c.ink + "55", color: c.ink }}
-                      >
-                        {c.tag}
-                      </span>
-                    </div>
+            {/* Timeline rail with dotted spine */}
+            <div className="relative w-max px-5 sm:px-8">
+              {/* Continuous dotted timeline line behind nodes */}
+              <div
+                className="pointer-events-none absolute left-0 right-0 top-[56px] h-px"
+                style={{
+                  backgroundImage:
+                    "repeating-linear-gradient(to right, #0F172A 0 6px, transparent 6px 12px)",
+                }}
+              />
+              {/* Start cap */}
+              <div className="pointer-events-none absolute left-5 sm:left-8 top-[52px] flex items-center gap-2">
+                <span className="font-mono text-[9px] font-bold uppercase tracking-[0.3em] text-black/50" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                  Start
+                </span>
+              </div>
 
-                    {/* Headline */}
-                    <div className="flex flex-1 flex-col justify-between px-6 pb-6 pt-10">
-                      <h3
-                        className="text-balance text-[26px] font-black leading-[1.05] tracking-tight"
-                        style={{ color: c.ink }}
-                      >
-                        {c.headline}
-                      </h3>
-
-                      <div className="space-y-5">
-                        <p className="line-clamp-3 text-[13px] leading-[1.55]" style={{ color: c.ink, opacity: 0.75 }}>
-                          {c.body}
-                        </p>
-
-                        {/* Stats row */}
-                        <div className="flex flex-wrap gap-x-5 gap-y-3 border-t pt-4" style={{ borderColor: c.ink + "33" }}>
-                          {c.stats.slice(0, 3).map((s) => (
-                            <div key={s.label}>
-                              <div className="text-xl font-black leading-none tracking-tight" style={{ color: c.ink }}>
-                                {s.value}
-                              </div>
-                              <div
-                                className="mt-1 text-[9px] font-bold uppercase tracking-[0.18em]"
-                                style={{ color: c.ink, opacity: 0.6 }}
-                              >
-                                {s.label}
-                              </div>
-                            </div>
-                          ))}
+              <ul className="flex gap-5 pt-24 snap-x snap-mandatory">
+                {CHAPTERS.map((c, i) => (
+                  <li key={c.n} className="relative snap-start">
+                    {/* Timeline node positioned above card, sitting on the dotted line */}
+                    <div className="pointer-events-none absolute left-1/2 -translate-x-1/2" style={{ top: "-72px" }}>
+                      <div className="flex flex-col items-center gap-2">
+                        <div
+                          className="flex size-14 items-center justify-center rounded-full border-2 border-black bg-[#FAF8F4] font-black text-[15px] tracking-tight text-black transition-transform duration-300 group-hover/card:scale-110"
+                          style={{ boxShadow: `4px 4px 0 0 ${c.bg}` }}
+                        >
+                          {c.n}
                         </div>
-
-                        {/* CTA */}
-                        <div className="flex items-center justify-between pt-2">
-                          <span
-                            className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.25em]"
-                            style={{ color: c.ink }}
-                          >
-                            {c.cta}
-                            <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                          </span>
-                          <span
-                            className="text-[10px] font-bold uppercase tracking-[0.25em]"
-                            style={{ color: c.ink, opacity: 0.5 }}
-                          >
-                            Expand →
-                          </span>
-                        </div>
+                        <span
+                          className="font-mono text-[9px] font-bold uppercase tracking-[0.3em] text-black/60"
+                          style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                        >
+                          Ch · {c.n}
+                        </span>
                       </div>
                     </div>
 
-                    <div
-                      className="absolute bottom-0 left-0 h-1 w-0 transition-all duration-500 group-hover:w-full"
-                      style={{ background: c.ink }}
-                    />
-                  </button>
+                    <button
+                      onClick={() => setOpenIdx(i)}
+                      className="group/card relative flex flex-col overflow-hidden border border-black/10 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-[12px_12px_0_0_#0F172A]"
+                      style={{ fontFamily: FONT, height: "500px", width: "360px", background: c.bg, color: c.ink }}
+                    >
+                      {/* Watermark numeral */}
+                      <span
+                        className="pointer-events-none absolute -right-4 -top-10 select-none text-[180px] font-black leading-none tracking-tighter"
+                        style={{ color: c.ink, opacity: 0.08, fontFamily: FONT }}
+                      >
+                        {c.n}
+                      </span>
+
+                      {/* Top meta row */}
+                      <div className="relative flex items-center justify-between px-6 pt-6">
+                        <span
+                          className="font-mono text-[10px] font-bold uppercase tracking-[0.3em]"
+                          style={{ color: c.ink, opacity: 0.7, fontFamily: "'JetBrains Mono', monospace" }}
+                        >
+                          {c.n} / 10
+                        </span>
+                        <span
+                          className="border px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.25em]"
+                          style={{ borderColor: c.ink + "55", color: c.ink }}
+                        >
+                          {c.tag}
+                        </span>
+                      </div>
+
+                      {/* Headline */}
+                      <div className="relative flex flex-1 flex-col justify-between px-6 pb-6 pt-10">
+                        <h3
+                          className="text-balance text-[26px] font-black leading-[1.05] tracking-tight"
+                          style={{ color: c.ink }}
+                        >
+                          {c.headline}
+                        </h3>
+
+                        <div className="space-y-5">
+                          <p className="line-clamp-3 text-[13px] leading-[1.55]" style={{ color: c.ink, opacity: 0.75 }}>
+                            {c.body}
+                          </p>
+
+                          {/* Stats row */}
+                          <div className="flex flex-wrap gap-x-5 gap-y-3 border-t pt-4" style={{ borderColor: c.ink + "33" }}>
+                            {c.stats.slice(0, 3).map((s) => (
+                              <div key={s.label}>
+                                <div className="text-xl font-black leading-none tracking-tight" style={{ color: c.ink }}>
+                                  {s.value}
+                                </div>
+                                <div
+                                  className="mt-1 text-[9px] font-bold uppercase tracking-[0.18em]"
+                                  style={{ color: c.ink, opacity: 0.6 }}
+                                >
+                                  {s.label}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div
+                        className="absolute bottom-0 left-0 h-1 w-0 transition-all duration-500 group-hover/card:w-full"
+                        style={{ background: c.ink }}
+                      />
+                    </button>
+                  </li>
+                ))}
+                {/* End cap node */}
+                <li className="relative flex items-center pr-8">
+                  <div className="flex flex-col items-center gap-2" style={{ marginTop: "-24px" }}>
+                    <div className="flex size-14 items-center justify-center rounded-full border-2 border-dashed border-black/40 bg-[#FAF8F4] font-black text-black/40">
+                      ✦
+                    </div>
+                    <span
+                      className="font-mono text-[9px] font-bold uppercase tracking-[0.3em] text-black/50"
+                      style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                    >
+                      End
+                    </span>
+                  </div>
                 </li>
-              ))}
-            </ul>
+              </ul>
+            </div>
           </motion.div>
         ) : (
           <motion.div
