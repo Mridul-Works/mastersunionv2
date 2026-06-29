@@ -51,11 +51,20 @@ export default function TenThings() {
       style={{ height: `${CHAPTERS.length * 100}vh`, fontFamily: "'Inter', system-ui, sans-serif" }}
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden">
-        {/* Eyebrow top-center */}
-        <div className="pointer-events-none absolute left-0 right-0 top-6 z-30 text-center">
-          <p className="text-[10px] uppercase tracking-[0.32em] text-white/50">
-            Cut the marketing — 10 things you should know
-          </p>
+        {/* Section headline */}
+        <div className="pointer-events-none absolute left-0 right-0 top-7 z-30 flex flex-col items-center text-center">
+          <span
+            className="text-[11px] uppercase tracking-[0.35em] text-white/50"
+            style={{ fontFamily: "'JetBrains Mono', monospace" }}
+          >
+            Cut the marketing
+          </span>
+          <h3
+            className="mt-2 max-w-[90vw] text-[clamp(22px,3.2vw,42px)] font-black uppercase leading-[1.05] tracking-tight text-white"
+            style={{ letterSpacing: "-0.02em" }}
+          >
+            Here are 10 things about Masters' Union
+          </h3>
         </div>
 
         {/* Counter top-left */}
