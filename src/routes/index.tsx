@@ -259,8 +259,7 @@ function Index() {
                   />
                 </div>
                 <span
-                  className="hidden text-[10px] uppercase tracking-[0.2em] text-white/70 md:block"
-                  style={{ fontFamily: "Inter, sans-serif" }}
+                  className="hidden font-['JetBrains_Mono'] text-[10px] uppercase tracking-[0.22em] text-white/70 md:block"
                 >
                   Gurugram Campus
                 </span>
@@ -270,11 +269,10 @@ function Index() {
               <div className="mb-12 grid grid-cols-12 items-end gap-8 md:mb-20">
                 <div className="col-span-12 md:col-span-9 lg:col-span-8">
                   <h1
-                    className="text-7xl italic leading-[0.8] tracking-tighter text-white md:text-[110px] lg:text-[130px]"
-                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
+                    className="font-['Inter'] text-7xl font-extrabold uppercase leading-[0.85] tracking-tighter text-white md:text-[120px] lg:text-[140px]"
                   >
                     Learn by <br />
-                    <span className="mt-2 block not-italic md:ml-24">Doing.</span>
+                    <span className="mt-2 block md:ml-24">Doing.</span>
                   </h1>
                 </div>
 
@@ -286,10 +284,9 @@ function Index() {
                     className="group flex cursor-pointer flex-col items-center gap-4 focus:outline-none md:items-end"
                   >
                     <div className="relative flex size-24 items-center justify-center">
-                      <div className="absolute inset-0 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm transition-transform duration-500 ease-out group-hover:scale-110" />
+                      <div className="absolute inset-0 rounded-full border border-white/30 bg-white/5 backdrop-blur-sm transition-transform duration-500 ease-out group-hover:scale-110" />
                       <div
-                        className="relative flex size-14 items-center justify-center rounded-full shadow-lg transition-transform duration-300 group-hover:scale-90"
-                        style={{ background: "linear-gradient(91deg, rgb(57,181,215) -6.14%, rgb(247,213,68) 47.02%, rgb(227,131,48) 99.71%)" }}
+                        className="relative flex size-14 items-center justify-center rounded-full bg-[#FF4D00] shadow-lg transition-transform duration-300 group-hover:scale-90"
                       >
                         <svg
                           className="size-5 fill-current text-white translate-x-0.5"
@@ -301,14 +298,12 @@ function Index() {
                     </div>
                     <div className="text-center md:text-right">
                       <span
-                        className="block text-xs font-semibold uppercase tracking-widest text-white"
-                        style={{ fontFamily: "Inter, sans-serif" }}
+                        className="block font-['JetBrains_Mono'] text-[11px] font-bold uppercase tracking-[0.22em] text-white"
                       >
                         Play Experience
                       </span>
                       <span
-                        className="mt-1 block text-[9px] uppercase tracking-widest text-white/60"
-                        style={{ fontFamily: "Inter, sans-serif" }}
+                        className="mt-1 block font-['JetBrains_Mono'] text-[9px] uppercase tracking-[0.22em] text-white/60"
                       >
                         02:45 Mini Film
                       </span>
@@ -318,29 +313,28 @@ function Index() {
               </div>
 
               {/* Footer */}
-              <div className="flex items-end justify-between border-t border-white/10 pt-8">
+              <div className="flex items-end justify-between border-t border-white/15 pt-8">
                 <p
-                  className="hidden max-w-[280px] text-[11px] uppercase leading-relaxed tracking-wider text-white md:block"
-                  style={{ fontFamily: "Inter, sans-serif" }}
+                  className="hidden max-w-[320px] font-['JetBrains_Mono'] text-[10px] uppercase leading-relaxed tracking-[0.22em] text-white md:block"
                 >
                   A new-age business school where industry leaders mentor the next generation.
                 </p>
 
                 <div className="mx-auto flex flex-col items-center gap-4 md:mx-0">
                   <span
-                    className="text-[9px] font-bold uppercase tracking-[0.3em] text-white"
-                    style={{ fontFamily: "Inter, sans-serif" }}
+                    className="font-['JetBrains_Mono'] text-[9px] font-bold uppercase tracking-[0.3em] text-white"
                   >
                     Scroll
                   </span>
                   <div className="relative h-12 w-px overflow-hidden bg-white/20">
-                    <div className="mu-scroll-line absolute left-0 top-0 h-1/2 w-full bg-white" />
+                    <div className="mu-scroll-line absolute left-0 top-0 h-1/2 w-full bg-[#FF4D00]" />
                   </div>
                 </div>
 
               </div>
             </div>
           </div>
+
 
 
           {/* Pause overlay button when playing */}
