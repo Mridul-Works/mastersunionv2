@@ -241,18 +241,11 @@ function Index() {
               {/* Top branding */}
               <div className="flex items-start justify-between">
                 <div className="flex flex-col">
-                  <span
-                    className="text-[10px] font-medium uppercase tracking-[0.3em] text-[#2A312A]/80"
-                    style={{ fontFamily: "Inter, sans-serif" }}
-                  >
-                    Established 2019
-                  </span>
-                  <h2
-                    className="mt-1 text-lg font-medium uppercase tracking-tight text-[#2A312A]"
-                    style={{ fontFamily: "Inter, sans-serif" }}
-                  >
-                    Masters' Union
-                  </h2>
+                  <img
+                    src={logoAsset.url}
+                    alt="Masters' Union"
+                    className="h-8 w-auto md:h-10"
+                  />
                 </div>
                 <span
                   className="hidden text-[10px] uppercase tracking-[0.2em] text-[#2A312A]/60 md:block"
