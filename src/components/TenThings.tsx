@@ -144,41 +144,11 @@ export default function TenThings() {
 
           {/* Slide */}
           <AnimatePresence mode="popLayout" custom={direction}>
-            <Slide key={project.n} project={project} direction={direction} index={index} />
+            <Slide key={project.n} project={project} direction={direction} index={index} onPrev={() => go(-1)} onNext={() => go(1)} />
           </AnimatePresence>
 
-          {/* Bottom nav: tag + arrows */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-8 z-30 flex flex-col items-center gap-5 px-6 md:px-10">
-            <div className="pointer-events-auto flex w-full items-center justify-between">
-              <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-white/70">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-white" />
-                <span className="min-w-[80px] text-center">{project.tag}</span>
-              </div>
-
-              <div className="flex items-center gap-1 rounded-full border border-white/10 bg-white/10 px-2 py-1.5 backdrop-blur-md">
-                <button
-                  type="button"
-                  onClick={() => go(-1)}
-                  aria-label="Previous chapter"
-                  className="group flex items-center gap-1.5 rounded-full px-2 py-1 text-white/80 transition-all hover:bg-white/10 hover:text-white"
-                >
-                  <GradientArrow direction="left" className="size-5" />
-                  <span className="hidden text-[10px] font-medium uppercase tracking-wider sm:inline">Prev</span>
-                </button>
-                <span className="h-3 w-px bg-white/15" />
-                <button
-                  type="button"
-                  onClick={() => go(1)}
-                  aria-label="Next chapter"
-                  className="group flex items-center gap-1.5 rounded-full px-2 py-1 text-white/80 transition-all hover:bg-white/10 hover:text-white"
-                >
-                  <span className="hidden text-[10px] font-medium uppercase tracking-wider sm:inline">Next</span>
-                  <GradientArrow direction="right" className="size-5" />
-                </button>
-              </div>
-
-            </div>
-
+          {/* Bottom progress dots */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-8 z-30 flex justify-center px-6 md:px-10">
             <div className="flex items-center gap-2">
               {CHAPTERS.map((p, i) => (
                 <button
@@ -205,10 +175,14 @@ function Slide({
   project,
   direction,
   index,
+  onPrev,
+  onNext,
 }: {
   project: (typeof CHAPTERS)[number];
   direction: 1 | -1;
   index: number;
+  onPrev: () => void;
+  onNext: () => void;
 }) {
   return (
     <motion.div
@@ -271,15 +245,36 @@ function Slide({
       <div className="relative z-10 flex items-end px-6 pb-32 md:items-center md:px-12 md:pb-0">
         <div className="max-w-[560px]">
           <StaggeredText delay={0.15} k={`meta-${index}`}>
-            <p
-              className="text-[11px] uppercase tracking-[0.2em] text-white/60"
-              style={{ fontFamily: "'JetBrains Mono', monospace" }}
-            >
-              <span className="text-neutral-400">{String(index + 1).padStart(2, "0")}</span>
-              <span className="mx-2 text-white/25">·</span>
-              {project.tag}
-            </p>
+            <div className="flex items-center gap-3">
+              <p
+                className="text-[11px] uppercase tracking-[0.2em] text-white/60"
+                style={{ fontFamily: "'JetBrains Mono', monospace" }}
+              >
+                <span className="text-neutral-400">{String(index + 1).padStart(2, "0")}</span>
+                <span className="mx-2 text-white/25">·</span>
+                {project.tag}
+              </p>
+              <div className="flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-1.5 py-1 backdrop-blur-md">
+                <button
+                  type="button"
+                  onClick={onPrev}
+                  aria-label="Previous chapter"
+                  className="flex size-6 items-center justify-center rounded-full text-white/80 transition hover:bg-white/10 hover:text-white"
+                >
+                  <GradientArrow direction="left" className="size-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={onNext}
+                  aria-label="Next chapter"
+                  className="flex size-6 items-center justify-center rounded-full text-white/80 transition hover:bg-white/10 hover:text-white"
+                >
+                  <GradientArrow direction="right" className="size-4" />
+                </button>
+              </div>
+            </div>
           </StaggeredText>
+
 
           <StaggeredText delay={0.25} k={`title-${index}`}>
             <h2
