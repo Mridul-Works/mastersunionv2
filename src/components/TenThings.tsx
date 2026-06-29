@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
+import { useRef } from "react";
+import { ArrowUpRight, ArrowLeft, ArrowRight } from "lucide-react";
 import { CHAPTERS } from "./chapters";
 
 const ACCENTS = [
@@ -10,6 +11,29 @@ const ACCENTS = [
 const FONT = "'Inter', system-ui, sans-serif";
 
 export default function TenThings() {
+  const railRef = useRef<HTMLDivElement>(null);
+
+  const scrollBy = (dir: 1 | -1) => {
+    const el = railRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * (el.clientWidth * 0.8), behavior: "smooth" });
+  };
+
+  // Translate vertical wheel into horizontal scroll on the rail.
+  const onWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+    const el = railRef.current;
+    if (!el) return;
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+      const maxScroll = el.scrollWidth - el.clientWidth;
+      const atStart = el.scrollLeft <= 0 && e.deltaY < 0;
+      const atEnd = el.scrollLeft >= maxScroll - 1 && e.deltaY > 0;
+      if (!atStart && !atEnd) {
+        e.preventDefault();
+        el.scrollLeft += e.deltaY;
+      }
+    }
+  };
+
   return (
     <section className="relative bg-[#FAF8F4] py-20 sm:py-28" style={{ fontFamily: FONT }}>
       {/* Heading */}
@@ -27,16 +51,31 @@ export default function TenThings() {
               No glossy brochure copy. Ten chapters. Scroll through, tap any to open the full story.
             </p>
           </div>
-          <div className="hidden sm:flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.3em] text-black/50">
-            <span>scroll</span>
-            <span className="h-px w-12 bg-black/30" />
-            <span>→</span>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => scrollBy(-1)}
+              aria-label="Scroll left"
+              className="flex size-11 items-center justify-center border border-black/20 bg-white text-black transition-colors hover:bg-black hover:text-white"
+            >
+              <ArrowLeft className="size-4" />
+            </button>
+            <button
+              onClick={() => scrollBy(1)}
+              aria-label="Scroll right"
+              className="flex size-11 items-center justify-center border border-black bg-black text-white transition-colors hover:bg-white hover:text-black"
+            >
+              <ArrowRight className="size-4" />
+            </button>
           </div>
         </div>
       </div>
 
       {/* Horizontal scroll rail */}
-      <div className="mt-14 overflow-x-auto pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div
+        ref={railRef}
+        onWheel={onWheel}
+        className="mt-14 overflow-x-auto overflow-y-hidden pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
         <ul className="flex w-max gap-5 px-5 sm:px-8 snap-x snap-mandatory">
           {CHAPTERS.map((c, i) => {
             const accent = ACCENTS[i] ?? "#0F172A";
@@ -44,15 +83,18 @@ export default function TenThings() {
               <li key={c.n} className="snap-start">
                 <Link
                   to={c.route}
-                  className="group relative flex h-[460px] w-[320px] flex-col overflow-hidden border border-black/10 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-black hover:shadow-[12px_12px_0_0_#0F172A]"
+                  className="group relative flex h-[480px] w-[340px] flex-col overflow-hidden border border-black/10 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-black hover:shadow-[12px_12px_0_0_#0F172A]"
                   style={{ fontFamily: FONT }}
                 >
                   {/* Image */}
-                  <div className="relative h-[200px] w-full overflow-hidden">
+                  <div className="relative h-[220px] w-full overflow-hidden">
                     <img
                       src={c.image}
                       alt={c.headline}
-                      className="h-full w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-105"
+                      loading="lazy"
+                      width={1024}
+                      height={1024}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <span
                       className="absolute left-0 top-0 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.25em] text-white"
@@ -71,22 +113,20 @@ export default function TenThings() {
                       {c.headline}
                     </h3>
 
-                    <div className="mt-4">
-                      <div className="flex items-end justify-between border-t border-black/10 pt-4">
-                        <div>
-                          <div className="text-2xl font-black leading-none text-black">{c.stat}</div>
-                          <div className="mt-1 text-[9px] font-bold uppercase tracking-[0.2em] text-black/50">
-                            {c.label}
-                          </div>
+                    <div className="mt-4 flex items-end justify-between border-t border-black/10 pt-4">
+                      <div>
+                        <div className="text-2xl font-black leading-none text-black">{c.stat}</div>
+                        <div className="mt-1 text-[9px] font-bold uppercase tracking-[0.2em] text-black/50">
+                          {c.label}
                         </div>
-                        <span
-                          className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.2em] transition-colors"
-                          style={{ color: accent }}
-                        >
-                          {c.cta}
-                          <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                        </span>
                       </div>
+                      <span
+                        className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-[0.2em] transition-colors"
+                        style={{ color: accent }}
+                      >
+                        {c.cta}
+                        <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                      </span>
                     </div>
                   </div>
 
@@ -102,7 +142,7 @@ export default function TenThings() {
 
           {/* End cap */}
           <li className="snap-start">
-            <div className="flex h-[460px] w-[260px] flex-col items-start justify-between border border-black/10 bg-black p-6 text-white">
+            <div className="flex h-[480px] w-[280px] flex-col items-start justify-between border border-black/10 bg-black p-6 text-white">
               <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/60">End of index</span>
               <div>
                 <h3 className="text-2xl font-black leading-[1.05] uppercase tracking-tight">
