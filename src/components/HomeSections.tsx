@@ -27,7 +27,7 @@ const PEDAGOGY = [
 
 export default function HomeSections() {
   return (
-    <div className="bg-white text-black" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>
+    <div className="bg-white text-black" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       {/* NEWS */}
       <section id="news" className="border-t border-black/10">
         <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10 md:py-28">
@@ -149,7 +149,7 @@ export default function HomeSections() {
             </div>
             <div className="flex flex-col justify-center p-8 md:col-span-7 md:p-12 lg:p-16">
               <Quote className="mb-5 size-8 text-white/70" />
-              <h2 className="text-3xl leading-[1.05] tracking-tight text-white md:text-[44px] lg:text-[52px]" style={{ fontFamily: "'Fraunces', serif" }}>
+              <h2 className="text-3xl leading-[1.05] tracking-tight text-white md:text-[44px] lg:text-[52px]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
                 "If education was working, we wouldn't have built <span className="italic text-white">Masters' Union.</span>"
               </h2>
               <div className="mt-8 flex items-center gap-3">
@@ -188,7 +188,7 @@ export default function HomeSections() {
                   </div>
 
                   <div className="mt-12">
-                    <h3 className="text-3xl leading-[1.05] tracking-tight text-black md:text-[34px]" style={{ fontFamily: "'Fraunces', serif" }}>
+                    <h3 className="text-3xl leading-[1.05] tracking-tight text-black md:text-[34px]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
                       {p.title}
                     </h3>
                     <p className="mt-5 text-[14px] leading-relaxed text-black/65">{p.body}</p>
@@ -215,7 +215,7 @@ export default function HomeSections() {
             <div className="relative grid items-center gap-12 md:grid-cols-12">
               <div className="md:col-span-8">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/70">PGP · Cohort 2026</p>
-                <h2 className="mt-6 text-5xl leading-[0.95] tracking-tight md:text-[88px]" style={{ fontFamily: "'Fraunces', serif" }}>
+                <h2 className="mt-6 text-5xl leading-[0.95] tracking-tight md:text-[88px]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
                   Apply to <span className="italic">Masters' Union.</span>
                 </h2>
                 <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-white/75">
@@ -226,7 +226,7 @@ export default function HomeSections() {
               <div className="md:col-span-4">
                 <div className="rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur-xl">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/60">Next deadline</p>
-                  <p className="mt-3 text-3xl tracking-tight" style={{ fontFamily: "'Fraunces', serif" }}>15 Aug 2026</p>
+                  <p className="mt-3 text-3xl tracking-tight" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>15 Aug 2026</p>
                   <p className="mt-2 text-[12px] text-white/60">Round 1 · Early admit + scholarship</p>
                   <button type="button" className="mt-6 flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-black transition-transform hover:scale-[1.02]">
                     Start application <Send className="size-3.5" />
@@ -246,7 +246,7 @@ export default function HomeSections() {
         <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10">
           <div className="grid gap-12 md:grid-cols-12">
             <div className="md:col-span-5">
-              <p className="text-3xl leading-tight tracking-tight md:text-4xl" style={{ fontFamily: "'Fraunces', serif" }}>
+              <p className="text-3xl leading-tight tracking-tight md:text-4xl" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
                 Masters' Union — <span className="italic text-white/70">business education,<br />rebuilt for the next decade.</span>
               </p>
               <p className="mt-8 max-w-sm text-[13px] leading-relaxed text-white/55">
@@ -290,7 +290,7 @@ function SectionHead({ eyebrow, title, lede, icon: Icon }: { eyebrow: string; ti
           {Icon && <Icon className="size-4 text-black/70" />}
           <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-black/50">{eyebrow}</p>
         </div>
-        <h2 className="mt-5 text-5xl leading-[0.95] tracking-tight md:text-7xl" style={{ fontFamily: "'Fraunces', serif" }}>
+        <h2 className="mt-5 text-5xl leading-[0.95] tracking-tight md:text-7xl" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
           {title}
         </h2>
       </div>
