@@ -268,11 +268,11 @@ function Slide({
 
       </div>
 
-      <div className="relative z-10 flex items-end px-5 pb-20 md:items-center md:px-8 md:pb-0">
-        <div className="max-w-[360px]">
+      <div className="relative z-10 flex items-end px-6 pb-24 md:items-center md:px-12 md:pb-0">
+        <div className="max-w-[460px]">
           <StaggeredText delay={0.15} k={`meta-${index}`}>
             <p
-              className="text-[9px] uppercase tracking-[0.2em] text-white/60"
+              className="text-[11px] uppercase tracking-[0.2em] text-white/60"
               style={{ fontFamily: "'JetBrains Mono', monospace" }}
             >
               <span className="text-neutral-400">{String(index + 1).padStart(2, "0")}</span>
@@ -283,9 +283,9 @@ function Slide({
 
           <StaggeredText delay={0.25} k={`title-${index}`}>
             <h2
-              className="mt-2 font-black uppercase text-white"
+              className="mt-3 font-black uppercase text-white"
               style={{
-                fontSize: "clamp(16px, 2.2vw, 24px)",
+                fontSize: "clamp(24px, 3.5vw, 44px)",
                 lineHeight: 1.05,
                 letterSpacing: "-0.02em",
               }}
@@ -295,18 +295,18 @@ function Slide({
           </StaggeredText>
 
           <StaggeredText delay={0.46} k={`desc-${index}`}>
-            <p className="mt-3 text-[12px] text-white/70" style={{ lineHeight: 1.5 }}>
+            <p className="mt-4 text-[14px] text-white/70" style={{ lineHeight: 1.55 }}>
               {project.body}
             </p>
           </StaggeredText>
 
           <StaggeredText delay={0.56} k={`stats-${index}`}>
-            <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-2 border-t border-white/10 pt-3">
+            <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-3 border-t border-white/10 pt-4">
               {project.stats.slice(0, 3).map((s) => (
                 <li key={s.label}>
-                  <div className="text-base font-black tracking-tighter text-white">{s.value}</div>
+                  <div className="text-2xl font-black tracking-tighter text-white">{s.value}</div>
                   <div
-                    className="mt-0.5 text-[9px] uppercase tracking-[0.18em] text-white/50"
+                    className="mt-0.5 text-[10px] uppercase tracking-[0.18em] text-white/50"
                     style={{ fontFamily: "'JetBrains Mono', monospace" }}
                   >
                     {s.label}
@@ -317,6 +317,7 @@ function Slide({
           </StaggeredText>
         </div>
       </div>
+
     </motion.div>
   );
 }
