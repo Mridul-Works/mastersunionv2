@@ -100,7 +100,7 @@ export default function TenThings() {
 
           {/* Counter top-left */}
           <div
-            className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[10px] tracking-[0.15em] text-neutral-400 md:left-10 md:top-10"
+            className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[12px] tracking-[0.15em] text-neutral-400 md:left-10 md:top-10"
             style={{ fontFamily: "'JetBrains Mono', monospace", textShadow: "0 0 24px rgba(255,255,255,0.10)" }}
           >
             <AnimatePresence mode="popLayout">
@@ -118,6 +118,7 @@ export default function TenThings() {
             <span className="mx-1 text-neutral-600">/</span>
             <span className="text-neutral-600">{String(CHAPTERS.length).padStart(2, "0")}</span>
           </div>
+
 
           {/* Giant ghost numeral */}
           <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
