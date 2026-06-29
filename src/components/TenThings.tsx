@@ -207,12 +207,13 @@ function Slide({
 }) {
   return (
     <motion.div
-      className="absolute inset-0 z-10 grid grid-cols-1 md:grid-cols-[1.1fr_1fr]"
+      className="absolute inset-0 z-10 grid grid-cols-1 md:grid-cols-[1.3fr_1fr]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
+
       <div className="relative h-full w-full overflow-hidden">
         <motion.div
           key={project.image}
