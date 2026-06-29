@@ -212,12 +212,12 @@ function Index() {
             aria-hidden
             className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${playing ? "opacity-0" : "opacity-100"}`}
           />
-          {/* Sophisticated overlay tints (hidden when playing) */}
+          {/* Dark editorial overlay tints (hidden when playing) */}
           <div
             className={`pointer-events-none absolute inset-0 transition-opacity duration-700 ${playing ? "opacity-0" : "opacity-100"}`}
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-[#F1EFE7]/60 via-transparent to-[#F1EFE7]/80" />
-            <div className="absolute inset-0 bg-[#A3B18A]/10 mix-blend-multiply" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#F1EFE7]/30 via-[#2A312A]/40 to-[#1A211A]/90" />
+            <div className="absolute inset-0 bg-[#2A312A]/10 mix-blend-multiply" />
           </div>
 
           {/* Video (no autoplay) */}
@@ -244,11 +244,11 @@ function Index() {
                   <img
                     src={logoAsset.url}
                     alt="Masters' Union"
-                    className="h-8 w-auto md:h-10"
+                    className="h-8 w-auto md:h-10 brightness-0 invert"
                   />
                 </div>
                 <span
-                  className="hidden text-[10px] uppercase tracking-[0.2em] text-[#2A312A]/60 md:block"
+                  className="hidden text-[10px] uppercase tracking-[0.2em] text-white/70 md:block"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
                   Gurugram Campus
@@ -259,7 +259,7 @@ function Index() {
               <div className="mb-12 grid grid-cols-12 items-end gap-8 md:mb-20">
                 <div className="col-span-12 md:col-span-9 lg:col-span-8">
                   <h1
-                    className="text-7xl italic leading-[0.8] tracking-tighter text-[#2A312A] md:text-[110px] lg:text-[130px]"
+                    className="text-7xl italic leading-[0.8] tracking-tighter text-white md:text-[110px] lg:text-[130px]"
                     style={{ fontFamily: "'Cormorant Garamond', serif" }}
                   >
                     Learn by <br />
@@ -275,10 +275,10 @@ function Index() {
                     className="group flex cursor-pointer flex-col items-center gap-4 focus:outline-none md:items-end"
                   >
                     <div className="relative flex size-24 items-center justify-center">
-                      <div className="absolute inset-0 rounded-full border border-[#2A312A]/10 bg-[#2A312A]/5 backdrop-blur-sm transition-transform duration-500 ease-out group-hover:scale-110" />
-                      <div className="relative flex size-14 items-center justify-center rounded-full bg-[#2A312A] shadow-lg transition-transform duration-300 group-hover:scale-90">
+                      <div className="absolute inset-0 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm transition-transform duration-500 ease-out group-hover:scale-110" />
+                      <div className="relative flex size-14 items-center justify-center rounded-full bg-white shadow-lg transition-transform duration-300 group-hover:scale-90">
                         <svg
-                          className="size-5 translate-x-0.5 fill-current text-[#F5F2E8]"
+                          className="size-5 translate-x-0.5 fill-current text-[#2A312A]"
                           viewBox="0 0 24 24"
                         >
                           <path d="M8 5v14l11-7z" />
@@ -287,13 +287,13 @@ function Index() {
                     </div>
                     <div className="text-center md:text-right">
                       <span
-                        className="block text-xs font-semibold uppercase tracking-widest text-[#2A312A]"
+                        className="block text-xs font-semibold uppercase tracking-widest text-white"
                         style={{ fontFamily: "Inter, sans-serif" }}
                       >
                         Play Experience
                       </span>
                       <span
-                        className="mt-1 block text-[9px] uppercase tracking-widest text-[#2A312A]/60"
+                        className="mt-1 block text-[9px] uppercase tracking-widest text-white/60"
                         style={{ fontFamily: "Inter, sans-serif" }}
                       >
                         02:45 Mini Film
@@ -304,9 +304,9 @@ function Index() {
               </div>
 
               {/* Footer */}
-              <div className="flex items-end justify-between border-t border-[#2A312A]/10 pt-8">
+              <div className="flex items-end justify-between border-t border-white/10 pt-8">
                 <p
-                  className="hidden max-w-[240px] text-[11px] uppercase leading-relaxed tracking-wider text-[#2A312A]/70 md:block"
+                  className="hidden max-w-[280px] text-[11px] uppercase leading-relaxed tracking-wider text-white md:block"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
                   A new-age business school where industry leaders mentor the next generation.
@@ -314,27 +314,27 @@ function Index() {
 
                 <div className="mx-auto flex flex-col items-center gap-4 md:mx-0">
                   <span
-                    className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#2A312A]"
+                    className="text-[9px] font-bold uppercase tracking-[0.3em] text-white"
                     style={{ fontFamily: "Inter, sans-serif" }}
                   >
                     Scroll
                   </span>
-                  <div className="relative h-12 w-px overflow-hidden bg-[#2A312A]/20">
-                    <div className="mu-scroll-line absolute left-0 top-0 h-1/2 w-full bg-[#2A312A]" />
+                  <div className="relative h-12 w-px overflow-hidden bg-white/20">
+                    <div className="mu-scroll-line absolute left-0 top-0 h-1/2 w-full bg-white" />
                   </div>
                 </div>
 
                 <div className="hidden flex-col items-end md:flex">
                   <span
-                    className="mb-1 text-[10px] font-semibold tracking-[0.1em] text-[#2A312A]"
+                    className="mb-1 text-[10px] font-semibold tracking-[0.1em] text-white"
                     style={{ fontFamily: "Inter, sans-serif" }}
                   >
                     Cohort 2026
                   </span>
                   <div className="flex gap-2">
-                    <span className="size-1.5 rounded-full bg-[#2A312A]" />
-                    <span className="size-1.5 rounded-full bg-[#2A312A]/20" />
-                    <span className="size-1.5 rounded-full bg-[#2A312A]/20" />
+                    <span className="size-1.5 rounded-full bg-white" />
+                    <span className="size-1.5 rounded-full bg-white/30" />
+                    <span className="size-1.5 rounded-full bg-white/30" />
                   </div>
                 </div>
               </div>
