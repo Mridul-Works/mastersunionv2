@@ -93,7 +93,6 @@ export default function TenThings() {
           </div>
         </div>
       </div>
-      </div>
 
       {/* Card widget — manual prev/next */}
       <div className="relative bg-[#0A0A0A]">
