@@ -148,8 +148,8 @@ export default function TenThings() {
           </AnimatePresence>
 
           {/* Bottom nav: tag + arrows */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-8 z-30 flex flex-col items-center gap-5 px-6">
-            <div className="pointer-events-auto flex w-full max-w-[620px] items-center justify-between">
+          <div className="pointer-events-none absolute inset-x-0 bottom-8 z-30 flex flex-col items-center gap-5 px-6 md:px-10">
+            <div className="pointer-events-auto flex w-full items-center justify-between">
               <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-white/70">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-white" />
                 <span className="min-w-[80px] text-center">{project.tag}</span>
