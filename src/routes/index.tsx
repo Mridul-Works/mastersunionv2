@@ -148,7 +148,7 @@ function Index() {
   };
 
   return (
-    <main className="min-h-screen bg-[#FAF8F4]">
+    <main className="min-h-screen bg-white">
       {/* NAV */}
       <header
         className={`fixed inset-x-0 top-0 z-[100] px-4 pt-3 sm:px-6 sm:pt-4 transition-all duration-500 ${
