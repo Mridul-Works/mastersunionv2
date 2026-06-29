@@ -11,10 +11,11 @@ const NEWS = [
   { tag: "Faculty", month: "Mar", day: "29", time: "10:00 AM", title: "Kunal Shah joins as Distinguished Practitioner-in-Residence", source: "ET Now" },
 ];
 
-const DEADLINES = [
-  { round: "Round 1", date: "15 Aug 2026", note: "Early admit · highest scholarship pool", status: "Open" },
-  { round: "Round 2", date: "30 Sep 2026", note: "Standard pool · interviews rolling", status: "Open" },
-  { round: "Round 3", date: "15 Nov 2026", note: "Final round · limited seats", status: "Soon" },
+const PROGRAMS = [
+  { image: prog01, mode: "ON CAMPUS", duration: "2 YEARS", title: "PGP in Technology & Business Management", round: "Round 1 Applications Open" },
+  { image: prog02, mode: "ON CAMPUS", duration: "1 YEAR", title: "PGP in Quantitative Finance & Business", round: "Round 2 Applications Open" },
+  { image: prog03, mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Technology & Business Management", round: "Round 4 Applications Open" },
+  { image: prog04, mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Psychology & Marketing", round: "Round 4 Applications Open" },
 ];
 
 const PEDAGOGY = [
