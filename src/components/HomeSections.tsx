@@ -266,7 +266,7 @@ export default function HomeSections() {
               </p>
               <div className="mt-8 flex items-center gap-3">
                 {[Instagram, Linkedin, Youtube, Twitter].map((Icon, i) => (
-                  <a key={i} href="#" className="flex size-10 items-center justify-center rounded-full border border-white/15 text-white/60 transition-colors hover:border-white hover:text-white">
+                  <a key={i} href="#" className="flex size-10 items-center justify-center rounded-none border border-white/15 text-white/60 transition-colors hover:border-white hover:text-white">
                     <Icon className="size-4" />
                   </a>
                 ))}
