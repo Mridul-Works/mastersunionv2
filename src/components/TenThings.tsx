@@ -1,460 +1,284 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, X } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
-import { CHAPTERS, type Chapter } from "./chapters";
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import { CHAPTERS } from "./chapters";
 
-const FONT = "'Inter', system-ui, sans-serif";
+const EASE = [0.7, 0, 0.2, 1] as const;
+const SLIDE_DURATION = 0.95;
 
 export default function TenThings() {
-  const railRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const [openIdx, setOpenIdx] = useState<number | null>(null);
+  const [index, setIndex] = useState(0);
+  const [direction, setDirection] = useState<1 | -1>(1);
+  const lastIdx = useRef(0);
 
-  const scrollBy = (dir: 1 | -1) => {
-    const el = railRef.current;
-    if (!el) return;
-    el.scrollBy({ left: dir * (el.clientWidth * 0.8), behavior: "smooth" });
-  };
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
 
-  const onWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-    const el = railRef.current;
-    if (!el) return;
-    if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-      const maxScroll = el.scrollWidth - el.clientWidth;
-      const atStart = el.scrollLeft <= 0 && e.deltaY < 0;
-      const atEnd = el.scrollLeft >= maxScroll - 1 && e.deltaY > 0;
-      if (!atStart && !atEnd) {
-        e.preventDefault();
-        el.scrollLeft += e.deltaY;
+  // Map progress -> slide index. We use (n) slides over a (n)-step track.
+  useEffect(() => {
+    const unsub = scrollYProgress.on("change", (p) => {
+      const raw = Math.floor(p * CHAPTERS.length);
+      const next = Math.max(0, Math.min(CHAPTERS.length - 1, raw));
+      if (next !== lastIdx.current) {
+        setDirection(next > lastIdx.current ? 1 : -1);
+        lastIdx.current = next;
+        setIndex(next);
       }
-    }
+    });
+    return () => unsub();
+  }, [scrollYProgress]);
+
+  const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+  const goTo = (i: number) => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const totalScroll = el.offsetHeight - window.innerHeight;
+    const targetWithin = (i / CHAPTERS.length) * totalScroll + totalScroll / CHAPTERS.length / 2;
+    const targetY = window.scrollY + rect.top + targetWithin;
+    window.scrollTo({ top: targetY, behavior: "smooth" });
   };
 
-  const handleClose = () => {
-    setOpenIdx(null);
-    requestAnimationFrame(() => {
-      sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  };
+  const project = CHAPTERS[index];
 
   return (
-    <section ref={sectionRef} className="relative bg-[#FAF8F4] py-20 sm:py-28" style={{ fontFamily: FONT }}>
-      <div className="mx-auto max-w-[1280px] px-5 sm:px-8">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <div className="mb-3 flex items-center gap-3">
-              <span className="h-px w-10 bg-black" />
-              <span className="text-[10px] font-black tracking-[0.32em] text-black">CUT THE MARKETING</span>
-            </div>
-            <h2 className="max-w-3xl text-[clamp(2rem,5vw,3.75rem)] font-black leading-[1] tracking-tight text-black uppercase">
-              10 things you should know about Masters&apos; Union.
-            </h2>
-            <p className="mt-5 max-w-xl text-[13px] font-medium tracking-wide text-black/60">
-              No glossy brochure copy. Ten chapters. Tap any card to open the full dossier.
-            </p>
-          </div>
-          {openIdx === null && (
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() => scrollBy(-1)}
-                aria-label="Scroll left"
-                className="flex size-11 items-center justify-center border border-black/20 bg-white text-black transition-colors hover:bg-black hover:text-white"
-              >
-                <ArrowLeft className="size-4" />
-              </button>
-              <button
-                onClick={() => scrollBy(1)}
-                aria-label="Scroll right"
-                className="flex size-11 items-center justify-center border border-black bg-black text-white transition-colors hover:bg-white hover:text-black"
-              >
-                <ArrowRight className="size-4" />
-              </button>
-            </div>
-          )}
+    <section
+      ref={sectionRef}
+      className="relative bg-[#0A0A0A] text-white"
+      style={{ height: `${CHAPTERS.length * 100}vh`, fontFamily: "'Inter', system-ui, sans-serif" }}
+    >
+      <div className="sticky top-0 h-screen w-full overflow-hidden">
+        {/* Eyebrow top-center */}
+        <div className="pointer-events-none absolute left-0 right-0 top-6 z-30 text-center">
+          <p className="text-[10px] uppercase tracking-[0.32em] text-white/50">
+            Cut the marketing — 10 things you should know
+          </p>
         </div>
+
+        {/* Counter top-left */}
+        <div
+          className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[12px] tracking-[0.15em] text-white/70 md:left-10"
+          style={{ fontFamily: "'JetBrains Mono', monospace" }}
+        >
+          <AnimatePresence mode="popLayout">
+            <motion.span
+              key={index}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.4 }}
+              className="inline-block"
+            >
+              {String(index + 1).padStart(2, "0")}
+            </motion.span>
+          </AnimatePresence>
+          <span className="mx-1 text-white/30">/</span>
+          <span className="text-white/30">{String(CHAPTERS.length).padStart(2, "0")}</span>
+        </div>
+
+        {/* Giant ghost numeral */}
+        <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
+          <AnimatePresence mode="popLayout">
+            <motion.span
+              key={`ghost-${index}`}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 0.06, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.6, ease: EASE }}
+              className="select-none font-black tracking-tighter text-white"
+              style={{ fontSize: "clamp(280px, 48vw, 720px)", lineHeight: 1 }}
+            >
+              {String(index + 1).padStart(2, "0")}
+            </motion.span>
+          </AnimatePresence>
+        </div>
+
+        {/* Slide stack */}
+        <AnimatePresence mode="popLayout" custom={direction}>
+          <Slide key={project.n} project={project} direction={direction} index={index} />
+        </AnimatePresence>
+
+        {/* Hint + progress bars bottom-center */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-8 z-30 flex flex-col items-center gap-5 px-6">
+          <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-white/50">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-white" />
+            <span>Scroll</span>
+            <span className="text-white/20">·</span>
+            <span>Drag</span>
+            <span className="text-white/20">·</span>
+            <span>Jump</span>
+          </div>
+          <div className="flex items-center gap-2">
+            {CHAPTERS.map((p, i) => (
+              <button
+                key={p.n}
+                onClick={() => goTo(i)}
+                aria-label={`Go to chapter ${i + 1}`}
+                className="pointer-events-auto group h-[2px] w-9 cursor-pointer overflow-hidden bg-white/15"
+              >
+                <span
+                  className="block h-full origin-left bg-white transition-transform duration-[700ms] ease-out"
+                  style={{ transform: `scaleX(${i === index ? 1 : 0})` }}
+                />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Top-edge scroll progress bar */}
+        <motion.div
+          className="absolute left-0 top-0 z-30 h-px bg-white/70"
+          style={{ width: progressWidth }}
+        />
       </div>
-
-      <AnimatePresence mode="wait" initial={false}>
-        {openIdx === null ? (
-          <motion.div
-            key="rail"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            ref={railRef}
-            data-tenthings-rail
-            onWheel={onWheel}
-            className="mt-14 overflow-x-auto overflow-y-hidden pb-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          >
-            {/* Timeline rail with dotted spine */}
-            <div className="relative w-max px-5 sm:px-8">
-              {/* Continuous dotted timeline line behind nodes */}
-              <div
-                className="pointer-events-none absolute left-0 right-0 top-[56px] h-px"
-                style={{
-                  backgroundImage:
-                    "repeating-linear-gradient(to right, #0F172A 0 6px, transparent 6px 12px)",
-                }}
-              />
-              {/* Start cap */}
-              <div className="pointer-events-none absolute left-5 sm:left-8 top-[52px] flex items-center gap-2">
-                <span className="font-mono text-[9px] font-bold uppercase tracking-[0.3em] text-black/50" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                  Start
-                </span>
-              </div>
-
-              <ul className="flex gap-5 pt-24 snap-x snap-mandatory">
-                {CHAPTERS.map((c, i) => (
-                  <li key={c.n} className="relative snap-start">
-                    {/* Timeline node positioned above card, sitting on the dotted line */}
-                    <div className="pointer-events-none absolute left-1/2 -translate-x-1/2" style={{ top: "-72px" }}>
-                      <div className="flex flex-col items-center gap-2">
-                        <div
-                          className="flex size-14 items-center justify-center rounded-full border-2 border-black bg-[#FAF8F4] font-black text-[15px] tracking-tight text-black transition-transform duration-300 group-hover/card:scale-110"
-                          style={{ boxShadow: `4px 4px 0 0 ${c.bg}` }}
-                        >
-                          {c.n}
-                        </div>
-                        <span
-                          className="font-mono text-[9px] font-bold uppercase tracking-[0.3em] text-black/60"
-                          style={{ fontFamily: "'JetBrains Mono', monospace" }}
-                        >
-                          Ch · {c.n}
-                        </span>
-                      </div>
-                    </div>
-
-                    <button
-                      onClick={() => setOpenIdx(i)}
-                      className="group/card relative flex flex-col overflow-hidden border border-black/10 text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-[12px_12px_0_0_#0F172A]"
-                      style={{ fontFamily: FONT, height: "500px", width: "360px", background: c.bg, color: c.ink }}
-                    >
-                      {/* Watermark numeral */}
-                      <span
-                        className="pointer-events-none absolute -right-4 -top-10 select-none text-[180px] font-black leading-none tracking-tighter"
-                        style={{ color: c.ink, opacity: 0.08, fontFamily: FONT }}
-                      >
-                        {c.n}
-                      </span>
-
-                      {/* Top meta row */}
-                      <div className="relative flex items-center justify-between px-6 pt-6">
-                        <span
-                          className="font-mono text-[10px] font-bold uppercase tracking-[0.3em]"
-                          style={{ color: c.ink, opacity: 0.7, fontFamily: "'JetBrains Mono', monospace" }}
-                        >
-                          {c.n} / 10
-                        </span>
-                        <span
-                          className="border px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.25em]"
-                          style={{ borderColor: c.ink + "55", color: c.ink }}
-                        >
-                          {c.tag}
-                        </span>
-                      </div>
-
-                      {/* Headline */}
-                      <div className="relative flex flex-1 flex-col justify-between px-6 pb-6 pt-10">
-                        <h3
-                          className="text-balance text-[26px] font-black leading-[1.05] tracking-tight"
-                          style={{ color: c.ink }}
-                        >
-                          {c.headline}
-                        </h3>
-
-                        <div className="space-y-5">
-                          <p className="line-clamp-3 text-[13px] leading-[1.55]" style={{ color: c.ink, opacity: 0.75 }}>
-                            {c.body}
-                          </p>
-
-                          {/* Stats row */}
-                          <div className="flex flex-wrap gap-x-5 gap-y-3 border-t pt-4" style={{ borderColor: c.ink + "33" }}>
-                            {c.stats.slice(0, 3).map((s) => (
-                              <div key={s.label}>
-                                <div className="text-xl font-black leading-none tracking-tight" style={{ color: c.ink }}>
-                                  {s.value}
-                                </div>
-                                <div
-                                  className="mt-1 text-[9px] font-bold uppercase tracking-[0.18em]"
-                                  style={{ color: c.ink, opacity: 0.6 }}
-                                >
-                                  {s.label}
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-
-                      <div
-                        className="absolute bottom-0 left-0 h-1 w-0 transition-all duration-500 group-hover/card:w-full"
-                        style={{ background: c.ink }}
-                      />
-                    </button>
-                  </li>
-                ))}
-                {/* End cap node */}
-                <li className="relative flex items-center pr-8">
-                  <div className="flex flex-col items-center gap-2" style={{ marginTop: "-24px" }}>
-                    <div className="flex size-14 items-center justify-center rounded-full border-2 border-dashed border-black/40 bg-[#FAF8F4] font-black text-black/40">
-                      ✦
-                    </div>
-                    <span
-                      className="font-mono text-[9px] font-bold uppercase tracking-[0.3em] text-black/50"
-                      style={{ fontFamily: "'JetBrains Mono', monospace" }}
-                    >
-                      End
-                    </span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </motion.div>
-        ) : (
-          <motion.div
-            key="expanded"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 30 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-14"
-          >
-            <ExpandedPanel
-              chapter={CHAPTERS[openIdx]}
-              accent={CHAPTERS[openIdx].ink}
-              onClose={handleClose}
-              onNext={() => setOpenIdx((openIdx + 1) % CHAPTERS.length)}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }
 
-function ExpandedPanel({ chapter, accent, onClose, onNext }: { chapter: Chapter; accent: string; onClose: () => void; onNext: () => void }) {
-  const panelRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    panelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, [chapter.n]);
-
-  const splitHeadline = (text: string) => {
-    const splitters = [". ", " — ", ": ", ", "];
-    for (const sep of splitters) {
-      const idx = text.indexOf(sep);
-      if (idx > 0 && idx < text.length * 0.65) {
-        return [text.slice(0, idx + sep.length - 1), text.slice(idx + sep.length)];
-      }
-    }
-    return [text, ""];
-  };
-  const [headA, headB] = splitHeadline(chapter.headline);
-
+function Slide({
+  project,
+  direction,
+  index,
+}: {
+  project: (typeof CHAPTERS)[number];
+  direction: 1 | -1;
+  index: number;
+}) {
   return (
-    <div
-      ref={panelRef}
-      className="overflow-hidden border-y border-black/10 bg-[#0A0A0A]"
-      style={{ fontFamily: FONT }}
+    <motion.div
+      className="absolute inset-0 z-10 grid grid-cols-1 md:grid-cols-[1fr_460px]"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <div className="mx-auto max-w-[1280px]">
-        <div className="flex flex-col lg:flex-row">
-          {/* Left vertical status rail */}
-          <div className="hidden lg:flex w-16 shrink-0 flex-col items-center border-r border-white/10 py-8 gap-12 bg-[#050505]">
-            <div className="font-mono text-[10px] text-white/40 -rotate-90 whitespace-nowrap uppercase tracking-widest" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-              Dossier {chapter.n} // 10
-            </div>
-            <div className="flex flex-1 flex-col gap-3">
-              {CHAPTERS.map((c) => {
-                const active = c.n === chapter.n;
-                return (
-                  <div
-                    key={c.n}
-                    className="w-1 h-8 transition-colors"
-                    style={{ background: active ? accent : "rgba(255,255,255,0.1)" }}
-                  />
-                );
-              })}
-            </div>
-          </div>
+      {/* Image side */}
+      <div className="relative h-full w-full overflow-hidden">
+        <motion.div
+          key={project.image}
+          custom={direction}
+          initial={{ clipPath: direction === 1 ? "inset(0 0 0 100%)" : "inset(0 100% 0 0)" }}
+          animate={{ clipPath: "inset(0 0 0 0)" }}
+          exit={{
+            clipPath: direction === 1 ? "inset(0 100% 0 0)" : "inset(0 0 0 100%)",
+            transition: { duration: SLIDE_DURATION * 0.85, ease: EASE },
+          }}
+          transition={{ duration: SLIDE_DURATION, ease: EASE }}
+          className="absolute inset-0"
+        >
+          <motion.img
+            src={project.image}
+            alt={project.headline}
+            className="h-full w-full object-cover"
+            initial={{ scale: 1.15, x: direction * 40 }}
+            animate={{ scale: 1, x: 0 }}
+            exit={{ scale: 1.05, x: -direction * 40 }}
+            transition={{ duration: SLIDE_DURATION * 1.2, ease: EASE }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0) 35%, rgba(10,10,10,0) 60%, rgba(10,10,10,0.85) 100%)",
+            }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(10,10,10,0.7) 0%, rgba(10,10,10,0) 28%, rgba(10,10,10,0) 70%, rgba(10,10,10,0.9) 100%)",
+            }}
+          />
+        </motion.div>
 
-          {/* Main dossier area */}
-          <div className="flex-1 flex flex-col">
-            {/* Masthead */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 px-6 py-8 lg:px-10 lg:py-10">
-              <div className="space-y-2">
-                <div className="flex items-center gap-3">
-                  <span
-                    className="font-mono text-[10px] uppercase tracking-tighter"
-                    style={{ color: accent, fontFamily: "'JetBrains Mono', monospace" }}
-                  >
-                    [ {chapter.tag.toUpperCase()} ]
-                  </span>
-                  <div className="h-px w-12" style={{ background: `${accent}55` }} />
-                </div>
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-extrabold uppercase tracking-tighter leading-none text-white">
-                  {headA}
-                  {headB && <span className="block md:ml-12 text-white/50">{headB}</span>}
-                </h3>
-              </div>
-              <button
-                onClick={onClose}
-                aria-label="Close dossier"
-                className="group inline-flex items-center gap-2 self-start border border-white/20 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.2em] text-white/70 transition-colors hover:border-white/60 hover:text-white"
-              >
-                <X className="size-3.5" />
-                Close
-              </button>
-            </div>
-
-            {/* Body */}
-            <div className="flex flex-1 flex-col lg:flex-row">
-              <div className="flex-[3] border-b border-white/10 px-6 py-8 lg:border-b-0 lg:border-r lg:px-10 lg:py-10 space-y-8">
-                {/* Hero image */}
-                <div className="relative aspect-video w-full overflow-hidden border border-white/10 bg-white/5">
-                  <img
-                    src={chapter.image}
-                    alt={chapter.headline}
-                    className="h-full w-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <p
-                      className="font-mono text-[9px] uppercase"
-                      style={{ color: accent, fontFamily: "'JetBrains Mono', monospace" }}
-                    >
-                      Exhibit A: {chapter.tag} in action
-                    </p>
-                  </div>
-                </div>
-
-                <div className="grid gap-8 md:grid-cols-2">
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold text-white/80 uppercase tracking-widest">Primary Thesis</span>
-                      <div className="h-px flex-1 bg-white/10" />
-                    </div>
-                    <p className="text-sm leading-relaxed text-white/60">{chapter.body}</p>
-                  </div>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold text-white/80 uppercase tracking-widest">Key Outcome</span>
-                      <div className="h-px flex-1 bg-white/10" />
-                    </div>
-                    <ul className="space-y-2">
-                      {chapter.proof.slice(0, 4).map((p, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-white/60">
-                          <span
-                            className="font-mono text-xs"
-                            style={{ color: accent, fontFamily: "'JetBrains Mono', monospace" }}
-                          >
-                            {String(i + 1).padStart(2, "0")}
-                          </span>
-                          <span>{p}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Detailed sections */}
-                <div className="space-y-6 pt-4">
-                  {chapter.sections.map((s, i) => (
-                    <div key={i} className="border-t border-white/10 pt-6">
-                      <div className="flex items-baseline gap-3">
-                        <span
-                          className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40"
-                          style={{ fontFamily: "'JetBrains Mono', monospace" }}
-                        >
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                        <h4 className="text-sm font-black uppercase tracking-tight text-white">{s.heading}</h4>
-                      </div>
-                      <p className="mt-2 text-[13px] leading-[1.65] text-white/60">{s.body}</p>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Closing */}
-                <div className="border-l-2 pl-5" style={{ borderColor: accent }}>
-                  <p className="text-base font-medium italic leading-snug text-white/80">
-                    &ldquo;{chapter.pullQuote}&rdquo;
-                  </p>
-                </div>
-              </div>
-
-              {/* Stats sidebar */}
-              <div className="flex-1 bg-[#050505] px-6 py-8 lg:px-10 lg:py-10">
-                <p
-                  className="mb-12 font-mono text-[10px] uppercase tracking-[0.2em] text-white/40"
-                  style={{ fontFamily: "'JetBrains Mono', monospace" }}
-                >
-                  Performance Indicators
-                </p>
-
-                <div className="space-y-10">
-                  <div className="space-y-1">
-                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/40" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                      Indicator 01
-                    </p>
-                    <h4 className="text-sm font-bold uppercase text-white/80">{chapter.label}</h4>
-                    <div className="pt-2 text-5xl font-black tracking-tighter text-white">
-                      {chapter.stat}
-                    </div>
-                  </div>
-
-                  {chapter.stats.map((s, i) => (
-                    <div key={i} className="space-y-1 border-t border-white/10 pt-6">
-                      <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/40" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                        Indicator {String(i + 2).padStart(2, "0")}
-                      </p>
-                      <div className="pt-2 text-4xl font-black tracking-tighter text-white">
-                        {s.value}
-                        <span style={{ color: accent }}>.</span>
-                      </div>
-                      <p className="text-[11px] uppercase leading-tight text-white/40">{s.label}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-10">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/40" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
-                    In the room
-                  </p>
-                  <div className="mt-3 flex flex-wrap gap-1.5">
-                    {chapter.chips.map((chip) => (
-                      <span
-                        key={chip}
-                        className="border border-white/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-white/70"
-                      >
-                        {chip}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mt-10 flex flex-col gap-3 pt-8">
-                  <button
-                    onClick={onNext}
-                    className="group flex w-full items-center justify-between bg-white px-6 py-4 text-xs font-bold uppercase tracking-[0.2em] text-black transition-colors hover:opacity-90"
-                  >
-                    Explore Next
-                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-                  </button>
-                  <button
-                    onClick={onClose}
-                    className="flex w-full items-center justify-between border border-white/20 px-6 py-4 text-xs font-bold uppercase tracking-[0.2em] text-white/70 transition-colors hover:border-white/60 hover:text-white"
-                  >
-                    Back to all chapters
-                    <X className="size-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+        {/* In-image big number */}
+        <div className="pointer-events-none absolute left-6 bottom-6 md:left-10 md:bottom-10 z-10">
+          <StaggeredText delay={0.05} k={`bignum-${index}`}>
+            <span
+              className="block font-black leading-none tracking-tighter text-white"
+              style={{ fontSize: "clamp(72px, 9vw, 140px)", color: project.bg }}
+            >
+              {String(index + 1).padStart(2, "0")}
+            </span>
+          </StaggeredText>
         </div>
       </div>
-    </div>
+
+      {/* Text rail */}
+      <div className="relative z-10 flex items-end px-6 pb-32 md:items-center md:px-12 md:pb-0">
+        <div className="max-w-[420px]">
+          <StaggeredText delay={0.15} k={`meta-${index}`}>
+            <p
+              className="text-[11px] uppercase tracking-[0.2em] text-white/60"
+              style={{ fontFamily: "'JetBrains Mono', monospace" }}
+            >
+              <span style={{ color: project.bg }}>{String(index + 1).padStart(2, "0")}</span>
+              <span className="mx-2 text-white/25">·</span>
+              {project.tag}
+            </p>
+          </StaggeredText>
+
+          <StaggeredText delay={0.25} k={`title-${index}`}>
+            <h2
+              className="mt-5 font-black uppercase text-white"
+              style={{
+                fontSize: "clamp(34px, 4.4vw, 56px)",
+                lineHeight: 1.02,
+                letterSpacing: "-0.02em",
+              }}
+            >
+              {project.headline}
+            </h2>
+          </StaggeredText>
+
+          <StaggeredText delay={0.46} k={`desc-${index}`}>
+            <p className="mt-6 text-[13.5px] text-white/70" style={{ lineHeight: 1.7 }}>
+              {project.body}
+            </p>
+          </StaggeredText>
+
+          <StaggeredText delay={0.56} k={`stats-${index}`}>
+            <ul className="mt-7 flex flex-wrap gap-x-8 gap-y-4 border-t border-white/10 pt-5">
+              {project.stats.slice(0, 3).map((s) => (
+                <li key={s.label}>
+                  <div className="text-2xl font-black tracking-tighter text-white">{s.value}</div>
+                  <div
+                    className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/50"
+                    style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                  >
+                    {s.label}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </StaggeredText>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function StaggeredText({
+  children,
+  delay = 0,
+  k,
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  k?: string;
+}) {
+  return (
+    <motion.div
+      key={k}
+      initial={{ y: 28, opacity: 0, filter: "blur(8px)" }}
+      animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+      exit={{ y: -14, opacity: 0, filter: "blur(6px)", transition: { duration: 0.45 } }}
+      transition={{ duration: 0.85, ease: EASE, delay }}
+    >
+      {children}
+    </motion.div>
   );
 }
