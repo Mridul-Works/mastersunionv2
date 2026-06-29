@@ -175,10 +175,14 @@ function Slide({
   project,
   direction,
   index,
+  onPrev,
+  onNext,
 }: {
   project: (typeof CHAPTERS)[number];
   direction: 1 | -1;
   index: number;
+  onPrev: () => void;
+  onNext: () => void;
 }) {
   return (
     <motion.div
