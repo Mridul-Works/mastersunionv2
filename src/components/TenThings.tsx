@@ -203,35 +203,35 @@ export default function TenThings() {
 
           {/* Bottom nav: tag + arrows */}
           <div className="pointer-events-none absolute inset-x-0 bottom-6 z-30 flex flex-col items-center gap-3 px-6 md:bottom-10">
-            <div className="pointer-events-auto flex w-full max-w-[520px] items-center justify-between">
-              <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-white/70">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-white" />
-                <span className="min-w-[80px] text-center">{project.tag}</span>
-              </div>
+              <div className="pointer-events-auto flex w-full max-w-[520px] items-center justify-between">
+                <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-white/70">
+                  <span className="inline-block h-1.5 w-1.5 rounded-none bg-white" />
+                  <span className="min-w-[80px] text-center">{project.tag}</span>
+                </div>
 
-              <div className="ml-auto flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-2 py-1 backdrop-blur-md">
-                <button
-                  type="button"
-                  onClick={() => go(-1)}
-                  aria-label="Previous chapter"
-                  className="group flex items-center gap-2 rounded-full px-2 py-1 text-white/80 transition-all hover:bg-white/10 hover:text-white"
-                >
-                  <GradientArrow direction="left" className="size-4" />
-                  <span className="hidden text-[10px] font-medium uppercase tracking-wider sm:inline">Prev</span>
-                </button>
-                <span className="h-3.5 w-px bg-white/15" />
-                <button
-                  type="button"
-                  onClick={() => go(1)}
-                  aria-label="Next chapter"
-                  className="group flex items-center gap-2 rounded-full px-2 py-1 text-white/80 transition-all hover:bg-white/10 hover:text-white"
-                >
-                  <span className="hidden text-[10px] font-medium uppercase tracking-wider sm:inline">Next</span>
-                  <GradientArrow direction="right" className="size-4" />
-                </button>
-              </div>
+                <div className="ml-auto flex items-center gap-2 rounded-none border border-white/10 bg-white/10 px-2 py-1 backdrop-blur-md">
+                  <button
+                    type="button"
+                    onClick={() => go(-1)}
+                    aria-label="Previous chapter"
+                    className="group flex items-center gap-2 rounded-none px-2 py-1 text-white/80 transition-all hover:bg-white/10 hover:text-white"
+                  >
+                    <GradientArrow direction="left" className="size-4" />
+                    <span className="hidden text-[10px] font-medium uppercase tracking-wider sm:inline">Prev</span>
+                  </button>
+                  <span className="h-3.5 w-px bg-white/15" />
+                  <button
+                    type="button"
+                    onClick={() => go(1)}
+                    aria-label="Next chapter"
+                    className="group flex items-center gap-2 rounded-none px-2 py-1 text-white/80 transition-all hover:bg-white/10 hover:text-white"
+                  >
+                    <span className="hidden text-[10px] font-medium uppercase tracking-wider sm:inline">Next</span>
+                    <GradientArrow direction="right" className="size-4" />
+                  </button>
+                </div>
 
-            </div>
+              </div>
 
             <div className="flex items-center gap-2">
               {CHAPTERS.map((p, i) => (
