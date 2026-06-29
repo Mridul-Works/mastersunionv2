@@ -341,10 +341,11 @@ function GradientArrow({
 }) {
   const id = useId();
   const gradientId = `arrow-grad-${id}`;
+  const glowId = `arrow-glow-${id}`;
   const d =
     direction === "right"
-      ? "M5 12h14M14 7l5 5-5 5"
-      : "M19 12H5M10 7l-5 5 5 5";
+      ? "M4 12h16M13 6l6 6-6 6"
+      : "M20 12H4M11 6l-6 6 6 6";
 
   return (
     <svg
@@ -353,18 +354,26 @@ function GradientArrow({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
+      style={{ filter: `drop-shadow(0 0 4px rgba(249, 115, 22, 0.45))` }}
     >
       <defs>
         <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#14b8a6" />
-          <stop offset="50%" stopColor="#f59e0b" />
-          <stop offset="100%" stopColor="#f97316" />
+          <stop offset="0%" stopColor="#2dd4bf" />
+          <stop offset="50%" stopColor="#fbbf24" />
+          <stop offset="100%" stopColor="#fb923c" />
         </linearGradient>
+        <filter id={glowId} x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
+          <feMerge>
+            <feMergeNode in="coloredBlur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
       </defs>
       <path
         d={d}
         stroke={`url(#${gradientId})`}
-        strokeWidth="2"
+        strokeWidth="2.25"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
