@@ -120,11 +120,11 @@ export default function TenThings() {
               <motion.span
                 key={`ghost-${index}`}
                 initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 0.06, scale: 1 }}
+                animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.6, ease: EASE }}
-                className="select-none font-black tracking-tighter text-white"
-                style={{ fontSize: "clamp(280px, 48vw, 720px)", lineHeight: 1 }}
+                className="select-none bg-gradient-to-b from-neutral-300/20 via-neutral-400/8 to-transparent bg-clip-text font-black tracking-tighter text-transparent"
+                style={{ fontSize: "clamp(280px, 48vw, 720px)", lineHeight: 1, filter: "drop-shadow(0 0 60px rgba(255,255,255,0.06))" }}
               >
                 {String(index + 1).padStart(2, "0")}
               </motion.span>
