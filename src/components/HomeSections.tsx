@@ -91,44 +91,42 @@ export default function HomeSections() {
       {/* PROGRAMS / APPLICATIONS */}
       <section id="deadlines" className="border-t border-black/10 bg-white">
         <div className="mx-auto max-w-[1280px] px-6 py-14 md:px-10 md:py-18">
-          <div className="pt-8">
-            <div className="flex items-end justify-between gap-4 mb-10">
-              <div>
-                <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-black/60 mb-1">Admissions · Cohort 2026</p>
-                <h2 className="font-display text-[1.35rem] font-bold leading-tight text-black md:text-[1.8rem]">
-                  Programmes Accepting Applications
-                </h2>
-              </div>
-              <a href="#" className="hidden font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-black underline-offset-4 hover:underline md:inline-flex items-center gap-1.5">
-                View all programmes <ArrowUpRight className="size-3.5" />
-              </a>
+          <div className="flex items-end justify-between gap-4 mb-8">
+            <div>
+              <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-black/60 mb-1">Admissions · Cohort 2026</p>
+              <h2 className="font-display text-[1.35rem] font-bold leading-tight text-black md:text-[1.8rem]">
+                Programmes Accepting Applications
+              </h2>
             </div>
+            <a href="#" className="hidden font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-black underline-offset-4 hover:underline md:inline-flex items-center gap-1.5">
+              View all programmes <ArrowUpRight className="size-3.5" />
+            </a>
+          </div>
 
-            <div className="flex flex-nowrap gap-4 overflow-x-auto snap-x md:overflow-x-visible md:gap-6">
-              {PROGRAMS.map((p) => (
-                <article
-                  key={p.title}
-                  className="group flex min-w-[280px] flex-1 cursor-pointer snap-start flex-col gap-6 border border-black/10 bg-white p-6 transition-all hover:bg-black/[0.03] md:min-w-0"
-                >
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-full bg-black px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-white">{p.mode}</span>
-                    <span className="rounded-full bg-black/5 px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-black/70">{p.duration}</span>
-                  </div>
-                  <h3 className="font-display text-[1.15rem] font-bold leading-snug text-black md:text-[1.25rem]">
-                    {p.title}
-                  </h3>
-                  <div className="inline-flex w-fit items-center gap-2 rounded-md bg-black/5 px-3 py-1.5">
-                    <Hourglass className="size-3.5 text-black/70" />
-                    <span className="font-sans text-[12px] font-semibold text-black/80">{p.round}</span>
-                  </div>
-                  <div className="mt-auto pt-4">
-                    <a href="#" className="inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-black transition-colors group-hover:text-black/70">
-                      Apply Now <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                    </a>
-                  </div>
-                </article>
-              ))}
-            </div>
+          <div className="flex flex-nowrap gap-4 overflow-x-auto snap-x md:overflow-x-visible md:gap-6">
+            {PROGRAMS.map((p) => (
+              <article
+                key={p.title}
+                className="group flex min-w-[280px] flex-1 cursor-pointer snap-start flex-col gap-6 border border-black/10 bg-white p-6 transition-all hover:bg-black/[0.03] md:min-w-0"
+              >
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="rounded-full bg-black px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-white">{p.mode}</span>
+                  <span className="rounded-full bg-black/5 px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-black/70">{p.duration}</span>
+                </div>
+                <h3 className="font-display text-[1.15rem] font-bold leading-snug text-black md:text-[1.25rem]">
+                  {p.title}
+                </h3>
+                <div className="inline-flex w-fit items-center gap-2 rounded-md bg-black/5 px-3 py-1.5">
+                  <Hourglass className="size-3.5 text-black/70" />
+                  <span className="font-sans text-[12px] font-semibold text-black/80">{p.round}</span>
+                </div>
+                <div className="mt-auto pt-4">
+                  <a href="#" className="inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-black transition-colors group-hover:text-black/70">
+                    Apply Now <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </a>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
