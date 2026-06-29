@@ -142,8 +142,8 @@ function Index() {
             : "opacity-0 -translate-y-4 pointer-events-none"
         }`}
       >
-        <div className="mx-auto flex max-w-[1180px] items-center justify-between rounded-full border border-black/10 bg-white/80 px-2 py-1.5 shadow-[0_6px_24px_-12px_rgba(0,0,0,0.15)] backdrop-blur-xl">
-          <a href="/" className="flex items-center gap-2 rounded-full px-2.5 py-1">
+        <div className="mx-auto flex max-w-[1180px] items-center justify-between rounded-none border border-black/10 bg-white/80 px-2 py-1.5 shadow-[0_6px_24px_-12px_rgba(0,0,0,0.15)] backdrop-blur-xl">
+          <a href="/" className="flex items-center gap-2 rounded-none px-2.5 py-1">
             <img src={logoAsset.url} alt="Masters' Union" className="h-5 w-auto" />
           </a>
           <nav className="hidden items-center gap-0.5 md:flex">
@@ -151,7 +151,7 @@ function Index() {
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="rounded-full px-3 py-1.5 text-[12px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
+                className="rounded-none px-3 py-1.5 text-[12px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
               >
                 {item}
               </a>
@@ -160,7 +160,7 @@ function Index() {
           <div className="flex items-center gap-1">
             <button
               type="button"
-              className="rounded-full bg-black px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-white shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
+              className="rounded-none bg-black px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-white shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
             >
               Apply
             </button>
@@ -170,21 +170,21 @@ function Index() {
               aria-label="Toggle menu"
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((s) => !s)}
-              className="flex size-8 items-center justify-center rounded-full text-black/60 transition-colors hover:bg-black/5 hover:text-black md:hidden"
+              className="flex size-8 items-center justify-center rounded-none text-black/60 transition-colors hover:bg-black/5 hover:text-black md:hidden"
             >
               {menuOpen ? <X className="size-4" /> : <Menu className="size-4" />}
             </button>
           </div>
         </div>
         {menuOpen && (
-          <div className="mt-3 rounded-3xl border border-black/10 bg-white/95 p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.12)] backdrop-blur-xl md:hidden">
+          <div className="mt-3 rounded-none border border-black/10 bg-white/95 p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.12)] backdrop-blur-xl md:hidden">
             <nav className="flex flex-col gap-1">
               {NAV.map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-2xl px-4 py-3 text-[14px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
+                  className="rounded-none px-4 py-3 text-[14px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
                 >
                   {item}
                 </a>
