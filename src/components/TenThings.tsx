@@ -94,8 +94,8 @@ export default function TenThings() {
 
 
       {/* Card widget — manual prev/next, compact, centered */}
-      <div className="relative bg-[#0A0A0A] px-4 py-4 md:px-6 md:py-6">
-        <div className="relative mx-auto h-[40vh] min-h-[300px] w-full max-w-[720px] overflow-hidden rounded-lg bg-[#111] md:h-[46vh] md:min-h-[360px] md:max-w-[800px]">
+      <div className="relative bg-[#F1EFE7] px-4 py-4 md:px-6 md:py-6">
+        <div className="relative mx-auto h-[40vh] min-h-[300px] w-full max-w-[720px] overflow-hidden rounded-lg bg-[#2A312A]/10 md:h-[46vh] md:min-h-[360px] md:max-w-[800px]">
           {/* Counter top-left */}
           <div
             className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[10px] tracking-[0.15em] text-neutral-400 md:left-10 md:top-10"
