@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowLeft, ArrowRight } from "lucide-react";
 import { CHAPTERS } from "./chapters";
+
 
 const EASE = [0.7, 0, 0.2, 1] as const;
 const SLIDE_DURATION = 0.85;
@@ -144,24 +144,25 @@ export default function TenThings() {
                 <span className="min-w-[80px] text-center">{project.tag}</span>
               </div>
 
-              <div className="flex items-center gap-0">
+              <div className="flex items-center gap-1">
                 <button
                   type="button"
                   onClick={() => go(-1)}
                   aria-label="Previous chapter"
-                  className="p-2 text-white/50 transition-colors hover:text-white"
+                  className="p-2 opacity-70 transition-opacity hover:opacity-100"
                 >
-                  <ArrowLeft className="size-4" strokeWidth={2} />
+                  <GradientArrow direction="left" className="size-4" />
                 </button>
                 <button
                   type="button"
                   onClick={() => go(1)}
                   aria-label="Next chapter"
-                  className="p-2 text-white/50 transition-colors hover:text-white"
+                  className="p-2 opacity-70 transition-opacity hover:opacity-100"
                 >
-                  <ArrowRight className="size-4" strokeWidth={2} />
+                  <GradientArrow direction="right" className="size-4" />
                 </button>
               </div>
+
             </div>
 
             <div className="flex items-center gap-2">
