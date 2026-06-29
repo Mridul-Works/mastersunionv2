@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Menu, X, ArrowUp } from "lucide-react";
+import { Menu, X, ArrowUp, Play, Pause } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import logoAsset from "@/assets/logo-2.png.asset.json";
 import campusVideo from "@/assets/campusFilm.mp4.asset.json";
 import heroBuilding from "@/assets/hero-building-light.jpg";
-import { Play, Pause } from "lucide-react";
 import TenThings from "@/components/TenThings";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -324,19 +324,6 @@ function Index() {
                   </div>
                 </div>
 
-                <div className="hidden flex-col items-end md:flex">
-                  <span
-                    className="mb-1 text-[10px] font-semibold tracking-[0.1em] text-white"
-                    style={{ fontFamily: "Inter, sans-serif" }}
-                  >
-                    Cohort 2026
-                  </span>
-                  <div className="flex gap-2">
-                    <span className="size-1.5 rounded-full bg-white" />
-                    <span className="size-1.5 rounded-full bg-white/30" />
-                    <span className="size-1.5 rounded-full bg-white/30" />
-                  </div>
-                </div>
               </div>
             </div>
           </div>
