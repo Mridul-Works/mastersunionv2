@@ -27,15 +27,15 @@ const PEDAGOGY = [
 
 export default function HomeSections() {
   return (
-    <div className="bg-[#FAF8F4] text-[#16140F]">
+    <div className="bg-white text-black" style={{ fontFamily: "'Montserrat', system-ui, sans-serif" }}>
       {/* NEWS */}
       <section id="news" className="border-t border-black/10">
         <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10 md:py-28">
           <div className="pt-8">
             <div className="flex items-end justify-between gap-4 mb-10">
               <div>
-                <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-[#6B1F2A] mb-1">The Dispatch</p>
-                <h2 className="font-display text-[1.35rem] font-bold leading-tight text-[#16140F] md:text-[1.8rem]">
+                <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-black/60 mb-1">The Dispatch</p>
+                <h2 className="font-display text-[1.35rem] font-bold leading-tight text-black md:text-[1.8rem]">
                   Latest News
                 </h2>
               </div>
@@ -53,9 +53,9 @@ export default function HomeSections() {
               {NEWS.map((n) => (
                 <article
                   key={n.title}
-                  className="group flex min-w-[300px] flex-1 cursor-pointer snap-start gap-5 p-5 transition-all hover:bg-white md:min-w-0"
+                  className="group flex min-w-[300px] flex-1 cursor-pointer snap-start gap-5 p-5 transition-all hover:bg-black/[0.03] md:min-w-0"
                 >
-                  <div className="flex h-16 w-14 flex-shrink-0 flex-col items-center justify-center bg-[#6B1F2A] text-white shadow-sm transition-colors group-hover:bg-[#16140F]">
+                  <div className="flex h-16 w-14 flex-shrink-0 flex-col items-center justify-center bg-black text-white shadow-sm transition-colors group-hover:bg-neutral-700">
                     <span className="font-sans text-[10px] font-bold uppercase tracking-tighter opacity-80">{n.month}</span>
                     <span className="font-display text-2xl font-extrabold leading-none">
                       {n.day}
@@ -65,9 +65,7 @@ export default function HomeSections() {
                     <span className="font-sans mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50">
                       {n.time} &bull; {n.tag}
                     </span>
-                    <h3
-                      className="font-display text-lg font-semibold leading-snug text-black/90 transition-colors group-hover:text-[#6B1F2A]"
-                    >
+                    <h3 className="font-display text-lg font-semibold leading-snug text-black/90 transition-colors group-hover:text-black">
                       {n.title}
                     </h3>
                     <p className="font-sans mt-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-black/40">
@@ -81,7 +79,7 @@ export default function HomeSections() {
             <div className="mt-8 flex justify-center">
               <a
                 href="#"
-                className="font-sans border-b-2 border-[#16140F] pb-1 text-xs font-semibold uppercase tracking-[0.3em] text-[#16140F] transition-colors hover:border-[#6B1F2A] hover:text-[#6B1F2A]"
+                className="font-sans border-b-2 border-black pb-1 text-xs font-semibold uppercase tracking-[0.3em] text-black transition-colors hover:border-black/50 hover:text-black/60"
               >
                 Enter Full Archive
               </a>
@@ -91,17 +89,17 @@ export default function HomeSections() {
       </section>
 
       {/* PROGRAMS / APPLICATIONS */}
-      <section id="deadlines" className="border-t border-black/10 bg-[#FAF8F4]">
+      <section id="deadlines" className="border-t border-black/10 bg-white">
         <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10 md:py-28">
           <div className="pt-8">
             <div className="flex items-end justify-between gap-4 mb-10">
               <div>
-                <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-[#1F4D3F] mb-1">Admissions · Cohort 2026</p>
-                <h2 className="font-display text-[1.35rem] font-bold leading-tight text-[#16140F] md:text-[1.8rem]">
+                <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-black/60 mb-1">Admissions · Cohort 2026</p>
+                <h2 className="font-display text-[1.35rem] font-bold leading-tight text-black md:text-[1.8rem]">
                   Programmes Accepting Applications
                 </h2>
               </div>
-              <a href="#" className="hidden font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-[#16140F] underline-offset-4 hover:underline md:inline-flex items-center gap-1.5">
+              <a href="#" className="hidden font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-black underline-offset-4 hover:underline md:inline-flex items-center gap-1.5">
                 View all programmes <ArrowUpRight className="size-3.5" />
               </a>
             </div>
@@ -110,21 +108,21 @@ export default function HomeSections() {
               {PROGRAMS.map((p) => (
                 <article
                   key={p.title}
-                  className="group flex min-w-[280px] flex-1 cursor-pointer snap-start flex-col gap-6 bg-white p-6 transition-all hover:bg-[#F7F6F2] md:min-w-0"
+                  className="group flex min-w-[280px] flex-1 cursor-pointer snap-start flex-col gap-6 border border-black/10 bg-white p-6 transition-all hover:bg-black/[0.03] md:min-w-0"
                 >
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-full bg-[#16140F] px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-white">{p.mode}</span>
+                    <span className="rounded-full bg-black px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-white">{p.mode}</span>
                     <span className="rounded-full bg-black/5 px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-black/70">{p.duration}</span>
                   </div>
-                  <h3 className="font-display text-[1.15rem] font-bold leading-snug text-[#16140F] md:text-[1.25rem]">
+                  <h3 className="font-display text-[1.15rem] font-bold leading-snug text-black md:text-[1.25rem]">
                     {p.title}
                   </h3>
-                  <div className="inline-flex w-fit items-center gap-2 rounded-md bg-[#E6F0E4] px-3 py-1.5">
-                    <Hourglass className="size-3.5 text-[#1F4D3F]" />
-                    <span className="font-sans text-[12px] font-semibold text-[#1F4D3F]">{p.round}</span>
+                  <div className="inline-flex w-fit items-center gap-2 rounded-md bg-black/5 px-3 py-1.5">
+                    <Hourglass className="size-3.5 text-black/70" />
+                    <span className="font-sans text-[12px] font-semibold text-black/80">{p.round}</span>
                   </div>
                   <div className="mt-auto pt-4">
-                    <a href="#" className="inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-[#16140F] transition-colors group-hover:text-[#6B1F2A]">
+                    <a href="#" className="inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-black transition-colors group-hover:text-black/70">
                       Apply Now <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                     </a>
                   </div>
@@ -137,28 +135,28 @@ export default function HomeSections() {
 
 
       {/* FOUNDER'S MESSAGE */}
-      <section id="founders" className="border-t border-black/10 bg-[#FAF8F4]">
+      <section id="founders" className="border-t border-black/10 bg-white">
         <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-10 md:py-24">
-          <div className="grid overflow-hidden rounded-[32px] bg-[#16140F] md:grid-cols-12">
+          <div className="grid overflow-hidden rounded-[32px] bg-black md:grid-cols-12">
             <div className="relative md:col-span-5">
               <img
                 src={founderPhoto.url}
                 alt="Pratham Mittal"
-                className="h-72 w-full object-cover md:h-full"
+                className="h-72 w-full object-cover md:h-full grayscale"
               />
-              <div className="absolute inset-0 hidden bg-gradient-to-r from-transparent via-transparent to-[#16140F]/90 md:block" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#16140F] via-transparent to-transparent md:hidden" />
+              <div className="absolute inset-0 hidden bg-gradient-to-r from-transparent via-transparent to-black/90 md:block" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent md:hidden" />
             </div>
             <div className="flex flex-col justify-center p-8 md:col-span-7 md:p-12 lg:p-16">
-              <Quote className="mb-5 size-8 text-[#C9A84C]" />
-              <h2 className="text-3xl leading-[1.05] tracking-tight text-[#FAF8F4] md:text-[44px] lg:text-[52px]" style={{ fontFamily: "'Fraunces', serif" }}>
-                "If education was working, we wouldn't have built <span className="italic text-[#C9A84C]">Masters' Union.</span>"
+              <Quote className="mb-5 size-8 text-white/70" />
+              <h2 className="text-3xl leading-[1.05] tracking-tight text-white md:text-[44px] lg:text-[52px]" style={{ fontFamily: "'Fraunces', serif" }}>
+                "If education was working, we wouldn't have built <span className="italic text-white">Masters' Union.</span>"
               </h2>
               <div className="mt-8 flex items-center gap-3">
-                <div className="h-px w-10 bg-[#C9A84C]/60" />
+                <div className="h-px w-10 bg-white/40" />
                 <div>
-                  <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[#FAF8F4]/80">Pratham Mittal</p>
-                  <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-[#FAF8F4]/50">Founder, Masters' Union</p>
+                  <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white/80">Pratham Mittal</p>
+                  <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-white/50">Founder, Masters' Union</p>
                 </div>
               </div>
             </div>
@@ -167,9 +165,9 @@ export default function HomeSections() {
       </section>
 
       {/* PEDAGOGY */}
-      <section id="pedagogy" className="border-t border-black/10 bg-[#F1EFE7]">
+      <section id="pedagogy" className="border-t border-black/10 bg-neutral-50">
         <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-10 md:py-32">
-          <SectionHead eyebrow="The pedagogy" title={<>How Masters' Union <span className="italic text-[#8A3A12]">actually</span> teaches.</>} lede="Seven systems that work in concert — built so theory never outpaces practice." />
+          <SectionHead eyebrow="The pedagogy" title={<>How Masters' Union <span className="italic">actually</span> teaches.</>} lede="Seven systems that work in concert — built so theory never outpaces practice." />
 
           <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {PEDAGOGY.map((p, i) => {
@@ -178,25 +176,25 @@ export default function HomeSections() {
               return (
                 <article
                   key={p.tag}
-                  className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-black/10 bg-[#FAF8F4] p-8 transition-all hover:-translate-y-1 hover:border-black/20 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.25)] md:p-10 ${
+                  className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-black/10 bg-white p-8 transition-all hover:-translate-y-1 hover:border-black/30 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.25)] md:p-10 ${
                     featured ? "lg:col-span-2 lg:row-span-1" : ""
                   }`}
                 >
                   <div className="flex items-start justify-between">
-                    <div className={`flex size-12 items-center justify-center rounded-2xl ${featured ? "bg-[#C9A84C]/20 text-[#C9A84C]" : "bg-black/5 text-black/70"}`}>
+                    <div className={`flex size-12 items-center justify-center rounded-2xl ${featured ? "bg-black text-white" : "bg-black/5 text-black/70"}`}>
                       <Icon className="size-5" />
                     </div>
-                    <span className={`text-[10px] font-semibold uppercase tracking-[0.22em] text-black/40`}>{p.tag}</span>
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/40">{p.tag}</span>
                   </div>
 
                   <div className="mt-12">
-                    <h3 className="text-3xl leading-[1.05] tracking-tight text-[#16140F] md:text-[34px]" style={{ fontFamily: "'Fraunces', serif" }}>
+                    <h3 className="text-3xl leading-[1.05] tracking-tight text-black md:text-[34px]" style={{ fontFamily: "'Fraunces', serif" }}>
                       {p.title}
                     </h3>
                     <p className="mt-5 text-[14px] leading-relaxed text-black/65">{p.body}</p>
                   </div>
 
-                  <button type="button" className={`mt-10 inline-flex w-fit items-center gap-2 border-b pb-1 text-[11px] font-semibold uppercase tracking-[0.22em] transition-all ${featured ? "border-[#C9A84C] text-[#C9A84C]" : "border-black/30 text-black/70 group-hover:border-black group-hover:text-black"}`}>
+                  <button type="button" className={`mt-10 inline-flex w-fit items-center gap-2 border-b pb-1 text-[11px] font-semibold uppercase tracking-[0.22em] transition-all ${featured ? "border-black text-black" : "border-black/30 text-black/70 group-hover:border-black group-hover:text-black"}`}>
                     {p.cta}
                     <ArrowUpRight className="size-3.5" />
                   </button>
@@ -208,15 +206,15 @@ export default function HomeSections() {
       </section>
 
       {/* APPLICATION CTA */}
-      <section id="apply" className="border-t border-black/10 bg-[#FAF8F4]">
+      <section id="apply" className="border-t border-black/10 bg-white">
         <div className="mx-auto max-w-[1280px] px-6 py-28 md:px-10 md:py-40">
-          <div className="relative overflow-hidden rounded-[40px] bg-gradient-to-br from-[#6B1F2A] via-[#1F4D3F] to-[#14233F] p-10 text-white md:p-20">
-            <div className="absolute -right-24 -top-24 size-[420px] rounded-full bg-[#C9A84C]/20 blur-3xl" />
-            <div className="absolute -bottom-32 -left-32 size-[480px] rounded-full bg-[#8A3A12]/30 blur-3xl" />
+          <div className="relative overflow-hidden rounded-[40px] bg-black p-10 text-white md:p-20">
+            <div className="absolute -right-24 -top-24 size-[420px] rounded-full bg-white/5 blur-3xl" />
+            <div className="absolute -bottom-32 -left-32 size-[480px] rounded-full bg-white/5 blur-3xl" />
 
             <div className="relative grid items-center gap-12 md:grid-cols-12">
               <div className="md:col-span-8">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#C9A84C]">PGP · Cohort 2026</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/70">PGP · Cohort 2026</p>
                 <h2 className="mt-6 text-5xl leading-[0.95] tracking-tight md:text-[88px]" style={{ fontFamily: "'Fraunces', serif" }}>
                   Apply to <span className="italic">Masters' Union.</span>
                 </h2>
@@ -230,7 +228,7 @@ export default function HomeSections() {
                   <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/60">Next deadline</p>
                   <p className="mt-3 text-3xl tracking-tight" style={{ fontFamily: "'Fraunces', serif" }}>15 Aug 2026</p>
                   <p className="mt-2 text-[12px] text-white/60">Round 1 · Early admit + scholarship</p>
-                  <button type="button" className="mt-6 flex w-full items-center justify-center gap-2 rounded-full bg-[#C9A84C] px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-black transition-transform hover:scale-[1.02]">
+                  <button type="button" className="mt-6 flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-black transition-transform hover:scale-[1.02]">
                     Start application <Send className="size-3.5" />
                   </button>
                   <button type="button" className="mt-3 flex w-full items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/80 transition-colors hover:bg-white/5">
@@ -244,12 +242,12 @@ export default function HomeSections() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-black/10 bg-[#0F140F] text-white">
+      <footer className="border-t border-black/10 bg-black text-white">
         <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10">
           <div className="grid gap-12 md:grid-cols-12">
             <div className="md:col-span-5">
               <p className="text-3xl leading-tight tracking-tight md:text-4xl" style={{ fontFamily: "'Fraunces', serif" }}>
-                Masters' Union — <span className="italic text-[#C9A84C]">business education,<br />rebuilt for the next decade.</span>
+                Masters' Union — <span className="italic text-white/70">business education,<br />rebuilt for the next decade.</span>
               </p>
               <p className="mt-8 max-w-sm text-[13px] leading-relaxed text-white/55">
                 DLF Cyberpark, Phase III<br />
@@ -258,7 +256,7 @@ export default function HomeSections() {
               </p>
               <div className="mt-8 flex items-center gap-3">
                 {[Instagram, Linkedin, Youtube, Twitter].map((Icon, i) => (
-                  <a key={i} href="#" className="flex size-10 items-center justify-center rounded-full border border-white/15 text-white/60 transition-colors hover:border-[#C9A84C] hover:text-[#C9A84C]">
+                  <a key={i} href="#" className="flex size-10 items-center justify-center rounded-full border border-white/15 text-white/60 transition-colors hover:border-white hover:text-white">
                     <Icon className="size-4" />
                   </a>
                 ))}
@@ -289,7 +287,7 @@ function SectionHead({ eyebrow, title, lede, icon: Icon }: { eyebrow: string; ti
     <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
       <div className="max-w-2xl">
         <div className="flex items-center gap-3">
-          {Icon && <Icon className="size-4 text-[#8A3A12]" />}
+          {Icon && <Icon className="size-4 text-black/70" />}
           <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-black/50">{eyebrow}</p>
         </div>
         <h2 className="mt-5 text-5xl leading-[0.95] tracking-tight md:text-7xl" style={{ fontFamily: "'Fraunces', serif" }}>
@@ -304,7 +302,7 @@ function SectionHead({ eyebrow, title, lede, icon: Icon }: { eyebrow: string; ti
 function FooterCol({ title, links }: { title: string; links: string[] }) {
   return (
     <div className="md:col-span-2 lg:col-span-2">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#C9A84C]">{title}</p>
+      <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white">{title}</p>
       <ul className="mt-5 space-y-3">
         {links.map((l) => (
           <li key={l}>
