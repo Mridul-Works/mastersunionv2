@@ -24,7 +24,7 @@ export default function TenThings() {
   const project = CHAPTERS[index];
 
   return (
-    <section className="relative bg-[#0A0A0A] text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+    <section className="relative bg-[#0A0A0A] text-white" style={{ fontFamily: "'Geist', system-ui, sans-serif" }}>
       {/* Intro headline — Swiss High-Contrast */}
       <div className="relative overflow-hidden border-b border-[#111111] bg-[#F9F9F9] px-6 py-28 text-[#111111] md:px-16 md:py-40">
         <div className="relative z-10 mx-auto max-w-[1280px]">
@@ -41,7 +41,7 @@ export default function TenThings() {
           </div>
 
           <h2
-            className="font-['Inter'] font-extrabold uppercase leading-[0.88] tracking-tighter text-[#111111]"
+            className="font-['Clash_Display'] font-extrabold uppercase leading-[0.88] tracking-tighter text-[#111111]"
             style={{ fontSize: "clamp(56px, 10vw, 140px)" }}
           >
             Cut the<br />
@@ -53,7 +53,7 @@ export default function TenThings() {
           </h2>
 
           <div className="mt-14 grid grid-cols-1 gap-10 md:grid-cols-[1.3fr_1fr] md:items-end">
-            <p className="max-w-[560px] font-['Inter'] text-[18px] font-medium leading-[1.55] text-[#111111]/75">
+            <p className="max-w-[560px] font-['Clash_Display'] text-[18px] font-medium leading-[1.55] text-[#111111]/75">
               No ads. No fluff. Just the dossier — ten chapters that actually
               explain how the school works, who teaches, and what gets built.
             </p>

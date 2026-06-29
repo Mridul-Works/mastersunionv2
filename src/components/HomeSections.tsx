@@ -29,7 +29,7 @@ const SIGNAL = "#FF4D00";
 
 export default function HomeSections() {
   return (
-    <div className="bg-[#F9F9F9] text-[#111111] font-['Inter']">
+    <div className="bg-[#F9F9F9] text-[#111111] font-['Geist']">
       {/* NEWS */}
       <section id="news" className="border-t border-[#111111]">
         <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-12 md:py-32">

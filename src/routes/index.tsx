@@ -148,7 +148,7 @@ function Index() {
   };
 
   return (
-    <main className="min-h-screen bg-[#F9F9F9] font-['Inter']">
+    <main className="min-h-screen bg-[#F9F9F9] font-['Geist']">
       {/* NAV — Swiss pill */}
       <header
         className={`fixed inset-x-0 top-0 z-[100] px-4 pt-3 sm:px-6 sm:pt-4 transition-all duration-500 ${
@@ -269,7 +269,7 @@ function Index() {
               <div className="mb-12 grid grid-cols-12 items-end gap-8 md:mb-20">
                 <div className="col-span-12 md:col-span-9 lg:col-span-8">
                   <h1
-                    className="font-['Inter'] text-7xl font-extrabold uppercase leading-[0.85] tracking-tighter text-white md:text-[120px] lg:text-[140px]"
+                    className="font-['Clash_Display'] text-7xl font-extrabold uppercase leading-[0.85] tracking-tighter text-white md:text-[120px] lg:text-[140px]"
                   >
                     Learn by <br />
                     <span className="mt-2 block md:ml-24">Doing.</span>
