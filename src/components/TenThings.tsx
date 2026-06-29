@@ -25,16 +25,16 @@ export default function TenThings() {
 
   return (
     <section className="relative bg-[#0A0A0A] text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-      {/* Intro headline — editorial, matches site theme */}
-      <div className="relative overflow-hidden bg-white px-6 py-28 md:py-40 text-black">
-        <div className="pointer-events-none absolute -left-40 top-20 h-[50vh] w-[50vh] rounded-full bg-black/[0.04] blur-[140px]" />
-        <div className="pointer-events-none absolute -right-40 bottom-0 h-[50vh] w-[50vh] rounded-full bg-black/[0.04] blur-[140px]" />
+      {/* Intro headline — compact editorial */}
+      <div className="relative overflow-hidden bg-white px-6 py-12 text-black md:py-16">
+        <div className="pointer-events-none absolute -left-40 top-10 h-[30vh] w-[30vh] rounded-full bg-black/[0.04] blur-[100px]" />
+        <div className="pointer-events-none absolute -right-40 bottom-0 h-[30vh] w-[30vh] rounded-full bg-black/[0.04] blur-[100px]" />
 
         <div className="relative z-10 mx-auto max-w-[1180px]">
-          <div className="mb-12 flex items-center gap-4">
-            <span className="h-px w-12 bg-black/40" />
+          <div className="mb-6 flex items-center gap-4">
+            <span className="h-px w-10 bg-black/40" />
             <span
-              className="text-[11px] uppercase tracking-[0.32em] text-black/55"
+              className="text-[10px] uppercase tracking-[0.32em] text-black/55"
               style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
             >
               Field Notes — Vol. 01
@@ -46,7 +46,7 @@ export default function TenThings() {
             style={{
               fontFamily: "'Inter', system-ui, sans-serif",
               fontWeight: 400,
-              fontSize: "clamp(52px, 9vw, 124px)",
+              fontSize: "clamp(36px, 6vw, 80px)",
             }}
           >
             Cut the{" "}
@@ -66,14 +66,14 @@ export default function TenThings() {
                 >
                   Masters' Union
                 </span>
-                <span className="absolute inset-x-0 bottom-2 z-0 h-[6px] bg-black/15" />
+                <span className="absolute inset-x-0 bottom-1 z-0 h-[4px] bg-black/15" />
               </span>
             </span>
           </h2>
 
-          <div className="mt-14 grid grid-cols-1 gap-10 md:grid-cols-[1.3fr_1fr] md:items-end">
+          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-[1.3fr_1fr] md:items-end">
             <p
-              className="max-w-[560px] text-[18px] leading-[1.65] text-black/70"
+              className="max-w-[480px] text-[14px] leading-[1.6] text-black/70"
               style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 400 }}
             >
               No ads. No fluff. Just the dossier — ten chapters that actually
@@ -81,7 +81,7 @@ export default function TenThings() {
             </p>
 
             <div
-              className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-black/20 pt-5 text-[11px] uppercase tracking-[0.28em] text-black/55"
+              className="flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-black/20 pt-4 text-[10px] uppercase tracking-[0.28em] text-black/55"
               style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
             >
               <span>{String(CHAPTERS.length).padStart(2, "0")} Chapters</span>
