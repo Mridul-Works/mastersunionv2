@@ -195,6 +195,17 @@ export default function HomeSections() {
                     <p className="mt-5 text-[14px] leading-relaxed text-black/65">{p.body}</p>
                   </div>
 
+                  {p.stats && (
+                    <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4 border-t border-black/10 pt-5">
+                      {p.stats.map((s) => (
+                        <div key={s.label}>
+                          <div className="text-[21px] font-semibold tracking-tight text-black">{s.value}</div>
+                          <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-black/45">{s.label}</div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
                   <button type="button" className={`mt-10 inline-flex w-fit items-center gap-2 border-b pb-1 text-[11px] font-semibold uppercase tracking-[0.22em] transition-all ${featured ? "border-black text-black" : "border-black/30 text-black/70 group-hover:border-black group-hover:text-black"}`}>
                     {p.cta}
                     <ArrowUpRight className="size-3.5" />
