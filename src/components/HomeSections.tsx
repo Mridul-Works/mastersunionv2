@@ -29,7 +29,7 @@ const SIGNAL = "#FF4D00";
 
 export default function HomeSections() {
   return (
-    <div className="bg-[#F9F9F9] text-[#111111] font-['Geist']">
+    <div className="bg-[#F9F9F9] text-[#111111] font-['Inter']">
       {/* NEWS */}
       <section id="news" className="border-t border-[#111111]">
         <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-12 md:py-32">
@@ -37,14 +37,14 @@ export default function HomeSections() {
           <div className="mt-16 grid gap-px border border-[#111111] bg-[#111111] md:grid-cols-2">
             {NEWS.map((n) => (
               <article key={n.title} className="group flex flex-col gap-6 bg-white p-8 transition-colors hover:bg-[#F9F9F9] md:p-10">
-                <div className="flex items-center justify-between font-['Geist'] text-[10px] font-medium uppercase tracking-[0.22em] text-[#111111]/60">
+                <div className="flex items-center justify-between font-['Inter'] text-[10px] font-medium uppercase tracking-[0.22em] text-[#111111]/60">
                   <span className="bg-[#FF4D00] px-2 py-1 text-white">{n.tag}</span>
                   <span>{n.date}</span>
                 </div>
                 <h3 className="text-2xl font-extrabold uppercase leading-tight tracking-tight md:text-[28px]">
                   {n.title}
                 </h3>
-                <div className="mt-auto flex items-center justify-between border-t border-[#111111]/15 pt-5 font-['Geist'] text-[11px] uppercase tracking-[0.18em] text-[#111111]/60">
+                <div className="mt-auto flex items-center justify-between border-t border-[#111111]/15 pt-5 font-['Inter'] text-[11px] uppercase tracking-[0.18em] text-[#111111]/60">
                   <span>{n.source}</span>
                   <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
@@ -59,10 +59,10 @@ export default function HomeSections() {
         <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-12 md:py-32">
           <div className="flex flex-col gap-12 md:flex-row md:items-end md:justify-between">
             <div className="max-w-xl">
-              <p className="font-['Geist'] text-[11px] font-medium uppercase tracking-[0.22em] text-[#FF4D00]">[ Admissions // Cohort 2026 ]</p>
+              <p className="font-['Inter'] text-[11px] font-medium uppercase tracking-[0.22em] text-[#FF4D00]">[ Admissions // Cohort 2026 ]</p>
               <h2 className="mt-6 text-5xl font-extrabold uppercase leading-[0.9] tracking-tighter md:text-7xl">
                 Three rounds.<br />
-                <span className="font-['Instrument_Serif'] italic font-normal normal-case tracking-normal text-[#FF4D00]">one decision.</span>
+                <span className="font-['IvyPresto_Display','DM_Serif_Display',serif] italic font-normal normal-case tracking-normal text-[#FF4D00]">one decision.</span>
               </h2>
               <p className="mt-6 max-w-md text-[15px] leading-relaxed text-white/70">
                 Apply early. Scholarship pools shrink with every round, and ~80% of seats are filled by the time Round 3 opens.
@@ -76,7 +76,7 @@ export default function HomeSections() {
           <div className="mt-16 grid gap-px border border-white/15 bg-white/15 md:grid-cols-3">
             {DEADLINES.map((d, i) => (
               <div key={d.round} className="flex flex-col gap-6 bg-[#111111] p-8 md:p-10">
-                <div className="flex items-center justify-between font-['Geist'] text-[10px] font-medium uppercase tracking-[0.22em]">
+                <div className="flex items-center justify-between font-['Inter'] text-[10px] font-medium uppercase tracking-[0.22em]">
                   <span className="text-white/55">{String(i + 1).padStart(2, "0")} / {d.round}</span>
                   <span className={`px-2 py-1 ${d.status === "Open" ? "bg-[#FF4D00] text-white" : "border border-white/30 text-white/70"}`}>{d.status}</span>
                 </div>
@@ -96,19 +96,19 @@ export default function HomeSections() {
         <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-12 md:py-32">
           <div className="grid items-start gap-16 md:grid-cols-12">
             <div className="md:col-span-4">
-              <p className="font-['Geist'] text-[11px] font-medium uppercase tracking-[0.22em] text-[#FF4D00]">[ A note from the founders ]</p>
+              <p className="font-['Inter'] text-[11px] font-medium uppercase tracking-[0.22em] text-[#FF4D00]">[ A note from the founders ]</p>
               <div className="mt-8 aspect-[4/5] w-full border border-[#111111] bg-[#111111]">
                 <div className="flex h-full w-full flex-col justify-end p-8 text-white">
                   <Quote className="mb-6 size-8 text-[#FF4D00]" />
-                  <p className="font-['Geist'] text-[11px] uppercase tracking-[0.22em] text-white/70">Pratham Mittal</p>
-                  <p className="font-['Geist'] text-[10px] uppercase tracking-[0.22em] text-white/40">Founder · Masters' Union</p>
+                  <p className="font-['Inter'] text-[11px] uppercase tracking-[0.22em] text-white/70">Pratham Mittal</p>
+                  <p className="font-['Inter'] text-[10px] uppercase tracking-[0.22em] text-white/40">Founder · Masters' Union</p>
                 </div>
               </div>
             </div>
 
             <div className="md:col-span-8">
               <h2 className="text-4xl font-extrabold uppercase leading-[1.02] tracking-tighter md:text-[64px]">
-                "We didn't build another <span className="font-['Instrument_Serif'] italic font-normal normal-case tracking-normal text-[#FF4D00]">business school</span>. We built the school we wished existed when we were starting up."
+                "We didn't build another <span className="font-['IvyPresto_Display','DM_Serif_Display',serif] italic font-normal normal-case tracking-normal text-[#FF4D00]">business school</span>. We built the school we wished existed when we were starting up."
               </h2>
               <div className="mt-10 space-y-5 text-[16px] leading-[1.7] text-[#111111]/75 md:text-[17px]">
                 <p>
@@ -122,7 +122,7 @@ export default function HomeSections() {
                 </p>
               </div>
 
-              <div className="mt-10 flex flex-wrap items-center gap-3 font-['Geist'] text-[10px] uppercase tracking-[0.2em] text-[#111111]/60">
+              <div className="mt-10 flex flex-wrap items-center gap-3 font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#111111]/60">
                 <span className="border border-[#111111] px-4 py-2">Class of 2017, Wharton</span>
                 <span className="border border-[#111111] px-4 py-2">Ex-Founder, OakNorth</span>
                 <span className="border border-[#111111] px-4 py-2">Forbes 30u30</span>
@@ -135,7 +135,7 @@ export default function HomeSections() {
       {/* PEDAGOGY */}
       <section id="pedagogy" className="border-t border-[#111111] bg-[#F9F9F9]">
         <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-12 md:py-32">
-          <SectionHead eyebrow="[ The Pedagogy // 02 ]" title={<>How Masters' Union <span className="font-['Instrument_Serif'] italic font-normal normal-case tracking-normal text-[#FF4D00]">actually</span> teaches.</>} lede="Seven systems that work in concert — built so theory never outpaces practice." />
+          <SectionHead eyebrow="[ The Pedagogy // 02 ]" title={<>How Masters' Union <span className="font-['IvyPresto_Display','DM_Serif_Display',serif] italic font-normal normal-case tracking-normal text-[#FF4D00]">actually</span> teaches.</>} lede="Seven systems that work in concert — built so theory never outpaces practice." />
 
           <div className="mt-16 grid gap-px border border-[#111111] bg-[#111111] md:grid-cols-2 lg:grid-cols-3">
             {PEDAGOGY.map((p, i) => {
@@ -152,7 +152,7 @@ export default function HomeSections() {
                     <div className={`flex size-12 items-center justify-center ${featured ? "bg-[#FF4D00] text-white" : "bg-[#111111] text-white"}`}>
                       <Icon className="size-5" />
                     </div>
-                    <span className={`font-['Geist'] text-[10px] font-medium uppercase tracking-[0.22em] ${featured ? "text-[#FF4D00]" : "text-[#111111]/55"}`}>{p.tag}</span>
+                    <span className={`font-['Inter'] text-[10px] font-medium uppercase tracking-[0.22em] ${featured ? "text-[#FF4D00]" : "text-[#111111]/55"}`}>{p.tag}</span>
                   </div>
 
                   <div className="mt-12">
@@ -162,7 +162,7 @@ export default function HomeSections() {
                     <p className={`mt-5 text-[14px] leading-relaxed ${featured ? "text-white/70" : "text-[#111111]/70"}`}>{p.body}</p>
                   </div>
 
-                  <button type="button" className={`mt-10 inline-flex w-fit items-center gap-2 font-['Geist'] text-[10px] font-bold uppercase tracking-[0.22em] transition-colors ${featured ? "text-[#FF4D00] hover:text-white" : "text-[#111111] hover:text-[#FF4D00]"}`}>
+                  <button type="button" className={`mt-10 inline-flex w-fit items-center gap-2 font-['Inter'] text-[10px] font-bold uppercase tracking-[0.22em] transition-colors ${featured ? "text-[#FF4D00] hover:text-white" : "text-[#111111] hover:text-[#FF4D00]"}`}>
                     {p.cta}
                     <ArrowUpRight className="size-3.5" />
                   </button>
@@ -181,9 +181,9 @@ export default function HomeSections() {
 
             <div className="relative grid items-center gap-12 md:grid-cols-12">
               <div className="md:col-span-8">
-                <p className="font-['Geist'] text-[11px] font-medium uppercase tracking-[0.3em] text-[#FF4D00]">[ PGP // Cohort 2026 ]</p>
+                <p className="font-['Inter'] text-[11px] font-medium uppercase tracking-[0.3em] text-[#FF4D00]">[ PGP // Cohort 2026 ]</p>
                 <h2 className="mt-6 text-5xl font-extrabold uppercase leading-[0.9] tracking-tighter md:text-[96px]">
-                  Apply to<br /><span className="font-['Instrument_Serif'] italic font-normal normal-case tracking-normal text-[#FF4D00]">Masters' Union.</span>
+                  Apply to<br /><span className="font-['IvyPresto_Display','DM_Serif_Display',serif] italic font-normal normal-case tracking-normal text-[#FF4D00]">Masters' Union.</span>
                 </h2>
                 <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-white/75">
                   Submit a 4-question application. Hear back in 14 days. No GMAT, no essays about your childhood — we want to know what you've built or what you'd build with us.
@@ -192,9 +192,9 @@ export default function HomeSections() {
 
               <div className="md:col-span-4">
                 <div className="border border-white/20 bg-white/5 p-6">
-                  <p className="font-['Geist'] text-[11px] font-medium uppercase tracking-[0.22em] text-white/60">Next deadline</p>
+                  <p className="font-['Inter'] text-[11px] font-medium uppercase tracking-[0.22em] text-white/60">Next deadline</p>
                   <p className="mt-3 text-3xl font-extrabold uppercase tracking-tight">15 Aug 2026</p>
-                  <p className="mt-2 font-['Geist'] text-[10px] uppercase tracking-[0.18em] text-white/55">Round 1 · Early admit + scholarship</p>
+                  <p className="mt-2 font-['Inter'] text-[10px] uppercase tracking-[0.18em] text-white/55">Round 1 · Early admit + scholarship</p>
                   <button type="button" className="mt-6 flex w-full items-center justify-center gap-2 bg-[#FF4D00] px-6 py-4 text-[11px] font-bold uppercase tracking-[0.22em] text-white transition-colors hover:bg-white hover:text-[#111111]">
                     Start application <Send className="size-3.5" />
                   </button>
@@ -214,9 +214,9 @@ export default function HomeSections() {
           <div className="grid gap-12 md:grid-cols-12">
             <div className="md:col-span-5">
               <h2 className="text-3xl font-extrabold uppercase leading-tight tracking-tighter md:text-4xl">
-                Masters' Union<br /><span className="font-['Instrument_Serif'] italic font-normal normal-case tracking-normal text-[#FF4D00]">— business education,<br />rebuilt for the next decade.</span>
+                Masters' Union<br /><span className="font-['IvyPresto_Display','DM_Serif_Display',serif] italic font-normal normal-case tracking-normal text-[#FF4D00]">— business education,<br />rebuilt for the next decade.</span>
               </h2>
-              <p className="mt-8 max-w-sm font-['Geist'] text-[11px] uppercase leading-relaxed tracking-[0.18em] text-white/55">
+              <p className="mt-8 max-w-sm font-['Inter'] text-[11px] uppercase leading-relaxed tracking-[0.18em] text-white/55">
                 DLF Cyberpark, Phase III<br />
                 Gurugram 122002, India<br />
                 hello@mastersunion.org
@@ -235,7 +235,7 @@ export default function HomeSections() {
             <FooterCol title="Connect" links={["Admissions", "Press & Media", "Careers at MU", "Brochure (PDF)"]} />
           </div>
 
-          <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 font-['Geist'] text-[10px] uppercase tracking-[0.22em] text-white/45 md:flex-row md:items-center">
+          <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 font-['Inter'] text-[10px] uppercase tracking-[0.22em] text-white/45 md:flex-row md:items-center">
             <span>DESIGN REF // SWISS_01 — © 2026 Masters' Union Education Pvt. Ltd.</span>
             <div className="flex flex-wrap gap-6">
               <a href="#" className="hover:text-[#FF4D00]">Privacy</a>
@@ -255,7 +255,7 @@ function SectionHead({ eyebrow, title, lede, icon: Icon }: { eyebrow: string; ti
       <div className="max-w-2xl">
         <div className="flex items-center gap-3">
           {Icon && <Icon className="size-4 text-[#FF4D00]" />}
-          <p className="font-['Geist'] text-[11px] font-medium uppercase tracking-[0.22em] text-[#FF4D00]">{eyebrow}</p>
+          <p className="font-['Inter'] text-[11px] font-medium uppercase tracking-[0.22em] text-[#FF4D00]">{eyebrow}</p>
         </div>
         <h2 className="mt-5 text-5xl font-extrabold uppercase leading-[0.9] tracking-tighter md:text-7xl">
           {title}
@@ -269,7 +269,7 @@ function SectionHead({ eyebrow, title, lede, icon: Icon }: { eyebrow: string; ti
 function FooterCol({ title, links }: { title: string; links: string[] }) {
   return (
     <div className="md:col-span-2 lg:col-span-2">
-      <p className="font-['Geist'] text-[11px] font-bold uppercase tracking-[0.22em] text-[#FF4D00]">{title}</p>
+      <p className="font-['Inter'] text-[11px] font-bold uppercase tracking-[0.22em] text-[#FF4D00]">{title}</p>
       <ul className="mt-5 space-y-3">
         {links.map((l) => (
           <li key={l}>
