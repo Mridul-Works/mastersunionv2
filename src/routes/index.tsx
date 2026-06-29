@@ -361,6 +361,7 @@ function Index() {
           className="relative z-10 bg-[#FAF8F4] shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.12)]"
         >
           <TenThings />
+          <HomeSections />
         </div>
       </div>
 
