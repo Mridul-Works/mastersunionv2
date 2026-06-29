@@ -136,31 +136,32 @@ export default function TenThings() {
             <Slide key={project.n} project={project} direction={direction} index={index} />
           </AnimatePresence>
 
-          {/* Bottom nav: prev · tag · next */}
+          {/* Bottom nav: tag + arrows */}
           <div className="pointer-events-none absolute inset-x-0 bottom-8 z-30 flex flex-col items-center gap-5 px-6">
-            <div className="pointer-events-auto flex items-center gap-4 rounded-full border border-white/10 bg-black/40 px-4 py-2 backdrop-blur-md">
-              <button
-                type="button"
-                onClick={() => go(-1)}
-                aria-label="Previous chapter"
-                className="flex size-8 items-center justify-center rounded-full bg-gradient-to-br from-[#0D9488] via-[#FACC15] to-[#F97316] text-white shadow-lg shadow-[#F97316]/25 transition-transform hover:scale-110 active:scale-95"
-              >
-                <ArrowLeft className="size-4" strokeWidth={2.5} />
-              </button>
-
+            <div className="pointer-events-auto flex w-full max-w-[560px] items-center justify-between">
               <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-white/70">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-white" />
                 <span className="min-w-[80px] text-center">{project.tag}</span>
               </div>
 
-              <button
-                type="button"
-                onClick={() => go(1)}
-                aria-label="Next chapter"
-                className="flex size-8 items-center justify-center rounded-full bg-gradient-to-br from-[#0D9488] via-[#FACC15] to-[#F97316] text-white shadow-lg shadow-[#F97316]/25 transition-transform hover:scale-110 active:scale-95"
-              >
-                <ArrowRight className="size-4" strokeWidth={2.5} />
-              </button>
+              <div className="flex items-center gap-0">
+                <button
+                  type="button"
+                  onClick={() => go(-1)}
+                  aria-label="Previous chapter"
+                  className="p-2 text-white/50 transition-colors hover:text-white"
+                >
+                  <ArrowLeft className="size-4" strokeWidth={2} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => go(1)}
+                  aria-label="Next chapter"
+                  className="p-2 text-white/50 transition-colors hover:text-white"
+                >
+                  <ArrowRight className="size-4" strokeWidth={2} />
+                </button>
+              </div>
             </div>
 
             <div className="flex items-center gap-2">
