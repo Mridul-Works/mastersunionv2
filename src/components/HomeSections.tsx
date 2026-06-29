@@ -32,8 +32,8 @@ export default function HomeSections() {
           <div className="border-t-4 border-[#6B1F2A] pt-8">
             <div className="flex items-end justify-between gap-4 mb-10">
               <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#6B1F2A] mb-1">The Dispatch</p>
-                <h2 className="text-4xl font-bold text-[#16140F] md:text-5xl" style={{ fontFamily: "'Fraunces', serif" }}>
+                <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-[#6B1F2A] mb-1">The Dispatch</p>
+                <h2 className="font-display text-4xl font-bold text-[#16140F] md:text-5xl">
                   News Wire
                 </h2>
               </div>
@@ -56,22 +56,21 @@ export default function HomeSections() {
                   }`}
                 >
                   <div className="flex h-16 w-14 flex-shrink-0 flex-col items-center justify-center bg-[#6B1F2A] text-white shadow-sm transition-colors group-hover:bg-[#16140F]">
-                    <span className="text-[10px] font-bold uppercase tracking-tighter opacity-80">{n.month}</span>
-                    <span className="text-2xl font-extrabold leading-none" style={{ fontFamily: "'Fraunces', serif" }}>
+                    <span className="font-sans text-[10px] font-bold uppercase tracking-tighter opacity-80">{n.month}</span>
+                    <span className="font-display text-2xl font-extrabold leading-none">
                       {n.day}
                     </span>
                   </div>
                   <div className="flex flex-col">
-                    <span className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50">
+                    <span className="font-sans mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50">
                       {n.time} &bull; {n.tag}
                     </span>
                     <h3
-                      className="text-lg font-semibold leading-snug text-black/90 transition-colors group-hover:text-[#6B1F2A]"
-                      style={{ fontFamily: "'Fraunces', serif" }}
+                      className="font-display text-lg font-semibold leading-snug text-black/90 transition-colors group-hover:text-[#6B1F2A]"
                     >
                       {n.title}
                     </h3>
-                    <p className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-black/40">
+                    <p className="font-sans mt-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-black/40">
                       Source: {n.source}
                     </p>
                   </div>
@@ -82,7 +81,7 @@ export default function HomeSections() {
             <div className="mt-8 flex justify-center">
               <a
                 href="#"
-                className="border-b-2 border-[#16140F] pb-1 text-xs font-semibold uppercase tracking-[0.3em] text-[#16140F] transition-colors hover:border-[#6B1F2A] hover:text-[#6B1F2A]"
+                className="font-sans border-b-2 border-[#16140F] pb-1 text-xs font-semibold uppercase tracking-[0.3em] text-[#16140F] transition-colors hover:border-[#6B1F2A] hover:text-[#6B1F2A]"
               >
                 Enter Full Archive
               </a>
