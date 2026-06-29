@@ -286,13 +286,7 @@ function Index() {
                   >
                     <div className="relative flex items-center justify-center">
                       {/* Outer pulsing ring */}
-                      <div
-                        className="absolute inset-0 rounded-full border border-[#C9A84C]/30 opacity-0 group-hover:opacity-100"
-                        style={{
-                          transform: "scale(1.4)",
-                          animation: "ping 2.5s cubic-bezier(0, 0, 0.2, 1) infinite",
-                        }}
-                      />
+                      <div className="mu-ping-gold absolute inset-0 rounded-full border border-[#C9A84C]/40" />
 
                       {/* Main button body */}
                       <div className="relative flex size-24 items-center justify-center rounded-full border border-[#C9A84C]/40 bg-[#1F4D3F]/20 backdrop-blur-xl transition-all duration-700 group-hover:scale-110 group-hover:border-[#C9A84C] group-hover:bg-[#6B1F2A]/30">
