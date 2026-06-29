@@ -26,12 +26,12 @@ export default function TenThings() {
   return (
     <section className="relative bg-[#0A0A0A] text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       {/* Intro headline — compact editorial */}
-      <div className="relative overflow-hidden bg-white px-6 py-8 text-black md:py-10">
-        <div className="pointer-events-none absolute -left-40 top-10 h-[20vh] w-[20vh] rounded-full bg-black/[0.04] blur-[80px]" />
-        <div className="pointer-events-none absolute -right-40 bottom-0 h-[20vh] w-[20vh] rounded-full bg-black/[0.04] blur-[80px]" />
+      <div className="relative overflow-hidden bg-white px-6 py-7 text-black md:py-9">
+        <div className="pointer-events-none absolute -left-40 top-6 h-[16vh] w-[16vh] rounded-full bg-black/[0.04] blur-[60px]" />
+        <div className="pointer-events-none absolute -right-40 bottom-0 h-[16vh] w-[16vh] rounded-full bg-black/[0.04] blur-[60px]" />
 
         <div className="relative z-10 mx-auto max-w-[1180px]">
-          <div className="mb-4 flex items-center gap-3">
+          <div className="mb-3 flex items-center gap-3">
             <span className="h-px w-8 bg-black/40" />
             <span
               className="text-[9px] uppercase tracking-[0.3em] text-black/55"
@@ -41,54 +41,52 @@ export default function TenThings() {
             </span>
           </div>
 
-          <h2
-            className="leading-[1.0] tracking-[-0.02em] text-black"
-            style={{
-              fontFamily: "'Inter', system-ui, sans-serif",
-              fontWeight: 400,
-              fontSize: "clamp(28px, 5vw, 56px)",
-            }}
-          >
-            Cut the{" "}
-            <em
-              className="text-black/60"
-              style={{ fontFamily: "'Inter', system-ui, sans-serif", fontStyle: "italic", fontWeight: 300 }}
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <h2
+              className="leading-[1.02] tracking-[-0.02em] text-black"
+              style={{
+                fontFamily: "'Inter', system-ui, sans-serif",
+                fontWeight: 400,
+                fontSize: "clamp(22px, 3.8vw, 42px)",
+              }}
             >
-              marketing.
-            </em>
-            <br />
-            <span className="block">
-              10 things about{" "}
+              Cut the{" "}
+              <em
+                className="text-black/60"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif", fontStyle: "italic", fontWeight: 300 }}
+              >
+                marketing.
+              </em>
+              <br className="hidden md:block" />
               <span className="relative inline-block">
                 <span
                   className="relative z-10 italic"
                   style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 400 }}
                 >
-                  Masters' Union
+                  10 things about Masters' Union
                 </span>
                 <span className="absolute inset-x-0 bottom-1 z-0 h-[3px] bg-black/15" />
               </span>
-            </span>
-          </h2>
+            </h2>
 
-          <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <p
-              className="max-w-[420px] text-[13px] leading-[1.5] text-black/70"
-              style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 400 }}
-            >
-              No ads. No fluff. Just the dossier — ten chapters that actually
-              explain how the school works, who teaches, and what gets built.
-            </p>
+            <div className="flex flex-col gap-3 md:items-end">
+              <p
+                className="max-w-[360px] text-[12px] leading-[1.5] text-black/70"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 400 }}
+              >
+                No ads. No fluff. Just the dossier — ten chapters that actually explain how the school works.
+              </p>
 
-            <div
-              className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[9px] uppercase tracking-[0.26em] text-black/55"
-              style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
-            >
-              <span>{String(CHAPTERS.length).padStart(2, "0")} Chapters</span>
-              <span className="h-1 w-1 rounded-full bg-black/60" />
-              <span>≈ 8 min read</span>
-              <span className="h-1 w-1 rounded-full bg-black/60" />
-              <span>Updated 2026</span>
+              <div
+                className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[9px] uppercase tracking-[0.26em] text-black/55"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
+              >
+                <span>{String(CHAPTERS.length).padStart(2, "0")} Chapters</span>
+                <span className="h-1 w-1 rounded-full bg-black/60" />
+                <span>≈ 8 min read</span>
+                <span className="h-1 w-1 rounded-full bg-black/60" />
+                <span>Updated 2026</span>
+              </div>
             </div>
           </div>
         </div>
