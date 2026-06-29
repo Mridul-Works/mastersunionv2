@@ -1,4 +1,4 @@
-import { ArrowUpRight, ChevronLeft, ChevronRight, Hourglass, Quote, GraduationCap, Rocket, Briefcase, Users, Mic, ChefHat, Building2, Send, Instagram, Linkedin, Youtube, Twitter } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight, Hourglass, Quote, GraduationCap, Rocket, Briefcase, Users, Mic, ChefHat, Building2, Send, Instagram, Linkedin, Youtube, Twitter, ShoppingCart } from "lucide-react";
 import founderPhoto from "@/assets/pratham-mittal.png.asset.json";
 
 const NEWS = [
