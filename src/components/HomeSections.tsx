@@ -32,67 +32,65 @@ export default function HomeSections() {
     <div className="bg-white text-black" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       {/* NEWS */}
       <section id="news" className="border-t border-black/10">
-        <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10 md:py-28">
-          <div className="pt-8">
-            <div className="flex items-end justify-between gap-4 mb-10">
-              <div>
-                <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-black/60 mb-1">The Dispatch</p>
-                <h2 className="font-display text-[1.35rem] font-bold leading-tight text-black md:text-[1.8rem]">
-                  Latest News
-                </h2>
-              </div>
-              <div className="hidden gap-2 md:flex">
-                <button type="button" className="p-2 border border-black/10 transition-colors hover:bg-black/5">
-                  <ChevronLeft className="size-4 text-black/60" />
-                </button>
-                <button type="button" className="p-2 border border-black/10 transition-colors hover:bg-black/5">
-                  <ChevronRight className="size-4 text-black/60" />
-                </button>
-              </div>
+        <div className="mx-auto max-w-[1280px] px-6 py-14 md:px-10 md:py-18">
+          <div className="flex items-end justify-between gap-4 mb-8">
+            <div>
+              <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-black/60 mb-1">The Dispatch</p>
+              <h2 className="font-display text-[1.35rem] font-bold leading-tight text-black md:text-[1.8rem]">
+                Latest News
+              </h2>
             </div>
-
-            <div className="flex flex-nowrap gap-4 overflow-x-auto snap-x md:overflow-x-visible md:gap-6">
-              {NEWS.map((n) => (
-                <article
-                  key={n.title}
-                  className="group flex min-w-[300px] flex-1 cursor-pointer snap-start gap-5 p-5 transition-all hover:bg-black/[0.03] md:min-w-0"
-                >
-                  <div className="flex h-16 w-14 flex-shrink-0 flex-col items-center justify-center bg-black text-white shadow-sm transition-colors group-hover:bg-neutral-700">
-                    <span className="font-sans text-[10px] font-bold uppercase tracking-tighter opacity-80">{n.month}</span>
-                    <span className="font-display text-2xl font-extrabold leading-none">
-                      {n.day}
-                    </span>
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="font-sans mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50">
-                      {n.time} &bull; {n.tag}
-                    </span>
-                    <h3 className="font-display text-lg font-semibold leading-snug text-black/90 transition-colors group-hover:text-black">
-                      {n.title}
-                    </h3>
-                    <p className="font-sans mt-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-black/40">
-                      Source: {n.source}
-                    </p>
-                  </div>
-                </article>
-              ))}
+            <div className="hidden gap-2 md:flex">
+              <button type="button" className="p-2 border border-black/10 transition-colors hover:bg-black/5">
+                <ChevronLeft className="size-4 text-black/60" />
+              </button>
+              <button type="button" className="p-2 border border-black/10 transition-colors hover:bg-black/5">
+                <ChevronRight className="size-4 text-black/60" />
+              </button>
             </div>
+          </div>
 
-            <div className="mt-8 flex justify-center">
-              <a
-                href="#"
-                className="font-sans border-b-2 border-black pb-1 text-xs font-semibold uppercase tracking-[0.3em] text-black transition-colors hover:border-black/50 hover:text-black/60"
+          <div className="flex flex-nowrap gap-4 overflow-x-auto snap-x md:overflow-x-visible md:gap-6">
+            {NEWS.map((n) => (
+              <article
+                key={n.title}
+                className="group flex min-w-[300px] flex-1 cursor-pointer snap-start gap-5 p-5 transition-all hover:bg-black/[0.03] md:min-w-0"
               >
-                Enter Full Archive
-              </a>
-            </div>
+                <div className="flex h-16 w-14 flex-shrink-0 flex-col items-center justify-center bg-black text-white shadow-sm transition-colors group-hover:bg-neutral-700">
+                  <span className="font-sans text-[10px] font-bold uppercase tracking-tighter opacity-80">{n.month}</span>
+                  <span className="font-display text-2xl font-extrabold leading-none">
+                    {n.day}
+                  </span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-sans mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50">
+                    {n.time} &bull; {n.tag}
+                  </span>
+                  <h3 className="font-display text-lg font-semibold leading-snug text-black/90 transition-colors group-hover:text-black">
+                    {n.title}
+                  </h3>
+                  <p className="font-sans mt-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-black/40">
+                    Source: {n.source}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-6 flex justify-center">
+            <a
+              href="#"
+              className="font-sans border-b-2 border-black pb-1 text-xs font-semibold uppercase tracking-[0.3em] text-black transition-colors hover:border-black/50 hover:text-black/60"
+            >
+              Enter Full Archive
+            </a>
           </div>
         </div>
       </section>
 
       {/* PROGRAMS / APPLICATIONS */}
       <section id="deadlines" className="border-t border-black/10 bg-white">
-        <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10 md:py-28">
+        <div className="mx-auto max-w-[1280px] px-6 py-14 md:px-10 md:py-18">
           <div className="pt-8">
             <div className="flex items-end justify-between gap-4 mb-10">
               <div>
