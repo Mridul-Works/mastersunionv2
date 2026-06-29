@@ -24,28 +24,28 @@ export default function TenThings() {
   const project = CHAPTERS[index];
 
   return (
-    <section className="relative bg-[#0A0A0A] text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+    <section className="relative bg-[#0A0A0A] text-white" style={{ fontFamily: "'Geist', system-ui, sans-serif" }}>
       {/* Intro headline — Swiss High-Contrast */}
       <div className="relative overflow-hidden border-b border-[#111111] bg-[#F9F9F9] px-6 py-28 text-[#111111] md:px-16 md:py-40">
         <div className="relative z-10 mx-auto max-w-[1280px]">
           <div className="mb-10 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <span className="h-px w-10 bg-[#111111]" />
-              <span className="font-['JetBrains_Mono'] text-[11px] font-medium uppercase tracking-[0.22em] text-[#FF4D00]">
+              <span className="font-['Geist'] text-[11px] font-medium uppercase tracking-[0.22em] text-[#FF4D00]">
                 [ Field Notes // Vol. 01 ]
               </span>
             </div>
-            <span className="hidden font-['JetBrains_Mono'] text-[11px] uppercase tracking-[0.22em] text-[#111111]/50 md:inline">
+            <span className="hidden font-['Geist'] text-[11px] uppercase tracking-[0.22em] text-[#111111]/50 md:inline">
               Index 01 — 10
             </span>
           </div>
 
           <h2
-            className="font-['Inter'] font-extrabold uppercase leading-[0.88] tracking-tighter text-[#111111]"
+            className="font-['Clash_Display'] font-extrabold uppercase leading-[0.88] tracking-tighter text-[#111111]"
             style={{ fontSize: "clamp(56px, 10vw, 140px)" }}
           >
             Cut the<br />
-            <span className="text-[#FF4D00]">marketing.</span>
+            <span className="font-['Instrument_Serif'] italic font-normal normal-case tracking-normal text-[#FF4D00]">marketing.</span>
             <br />
             <span className="block">
               10 things about Masters' Union.
@@ -53,12 +53,12 @@ export default function TenThings() {
           </h2>
 
           <div className="mt-14 grid grid-cols-1 gap-10 md:grid-cols-[1.3fr_1fr] md:items-end">
-            <p className="max-w-[560px] font-['Inter'] text-[18px] font-medium leading-[1.55] text-[#111111]/75">
+            <p className="max-w-[560px] font-['Clash_Display'] text-[18px] font-medium leading-[1.55] text-[#111111]/75">
               No ads. No fluff. Just the dossier — ten chapters that actually
               explain how the school works, who teaches, and what gets built.
             </p>
 
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-[#111111] pt-5 font-['JetBrains_Mono'] text-[11px] uppercase tracking-[0.22em] text-[#111111]/70">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-[#111111] pt-5 font-['Geist'] text-[11px] uppercase tracking-[0.22em] text-[#111111]/70">
               <span>{String(CHAPTERS.length).padStart(2, "0")} Chapters</span>
               <span className="h-1.5 w-1.5 bg-[#FF4D00]" />
               <span>≈ 8 min read</span>
@@ -76,7 +76,7 @@ export default function TenThings() {
           {/* Counter top-left */}
           <div
             className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[12px] tracking-[0.15em] text-neutral-400 md:left-10"
-            style={{ fontFamily: "'JetBrains Mono', monospace", textShadow: "0 0 24px rgba(255,255,255,0.10)" }}
+            style={{ fontFamily: "'Geist', sans-serif", textShadow: "0 0 24px rgba(255,255,255,0.10)" }}
           >
             <AnimatePresence mode="popLayout">
               <motion.span
@@ -242,7 +242,7 @@ function Slide({
           <StaggeredText delay={0.15} k={`meta-${index}`}>
             <p
               className="text-[11px] uppercase tracking-[0.2em] text-white/60"
-              style={{ fontFamily: "'JetBrains Mono', monospace" }}
+              style={{ fontFamily: "'Geist', sans-serif" }}
             >
               <span className="text-neutral-400">{String(index + 1).padStart(2, "0")}</span>
               <span className="mx-2 text-white/25">·</span>
@@ -276,7 +276,7 @@ function Slide({
                   <div className="text-2xl font-black tracking-tighter text-white">{s.value}</div>
                   <div
                     className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/50"
-                    style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                    style={{ fontFamily: "'Geist', sans-serif" }}
                   >
                     {s.label}
                   </div>

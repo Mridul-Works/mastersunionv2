@@ -30,9 +30,11 @@
   --color-paper: var(--paper);
   --color-signal: var(--signal);
 
-  --font-display: "Inter", system-ui, sans-serif;
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-display: "Clash Display", "Geist", system-ui, sans-serif;
+  --font-sans: "Geist", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-mono: "Geist Mono", "Geist", ui-monospace, monospace;
+
 }
 
 :root {
