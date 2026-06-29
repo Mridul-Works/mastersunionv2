@@ -25,65 +25,69 @@ export default function TenThings() {
 
   return (
     <section className="relative bg-[#0A0A0A] text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-      {/* Intro headline — editorial, light theme */}
-      <div className="relative overflow-hidden bg-[#FAF8F4] px-6 py-28 md:py-36 text-[#111]">
-        {/* Decorative grid + glow */}
-        <div className="pointer-events-none absolute inset-0 opacity-[0.04]" style={{
-          backgroundImage: "linear-gradient(#111 1px, transparent 1px), linear-gradient(90deg, #111 1px, transparent 1px)",
-          backgroundSize: "64px 64px",
-        }} />
-        <div className="pointer-events-none absolute -left-32 top-1/3 h-[40vh] w-[40vh] rounded-full bg-[#C9A84C]/15 blur-[120px]" />
-        <div className="pointer-events-none absolute -right-32 bottom-0 h-[40vh] w-[40vh] rounded-full bg-[#111]/[0.04] blur-[100px]" />
+      {/* Intro headline — editorial, matches site theme */}
+      <div className="relative overflow-hidden bg-[#FAF8F4] px-6 py-28 md:py-40 text-[#1a1a1a]">
+        <div className="pointer-events-none absolute -left-40 top-20 h-[50vh] w-[50vh] rounded-full bg-[#C9A84C]/12 blur-[140px]" />
+        <div className="pointer-events-none absolute -right-40 bottom-0 h-[50vh] w-[50vh] rounded-full bg-[#87a878]/10 blur-[140px]" />
 
         <div className="relative z-10 mx-auto max-w-[1180px]">
-          {/* Eyebrow */}
-          <div className="mb-10 flex items-center gap-3">
-            <span className="h-px w-10 bg-[#111]/30" />
+          <div className="mb-12 flex items-center gap-4">
+            <span className="h-px w-12 bg-[#1a1a1a]/40" />
             <span
-              className="text-[10px] uppercase tracking-[0.4em] text-[#111]/55"
-              style={{ fontFamily: "'JetBrains Mono', monospace" }}
+              className="text-[11px] uppercase tracking-[0.32em] text-[#1a1a1a]/55"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
             >
-              Field Notes · Vol. 01
+              Field Notes — Vol. 01
             </span>
           </div>
 
-          {/* Big headline */}
           <h2
-            className="font-black leading-[0.95] tracking-[-0.03em] text-[#111]"
-            style={{ fontSize: "clamp(44px,8vw,108px)" }}
+            className="leading-[0.98] tracking-[-0.02em] text-[#1a1a1a]"
+            style={{
+              fontFamily: "'Instrument Serif', 'Cormorant Garamond', serif",
+              fontWeight: 400,
+              fontSize: "clamp(52px, 9vw, 124px)",
+            }}
           >
-            Cut the
-            <span
-              className="ml-2 italic font-light text-[#C9A84C]"
-              style={{ fontFamily: "'Cormorant Garamond', serif", letterSpacing: "-0.01em" }}
+            Cut the{" "}
+            <em
+              className="text-[#8b7355]"
+              style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 300 }}
             >
               marketing.
-            </span>
+            </em>
             <br />
             <span className="block">
               10 things about{" "}
               <span className="relative inline-block">
-                <span className="relative z-10">Masters' Union</span>
-                <span className="absolute inset-x-0 bottom-1 z-0 h-3 bg-[#C9A84C]/40" />
+                <span
+                  className="relative z-10 italic"
+                  style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}
+                >
+                  Masters' Union
+                </span>
+                <span className="absolute inset-x-0 bottom-2 z-0 h-[6px] bg-[#C9A84C]/45" />
               </span>
             </span>
           </h2>
 
-          {/* Sub copy + meta row */}
-          <div className="mt-12 grid grid-cols-1 gap-10 md:grid-cols-[1.4fr_1fr] md:items-end">
-            <p className="max-w-[560px] text-[15px] leading-[1.7] text-[#111]/65">
+          <div className="mt-14 grid grid-cols-1 gap-10 md:grid-cols-[1.3fr_1fr] md:items-end">
+            <p
+              className="max-w-[560px] text-[18px] leading-[1.65] text-[#1a1a1a]/70"
+              style={{ fontFamily: "'Instrument Serif', serif", fontWeight: 400 }}
+            >
               No ads. No fluff. Just the dossier — ten chapters that actually
               explain how the school works, who teaches, and what gets built.
             </p>
 
             <div
-              className="flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-[#111]/15 pt-5 text-[11px] uppercase tracking-[0.22em] text-[#111]/55"
-              style={{ fontFamily: "'JetBrains Mono', monospace" }}
+              className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-[#1a1a1a]/20 pt-5 text-[11px] uppercase tracking-[0.28em] text-[#1a1a1a]/55"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
             >
-              <span>{String(CHAPTERS.length).padStart(2, "0")} chapters</span>
-              <span className="text-[#111]/25">·</span>
+              <span>{String(CHAPTERS.length).padStart(2, "0")} Chapters</span>
+              <span className="h-1 w-1 rounded-full bg-[#C9A84C]" />
               <span>≈ 8 min read</span>
-              <span className="text-[#111]/25">·</span>
+              <span className="h-1 w-1 rounded-full bg-[#C9A84C]" />
               <span>Updated 2026</span>
             </div>
           </div>
