@@ -144,7 +144,7 @@ export default function TenThings() {
 
           {/* Slide */}
           <AnimatePresence mode="popLayout" custom={direction}>
-            <Slide key={project.n} project={project} direction={direction} index={index} />
+            <Slide key={project.n} project={project} direction={direction} index={index} onPrev={() => go(-1)} onNext={() => go(1)} />
           </AnimatePresence>
 
           {/* Bottom progress dots */}
