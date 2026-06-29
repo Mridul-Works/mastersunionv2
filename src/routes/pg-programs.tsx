@@ -8,7 +8,7 @@ export const Route = createFileRoute("/pg-programs")({
       {
         name: "description",
         content:
-          "The MBA that pays for itself before you graduate. ₹33.39L average CTC, 3.03x salary jump, 148 recruiters.",
+          "The MBA that pays for itself before you graduate. ₹33.39L average CTC, 3.03x salary jump, 148 recruiters across 7 PG programmes.",
       },
       { property: "og:title", content: "Postgraduate Programs — Masters' Union" },
       {
@@ -20,6 +20,7 @@ export const Route = createFileRoute("/pg-programs")({
   component: PgProgramsPage,
 });
 
+/* ─────────── Design tokens (page-local) ─────────── */
 const display = { fontFamily: "'Playfair Display', serif" };
 const body = { fontFamily: "'Plus Jakarta Sans', sans-serif" };
 const dotGrid = {
@@ -27,7 +28,10 @@ const dotGrid = {
     "radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)",
   backgroundSize: "28px 28px",
 };
+const ACCENT = "#F4C641";
+const INK = "#101010";
 
+/* ─────────── Data ─────────── */
 type Cluster = "All" | "Business" | "Technology & Design" | "Specialised";
 
 type Program = {
@@ -43,7 +47,7 @@ const PROGRAMS: Program[] = [
   {
     cluster: "Business",
     title: "PGP in Technology & Business Management",
-    tag: "Flagship · 15 Months",
+    tag: "Flagship · 16 Months",
     hook: "For those who want to run companies, not just work at them.",
     points: [
       "Grades based on revenue, users & NPS — not exams",
@@ -56,13 +60,14 @@ const PROGRAMS: Program[] = [
   },
   {
     cluster: "Business",
-    title: "PGP in Technology & Business Management — Young Leaders Cohort",
-    tag: "Accelerated",
+    title: "PGP TBM — Young Leaders Cohort",
+    tag: "Accelerated · 24 Months",
     hook: "For exceptional graduates who don't want to wait two years to lead.",
     points: [
-      "Compressed, high-intensity TBM curriculum",
-      "Same OutClass experiences — Dropshipping Fair, Investment Fund, Creator Challenge",
-      "Designed for 0–2 years experience",
+      "Compressed, high-intensity TBM curriculum (200 credits)",
+      "Same OutClass: Dropshipping Fair, Investment Fund, Creator Challenge",
+      "Mandatory industry internship built in",
+      "Designed for 0–1 years experience",
     ],
     cta: "Explore YLC →",
   },
@@ -130,6 +135,59 @@ const PROGRAMS: Program[] = [
 
 const TABS: Cluster[] = ["All", "Business", "Technology & Design", "Specialised"];
 
+const PATHWAYS = [
+  {
+    id: "tbm",
+    num: "01",
+    label: "Experienced Professionals",
+    short: "PGP TBM",
+    full: "PGP in Technology & Business Management",
+    ideal:
+      "Built for ambitious professionals with 1–8 years of experience ready to leap into tech-forward leadership — learn from CXOs of Google, McKinsey & Bain, not textbooks.",
+    facts: [
+      ["Duration", "16 Months"],
+      ["Format", "Full-Time, Opt-in Residential"],
+      ["Location", "Gurugram (DLF Cyberpark)"],
+      ["Cohort Size", "~120"],
+      ["Next Cohort", "June 2026"],
+      ["Credits", "120 (InClass + OutClass)"],
+    ],
+    highlights: [
+      ["₹33.39L", "Average CTC"],
+      ["₹1.28 Cr", "Highest CTC placed"],
+      ["145+", "Marquee recruiters — Google, Flipkart, Zomato"],
+      ["₹5 Cr", "Student-led investment fund"],
+      ["100+", "VCs at Demo Day"],
+      ["11.2%", "Placed as EiR & Chief of Staff at top startups"],
+    ],
+  },
+  {
+    id: "ylc",
+    num: "02",
+    label: "Young Leaders",
+    short: "PGP TBM · YLC",
+    full: "Young Leaders' Certificate Programme",
+    ideal:
+      "Designed for fresh graduates and early-career operators (0–1 year experience) who want to fast-track into leadership — with extra foundational depth and a mandatory industry internship.",
+    facts: [
+      ["Duration", "24 Months"],
+      ["Format", "Full-Time, Opt-in Residential"],
+      ["Location", "Gurugram (DLF Cyberpark)"],
+      ["Cohort Size", "~80"],
+      ["Next Cohort", "June 2026"],
+      ["Credits", "200 (deeper foundations)"],
+    ],
+    highlights: [
+      ["₹28.24L", "Average CTC"],
+      ["₹46.22L", "Highest CTC placed"],
+      ["100+", "Recruiting companies across sectors"],
+      ["₹2 Cr+", "Earned collectively in Dropshipping Challenge"],
+      ["Day 1", "Startup incubation — graduate with a running business"],
+      ["1M+", "Followers built via Creator-preneur track"],
+    ],
+  },
+];
+
 const STATS = [
   ["₹33.39L", "Average CTC"],
   ["₹61.98L", "Highest CTC"],
@@ -139,15 +197,246 @@ const STATS = [
   ["10–20%", "Annual Salary Growth"],
 ];
 
-const ALUMNI = [
-  ["Jeneesha Singh", "Associate Consultant, Bain & Company (Co'23)"],
-  ["Daniel Paul Nath", "Growth Strategist, Google Dublin (Co'24)"],
-  ["Dharmil Bavishi", "Founder, Bullspree · Shark Tank Season 2 (Co'21)"],
-  ["Prashasti Singh", "Consultant, McKinsey (Co'23)"],
-  ["Gautam Marwah", "Chief of Staff, Kae Capital (Co'24)"],
-  ["Radika Agarwal", "Investment Analyst, Good Capital (Co'24)"],
+const ROLES = [
+  "Product Manager",
+  "Program Manager",
+  "Strategy Associate",
+  "Chief of Staff",
+  "Entrepreneur in Residence",
+  "Manager — Founder's Office",
+  "Growth Manager",
+  "Business Analyst",
+  "Consultant",
+  "Brand Marketing",
 ];
 
+const RECRUITERS = [
+  "Google",
+  "McKinsey",
+  "Bain",
+  "BCG",
+  "Microsoft",
+  "Meta",
+  "Zomato",
+  "Flipkart",
+  "Zepto",
+  "Blinkit",
+  "Razorpay",
+  "Goldman Sachs",
+  "Amazon",
+  "Kotak IB",
+  "Axis Capital",
+  "PwC",
+];
+
+const ALUMNI_TRANSFORMATIONS = [
+  {
+    name: "Shruti Kumari",
+    before: ["Communications Lead", "Adfactors"],
+    during: "Led live brand campaigns for D2C companies",
+    after: ["Brand Marketing", "Flipkart"],
+  },
+  {
+    name: "Tushar Chuttani",
+    before: ["Product Associate", "BYJU'S"],
+    during: "Built a D2C brand through the Founder Fellowship",
+    after: ["Entrepreneur in Residence", "mCaffeine"],
+  },
+  {
+    name: "Apurv Rathore",
+    before: ["Associate Consultant", "Bain & Co."],
+    during: "Managed a ₹5 Cr student investment fund",
+    after: ["Lead Product Manager", "Sprinklr"],
+  },
+  {
+    name: "Gautam Marwah",
+    before: ["Product Manager", "Pine Labs"],
+    during: "Co-founded a fintech startup during the programme",
+    after: ["Chief of Staff", "Kae Capital"],
+  },
+  {
+    name: "Tilottama Ghosh",
+    before: ["Analyst", "JP Morgan"],
+    during: "Won national case competition against IIMs",
+    after: ["Associate", "Kotak Investment Banking"],
+  },
+  {
+    name: "Manya Parmar",
+    before: ["Consultant", "PwC India"],
+    during: "Built growth strategies for Series A startups",
+    after: ["Program Manager", "Zomato"],
+  },
+];
+
+const CURRICULUM_DOMAINS = [
+  {
+    title: "Communication & Self Development",
+    blurb:
+      "Master influence — boardroom presentations, high-stakes negotiations, crisp business writing. Build executive presence, EQ, and the storytelling that separates good managers from great leaders.",
+    bullets: [
+      "Inspiring speeches, persuasive writing, emails that get responses",
+      "Productivity systems, personal finance, portfolio building",
+      "Leadership, mental models, motivating teams, running meetings",
+    ],
+    facultyHighlight:
+      "Dr. Bhasker Malu · Dr. Francis Rebello (Plan International) · Dr. Rajagopal Raghunathan (UT Austin)",
+  },
+  {
+    title: "Finance & Fintech",
+    blurb:
+      "From reading a balance sheet to building full financial models. Learn how India's top CFOs think about capital allocation, valuation, and risk — then apply it to fintech, crypto, and real fundraising.",
+    bullets: [
+      "Statements, budgeting, cost control, advanced Excel",
+      "Valuation, modelling, MIS, raising debt & equity capital",
+      "Fintech, blockchain, and understanding global financial crises",
+    ],
+    facultyHighlight:
+      "Dr. Garrick Hileman (U. Nicosia) · Dr. Arvind Mayaram (Ex-Finance Secretary, GoI) · Satish Krishnan (Ex-MD, StanChart)",
+  },
+  {
+    title: "Sales & Marketing",
+    blurb:
+      "The growth playbooks behind Nike, Zerodha, and boAt. From performance marketing and funnel optimisation to community-led growth and brand storytelling — become a full-stack marketer who drives revenue.",
+    bullets: [
+      "Organic growth, Meta & Google ads, Amazon selling, GTM",
+      "Brand building, consumer psychology, CRM, content marketing",
+      "Community, personal branding, closing deals via storytelling",
+    ],
+    facultyHighlight:
+      "Elkana Ezekiel (Ex-CMO Samsung) · Arjun Vaidya · Vani Gupta Dandia (Ex-PepsiCo) · Saurabh Sengupta (Ex-SVP Zomato)",
+  },
+  {
+    title: "Management & Strategy",
+    blurb:
+      "Think like a CEO. From competitive analysis and crisis management to organisational design and global supply chains — the strategic frameworks used at McKinsey, Swiggy, and Softbank.",
+    bullets: [
+      "Team dynamics, procurement, market analysis, KPI tracking",
+      "Strategy, business plans, crisis & organisational alignment",
+      "Networking, 7-slide pitches, giving effective feedback",
+    ],
+    facultyHighlight:
+      "Rohit Kapoor (CEO, Swiggy Food) · Dr. Manoj Kohli (Ex-Softbank India) · Dr. Edward Rogers (Ex-CKO, NASA)",
+  },
+  {
+    title: "Product, Tech & AI",
+    blurb:
+      "Build like a founder, think like a PM, harness AI as a force multiplier. Live e-commerce stores, Figma design, code, no-code MVPs, and AI-powered products — technically dangerous enough to lead any product team.",
+    bullets: [
+      "E-commerce, design thinking, reading & writing code, dashboards",
+      "UI/UX with Figma, no-code app building, product mindset",
+      "Prompt engineering, generative AI, building agentic products",
+    ],
+    facultyHighlight:
+      "Monica Jasuja (Mastercard) · Malthi Satish (Ex-Dir PM, PayPal) · Gaurav Mittal (Stripe) · Divij Bajaj (Microsoft)",
+  },
+];
+
+const OUTCLASS = [
+  {
+    eb: "Term 1",
+    t: "Dropshipping Fair",
+    s: "₹3.38 Cr",
+    b: "50 teams. Real products. Real customers on Shopify, Amazon & Flipkart. Cohort '25 total revenue.",
+  },
+  {
+    eb: "Term 2",
+    t: "Content Creator Challenge",
+    s: "46M+",
+    b: "120+ creators. ₹10L+ prize pool. 80+ live brand assets delivered to real D2C brands in 24 hours.",
+  },
+  {
+    eb: "Year-round",
+    t: "Student Investment Fund",
+    s: "₹5 Cr",
+    b: "Real corpus. Beaten public markets by 20–25% consistently. 5+ startup co-investments alongside VCs.",
+  },
+  {
+    eb: "Venture Track",
+    t: "Venture Initiation Programme",
+    s: "₹593 Cr",
+    b: "Combined portfolio valuation. ₹25.24 Cr raised. 6 Shark Tank India appearances. 100+ VCs at Demo Day.",
+  },
+];
+
+const STARTUPS = [
+  ["EIGHT", "5M+ downloads across platforms", "MEDIA · TECH"],
+  ["Nivara", "Making fine jewellery sustainable & accessible", "D2C · LUXURY"],
+  ["Woody's Pizzeria", "A 1-star to 4.7-star turnaround story", "F&B"],
+  ["SeedsAI", "Conversations into enterprise-grade insights", "AI · SAAS"],
+  ["PlaySuper", "Gaming culture meets commerce at scale", "GAMING"],
+  ["Blue Brew", "Cult denim brand with a Gen Z following", "D2C · FASHION"],
+  ["Lexi's", "Bold flavours, top ratings, repeat customers", "F&B"],
+  ["JustMyRoots", "Preserving India's culinary heritage at scale", "F&B · LOGISTICS"],
+  ["Flourish Foods", "Fortified staples for every Indian kitchen", "F&B · HEALTH"],
+  ["Offlyn", "Curated local events for real-world connections", "SOCIAL · TECH"],
+  ["Cryptique", "Data tools for the decentralised web era", "WEB3"],
+  ["Beyond Veda", "₹2 Cr revenue reimagining ayurveda for Gen Z", "D2C · WELLNESS"],
+];
+
+const SHARK_TANK = [
+  ["Bullspree", "Season 2", "Dharmil Bavishi", "India's favourite stock market playground"],
+  ["Nexera Health", "Season 4", "Himanshu Rajpurohit", "Redefining workplace wellness"],
+  ["Hive School", "Season 4", "Nikhil Gaur", "Building India's first Sales School"],
+  ["Memotag", "Season 4", "Reyansh Juneja", "AI-driven wearable for dementia care"],
+  ["HookD", "Season 5", "Dia Goel", "India's first ready-to-eat non-veg snacking brand"],
+  ["Meta Fashion", "Season 5", "Arjun Goel", "Phygital commerce: in-game discovery → fashion"],
+];
+
+const FUND_STATS = [
+  ["30+", "Startups Incubated"],
+  ["₹480 Cr", "Projected FY26 Revenue"],
+  ["₹593 Cr", "Total Portfolio Valuation"],
+  ["180+", "Jobs Created"],
+  ["₹1.2 Cr", "Grants Disbursed"],
+];
+
+const ADMISSIONS_STEPS = [
+  ["01", "Apply"],
+  ["02", "MU-BAAT"],
+  ["03", "Interview"],
+  ["04", "Offer"],
+  ["05", "Enroll"],
+];
+
+const FAQS_LEFT = [
+  {
+    q: "Do I need CAT/GMAT scores to apply?",
+    a: "No. We don't require standardised test scores. Our admissions evaluate ambition, grit, and your drive to build — through essays, MU-BAAT, and a personal interview.",
+  },
+  {
+    q: "Is this equivalent to an MBA?",
+    a: "It covers core MBA subjects plus AI, product management, and startup building — all taught by practicing CXOs from Google, Bain, and Zerodha. Graduates consistently outperform traditional MBA holders in placements.",
+  },
+  {
+    q: "What outcomes can I expect after graduating?",
+    a: "PGP TBM graduates achieve an average CTC of ₹33.39L (highest ₹1.28 Cr) across roles like Product Manager, Chief of Staff, Strategy Consultant, and Founder. 145+ companies actively recruit from campus.",
+  },
+  {
+    q: "Can I start a company during the programme?",
+    a: "Yes. Our Founder Fellowship provides ₹40,000/month to up to 25 founders for a year. This has produced 30+ funded startups, including Bullspree (Shark Tank, $1M+ raised) and SeedsAI ($250K raised).",
+  },
+];
+
+const FAQS_RIGHT = [
+  {
+    q: "What does the programme fee include?",
+    a: "Tuition, campus access, learning resources, industry masterclasses, mentorship, career workshops, and alumni network access. Immersion trips and hostel accommodation are additional.",
+  },
+  {
+    q: "Are education loans available?",
+    a: "Yes. Masters' Union partners with IDFC First Bank, HDFC Credila, and Tata Capital for flexible education loans at competitive rates.",
+  },
+  {
+    q: "How do I apply for a scholarship?",
+    a: "Scholarship eligibility is assessed as part of admissions — no separate application. We evaluate every candidate for merit, diversity, and need-based scholarships.",
+  },
+  {
+    q: "Is the fee the same for PGP TBM and YLC?",
+    a: "Yes, the programme fee is the same for both the 16-month PGP TBM and the 24-month Young Leaders Cohort. YLC includes additional foundational terms at no extra cost.",
+  },
+];
+
+/* ─────────── Atoms ─────────── */
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
     <div
@@ -169,15 +458,41 @@ function Card({ children, className = "" }: { children: React.ReactNode; classNa
   );
 }
 
+function SectionHead({ eb, title, lede }: { eb: string; title: React.ReactNode; lede?: React.ReactNode }) {
+  return (
+    <div className="max-w-[760px]">
+      <Eyebrow>{eb}</Eyebrow>
+      <h2
+        style={display}
+        className="mt-6 text-[28px] md:text-[40px] leading-[1.15] font-normal text-white"
+      >
+        {title}
+      </h2>
+      {lede && (
+        <p className="mt-5 text-[15px] md:text-[16px] leading-[1.7] text-[#9A9A9A] max-w-[640px]">
+          {lede}
+        </p>
+      )}
+    </div>
+  );
+}
+
+/* ─────────── Page ─────────── */
 function PgProgramsPage() {
   const [tab, setTab] = useState<Cluster>("All");
+  const [pathway, setPathway] = useState<string>("tbm");
+  const [showMuBaat, setShowMuBaat] = useState(false);
+  const [openCurriculum, setOpenCurriculum] = useState<number | null>(0);
+  const [openFaq, setOpenFaq] = useState<string | null>(null);
+
   const visible = tab === "All" ? PROGRAMS : PROGRAMS.filter((p) => p.cluster === tab);
+  const active = PATHWAYS.find((p) => p.id === pathway)!;
 
   return (
     <div className="min-h-screen bg-[#101010] text-white scroll-smooth" style={body}>
-      {/* HERO */}
+      {/* ─── HERO ─── */}
       <section className="relative" style={dotGrid}>
-        <div className="mx-auto max-w-[1200px] px-6 pt-32 pb-24 md:pt-40 md:pb-32">
+        <div className="mx-auto max-w-[1200px] px-6 pt-32 pb-20 md:pt-40 md:pb-28">
           <Eyebrow>Postgraduate Programmes</Eyebrow>
           <h1
             style={display}
@@ -185,10 +500,10 @@ function PgProgramsPage() {
           >
             The MBA That Pays for Itself Before You Graduate.
           </h1>
-          <p className="mt-8 text-[18px] leading-[1.7] text-[#6B6B6B] max-w-[560px]">
-            Masters' Union PG students generate real revenue, manage a ₹5 Cr investment fund,
-            build personal brands with 46M+ reach, and step into roles at Bain, Google, and
-            Goldman — with a 3.03x salary jump.
+          <p className="mt-8 text-[18px] leading-[1.7] text-[#9A9A9A] max-w-[560px]">
+            Masters' Union PG students generate real revenue, manage a ₹5 Cr investment fund, build
+            personal brands with 46M+ reach, and step into roles at Bain, Google, and Goldman —
+            with a 3.03x salary jump.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <a
@@ -198,28 +513,151 @@ function PgProgramsPage() {
               Apply for PG Programs
             </a>
             <a
-              href="#"
+              href="#programs"
               className="inline-flex items-center px-6 py-3.5 border border-white/20 text-white text-[14px] font-semibold rounded-none hover:border-white/40 transition-colors"
             >
-              Download Brochure
+              Explore the 7 Programmes
             </a>
           </div>
+
+          {/* Quick-facts strip */}
+          <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-px bg-white/[0.07] border border-white/[0.07]">
+            {[
+              ["Duration", "16–24 Months"],
+              ["Format", "Full-Time · Opt-in Residential"],
+              ["Location", "Gurugram · DLF Cyberpark"],
+              ["Starts", "June 2026 · Cohort '27"],
+            ].map(([l, v]) => (
+              <div key={l} className="bg-[#101010] px-5 py-5">
+                <div className="text-[10px] uppercase tracking-[0.14em] text-[#6B6B6B] font-semibold">
+                  {l}
+                </div>
+                <div className="mt-2 text-[14px] text-white font-medium">{v}</div>
+              </div>
+            ))}
+          </div>
         </div>
-        {/* Signature hinge */}
         <div className="h-px w-full bg-[#F4C641]" />
       </section>
 
-      {/* OUTCOMES */}
-      <section className="bg-[#101010]">
+      {/* ─── ADMISSION PATHWAYS ─── */}
+      <section className="bg-[#101010] border-t border-white/[0.07]">
         <div className="mx-auto max-w-[1200px] px-6 py-16 md:py-[120px]">
-          <Eyebrow>Outcomes</Eyebrow>
+          <SectionHead
+            eb="Admission Pathways"
+            title={
+              <>
+                Two Programmes. <span className="italic">One Mission.</span>
+              </>
+            }
+            lede="Choose the pathway that matches your experience level and ambition. Both lead to transformative outcomes."
+          />
+
+          <div className="mt-12 grid lg:grid-cols-[340px_1fr] gap-0">
+            {/* Selector */}
+            <div className="grid grid-cols-2 lg:grid-cols-1 gap-0">
+              {PATHWAYS.map((p) => {
+                const on = p.id === pathway;
+                return (
+                  <button
+                    key={p.id}
+                    onClick={() => setPathway(p.id)}
+                    className="group relative text-left"
+                  >
+                    <div className={`h-[3px] w-full ${on ? "bg-[#F4C641]" : "bg-white/[0.07]"}`} />
+                    <div
+                      className={`px-6 py-7 border border-t-0 transition-colors ${
+                        on
+                          ? "bg-[#161616] border-white/[0.15]"
+                          : "bg-[#0E0E0E] border-white/[0.07] hover:bg-[#161616]/60"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-5">
+                        <span
+                          style={body}
+                          className={`text-[44px] leading-none font-bold tracking-tighter ${
+                            on ? "text-[#F4C641]" : "text-white/15"
+                          }`}
+                        >
+                          {p.num}
+                        </span>
+                      </div>
+                      <div className={`text-[10px] font-bold uppercase tracking-[0.18em] mb-2 ${on ? "text-[#F4C641]" : "text-[#6B6B6B]"}`}>
+                        {p.label}
+                      </div>
+                      <h3 style={display} className="text-[22px] text-white font-normal leading-[1.2]">
+                        {p.short}
+                      </h3>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Active panel */}
+            <div className="border border-white/[0.07] border-t-0 lg:border-t lg:border-l-0 bg-[#161616]">
+              <div className="h-[3px] w-full bg-[#F4C641]" />
+              <div className="p-8 md:p-10">
+                <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#F4C641] mb-3">
+                  {active.label}
+                </div>
+                <h3 style={display} className="text-[26px] md:text-[32px] text-white font-normal leading-[1.15]">
+                  {active.full}
+                </h3>
+                <p className="mt-4 text-[15px] leading-[1.7] text-[#9A9A9A] max-w-[640px]">
+                  {active.ideal}
+                </p>
+
+                <div className="mt-8 grid grid-cols-2 md:grid-cols-3 gap-px bg-white/[0.07] border border-white/[0.07]">
+                  {active.facts.map(([l, v]) => (
+                    <div key={l} className="bg-[#101010] px-5 py-4">
+                      <div className="text-[10px] uppercase tracking-[0.14em] text-[#6B6B6B] font-semibold">{l}</div>
+                      <div className="mt-1.5 text-[13px] text-white font-medium">{v}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-8">
+                  <Eyebrow>Programme Highlights</Eyebrow>
+                  <div className="mt-5 grid grid-cols-2 md:grid-cols-3 gap-3">
+                    {active.highlights.map(([n, l]) => (
+                      <div key={l} className="bg-[#101010] border border-white/[0.07] p-4">
+                        <div style={body} className="text-[24px] font-bold text-[#F4C641] leading-none">
+                          {n}
+                        </div>
+                        <div className="mt-2 text-[12px] text-[#9A9A9A] leading-snug">{l}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-8">
+                  <a
+                    href="#apply"
+                    className="inline-flex items-center px-6 py-3 bg-[#F4C641] text-[#101010] text-[13px] font-semibold rounded-none hover:bg-[#F4C641]/90 transition-colors"
+                  >
+                    Apply for {active.short} →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── OUTCOMES ─── */}
+      <section className="bg-[#101010] border-t border-white/[0.07]">
+        <div className="mx-auto max-w-[1200px] px-6 py-16 md:py-[120px]">
+          <SectionHead
+            eb="Career Outcomes"
+            title={<>Our Graduates Don't Just Get Jobs. <span className="italic">They Get Careers.</span></>}
+            lede="5 graduating cohorts. 148 recruiters. From Google and McKinsey to founding VC-backed startups — here's what happens after Masters' Union."
+          />
+
           <div className="mt-12 grid grid-cols-2 md:grid-cols-3 gap-y-12 gap-x-8">
             {STATS.map(([n, l]) => (
               <div key={l}>
-                <div
-                  style={body}
-                  className="text-[36px] md:text-[48px] font-bold text-[#F4C641] leading-none"
-                >
+                <div style={body} className="text-[36px] md:text-[48px] font-bold text-[#F4C641] leading-none">
                   {n}
                 </div>
                 <div className="mt-3 text-[13px] uppercase tracking-[0.14em] text-[#6B6B6B]">
@@ -229,64 +667,87 @@ function PgProgramsPage() {
             ))}
           </div>
 
-          <div className="mt-20 grid md:grid-cols-2 gap-12 md:gap-16">
-            <div>
-              <Eyebrow>Where They Go</Eyebrow>
-              <div className="mt-6 space-y-5 text-[15px] leading-[1.7] text-white/85">
-                <p>
-                  <span className="text-[#6B6B6B] block text-[12px] uppercase tracking-[0.14em] mb-1">
-                    Consulting
-                  </span>
-                  Bain · BCG · McKinsey · Accenture Strategy · EY-Parthenon · Kearney · PwC
-                </p>
-                <p>
-                  <span className="text-[#6B6B6B] block text-[12px] uppercase tracking-[0.14em] mb-1">
-                    Finance / VC
-                  </span>
-                  Axis Capital · Kotak IB · InnoVen Capital · WaterBridge Ventures · Avaana Capital
-                </p>
-                <p>
-                  <span className="text-[#6B6B6B] block text-[12px] uppercase tracking-[0.14em] mb-1">
-                    Tech
-                  </span>
-                  Google · Microsoft · Razorpay · Zepto · Zomato · MakeMyTrip
-                </p>
-                <p>
-                  <span className="text-[#6B6B6B] block text-[12px] uppercase tracking-[0.14em] mb-1">
-                    International
-                  </span>
-                  Google Dublin · Careem Dubai · Talabat Dubai · Avirom Capital US
-                </p>
-              </div>
+          <div className="mt-16">
+            <Eyebrow>Roles Graduates Land</Eyebrow>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {ROLES.map((r) => (
+                <span
+                  key={r}
+                  className="text-[12px] px-3 py-1.5 border border-white/[0.12] text-white/85 hover:border-[#F4C641]/40 transition-colors"
+                >
+                  {r}
+                </span>
+              ))}
             </div>
-            <div>
-              <Eyebrow>Alumni</Eyebrow>
-              <ul className="mt-6 divide-y divide-white/[0.07]">
-                {ALUMNI.map(([n, r]) => (
-                  <li key={n} className="py-4">
-                    <div className="text-white text-[15px] font-medium">{n}</div>
-                    <div className="text-[13px] text-[#6B6B6B] mt-1">{r}</div>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-6 text-[13px] text-[#6B6B6B]">
-                12% of every cohort goes directly into VC and investment roles.
-              </p>
+          </div>
+
+          <div className="mt-12">
+            <Eyebrow>148 Companies That Recruit From Us</Eyebrow>
+            <div className="mt-5 flex flex-wrap gap-x-8 gap-y-3 text-[14px] text-white/70" style={body}>
+              {RECRUITERS.map((r) => (
+                <span key={r} className="font-medium">
+                  {r}
+                </span>
+              ))}
+              <span className="text-[#6B6B6B]">+ 130 more</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CURRICULUM & ARCHITECTURE */}
+      {/* ─── ALUMNI TRANSFORMATIONS ─── */}
       <section className="bg-[#101010] border-t border-white/[0.07]">
         <div className="mx-auto max-w-[1200px] px-6 py-16 md:py-[120px]">
-          <Eyebrow>The Model</Eyebrow>
-          <h2
-            style={display}
-            className="mt-6 text-[28px] md:text-[40px] font-normal text-white max-w-[22ch]"
-          >
-            Three Forces That Make MU Different.
-          </h2>
+          <SectionHead
+            eb="Transformation Stories"
+            title={<>What Happens to People <span className="italic">Who Join?</span></>}
+            lede="Not testimonials. Real career transformations — before, during, and after Masters' Union."
+          />
+
+          <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {ALUMNI_TRANSFORMATIONS.map((t, i) => (
+              <Card key={t.name} className="overflow-hidden">
+                <div className="bg-[#F4C641] px-5 py-4 flex items-center justify-between">
+                  <span style={body} className="text-[28px] font-bold text-[#101010] leading-none tracking-tighter">
+                    {String(i + 1).padStart(2, "0")}.
+                  </span>
+                  <span className="text-[11px] uppercase tracking-[0.14em] font-bold text-[#101010]/80">
+                    {t.name}
+                  </span>
+                </div>
+                <div className="p-5">
+                  <div>
+                    <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#F4C641]">Before</div>
+                    <div className="mt-1 text-[13px] text-[#9A9A9A]">
+                      {t.before[0]} at <span className="text-white/90 font-medium">{t.before[1]}</span>
+                    </div>
+                  </div>
+                  <div className="my-3 h-px bg-white/[0.07]" />
+                  <div>
+                    <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#6B6B6B]">During</div>
+                    <div className="mt-1 text-[13px] text-white/80">{t.during}</div>
+                  </div>
+                  <div className="my-3 h-px bg-white/[0.07]" />
+                  <div>
+                    <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#F4C641]">After</div>
+                    <div className="mt-1 text-[13px] text-white font-semibold">
+                      {t.after[0]} at <span className="text-[#F4C641]">{t.after[1]}</span>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── THE MODEL ─── */}
+      <section className="bg-[#101010] border-t border-white/[0.07]">
+        <div className="mx-auto max-w-[1200px] px-6 py-16 md:py-[120px]">
+          <SectionHead
+            eb="The Model"
+            title={<>Three Forces That Make <span className="italic">MU Different.</span></>}
+          />
 
           <div className="mt-14 grid md:grid-cols-3 gap-6">
             {[
@@ -308,167 +769,186 @@ function PgProgramsPage() {
             ].map((c) => (
               <Card key={c.t} className="p-8">
                 <Eyebrow>{c.eb}</Eyebrow>
-                <h3
-                  style={display}
-                  className="mt-4 text-[24px] leading-[1.2] text-white font-normal"
-                >
+                <h3 style={display} className="mt-4 text-[24px] leading-[1.2] text-white font-normal">
                   {c.t}
                 </h3>
-                <p className="mt-4 text-[15px] leading-[1.7] text-[#6B6B6B]">{c.b}</p>
+                <p className="mt-4 text-[15px] leading-[1.7] text-[#9A9A9A]">{c.b}</p>
               </Card>
             ))}
           </div>
 
-          {/* OutClass experiences 2x2 */}
-          <div className="mt-6 grid md:grid-cols-2 gap-6">
-            {[
-              {
-                t: "Dropshipping Fair",
-                term: "Term 1",
-                s: "₹3.38 Cr",
-                b: "50 teams. Real products. Real customers. Cohort '25 total revenue.",
-              },
-              {
-                t: "Content Creator Challenge",
-                term: "Term 2",
-                s: "46M+",
-                b: "120+ creators. ₹10L+ prize pool. 80+ live brand assets delivered to real D2C brands in 24 hours.",
-              },
-              {
-                t: "Student Investment Fund",
-                term: "",
-                s: "₹5 Cr",
-                b: "Real corpus. Beaten public markets by 20–25% consistently. 5+ startup co-investments alongside VCs.",
-              },
-              {
-                t: "Venture Initiation Programme",
-                term: "",
-                s: "₹593 Cr",
-                b: "Combined portfolio valuation. ₹25.24 Cr raised. 6 Shark Tank India appearances. 100+ VCs at Demo Day.",
-              },
-            ].map((c) => (
+          {/* OutClass modules */}
+          <div className="mt-10 grid md:grid-cols-2 gap-6">
+            {OUTCLASS.map((c) => (
               <Card key={c.t} className="p-8 flex flex-col md:flex-row gap-6 md:items-end">
                 <div className="md:w-1/2">
-                  <Eyebrow>{c.term || "OutClass"}</Eyebrow>
-                  <h3
-                    style={display}
-                    className="mt-3 text-[22px] leading-[1.2] text-white font-normal"
-                  >
+                  <Eyebrow>{c.eb}</Eyebrow>
+                  <h3 style={display} className="mt-3 text-[22px] leading-[1.2] text-white font-normal">
                     {c.t}
                   </h3>
-                  <p className="mt-3 text-[14px] leading-[1.7] text-[#6B6B6B]">{c.b}</p>
+                  <p className="mt-3 text-[14px] leading-[1.7] text-[#9A9A9A]">{c.b}</p>
                 </div>
                 <div className="md:w-1/2 md:text-right">
-                  <div
-                    style={body}
-                    className="text-[40px] md:text-[48px] font-bold text-[#F4C641] leading-none"
-                  >
+                  <div style={body} className="text-[40px] md:text-[48px] font-bold text-[#F4C641] leading-none">
                     {c.s}
                   </div>
                 </div>
               </Card>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* PROGRAMS */}
-          <div className="mt-24">
-            <Eyebrow>The 7 Programs</Eyebrow>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {TABS.map((t) => {
-                const active = tab === t;
-                return (
+      {/* ─── CURRICULUM DOMAINS (InClass) ─── */}
+      <section className="bg-[#101010] border-t border-white/[0.07]">
+        <div className="mx-auto max-w-[1200px] px-6 py-16 md:py-[120px]">
+          <SectionHead
+            eb="InClass Curriculum"
+            title={
+              <>
+                Learn It in Class. <span className="italic">Prove It Outside.</span>
+              </>
+            }
+            lede="Five domains. 200+ practitioners. Every module designed and delivered with the CEOs, founders, and operators who run the industry today."
+          />
+
+          <div className="mt-12 divide-y divide-white/[0.07] border-t border-b border-white/[0.07]">
+            {CURRICULUM_DOMAINS.map((d, i) => {
+              const open = openCurriculum === i;
+              return (
+                <div key={d.title}>
                   <button
-                    key={t}
-                    onClick={() => setTab(t)}
-                    className={`px-4 py-2 text-[12px] uppercase tracking-[0.14em] border rounded-none transition-colors duration-150 ${
-                      active
-                        ? "bg-[#F4C641] text-[#101010] border-[#F4C641]"
-                        : "border-white/15 text-white/70 hover:border-white/40 hover:text-white"
-                    }`}
+                    onClick={() => setOpenCurriculum(open ? null : i)}
+                    className="w-full flex items-center justify-between gap-6 py-6 text-left group"
                   >
-                    {t}
+                    <div className="flex items-baseline gap-6">
+                      <span style={body} className="text-[14px] text-[#6B6B6B] tabular-nums font-semibold">
+                        0{i + 1}
+                      </span>
+                      <h3
+                        style={display}
+                        className="text-[22px] md:text-[26px] text-white font-normal leading-[1.2] group-hover:text-[#F4C641] transition-colors"
+                      >
+                        {d.title}
+                      </h3>
+                    </div>
+                    <span className="text-[#F4C641] text-[24px] font-light leading-none w-6 text-right">
+                      {open ? "–" : "+"}
+                    </span>
                   </button>
-                );
-              })}
-            </div>
-
-            <div className="mt-10 grid md:grid-cols-2 gap-6 transition-opacity duration-150">
-              {visible.map((p) => (
-                <Card key={p.title} className="p-8 flex flex-col">
-                  <div className="inline-flex self-start px-2.5 py-1 border border-white/15 text-[11px] uppercase tracking-[0.14em] text-white/70">
-                    {p.tag}
-                  </div>
-                  <h3
-                    style={display}
-                    className="mt-5 text-[24px] leading-[1.2] text-white font-normal"
-                  >
-                    {p.title}
-                  </h3>
-                  <p className="mt-3 text-[15px] italic text-white/80">"{p.hook}"</p>
-                  <ul className="mt-5 space-y-2.5 text-[14px] text-[#6B6B6B] leading-[1.65]">
-                    {p.points.map((pt) => (
-                      <li key={pt} className="flex gap-3">
-                        <span className="mt-2 inline-block w-1 h-1 bg-[#F4C641] shrink-0" />
-                        <span>{pt}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <a
-                    href="#"
-                    className="mt-6 text-[13px] uppercase tracking-[0.14em] text-[#F4C641] hover:text-white transition-colors"
-                  >
-                    {p.cta}
-                  </a>
-                </Card>
-              ))}
-            </div>
+                  {open && (
+                    <div className="pb-8 grid md:grid-cols-[1fr_320px] gap-8">
+                      <div>
+                        <p className="text-[15px] leading-[1.7] text-[#B3B3B3] max-w-[640px]">{d.blurb}</p>
+                        <ul className="mt-5 space-y-2.5 text-[14px] text-white/80 leading-[1.65]">
+                          {d.bullets.map((b) => (
+                            <li key={b} className="flex gap-3">
+                              <span className="mt-2 inline-block w-1 h-1 bg-[#F4C641] shrink-0" />
+                              <span>{b}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="bg-[#161616] border border-white/[0.07] p-5">
+                        <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#6B6B6B]">
+                          Faculty Highlights
+                        </div>
+                        <p className="mt-3 text-[13px] text-white/85 leading-[1.6]">{d.facultyHighlight}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* FACULTY & COHORT */}
+      {/* ─── 7 PROGRAMS ─── */}
+      <section id="programs" className="bg-[#101010] border-t border-white/[0.07]">
+        <div className="mx-auto max-w-[1200px] px-6 py-16 md:py-[120px]">
+          <SectionHead
+            eb="The 7 Programmes"
+            title={<>Pick the One That Fits <span className="italic">Your Ambition.</span></>}
+          />
+
+          <div className="mt-8 flex flex-wrap gap-2">
+            {TABS.map((t) => {
+              const a = tab === t;
+              return (
+                <button
+                  key={t}
+                  onClick={() => setTab(t)}
+                  className={`px-4 py-2 text-[12px] uppercase tracking-[0.14em] border transition-colors duration-150 ${
+                    a
+                      ? "bg-[#F4C641] text-[#101010] border-[#F4C641]"
+                      : "border-white/15 text-white/70 hover:border-white/40 hover:text-white"
+                  }`}
+                >
+                  {t}
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="mt-10 grid md:grid-cols-2 gap-6">
+            {visible.map((p) => (
+              <Card key={p.title} className="p-8 flex flex-col">
+                <div className="inline-flex self-start px-2.5 py-1 border border-white/15 text-[11px] uppercase tracking-[0.14em] text-white/70">
+                  {p.tag}
+                </div>
+                <h3 style={display} className="mt-5 text-[24px] leading-[1.2] text-white font-normal">
+                  {p.title}
+                </h3>
+                <p className="mt-3 text-[15px] italic text-white/80">"{p.hook}"</p>
+                <ul className="mt-5 space-y-2.5 text-[14px] text-[#9A9A9A] leading-[1.65]">
+                  {p.points.map((pt) => (
+                    <li key={pt} className="flex gap-3">
+                      <span className="mt-2 inline-block w-1 h-1 bg-[#F4C641] shrink-0" />
+                      <span>{pt}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href="#apply"
+                  className="mt-6 text-[13px] uppercase tracking-[0.14em] text-[#F4C641] hover:text-white transition-colors"
+                >
+                  {p.cta}
+                </a>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FACULTY & COHORT ─── */}
       <section className="bg-[#101010] border-t border-white/[0.07]">
         <div className="mx-auto max-w-[1200px] px-6 py-16 md:py-[120px] grid md:grid-cols-2 gap-12 md:gap-16">
           <div>
             <Eyebrow>Faculty</Eyebrow>
-            <h2
-              style={display}
-              className="mt-6 text-[28px] md:text-[40px] leading-[1.15] font-normal text-white"
-            >
-              Taught by the People Running the Industry.
+            <h2 style={display} className="mt-6 text-[28px] md:text-[40px] leading-[1.15] font-normal text-white">
+              Taught by the People <span className="italic">Running the Industry.</span>
             </h2>
             <div className="mt-10 space-y-8">
               {[
                 ["50%", "Industry Practitioners.", "CEOs, founders, operators."],
-                [
-                  "30%",
-                  "Full-Time Faculty.",
-                  "PhD educators from IIM Calcutta, Bangalore, Ahmedabad.",
-                ],
-                [
-                  "20%",
-                  "Visiting Faculty.",
-                  "Harvard, Stanford, Wharton, Kellogg, Cornell, MIT Sloan, Imperial, Cambridge.",
-                ],
+                ["30%", "Full-Time Faculty.", "PhD educators from IIM Calcutta, Bangalore, Ahmedabad."],
+                ["20%", "Visiting Faculty.", "Harvard, Stanford, Wharton, Kellogg, Cornell, MIT Sloan, Imperial, Cambridge."],
               ].map(([n, t, d]) => (
                 <div key={t} className="flex gap-6 border-b border-white/[0.07] pb-6">
-                  <div
-                    style={body}
-                    className="text-[36px] font-bold text-[#F4C641] leading-none w-24 shrink-0"
-                  >
+                  <div style={body} className="text-[36px] font-bold text-[#F4C641] leading-none w-24 shrink-0">
                     {n}
                   </div>
                   <div>
                     <div className="text-white text-[16px] font-medium">{t}</div>
-                    <div className="text-[14px] text-[#6B6B6B] mt-1">{d}</div>
+                    <div className="text-[14px] text-[#9A9A9A] mt-1">{d}</div>
                   </div>
                 </div>
               ))}
             </div>
             <blockquote className="mt-10 border-l-2 border-[#F4C641] pl-5">
               <p className="text-[17px] leading-[1.6] text-white/90 italic" style={display}>
-                "Masters' Union is doing something genuinely different. We've brought Kellogg
-                students here two years in a row."
+                "Masters' Union is doing something genuinely different. We've brought Kellogg students here two years in a row."
               </p>
               <footer className="mt-3 text-[13px] text-[#6B6B6B]">
                 — Prof. Mohanbir Sawhney, Kellogg School of Management
@@ -476,24 +956,23 @@ function PgProgramsPage() {
             </blockquote>
           </div>
 
-          {/* COHORT (light) */}
           <div className="bg-[#F1F1F1] text-[#101010] p-10 rounded-[2px] self-start">
             <div className="text-[11px] font-medium uppercase tracking-[0.14em] text-[#101010]/70">
               Cohort Profile
             </div>
             <div className="mt-8 space-y-8">
               {[
-                ["24.5 Years", "Avg Age"],
-                ["3.7 Years", "Avg Work Experience"],
-                ["31%", "Female Representation"],
+                ["26 yrs", "Avg Age"],
+                ["3 yrs", "Avg Work Experience"],
+                ["40%", "Female Representation"],
+                ["60%", "Engineering Background"],
+                ["22+", "States Represented"],
               ].map(([n, l]) => (
-                <div key={l} className="border-b border-black/10 pb-6 last:border-0">
-                  <div style={body} className="text-[40px] font-bold leading-none">
+                <div key={l} className="border-b border-black/10 pb-5 last:border-0">
+                  <div style={body} className="text-[36px] font-bold leading-none">
                     {n}
                   </div>
-                  <div className="mt-2 text-[12px] uppercase tracking-[0.14em] text-[#101010]/60">
-                    {l}
-                  </div>
+                  <div className="mt-2 text-[12px] uppercase tracking-[0.14em] text-[#101010]/60">{l}</div>
                 </div>
               ))}
             </div>
@@ -501,7 +980,7 @@ function PgProgramsPage() {
               Backgrounds
             </div>
             <p className="mt-2 text-[15px] text-[#101010]/85">
-              Consulting · Finance · Tech · Startups · Family Business
+              Consulting · Finance · Tech · Startups · Family Business · FMCG · Media
             </p>
             <p className="mt-6 text-[14px] italic text-[#101010]/70">
               "Small cohort. High bar. Everyone here chose MU over conventional options."
@@ -510,46 +989,57 @@ function PgProgramsPage() {
         </div>
       </section>
 
-      {/* IMMERSIONS */}
+      {/* ─── IMMERSIONS ─── */}
       <section className="bg-[#101010] border-t border-white/[0.07]">
         <div className="mx-auto max-w-[1200px] px-6 py-16 md:py-[120px]">
-          <Eyebrow>Immersions</Eyebrow>
-          <h2
-            style={display}
-            className="mt-6 text-[28px] md:text-[40px] leading-[1.15] font-normal text-white max-w-[22ch]"
-          >
-            Learn in Boardrooms, on Factory Floors, and Across Continents.
-          </h2>
-          <div className="mt-14 grid md:grid-cols-3 gap-6">
+          <SectionHead
+            eb="Immersions"
+            title={<>Learn in Boardrooms, on Factory Floors, <span className="italic">and Across Continents.</span></>}
+            lede="From INSEAD Paris to Chandni Chowk in Delhi — our immersions take you inside real boardrooms, factory floors, and startup ecosystems across the world and across India."
+          />
+
+          <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-3">
+            {[
+              ["8", "Global Immersions", "across 7 countries"],
+              ["8", "Bharat Hubs", "7,000 km across India"],
+              ["50+", "1-Day Immersions", "factory floors to boardrooms"],
+              ["40+", "CXO Sessions", "with industry leaders"],
+            ].map(([n, t, s]) => (
+              <div key={t} className="bg-[#161616] border border-white/[0.07] p-5">
+                <div style={body} className="text-[28px] font-bold text-[#F4C641] leading-none">{n}</div>
+                <div className="mt-3 text-[13px] text-white font-medium">{t}</div>
+                <div className="mt-1 text-[11px] text-[#6B6B6B]">{s}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 grid md:grid-cols-3 gap-6">
             {[
               {
                 eb: "Campus",
                 t: "DLF Cyberpark, Gurugram",
-                b: "85% of Fortune 500 companies within 2 km. BCG, EY, Gartner are an elevator ride away. Recruiters don't fly in — they walk over.",
+                b: "85% of Fortune 500 companies within 2 km. BCG, EY, Gartner an elevator ride away. Recruiters don't fly in — they walk over.",
                 meta: "",
               },
               {
                 eb: "Bharat Immersion",
                 t: "7,000 km Across India",
                 b: "A full academic term on the road. Chandni Chowk → Dalal Street → Mundra Adani ports → Darjeeling tea estates.",
-                meta: "8 Hubs · 20+ Cities · 40+ CXO Sessions · 50+ One-Day Immersions · Academic Credits",
+                meta: "8 Hubs · 20+ Cities · 40+ CXO Sessions · 50+ One-Day Immersions",
               },
               {
                 eb: "Global Immersion",
                 t: "8 Immersions Across 7 Countries",
-                b: "INSEAD Paris. London and New York finance desks. Boeing. BMW. SDA Bocconi.",
-                meta: "Paris · Singapore · Boston · Milan · Berlin · London · Canada · Academic Credits",
+                b: "INSEAD Paris. NUS Singapore. Babson. SDA Bocconi. London and New York finance desks. Boeing. BMW.",
+                meta: "Paris · Singapore · Boston · Milan · Berlin · London · Canada",
               },
             ].map((c) => (
               <Card key={c.t} className="p-8">
                 <Eyebrow>{c.eb}</Eyebrow>
-                <h3
-                  style={display}
-                  className="mt-4 text-[22px] leading-[1.2] text-white font-normal"
-                >
+                <h3 style={display} className="mt-4 text-[22px] leading-[1.2] text-white font-normal">
                   {c.t}
                 </h3>
-                <p className="mt-4 text-[15px] leading-[1.7] text-[#6B6B6B]">{c.b}</p>
+                <p className="mt-4 text-[15px] leading-[1.7] text-[#9A9A9A]">{c.b}</p>
                 {c.meta && (
                   <p className="mt-5 pt-5 border-t border-white/[0.07] text-[12px] uppercase tracking-[0.14em] text-[#6B6B6B]">
                     {c.meta}
@@ -561,22 +1051,256 @@ function PgProgramsPage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* ─── FOUNDER FELLOWSHIP / ENTREPRENEURSHIP ─── */}
+      <section className="bg-[#0A0A0A] border-t border-white/[0.07]">
+        <div className="mx-auto max-w-[1200px] px-6 py-16 md:py-[120px]">
+          <SectionHead
+            eb="Entrepreneurship"
+            title={<>Where Founders Are Built, <span className="italic">Not Just Funded.</span></>}
+            lede="From hostel-room ideas to funded ventures — our founders ship products, raise capital, and scale while still on campus."
+          />
+
+          <div className="mt-12 grid grid-cols-3 lg:grid-cols-5 gap-3">
+            {FUND_STATS.map(([n, l]) => (
+              <div key={l} className="bg-[#161616] border border-white/[0.07] p-5">
+                <div style={body} className="text-[26px] font-bold text-[#F4C641] leading-none">{n}</div>
+                <div className="mt-2 text-[11px] uppercase tracking-[0.14em] text-[#6B6B6B] font-semibold">{l}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-14">
+            <div className="flex items-center gap-3 mb-5">
+              <span className="w-8 h-px bg-[#F4C641]" />
+              <span className="text-[11px] uppercase tracking-[0.2em] text-white/85 font-bold">Startup Portfolio</span>
+              <span className="flex-1 h-px bg-white/[0.07]" />
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {STARTUPS.map(([n, t, tag]) => (
+                <div key={n} className="bg-[#101010] border-t-2 border-t-[#F4C641] border border-white/[0.07] p-5">
+                  <div className="text-[10px] uppercase tracking-[0.18em] text-[#6B6B6B] font-bold">{tag}</div>
+                  <h4 style={display} className="mt-2 text-[20px] text-white font-normal leading-tight">{n}</h4>
+                  <p className="mt-2 text-[13px] text-[#9A9A9A] leading-snug">{t}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-14">
+            <div className="flex items-center gap-3 mb-5">
+              <span className="w-8 h-px bg-[#F4C641]" />
+              <span className="text-[11px] uppercase tracking-[0.2em] text-white/85 font-bold">
+                Featured on Shark Tank India
+              </span>
+              <span className="flex-1 h-px bg-white/[0.07]" />
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {SHARK_TANK.map(([n, s, f, d]) => (
+                <div key={n} className="bg-[#161616] border border-white/[0.12] p-5">
+                  <span className="inline-block px-2 py-1 text-[10px] uppercase tracking-[0.14em] font-bold bg-[#F4C641] text-[#101010]">
+                    {s}
+                  </span>
+                  <h4 className="mt-3 text-[16px] text-white font-semibold">{n}</h4>
+                  <p className="mt-1.5 text-[12px] text-[#9A9A9A] leading-snug">{d}</p>
+                  <div className="mt-3 text-[12px] text-white/80 font-medium">{f}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── ADMISSIONS PROCESS ─── */}
+      <section className="bg-[#101010] border-t border-white/[0.07]">
+        <div className="mx-auto max-w-[1200px] px-6 py-16 md:py-[120px]">
+          <SectionHead
+            eb="Admissions"
+            title={<>Your <span className="italic">Path In.</span></>}
+            lede={
+              <>
+                No CAT/GMAT required. We have the{" "}
+                <button
+                  onClick={() => setShowMuBaat((s) => !s)}
+                  className="text-[#F4C641] underline underline-offset-2 hover:opacity-80 font-medium"
+                >
+                  MU-BAAT
+                </button>{" "}
+                — our own aptitude test that evaluates ambition, grit, and the drive to build.
+              </>
+            }
+          />
+
+          {/* Pipeline */}
+          <div className="mt-12 grid grid-cols-5 gap-px bg-white/[0.07] border border-white/[0.07]">
+            {ADMISSIONS_STEPS.map(([n, t]) => (
+              <div key={n} className="bg-[#101010] px-3 py-5 sm:px-5 sm:py-6">
+                <div style={body} className="text-[22px] sm:text-[28px] font-bold text-white/15 leading-none tabular-nums">
+                  {n}
+                </div>
+                <div className="mt-2 text-[12px] sm:text-[14px] text-white font-medium">{t}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* MU-BAAT panel */}
+          {showMuBaat && (
+            <div className="mt-8 bg-[#161616] border border-[#F4C641]/30 p-6 md:p-8">
+              <div className="flex items-baseline justify-between mb-4">
+                <div>
+                  <h4 className="text-[18px] font-bold text-[#F4C641]">MU-BAAT</h4>
+                  <p className="text-[11px] text-[#6B6B6B] mt-1">
+                    Masters' Union Business Aptitude & Admission Test
+                  </p>
+                </div>
+                <button
+                  onClick={() => setShowMuBaat(false)}
+                  className="text-[#6B6B6B] hover:text-white text-[12px] uppercase tracking-[0.14em]"
+                >
+                  Close
+                </button>
+              </div>
+              <p className="text-[14px] text-white/85 leading-[1.7] italic border-l-2 border-[#F4C641]/50 pl-4 max-w-3xl">
+                You record your responses online — no prior preparation needed. Think of it as a
+                conversation with the Masters' Union team that helps us understand you beyond your
+                résumé.
+              </p>
+              <div className="mt-6 grid md:grid-cols-3 gap-6">
+                <div>
+                  <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#6B6B6B] mb-2">Evaluates</div>
+                  <ul className="space-y-1.5 text-[13px] text-white/80">
+                    <li>· Communication & business aptitude</li>
+                    <li>· Clarity of thought & idea structuring</li>
+                    <li>· Creative & analytical thinking</li>
+                  </ul>
+                </div>
+                <div>
+                  <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#6B6B6B] mb-2">Format</div>
+                  <div className="text-[13px] text-white/80 space-y-1">
+                    <div>Duration: <span className="font-semibold text-white">45–60 min</span></div>
+                    <div>Structure: <span className="font-semibold text-white">9 questions, 5 sections</span></div>
+                    <div className="text-[12px] text-[#9A9A9A] mt-2">
+                      The MU-BAAT link is shared the day after your application deadline.
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#6B6B6B] mb-2">Sample Question</div>
+                  <p className="text-[13px] text-white/80 italic leading-relaxed">
+                    "A D2C skincare brand increased ad spend, but average order value fell 20%, while new users grew. What happened?"
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-[#161616] border border-white/[0.07] p-5">
+            <p className="text-[14px] text-[#9A9A9A]">
+              Don't miss your chance to join the next cohort. Apply before{" "}
+              <strong className="text-[#F4C641]">3rd May 2026</strong>.
+            </p>
+            <a
+              href="#apply"
+              className="inline-flex items-center px-5 py-3 bg-[#F4C641] text-[#101010] text-[13px] font-semibold hover:bg-[#F4C641]/90 transition-colors"
+            >
+              Apply Now →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FEES & SCHOLARSHIPS ─── */}
+      <section className="bg-[#101010] border-t border-white/[0.07]">
+        <div className="mx-auto max-w-[1200px] px-6 py-16 md:py-[120px]">
+          <SectionHead
+            eb="Investment & Financial Support"
+            title={<>An Investment <span className="italic">in Your Future.</span></>}
+            lede="Masters' Union believes financial constraints should never stand between talent and transformation. Multiple scholarship and financing options ensure accessibility."
+          />
+
+          <div className="mt-12 grid md:grid-cols-3 gap-6">
+            {[
+              {
+                t: "Education Financing",
+                b: "Partnered with IDFC First Bank, HDFC Credila, and Tata Capital for flexible education loans at competitive rates — accessible regardless of financial background.",
+              },
+              {
+                t: "9+ Scholarships & Financial Aid",
+                b: "Merit-based, diversity, entrepreneur bursaries, and women-in-leadership awards — one of the most comprehensive scholarship programmes among India's top B-schools.",
+              },
+              {
+                t: "ROI That Speaks",
+                b: "₹33.39L average CTC, ₹1.28 Cr highest, 145+ marquee recruiters including Bain, McKinsey, Flipkart, and Zomato. Your investment pays for itself many times over.",
+              },
+            ].map((h) => (
+              <Card key={h.t} className="p-8">
+                <h3 style={display} className="text-[22px] leading-[1.2] text-white font-normal">
+                  {h.t}
+                </h3>
+                <p className="mt-4 text-[14px] leading-[1.7] text-[#9A9A9A]">{h.b}</p>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FAQ ─── */}
+      <section className="bg-[#101010] border-t border-white/[0.07]">
+        <div className="mx-auto max-w-[1100px] px-6 py-16 md:py-[120px]">
+          <Eyebrow>FAQ</Eyebrow>
+          <h2 style={display} className="mt-6 text-[28px] md:text-[40px] leading-[1.15] font-normal text-white">
+            Questions Before <span className="italic">You Apply.</span>
+          </h2>
+
+          <div className="mt-10 grid md:grid-cols-2 gap-x-12 gap-y-2">
+            {[
+              { title: "Admissions & Programme", items: FAQS_LEFT, prefix: "a" },
+              { title: "Fees & Financial Support", items: FAQS_RIGHT, prefix: "f" },
+            ].map((col) => (
+              <div key={col.title}>
+                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#6B6B6B] pb-3 border-b border-white/[0.12] mb-2">
+                  {col.title}
+                </div>
+                {col.items.map((f, i) => {
+                  const key = `${col.prefix}-${i}`;
+                  const open = openFaq === key;
+                  return (
+                    <div key={key} className="border-b border-white/[0.07]">
+                      <button
+                        onClick={() => setOpenFaq(open ? null : key)}
+                        className="w-full flex items-start justify-between gap-4 py-4 text-left"
+                      >
+                        <span className="text-[14px] text-white font-medium">{f.q}</span>
+                        <span className="text-[#F4C641] text-[18px] font-light leading-none shrink-0">
+                          {open ? "–" : "+"}
+                        </span>
+                      </button>
+                      {open && (
+                        <p className="pb-5 text-[14px] text-[#9A9A9A] leading-[1.7]">{f.a}</p>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FINAL CTA ─── */}
       <section id="apply" className="bg-[#101010] border-t border-white/[0.07]" style={dotGrid}>
         <div className="mx-auto max-w-[1200px] px-6 py-16 md:py-[120px] text-center">
           <Eyebrow>Admissions</Eyebrow>
-          <h2
-            style={display}
-            className="mt-6 text-[28px] md:text-[40px] leading-[1.15] font-normal text-white max-w-[26ch] mx-auto"
-          >
-            The Next Cohort Is Forming. Your Seat Isn't Reserved.
+          <h2 style={display} className="mt-6 text-[28px] md:text-[48px] leading-[1.1] font-normal text-white max-w-[26ch] mx-auto">
+            The Next Cohort Is Forming. <span className="italic">Your Seat Isn't Reserved.</span>
           </h2>
-          <p className="mt-5 text-[16px] text-[#6B6B6B] max-w-[520px] mx-auto">
-            Applications close when the cohort fills. Every batch has sold out.
+          <p className="mt-5 text-[16px] text-[#9A9A9A] max-w-[520px] mx-auto">
+            June 2026 · ~120 Seats · Round 3 closing soon. Every batch has sold out.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <a
-              href="#"
+              href="https://mastersunion.org/pgp-tbm-applynow"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center px-6 py-3.5 bg-[#F4C641] text-[#101010] text-[14px] font-semibold rounded-none hover:bg-[#F4C641]/90 transition-colors"
             >
               Apply Now
@@ -585,7 +1309,7 @@ function PgProgramsPage() {
               href="#"
               className="inline-flex items-center px-6 py-3.5 border border-white/20 text-white text-[14px] font-semibold rounded-none hover:border-white/40 transition-colors"
             >
-              Talk to Admissions
+              Book an Admissions Call
             </a>
           </div>
           <p className="mt-10 text-[12px] uppercase tracking-[0.14em] text-[#6B6B6B]">
