@@ -7,6 +7,7 @@ import logoAsset from "@/assets/logo-2.png.asset.json";
 import campusVideo from "@/assets/campusFilm.mp4.asset.json";
 import heroBuilding from "@/assets/hero-building-light.jpg";
 import TenThings from "@/components/TenThings";
+import HomeSections from "@/components/HomeSections";
 
 
 gsap.registerPlugin(ScrollTrigger);
