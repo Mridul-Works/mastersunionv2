@@ -177,10 +177,11 @@ function Index() {
           <div className="flex items-center gap-1">
             <button
               type="button"
-              className="rounded-full bg-[#C9A84C] px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-black shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
+              className="rounded-full bg-black px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-white shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
             >
               Apply
             </button>
+
             <button
               type="button"
               aria-label="Toggle menu"
