@@ -147,38 +147,8 @@ export default function TenThings() {
             <Slide key={project.n} project={project} direction={direction} index={index} />
           </AnimatePresence>
 
-          {/* Bottom nav: tag + arrows */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-8 z-30 flex flex-col items-center gap-5 px-6 md:px-10">
-            <div className="pointer-events-auto flex w-full items-center justify-between">
-              <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-white/70">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-white" />
-                <span className="min-w-[80px] text-center">{project.tag}</span>
-              </div>
-
-              <div className="flex items-center gap-1 rounded-full border border-white/10 bg-white/10 px-2 py-1.5 backdrop-blur-md">
-                <button
-                  type="button"
-                  onClick={() => go(-1)}
-                  aria-label="Previous chapter"
-                  className="group flex items-center gap-1.5 rounded-full px-2 py-1 text-white/80 transition-all hover:bg-white/10 hover:text-white"
-                >
-                  <GradientArrow direction="left" className="size-5" />
-                  <span className="hidden text-[10px] font-medium uppercase tracking-wider sm:inline">Prev</span>
-                </button>
-                <span className="h-3 w-px bg-white/15" />
-                <button
-                  type="button"
-                  onClick={() => go(1)}
-                  aria-label="Next chapter"
-                  className="group flex items-center gap-1.5 rounded-full px-2 py-1 text-white/80 transition-all hover:bg-white/10 hover:text-white"
-                >
-                  <span className="hidden text-[10px] font-medium uppercase tracking-wider sm:inline">Next</span>
-                  <GradientArrow direction="right" className="size-5" />
-                </button>
-              </div>
-
-            </div>
-
+          {/* Bottom progress dots */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-8 z-30 flex justify-center px-6 md:px-10">
             <div className="flex items-center gap-2">
               {CHAPTERS.map((p, i) => (
                 <button
