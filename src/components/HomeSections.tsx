@@ -1,4 +1,8 @@
-import { ArrowUpRight, ChevronLeft, ChevronRight, Calendar, Quote, GraduationCap, Rocket, Briefcase, Users, Mic, ChefHat, Building2, Send, Instagram, Linkedin, Youtube, Twitter } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight, Hourglass, Quote, GraduationCap, Rocket, Briefcase, Users, Mic, ChefHat, Building2, Send, Instagram, Linkedin, Youtube, Twitter } from "lucide-react";
+import prog01 from "@/assets/mu-08.jpg";
+import prog02 from "@/assets/mu-03.jpg";
+import prog03 from "@/assets/mu-05.jpg";
+import prog04 from "@/assets/mu-07.jpg";
 
 const NEWS = [
   { tag: "Press", month: "Jun", day: "15", time: "09:00 AM", title: "Masters' Union ranked among India's top new-age B-schools", source: "Forbes India" },
