@@ -46,7 +46,7 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
             </div>
           </div>
           <div className="md:col-span-5">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl ring-1 ring-black/10">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-none ring-1 ring-black/10">
               <img src={chapter.image} alt={chapter.tag} className="absolute inset-0 h-full w-full object-cover grayscale" />
             </div>
           </div>
@@ -128,7 +128,7 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
               {chapter.chips.map((chip) => (
                 <span
                   key={chip}
-                  className="rounded-full border border-black/15 px-3 py-1.5 text-[12px] text-black/80"
+                  className="rounded-none border border-black/15 px-3 py-1.5 text-[12px] text-black/80"
                   style={{ fontFamily: MONO }}
                 >
                   {chip}
@@ -147,7 +147,7 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
         <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 rounded-full bg-black px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-white transition-opacity hover:opacity-80"
+            className="inline-flex items-center gap-2 rounded-none bg-black px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-white transition-opacity hover:opacity-80"
             style={{ fontFamily: MONO }}
           >
             ← Back to all 10 things
@@ -155,7 +155,7 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
           <Link
             to="/"
             hash="pedagogy"
-            className="inline-flex items-center gap-2 rounded-full border border-black/15 px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-black transition-colors hover:bg-black/[0.04]"
+            className="inline-flex items-center gap-2 rounded-none border border-black/15 px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-black transition-colors hover:bg-black/[0.04]"
             style={{ fontFamily: MONO }}
           >
             Explore pedagogy <ArrowUpRight className="size-3.5" />
