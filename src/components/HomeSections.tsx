@@ -135,7 +135,7 @@ export default function HomeSections() {
       {/* FOUNDER'S MESSAGE */}
       <section id="founders" className="border-t border-black/10 bg-white">
         <div className="mx-auto max-w-[1280px] px-6 py-10 md:px-10 md:py-14">
-          <div className="grid max-h-[420px] overflow-hidden rounded-[32px] bg-black md:grid-cols-12">
+          <div className="grid overflow-hidden rounded-[32px] bg-black md:grid-cols-12">
             <div className="relative md:col-span-5">
               <img
                 src={founderPhoto.url}
