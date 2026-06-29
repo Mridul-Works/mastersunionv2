@@ -28,21 +28,49 @@ export default function HomeSections() {
     <div className="bg-[#FAF8F4] text-[#16140F]">
       {/* NEWS */}
       <section id="news" className="border-t border-black/10">
-        <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-10 md:py-32">
-          <SectionHead eyebrow="The wire" title="In the news" lede="Press, milestones and cohort moments — straight from the campus desk." icon={Newspaper} />
-          <div className="mt-12 grid gap-px overflow-hidden rounded-3xl border border-black/10 bg-black/10 md:grid-cols-2">
+        <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10 md:py-28">
+          <div className="flex items-end justify-between gap-8">
+            <div className="max-w-xl">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-black/50">The wire</p>
+              <h2 className="mt-4 text-4xl leading-[0.95] tracking-tight md:text-6xl" style={{ fontFamily: "'Fraunces', serif" }}>
+                In the news
+              </h2>
+            </div>
+            <p className="hidden max-w-xs text-[15px] leading-relaxed text-black/60 md:block">
+              Press, milestones and cohort moments — straight from the campus desk.
+            </p>
+          </div>
+
+          <div className="mt-12 space-y-4">
             {NEWS.map((n) => (
-              <article key={n.title} className="group flex flex-col gap-6 bg-[#FAF8F4] p-8 transition-colors hover:bg-white md:p-10">
-                <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-[0.22em] text-black/50">
-                  <span className="rounded-full bg-black/5 px-3 py-1">{n.tag}</span>
-                  <span>{n.date}</span>
+              <article
+                key={n.title}
+                className="group flex cursor-pointer items-center gap-5 rounded-2xl border border-black/10 bg-white p-4 transition-all duration-300 hover:border-[#6B1F2A]/30 hover:shadow-[0_10px_25px_-5px_rgba(0,0,0,0.1)] md:gap-6 md:p-5"
+              >
+                <div className="flex flex-col items-center justify-center rounded-xl bg-[#6B1F2A] px-5 py-4 text-white transition-colors duration-300 group-hover:bg-[#8A3A12] md:px-6 md:py-5">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-80">{n.month}</span>
+                  <span className="text-2xl font-extrabold leading-none md:text-3xl" style={{ fontFamily: "'Fraunces', serif" }}>
+                    {n.day}
+                  </span>
+                  <div className="mt-1.5 h-0.5 w-4 rounded-full bg-white/30" />
                 </div>
-                <h3 className="text-2xl leading-snug tracking-tight md:text-[28px]" style={{ fontFamily: "'Fraunces', serif" }}>
-                  {n.title}
-                </h3>
-                <div className="mt-auto flex items-center justify-between border-t border-black/10 pt-5 text-[12px] text-black/60">
-                  <span>{n.source}</span>
-                  <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-black/50 md:gap-3">
+                    <span className="inline-flex items-center rounded bg-[#6B1F2A]/8 px-2 py-0.5 font-semibold text-[#6B1F2A]">{n.tag}</span>
+                    <span className="hidden md:inline">•</span>
+                    <span className="font-medium">{n.time}</span>
+                  </div>
+                  <h3 className="mt-2 text-lg font-semibold leading-snug text-black/90 transition-colors group-hover:text-[#6B1F2A] md:text-xl" style={{ fontFamily: "'Fraunces', serif" }}>
+                    {n.title}
+                  </h3>
+                  <p className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-black/40">
+                    Source: {n.source}
+                  </p>
+                </div>
+
+                <div className="flex-none opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100 md:-translate-x-2">
+                  <ArrowUpRight className="size-5 text-[#6B1F2A]" />
                 </div>
               </article>
             ))}
