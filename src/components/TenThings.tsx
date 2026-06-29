@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, ArrowLeft, ArrowRight, X } from "lucide-react";
+import { ArrowUpRight, ArrowLeft, ArrowRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { CHAPTERS, type Chapter } from "./chapters";
 
@@ -71,6 +71,7 @@ export default function TenThings() {
 
       <div
         ref={railRef}
+        data-tenthings-rail
         onWheel={onWheel}
         className="mt-14 overflow-x-auto overflow-y-hidden pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
@@ -150,10 +151,23 @@ export default function TenThings() {
 
 function ExpandedPanel({ chapter, accent, onClose }: { chapter: Chapter; accent: string; onClose: () => void }) {
   const panelRef = useRef<HTMLDivElement>(null);
+  const nextIdx = (parseInt(chapter.n, 10) % 10);
 
   useEffect(() => {
     panelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
+
+  const splitHeadline = (text: string) => {
+    const splitters = [". ", " — ", ": ", ", "];
+    for (const sep of splitters) {
+      const idx = text.indexOf(sep);
+      if (idx > 0 && idx < text.length * 0.65) {
+        return [text.slice(0, idx + sep.length - 1), text.slice(idx + sep.length)];
+      }
+    }
+    return [text, ""];
+  };
+  const [headA, headB] = splitHeadline(chapter.headline);
 
   return (
     <motion.div
@@ -162,119 +176,219 @@ function ExpandedPanel({ chapter, accent, onClose }: { chapter: Chapter; accent:
       animate={{ opacity: 1, y: 0, height: "auto" }}
       exit={{ opacity: 0, y: 20, height: 0 }}
       transition={{ type: "spring", damping: 26, stiffness: 240 }}
-      className="overflow-hidden border-y border-black/10 bg-white"
+      className="overflow-hidden border-y border-black/10 bg-[#0A0A0A]"
       style={{ fontFamily: FONT }}
     >
-      <div className="mx-auto max-w-[1280px] px-5 py-8 sm:px-8 sm:py-12">
-        {/* Masthead */}
-        <div className="mb-8 flex items-start justify-between gap-4">
-          <div>
-            <span
-              className="inline-block px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.3em] text-white"
-              style={{ background: accent }}
-            >
-              Chapter {chapter.n} · {chapter.tag}
-            </span>
-            <h3 className="mt-4 max-w-[24ch] text-[clamp(1.6rem,3.5vw,2.8rem)] font-black uppercase leading-[1.05] tracking-tight text-black">
-              {chapter.headline}
-            </h3>
-          </div>
-          <button
-            onClick={onClose}
-            aria-label="Close"
-            className="flex size-10 items-center justify-center border border-black/10 bg-white text-black transition-colors hover:bg-black hover:text-white"
-          >
-            <X className="size-4" />
-          </button>
-        </div>
-
-        {/* Hero image */}
-        <div className="relative mb-10 h-[260px] w-full overflow-hidden sm:h-[360px]">
-          <img src={chapter.image} alt={chapter.headline} className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-          <div className="absolute bottom-0 left-0 p-6 sm:p-10">
-            <blockquote className="max-w-[40ch] text-[clamp(1.1rem,1.6vw,1.4rem)] font-medium italic leading-[1.3] text-white">
-              &ldquo;{chapter.pullQuote}&rdquo;
-            </blockquote>
-          </div>
-        </div>
-
-        {/* Body grid */}
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
-          <div className="md:col-span-7">
-            <p className="text-[15px] leading-[1.65] text-black/80">{chapter.body}</p>
-
-            <div className="mt-10 space-y-6">
-              {chapter.sections.map((s, i) => (
-                <div key={i}>
-                  <div className="flex items-baseline gap-3">
-                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <h4 className="text-[15px] font-black uppercase tracking-tight text-black">{s.heading}</h4>
-                  </div>
-                  <p className="mt-2 text-[14px] leading-[1.65] text-black/75">{s.body}</p>
-                </div>
-              ))}
+      <div className="mx-auto max-w-[1280px]">
+        <div className="flex flex-col lg:flex-row">
+          {/* Left vertical status rail */}
+          <div className="hidden lg:flex w-16 shrink-0 flex-col items-center border-r border-white/10 py-8 gap-12 bg-[#050505]">
+            <div className="font-mono text-[10px] text-white/40 -rotate-90 whitespace-nowrap uppercase tracking-widest" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+              Dossier {chapter.n} // 10
             </div>
-          </div>
-
-          <aside className="md:col-span-5">
-            <div className="border border-black/10 bg-[#FAF8F4]">
-              <div className="border-b border-black/10 px-5 py-3 text-[10px] font-black uppercase tracking-[0.3em] text-black/60">
-                The dossier
-              </div>
-              <div className="px-5 py-6">
-                <div className="text-[clamp(2.6rem,5vw,3.6rem)] font-black leading-none text-black">{chapter.stat}</div>
-                <div className="mt-2 text-[10px] font-bold uppercase tracking-[0.25em] text-black/55">{chapter.label}</div>
-              </div>
-              <div className="grid grid-cols-2 border-t border-black/10">
-                {chapter.stats.map((s, i) => (
+            <div className="flex flex-1 flex-col gap-3">
+              {CHAPTERS.map((c, i) => {
+                const active = parseInt(c.n, 10) === parseInt(chapter.n, 10);
+                return (
                   <div
-                    key={i}
-                    className="border-black/10 px-5 py-5 [&:nth-child(odd)]:border-r [&:not(:nth-last-child(-n+2))]:border-b"
-                  >
-                    <div className="text-[20px] font-black leading-none text-black">{s.value}</div>
-                    <div className="mt-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-black/55">{s.label}</div>
-                  </div>
-                ))}
-              </div>
+                    key={c.n}
+                    className="w-1 h-8 transition-colors"
+                    style={{ background: active ? accent : "rgba(255,255,255,0.1)" }}
+                  />
+                );
+              })}
             </div>
+            <button
+              onClick={onClose}
+              aria-label="Close"
+              className="flex size-8 items-center justify-center rounded-full border border-white/20 text-white/50 transition-colors hover:border-white/50 hover:text-white"
+            >
+              <div className="w-1 h-1 rounded-full bg-current" />
+            </button>
+          </div>
 
-            <div className="mt-6">
-              <div className="text-[10px] font-black uppercase tracking-[0.3em] text-black/60">Proof</div>
-              <ul className="mt-3 space-y-2">
-                {chapter.proof.map((p) => (
-                  <li key={p} className="flex items-start gap-2 text-[13px] leading-snug text-black/80">
-                    <span aria-hidden className="mt-1.5 inline-block size-1.5 flex-none" style={{ background: accent }} />
-                    {p}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="mt-6">
-              <div className="text-[10px] font-black uppercase tracking-[0.3em] text-black/60">In the room</div>
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                {chapter.chips.map((chip) => (
+          {/* Main dossier area */}
+          <div className="flex-1 flex flex-col">
+            {/* Masthead */}
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 px-6 py-8 lg:px-10 lg:py-10">
+              <div className="space-y-2">
+                <div className="flex items-center gap-3">
                   <span
-                    key={chip}
-                    className="border border-black/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-black/75"
+                    className="font-mono text-[10px] uppercase tracking-tighter"
+                    style={{ color: accent, fontFamily: "'JetBrains Mono', monospace" }}
                   >
-                    {chip}
+                    [ {chapter.tag.toUpperCase()} ]
                   </span>
-                ))}
+                  <div className="h-px w-12" style={{ background: `${accent}30` }} />
+                </div>
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-extrabold uppercase tracking-tighter leading-none text-white">
+                  {headA}
+                  {headB && <span className="block md:ml-12 text-white/50">{headB}</span>}
+                </h3>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="flex flex-col items-start md:items-end gap-1">
+                  <p className="font-mono text-[11px] text-white/40 uppercase" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                    Categorization
+                  </p>
+                  <p className="text-sm font-bold text-white uppercase tracking-wider">
+                    {chapter.tag}
+                  </p>
+                </div>
+                <button
+                  onClick={onClose}
+                  aria-label="Close"
+                  className="flex size-10 items-center justify-center border border-white/20 text-white/60 transition-colors hover:border-white/50 hover:text-white"
+                >
+                  <span className="text-lg leading-none">×</span>
+                </button>
               </div>
             </div>
-          </aside>
-        </div>
 
-        {/* Closing */}
-        <div className="mt-10 border-t border-black/10 px-0 py-6 sm:py-8">
-          <div className="max-w-[60ch] border-l-2 pl-5" style={{ borderColor: accent }}>
-            <p className="text-[clamp(1rem,1.5vw,1.25rem)] font-medium italic leading-snug text-black">
-              {chapter.closing}
-            </p>
+            {/* Body */}
+            <div className="flex flex-1 flex-col lg:flex-row">
+              <div className="flex-[3] border-b border-white/10 px-6 py-8 lg:border-b-0 lg:border-r lg:px-10 lg:py-10 space-y-8">
+                {/* Hero image */}
+                <div className="relative aspect-video w-full overflow-hidden border border-white/10 bg-white/5 group">
+                  <img
+                    src={chapter.image}
+                    alt={chapter.headline}
+                    className="h-full w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <p
+                      className="font-mono text-[9px] uppercase"
+                      style={{ color: accent, fontFamily: "'JetBrains Mono', monospace" }}
+                    >
+                      Exhibit A: {chapter.tag} in action
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid gap-8 md:grid-cols-2">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-bold text-white/80 uppercase tracking-widest">Primary Thesis</span>
+                      <div className="h-px flex-1 bg-white/10" />
+                    </div>
+                    <p className="text-sm leading-relaxed text-white/60">{chapter.body}</p>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-bold text-white/80 uppercase tracking-widest">Key Outcome</span>
+                      <div className="h-px flex-1 bg-white/10" />
+                    </div>
+                    <ul className="space-y-2">
+                      {chapter.proof.slice(0, 4).map((p, i) => (
+                        <li key={i} className="flex items-start gap-2 text-sm text-white/60">
+                          <span
+                            className="font-mono text-xs"
+                            style={{ color: accent, fontFamily: "'JetBrains Mono', monospace" }}
+                          >
+                            {String(i + 1).padStart(2, "0")}
+                          </span>
+                          <span>{p}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Detailed sections */}
+                <div className="space-y-6 pt-4">
+                  {chapter.sections.map((s, i) => (
+                    <div key={i} className="border-t border-white/10 pt-6">
+                      <div className="flex items-baseline gap-3">
+                        <span
+                          className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40"
+                          style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                        >
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <h4 className="text-sm font-black uppercase tracking-tight text-white">{s.heading}</h4>
+                      </div>
+                      <p className="mt-2 text-[13px] leading-[1.65] text-white/60">{s.body}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Closing */}
+                <div className="border-l-2 pl-5" style={{ borderColor: accent }}>
+                  <p className="text-base font-medium italic leading-snug text-white/80">
+                    &ldquo;{chapter.pullQuote}&rdquo;
+                  </p>
+                </div>
+              </div>
+
+              {/* Stats sidebar */}
+              <div className="flex-1 bg-[#050505] px-6 py-8 lg:px-10 lg:py-10">
+                <p
+                  className="mb-12 font-mono text-[10px] uppercase tracking-[0.2em] text-white/40"
+                  style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                >
+                  Performance Indicators
+                </p>
+
+                <div className="space-y-10">
+                  <div className="space-y-1">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/40" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                      Indicator 01
+                    </p>
+                    <h4 className="text-sm font-bold uppercase text-white/80">{chapter.label}</h4>
+                    <div className="pt-2 text-5xl font-black tracking-tighter text-white" style={{ fontFamily: "'Inter', sans-serif" }}>
+                      {chapter.stat}
+                    </div>
+                  </div>
+
+                  {chapter.stats.map((s, i) => (
+                    <div key={i} className="space-y-1 border-t border-white/10 pt-6">
+                      <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/40" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                        Indicator {String(i + 2).padStart(2, "0")}
+                      </p>
+                      <div className="pt-2 text-4xl font-black tracking-tighter text-white">
+                        {s.value}
+                        <span style={{ color: accent }}>.</span>
+                      </div>
+                      <p className="text-[11px] uppercase leading-tight text-white/40">{s.label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-10">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/40" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                    In the room
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {chapter.chips.map((chip) => (
+                      <span
+                        key={chip}
+                        className="border border-white/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-white/70"
+                      >
+                        {chip}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-10 pt-8">
+                  <button
+                    onClick={() => {
+                      const rail = document.querySelector('[data-tenthings-rail]') as HTMLElement | null;
+                      if (rail) {
+                        rail.scrollTo({ left: nextIdx * 360, behavior: 'smooth' });
+                      }
+                      onClose();
+                    }}
+                    className="group flex w-full items-center justify-between bg-white px-6 py-4 text-xs font-bold uppercase tracking-[0.2em] text-black transition-colors hover:opacity-90"
+                    style={{ color: "#0A0A0A" }}
+                  >
+                    Explore Next
+                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
