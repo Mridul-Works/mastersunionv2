@@ -45,7 +45,7 @@ export default function TenThings() {
             style={{ fontSize: "clamp(56px, 10vw, 140px)" }}
           >
             Cut the<br />
-            <span className="text-[#FF4D00]">marketing.</span>
+            <span className="font-['Instrument_Serif'] italic font-normal normal-case tracking-normal text-[#FF4D00]">marketing.</span>
             <br />
             <span className="block">
               10 things about Masters' Union.

@@ -62,7 +62,7 @@ export default function HomeSections() {
               <p className="font-['Geist'] text-[11px] font-medium uppercase tracking-[0.22em] text-[#FF4D00]">[ Admissions // Cohort 2026 ]</p>
               <h2 className="mt-6 text-5xl font-extrabold uppercase leading-[0.9] tracking-tighter md:text-7xl">
                 Three rounds.<br />
-                <span className="text-[#FF4D00]">One decision.</span>
+                <span className="font-['Instrument_Serif'] italic font-normal normal-case tracking-normal text-[#FF4D00]">one decision.</span>
               </h2>
               <p className="mt-6 max-w-md text-[15px] leading-relaxed text-white/70">
                 Apply early. Scholarship pools shrink with every round, and ~80% of seats are filled by the time Round 3 opens.
@@ -108,7 +108,7 @@ export default function HomeSections() {
 
             <div className="md:col-span-8">
               <h2 className="text-4xl font-extrabold uppercase leading-[1.02] tracking-tighter md:text-[64px]">
-                "We didn't build another <span className="text-[#FF4D00]">business school</span>. We built the school we wished existed when we were starting up."
+                "We didn't build another <span className="font-['Instrument_Serif'] italic font-normal normal-case tracking-normal text-[#FF4D00]">business school</span>. We built the school we wished existed when we were starting up."
               </h2>
               <div className="mt-10 space-y-5 text-[16px] leading-[1.7] text-[#111111]/75 md:text-[17px]">
                 <p>
@@ -135,7 +135,7 @@ export default function HomeSections() {
       {/* PEDAGOGY */}
       <section id="pedagogy" className="border-t border-[#111111] bg-[#F9F9F9]">
         <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-12 md:py-32">
-          <SectionHead eyebrow="[ The Pedagogy // 02 ]" title={<>How Masters' Union <span className="text-[#FF4D00]">actually</span> teaches.</>} lede="Seven systems that work in concert — built so theory never outpaces practice." />
+          <SectionHead eyebrow="[ The Pedagogy // 02 ]" title={<>How Masters' Union <span className="font-['Instrument_Serif'] italic font-normal normal-case tracking-normal text-[#FF4D00]">actually</span> teaches.</>} lede="Seven systems that work in concert — built so theory never outpaces practice." />
 
           <div className="mt-16 grid gap-px border border-[#111111] bg-[#111111] md:grid-cols-2 lg:grid-cols-3">
             {PEDAGOGY.map((p, i) => {
@@ -183,7 +183,7 @@ export default function HomeSections() {
               <div className="md:col-span-8">
                 <p className="font-['Geist'] text-[11px] font-medium uppercase tracking-[0.3em] text-[#FF4D00]">[ PGP // Cohort 2026 ]</p>
                 <h2 className="mt-6 text-5xl font-extrabold uppercase leading-[0.9] tracking-tighter md:text-[96px]">
-                  Apply to<br /><span className="text-[#FF4D00]">Masters' Union.</span>
+                  Apply to<br /><span className="font-['Instrument_Serif'] italic font-normal normal-case tracking-normal text-[#FF4D00]">Masters' Union.</span>
                 </h2>
                 <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-white/75">
                   Submit a 4-question application. Hear back in 14 days. No GMAT, no essays about your childhood — we want to know what you've built or what you'd build with us.
@@ -214,7 +214,7 @@ export default function HomeSections() {
           <div className="grid gap-12 md:grid-cols-12">
             <div className="md:col-span-5">
               <h2 className="text-3xl font-extrabold uppercase leading-tight tracking-tighter md:text-4xl">
-                Masters' Union<br /><span className="text-[#FF4D00]">— business education,<br />rebuilt for the next decade.</span>
+                Masters' Union<br /><span className="font-['Instrument_Serif'] italic font-normal normal-case tracking-normal text-[#FF4D00]">— business education,<br />rebuilt for the next decade.</span>
               </h2>
               <p className="mt-8 max-w-sm font-['Geist'] text-[11px] uppercase leading-relaxed tracking-[0.18em] text-white/55">
                 DLF Cyberpark, Phase III<br />
