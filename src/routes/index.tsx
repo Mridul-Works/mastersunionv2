@@ -59,16 +59,24 @@ function Index() {
       setShowRewatch(false);
     };
 
+    let lastY = window.scrollY;
     const onScroll = () => {
       if (unlockingRef.current) return;
+      const y = window.scrollY;
       if (!lockedRef.current) {
         // Engage as soon as hero hits the top.
-        if (window.scrollY >= getLockY() - 1) engage();
+        if (y >= getLockY() - 1) engage();
+        lastY = y;
         return;
       }
-      if (window.scrollY < lockYRef.current) {
+      if (y < lockYRef.current) {
         window.scrollTo(0, lockYRef.current);
       }
+      // Auto-hide on scroll down, show on scroll up
+      const delta = y - lastY;
+      if (delta > 6 && y > lockYRef.current + 40) setNavHidden(true);
+      else if (delta < -4) setNavHidden(false);
+      lastY = y;
     };
 
     const onWheel = (e: WheelEvent) => {
