@@ -1,10 +1,10 @@
 import { ArrowUpRight, Calendar, Newspaper, Quote, GraduationCap, Rocket, Briefcase, Users, Mic, ChefHat, Building2, Send, Instagram, Linkedin, Youtube, Twitter } from "lucide-react";
 
 const NEWS = [
-  { tag: "Press", date: "Jun 2026", title: "Masters' Union ranked among India's top new-age B-schools", source: "Forbes India" },
-  { tag: "Cohort", date: "May 2026", title: "PGP 2026 applications cross 18,000 — admit rate drops to 4%", source: "Inside MU" },
-  { tag: "Founders", date: "Apr 2026", title: "Six student ventures featured on Shark Tank India S5", source: "Sony LIV" },
-  { tag: "Faculty", date: "Mar 2026", title: "Kunal Shah joins as Distinguished Practitioner-in-Residence", source: "ET Now" },
+  { tag: "Press", month: "Jun", day: "15", time: "09:00 AM", title: "Masters' Union ranked among India's top new-age B-schools", source: "Forbes India" },
+  { tag: "Cohort", month: "May", day: "22", time: "11:30 AM", title: "PGP 2026 applications cross 18,000 — admit rate drops to 4%", source: "Inside MU" },
+  { tag: "Founders", month: "Apr", day: "08", time: "02:15 PM", title: "Six student ventures featured on Shark Tank India S5", source: "Sony LIV" },
+  { tag: "Faculty", month: "Mar", day: "29", time: "10:00 AM", title: "Kunal Shah joins as Distinguished Practitioner-in-Residence", source: "ET Now" },
 ];
 
 const DEADLINES = [
