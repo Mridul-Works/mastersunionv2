@@ -179,21 +179,21 @@ export default function HomeSections() {
                 <article
                   key={p.tag}
                   className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-black/10 bg-[#FAF8F4] p-8 transition-all hover:-translate-y-1 hover:border-black/20 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.25)] md:p-10 ${
-                    featured ? "lg:col-span-2 lg:row-span-1 bg-[#1A211A] text-[#F4EFE3]" : ""
+                    featured ? "lg:col-span-2 lg:row-span-1" : ""
                   }`}
                 >
                   <div className="flex items-start justify-between">
                     <div className={`flex size-12 items-center justify-center rounded-2xl ${featured ? "bg-[#C9A84C]/20 text-[#C9A84C]" : "bg-black/5 text-black/70"}`}>
                       <Icon className="size-5" />
                     </div>
-                    <span className={`text-[10px] font-semibold uppercase tracking-[0.22em] ${featured ? "text-white/50" : "text-black/40"}`}>{p.tag}</span>
+                    <span className={`text-[10px] font-semibold uppercase tracking-[0.22em] text-black/40`}>{p.tag}</span>
                   </div>
 
                   <div className="mt-12">
-                    <h3 className={`text-3xl leading-[1.05] tracking-tight md:text-[34px] ${featured ? "text-white" : ""}`} style={{ fontFamily: "'Fraunces', serif" }}>
+                    <h3 className="text-3xl leading-[1.05] tracking-tight text-[#16140F] md:text-[34px]" style={{ fontFamily: "'Fraunces', serif" }}>
                       {p.title}
                     </h3>
-                    <p className={`mt-5 text-[14px] leading-relaxed ${featured ? "text-white/70" : "text-black/65"}`}>{p.body}</p>
+                    <p className="mt-5 text-[14px] leading-relaxed text-black/65">{p.body}</p>
                   </div>
 
                   <button type="button" className={`mt-10 inline-flex w-fit items-center gap-2 border-b pb-1 text-[11px] font-semibold uppercase tracking-[0.22em] transition-all ${featured ? "border-[#C9A84C] text-[#C9A84C]" : "border-black/30 text-black/70 group-hover:border-black group-hover:text-black"}`}>
