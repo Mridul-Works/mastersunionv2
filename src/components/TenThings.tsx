@@ -24,40 +24,35 @@ export default function TenThings() {
   const project = CHAPTERS[index];
 
   return (
-    <section className="relative bg-[#0A0A0A] text-white" style={{ fontFamily: "'Manrope', system-ui, sans-serif" }}>
-      {/* Intro — Masters' Union brand: mono-first, 40/40/20, single yellow accent */}
-      <div className="relative overflow-hidden bg-white px-6 py-28 md:py-40 text-[#101010]">
-        {/* subtle brand gradient wash, very low opacity (clean first, colorful second) */}
-        <div
-          className="pointer-events-none absolute -right-32 -top-32 h-[60vh] w-[60vh] rounded-full opacity-[0.08] blur-[120px]"
-          style={{ background: "var(--gradient-brand)" }}
-        />
+    <section className="relative bg-[#0A0A0A] text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+      {/* Intro headline — editorial, matches site theme */}
+      <div className="relative overflow-hidden bg-[#FAF8F4] px-6 py-28 md:py-40 text-[#1a1a1a]">
+        <div className="pointer-events-none absolute -left-40 top-20 h-[50vh] w-[50vh] rounded-full bg-[#C9A84C]/12 blur-[140px]" />
+        <div className="pointer-events-none absolute -right-40 bottom-0 h-[50vh] w-[50vh] rounded-full bg-[#87a878]/10 blur-[140px]" />
 
         <div className="relative z-10 mx-auto max-w-[1180px]">
-          {/* Eyebrow — Manrope (Galano Grotesque substitute), uppercase, brand-clean */}
-          <div className="mb-14 flex items-center gap-4">
-            <span className="h-px w-10 bg-[#101010]" />
+          <div className="mb-12 flex items-center gap-4">
+            <span className="h-px w-12 bg-[#1a1a1a]/40" />
             <span
-              className="text-[11px] uppercase tracking-[0.28em] text-[#101010]"
-              style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 600 }}
+              className="text-[11px] uppercase tracking-[0.32em] text-[#1a1a1a]/55"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
             >
-              Masters' Union University · Field Notes 01
+              Field Notes — Vol. 01
             </span>
           </div>
 
-          {/* Headline — PP Editorial New (Instrument Serif fallback), ultralight + ultrabold mix */}
           <h2
-            className="leading-[0.96] tracking-[-0.025em] text-[#101010]"
+            className="leading-[0.98] tracking-[-0.02em] text-[#1a1a1a]"
             style={{
-              fontFamily: "'Instrument Serif', 'PP Editorial New', serif",
+              fontFamily: "'Instrument Serif', 'Cormorant Garamond', serif",
               fontWeight: 400,
-              fontSize: "clamp(56px, 9.5vw, 132px)",
+              fontSize: "clamp(52px, 9vw, 124px)",
             }}
           >
             Cut the{" "}
             <em
-              className="italic"
-              style={{ fontFamily: "'Instrument Serif', serif", fontStyle: "italic", fontWeight: 400 }}
+              className="text-[#8b7355]"
+              style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 300 }}
             >
               marketing.
             </em>
@@ -66,44 +61,42 @@ export default function TenThings() {
               10 things about{" "}
               <span className="relative inline-block">
                 <span
-                  className="relative z-10"
-                  style={{ fontFamily: "'Instrument Serif', serif", fontStyle: "italic", fontWeight: 400 }}
+                  className="relative z-10 italic"
+                  style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}
                 >
                   Masters' Union
                 </span>
-                {/* single brand accent — yellow #F4C641, per brand color usage rules */}
-                <span className="absolute inset-x-0 bottom-2 z-0 h-[10px] bg-[#F4C641]" />
+                <span className="absolute inset-x-0 bottom-2 z-0 h-[6px] bg-[#C9A84C]/45" />
               </span>
             </span>
           </h2>
 
-          <div className="mt-16 grid grid-cols-1 gap-10 md:grid-cols-[1.3fr_1fr] md:items-end">
+          <div className="mt-14 grid grid-cols-1 gap-10 md:grid-cols-[1.3fr_1fr] md:items-end">
             <p
-              className="max-w-[540px] text-[17px] leading-[1.65] text-[#3C3C3C]"
-              style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 400 }}
+              className="max-w-[560px] text-[18px] leading-[1.65] text-[#1a1a1a]/70"
+              style={{ fontFamily: "'Instrument Serif', serif", fontWeight: 400 }}
             >
               No ads. No fluff. Just the dossier — ten chapters that actually
               explain how the school works, who teaches, and what gets built.
             </p>
 
             <div
-              className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-[#101010]/15 pt-5 text-[11px] uppercase tracking-[0.24em] text-[#737373]"
-              style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 600 }}
+              className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-[#1a1a1a]/20 pt-5 text-[11px] uppercase tracking-[0.28em] text-[#1a1a1a]/55"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
             >
               <span>{String(CHAPTERS.length).padStart(2, "0")} Chapters</span>
-              <span className="h-[3px] w-[3px] rounded-full bg-[#F4C641]" />
+              <span className="h-1 w-1 rounded-full bg-[#C9A84C]" />
               <span>≈ 8 min read</span>
-              <span className="h-[3px] w-[3px] rounded-full bg-[#F4C641]" />
-              <span>Learn by doing</span>
+              <span className="h-1 w-1 rounded-full bg-[#C9A84C]" />
+              <span>Updated 2026</span>
             </div>
           </div>
         </div>
       </div>
 
-
       {/* Card widget — manual prev/next */}
       <div className="relative bg-[#0A0A0A]">
-        <div className="relative h-[70svh] min-h-[450px] w-full overflow-hidden">
+        <div className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
           {/* Counter top-left */}
           <div
             className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[12px] tracking-[0.15em] text-neutral-400 md:left-10"
@@ -144,11 +137,41 @@ export default function TenThings() {
 
           {/* Slide */}
           <AnimatePresence mode="popLayout" custom={direction}>
-            <Slide key={project.n} project={project} direction={direction} index={index} onPrev={() => go(-1)} onNext={() => go(1)} />
+            <Slide key={project.n} project={project} direction={direction} index={index} />
           </AnimatePresence>
 
-          {/* Bottom progress dots */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-8 z-30 flex justify-center px-6 md:px-10">
+          {/* Bottom nav: tag + arrows */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-8 z-30 flex flex-col items-center gap-5 px-6">
+            <div className="pointer-events-auto flex w-full max-w-[620px] items-center justify-between">
+              <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-white/70">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-white" />
+                <span className="min-w-[80px] text-center">{project.tag}</span>
+              </div>
+
+              <div className="flex items-center gap-1 rounded-full border border-white/10 bg-white/10 px-2 py-1.5 backdrop-blur-md">
+                <button
+                  type="button"
+                  onClick={() => go(-1)}
+                  aria-label="Previous chapter"
+                  className="group flex items-center gap-1.5 rounded-full px-2 py-1 text-white/80 transition-all hover:bg-white/10 hover:text-white"
+                >
+                  <GradientArrow direction="left" className="size-5" />
+                  <span className="hidden text-[10px] font-medium uppercase tracking-wider sm:inline">Prev</span>
+                </button>
+                <span className="h-3 w-px bg-white/15" />
+                <button
+                  type="button"
+                  onClick={() => go(1)}
+                  aria-label="Next chapter"
+                  className="group flex items-center gap-1.5 rounded-full px-2 py-1 text-white/80 transition-all hover:bg-white/10 hover:text-white"
+                >
+                  <span className="hidden text-[10px] font-medium uppercase tracking-wider sm:inline">Next</span>
+                  <GradientArrow direction="right" className="size-5" />
+                </button>
+              </div>
+
+            </div>
+
             <div className="flex items-center gap-2">
               {CHAPTERS.map((p, i) => (
                 <button
@@ -175,14 +198,10 @@ function Slide({
   project,
   direction,
   index,
-  onPrev,
-  onNext,
 }: {
   project: (typeof CHAPTERS)[number];
   direction: 1 | -1;
   index: number;
-  onPrev: () => void;
-  onNext: () => void;
 }) {
   return (
     <motion.div
@@ -245,36 +264,15 @@ function Slide({
       <div className="relative z-10 flex items-end px-6 pb-32 md:items-center md:px-12 md:pb-0">
         <div className="max-w-[560px]">
           <StaggeredText delay={0.15} k={`meta-${index}`}>
-            <div className="flex items-center gap-3">
-              <p
-                className="text-[11px] uppercase tracking-[0.2em] text-white/60"
-                style={{ fontFamily: "'JetBrains Mono', monospace" }}
-              >
-                <span className="text-neutral-400">{String(index + 1).padStart(2, "0")}</span>
-                <span className="mx-2 text-white/25">·</span>
-                {project.tag}
-              </p>
-              <div className="flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-1.5 py-1 backdrop-blur-md">
-                <button
-                  type="button"
-                  onClick={onPrev}
-                  aria-label="Previous chapter"
-                  className="flex size-6 items-center justify-center rounded-full text-white/80 transition hover:bg-white/10 hover:text-white"
-                >
-                  <GradientArrow direction="left" className="size-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={onNext}
-                  aria-label="Next chapter"
-                  className="flex size-6 items-center justify-center rounded-full text-white/80 transition hover:bg-white/10 hover:text-white"
-                >
-                  <GradientArrow direction="right" className="size-4" />
-                </button>
-              </div>
-            </div>
+            <p
+              className="text-[11px] uppercase tracking-[0.2em] text-white/60"
+              style={{ fontFamily: "'JetBrains Mono', monospace" }}
+            >
+              <span className="text-neutral-400">{String(index + 1).padStart(2, "0")}</span>
+              <span className="mx-2 text-white/25">·</span>
+              {project.tag}
+            </p>
           </StaggeredText>
-
 
           <StaggeredText delay={0.25} k={`title-${index}`}>
             <h2
