@@ -34,7 +34,7 @@ export default function HomeSections() {
               <div>
                 <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-[#6B1F2A] mb-1">The Dispatch</p>
                 <h2 className="font-display text-4xl font-bold text-[#16140F] md:text-5xl">
-                  News Wire
+                  {"\n"}
                 </h2>
               </div>
               <div className="hidden gap-2 md:flex">
