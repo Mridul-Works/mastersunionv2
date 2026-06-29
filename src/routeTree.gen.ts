@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StartupsRouteImport } from './routes/startups'
+import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as PlacementsRouteImport } from './routes/placements'
 import { Route as MentorsRouteImport } from './routes/mentors'
 import { Route as LifeAtMuRouteImport } from './routes/life-at-mu'
@@ -24,6 +25,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const StartupsRoute = StartupsRouteImport.update({
   id: '/startups',
   path: '/startups',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProgramsRoute = ProgramsRouteImport.update({
+  id: '/programs',
+  path: '/programs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PlacementsRoute = PlacementsRouteImport.update({
@@ -88,6 +94,7 @@ export interface FileRoutesByFullPath {
   '/life-at-mu': typeof LifeAtMuRoute
   '/mentors': typeof MentorsRoute
   '/placements': typeof PlacementsRoute
+  '/programs': typeof ProgramsRoute
   '/startups': typeof StartupsRoute
 }
 export interface FileRoutesByTo {
@@ -101,6 +108,7 @@ export interface FileRoutesByTo {
   '/life-at-mu': typeof LifeAtMuRoute
   '/mentors': typeof MentorsRoute
   '/placements': typeof PlacementsRoute
+  '/programs': typeof ProgramsRoute
   '/startups': typeof StartupsRoute
 }
 export interface FileRoutesById {
@@ -115,6 +123,7 @@ export interface FileRoutesById {
   '/life-at-mu': typeof LifeAtMuRoute
   '/mentors': typeof MentorsRoute
   '/placements': typeof PlacementsRoute
+  '/programs': typeof ProgramsRoute
   '/startups': typeof StartupsRoute
 }
 export interface FileRouteTypes {
@@ -130,6 +139,7 @@ export interface FileRouteTypes {
     | '/life-at-mu'
     | '/mentors'
     | '/placements'
+    | '/programs'
     | '/startups'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -143,6 +153,7 @@ export interface FileRouteTypes {
     | '/life-at-mu'
     | '/mentors'
     | '/placements'
+    | '/programs'
     | '/startups'
   id:
     | '__root__'
@@ -156,6 +167,7 @@ export interface FileRouteTypes {
     | '/life-at-mu'
     | '/mentors'
     | '/placements'
+    | '/programs'
     | '/startups'
   fileRoutesById: FileRoutesById
 }
@@ -170,6 +182,7 @@ export interface RootRouteChildren {
   LifeAtMuRoute: typeof LifeAtMuRoute
   MentorsRoute: typeof MentorsRoute
   PlacementsRoute: typeof PlacementsRoute
+  ProgramsRoute: typeof ProgramsRoute
   StartupsRoute: typeof StartupsRoute
 }
 
@@ -180,6 +193,13 @@ declare module '@tanstack/react-router' {
       path: '/startups'
       fullPath: '/startups'
       preLoaderRoute: typeof StartupsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/programs': {
+      id: '/programs'
+      path: '/programs'
+      fullPath: '/programs'
+      preLoaderRoute: typeof ProgramsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/placements': {
@@ -266,18 +286,9 @@ const rootRouteChildren: RootRouteChildren = {
   LifeAtMuRoute: LifeAtMuRoute,
   MentorsRoute: MentorsRoute,
   PlacementsRoute: PlacementsRoute,
+  ProgramsRoute: ProgramsRoute,
   StartupsRoute: StartupsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
