@@ -30,31 +30,43 @@
   --color-cream: var(--cream);
   --color-ink: var(--ink);
 
-  --font-display: "Instrument Serif", "Times New Roman", serif;
-  --font-sans: "Inter", system-ui, sans-serif;
+  /* Masters' Union University — Brand colors (from brand guidelines 2026) */
+  --color-mu-blue: #3EB6D3;
+  --color-mu-green: #9CC58B;
+  --color-mu-yellow: #F4C641;
+  --color-mu-orange: #E58932;
+  --color-mu-ink: #101010;
+  --color-mu-paper: #FFFFFF;
+
+  --font-display: "PP Editorial New", "Instrument Serif", "Times New Roman", serif;
+  --font-sans: "Manrope", "Galano Grotesque", "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 :root {
   --radius: 0.875rem;
-  /* Editorial palette pulled from the Mindora reference + recolored building */
-  --background: oklch(0.985 0.005 90);          /* warm off-white */
-  --foreground: oklch(0.18 0.01 80);            /* near-black ink */
+  /* Mono-first per Masters' Union brand: 40% black, 40% white, 20% accent */
+  --background: oklch(1 0 0);                   /* paper #FFFFFF */
+  --foreground: oklch(0.16 0 0);                /* ink #101010 */
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.01 80);
-  --primary: oklch(0.22 0.01 80);               /* deep ink */
-  --primary-foreground: oklch(0.985 0.005 90);
-  --secondary: oklch(0.94 0.015 110);
-  --secondary-foreground: oklch(0.22 0.01 80);
-  --muted: oklch(0.94 0.012 100);
-  --muted-foreground: oklch(0.5 0.02 90);
-  --accent: oklch(0.82 0.09 135);               /* sage-lime CTA from Mindora */
-  --accent-foreground: oklch(0.2 0.02 130);
-  --border: oklch(0.9 0.01 90);
-  --ring: oklch(0.7 0.04 130);
+  --card-foreground: oklch(0.16 0 0);
+  --primary: oklch(0.16 0 0);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.96 0 0);                 /* #F1F1F1 */
+  --secondary-foreground: oklch(0.16 0 0);
+  --muted: oklch(0.96 0 0);
+  --muted-foreground: oklch(0.5 0 0);           /* #737373 */
+  --accent: oklch(0.86 0.15 90);                /* MU yellow #F4C641 */
+  --accent-foreground: oklch(0.16 0 0);
+  --border: oklch(0.92 0 0);                    /* near #C6C6C6/#F1F1F1 */
+  --ring: oklch(0.86 0.15 90);
 
-  --sage: oklch(0.82 0.04 150);
-  --cream: oklch(0.94 0.025 80);
-  --ink: oklch(0.16 0.01 80);
+  --sage: #9CC58B;
+  --cream: #FFFFFF;
+  --ink: #101010;
+
+  /* Brand gradient (teal → yellow → orange) — already used by GradientArrow */
+  --gradient-brand: linear-gradient(90deg, #3EB6D3 0%, #F4C641 50%, #E58932 100%);
 }
 
 @layer base {
