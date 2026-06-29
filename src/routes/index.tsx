@@ -45,93 +45,86 @@ function Index() {
     const hero = heroRef.current;
     if (!hero) return;
 
-    const getLockY = () => hero.getBoundingClientRect().top + window.scrollY;
+    let loco: any = null;
+    let lockY = 0;
+    let locked = false;
+    let lastY = 0;
+
+    const getLockY = () => {
+      // Locomotive transforms the container; use offsetTop relative to scrollable container.
+      const el = hero as HTMLElement;
+      let top = 0;
+      let node: HTMLElement | null = el;
+      while (node) {
+        top += node.offsetTop;
+        node = node.offsetParent as HTMLElement | null;
+      }
+      return top;
+    };
 
     const engage = () => {
-      lockYRef.current = getLockY();
-      lockedRef.current = true;
+      lockY = getLockY();
+      locked = true;
       setNavVisible(true);
       setShowRewatch(true);
     };
 
-    const disengage = () => {
-      lockedRef.current = false;
-      setNavVisible(false);
-      setShowRewatch(false);
-    };
-
-    let lastY = window.scrollY;
-    const onScroll = () => {
+    const onLocoScroll = (args: any) => {
       if (unlockingRef.current) return;
-      const y = window.scrollY;
-      if (!lockedRef.current) {
-        // Engage as soon as hero hits the top.
+      const y = args?.scroll?.y ?? 0;
+      if (!locked) {
         if (y >= getLockY() - 1) engage();
         lastY = y;
         return;
       }
-      if (y < lockYRef.current) {
-        window.scrollTo(0, lockYRef.current);
+      if (y < lockY) {
+        loco?.scrollTo(lockY, { duration: 0, disableLerp: true });
       }
-      // Auto-hide on scroll down, show on scroll up
       const delta = y - lastY;
-      if (delta > 6 && y > lockYRef.current + 40) setNavHidden(true);
+      if (delta > 6 && y > lockY + 40) setNavHidden(true);
       else if (delta < -4) setNavHidden(false);
       lastY = y;
     };
 
-    const onWheel = (e: WheelEvent) => {
-      if (!lockedRef.current || unlockingRef.current) return;
-      // Only block upward scroll when we'd cross the lock boundary.
-      if (e.deltaY < 0 && window.scrollY + e.deltaY < lockYRef.current) {
-        e.preventDefault();
-        window.scrollTo(0, lockYRef.current);
-      }
-    };
-
-    let touchStartY = 0;
-    const onTouchStart = (e: TouchEvent) => {
-      touchStartY = e.touches[0]?.clientY ?? 0;
-    };
-    const onTouchMove = (e: TouchEvent) => {
-      if (!lockedRef.current || unlockingRef.current) return;
-      const y = e.touches[0]?.clientY ?? 0;
-      const dy = y - touchStartY;
-      // finger moves down => page would scroll up. Only block at boundary.
-      if (dy > 0 && window.scrollY - dy < lockYRef.current) {
-        e.preventDefault();
-        window.scrollTo(0, lockYRef.current);
-      }
-    };
-
     const blockedKeys = new Set(["ArrowUp", "PageUp", "Home"]);
     const onKey = (e: KeyboardEvent) => {
-      if (!lockedRef.current || unlockingRef.current) return;
+      if (!locked || unlockingRef.current) return;
       if (blockedKeys.has(e.key) || (e.key === " " && e.shiftKey)) {
         e.preventDefault();
       }
     };
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("wheel", onWheel, { passive: false });
-    window.addEventListener("touchstart", onTouchStart, { passive: true });
-    window.addEventListener("touchmove", onTouchMove, { passive: false });
+    const attach = (instance: any) => {
+      loco = instance;
+      lockedRef.current = false;
+      instance.on("scroll", onLocoScroll);
+    };
+
+    const existing = (window as any).__loco;
+    if (existing) attach(existing);
+    else {
+      const onReady = (e: Event) => attach((e as CustomEvent).detail);
+      window.addEventListener("loco:ready", onReady, { once: true });
+    }
+
     window.addEventListener("keydown", onKey);
-    window.addEventListener("resize", () => {
-      if (lockedRef.current) lockYRef.current = getLockY();
-    });
+    const onResize = () => {
+      if (locked) lockY = getLockY();
+    };
+    window.addEventListener("resize", onResize);
 
-    // Initial check (e.g. page reload mid-scroll).
-    onScroll();
-
-    (window as any).__muDisengage = disengage;
+    (window as any).__muDisengage = () => {
+      locked = false;
+      setNavVisible(false);
+      setShowRewatch(false);
+    };
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("wheel", onWheel);
-      window.removeEventListener("touchstart", onTouchStart);
-      window.removeEventListener("touchmove", onTouchMove);
+      try {
+        loco?.off?.("scroll", onLocoScroll);
+      } catch {}
       window.removeEventListener("keydown", onKey);
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 
@@ -140,12 +133,18 @@ function Index() {
     lockedRef.current = false;
     setNavVisible(false);
     setShowRewatch(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const loco = (window as any).__loco;
+    if (loco) {
+      loco.scrollTo(0, { duration: 1200 });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
     setTimeout(() => {
       videoElRef.current?.play().catch(() => {});
       unlockingRef.current = false;
     }, 1400);
   };
+
 
   return (
     <main className="min-h-screen bg-white">
