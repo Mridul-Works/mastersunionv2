@@ -244,11 +244,11 @@ function Index() {
                   <img
                     src={logoAsset.url}
                     alt="Masters' Union"
-                    className="h-8 w-auto md:h-10"
+                    className="h-8 w-auto md:h-10 brightness-0 invert"
                   />
                 </div>
                 <span
-                  className="hidden text-[10px] uppercase tracking-[0.2em] text-[#2A312A]/60 md:block"
+                  className="hidden text-[10px] uppercase tracking-[0.2em] text-white/70 md:block"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
                   Gurugram Campus
