@@ -13,6 +13,30 @@ const SLIDE_DURATION = 0.85;
 export default function TenThings() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState<1 | -1>(1);
+  const pinRef = useRef<HTMLDivElement>(null);
+  const widgetRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!pinRef.current || !widgetRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.set(widgetRef.current, { xPercent: 100 });
+      gsap.to(widgetRef.current, {
+        xPercent: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: pinRef.current,
+          start: "top top",
+          end: "+=100%",
+          pin: true,
+          scrub: 0.6,
+          anticipatePin: 1,
+        },
+      });
+    }, pinRef);
+    return () => ctx.revert();
+  }, []);
+
+
 
   const go = (delta: number) => {
     setDirection(delta > 0 ? 1 : -1);
