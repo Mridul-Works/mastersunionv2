@@ -136,30 +136,33 @@ export default function TenThings() {
             <Slide key={project.n} project={project} direction={direction} index={index} />
           </AnimatePresence>
 
-          {/* Prev / Next buttons */}
-          <button
-            type="button"
-            onClick={() => go(-1)}
-            aria-label="Previous chapter"
-            className="group absolute left-4 top-1/2 z-40 flex size-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/40 text-white backdrop-blur-md transition-all hover:scale-110 hover:border-white/40 hover:bg-black/60 md:left-8 md:size-14"
-          >
-            <ArrowLeft className="size-5 transition-transform group-hover:-translate-x-0.5" />
-          </button>
-          <button
-            type="button"
-            onClick={() => go(1)}
-            aria-label="Next chapter"
-            className="group absolute right-4 top-1/2 z-40 flex size-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/40 text-white backdrop-blur-md transition-all hover:scale-110 hover:border-white/40 hover:bg-black/60 md:right-8 md:size-14"
-          >
-            <ArrowRight className="size-5 transition-transform group-hover:translate-x-0.5" />
-          </button>
-
-          {/* Pagination ticks bottom-center */}
+          {/* Bottom nav: prev · tag · next */}
           <div className="pointer-events-none absolute inset-x-0 bottom-8 z-30 flex flex-col items-center gap-5 px-6">
-            <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-white/50">
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-white" />
-              <span>{project.tag}</span>
+            <div className="pointer-events-auto flex items-center gap-4 rounded-full border border-white/10 bg-black/40 px-4 py-2 backdrop-blur-md">
+              <button
+                type="button"
+                onClick={() => go(-1)}
+                aria-label="Previous chapter"
+                className="flex size-8 items-center justify-center rounded-full bg-gradient-to-br from-[#0D9488] via-[#FACC15] to-[#F97316] text-white shadow-lg shadow-[#F97316]/25 transition-transform hover:scale-110 active:scale-95"
+              >
+                <ArrowLeft className="size-4" strokeWidth={2.5} />
+              </button>
+
+              <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-white/70">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-white" />
+                <span className="min-w-[80px] text-center">{project.tag}</span>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => go(1)}
+                aria-label="Next chapter"
+                className="flex size-8 items-center justify-center rounded-full bg-gradient-to-br from-[#0D9488] via-[#FACC15] to-[#F97316] text-white shadow-lg shadow-[#F97316]/25 transition-transform hover:scale-110 active:scale-95"
+              >
+                <ArrowRight className="size-4" strokeWidth={2.5} />
+              </button>
             </div>
+
             <div className="flex items-center gap-2">
               {CHAPTERS.map((p, i) => (
                 <button
