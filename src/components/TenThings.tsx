@@ -319,9 +319,6 @@ function GradientArrow({
   className?: string;
   direction?: "left" | "right";
 }) {
-  const id = useId();
-  const gradientId = `arrow-grad-${id}`;
-  const glowId = `arrow-glow-${id}`;
   const d =
     direction === "right"
       ? "M4 12h16M13 6l6 6-6 6"
@@ -334,8 +331,17 @@ function GradientArrow({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
-      style={{ filter: `drop-shadow(0 0 4px rgba(249, 115, 22, 0.45))` }}
     >
+      <path
+        d={d}
+        stroke="#FF4D00"
+        strokeWidth="2.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
       <defs>
         <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stopColor="#2dd4bf" />
