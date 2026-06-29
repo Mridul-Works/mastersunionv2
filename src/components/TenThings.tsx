@@ -24,44 +24,70 @@ export default function TenThings() {
   const project = CHAPTERS[index];
 
   return (
-    <section className="relative bg-charcoal text-white">
-      {/* Intro headline — modern, light theme */}
-      <div className="relative overflow-hidden bg-background px-6 py-28 md:py-40 text-foreground">
-        <div className="pointer-events-none absolute -left-40 top-20 h-[50vh] w-[50vh] rounded-full bg-accent/10 blur-[140px]" />
-        <div className="pointer-events-none absolute -right-40 bottom-0 h-[50vh] w-[50vh] rounded-full bg-slate/5 blur-[140px]" />
+    <section className="relative bg-[#0A0A0A] text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+      {/* Intro headline — editorial, matches site theme */}
+      <div className="relative overflow-hidden bg-[#FAF8F4] px-6 py-28 md:py-40 text-[#1a1a1a]">
+        <div className="pointer-events-none absolute -left-40 top-20 h-[50vh] w-[50vh] rounded-full bg-[#C9A84C]/12 blur-[140px]" />
+        <div className="pointer-events-none absolute -right-40 bottom-0 h-[50vh] w-[50vh] rounded-full bg-[#87a878]/10 blur-[140px]" />
 
         <div className="relative z-10 mx-auto max-w-[1180px]">
           <div className="mb-12 flex items-center gap-4">
-            <span className="h-px w-12 bg-foreground/40" />
-            <span className="text-[11px] font-medium uppercase tracking-[0.32em] text-foreground/55">
+            <span className="h-px w-12 bg-[#1a1a1a]/40" />
+            <span
+              className="text-[11px] uppercase tracking-[0.32em] text-[#1a1a1a]/55"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
+            >
               Field Notes — Vol. 01
             </span>
           </div>
 
-          <h2 className="font-display leading-[0.95] tracking-[-0.02em] text-foreground" style={{ fontSize: "clamp(52px, 9vw, 124px)" }}>
+          <h2
+            className="leading-[0.98] tracking-[-0.02em] text-[#1a1a1a]"
+            style={{
+              fontFamily: "'Instrument Serif', 'Cormorant Garamond', serif",
+              fontWeight: 400,
+              fontSize: "clamp(52px, 9vw, 124px)",
+            }}
+          >
             Cut the{" "}
-            <span className="text-accent">marketing.</span>
+            <em
+              className="text-[#8b7355]"
+              style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic", fontWeight: 300 }}
+            >
+              marketing.
+            </em>
             <br />
             <span className="block">
               10 things about{" "}
               <span className="relative inline-block">
-                <span className="relative z-10">Masters' Union</span>
-                <span className="absolute inset-x-0 bottom-2 z-0 h-[6px] bg-accent/30" />
+                <span
+                  className="relative z-10 italic"
+                  style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}
+                >
+                  Masters' Union
+                </span>
+                <span className="absolute inset-x-0 bottom-2 z-0 h-[6px] bg-[#C9A84C]/45" />
               </span>
             </span>
           </h2>
 
           <div className="mt-14 grid grid-cols-1 gap-10 md:grid-cols-[1.3fr_1fr] md:items-end">
-            <p className="max-w-[560px] text-[18px] leading-[1.65] text-foreground/70">
+            <p
+              className="max-w-[560px] text-[18px] leading-[1.65] text-[#1a1a1a]/70"
+              style={{ fontFamily: "'Instrument Serif', serif", fontWeight: 400 }}
+            >
               No ads. No fluff. Just the dossier — ten chapters that actually
               explain how the school works, who teaches, and what gets built.
             </p>
 
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-foreground/20 pt-5 text-[11px] font-medium uppercase tracking-[0.28em] text-foreground/55">
+            <div
+              className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-[#1a1a1a]/20 pt-5 text-[11px] uppercase tracking-[0.28em] text-[#1a1a1a]/55"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
+            >
               <span>{String(CHAPTERS.length).padStart(2, "0")} Chapters</span>
-              <span className="h-1 w-1 rounded-full bg-accent" />
+              <span className="h-1 w-1 rounded-full bg-[#C9A84C]" />
               <span>≈ 8 min read</span>
-              <span className="h-1 w-1 rounded-full bg-accent" />
+              <span className="h-1 w-1 rounded-full bg-[#C9A84C]" />
               <span>Updated 2026</span>
             </div>
           </div>
@@ -69,10 +95,13 @@ export default function TenThings() {
       </div>
 
       {/* Card widget — manual prev/next */}
-      <div className="relative bg-charcoal">
+      <div className="relative bg-[#0A0A0A]">
         <div className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
           {/* Counter top-left */}
-          <div className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[12px] tracking-[0.15em] text-neutral-400 md:left-10">
+          <div
+            className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[12px] tracking-[0.15em] text-neutral-400 md:left-10"
+            style={{ fontFamily: "'JetBrains Mono', monospace", textShadow: "0 0 24px rgba(255,255,255,0.10)" }}
+          >
             <AnimatePresence mode="popLayout">
               <motion.span
                 key={index}
@@ -114,8 +143,8 @@ export default function TenThings() {
           {/* Bottom nav: tag + arrows */}
           <div className="pointer-events-none absolute inset-x-0 bottom-8 z-30 flex flex-col items-center gap-5 px-6">
             <div className="pointer-events-auto flex w-full max-w-[620px] items-center justify-between">
-              <div className="flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.22em] text-white/70">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
+              <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-white/70">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-white" />
                 <span className="min-w-[80px] text-center">{project.tag}</span>
               </div>
 
@@ -152,7 +181,7 @@ export default function TenThings() {
                   className="pointer-events-auto group h-[2px] w-9 cursor-pointer overflow-hidden bg-white/15"
                 >
                   <span
-                    className="block h-full origin-left bg-accent transition-transform duration-[500ms] ease-out"
+                    className="block h-full origin-left bg-white transition-transform duration-[500ms] ease-out"
                     style={{ transform: `scaleX(${i === index ? 1 : 0})` }}
                   />
                 </button>
@@ -235,7 +264,10 @@ function Slide({
       <div className="relative z-10 flex items-end px-6 pb-32 md:items-center md:px-12 md:pb-0">
         <div className="max-w-[560px]">
           <StaggeredText delay={0.15} k={`meta-${index}`}>
-            <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-white/60">
+            <p
+              className="text-[11px] uppercase tracking-[0.2em] text-white/60"
+              style={{ fontFamily: "'JetBrains Mono', monospace" }}
+            >
               <span className="text-neutral-400">{String(index + 1).padStart(2, "0")}</span>
               <span className="mx-2 text-white/25">·</span>
               {project.tag}
@@ -244,7 +276,7 @@ function Slide({
 
           <StaggeredText delay={0.25} k={`title-${index}`}>
             <h2
-              className="font-display mt-5 font-black uppercase text-white"
+              className="mt-5 font-black uppercase text-white"
               style={{
                 fontSize: "clamp(34px, 4.4vw, 56px)",
                 lineHeight: 1.02,
@@ -266,7 +298,10 @@ function Slide({
               {project.stats.slice(0, 3).map((s) => (
                 <li key={s.label}>
                   <div className="text-2xl font-black tracking-tighter text-white">{s.value}</div>
-                  <div className="mt-1 text-[10px] font-medium uppercase tracking-[0.18em] text-white/50">
+                  <div
+                    className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/50"
+                    style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                  >
                     {s.label}
                   </div>
                 </li>
@@ -310,6 +345,7 @@ function GradientArrow({
 }) {
   const id = useId();
   const gradientId = `arrow-grad-${id}`;
+  const glowId = `arrow-glow-${id}`;
   const d =
     direction === "right"
       ? "M4 12h16M13 6l6 6-6 6"
@@ -322,14 +358,21 @@ function GradientArrow({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
-      style={{ filter: `drop-shadow(0 0 4px rgba(232, 93, 58, 0.55))` }}
+      style={{ filter: `drop-shadow(0 0 4px rgba(249, 115, 22, 0.45))` }}
     >
       <defs>
         <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stopColor="#2dd4bf" />
           <stop offset="50%" stopColor="#fbbf24" />
-          <stop offset="100%" stopColor="#e85d3a" />
+          <stop offset="100%" stopColor="#fb923c" />
         </linearGradient>
+        <filter id={glowId} x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
+          <feMerge>
+            <feMergeNode in="coloredBlur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
       </defs>
       <path
         d={d}
@@ -341,3 +384,4 @@ function GradientArrow({
     </svg>
   );
 }
+

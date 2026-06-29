@@ -25,22 +25,22 @@ const PEDAGOGY = [
 
 export default function HomeSections() {
   return (
-    <div className="bg-background text-foreground">
+    <div className="bg-[#FAF8F4] text-[#16140F]">
       {/* NEWS */}
-      <section id="news" className="border-t border-border">
+      <section id="news" className="border-t border-black/10">
         <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-10 md:py-32">
           <SectionHead eyebrow="The wire" title="In the news" lede="Press, milestones and cohort moments — straight from the campus desk." icon={Newspaper} />
-          <div className="mt-12 grid gap-px overflow-hidden rounded-3xl border border-border bg-border md:grid-cols-2">
+          <div className="mt-12 grid gap-px overflow-hidden rounded-3xl border border-black/10 bg-black/10 md:grid-cols-2">
             {NEWS.map((n) => (
-              <article key={n.title} className="group flex flex-col gap-6 bg-background p-8 transition-colors hover:bg-card md:p-10">
-                <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
-                  <span className="rounded-full bg-muted px-3 py-1">{n.tag}</span>
+              <article key={n.title} className="group flex flex-col gap-6 bg-[#FAF8F4] p-8 transition-colors hover:bg-white md:p-10">
+                <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-[0.22em] text-black/50">
+                  <span className="rounded-full bg-black/5 px-3 py-1">{n.tag}</span>
                   <span>{n.date}</span>
                 </div>
-                <h3 className="font-display text-2xl leading-snug tracking-tight md:text-[28px]">
+                <h3 className="text-2xl leading-snug tracking-tight md:text-[28px]" style={{ fontFamily: "'Instrument Serif', serif" }}>
                   {n.title}
                 </h3>
-                <div className="mt-auto flex items-center justify-between border-t border-border pt-5 text-[12px] text-muted-foreground">
+                <div className="mt-auto flex items-center justify-between border-t border-black/10 pt-5 text-[12px] text-black/60">
                   <span>{n.source}</span>
                   <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
@@ -51,34 +51,34 @@ export default function HomeSections() {
       </section>
 
       {/* APPLICATION DEADLINES */}
-      <section id="deadlines" className="border-t border-border bg-charcoal text-background">
+      <section id="deadlines" className="border-t border-black/10 bg-[#1A211A] text-[#F4EFE3]">
         <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-10 md:py-32">
           <div className="flex flex-col gap-12 md:flex-row md:items-end md:justify-between">
             <div className="max-w-xl">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-accent">Admissions · Cohort 2026</p>
-              <h2 className="font-display mt-5 text-5xl leading-[0.95] tracking-tight md:text-7xl">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#C9A84C]">Admissions · Cohort 2026</p>
+              <h2 className="mt-5 text-5xl leading-[0.95] tracking-tight md:text-7xl" style={{ fontFamily: "'Instrument Serif', serif" }}>
                 Three rounds.<br />
-                <span className="text-accent">One decision.</span>
+                <span className="italic text-[#C9A84C]">One decision.</span>
               </h2>
               <p className="mt-6 max-w-md text-[15px] leading-relaxed text-white/70">
                 Apply early. Scholarship pools shrink with every round, and ~80% of seats are filled by the time Round 3 opens.
               </p>
             </div>
-            <button type="button" className="self-start rounded-full bg-accent px-7 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-accent-foreground transition-transform hover:scale-[1.02]">
+            <button type="button" className="self-start rounded-full bg-[#C9A84C] px-7 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-black transition-transform hover:scale-[1.02]">
               Start application
             </button>
           </div>
 
           <div className="mt-16 grid gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10 md:grid-cols-3">
             {DEADLINES.map((d, i) => (
-              <div key={d.round} className="flex flex-col gap-6 bg-charcoal p-8 md:p-10">
+              <div key={d.round} className="flex flex-col gap-6 bg-[#1A211A] p-8 md:p-10">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">{String(i + 1).padStart(2, "0")} · {d.round}</span>
-                  <span className={`rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] ${d.status === "Open" ? "bg-accent/20 text-accent" : "bg-white/10 text-white/60"}`}>{d.status}</span>
+                  <span className={`rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] ${d.status === "Open" ? "bg-[#C9A84C]/20 text-[#C9A84C]" : "bg-white/10 text-white/60"}`}>{d.status}</span>
                 </div>
                 <div className="flex items-baseline gap-3">
-                  <Calendar className="size-5 text-accent" />
-                  <span className="font-display text-3xl tracking-tight md:text-4xl">{d.date}</span>
+                  <Calendar className="size-5 text-[#C9A84C]" />
+                  <span className="text-3xl tracking-tight md:text-4xl" style={{ fontFamily: "'Instrument Serif', serif" }}>{d.date}</span>
                 </div>
                 <p className="text-[14px] leading-relaxed text-white/70">{d.note}</p>
               </div>
@@ -88,14 +88,14 @@ export default function HomeSections() {
       </section>
 
       {/* FOUNDER'S MESSAGE */}
-      <section id="founders" className="border-t border-border">
+      <section id="founders" className="border-t border-black/10">
         <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-10 md:py-32">
           <div className="grid items-start gap-16 md:grid-cols-12">
             <div className="md:col-span-4">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-muted-foreground">A note from the founders</p>
-              <div className="mt-8 aspect-[4/5] w-full overflow-hidden rounded-3xl bg-gradient-to-br from-accent via-accent/70 to-charcoal p-px">
-                <div className="flex h-full w-full flex-col justify-end rounded-3xl bg-charcoal p-8 text-white">
-                  <Quote className="mb-6 size-7 text-accent" />
+              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-black/50">A note from the founders</p>
+              <div className="mt-8 aspect-[4/5] w-full overflow-hidden rounded-3xl bg-gradient-to-br from-[#C9A84C] via-[#8A3A12] to-[#1F4D3F] p-px">
+                <div className="flex h-full w-full flex-col justify-end rounded-3xl bg-[#1A211A] p-8 text-white">
+                  <Quote className="mb-6 size-7 text-[#C9A84C]" />
                   <p className="text-[14px] uppercase tracking-[0.2em] text-white/60">Pratham Mittal</p>
                   <p className="text-[12px] text-white/40">Founder · Masters' Union</p>
                 </div>
@@ -103,10 +103,10 @@ export default function HomeSections() {
             </div>
 
             <div className="md:col-span-8">
-              <h2 className="font-display text-4xl leading-[1.05] tracking-tight md:text-[64px]">
-                "We didn't build another <span className="text-accent">business school</span>. We built the school we wished existed when we were starting up."
+              <h2 className="text-4xl leading-[1.05] tracking-tight md:text-[64px]" style={{ fontFamily: "'Instrument Serif', serif" }}>
+                "We didn't build another <span className="italic text-[#8A3A12]">business school</span>. We built the school we wished existed when we were starting up."
               </h2>
-              <div className="mt-10 space-y-5 text-[16px] leading-[1.75] text-foreground/75 md:text-[17px]">
+              <div className="mt-10 space-y-5 text-[16px] leading-[1.75] text-black/75 md:text-[17px]">
                 <p>
                   Every founder I know learned the hard way — by losing money, mis-hiring, mispricing, and shipping the wrong thing first. That's an expensive curriculum. We wanted to compress it.
                 </p>
@@ -118,10 +118,10 @@ export default function HomeSections() {
                 </p>
               </div>
 
-              <div className="mt-10 flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                <span className="rounded-full border border-border px-4 py-2">Class of 2017, Wharton</span>
-                <span className="rounded-full border border-border px-4 py-2">Ex-Founder, OakNorth</span>
-                <span className="rounded-full border border-border px-4 py-2">Forbes 30u30</span>
+              <div className="mt-10 flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-black/50">
+                <span className="rounded-full border border-black/15 px-4 py-2">Class of 2017, Wharton</span>
+                <span className="rounded-full border border-black/15 px-4 py-2">Ex-Founder, OakNorth</span>
+                <span className="rounded-full border border-black/15 px-4 py-2">Forbes 30u30</span>
               </div>
             </div>
           </div>
@@ -129,9 +129,9 @@ export default function HomeSections() {
       </section>
 
       {/* PEDAGOGY */}
-      <section id="pedagogy" className="border-t border-border bg-secondary">
+      <section id="pedagogy" className="border-t border-black/10 bg-[#F1EFE7]">
         <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-10 md:py-32">
-          <SectionHead eyebrow="The pedagogy" title={<>How Masters' Union <span className="text-accent">actually</span> teaches.</>} lede="Seven systems that work in concert — built so theory never outpaces practice." />
+          <SectionHead eyebrow="The pedagogy" title={<>How Masters' Union <span className="italic text-[#8A3A12]">actually</span> teaches.</>} lede="Seven systems that work in concert — built so theory never outpaces practice." />
 
           <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {PEDAGOGY.map((p, i) => {
@@ -140,25 +140,25 @@ export default function HomeSections() {
               return (
                 <article
                   key={p.tag}
-                  className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-border bg-background p-8 transition-all hover:-translate-y-1 hover:border-foreground/20 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.25)] md:p-10 ${
-                    featured ? "lg:col-span-2 lg:row-span-1 bg-charcoal text-background" : ""
+                  className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-black/10 bg-[#FAF8F4] p-8 transition-all hover:-translate-y-1 hover:border-black/20 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.25)] md:p-10 ${
+                    featured ? "lg:col-span-2 lg:row-span-1 bg-[#1A211A] text-[#F4EFE3]" : ""
                   }`}
                 >
                   <div className="flex items-start justify-between">
-                    <div className={`flex size-12 items-center justify-center rounded-2xl ${featured ? "bg-accent/20 text-accent" : "bg-muted text-muted-foreground"}`}>
+                    <div className={`flex size-12 items-center justify-center rounded-2xl ${featured ? "bg-[#C9A84C]/20 text-[#C9A84C]" : "bg-black/5 text-black/70"}`}>
                       <Icon className="size-5" />
                     </div>
-                    <span className={`text-[10px] font-semibold uppercase tracking-[0.22em] ${featured ? "text-white/50" : "text-muted-foreground"}`}>{p.tag}</span>
+                    <span className={`text-[10px] font-semibold uppercase tracking-[0.22em] ${featured ? "text-white/50" : "text-black/40"}`}>{p.tag}</span>
                   </div>
 
                   <div className="mt-12">
-                    <h3 className={`font-display text-3xl leading-[1.05] tracking-tight md:text-[34px] ${featured ? "text-white" : ""}`}>
+                    <h3 className={`text-3xl leading-[1.05] tracking-tight md:text-[34px] ${featured ? "text-white" : ""}`} style={{ fontFamily: "'Instrument Serif', serif" }}>
                       {p.title}
                     </h3>
-                    <p className={`mt-5 text-[14px] leading-relaxed ${featured ? "text-white/70" : "text-foreground/65"}`}>{p.body}</p>
+                    <p className={`mt-5 text-[14px] leading-relaxed ${featured ? "text-white/70" : "text-black/65"}`}>{p.body}</p>
                   </div>
 
-                  <button type="button" className={`mt-10 inline-flex w-fit items-center gap-2 border-b pb-1 text-[11px] font-semibold uppercase tracking-[0.22em] transition-all ${featured ? "border-accent text-accent" : "border-foreground/30 text-foreground/70 group-hover:border-foreground group-hover:text-foreground"}`}>
+                  <button type="button" className={`mt-10 inline-flex w-fit items-center gap-2 border-b pb-1 text-[11px] font-semibold uppercase tracking-[0.22em] transition-all ${featured ? "border-[#C9A84C] text-[#C9A84C]" : "border-black/30 text-black/70 group-hover:border-black group-hover:text-black"}`}>
                     {p.cta}
                     <ArrowUpRight className="size-3.5" />
                   </button>
@@ -170,17 +170,17 @@ export default function HomeSections() {
       </section>
 
       {/* APPLICATION CTA */}
-      <section id="apply" className="border-t border-border bg-background">
+      <section id="apply" className="border-t border-black/10 bg-[#FAF8F4]">
         <div className="mx-auto max-w-[1280px] px-6 py-28 md:px-10 md:py-40">
-          <div className="relative overflow-hidden rounded-[40px] bg-charcoal p-10 text-white md:p-20">
-            <div className="absolute -right-24 -top-24 size-[420px] rounded-full bg-accent/20 blur-3xl" />
-            <div className="absolute -bottom-32 -left-32 size-[480px] rounded-full bg-accent/30 blur-3xl" />
+          <div className="relative overflow-hidden rounded-[40px] bg-gradient-to-br from-[#6B1F2A] via-[#1F4D3F] to-[#14233F] p-10 text-white md:p-20">
+            <div className="absolute -right-24 -top-24 size-[420px] rounded-full bg-[#C9A84C]/20 blur-3xl" />
+            <div className="absolute -bottom-32 -left-32 size-[480px] rounded-full bg-[#8A3A12]/30 blur-3xl" />
 
             <div className="relative grid items-center gap-12 md:grid-cols-12">
               <div className="md:col-span-8">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-accent">PGP · Cohort 2026</p>
-                <h2 className="font-display mt-6 text-5xl leading-[0.95] tracking-tight md:text-[88px]">
-                  Apply to <span className="text-accent">Masters' Union.</span>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#C9A84C]">PGP · Cohort 2026</p>
+                <h2 className="mt-6 text-5xl leading-[0.95] tracking-tight md:text-[88px]" style={{ fontFamily: "'Instrument Serif', serif" }}>
+                  Apply to <span className="italic">Masters' Union.</span>
                 </h2>
                 <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-white/75">
                   Submit a 4-question application. Hear back in 14 days. No GMAT, no essays about your childhood — we want to know what you've built or what you'd build with us.
@@ -190,9 +190,9 @@ export default function HomeSections() {
               <div className="md:col-span-4">
                 <div className="rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur-xl">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/60">Next deadline</p>
-                  <p className="font-display mt-3 text-3xl tracking-tight">15 Aug 2026</p>
+                  <p className="mt-3 text-3xl tracking-tight" style={{ fontFamily: "'Instrument Serif', serif" }}>15 Aug 2026</p>
                   <p className="mt-2 text-[12px] text-white/60">Round 1 · Early admit + scholarship</p>
-                  <button type="button" className="mt-6 flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-accent-foreground transition-transform hover:scale-[1.02]">
+                  <button type="button" className="mt-6 flex w-full items-center justify-center gap-2 rounded-full bg-[#C9A84C] px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-black transition-transform hover:scale-[1.02]">
                     Start application <Send className="size-3.5" />
                   </button>
                   <button type="button" className="mt-3 flex w-full items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/80 transition-colors hover:bg-white/5">
@@ -206,12 +206,12 @@ export default function HomeSections() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-border bg-foreground text-background">
+      <footer className="border-t border-black/10 bg-[#0F140F] text-white">
         <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10">
           <div className="grid gap-12 md:grid-cols-12">
             <div className="md:col-span-5">
-              <p className="font-display text-3xl leading-tight tracking-tight md:text-4xl">
-                Masters' Union — <span className="text-accent">business education,<br />rebuilt for the next decade.</span>
+              <p className="text-3xl leading-tight tracking-tight md:text-4xl" style={{ fontFamily: "'Instrument Serif', serif" }}>
+                Masters' Union — <span className="italic text-[#C9A84C]">business education,<br />rebuilt for the next decade.</span>
               </p>
               <p className="mt-8 max-w-sm text-[13px] leading-relaxed text-white/55">
                 DLF Cyberpark, Phase III<br />
@@ -220,7 +220,7 @@ export default function HomeSections() {
               </p>
               <div className="mt-8 flex items-center gap-3">
                 {[Instagram, Linkedin, Youtube, Twitter].map((Icon, i) => (
-                  <a key={i} href="#" className="flex size-10 items-center justify-center rounded-full border border-white/15 text-white/60 transition-colors hover:border-accent hover:text-accent">
+                  <a key={i} href="#" className="flex size-10 items-center justify-center rounded-full border border-white/15 text-white/60 transition-colors hover:border-[#C9A84C] hover:text-[#C9A84C]">
                     <Icon className="size-4" />
                   </a>
                 ))}
@@ -251,14 +251,14 @@ function SectionHead({ eyebrow, title, lede, icon: Icon }: { eyebrow: string; ti
     <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
       <div className="max-w-2xl">
         <div className="flex items-center gap-3">
-          {Icon && <Icon className="size-4 text-accent" />}
-          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-muted-foreground">{eyebrow}</p>
+          {Icon && <Icon className="size-4 text-[#8A3A12]" />}
+          <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-black/50">{eyebrow}</p>
         </div>
-        <h2 className="font-display mt-5 text-5xl leading-[0.95] tracking-tight md:text-7xl">
+        <h2 className="mt-5 text-5xl leading-[0.95] tracking-tight md:text-7xl" style={{ fontFamily: "'Instrument Serif', serif" }}>
           {title}
         </h2>
       </div>
-      <p className="max-w-sm text-[15px] leading-relaxed text-muted-foreground">{lede}</p>
+      <p className="max-w-sm text-[15px] leading-relaxed text-black/60">{lede}</p>
     </div>
   );
 }
@@ -266,7 +266,7 @@ function SectionHead({ eyebrow, title, lede, icon: Icon }: { eyebrow: string; ti
 function FooterCol({ title, links }: { title: string; links: string[] }) {
   return (
     <div className="md:col-span-2 lg:col-span-2">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">{title}</p>
+      <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#C9A84C]">{title}</p>
       <ul className="mt-5 space-y-3">
         {links.map((l) => (
           <li key={l}>
