@@ -110,13 +110,13 @@ export default function HomeSections() {
                 className="group flex min-w-[280px] flex-1 cursor-pointer snap-start flex-col gap-6 border border-black/10 bg-white p-6 transition-all hover:bg-black/[0.03] md:min-w-0"
               >
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-full bg-black px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-white">{p.mode}</span>
-                  <span className="rounded-full bg-black/5 px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-black/70">{p.duration}</span>
+                  <span className="rounded-none bg-black px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-white">{p.mode}</span>
+                  <span className="rounded-none bg-black/5 px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-black/70">{p.duration}</span>
                 </div>
                 <h3 className="font-display text-[1.15rem] font-bold leading-snug text-black md:text-[1.25rem]">
                   {p.title}
                 </h3>
-                <div className="inline-flex w-fit items-center gap-2 rounded-md bg-black/5 px-3 py-1.5">
+                <div className="inline-flex w-fit items-center gap-2 rounded-none bg-black/5 px-3 py-1.5">
                   <Hourglass className="size-3.5 text-black/70" />
                   <span className="font-sans text-[12px] font-semibold text-black/80">{p.round}</span>
                 </div>
@@ -135,7 +135,7 @@ export default function HomeSections() {
       {/* FOUNDER'S MESSAGE */}
       <section id="founders" className="border-t border-black/10 bg-white">
         <div className="mx-auto max-w-[1280px] px-6 py-10 md:px-10 md:py-14">
-          <div className="grid overflow-hidden rounded-[32px] bg-black md:grid-cols-12">
+          <div className="grid overflow-hidden rounded-none bg-black md:grid-cols-12">
             <div className="relative md:col-span-5">
               <img
                 src={founderPhoto.url}
@@ -175,12 +175,12 @@ export default function HomeSections() {
                 <Link
                   key={p.tag}
                   to={p.route}
-                  className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-black/10 bg-white p-8 transition-all hover:-translate-y-1 hover:border-black/30 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.25)] md:p-10 ${
+                  className={`group relative flex flex-col justify-between overflow-hidden rounded-none border border-black/10 bg-white p-8 transition-all hover:-translate-y-1 hover:border-black/30 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.25)] md:p-10 ${
                     featured ? "lg:col-span-2 lg:row-span-1" : ""
                   }`}
                 >
                   <div className="flex items-start justify-between">
-                    <div className={`flex size-12 items-center justify-center rounded-2xl ${featured ? "bg-black text-white" : "bg-black/5 text-black/70"}`}>
+                    <div className={`flex size-12 items-center justify-center rounded-none ${featured ? "bg-black text-white" : "bg-black/5 text-black/70"}`}>
                       <Icon className="size-5" />
                     </div>
                     <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/40">{p.tag}</span>
@@ -218,9 +218,9 @@ export default function HomeSections() {
       {/* APPLICATION CTA */}
       <section id="apply" className="border-t border-black/10 bg-white">
         <div className="mx-auto max-w-[1280px] px-6 py-28 md:px-10 md:py-40">
-          <div className="relative overflow-hidden rounded-[40px] bg-black p-10 text-white md:p-20">
-            <div className="absolute -right-24 -top-24 size-[420px] rounded-full bg-white/5 blur-3xl" />
-            <div className="absolute -bottom-32 -left-32 size-[480px] rounded-full bg-white/5 blur-3xl" />
+          <div className="relative overflow-hidden rounded-none bg-black p-10 text-white md:p-20">
+            <div className="absolute -right-24 -top-24 size-[420px] rounded-none bg-white/5 blur-3xl" />
+            <div className="absolute -bottom-32 -left-32 size-[480px] rounded-none bg-white/5 blur-3xl" />
 
             <div className="relative grid items-center gap-12 md:grid-cols-12">
               <div className="md:col-span-8">
@@ -234,14 +234,14 @@ export default function HomeSections() {
               </div>
 
               <div className="md:col-span-4">
-                <div className="rounded-3xl border border-white/15 bg-white/5 p-6 backdrop-blur-xl">
+                <div className="rounded-none border border-white/15 bg-white/5 p-6 backdrop-blur-xl">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/60">Next deadline</p>
                   <p className="mt-3 text-3xl tracking-tight" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>15 Aug 2026</p>
                   <p className="mt-2 text-[12px] text-white/60">Round 1 · Early admit + scholarship</p>
-                  <button type="button" className="mt-6 flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-black transition-transform hover:scale-[1.02]">
+                  <button type="button" className="mt-6 flex w-full items-center justify-center gap-2 rounded-none bg-white px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-black transition-transform hover:scale-[1.02]">
                     Start application <Send className="size-3.5" />
                   </button>
-                  <button type="button" className="mt-3 flex w-full items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/80 transition-colors hover:bg-white/5">
+                  <button type="button" className="mt-3 flex w-full items-center justify-center gap-2 rounded-none border border-white/20 px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/80 transition-colors hover:bg-white/5">
                     Talk to admissions
                   </button>
                 </div>
