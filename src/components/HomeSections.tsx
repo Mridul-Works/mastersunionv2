@@ -105,13 +105,11 @@ export default function HomeSections() {
               </a>
             </div>
 
-            <div className="flex flex-nowrap overflow-x-auto snap-x border-y border-black/10 md:overflow-x-visible">
-              {PROGRAMS.map((p, i) => (
+            <div className="flex flex-nowrap gap-4 overflow-x-auto snap-x md:overflow-x-visible md:gap-6">
+              {PROGRAMS.map((p) => (
                 <article
                   key={p.title}
-                  className={`group flex min-w-[280px] flex-1 cursor-pointer snap-start flex-col gap-6 bg-white p-6 transition-all hover:bg-[#F7F6F2] md:min-w-0 ${
-                    i !== PROGRAMS.length - 1 ? "border-b border-black/10 md:border-b-0 md:border-r" : ""
-                  }`}
+                  className="group flex min-w-[280px] flex-1 cursor-pointer snap-start flex-col gap-6 bg-white p-6 transition-all hover:bg-[#F7F6F2] md:min-w-0"
                 >
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="rounded-full bg-[#16140F] px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-white">{p.mode}</span>
