@@ -210,11 +210,14 @@ function Index() {
         )}
       </header>
 
-      {/* Curtain wrapper: video is sticky at top while the hero (TenThings)
-          naturally scrolls up over it. No JS scroll-locking — page scrolls
-          freely both ways. */}
-      <div className="relative">
-        <section className="sticky top-0 z-0 h-screen w-full overflow-hidden bg-[#F1EFE7] select-none">
+      <div id="hero-curtain" className="relative" data-scroll-section>
+        <section
+          className="sticky top-0 z-0 h-screen w-full overflow-hidden bg-[#F1EFE7] select-none"
+          data-scroll
+          data-scroll-sticky
+          data-scroll-target="#hero-curtain"
+        >
+
           {/* Background building image */}
           <img
             src={heroBuilding}
