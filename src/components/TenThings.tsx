@@ -31,11 +31,11 @@ export default function TenThings() {
           <div className="mb-10 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <span className="h-px w-10 bg-[#111111]" />
-              <span className="font-['JetBrains_Mono'] text-[11px] font-medium uppercase tracking-[0.22em] text-[#FF4D00]">
+              <span className="font-['Geist'] text-[11px] font-medium uppercase tracking-[0.22em] text-[#FF4D00]">
                 [ Field Notes // Vol. 01 ]
               </span>
             </div>
-            <span className="hidden font-['JetBrains_Mono'] text-[11px] uppercase tracking-[0.22em] text-[#111111]/50 md:inline">
+            <span className="hidden font-['Geist'] text-[11px] uppercase tracking-[0.22em] text-[#111111]/50 md:inline">
               Index 01 — 10
             </span>
           </div>
@@ -58,7 +58,7 @@ export default function TenThings() {
               explain how the school works, who teaches, and what gets built.
             </p>
 
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-[#111111] pt-5 font-['JetBrains_Mono'] text-[11px] uppercase tracking-[0.22em] text-[#111111]/70">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-[#111111] pt-5 font-['Geist'] text-[11px] uppercase tracking-[0.22em] text-[#111111]/70">
               <span>{String(CHAPTERS.length).padStart(2, "0")} Chapters</span>
               <span className="h-1.5 w-1.5 bg-[#FF4D00]" />
               <span>≈ 8 min read</span>
@@ -76,7 +76,7 @@ export default function TenThings() {
           {/* Counter top-left */}
           <div
             className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[12px] tracking-[0.15em] text-neutral-400 md:left-10"
-            style={{ fontFamily: "'JetBrains Mono', monospace", textShadow: "0 0 24px rgba(255,255,255,0.10)" }}
+            style={{ fontFamily: "'Geist', sans-serif", textShadow: "0 0 24px rgba(255,255,255,0.10)" }}
           >
             <AnimatePresence mode="popLayout">
               <motion.span
@@ -242,7 +242,7 @@ function Slide({
           <StaggeredText delay={0.15} k={`meta-${index}`}>
             <p
               className="text-[11px] uppercase tracking-[0.2em] text-white/60"
-              style={{ fontFamily: "'JetBrains Mono', monospace" }}
+              style={{ fontFamily: "'Geist', sans-serif" }}
             >
               <span className="text-neutral-400">{String(index + 1).padStart(2, "0")}</span>
               <span className="mx-2 text-white/25">·</span>
@@ -276,7 +276,7 @@ function Slide({
                   <div className="text-2xl font-black tracking-tighter text-white">{s.value}</div>
                   <div
                     className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/50"
-                    style={{ fontFamily: "'JetBrains Mono', monospace" }}
+                    style={{ fontFamily: "'Geist', sans-serif" }}
                   >
                     {s.label}
                   </div>
