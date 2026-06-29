@@ -1,10 +1,14 @@
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CHAPTERS } from "./chapters";
 
+gsap.registerPlugin(ScrollTrigger);
 
 const EASE = [0.7, 0, 0.2, 1] as const;
 const SLIDE_DURATION = 0.85;
+
 
 export default function TenThings() {
   const [index, setIndex] = useState(0);
