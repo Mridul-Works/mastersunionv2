@@ -314,27 +314,27 @@ function Index() {
 
                 <div className="mx-auto flex flex-col items-center gap-4 md:mx-0">
                   <span
-                    className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#2A312A]"
+                    className="text-[9px] font-bold uppercase tracking-[0.3em] text-white"
                     style={{ fontFamily: "Inter, sans-serif" }}
                   >
                     Scroll
                   </span>
-                  <div className="relative h-12 w-px overflow-hidden bg-[#2A312A]/20">
-                    <div className="mu-scroll-line absolute left-0 top-0 h-1/2 w-full bg-[#2A312A]" />
+                  <div className="relative h-12 w-px overflow-hidden bg-white/20">
+                    <div className="mu-scroll-line absolute left-0 top-0 h-1/2 w-full bg-white" />
                   </div>
                 </div>
 
                 <div className="hidden flex-col items-end md:flex">
                   <span
-                    className="mb-1 text-[10px] font-semibold tracking-[0.1em] text-[#2A312A]"
+                    className="mb-1 text-[10px] font-semibold tracking-[0.1em] text-white"
                     style={{ fontFamily: "Inter, sans-serif" }}
                   >
                     Cohort 2026
                   </span>
                   <div className="flex gap-2">
-                    <span className="size-1.5 rounded-full bg-[#2A312A]" />
-                    <span className="size-1.5 rounded-full bg-[#2A312A]/20" />
-                    <span className="size-1.5 rounded-full bg-[#2A312A]/20" />
+                    <span className="size-1.5 rounded-full bg-white" />
+                    <span className="size-1.5 rounded-full bg-white/30" />
+                    <span className="size-1.5 rounded-full bg-white/30" />
                   </div>
                 </div>
               </div>
