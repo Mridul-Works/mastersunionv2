@@ -190,13 +190,11 @@ function Index() {
         )}
       </header>
 
-      <div id="hero-curtain" className="relative" data-scroll-section>
+      <div id="hero-curtain" className="relative">
         <section
           className="sticky top-0 z-0 h-screen w-full overflow-hidden bg-[#F1EFE7] select-none"
-          data-scroll
-          data-scroll-sticky
-          data-scroll-target="#hero-curtain"
         >
+
 
           {/* Background building image */}
           <img
