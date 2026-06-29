@@ -24,17 +24,17 @@ export default function TenThings() {
   const project = CHAPTERS[index];
 
   return (
-    <section className="relative bg-[#0A0A0A] text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+    <section className="relative bg-[#F1EFE7] text-[#1A211A]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       {/* Intro headline — compact editorial */}
-      <div className="relative overflow-hidden bg-white px-6 py-5 text-black md:py-6">
-        <div className="pointer-events-none absolute -left-40 top-4 h-[14vh] w-[14vh] rounded-full bg-black/[0.04] blur-[50px]" />
-        <div className="pointer-events-none absolute -right-40 bottom-0 h-[14vh] w-[14vh] rounded-full bg-black/[0.04] blur-[50px]" />
+      <div className="relative overflow-hidden bg-[#F1EFE7] px-6 py-5 text-[#1A211A] md:py-6">
+        <div className="pointer-events-none absolute -left-40 top-4 h-[14vh] w-[14vh] rounded-full bg-[#1A211A]/[0.04] blur-[50px]" />
+        <div className="pointer-events-none absolute -right-40 bottom-0 h-[14vh] w-[14vh] rounded-full bg-[#1A211A]/[0.04] blur-[50px]" />
 
         <div className="relative z-10 mx-auto max-w-[1180px]">
           <div className="mb-2 flex items-center gap-3">
-            <span className="h-px w-8 bg-black/40" />
+            <span className="h-px w-8 bg-[#1A211A]/40" />
             <span
-              className="text-[8px] uppercase tracking-[0.3em] text-black/55"
+              className="text-[8px] uppercase tracking-[0.3em] text-[#1A211A]/55"
               style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
             >
               Field Notes — Vol. 01
@@ -43,7 +43,7 @@ export default function TenThings() {
 
           <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <h2
-              className="leading-[1.02] tracking-[-0.02em] text-black"
+              className="leading-[1.02] tracking-[-0.02em] text-[#1A211A]"
               style={{
                 fontFamily: "'Inter', system-ui, sans-serif",
                 fontWeight: 400,
@@ -52,7 +52,7 @@ export default function TenThings() {
             >
               Cut the{" "}
               <em
-                className="text-black/60"
+                className="text-[#1A211A]/60"
                 style={{ fontFamily: "'Inter', system-ui, sans-serif", fontStyle: "italic", fontWeight: 300 }}
               >
                 marketing.
@@ -65,26 +65,26 @@ export default function TenThings() {
                 >
                   10 things about Masters' Union
                 </span>
-                <span className="absolute inset-x-0 bottom-1 z-0 h-[2px] bg-black/15" />
+                <span className="absolute inset-x-0 bottom-1 z-0 h-[2px] bg-[#1A211A]/15" />
               </span>
             </h2>
 
             <div className="flex flex-col gap-1 md:items-end">
               <p
-                className="max-w-[300px] text-[11px] leading-[1.45] text-black/70"
+                className="max-w-[300px] text-[11px] leading-[1.45] text-[#1A211A]/70"
                 style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 400 }}
               >
                 No ads. No fluff. Just the dossier — ten chapters that explain how the school works.
               </p>
 
               <div
-                className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[8px] uppercase tracking-[0.24em] text-black/55"
+                className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[8px] uppercase tracking-[0.24em] text-[#1A211A]/55"
                 style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
               >
                 <span>{String(CHAPTERS.length).padStart(2, "0")} Chapters</span>
-                <span className="h-1 w-1 rounded-full bg-black/60" />
+                <span className="h-1 w-1 rounded-full bg-[#1A211A]/60" />
                 <span>≈ 8 min read</span>
-                <span className="h-1 w-1 rounded-full bg-black/60" />
+                <span className="h-1 w-1 rounded-full bg-[#1A211A]/60" />
                 <span>Updated 2026</span>
               </div>
             </div>
@@ -94,8 +94,8 @@ export default function TenThings() {
 
 
       {/* Card widget — manual prev/next, compact, centered */}
-      <div className="relative bg-[#0A0A0A] px-4 py-4 md:px-6 md:py-6">
-        <div className="relative mx-auto h-[40vh] min-h-[300px] w-full max-w-[720px] overflow-hidden rounded-lg bg-[#111] md:h-[46vh] md:min-h-[360px] md:max-w-[800px]">
+      <div className="relative bg-[#F1EFE7] px-4 py-4 md:px-6 md:py-6">
+        <div className="relative mx-auto h-[40vh] min-h-[300px] w-full max-w-[720px] overflow-hidden rounded-lg bg-[#2A312A] md:h-[46vh] md:min-h-[360px] md:max-w-[800px]">
           {/* Counter top-left */}
           <div
             className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[10px] tracking-[0.15em] text-neutral-400 md:left-10 md:top-10"
@@ -237,15 +237,18 @@ function Slide({
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(90deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0) 35%, rgba(10,10,10,0) 60%, rgba(10,10,10,0.85) 100%)",
+                "linear-gradient(90deg, rgba(42,49,42,0.55) 0%, rgba(42,49,42,0) 35%, rgba(42,49,42,0) 60%, rgba(26,33,26,0.85) 100%)",
             }}
           />
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, rgba(10,10,10,0.7) 0%, rgba(10,10,10,0) 28%, rgba(10,10,10,0) 70%, rgba(10,10,10,0.9) 100%)",
+                "linear-gradient(180deg, rgba(42,49,42,0.7) 0%, rgba(42,49,42,0) 28%, rgba(42,49,42,0) 70%, rgba(26,33,26,0.9) 100%)",
             }}
+          />
+          <div
+            className="absolute inset-0 bg-[#2A312A]/10 mix-blend-multiply"
           />
         </motion.div>
 
