@@ -1,14 +1,42 @@
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CHAPTERS } from "./chapters";
 
+gsap.registerPlugin(ScrollTrigger);
 
 const EASE = [0.7, 0, 0.2, 1] as const;
 const SLIDE_DURATION = 0.85;
 
+
 export default function TenThings() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState<1 | -1>(1);
+  const pinRef = useRef<HTMLDivElement>(null);
+  const widgetRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!pinRef.current || !widgetRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.set(widgetRef.current, { xPercent: 100 });
+      gsap.to(widgetRef.current, {
+        xPercent: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: pinRef.current,
+          start: "top top",
+          end: "+=100%",
+          pin: true,
+          scrub: 0.6,
+          anticipatePin: 1,
+        },
+      });
+    }, pinRef);
+    return () => ctx.revert();
+  }, []);
+
+
 
   const go = (delta: number) => {
     setDirection(delta > 0 ? 1 : -1);
@@ -25,8 +53,10 @@ export default function TenThings() {
 
   return (
     <section className="relative bg-[#F1EFE7] text-[#1A211A]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+      <div ref={pinRef} className="relative h-screen w-full overflow-hidden">
       {/* Intro headline — full-screen editorial hero */}
-      <div className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-[#F1EFE7] px-6 py-20 text-[#1A211A] md:px-12">
+      <div className="absolute inset-0 z-0 flex flex-col justify-center overflow-hidden bg-[#F1EFE7] px-6 py-20 text-[#1A211A] md:px-12">
+
         <div className="pointer-events-none absolute -left-40 top-1/4 h-[30vh] w-[30vh] -translate-y-1/2 rounded-full bg-[#1A211A]/[0.04] blur-[80px]" />
         <div className="pointer-events-none absolute -right-40 bottom-1/4 h-[30vh] w-[30vh] translate-y-1/2 rounded-full bg-[#1A211A]/[0.04] blur-[80px]" />
 
@@ -107,9 +137,10 @@ export default function TenThings() {
 
 
 
-      {/* Card widget — manual prev/next */}
-      <div className="relative bg-[#F1EFE7]">
-        <div className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-[#2A312A]">
+      {/* Card widget — slides in from right on scroll */}
+      <div ref={widgetRef} className="absolute inset-0 z-20 bg-[#F1EFE7] will-change-transform">
+        <div className="relative h-full min-h-[640px] w-full overflow-hidden bg-[#2A312A]">
+
 
           {/* Counter top-left */}
           <div
@@ -207,9 +238,11 @@ export default function TenThings() {
 
         </div>
       </div>
+      </div>
     </section>
   );
 }
+
 
 
 function Slide({
