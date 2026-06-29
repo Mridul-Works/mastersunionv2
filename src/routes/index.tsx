@@ -81,11 +81,10 @@ function Index() {
 
     const onWheel = (e: WheelEvent) => {
       if (!lockedRef.current || unlockingRef.current) return;
-      if (e.deltaY < 0) {
+      // Only block upward scroll when we'd cross the lock boundary.
+      if (e.deltaY < 0 && window.scrollY + e.deltaY < lockYRef.current) {
         e.preventDefault();
-        if (window.scrollY < lockYRef.current) {
-          window.scrollTo(0, lockYRef.current);
-        }
+        window.scrollTo(0, lockYRef.current);
       }
     };
 
@@ -96,12 +95,11 @@ function Index() {
     const onTouchMove = (e: TouchEvent) => {
       if (!lockedRef.current || unlockingRef.current) return;
       const y = e.touches[0]?.clientY ?? 0;
-      // finger moves down => page would scroll up => block
-      if (y - touchStartY > 0) {
+      const dy = y - touchStartY;
+      // finger moves down => page would scroll up. Only block at boundary.
+      if (dy > 0 && window.scrollY - dy < lockYRef.current) {
         e.preventDefault();
-        if (window.scrollY < lockYRef.current) {
-          window.scrollTo(0, lockYRef.current);
-        }
+        window.scrollTo(0, lockYRef.current);
       }
     };
 
