@@ -26,35 +26,41 @@
   --color-border: var(--border);
   --color-ring: var(--ring);
 
-  --color-sage: var(--sage);
-  --color-cream: var(--cream);
-  --color-ink: var(--ink);
+  --color-ember: var(--ember);
+  --color-charcoal: var(--charcoal);
+  --color-paper: var(--paper);
+  --color-slate: var(--slate);
 
-  --font-display: "Instrument Serif", "Times New Roman", serif;
-  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
 :root {
-  --radius: 0.875rem;
-  /* Editorial palette pulled from the Mindora reference + recolored building */
-  --background: oklch(0.985 0.005 90);          /* warm off-white */
-  --foreground: oklch(0.18 0.01 80);            /* near-black ink */
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.01 80);
-  --primary: oklch(0.22 0.01 80);               /* deep ink */
-  --primary-foreground: oklch(0.985 0.005 90);
-  --secondary: oklch(0.94 0.015 110);
-  --secondary-foreground: oklch(0.22 0.01 80);
-  --muted: oklch(0.94 0.012 100);
-  --muted-foreground: oklch(0.5 0.02 90);
-  --accent: oklch(0.82 0.09 135);               /* sage-lime CTA from Mindora */
-  --accent-foreground: oklch(0.2 0.02 130);
-  --border: oklch(0.9 0.01 90);
-  --ring: oklch(0.7 0.04 130);
+  --radius: 0.25rem;
+  --background: #f6f5f2;        /* warm off-white paper */
+  --foreground: #111110;        /* near-black ink */
+  --card: #ffffff;
+  --card-foreground: #111110;
+  --primary: #111110;           /* charcoal */
+  --primary-foreground: #f6f5f2;
+  --secondary: #e9e8e3;         /* warm gray */
+  --secondary-foreground: #111110;
+  --muted: #e9e8e3;
+  --muted-foreground: #6e6e68;
+  --accent: #e85d3a;            /* ember */
+  --accent-foreground: #ffffff;
+  --border: #d7d6d0;
+  --ring: #e85d3a;
 
-  --sage: oklch(0.82 0.04 150);
-  --cream: oklch(0.94 0.025 80);
-  --ink: oklch(0.16 0.01 80);
+  --ember: #e85d3a;
+  --charcoal: #1a1a1a;
+  --paper: #f6f5f2;
+  --slate: #3a3a36;
+
+  --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", monospace;
 }
 
 @layer base {
@@ -64,6 +70,9 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
   }
 }
 

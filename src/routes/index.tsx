@@ -65,7 +65,6 @@ function Index() {
       if (unlockingRef.current) return;
       const y = window.scrollY;
       if (!lockedRef.current) {
-        // Engage as soon as hero hits the top.
         if (y >= getLockY() - 1) engage();
         lastY = y;
         return;
@@ -73,7 +72,6 @@ function Index() {
       if (y < lockYRef.current) {
         window.scrollTo(0, lockYRef.current);
       }
-      // Auto-hide on scroll down, show on scroll up
       const delta = y - lastY;
       if (delta > 6 && y > lockYRef.current + 40) setNavHidden(true);
       else if (delta < -4) setNavHidden(false);
@@ -82,7 +80,6 @@ function Index() {
 
     const onWheel = (e: WheelEvent) => {
       if (!lockedRef.current || unlockingRef.current) return;
-      // Only block upward scroll when we'd cross the lock boundary.
       if (e.deltaY < 0 && window.scrollY + e.deltaY < lockYRef.current) {
         e.preventDefault();
         window.scrollTo(0, lockYRef.current);
@@ -97,7 +94,6 @@ function Index() {
       if (!lockedRef.current || unlockingRef.current) return;
       const y = e.touches[0]?.clientY ?? 0;
       const dy = y - touchStartY;
-      // finger moves down => page would scroll up. Only block at boundary.
       if (dy > 0 && window.scrollY - dy < lockYRef.current) {
         e.preventDefault();
         window.scrollTo(0, lockYRef.current);
@@ -121,7 +117,6 @@ function Index() {
       if (lockedRef.current) lockYRef.current = getLockY();
     });
 
-    // Initial check (e.g. page reload mid-scroll).
     onScroll();
 
     (window as any).__muDisengage = disengage;
@@ -148,7 +143,7 @@ function Index() {
   };
 
   return (
-    <main className="min-h-screen bg-[#FAF8F4]">
+    <main className="min-h-screen bg-background">
       {/* NAV */}
       <header
         className={`fixed inset-x-0 top-0 z-[100] px-4 pt-3 sm:px-6 sm:pt-4 transition-all duration-500 ${
@@ -159,7 +154,7 @@ function Index() {
             : "opacity-0 -translate-y-4 pointer-events-none"
         }`}
       >
-        <div className="mx-auto flex max-w-[1180px] items-center justify-between rounded-full border border-black/10 bg-white/80 px-2 py-1.5 shadow-[0_6px_24px_-12px_rgba(0,0,0,0.15)] backdrop-blur-xl">
+        <div className="mx-auto flex max-w-[1180px] items-center justify-between rounded-full border border-border bg-background/80 px-2 py-1.5 shadow-[0_6px_24px_-12px_rgba(0,0,0,0.12)] backdrop-blur-xl">
           <a href="/" className="flex items-center gap-2 rounded-full px-2.5 py-1">
             <img src={logoAsset.url} alt="Masters' Union" className="h-5 w-auto" />
           </a>
@@ -168,7 +163,7 @@ function Index() {
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="rounded-full px-3 py-1.5 text-[12px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
+                className="rounded-full px-3 py-1.5 text-[12px] font-medium text-foreground/60 transition-colors hover:bg-foreground/5 hover:text-foreground"
               >
                 {item}
               </a>
@@ -177,7 +172,7 @@ function Index() {
           <div className="flex items-center gap-1">
             <button
               type="button"
-              className="rounded-full bg-[#C9A84C] px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-black shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
+              className="rounded-full bg-accent px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-accent-foreground shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
             >
               Apply
             </button>
@@ -186,21 +181,21 @@ function Index() {
               aria-label="Toggle menu"
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((s) => !s)}
-              className="flex size-8 items-center justify-center rounded-full text-black/60 transition-colors hover:bg-black/5 hover:text-black md:hidden"
+              className="flex size-8 items-center justify-center rounded-full text-foreground/60 transition-colors hover:bg-foreground/5 hover:text-foreground md:hidden"
             >
               {menuOpen ? <X className="size-4" /> : <Menu className="size-4" />}
             </button>
           </div>
         </div>
         {menuOpen && (
-          <div className="mt-3 rounded-3xl border border-black/10 bg-white/95 p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.12)] backdrop-blur-xl md:hidden">
+          <div className="mt-3 rounded-2xl border border-border bg-background/95 p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.12)] backdrop-blur-xl md:hidden">
             <nav className="flex flex-col gap-1">
               {NAV.map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-2xl px-4 py-3 text-[14px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
+                  className="rounded-xl px-4 py-3 text-[14px] font-medium text-foreground/60 transition-colors hover:bg-foreground/5 hover:text-foreground"
                 >
                   {item}
                 </a>
@@ -210,11 +205,9 @@ function Index() {
         )}
       </header>
 
-      {/* Curtain wrapper: video is sticky at top while the hero (TenThings)
-          naturally scrolls up over it. No JS scroll-locking — page scrolls
-          freely both ways. */}
+      {/* Curtain wrapper: video is sticky at top while the hero rises over it. */}
       <div className="relative">
-        <section className="sticky top-0 z-0 h-screen w-full overflow-hidden bg-[#F1EFE7] select-none">
+        <section className="sticky top-0 z-0 h-screen w-full overflow-hidden bg-charcoal select-none">
           {/* Background building image */}
           <img
             src={heroBuilding}
@@ -222,12 +215,12 @@ function Index() {
             aria-hidden
             className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${playing ? "opacity-0" : "opacity-100"}`}
           />
-          {/* Dark editorial overlay tints (hidden when playing) */}
+          {/* Dark modern overlay */}
           <div
             className={`pointer-events-none absolute inset-0 transition-opacity duration-700 ${playing ? "opacity-0" : "opacity-100"}`}
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-[#F1EFE7]/30 via-[#2A312A]/40 to-[#1A211A]/90" />
-            <div className="absolute inset-0 bg-[#2A312A]/10 mix-blend-multiply" />
+            <div className="absolute inset-0 bg-gradient-to-b from-charcoal/30 via-charcoal/55 to-charcoal/95" />
+            <div className="absolute inset-0 bg-charcoal/10 mix-blend-multiply" />
           </div>
 
           {/* Video (no autoplay) */}
@@ -243,7 +236,7 @@ function Index() {
             className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${playing ? "opacity-100" : "opacity-0 pointer-events-none"}`}
           />
 
-          {/* Editorial overlay — Asymmetric split */}
+          {/* Modern editorial overlay */}
           <div
             className={`absolute inset-0 transition-opacity duration-500 ${playing ? "opacity-0 pointer-events-none" : "opacity-100"}`}
           >
@@ -254,13 +247,10 @@ function Index() {
                   <img
                     src={logoAsset.url}
                     alt="Masters' Union"
-                    className="h-8 w-auto md:h-10 brightness-0 invert"
+                    className="h-8 w-auto md:h-10 brightness-0 invert opacity-90"
                   />
                 </div>
-                <span
-                  className="hidden text-[10px] uppercase tracking-[0.2em] text-white/70 md:block"
-                  style={{ fontFamily: "Inter, sans-serif" }}
-                >
+                <span className="hidden text-[10px] uppercase tracking-[0.2em] text-white/60 md:block">
                   Gurugram Campus
                 </span>
               </div>
@@ -268,12 +258,9 @@ function Index() {
               {/* Hero row */}
               <div className="mb-12 grid grid-cols-12 items-end gap-8 md:mb-20">
                 <div className="col-span-12 md:col-span-9 lg:col-span-8">
-                  <h1
-                    className="text-7xl italic leading-[0.8] tracking-tighter text-white md:text-[110px] lg:text-[130px]"
-                    style={{ fontFamily: "'Cormorant Garamond', serif" }}
-                  >
+                  <h1 className="font-display text-6xl font-bold uppercase leading-[0.85] tracking-tighter text-white md:text-[100px] lg:text-[120px]">
                     Learn by <br />
-                    <span className="mt-2 block not-italic md:ml-24">Doing.</span>
+                    <span className="mt-2 block text-accent md:ml-24">Doing.</span>
                   </h1>
                 </div>
 
@@ -299,16 +286,10 @@ function Index() {
                       </div>
                     </div>
                     <div className="text-center md:text-right">
-                      <span
-                        className="block text-xs font-semibold uppercase tracking-widest text-white"
-                        style={{ fontFamily: "Inter, sans-serif" }}
-                      >
+                      <span className="block text-xs font-semibold uppercase tracking-widest text-white">
                         Play Experience
                       </span>
-                      <span
-                        className="mt-1 block text-[9px] uppercase tracking-widest text-white/60"
-                        style={{ fontFamily: "Inter, sans-serif" }}
-                      >
+                      <span className="mt-1 block text-[9px] uppercase tracking-widest text-white/60">
                         02:45 Mini Film
                       </span>
                     </div>
@@ -318,18 +299,12 @@ function Index() {
 
               {/* Footer */}
               <div className="flex items-end justify-between border-t border-white/10 pt-8">
-                <p
-                  className="hidden max-w-[280px] text-[11px] uppercase leading-relaxed tracking-wider text-white md:block"
-                  style={{ fontFamily: "Inter, sans-serif" }}
-                >
+                <p className="hidden max-w-[280px] text-[11px] uppercase leading-relaxed tracking-wider text-white/70 md:block">
                   A new-age business school where industry leaders mentor the next generation.
                 </p>
 
                 <div className="mx-auto flex flex-col items-center gap-4 md:mx-0">
-                  <span
-                    className="text-[9px] font-bold uppercase tracking-[0.3em] text-white"
-                    style={{ fontFamily: "Inter, sans-serif" }}
-                  >
+                  <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-white">
                     Scroll
                   </span>
                   <div className="relative h-12 w-px overflow-hidden bg-white/20">
@@ -340,7 +315,6 @@ function Index() {
               </div>
             </div>
           </div>
-
 
           {/* Pause overlay button when playing */}
           {playing && (
@@ -358,7 +332,7 @@ function Index() {
         {/* The hero. Rises over the sticky video as the user scrolls. */}
         <div
           ref={heroRef}
-          className="relative z-10 bg-[#FAF8F4] shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.12)]"
+          className="relative z-10 bg-background shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.12)]"
         >
           <TenThings />
           <HomeSections />
@@ -370,7 +344,7 @@ function Index() {
         type="button"
         onClick={rewatchVideo}
         aria-label="Rewatch intro video"
-        className={`fixed bottom-6 right-6 z-[90] flex items-center gap-2 rounded-full border border-black/10 bg-white/95 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-black shadow-[0_12px_32px_-8px_rgba(0,0,0,0.12)] backdrop-blur-xl transition-all duration-500 hover:scale-105 ${
+        className={`fixed bottom-6 right-6 z-[90] flex items-center gap-2 rounded-full border border-border bg-background/95 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-foreground shadow-[0_12px_32px_-8px_rgba(0,0,0,0.12)] backdrop-blur-xl transition-all duration-500 hover:scale-105 ${
           showRewatch ? "opacity-100 translate-y-0 pointer-events-auto animate-bounce" : "opacity-0 translate-y-6 pointer-events-none"
         }`}
       >
