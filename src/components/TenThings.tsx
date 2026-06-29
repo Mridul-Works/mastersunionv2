@@ -197,7 +197,7 @@ function Slide({
 }) {
   return (
     <motion.div
-      className="absolute inset-0 z-10 grid grid-cols-1 md:grid-cols-[1fr_460px]"
+      className="absolute inset-0 z-10 grid grid-cols-1 md:grid-cols-[1fr_min(620px,42vw)]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -254,7 +254,7 @@ function Slide({
       </div>
 
       <div className="relative z-10 flex items-end px-6 pb-32 md:items-center md:px-12 md:pb-0">
-        <div className="max-w-[420px]">
+        <div className="max-w-[560px]">
           <StaggeredText delay={0.15} k={`meta-${index}`}>
             <p
               className="text-[11px] uppercase tracking-[0.2em] text-white/60"
