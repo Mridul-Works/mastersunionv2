@@ -33,7 +33,7 @@ export default function HomeSections() {
             <div className="flex items-end justify-between gap-4 mb-10">
               <div>
                 <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-[#6B1F2A] mb-1">The Dispatch</p>
-                <h2 className="font-display text-4xl font-bold text-[#16140F] md:text-5xl">
+                <h2 className="font-display text-[1.35rem] font-bold leading-tight text-[#16140F] md:text-[1.8rem]">
                   Latest News
                 </h2>
               </div>
