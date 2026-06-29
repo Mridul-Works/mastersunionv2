@@ -282,34 +282,52 @@ function Index() {
                     type="button"
                     onClick={() => videoElRef.current?.play().catch(() => {})}
                     aria-label="Play campus film"
-                    className="group flex cursor-pointer flex-col items-center gap-4 focus:outline-none md:items-end"
+                    className="group relative flex cursor-pointer flex-col items-center gap-4 focus:outline-none md:items-end"
                   >
-                    <div className="relative flex size-24 items-center justify-center">
-                      <div className="absolute inset-0 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm transition-transform duration-500 ease-out group-hover:scale-110" />
-                      <div
-                        className="relative flex size-14 items-center justify-center rounded-full shadow-lg transition-transform duration-300 group-hover:scale-90"
-                        style={{ background: "linear-gradient(91deg, rgb(57,181,215) -6.14%, rgb(247,213,68) 47.02%, rgb(227,131,48) 99.71%)" }}
-                      >
+                    <div className="relative flex items-center justify-center">
+                      {/* Outer pulsing ring */}
+                      <div className="mu-ping-gold absolute inset-0 rounded-full border border-[#C9A84C]/40" />
+
+                      {/* Main button body */}
+                      <div className="relative flex size-24 items-center justify-center rounded-full border border-[#C9A84C]/40 bg-[#1F4D3F]/20 backdrop-blur-xl transition-all duration-700 group-hover:scale-110 group-hover:border-[#C9A84C] group-hover:bg-[#6B1F2A]/30">
+                        {/* Inner glow */}
+                        <div className="absolute inset-0 rounded-full shadow-[inset_0_0_24px_rgba(201,168,76,0.15)] transition-all duration-500 group-hover:shadow-[inset_0_0_32px_rgba(201,168,76,0.35)]" />
+
+                        {/* Play icon */}
                         <svg
-                          className="size-5 fill-current text-white translate-x-0.5"
+                          className="relative size-8 fill-current text-[#C9A84C] transition-transform duration-500 group-hover:scale-110"
                           viewBox="0 0 24 24"
+                          style={{ transform: "translateX(2px)" }}
                         >
-                          <path d="M8 5v14l11-7z" />
+                          <path d="M5 3l14 9-14 9V3z" />
+                        </svg>
+                      </div>
+
+                      {/* Circular label */}
+                      <div className="absolute -inset-4 transition-transform duration-[10000ms] linear group-hover:rotate-12">
+                        <svg viewBox="0 0 100 100" className="h-full w-full opacity-50">
+                          <path id="muCirclePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
+                          <text className="text-[6px] uppercase tracking-[0.4em] fill-[#FAF8F4]">
+                            <textPath xlinkHref="#muCirclePath" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                              Masters' Union Film • Campus Experience •
+                            </textPath>
+                          </text>
                         </svg>
                       </div>
                     </div>
+
                     <div className="text-center md:text-right">
                       <span
-                        className="block text-xs font-semibold uppercase tracking-widest text-white"
-                        style={{ fontFamily: "Inter, sans-serif" }}
+                        className="block text-[10px] font-semibold uppercase tracking-[3px] text-[#C9A84C]"
+                        style={{ fontFamily: "'Montserrat', sans-serif" }}
                       >
-                        Play Experience
+                        Watch Now
                       </span>
                       <span
-                        className="mt-1 block text-[9px] uppercase tracking-widest text-white/60"
-                        style={{ fontFamily: "Inter, sans-serif" }}
+                        className="mt-1 block text-xl font-light italic text-[#FAF8F4]"
+                        style={{ fontFamily: "'Fraunces', serif" }}
                       >
-                        02:45 Mini Film
+                        Campus Film
                       </span>
                     </div>
                   </button>
