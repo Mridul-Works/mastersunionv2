@@ -45,41 +45,44 @@ function Index() {
     const hero = heroRef.current;
     if (!hero) return;
 
-    let loco: any = null;
-    let lockY = 0;
     let locked = false;
-    let lastY = 0;
+    let lockY = 0;
+    let lastY = window.scrollY;
 
     const getLockY = () => {
-      // Locomotive transforms the container; use offsetTop relative to scrollable container.
-      const el = hero as HTMLElement;
-      let top = 0;
-      let node: HTMLElement | null = el;
-      while (node) {
-        top += node.offsetTop;
-        node = node.offsetParent as HTMLElement | null;
+      const rect = hero.getBoundingClientRect();
+      return window.scrollY + rect.top;
+    };
+
+    const onScroll = () => {
+      if (unlockingRef.current) {
+        lastY = window.scrollY;
+        return;
       }
-      return top;
-    };
-
-    const engage = () => {
-      lockY = getLockY();
-      locked = true;
-      setNavVisible(true);
-      setShowRewatch(true);
-    };
-
-    const onLocoScroll = (args: any) => {
-      if (unlockingRef.current) return;
-      const y = args?.scroll?.y ?? 0;
+      const y = window.scrollY;
       if (!locked) {
-        if (y >= getLockY() - 1) engage();
+        if (y >= getLockY() - 1) {
+          locked = true;
+          lockY = getLockY();
+          setNavVisible(true);
+          setShowRewatch(true);
+        }
         lastY = y;
         return;
       }
       if (y < lockY) {
-        loco?.scrollTo(lockY, { duration: 0, disableLerp: true });
+        // Snap back synchronously and override Lenis's smooth target so it
+        // does not keep animating upward.
+        const lenis = (window as any).__lenis;
+        if (lenis?.scrollTo) {
+          lenis.scrollTo(lockY, { immediate: true, force: true, lock: true });
+        } else {
+          window.scrollTo(0, lockY);
+        }
+        lastY = lockY;
+        return;
       }
+
       const delta = y - lastY;
       if (delta > 6 && y > lockY + 40) setNavHidden(true);
       else if (delta < -4) setNavHidden(false);
@@ -94,35 +97,16 @@ function Index() {
       }
     };
 
-    const attach = (instance: any) => {
-      loco = instance;
-      lockedRef.current = false;
-      instance.on("scroll", onLocoScroll);
-    };
-
-    const existing = (window as any).__loco;
-    if (existing) attach(existing);
-    else {
-      const onReady = (e: Event) => attach((e as CustomEvent).detail);
-      window.addEventListener("loco:ready", onReady, { once: true });
-    }
-
-    window.addEventListener("keydown", onKey);
     const onResize = () => {
       if (locked) lockY = getLockY();
     };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("keydown", onKey);
     window.addEventListener("resize", onResize);
 
-    (window as any).__muDisengage = () => {
-      locked = false;
-      setNavVisible(false);
-      setShowRewatch(false);
-    };
-
     return () => {
-      try {
-        loco?.off?.("scroll", onLocoScroll);
-      } catch {}
+      window.removeEventListener("scroll", onScroll);
       window.removeEventListener("keydown", onKey);
       window.removeEventListener("resize", onResize);
     };
@@ -130,20 +114,20 @@ function Index() {
 
   const rewatchVideo = () => {
     unlockingRef.current = true;
-    lockedRef.current = false;
     setNavVisible(false);
     setShowRewatch(false);
-    const loco = (window as any).__loco;
-    if (loco) {
-      loco.scrollTo(0, { duration: 1200 });
+    const lenis = (window as any).__lenis;
+    if (lenis?.scrollTo) {
+      lenis.scrollTo(0, { duration: 1.4 });
     } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
     setTimeout(() => {
       videoElRef.current?.play().catch(() => {});
       unlockingRef.current = false;
-    }, 1400);
+    }, 1500);
   };
+
 
 
   return (
@@ -210,13 +194,11 @@ function Index() {
         )}
       </header>
 
-      <div id="hero-curtain" className="relative" data-scroll-section>
+      <div id="hero-curtain" className="relative">
         <section
           className="sticky top-0 z-0 h-screen w-full overflow-hidden bg-[#F1EFE7] select-none"
-          data-scroll
-          data-scroll-sticky
-          data-scroll-target="#hero-curtain"
         >
+
 
           {/* Background building image */}
           <img
