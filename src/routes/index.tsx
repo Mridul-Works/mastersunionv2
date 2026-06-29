@@ -275,10 +275,10 @@ function Index() {
                     className="group flex cursor-pointer flex-col items-center gap-4 focus:outline-none md:items-end"
                   >
                     <div className="relative flex size-24 items-center justify-center">
-                      <div className="absolute inset-0 rounded-full border border-[#2A312A]/10 bg-[#2A312A]/5 backdrop-blur-sm transition-transform duration-500 ease-out group-hover:scale-110" />
-                      <div className="relative flex size-14 items-center justify-center rounded-full bg-[#2A312A] shadow-lg transition-transform duration-300 group-hover:scale-90">
+                      <div className="absolute inset-0 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm transition-transform duration-500 ease-out group-hover:scale-110" />
+                      <div className="relative flex size-14 items-center justify-center rounded-full bg-white shadow-lg transition-transform duration-300 group-hover:scale-90">
                         <svg
-                          className="size-5 translate-x-0.5 fill-current text-[#F5F2E8]"
+                          className="size-5 translate-x-0.5 fill-current text-[#2A312A]"
                           viewBox="0 0 24 24"
                         >
                           <path d="M8 5v14l11-7z" />
@@ -287,13 +287,13 @@ function Index() {
                     </div>
                     <div className="text-center md:text-right">
                       <span
-                        className="block text-xs font-semibold uppercase tracking-widest text-[#2A312A]"
+                        className="block text-xs font-semibold uppercase tracking-widest text-white"
                         style={{ fontFamily: "Inter, sans-serif" }}
                       >
                         Play Experience
                       </span>
                       <span
-                        className="mt-1 block text-[9px] uppercase tracking-widest text-[#2A312A]/60"
+                        className="mt-1 block text-[9px] uppercase tracking-widest text-white/60"
                         style={{ fontFamily: "Inter, sans-serif" }}
                       >
                         02:45 Mini Film
@@ -304,9 +304,9 @@ function Index() {
               </div>
 
               {/* Footer */}
-              <div className="flex items-end justify-between border-t border-[#2A312A]/10 pt-8">
+              <div className="flex items-end justify-between border-t border-white/10 pt-8">
                 <p
-                  className="hidden max-w-[240px] text-[11px] uppercase leading-relaxed tracking-wider text-[#2A312A]/70 md:block"
+                  className="hidden max-w-[280px] text-[11px] uppercase leading-relaxed tracking-wider text-white md:block"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
                   A new-age business school where industry leaders mentor the next generation.
