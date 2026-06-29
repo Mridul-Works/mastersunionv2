@@ -95,8 +95,8 @@ export default function TenThings() {
         <div className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
           {/* Counter top-left */}
           <div
-            className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[12px] tracking-[0.15em] text-white/70 md:left-10"
-            style={{ fontFamily: "'JetBrains Mono', monospace" }}
+            className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[12px] tracking-[0.15em] text-neutral-400 md:left-10"
+            style={{ fontFamily: "'JetBrains Mono', monospace", textShadow: "0 0 24px rgba(255,255,255,0.10)" }}
           >
             <AnimatePresence mode="popLayout">
               <motion.span
@@ -110,8 +110,8 @@ export default function TenThings() {
                 {String(index + 1).padStart(2, "0")}
               </motion.span>
             </AnimatePresence>
-            <span className="mx-1 text-white/30">/</span>
-            <span className="text-white/30">{String(CHAPTERS.length).padStart(2, "0")}</span>
+            <span className="mx-1 text-neutral-600">/</span>
+            <span className="text-neutral-600">{String(CHAPTERS.length).padStart(2, "0")}</span>
           </div>
 
           {/* Giant ghost numeral */}
