@@ -1,4 +1,5 @@
 import { ArrowUpRight, ChevronLeft, ChevronRight, Hourglass, Quote, GraduationCap, Rocket, Briefcase, Users, Mic, ChefHat, Building2, Send, Instagram, Linkedin, Youtube, Twitter } from "lucide-react";
+import founderPhoto from "@/assets/pratham-mittal.png.asset.json";
 
 const NEWS = [
   { tag: "Press", month: "Jun", day: "15", time: "09:00 AM", title: "Masters' Union ranked among India's top new-age B-schools", source: "Forbes India" },
@@ -136,40 +137,29 @@ export default function HomeSections() {
 
 
       {/* FOUNDER'S MESSAGE */}
-      <section id="founders" className="border-t border-black/10">
-        <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-10 md:py-32">
-          <div className="grid items-start gap-16 md:grid-cols-12">
-            <div className="md:col-span-4">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-black/50">A note from the founders</p>
-              <div className="mt-8 aspect-[4/5] w-full overflow-hidden rounded-3xl bg-gradient-to-br from-[#C9A84C] via-[#8A3A12] to-[#1F4D3F] p-px">
-                <div className="flex h-full w-full flex-col justify-end rounded-3xl bg-[#1A211A] p-8 text-white">
-                  <Quote className="mb-6 size-7 text-[#C9A84C]" />
-                  <p className="text-[14px] uppercase tracking-[0.2em] text-white/60">Pratham Mittal</p>
-                  <p className="text-[12px] text-white/40">Founder · Masters' Union</p>
-                </div>
-              </div>
+      <section id="founders" className="border-t border-black/10 bg-[#FAF8F4]">
+        <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-10 md:py-24">
+          <div className="grid overflow-hidden rounded-[32px] bg-[#16140F] md:grid-cols-12">
+            <div className="relative md:col-span-5">
+              <img
+                src={founderPhoto.url}
+                alt="Pratham Mittal"
+                className="h-72 w-full object-cover md:h-full"
+              />
+              <div className="absolute inset-0 hidden bg-gradient-to-r from-transparent via-transparent to-[#16140F]/90 md:block" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#16140F] via-transparent to-transparent md:hidden" />
             </div>
-
-            <div className="md:col-span-8">
-              <h2 className="text-4xl leading-[1.05] tracking-tight md:text-[64px]" style={{ fontFamily: "'Fraunces', serif" }}>
-                "We didn't build another <span className="italic text-[#8A3A12]">business school</span>. We built the school we wished existed when we were starting up."
+            <div className="flex flex-col justify-center p-8 md:col-span-7 md:p-12 lg:p-16">
+              <Quote className="mb-5 size-8 text-[#C9A84C]" />
+              <h2 className="text-3xl leading-[1.05] tracking-tight text-[#FAF8F4] md:text-[44px] lg:text-[52px]" style={{ fontFamily: "'Fraunces', serif" }}>
+                "If education was working, we wouldn't have built <span className="italic text-[#C9A84C]">Masters' Union.</span>"
               </h2>
-              <div className="mt-10 space-y-5 text-[16px] leading-[1.75] text-black/75 md:text-[17px]">
-                <p>
-                  Every founder I know learned the hard way — by losing money, mis-hiring, mispricing, and shipping the wrong thing first. That's an expensive curriculum. We wanted to compress it.
-                </p>
-                <p>
-                  Masters' Union is what happens when sitting CEOs design the syllabus, when the final exam is a P&L statement, and when the campus is built next door to the companies you'll one day run or build alongside.
-                </p>
-                <p>
-                  If you're tired of theory, allergic to fluff, and willing to ship in semester one — this is your school.
-                </p>
-              </div>
-
-              <div className="mt-10 flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-black/50">
-                <span className="rounded-full border border-black/15 px-4 py-2">Class of 2017, Wharton</span>
-                <span className="rounded-full border border-black/15 px-4 py-2">Ex-Founder, OakNorth</span>
-                <span className="rounded-full border border-black/15 px-4 py-2">Forbes 30u30</span>
+              <div className="mt-8 flex items-center gap-3">
+                <div className="h-px w-10 bg-[#C9A84C]/60" />
+                <div>
+                  <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[#FAF8F4]/80">Pratham Mittal</p>
+                  <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-[#FAF8F4]/50">Founder, Masters' Union</p>
+                </div>
               </div>
             </div>
           </div>
