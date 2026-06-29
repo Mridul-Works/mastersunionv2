@@ -138,28 +138,31 @@ export default function TenThings() {
 
           {/* Bottom nav: tag + arrows */}
           <div className="pointer-events-none absolute inset-x-0 bottom-8 z-30 flex flex-col items-center gap-5 px-6">
-            <div className="pointer-events-auto flex w-full max-w-[560px] items-center justify-between">
+            <div className="pointer-events-auto flex w-full max-w-[620px] items-center justify-between">
               <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-white/70">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-white" />
                 <span className="min-w-[80px] text-center">{project.tag}</span>
               </div>
 
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 rounded-full border border-white/10 bg-white/10 px-2 py-1.5 backdrop-blur-md">
                 <button
                   type="button"
                   onClick={() => go(-1)}
                   aria-label="Previous chapter"
-                  className="p-2 opacity-70 transition-opacity hover:opacity-100"
+                  className="group flex items-center gap-1.5 rounded-full px-2 py-1 text-white/80 transition-all hover:bg-white/10 hover:text-white"
                 >
-                  <GradientArrow direction="left" className="size-4" />
+                  <GradientArrow direction="left" className="size-5" />
+                  <span className="hidden text-[10px] font-medium uppercase tracking-wider sm:inline">Prev</span>
                 </button>
+                <span className="h-3 w-px bg-white/15" />
                 <button
                   type="button"
                   onClick={() => go(1)}
                   aria-label="Next chapter"
-                  className="p-2 opacity-70 transition-opacity hover:opacity-100"
+                  className="group flex items-center gap-1.5 rounded-full px-2 py-1 text-white/80 transition-all hover:bg-white/10 hover:text-white"
                 >
-                  <GradientArrow direction="right" className="size-4" />
+                  <span className="hidden text-[10px] font-medium uppercase tracking-wider sm:inline">Next</span>
+                  <GradientArrow direction="right" className="size-5" />
                 </button>
               </div>
 
@@ -338,10 +341,11 @@ function GradientArrow({
 }) {
   const id = useId();
   const gradientId = `arrow-grad-${id}`;
+  const glowId = `arrow-glow-${id}`;
   const d =
     direction === "right"
-      ? "M5 12h14M14 7l5 5-5 5"
-      : "M19 12H5M10 7l-5 5 5 5";
+      ? "M4 12h16M13 6l6 6-6 6"
+      : "M20 12H4M11 6l-6 6 6 6";
 
   return (
     <svg
@@ -350,18 +354,26 @@ function GradientArrow({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
+      style={{ filter: `drop-shadow(0 0 4px rgba(249, 115, 22, 0.45))` }}
     >
       <defs>
         <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#14b8a6" />
-          <stop offset="50%" stopColor="#f59e0b" />
-          <stop offset="100%" stopColor="#f97316" />
+          <stop offset="0%" stopColor="#2dd4bf" />
+          <stop offset="50%" stopColor="#fbbf24" />
+          <stop offset="100%" stopColor="#fb923c" />
         </linearGradient>
+        <filter id={glowId} x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
+          <feMerge>
+            <feMergeNode in="coloredBlur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
       </defs>
       <path
         d={d}
         stroke={`url(#${gradientId})`}
-        strokeWidth="2"
+        strokeWidth="2.25"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
