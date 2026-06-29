@@ -212,12 +212,12 @@ function Index() {
             aria-hidden
             className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${playing ? "opacity-0" : "opacity-100"}`}
           />
-          {/* Sophisticated overlay tints (hidden when playing) */}
+          {/* Dark editorial overlay tints (hidden when playing) */}
           <div
             className={`pointer-events-none absolute inset-0 transition-opacity duration-700 ${playing ? "opacity-0" : "opacity-100"}`}
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-[#F1EFE7]/60 via-transparent to-[#F1EFE7]/80" />
-            <div className="absolute inset-0 bg-[#A3B18A]/10 mix-blend-multiply" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#F1EFE7]/30 via-[#2A312A]/40 to-[#1A211A]/90" />
+            <div className="absolute inset-0 bg-[#2A312A]/10 mix-blend-multiply" />
           </div>
 
           {/* Video (no autoplay) */}
