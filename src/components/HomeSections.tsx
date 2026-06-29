@@ -134,23 +134,23 @@ export default function HomeSections() {
 
       {/* FOUNDER'S MESSAGE */}
       <section id="founders" className="border-t border-black/10 bg-white">
-        <div className="mx-auto max-w-[1280px] px-6 py-10 md:px-10 md:py-14">
+        <div className="mx-auto max-w-[1280px] px-6 py-7 md:px-10 md:py-10">
           <div className="grid overflow-hidden rounded-none bg-black md:grid-cols-12">
             <div className="relative md:col-span-5">
               <img
                 src={founderPhoto.url}
                 alt="Pratham Mittal"
-                className="h-56 w-full object-cover md:h-full grayscale"
+                className="h-44 w-full object-cover md:h-full grayscale"
               />
               <div className="absolute inset-0 hidden bg-gradient-to-r from-transparent via-transparent to-black/90 md:block" />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent md:hidden" />
             </div>
-            <div className="flex flex-col justify-center p-8 md:col-span-7 md:p-10 lg:p-12">
-              <Quote className="mb-4 size-7 text-white/70" />
-              <h2 className="text-2xl leading-[1.05] tracking-tight text-white md:text-[34px] lg:text-[40px]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+            <div className="flex flex-col justify-center p-6 md:col-span-7 md:p-7 lg:p-8">
+              <Quote className="mb-3 size-6 text-white/70" />
+              <h2 className="text-xl leading-[1.05] tracking-tight text-white md:text-[26px] lg:text-[30px]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
                 "If education was working, we wouldn't have built <span className="italic text-white">Masters' Union.</span>"
               </h2>
-              <div className="mt-6 flex items-center gap-3">
+              <div className="mt-4 flex items-center gap-3">
                 <div className="h-px w-10 bg-white/40" />
                 <div>
                   <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white/80">Pratham Mittal</p>
