@@ -48,13 +48,11 @@ export default function HomeSections() {
               </div>
             </div>
 
-            <div className="flex flex-nowrap overflow-x-auto snap-x border-y border-black/10 md:overflow-x-visible">
-              {NEWS.map((n, i) => (
+            <div className="flex flex-nowrap gap-4 overflow-x-auto snap-x md:overflow-x-visible md:gap-6">
+              {NEWS.map((n) => (
                 <article
                   key={n.title}
-                  className={`group flex min-w-[300px] flex-1 cursor-pointer snap-start gap-5 p-5 transition-all hover:bg-white md:min-w-0 ${
-                    i !== NEWS.length - 1 ? "border-b border-black/10 md:border-b-0 md:border-r" : ""
-                  }`}
+                  className="group flex min-w-[300px] flex-1 cursor-pointer snap-start gap-5 p-5 transition-all hover:bg-white md:min-w-0"
                 >
                   <div className="flex h-16 w-14 flex-shrink-0 flex-col items-center justify-center bg-[#6B1F2A] text-white shadow-sm transition-colors group-hover:bg-[#16140F]">
                     <span className="font-sans text-[10px] font-bold uppercase tracking-tighter opacity-80">{n.month}</span>
@@ -107,13 +105,11 @@ export default function HomeSections() {
               </a>
             </div>
 
-            <div className="flex flex-nowrap overflow-x-auto snap-x border-y border-black/10 md:overflow-x-visible">
-              {PROGRAMS.map((p, i) => (
+            <div className="flex flex-nowrap gap-4 overflow-x-auto snap-x md:overflow-x-visible md:gap-6">
+              {PROGRAMS.map((p) => (
                 <article
                   key={p.title}
-                  className={`group flex min-w-[280px] flex-1 cursor-pointer snap-start flex-col gap-6 bg-white p-6 transition-all hover:bg-[#F7F6F2] md:min-w-0 ${
-                    i !== PROGRAMS.length - 1 ? "border-b border-black/10 md:border-b-0 md:border-r" : ""
-                  }`}
+                  className="group flex min-w-[280px] flex-1 cursor-pointer snap-start flex-col gap-6 bg-white p-6 transition-all hover:bg-[#F7F6F2] md:min-w-0"
                 >
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="rounded-full bg-[#16140F] px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-white">{p.mode}</span>
@@ -126,7 +122,7 @@ export default function HomeSections() {
                     <Hourglass className="size-3.5 text-[#1F4D3F]" />
                     <span className="font-sans text-[12px] font-semibold text-[#1F4D3F]">{p.round}</span>
                   </div>
-                  <div className="mt-auto pt-4 border-t border-black/10">
+                  <div className="mt-auto pt-4">
                     <a href="#" className="inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-[#16140F] transition-colors group-hover:text-[#6B1F2A]">
                       Apply Now <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                     </a>
