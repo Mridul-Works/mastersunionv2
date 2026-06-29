@@ -148,8 +148,8 @@ function Index() {
   };
 
   return (
-    <main className="min-h-screen bg-[#FAF8F4]">
-      {/* NAV */}
+    <main className="min-h-screen bg-[#F9F9F9] font-['Inter']">
+      {/* NAV — Swiss pill */}
       <header
         className={`fixed inset-x-0 top-0 z-[100] px-4 pt-3 sm:px-6 sm:pt-4 transition-all duration-500 ${
           navVisible
@@ -159,16 +159,16 @@ function Index() {
             : "opacity-0 -translate-y-4 pointer-events-none"
         }`}
       >
-        <div className="mx-auto flex max-w-[1180px] items-center justify-between rounded-full border border-black/10 bg-white/80 px-2 py-1.5 shadow-[0_6px_24px_-12px_rgba(0,0,0,0.15)] backdrop-blur-xl">
-          <a href="/" className="flex items-center gap-2 rounded-full px-2.5 py-1">
+        <div className="mx-auto flex max-w-[1280px] items-center justify-between border border-[#111111] bg-white px-3 py-2">
+          <a href="/" className="flex items-center gap-2 px-2">
             <img src={logoAsset.url} alt="Masters' Union" className="h-5 w-auto" />
           </a>
-          <nav className="hidden items-center gap-0.5 md:flex">
+          <nav className="hidden items-center gap-1 md:flex">
             {NAV.map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="rounded-full px-3 py-1.5 text-[12px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
+                className="px-3 py-2 font-['JetBrains_Mono'] text-[11px] font-medium uppercase tracking-[0.18em] text-[#111111]/70 transition-colors hover:text-[#FF4D00]"
               >
                 {item}
               </a>
@@ -177,7 +177,7 @@ function Index() {
           <div className="flex items-center gap-1">
             <button
               type="button"
-              className="rounded-full bg-[#C9A84C] px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-black shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
+              className="bg-[#FF4D00] px-5 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em] text-white transition-colors hover:bg-[#111111]"
             >
               Apply
             </button>
@@ -186,21 +186,21 @@ function Index() {
               aria-label="Toggle menu"
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((s) => !s)}
-              className="flex size-8 items-center justify-center rounded-full text-black/60 transition-colors hover:bg-black/5 hover:text-black md:hidden"
+              className="flex size-9 items-center justify-center border-l border-[#111111] text-[#111111] md:hidden"
             >
               {menuOpen ? <X className="size-4" /> : <Menu className="size-4" />}
             </button>
           </div>
         </div>
         {menuOpen && (
-          <div className="mt-3 rounded-3xl border border-black/10 bg-white/95 p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.12)] backdrop-blur-xl md:hidden">
-            <nav className="flex flex-col gap-1">
+          <div className="mt-2 border border-[#111111] bg-white p-2 md:hidden">
+            <nav className="flex flex-col">
               {NAV.map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-2xl px-4 py-3 text-[14px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
+                  className="px-4 py-3 font-['JetBrains_Mono'] text-[12px] font-medium uppercase tracking-[0.18em] text-[#111111]/70 transition-colors hover:bg-[#111111] hover:text-white"
                 >
                   {item}
                 </a>
@@ -209,6 +209,7 @@ function Index() {
           </div>
         )}
       </header>
+
 
       {/* Curtain wrapper: video is sticky at top while the hero (TenThings)
           naturally scrolls up over it. No JS scroll-locking — page scrolls
