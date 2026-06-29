@@ -31,7 +31,7 @@ export default function HomeSections() {
       {/* NEWS */}
       <section id="news" className="border-t border-black/10">
         <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10 md:py-28">
-          <div className="border-t-4 border-[#6B1F2A] pt-8">
+          <div className="pt-8">
             <div className="flex items-end justify-between gap-4 mb-10">
               <div>
                 <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-[#6B1F2A] mb-1">The Dispatch</p>
@@ -93,7 +93,7 @@ export default function HomeSections() {
       {/* PROGRAMS / APPLICATIONS */}
       <section id="deadlines" className="border-t border-black/10 bg-[#FAF8F4]">
         <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10 md:py-28">
-          <div className="border-t-4 border-[#1F4D3F] pt-8">
+          <div className="pt-8">
             <div className="flex items-end justify-between gap-4 mb-10">
               <div>
                 <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-[#1F4D3F] mb-1">Admissions · Cohort 2026</p>
