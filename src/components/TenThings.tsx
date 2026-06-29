@@ -261,11 +261,11 @@ function Slide({
         </div>
       </div>
 
-      <div className="relative z-10 flex items-end px-6 pb-24 md:items-center md:px-10 md:pb-0">
-        <div className="max-w-[460px]">
+      <div className="relative z-10 flex items-end px-5 pb-20 md:items-center md:px-8 md:pb-0">
+        <div className="max-w-[360px]">
           <StaggeredText delay={0.15} k={`meta-${index}`}>
             <p
-              className="text-[10px] uppercase tracking-[0.2em] text-white/60"
+              className="text-[9px] uppercase tracking-[0.2em] text-white/60"
               style={{ fontFamily: "'JetBrains Mono', monospace" }}
             >
               <span className="text-neutral-400">{String(index + 1).padStart(2, "0")}</span>
@@ -276,9 +276,9 @@ function Slide({
 
           <StaggeredText delay={0.25} k={`title-${index}`}>
             <h2
-              className="mt-3 font-black uppercase text-white"
+              className="mt-2 font-black uppercase text-white"
               style={{
-                fontSize: "clamp(28px, 3.6vw, 44px)",
+                fontSize: "clamp(18px, 2.4vw, 28px)",
                 lineHeight: 1.05,
                 letterSpacing: "-0.02em",
               }}
@@ -288,18 +288,18 @@ function Slide({
           </StaggeredText>
 
           <StaggeredText delay={0.46} k={`desc-${index}`}>
-            <p className="mt-4 text-[13px] text-white/70" style={{ lineHeight: 1.6 }}>
+            <p className="mt-3 text-[12px] text-white/70" style={{ lineHeight: 1.5 }}>
               {project.body}
             </p>
           </StaggeredText>
 
           <StaggeredText delay={0.56} k={`stats-${index}`}>
-            <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-3 border-t border-white/10 pt-4">
+            <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2 border-t border-white/10 pt-3">
               {project.stats.slice(0, 3).map((s) => (
                 <li key={s.label}>
-                  <div className="text-xl font-black tracking-tighter text-white">{s.value}</div>
+                  <div className="text-lg font-black tracking-tighter text-white">{s.value}</div>
                   <div
-                    className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/50"
+                    className="mt-0.5 text-[9px] uppercase tracking-[0.18em] text-white/50"
                     style={{ fontFamily: "'JetBrains Mono', monospace" }}
                   >
                     {s.label}
