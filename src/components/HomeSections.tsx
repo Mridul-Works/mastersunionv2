@@ -122,7 +122,7 @@ export default function HomeSections() {
                     <Hourglass className="size-3.5 text-[#1F4D3F]" />
                     <span className="font-sans text-[12px] font-semibold text-[#1F4D3F]">{p.round}</span>
                   </div>
-                  <div className="mt-auto pt-4 border-t border-black/10">
+                  <div className="mt-auto pt-4">
                     <a href="#" className="inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-[#16140F] transition-colors group-hover:text-[#6B1F2A]">
                       Apply Now <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                     </a>
