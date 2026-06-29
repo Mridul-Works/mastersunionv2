@@ -71,6 +71,7 @@ export default function TenThings() {
 
       <div
         ref={railRef}
+        data-tenthings-rail
         onWheel={onWheel}
         className="mt-14 overflow-x-auto overflow-y-hidden pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
