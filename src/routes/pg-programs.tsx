@@ -458,7 +458,7 @@ function Card({ children, className = "" }: { children: React.ReactNode; classNa
   );
 }
 
-function SectionHead({ eb, title, lede }: { eb: string; title: React.ReactNode; lede?: string }) {
+function SectionHead({ eb, title, lede }: { eb: string; title: React.ReactNode; lede?: React.ReactNode }) {
   return (
     <div className="max-w-[760px]">
       <Eyebrow>{eb}</Eyebrow>
@@ -1126,7 +1126,7 @@ function PgProgramsPage() {
                   MU-BAAT
                 </button>{" "}
                 — our own aptitude test that evaluates ambition, grit, and the drive to build.
-              </> as unknown as string
+              </>
             }
           />
 
