@@ -30,6 +30,7 @@ const NAV = ["Programs", "Faculty", "Admissions", "Campus", "About"];
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [navVisible, setNavVisible] = useState(false);
+  const [navHidden, setNavHidden] = useState(false);
   const [showRewatch, setShowRewatch] = useState(false);
   const [playing, setPlaying] = useState(false);
 
@@ -58,16 +59,24 @@ function Index() {
       setShowRewatch(false);
     };
 
+    let lastY = window.scrollY;
     const onScroll = () => {
       if (unlockingRef.current) return;
+      const y = window.scrollY;
       if (!lockedRef.current) {
         // Engage as soon as hero hits the top.
-        if (window.scrollY >= getLockY() - 1) engage();
+        if (y >= getLockY() - 1) engage();
+        lastY = y;
         return;
       }
-      if (window.scrollY < lockYRef.current) {
+      if (y < lockYRef.current) {
         window.scrollTo(0, lockYRef.current);
       }
+      // Auto-hide on scroll down, show on scroll up
+      const delta = y - lastY;
+      if (delta > 6 && y > lockYRef.current + 40) setNavHidden(true);
+      else if (delta < -4) setNavHidden(false);
+      lastY = y;
     };
 
     const onWheel = (e: WheelEvent) => {
@@ -143,22 +152,24 @@ function Index() {
     <main className="min-h-screen bg-[#FAF8F4]">
       {/* NAV */}
       <header
-        className={`fixed inset-x-0 top-0 z-[100] px-5 pt-5 sm:px-8 sm:pt-6 transition-all duration-500 ${
+        className={`fixed inset-x-0 top-0 z-[100] px-4 pt-3 sm:px-6 sm:pt-4 transition-all duration-500 ${
           navVisible
-            ? "opacity-100 translate-y-0 pointer-events-auto"
+            ? navHidden
+              ? "opacity-0 -translate-y-6 pointer-events-none"
+              : "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-4 pointer-events-none"
         }`}
       >
-        <div className="mx-auto flex max-w-[1320px] items-center justify-between rounded-full border border-black/10 bg-white/90 px-2 py-2 shadow-[0_8px_32px_-12px_rgba(0,0,0,0.12)] backdrop-blur-xl md:px-3">
-          <a href="/" className="flex items-center gap-2 rounded-full px-3 py-1.5">
-            <img src={logoAsset.url} alt="Masters' Union" className="h-7 w-auto" />
+        <div className="mx-auto flex max-w-[1180px] items-center justify-between rounded-full border border-black/10 bg-white/80 px-2 py-1.5 shadow-[0_6px_24px_-12px_rgba(0,0,0,0.15)] backdrop-blur-xl">
+          <a href="/" className="flex items-center gap-2 rounded-full px-2.5 py-1">
+            <img src={logoAsset.url} alt="Masters' Union" className="h-5 w-auto" />
           </a>
           <nav className="hidden items-center gap-0.5 md:flex">
             {NAV.map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="rounded-full px-4 py-2 text-[13px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
+                className="rounded-full px-3 py-1.5 text-[12px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
               >
                 {item}
               </a>
@@ -167,18 +178,18 @@ function Index() {
           <div className="flex items-center gap-1">
             <button
               type="button"
-              className="rounded-full bg-[#C9A84C] px-5 py-2.5 text-[12px] font-semibold uppercase tracking-wide text-black shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
+              className="rounded-full bg-[#C9A84C] px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-black shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
             >
-              Apply Now
+              Apply
             </button>
             <button
               type="button"
               aria-label="Toggle menu"
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((s) => !s)}
-              className="flex size-10 items-center justify-center rounded-full text-black/60 transition-colors hover:bg-black/5 hover:text-black md:hidden"
+              className="flex size-8 items-center justify-center rounded-full text-black/60 transition-colors hover:bg-black/5 hover:text-black md:hidden"
             >
-              {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+              {menuOpen ? <X className="size-4" /> : <Menu className="size-4" />}
             </button>
           </div>
         </div>
