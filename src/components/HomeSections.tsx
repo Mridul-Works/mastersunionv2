@@ -12,16 +12,22 @@ import venturesAsset from "@/assets/programs/editorial-ventures.jpg.asset.json";
 import globalAsset from "@/assets/programs/editorial-global.jpg.asset.json";
 import b2bAsset from "@/assets/programs/editorial-b2b.jpg.asset.json";
 
+const SUNSET_GRADIENTS = [
+  "linear-gradient(180deg, #E8C9A0 0%, #F7A76B 50%, #F05A4E 100%)", // Spring
+  "linear-gradient(180deg, #8FB3E7 0%, #C9D6E8 50%, #F7A76B 100%)", // Summer
+  "linear-gradient(180deg, #1B3A6B 0%, #0F2650 100%)",               // Winter
+] as const;
+
 const PROGRAM_STAGES = [
-  { name: "Undergraduate", image: undergraduateAsset.url, accent: "#C94A2C", pathway: "Build foundations through real-world learning.", offerings: ["Technology & Business", "Data Science & AI", "Finance & Economics", "Psychology & Marketing"], href: "https://mastersunion.org/undergraduate" },
-  { name: "Postgraduate", image: postgraduateAsset.url, accent: "#C99211", pathway: "Accelerate your career through execution.", offerings: ["PGP in Technology & Business Management", "Young Leaders Programme", "Career acceleration", "Venture building"], href: "https://mastersunion.org/postgraduate" },
-  { name: "Executive", image: executiveAsset.url, accent: "#B5482A", pathway: "Transform leadership through practical learning.", offerings: ["Leadership development", "General management", "Executive programmes", "Applied strategy"], href: "https://mastersunion.org/executive-education" },
-  { name: "Immersions", image: immersionAsset.url, accent: "#4A5A1E", pathway: "Bharat Summer Schools, Travel-Based Learnings, intensive bootcamps.", offerings: ["Bharat Summer Schools", "Travel-Based Learnings", "D2C Bootcamps", "AI Bootcamps"], href: "https://mastersunion.org/experiencesatmastersunion" },
-  { name: "Family Business", image: familyBusinessAsset.url, accent: "#4B2240", pathway: "Scale and transform legacy businesses.", offerings: ["Scale legacy businesses", "Navigate succession", "Drive transformation", "Build the next chapter"], href: "https://mastersunion.org/family-business" },
-  { name: "AI", image: aiAsset.url, accent: "#C99211", pathway: "Create products and businesses powered by AI.", offerings: ["AI products", "Applied intelligence", "Business automation", "Venture creation"], href: "https://mastersunion.org/ai" },
-  { name: "Ventures", image: venturesAsset.url, accent: "#6B1F2A", pathway: "Build, launch and fund new ideas.", offerings: ["Incubation", "Funding", "Founder support", "Builder ecosystem"], href: "https://mastersunion.org/student-entrepreneurship" },
-  { name: "Global", image: globalAsset.url, accent: "#1E2B58", pathway: "Experience business beyond borders.", offerings: ["Global campuses", "International faculty", "Company visits", "Cross-border networks"], href: "https://mastersunion.org/undergraduate-global" },
-  { name: "B2B", image: b2bAsset.url, accent: "#1F4D3F", pathway: "Transform teams and organizations.", offerings: ["Corporate learning", "Workforce transformation", "Custom programmes", "Leadership academies"], href: "https://mastersunion.org/enterprise" },
+  { name: "Undergraduate", image: undergraduateAsset.url, accent: "#C94A2C", gradient: SUNSET_GRADIENTS[0], pathway: "Build foundations through real-world learning.", offerings: ["Technology & Business", "Data Science & AI", "Finance & Economics", "Psychology & Marketing"], href: "https://mastersunion.org/undergraduate" },
+  { name: "Postgraduate", image: postgraduateAsset.url, accent: "#C99211", gradient: SUNSET_GRADIENTS[0], pathway: "Accelerate your career through execution.", offerings: ["PGP in Technology & Business Management", "Young Leaders Programme", "Career acceleration", "Venture building"], href: "https://mastersunion.org/postgraduate" },
+  { name: "Executive", image: executiveAsset.url, accent: "#B5482A", gradient: SUNSET_GRADIENTS[0], pathway: "Transform leadership through practical learning.", offerings: ["Leadership development", "General management", "Executive programmes", "Applied strategy"], href: "https://mastersunion.org/executive-education" },
+  { name: "Immersions", image: immersionAsset.url, accent: "#4A5A1E", gradient: SUNSET_GRADIENTS[1], pathway: "Bharat Summer Schools, Travel-Based Learnings, intensive bootcamps.", offerings: ["Bharat Summer Schools", "Travel-Based Learnings", "D2C Bootcamps", "AI Bootcamps"], href: "https://mastersunion.org/experiencesatmastersunion" },
+  { name: "Family Business", image: familyBusinessAsset.url, accent: "#4B2240", gradient: SUNSET_GRADIENTS[1], pathway: "Scale and transform legacy businesses.", offerings: ["Scale legacy businesses", "Navigate succession", "Drive transformation", "Build the next chapter"], href: "https://mastersunion.org/family-business" },
+  { name: "AI", image: aiAsset.url, accent: "#C99211", gradient: SUNSET_GRADIENTS[1], pathway: "Create products and businesses powered by AI.", offerings: ["AI products", "Applied intelligence", "Business automation", "Venture creation"], href: "https://mastersunion.org/ai" },
+  { name: "Ventures", image: venturesAsset.url, accent: "#6B1F2A", gradient: SUNSET_GRADIENTS[2], pathway: "Build, launch and fund new ideas.", offerings: ["Incubation", "Funding", "Founder support", "Builder ecosystem"], href: "https://mastersunion.org/student-entrepreneurship" },
+  { name: "Global", image: globalAsset.url, accent: "#1E2B58", gradient: SUNSET_GRADIENTS[2], pathway: "Experience business beyond borders.", offerings: ["Global campuses", "International faculty", "Company visits", "Cross-border networks"], href: "https://mastersunion.org/undergraduate-global" },
+  { name: "B2B", image: b2bAsset.url, accent: "#1F4D3F", gradient: SUNSET_GRADIENTS[2], pathway: "Transform teams and organizations.", offerings: ["Corporate learning", "Workforce transformation", "Custom programmes", "Leadership academies"], href: "https://mastersunion.org/enterprise" },
 ] as const;
 
 function Programs() {
