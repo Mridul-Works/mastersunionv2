@@ -310,14 +310,14 @@ function Slide({
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(90deg, rgba(241,239,231,0.55) 0%, rgba(241,239,231,0) 35%, rgba(241,239,231,0) 60%, rgba(241,239,231,0.85) 100%)",
+                "linear-gradient(90deg, rgba(26,33,26,0.55) 0%, rgba(26,33,26,0) 35%, rgba(26,33,26,0) 60%, rgba(26,33,26,0.85) 100%)",
             }}
           />
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, rgba(241,239,231,0.7) 0%, rgba(241,239,231,0) 28%, rgba(241,239,231,0) 70%, rgba(241,239,231,0.9) 100%)",
+                "linear-gradient(180deg, rgba(26,33,26,0.7) 0%, rgba(26,33,26,0) 28%, rgba(26,33,26,0) 70%, rgba(26,33,26,0.9) 100%)",
             }}
           />
         </motion.div>
@@ -325,7 +325,7 @@ function Slide({
         <div className="pointer-events-none absolute left-6 bottom-6 z-10 md:left-10 md:bottom-10">
           <StaggeredText delay={0.05} k={`bignum-${index}`}>
             <span
-              className="block bg-gradient-to-b from-[#1A211A] via-[#1A211A]/70 to-[#1A211A]/30 bg-clip-text font-black leading-none tracking-tighter text-transparent"
+              className="block bg-gradient-to-b from-white via-white/70 to-white/30 bg-clip-text font-black leading-none tracking-tighter text-transparent"
               style={{ fontSize: "clamp(64px, 8vw, 120px)" }}
             >
               {String(index + 1).padStart(2, "0")}
