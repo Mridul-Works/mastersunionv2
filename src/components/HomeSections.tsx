@@ -235,9 +235,6 @@ function Programs() {
         </div>
       </div>
     </section>
-
-    {/* Small gap spacer between Programme Finder and next section */}
-    <div className="h-4 bg-[#F5F3EE]" />
   );
 }
 
