@@ -211,27 +211,27 @@ export default function TenThings() {
           {/* Bottom nav: tag + arrows */}
           <div className="pointer-events-none absolute inset-x-0 bottom-6 z-30 flex flex-col items-center gap-3 px-6 md:bottom-10">
               <div className="pointer-events-auto flex w-full max-w-[520px] items-center justify-between">
-                <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-white/70">
-                  <span className="inline-block h-1.5 w-1.5 rounded-none bg-white" />
+                <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-[#1A211A]/70">
+                  <span className="inline-block h-1.5 w-1.5 rounded-none bg-[#1A211A]" />
                   <span className="min-w-[80px] text-center">{project.tag}</span>
                 </div>
 
-                <div className="ml-auto flex items-center gap-2 rounded-none border border-white/10 bg-white/10 px-2 py-1 backdrop-blur-md">
+                <div className="ml-auto flex items-center gap-2 rounded-none border border-[#1A211A]/15 bg-[#1A211A]/5 px-2 py-1 backdrop-blur-md">
                   <button
                     type="button"
                     onClick={() => go(-1)}
                     aria-label="Previous chapter"
-                    className="group flex items-center gap-2 rounded-none px-2 py-1 text-white/80 transition-all hover:bg-white/10 hover:text-white"
+                    className="group flex items-center gap-2 rounded-none px-2 py-1 text-[#1A211A]/80 transition-all hover:bg-[#1A211A]/10 hover:text-[#1A211A]"
                   >
                     <GradientArrow direction="left" className="size-4" />
                     <span className="hidden text-[10px] font-medium uppercase tracking-wider sm:inline">Prev</span>
                   </button>
-                  <span className="h-3.5 w-px bg-white/15" />
+                  <span className="h-3.5 w-px bg-[#1A211A]/15" />
                   <button
                     type="button"
                     onClick={() => go(1)}
                     aria-label="Next chapter"
-                    className="group flex items-center gap-2 rounded-none px-2 py-1 text-white/80 transition-all hover:bg-white/10 hover:text-white"
+                    className="group flex items-center gap-2 rounded-none px-2 py-1 text-[#1A211A]/80 transition-all hover:bg-[#1A211A]/10 hover:text-[#1A211A]"
                   >
                     <span className="hidden text-[10px] font-medium uppercase tracking-wider sm:inline">Next</span>
                     <GradientArrow direction="right" className="size-4" />
@@ -246,10 +246,10 @@ export default function TenThings() {
                   key={p.n}
                   onClick={() => jump(i)}
                   aria-label={`Go to chapter ${i + 1}`}
-                  className="pointer-events-auto group h-[3px] w-8 cursor-pointer overflow-hidden bg-white/15"
+                  className="pointer-events-auto group h-[3px] w-8 cursor-pointer overflow-hidden bg-[#1A211A]/15"
                 >
                   <span
-                    className="block h-full origin-left bg-white transition-transform duration-[500ms] ease-out"
+                    className="block h-full origin-left bg-[#1A211A] transition-transform duration-[500ms] ease-out"
                     style={{ transform: `scaleX(${i === index ? 1 : 0})` }}
                   />
                 </button>
