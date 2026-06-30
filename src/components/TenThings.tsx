@@ -185,22 +185,6 @@ export default function TenThings() {
           </div>
 
 
-          {/* Giant ghost numeral */}
-          <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
-            <AnimatePresence mode="popLayout">
-              <motion.span
-                key={`ghost-${index}`}
-                initial={{ opacity: 0, scale: 1.05 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.6, ease: EASE }}
-                className="select-none bg-gradient-to-b from-[#1A211A]/15 via-[#1A211A]/5 to-transparent bg-clip-text font-black tracking-tighter text-transparent"
-                style={{ fontSize: "clamp(140px, 30vw, 420px)", lineHeight: 1 }}
-              >
-                {String(index + 1).padStart(2, "0")}
-              </motion.span>
-            </AnimatePresence>
-          </div>
 
 
           {/* Slide */}
@@ -308,16 +292,6 @@ function Slide({
           />
         </motion.div>
 
-        <div className="pointer-events-none absolute left-6 bottom-6 z-10 md:left-10 md:bottom-10">
-          <StaggeredText delay={0.05} k={`bignum-${index}`}>
-            <span
-              className="block bg-gradient-to-b from-[#1A211A] via-[#1A211A]/70 to-[#1A211A]/30 bg-clip-text font-black leading-none tracking-tighter text-transparent"
-              style={{ fontSize: "clamp(64px, 8vw, 120px)" }}
-            >
-              {String(index + 1).padStart(2, "0")}
-            </span>
-          </StaggeredText>
-        </div>
 
       </div>
 
