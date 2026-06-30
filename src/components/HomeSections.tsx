@@ -59,7 +59,7 @@ function Programs() {
               className="absolute inset-0 h-full w-full object-cover opacity-20 mix-blend-overlay transition-opacity duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-white/40 via-white/10 to-transparent" />
-            <div className="absolute inset-y-0 left-0 w-1.5" style={{ backgroundColor: stage.accent }} />
+
 
             {/* Vertical index */}
             <div className="pointer-events-none absolute right-4 top-1/2 z-10 hidden -translate-y-1/2 md:right-8 lg:block">
