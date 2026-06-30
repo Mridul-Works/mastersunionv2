@@ -559,7 +559,7 @@ function SectionHead({ eyebrow, title, lede, icon: Icon }: { eyebrow: string; ti
           {Icon && <Icon className="size-4 text-black/70" />}
           <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-black/50">{eyebrow}</p>
         </div>
-        <h2 className="mt-5 text-[clamp(2rem,5vw,3.5rem)] font-semibold leading-[0.95] tracking-tight text-black md:text-[clamp(2.5rem,5vw,4rem)]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+        <h2 className="mt-5 text-[clamp(2rem,5vw,3.5rem)] font-medium leading-[0.95] tracking-tight text-black md:text-[clamp(2.5rem,5vw,4rem)]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
           {title}
         </h2>
       </div>
