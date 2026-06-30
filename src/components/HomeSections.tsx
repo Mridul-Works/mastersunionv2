@@ -186,7 +186,6 @@ function Programs() {
               </a>
             </div>
           </div>
-          </div>
 
           {/* Programmes tile — full list, no overlap */}
           <div className="relative col-span-1 flex flex-col overflow-hidden border-4 border-black bg-[#F5F3EE] p-8 md:col-span-3">
