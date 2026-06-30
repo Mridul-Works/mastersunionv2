@@ -242,7 +242,7 @@ function Programs() {
                 Admissions · Cohort 2026
               </p>
               <h2
-                className="text-[clamp(1.8rem,4vw,3rem)] font-black leading-[0.95] tracking-tighter text-black"
+                className="text-[clamp(1.8rem,4vw,3rem)] font-semibold leading-[0.95] tracking-tight text-black"
                 style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
               >
                 Programmes Accepting
@@ -273,7 +273,7 @@ function Programs() {
                 </div>
                 <div className="flex-1 flex flex-col gap-5">
                   <h3
-                    className="flex-1 text-[1.2rem] font-bold leading-[1.15] tracking-tight text-black transition-colors group-hover:text-white md:text-[1.35rem]"
+                    className="flex-1 text-[1.2rem] font-medium leading-[1.2] tracking-tight text-black transition-colors group-hover:text-white md:text-[1.25rem]"
                     style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                   >
                     {p.title}
@@ -288,10 +288,10 @@ function Programs() {
                 <div className="pt-3">
                   <a
                     href="#"
-                    className="inline-flex items-center gap-1.5 font-sans text-[14px] font-semibold text-black transition-colors group-hover:text-white"
+                    className="group/btn inline-flex w-full items-center justify-center gap-2 border-2 border-black bg-white px-5 py-3 font-sans text-[13px] font-semibold uppercase tracking-[0.12em] text-black transition-all duration-300 hover:bg-black hover:text-white"
                   >
                     Apply Now
-                    <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    <ArrowUpRight className="size-4 transition-transform group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" />
                   </a>
                 </div>
               </article>
