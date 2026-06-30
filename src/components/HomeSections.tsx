@@ -127,9 +127,9 @@ function Programs() {
         </div>
 
         {/* Editorial grid */}
-        <div className="relative col-span-12 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-4 lg:col-span-8">
+        <div className="relative col-span-12 grid grid-cols-1 gap-4 md:grid-cols-5 lg:col-span-8">
           {/* Feature tile — dark */}
-          <div className="group relative flex aspect-[3/4] flex-col justify-end overflow-hidden bg-black p-8 transition-transform duration-500 hover:-translate-y-2">
+          <div className="group relative col-span-1 flex min-h-[420px] flex-col justify-end overflow-hidden bg-black p-8 md:col-span-2">
             <div className="absolute right-0 top-0 z-10 p-6">
               <span className="border border-white/30 px-3 py-1 text-[10px] uppercase tracking-widest text-white">
                 Persona
@@ -141,7 +141,7 @@ function Programs() {
                 Currently viewing
               </p>
               <h3
-                className="mb-4 text-[clamp(2.5rem,4.5vw,3.5rem)] font-black uppercase leading-[0.9] text-white transition-all duration-700 group-hover:-translate-x-1"
+                className="mb-4 text-[clamp(2.2rem,4vw,3.25rem)] font-black uppercase leading-[0.9] text-white"
                 style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
               >
                 {active.headline}
@@ -158,41 +158,44 @@ function Programs() {
             </div>
           </div>
 
-          {/* Programmes tile — bordered, shifted down */}
-          <div className="group relative flex aspect-[3/4] flex-col justify-between overflow-hidden border-4 border-black bg-[#F5F3EE] p-8 transition-transform duration-500 hover:-translate-y-2 md:mt-16">
-            <div className="absolute right-0 top-0 p-6">
-              <span className="border border-black/30 px-3 py-1 text-[10px] uppercase tracking-widest text-black">
-                {String(active.programmes.length).padStart(2, "0")} Programmes
+          {/* Programmes tile — full list, no overlap */}
+          <div className="relative col-span-1 flex flex-col overflow-hidden border-4 border-black bg-[#F5F3EE] p-8 md:col-span-3">
+            <div className="mb-6 flex items-start justify-between gap-4">
+              <div className="min-w-0">
+                <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.28em] text-black/50">
+                  Browse the list
+                </p>
+                <h3
+                  className="text-[clamp(1.8rem,3vw,2.5rem)] font-black uppercase leading-[0.9] text-black"
+                  style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                >
+                  Programmes
+                </h3>
+              </div>
+              <span className="shrink-0 border border-black/30 px-3 py-1 text-[10px] uppercase tracking-widest text-black">
+                {String(active.programmes.length).padStart(2, "0")} Total
               </span>
             </div>
-            <div className="relative">
-              <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.28em] text-black/50">
-                Browse the list
-              </p>
-              <h3
-                className="text-[clamp(2.2rem,3.8vw,3rem)] font-black uppercase leading-[0.9] text-black"
-                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-              >
-                Programmes
-              </h3>
-            </div>
 
-            <ul className="relative max-h-[260px] space-y-2 overflow-y-auto pr-1">
-              {active.programmes.slice(0, 5).map((pg, i) => (
+            <ul className="relative flex-1 space-y-0 overflow-y-auto pr-1">
+              {active.programmes.map((pg, i) => (
                 <li key={pg.title}>
                   <a
                     href={pg.href ?? active.viewAllHref}
                     target="_blank"
                     rel="noreferrer"
-                    className="group/row flex items-start gap-3 border-b border-black/10 py-2 transition hover:border-black"
+                    className="group/row grid grid-cols-[auto_minmax(0,1fr)_auto] items-start gap-3 border-b border-black/10 py-3 transition hover:border-black"
                   >
                     <span className="mt-1 font-mono text-[10px] text-black/40">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="flex-1 text-[13px] font-semibold leading-snug text-black">
+                    <span className="min-w-0 text-[13px] font-semibold leading-snug text-black">
                       {pg.title}
+                      <span className="mt-1 block font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-black/45">
+                        {pg.duration} · {pg.format}
+                      </span>
                     </span>
-                    <ArrowUpRight className="mt-0.5 size-3.5 shrink-0 -translate-x-1 opacity-0 transition group-hover/row:translate-x-0 group-hover/row:opacity-100" />
+                    <ArrowUpRight className="mt-1 size-3.5 shrink-0 opacity-30 transition group-hover/row:opacity-100" />
                   </a>
                 </li>
               ))}
@@ -202,50 +205,10 @@ function Programs() {
               href={active.viewAllHref}
               target="_blank"
               rel="noreferrer"
-              className="relative w-fit border-b-2 border-black pb-1 text-[11px] font-black uppercase tracking-[0.22em]"
+              className="mt-6 w-fit border-b-2 border-black pb-1 text-[11px] font-black uppercase tracking-[0.22em]"
             >
               View all {active.programmes.length} →
             </a>
-
-            <div
-              className="pointer-events-none absolute -bottom-6 -right-10 select-none text-[11rem] font-black leading-none text-black/[0.05]"
-              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-            >
-              {active.headline.split(" ")[0].slice(0, 4).toUpperCase()}
-            </div>
-          </div>
-
-          {/* Overlapping stat / CTA tile */}
-          <div className="group relative z-20 col-span-1 flex aspect-[4/3] items-center overflow-hidden border border-black/10 bg-white p-10 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.25)] transition-transform duration-500 hover:scale-[1.01] md:col-span-2 md:-mt-24 md:mx-12">
-            <div className="w-1/2 pr-8">
-              <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-black/50">
-                Not sure yet?
-              </p>
-              <h3
-                className="mb-4 text-[clamp(1.8rem,3vw,2.5rem)] font-black uppercase leading-[0.9] tracking-tighter text-black"
-                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-              >
-                Short <br /> Courses
-              </h3>
-              <p className="text-[13px] leading-snug text-black/55">
-                Bootcamps, summer schools and weekend intensives — start with a sprint before you commit to a programme.
-              </p>
-            </div>
-            <div className="relative flex h-full w-1/2 items-center justify-center bg-[#EFEDE7]">
-              <span className="pointer-events-none absolute rotate-90 font-mono text-[10px] font-bold uppercase tracking-[0.5em] text-black/15">
-                Cohort 2026 · Open
-              </span>
-              <div className="relative z-10 border-2 border-black bg-white p-3">
-                <a
-                  href="https://mastersunion.org"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 whitespace-nowrap bg-black px-6 py-3 text-[11px] font-bold uppercase tracking-[0.22em] text-white transition hover:bg-black/85"
-                >
-                  Browse calendar <ArrowRight className="size-3.5" />
-                </a>
-              </div>
-            </div>
           </div>
         </div>
       </div>
