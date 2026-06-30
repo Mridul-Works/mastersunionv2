@@ -84,8 +84,8 @@ export default function TenThings() {
           <div className="mb-6 flex items-center gap-3 md:mb-8">
             <span className="h-px w-12 bg-[#1A211A]/40" />
             <span
-              className="text-[10px] uppercase tracking-[0.3em] text-[#1A211A]/55"
-              style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
+              className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#1A211A]/55"
+              style={{ fontFamily: "'JetBrains Mono', monospace" }}
             >
               Field Notes — Vol. 01
             </span>
@@ -93,29 +93,23 @@ export default function TenThings() {
 
           <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <h2
-              className="max-w-[920px] leading-[1.02] tracking-[-0.02em] text-[#1A211A]"
+              className="max-w-[920px] leading-[1.02] tracking-tight text-[#1A211A]"
               style={{
                 fontFamily: "'Inter', system-ui, sans-serif",
-                fontWeight: 400,
+                fontWeight: 600,
                 fontSize: "clamp(40px, 7.5vw, 92px)",
               }}
             >
               Cut the{" "}
               <em
-                className="text-[#1A211A]/60"
-                style={{ fontFamily: "'Inter', system-ui, sans-serif", fontStyle: "italic", fontWeight: 300 }}
+                className="font-light italic text-[#1A211A]/60"
+                style={{ fontFamily: "'Fraunces', Georgia, serif" }}
               >
                 marketing.
               </em>
               <br className="hidden md:block" />
-              <span className="relative inline-block">
-                <span
-                  className="relative z-10 italic"
-                  style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 400 }}
-                >
-                  10 things about Masters' Union
-                </span>
-                <span className="absolute inset-x-0 bottom-3 z-0 h-[4px] bg-[#1A211A]/15 md:bottom-4" />
+              <span className="font-light italic" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+                10 things about Masters' Union
               </span>
             </h2>
 
@@ -128,8 +122,8 @@ export default function TenThings() {
               </p>
 
               <div
-                className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[10px] uppercase tracking-[0.26em] text-[#1A211A]/55"
-                style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
+                className="flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[10px] uppercase tracking-[0.26em] text-[#1A211A]/55"
+                style={{ fontFamily: "'JetBrains Mono', monospace" }}
               >
                 <span>{String(CHAPTERS.length).padStart(2, "0")} Chapters</span>
                 <span className="h-1 w-1 rounded-full bg-[#1A211A]/60" />
