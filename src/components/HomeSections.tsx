@@ -279,6 +279,9 @@ export default function HomeSections() {
       </section>
 
 
+      {/* PROGRAMS */}
+      <Programs />
+
       {/* FOUNDER'S MESSAGE */}
       <section id="founders" className="border-t border-black/10 bg-white">
         <div className="mx-auto max-w-[1280px] px-6 py-6 md:px-10 md:py-8">
@@ -306,9 +309,6 @@ export default function HomeSections() {
           </div>
         </div>
       </section>
-
-      {/* PROGRAMS */}
-      <Programs />
 
       {/* PEDAGOGY */}
       <section id="pedagogy" className="border-t border-black/10 bg-neutral-50">
