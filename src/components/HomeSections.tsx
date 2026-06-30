@@ -398,26 +398,29 @@ export default function HomeSections() {
       <section id="founders" className="border-t border-black/10 bg-white">
         <div className="mx-auto max-w-[1280px] px-6 py-6 md:px-10 md:py-8">
           <div
-            className="relative grid overflow-hidden rounded-none md:grid-cols-12 min-h-[360px] md:min-h-[420px]"
+            className="relative grid overflow-hidden rounded-none md:grid-cols-12 min-h-[520px] md:min-h-[640px]"
             style={{
               background: "linear-gradient(135deg, #E31B23 0%, #F97316 35%, #FACC15 70%, #E31B23 100%)",
             }}
           >
             <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "radial-gradient(circle at 2px 2px, rgba(0,0,0,0.35) 1px, transparent 0)", backgroundSize: "18px 18px" }} />
-            <div className="relative flex items-end justify-center md:col-span-4">
+            <div className="relative flex items-end justify-center md:col-span-5">
               <img
                 src={founderPhoto.url}
                 alt="Pratham Mittal"
-                className="h-[360px] w-full object-contain object-bottom md:h-[420px]"
+                loading="lazy"
+                width={1024}
+                height={1280}
+                className="h-full w-full object-contain object-bottom"
               />
             </div>
-            <div className="relative flex flex-col justify-center p-6 md:col-span-8 md:p-8 lg:p-10">
-              <Quote className="mb-3 size-5 text-black/60" />
-              <h2 className="text-xl leading-[1.1] tracking-tight text-black md:text-2xl lg:text-[28px]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-                "If education was working, we wouldn't have built <span className="italic text-black/80">Masters' Union.</span>"
+            <div className="relative flex flex-col justify-center p-6 md:col-span-7 md:p-8 lg:p-12">
+              <Quote className="mb-4 size-6 text-black/60" />
+              <h2 className="max-w-[22ch] text-2xl leading-[1.1] tracking-tight text-black md:text-3xl lg:text-[34px]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+                "If education was working, we wouldn't have built <span className="italic text-black/80" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>Masters' Union.</span>"
               </h2>
-              <div className="mt-4 flex items-center gap-3">
-                <div className="h-px w-8 bg-black/40" />
+              <div className="mt-6 flex items-center gap-3">
+                <div className="h-px w-10 bg-black/40" />
                 <div>
                   <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-black/80">Pratham Mittal</p>
                   <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-black/60">Founder, Masters' Union</p>
