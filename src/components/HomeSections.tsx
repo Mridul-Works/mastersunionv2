@@ -142,32 +142,50 @@ function Programs() {
 
         {/* Editorial grid */}
         <div className="relative col-span-12 grid grid-cols-1 gap-4 md:grid-cols-5 lg:col-span-8">
-          {/* Feature tile — soft gradient */}
+          {/* Feature tile — editorial poster */}
           <div
-            className="group relative col-span-1 flex min-h-[420px] flex-col justify-end overflow-hidden p-8 md:col-span-2 transition-colors duration-500"
+            key={active.key}
+            className="group relative col-span-1 flex min-h-[520px] flex-col justify-end overflow-hidden p-8 md:col-span-2"
             style={{ background: active.theme }}
           >
-            <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_20%_100%,rgba(255,255,255,0.4),transparent_60%)]" />
-            <div className="relative z-10">
-              <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.28em] text-black/55">
+            <img
+              src={active.image}
+              alt={active.headline}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover object-center animate-[fadeIn_0.6s_ease-out]"
+            />
+            {/* Top fade for prelude text + bottom scrim for headline/CTA */}
+            <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-black/55 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/75 via-black/30 to-transparent" />
+
+            {/* Top prelude */}
+            <div className="absolute left-8 top-7 z-10">
+              <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-white/80">
                 Currently viewing
               </p>
+            </div>
+
+            {/* Bottom content */}
+            <div className="relative z-10">
+              <p className="mb-1 text-[14px] font-medium lowercase text-white/90">
+                {active.subhead.toLowerCase()}
+              </p>
               <h3
-                className="mb-4 text-[clamp(2.2rem,4vw,3.25rem)] font-black uppercase leading-[0.9] text-black"
+                className="mb-6 text-[clamp(2.8rem,5.2vw,4.25rem)] font-black uppercase leading-[0.88] tracking-tight text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.45)]"
                 style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
               >
-                {active.headline}
+                {active.headline}.
               </h3>
-              <p className="mb-6 max-w-[260px] text-[14px] font-semibold text-black/70">{active.subhead}</p>
               <a
                 href={active.viewAllHref}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 bg-black px-5 py-3 text-[11px] font-bold uppercase tracking-[0.22em] text-white transition hover:bg-neutral-800"
+                className="inline-flex items-center gap-2 bg-white px-5 py-3 text-[11px] font-bold uppercase tracking-[0.22em] text-black transition hover:bg-white/85"
               >
                 View all <ArrowRight className="size-3.5" />
               </a>
             </div>
+          </div>
           </div>
 
           {/* Programmes tile — full list, no overlap */}
