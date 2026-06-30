@@ -3,6 +3,7 @@ import { ArrowUpRight, ArrowRight, ChevronLeft, ChevronRight, Hourglass, Quote, 
 
 import { Link } from "@tanstack/react-router";
 import founderPhoto from "@/assets/pratham-chest.png.asset.json";
+import logoWhite from "@/assets/logo-4.png.asset.json";
 import pathwaySchool from "@/assets/pathways/school.jpg";
 import pathwayCollege from "@/assets/pathways/college.jpg";
 import pathwayWork from "@/assets/pathways/work.jpg";
@@ -515,9 +516,11 @@ export default function HomeSections() {
         <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10">
           <div className="grid gap-12 md:grid-cols-12">
             <div className="md:col-span-5">
-              <p className="text-3xl leading-tight tracking-tight md:text-4xl" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-                Masters' Union — <span className="italic text-white/70">business education,<br />rebuilt for the next decade.</span>
-              </p>
+              <img
+                src={logoWhite.url}
+                alt="Masters' Union"
+                className="h-12 w-auto brightness-0 invert md:h-14"
+              />
               <p className="mt-8 max-w-sm text-[13px] leading-relaxed text-white/55">
                 DLF Cyberpark, Phase III<br />
                 Gurugram 122002, India<br />
