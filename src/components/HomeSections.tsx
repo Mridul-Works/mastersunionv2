@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { ArrowUpRight, ArrowRight, ChevronLeft, ChevronRight, Hourglass, Quote, GraduationCap, Rocket, Briefcase, Users, Mic, ChefHat, Building2, Send, Instagram, Linkedin, Youtube, Twitter, ShoppingCart } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { ArrowUpRight, ArrowRight, ChevronLeft, ChevronRight, ChevronDown, Check, Hourglass, Quote, GraduationCap, Rocket, Briefcase, Users, Mic, ChefHat, Building2, Send, Instagram, Linkedin, Youtube, Twitter, ShoppingCart } from "lucide-react";
+
 import { Link } from "@tanstack/react-router";
 import founderPhoto from "@/assets/pratham-chest.png.asset.json";
 import undergraduateAsset from "@/assets/programs/editorial-undergraduate.jpg.asset.json";
