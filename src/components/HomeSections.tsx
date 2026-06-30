@@ -75,7 +75,11 @@ function Programs() {
                 const isActive = i === active;
                 return (
                   <li key={s.name}>
-                    <button type="button" onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)} onClick={() => setActive(i)} aria-current={isActive ? "true" : undefined} className={`group flex w-full flex-col items-start gap-2 px-3 py-3 text-left transition ${isActive ? "bg-[#1C1C1C] text-[#F2E8D3]" : "text-[#1C1C1C] hover:bg-black/5"}`}>
+                    <button type="button" onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)} onClick={() => setActive(i)} aria-current={isActive ? "true" : undefined} className={`group relative flex w-full flex-col items-start gap-2 overflow-hidden px-3 py-3 text-left transition ${isActive ? "bg-[#1C1C1C] text-[#F2E8D3]" : "text-[#1C1C1C] hover:bg-black/5"}`}>
+                      <div className="relative mb-1 h-14 w-full overflow-hidden sm:h-16">
+                        <img src={s.image} alt={s.name} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" style={{ opacity: isActive ? 0.55 : 0.35 }} />
+                        <div className="absolute inset-0 bg-gradient-to-t from-current/80 via-current/20 to-transparent" />
+                      </div>
                       <span className="font-mono text-[10px] uppercase tracking-[0.28em] opacity-60" style={isActive ? { color: s.accent, opacity: 1 } : undefined}>0{i + 1}</span>
                       <span className="text-[13px] font-medium leading-tight tracking-tight">{s.name}</span>
                       <span className="mt-1 h-[2px] w-8 transition" style={{ backgroundColor: isActive ? s.accent : "rgba(28,28,28,0.15)" }} />
