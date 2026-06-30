@@ -141,11 +141,11 @@ function Programs() {
         </div>
 
         {/* Editorial grid */}
-        <div className="relative col-span-12 grid grid-cols-1 gap-0 md:grid-cols-5 lg:col-span-8 border border-black">
+        <div className="relative col-span-12 grid grid-cols-1 gap-4 md:grid-cols-5 lg:col-span-8">
           {/* Feature tile — editorial poster */}
           <div
             key={active.key}
-            className="group relative col-span-1 flex min-h-[540px] flex-col overflow-hidden md:col-span-2"
+            className="group relative col-span-1 flex h-[540px] flex-col overflow-hidden md:col-span-2 border border-black"
             style={{ background: active.theme }}
           >
             <img
@@ -180,9 +180,9 @@ function Programs() {
             </div>
           </div>
 
-          {/* Programmes tile — full list, no overlap */}
-          <div className="relative col-span-1 flex flex-col overflow-hidden border-4 border-black bg-[#F5F3EE] p-8 md:col-span-3">
-            <div className="mb-6 flex items-start justify-between gap-4">
+          {/* Programmes tile — fixed height, scrollable list */}
+          <div className="relative col-span-1 flex h-[540px] flex-col overflow-hidden border border-black bg-[#F5F3EE] p-6 md:col-span-3">
+            <div className="mb-5 flex items-start justify-between gap-4">
               <div className="min-w-0">
                 <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.28em] text-black/50">
                   Browse the list
@@ -199,7 +199,7 @@ function Programs() {
               </span>
             </div>
 
-            <ul className="relative flex-1 space-y-0 overflow-y-auto pr-1">
+            <ul className="relative h-[calc(100%-130px)] space-y-0 overflow-y-auto pr-1">
               {active.programmes.map((pg, i) => (
                 <li key={pg.title}>
                   <a
@@ -227,7 +227,7 @@ function Programs() {
               href={active.viewAllHref}
               target="_blank"
               rel="noreferrer"
-              className="mt-6 w-fit border-b-2 border-black pb-1 text-[11px] font-black uppercase tracking-[0.22em]"
+              className="mt-5 w-fit border-b-2 border-black pb-1 text-[11px] font-black uppercase tracking-[0.22em]"
             >
               View all {active.programmes.length} →
             </a>
@@ -235,6 +235,9 @@ function Programs() {
         </div>
       </div>
     </section>
+
+    {/* Small gap spacer between Programme Finder and next section */}
+    <div className="h-4 bg-[#F5F3EE]" />
   );
 }
 
