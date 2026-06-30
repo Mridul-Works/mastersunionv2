@@ -208,38 +208,15 @@ export default function TenThings() {
             <Slide key={project.n} project={project} direction={direction} index={index} />
           </AnimatePresence>
 
-          {/* Bottom nav: tag + arrows */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-6 z-30 flex flex-col items-center gap-3 px-6 md:bottom-10">
-              <div className="pointer-events-auto flex w-full max-w-[520px] items-center justify-between">
-                <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-[#1A211A]/70">
-                  <span className="inline-block h-1.5 w-1.5 rounded-none bg-[#1A211A]" />
-                  <span className="min-w-[80px] text-center">{project.tag}</span>
-                </div>
+          {/* Bottom nav: tag / progress / arrows */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-30 flex flex-col gap-3 px-6 pb-6 md:flex-row md:items-end md:justify-between md:px-12 md:pb-10">
+            {/* Tag */}
+            <div className="pointer-events-auto flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-[#1A211A]/70">
+              <span className="inline-block h-1.5 w-1.5 bg-[#1A211A]" />
+              <span className="min-w-[80px]">{project.tag}</span>
+            </div>
 
-                <div className="ml-auto flex items-center gap-2 rounded-none border border-[#1A211A]/15 bg-[#1A211A]/5 px-2 py-1 backdrop-blur-md">
-                  <button
-                    type="button"
-                    onClick={() => go(-1)}
-                    aria-label="Previous chapter"
-                    className="group flex items-center gap-2 rounded-none px-2 py-1 text-[#1A211A]/80 transition-all hover:bg-[#1A211A]/10 hover:text-[#1A211A]"
-                  >
-                    <GradientArrow direction="left" className="size-4" />
-                    <span className="hidden text-[10px] font-medium uppercase tracking-wider sm:inline">Prev</span>
-                  </button>
-                  <span className="h-3.5 w-px bg-[#1A211A]/15" />
-                  <button
-                    type="button"
-                    onClick={() => go(1)}
-                    aria-label="Next chapter"
-                    className="group flex items-center gap-2 rounded-none px-2 py-1 text-[#1A211A]/80 transition-all hover:bg-[#1A211A]/10 hover:text-[#1A211A]"
-                  >
-                    <span className="hidden text-[10px] font-medium uppercase tracking-wider sm:inline">Next</span>
-                    <GradientArrow direction="right" className="size-4" />
-                  </button>
-                </div>
-
-              </div>
-
+            {/* Progress */}
             <div className="flex items-center gap-2">
               {CHAPTERS.map((p, i) => (
                 <button
@@ -254,6 +231,27 @@ export default function TenThings() {
                   />
                 </button>
               ))}
+            </div>
+
+            {/* Arrows */}
+            <div className="pointer-events-auto flex items-center gap-1 rounded-none border border-[#1A211A]/15 bg-[#F1EFE7]/80 px-1.5 py-1 backdrop-blur-md">
+              <button
+                type="button"
+                onClick={() => go(-1)}
+                aria-label="Previous chapter"
+                className="group flex size-8 items-center justify-center rounded-none text-[#1A211A]/70 transition-all hover:bg-[#1A211A]/10 hover:text-[#1A211A]"
+              >
+                <GradientArrow direction="left" className="size-3.5" />
+              </button>
+              <span className="h-4 w-px bg-[#1A211A]/15" />
+              <button
+                type="button"
+                onClick={() => go(1)}
+                aria-label="Next chapter"
+                className="group flex size-8 items-center justify-center rounded-none text-[#1A211A]/70 transition-all hover:bg-[#1A211A]/10 hover:text-[#1A211A]"
+              >
+                <GradientArrow direction="right" className="size-3.5" />
+              </button>
             </div>
           </div>
 
