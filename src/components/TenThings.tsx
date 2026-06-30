@@ -306,20 +306,6 @@ function Slide({
             exit={{ scale: 1.05, x: -direction * 40 }}
             transition={{ duration: SLIDE_DURATION * 1.2, ease: EASE }}
           />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(90deg, rgba(241,239,231,0.55) 0%, rgba(241,239,231,0) 35%, rgba(241,239,231,0) 60%, rgba(241,239,231,0.85) 100%)",
-            }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(241,239,231,0.7) 0%, rgba(241,239,231,0) 28%, rgba(241,239,231,0) 70%, rgba(241,239,231,0.9) 100%)",
-            }}
-          />
         </motion.div>
 
         <div className="pointer-events-none absolute left-6 bottom-6 z-10 md:left-10 md:bottom-10">
