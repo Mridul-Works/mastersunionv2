@@ -159,7 +159,8 @@ export default function TenThings() {
 
       {/* Card widget — slides in from right on scroll */}
       <div ref={widgetRef} className="absolute inset-0 z-20 bg-[#F1EFE7] will-change-transform">
-        <div className="relative h-full min-h-[640px] w-full overflow-hidden bg-[#2A312A]">
+        <div className="relative h-full min-h-[640px] w-full overflow-hidden bg-[#F1EFE7]">
+
 
 
           {/* Counter top-left */}
