@@ -128,30 +128,25 @@ function Programs() {
 
         {/* Editorial grid */}
         <div className="relative col-span-12 grid grid-cols-1 gap-4 md:grid-cols-5 lg:col-span-8">
-          {/* Feature tile — dark */}
-          <div className="group relative col-span-1 flex min-h-[420px] flex-col justify-end overflow-hidden bg-black p-8 md:col-span-2">
-            <div className="absolute right-0 top-0 z-10 p-6">
-              <span className="border border-white/30 px-3 py-1 text-[10px] uppercase tracking-widest text-white">
-                Persona
-              </span>
-            </div>
-            <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_20%_100%,rgba(255,255,255,0.08),transparent_60%)]" />
+          {/* Feature tile — soft gradient */}
+          <div className="group relative col-span-1 flex min-h-[420px] flex-col justify-end overflow-hidden p-8 md:col-span-2" style={{ background: 'linear-gradient(135deg, #f5e6f0 0%, #f7d9c4 25%, #f8e8d4 50%, #d4e6e0 100%)' }}>
+            <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_20%_100%,rgba(255,255,255,0.4),transparent_60%)]" />
             <div className="relative z-10">
-              <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.28em] text-white/50">
+              <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.28em] text-black/55">
                 Currently viewing
               </p>
               <h3
-                className="mb-4 text-[clamp(2.2rem,4vw,3.25rem)] font-black uppercase leading-[0.9] text-white"
+                className="mb-4 text-[clamp(2.2rem,4vw,3.25rem)] font-black uppercase leading-[0.9] text-black"
                 style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
               >
                 {active.headline}
               </h3>
-              <p className="mb-6 max-w-[260px] text-[14px] text-white/70">{active.subhead}</p>
+              <p className="mb-6 max-w-[260px] text-[14px] font-semibold text-black/70">{active.subhead}</p>
               <a
                 href={active.viewAllHref}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 bg-[#F5F3EE] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.22em] text-black transition hover:bg-white"
+                className="inline-flex items-center gap-2 bg-black px-5 py-3 text-[11px] font-bold uppercase tracking-[0.22em] text-white transition hover:bg-neutral-800"
               >
                 View all <ArrowRight className="size-3.5" />
               </a>
