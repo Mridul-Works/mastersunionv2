@@ -99,10 +99,10 @@ const NEWS = [
 ];
 
 const PROGRAMS = [
-  { mode: "ON CAMPUS", duration: "2 YEARS", title: "PGP in Technology & Business Management", round: "Round 1 Applications Open" },
-  { mode: "ON CAMPUS", duration: "1 YEAR", title: "PGP in Quantitative Finance & Business", round: "Round 2 Applications Open" },
-  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Technology & Business Management", round: "Round 4 Applications Open" },
-  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Psychology & Marketing", round: "Round 4 Applications Open" },
+  { mode: "ON CAMPUS", duration: "2 YEARS", title: "PGP in Technology & Business Management", round: "Round 1 Applications Open", image: postgraduateAsset.url, accent: "#C99211", statusColor: "#166534" },
+  { mode: "ON CAMPUS", duration: "1 YEAR", title: "PGP in Quantitative Finance & Business", round: "Round 2 Applications Open", image: executiveAsset.url, accent: "#B5482A", statusColor: "#166534" },
+  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Technology & Business Management", round: "Round 4 Applications Open", image: undergraduateAsset.url, accent: "#C94A2C", statusColor: "#166534" },
+  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Psychology & Marketing", round: "Round 4 Applications Open", image: b2bAsset.url, accent: "#1F4D3F", statusColor: "#166534" },
 ];
 
 const PEDAGOGY = [
