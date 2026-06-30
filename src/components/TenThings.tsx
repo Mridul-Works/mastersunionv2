@@ -325,7 +325,7 @@ function Slide({
         <div className="pointer-events-none absolute left-6 bottom-6 z-10 md:left-10 md:bottom-10">
           <StaggeredText delay={0.05} k={`bignum-${index}`}>
             <span
-              className="block bg-gradient-to-b from-[#1A211A] via-[#1A211A]/70 to-[#1A211A]/30 bg-clip-text font-black leading-none tracking-tighter text-transparent"
+              className="block bg-gradient-to-b from-white via-white/70 to-white/30 bg-clip-text font-black leading-none tracking-tighter text-transparent"
               style={{ fontSize: "clamp(64px, 8vw, 120px)" }}
             >
               {String(index + 1).padStart(2, "0")}
