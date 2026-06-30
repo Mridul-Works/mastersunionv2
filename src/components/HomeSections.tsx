@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowUpRight, ChevronLeft, ChevronRight, Hourglass, Quote, GraduationCap, Rocket, Briefcase, Users, Mic, ChefHat, Building2, Send, Instagram, Linkedin, Youtube, Twitter, ShoppingCart } from "lucide-react";
+import { ArrowUpRight, ArrowRight, ChevronLeft, ChevronRight, Hourglass, Quote, GraduationCap, Rocket, Briefcase, Users, Mic, ChefHat, Building2, Send, Instagram, Linkedin, Youtube, Twitter, ShoppingCart } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import founderPhoto from "@/assets/pratham-chest.png.asset.json";
 import undergraduateAsset from "@/assets/programs/editorial-undergraduate.jpg.asset.json";
@@ -13,28 +13,31 @@ import globalAsset from "@/assets/programs/editorial-global.jpg.asset.json";
 import b2bAsset from "@/assets/programs/editorial-b2b.jpg.asset.json";
 
 const PROGRAM_STAGES = [
-  { name: "Undergraduate", image: undergraduateAsset.url, accent: "#FF7A4D", gradient: "linear-gradient(180deg, #D8B48A 0%, #E8B888 22%, #F5A06E 50%, #FF7A55 78%, #F25638 100%)", textOn: "#2A1208", pathway: "Build foundations through real-world learning.", offerings: ["Technology & Business", "Data Science & AI", "Finance & Economics", "Psychology & Marketing"], href: "https://mastersunion.org/undergraduate" },
-  { name: "Postgraduate", image: postgraduateAsset.url, accent: "#F5A04A", gradient: "linear-gradient(180deg, #A8C4E8 0%, #C8BFD0 28%, #E8B894 55%, #F5A062 80%, #ED7A38 100%)", textOn: "#2A1605", pathway: "Accelerate your career through execution.", offerings: ["PGP in Technology & Business Management", "Young Leaders Programme", "Career acceleration", "Venture building"], href: "https://mastersunion.org/postgraduate" },
-  { name: "Executive", image: executiveAsset.url, accent: "#E85A38", gradient: "linear-gradient(180deg, #F0D2B8 0%, #F2A87C 35%, #E8704A 70%, #B83820 100%)", textOn: "#1F0A05", pathway: "Transform leadership through practical learning.", offerings: ["Leadership development", "General management", "Executive programmes", "Applied strategy"], href: "https://mastersunion.org/executive-education" },
-  { name: "Immersions", image: immersionAsset.url, accent: "#B8C77A", gradient: "linear-gradient(180deg, #E8E2BC 0%, #C8D08A 30%, #8AA858 60%, #4F7038 85%, #2A4A1F 100%)", textOn: "#0F1A05", pathway: "Bharat Summer Schools, Travel-Based Learnings, intensive bootcamps.", offerings: ["Bharat Summer Schools", "Travel-Based Learnings", "D2C Bootcamps", "AI Bootcamps"], href: "https://mastersunion.org/experiencesatmastersunion" },
-  { name: "Family Business", image: familyBusinessAsset.url, accent: "#A878C8", gradient: "linear-gradient(180deg, #F0D8E8 0%, #D4A8D8 30%, #9858B0 65%, #4A1F6A 100%)", textOn: "#160820", pathway: "Scale and transform legacy businesses.", offerings: ["Scale legacy businesses", "Navigate succession", "Drive transformation", "Build the next chapter"], href: "https://mastersunion.org/family-business" },
-  { name: "AI", image: aiAsset.url, accent: "#5AC8E0", gradient: "linear-gradient(180deg, #D8EEF2 0%, #8AC8E0 30%, #3A78C8 65%, #112C7A 100%)", textOn: "#040E1F", pathway: "Create products and businesses powered by AI.", offerings: ["AI products", "Applied intelligence", "Business automation", "Venture creation"], href: "https://mastersunion.org/ai" },
-  { name: "Ventures", image: venturesAsset.url, accent: "#E84A6B", gradient: "linear-gradient(180deg, #F5D2C8 0%, #F0A0A0 30%, #D85870 65%, #7A1F38 100%)", textOn: "#1A0408", pathway: "Build, launch and fund new ideas.", offerings: ["Incubation", "Funding", "Founder support", "Builder ecosystem"], href: "https://mastersunion.org/student-entrepreneurship" },
-  { name: "Global", image: globalAsset.url, accent: "#2E55C8", gradient: "linear-gradient(180deg, #1E2A6A 0%, #1F3A95 35%, #234FBA 70%, #0D1E58 100%)", textOn: "#050F2E", pathway: "Experience business beyond borders.", offerings: ["Global campuses", "International faculty", "Company visits", "Cross-border networks"], href: "https://mastersunion.org/undergraduate-global" },
-  { name: "B2B", image: b2bAsset.url, accent: "#4FB89A", gradient: "linear-gradient(180deg, #D8E8C8 0%, #A8C898 30%, #4F9878 65%, #1A4A38 100%)", textOn: "#04140D", pathway: "Transform teams and organizations.", offerings: ["Corporate learning", "Workforce transformation", "Custom programmes", "Leadership academies"], href: "https://mastersunion.org/enterprise" },
+  { name: "Undergraduate", image: undergraduateAsset.url, accent: "#E8A87C", gradient: "linear-gradient(135deg, #FCE5D8 0%, #F8D4A8 50%, #F0E8D4 100%)", textOn: "#1A1208", pathway: "Build foundations through real-world learning.", offerings: ["Technology & Business", "Data Science & AI", "Finance & Economics", "Psychology & Marketing"], href: "https://mastersunion.org/undergraduate" },
+  { name: "Postgraduate", image: postgraduateAsset.url, accent: "#C9A0DC", gradient: "linear-gradient(135deg, #E8D4E8 0%, #F8D4A8 45%, #D4E8F0 100%)", textOn: "#1A1208", pathway: "Accelerate your career through execution.", offerings: ["PGP in Technology & Business Management", "Young Leaders Programme", "Career acceleration", "Venture building"], href: "https://mastersunion.org/postgraduate" },
+  { name: "Executive", image: executiveAsset.url, accent: "#F0A0A0", gradient: "linear-gradient(135deg, #F5D2C8 0%, #F0A0A0 55%, #E8D4E8 100%)", textOn: "#1A1208", pathway: "Transform leadership through practical learning.", offerings: ["Leadership development", "General management", "Executive programmes", "Applied strategy"], href: "https://mastersunion.org/executive-education" },
+  { name: "Immersions", image: immersionAsset.url, accent: "#A8C0A0", gradient: "linear-gradient(135deg, #E8F4E8 0%, #D8E8C8 50%, #E8E2BC 100%)", textOn: "#0F1A05", pathway: "Bharat Summer Schools, Travel-Based Learnings, intensive bootcamps.", offerings: ["Bharat Summer Schools", "Travel-Based Learnings", "D2C Bootcamps", "AI Bootcamps"], href: "https://mastersunion.org/experiencesatmastersunion" },
+  { name: "Family Business", image: familyBusinessAsset.url, accent: "#D4A8D8", gradient: "linear-gradient(135deg, #F0D8E8 0%, #D4A8D8 50%, #E8D4E8 100%)", textOn: "#160820", pathway: "Scale and transform legacy businesses.", offerings: ["Scale legacy businesses", "Navigate succession", "Drive transformation", "Build the next chapter"], href: "https://mastersunion.org/family-business" },
+  { name: "AI", image: aiAsset.url, accent: "#8AC8E0", gradient: "linear-gradient(135deg, #D8EEF2 0%, #8AC8E0 45%, #E8D4E8 100%)", textOn: "#040E1F", pathway: "Create products and businesses powered by AI.", offerings: ["AI products", "Applied intelligence", "Business automation", "Venture creation"], href: "https://mastersunion.org/ai" },
+  { name: "Ventures", image: venturesAsset.url, accent: "#E88AAB", gradient: "linear-gradient(135deg, #F5D2C8 0%, #E88AAB 50%, #F8D4A8 100%)", textOn: "#1A0408", pathway: "Build, launch and fund new ideas.", offerings: ["Incubation", "Funding", "Founder support", "Builder ecosystem"], href: "https://mastersunion.org/student-entrepreneurship" },
+  { name: "Global", image: globalAsset.url, accent: "#8A9ED8", gradient: "linear-gradient(135deg, #D4E8F0 0%, #8A9ED8 50%, #E8D4E8 100%)", textOn: "#050F2E", pathway: "Experience business beyond borders.", offerings: ["Global campuses", "International faculty", "Company visits", "Cross-border networks"], href: "https://mastersunion.org/undergraduate-global" },
+  { name: "B2B", image: b2bAsset.url, accent: "#98C8A8", gradient: "linear-gradient(135deg, #E8F4F0 0%, #98C8A8 50%, #E8E2BC 100%)", textOn: "#04140D", pathway: "Transform teams and organizations.", offerings: ["Corporate learning", "Workforce transformation", "Custom programmes", "Leadership academies"], href: "https://mastersunion.org/enterprise" },
 ] as const;
 
 function Programs() {
   const [active, setActive] = useState(0);
   const stage = PROGRAM_STAGES[active];
   return (
-    <section id="programs" className="border-t border-black/10 bg-[#f6f1e7]">
-      <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10 md:py-28">
-        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+    <section id="programs" className="border-t border-black/10 bg-gradient-to-b from-[#FDF8F0] via-[#F0E8F4] to-[#E8F0F8]">
+      <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-10 md:py-24">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-black/50">Programmes</p>
-            <h2 className="mt-3 text-[clamp(2rem,5vw,3.6rem)] font-light leading-[0.95] tracking-tight" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-              Build your <span className="italic">way.</span>
+            <h2
+              className="mt-4 text-[clamp(2.6rem,6.5vw,5.2rem)] font-light leading-[0.95] tracking-tight text-black"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+            >
+              Build your <span className="italic font-extralight">way.</span>
             </h2>
           </div>
           <p className="max-w-[44ch] text-[14px] leading-relaxed text-black/65">
@@ -42,43 +45,98 @@ function Programs() {
           </p>
         </div>
 
-        <div className="mt-10 flex flex-col gap-4">
-          <div className="relative aspect-[16/9] w-full overflow-hidden md:aspect-[21/9] lg:aspect-[24/8]" style={{ background: stage.gradient, boxShadow: `0 30px 90px -30px ${stage.accent}66` }}>
-            <img key={stage.name} src={stage.image} alt={`Editorial — ${stage.name}`} loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-25 mix-blend-overlay transition-opacity duration-700" />
-            <div className="absolute inset-0 bg-gradient-to-tr from-black/75 via-black/35 to-transparent" />
+        <div className="mt-8 flex flex-col gap-4">
+          {/* Featured pastel card */}
+          <div
+            className="relative aspect-[16/10] w-full overflow-hidden md:aspect-[21/9] lg:aspect-[24/9]"
+            style={{ background: stage.gradient }}
+          >
+            <img
+              key={stage.name}
+              src={stage.image}
+              alt={`Editorial — ${stage.name}`}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover opacity-20 mix-blend-overlay transition-opacity duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/40 via-white/10 to-transparent" />
             <div className="absolute inset-y-0 left-0 w-1.5" style={{ backgroundColor: stage.accent }} />
-            <div className="absolute inset-y-0 left-0 flex max-w-[640px] flex-col justify-end p-8 text-white md:p-12" style={{ textShadow: "0 1px 16px rgba(0,0,0,0.55), 0 1px 2px rgba(0,0,0,0.45)" }}>
-              <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.32em] opacity-90">
-                <span>0{active + 1}</span>
-                <span className="h-px w-8 bg-current opacity-60" />
-                <span>Featured pathway</span>
+
+            {/* Vertical index */}
+            <div className="pointer-events-none absolute right-4 top-1/2 z-10 hidden -translate-y-1/2 md:right-8 lg:block">
+              <span
+                className="block text-[clamp(2.4rem,5vw,4.5rem)] font-light tracking-tighter text-black/10"
+                style={{ transform: "rotate(90deg)", fontFamily: "'Inter', system-ui, sans-serif" }}
+              >
+                0{active + 1}/09
+              </span>
+            </div>
+
+            {/* Content */}
+            <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
+              <div className="max-w-[640px]">
+                <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-black/60">
+                  <span>0{active + 1}</span>
+                  <span className="h-px w-8 bg-black/30" />
+                  <span>Featured pathway</span>
+                </div>
+                <h3
+                  className="mt-5 text-[clamp(2.2rem,5vw,4.2rem)] font-light leading-[1] tracking-tight text-black"
+                  style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                >
+                  {stage.name}
+                </h3>
+                <p className="mt-3 max-w-[42ch] text-[15px] leading-relaxed text-black/80">
+                  {stage.pathway}
+                </p>
+                <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-black/75">
+                  {stage.offerings.map((o) => (
+                    <li key={o} className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 bg-black/70" />
+                      {o}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={stage.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group mt-7 inline-flex items-center gap-3 border-b border-black/40 pb-1 text-[11px] font-medium uppercase tracking-[0.3em] text-black transition-colors hover:border-black"
+                >
+                  View all
+                  <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
+                </a>
               </div>
-              <h3 className="mt-5 text-[clamp(1.8rem,4vw,3rem)] font-light leading-[1] tracking-tight text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>{stage.name}</h3>
-              <p className="mt-3 max-w-[42ch] text-[14px] leading-relaxed text-white/95">{stage.pathway}</p>
-              <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[12px] text-white/90">
-                {stage.offerings.map((o) => (
-                  <li key={o} className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 bg-white/90" />
-                    {o}
-                  </li>
-                ))}
-              </ul>
-              <a href={stage.href} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 border-b border-white/80 pb-1 font-mono text-[11px] uppercase tracking-[0.3em] text-white">
-                View all <span aria-hidden>↗</span>
-              </a>
             </div>
           </div>
 
+          {/* Programme grid */}
           <nav aria-label="Programmes">
-            <ol className="grid grid-cols-3 gap-1 border border-black/10 bg-white/60 p-2 backdrop-blur-sm sm:grid-cols-5 lg:grid-cols-9">
+            <ol className="grid grid-cols-3 gap-1 border border-black/10 bg-white/40 p-2 backdrop-blur-sm sm:grid-cols-5 lg:grid-cols-9">
               {PROGRAM_STAGES.map((s, i) => {
                 const isActive = i === active;
                 return (
                   <li key={s.name}>
-                    <button type="button" onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)} onClick={() => setActive(i)} aria-current={isActive ? "true" : undefined} className={`group flex w-full flex-col items-start gap-2 px-3 py-3 text-left transition ${isActive ? "bg-[#1C1C1C] text-[#F2E8D3]" : "text-[#1C1C1C] hover:bg-black/5"}`}>
-                      <span className="font-mono text-[10px] uppercase tracking-[0.28em] opacity-60" style={isActive ? { color: s.accent, opacity: 1 } : undefined}>0{i + 1}</span>
+                    <button
+                      type="button"
+                      onMouseEnter={() => setActive(i)}
+                      onFocus={() => setActive(i)}
+                      onClick={() => setActive(i)}
+                      aria-current={isActive ? "true" : undefined}
+                      className={`group flex w-full flex-col items-start gap-2 px-3 py-3 text-left transition ${
+                        isActive ? "bg-black text-[#F2E8D3]" : "text-[#1C1C1C] hover:bg-black/5"
+                      }`}
+                    >
+                      <span
+                        className="font-mono text-[10px] uppercase tracking-[0.28em] opacity-60"
+                        style={isActive ? { color: s.accent, opacity: 1 } : undefined}
+                      >
+                        0{i + 1}
+                      </span>
                       <span className="text-[13px] font-medium leading-tight tracking-tight">{s.name}</span>
-                      <span className="mt-1 h-[2px] w-8 transition" style={{ backgroundColor: isActive ? s.accent : "rgba(28,28,28,0.15)" }} />
+                      <span
+                        className="mt-1 h-[2px] w-8 transition"
+                        style={{ backgroundColor: isActive ? s.accent : "rgba(28,28,28,0.15)" }}
+                      />
                     </button>
                   </li>
                 );
