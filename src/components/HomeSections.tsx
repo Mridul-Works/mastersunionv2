@@ -235,36 +235,61 @@ function Programs() {
         </div>
 
         {/* Admissions · Cohort 2026 — folded into the same section */}
-        <div className="col-span-12 mt-20 border-t border-black/10 pt-14">
-          <div className="flex items-end justify-between gap-4 mb-8">
+        <div className="col-span-12 mt-24 border-t-2 border-black pt-16">
+          <div className="mb-10 flex items-end justify-between gap-4">
             <div>
-              <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-black/60 mb-1">Admissions · Cohort 2026</p>
-              <h2 className="font-display text-[1.35rem] font-bold leading-tight text-black md:text-[1.8rem]">
-                Programmes Accepting Applications
+              <p className="mb-2 font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-black/50">
+                Admissions · Cohort 2026
+              </p>
+              <h2
+                className="text-[clamp(1.8rem,4vw,3rem)] font-black leading-[0.95] tracking-tighter text-black"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+              >
+                Programmes Accepting
+                <br />
+                <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+                  Applications.
+                </span>
               </h2>
             </div>
+            <p className="hidden max-w-[24ch] text-right text-[13px] font-medium leading-snug text-black/60 md:block">
+              Round-based deadlines. Rolling reviews. Apply before seats fill.
+            </p>
           </div>
 
-          <div className="flex flex-nowrap gap-4 overflow-x-auto snap-x md:overflow-x-visible md:gap-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
             {PROGRAMS.map((p) => (
               <article
                 key={p.title}
-                className="group flex min-w-[280px] flex-1 cursor-pointer snap-start flex-col gap-6 border border-black/10 bg-white p-6 transition-all hover:bg-black/[0.03] md:min-w-0"
+                className="group flex cursor-pointer flex-col gap-5 border border-black bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-black hover:text-white"
               >
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-none bg-black px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-white">{p.mode}</span>
-                  <span className="rounded-none bg-black/5 px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-black/70">{p.duration}</span>
+                  <span className="rounded-none bg-black px-3 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-white transition-colors group-hover:bg-white group-hover:text-black">
+                    {p.mode}
+                  </span>
+                  <span className="rounded-none border border-black/15 px-3 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-black/70 transition-colors group-hover:border-white/30 group-hover:text-white/80">
+                    {p.duration}
+                  </span>
                 </div>
-                <h3 className="font-display text-[1.15rem] font-bold leading-snug text-black md:text-[1.25rem]">
+                <h3
+                  className="text-[1.2rem] font-bold leading-[1.15] tracking-tight text-black transition-colors group-hover:text-white md:text-[1.35rem]"
+                  style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                >
                   {p.title}
                 </h3>
-                <div className="inline-flex w-fit items-center gap-2 rounded-none bg-black/5 px-3 py-1.5">
-                  <Hourglass className="size-3.5 text-black/70" />
-                  <span className="font-sans text-[12px] font-semibold text-black/80">{p.round}</span>
+                <div className="inline-flex w-fit items-center gap-2 rounded-none border border-black/10 px-3 py-1.5 transition-colors group-hover:border-white/20">
+                  <Hourglass className="size-3.5 text-black/70 transition-colors group-hover:text-white/70" />
+                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-black/80 transition-colors group-hover:text-white/80">
+                    {p.round}
+                  </span>
                 </div>
-                <div className="mt-auto pt-4">
-                  <a href="#" className="inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-black transition-colors group-hover:text-black/70">
-                    Apply Now <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                <div className="mt-auto pt-3">
+                  <a
+                    href="#"
+                    className="inline-flex items-center gap-1.5 font-sans text-[14px] font-semibold text-black transition-colors group-hover:text-white"
+                  >
+                    Apply Now
+                    <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </a>
                 </div>
               </article>
