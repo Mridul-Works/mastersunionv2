@@ -140,8 +140,9 @@ export default function HomeSections() {
               <img
                 src={founderPhoto.url}
                 alt="Pratham Mittal"
-                className="h-36 w-full object-cover md:h-full md:max-h-[260px] grayscale"
+                className="h-56 w-full object-cover object-top grayscale md:h-full md:max-h-[320px]"
               />
+
               <div className="absolute inset-0 hidden bg-gradient-to-r from-transparent via-transparent to-black/90 md:block" />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent md:hidden" />
             </div>
