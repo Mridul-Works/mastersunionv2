@@ -7,10 +7,7 @@ import postgraduateAsset from "@/assets/programs/editorial-postgraduate.jpg.asse
 import executiveAsset from "@/assets/programs/editorial-executive.jpg.asset.json";
 import immersionAsset from "@/assets/programs/editorial-immersions.jpg.asset.json";
 import familyBusinessAsset from "@/assets/programs/editorial-family-business.jpg.asset.json";
-import aiAsset from "@/assets/programs/editorial-ai.jpg.asset.json";
-import venturesAsset from "@/assets/programs/editorial-ventures.jpg.asset.json";
 import globalAsset from "@/assets/programs/editorial-global.jpg.asset.json";
-import b2bAsset from "@/assets/programs/editorial-b2b.jpg.asset.json";
 
 const PATHWAYS = [
   {
