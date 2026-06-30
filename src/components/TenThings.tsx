@@ -320,6 +320,7 @@ function Slide({
                 "linear-gradient(180deg, rgba(241,239,231,0.7) 0%, rgba(241,239,231,0) 28%, rgba(241,239,231,0) 70%, rgba(241,239,231,0.9) 100%)",
             }}
           />
+        </motion.div>
 
         <div className="pointer-events-none absolute left-6 bottom-6 z-10 md:left-10 md:bottom-10">
           <StaggeredText delay={0.05} k={`bignum-${index}`}>
