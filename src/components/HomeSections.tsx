@@ -65,7 +65,7 @@ function Programs() {
             <div className="pointer-events-none absolute right-4 top-1/2 z-10 hidden -translate-y-1/2 md:right-8 lg:block">
               <span
                 className="block text-[clamp(2.4rem,5vw,4.5rem)] font-light tracking-tighter text-black/10"
-                style={{ writingMode: "vertical-rl", transform: "rotate(180deg)", fontFamily: "'Inter', system-ui, sans-serif" }}
+                style={{ transform: "rotate(90deg)", fontFamily: "'Inter', system-ui, sans-serif" }}
               >
                 0{active + 1}/09
               </span>
