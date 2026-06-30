@@ -417,7 +417,7 @@ export default function HomeSections() {
             <div className="relative flex flex-col justify-center p-6 md:col-span-7 md:p-8 lg:p-12">
               <Quote className="mb-4 size-6 text-black/60" />
               <h2 className="max-w-[22ch] text-2xl leading-[1.1] tracking-tight text-black md:text-3xl lg:text-[34px]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-                "If education was working, we wouldn't have built <span className="italic text-black/80" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>Masters' Union.</span>"
+                "If education was working, we wouldn't have built&nbsp;<span className="italic text-black/80" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>Masters' Union.</span>"
               </h2>
               <div className="mt-6 flex items-center gap-3">
                 <div className="h-px w-10 bg-black/40" />
