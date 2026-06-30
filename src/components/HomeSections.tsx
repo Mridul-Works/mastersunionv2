@@ -424,7 +424,7 @@ export default function HomeSections() {
       {/* PEDAGOGY */}
       <section id="pedagogy" className="border-t border-black/10 bg-neutral-50">
         <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-10 md:py-32">
-          <SectionHead eyebrow="The pedagogy" title={<>How Masters' Union <span className="italic">actually</span> teaches.</>} lede="Eight systems that work in concert — built so theory never outpaces practice." />
+          <SectionHead eyebrow="The pedagogy" title={<>How Masters' Union <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>actually</span> teaches.</>} lede="Eight systems that work in concert — built so theory never outpaces practice." />
 
           <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {PEDAGOGY.map((p, i) => {
@@ -446,7 +446,7 @@ export default function HomeSections() {
                   </div>
 
                   <div className="mt-12">
-                    <h3 className="text-3xl leading-[1.05] tracking-tight text-black md:text-[34px]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+                    <h3 className="text-[1.6rem] font-medium leading-[1.15] tracking-tight text-black md:text-[1.85rem]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
                       {p.title}
                     </h3>
                     <p className="mt-5 text-[14px] leading-relaxed text-black/65">{p.body}</p>
@@ -463,7 +463,7 @@ export default function HomeSections() {
                     </div>
                   )}
 
-                  <span className={`mt-10 inline-flex w-fit items-center gap-2 border-b pb-1 text-[11px] font-semibold uppercase tracking-[0.22em] transition-all ${featured ? "border-black text-black" : "border-black/30 text-black/70 group-hover:border-black group-hover:text-black"}`}>
+                  <span className="mt-10 inline-flex w-full items-center justify-center gap-2 border-2 border-black bg-white px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-black transition-all duration-300 group-hover:bg-black group-hover:text-white">
                     {p.cta}
                     <ArrowUpRight className="size-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </span>
@@ -559,7 +559,7 @@ function SectionHead({ eyebrow, title, lede, icon: Icon }: { eyebrow: string; ti
           {Icon && <Icon className="size-4 text-black/70" />}
           <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-black/50">{eyebrow}</p>
         </div>
-        <h2 className="mt-5 text-5xl leading-[0.95] tracking-tight md:text-7xl" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+        <h2 className="mt-5 text-[clamp(2rem,5vw,3.5rem)] font-semibold leading-[0.95] tracking-tight text-black md:text-[clamp(2.5rem,5vw,4rem)]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
           {title}
         </h2>
       </div>
