@@ -75,11 +75,7 @@ function Programs() {
                 const isActive = i === active;
                 return (
                   <li key={s.name}>
-                    <button type="button" onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)} onClick={() => setActive(i)} aria-current={isActive ? "true" : undefined} className={`group relative flex w-full flex-col items-start gap-2 overflow-hidden px-3 py-3 text-left transition ${isActive ? "bg-[#1C1C1C] text-[#F2E8D3]" : "text-[#1C1C1C] hover:bg-black/5"}`}>
-                      <div className="relative mb-1 h-14 w-full overflow-hidden sm:h-16">
-                        <img src={s.image} alt={s.name} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" style={{ opacity: isActive ? 0.55 : 0.35 }} />
-                        <div className="absolute inset-0 bg-gradient-to-t from-current/80 via-current/20 to-transparent" />
-                      </div>
+                    <button type="button" onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)} onClick={() => setActive(i)} aria-current={isActive ? "true" : undefined} className={`group flex w-full flex-col items-start gap-2 px-3 py-3 text-left transition ${isActive ? "bg-[#1C1C1C] text-[#F2E8D3]" : "text-[#1C1C1C] hover:bg-black/5"}`}>
                       <span className="font-mono text-[10px] uppercase tracking-[0.28em] opacity-60" style={isActive ? { color: s.accent, opacity: 1 } : undefined}>0{i + 1}</span>
                       <span className="text-[13px] font-medium leading-tight tracking-tight">{s.name}</span>
                       <span className="mt-1 h-[2px] w-8 transition" style={{ backgroundColor: isActive ? s.accent : "rgba(28,28,28,0.15)" }} />
@@ -103,10 +99,10 @@ const NEWS = [
 ];
 
 const PROGRAMS = [
-  { mode: "ON CAMPUS", duration: "2 YEARS", title: "PGP in Technology & Business Management", round: "Round 1 Applications Open", image: postgraduateAsset.url },
-  { mode: "ON CAMPUS", duration: "1 YEAR", title: "PGP in Quantitative Finance & Business", round: "Round 2 Applications Open", image: executiveAsset.url },
-  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Technology & Business Management", round: "Round 4 Applications Open", image: undergraduateAsset.url },
-  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Psychology & Marketing", round: "Round 4 Applications Open", image: aiAsset.url },
+  { mode: "ON CAMPUS", duration: "2 YEARS", title: "PGP in Technology & Business Management", round: "Round 1 Applications Open" },
+  { mode: "ON CAMPUS", duration: "1 YEAR", title: "PGP in Quantitative Finance & Business", round: "Round 2 Applications Open" },
+  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Technology & Business Management", round: "Round 4 Applications Open" },
+  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Psychology & Marketing", round: "Round 4 Applications Open" },
 ];
 
 const PEDAGOGY = [
@@ -200,29 +196,23 @@ export default function HomeSections() {
             {PROGRAMS.map((p) => (
               <article
                 key={p.title}
-                className="group flex min-w-[280px] flex-1 cursor-pointer snap-start flex-col gap-0 border border-black/10 bg-white transition-all hover:bg-black/[0.03] md:min-w-0"
+                className="group flex min-w-[280px] flex-1 cursor-pointer snap-start flex-col gap-6 border border-black/10 bg-white p-6 transition-all hover:bg-black/[0.03] md:min-w-0"
               >
-                <div className="relative h-36 w-full overflow-hidden">
-                  <img src={p.image} alt={p.title} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="rounded-none bg-black px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-white">{p.mode}</span>
+                  <span className="rounded-none bg-black/5 px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-black/70">{p.duration}</span>
                 </div>
-                <div className="flex flex-col gap-6 p-6">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-none bg-black px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-white">{p.mode}</span>
-                    <span className="rounded-none bg-black/5 px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-black/70">{p.duration}</span>
-                  </div>
-                  <h3 className="font-display text-[1.15rem] font-bold leading-snug text-black md:text-[1.25rem]">
-                    {p.title}
-                  </h3>
-                  <div className="inline-flex w-fit items-center gap-2 rounded-none bg-black/5 px-3 py-1.5">
-                    <Hourglass className="size-3.5 text-black/70" />
-                    <span className="font-sans text-[12px] font-semibold text-black/80">{p.round}</span>
-                  </div>
-                  <div className="mt-auto pt-4">
-                    <a href="#" className="inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-black transition-colors group-hover:text-black/70">
-                      Apply Now <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                    </a>
-                  </div>
+                <h3 className="font-display text-[1.15rem] font-bold leading-snug text-black md:text-[1.25rem]">
+                  {p.title}
+                </h3>
+                <div className="inline-flex w-fit items-center gap-2 rounded-none bg-black/5 px-3 py-1.5">
+                  <Hourglass className="size-3.5 text-black/70" />
+                  <span className="font-sans text-[12px] font-semibold text-black/80">{p.round}</span>
+                </div>
+                <div className="mt-auto pt-4">
+                  <a href="#" className="inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-black transition-colors group-hover:text-black/70">
+                    Apply Now <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </a>
                 </div>
               </article>
             ))}
