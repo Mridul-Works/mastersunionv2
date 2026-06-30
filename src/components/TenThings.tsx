@@ -282,7 +282,7 @@ function Slide({
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
 
-      <div className="relative h-full w-full overflow-hidden">
+      <div className="relative h-full w-full overflow-hidden bg-[#F1EFE7]">
         <motion.div
           key={project.image}
           custom={direction}
@@ -293,37 +293,23 @@ function Slide({
             transition: { duration: SLIDE_DURATION * 0.85, ease: EASE },
           }}
           transition={{ duration: SLIDE_DURATION, ease: EASE }}
-          className="absolute inset-0"
+          className="absolute inset-0 flex items-center justify-center p-6 md:p-12"
         >
           <motion.img
             src={project.image}
             alt={project.headline}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-contain drop-shadow-2xl"
             initial={{ scale: 1.15, x: direction * 40 }}
             animate={{ scale: 1, x: 0 }}
             exit={{ scale: 1.05, x: -direction * 40 }}
             transition={{ duration: SLIDE_DURATION * 1.2, ease: EASE }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(90deg, rgba(26,33,26,0.55) 0%, rgba(26,33,26,0) 35%, rgba(26,33,26,0) 60%, rgba(26,33,26,0.85) 100%)",
-            }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(26,33,26,0.7) 0%, rgba(26,33,26,0) 28%, rgba(26,33,26,0) 70%, rgba(26,33,26,0.9) 100%)",
-            }}
           />
         </motion.div>
 
         <div className="pointer-events-none absolute left-6 bottom-6 z-10 md:left-10 md:bottom-10">
           <StaggeredText delay={0.05} k={`bignum-${index}`}>
             <span
-              className="block bg-gradient-to-b from-white via-white/70 to-white/30 bg-clip-text font-black leading-none tracking-tighter text-transparent"
+              className="block font-black leading-none tracking-tighter text-[#1A211A]"
               style={{ fontSize: "clamp(64px, 8vw, 120px)" }}
             >
               {String(index + 1).padStart(2, "0")}
