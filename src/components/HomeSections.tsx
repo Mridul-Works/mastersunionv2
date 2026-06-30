@@ -28,6 +28,7 @@ const PATHWAYS: Pathway[] = [
     subhead: "Build a company before you graduate.",
     viewAllHref: "https://mastersunion.org/undergraduate",
     theme: "linear-gradient(135deg, #e8f0f5 0%, #d6e6e8 35%, #f0e6d8 70%, #e6d5c5 100%)",
+    image: pathwaySchool,
     programmes: [
       { title: "UG in Technology & Business Management", duration: "4 Yrs", format: "On Campus" },
       { title: "UG in Psychology & Marketing", duration: "4 Yrs", format: "On Campus" },
@@ -46,6 +47,7 @@ const PATHWAYS: Pathway[] = [
     subhead: "Go from intern to founder.",
     viewAllHref: "https://mastersunion.org/postgraduate",
     theme: "linear-gradient(135deg, #f5e6f0 0%, #f7d9c4 25%, #f8e8d4 50%, #d4e6e0 100%)",
+    image: pathwayCollege,
     programmes: [
       { title: "PGP in Technology & Business Management — Young Leaders Cohort", duration: "24 Mo", format: "On Campus" },
       { title: "PGP in Applied AI & Agentic Systems", duration: "15 Mo", format: "On Campus" },
@@ -64,6 +66,7 @@ const PATHWAYS: Pathway[] = [
     subhead: "Lead without leaving your career behind.",
     viewAllHref: "https://mastersunion.org/executive-education",
     theme: "linear-gradient(135deg, #e6e8f0 0%, #d4dbe8 40%, #c8d5e8 70%, #b8c9e0 100%)",
+    image: pathwayWork,
     programmes: [
       { title: "PGP in Technology & Business Management (flagship)", duration: "16 Mo", format: "On Campus" },
       { title: "PGP Rise: General Management", duration: "1 Yr", format: "Blended Weekend" },
@@ -81,6 +84,7 @@ const PATHWAYS: Pathway[] = [
     subhead: "Scale what you already built.",
     viewAllHref: "https://mastersunion.org/family-business",
     theme: "linear-gradient(135deg, #f5ebe0 0%, #ede3d5 35%, #e2d2c0 65%, #d6c2b0 100%)",
+    image: pathwayOwner,
     programmes: [
       { title: "PGP Rise: Owners & Promoters Management", duration: "1 Yr", format: "Blended Weekend" },
       { title: "PGP in Entrepreneurship & Business Acceleration", duration: "9 Mo", format: "Blended" },
