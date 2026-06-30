@@ -12,6 +12,7 @@ type Pathway = {
   subhead: string;
   programmes: Programme[];
   viewAllHref: string;
+  theme: string;
 };
 
 const PATHWAYS: Pathway[] = [
@@ -133,7 +134,10 @@ function Programs() {
         {/* Editorial grid */}
         <div className="relative col-span-12 grid grid-cols-1 gap-4 md:grid-cols-5 lg:col-span-8">
           {/* Feature tile — soft gradient */}
-          <div className="group relative col-span-1 flex min-h-[420px] flex-col justify-end overflow-hidden p-8 md:col-span-2" style={{ background: 'linear-gradient(135deg, #f5e6f0 0%, #f7d9c4 25%, #f8e8d4 50%, #d4e6e0 100%)' }}>
+          <div
+            className="group relative col-span-1 flex min-h-[420px] flex-col justify-end overflow-hidden p-8 md:col-span-2 transition-colors duration-500"
+            style={{ background: active.theme }}
+          >
             <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_20%_100%,rgba(255,255,255,0.4),transparent_60%)]" />
             <div className="relative z-10">
               <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.28em] text-black/55">
