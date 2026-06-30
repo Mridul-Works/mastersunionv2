@@ -25,7 +25,7 @@ const PATHWAYS: Pathway[] = [
     key: "school",
     label: "I'm in School",
     headline: "School",
-    subhead: "Build a company before you graduate.",
+    subhead: "For students in Grade 11 & 12 ready to skip the textbook detour and start building.",
     viewAllHref: "https://mastersunion.org/undergraduate",
     theme: "linear-gradient(135deg, #e8f0f5 0%, #d6e6e8 35%, #f0e6d8 70%, #e6d5c5 100%)",
     image: pathwaySchool,
@@ -44,7 +44,7 @@ const PATHWAYS: Pathway[] = [
     key: "college",
     label: "I'm in College",
     headline: "College",
-    subhead: "Go from intern to founder.",
+    subhead: "For undergraduates and fresh graduates trading the placement queue for real ventures.",
     viewAllHref: "https://mastersunion.org/postgraduate",
     theme: "linear-gradient(135deg, #f5e6f0 0%, #f7d9c4 25%, #f8e8d4 50%, #d4e6e0 100%)",
     image: pathwayCollege,
@@ -63,7 +63,7 @@ const PATHWAYS: Pathway[] = [
     key: "work",
     label: "I'm at Work",
     headline: "Work",
-    subhead: "Lead without leaving your career behind.",
+    subhead: "For working professionals levelling up — without pausing the paycheque.",
     viewAllHref: "https://mastersunion.org/executive-education",
     theme: "linear-gradient(135deg, #e6e8f0 0%, #d4dbe8 40%, #c8d5e8 70%, #b8c9e0 100%)",
     image: pathwayWork,
@@ -81,7 +81,7 @@ const PATHWAYS: Pathway[] = [
     key: "owner",
     label: "I'm a Business Owner",
     headline: "Business Owner",
-    subhead: "Scale what you already built.",
+    subhead: "For founders, promoters and next-gen leaders scaling the business they already run.",
     viewAllHref: "https://mastersunion.org/family-business",
     theme: "linear-gradient(135deg, #f5ebe0 0%, #ede3d5 35%, #e2d2c0 65%, #d6c2b0 100%)",
     image: pathwayOwner,
@@ -167,23 +167,15 @@ function Programs() {
 
             {/* Bottom content */}
             <div className="relative z-10">
-              <p className="mb-1 text-[14px] font-medium lowercase text-white/90">
-                {active.subhead.toLowerCase()}
-              </p>
               <h3
-                className="mb-6 text-[clamp(2.8rem,5.2vw,4.25rem)] font-black uppercase leading-[0.88] tracking-tight text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.45)]"
+                className="mb-4 text-[clamp(2.8rem,5.2vw,4.25rem)] font-black uppercase leading-[0.88] tracking-tight text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.45)]"
                 style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
               >
                 {active.headline}.
               </h3>
-              <a
-                href={active.viewAllHref}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 bg-white px-5 py-3 text-[11px] font-bold uppercase tracking-[0.22em] text-black transition hover:bg-white/85"
-              >
-                View all <ArrowRight className="size-3.5" />
-              </a>
+              <p className="max-w-[28ch] text-[14px] font-medium leading-snug text-white/90">
+                {active.subhead}
+              </p>
             </div>
           </div>
 
