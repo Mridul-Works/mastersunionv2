@@ -145,7 +145,7 @@ function Programs() {
           {/* Feature tile — editorial poster */}
           <div
             key={active.key}
-            className="group relative col-span-1 flex h-[540px] flex-col overflow-hidden md:col-span-2 border border-black"
+            className="group relative col-span-1 flex h-[640px] flex-col overflow-hidden md:col-span-2 border border-black"
             style={{ background: active.theme }}
           >
             <img
@@ -180,8 +180,8 @@ function Programs() {
             </div>
           </div>
 
-          {/* Programmes tile — fixed height, scrollable list */}
-          <div className="relative col-span-1 flex h-[540px] flex-col overflow-hidden border border-black bg-[#F5F3EE] p-6 md:col-span-3">
+          {/* Programmes tile — taller, scrollable list */}
+          <div className="relative col-span-1 flex h-[640px] flex-col overflow-hidden border border-black bg-[#F5F3EE] p-6 md:col-span-3">
             <div className="mb-5 flex items-start justify-between gap-4">
               <div className="min-w-0">
                 <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.28em] text-black/50">
@@ -199,7 +199,7 @@ function Programs() {
               </span>
             </div>
 
-            <ul className="relative h-[calc(100%-130px)] space-y-0 overflow-y-auto pr-1">
+            <ul className="flex-1 min-h-0 space-y-0 overflow-y-auto pr-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
               {active.programmes.map((pg, i) => (
                 <li key={pg.title}>
                   <a
@@ -223,20 +223,59 @@ function Programs() {
               ))}
             </ul>
 
-            <a
-              href={active.viewAllHref}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-5 w-fit border-b-2 border-black pb-1 text-[11px] font-black uppercase tracking-[0.22em]"
-            >
-              View all {active.programmes.length} →
-            </a>
+            {/* Scroll prompt */}
+            <div className="mt-4 flex items-center gap-3 border-t border-black/10 pt-4">
+              <div className="h-px flex-1 bg-black/10" />
+              <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-black/40">
+                Scroll to explore
+              </span>
+              <div className="h-px flex-1 bg-black/10" />
+            </div>
+          </div>
+        </div>
+
+        {/* Admissions · Cohort 2026 — folded into the same section */}
+        <div className="col-span-12 mt-20 border-t border-black/10 pt-14">
+          <div className="flex items-end justify-between gap-4 mb-8">
+            <div>
+              <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-black/60 mb-1">Admissions · Cohort 2026</p>
+              <h2 className="font-display text-[1.35rem] font-bold leading-tight text-black md:text-[1.8rem]">
+                Programmes Accepting Applications
+              </h2>
+            </div>
+          </div>
+
+          <div className="flex flex-nowrap gap-4 overflow-x-auto snap-x md:overflow-x-visible md:gap-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            {PROGRAMS.map((p) => (
+              <article
+                key={p.title}
+                className="group flex min-w-[280px] flex-1 cursor-pointer snap-start flex-col gap-6 border border-black/10 bg-white p-6 transition-all hover:bg-black/[0.03] md:min-w-0"
+              >
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="rounded-none bg-black px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-white">{p.mode}</span>
+                  <span className="rounded-none bg-black/5 px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-black/70">{p.duration}</span>
+                </div>
+                <h3 className="font-display text-[1.15rem] font-bold leading-snug text-black md:text-[1.25rem]">
+                  {p.title}
+                </h3>
+                <div className="inline-flex w-fit items-center gap-2 rounded-none bg-black/5 px-3 py-1.5">
+                  <Hourglass className="size-3.5 text-black/70" />
+                  <span className="font-sans text-[12px] font-semibold text-black/80">{p.round}</span>
+                </div>
+                <div className="mt-auto pt-4">
+                  <a href="#" className="inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-black transition-colors group-hover:text-black/70">
+                    Apply Now <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </a>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </div>
     </section>
   );
 }
+
 
 const NEWS = [
   { tag: "Press", month: "Jun", day: "15", time: "09:00 AM", title: "Masters' Union ranked among India's top new-age B-schools", source: "Forbes India" },
@@ -323,50 +362,6 @@ export default function HomeSections() {
           </div>
         </div>
       </section>
-
-      {/* PROGRAMS / APPLICATIONS */}
-      <section id="deadlines" className="border-t border-black/10 bg-white">
-        <div className="mx-auto max-w-[1280px] px-6 py-14 md:px-10 md:py-18">
-          <div className="flex items-end justify-between gap-4 mb-8">
-            <div>
-              <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-black/60 mb-1">Admissions · Cohort 2026</p>
-              <h2 className="font-display text-[1.35rem] font-bold leading-tight text-black md:text-[1.8rem]">
-                Programmes Accepting Applications
-              </h2>
-            </div>
-            <a href="#" className="hidden font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-black underline-offset-4 hover:underline md:inline-flex items-center gap-1.5">
-              View all programmes <ArrowUpRight className="size-3.5" />
-            </a>
-          </div>
-
-          <div className="flex flex-nowrap gap-4 overflow-x-auto snap-x md:overflow-x-visible md:gap-6">
-            {PROGRAMS.map((p) => (
-              <article
-                key={p.title}
-                className="group flex min-w-[280px] flex-1 cursor-pointer snap-start flex-col gap-6 border border-black/10 bg-white p-6 transition-all hover:bg-black/[0.03] md:min-w-0"
-              >
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-none bg-black px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-white">{p.mode}</span>
-                  <span className="rounded-none bg-black/5 px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-black/70">{p.duration}</span>
-                </div>
-                <h3 className="font-display text-[1.15rem] font-bold leading-snug text-black md:text-[1.25rem]">
-                  {p.title}
-                </h3>
-                <div className="inline-flex w-fit items-center gap-2 rounded-none bg-black/5 px-3 py-1.5">
-                  <Hourglass className="size-3.5 text-black/70" />
-                  <span className="font-sans text-[12px] font-semibold text-black/80">{p.round}</span>
-                </div>
-                <div className="mt-auto pt-4">
-                  <a href="#" className="inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-black transition-colors group-hover:text-black/70">
-                    Apply Now <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
 
       {/* PROGRAMS */}
       <Programs />
