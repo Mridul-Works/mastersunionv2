@@ -159,13 +159,14 @@ export default function TenThings() {
 
       {/* Card widget — slides in from right on scroll */}
       <div ref={widgetRef} className="absolute inset-0 z-20 bg-[#F1EFE7] will-change-transform">
-        <div className="relative h-full min-h-[640px] w-full overflow-hidden bg-[#2A312A]">
+        <div className="relative h-full min-h-[640px] w-full overflow-hidden bg-[#F1EFE7]">
+
 
 
           {/* Counter top-left */}
           <div
-            className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[12px] tracking-[0.15em] text-neutral-400 md:left-10 md:top-10"
-            style={{ fontFamily: "'JetBrains Mono', monospace", textShadow: "0 0 24px rgba(255,255,255,0.10)" }}
+            className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[12px] tracking-[0.15em] text-[#1A211A]/55 md:left-10 md:top-10"
+            style={{ fontFamily: "'JetBrains Mono', monospace" }}
           >
             <AnimatePresence mode="popLayout">
               <motion.span
@@ -174,13 +175,13 @@ export default function TenThings() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.4 }}
-                className="inline-block"
+                className="inline-block text-[#1A211A]"
               >
                 {String(index + 1).padStart(2, "0")}
               </motion.span>
             </AnimatePresence>
-            <span className="mx-1 text-neutral-600">/</span>
-            <span className="text-neutral-600">{String(CHAPTERS.length).padStart(2, "0")}</span>
+            <span className="mx-1 text-[#1A211A]/40">/</span>
+            <span className="text-[#1A211A]/40">{String(CHAPTERS.length).padStart(2, "0")}</span>
           </div>
 
 
@@ -193,8 +194,8 @@ export default function TenThings() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.6, ease: EASE }}
-                className="select-none bg-gradient-to-b from-neutral-300/20 via-neutral-400/8 to-transparent bg-clip-text font-black tracking-tighter text-transparent"
-                style={{ fontSize: "clamp(140px, 30vw, 420px)", lineHeight: 1, filter: "drop-shadow(0 0 80px rgba(255,255,255,0.08))" }}
+                className="select-none bg-gradient-to-b from-[#1A211A]/15 via-[#1A211A]/5 to-transparent bg-clip-text font-black tracking-tighter text-transparent"
+                style={{ fontSize: "clamp(140px, 30vw, 420px)", lineHeight: 1 }}
               >
                 {String(index + 1).padStart(2, "0")}
               </motion.span>
@@ -210,27 +211,27 @@ export default function TenThings() {
           {/* Bottom nav: tag + arrows */}
           <div className="pointer-events-none absolute inset-x-0 bottom-6 z-30 flex flex-col items-center gap-3 px-6 md:bottom-10">
               <div className="pointer-events-auto flex w-full max-w-[520px] items-center justify-between">
-                <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-white/70">
-                  <span className="inline-block h-1.5 w-1.5 rounded-none bg-white" />
+                <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-[#1A211A]/70">
+                  <span className="inline-block h-1.5 w-1.5 rounded-none bg-[#1A211A]" />
                   <span className="min-w-[80px] text-center">{project.tag}</span>
                 </div>
 
-                <div className="ml-auto flex items-center gap-2 rounded-none border border-white/10 bg-white/10 px-2 py-1 backdrop-blur-md">
+                <div className="ml-auto flex items-center gap-2 rounded-none border border-[#1A211A]/15 bg-[#1A211A]/5 px-2 py-1 backdrop-blur-md">
                   <button
                     type="button"
                     onClick={() => go(-1)}
                     aria-label="Previous chapter"
-                    className="group flex items-center gap-2 rounded-none px-2 py-1 text-white/80 transition-all hover:bg-white/10 hover:text-white"
+                    className="group flex items-center gap-2 rounded-none px-2 py-1 text-[#1A211A]/80 transition-all hover:bg-[#1A211A]/10 hover:text-[#1A211A]"
                   >
                     <GradientArrow direction="left" className="size-4" />
                     <span className="hidden text-[10px] font-medium uppercase tracking-wider sm:inline">Prev</span>
                   </button>
-                  <span className="h-3.5 w-px bg-white/15" />
+                  <span className="h-3.5 w-px bg-[#1A211A]/15" />
                   <button
                     type="button"
                     onClick={() => go(1)}
                     aria-label="Next chapter"
-                    className="group flex items-center gap-2 rounded-none px-2 py-1 text-white/80 transition-all hover:bg-white/10 hover:text-white"
+                    className="group flex items-center gap-2 rounded-none px-2 py-1 text-[#1A211A]/80 transition-all hover:bg-[#1A211A]/10 hover:text-[#1A211A]"
                   >
                     <span className="hidden text-[10px] font-medium uppercase tracking-wider sm:inline">Next</span>
                     <GradientArrow direction="right" className="size-4" />
@@ -245,10 +246,10 @@ export default function TenThings() {
                   key={p.n}
                   onClick={() => jump(i)}
                   aria-label={`Go to chapter ${i + 1}`}
-                  className="pointer-events-auto group h-[3px] w-8 cursor-pointer overflow-hidden bg-white/15"
+                  className="pointer-events-auto group h-[3px] w-8 cursor-pointer overflow-hidden bg-[#1A211A]/15"
                 >
                   <span
-                    className="block h-full origin-left bg-white transition-transform duration-[500ms] ease-out"
+                    className="block h-full origin-left bg-[#1A211A] transition-transform duration-[500ms] ease-out"
                     style={{ transform: `scaleX(${i === index ? 1 : 0})` }}
                   />
                 </button>
@@ -309,26 +310,23 @@ function Slide({
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(90deg, rgba(42,49,42,0.55) 0%, rgba(42,49,42,0) 35%, rgba(42,49,42,0) 60%, rgba(26,33,26,0.85) 100%)",
+                "linear-gradient(90deg, rgba(241,239,231,0.55) 0%, rgba(241,239,231,0) 35%, rgba(241,239,231,0) 60%, rgba(241,239,231,0.85) 100%)",
             }}
           />
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, rgba(42,49,42,0.7) 0%, rgba(42,49,42,0) 28%, rgba(42,49,42,0) 70%, rgba(26,33,26,0.9) 100%)",
+                "linear-gradient(180deg, rgba(241,239,231,0.7) 0%, rgba(241,239,231,0) 28%, rgba(241,239,231,0) 70%, rgba(241,239,231,0.9) 100%)",
             }}
-          />
-          <div
-            className="absolute inset-0 bg-[#2A312A]/10 mix-blend-multiply"
           />
         </motion.div>
 
         <div className="pointer-events-none absolute left-6 bottom-6 z-10 md:left-10 md:bottom-10">
           <StaggeredText delay={0.05} k={`bignum-${index}`}>
             <span
-              className="block bg-gradient-to-b from-neutral-100 via-neutral-400 to-neutral-700 bg-clip-text font-black leading-none tracking-tighter text-transparent"
-              style={{ fontSize: "clamp(64px, 8vw, 120px)", filter: "drop-shadow(0 0 40px rgba(255,255,255,0.10))" }}
+              className="block bg-gradient-to-b from-[#1A211A] via-[#1A211A]/70 to-[#1A211A]/30 bg-clip-text font-black leading-none tracking-tighter text-transparent"
+              style={{ fontSize: "clamp(64px, 8vw, 120px)" }}
             >
               {String(index + 1).padStart(2, "0")}
             </span>
@@ -341,18 +339,18 @@ function Slide({
         <div className="max-w-[460px]">
           <StaggeredText delay={0.15} k={`meta-${index}`}>
             <p
-              className="text-[11px] uppercase tracking-[0.2em] text-white/60"
+              className="text-[11px] uppercase tracking-[0.2em] text-[#1A211A]/60"
               style={{ fontFamily: "'JetBrains Mono', monospace" }}
             >
-              <span className="text-neutral-400">{String(index + 1).padStart(2, "0")}</span>
-              <span className="mx-2 text-white/25">·</span>
+              <span className="text-[#1A211A]/80">{String(index + 1).padStart(2, "0")}</span>
+              <span className="mx-2 text-[#1A211A]/25">·</span>
               {project.tag}
             </p>
           </StaggeredText>
 
           <StaggeredText delay={0.25} k={`title-${index}`}>
             <h2
-              className="mt-3 font-black uppercase text-white"
+              className="mt-3 font-black uppercase text-[#1A211A]"
               style={{
                 fontSize: "clamp(24px, 3.5vw, 44px)",
                 lineHeight: 1.05,
@@ -364,18 +362,18 @@ function Slide({
           </StaggeredText>
 
           <StaggeredText delay={0.46} k={`desc-${index}`}>
-            <p className="mt-4 text-[14px] text-white/70" style={{ lineHeight: 1.55 }}>
+            <p className="mt-4 text-[14px] text-[#1A211A]/70" style={{ lineHeight: 1.55 }}>
               {project.body}
             </p>
           </StaggeredText>
 
           <StaggeredText delay={0.56} k={`stats-${index}`}>
-            <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-3 border-t border-white/10 pt-4">
+            <ul className="mt-5 flex flex-wrap gap-x-6 gap-y-3 border-t border-[#1A211A]/10 pt-4">
               {project.stats.slice(0, 3).map((s) => (
                 <li key={s.label}>
-                  <div className="text-2xl font-black tracking-tighter text-white">{s.value}</div>
+                  <div className="text-2xl font-black tracking-tighter text-[#1A211A]">{s.value}</div>
                   <div
-                    className="mt-0.5 text-[10px] uppercase tracking-[0.18em] text-white/50"
+                    className="mt-0.5 text-[10px] uppercase tracking-[0.18em] text-[#1A211A]/50"
                     style={{ fontFamily: "'JetBrains Mono', monospace" }}
                   >
                     {s.label}
@@ -422,7 +420,6 @@ function GradientArrow({
 }) {
   const id = useId();
   const gradientId = `arrow-grad-${id}`;
-  const glowId = `arrow-glow-${id}`;
   const d =
     direction === "right"
       ? "M4 12h16M13 6l6 6-6 6"
@@ -435,22 +432,13 @@ function GradientArrow({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
-      style={{ filter: `drop-shadow(0 0 4px rgba(255,255,255,0.35))` }}
     >
       <defs>
         <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#ffffff" />
-          <stop offset="50%" stopColor="#d4d4d4" />
-          <stop offset="100%" stopColor="#737373" />
+          <stop offset="0%" stopColor="#1A211A" />
+          <stop offset="50%" stopColor="#555555" />
+          <stop offset="100%" stopColor="#888888" />
         </linearGradient>
-
-        <filter id={glowId} x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="1.5" result="coloredBlur" />
-          <feMerge>
-            <feMergeNode in="coloredBlur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
       </defs>
       <path
         d={d}
