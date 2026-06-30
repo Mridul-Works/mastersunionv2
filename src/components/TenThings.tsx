@@ -185,6 +185,22 @@ export default function TenThings() {
           </div>
 
 
+          {/* Giant ghost numeral */}
+          <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
+            <AnimatePresence mode="popLayout">
+              <motion.span
+                key={`ghost-${index}`}
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.98 }}
+                transition={{ duration: 0.6, ease: EASE }}
+                className="select-none bg-gradient-to-b from-[#1A211A]/15 via-[#1A211A]/5 to-transparent bg-clip-text font-black tracking-tighter text-transparent"
+                style={{ fontSize: "clamp(140px, 30vw, 420px)", lineHeight: 1 }}
+              >
+                {String(index + 1).padStart(2, "0")}
+              </motion.span>
+            </AnimatePresence>
+          </div>
 
 
           {/* Slide */}
@@ -268,7 +284,7 @@ function Slide({
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
 
-      <div className="relative flex h-full w-full items-center justify-center overflow-hidden p-6 md:p-10">
+      <div className="relative h-full w-full overflow-hidden">
         <motion.div
           key={project.image}
           custom={direction}
@@ -279,7 +295,7 @@ function Slide({
             transition: { duration: SLIDE_DURATION * 0.85, ease: EASE },
           }}
           transition={{ duration: SLIDE_DURATION, ease: EASE }}
-          className="relative h-[92%] w-[92%] shadow-[16px_16px_0px_0px_rgba(26,33,26,0.18)]"
+          className="absolute inset-0"
         >
           <motion.img
             src={project.image}
@@ -290,7 +306,33 @@ function Slide({
             exit={{ scale: 1.05, x: -direction * 40 }}
             transition={{ duration: SLIDE_DURATION * 1.2, ease: EASE }}
           />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(241,239,231,0.55) 0%, rgba(241,239,231,0) 35%, rgba(241,239,231,0) 60%, rgba(241,239,231,0.85) 100%)",
+            }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(241,239,231,0.7) 0%, rgba(241,239,231,0) 28%, rgba(241,239,231,0) 70%, rgba(241,239,231,0.9) 100%)",
+            }}
+          />
         </motion.div>
+
+        <div className="pointer-events-none absolute left-6 bottom-6 z-10 md:left-10 md:bottom-10">
+          <StaggeredText delay={0.05} k={`bignum-${index}`}>
+            <span
+              className="block bg-gradient-to-b from-[#1A211A] via-[#1A211A]/70 to-[#1A211A]/30 bg-clip-text font-black leading-none tracking-tighter text-transparent"
+              style={{ fontSize: "clamp(64px, 8vw, 120px)" }}
+            >
+              {String(index + 1).padStart(2, "0")}
+            </span>
+          </StaggeredText>
+        </div>
+
       </div>
 
       <div className="relative z-10 flex items-end px-6 pb-24 md:items-center md:px-12 md:pb-0">
