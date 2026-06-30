@@ -3,13 +3,6 @@ import { ArrowUpRight, ArrowRight, ChevronLeft, ChevronRight, ChevronDown, Check
 
 import { Link } from "@tanstack/react-router";
 import founderPhoto from "@/assets/pratham-chest.png.asset.json";
-import undergraduateAsset from "@/assets/programs/editorial-undergraduate.jpg.asset.json";
-import postgraduateAsset from "@/assets/programs/editorial-postgraduate.jpg.asset.json";
-import executiveAsset from "@/assets/programs/editorial-executive.jpg.asset.json";
-import immersionAsset from "@/assets/programs/editorial-immersions.jpg.asset.json";
-import familyBusinessAsset from "@/assets/programs/editorial-family-business.jpg.asset.json";
-import globalAsset from "@/assets/programs/editorial-global.jpg.asset.json";
-void undergraduateAsset; void postgraduateAsset; void executiveAsset; void immersionAsset; void familyBusinessAsset; void globalAsset;
 
 type Programme = { title: string; duration: string; format: string; href?: string };
 type Pathway = {
