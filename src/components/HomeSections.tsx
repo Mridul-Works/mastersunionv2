@@ -41,24 +41,30 @@ const PROGRAM_STAGES: readonly Stage[] = [
 ];
 
 function Programs() {
-  const [active, setActive] = useState(0);
+  const defaultIdx = Math.max(0, PROGRAM_STAGES.findIndex((s) => s.open));
+  const [active, setActive] = useState(defaultIdx);
   const stage = PROGRAM_STAGES[active];
+  const openCount = PROGRAM_STAGES.filter((s) => s.open).length;
   return (
     <section id="programs" className="border-t border-black/10 bg-gradient-to-b from-[#FDF8F0] via-[#F0E8F4] to-[#E8F0F8]">
       <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-10 md:py-24">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-black/50">Programmes</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-black/50">Admissions · Cohort 2026</p>
             <h2
               className="mt-4 text-[clamp(2.6rem,6.5vw,5.2rem)] font-light leading-[0.95] tracking-tight text-black"
               style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
             >
-              Build your <span className="italic font-extralight">way.</span>
+              Programmes <span className="italic font-extralight">accepting applications.</span>
             </h2>
           </div>
-          <p className="max-w-[44ch] text-[14px] leading-relaxed text-black/65">
-            9 distinct pathways. One shared obsession — real businesses, not case studies.
-          </p>
+          <div className="max-w-[44ch] text-[14px] leading-relaxed text-black/65">
+            <p>9 pathways. {openCount} currently open. One shared obsession — real businesses, not case studies.</p>
+            <div className="mt-3 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.28em] text-black/55">
+              <span className="inline-block size-2 rounded-full bg-emerald-600" />
+              Live admissions window
+            </div>
+          </div>
         </div>
 
         <div className="mt-8 flex flex-col gap-4">
@@ -76,6 +82,24 @@ function Programs() {
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-white/40 via-white/10 to-transparent" />
 
+            {/* Status badge */}
+            <div className="absolute left-6 top-6 z-10 flex items-center gap-2 md:left-10 md:top-10">
+              <span
+                className={`inline-flex items-center gap-2 border px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.24em] backdrop-blur-sm ${
+                  stage.open
+                    ? "border-emerald-700/30 bg-emerald-50/80 text-emerald-800"
+                    : "border-black/15 bg-white/70 text-black/60"
+                }`}
+              >
+                <span className={`size-1.5 rounded-full ${stage.open ? "bg-emerald-600" : "bg-black/40"}`} />
+                {stage.open ? "Applications Open" : "Closed"}
+              </span>
+              {stage.mode && (
+                <span className="hidden border border-black/15 bg-white/70 px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-black/70 backdrop-blur-sm md:inline-flex">
+                  {stage.mode} · {stage.duration}
+                </span>
+              )}
+            </div>
 
             {/* Vertical index */}
             <div className="pointer-events-none absolute right-4 top-1/2 z-10 hidden -translate-y-1/2 md:right-8 lg:block">
@@ -89,11 +113,11 @@ function Programs() {
 
             {/* Content */}
             <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
-              <div className="max-w-[640px]">
+              <div className="max-w-[680px]">
                 <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-black/60">
                   <span>0{active + 1}</span>
                   <span className="h-px w-8 bg-black/30" />
-                  <span>Featured pathway</span>
+                  <span>{stage.round ?? "Featured pathway"}</span>
                 </div>
                 <h3
                   className="mt-5 text-[clamp(2.2rem,5vw,4.2rem)] font-light leading-[1] tracking-tight text-black"
@@ -101,6 +125,11 @@ function Programs() {
                 >
                   {stage.name}
                 </h3>
+                {stage.flagship && (
+                  <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.22em] text-black/55">
+                    Flagship · {stage.flagship}
+                  </p>
+                )}
                 <p className="mt-3 max-w-[42ch] text-[15px] leading-relaxed text-black/80">
                   {stage.pathway}
                 </p>
@@ -112,15 +141,28 @@ function Programs() {
                     </li>
                   ))}
                 </ul>
-                <a
-                  href={stage.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group mt-7 inline-flex items-center gap-3 border-b border-black/40 pb-1 text-[11px] font-medium uppercase tracking-[0.3em] text-black transition-colors hover:border-black"
-                >
-                  View all
-                  <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
-                </a>
+                <div className="mt-7 flex flex-wrap items-center gap-4">
+                  {stage.open && (
+                    <a
+                      href={stage.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group inline-flex items-center gap-2 bg-black px-5 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-colors hover:bg-neutral-800"
+                    >
+                      Apply Now
+                      <ArrowUpRight className="size-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    </a>
+                  )}
+                  <a
+                    href={stage.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group inline-flex items-center gap-3 border-b border-black/40 pb-1 text-[11px] font-medium uppercase tracking-[0.3em] text-black transition-colors hover:border-black"
+                  >
+                    Programme details
+                    <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -138,10 +180,16 @@ function Programs() {
                       onFocus={() => setActive(i)}
                       onClick={() => setActive(i)}
                       aria-current={isActive ? "true" : undefined}
-                      className={`group flex w-full flex-col items-start gap-2 px-3 py-3 text-left transition ${
+                      className={`group relative flex w-full flex-col items-start gap-2 px-3 py-3 text-left transition ${
                         isActive ? "bg-black text-[#F2E8D3]" : "text-[#1C1C1C] hover:bg-black/5"
                       }`}
                     >
+                      <span
+                        className={`absolute right-2 top-2 size-1.5 rounded-full ${
+                          s.open ? "bg-emerald-500" : "bg-black/20"
+                        }`}
+                        aria-label={s.open ? "Open" : "Closed"}
+                      />
                       <span
                         className="font-mono text-[10px] uppercase tracking-[0.28em] opacity-60"
                         style={isActive ? { color: s.accent, opacity: 1 } : undefined}
@@ -164,6 +212,7 @@ function Programs() {
     </section>
   );
 }
+
 
 const NEWS = [
   { tag: "Press", month: "Jun", day: "15", time: "09:00 AM", title: "Masters' Union ranked among India's top new-age B-schools", source: "Forbes India" },
