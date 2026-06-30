@@ -9,6 +9,7 @@ import executiveAsset from "@/assets/programs/editorial-executive.jpg.asset.json
 import immersionAsset from "@/assets/programs/editorial-immersions.jpg.asset.json";
 import familyBusinessAsset from "@/assets/programs/editorial-family-business.jpg.asset.json";
 import globalAsset from "@/assets/programs/editorial-global.jpg.asset.json";
+void undergraduateAsset; void postgraduateAsset; void executiveAsset; void immersionAsset; void familyBusinessAsset; void globalAsset;
 
 type Programme = { title: string; duration: string; format: string; href?: string };
 type Pathway = {
