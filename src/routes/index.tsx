@@ -66,6 +66,11 @@ function Index() {
           lockY = getLockY();
           setNavVisible(true);
           setShowRewatch(true);
+          // Pause the video if it was playing so the curtain doesn't keep
+          // audio/video running underneath the hero.
+          try {
+            videoElRef.current?.pause();
+          } catch {}
         }
         lastY = y;
         return;
