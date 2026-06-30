@@ -96,7 +96,7 @@ export default function TenThings() {
               className="max-w-[920px] leading-[1.02] tracking-tight text-[#1A211A]"
               style={{
                 fontFamily: "'Inter', system-ui, sans-serif",
-                fontWeight: 600,
+                fontWeight: 400,
                 fontSize: "clamp(40px, 7.5vw, 92px)",
               }}
             >
