@@ -192,27 +192,33 @@ export default function HomeSections() {
             </a>
           </div>
 
-          <div className="flex flex-nowrap gap-4 overflow-x-auto snap-x md:overflow-x-visible md:gap-6">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
             {PROGRAMS.map((p) => (
               <article
                 key={p.title}
-                className="group flex min-w-[280px] flex-1 cursor-pointer snap-start flex-col gap-6 border border-black/10 bg-white p-6 transition-all hover:bg-black/[0.03] md:min-w-0"
+                className="group flex cursor-pointer snap-start overflow-hidden border border-black/10 bg-white transition-all hover:bg-black/[0.03]"
               >
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-none bg-black px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-white">{p.mode}</span>
-                  <span className="rounded-none bg-black/5 px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-black/70">{p.duration}</span>
+                <div className="relative w-[40%] min-w-[140px] max-w-[260px] overflow-hidden bg-black/5">
+                  <img src={p.image} alt={p.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-y-0 left-0 w-1" style={{ backgroundColor: p.accent }} />
                 </div>
-                <h3 className="font-display text-[1.15rem] font-bold leading-snug text-black md:text-[1.25rem]">
-                  {p.title}
-                </h3>
-                <div className="inline-flex w-fit items-center gap-2 rounded-none bg-black/5 px-3 py-1.5">
-                  <Hourglass className="size-3.5 text-black/70" />
-                  <span className="font-sans text-[12px] font-semibold text-black/80">{p.round}</span>
-                </div>
-                <div className="mt-auto pt-4">
-                  <a href="#" className="inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-black transition-colors group-hover:text-black/70">
-                    Apply Now <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                  </a>
+                <div className="flex flex-1 flex-col gap-4 p-5 md:p-6">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="rounded-none bg-black px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-white">{p.mode}</span>
+                    <span className="rounded-none bg-black/5 px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-black/70">{p.duration}</span>
+                  </div>
+                  <h3 className="font-display text-[1.15rem] font-bold leading-snug text-black md:text-[1.25rem]">
+                    {p.title}
+                  </h3>
+                  <div className="inline-flex w-fit items-center gap-2 rounded-none px-3 py-1.5" style={{ backgroundColor: `${p.statusColor}15`, color: p.statusColor }}>
+                    <Hourglass className="size-3.5" style={{ color: p.statusColor }} />
+                    <span className="font-sans text-[12px] font-semibold">{p.round}</span>
+                  </div>
+                  <div className="mt-auto pt-2">
+                    <a href="#" className="inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-black transition-colors group-hover:text-black/70">
+                      Apply Now <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    </a>
+                  </div>
                 </div>
               </article>
             ))}
