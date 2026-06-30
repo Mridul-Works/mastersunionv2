@@ -328,7 +328,7 @@ function Slide({
 
           <StaggeredText delay={0.25} k={`title-${index}`}>
             <h2
-              className="mt-3 font-black uppercase text-[#1A211A]"
+              className="mt-3 font-semibold uppercase text-[#1A211A]"
               style={{
                 fontSize: "clamp(24px, 3.5vw, 44px)",
                 lineHeight: 1.05,
