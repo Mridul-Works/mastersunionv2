@@ -79,213 +79,175 @@ const PATHWAYS: Pathway[] = [
   },
 ];
 
-const PANEL_GRADIENT =
-  "linear-gradient(135deg, #F6E9D8 0%, #F4D9C0 35%, #E8D9C8 65%, #CFDCC4 100%)";
-
-function PathwayDropdown({
-  value,
-  onChange,
-}: {
-  value: string | null;
-  onChange: (key: string) => void;
-}) {
-  const [open, setOpen] = useState(false);
-  const [activeIdx, setActiveIdx] = useState(0);
-  const rootRef = useRef<HTMLDivElement>(null);
-  const selected = PATHWAYS.find((p) => p.key === value) ?? null;
-
-  useEffect(() => {
-    if (!open) return;
-    const onDoc = (e: MouseEvent) => {
-      if (rootRef.current && !rootRef.current.contains(e.target as Node)) setOpen(false);
-    };
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
-    };
-    document.addEventListener("mousedown", onDoc);
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("mousedown", onDoc);
-      document.removeEventListener("keydown", onKey);
-    };
-  }, [open]);
-
-  useEffect(() => {
-    if (open && selected) {
-      const i = PATHWAYS.findIndex((p) => p.key === selected.key);
-      if (i >= 0) setActiveIdx(i);
-    }
-  }, [open, selected]);
-
-  const handleListKey = (e: React.KeyboardEvent) => {
-    if (e.key === "ArrowDown") {
-      e.preventDefault();
-      setActiveIdx((i) => (i + 1) % PATHWAYS.length);
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      setActiveIdx((i) => (i - 1 + PATHWAYS.length) % PATHWAYS.length);
-    } else if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      onChange(PATHWAYS[activeIdx].key);
-      setOpen(false);
-    }
-  };
-
-  return (
-    <div ref={rootRef} className="relative w-full max-w-[420px]">
-      <button
-        type="button"
-        aria-haspopup="listbox"
-        aria-expanded={open}
-        onClick={() => setOpen((v) => !v)}
-        onKeyDown={(e) => {
-          if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            setOpen(true);
-          }
-        }}
-        className="group flex w-full items-center justify-between gap-4 rounded-full border border-black/15 bg-white/80 px-6 py-4 text-left backdrop-blur transition hover:border-black/30 hover:bg-white"
-      >
-        <span
-          className={`text-[18px] font-semibold tracking-tight md:text-[20px] ${
-            selected ? "text-black" : "text-black/45"
-          }`}
-        >
-          {selected ? selected.label : "Choose your path"}
-        </span>
-        <ChevronDown
-          className={`size-5 shrink-0 text-black/60 transition-transform duration-200 ${
-            open ? "rotate-180" : ""
-          }`}
-        />
-      </button>
-
-      {open && (
-        <ul
-          role="listbox"
-          tabIndex={-1}
-          onKeyDown={handleListKey}
-          aria-activedescendant={`pathway-opt-${activeIdx}`}
-          className="absolute left-0 right-0 top-[calc(100%+8px)] z-30 overflow-hidden rounded-2xl border border-black/10 p-2 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.25)] animate-[fadeIn_180ms_ease-out]"
-          style={{ background: PANEL_GRADIENT }}
-        >
-          {PATHWAYS.map((p, i) => {
-            const isSelected = selected?.key === p.key;
-            const isActive = i === activeIdx;
-            return (
-              <li
-                key={p.key}
-                id={`pathway-opt-${i}`}
-                role="option"
-                aria-selected={isSelected}
-                onMouseEnter={() => setActiveIdx(i)}
-                onClick={() => {
-                  onChange(p.key);
-                  setOpen(false);
-                }}
-                className={`flex cursor-pointer items-center justify-between gap-4 rounded-xl px-5 py-3.5 text-[15px] font-medium text-black/85 transition ${
-                  isActive ? "bg-white/60 pl-6" : "hover:bg-white/40"
-                }`}
-              >
-                <span>{p.label}</span>
-                {isSelected && <Check className="size-4 text-black" />}
-              </li>
-            );
-          })}
-        </ul>
-      )}
-    </div>
-  );
-}
-
 function Programs() {
-  const [selectedKey, setSelectedKey] = useState<string | null>(null);
-  const stage = PATHWAYS.find((p) => p.key === selectedKey) ?? null;
+  const [activeKey, setActiveKey] = useState<string>(PATHWAYS[0].key);
+  const active = PATHWAYS.find((p) => p.key === activeKey) ?? PATHWAYS[0];
 
   return (
-    <section id="programs" className="border-t border-black/10 bg-white">
-      <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-10 md:py-24">
-        <div className="flex flex-col gap-6">
-          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-black/50">
+    <section id="programs" className="border-t border-black/10 bg-[#F5F3EE]">
+      <div className="mx-auto grid max-w-[1280px] grid-cols-12 gap-6 px-6 py-20 md:px-10 md:py-28">
+        {/* Editorial intro */}
+        <div className="col-span-12 lg:col-span-4">
+          <h2 className="mb-8 inline-block border-b border-black pb-2 font-mono text-[10px] font-bold uppercase tracking-[0.32em]">
             Programme Finder
-          </p>
-          <h2
-            className="max-w-[20ch] text-[clamp(2.4rem,5.5vw,4.6rem)] font-light leading-[1.02] tracking-tight text-black"
+          </h2>
+          <h1
+            className="mb-6 text-[clamp(3.5rem,8vw,6rem)] font-black leading-[0.85] tracking-tighter text-black"
             style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
           >
-            Tell us where you are.{" "}
-            <span className="italic font-extralight text-black/70">
-              We'll tell you where you go next.
+            FIND <br /> YOUR <br />
+            <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+              Path.
             </span>
-          </h2>
+          </h1>
+          <p className="max-w-xs text-[15px] font-medium leading-snug text-black/75">
+            Tell us where you are. We'll tell you where to go next — every Masters' Union programme, organised by who you are today.
+          </p>
 
-          <div className="mt-2">
-            <PathwayDropdown value={selectedKey} onChange={setSelectedKey} />
+          {/* Persona switcher (small) */}
+          <div className="mt-10 flex flex-wrap gap-2">
+            {PATHWAYS.map((p, i) => {
+              const isActive = p.key === activeKey;
+              return (
+                <button
+                  key={p.key}
+                  onClick={() => setActiveKey(p.key)}
+                  className={`border px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] transition ${
+                    isActive
+                      ? "border-black bg-black text-[#F5F3EE]"
+                      : "border-black/20 bg-transparent text-black hover:border-black"
+                  }`}
+                >
+                  <span className="mr-2 font-mono text-black/40">{String(i + 1).padStart(2, "0")}</span>
+                  {p.label.replace("I'm ", "").replace("a ", "")}
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        {stage && (
-          <div
-            key={stage.key}
-            className="relative mt-10 overflow-hidden rounded-3xl border border-black/10 animate-[fadeIn_250ms_ease-out]"
-            style={{ background: PANEL_GRADIENT }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/30 via-transparent to-transparent" />
-            <div className="relative p-8 md:p-14">
-              <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-black/60">
-                <span>Your path</span>
-                <span className="h-px w-10 bg-black/30" />
-                <span>{stage.headline}</span>
-              </div>
-
+        {/* Editorial grid */}
+        <div className="relative col-span-12 grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-4 lg:col-span-8">
+          {/* Feature tile — dark */}
+          <div className="group relative flex aspect-[3/4] flex-col justify-end overflow-hidden bg-black p-8 transition-transform duration-500 hover:-translate-y-2">
+            <div className="absolute right-0 top-0 z-10 p-6">
+              <span className="border border-white/30 px-3 py-1 text-[10px] uppercase tracking-widest text-white">
+                Persona
+              </span>
+            </div>
+            <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_20%_100%,rgba(255,255,255,0.08),transparent_60%)]" />
+            <div className="relative z-10">
+              <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.28em] text-white/50">
+                Currently viewing
+              </p>
               <h3
-                className="mt-5 text-[clamp(2.6rem,7.5vw,6rem)] font-light leading-[0.95] tracking-tight text-black"
+                className="mb-4 text-[clamp(2.5rem,4.5vw,3.5rem)] font-black uppercase leading-[0.9] text-white transition-all duration-700 group-hover:-translate-x-1"
                 style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
               >
-                {stage.headline}
+                {active.headline}
               </h3>
-              <p className="mt-4 max-w-[52ch] text-[16px] leading-relaxed text-black/75">
-                {stage.subhead}
-              </p>
-
-              <ul className="mt-10 divide-y divide-black/15 border-t border-black/15">
-                {stage.programmes.map((pg) => (
-                  <li key={pg.title}>
-                    <a
-                      href={pg.href ?? stage.viewAllHref}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="group flex flex-col gap-2 py-4 transition hover:pl-2 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
-                    >
-                      <span className="text-[15px] font-medium leading-snug tracking-tight text-black md:text-[17px]">
-                        {pg.title}
-                      </span>
-                      <span className="flex shrink-0 items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-black/55">
-                        <span className="rounded-full border border-black/20 bg-white/40 px-2.5 py-1">
-                          {pg.duration}
-                        </span>
-                        <span className="rounded-full border border-black/20 bg-white/40 px-2.5 py-1">
-                          {pg.format}
-                        </span>
-                        <ArrowRight className="size-3.5 -translate-x-1 opacity-0 transition group-hover:translate-x-0 group-hover:opacity-100" />
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-
+              <p className="mb-6 max-w-[260px] text-[14px] text-white/70">{active.subhead}</p>
               <a
-                href={stage.viewAllHref}
+                href={active.viewAllHref}
                 target="_blank"
                 rel="noreferrer"
-                className="group mt-10 inline-flex items-center gap-3 border-b border-black pb-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-black"
+                className="inline-flex items-center gap-2 bg-[#F5F3EE] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.22em] text-black transition hover:bg-white"
               >
-                View all {stage.headline} programmes
-                <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
+                View all <ArrowRight className="size-3.5" />
               </a>
             </div>
           </div>
-        )}
+
+          {/* Programmes tile — bordered, shifted down */}
+          <div className="group relative flex aspect-[3/4] flex-col justify-between overflow-hidden border-4 border-black bg-[#F5F3EE] p-8 transition-transform duration-500 hover:-translate-y-2 md:mt-16">
+            <div className="absolute right-0 top-0 p-6">
+              <span className="border border-black/30 px-3 py-1 text-[10px] uppercase tracking-widest text-black">
+                {String(active.programmes.length).padStart(2, "0")} Programmes
+              </span>
+            </div>
+            <div className="relative">
+              <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.28em] text-black/50">
+                Browse the list
+              </p>
+              <h3
+                className="text-[clamp(2.2rem,3.8vw,3rem)] font-black uppercase leading-[0.9] text-black"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+              >
+                Programmes
+              </h3>
+            </div>
+
+            <ul className="relative max-h-[260px] space-y-2 overflow-y-auto pr-1">
+              {active.programmes.slice(0, 5).map((pg, i) => (
+                <li key={pg.title}>
+                  <a
+                    href={pg.href ?? active.viewAllHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group/row flex items-start gap-3 border-b border-black/10 py-2 transition hover:border-black"
+                  >
+                    <span className="mt-1 font-mono text-[10px] text-black/40">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="flex-1 text-[13px] font-semibold leading-snug text-black">
+                      {pg.title}
+                    </span>
+                    <ArrowUpRight className="mt-0.5 size-3.5 shrink-0 -translate-x-1 opacity-0 transition group-hover/row:translate-x-0 group-hover/row:opacity-100" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={active.viewAllHref}
+              target="_blank"
+              rel="noreferrer"
+              className="relative w-fit border-b-2 border-black pb-1 text-[11px] font-black uppercase tracking-[0.22em]"
+            >
+              View all {active.programmes.length} →
+            </a>
+
+            <div
+              className="pointer-events-none absolute -bottom-6 -right-10 select-none text-[11rem] font-black leading-none text-black/[0.05]"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+            >
+              {active.headline.split(" ")[0].slice(0, 4).toUpperCase()}
+            </div>
+          </div>
+
+          {/* Overlapping stat / CTA tile */}
+          <div className="group relative z-20 col-span-1 flex aspect-[4/3] items-center overflow-hidden border border-black/10 bg-white p-10 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.25)] transition-transform duration-500 hover:scale-[1.01] md:col-span-2 md:-mt-24 md:mx-12">
+            <div className="w-1/2 pr-8">
+              <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-black/50">
+                Not sure yet?
+              </p>
+              <h3
+                className="mb-4 text-[clamp(1.8rem,3vw,2.5rem)] font-black uppercase leading-[0.9] tracking-tighter text-black"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+              >
+                Short <br /> Courses
+              </h3>
+              <p className="text-[13px] leading-snug text-black/55">
+                Bootcamps, summer schools and weekend intensives — start with a sprint before you commit to a programme.
+              </p>
+            </div>
+            <div className="relative flex h-full w-1/2 items-center justify-center bg-[#EFEDE7]">
+              <span className="pointer-events-none absolute rotate-90 font-mono text-[10px] font-bold uppercase tracking-[0.5em] text-black/15">
+                Cohort 2026 · Open
+              </span>
+              <div className="relative z-10 border-2 border-black bg-white p-3">
+                <a
+                  href="https://mastersunion.org"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 whitespace-nowrap bg-black px-6 py-3 text-[11px] font-bold uppercase tracking-[0.22em] text-white transition hover:bg-black/85"
+                >
+                  Browse calendar <ArrowRight className="size-3.5" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
