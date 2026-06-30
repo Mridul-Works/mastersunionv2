@@ -310,20 +310,16 @@ function Slide({
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(90deg, rgba(42,49,42,0.55) 0%, rgba(42,49,42,0) 35%, rgba(42,49,42,0) 60%, rgba(26,33,26,0.85) 100%)",
+                "linear-gradient(90deg, rgba(241,239,231,0.55) 0%, rgba(241,239,231,0) 35%, rgba(241,239,231,0) 60%, rgba(241,239,231,0.85) 100%)",
             }}
           />
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, rgba(42,49,42,0.7) 0%, rgba(42,49,42,0) 28%, rgba(42,49,42,0) 70%, rgba(26,33,26,0.9) 100%)",
+                "linear-gradient(180deg, rgba(241,239,231,0.7) 0%, rgba(241,239,231,0) 28%, rgba(241,239,231,0) 70%, rgba(241,239,231,0.9) 100%)",
             }}
           />
-          <div
-            className="absolute inset-0 bg-[#2A312A]/10 mix-blend-multiply"
-          />
-        </motion.div>
 
         <div className="pointer-events-none absolute left-6 bottom-6 z-10 md:left-10 md:bottom-10">
           <StaggeredText delay={0.05} k={`bignum-${index}`}>
