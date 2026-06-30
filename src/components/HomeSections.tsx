@@ -198,9 +198,15 @@ export default function HomeSections() {
                 key={p.title}
                 className="group flex cursor-pointer snap-start overflow-hidden border border-black/10 bg-white transition-all hover:bg-black/[0.03]"
               >
-                <div className="relative w-[40%] min-w-[140px] max-w-[260px] overflow-hidden bg-black/5">
-                  <img src={p.image} alt={p.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                  <div className="absolute inset-y-0 left-0 w-1" style={{ backgroundColor: p.accent }} />
+                <div
+                  className="relative w-[40%] min-w-[140px] max-w-[260px] overflow-hidden flex items-end p-5"
+                  style={{ background: p.gradient, minHeight: 260 }}
+                >
+                  <div className="font-sans text-white leading-tight drop-shadow-sm">
+                    <div className="text-[15px] font-medium">{p.season}</div>
+                    <div className="text-[13px] opacity-90">{p.duration.toLowerCase()}</div>
+                    <div className="text-[13px] opacity-90">{p.city}</div>
+                  </div>
                 </div>
                 <div className="flex flex-1 flex-col gap-4 p-5 md:p-6">
                   <div className="flex flex-wrap items-center gap-2">
