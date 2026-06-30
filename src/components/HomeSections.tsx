@@ -1,6 +1,6 @@
 import { ArrowUpRight, ChevronLeft, ChevronRight, Hourglass, Quote, GraduationCap, Rocket, Briefcase, Users, Mic, ChefHat, Building2, Send, Instagram, Linkedin, Youtube, Twitter, ShoppingCart } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import founderPhoto from "@/assets/pratham-mittal.png.asset.json";
+import founderPhoto from "@/assets/pratham-chest.png.asset.json";
 
 const NEWS = [
   { tag: "Press", month: "Jun", day: "15", time: "09:00 AM", title: "Masters' Union ranked among India's top new-age B-schools", source: "Forbes India" },
