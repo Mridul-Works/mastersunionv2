@@ -1,240 +1,291 @@
-import { useState } from "react";
-import { ArrowUpRight, ArrowRight, ChevronLeft, ChevronRight, Hourglass, Quote, GraduationCap, Rocket, Briefcase, Users, Mic, ChefHat, Building2, Send, Instagram, Linkedin, Youtube, Twitter, ShoppingCart } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { ArrowUpRight, ArrowRight, ChevronLeft, ChevronRight, ChevronDown, Check, Hourglass, Quote, GraduationCap, Rocket, Briefcase, Users, Mic, ChefHat, Building2, Send, Instagram, Linkedin, Youtube, Twitter, ShoppingCart } from "lucide-react";
+
 import { Link } from "@tanstack/react-router";
 import founderPhoto from "@/assets/pratham-chest.png.asset.json";
-import undergraduateAsset from "@/assets/programs/editorial-undergraduate.jpg.asset.json";
-import postgraduateAsset from "@/assets/programs/editorial-postgraduate.jpg.asset.json";
-import executiveAsset from "@/assets/programs/editorial-executive.jpg.asset.json";
-import immersionAsset from "@/assets/programs/editorial-immersions.jpg.asset.json";
-import familyBusinessAsset from "@/assets/programs/editorial-family-business.jpg.asset.json";
-import globalAsset from "@/assets/programs/editorial-global.jpg.asset.json";
 
-const PATHWAYS = [
+type Programme = { title: string; duration: string; format: string; href?: string };
+type Pathway = {
+  key: string;
+  label: string;
+  headline: string;
+  subhead: string;
+  programmes: Programme[];
+  viewAllHref: string;
+};
+
+const PATHWAYS: Pathway[] = [
   {
-    name: "School",
+    key: "school",
+    label: "I'm in School",
     headline: "School",
     subhead: "Build a company before you graduate.",
-    bullets: [
-      "UG Technology & Business Management",
-      "UG Data Science & AI",
-      "Global Track — Illinois Tech / Griffith",
-      "Career-ready by 22",
+    viewAllHref: "https://mastersunion.org/undergraduate",
+    programmes: [
+      { title: "UG in Technology & Business Management", duration: "4 Yrs", format: "On Campus" },
+      { title: "UG in Psychology & Marketing", duration: "4 Yrs", format: "On Campus" },
+      { title: "UG in Data Science & Artificial Intelligence", duration: "4 Yrs", format: "On Campus" },
+      { title: "UG in Finance & Economics (CA/CFA Pathway)", duration: "4 Yrs", format: "On Campus" },
+      { title: "UG Programme in Design (MUDS)", duration: "4 Yrs", format: "On Campus" },
+      { title: "UG Global Track — Illinois Tech, US", duration: "3+1 Yrs", format: "Dual Campus" },
+      { title: "UG Global Track — Griffith University, Australia", duration: "2+2 Yrs", format: "Dual Campus" },
+      { title: "Bharat Summer Fellowship", duration: "6 Wks", format: "Travel" },
     ],
-    gradient: "linear-gradient(135deg, #FCE5D8 0%, #F8D4A8 50%, #F0E8D4 100%)",
-    accent: "#E8A87C",
-    image: undergraduateAsset.url,
-    href: "https://mastersunion.org/undergraduate",
   },
   {
-    name: "College",
+    key: "college",
+    label: "I'm in College",
     headline: "College",
     subhead: "Go from intern to founder.",
-    bullets: [
-      "PGP Young Leaders Cohort",
-      "PGP Applied AI & Agentic Systems",
-      "PGP Bharat",
-      "Internship-to-offer pipeline",
+    viewAllHref: "https://mastersunion.org/postgraduate",
+    programmes: [
+      { title: "PGP in Technology & Business Management — Young Leaders Cohort", duration: "24 Mo", format: "On Campus" },
+      { title: "PGP in Applied AI & Agentic Systems", duration: "15 Mo", format: "On Campus" },
+      { title: "PGP in UI/UX & AI Product Design", duration: "12 Mo", format: "On Campus" },
+      { title: "PGP in Human Resources & Organisation Strategy", duration: "16 Mo", format: "On Campus" },
+      { title: "PGP in Sports Management & Gaming", duration: "16 Mo", format: "On Campus" },
+      { title: "PGP in Sustainability & Business Management", duration: "16 Mo", format: "On Campus" },
+      { title: "PGP Bharat", duration: "24 Wks", format: "Travel + Hybrid" },
+      { title: "PGP TBM Summer School", duration: "Summer Intensive", format: "On Campus" },
     ],
-    gradient: "linear-gradient(135deg, #E8D4E8 0%, #F8D4A8 45%, #D4E8F0 100%)",
-    accent: "#C9A0DC",
-    image: postgraduateAsset.url,
-    href: "https://mastersunion.org/postgraduate",
   },
   {
-    name: "Work",
+    key: "work",
+    label: "I'm at Work",
     headline: "Work",
     subhead: "Lead without leaving your career behind.",
-    bullets: [
-      "PGP Rise: General Management",
-      "PGP in Capital Markets & Trading",
-      "Executive AI & GCC Leadership",
-      "Weekend-only commitment",
+    viewAllHref: "https://mastersunion.org/executive-education",
+    programmes: [
+      { title: "PGP in Technology & Business Management (flagship)", duration: "16 Mo", format: "On Campus" },
+      { title: "PGP Rise: General Management", duration: "1 Yr", format: "Blended Weekend" },
+      { title: "PGP Rise: General Management (Global)", duration: "1 Yr", format: "Online" },
+      { title: "PGP in Capital Markets & Trading", duration: "1 Yr", format: "Online/In-Person Weekend" },
+      { title: "Applied Markets & Bloomberg Equity Research", duration: "12–36 Mo", format: "Blended" },
+      { title: "Executive Leadership Programme in AI & GCC Transformation", duration: "6 Mo", format: "Weekend" },
+      { title: "AI First Operator Programme", duration: "Short-form", format: "Online/Hybrid" },
     ],
-    gradient: "linear-gradient(135deg, #E8F4E8 0%, #D8E8C8 50%, #E8E2BC 100%)",
-    accent: "#A8C0A0",
-    image: executiveAsset.url,
-    href: "https://mastersunion.org/executive-education",
   },
   {
-    name: "Business Owner",
+    key: "owner",
+    label: "I'm a Business Owner",
     headline: "Business Owner",
     subhead: "Scale what you already built.",
-    bullets: [
-      "PGP Rise: Owners & Promoters",
-      "Entrepreneurship & Business Acceleration",
-      "D2C Brand Bootcamp",
-      "₹40L live capital access",
+    viewAllHref: "https://mastersunion.org/family-business",
+    programmes: [
+      { title: "PGP Rise: Owners & Promoters Management", duration: "1 Yr", format: "Blended Weekend" },
+      { title: "PGP in Entrepreneurship & Business Acceleration", duration: "9 Mo", format: "Blended" },
+      { title: "D2C Brand Bootcamp", duration: "Short-form", format: "Intensive Bootcamp" },
     ],
-    gradient: "linear-gradient(135deg, #F5D2C8 0%, #E88AAB 50%, #F8D4A8 100%)",
-    accent: "#E88AAB",
-    image: familyBusinessAsset.url,
-    href: "https://mastersunion.org/family-business",
   },
-  {
-    name: "Global",
-    headline: "Global",
-    subhead: "Study global, build for Bharat.",
-    bullets: [
-      "PGP Rise: General Management (Global)",
-      "UG Global Track — Illinois Tech",
-      "UG Global Track — Griffith",
-      "3 international immersions",
-    ],
-    gradient: "linear-gradient(135deg, #D4E8F0 0%, #8A9ED8 50%, #E8D4E8 100%)",
-    accent: "#8A9ED8",
-    image: globalAsset.url,
-    href: "https://mastersunion.org/undergraduate-global",
-  },
-  {
-    name: "Exploring",
-    headline: "Exploring",
-    subhead: "See what fits — no commitment yet.",
-    bullets: [
-      "PGP in Technology & Business Management",
-      "UG Technology & Business Management",
-      "PGP Rise: General Management",
-      "PGP Bharat",
-    ],
-    gradient: "linear-gradient(135deg, #E8F4F0 0%, #98C8A8 50%, #E8E2BC 100%)",
-    accent: "#98C8A8",
-    image: immersionAsset.url,
-    href: "https://mastersunion.org/programmes",
-  },
-] as const;
+];
+
+const PANEL_GRADIENT =
+  "linear-gradient(135deg, #F6E9D8 0%, #F4D9C0 35%, #E8D9C8 65%, #CFDCC4 100%)";
+
+function PathwayDropdown({
+  value,
+  onChange,
+}: {
+  value: string | null;
+  onChange: (key: string) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const [activeIdx, setActiveIdx] = useState(0);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const selected = PATHWAYS.find((p) => p.key === value) ?? null;
+
+  useEffect(() => {
+    if (!open) return;
+    const onDoc = (e: MouseEvent) => {
+      if (rootRef.current && !rootRef.current.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("mousedown", onDoc);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDoc);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (open && selected) {
+      const i = PATHWAYS.findIndex((p) => p.key === selected.key);
+      if (i >= 0) setActiveIdx(i);
+    }
+  }, [open, selected]);
+
+  const handleListKey = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActiveIdx((i) => (i + 1) % PATHWAYS.length);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActiveIdx((i) => (i - 1 + PATHWAYS.length) % PATHWAYS.length);
+    } else if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onChange(PATHWAYS[activeIdx].key);
+      setOpen(false);
+    }
+  };
+
+  return (
+    <div ref={rootRef} className="relative w-full max-w-[420px]">
+      <button
+        type="button"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setOpen(true);
+          }
+        }}
+        className="group flex w-full items-center justify-between gap-4 rounded-full border border-black/15 bg-white/80 px-6 py-4 text-left backdrop-blur transition hover:border-black/30 hover:bg-white"
+      >
+        <span
+          className={`text-[18px] font-semibold tracking-tight md:text-[20px] ${
+            selected ? "text-black" : "text-black/45"
+          }`}
+        >
+          {selected ? selected.label : "Choose your path"}
+        </span>
+        <ChevronDown
+          className={`size-5 shrink-0 text-black/60 transition-transform duration-200 ${
+            open ? "rotate-180" : ""
+          }`}
+        />
+      </button>
+
+      {open && (
+        <ul
+          role="listbox"
+          tabIndex={-1}
+          onKeyDown={handleListKey}
+          aria-activedescendant={`pathway-opt-${activeIdx}`}
+          className="absolute left-0 right-0 top-[calc(100%+8px)] z-30 overflow-hidden rounded-2xl border border-black/10 p-2 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.25)] animate-[fadeIn_180ms_ease-out]"
+          style={{ background: PANEL_GRADIENT }}
+        >
+          {PATHWAYS.map((p, i) => {
+            const isSelected = selected?.key === p.key;
+            const isActive = i === activeIdx;
+            return (
+              <li
+                key={p.key}
+                id={`pathway-opt-${i}`}
+                role="option"
+                aria-selected={isSelected}
+                onMouseEnter={() => setActiveIdx(i)}
+                onClick={() => {
+                  onChange(p.key);
+                  setOpen(false);
+                }}
+                className={`flex cursor-pointer items-center justify-between gap-4 rounded-xl px-5 py-3.5 text-[15px] font-medium text-black/85 transition ${
+                  isActive ? "bg-white/60 pl-6" : "hover:bg-white/40"
+                }`}
+              >
+                <span>{p.label}</span>
+                {isSelected && <Check className="size-4 text-black" />}
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </div>
+  );
+}
 
 function Programs() {
-  const [active, setActive] = useState(0);
-  const stage = PATHWAYS[active];
-  const total = PATHWAYS.length;
-  const idx = String(active + 1).padStart(2, "0");
-  const denom = String(total).padStart(2, "0");
+  const [selectedKey, setSelectedKey] = useState<string | null>(null);
+  const stage = PATHWAYS.find((p) => p.key === selectedKey) ?? null;
 
   return (
     <section id="programs" className="border-t border-black/10 bg-white">
       <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-10 md:py-24">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-black/50">
-              Editorial — {stage.name}
-            </p>
-            <h2
-              className="mt-4 text-[clamp(2.6rem,6.5vw,5.2rem)] font-light leading-[0.95] tracking-tight text-black"
-              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-            >
-              Find your <span className="italic font-extralight">pathway.</span>
-            </h2>
-          </div>
-          <p className="max-w-[44ch] text-[14px] leading-relaxed text-black/65">
-            Six routes in. One shared obsession — real businesses, not case studies.
+        <div className="flex flex-col gap-6">
+          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-black/50">
+            Programme Finder
           </p>
+          <h2
+            className="max-w-[20ch] text-[clamp(2.4rem,5.5vw,4.6rem)] font-light leading-[1.02] tracking-tight text-black"
+            style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+          >
+            Tell us where you are.{" "}
+            <span className="italic font-extralight text-black/70">
+              We'll tell you where you go next.
+            </span>
+          </h2>
+
+          <div className="mt-2">
+            <PathwayDropdown value={selectedKey} onChange={setSelectedKey} />
+          </div>
         </div>
 
-        <div className="mt-8 flex flex-col gap-0">
-          {/* Featured pastel panel */}
+        {stage && (
           <div
-            className="relative aspect-[16/10] w-full overflow-hidden md:aspect-[21/9] lg:aspect-[24/9]"
-            style={{ background: stage.gradient }}
+            key={stage.key}
+            className="relative mt-10 overflow-hidden rounded-3xl border border-black/10 animate-[fadeIn_250ms_ease-out]"
+            style={{ background: PANEL_GRADIENT }}
           >
-            <img
-              key={stage.name}
-              src={stage.image}
-              alt={`Editorial — ${stage.name}`}
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover opacity-20 mix-blend-overlay transition-opacity duration-700"
-            />
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/40 via-white/10 to-transparent" />
-
-            {/* Rotated index numeral pinned to right edge */}
-            <div className="pointer-events-none absolute right-2 top-1/2 z-10 hidden -translate-y-1/2 md:right-6 lg:block">
-              <span
-                className="block text-[clamp(3rem,6vw,5.5rem)] font-light tracking-tighter text-black/10"
-                style={{ writingMode: "vertical-rl", transform: "rotate(180deg)", fontFamily: "'Inter', system-ui, sans-serif" }}
-              >
-                {idx}/{denom}
-              </span>
-            </div>
-
-            {/* Content */}
-            <div
-              key={`content-${stage.name}`}
-              className="absolute inset-0 flex flex-col justify-end p-8 md:p-12 animate-[fadeIn_200ms_ease-out]"
-            >
-              <div className="max-w-[680px]">
-                <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-black/60">
-                  <span>{idx}</span>
-                  <span className="h-px w-8 bg-black/30" />
-                  <span>Featured pathway</span>
-                </div>
-                <h3
-                  className="mt-5 text-[clamp(2.6rem,7.5vw,6.25rem)] font-light leading-[0.95] tracking-tight text-black"
-                  style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                >
-                  {stage.headline}
-                </h3>
-                <p className="mt-4 max-w-[44ch] text-[16px] leading-relaxed text-black/80">
-                  {stage.subhead}
-                </p>
-                <ul className="mt-6 grid max-w-[600px] grid-cols-1 gap-x-8 gap-y-2.5 text-[13px] text-black/75 sm:grid-cols-2">
-                  {stage.bullets.map((b) => (
-                    <li key={b} className="flex items-start gap-2.5">
-                      <span className="mt-[7px] h-1.5 w-1.5 flex-shrink-0 bg-black/70" />
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={stage.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group mt-8 inline-flex items-center gap-3 border-b border-black pb-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-black"
-                >
-                  View all
-                  <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
-                </a>
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/30 via-transparent to-transparent" />
+            <div className="relative p-8 md:p-14">
+              <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-black/60">
+                <span>Your path</span>
+                <span className="h-px w-10 bg-black/30" />
+                <span>{stage.headline}</span>
               </div>
+
+              <h3
+                className="mt-5 text-[clamp(2.6rem,7.5vw,6rem)] font-light leading-[0.95] tracking-tight text-black"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+              >
+                {stage.headline}
+              </h3>
+              <p className="mt-4 max-w-[52ch] text-[16px] leading-relaxed text-black/75">
+                {stage.subhead}
+              </p>
+
+              <ul className="mt-10 divide-y divide-black/15 border-t border-black/15">
+                {stage.programmes.map((pg) => (
+                  <li key={pg.title}>
+                    <a
+                      href={pg.href ?? stage.viewAllHref}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group flex flex-col gap-2 py-4 transition hover:pl-2 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
+                    >
+                      <span className="text-[15px] font-medium leading-snug tracking-tight text-black md:text-[17px]">
+                        {pg.title}
+                      </span>
+                      <span className="flex shrink-0 items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-black/55">
+                        <span className="rounded-full border border-black/20 bg-white/40 px-2.5 py-1">
+                          {pg.duration}
+                        </span>
+                        <span className="rounded-full border border-black/20 bg-white/40 px-2.5 py-1">
+                          {pg.format}
+                        </span>
+                        <ArrowRight className="size-3.5 -translate-x-1 opacity-0 transition group-hover:translate-x-0 group-hover:opacity-100" />
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href={stage.viewAllHref}
+                target="_blank"
+                rel="noreferrer"
+                className="group mt-10 inline-flex items-center gap-3 border-b border-black pb-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-black"
+              >
+                View all {stage.headline} programmes
+                <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
+              </a>
             </div>
           </div>
-
-          {/* Tab strip */}
-          <nav aria-label="Pathways" className="border border-t-0 border-black/10 bg-[#FAFAF7]">
-            <ol className="flex w-full overflow-x-auto">
-              {PATHWAYS.map((p, i) => {
-                const isActive = i === active;
-                const n = String(i + 1).padStart(2, "0");
-                return (
-                  <li key={p.name} className="flex-1 min-w-[140px]">
-                    <button
-                      type="button"
-                      onClick={() => setActive(i)}
-                      aria-current={isActive ? "true" : undefined}
-                      className={`group relative flex w-full flex-col items-start gap-2 px-5 py-5 text-left transition ${
-                        isActive ? "bg-black text-white" : "text-black hover:bg-black/[0.04]"
-                      }`}
-                    >
-                      <span
-                        className={`font-mono text-[10px] uppercase tracking-[0.28em] ${
-                          isActive ? "" : "text-black/40"
-                        }`}
-                        style={isActive ? { color: "#C9A0DC" } : undefined}
-                      >
-                        {n}
-                      </span>
-                      <span className="text-[13px] font-medium leading-tight tracking-tight">
-                        {p.name}
-                      </span>
-                      <span
-                        className="mt-1 h-[2px] w-8 transition"
-                        style={{
-                          backgroundColor: isActive ? "#C9A0DC" : "rgba(0,0,0,0.15)",
-                        }}
-                      />
-                    </button>
-                  </li>
-                );
-              })}
-            </ol>
-          </nav>
-        </div>
+        )}
       </div>
     </section>
   );
