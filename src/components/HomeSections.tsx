@@ -43,9 +43,9 @@ function Programs() {
         </div>
 
         <div className="mt-10 flex flex-col gap-4">
-          <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#1C1C1C] md:aspect-[21/9] lg:aspect-[24/8]" style={{ boxShadow: `0 30px 90px -30px ${stage.accent}55` }}>
-            <img key={stage.name} src={stage.image} alt={`Editorial — ${stage.name}`} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-opacity duration-700" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-transparent" />
+          <div className="relative aspect-[16/9] w-full overflow-hidden md:aspect-[21/9] lg:aspect-[24/8]" style={{ background: stage.gradient, boxShadow: `0 30px 90px -30px ${stage.accent}66` }}>
+            <img key={stage.name} src={stage.image} alt={`Editorial — ${stage.name}`} loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-25 mix-blend-overlay transition-opacity duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
             <div className="absolute inset-y-0 left-0 w-1.5" style={{ backgroundColor: stage.accent }} />
             <div className="absolute inset-y-0 left-0 flex max-w-[640px] flex-col justify-end p-8 text-[#F2E8D3] md:p-12">
               <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.32em] opacity-75">
