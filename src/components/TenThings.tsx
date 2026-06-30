@@ -15,15 +15,15 @@ export default function TenThings() {
   const [direction, setDirection] = useState<1 | -1>(1);
   const pinRef = useRef<HTMLDivElement>(null);
   const widgetRef = useRef<HTMLDivElement>(null);
+  const introRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!pinRef.current || !widgetRef.current) return;
+    if (!pinRef.current || !widgetRef.current || !introRef.current) return;
 
     const ctx = gsap.context(() => {
       gsap.set(widgetRef.current, { xPercent: 100 });
-      gsap.to(widgetRef.current, {
-        xPercent: 0,
-        ease: "none",
+
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: pinRef.current,
           start: "top top",
@@ -34,6 +34,12 @@ export default function TenThings() {
           invalidateOnRefresh: true,
         },
       });
+
+      tl.to(widgetRef.current, { xPercent: 0, ease: "none" }, 0).to(
+        introRef.current,
+        { yPercent: -30, opacity: 0, ease: "none" },
+        0,
+      );
     }, pinRef);
 
     const refresh = () => ScrollTrigger.refresh();
@@ -69,7 +75,7 @@ export default function TenThings() {
     <section className="relative bg-[#F1EFE7] text-[#1A211A]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       <div ref={pinRef} className="relative h-screen w-full overflow-hidden">
       {/* Intro headline — full-screen editorial hero */}
-      <div className="absolute inset-0 z-0 flex flex-col justify-center overflow-hidden bg-[#F1EFE7] px-6 py-20 text-[#1A211A] md:px-12">
+      <div ref={introRef} className="absolute inset-0 z-0 flex flex-col justify-center overflow-hidden bg-[#F1EFE7] px-6 py-20 text-[#1A211A] md:px-12 will-change-transform">
 
         <div className="pointer-events-none absolute -left-40 top-1/4 h-[30vh] w-[30vh] -translate-y-1/2 rounded-full bg-[#1A211A]/[0.04] blur-[80px]" />
         <div className="pointer-events-none absolute -right-40 bottom-1/4 h-[30vh] w-[30vh] translate-y-1/2 rounded-full bg-[#1A211A]/[0.04] blur-[80px]" />
