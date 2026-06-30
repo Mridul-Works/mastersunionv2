@@ -141,11 +141,11 @@ function Programs() {
         </div>
 
         {/* Editorial grid */}
-        <div className="relative col-span-12 grid grid-cols-1 gap-4 md:grid-cols-5 lg:col-span-8">
+        <div className="relative col-span-12 grid grid-cols-1 gap-0 md:grid-cols-5 lg:col-span-8 border border-black">
           {/* Feature tile — editorial poster */}
           <div
             key={active.key}
-            className="group relative col-span-1 flex min-h-[520px] flex-col justify-end overflow-hidden p-8 md:col-span-2"
+            className="group relative col-span-1 flex min-h-[540px] flex-col overflow-hidden md:col-span-2"
             style={{ background: active.theme }}
           >
             <img
@@ -154,28 +154,29 @@ function Programs() {
               loading="lazy"
               className="absolute inset-0 h-full w-full object-cover object-center animate-[fadeIn_0.6s_ease-out]"
             />
-            {/* Top fade for prelude text + bottom scrim for headline/CTA */}
-            <div className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-black/55 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/75 via-black/30 to-transparent" />
+            {/* Full-height dark scrim for text legibility */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/10 to-black/55" />
 
-            {/* Top prelude */}
-            <div className="absolute left-8 top-7 z-10">
-              <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-white/80">
+            {/* Top content — small, in the image's negative space */}
+            <div className="relative z-10 p-6 md:p-8">
+              <p className="font-mono text-[9px] uppercase tracking-[0.28em] text-white/70">
                 Currently viewing
               </p>
-            </div>
-
-            {/* Bottom content */}
-            <div className="relative z-10">
               <h3
-                className="mb-4 text-[clamp(2.8rem,5.2vw,4.25rem)] font-black uppercase leading-[0.88] tracking-tight text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.45)]"
+                className="mt-2 text-[clamp(1.6rem,2.8vw,2.4rem)] font-bold uppercase leading-[0.9] tracking-tight text-white drop-shadow-[0_2px_14px_rgba(0,0,0,0.55)]"
                 style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
               >
                 {active.headline}.
               </h3>
-              <p className="max-w-[28ch] text-[14px] font-medium leading-snug text-white/90">
-                {active.subhead}
-              </p>
+            </div>
+
+            {/* Bottom content — compact, sits above the subject */}
+            <div className="relative z-10 mt-auto p-6 md:p-8">
+              <div className="border-l-2 border-white/40 pl-4">
+                <p className="max-w-[32ch] text-[13px] font-medium leading-snug text-white/90">
+                  {active.subhead}
+                </p>
+              </div>
             </div>
           </div>
 
