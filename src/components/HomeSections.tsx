@@ -3,6 +3,10 @@ import { ArrowUpRight, ArrowRight, ChevronLeft, ChevronRight, Hourglass, Quote, 
 
 import { Link } from "@tanstack/react-router";
 import founderPhoto from "@/assets/pratham-chest.png.asset.json";
+import pathwaySchool from "@/assets/pathways/school.jpg";
+import pathwayCollege from "@/assets/pathways/college.jpg";
+import pathwayWork from "@/assets/pathways/work.jpg";
+import pathwayOwner from "@/assets/pathways/owner.jpg";
 
 type Programme = { title: string; duration: string; format: string; href?: string };
 type Pathway = {
@@ -13,6 +17,7 @@ type Pathway = {
   programmes: Programme[];
   viewAllHref: string;
   theme: string;
+  image: string;
 };
 
 const PATHWAYS: Pathway[] = [
