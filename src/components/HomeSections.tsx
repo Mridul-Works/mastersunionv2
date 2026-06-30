@@ -271,19 +271,21 @@ function Programs() {
                     {p.duration}
                   </span>
                 </div>
-                <h3
-                  className="text-[1.2rem] font-bold leading-[1.15] tracking-tight text-black transition-colors group-hover:text-white md:text-[1.35rem]"
-                  style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                >
-                  {p.title}
-                </h3>
-                <div className="inline-flex w-fit items-center gap-2 rounded-none border border-black/10 px-3 py-1.5 transition-colors group-hover:border-white/20">
-                  <Hourglass className="size-3.5 text-black/70 transition-colors group-hover:text-white/70" />
-                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-black/80 transition-colors group-hover:text-white/80">
-                    {p.round}
-                  </span>
+                <div className="flex-1 flex flex-col gap-5">
+                  <h3
+                    className="flex-1 text-[1.2rem] font-bold leading-[1.15] tracking-tight text-black transition-colors group-hover:text-white md:text-[1.35rem]"
+                    style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                  >
+                    {p.title}
+                  </h3>
+                  <div className="inline-flex w-fit items-center gap-2 rounded-none border border-black/10 px-3 py-1.5 transition-colors group-hover:border-white/20">
+                    <Hourglass className="size-3.5 text-black/70 transition-colors group-hover:text-white/70" />
+                    <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-black/80 transition-colors group-hover:text-white/80">
+                      {p.round}
+                    </span>
+                  </div>
                 </div>
-                <div className="mt-auto pt-3">
+                <div className="pt-3">
                   <a
                     href="#"
                     className="inline-flex items-center gap-1.5 font-sans text-[14px] font-semibold text-black transition-colors group-hover:text-white"
