@@ -165,8 +165,8 @@ export default function TenThings() {
 
           {/* Counter top-left */}
           <div
-            className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[12px] tracking-[0.15em] text-neutral-400 md:left-10 md:top-10"
-            style={{ fontFamily: "'JetBrains Mono', monospace", textShadow: "0 0 24px rgba(255,255,255,0.10)" }}
+            className="pointer-events-none absolute left-6 top-6 z-30 font-mono text-[12px] tracking-[0.15em] text-[#1A211A]/55 md:left-10 md:top-10"
+            style={{ fontFamily: "'JetBrains Mono', monospace" }}
           >
             <AnimatePresence mode="popLayout">
               <motion.span
@@ -175,13 +175,13 @@ export default function TenThings() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
                 transition={{ duration: 0.4 }}
-                className="inline-block"
+                className="inline-block text-[#1A211A]"
               >
                 {String(index + 1).padStart(2, "0")}
               </motion.span>
             </AnimatePresence>
-            <span className="mx-1 text-neutral-600">/</span>
-            <span className="text-neutral-600">{String(CHAPTERS.length).padStart(2, "0")}</span>
+            <span className="mx-1 text-[#1A211A]/40">/</span>
+            <span className="text-[#1A211A]/40">{String(CHAPTERS.length).padStart(2, "0")}</span>
           </div>
 
 
