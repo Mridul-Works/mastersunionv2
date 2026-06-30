@@ -194,8 +194,8 @@ export default function TenThings() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.6, ease: EASE }}
-                className="select-none bg-gradient-to-b from-neutral-300/20 via-neutral-400/8 to-transparent bg-clip-text font-black tracking-tighter text-transparent"
-                style={{ fontSize: "clamp(140px, 30vw, 420px)", lineHeight: 1, filter: "drop-shadow(0 0 80px rgba(255,255,255,0.08))" }}
+                className="select-none bg-gradient-to-b from-[#1A211A]/15 via-[#1A211A]/5 to-transparent bg-clip-text font-black tracking-tighter text-transparent"
+                style={{ fontSize: "clamp(140px, 30vw, 420px)", lineHeight: 1 }}
               >
                 {String(index + 1).padStart(2, "0")}
               </motion.span>
