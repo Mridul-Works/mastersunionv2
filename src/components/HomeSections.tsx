@@ -134,22 +134,22 @@ export default function HomeSections() {
 
       {/* FOUNDER'S MESSAGE */}
       <section id="founders" className="border-t border-black/10 bg-white">
-        <div className="mx-auto max-w-[1280px] px-6 py-8 md:px-10 md:py-12">
-          <div className="relative grid rounded-none bg-black md:grid-cols-12 min-h-[520px] md:min-h-[640px]">
-            <div className="relative flex items-end justify-center md:col-span-5">
+        <div className="mx-auto max-w-[1280px] px-6 py-6 md:px-10 md:py-8">
+          <div className="relative grid rounded-none bg-black md:grid-cols-12 min-h-[360px] md:min-h-[420px]">
+            <div className="relative flex items-end justify-center md:col-span-4">
               <img
                 src={founderPhoto.url}
                 alt="Pratham Mittal"
-                className="h-[520px] w-full object-contain object-bottom md:h-[640px]"
+                className="h-[360px] w-full object-contain object-bottom md:h-[420px]"
               />
             </div>
-            <div className="flex flex-col justify-center p-6 md:col-span-7 md:p-10 lg:p-12">
-              <Quote className="mb-3 size-6 text-white/70" />
-              <h2 className="text-xl leading-[1.05] tracking-tight text-white md:text-[26px] lg:text-[32px]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+            <div className="flex flex-col justify-center p-6 md:col-span-8 md:p-8 lg:p-10">
+              <Quote className="mb-3 size-5 text-white/70" />
+              <h2 className="text-lg leading-[1.1] tracking-tight text-white md:text-[22px] lg:text-[26px]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
                 "If education was working, we wouldn't have built <span className="italic text-white">Masters' Union.</span>"
               </h2>
-              <div className="mt-4 flex items-center gap-3">
-                <div className="h-px w-10 bg-white/40" />
+              <div className="mt-3 flex items-center gap-3">
+                <div className="h-px w-8 bg-white/40" />
                 <div>
                   <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white/80">Pratham Mittal</p>
                   <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-white/50">Founder, Masters' Union</p>
