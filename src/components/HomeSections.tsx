@@ -249,6 +249,9 @@ export default function HomeSections() {
         </div>
       </section>
 
+      {/* PROGRAMS */}
+      <Programs />
+
       {/* PEDAGOGY */}
       <section id="pedagogy" className="border-t border-black/10 bg-neutral-50">
         <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-10 md:py-32">
