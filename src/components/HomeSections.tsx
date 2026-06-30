@@ -7,46 +7,130 @@ import postgraduateAsset from "@/assets/programs/editorial-postgraduate.jpg.asse
 import executiveAsset from "@/assets/programs/editorial-executive.jpg.asset.json";
 import immersionAsset from "@/assets/programs/editorial-immersions.jpg.asset.json";
 import familyBusinessAsset from "@/assets/programs/editorial-family-business.jpg.asset.json";
-import aiAsset from "@/assets/programs/editorial-ai.jpg.asset.json";
-import venturesAsset from "@/assets/programs/editorial-ventures.jpg.asset.json";
 import globalAsset from "@/assets/programs/editorial-global.jpg.asset.json";
-import b2bAsset from "@/assets/programs/editorial-b2b.jpg.asset.json";
 
-const PROGRAM_STAGES = [
-  { name: "Undergraduate", image: undergraduateAsset.url, accent: "#E8A87C", gradient: "linear-gradient(135deg, #FCE5D8 0%, #F8D4A8 50%, #F0E8D4 100%)", textOn: "#1A1208", pathway: "Build foundations through real-world learning.", offerings: ["Technology & Business", "Data Science & AI", "Finance & Economics", "Psychology & Marketing"], href: "https://mastersunion.org/undergraduate" },
-  { name: "Postgraduate", image: postgraduateAsset.url, accent: "#C9A0DC", gradient: "linear-gradient(135deg, #E8D4E8 0%, #F8D4A8 45%, #D4E8F0 100%)", textOn: "#1A1208", pathway: "Accelerate your career through execution.", offerings: ["PGP in Technology & Business Management", "Young Leaders Programme", "Career acceleration", "Venture building"], href: "https://mastersunion.org/postgraduate" },
-  { name: "Executive", image: executiveAsset.url, accent: "#F0A0A0", gradient: "linear-gradient(135deg, #F5D2C8 0%, #F0A0A0 55%, #E8D4E8 100%)", textOn: "#1A1208", pathway: "Transform leadership through practical learning.", offerings: ["Leadership development", "General management", "Executive programmes", "Applied strategy"], href: "https://mastersunion.org/executive-education" },
-  { name: "Immersions", image: immersionAsset.url, accent: "#A8C0A0", gradient: "linear-gradient(135deg, #E8F4E8 0%, #D8E8C8 50%, #E8E2BC 100%)", textOn: "#0F1A05", pathway: "Bharat Summer Schools, Travel-Based Learnings, intensive bootcamps.", offerings: ["Bharat Summer Schools", "Travel-Based Learnings", "D2C Bootcamps", "AI Bootcamps"], href: "https://mastersunion.org/experiencesatmastersunion" },
-  { name: "Family Business", image: familyBusinessAsset.url, accent: "#D4A8D8", gradient: "linear-gradient(135deg, #F0D8E8 0%, #D4A8D8 50%, #E8D4E8 100%)", textOn: "#160820", pathway: "Scale and transform legacy businesses.", offerings: ["Scale legacy businesses", "Navigate succession", "Drive transformation", "Build the next chapter"], href: "https://mastersunion.org/family-business" },
-  { name: "AI", image: aiAsset.url, accent: "#8AC8E0", gradient: "linear-gradient(135deg, #D8EEF2 0%, #8AC8E0 45%, #E8D4E8 100%)", textOn: "#040E1F", pathway: "Create products and businesses powered by AI.", offerings: ["AI products", "Applied intelligence", "Business automation", "Venture creation"], href: "https://mastersunion.org/ai" },
-  { name: "Ventures", image: venturesAsset.url, accent: "#E88AAB", gradient: "linear-gradient(135deg, #F5D2C8 0%, #E88AAB 50%, #F8D4A8 100%)", textOn: "#1A0408", pathway: "Build, launch and fund new ideas.", offerings: ["Incubation", "Funding", "Founder support", "Builder ecosystem"], href: "https://mastersunion.org/student-entrepreneurship" },
-  { name: "Global", image: globalAsset.url, accent: "#8A9ED8", gradient: "linear-gradient(135deg, #D4E8F0 0%, #8A9ED8 50%, #E8D4E8 100%)", textOn: "#050F2E", pathway: "Experience business beyond borders.", offerings: ["Global campuses", "International faculty", "Company visits", "Cross-border networks"], href: "https://mastersunion.org/undergraduate-global" },
-  { name: "B2B", image: b2bAsset.url, accent: "#98C8A8", gradient: "linear-gradient(135deg, #E8F4F0 0%, #98C8A8 50%, #E8E2BC 100%)", textOn: "#04140D", pathway: "Transform teams and organizations.", offerings: ["Corporate learning", "Workforce transformation", "Custom programmes", "Leadership academies"], href: "https://mastersunion.org/enterprise" },
+const PATHWAYS = [
+  {
+    name: "School",
+    headline: "School",
+    subhead: "Build a company before you graduate.",
+    bullets: [
+      "UG Technology & Business Management",
+      "UG Data Science & AI",
+      "Global Track — Illinois Tech / Griffith",
+      "Career-ready by 22",
+    ],
+    gradient: "linear-gradient(135deg, #FCE5D8 0%, #F8D4A8 50%, #F0E8D4 100%)",
+    accent: "#E8A87C",
+    image: undergraduateAsset.url,
+    href: "https://mastersunion.org/undergraduate",
+  },
+  {
+    name: "College",
+    headline: "College",
+    subhead: "Go from intern to founder.",
+    bullets: [
+      "PGP Young Leaders Cohort",
+      "PGP Applied AI & Agentic Systems",
+      "PGP Bharat",
+      "Internship-to-offer pipeline",
+    ],
+    gradient: "linear-gradient(135deg, #E8D4E8 0%, #F8D4A8 45%, #D4E8F0 100%)",
+    accent: "#C9A0DC",
+    image: postgraduateAsset.url,
+    href: "https://mastersunion.org/postgraduate",
+  },
+  {
+    name: "Work",
+    headline: "Work",
+    subhead: "Lead without leaving your career behind.",
+    bullets: [
+      "PGP Rise: General Management",
+      "PGP in Capital Markets & Trading",
+      "Executive AI & GCC Leadership",
+      "Weekend-only commitment",
+    ],
+    gradient: "linear-gradient(135deg, #E8F4E8 0%, #D8E8C8 50%, #E8E2BC 100%)",
+    accent: "#A8C0A0",
+    image: executiveAsset.url,
+    href: "https://mastersunion.org/executive-education",
+  },
+  {
+    name: "Business Owner",
+    headline: "Business Owner",
+    subhead: "Scale what you already built.",
+    bullets: [
+      "PGP Rise: Owners & Promoters",
+      "Entrepreneurship & Business Acceleration",
+      "D2C Brand Bootcamp",
+      "₹40L live capital access",
+    ],
+    gradient: "linear-gradient(135deg, #F5D2C8 0%, #E88AAB 50%, #F8D4A8 100%)",
+    accent: "#E88AAB",
+    image: familyBusinessAsset.url,
+    href: "https://mastersunion.org/family-business",
+  },
+  {
+    name: "Global",
+    headline: "Global",
+    subhead: "Study global, build for Bharat.",
+    bullets: [
+      "PGP Rise: General Management (Global)",
+      "UG Global Track — Illinois Tech",
+      "UG Global Track — Griffith",
+      "3 international immersions",
+    ],
+    gradient: "linear-gradient(135deg, #D4E8F0 0%, #8A9ED8 50%, #E8D4E8 100%)",
+    accent: "#8A9ED8",
+    image: globalAsset.url,
+    href: "https://mastersunion.org/undergraduate-global",
+  },
+  {
+    name: "Exploring",
+    headline: "Exploring",
+    subhead: "See what fits — no commitment yet.",
+    bullets: [
+      "PGP in Technology & Business Management",
+      "UG Technology & Business Management",
+      "PGP Rise: General Management",
+      "PGP Bharat",
+    ],
+    gradient: "linear-gradient(135deg, #E8F4F0 0%, #98C8A8 50%, #E8E2BC 100%)",
+    accent: "#98C8A8",
+    image: immersionAsset.url,
+    href: "https://mastersunion.org/programmes",
+  },
 ] as const;
 
 function Programs() {
   const [active, setActive] = useState(0);
-  const stage = PROGRAM_STAGES[active];
+  const stage = PATHWAYS[active];
+  const total = PATHWAYS.length;
+  const idx = String(active + 1).padStart(2, "0");
+  const denom = String(total).padStart(2, "0");
+
   return (
-    <section id="programs" className="border-t border-black/10 bg-gradient-to-b from-[#FDF8F0] via-[#F0E8F4] to-[#E8F0F8]">
+    <section id="programs" className="border-t border-black/10 bg-white">
       <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-10 md:py-24">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-black/50">Programmes</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-black/50">
+              Editorial — {stage.name}
+            </p>
             <h2
               className="mt-4 text-[clamp(2.6rem,6.5vw,5.2rem)] font-light leading-[0.95] tracking-tight text-black"
               style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
             >
-              Build your <span className="italic font-extralight">way.</span>
+              Find your <span className="italic font-extralight">pathway.</span>
             </h2>
           </div>
           <p className="max-w-[44ch] text-[14px] leading-relaxed text-black/65">
-            9 distinct pathways. One shared obsession — real businesses, not case studies.
+            Six routes in. One shared obsession — real businesses, not case studies.
           </p>
         </div>
 
-        <div className="mt-8 flex flex-col gap-4">
-          {/* Featured pastel card */}
+        <div className="mt-8 flex flex-col gap-0">
+          {/* Featured pastel panel */}
           <div
             className="relative aspect-[16/10] w-full overflow-hidden md:aspect-[21/9] lg:aspect-[24/9]"
             style={{ background: stage.gradient }}
@@ -60,39 +144,41 @@ function Programs() {
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-white/40 via-white/10 to-transparent" />
 
-
-            {/* Vertical index */}
-            <div className="pointer-events-none absolute right-4 top-1/2 z-10 hidden -translate-y-1/2 md:right-8 lg:block">
+            {/* Rotated index numeral pinned to right edge */}
+            <div className="pointer-events-none absolute right-2 top-1/2 z-10 hidden -translate-y-1/2 md:right-6 lg:block">
               <span
-                className="block text-[clamp(2.4rem,5vw,4.5rem)] font-light tracking-tighter text-black/10"
-                style={{ transform: "rotate(90deg)", fontFamily: "'Inter', system-ui, sans-serif" }}
+                className="block text-[clamp(3rem,6vw,5.5rem)] font-light tracking-tighter text-black/10"
+                style={{ writingMode: "vertical-rl", transform: "rotate(180deg)", fontFamily: "'Inter', system-ui, sans-serif" }}
               >
-                0{active + 1}/09
+                {idx}/{denom}
               </span>
             </div>
 
             {/* Content */}
-            <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
-              <div className="max-w-[640px]">
+            <div
+              key={`content-${stage.name}`}
+              className="absolute inset-0 flex flex-col justify-end p-8 md:p-12 animate-[fadeIn_200ms_ease-out]"
+            >
+              <div className="max-w-[680px]">
                 <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-black/60">
-                  <span>0{active + 1}</span>
+                  <span>{idx}</span>
                   <span className="h-px w-8 bg-black/30" />
                   <span>Featured pathway</span>
                 </div>
                 <h3
-                  className="mt-5 text-[clamp(2.2rem,5vw,4.2rem)] font-light leading-[1] tracking-tight text-black"
+                  className="mt-5 text-[clamp(2.6rem,7.5vw,6.25rem)] font-light leading-[0.95] tracking-tight text-black"
                   style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                 >
-                  {stage.name}
+                  {stage.headline}
                 </h3>
-                <p className="mt-3 max-w-[42ch] text-[15px] leading-relaxed text-black/80">
-                  {stage.pathway}
+                <p className="mt-4 max-w-[44ch] text-[16px] leading-relaxed text-black/80">
+                  {stage.subhead}
                 </p>
-                <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-black/75">
-                  {stage.offerings.map((o) => (
-                    <li key={o} className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 bg-black/70" />
-                      {o}
+                <ul className="mt-6 grid max-w-[600px] grid-cols-1 gap-x-8 gap-y-2.5 text-[13px] text-black/75 sm:grid-cols-2">
+                  {stage.bullets.map((b) => (
+                    <li key={b} className="flex items-start gap-2.5">
+                      <span className="mt-[7px] h-1.5 w-1.5 flex-shrink-0 bg-black/70" />
+                      <span>{b}</span>
                     </li>
                   ))}
                 </ul>
@@ -100,7 +186,7 @@ function Programs() {
                   href={stage.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="group mt-7 inline-flex items-center gap-3 border-b border-black/40 pb-1 text-[11px] font-medium uppercase tracking-[0.3em] text-black transition-colors hover:border-black"
+                  className="group mt-8 inline-flex items-center gap-3 border-b border-black pb-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-black"
                 >
                   View all
                   <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
@@ -109,33 +195,38 @@ function Programs() {
             </div>
           </div>
 
-          {/* Programme grid */}
-          <nav aria-label="Programmes">
-            <ol className="grid grid-cols-3 gap-1 border border-black/10 bg-white/40 p-2 backdrop-blur-sm sm:grid-cols-5 lg:grid-cols-9">
-              {PROGRAM_STAGES.map((s, i) => {
+          {/* Tab strip */}
+          <nav aria-label="Pathways" className="border border-t-0 border-black/10 bg-[#FAFAF7]">
+            <ol className="flex w-full overflow-x-auto">
+              {PATHWAYS.map((p, i) => {
                 const isActive = i === active;
+                const n = String(i + 1).padStart(2, "0");
                 return (
-                  <li key={s.name}>
+                  <li key={p.name} className="flex-1 min-w-[140px]">
                     <button
                       type="button"
-                      onMouseEnter={() => setActive(i)}
-                      onFocus={() => setActive(i)}
                       onClick={() => setActive(i)}
                       aria-current={isActive ? "true" : undefined}
-                      className={`group flex w-full flex-col items-start gap-2 px-3 py-3 text-left transition ${
-                        isActive ? "bg-black text-[#F2E8D3]" : "text-[#1C1C1C] hover:bg-black/5"
+                      className={`group relative flex w-full flex-col items-start gap-2 px-5 py-5 text-left transition ${
+                        isActive ? "bg-black text-white" : "text-black hover:bg-black/[0.04]"
                       }`}
                     >
                       <span
-                        className="font-mono text-[10px] uppercase tracking-[0.28em] opacity-60"
-                        style={isActive ? { color: s.accent, opacity: 1 } : undefined}
+                        className={`font-mono text-[10px] uppercase tracking-[0.28em] ${
+                          isActive ? "" : "text-black/40"
+                        }`}
+                        style={isActive ? { color: "#C9A0DC" } : undefined}
                       >
-                        0{i + 1}
+                        {n}
                       </span>
-                      <span className="text-[13px] font-medium leading-tight tracking-tight">{s.name}</span>
+                      <span className="text-[13px] font-medium leading-tight tracking-tight">
+                        {p.name}
+                      </span>
                       <span
                         className="mt-1 h-[2px] w-8 transition"
-                        style={{ backgroundColor: isActive ? s.accent : "rgba(28,28,28,0.15)" }}
+                        style={{
+                          backgroundColor: isActive ? "#C9A0DC" : "rgba(0,0,0,0.15)",
+                        }}
                       />
                     </button>
                   </li>
