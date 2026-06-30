@@ -15,15 +15,15 @@ export default function TenThings() {
   const [direction, setDirection] = useState<1 | -1>(1);
   const pinRef = useRef<HTMLDivElement>(null);
   const widgetRef = useRef<HTMLDivElement>(null);
+  const introRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!pinRef.current || !widgetRef.current) return;
+    if (!pinRef.current || !widgetRef.current || !introRef.current) return;
 
     const ctx = gsap.context(() => {
       gsap.set(widgetRef.current, { xPercent: 100 });
-      gsap.to(widgetRef.current, {
-        xPercent: 0,
-        ease: "none",
+
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: pinRef.current,
           start: "top top",
@@ -34,6 +34,12 @@ export default function TenThings() {
           invalidateOnRefresh: true,
         },
       });
+
+      tl.to(widgetRef.current, { xPercent: 0, ease: "none" }, 0).to(
+        introRef.current,
+        { yPercent: -30, opacity: 0, ease: "none" },
+        0,
+      );
     }, pinRef);
 
     const refresh = () => ScrollTrigger.refresh();
