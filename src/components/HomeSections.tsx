@@ -62,10 +62,10 @@ function Programs() {
             <div className="absolute inset-y-0 left-0 w-1.5" style={{ backgroundColor: stage.accent }} />
 
             {/* Vertical index */}
-            <div className="pointer-events-none absolute right-6 top-1/2 z-10 hidden -translate-y-1/2 md:block">
+            <div className="pointer-events-none absolute right-4 top-1/2 z-10 hidden -translate-y-1/2 md:right-8 lg:block">
               <span
-                className="block rotate-180 text-[clamp(3rem,7vw,6rem)] font-light tracking-tighter text-black/10"
-                style={{ writingMode: "vertical-rl", fontFamily: "'Inter', system-ui, sans-serif" }}
+                className="block text-[clamp(2.4rem,5vw,4.5rem)] font-light tracking-tighter text-black/10"
+                style={{ writingMode: "vertical-rl", transform: "rotate(180deg)", fontFamily: "'Inter', system-ui, sans-serif" }}
               >
                 0{active + 1}/09
               </span>
