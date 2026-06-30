@@ -28,13 +28,16 @@ function Programs() {
   const [active, setActive] = useState(0);
   const stage = PROGRAM_STAGES[active];
   return (
-    <section id="programs" className="border-t border-black/10 bg-[#f6f1e7]">
-      <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10 md:py-28">
-        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+    <section id="programs" className="border-t border-black/10 bg-gradient-to-b from-[#FDF8F0] via-[#F0E8F4] to-[#E8F0F8]">
+      <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-10 md:py-24">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-black/50">Programmes</p>
-            <h2 className="mt-3 text-[clamp(2rem,5vw,3.6rem)] font-light leading-[0.95] tracking-tight" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-              Build your <span className="italic">way.</span>
+            <h2
+              className="mt-4 text-[clamp(2.6rem,6.5vw,5.2rem)] font-light leading-[0.95] tracking-tight text-black"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+            >
+              Build your <span className="italic font-extralight">way.</span>
             </h2>
           </div>
           <p className="max-w-[44ch] text-[14px] leading-relaxed text-black/65">
@@ -42,43 +45,98 @@ function Programs() {
           </p>
         </div>
 
-        <div className="mt-10 flex flex-col gap-4">
-          <div className="relative aspect-[16/9] w-full overflow-hidden md:aspect-[21/9] lg:aspect-[24/8]" style={{ background: stage.gradient, boxShadow: `0 30px 90px -30px ${stage.accent}66` }}>
-            <img key={stage.name} src={stage.image} alt={`Editorial — ${stage.name}`} loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-25 mix-blend-overlay transition-opacity duration-700" />
-            <div className="absolute inset-0 bg-gradient-to-tr from-black/75 via-black/35 to-transparent" />
+        <div className="mt-8 flex flex-col gap-4">
+          {/* Featured pastel card */}
+          <div
+            className="relative aspect-[16/10] w-full overflow-hidden md:aspect-[21/9] lg:aspect-[24/9]"
+            style={{ background: stage.gradient }}
+          >
+            <img
+              key={stage.name}
+              src={stage.image}
+              alt={`Editorial — ${stage.name}`}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover opacity-20 mix-blend-overlay transition-opacity duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/40 via-white/10 to-transparent" />
             <div className="absolute inset-y-0 left-0 w-1.5" style={{ backgroundColor: stage.accent }} />
-            <div className="absolute inset-y-0 left-0 flex max-w-[640px] flex-col justify-end p-8 text-white md:p-12" style={{ textShadow: "0 1px 16px rgba(0,0,0,0.55), 0 1px 2px rgba(0,0,0,0.45)" }}>
-              <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.32em] opacity-90">
-                <span>0{active + 1}</span>
-                <span className="h-px w-8 bg-current opacity-60" />
-                <span>Featured pathway</span>
+
+            {/* Vertical index */}
+            <div className="pointer-events-none absolute right-6 top-1/2 z-10 hidden -translate-y-1/2 md:block">
+              <span
+                className="block rotate-180 text-[clamp(3rem,7vw,6rem)] font-light tracking-tighter text-black/10"
+                style={{ writingMode: "vertical-rl", fontFamily: "'Inter', system-ui, sans-serif" }}
+              >
+                0{active + 1}/09
+              </span>
+            </div>
+
+            {/* Content */}
+            <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
+              <div className="max-w-[640px]">
+                <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-black/60">
+                  <span>0{active + 1}</span>
+                  <span className="h-px w-8 bg-black/30" />
+                  <span>Featured pathway</span>
+                </div>
+                <h3
+                  className="mt-5 text-[clamp(2.2rem,5vw,4.2rem)] font-light leading-[1] tracking-tight text-black"
+                  style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                >
+                  {stage.name}
+                </h3>
+                <p className="mt-3 max-w-[42ch] text-[15px] leading-relaxed text-black/80">
+                  {stage.pathway}
+                </p>
+                <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-black/75">
+                  {stage.offerings.map((o) => (
+                    <li key={o} className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 bg-black/70" />
+                      {o}
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={stage.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group mt-7 inline-flex items-center gap-3 border-b border-black/40 pb-1 text-[11px] font-medium uppercase tracking-[0.3em] text-black transition-colors hover:border-black"
+                >
+                  View all
+                  <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
+                </a>
               </div>
-              <h3 className="mt-5 text-[clamp(1.8rem,4vw,3rem)] font-light leading-[1] tracking-tight text-white" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>{stage.name}</h3>
-              <p className="mt-3 max-w-[42ch] text-[14px] leading-relaxed text-white/95">{stage.pathway}</p>
-              <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[12px] text-white/90">
-                {stage.offerings.map((o) => (
-                  <li key={o} className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 bg-white/90" />
-                    {o}
-                  </li>
-                ))}
-              </ul>
-              <a href={stage.href} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 border-b border-white/80 pb-1 font-mono text-[11px] uppercase tracking-[0.3em] text-white">
-                View all <span aria-hidden>↗</span>
-              </a>
             </div>
           </div>
 
+          {/* Programme grid */}
           <nav aria-label="Programmes">
-            <ol className="grid grid-cols-3 gap-1 border border-black/10 bg-white/60 p-2 backdrop-blur-sm sm:grid-cols-5 lg:grid-cols-9">
+            <ol className="grid grid-cols-3 gap-1 border border-black/10 bg-white/40 p-2 backdrop-blur-sm sm:grid-cols-5 lg:grid-cols-9">
               {PROGRAM_STAGES.map((s, i) => {
                 const isActive = i === active;
                 return (
                   <li key={s.name}>
-                    <button type="button" onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)} onClick={() => setActive(i)} aria-current={isActive ? "true" : undefined} className={`group flex w-full flex-col items-start gap-2 px-3 py-3 text-left transition ${isActive ? "bg-[#1C1C1C] text-[#F2E8D3]" : "text-[#1C1C1C] hover:bg-black/5"}`}>
-                      <span className="font-mono text-[10px] uppercase tracking-[0.28em] opacity-60" style={isActive ? { color: s.accent, opacity: 1 } : undefined}>0{i + 1}</span>
+                    <button
+                      type="button"
+                      onMouseEnter={() => setActive(i)}
+                      onFocus={() => setActive(i)}
+                      onClick={() => setActive(i)}
+                      aria-current={isActive ? "true" : undefined}
+                      className={`group flex w-full flex-col items-start gap-2 px-3 py-3 text-left transition ${
+                        isActive ? "bg-black text-[#F2E8D3]" : "text-[#1C1C1C] hover:bg-black/5"
+                      }`}
+                    >
+                      <span
+                        className="font-mono text-[10px] uppercase tracking-[0.28em] opacity-60"
+                        style={isActive ? { color: s.accent, opacity: 1 } : undefined}
+                      >
+                        0{i + 1}
+                      </span>
                       <span className="text-[13px] font-medium leading-tight tracking-tight">{s.name}</span>
-                      <span className="mt-1 h-[2px] w-8 transition" style={{ backgroundColor: isActive ? s.accent : "rgba(28,28,28,0.15)" }} />
+                      <span
+                        className="mt-1 h-[2px] w-8 transition"
+                        style={{ backgroundColor: isActive ? s.accent : "rgba(28,28,28,0.15)" }}
+                      />
                     </button>
                   </li>
                 );
