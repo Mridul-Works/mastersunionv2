@@ -135,12 +135,12 @@ export default function HomeSections() {
       {/* FOUNDER'S MESSAGE */}
       <section id="founders" className="border-t border-black/10 bg-white">
         <div className="mx-auto max-w-[1280px] px-6 py-8 md:px-10 md:py-12">
-          <div className="relative grid overflow-hidden rounded-none bg-black md:grid-cols-12 min-h-[420px] md:min-h-[520px]">
-            <div className="relative md:col-span-5">
+          <div className="relative grid rounded-none bg-black md:grid-cols-12 min-h-[420px] md:min-h-[520px]">
+            <div className="relative flex items-end md:col-span-5">
               <img
                 src={founderPhoto.url}
                 alt="Pratham Mittal"
-                className="h-72 w-full object-contain object-bottom md:absolute md:bottom-0 md:left-0 md:h-[115%] md:w-full"
+                className="h-72 w-full object-contain object-bottom md:h-full"
               />
             </div>
             <div className="flex flex-col justify-center p-6 md:col-span-7 md:p-10 lg:p-12">
