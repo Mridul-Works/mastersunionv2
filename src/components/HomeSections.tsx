@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { ArrowUpRight, ArrowRight, ChevronLeft, ChevronRight, Hourglass, Quote, GraduationCap, Rocket, Briefcase, Users, Mic, ChefHat, Building2, Send, Instagram, Linkedin, Youtube, Twitter, ShoppingCart } from "lucide-react";
+import { ArrowUpRight, ArrowRight, ChevronLeft, ChevronRight, Hourglass, Quote, GraduationCap, Rocket, Briefcase, Users, Mic, ChefHat, Building2, Instagram, Linkedin, Youtube, Twitter, ShoppingCart } from "lucide-react";
 
 import { Link } from "@tanstack/react-router";
 import founderPhoto from "@/assets/pratham-chest.png.asset.json";
@@ -475,41 +475,6 @@ export default function HomeSections() {
         </div>
       </section>
 
-      {/* APPLICATION CTA */}
-      <section id="apply" className="border-t border-black/10 bg-white">
-        <div className="mx-auto max-w-[1280px] px-6 py-28 md:px-10 md:py-40">
-          <div className="relative overflow-hidden rounded-none bg-black p-10 text-white md:p-20">
-            <div className="absolute -right-24 -top-24 size-[420px] rounded-none bg-white/5 blur-3xl" />
-            <div className="absolute -bottom-32 -left-32 size-[480px] rounded-none bg-white/5 blur-3xl" />
-
-            <div className="relative grid items-center gap-12 md:grid-cols-12">
-              <div className="md:col-span-8">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/70">PGP · Cohort 2026</p>
-                <h2 className="mt-6 text-5xl leading-[0.95] tracking-tight md:text-[88px]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-                  Apply to <span className="italic">Masters' Union.</span>
-                </h2>
-                <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-white/75">
-                  Submit a 4-question application. Hear back in 14 days. No GMAT, no essays about your childhood — we want to know what you've built or what you'd build with us.
-                </p>
-              </div>
-
-              <div className="md:col-span-4">
-                <div className="rounded-none border border-white/15 bg-white/5 p-6 backdrop-blur-xl">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/60">Next deadline</p>
-                  <p className="mt-3 text-3xl tracking-tight" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>15 Aug 2026</p>
-                  <p className="mt-2 text-[12px] text-white/60">Round 1 · Early admit + scholarship</p>
-                  <button type="button" className="mt-6 flex w-full items-center justify-center gap-2 rounded-none bg-white px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-black transition-transform hover:scale-[1.02]">
-                    Start application <Send className="size-3.5" />
-                  </button>
-                  <button type="button" className="mt-3 flex w-full items-center justify-center gap-2 rounded-none border border-white/20 px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/80 transition-colors hover:bg-white/5">
-                    Talk to admissions
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* FOOTER */}
       <footer className="border-t border-black/10 bg-black text-white">
