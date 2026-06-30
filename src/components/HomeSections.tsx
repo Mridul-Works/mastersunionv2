@@ -98,7 +98,7 @@ function Programs() {
   const active = PATHWAYS.find((p) => p.key === activeKey) ?? PATHWAYS[0];
 
   return (
-    <section id="programs" className="border-t border-black/10 bg-[#F5F3EE] mb-4">
+    <section id="programs" className="border-t border-black/10 bg-[#F5F3EE] mt-4 mb-4">
       <div className="mx-auto grid max-w-[1280px] grid-cols-12 gap-6 px-6 py-20 md:px-10 md:py-28">
         {/* Editorial intro */}
         <div className="col-span-12 lg:col-span-4">
