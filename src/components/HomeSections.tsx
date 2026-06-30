@@ -29,120 +29,100 @@ function Programs() {
   const stage = PROGRAM_STAGES[active];
   return (
     <section id="programs" className="border-t border-black/10 bg-gradient-to-b from-[#FDF8F0] via-[#F0E8F4] to-[#E8F0F8]">
-      <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-10 md:py-24">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div>
+      <div className="mx-auto max-w-[1280px] px-6 py-10 md:px-10 md:py-14">
+        {/* Header row */}
+        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div className="flex items-baseline gap-4">
             <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-black/50">Programmes</p>
             <h2
-              className="mt-4 text-[clamp(2.6rem,6.5vw,5.2rem)] font-light leading-[0.95] tracking-tight text-black"
+              className="text-[clamp(1.5rem,2.6vw,2.2rem)] font-light leading-none tracking-tight text-black"
               style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
             >
               Build your <span className="italic font-extralight">way.</span>
             </h2>
           </div>
-          <p className="max-w-[44ch] text-[14px] leading-relaxed text-black/65">
+          <p className="max-w-[44ch] text-[12px] leading-relaxed text-black/60">
             9 distinct pathways. One shared obsession — real businesses, not case studies.
           </p>
         </div>
 
-        <div className="mt-8 flex flex-col gap-4">
-          {/* Featured pastel card */}
-          <div
-            className="relative aspect-[16/10] w-full overflow-hidden md:aspect-[21/9] lg:aspect-[24/9]"
-            style={{ background: stage.gradient }}
-          >
+        {/* Horizontal rail of 9 tabs */}
+        <nav aria-label="Programmes" className="mt-6">
+          <ol className="grid grid-cols-3 gap-px border border-black/10 bg-black/10 sm:grid-cols-5 lg:grid-cols-9">
+            {PROGRAM_STAGES.map((s, i) => {
+              const isActive = i === active;
+              return (
+                <li key={s.name}>
+                  <button
+                    type="button"
+                    onMouseEnter={() => setActive(i)}
+                    onFocus={() => setActive(i)}
+                    onClick={() => setActive(i)}
+                    aria-current={isActive ? "true" : undefined}
+                    className={`flex w-full flex-col items-start gap-1 px-3 py-2.5 text-left transition ${
+                      isActive ? "bg-black text-[#F2E8D3]" : "bg-white/70 text-[#1C1C1C] hover:bg-white"
+                    }`}
+                  >
+                    <span
+                      className="font-mono text-[9px] uppercase tracking-[0.28em] opacity-60"
+                      style={isActive ? { color: s.accent, opacity: 1 } : undefined}
+                    >
+                      0{i + 1}
+                    </span>
+                    <span className="text-[12px] font-medium leading-tight tracking-tight">{s.name}</span>
+                  </button>
+                </li>
+              );
+            })}
+          </ol>
+        </nav>
+
+        {/* Compact detail strip */}
+        <div
+          key={stage.name}
+          className="mt-3 grid grid-cols-[120px_minmax(0,1fr)_auto] items-stretch gap-0 border border-black/10"
+          style={{ background: stage.gradient }}
+        >
+          {/* Thumbnail */}
+          <div className="relative h-[120px] overflow-hidden bg-black/5">
             <img
-              key={stage.name}
               src={stage.image}
               alt={`Editorial — ${stage.name}`}
               loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover opacity-20 mix-blend-overlay transition-opacity duration-700"
+              className="absolute inset-0 h-full w-full object-cover opacity-70 mix-blend-multiply"
             />
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/40 via-white/10 to-transparent" />
-
-
-            {/* Vertical index */}
-            <div className="pointer-events-none absolute right-4 top-1/2 z-10 hidden -translate-y-1/2 md:right-8 lg:block">
-              <span
-                className="block text-[clamp(2.4rem,5vw,4.5rem)] font-light tracking-tighter text-black/10"
-                style={{ transform: "rotate(90deg)", fontFamily: "'Inter', system-ui, sans-serif" }}
-              >
-                0{active + 1}/09
-              </span>
-            </div>
-
-            {/* Content */}
-            <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
-              <div className="max-w-[640px]">
-                <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-black/60">
-                  <span>0{active + 1}</span>
-                  <span className="h-px w-8 bg-black/30" />
-                  <span>Featured pathway</span>
-                </div>
-                <h3
-                  className="mt-5 text-[clamp(2.2rem,5vw,4.2rem)] font-light leading-[1] tracking-tight text-black"
-                  style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                >
-                  {stage.name}
-                </h3>
-                <p className="mt-3 max-w-[42ch] text-[15px] leading-relaxed text-black/80">
-                  {stage.pathway}
-                </p>
-                <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-black/75">
-                  {stage.offerings.map((o) => (
-                    <li key={o} className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 bg-black/70" />
-                      {o}
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href={stage.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group mt-7 inline-flex items-center gap-3 border-b border-black/40 pb-1 text-[11px] font-medium uppercase tracking-[0.3em] text-black transition-colors hover:border-black"
-                >
-                  View all
-                  <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
-                </a>
-              </div>
-            </div>
           </div>
 
-          {/* Programme grid */}
-          <nav aria-label="Programmes">
-            <ol className="grid grid-cols-3 gap-1 border border-black/10 bg-white/40 p-2 backdrop-blur-sm sm:grid-cols-5 lg:grid-cols-9">
-              {PROGRAM_STAGES.map((s, i) => {
-                const isActive = i === active;
-                return (
-                  <li key={s.name}>
-                    <button
-                      type="button"
-                      onMouseEnter={() => setActive(i)}
-                      onFocus={() => setActive(i)}
-                      onClick={() => setActive(i)}
-                      aria-current={isActive ? "true" : undefined}
-                      className={`group flex w-full flex-col items-start gap-2 px-3 py-3 text-left transition ${
-                        isActive ? "bg-black text-[#F2E8D3]" : "text-[#1C1C1C] hover:bg-black/5"
-                      }`}
-                    >
-                      <span
-                        className="font-mono text-[10px] uppercase tracking-[0.28em] opacity-60"
-                        style={isActive ? { color: s.accent, opacity: 1 } : undefined}
-                      >
-                        0{i + 1}
-                      </span>
-                      <span className="text-[13px] font-medium leading-tight tracking-tight">{s.name}</span>
-                      <span
-                        className="mt-1 h-[2px] w-8 transition"
-                        style={{ backgroundColor: isActive ? s.accent : "rgba(28,28,28,0.15)" }}
-                      />
-                    </button>
-                  </li>
-                );
-              })}
-            </ol>
-          </nav>
+          {/* Text */}
+          <div className="flex min-w-0 flex-col justify-center gap-2 px-5 py-3">
+            <div className="flex items-center gap-3 text-[9px] uppercase tracking-[0.32em] text-black/60">
+              <span>0{active + 1}/09</span>
+              <span className="h-px w-6 bg-black/30" />
+              <span className="truncate">{stage.name}</span>
+            </div>
+            <p className="truncate text-[14px] font-medium leading-snug text-black">
+              {stage.pathway}
+            </p>
+            <ul className="flex flex-wrap gap-x-4 gap-y-1 text-[11px] text-black/70">
+              {stage.offerings.slice(0, 4).map((o) => (
+                <li key={o} className="flex items-center gap-1.5">
+                  <span className="h-1 w-1 bg-black/60" />
+                  {o}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* CTA */}
+          <a
+            href={stage.href}
+            target="_blank"
+            rel="noreferrer"
+            className="group flex items-center gap-2 self-stretch border-l border-black/10 bg-black px-5 text-[10px] font-medium uppercase tracking-[0.3em] text-[#F2E8D3] transition hover:bg-[#1c1c1c]"
+          >
+            Explore
+            <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
+          </a>
         </div>
       </div>
     </section>
