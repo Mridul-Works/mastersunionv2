@@ -1,6 +1,95 @@
+import { useState } from "react";
 import { ArrowUpRight, ChevronLeft, ChevronRight, Hourglass, Quote, GraduationCap, Rocket, Briefcase, Users, Mic, ChefHat, Building2, Send, Instagram, Linkedin, Youtube, Twitter, ShoppingCart } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import founderPhoto from "@/assets/pratham-chest.png.asset.json";
+import undergraduateAsset from "@/assets/programs/editorial-undergraduate.jpg.asset.json";
+import postgraduateAsset from "@/assets/programs/editorial-postgraduate.jpg.asset.json";
+import executiveAsset from "@/assets/programs/editorial-executive.jpg.asset.json";
+import immersionAsset from "@/assets/programs/editorial-immersions.jpg.asset.json";
+import familyBusinessAsset from "@/assets/programs/editorial-family-business.jpg.asset.json";
+import aiAsset from "@/assets/programs/editorial-ai.jpg.asset.json";
+import venturesAsset from "@/assets/programs/editorial-ventures.jpg.asset.json";
+import globalAsset from "@/assets/programs/editorial-global.jpg.asset.json";
+import b2bAsset from "@/assets/programs/editorial-b2b.jpg.asset.json";
+
+const PROGRAM_STAGES = [
+  { name: "Undergraduate", image: undergraduateAsset.url, accent: "#C94A2C", pathway: "Build foundations through real-world learning.", offerings: ["Technology & Business", "Data Science & AI", "Finance & Economics", "Psychology & Marketing"], href: "https://mastersunion.org/undergraduate" },
+  { name: "Postgraduate", image: postgraduateAsset.url, accent: "#C99211", pathway: "Accelerate your career through execution.", offerings: ["PGP in Technology & Business Management", "Young Leaders Programme", "Career acceleration", "Venture building"], href: "https://mastersunion.org/postgraduate" },
+  { name: "Executive", image: executiveAsset.url, accent: "#B5482A", pathway: "Transform leadership through practical learning.", offerings: ["Leadership development", "General management", "Executive programmes", "Applied strategy"], href: "https://mastersunion.org/executive-education" },
+  { name: "Immersions", image: immersionAsset.url, accent: "#4A5A1E", pathway: "Bharat Summer Schools, Travel-Based Learnings, intensive bootcamps.", offerings: ["Bharat Summer Schools", "Travel-Based Learnings", "D2C Bootcamps", "AI Bootcamps"], href: "https://mastersunion.org/experiencesatmastersunion" },
+  { name: "Family Business", image: familyBusinessAsset.url, accent: "#4B2240", pathway: "Scale and transform legacy businesses.", offerings: ["Scale legacy businesses", "Navigate succession", "Drive transformation", "Build the next chapter"], href: "https://mastersunion.org/family-business" },
+  { name: "AI", image: aiAsset.url, accent: "#C99211", pathway: "Create products and businesses powered by AI.", offerings: ["AI products", "Applied intelligence", "Business automation", "Venture creation"], href: "https://mastersunion.org/ai" },
+  { name: "Ventures", image: venturesAsset.url, accent: "#6B1F2A", pathway: "Build, launch and fund new ideas.", offerings: ["Incubation", "Funding", "Founder support", "Builder ecosystem"], href: "https://mastersunion.org/student-entrepreneurship" },
+  { name: "Global", image: globalAsset.url, accent: "#1E2B58", pathway: "Experience business beyond borders.", offerings: ["Global campuses", "International faculty", "Company visits", "Cross-border networks"], href: "https://mastersunion.org/undergraduate-global" },
+  { name: "B2B", image: b2bAsset.url, accent: "#1F4D3F", pathway: "Transform teams and organizations.", offerings: ["Corporate learning", "Workforce transformation", "Custom programmes", "Leadership academies"], href: "https://mastersunion.org/enterprise" },
+] as const;
+
+function Programs() {
+  const [active, setActive] = useState(0);
+  const stage = PROGRAM_STAGES[active];
+  return (
+    <section id="programs" className="border-t border-black/10 bg-[#f6f1e7]">
+      <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10 md:py-28">
+        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-black/50">Programmes</p>
+            <h2 className="mt-3 text-[clamp(2rem,5vw,3.6rem)] font-light leading-[0.95] tracking-tight" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+              Build your <span className="italic">way.</span>
+            </h2>
+          </div>
+          <p className="max-w-[44ch] text-[14px] leading-relaxed text-black/65">
+            9 distinct pathways. One shared obsession — real businesses, not case studies.
+          </p>
+        </div>
+
+        <div className="mt-10 flex flex-col gap-4">
+          <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#1C1C1C] md:aspect-[21/9] lg:aspect-[24/8]" style={{ boxShadow: `0 30px 90px -30px ${stage.accent}55` }}>
+            <img key={stage.name} src={stage.image} alt={`Editorial — ${stage.name}`} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-opacity duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/40 to-transparent" />
+            <div className="absolute inset-y-0 left-0 w-1.5" style={{ backgroundColor: stage.accent }} />
+            <div className="absolute inset-y-0 left-0 flex max-w-[640px] flex-col justify-end p-8 text-[#F2E8D3] md:p-12">
+              <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.32em] opacity-75">
+                <span>0{active + 1}</span>
+                <span className="h-px w-8 bg-current opacity-50" />
+                <span>Featured pathway</span>
+              </div>
+              <h3 className="mt-5 text-[clamp(1.8rem,4vw,3rem)] font-light leading-[1] tracking-tight" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>{stage.name}</h3>
+              <p className="mt-3 max-w-[42ch] text-[14px] leading-relaxed opacity-85">{stage.pathway}</p>
+              <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[12px] opacity-80">
+                {stage.offerings.map((o) => (
+                  <li key={o} className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5" style={{ backgroundColor: stage.accent }} />
+                    {o}
+                  </li>
+                ))}
+              </ul>
+              <a href={stage.href} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 border-b pb-1 font-mono text-[11px] uppercase tracking-[0.3em]" style={{ color: stage.accent, borderColor: stage.accent }}>
+                View all <span aria-hidden>↗</span>
+              </a>
+            </div>
+          </div>
+
+          <nav aria-label="Programmes">
+            <ol className="grid grid-cols-3 gap-1 border border-black/10 bg-white/60 p-2 backdrop-blur-sm sm:grid-cols-5 lg:grid-cols-9">
+              {PROGRAM_STAGES.map((s, i) => {
+                const isActive = i === active;
+                return (
+                  <li key={s.name}>
+                    <button type="button" onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)} onClick={() => setActive(i)} aria-current={isActive ? "true" : undefined} className={`group flex w-full flex-col items-start gap-2 px-3 py-3 text-left transition ${isActive ? "bg-[#1C1C1C] text-[#F2E8D3]" : "text-[#1C1C1C] hover:bg-black/5"}`}>
+                      <span className="font-mono text-[10px] uppercase tracking-[0.28em] opacity-60" style={isActive ? { color: s.accent, opacity: 1 } : undefined}>0{i + 1}</span>
+                      <span className="text-[13px] font-medium leading-tight tracking-tight">{s.name}</span>
+                      <span className="mt-1 h-[2px] w-8 transition" style={{ backgroundColor: isActive ? s.accent : "rgba(28,28,28,0.15)" }} />
+                    </button>
+                  </li>
+                );
+              })}
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 const NEWS = [
   { tag: "Press", month: "Jun", day: "15", time: "09:00 AM", title: "Masters' Union ranked among India's top new-age B-schools", source: "Forbes India" },
@@ -159,6 +248,9 @@ export default function HomeSections() {
           </div>
         </div>
       </section>
+
+      {/* PROGRAMS */}
+      <Programs />
 
       {/* PEDAGOGY */}
       <section id="pedagogy" className="border-t border-black/10 bg-neutral-50">
