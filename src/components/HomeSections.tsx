@@ -12,22 +12,16 @@ import venturesAsset from "@/assets/programs/editorial-ventures.jpg.asset.json";
 import globalAsset from "@/assets/programs/editorial-global.jpg.asset.json";
 import b2bAsset from "@/assets/programs/editorial-b2b.jpg.asset.json";
 
-const SUNSET_GRADIENTS = [
-  "linear-gradient(180deg, #E8C9A0 0%, #F7A76B 50%, #F05A4E 100%)", // Spring
-  "linear-gradient(180deg, #8FB3E7 0%, #C9D6E8 50%, #F7A76B 100%)", // Summer
-  "linear-gradient(180deg, #1B3A6B 0%, #0F2650 100%)",               // Winter
-] as const;
-
 const PROGRAM_STAGES = [
-  { name: "Undergraduate", image: undergraduateAsset.url, accent: "#C94A2C", gradient: SUNSET_GRADIENTS[0], pathway: "Build foundations through real-world learning.", offerings: ["Technology & Business", "Data Science & AI", "Finance & Economics", "Psychology & Marketing"], href: "https://mastersunion.org/undergraduate" },
-  { name: "Postgraduate", image: postgraduateAsset.url, accent: "#C99211", gradient: SUNSET_GRADIENTS[0], pathway: "Accelerate your career through execution.", offerings: ["PGP in Technology & Business Management", "Young Leaders Programme", "Career acceleration", "Venture building"], href: "https://mastersunion.org/postgraduate" },
-  { name: "Executive", image: executiveAsset.url, accent: "#B5482A", gradient: SUNSET_GRADIENTS[0], pathway: "Transform leadership through practical learning.", offerings: ["Leadership development", "General management", "Executive programmes", "Applied strategy"], href: "https://mastersunion.org/executive-education" },
-  { name: "Immersions", image: immersionAsset.url, accent: "#4A5A1E", gradient: SUNSET_GRADIENTS[1], pathway: "Bharat Summer Schools, Travel-Based Learnings, intensive bootcamps.", offerings: ["Bharat Summer Schools", "Travel-Based Learnings", "D2C Bootcamps", "AI Bootcamps"], href: "https://mastersunion.org/experiencesatmastersunion" },
-  { name: "Family Business", image: familyBusinessAsset.url, accent: "#4B2240", gradient: SUNSET_GRADIENTS[1], pathway: "Scale and transform legacy businesses.", offerings: ["Scale legacy businesses", "Navigate succession", "Drive transformation", "Build the next chapter"], href: "https://mastersunion.org/family-business" },
-  { name: "AI", image: aiAsset.url, accent: "#C99211", gradient: SUNSET_GRADIENTS[1], pathway: "Create products and businesses powered by AI.", offerings: ["AI products", "Applied intelligence", "Business automation", "Venture creation"], href: "https://mastersunion.org/ai" },
-  { name: "Ventures", image: venturesAsset.url, accent: "#6B1F2A", gradient: SUNSET_GRADIENTS[2], pathway: "Build, launch and fund new ideas.", offerings: ["Incubation", "Funding", "Founder support", "Builder ecosystem"], href: "https://mastersunion.org/student-entrepreneurship" },
-  { name: "Global", image: globalAsset.url, accent: "#1E2B58", gradient: SUNSET_GRADIENTS[2], pathway: "Experience business beyond borders.", offerings: ["Global campuses", "International faculty", "Company visits", "Cross-border networks"], href: "https://mastersunion.org/undergraduate-global" },
-  { name: "B2B", image: b2bAsset.url, accent: "#1F4D3F", gradient: SUNSET_GRADIENTS[2], pathway: "Transform teams and organizations.", offerings: ["Corporate learning", "Workforce transformation", "Custom programmes", "Leadership academies"], href: "https://mastersunion.org/enterprise" },
+  { name: "Undergraduate", image: undergraduateAsset.url, accent: "#C94A2C", pathway: "Build foundations through real-world learning.", offerings: ["Technology & Business", "Data Science & AI", "Finance & Economics", "Psychology & Marketing"], href: "https://mastersunion.org/undergraduate" },
+  { name: "Postgraduate", image: postgraduateAsset.url, accent: "#C99211", pathway: "Accelerate your career through execution.", offerings: ["PGP in Technology & Business Management", "Young Leaders Programme", "Career acceleration", "Venture building"], href: "https://mastersunion.org/postgraduate" },
+  { name: "Executive", image: executiveAsset.url, accent: "#B5482A", pathway: "Transform leadership through practical learning.", offerings: ["Leadership development", "General management", "Executive programmes", "Applied strategy"], href: "https://mastersunion.org/executive-education" },
+  { name: "Immersions", image: immersionAsset.url, accent: "#4A5A1E", pathway: "Bharat Summer Schools, Travel-Based Learnings, intensive bootcamps.", offerings: ["Bharat Summer Schools", "Travel-Based Learnings", "D2C Bootcamps", "AI Bootcamps"], href: "https://mastersunion.org/experiencesatmastersunion" },
+  { name: "Family Business", image: familyBusinessAsset.url, accent: "#4B2240", pathway: "Scale and transform legacy businesses.", offerings: ["Scale legacy businesses", "Navigate succession", "Drive transformation", "Build the next chapter"], href: "https://mastersunion.org/family-business" },
+  { name: "AI", image: aiAsset.url, accent: "#C99211", pathway: "Create products and businesses powered by AI.", offerings: ["AI products", "Applied intelligence", "Business automation", "Venture creation"], href: "https://mastersunion.org/ai" },
+  { name: "Ventures", image: venturesAsset.url, accent: "#6B1F2A", pathway: "Build, launch and fund new ideas.", offerings: ["Incubation", "Funding", "Founder support", "Builder ecosystem"], href: "https://mastersunion.org/student-entrepreneurship" },
+  { name: "Global", image: globalAsset.url, accent: "#1E2B58", pathway: "Experience business beyond borders.", offerings: ["Global campuses", "International faculty", "Company visits", "Cross-border networks"], href: "https://mastersunion.org/undergraduate-global" },
+  { name: "B2B", image: b2bAsset.url, accent: "#1F4D3F", pathway: "Transform teams and organizations.", offerings: ["Corporate learning", "Workforce transformation", "Custom programmes", "Leadership academies"], href: "https://mastersunion.org/enterprise" },
 ] as const;
 
 function Programs() {
@@ -81,19 +75,10 @@ function Programs() {
                 const isActive = i === active;
                 return (
                   <li key={s.name}>
-                    <button
-                      type="button"
-                      onMouseEnter={() => setActive(i)}
-                      onFocus={() => setActive(i)}
-                      onClick={() => setActive(i)}
-                      aria-current={isActive ? "true" : undefined}
-                      className="group relative flex w-full flex-col items-start gap-2 overflow-hidden px-3 py-3 text-left transition"
-                      style={isActive ? { background: s.gradient } : { background: s.gradient }}
-                    >
-                      <span className="relative z-10 font-mono text-[10px] uppercase tracking-[0.28em] text-white/80">0{i + 1}</span>
-                      <span className="relative z-10 text-[13px] font-medium leading-tight tracking-tight text-white">{s.name}</span>
-                      <span className="relative z-10 mt-1 h-[2px] w-8 bg-white/60 transition" />
-                      {isActive && <span className="absolute inset-0 z-0 bg-black/25" />}
+                    <button type="button" onMouseEnter={() => setActive(i)} onFocus={() => setActive(i)} onClick={() => setActive(i)} aria-current={isActive ? "true" : undefined} className={`group flex w-full flex-col items-start gap-2 px-3 py-3 text-left transition ${isActive ? "bg-[#1C1C1C] text-[#F2E8D3]" : "text-[#1C1C1C] hover:bg-black/5"}`}>
+                      <span className="font-mono text-[10px] uppercase tracking-[0.28em] opacity-60" style={isActive ? { color: s.accent, opacity: 1 } : undefined}>0{i + 1}</span>
+                      <span className="text-[13px] font-medium leading-tight tracking-tight">{s.name}</span>
+                      <span className="mt-1 h-[2px] w-8 transition" style={{ backgroundColor: isActive ? s.accent : "rgba(28,28,28,0.15)" }} />
                     </button>
                   </li>
                 );
@@ -114,10 +99,10 @@ const NEWS = [
 ];
 
 const PROGRAMS = [
-  { mode: "ON CAMPUS", duration: "2 YEARS", title: "PGP in Technology & Business Management", round: "Round 1 Applications Open", image: postgraduateAsset.url, accent: "#C99211", statusColor: "#166534" },
-  { mode: "ON CAMPUS", duration: "1 YEAR", title: "PGP in Quantitative Finance & Business", round: "Round 2 Applications Open", image: executiveAsset.url, accent: "#B5482A", statusColor: "#166534" },
-  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Technology & Business Management", round: "Round 4 Applications Open", image: undergraduateAsset.url, accent: "#C94A2C", statusColor: "#166534" },
-  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Psychology & Marketing", round: "Round 4 Applications Open", image: b2bAsset.url, accent: "#1F4D3F", statusColor: "#166534" },
+  { mode: "ON CAMPUS", duration: "2 YEARS", title: "PGP in Technology & Business Management", round: "Round 1 Applications Open" },
+  { mode: "ON CAMPUS", duration: "1 YEAR", title: "PGP in Quantitative Finance & Business", round: "Round 2 Applications Open" },
+  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Technology & Business Management", round: "Round 4 Applications Open" },
+  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Psychology & Marketing", round: "Round 4 Applications Open" },
 ];
 
 const PEDAGOGY = [
@@ -207,33 +192,27 @@ export default function HomeSections() {
             </a>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+          <div className="flex flex-nowrap gap-4 overflow-x-auto snap-x md:overflow-x-visible md:gap-6">
             {PROGRAMS.map((p) => (
               <article
                 key={p.title}
-                className="group flex cursor-pointer snap-start overflow-hidden border border-black/10 bg-white transition-all hover:bg-black/[0.03]"
+                className="group flex min-w-[280px] flex-1 cursor-pointer snap-start flex-col gap-6 border border-black/10 bg-white p-6 transition-all hover:bg-black/[0.03] md:min-w-0"
               >
-                <div className="relative w-[40%] min-w-[140px] max-w-[260px] overflow-hidden bg-black/5">
-                  <img src={p.image} alt={p.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                  <div className="absolute inset-y-0 left-0 w-1" style={{ backgroundColor: p.accent }} />
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="rounded-none bg-black px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-white">{p.mode}</span>
+                  <span className="rounded-none bg-black/5 px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-black/70">{p.duration}</span>
                 </div>
-                <div className="flex flex-1 flex-col gap-4 p-5 md:p-6">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-none bg-black px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-white">{p.mode}</span>
-                    <span className="rounded-none bg-black/5 px-3 py-1 font-sans text-[10px] font-bold tracking-[0.14em] text-black/70">{p.duration}</span>
-                  </div>
-                  <h3 className="font-display text-[1.15rem] font-bold leading-snug text-black md:text-[1.25rem]">
-                    {p.title}
-                  </h3>
-                  <div className="inline-flex w-fit items-center gap-2 rounded-none px-3 py-1.5" style={{ backgroundColor: `${p.statusColor}15`, color: p.statusColor }}>
-                    <Hourglass className="size-3.5" style={{ color: p.statusColor }} />
-                    <span className="font-sans text-[12px] font-semibold">{p.round}</span>
-                  </div>
-                  <div className="mt-auto pt-2">
-                    <a href="#" className="inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-black transition-colors group-hover:text-black/70">
-                      Apply Now <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                    </a>
-                  </div>
+                <h3 className="font-display text-[1.15rem] font-bold leading-snug text-black md:text-[1.25rem]">
+                  {p.title}
+                </h3>
+                <div className="inline-flex w-fit items-center gap-2 rounded-none bg-black/5 px-3 py-1.5">
+                  <Hourglass className="size-3.5 text-black/70" />
+                  <span className="font-sans text-[12px] font-semibold text-black/80">{p.round}</span>
+                </div>
+                <div className="mt-auto pt-4">
+                  <a href="#" className="inline-flex items-center gap-1.5 font-display text-[15px] font-semibold text-black transition-colors group-hover:text-black/70">
+                    Apply Now <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </a>
                 </div>
               </article>
             ))}
