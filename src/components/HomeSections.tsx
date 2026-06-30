@@ -199,7 +199,7 @@ function Programs() {
               </span>
             </div>
 
-            <ul className="flex-1 min-h-0 space-y-0 overflow-y-auto pr-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            <ul className="flex-1 min-h-0 space-y-0 overflow-y-auto pr-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:w-0 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black/20 [&::-webkit-scrollbar-track]:bg-transparent hover:[&::-webkit-scrollbar]:w-1.5 hover:[scrollbar-width:thin] hover:[&::-webkit-scrollbar-thumb]:bg-black/40">
               {active.programmes.map((pg, i) => (
                 <li key={pg.title}>
                   <a
