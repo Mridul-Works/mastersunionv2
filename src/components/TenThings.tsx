@@ -268,7 +268,7 @@ function Slide({
       transition={{ duration: 0.5, ease: "easeOut" }}
     >
 
-      <div className="relative h-full w-full overflow-hidden">
+      <div className="relative flex h-full w-full items-center justify-center overflow-hidden p-6 md:p-10">
         <motion.div
           key={project.image}
           custom={direction}
@@ -279,7 +279,7 @@ function Slide({
             transition: { duration: SLIDE_DURATION * 0.85, ease: EASE },
           }}
           transition={{ duration: SLIDE_DURATION, ease: EASE }}
-          className="absolute inset-0"
+          className="relative h-[92%] w-[92%] shadow-[16px_16px_0px_0px_rgba(26,33,26,0.18)]"
         >
           <motion.img
             src={project.image}
@@ -291,8 +291,6 @@ function Slide({
             transition={{ duration: SLIDE_DURATION * 1.2, ease: EASE }}
           />
         </motion.div>
-
-
       </div>
 
       <div className="relative z-10 flex items-end px-6 pb-24 md:items-center md:px-12 md:pb-0">
