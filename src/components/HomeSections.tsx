@@ -12,17 +12,33 @@ import venturesAsset from "@/assets/programs/editorial-ventures.jpg.asset.json";
 import globalAsset from "@/assets/programs/editorial-global.jpg.asset.json";
 import b2bAsset from "@/assets/programs/editorial-b2b.jpg.asset.json";
 
-const PROGRAM_STAGES = [
-  { name: "Undergraduate", image: undergraduateAsset.url, accent: "#E8A87C", gradient: "linear-gradient(135deg, #FCE5D8 0%, #F8D4A8 50%, #F0E8D4 100%)", textOn: "#1A1208", pathway: "Build foundations through real-world learning.", offerings: ["Technology & Business", "Data Science & AI", "Finance & Economics", "Psychology & Marketing"], href: "https://mastersunion.org/undergraduate" },
-  { name: "Postgraduate", image: postgraduateAsset.url, accent: "#C9A0DC", gradient: "linear-gradient(135deg, #E8D4E8 0%, #F8D4A8 45%, #D4E8F0 100%)", textOn: "#1A1208", pathway: "Accelerate your career through execution.", offerings: ["PGP in Technology & Business Management", "Young Leaders Programme", "Career acceleration", "Venture building"], href: "https://mastersunion.org/postgraduate" },
-  { name: "Executive", image: executiveAsset.url, accent: "#F0A0A0", gradient: "linear-gradient(135deg, #F5D2C8 0%, #F0A0A0 55%, #E8D4E8 100%)", textOn: "#1A1208", pathway: "Transform leadership through practical learning.", offerings: ["Leadership development", "General management", "Executive programmes", "Applied strategy"], href: "https://mastersunion.org/executive-education" },
-  { name: "Immersions", image: immersionAsset.url, accent: "#A8C0A0", gradient: "linear-gradient(135deg, #E8F4E8 0%, #D8E8C8 50%, #E8E2BC 100%)", textOn: "#0F1A05", pathway: "Bharat Summer Schools, Travel-Based Learnings, intensive bootcamps.", offerings: ["Bharat Summer Schools", "Travel-Based Learnings", "D2C Bootcamps", "AI Bootcamps"], href: "https://mastersunion.org/experiencesatmastersunion" },
-  { name: "Family Business", image: familyBusinessAsset.url, accent: "#D4A8D8", gradient: "linear-gradient(135deg, #F0D8E8 0%, #D4A8D8 50%, #E8D4E8 100%)", textOn: "#160820", pathway: "Scale and transform legacy businesses.", offerings: ["Scale legacy businesses", "Navigate succession", "Drive transformation", "Build the next chapter"], href: "https://mastersunion.org/family-business" },
-  { name: "AI", image: aiAsset.url, accent: "#8AC8E0", gradient: "linear-gradient(135deg, #D8EEF2 0%, #8AC8E0 45%, #E8D4E8 100%)", textOn: "#040E1F", pathway: "Create products and businesses powered by AI.", offerings: ["AI products", "Applied intelligence", "Business automation", "Venture creation"], href: "https://mastersunion.org/ai" },
-  { name: "Ventures", image: venturesAsset.url, accent: "#E88AAB", gradient: "linear-gradient(135deg, #F5D2C8 0%, #E88AAB 50%, #F8D4A8 100%)", textOn: "#1A0408", pathway: "Build, launch and fund new ideas.", offerings: ["Incubation", "Funding", "Founder support", "Builder ecosystem"], href: "https://mastersunion.org/student-entrepreneurship" },
-  { name: "Global", image: globalAsset.url, accent: "#8A9ED8", gradient: "linear-gradient(135deg, #D4E8F0 0%, #8A9ED8 50%, #E8D4E8 100%)", textOn: "#050F2E", pathway: "Experience business beyond borders.", offerings: ["Global campuses", "International faculty", "Company visits", "Cross-border networks"], href: "https://mastersunion.org/undergraduate-global" },
-  { name: "B2B", image: b2bAsset.url, accent: "#98C8A8", gradient: "linear-gradient(135deg, #E8F4F0 0%, #98C8A8 50%, #E8E2BC 100%)", textOn: "#04140D", pathway: "Transform teams and organizations.", offerings: ["Corporate learning", "Workforce transformation", "Custom programmes", "Leadership academies"], href: "https://mastersunion.org/enterprise" },
-] as const;
+type Stage = {
+  name: string;
+  image: string;
+  accent: string;
+  gradient: string;
+  textOn: string;
+  pathway: string;
+  offerings: readonly string[];
+  href: string;
+  open: boolean;
+  mode?: string;
+  duration?: string;
+  round?: string;
+  flagship?: string;
+};
+
+const PROGRAM_STAGES: readonly Stage[] = [
+  { name: "Undergraduate", image: undergraduateAsset.url, accent: "#E8A87C", gradient: "linear-gradient(135deg, #FCE5D8 0%, #F8D4A8 50%, #F0E8D4 100%)", textOn: "#1A1208", pathway: "Build foundations through real-world learning.", offerings: ["Technology & Business", "Data Science & AI", "Finance & Economics", "Psychology & Marketing"], href: "https://mastersunion.org/undergraduate", open: true, mode: "ON CAMPUS", duration: "4 YEARS", round: "Round 4 Applications Open", flagship: "UG in Technology & Business Management" },
+  { name: "Postgraduate", image: postgraduateAsset.url, accent: "#C9A0DC", gradient: "linear-gradient(135deg, #E8D4E8 0%, #F8D4A8 45%, #D4E8F0 100%)", textOn: "#1A1208", pathway: "Accelerate your career through execution.", offerings: ["PGP in Technology & Business Management", "Young Leaders Programme", "Career acceleration", "Venture building"], href: "https://mastersunion.org/postgraduate", open: true, mode: "ON CAMPUS", duration: "2 YEARS", round: "Round 1 Applications Open", flagship: "PGP in Technology & Business Management" },
+  { name: "Executive", image: executiveAsset.url, accent: "#F0A0A0", gradient: "linear-gradient(135deg, #F5D2C8 0%, #F0A0A0 55%, #E8D4E8 100%)", textOn: "#1A1208", pathway: "Transform leadership through practical learning.", offerings: ["Leadership development", "General management", "Executive programmes", "Applied strategy"], href: "https://mastersunion.org/executive-education", open: true, mode: "HYBRID", duration: "12 MONTHS", round: "Round 2 Applications Open", flagship: "Executive Programme in General Management" },
+  { name: "Immersions", image: immersionAsset.url, accent: "#A8C0A0", gradient: "linear-gradient(135deg, #E8F4E8 0%, #D8E8C8 50%, #E8E2BC 100%)", textOn: "#0F1A05", pathway: "Bharat Summer Schools, Travel-Based Learnings, intensive bootcamps.", offerings: ["Bharat Summer Schools", "Travel-Based Learnings", "D2C Bootcamps", "AI Bootcamps"], href: "https://mastersunion.org/experiencesatmastersunion", open: true, mode: "ON CAMPUS", duration: "2–6 WEEKS", round: "Summer 2026 Open", flagship: "Bharat Summer Schools" },
+  { name: "Family Business", image: familyBusinessAsset.url, accent: "#D4A8D8", gradient: "linear-gradient(135deg, #F0D8E8 0%, #D4A8D8 50%, #E8D4E8 100%)", textOn: "#160820", pathway: "Scale and transform legacy businesses.", offerings: ["Scale legacy businesses", "Navigate succession", "Drive transformation", "Build the next chapter"], href: "https://mastersunion.org/family-business", open: false, mode: "MODULAR", duration: "10 MONTHS", round: "Opens Aug 2026", flagship: "Programme for Family Business Leaders" },
+  { name: "AI", image: aiAsset.url, accent: "#8AC8E0", gradient: "linear-gradient(135deg, #D8EEF2 0%, #8AC8E0 45%, #E8D4E8 100%)", textOn: "#040E1F", pathway: "Create products and businesses powered by AI.", offerings: ["AI products", "Applied intelligence", "Business automation", "Venture creation"], href: "https://mastersunion.org/ai", open: true, mode: "ON CAMPUS", duration: "11 MONTHS", round: "Round 1 Applications Open", flagship: "PG Programme in AI for Business" },
+  { name: "Ventures", image: venturesAsset.url, accent: "#E88AAB", gradient: "linear-gradient(135deg, #F5D2C8 0%, #E88AAB 50%, #F8D4A8 100%)", textOn: "#1A0408", pathway: "Build, launch and fund new ideas.", offerings: ["Incubation", "Funding", "Founder support", "Builder ecosystem"], href: "https://mastersunion.org/student-entrepreneurship", open: false, mode: "ROLLING", duration: "ONGOING", round: "Pitch window closed", flagship: "MU Ventures Incubator" },
+  { name: "Global", image: globalAsset.url, accent: "#8A9ED8", gradient: "linear-gradient(135deg, #D4E8F0 0%, #8A9ED8 50%, #E8D4E8 100%)", textOn: "#050F2E", pathway: "Experience business beyond borders.", offerings: ["Global campuses", "International faculty", "Company visits", "Cross-border networks"], href: "https://mastersunion.org/undergraduate-global", open: true, mode: "ON CAMPUS", duration: "4 YEARS", round: "Round 2 Applications Open", flagship: "UG Global Pathway" },
+  { name: "B2B", image: b2bAsset.url, accent: "#98C8A8", gradient: "linear-gradient(135deg, #E8F4F0 0%, #98C8A8 50%, #E8E2BC 100%)", textOn: "#04140D", pathway: "Transform teams and organizations.", offerings: ["Corporate learning", "Workforce transformation", "Custom programmes", "Leadership academies"], href: "https://mastersunion.org/enterprise", open: false, mode: "CUSTOM", duration: "VARIES", round: "Enquiries open", flagship: "Enterprise Learning Partnerships" },
+];
 
 function Programs() {
   const [active, setActive] = useState(0);
