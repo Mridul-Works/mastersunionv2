@@ -290,10 +290,16 @@ function Programs() {
                   </p>
 
                   <div className="mt-5 border-t border-black/10 pt-4">
-                    <span className="block font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-black/60 transition-colors group-hover:text-black/80">
-                      {p.status}
-                    </span>
-                    <div className="mt-2">
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-black/60 transition-colors group-hover:text-black/80">
+                        {p.status}
+                      </span>
+                      <span className="font-mono text-[8px] font-semibold uppercase tracking-[0.12em] text-black/40">
+                        Closes {formatDeadline(p.deadline)}
+                      </span>
+                    </div>
+                    <div className="mt-3 flex items-center gap-2">
+                      <Hourglass className="size-3.5 text-black/40" />
                       <Countdown target={p.deadline} />
                     </div>
                   </div>
@@ -336,7 +342,6 @@ function Programs() {
     </section>
   );
 }
-
 
 const NEWS = [
   { tag: "Press", month: "Jun", day: "15", time: "09:00 AM", title: "Masters' Union ranked among India's top new-age B-schools", source: "Forbes India" },
@@ -384,23 +389,33 @@ function useCountdown(target: string) {
 function Countdown({ target }: { target: string }) {
   const { days, hours, minutes, seconds } = useCountdown(target);
   const pad = (n: number) => String(n).padStart(2, "0");
+  const blocks = [
+    { value: days, label: "DAYS" },
+    { value: pad(hours), label: "HRS" },
+    { value: pad(minutes), label: "MIN" },
+    { value: pad(seconds), label: "SEC" },
+  ];
   return (
-    <div className="flex flex-col gap-1">
-      <div className="font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-black/50">
-        Closes {formatDeadline(target)}
-      </div>
-      <div className="flex items-center gap-1 font-mono text-[10px] font-bold tracking-tight text-black">
-        <span>{days}d</span>
-        <span className="text-black/30">:</span>
-        <span>{pad(hours)}h</span>
-        <span className="text-black/30">:</span>
-        <span>{pad(minutes)}m</span>
-        <span className="text-black/30">:</span>
-        <span>{pad(seconds)}s</span>
-      </div>
+    <div className="flex items-center gap-2">
+      {blocks.map((b, i) => (
+        <div key={b.label} className="flex items-center gap-2">
+          <div className="text-center">
+            <div className="font-mono text-[11px] font-bold leading-none tracking-tight text-black">
+              {b.value}
+            </div>
+            <div className="font-mono text-[6px] font-bold uppercase tracking-[0.18em] text-black/40">
+              {b.label}
+            </div>
+          </div>
+          {i < blocks.length - 1 && (
+            <span className="font-mono text-[10px] font-bold leading-none text-black/20">:</span>
+          )}
+        </div>
+      ))}
     </div>
   );
 }
+
 
 const PEDAGOGY = [
   { icon: GraduationCap, tag: "01 · Faculty", title: "Taught by the people building the companies you study.", body: "40% of faculty are sitting CEOs, MDs and CXOs. 30% visiting from Harvard, Wharton, Kellogg and Booth. The slides update on Monday morning.", stats: [{ value: "40%", label: "Industry practitioners" }, { value: "200+", label: "Visiting experts" }, { value: "30%", label: "Ivy-league visiting" }], cta: "Meet the faculty", route: "/faculty" },
