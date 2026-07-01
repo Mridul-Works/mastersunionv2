@@ -100,7 +100,7 @@ function Programs() {
   const admissionsScrollRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section id="programs" className="border-t border-black/10 bg-[#F5F3EE] mt-4 mb-4">
+    <section id="programs" className="border-t border-black/10 bg-[#F5F3EE]">
       <div className="mx-auto grid max-w-[1280px] grid-cols-12 gap-6 px-6 py-20 md:px-10 md:py-28">
         {/* Editorial intro */}
         <div className="col-span-12 lg:col-span-4">
@@ -494,7 +494,7 @@ export default function HomeSections() {
 
       {/* FOUNDER'S MESSAGE */}
       <section id="founders" className="border-t border-black/10 bg-[#F5F3EE]">
-        <div className="mx-auto max-w-[1280px] px-6 py-6 md:px-10 md:py-8">
+        <div className="mx-auto max-w-[1280px] px-6 pb-6 md:px-10 md:pb-8">
           <div
             className="relative overflow-hidden rounded-none min-h-[520px] md:min-h-[640px] grid grid-cols-1 lg:grid-cols-2"
             style={{ background: "linear-gradient(135deg, var(--pastel-start) 0%, var(--pastel-end) 100%)" }}
