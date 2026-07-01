@@ -396,11 +396,11 @@ function Countdown({ target }: { target: string }) {
     { value: pad(seconds), label: "SEC" },
   ];
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-1.5">
       {blocks.map((b, i) => (
-        <div key={b.label} className="flex items-center gap-2">
+        <div key={b.label} className="flex items-center gap-1.5">
           <div className="text-center">
-            <div className="font-mono text-[11px] font-bold leading-none tracking-tight text-black">
+            <div className="font-mono text-[13px] font-bold leading-none tracking-tight text-black">
               {b.value}
             </div>
             <div className="font-mono text-[6px] font-bold uppercase tracking-[0.18em] text-black/40">
@@ -408,7 +408,7 @@ function Countdown({ target }: { target: string }) {
             </div>
           </div>
           {i < blocks.length - 1 && (
-            <span className="font-mono text-[10px] font-bold leading-none text-black/20">:</span>
+            <span className="font-mono text-[11px] font-bold leading-none text-black/20">:</span>
           )}
         </div>
       ))}
