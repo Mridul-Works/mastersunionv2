@@ -178,7 +178,7 @@ function PgpTbm() {
   const { d, h, m, s } = useCountdown(deadline);
 
   return (
-    <main className="min-h-screen bg-[color:var(--cream)] text-[color:var(--ink)] pb-24 md:pb-0">
+    <main className="min-h-screen pastel-gradient text-[color:var(--ink)] pb-24 md:pb-0">
       {/* NAV */}
       <header className="fixed inset-x-0 top-0 z-[100] px-4 pt-3 sm:px-6 sm:pt-4">
         <div className="mx-auto flex max-w-[1180px] items-center justify-between border border-black/10 bg-white/80 px-2 py-1.5 shadow-[0_6px_24px_-12px_rgba(0,0,0,0.15)] backdrop-blur-xl">
@@ -246,7 +246,7 @@ function PgpTbm() {
             {/* Fact sheet */}
             <dl className="grid grid-cols-2 gap-px border-t border-black/10 bg-black/10 sm:grid-cols-4">
               {FACTS.map((f) => (
-                <div key={f.k} className="bg-[color:var(--cream)] p-4">
+                <div key={f.k} className="bg-white p-4">
                   <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50">{f.k}</dt>
                   <dd className="mt-1.5 font-display text-[22px] leading-none tracking-tight">{f.v}</dd>
                   <div className="mt-1.5 text-[11px] leading-snug text-black/55">{f.note}</div>
@@ -301,7 +301,7 @@ function PgpTbm() {
           </div>
           <div className="grid gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-4">
             {PILLARS.map((p) => (
-              <article key={p.title} className="bg-[color:var(--cream)] p-6 pastel-fill">
+              <article key={p.title} className="bg-white p-6 pastel-fill">
                 <div className="font-display text-[36px] leading-none text-black/25">{p.tag}</div>
                 <h3 className="mt-6 font-display text-[18px] leading-tight tracking-tight">{p.title}</h3>
                 <p className="mt-2 text-[13px] leading-relaxed text-black/70">{p.body}</p>
@@ -359,7 +359,7 @@ function PgpTbm() {
           </div>
           <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
             {SIGNATURE.map((sg) => (
-              <div key={sg.k} className="bg-[color:var(--cream)] p-6 pastel-fill">
+              <div key={sg.k} className="bg-white p-6 pastel-fill">
                 <div className="font-display text-[20px] leading-tight">{sg.k}</div>
                 <div className="mt-2 text-[13px] text-black/65">{sg.v}</div>
               </div>
@@ -379,7 +379,7 @@ function PgpTbm() {
           </div>
           <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
             {FACULTY.map((f) => (
-              <div key={f.name} className="bg-[color:var(--cream)] p-6 pastel-fill">
+              <div key={f.name} className="bg-white p-6 pastel-fill">
                 <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50">{f.tag}</div>
                 <div className="mt-4 font-display text-[22px] leading-tight">{f.name}</div>
                 <div className="mt-1 text-[13px] text-black/60">{f.role}</div>
@@ -403,7 +403,7 @@ function PgpTbm() {
           </div>
           <ol className="grid gap-px bg-black/10 md:grid-cols-5">
             {TIMELINE.map((t, i) => (
-              <li key={t.t} className="bg-[color:var(--cream)] p-5 pastel-fill">
+              <li key={t.t} className="bg-white p-5 pastel-fill">
                 <div className="font-display text-[28px] leading-none text-black/30">{String(i + 1).padStart(2, "0")}</div>
                 <div className="mt-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-black/55">{t.d}</div>
                 <div className="mt-1 font-display text-[15px] leading-tight text-black/85">{t.t}</div>

@@ -71,6 +71,11 @@
   }
 }
 
+@utility pastel-gradient {
+  background: linear-gradient(135deg, var(--pastel-start) 0%, var(--pastel-end) 100%);
+}
+
+
 @layer base {
   * { border-color: var(--color-border); }
   body {
