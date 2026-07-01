@@ -423,35 +423,75 @@ function PgpTbm() {
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
           <div className="mb-10 flex items-end justify-between">
             <div>
-              <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">Curriculum · 16 months</div>
+              <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">Curriculum · 16 months · 8 terms</div>
               <h2 className="mt-3 max-w-2xl font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.05] tracking-[-0.02em]">
-                Four terms. One internship. Something shipped every one.
+                Eight terms. Every one ships something real.
               </h2>
+              <p className="mt-4 max-w-2xl text-[14px] leading-relaxed text-black/60">
+                In-class courses across seven tracks, paired with an out-class challenge every term — from the Dropshipping Challenge in Term 1 to raising a real seed fund in Term 7. Curriculum lifted from{" "}
+                <a href="https://mastersunion.org/pgp-tbm-curriculum" target="_blank" rel="noreferrer" className="underline underline-offset-2">mastersunion.org/pgp-tbm-curriculum</a>.
+              </p>
             </div>
           </div>
           <ol className="space-y-px bg-black/10">
-            {TERMS.map((t, i) => (
-              <li key={t.label} className="grid gap-4 bg-white p-6 md:grid-cols-[90px_200px_1fr_260px] md:items-start md:gap-8 md:p-8">
-                <div className="font-display text-[42px] leading-none text-black/25">{String(i + 1).padStart(2, "0")}</div>
-                <div>
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50">{t.label}</div>
-                  <div className="mt-2 font-display text-[20px] leading-tight">{t.title}</div>
-                </div>
-                <p className="text-[14px] leading-relaxed text-black/70">{t.body}</p>
-                <div className="flex flex-col gap-3">
-                  <div className="border-l-2 border-emerald-500 pl-3">
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50">You ship</div>
-                    <div className="text-[13px] text-black/80">{t.ship}</div>
-                  </div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {t.tags.map((tag) => (
-                      <span key={tag} className="border border-black/15 px-2 py-1 text-[10px] font-medium uppercase tracking-[0.1em] text-black/70">{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              </li>
-            ))}
+            {TERMS.map((t, i) => {
+              const open = openTerm === i;
+              return (
+                <li key={t.label} className="bg-white">
+                  <button
+                    type="button"
+                    onClick={() => setOpenTerm(open ? null : i)}
+                    className="grid w-full grid-cols-[64px_1fr_24px] items-center gap-4 p-6 text-left md:grid-cols-[90px_180px_1fr_24px] md:gap-8 md:p-8"
+                    aria-expanded={open}
+                  >
+                    <div className="font-display text-[42px] leading-none text-black/25">{String(i + 1).padStart(2, "0")}</div>
+                    <div>
+                      <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50">{t.label}</div>
+                      <div className="mt-2 font-display text-[20px] leading-tight">{t.title}</div>
+                    </div>
+                    <div className="hidden text-[13px] leading-relaxed text-black/60 md:block">
+                      {t.outClass.map((o) => o.name).join(" · ")}
+                    </div>
+                    <div className={`justify-self-end font-display text-[24px] leading-none text-black/40 transition-transform ${open ? "rotate-45" : ""}`}>+</div>
+                  </button>
+                  {open && (
+                    <div className="grid gap-8 border-t border-black/10 p-6 md:grid-cols-[1fr_1.4fr] md:gap-12 md:p-8">
+                      <div>
+                        <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-700">Out-class · You ship</div>
+                        <div className="mt-4 space-y-4">
+                          {t.outClass.map((o) => (
+                            <div key={o.name} className="border-l-2 border-emerald-500 pl-3">
+                              <div className="font-display text-[16px] leading-tight">{o.name}</div>
+                              <div className="mt-1 text-[13px] leading-relaxed text-black/65">{o.note}</div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50">In-class · Courses</div>
+                        <div className="mt-4 space-y-4">
+                          {t.inClass.map((g) => (
+                            <div key={g.k}>
+                              <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-black/70">{g.k}</div>
+                              <ul className="mt-1.5 space-y-1">
+                                {g.items.map((it) => (
+                                  <li key={it} className="text-[13px] leading-snug text-black/70">— {it}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </li>
+              );
+            })}
           </ol>
+          <div className="mt-6 flex flex-wrap items-center gap-4 text-[12px] text-black/55">
+            <span className="inline-block h-px w-8 bg-black/30" />
+            Each term for experienced professionals lasts 1–2 months; 2–3 months for the YLC cohort. Non-mandatory 3-month internship follows the on-campus terms.
+          </div>
         </div>
       </section>
 
