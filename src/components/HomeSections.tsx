@@ -535,9 +535,9 @@ export default function HomeSections() {
                 loading="lazy"
                 width={1024}
                 height={1024}
-                className="absolute inset-0 h-full w-full object-contain object-bottom"
+                className="absolute inset-0 h-full w-full object-contain object-[bottom_right]"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-[var(--pastel-start)]/80 via-transparent to-transparent lg:bg-gradient-to-l lg:from-transparent lg:via-transparent lg:to-[var(--pastel-end)]/60" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[var(--pastel-start)]/80 via-transparent to-transparent" />
             </div>
           </div>
         </div>
