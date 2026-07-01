@@ -54,6 +54,34 @@ function Index() {
       return window.scrollY + rect.top;
     };
 
+    const engageLock = () => {
+      if (locked || unlockingRef.current) return;
+      locked = true;
+      lockY = getLockY();
+      setNavVisible(true);
+      setShowRewatch(true);
+      try {
+        const v = videoElRef.current;
+        if (v && !v.paused) v.pause();
+      } catch {}
+      setPlaying(false);
+    };
+
+    // IntersectionObserver — fires reliably even if scroll/wheel events are
+    // captured by the playing <video controls>. As soon as the hero curtain
+    // reaches the top of the viewport, engage the lock and reveal the nav.
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting && e.boundingClientRect.top <= 1) {
+            engageLock();
+          }
+        }
+      },
+      { threshold: [0, 0.01], rootMargin: "0px 0px -100% 0px" },
+    );
+    io.observe(hero);
+
     const onScroll = () => {
       if (unlockingRef.current) {
         lastY = window.scrollY;
@@ -61,23 +89,18 @@ function Index() {
       }
       const y = window.scrollY;
       if (!locked) {
-        if (y >= getLockY() - 1) {
-          locked = true;
-          lockY = getLockY();
-          setNavVisible(true);
-          setShowRewatch(true);
-          // Pause the video if it was playing so the curtain doesn't keep
-          // audio/video running underneath the hero.
+        // Pause the video the moment the user starts scrolling away from it.
+        if (y > 4) {
           try {
-            videoElRef.current?.pause();
+            const v = videoElRef.current;
+            if (v && !v.paused) v.pause();
           } catch {}
         }
+        if (y >= getLockY() - 1) engageLock();
         lastY = y;
         return;
       }
       if (y < lockY) {
-        // Snap back synchronously and override Lenis's smooth target so it
-        // does not keep animating upward.
         const lenis = (window as any).__lenis;
         if (lenis?.scrollTo) {
           lenis.scrollTo(lockY, { immediate: true, force: true, lock: true });
@@ -106,13 +129,30 @@ function Index() {
       if (locked) lockY = getLockY();
     };
 
+    // Wheel / touch also pause the video immediately, even before the browser
+    // dispatches a scroll event (video controls can swallow scroll on the
+    // video element itself).
+    const onIntent = () => {
+      if (locked) return;
+      try {
+        const v = videoElRef.current;
+        if (v && !v.paused) v.pause();
+      } catch {}
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("wheel", onIntent, { passive: true });
+    window.addEventListener("touchmove", onIntent, { passive: true });
     window.addEventListener("keydown", onKey);
     window.addEventListener("resize", onResize);
 
     return () => {
+      io.disconnect();
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("wheel", onIntent);
+      window.removeEventListener("touchmove", onIntent);
       window.removeEventListener("keydown", onKey);
+
       window.removeEventListener("resize", onResize);
     };
   }, []);
