@@ -493,33 +493,51 @@ export default function HomeSections() {
       <Programs />
 
       {/* FOUNDER'S MESSAGE */}
-      <section id="founders" className="border-t border-black/10 bg-white">
+      <section id="founders" className="border-t border-black/10 bg-[#F5F3EE]">
         <div className="mx-auto max-w-[1280px] px-6 py-6 md:px-10 md:py-8">
-          <div className="relative overflow-hidden rounded-none min-h-[520px] md:min-h-[640px]">
-            <img
-              src={founderPhoto.url}
-              alt="Pratham Mittal speaking at Masters' Union"
-              loading="lazy"
-              width={1920}
-              height={1280}
-              className="absolute inset-0 h-full w-full object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-            <div className="relative z-10 flex h-full min-h-[520px] flex-col justify-end p-6 md:min-h-[640px] md:p-8 lg:p-12">
-              <div className="max-w-[34ch]">
-                <Quote className="mb-4 size-6 text-white/60" />
-                <h2 className="text-2xl leading-[1.1] tracking-tight text-white md:text-3xl lg:text-[34px]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-                  "If education was working, we wouldn't have built&nbsp;<span className="italic text-white/80" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>Masters' Union.</span>"
+          <div
+            className="relative overflow-hidden rounded-none min-h-[520px] md:min-h-[640px] grid grid-cols-1 lg:grid-cols-2"
+            style={{ background: "linear-gradient(135deg, var(--pastel-start) 0%, var(--pastel-end) 100%)" }}
+          >
+            {/* Quote side */}
+            <div className="relative z-10 flex flex-col justify-end p-6 md:p-8 lg:p-12">
+              <div className="max-w-[40ch]">
+                <Quote className="mb-4 size-6 text-black/40" />
+                <h2
+                  className="text-2xl leading-[1.1] tracking-tight text-black md:text-3xl lg:text-[34px]"
+                  style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                >
+                  "If education was working, we wouldn't have built{" "}
+                  <span className="italic text-black/70" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+                    Masters' Union.
+                  </span>
+                  "
                 </h2>
                 <div className="mt-6 flex items-center gap-3">
-                  <div className="h-px w-10 bg-white/40" />
+                  <div className="h-px w-10 bg-black/30" />
                   <div>
-                    <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-white/80">Pratham Mittal</p>
-                    <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-white/60">Founder, Masters' Union</p>
+                    <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-black/80">
+                      Pratham Mittal
+                    </p>
+                    <p className="font-sans text-[10px] uppercase tracking-[0.18em] text-black/55">
+                      Founder, Masters' Union
+                    </p>
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* Photo side */}
+            <div className="relative h-64 lg:h-auto">
+              <img
+                src={founderPhoto.url}
+                alt="Pratham Mittal speaking at Masters' Union"
+                loading="lazy"
+                width={1920}
+                height={1280}
+                className="absolute inset-0 h-full w-full object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[var(--pastel-start)]/80 via-transparent to-transparent lg:bg-gradient-to-l lg:from-transparent lg:via-transparent lg:to-[var(--pastel-end)]/60" />
             </div>
           </div>
         </div>
