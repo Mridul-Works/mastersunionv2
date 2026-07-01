@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Menu, X, Plus, Minus } from "lucide-react";
 import logoAsset from "@/assets/logo-2.png.asset.json";
-import heroBuilding from "@/assets/hero-building-light.jpg";
+import heroBuilding from "@/assets/hero-building-light.webp";
 
 export const Route = createFileRoute("/programmes/pgp-tbm")({
   head: () => ({
