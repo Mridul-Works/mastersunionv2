@@ -65,10 +65,10 @@
   .pastel-fill {
     transition: color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   }
-  .pastel-fill:hover {
-    background: linear-gradient(135deg, var(--pastel-start) 0%, var(--pastel-end) 100%);
-    color: var(--ink);
-  }
+@utility pastel-gradient {
+  background: linear-gradient(135deg, var(--pastel-start) 0%, var(--pastel-end) 100%);
+}
+
 }
 
 @layer base {
