@@ -493,11 +493,11 @@ export default function HomeSections() {
       <Programs />
 
       {/* FOUNDER'S MESSAGE */}
-      <section id="founders" className="border-t border-black/10 bg-[#F5F3EE]">
+      <section id="founders" className="border-t border-black/10 bg-[#faf9f6]">
         <div className="mx-auto max-w-[1280px] px-6 py-6 md:px-10 md:py-8">
           <div
             className="relative overflow-hidden rounded-none min-h-[520px] md:min-h-[640px] grid grid-cols-1 lg:grid-cols-2"
-            style={{ background: "linear-gradient(135deg, var(--pastel-start) 0%, var(--pastel-end) 100%)" }}
+            style={{ background: "linear-gradient(135deg, #ffffff 0%, #f8f6f2 50%, #f3efe8 100%)" }}
           >
             {/* Quote side */}
             <div className="relative z-10 flex flex-col justify-end p-6 md:p-8 lg:p-12">
