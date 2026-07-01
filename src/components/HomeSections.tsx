@@ -504,7 +504,7 @@ export default function HomeSections() {
               <div className="max-w-[40ch]">
                 <Quote className="mb-4 size-6 text-black/40" />
                 <h2
-                  className="text-2xl leading-[1.1] tracking-tight text-black md:text-3xl lg:text-[34px]"
+                  className="text-3xl leading-[1.05] tracking-tight text-black md:text-4xl lg:text-[48px]"
                   style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                 >
                   "If education was working, we wouldn't have built{" "}
