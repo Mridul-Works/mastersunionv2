@@ -165,7 +165,7 @@ function Index() {
           <div className="flex items-center gap-1">
             <button
               type="button"
-              className="rounded-none bg-black px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-white shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98]"
+              className="rounded-none bg-black px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-white shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98] pastel-fill"
             >
               Apply
             </button>
