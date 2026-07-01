@@ -280,6 +280,7 @@ function useCountdown(target: Date) {
 function PgpTbm() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [openTerm, setOpenTerm] = useState<number | null>(0);
   const deadline = new Date("2026-08-15T23:59:59+05:30");
   const { d, h, m, s } = useCountdown(deadline);
 
