@@ -258,44 +258,54 @@ function Programs() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5">
             {PROGRAMS.map((p) => (
               <article
                 key={p.title}
-                className="group relative flex cursor-pointer flex-col overflow-hidden bg-[#F5F3EE] p-6 shadow-[0_1px_0_0_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 pastel-fill hover:shadow-[0_12px_30px_-10px_rgba(0,0,0,0.15)]"
+                className="group relative flex cursor-pointer flex-col overflow-hidden bg-[#F5F3EE] p-5 shadow-[0_1px_0_0_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 pastel-fill hover:shadow-[0_12px_30px_-10px_rgba(0,0,0,0.15)]"
               >
                 {/* Top accent strip */}
                 <div className="absolute top-0 left-0 h-1 w-full bg-black transition-all duration-300 group-hover:h-1.5" />
 
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-none bg-black px-3 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-white transition-colors group-hover:bg-white group-hover:text-black">
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <span className="rounded-none bg-black px-2 py-1 font-mono text-[8px] font-bold uppercase tracking-[0.14em] text-white transition-colors group-hover:bg-white group-hover:text-black">
                     {p.mode}
                   </span>
-                  <span className="rounded-none border border-black/10 px-3 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-black/70 transition-colors group-hover:border-black/20 group-hover:text-black/80">
+                  <span className="rounded-none border border-black/10 px-2 py-1 font-mono text-[8px] font-bold uppercase tracking-[0.14em] text-black/70 transition-colors group-hover:border-black/20 group-hover:text-black/80">
                     {p.duration}
                   </span>
                 </div>
-                <div className="flex-1 flex flex-col gap-5 pt-1">
+                <div className="flex-1 flex flex-col gap-4 pt-1">
                   <h3
-                    className="flex-1 text-[1.2rem] font-medium leading-[1.25] tracking-tight text-black transition-colors group-hover:text-black md:text-[1.25rem]"
+                    className="flex-1 text-[1.05rem] font-medium leading-[1.2] tracking-tight text-black transition-colors group-hover:text-black"
                     style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                   >
                     {p.title}
                   </h3>
+
                   <div className="inline-flex w-fit items-center gap-2 border-l-2 border-black/20 pl-3 transition-colors group-hover:border-black/30">
-                    <Hourglass className="size-3.5 text-black/60 transition-colors group-hover:text-black/70" />
-                    <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-black/80 transition-colors group-hover:text-black/80">
+                    <Hourglass className="size-3 text-black/60 transition-colors group-hover:text-black/70" />
+                    <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-black/80 transition-colors group-hover:text-black/80">
                       {p.round}
                     </span>
+                  </div>
+
+                  <div className="border-t border-black/10 pt-3">
+                    <span className="block font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-black/70 transition-colors group-hover:text-black/80">
+                      {p.status}
+                    </span>
+                    <div className="mt-2">
+                      <Countdown target={p.deadline} />
+                    </div>
                   </div>
                 </div>
                 <div className="pt-4">
                   <a
                     href="#"
-                    className="group/btn inline-flex w-full items-center justify-center gap-2 bg-black px-5 py-3 font-sans text-[13px] font-semibold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:bg-white hover:text-black"
+                    className="group/btn inline-flex w-full items-center justify-center gap-2 bg-black px-4 py-2.5 font-sans text-[11px] font-semibold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:bg-white hover:text-black"
                   >
                     Apply Now
-                    <ArrowUpRight className="size-4 transition-transform group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" />
+                    <ArrowUpRight className="size-3.5 transition-transform group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" />
                   </a>
                 </div>
               </article>
@@ -316,11 +326,61 @@ const NEWS = [
 ];
 
 const PROGRAMS = [
-  { mode: "ON CAMPUS", duration: "2 YEARS", title: "PGP in Technology & Business Management", round: "Round 1 Applications Open" },
-  { mode: "ON CAMPUS", duration: "1 YEAR", title: "PGP in Quantitative Finance & Business", round: "Round 2 Applications Open" },
-  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Technology & Business Management", round: "Round 4 Applications Open" },
-  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Psychology & Marketing", round: "Round 4 Applications Open" },
+  { mode: "ON CAMPUS", duration: "2 YEARS", title: "PGP in Technology & Business Management", round: "Round 1", status: "Applications Open", deadline: "2026-08-15T23:59:59" },
+  { mode: "ON CAMPUS", duration: "1 YEAR", title: "PGP in Quantitative Finance & Business", round: "Round 2", status: "Applications Open", deadline: "2026-09-30T23:59:59" },
+  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Technology & Business Management", round: "Round 3", status: "Applications Open", deadline: "2026-10-31T23:59:59" },
+  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Psychology & Marketing", round: "Round 4", status: "Applications Open", deadline: "2026-11-15T23:59:59" },
+  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG in Data Science & Artificial Intelligence", round: "Round 5", status: "Applications Open", deadline: "2026-12-01T23:59:59" },
 ];
+
+function formatDeadline(iso: string) {
+  const d = new Date(iso);
+  return d.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+}
+
+function useCountdown(target: string) {
+  const [remaining, setRemaining] = useState(() => {
+    const diff = new Date(target).getTime() - Date.now();
+    return diff > 0 ? diff : 0;
+  });
+
+  useEffect(() => {
+    const tick = () => {
+      const diff = new Date(target).getTime() - Date.now();
+      setRemaining(diff > 0 ? diff : 0);
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, [target]);
+
+  const days = Math.floor(remaining / 86400000);
+  const hours = Math.floor((remaining % 86400000) / 3600000);
+  const minutes = Math.floor((remaining % 3600000) / 60000);
+  const seconds = Math.floor((remaining % 60000) / 1000);
+  return { days, hours, minutes, seconds, total: remaining };
+}
+
+function Countdown({ target }: { target: string }) {
+  const { days, hours, minutes, seconds } = useCountdown(target);
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return (
+    <div className="flex flex-col gap-1">
+      <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-black/50">
+        Closes {formatDeadline(target)}
+      </div>
+      <div className="flex items-baseline gap-1 font-mono text-[11px] font-bold tracking-tight text-black">
+        <span>{days}d</span>
+        <span className="text-black/30">:</span>
+        <span>{pad(hours)}h</span>
+        <span className="text-black/30">:</span>
+        <span>{pad(minutes)}m</span>
+        <span className="text-black/30">:</span>
+        <span>{pad(seconds)}s</span>
+      </div>
+    </div>
+  );
+}
 
 const PEDAGOGY = [
   { icon: GraduationCap, tag: "01 · Faculty", title: "Taught by the people building the companies you study.", body: "40% of faculty are sitting CEOs, MDs and CXOs. 30% visiting from Harvard, Wharton, Kellogg and Booth. The slides update on Monday morning.", stats: [{ value: "40%", label: "Industry practitioners" }, { value: "200+", label: "Visiting experts" }, { value: "30%", label: "Ivy-league visiting" }], cta: "Meet the faculty", route: "/faculty" },
