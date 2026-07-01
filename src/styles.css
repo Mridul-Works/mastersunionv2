@@ -56,9 +56,10 @@
   --cream: oklch(0.94 0.025 80);
   --ink: oklch(0.16 0.01 80);
 
-  /* Pastel hover gradient from the reference shade */
+  /* Pastel gradient: cyan to soft orange to warm cream */
   --pastel-start: oklch(0.95 0.02 210);
-  --pastel-end: oklch(0.95 0.03 65);
+  --pastel-mid: oklch(0.95 0.035 55);
+  --pastel-end: oklch(0.96 0.022 75);
 }
 
 @layer utilities {
@@ -66,13 +67,13 @@
     transition: color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   }
   .pastel-fill:hover {
-    background: linear-gradient(135deg, var(--pastel-start) 0%, var(--pastel-end) 100%);
+    background: linear-gradient(135deg, var(--pastel-start) 0%, var(--pastel-mid) 55%, var(--pastel-end) 100%);
     color: var(--ink);
   }
 }
 
 @utility pastel-gradient {
-  background: linear-gradient(135deg, var(--pastel-start) 0%, var(--pastel-end) 100%);
+  background: linear-gradient(135deg, var(--pastel-start) 0%, var(--pastel-mid) 55%, var(--pastel-end) 100%);
 }
 
 
