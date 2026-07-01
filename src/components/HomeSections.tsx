@@ -97,6 +97,7 @@ const PATHWAYS: Pathway[] = [
 function Programs() {
   const [activeKey, setActiveKey] = useState<string>(PATHWAYS[0].key);
   const active = PATHWAYS.find((p) => p.key === activeKey) ?? PATHWAYS[0];
+  const admissionsScrollRef = useRef<HTMLDivElement>(null);
 
   return (
     <section id="programs" className="border-t border-black/10 bg-[#F5F3EE] mt-4 mb-4">
