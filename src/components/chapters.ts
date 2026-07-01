@@ -1,13 +1,13 @@
-import mu01 from "@/assets/mu-01.png";
-import mu02 from "@/assets/mu-02.png";
-import mu03 from "@/assets/mu-03.png";
-import mu04 from "@/assets/mu-04.png";
-import mu05 from "@/assets/mu-05.png";
-import mu06 from "@/assets/mu-06.png";
-import mu07 from "@/assets/mu-07.png";
-import mu08 from "@/assets/mu-08.png";
-import mu09 from "@/assets/mu-09.png";
-import mu10 from "@/assets/mu-10.png";
+import mu01 from "@/assets/mu-01.webp";
+import mu02 from "@/assets/mu-02.webp";
+import mu03 from "@/assets/mu-03.webp";
+import mu04 from "@/assets/mu-04.webp";
+import mu05 from "@/assets/mu-05.webp";
+import mu06 from "@/assets/mu-06.webp";
+import mu07 from "@/assets/mu-07.webp";
+import mu08 from "@/assets/mu-08.webp";
+import mu09 from "@/assets/mu-09.webp";
+import mu10 from "@/assets/mu-10.webp";
 
 export type Chapter = {
   n: string;
