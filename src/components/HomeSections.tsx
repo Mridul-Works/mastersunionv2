@@ -258,11 +258,11 @@ function Programs() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5">
             {PROGRAMS.map((p) => (
               <article
                 key={p.title}
-                className="group relative flex flex-col bg-[#F5F3EE] p-5 transition-all duration-300 hover:-translate-y-1 pastel-fill hover:shadow-[0_12px_30px_-10px_rgba(0,0,0,0.15)]"
+                className="group relative flex flex-col bg-[#F5F3EE] p-4 transition-all duration-300 hover:-translate-y-1 pastel-fill hover:shadow-[0_12px_30px_-10px_rgba(0,0,0,0.15)]"
               >
                 <div className="flex flex-wrap items-center gap-1.5">
                   <span className="bg-black px-2 py-1 font-mono text-[8px] font-bold uppercase tracking-[0.14em] text-white transition-colors group-hover:bg-white group-hover:text-black">
@@ -273,9 +273,9 @@ function Programs() {
                   </span>
                 </div>
 
-                <div className="flex-1 flex flex-col gap-4 pt-3">
+                <div className="flex-1 flex flex-col gap-3 pt-3">
                   <h3
-                    className="flex-1 text-[0.95rem] font-medium leading-[1.25] tracking-tight text-black transition-colors group-hover:text-black"
+                    className="flex-1 text-[0.9rem] font-medium leading-[1.25] tracking-tight text-black transition-colors group-hover:text-black"
                     style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                   >
                     {p.title}
