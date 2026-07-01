@@ -530,12 +530,12 @@ export default function HomeSections() {
             {/* Photo side */}
             <div className="relative h-64 lg:h-auto">
               <img
-                src={founderPhoto.url}
-                alt="Pratham Mittal speaking at Masters' Union"
+                src={founderPhoto}
+                alt="Pratham Mittal"
                 loading="lazy"
-                width={1920}
-                height={1280}
-                className="absolute inset-0 h-full w-full object-cover object-center"
+                width={1024}
+                height={1024}
+                className="absolute inset-0 h-full w-full object-contain object-bottom"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-[var(--pastel-start)]/80 via-transparent to-transparent lg:bg-gradient-to-l lg:from-transparent lg:via-transparent lg:to-[var(--pastel-end)]/60" />
             </div>
