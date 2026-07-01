@@ -262,7 +262,7 @@ function Programs() {
             {PROGRAMS.map((p) => (
               <article
                 key={p.title}
-                className="group relative flex cursor-pointer flex-col overflow-hidden bg-[#F5F3EE] p-6 shadow-[0_1px_0_0_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 hover:bg-black hover:text-white hover:shadow-[0_12px_30px_-10px_rgba(0,0,0,0.25)]"
+                className="group relative flex cursor-pointer flex-col overflow-hidden bg-[#F5F3EE] p-6 shadow-[0_1px_0_0_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 pastel-fill hover:shadow-[0_12px_30px_-10px_rgba(0,0,0,0.15)]"
               >
                 {/* Top accent strip */}
                 <div className="absolute top-0 left-0 h-1 w-full bg-black transition-all duration-300 group-hover:h-1.5" />
@@ -271,20 +271,20 @@ function Programs() {
                   <span className="rounded-none bg-black px-3 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-white transition-colors group-hover:bg-white group-hover:text-black">
                     {p.mode}
                   </span>
-                  <span className="rounded-none border border-black/10 px-3 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-black/70 transition-colors group-hover:border-white/30 group-hover:text-white/80">
+                  <span className="rounded-none border border-black/10 px-3 py-1 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-black/70 transition-colors group-hover:border-black/20 group-hover:text-black/80">
                     {p.duration}
                   </span>
                 </div>
                 <div className="flex-1 flex flex-col gap-5 pt-1">
                   <h3
-                    className="flex-1 text-[1.2rem] font-medium leading-[1.25] tracking-tight text-black transition-colors group-hover:text-white md:text-[1.25rem]"
+                    className="flex-1 text-[1.2rem] font-medium leading-[1.25] tracking-tight text-black transition-colors group-hover:text-black md:text-[1.25rem]"
                     style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                   >
                     {p.title}
                   </h3>
-                  <div className="inline-flex w-fit items-center gap-2 border-l-2 border-black/20 pl-3 transition-colors group-hover:border-white/30">
-                    <Hourglass className="size-3.5 text-black/60 transition-colors group-hover:text-white/70" />
-                    <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-black/80 transition-colors group-hover:text-white/80">
+                  <div className="inline-flex w-fit items-center gap-2 border-l-2 border-black/20 pl-3 transition-colors group-hover:border-black/30">
+                    <Hourglass className="size-3.5 text-black/60 transition-colors group-hover:text-black/70" />
+                    <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-black/80 transition-colors group-hover:text-black/80">
                       {p.round}
                     </span>
                   </div>
