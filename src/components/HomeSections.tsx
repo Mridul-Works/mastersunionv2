@@ -298,8 +298,8 @@ function Programs() {
                         Closes {formatDeadline(p.deadline)}
                       </span>
                     </div>
-                    <div className="mt-3 flex items-center gap-2">
-                      <Hourglass className="size-3.5 text-black/40" />
+                    <div className="mt-3 flex items-center gap-3 bg-black/[0.03] p-2.5">
+                      <Hourglass className="size-4 text-black/50" />
                       <Countdown target={p.deadline} />
                     </div>
                   </div>
