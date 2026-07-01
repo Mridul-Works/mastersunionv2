@@ -316,11 +316,61 @@ const NEWS = [
 ];
 
 const PROGRAMS = [
-  { mode: "ON CAMPUS", duration: "2 YEARS", title: "PGP in Technology & Business Management", round: "Round 1 Applications Open" },
-  { mode: "ON CAMPUS", duration: "1 YEAR", title: "PGP in Quantitative Finance & Business", round: "Round 2 Applications Open" },
-  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Technology & Business Management", round: "Round 4 Applications Open" },
-  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Psychology & Marketing", round: "Round 4 Applications Open" },
+  { mode: "ON CAMPUS", duration: "2 YEARS", title: "PGP in Technology & Business Management", round: "Round 1", status: "Applications Open", deadline: "2026-08-15T23:59:59" },
+  { mode: "ON CAMPUS", duration: "1 YEAR", title: "PGP in Quantitative Finance & Business", round: "Round 2", status: "Applications Open", deadline: "2026-09-30T23:59:59" },
+  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Technology & Business Management", round: "Round 3", status: "Applications Open", deadline: "2026-10-31T23:59:59" },
+  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG Programme in Psychology & Marketing", round: "Round 4", status: "Applications Open", deadline: "2026-11-15T23:59:59" },
+  { mode: "ON CAMPUS", duration: "4 YEARS", title: "UG in Data Science & Artificial Intelligence", round: "Round 5", status: "Applications Open", deadline: "2026-12-01T23:59:59" },
 ];
+
+function formatDeadline(iso: string) {
+  const d = new Date(iso);
+  return d.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+}
+
+function useCountdown(target: string) {
+  const [remaining, setRemaining] = useState(() => {
+    const diff = new Date(target).getTime() - Date.now();
+    return diff > 0 ? diff : 0;
+  });
+
+  useEffect(() => {
+    const tick = () => {
+      const diff = new Date(target).getTime() - Date.now();
+      setRemaining(diff > 0 ? diff : 0);
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, [target]);
+
+  const days = Math.floor(remaining / 86400000);
+  const hours = Math.floor((remaining % 86400000) / 3600000);
+  const minutes = Math.floor((remaining % 3600000) / 60000);
+  const seconds = Math.floor((remaining % 60000) / 1000);
+  return { days, hours, minutes, seconds, total: remaining };
+}
+
+function Countdown({ target }: { target: string }) {
+  const { days, hours, minutes, seconds } = useCountdown(target);
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return (
+    <div className="flex flex-col gap-1">
+      <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-black/50">
+        Closes {formatDeadline(target)}
+      </div>
+      <div className="flex items-baseline gap-1 font-mono text-[11px] font-bold tracking-tight text-black">
+        <span>{days}d</span>
+        <span className="text-black/30">:</span>
+        <span>{pad(hours)}h</span>
+        <span className="text-black/30">:</span>
+        <span>{pad(minutes)}m</span>
+        <span className="text-black/30">:</span>
+        <span>{pad(seconds)}s</span>
+      </div>
+    </div>
+  );
+}
 
 const PEDAGOGY = [
   { icon: GraduationCap, tag: "01 · Faculty", title: "Taught by the people building the companies you study.", body: "40% of faculty are sitting CEOs, MDs and CXOs. 30% visiting from Harvard, Wharton, Kellogg and Booth. The slides update on Monday morning.", stats: [{ value: "40%", label: "Industry practitioners" }, { value: "200+", label: "Visiting experts" }, { value: "30%", label: "Ivy-league visiting" }], cta: "Meet the faculty", route: "/faculty" },
