@@ -365,10 +365,10 @@ function Countdown({ target }: { target: string }) {
   const pad = (n: number) => String(n).padStart(2, "0");
   return (
     <div className="flex flex-col gap-1">
-      <div className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-black/50">
+      <div className="font-mono text-[9px] font-semibold uppercase tracking-[0.14em] text-black/50">
         Closes {formatDeadline(target)}
       </div>
-      <div className="flex items-baseline gap-1 font-mono text-[11px] font-bold tracking-tight text-black">
+      <div className="flex items-center gap-1 font-mono text-[10px] font-bold tracking-tight text-black">
         <span>{days}d</span>
         <span className="text-black/30">:</span>
         <span>{pad(hours)}h</span>
