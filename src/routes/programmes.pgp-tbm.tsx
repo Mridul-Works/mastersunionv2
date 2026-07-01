@@ -66,43 +66,149 @@ const PILLARS = [
   },
 ];
 
-// -------- Curriculum (verbatim from the 2026 programme sheet) --------
+// -------- Curriculum (pulled from mastersunion.org/pgp-tbm-curriculum) --------
 
-const TERMS = [
+type TermGroup = { k: string; items: string[] };
+type Term = {
+  label: string;
+  title: string;
+  outClass: { name: string; note: string }[];
+  inClass: TermGroup[];
+};
+
+const TERMS: Term[] = [
   {
     label: "Term 1",
-    title: "Business Foundations",
-    body: "Business fundamentals, economics and quantitative methods, taught alongside the Dropshipping Fair — where cohort teams build and run a live e-commerce business from Day 1.",
-    ship: "A live D2C brand with real revenue",
-    tags: ["Fundamentals", "Economics", "Quant Methods", "Dropshipping Fair"],
+    title: "Fundamentals & the Dropshipping Challenge",
+    outClass: [
+      { name: "Dropshipping Challenge", note: "Build a live e-commerce brand on Amazon, BlinkIt and your own site — target ₹10L+ in real revenue." },
+      { name: "Sell All You Got: One-Day Fair", note: "Take products offline at a 1,000+ footfall fair across prime NCR locations." },
+    ],
+    inClass: [
+      { k: "Communication & Self-Development", items: ["How to Give an Inspiring Speech", "How to Write Persuasively"] },
+      { k: "Finance & Fintech", items: ["Basic Financial Terminology", "Read and Analyse Financial Statements", "Get Comfortable With Excel"] },
+      { k: "Sales & Marketing", items: ["Advertise Without Spending Money", "Run Simple Ads on TikTok, Meta and Google", "Identify Products That Sell and Make Money"] },
+      { k: "Management & Strategy", items: ["Work Effectively in Teams", "Procure & Ship Globally", "Analyse Markets & Identify New Business Opportunities"] },
+      { k: "Product & Tech", items: ["Use Stats to Build a Better Business", "Set Up an E-commerce Website", "Design Thinking for Products & Solutions"] },
+      { k: "AI & ML", items: ["Master Prompt Engineering to Leverage Generative AI"] },
+      { k: "Liberal Arts", items: ["Shifting World Order and World Politics After 9/11 and Covid"] },
+    ],
   },
   {
     label: "Term 2",
-    title: "Marketing & Capital",
-    body: "Marketing, consumer behaviour and corporate finance — anchored by the Content Creator Challenge, where every student launches a real YouTube or Instagram brand.",
-    ship: "A shipping creator brand + audited P&L",
-    tags: ["Marketing", "Consumer Behaviour", "Corp Finance", "Creator Challenge"],
+    title: "Creator Challenge & Marketing Hackathon",
+    outClass: [
+      { name: "Creator Challenge", note: "Build your own YouTube or Instagram brand — scale to thousands (and even millions) of followers." },
+      { name: "Marketing Hackathon", note: "Solve real briefs from CMOs at Marico, boAt, MMT and more." },
+    ],
+    inClass: [
+      { k: "Communication & Self-Development", items: ["Be Productive and Get Things Done", "Manage Personal Finances"] },
+      { k: "Finance & Fintech", items: ["Allocate Budgets and Control Costs", "Create an MIS for a Business", "Why the Global Financial Meltdown Happened"] },
+      { k: "Sales & Marketing", items: ["Develop a GTM Strategy Using Funnels", "Execute CRO and Increase AOV", "Leverage Amazon to Sell Your Products", "Position Your Brand Using Consumer Psychology"] },
+      { k: "Management & Strategy", items: ["Identify and Track Key Business Metrics", "How a Country's Economy Works", "How the (Micro) Economy Works"] },
+      { k: "Product & Tech", items: ["Read and Write Code", "Build Dashboards and Use Advanced Excel", "Develop a Product Mindset"] },
+      { k: "AI & ML", items: ["How LLMs Actually Work"] },
+      { k: "Liberal Arts", items: ["Mapping 5000 Years of Indian History", "How Countries Grow and Make Money"] },
+    ],
   },
   {
     label: "Term 3",
-    title: "Strategy & Operations",
-    body: "Strategy, operations and one-day corporate challenges set by partner CEOs, paired with the Student Investment Fund — real capital, real trades, real P&L reporting.",
-    ship: "Live portfolio + corporate challenge wins",
-    tags: ["Strategy", "Operations", "SIF", "Corporate Challenges"],
+    title: "Pre-Seed Cheque & In-the-Wild Consulting",
+    outClass: [
+      { name: "Pre-Seed Cheque Challenge", note: "Validate a startup idea and fight for ₹15L+ in pre-seed funding to build your MVP." },
+      { name: "In-the-Wild Consulting", note: "Take on local businesses — revamp strategy, ops and drive real revenue growth." },
+    ],
+    inClass: [
+      { k: "Communication & Self-Development", items: ["Craft a Compelling Personal Portfolio", "Master the Craft of Storytelling"] },
+      { k: "Finance & Fintech", items: ["How Time Is Money", "How the Global Banking System Works"] },
+      { k: "Sales & Marketing", items: ["Craft a Brand Like Nike — Voice, Tone, Identity", "Sell an Idea", "Build a Personal Brand", "Script, Record and Release for YouTube & Instagram"] },
+      { k: "Management & Strategy", items: ["Create a B-Plan and Pitch in 7 Slides", "Think Strategically About Your Business", "Network Effortlessly"] },
+      { k: "Product & Tech", items: ["Read and Write Code (Part 1 & 2)", "Design Surveys for Primary Research", "Build Apps Using No-Code"] },
+      { k: "AI & ML", items: ["Build AI-Powered Products"] },
+      { k: "Liberal Arts", items: ["How China's Communism Has Evolved", "How International Relations Shape the World"] },
+    ],
   },
   {
     label: "Term 4",
-    title: "Ventures & Global Immersion",
-    body: "The Venture Initiation Programme (VIP) — build and pitch a capstone venture — combined with the global immersion module.",
-    ship: "A pitched capstone venture + global module",
-    tags: ["Entrepreneurship", "VIP", "Global Immersion", "Capstone"],
+    title: "Build Your MVP & Blockchain Hackathon",
+    outClass: [
+      { name: "Building Your Minimum Viable Product", note: "Turn product, ops and strategy into a real MVP debut for beta testing." },
+      { name: "Blockchain Hackathon", note: "Build blockchain solutions, network with experts and compete for top prizes." },
+    ],
+    inClass: [
+      { k: "Communication & Self-Development", items: ["Use Mental Models to Solve Problems", "Run Effective Meetings and Motivate Teams"] },
+      { k: "Finance & Fintech", items: ["Value a Business", "Raise Debt and Equity Capital", "Make Rent/Buy Real Estate Decisions"] },
+      { k: "Sales & Marketing", items: ["Use and Manage CRM Tools", "Nail Content Marketing to Grow Your Business", "Sell, Follow Up and Close Deals", "Build a Community Around Your Idea"] },
+      { k: "Management & Strategy", items: ["Manage a Crisis", "Motivate Your Teams and Give Feedback", "Use KPIs and KRAs to Improve Alignment"] },
+      { k: "Product & Tech", items: ["Design UI/UX Using Figma", "Build Habit-Forming Products", "Manage Developers and Software Projects"] },
+      { k: "AI & ML", items: ["Use AI to Build Fast"] },
+      { k: "Liberal Arts", items: ["How African History Shaped Its Politics", "Foreign Language — L2"] },
+    ],
   },
   {
-    label: "Internship",
-    title: "3-Month Industry Placement",
-    body: "A three-month full-time internship with leading Indian and global companies — from consumer, tech and finance operators to venture funds and startups.",
-    ship: "Full-time internship with a leading company",
-    tags: ["Internship", "Placement Support", "Leading Companies"],
+    label: "Term 5",
+    title: "Go-to-Market & Data Science Hackathon",
+    outClass: [
+      { name: "Go-to-Market Challenge", note: "Design a game-changing GTM strategy that lands your product with real customer value." },
+      { name: "Data Science Hackathon", note: "Turn murky data and tight deadlines into a data-driven story for stakeholders." },
+    ],
+    inClass: [
+      { k: "Communication & Self-Development", items: ["Write Emails That Get Responses", "Influence People Without Authority"] },
+      { k: "Finance & Fintech", items: ["Invest in Capital Markets and Build a Portfolio", "Build Financial Models", "Invest in Fixed Income Securities"] },
+      { k: "Sales & Marketing", items: ["Use Marketing Analytics to Optimise Conversion", "Decode Social Media Algorithms", "Do B2B Marketing", "Sell in Stores, D2C or Quick Commerce", "Market and Sell to the Bottom of the Pyramid"] },
+      { k: "Management & Strategy", items: ["Use Game Theory for Business and Life", "Never Lose a Customer"] },
+      { k: "Product & Tech", items: ["Gamification & Behavioural Design", "Leverage Neuroscience in Business"] },
+      { k: "AI & ML", items: ["Use Big Data to Drive Decision Making"] },
+      { k: "Liberal Arts", items: ["How American Politics Works", "Thinkers of the Modern World"] },
+    ],
+  },
+  {
+    label: "Term 6",
+    title: "Product-Market-Fit & Avishkar Weekend",
+    outClass: [
+      { name: "The Product-Market-Fit Challenge", note: "Sharpen your product, lower CAC and prove why customers can't live without it." },
+      { name: "Avishkar: EdTech Startup Weekend", note: "A weekend-long sprint on the biggest problems in EdTech." },
+    ],
+    inClass: [
+      { k: "Communication & Self-Development", items: ["Become a Better Leader"] },
+      { k: "Finance & Fintech", items: ["How PE and VC Firms Work", "How M&A Works", "Invest in Exotic Financial Securities"] },
+      { k: "Sales & Marketing", items: ["Price Your Products Strategically", "Motivate and Incentivize Sales Teams", "Spark Product-Led Growth Using Nudge Theory", "Craft Compelling Copy to Maximise Sales", "Negotiate Win-Win Deals"] },
+      { k: "Management & Strategy", items: ["Use Mathematical Models for Business Optimisation"] },
+      { k: "Product & Tech", items: ["Use Power BI to Visualise Data", "Use Product Analytics for Deeper Insights", "AB Test New Features"] },
+      { k: "AI & ML", items: ["Leverage AI to Automate Content Creation"] },
+      { k: "Liberal Arts", items: ["Think Like a Philosopher", "Appreciate Art"] },
+    ],
+  },
+  {
+    label: "Term 7",
+    title: "Raise the Seed Fund & HackVerse",
+    outClass: [
+      { name: "Raising the Seed Fund Challenge", note: "Shark Tank-style pitch to real VCs to raise capital against equity." },
+      { name: "HackVerse: Metaverse Startup Weekend", note: "48 hours to build the best Metaverse prototype with peers." },
+    ],
+    inClass: [
+      { k: "Communication & Self-Development", items: ["Hack Your Hormones"] },
+      { k: "Finance & Fintech", items: ["How IPOs Work", "Innovate on Monetisation Techniques", "Trade FOREX"] },
+      { k: "Sales & Marketing", items: ["Measure Brand Asset Value", "Fundraise Capital for Social Projects", "Position and Market Your Non-Profit Brand", "Set Up Drip Campaigns"] },
+      { k: "Management & Strategy", items: ["Protect Ideas Using Intellectual Property Law", "How the Renewable Energy Market Works"] },
+      { k: "Product & Tech", items: ["Leverage Machine Learning for Business Solutions"] },
+      { k: "Liberal Arts", items: ["How the EU Works and Why Britain Exited", "Foreign Language — L1"] },
+    ],
+  },
+  {
+    label: "Term 8",
+    title: "One-Day Profit & Agri-Tech Hackathon",
+    outClass: [
+      { name: "One-Day Profit Challenge", note: "Work with influencers to rebrand and upsell products from local artisans — impact + profit." },
+      { name: "Agri-Tech Hackathon", note: "Ship tech solutions to real problems across agriculture and ecotourism." },
+    ],
+    inClass: [
+      { k: "Communication & Self-Development", items: ["Master Power Writing and Deep Reading"] },
+      { k: "Finance & Fintech", items: ["Leverage DeFi and Crypto in Business", "Manage Risk and Optimise Returns", "Understand Taxes and Compliances"] },
+      { k: "Sales & Marketing", items: ["Leverage AI and ML in Marketing", "Use Interactive Content for Better Conversions", "Leverage Design to Inspire Trust"] },
+      { k: "Management & Strategy", items: ["How the Carbon Credits Economy Works"] },
+      { k: "Product & Tech", items: ["Build Hardware Prototypes"] },
+    ],
   },
 ];
 
