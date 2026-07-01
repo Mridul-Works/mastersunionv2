@@ -536,7 +536,6 @@ export default function HomeSections() {
                 height={1024}
                 className="absolute inset-0 h-full w-full object-contain object-[bottom_right]"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-[var(--pastel-start)]/80 via-transparent to-transparent" />
             </div>
           </div>
         </div>
