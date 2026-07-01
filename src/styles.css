@@ -69,6 +69,9 @@
     background: linear-gradient(135deg, var(--pastel-start) 0%, var(--pastel-end) 100%);
     color: var(--ink);
   }
+  .pastel-bg {
+    background: linear-gradient(135deg, var(--pastel-start) 0%, var(--pastel-end) 100%);
+  }
 }
 
 @layer base {
