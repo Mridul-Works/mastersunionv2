@@ -20,6 +20,7 @@ import { Route as FacultyRouteImport } from './routes/faculty'
 import { Route as CreatorChallengeRouteImport } from './routes/creator-challenge'
 import { Route as CampusRouteImport } from './routes/campus'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProgrammesPgpTbmRouteImport } from './routes/programmes.pgp-tbm'
 
 const StartupsRoute = StartupsRouteImport.update({
   id: '/startups',
@@ -76,6 +77,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProgrammesPgpTbmRoute = ProgrammesPgpTbmRouteImport.update({
+  id: '/programmes/pgp-tbm',
+  path: '/programmes/pgp-tbm',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -89,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/mentors': typeof MentorsRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
+  '/programmes/pgp-tbm': typeof ProgrammesPgpTbmRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -102,6 +109,7 @@ export interface FileRoutesByTo {
   '/mentors': typeof MentorsRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
+  '/programmes/pgp-tbm': typeof ProgrammesPgpTbmRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -116,6 +124,7 @@ export interface FileRoutesById {
   '/mentors': typeof MentorsRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
+  '/programmes/pgp-tbm': typeof ProgrammesPgpTbmRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,6 +140,7 @@ export interface FileRouteTypes {
     | '/mentors'
     | '/placements'
     | '/startups'
+    | '/programmes/pgp-tbm'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -144,6 +154,7 @@ export interface FileRouteTypes {
     | '/mentors'
     | '/placements'
     | '/startups'
+    | '/programmes/pgp-tbm'
   id:
     | '__root__'
     | '/'
@@ -157,6 +168,7 @@ export interface FileRouteTypes {
     | '/mentors'
     | '/placements'
     | '/startups'
+    | '/programmes/pgp-tbm'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -171,6 +183,7 @@ export interface RootRouteChildren {
   MentorsRoute: typeof MentorsRoute
   PlacementsRoute: typeof PlacementsRoute
   StartupsRoute: typeof StartupsRoute
+  ProgrammesPgpTbmRoute: typeof ProgrammesPgpTbmRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -252,6 +265,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/programmes/pgp-tbm': {
+      id: '/programmes/pgp-tbm'
+      path: '/programmes/pgp-tbm'
+      fullPath: '/programmes/pgp-tbm'
+      preLoaderRoute: typeof ProgrammesPgpTbmRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -267,6 +287,7 @@ const rootRouteChildren: RootRouteChildren = {
   MentorsRoute: MentorsRoute,
   PlacementsRoute: PlacementsRoute,
   StartupsRoute: StartupsRoute,
+  ProgrammesPgpTbmRoute: ProgrammesPgpTbmRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
