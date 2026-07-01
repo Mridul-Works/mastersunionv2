@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { Menu, X, ArrowUp, Play, Pause } from "lucide-react";
+import { Menu, X, ArrowUp, Pause } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import logoAsset from "@/assets/logo-2.png.asset.json";
@@ -37,7 +37,7 @@ function Index() {
 
   const videoElRef = useRef<HTMLVideoElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
-  const lockedRef = useRef(false);
+  const heroLockedRef = useRef(false);
   const lockYRef = useRef(0);
   const unlockingRef = useRef(false);
 
@@ -45,26 +45,40 @@ function Index() {
     const hero = heroRef.current;
     if (!hero) return;
 
-    let locked = false;
-    let lockY = 0;
     let lastY = window.scrollY;
+    let touchStartY = 0;
 
     const getLockY = () => {
       const rect = hero.getBoundingClientRect();
       return window.scrollY + rect.top;
     };
 
-    const engageLock = () => {
-      if (locked || unlockingRef.current) return;
-      locked = true;
-      lockY = getLockY();
-      setNavVisible(true);
-      setShowRewatch(true);
-      try {
-        const v = videoElRef.current;
-        if (v && !v.paused) v.pause();
-      } catch {}
+    const pauseIntroVideo = () => {
+      const v = videoElRef.current;
+      if (!v) return;
+      if (!v.paused) v.pause();
       setPlaying(false);
+    };
+
+    const jumpToLock = () => {
+      const lockY = lockYRef.current || getLockY();
+      const lenis = (window as any).__lenis;
+      if (lenis?.scrollTo) {
+        lenis.scrollTo(lockY, { immediate: true, force: true, lock: true });
+      } else {
+        window.scrollTo(0, lockY);
+      }
+      lastY = lockY;
+    };
+
+    const engageLock = () => {
+      if (heroLockedRef.current || unlockingRef.current) return;
+      heroLockedRef.current = true;
+      lockYRef.current = getLockY();
+      pauseIntroVideo();
+      setNavVisible(true);
+      setNavHidden(false);
+      setShowRewatch(true);
     };
 
     // IntersectionObserver — fires reliably even if scroll/wheel events are
@@ -88,69 +102,86 @@ function Index() {
         return;
       }
       const y = window.scrollY;
-      if (!locked) {
-        // Pause the video the moment the user starts scrolling away from it.
-        if (y > 4) {
-          try {
-            const v = videoElRef.current;
-            if (v && !v.paused) v.pause();
-          } catch {}
-        }
+
+      // Hard invariant: the intro film may only play at the very top intro state.
+      // Any scroll position beyond the intro immediately pauses it, including
+      // deep homepage sections and Lenis momentum states.
+      if (y > 2) pauseIntroVideo();
+
+      if (!heroLockedRef.current) {
         if (y >= getLockY() - 1) engageLock();
         lastY = y;
         return;
       }
-      if (y < lockY) {
-        const lenis = (window as any).__lenis;
-        if (lenis?.scrollTo) {
-          lenis.scrollTo(lockY, { immediate: true, force: true, lock: true });
-        } else {
-          window.scrollTo(0, lockY);
-        }
-        lastY = lockY;
+
+      const lockY = lockYRef.current || getLockY();
+      if (y < lockY - 1) {
+        jumpToLock();
         return;
       }
 
-      const delta = y - lastY;
-      if (delta > 6 && y > lockY + 40) setNavHidden(true);
-      else if (delta < -4) setNavHidden(false);
+      // Once the intro is covered, keep navigation stable. The previous
+      // scroll-direction hide behavior could fire during the same forceful
+      // scroll that engaged the hero lock, making the nav appear missing.
+      setNavHidden(false);
       lastY = y;
     };
 
     const blockedKeys = new Set(["ArrowUp", "PageUp", "Home"]);
     const onKey = (e: KeyboardEvent) => {
-      if (!locked || unlockingRef.current) return;
+      const scrollKeys = new Set(["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "]);
+      if (scrollKeys.has(e.key)) pauseIntroVideo();
+
+      if (!heroLockedRef.current || unlockingRef.current) return;
       if (blockedKeys.has(e.key) || (e.key === " " && e.shiftKey)) {
         e.preventDefault();
+        jumpToLock();
       }
     };
 
     const onResize = () => {
-      if (locked) lockY = getLockY();
+      if (heroLockedRef.current) lockYRef.current = getLockY();
     };
 
-    // Wheel / touch also pause the video immediately, even before the browser
-    // dispatches a scroll event (video controls can swallow scroll on the
-    // video element itself).
-    const onIntent = () => {
-      if (locked) return;
-      try {
-        const v = videoElRef.current;
-        if (v && !v.paused) v.pause();
-      } catch {}
+    const onWheel = (e: WheelEvent) => {
+      pauseIntroVideo();
+      if (!heroLockedRef.current || unlockingRef.current) return;
+      const lockY = lockYRef.current || getLockY();
+      if (window.scrollY <= lockY + 2 && e.deltaY < 0) {
+        e.preventDefault();
+        jumpToLock();
+      }
+    };
+
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0]?.clientY ?? 0;
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      pauseIntroVideo();
+      if (!heroLockedRef.current || unlockingRef.current) return;
+      const currentY = e.touches[0]?.clientY ?? touchStartY;
+      const swipingDown = currentY > touchStartY;
+      const lockY = lockYRef.current || getLockY();
+      if (window.scrollY <= lockY + 2 && swipingDown) {
+        e.preventDefault();
+        jumpToLock();
+      }
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("wheel", onIntent, { passive: true });
-    window.addEventListener("touchmove", onIntent, { passive: true });
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
     window.addEventListener("keydown", onKey);
     window.addEventListener("resize", onResize);
 
     return () => {
       io.disconnect();
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("wheel", onIntent);
-      window.removeEventListener("touchmove", onIntent);
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
       window.removeEventListener("keydown", onKey);
 
       window.removeEventListener("resize", onResize);
@@ -159,8 +190,13 @@ function Index() {
 
   const rewatchVideo = () => {
     unlockingRef.current = true;
+    heroLockedRef.current = false;
+    lockYRef.current = 0;
     setNavVisible(false);
+    setNavHidden(false);
     setShowRewatch(false);
+    videoElRef.current?.pause();
+    setPlaying(false);
     const lenis = (window as any).__lenis;
     if (lenis?.scrollTo) {
       lenis.scrollTo(0, { duration: 1.4 });
@@ -168,9 +204,16 @@ function Index() {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
     setTimeout(() => {
-      videoElRef.current?.play().catch(() => {});
       unlockingRef.current = false;
+      if (window.scrollY <= 8) {
+        videoElRef.current?.play().catch(() => {});
+      }
     }, 1500);
+  };
+
+  const playIntroVideo = () => {
+    if (heroLockedRef.current || window.scrollY > 8) return;
+    videoElRef.current?.play().catch(() => {});
   };
 
 
@@ -267,6 +310,14 @@ function Index() {
             playsInline
             preload="metadata"
             onPlay={() => setPlaying(true)}
+            onPlaying={() => {
+              if (heroLockedRef.current || window.scrollY > 8) {
+                videoElRef.current?.pause();
+                setPlaying(false);
+              } else {
+                setPlaying(true);
+              }
+            }}
             onPause={() => setPlaying(false)}
             onEnded={() => setPlaying(false)}
             controls={playing}
@@ -310,7 +361,7 @@ function Index() {
                 <div className="col-span-12 flex md:col-span-3 md:justify-end lg:col-span-4">
                   <button
                     type="button"
-                    onClick={() => videoElRef.current?.play().catch(() => {})}
+                    onClick={playIntroVideo}
                     aria-label="Play campus film"
                     className="group relative flex cursor-pointer flex-col items-center gap-4 focus:outline-none md:items-end"
                   >
