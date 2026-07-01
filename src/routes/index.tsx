@@ -120,9 +120,10 @@ function Index() {
         return;
       }
 
-      const delta = y - lastY;
-      if (delta > 6 && y > lockY + 40) setNavHidden(true);
-      else if (delta < -4) setNavHidden(false);
+      // Once the intro is covered, keep navigation stable. The previous
+      // scroll-direction hide behavior could fire during the same forceful
+      // scroll that engaged the hero lock, making the nav appear missing.
+      setNavHidden(false);
       lastY = y;
     };
 
