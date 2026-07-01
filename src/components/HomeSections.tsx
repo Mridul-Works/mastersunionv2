@@ -496,7 +496,7 @@ export default function HomeSections() {
       <section id="founders" className="border-t border-black/10 bg-[#F5F3EE]">
         <div className="mx-auto max-w-[1280px] px-6 pb-6 md:px-10 md:pb-8">
           <div
-            className="relative overflow-hidden rounded-none min-h-[520px] md:min-h-[640px] grid grid-cols-1 lg:grid-cols-2 pastel-fill"
+            className="relative overflow-hidden rounded-none min-h-[520px] md:min-h-[640px] grid grid-cols-1 lg:grid-cols-2 pastel-bg"
           >
             {/* Quote side */}
             <div className="relative z-10 flex flex-col justify-end p-6 md:p-8 lg:p-12">
