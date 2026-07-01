@@ -267,7 +267,7 @@ function Programs() {
               {PROGRAMS.map((p) => (
                 <article
                   key={p.title}
-                  className="w-[calc(25%-12px)] flex-shrink-0 snap-start bg-[#F5F3EE] p-5 transition-all duration-300 hover:-translate-y-1 pastel-fill"
+                  className="w-[calc(24%-12px)] flex-shrink-0 snap-start bg-[#F5F3EE] p-5 transition-all duration-300 hover:-translate-y-1 pastel-fill"
                 >
                   <div className="flex items-center gap-2">
                     <span className="bg-black px-2 py-1 font-mono text-[8px] font-bold uppercase tracking-[0.12em] text-white transition-colors group-hover:bg-white group-hover:text-black">
