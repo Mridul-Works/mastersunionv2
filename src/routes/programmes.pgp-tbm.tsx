@@ -285,7 +285,13 @@ function PgpTbm() {
   const { d, h, m, s } = useCountdown(deadline);
 
   return (
-    <main className="min-h-screen pastel-gradient text-[color:var(--ink)] pb-24 md:pb-0">
+    <main
+      className="min-h-screen pastel-gradient text-[color:var(--ink)] pb-24 md:pb-0"
+      style={{
+        "--pastel-start": "oklch(0.99 0.014 220 / 0.4)",
+        "--pastel-mid": "oklch(0.985 0.020 210 / 0.4)",
+      } as React.CSSProperties}
+    >
       {/* NAV */}
       <header className="fixed inset-x-0 top-0 z-[100] px-4 pt-3 sm:px-6 sm:pt-4">
         <div className="mx-auto flex max-w-[1180px] items-center justify-between border border-black/10 bg-white/80 px-2 py-1.5 shadow-[0_6px_24px_-12px_rgba(0,0,0,0.15)] backdrop-blur-xl">
