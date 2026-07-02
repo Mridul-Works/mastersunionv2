@@ -523,7 +523,7 @@ function PgpTbm() {
       </section>
 
       {/* ADMISSIONS TIMELINE */}
-      <section className="border-b border-black/10">
+      <section id="admissions" className="border-b border-black/10">
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
           <div className="mb-10">
             <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">Admissions · Cohort 2026</div>
