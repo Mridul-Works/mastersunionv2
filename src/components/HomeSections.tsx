@@ -983,53 +983,81 @@ export default function HomeSections() {
   return (
     <div className="bg-white text-black" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       {/* NEWS */}
-      <section id="news" className="border-t border-black/10">
-        <div className="mx-auto max-w-[1280px] px-6 py-14 md:px-10 md:py-18">
-          <div className="flex items-end justify-between gap-4 mb-8">
+      <section id="news" className="border-t border-black/10 bg-white">
+        <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10 md:py-28">
+          <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-black/60 mb-1">The Dispatch</p>
-              <h2 className="font-display text-[1.35rem] font-bold leading-tight text-black md:text-[1.8rem]">
-                Latest News
+              <p className="mb-2 font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-black/50">
+                The Dispatch · Newsroom
+              </p>
+              <h2
+                className="text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[0.95] tracking-tight text-black"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+              >
+                Latest from
+                <br />
+                <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+                  the campus.
+                </span>
               </h2>
             </div>
-            <div className="hidden gap-2 md:flex">
-              <button type="button" className="p-2 border border-black/10 transition-colors hover:bg-black/5">
-                <ChevronLeft className="size-4 text-black/60" />
-              </button>
-              <button type="button" className="p-2 border border-black/10 transition-colors hover:bg-black/5">
-                <ChevronRight className="size-4 text-black/60" />
-              </button>
+            <div className="flex items-end justify-between gap-4 md:flex-col md:items-end">
+              <p className="max-w-[28ch] text-[13px] font-medium leading-snug text-black/60">
+                Press mentions, cohort milestones, and founder wins — refreshed weekly.
+              </p>
+              <div className="flex gap-2">
+                <button type="button" className="p-2 border border-black/10 transition-colors hover:bg-black/5">
+                  <ChevronLeft className="size-4 text-black/60" />
+                </button>
+                <button type="button" className="p-2 border border-black/10 transition-colors hover:bg-black/5">
+                  <ChevronRight className="size-4 text-black/60" />
+                </button>
+              </div>
             </div>
           </div>
 
-          <div className="flex flex-nowrap gap-4 overflow-x-auto snap-x md:overflow-x-visible md:gap-6">
-            {NEWS.map((n) => (
-              <article
-                key={n.title}
-                className="group flex min-w-[300px] flex-1 cursor-pointer snap-start gap-5 p-5 transition-all hover:bg-black/[0.03] md:min-w-0"
-              >
-                <div className="flex h-16 w-14 flex-shrink-0 flex-col items-center justify-center bg-black text-white shadow-sm transition-colors group-hover:bg-neutral-700">
-                  <span className="font-sans text-[10px] font-bold uppercase tracking-tighter opacity-80">{n.month}</span>
-                  <span className="font-display text-2xl font-extrabold leading-none">
-                    {n.day}
-                  </span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-sans mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50">
-                    {n.time} &bull; {n.tag}
-                  </span>
-                  <h3 className="font-display text-lg font-semibold leading-snug text-black/90 transition-colors group-hover:text-black">
+          <div className="relative">
+            <div className="flex gap-4 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden snap-x snap-mandatory">
+              {NEWS.map((n) => (
+                <article
+                  key={n.title}
+                  className="group w-[calc(25%-12px)] min-w-[260px] flex-shrink-0 snap-start bg-[#F5F3EE] p-5 transition-all duration-300 hover:-translate-y-1 pastel-fill"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="bg-black px-2 py-1 font-mono text-[8px] font-bold uppercase tracking-[0.12em] text-white">
+                      {n.tag}
+                    </span>
+                    <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-black/50">
+                      {n.month} {n.day} · {n.time}
+                    </span>
+                  </div>
+
+                  <h3
+                    className="mt-4 text-[1rem] font-medium leading-[1.25] tracking-tight text-black"
+                    style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                  >
                     {n.title}
                   </h3>
-                  <p className="font-sans mt-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-black/40">
-                    Source: {n.source}
-                  </p>
-                </div>
-              </article>
-            ))}
+
+                  <div className="mt-5 border-t border-black/10 pt-4">
+                    <p className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-black/60">
+                      Source · {n.source}
+                    </p>
+                  </div>
+
+                  <a
+                    href="#"
+                    className="mt-4 inline-flex w-full items-center justify-between border border-black px-4 py-2.5 font-sans text-[10px] font-semibold uppercase tracking-[0.12em] text-black transition-all duration-300 hover:bg-black hover:text-white"
+                  >
+                    Read Story
+                    <ArrowUpRight className="size-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </a>
+                </article>
+              ))}
+            </div>
           </div>
 
-          <div className="mt-6 flex justify-center">
+          <div className="mt-10 flex justify-center">
             <a
               href="#"
               className="font-sans border-b-2 border-black pb-1 text-xs font-semibold uppercase tracking-[0.3em] text-black transition-colors hover:border-black/50 hover:text-black/60"
