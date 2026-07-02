@@ -1115,14 +1115,15 @@ export default function HomeSections() {
 
             {/* Photo side */}
             <div className="relative h-64 lg:h-auto">
-            <img
-              src={founderPhoto}
-              alt="Pratham Mittal"
-              loading="lazy"
-              width={1024}
-              height={1024}
-              className="absolute inset-0 h-full w-full object-contain object-[bottom_right]"
-            />
+              <img
+                src={founderPhoto}
+                alt="Pratham Mittal"
+                loading="lazy"
+                width={1024}
+                height={1024}
+                className="absolute inset-0 h-full w-full object-contain object-[bottom_right]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-[var(--pastel-start)]/80 via-transparent to-transparent" />
             </div>
           </div>
         </div>
