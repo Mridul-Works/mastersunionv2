@@ -38,7 +38,7 @@ export function ImagePlaceholderMini({
   return (
     <div
       className={
-        "flex w-full items-center justify-center border border-black/10 bg-[#F5F3EE]" +
+        "flex w-full items-center justify-center border border-dashed border-black/25 bg-[#E5E0D5]/60" +
         (className ? " " + className : "")
       }
       style={{ aspectRatio: aspect }}
