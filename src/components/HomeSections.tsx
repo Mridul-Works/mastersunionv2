@@ -634,6 +634,7 @@ function Programs() {
   const [activeKey, setActiveKey] = useState<string>(PATHWAYS[0].key);
   const active = PATHWAYS.find((p) => p.key === activeKey) ?? PATHWAYS[0];
   const admissionsScrollRef = useRef<HTMLDivElement>(null);
+  const [sageProgram, setSageProgram] = useState<string | null>(null);
 
   return (
     <section id="programs" className="border-t border-black/10 bg-[#F5F3EE]">
