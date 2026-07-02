@@ -516,7 +516,7 @@ function PgpTbm() {
       </section>
 
       {/* FACULTY */}
-      <section className="border-b border-black/10 bg-white">
+      <section className="border-b border-black/10">
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
           <div className="mb-10">
             <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">The 30·30·40 faculty model</div>
@@ -526,7 +526,7 @@ function PgpTbm() {
           </div>
           <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
             {FACULTY.map((f) => (
-              <div key={f.name} className="bg-white p-6 pastel-fill">
+              <div key={f.name} className="bg-white/90 p-6 backdrop-blur-sm pastel-fill">
                 <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50">{f.tag}</div>
                 <div className="mt-4 font-display text-[22px] leading-tight">{f.name}</div>
                 <div className="mt-1 text-[13px] text-black/60">{f.role}</div>
