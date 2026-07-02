@@ -57,9 +57,9 @@
   --ink: oklch(0.16 0.01 80);
 
   /* Pastel gradient: light cyan to soft blue to warm peach — admissions hover */
-  --pastel-start: oklch(0.965 0.02 210);
-  --pastel-mid: oklch(0.965 0.03 205);
-  --pastel-end: oklch(0.97 0.03 70);
+  --pastel-start: oklch(0.98 0.018 220);
+  --pastel-mid: oklch(0.975 0.028 200);
+  --pastel-end: oklch(0.955 0.055 65);
 }
 
 @layer utilities {
