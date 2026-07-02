@@ -339,11 +339,11 @@ function Programs() {
             </div>
 
             <div className="mt-8 flex items-start justify-between gap-6 border-t border-black/10 pt-6">
-              <div className="max-w-2xl">
+              <div className="flex-1">
                 <p className="text-[15px] font-semibold leading-snug text-black">
                   Don’t believe AI?
                 </p>
-                <p className="mt-1 text-[13px] leading-relaxed text-black/70">
+                <p className="mt-1 max-w-3xl text-[13px] leading-relaxed text-black/70">
                   Get all your questions answered with <span className="font-semibold text-black">Chai with an Alum</span> and a meeting with <span className="font-semibold text-black">Parents of current or past students</span>.
                 </p>
               </div>
