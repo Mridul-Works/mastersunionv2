@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight, Plus, Minus, Check, Star } from "lucide-react";
 import heroBuilding from "@/assets/hero-building-light.webp";
 import SignatureCarousel from "@/components/SignatureCarousel";
