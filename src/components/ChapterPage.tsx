@@ -1,28 +1,29 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import type { Chapter } from "./chapters";
+import BottomNav from "./BottomNav";
 
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
 
 export function ChapterPage({ chapter }: { chapter: Chapter }) {
   return (
-    <main className="min-h-screen bg-white text-black" style={{ fontFamily: INTER }}>
-      {/* Top bar */}
-      <div className="sticky top-0 z-20 border-b border-black/10 bg-white/85 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:px-10">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-black/70 transition-colors hover:text-black"
-            style={{ fontFamily: MONO }}
-          >
-            <span aria-hidden>←</span> Masters&apos; Union
-          </Link>
-          <div className="text-[11px] uppercase tracking-[0.25em] text-black/55" style={{ fontFamily: MONO }}>
-            No. {chapter.n} / 10 · {chapter.tag}
-          </div>
+    <main className="min-h-screen bg-white pb-28 text-black md:pb-32" style={{ fontFamily: INTER }}>
+      <BottomNav />
+      {/* Chapter marker */}
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-black/70 transition-colors hover:text-black"
+          style={{ fontFamily: MONO }}
+        >
+          <span aria-hidden>←</span> Masters&apos; Union
+        </Link>
+        <div className="text-[11px] uppercase tracking-[0.25em] text-black/55" style={{ fontFamily: MONO }}>
+          No. {chapter.n} / 10 · {chapter.tag}
         </div>
       </div>
+
 
       {/* HERO */}
       <section className="mx-auto max-w-6xl px-5 pb-16 pt-16 md:px-10 md:pt-24">
