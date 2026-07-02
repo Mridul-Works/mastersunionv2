@@ -504,49 +504,65 @@ function AdmissionsConnect() {
         </h2>
       </header>
 
-      <div className="mx-auto grid max-w-[1120px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {featured.map((s) => (
-          <article
-            key={s.id}
-            className="group relative aspect-[3/4] overflow-hidden rounded-sm bg-[#E5E0D5]/60 shadow-lg transition-transform duration-500 hover:-translate-y-2"
-          >
-            <div className="absolute inset-0">
-              <ImagePlaceholder aspect="auto" className="h-full w-full" label="Portrait" />
-            </div>
-
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-
-            <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
-              <div className="mb-4">
-                <div className="mb-3 flex items-center gap-2">
-                  <span className="rounded bg-white/10 px-2 py-1 text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm border border-white/20">
-                    {formatSessionDate(s.nextDate)} • {s.nextTime}
+      <div className="mx-auto grid max-w-[1120px] grid-cols-1 gap-5 lg:grid-cols-2">
+        {featured.map((s) => {
+          const Icon = s.icon;
+          return (
+            <article
+              key={s.id}
+              className="group flex flex-col overflow-hidden rounded-sm border border-black/10 bg-[#F5F3EE] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:flex-row"
+            >
+              <div className="relative sm:w-[38%] shrink-0">
+                <ImagePlaceholder aspect="auto" className="h-full w-full min-h-[180px] sm:min-h-full" label="Portrait" />
+                <div className="absolute left-4 top-4 flex flex-col items-center justify-center rounded-sm border border-white/20 bg-white/90 px-2 py-2 text-center shadow-sm backdrop-blur-sm">
+                  <span className="text-[9px] font-bold uppercase tracking-wider text-black/60">
+                    {new Date(`${s.nextDate}T00:00:00`).toLocaleDateString("en-GB", { month: "short" })}
                   </span>
-                  <span className="text-[10px] font-medium uppercase tracking-widest text-white/80">
-                    {s.spotsLeft} spots left
+                  <span className="text-lg font-bold leading-none text-black">
+                    {new Date(`${s.nextDate}T00:00:00`).getDate()}
                   </span>
                 </div>
-                <h3
-                  className="mb-2 text-2xl leading-tight md:text-3xl"
-                  style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-                >
-                  {s.title}
-                </h3>
-                <p className="max-w-[280px] text-sm font-light leading-relaxed text-white/80">
-                  {s.description}
-                </p>
               </div>
 
-              <button
-                type="button"
-                onClick={() => openFor(s.id)}
-                className="w-full cursor-pointer rounded-sm bg-white py-3.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#F5F3EE]"
-              >
-                Register for Session
-              </button>
-            </div>
-          </article>
-        ))}
+              <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
+                <div>
+                  <div className="mb-3 flex items-center gap-2">
+                    <span className="inline-flex items-center gap-1.5 rounded-sm border border-black/10 bg-black px-2 py-1 text-[9px] font-bold uppercase tracking-wider text-white">
+                      <Icon className="h-3 w-3" />
+                      {s.format}
+                    </span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-black/50">
+                      {s.duration}
+                    </span>
+                  </div>
+                  <h3
+                    className="mb-2 text-xl font-semibold leading-snug text-black sm:text-2xl"
+                    style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                  >
+                    {s.title}
+                  </h3>
+                  <p className="max-w-[360px] text-sm leading-relaxed text-black/65">
+                    {s.description}
+                  </p>
+                </div>
+
+                <div className="mt-5 flex items-center justify-between border-t border-black/10 pt-4">
+                  <div className="text-xs font-medium text-black/50">
+                    {s.nextTime} • {s.spotsLeft} spots left
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => openFor(s.id)}
+                    className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-[0.12em] text-black underline decoration-black/20 underline-offset-4 transition-all hover:decoration-black"
+                  >
+                    Register
+                    <ArrowUpRight className="h-3.5 w-3.5" />
+                  </button>
+                </div>
+              </div>
+            </article>
+          );
+        })}
       </div>
 
       <div className="mt-10 text-center">
