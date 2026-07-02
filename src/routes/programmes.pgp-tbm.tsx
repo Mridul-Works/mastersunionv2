@@ -550,7 +550,7 @@ function PgpTbm() {
           </div>
           <ol className="grid gap-px bg-black/10 md:grid-cols-5">
             {TIMELINE.map((t, i) => (
-              <li key={t.t} className="bg-white p-5 pastel-fill">
+              <li key={t.t} className="bg-white/90 p-5 backdrop-blur-sm pastel-fill">
                 <div className="font-display text-[28px] leading-none text-black/30">{String(i + 1).padStart(2, "0")}</div>
                 <div className="mt-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-black/55">{t.d}</div>
                 <div className="mt-1 font-display text-[15px] leading-tight text-black/85">{t.t}</div>
