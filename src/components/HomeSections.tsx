@@ -1239,7 +1239,13 @@ function SageSheet({ program, onOpenChange }: { program: string | null; onOpenCh
   const [messages, setMessages] = useState<SageMsg[]>([]);
   const [input, setInput] = useState("");
   const [thinking, setThinking] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
 
   // Push page content aside — shrink the site instead of overlaying.
   useEffect(() => {
