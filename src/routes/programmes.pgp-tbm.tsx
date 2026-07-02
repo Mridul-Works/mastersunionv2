@@ -3,6 +3,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Menu, X, Plus, Minus, Check, Star } from "lucide-react";
 import logoAsset from "@/assets/logo-2.png.asset.json";
 import heroBuilding from "@/assets/hero-building-light.webp";
+import SignatureCarousel from "@/components/SignatureCarousel";
+
 
 export const Route = createFileRoute("/programmes/pgp-tbm")({
   head: () => ({
@@ -502,24 +504,8 @@ function PgpTbm() {
       </section>
 
       {/* SIGNATURE EXPERIENCES */}
-      <section className="border-b border-black/10">
-        <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-          <div className="mb-10">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">Signature learning experiences</div>
-            <h2 className="mt-3 max-w-2xl font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.05] tracking-[-0.02em]">
-              The six things you'll actually do — not just study.
-            </h2>
-          </div>
-          <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
-            {SIGNATURE.map((sg) => (
-              <div key={sg.k} className="bg-white/90 p-6 backdrop-blur-sm pastel-fill">
-                <div className="font-display text-[20px] leading-tight">{sg.k}</div>
-                <div className="mt-2 text-[13px] text-black/65">{sg.v}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <SignatureCarousel />
+
 
       {/* FACULTY */}
       <section className="border-b border-black/10">
