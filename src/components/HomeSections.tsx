@@ -326,7 +326,7 @@ function Programs() {
                           AI
                         </span>
                       </div>
-                      <span className="block whitespace-nowrap font-mono text-[6px] font-medium uppercase tracking-[0.08em] text-orange-700/70">
+                      <span className="block text-nowrap font-sans text-[6px] font-medium uppercase tracking-[0.08em] text-orange-700/70">
                         Student Assistance & Guidance Engine
                       </span>
                     </div>
