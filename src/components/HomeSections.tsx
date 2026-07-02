@@ -692,9 +692,11 @@ function Programs() {
             className="group relative col-span-1 flex h-[640px] flex-col overflow-hidden md:col-span-2 border border-black"
             style={{ background: active.theme }}
           >
-            <ImagePlaceholder
-              aspect="auto"
-              className="absolute inset-0"
+            <img
+              src={active.image}
+              alt={active.headline}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover object-center animate-[fadeIn_0.6s_ease-out]"
             />
             {/* Full-height dark scrim for text legibility */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/10 to-black/55" />
@@ -1113,7 +1115,14 @@ export default function HomeSections() {
 
             {/* Photo side */}
             <div className="relative h-64 lg:h-auto">
-              <ImagePlaceholder aspect="1" className="absolute inset-0 h-full w-full" />
+              <img
+                src={founderPhoto}
+                alt="Pratham Mittal"
+                loading="lazy"
+                width={1024}
+                height={1024}
+                className="absolute inset-0 h-full w-full object-contain object-[bottom_right]"
+              />
               <div className="absolute inset-0 bg-gradient-to-r from-[var(--pastel-start)]/80 via-transparent to-transparent" />
             </div>
           </div>
