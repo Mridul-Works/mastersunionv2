@@ -100,18 +100,23 @@ export default function SignatureCarousel() {
     if (!sectionRef.current) return;
     const el = sectionRef.current;
 
+    // Keep ScrollTrigger in sync with Lenis smooth scroll
+    const lenis = (window as any).__lenis;
+    const onLenisScroll = () => ScrollTrigger.update();
+    lenis?.on?.("scroll", onLenisScroll);
+
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: el,
         start: "top top",
-        end: () => `+=${window.innerHeight * (ITEMS.length - 1) * 1.1}`,
+        end: () => `+=${window.innerHeight * (ITEMS.length - 1) * 0.55}`,
         pin: true,
         anticipatePin: 1,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           const i = Math.min(
             ITEMS.length - 1,
-            Math.round(self.progress * (ITEMS.length - 1)),
+            Math.floor(self.progress * ITEMS.length * 0.9999),
           );
           if (i !== lastIndexRef.current) {
             setDirection(i > lastIndexRef.current ? 1 : -1);
@@ -120,18 +125,25 @@ export default function SignatureCarousel() {
           }
         },
       });
+      ScrollTrigger.refresh();
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      lenis?.off?.("scroll", onLenisScroll);
+      ctx.revert();
+    };
   }, []);
 
   const jump = (i: number) => {
     const st = ScrollTrigger.getAll().find((s) => s.trigger === sectionRef.current);
     if (!st) return;
-    const p = i / (ITEMS.length - 1);
+    const p = (i + 0.5) / ITEMS.length;
     const y = st.start + (st.end - st.start) * p;
-    window.scrollTo({ top: y, behavior: "smooth" });
+    const lenis = (window as any).__lenis;
+    if (lenis?.scrollTo) lenis.scrollTo(y, { duration: 1.1 });
+    else window.scrollTo({ top: y, behavior: "smooth" });
   };
+
 
   const project = ITEMS[index];
 
