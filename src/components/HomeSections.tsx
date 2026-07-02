@@ -1348,14 +1348,14 @@ function SageSheet({ program, onOpenChange }: { program: string | null; onOpenCh
   };
 
   return (
-    <aside className="fixed right-0 top-0 z-40 flex h-screen w-[440px] flex-col border-l border-black/10 bg-[#FBFAF6] shadow-[-8px_0_40px_-12px_rgba(0,0,0,0.15)] animate-slide-in-right">
-      <header className="flex items-center justify-between border-b border-black/10 bg-white px-5 py-4">
-        <div className="flex items-center gap-2.5">
-          <div className="flex size-9 items-center justify-center rounded-full bg-orange-500/60">
+    <aside className="fixed right-0 top-0 z-[110] flex h-screen w-[440px] flex-col border-l border-black/10 bg-[#FBFAF6] shadow-[-8px_0_40px_-12px_rgba(0,0,0,0.15)] animate-slide-in-right">
+      <header className="relative flex items-center border-b border-black/10 bg-white px-5 py-4">
+        <div className="flex min-w-0 items-center gap-2.5 pr-20">
+          <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-orange-500/60">
             <Bot className="size-4.5 text-white" />
           </div>
-          <div className="min-w-0">
-            <div className="flex items-center gap-1.5">
+          <div className="min-w-0 flex-1">
+            <div className="flex min-w-0 items-center gap-1.5">
               <span className="text-[13px] font-bold uppercase tracking-[0.14em] text-black">S.A.G.E</span>
               <span className="rounded-sm bg-orange-600/50 px-1 py-0.5 text-[8px] font-bold uppercase tracking-[0.12em] text-white">AI</span>
               <span className="ml-1 flex items-center gap-1 text-[10px] font-medium text-emerald-600">
@@ -1371,13 +1371,15 @@ function SageSheet({ program, onOpenChange }: { program: string | null; onOpenCh
         <button
           type="button"
           onClick={() => onOpenChange(false)}
-          className="group flex items-center gap-1.5 rounded-full border border-black/10 bg-white px-2 py-1.5 text-[11px] font-medium text-black/60 transition-colors hover:border-black/20 hover:bg-black/5 hover:text-black"
+          className="absolute right-5 top-1/2 flex -translate-y-1/2 items-center gap-1.5 rounded-full border border-black/10 bg-white px-2 py-1.5 text-[11px] font-medium text-black/60 transition-colors hover:border-black/20 hover:bg-black/5 hover:text-black"
           aria-label="Close chat"
         >
           <X className="size-3.5" />
           <span className="hidden sm:inline">Close</span>
         </button>
       </header>
+
+
 
       <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto px-5 py-5">
         {messages.map((m, i) => {
