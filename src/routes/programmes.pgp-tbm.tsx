@@ -458,27 +458,6 @@ function PgpTbm() {
         </div>
       </section>
 
-      {/* WHY / PILLARS */}
-      <section className="border-b border-black/10">
-        <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-          <div className="mb-10">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">Why this programme exists</div>
-            <h2 className="mt-3 max-w-2xl font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.05] tracking-[-0.02em]">
-              A business school rebuilt around one idea: <em className="italic text-black/60">ship things.</em>
-            </h2>
-          </div>
-          <div className="grid gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-4">
-            {PILLARS.map((p) => (
-              <article key={p.title} className="bg-white/90 p-6 backdrop-blur-sm pastel-fill">
-                <div className="font-display text-[36px] leading-none text-black/25">{p.tag}</div>
-                <h3 className="mt-6 font-display text-[18px] leading-tight tracking-tight">{p.title}</h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-black/70">{p.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* PROGRAMME STRUCTURE — InClass · OutClass · Immersions */}
       <section id="structure" className="border-b border-black/10">
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
