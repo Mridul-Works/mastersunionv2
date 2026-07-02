@@ -527,7 +527,7 @@ function AdmissionsConnect() {
             return (
               <article
                 key={s.id}
-                className="group flex w-[calc(45%-12px)] min-w-[400px] shrink-0 snap-start gap-4 bg-[#F5F3EE] p-5 transition-all duration-300 hover:-translate-y-1 pastel-fill"
+                className="group flex w-[calc(60%-12px)] min-w-[540px] shrink-0 snap-start gap-4 bg-[#F5F3EE] p-5 transition-all duration-300 hover:-translate-y-1 pastel-fill"
               >
                 <ImagePlaceholder aspect="auto" className="w-[150px] shrink-0 self-stretch" />
 
