@@ -593,29 +593,6 @@ function PgpTbm() {
         © {new Date().getFullYear()} Masters' Union · PGP in Technology & Business Management
       </footer>
 
-      {/* STICKY APPLY BAR — mobile */}
-      <div className="fixed inset-x-0 bottom-0 z-[90] border-t border-black/10 bg-white/95 backdrop-blur-xl md:hidden">
-        <div className="flex items-center justify-between gap-3 px-4 py-3">
-          <div>
-            <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50">R1 closes in</div>
-            <div className="font-display text-[16px] leading-none tabular-nums">{d}d {String(h).padStart(2,"0")}h {String(m).padStart(2,"0")}m</div>
-          </div>
-          <a href="#apply" className="inline-flex items-center gap-2 bg-black px-4 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-white">
-            Apply <ArrowUpRight className="size-4" />
-          </a>
-        </div>
-      </div>
-
-      {/* STICKY DESKTOP RAIL */}
-      <div className="fixed bottom-6 right-6 z-[90] hidden items-center gap-3 border border-black/10 bg-white/95 px-4 py-3 shadow-xl backdrop-blur-xl md:flex">
-        <div>
-          <div className="text-[9px] font-semibold uppercase tracking-[0.22em] text-black/50">R1 closes in</div>
-          <div className="font-display text-[16px] leading-none tabular-nums">{d}d {String(h).padStart(2,"0")}:{String(m).padStart(2,"0")}:{String(s).padStart(2,"0")}</div>
-        </div>
-        <a href="#apply" className="inline-flex items-center gap-2 bg-black px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white pastel-fill">
-          Apply now <ArrowUpRight className="size-4" />
-        </a>
-      </div>
     </main>
   );
 }
