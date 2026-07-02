@@ -34,6 +34,7 @@ import {
 
 import { Link } from "@tanstack/react-router";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -633,6 +634,7 @@ function Programs() {
   const [activeKey, setActiveKey] = useState<string>(PATHWAYS[0].key);
   const active = PATHWAYS.find((p) => p.key === activeKey) ?? PATHWAYS[0];
   const admissionsScrollRef = useRef<HTMLDivElement>(null);
+  const [sageProgram, setSageProgram] = useState<string | null>(null);
 
   return (
     <section id="programs" className="border-t border-black/10 bg-[#F5F3EE]">
@@ -848,28 +850,33 @@ function Programs() {
                     <ArrowUpRight className="size-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </a>
 
-                  <div className="mt-3 flex items-center gap-2 border border-orange-300/40 bg-orange-50/[0.85] px-2.5 py-2 transition-colors hover:border-orange-400/60 hover:bg-orange-50">
+                  <button
+                    type="button"
+                    onClick={() => setSageProgram(p.title)}
+                    className="mt-3 flex w-full items-center gap-2 border border-orange-300/25 bg-orange-50/40 px-2.5 py-2 text-left transition-colors hover:border-orange-400/40 hover:bg-orange-50/70"
+                  >
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-1">
-                        <span className="font-sans text-[9px] font-bold uppercase tracking-[0.12em] text-orange-800">
+                        <span className="font-sans text-[9px] font-bold uppercase tracking-[0.12em] text-orange-800/60">
                           ASK
                         </span>
-                        <Bot className="size-3.5 shrink-0 text-orange-600" />
-                        <span className="font-sans text-[9px] font-bold uppercase tracking-[0.12em] text-orange-800">
+                        <Bot className="size-3.5 shrink-0 text-orange-600/60" />
+                        <span className="font-sans text-[9px] font-bold uppercase tracking-[0.12em] text-orange-800/60">
                           S.A.G.E
                         </span>
-                        <span className="ml-0.5 rounded-sm bg-orange-600 px-1 py-0.5 font-sans text-[6px] font-bold uppercase tracking-[0.12em] text-white">
+                        <span className="ml-0.5 rounded-sm bg-orange-600/50 px-1 py-0.5 font-sans text-[6px] font-bold uppercase tracking-[0.12em] text-white">
                           AI
                         </span>
                       </div>
                       <span
-                        className="block font-sans text-[5px] font-medium uppercase tracking-[0.02em] text-orange-700/70"
+                        className="block font-sans text-[5px] font-medium uppercase tracking-[0.02em] text-orange-700/50"
                         style={{ whiteSpace: "nowrap" }}
                       >
                         Student Assistance & Guidance Engine
                       </span>
                     </div>
-                  </div>
+                    <ArrowUpRight className="size-3 shrink-0 text-orange-700/50" />
+                  </button>
                 </article>
               ))}
             </div>
@@ -878,6 +885,11 @@ function Programs() {
           </div>
         </div>
       </div>
+
+      <SageSheet
+        program={sageProgram}
+        onOpenChange={(open) => !open && setSageProgram(null)}
+      />
     </section>
   );
 }
@@ -1207,5 +1219,161 @@ function FooterCol({ title, links }: { title: string; links: string[] }) {
         ))}
       </ul>
     </div>
+  );
+}
+
+type SageMsg = { role: "user" | "sage"; text: string };
+
+const SAGE_SUGGESTIONS = [
+  "What's the eligibility for this programme?",
+  "Break down the fee structure & scholarships",
+  "How competitive is admission this round?",
+  "What does a typical week look like?",
+  "Which companies recruit from this programme?",
+];
+
+function SageSheet({ program, onOpenChange }: { program: string | null; onOpenChange: (open: boolean) => void }) {
+  const open = program !== null;
+  const [messages, setMessages] = useState<SageMsg[]>([]);
+  const [input, setInput] = useState("");
+  const [thinking, setThinking] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (open && program) {
+      setMessages([
+        {
+          role: "sage",
+          text: `Hi, I'm S.A.G.E — Masters' Union's Student Assistance & Guidance Engine. I've got the full playbook on ${program}. Ask me anything: eligibility, fees, curriculum, placements, or how to strengthen your application.`,
+        },
+      ]);
+      setInput("");
+      setThinking(false);
+    }
+  }, [open, program]);
+
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
+  }, [messages, thinking]);
+
+  const send = (text: string) => {
+    const q = text.trim();
+    if (!q) return;
+    setMessages((m) => [...m, { role: "user", text: q }]);
+    setInput("");
+    setThinking(true);
+    setTimeout(() => {
+      setMessages((m) => [
+        ...m,
+        {
+          role: "sage",
+          text: `Great question about ${program}. Here's a quick take: ${q.toLowerCase().includes("fee") ? "Tuition is disclosed on the programme page; merit and need-based scholarships cover up to 40% for qualifying candidates." : q.toLowerCase().includes("elig") ? "Applicants need a recognised bachelor's degree (or final-year standing) plus a valid aptitude score. International equivalents are accepted." : q.toLowerCase().includes("plac") || q.toLowerCase().includes("recruit") ? "150+ recruiters visit each year — from Goldman Sachs and McKinsey to Flipkart, Zomato and early-stage founders hiring founding team members." : "The admissions team reviews holistically — academics, aptitude, portfolio, and a founder-style interview. I can walk you through each stage."} Want me to go deeper on any of these?`,
+        },
+      ]);
+      setThinking(false);
+    }, 900);
+  };
+
+  return (
+    <Sheet open={open} onOpenChange={onOpenChange}>
+      <SheetContent side="right" className="flex w-full flex-col gap-0 bg-[#FBFAF6] p-0 sm:max-w-[440px]">
+        <SheetHeader className="border-b border-black/10 bg-white px-5 py-4 text-left">
+          <div className="flex items-center gap-2">
+            <div className="flex size-8 items-center justify-center rounded-full bg-orange-500/60">
+              <Bot className="size-4 text-white" />
+            </div>
+            <div className="min-w-0">
+              <SheetTitle className="flex items-center gap-1.5 text-[13px] font-bold uppercase tracking-[0.14em] text-black">
+                S.A.G.E
+                <span className="rounded-sm bg-orange-600/50 px-1 py-0.5 text-[8px] font-bold uppercase tracking-[0.12em] text-white">AI</span>
+              </SheetTitle>
+              <SheetDescription className="text-[10px] uppercase tracking-[0.14em] text-black/50">
+                Student Assistance & Guidance Engine
+              </SheetDescription>
+            </div>
+          </div>
+        </SheetHeader>
+
+        <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto px-5 py-5">
+          {messages.map((m, i) => (
+            <div key={i} className={cn("flex", m.role === "user" ? "justify-end" : "justify-start")}>
+              <div
+                className={cn(
+                  "max-w-[85%] whitespace-pre-wrap px-3.5 py-2.5 text-[13px] leading-relaxed",
+                  m.role === "user"
+                    ? "bg-black text-white"
+                    : "border border-black/10 bg-white text-black"
+                )}
+              >
+                {m.text}
+              </div>
+            </div>
+          ))}
+          {thinking && (
+            <div className="flex justify-start">
+              <div className="flex gap-1 border border-black/10 bg-white px-3.5 py-3">
+                <span className="size-1.5 animate-bounce rounded-full bg-orange-500/60 [animation-delay:-0.3s]" />
+                <span className="size-1.5 animate-bounce rounded-full bg-orange-500/60 [animation-delay:-0.15s]" />
+                <span className="size-1.5 animate-bounce rounded-full bg-orange-500/60" />
+              </div>
+            </div>
+          )}
+
+          {messages.length <= 1 && !thinking && (
+            <div className="pt-2">
+              <p className="mb-2 font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-black/40">
+                Try asking
+              </p>
+              <div className="flex flex-col gap-1.5">
+                {SAGE_SUGGESTIONS.map((s) => (
+                  <button
+                    key={s}
+                    type="button"
+                    onClick={() => send(s)}
+                    className="w-full border border-black/10 bg-white px-3 py-2 text-left text-[12px] text-black/70 transition-colors hover:border-orange-400/40 hover:bg-orange-50/50 hover:text-black"
+                  >
+                    {s}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            send(input);
+          }}
+          className="border-t border-black/10 bg-white p-3"
+        >
+          <div className="flex items-end gap-2">
+            <textarea
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  send(input);
+                }
+              }}
+              placeholder={`Ask about ${program ?? "this programme"}…`}
+              rows={2}
+              className="min-h-[44px] flex-1 resize-none border border-black/15 bg-white px-3 py-2 text-[13px] text-black placeholder:text-black/40 focus:border-orange-400/60 focus:outline-none"
+            />
+            <Button
+              type="submit"
+              disabled={!input.trim() || thinking}
+              className="h-[44px] shrink-0 rounded-none bg-orange-500/70 px-3 text-white hover:bg-orange-500/90"
+            >
+              <ArrowRight className="size-4" />
+            </Button>
+          </div>
+          <p className="mt-2 font-mono text-[8px] uppercase tracking-[0.18em] text-black/35">
+            S.A.G.E may make mistakes · Verify with admissions
+          </p>
+        </form>
+      </SheetContent>
+    </Sheet>
   );
 }
