@@ -27,7 +27,7 @@ export const Route = createFileRoute("/programmes/pgp-tbm")({
   component: PgpTbm,
 });
 
-const NAV = ["Programmes", "Faculty", "Admissions", "Campus", "About"];
+
 
 // -------- Programme fact sheet (from Masters' Union Programme Overview 2026) --------
 
