@@ -1,15 +1,23 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Home, Quote, BarChart3, BookOpen, CheckCircle2 } from "lucide-react";
 import type { Chapter } from "./chapters";
-import BottomNav from "./BottomNav";
+import BottomNav, { type BottomNavItem } from "./BottomNav";
 
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
 
+const CHAPTER_NAV: BottomNavItem[] = [
+  { id: "top", label: "Top", icon: Home },
+  { id: "point", label: "Point", icon: Quote },
+  { id: "stats", label: "Stats", icon: BarChart3 },
+  { id: "story", label: "Story", icon: BookOpen },
+  { id: "proof", label: "Proof", icon: CheckCircle2 },
+];
+
 export function ChapterPage({ chapter }: { chapter: Chapter }) {
   return (
     <main className="min-h-screen bg-white pb-28 text-black md:pb-32" style={{ fontFamily: INTER }}>
-      <BottomNav />
+      <BottomNav items={CHAPTER_NAV} applyHref="#closing" />
       {/* Chapter marker */}
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">
         <Link
