@@ -288,14 +288,13 @@ function Index() {
         >
 
 
-          {/* Background placeholder image */}
-          <div
-            className={`absolute inset-0 h-full w-full transition-opacity duration-700 ${playing ? "opacity-0" : "opacity-100"}`}
-          >
-            <div className="flex h-full w-full items-center justify-center border-none bg-[#E8E6E1]">
-              <span className="block h-1.5 w-1.5 rounded-full bg-black/20" />
-            </div>
-          </div>
+          {/* Background building image */}
+          <img
+            src={heroBuilding}
+            alt=""
+            aria-hidden
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${playing ? "opacity-0" : "opacity-100"}`}
+          />
           {/* Dark editorial overlay tints (hidden when playing) */}
           <div
             className={`pointer-events-none absolute inset-0 transition-opacity duration-700 ${playing ? "opacity-0" : "opacity-100"}`}
