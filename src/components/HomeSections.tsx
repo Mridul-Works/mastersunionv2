@@ -1301,6 +1301,19 @@ function SageSheet({ program, onOpenChange }: { program: string | null; onOpenCh
     };
   }, [open]);
 
+  // Close with Escape key.
+  useEffect(() => {
+    if (typeof document === "undefined" || !open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        onOpenChange(false);
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open, onOpenChange]);
+
   useEffect(() => {
     if (open && program) {
       setMessages([
