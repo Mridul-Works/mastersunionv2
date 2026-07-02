@@ -68,24 +68,24 @@ const ITEMS: Item[] = [
     number: "N°04",
     category: "Bharat Immersions · Off-Campus",
     term: "Year-round",
-    title: "Study business at real factories, HQs and India's biggest showrooms.",
-    role: "PhysicsWallah · Cars24 · boAt · Uber · Fashion HQs",
+    title: "India as your campus.",
+    role: "Markets · Factories · Unicorn HQs",
     description:
-      "Spend weeks off-campus inside India's most celebrated establishments — unicorn HQs, factory floors, D2C fashion showrooms and wholesale markets. Live consulting projects with Microsoft, Cars24, boAt and Uber replace the case-study binder.",
+      "Study business where it actually happens — wholesale markets, factory floors, and live projects inside India's biggest companies.",
     image: img05,
-    tags: ["Unicorn HQs", "Factory floors", "Live consulting"],
+    tags: ["8+ cities", "Unicorn HQs", "Live projects"],
   },
   {
     id: "global",
     number: "N°05",
     category: "Global Immersions · Term 4",
     term: "2 weeks",
-    title: "Learn from Stanford, Wharton and Harvard faculty — in-market.",
-    role: "Ivy League faculty · Fortune 500 boardrooms",
+    title: "Learn inside the world's best schools.",
+    role: "Ivy faculty · Fortune 500 boardrooms",
     description:
-      "An international module co-taught by Stanford, Wharton and Harvard professors alongside CXOs from Bain, BCG and McKinsey. Sessions inside Fortune 500 boardrooms and campus visits to the world's top B-schools — not sight-seeing.",
+      "Two weeks in-market with faculty and Fortune 500 leaders — not a campus tour, not a case study.",
     image: img06,
-    tags: ["Stanford · Wharton · Harvard", "Fortune 500 hosts", "Ivy faculty"],
+    tags: ["Ivy faculty", "Fortune 500", "In-market"],
   },
 
 ];
