@@ -1348,7 +1348,7 @@ function SageSheet({ program, onOpenChange }: { program: string | null; onOpenCh
   };
 
   return (
-    <aside className="fixed right-0 top-0 z-40 flex h-screen w-[440px] flex-col border-l border-black/10 bg-[#FBFAF6] shadow-[-8px_0_40px_-12px_rgba(0,0,0,0.15)] animate-slide-in-right">
+    <aside className="fixed right-0 top-0 z-[110] flex h-screen w-[440px] flex-col border-l border-black/10 bg-[#FBFAF6] shadow-[-8px_0_40px_-12px_rgba(0,0,0,0.15)] animate-slide-in-right">
       <header className="flex items-center justify-between border-b border-black/10 bg-white px-5 py-4">
         <div className="flex items-center gap-2.5">
           <div className="flex size-9 items-center justify-center rounded-full bg-orange-500/60">
