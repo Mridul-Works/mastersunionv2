@@ -338,10 +338,15 @@ function Programs() {
               ))}
             </div>
 
-            <div className="mt-6 flex items-center justify-between border-t border-black/10 pt-4">
-              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.14em] text-black/50">
-                Scroll to view all programmes
-              </span>
+            <div className="mt-8 flex items-start justify-between gap-6 border-t border-black/10 pt-6">
+              <div className="flex-1">
+                <p className="text-[15px] font-semibold leading-snug text-black">
+                  Don’t believe AI?
+                </p>
+                <p className="mt-1 text-[13px] leading-relaxed text-black/70">
+                  Get all your questions answered with <span className="font-semibold text-black">Chai with an Alum</span> and a meeting with <span className="font-semibold text-black">Parents of current or past students</span>.
+                </p>
+              </div>
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => admissionsScrollRef.current?.scrollBy({ left: -admissionsScrollRef.current.clientWidth / 4, behavior: "smooth" })}
