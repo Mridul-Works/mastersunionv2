@@ -116,28 +116,6 @@ const SCHOOL_STATS = [
   { k: "85%", v: "Fortune 500 within 2 km of class" },
 ];
 
-const PILLARS = [
-  {
-    tag: "01",
-    title: "Learn by doing",
-    body: "You don't submit case-study essays. You launch real ventures, ship real products and manage real money — graded on outcomes, not participation.",
-  },
-  {
-    tag: "02",
-    title: "30·30·40 faculty",
-    body: "30% Ivy-league academics, 30% research-led professors, 40% sitting CEOs, founders and operators running the companies you're studying.",
-  },
-  {
-    tag: "03",
-    title: "Built inside a business district",
-    body: "The campus sits inside DLF Cyber Park, Gurugram — surrounded by 85% of India's Fortune 500 offices within a 2 km walk.",
-  },
-  {
-    tag: "04",
-    title: "Global + Bharat immersion",
-    body: "Every cohort ships a global immersion module alongside a domestic Bharat track — from Fortune 500 boardrooms to Tier-2 factory floors.",
-  },
-];
 
 // -------- Curriculum (pulled from mastersunion.org/pgp-tbm-curriculum) --------
 
