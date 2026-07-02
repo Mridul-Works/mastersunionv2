@@ -506,7 +506,7 @@ function PgpTbm() {
           </div>
           <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
             {SIGNATURE.map((sg) => (
-              <div key={sg.k} className="bg-white p-6 pastel-fill">
+              <div key={sg.k} className="bg-white/90 p-6 backdrop-blur-sm pastel-fill">
                 <div className="font-display text-[20px] leading-tight">{sg.k}</div>
                 <div className="mt-2 text-[13px] text-black/65">{sg.v}</div>
               </div>
