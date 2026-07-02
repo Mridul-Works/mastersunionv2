@@ -1,9 +1,17 @@
 import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Plus, Minus, Check, Star } from "lucide-react";
+import { ArrowUpRight, Plus, Minus, Check, Star, Home, BookOpen, Users, CalendarDays, HelpCircle } from "lucide-react";
 import heroBuilding from "@/assets/hero-building-light.webp";
 import SignatureCarousel from "@/components/SignatureCarousel";
-import BottomNav from "@/components/BottomNav";
+import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
+
+const PGP_NAV: BottomNavItem[] = [
+  { id: "top", label: "Overview", icon: Home },
+  { id: "curriculum", label: "Curriculum", icon: BookOpen },
+  { id: "faculty", label: "Faculty", icon: Users },
+  { id: "admissions", label: "Admissions", icon: CalendarDays },
+  { id: "faq", label: "FAQ", icon: HelpCircle },
+];
 
 
 
