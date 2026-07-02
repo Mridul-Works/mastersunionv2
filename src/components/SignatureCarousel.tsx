@@ -134,11 +134,7 @@ export default function SignatureCarousel() {
     };
   }, []);
 
-  return (
-    <section
-      ref={sectionRef}
-      className="relative h-screen w-full overflow-hidden bg-[#0a0a0a] text-white"
-    >
+  const project = ITEMS[index];
 
   return (
     <section
