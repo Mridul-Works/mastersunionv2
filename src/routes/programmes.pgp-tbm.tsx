@@ -499,7 +499,7 @@ function PgpTbm() {
 
 
       {/* FACULTY */}
-      <section className="border-b border-black/10">
+      <section id="faculty" className="border-b border-black/10">
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
           <div className="mb-10">
             <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">The 30·30·40 faculty model</div>
