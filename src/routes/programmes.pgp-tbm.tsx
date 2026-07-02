@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Menu, X, Plus, Minus, Check, Star } from "lucide-react";
-import logoAsset from "@/assets/logo-2.png.asset.json";
+import { ArrowUpRight, Plus, Minus, Check, Star } from "lucide-react";
 import heroBuilding from "@/assets/hero-building-light.webp";
 import SignatureCarousel from "@/components/SignatureCarousel";
+import BottomNav from "@/components/BottomNav";
+
 
 
 export const Route = createFileRoute("/programmes/pgp-tbm")({
