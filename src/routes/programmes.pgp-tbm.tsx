@@ -381,7 +381,7 @@ function PgpTbm() {
       </section>
 
       {/* SCHOOL-WIDE PROOF */}
-      <section className="border-b border-black/10 bg-white">
+      <section className="border-b border-black/10">
         <div className="mx-auto max-w-[1180px] px-4 py-14 sm:px-6">
           <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">
             The school behind the programme
