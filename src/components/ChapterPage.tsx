@@ -114,7 +114,7 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
       </section>
 
       {/* PROOF + IN THE ROOM */}
-      <section className="border-t border-black/10 bg-neutral-50">
+      <section id="proof" className="border-t border-black/10 bg-neutral-50">
         <div className="mx-auto max-w-6xl px-5 py-20 md:grid md:grid-cols-2 md:gap-16 md:px-10 md:py-24">
           <div>
             <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
