@@ -539,7 +539,7 @@ function AdmissionsConnect() {
                     </span>
                   </div>
 
-                  <ImagePlaceholder aspect="4/3" className="mt-3" />
+                  <ImagePlaceholder aspect="2/3" className="mt-3" />
 
                   <h3
                     className="mt-4 text-[1rem] font-medium leading-[1.2] tracking-tight text-black transition-colors group-hover:text-black"
