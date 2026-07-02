@@ -5,7 +5,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import img01 from "@/assets/mu-01.webp";
 import img02 from "@/assets/mu-02.webp";
-import img03 from "@/assets/mu-03.webp";
 import img04 from "@/assets/mu-04.webp";
 import img05 from "@/assets/mu-05.webp";
 import img06 from "@/assets/mu-06.webp";
