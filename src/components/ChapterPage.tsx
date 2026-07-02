@@ -63,7 +63,7 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
       </section>
 
       {/* PULL QUOTE */}
-      <section className="border-y border-black/10 bg-neutral-50">
+      <section id="point" className="border-y border-black/10 bg-neutral-50">
         <div className="mx-auto max-w-5xl px-5 py-20 md:px-10 md:py-28">
           <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
             The point
