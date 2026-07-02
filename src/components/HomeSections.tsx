@@ -30,6 +30,7 @@ import {
   Flame,
   Check,
   User,
+  X,
 } from "lucide-react";
 
 import { Link } from "@tanstack/react-router";
@@ -1300,6 +1301,19 @@ function SageSheet({ program, onOpenChange }: { program: string | null; onOpenCh
     };
   }, [open]);
 
+  // Close with Escape key.
+  useEffect(() => {
+    if (typeof document === "undefined" || !open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        onOpenChange(false);
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open, onOpenChange]);
+
   useEffect(() => {
     if (open && program) {
       setMessages([
@@ -1403,10 +1417,11 @@ function SageSheet({ program, onOpenChange }: { program: string | null; onOpenCh
         <button
           type="button"
           onClick={() => onOpenChange(false)}
-          className="flex size-8 items-center justify-center rounded-full text-black/50 transition-colors hover:bg-black/5 hover:text-black"
+          className="group flex items-center gap-1.5 rounded-full border border-black/10 bg-white px-2 py-1.5 text-[11px] font-medium text-black/60 transition-colors hover:border-black/20 hover:bg-black/5 hover:text-black"
           aria-label="Close chat"
         >
-          ✕
+          <X className="size-3.5" />
+          <span className="hidden sm:inline">Close</span>
         </button>
       </header>
 
