@@ -485,7 +485,7 @@ function AdmissionsConnect() {
     setDialogOpen(true);
   };
 
-  const featured = ADMISSIONS_CONNECT_SESSIONS.slice(0, 2);
+  const featured = ADMISSIONS_CONNECT_SESSIONS;
 
   return (
     <div className="col-span-12 mt-14 border-t-2 border-black pt-12">
