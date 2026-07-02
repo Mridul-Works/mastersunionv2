@@ -388,7 +388,7 @@ function PgpTbm() {
           </div>
           <div className="mt-6 grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
             {SCHOOL_STATS.map((st) => (
-              <div key={st.v} className="bg-white p-6">
+              <div key={st.v} className="bg-white/90 p-6 backdrop-blur-sm">
                 <div className="font-display text-[38px] leading-none tracking-tight">{st.k}</div>
                 <div className="mt-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-black/60">{st.v}</div>
               </div>
