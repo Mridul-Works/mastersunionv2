@@ -1,7 +1,47 @@
 import { useState, useRef, useEffect } from "react";
-import { ArrowUpRight, ArrowRight, ChevronLeft, ChevronRight, Hourglass, Quote, GraduationCap, Rocket, Briefcase, Users, Mic, ChefHat, Building2, Instagram, Linkedin, Youtube, Twitter, ShoppingCart, Bot } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import {
+  ArrowUpRight,
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  Hourglass,
+  Quote,
+  GraduationCap,
+  Rocket,
+  Briefcase,
+  Users,
+  Mic,
+  ChefHat,
+  Building2,
+  Instagram,
+  Linkedin,
+  Youtube,
+  Twitter,
+  ShoppingCart,
+  Bot,
+  Calendar,
+  Clock,
+  MapPin,
+  Video,
+  Coffee,
+  UsersRound,
+  Footprints,
+  Flame,
+  Check,
+  User,
+} from "lucide-react";
 
 import { Link } from "@tanstack/react-router";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { cn } from "@/lib/utils";
+
 import founderPhoto from "@/assets/founder-pratham-cutout.webp";
 import logoWhite from "@/assets/logo-4.png.asset.json";
 import pathwaySchool from "@/assets/pathways/school.webp";
@@ -20,6 +60,95 @@ type Pathway = {
   theme: string;
   image: string;
 };
+
+const ADMISSIONS_CONNECT_SESSIONS = [
+  {
+    id: "chai-alum",
+    title: "Chai with an Alum",
+    tagline: "Honest answers over a casual cup.",
+    description: "A recent grad walks you through their first year, the workload, the cohort, and what surprised them.",
+    icon: Coffee,
+    format: "Virtual",
+    duration: "45 min",
+    nextDate: "2026-07-08",
+    nextTime: "06:00 PM",
+    timezone: "IST",
+    audience: "Students & parents",
+    spotsLeft: 12,
+  },
+  {
+    id: "parents-speak",
+    title: "Parents Speak",
+    tagline: "Hear it from the families who went through it.",
+    description: "Current and past parents share what worried them, how the transition worked, and the ROI they saw.",
+    icon: UsersRound,
+    format: "Virtual",
+    duration: "60 min",
+    nextDate: "2026-07-11",
+    nextTime: "11:00 AM",
+    timezone: "IST",
+    audience: "Parents & guardians",
+    spotsLeft: 8,
+  },
+  {
+    id: "campus-walk",
+    title: "Campus Walkthrough",
+    tagline: "See the spaces where the learning happens.",
+    description: "A guided tour of the Gurugram campus, labs, studios and hostel blocks — led by a current student.",
+    icon: Footprints,
+    format: "In-person",
+    duration: "90 min",
+    nextDate: "2026-07-12",
+    nextTime: "10:00 AM",
+    timezone: "IST",
+    audience: "Prospective students",
+    spotsLeft: 15,
+  },
+  {
+    id: "faculty-fireside",
+    title: "Faculty Fireside",
+    tagline: "A 1:1 conversation with a professor.",
+    description: "Bring your doubts about curriculum, careers or specialisation. 15 minutes, no pitch, just clarity.",
+    icon: Flame,
+    format: "Virtual",
+    duration: "30 min",
+    nextDate: "2026-07-09",
+    nextTime: "05:00 PM",
+    timezone: "IST",
+    audience: "Serious applicants",
+    spotsLeft: 6,
+  },
+  {
+    id: "admissions-office-hours",
+    title: "Admissions Office Hours",
+    tagline: "A private 1:1 with the admissions team.",
+    description: "Bring your application, eligibility, documents or fee questions. No group, no script — just direct answers.",
+    icon: User,
+    format: "Virtual",
+    duration: "20 min",
+    nextDate: "2026-07-10",
+    nextTime: "04:00 PM",
+    timezone: "IST",
+    audience: "Applicants",
+    spotsLeft: 10,
+  },
+  {
+    id: "cohort-preview",
+    title: "Cohort Preview Day",
+    tagline: "Sit in a real class and ask the cohort anything.",
+    description: "Attend a live session on campus, meet the current batch, and get an honest read on the culture.",
+    icon: GraduationCap,
+    format: "In-person",
+    duration: "120 min",
+    nextDate: "2026-07-18",
+    nextTime: "10:00 AM",
+    timezone: "IST",
+    audience: "Serious applicants",
+    spotsLeft: 20,
+  },
+] as const;
+
+type Session = (typeof ADMISSIONS_CONNECT_SESSIONS)[number];
 
 const PATHWAYS: Pathway[] = [
   {
@@ -94,6 +223,377 @@ const PATHWAYS: Pathway[] = [
   },
 ];
 
+type RegistrationRole = "" | "student" | "parent" | "working-professional" | "school-counselor" | "other";
+type RegistrationFormValues = {
+  name: string;
+  email: string;
+  phone: string;
+  whatsapp: string;
+  sessionId: string;
+  role: RegistrationRole;
+  questions?: string;
+};
+
+const registrationSchema = z.object({
+  name: z.string().trim().min(2, { message: "Name must be at least 2 characters" }).max(100, { message: "Name is too long" }),
+  email: z.string().trim().email({ message: "Please enter a valid email" }).max(255, { message: "Email is too long" }),
+  phone: z.string().trim().min(10, { message: "Please enter a valid phone number" }).max(20, { message: "Phone number is too long" }),
+  whatsapp: z.string().trim().min(10, { message: "Please enter a valid WhatsApp number" }).max(20, { message: "WhatsApp number is too long" }),
+  sessionId: z.string().min(1, { message: "Please select a session" }),
+  role: z.enum(["", "student", "parent", "working-professional", "school-counselor", "other"] as const).refine((v) => v !== "", { message: "Please select who you are" }),
+  questions: z.string().trim().max(500, { message: "Please keep it under 500 characters" }).optional(),
+});
+
+function formatSessionDate(iso: string) {
+  const d = new Date(`${iso}T00:00:00`);
+  return d.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+}
+
+function RegistrationDialog({
+  open,
+  onOpenChange,
+  defaultSessionId,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  defaultSessionId?: string;
+}) {
+  const [submitted, setSubmitted] = useState(false);
+  const form = useForm<RegistrationFormValues>({
+    resolver: zodResolver(registrationSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      whatsapp: "",
+      sessionId: defaultSessionId ?? "",
+      role: "",
+      questions: "",
+    },
+  });
+
+  useEffect(() => {
+    if (open) {
+      form.reset({
+        name: "",
+        email: "",
+        phone: "",
+        whatsapp: "",
+        sessionId: defaultSessionId ?? "",
+        role: "",
+        questions: "",
+      });
+      setSubmitted(false);
+    }
+  }, [open, defaultSessionId, form]);
+
+  const onSubmit = (values: RegistrationFormValues) => {
+    // In a real flow, this is where you send the data to a server function or CRM.
+    console.log("Session registration:", values);
+    setSubmitted(true);
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="max-w-md rounded-none border border-black bg-[#F5F3EE] p-0 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)]">
+        <div className="border-b border-black/10 bg-black px-6 py-4">
+          <DialogHeader>
+            <DialogTitle className="text-[13px] font-bold uppercase tracking-[0.2em] text-white">
+              Register for a session
+            </DialogTitle>
+            <DialogDescription className="text-[11px] font-medium uppercase tracking-[0.14em] text-white/60">
+              We will send the calendar invite and Zoom link within 24 hours.
+            </DialogDescription>
+          </DialogHeader>
+        </div>
+
+        <div className="p-6">
+          {submitted ? (
+            <div className="flex flex-col items-center py-8 text-center">
+              <div className="mb-4 flex size-14 items-center justify-center border border-black bg-black text-white">
+                <Check className="size-6" />
+              </div>
+              <h3 className="text-[15px] font-semibold text-black">You're on the list</h3>
+              <p className="mt-2 max-w-[26ch] text-[13px] leading-relaxed text-black/65">
+                Check your inbox for the invite. If you don't see it, check spam or WhatsApp.
+              </p>
+              <Button
+                onClick={() => {
+                  setSubmitted(false);
+                  form.reset();
+                  onOpenChange(false);
+                }}
+                className="mt-6 rounded-none border border-black bg-black px-6 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-white hover:bg-black/80"
+              >
+                Close
+              </Button>
+            </div>
+          ) : (
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                <FormField
+                  control={form.control}
+                  name="sessionId"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-[10px] font-bold uppercase tracking-[0.16em] text-black/60">Session</FormLabel>
+                      <Select onValueChange={field.onChange} value={field.value}>
+                        <FormControl>
+                          <SelectTrigger className="rounded-none border-black/20 bg-white text-[13px] text-black focus:ring-black">
+                            <SelectValue placeholder="Select a session" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent className="rounded-none border-black/20 bg-[#F5F3EE]">
+                          {ADMISSIONS_CONNECT_SESSIONS.map((s) => (
+                            <SelectItem key={s.id} value={s.id} className="text-[13px] text-black focus:bg-black/5">
+                              {s.title} — {formatSessionDate(s.nextDate)}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage className="text-[11px]" />
+                    </FormItem>
+                  )}
+                />
+
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-[10px] font-bold uppercase tracking-[0.16em] text-black/60">Full name</FormLabel>
+                        <FormControl>
+                          <Input placeholder="e.g. Aryan Sharma" className="rounded-none border-black/20 bg-white text-[13px] text-black placeholder:text-black/30 focus-visible:ring-black" {...field} />
+                        </FormControl>
+                        <FormMessage className="text-[11px]" />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-[10px] font-bold uppercase tracking-[0.16em] text-black/60">Email</FormLabel>
+                        <FormControl>
+                          <Input type="email" placeholder="aryan@email.com" className="rounded-none border-black/20 bg-white text-[13px] text-black placeholder:text-black/30 focus-visible:ring-black" {...field} />
+                        </FormControl>
+                        <FormMessage className="text-[11px]" />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <FormField
+                    control={form.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-[10px] font-bold uppercase tracking-[0.16em] text-black/60">Phone</FormLabel>
+                        <FormControl>
+                          <Input type="tel" placeholder="+91 98765 43210" className="rounded-none border-black/20 bg-white text-[13px] text-black placeholder:text-black/30 focus-visible:ring-black" {...field} />
+                        </FormControl>
+                        <FormMessage className="text-[11px]" />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="whatsapp"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-[10px] font-bold uppercase tracking-[0.16em] text-black/60">WhatsApp</FormLabel>
+                        <FormControl>
+                          <Input type="tel" placeholder="Same as phone" className="rounded-none border-black/20 bg-white text-[13px] text-black placeholder:text-black/30 focus-visible:ring-black" {...field} />
+                        </FormControl>
+                        <FormMessage className="text-[11px]" />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                <FormField
+                  control={form.control}
+                  name="role"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-[10px] font-bold uppercase tracking-[0.16em] text-black/60">Who are you?</FormLabel>
+                      <Select onValueChange={field.onChange} value={field.value}>
+                        <FormControl>
+                          <SelectTrigger className="rounded-none border-black/20 bg-white text-[13px] text-black focus:ring-black">
+                            <SelectValue placeholder="Select one" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent className="rounded-none border-black/20 bg-[#F5F3EE]">
+                          <SelectItem value="student" className="text-[13px] text-black focus:bg-black/5">Student</SelectItem>
+                          <SelectItem value="parent" className="text-[13px] text-black focus:bg-black/5">Parent / Guardian</SelectItem>
+                          <SelectItem value="working-professional" className="text-[13px] text-black focus:bg-black/5">Working professional</SelectItem>
+                          <SelectItem value="school-counselor" className="text-[13px] text-black focus:bg-black/5">School counselor</SelectItem>
+                          <SelectItem value="other" className="text-[13px] text-black focus:bg-black/5">Other</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage className="text-[11px]" />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="questions"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-[10px] font-bold uppercase tracking-[0.16em] text-black/60">What do you want to ask? <span className="font-normal normal-case text-black/40">(optional)</span></FormLabel>
+                      <FormControl>
+                        <textarea
+                          rows={3}
+                          placeholder="Curriculum, hostel, placements, fees..."
+                          className="w-full resize-none rounded-none border border-black/20 bg-white px-3 py-2 text-[13px] text-black placeholder:text-black/30 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-black"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage className="text-[11px]" />
+                    </FormItem>
+                  )}
+                />
+
+                <DialogFooter className="pt-2">
+                  <Button
+                    type="submit"
+                    className="w-full rounded-none border border-black bg-black py-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-black/80"
+                  >
+                    Confirm registration
+                  </Button>
+                </DialogFooter>
+              </form>
+            </Form>
+          )}
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function AdmissionsConnect() {
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [selectedSessionId, setSelectedSessionId] = useState<string | undefined>(undefined);
+
+  const openFor = (sessionId: string) => {
+    setSelectedSessionId(sessionId);
+    setDialogOpen(true);
+  };
+
+  return (
+    <div className="col-span-12 mt-14 border-t-2 border-black pt-12">
+      <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p className="mb-2 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-black/50">
+            Admissions Connect
+          </p>
+          <h2
+            className="text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[0.95] tracking-tight text-black"
+            style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+          >
+            Don’t believe AI?
+            <br />
+            <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+              Talk to humans.
+            </span>
+          </h2>
+        </div>
+        <p className="max-w-[34ch] text-[13px] font-medium leading-snug text-black/60">
+          Book a free session with alumni, parents, faculty or a campus guide. Dates, times and registration below.
+        </p>
+      </div>
+
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {ADMISSIONS_CONNECT_SESSIONS.map((s) => {
+          const Icon = s.icon;
+          const isInPerson = s.format === "In-person";
+          return (
+            <article
+              key={s.id}
+              className="group flex flex-col justify-between border border-black/10 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-black/30 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.18)]"
+            >
+              <div>
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex size-10 items-center justify-center border border-black/10 bg-black/5 text-black/70 transition-colors group-hover:border-black/30 group-hover:bg-black group-hover:text-white">
+                    <Icon className="size-4" />
+                  </div>
+                  <span className="shrink-0 border border-black/10 px-2 py-1 font-mono text-[8px] font-bold uppercase tracking-[0.12em] text-black/60">
+                    {s.duration}
+                  </span>
+                </div>
+                <h3 className="mt-5 text-[1.15rem] font-semibold leading-tight tracking-tight text-black" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+                  {s.title}
+                </h3>
+                <p className="mt-2 text-[12px] leading-relaxed text-black/60">
+                  {s.tagline}
+                </p>
+                <p className="mt-3 text-[11px] leading-relaxed text-black/50">
+                  {s.description}
+                </p>
+              </div>
+
+              <div className="mt-6 space-y-2 border-t border-black/10 pt-4">
+                <div className="flex items-center gap-2 text-[11px] text-black/70">
+                  <Calendar className="size-3.5 shrink-0 text-black/40" />
+                  <span className="font-medium">{formatSessionDate(s.nextDate)}</span>
+                </div>
+                <div className="flex items-center gap-2 text-[11px] text-black/70">
+                  <Clock className="size-3.5 shrink-0 text-black/40" />
+                  <span className="font-medium">{s.nextTime} {s.timezone}</span>
+                </div>
+                <div className="flex items-center gap-2 text-[11px] text-black/70">
+                  {isInPerson ? (
+                    <MapPin className="size-3.5 shrink-0 text-black/40" />
+                  ) : (
+                    <Video className="size-3.5 shrink-0 text-black/40" />
+                  )}
+                  <span className="font-medium">{s.format}</span>
+                  <span className="text-black/40">·</span>
+                  <span className="text-black/50">{s.audience}</span>
+                </div>
+              </div>
+
+              <div className="mt-4 flex items-center justify-between border-t border-black/10 pt-4">
+                <span className="font-mono text-[9px] font-bold uppercase tracking-[0.12em] text-black/50">
+                  {s.spotsLeft} spots left
+                </span>
+                <button
+                  type="button"
+                  onClick={() => openFor(s.id)}
+                  className="inline-flex items-center gap-1.5 bg-black px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-white transition-all hover:bg-black/80 active:scale-[0.98]"
+                >
+                  Register
+                  <ArrowUpRight className="size-3" />
+                </button>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      <RegistrationDialog open={dialogOpen} onOpenChange={setDialogOpen} defaultSessionId={selectedSessionId} />
+
+      <div className="mt-8 flex items-center justify-between border-t border-black/10 pt-6">
+        <p className="max-w-[42ch] text-[12px] leading-relaxed text-black/50">
+          Can’t find a slot? Drop a note to <a href="mailto:admissions@mastersunion.org" className="font-semibold text-black underline decoration-black/30 underline-offset-2">admissions@mastersunion.org</a> and we’ll arrange a private call.
+        </p>
+        <button
+          type="button"
+          onClick={() => openFor(ADMISSIONS_CONNECT_SESSIONS[0].id)}
+          className="inline-flex items-center gap-2 border border-black bg-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-black transition-all hover:bg-black hover:text-white"
+        >
+          Browse all sessions
+          <ArrowRight className="size-3.5" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function Programs() {
   const [activeKey, setActiveKey] = useState<string>(PATHWAYS[0].key);
   const active = PATHWAYS.find((p) => p.key === activeKey) ?? PATHWAYS[0];
@@ -101,6 +601,7 @@ function Programs() {
 
   return (
     <section id="programs" className="border-t border-black/10 bg-[#F5F3EE]">
+
       <div className="mx-auto grid max-w-[1280px] grid-cols-12 gap-6 px-6 py-20 md:px-10 md:py-28">
         {/* Editorial intro */}
         <div className="col-span-12 lg:col-span-4">
@@ -338,32 +839,7 @@ function Programs() {
               ))}
             </div>
 
-            <div className="mt-8 flex items-start justify-between gap-6 border-t border-black/10 pt-6">
-              <div className="flex-1">
-                <p className="text-[15px] font-semibold leading-snug text-black">
-                  Don’t believe AI?
-                </p>
-                <p className="mt-1 text-[13px] leading-relaxed text-black/70">
-                  Get all your questions answered with <span className="font-semibold text-black">Chai with an Alum</span> and a meeting with <span className="font-semibold text-black">Parents of current or past students</span>.
-                </p>
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => admissionsScrollRef.current?.scrollBy({ left: -admissionsScrollRef.current.clientWidth / 4, behavior: "smooth" })}
-                  className="grid h-9 w-9 place-items-center border border-black/20 text-black/60 transition-colors hover:border-black hover:text-black"
-                  aria-label="Scroll left"
-                >
-                  <ChevronLeft className="size-4" />
-                </button>
-                <button
-                  onClick={() => admissionsScrollRef.current?.scrollBy({ left: admissionsScrollRef.current.clientWidth / 4, behavior: "smooth" })}
-                  className="grid h-9 w-9 place-items-center border border-black/20 text-black/60 transition-colors hover:border-black hover:text-black"
-                  aria-label="Scroll right"
-                >
-                  <ChevronRight className="size-4" />
-                </button>
-              </div>
-            </div>
+            <AdmissionsConnect />
           </div>
         </div>
       </div>
