@@ -281,7 +281,6 @@ function useCountdown(target: Date) {
 }
 
 function PgpTbm() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [openTerm, setOpenTerm] = useState<number | null>(0);
   const deadline = new Date("2026-08-15T23:59:59+05:30");
@@ -289,33 +288,14 @@ function PgpTbm() {
 
   return (
     <main
-      className="min-h-screen pastel-gradient text-[color:var(--ink)] pb-24 md:pb-0"
+      className="min-h-screen pastel-gradient text-[color:var(--ink)] pb-28 md:pb-32"
       style={{
         "--pastel-start": "oklch(0.99 0.014 220 / 0.4)",
         "--pastel-mid": "oklch(0.985 0.020 210 / 0.4)",
       } as React.CSSProperties}
     >
-      {/* NAV */}
-      <header className="fixed inset-x-0 top-0 z-[100] px-4 pt-3 sm:px-6 sm:pt-4">
-        <div className="mx-auto flex max-w-[1180px] items-center justify-between border border-black/10 bg-white/80 px-2 py-1.5 shadow-[0_6px_24px_-12px_rgba(0,0,0,0.15)] backdrop-blur-xl">
-          <Link to="/" className="flex items-center gap-2 px-2.5 py-1">
-            <img src={logoAsset.url} alt="Masters' Union" className="h-5 w-auto" />
-          </Link>
-          <nav className="hidden items-center gap-0.5 md:flex">
-            {NAV.map((item) => (
-              <a key={item} href="#" className="px-3 py-1.5 text-[12px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black">
-                {item}
-              </a>
-            ))}
-          </nav>
-          <div className="flex items-center gap-1">
-            <a href="#apply" className="bg-black px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-white shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98] pastel-fill">Apply</a>
-            <button type="button" aria-label="Toggle menu" onClick={() => setMenuOpen((v) => !v)} className="flex size-8 items-center justify-center text-black/60 hover:bg-black/5 md:hidden">
-              {menuOpen ? <X className="size-4" /> : <Menu className="size-4" />}
-            </button>
-          </div>
-        </div>
-      </header>
+      <BottomNav applyHref="#apply" />
+
 
       {/* HERO */}
       <section className="relative overflow-hidden border-b border-black/10 pt-28 sm:pt-32">
