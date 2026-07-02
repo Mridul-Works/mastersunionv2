@@ -134,17 +134,6 @@ export default function SignatureCarousel() {
     };
   }, []);
 
-  const jump = (i: number) => {
-    const st = ScrollTrigger.getAll().find((s) => s.trigger === sectionRef.current);
-    if (!st) return;
-    const p = (i + 0.5) / ITEMS.length;
-    const y = st.start + (st.end - st.start) * p;
-    const lenis = (window as any).__lenis;
-    if (lenis?.scrollTo) lenis.scrollTo(y, { duration: 1.1 });
-    else window.scrollTo({ top: y, behavior: "smooth" });
-  };
-
-
   const project = ITEMS[index];
 
   return (
@@ -191,32 +180,6 @@ export default function SignatureCarousel() {
         />
       </AnimatePresence>
 
-      {/* Hint + progress bars bottom-center */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-8 z-30 flex flex-col items-center gap-5 px-6">
-        <div className="flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-white/60">
-          <span className="inline-block h-1.5 w-1.5 rounded-full bg-white" />
-          <span>Scroll</span>
-          <span className="text-white/25">·</span>
-          <span>Drag</span>
-          <span className="text-white/25">·</span>
-          <span>Arrows ← →</span>
-        </div>
-        <div className="flex items-center gap-2">
-          {ITEMS.map((p, i) => (
-            <button
-              key={p.id}
-              onClick={() => jump(i)}
-              aria-label={`Go to experience ${i + 1}`}
-              className="pointer-events-auto group h-[2px] w-9 cursor-pointer overflow-hidden bg-white/15"
-            >
-              <span
-                className="block h-full origin-left bg-white transition-transform duration-[700ms] ease-out"
-                style={{ transform: `scaleX(${i === index ? 1 : 0})` }}
-              />
-            </button>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }
