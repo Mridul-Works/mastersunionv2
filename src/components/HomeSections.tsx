@@ -1354,7 +1354,9 @@ function SageSheet({ program, onOpenChange }: { program: string | null; onOpenCh
     text: null,
   };
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <aside className="fixed right-0 top-0 z-[110] flex h-screen w-[440px] flex-col border-l border-black/10 bg-[#FBFAF6] shadow-[-8px_0_40px_-12px_rgba(0,0,0,0.15)] animate-slide-in-right">
       <header className="relative flex items-center border-b border-black/10 bg-white px-5 py-4">
         <div className="flex min-w-0 items-center gap-2.5 pr-20">
