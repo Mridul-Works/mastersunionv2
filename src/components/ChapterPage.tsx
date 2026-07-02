@@ -75,7 +75,7 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
       </section>
 
       {/* STATS STRIP */}
-      <section className="mx-auto max-w-6xl px-5 pt-20 md:px-10">
+      <section id="stats" className="mx-auto max-w-6xl px-5 pt-20 md:px-10">
         <div className="grid grid-cols-2 gap-px bg-black/10 md:grid-cols-4">
           {chapter.stats.map((s, i) => (
             <div key={i} className="bg-white px-4 py-10 text-center">
