@@ -1222,15 +1222,33 @@ function FooterCol({ title, links }: { title: string; links: string[] }) {
   );
 }
 
-type SageMsg = { role: "user" | "sage"; text: string };
+type SageMsg = { role: "user" | "sage"; text: string; kind?: "story" | "stat" | "fact" | "text" };
 
 const SAGE_SUGGESTIONS = [
-  "What's the eligibility for this programme?",
-  "Break down the fee structure & scholarships",
-  "How competitive is admission this round?",
+  "Tell me a student success story",
+  "Did you know — hit me with a fun stat",
+  "Break down the fees & scholarships",
   "What does a typical week look like?",
-  "Which companies recruit from this programme?",
+  "Which companies recruit here?",
+  "How do I strengthen my application?",
 ];
+
+const SAGE_STORIES = [
+  "Meet Aarav — walked in from a Tier-3 town, zero coding background. Two years later he's shipping ML infra at a YC-backed fintech in SF. His secret? He built 14 side projects during the programme. His words: 'Masters' Union didn't teach me to pass exams. It taught me to ship.'",
+  "Riya joined straight out of college with a ₹0 startup idea. She used the Founder's Office elective to pitch to a visiting VC in week 6. By graduation she had ₹1.2Cr in pre-seed and 3 co-founders from her cohort. The cohort IS the network.",
+  "Kabir was a chartered accountant chasing 'safer' options. He took the Quant Finance track, cracked a role at a Singapore hedge fund, and 3x'd his previous CTC in his first year. He calls the switch 'the least risky bet of my life.'",
+];
+
+const SAGE_FACTS = [
+  "Did you know? 92% of the last graduating cohort had an offer in hand before their final semester ended.",
+  "Fun stat: The average student here interacts with 40+ working practitioners as faculty — CXOs, founders, investors — not career academics.",
+  "Wild but true: Student-founded ventures from campus have collectively raised over ₹200Cr in the last 24 months.",
+  "Did you know? The median compensation jump for career-switchers is 2.4x. For engineers moving into product/finance roles, it's often higher.",
+];
+
+function pickRandom<T>(arr: T[]): T {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
 
 function SageSheet({ program, onOpenChange }: { program: string | null; onOpenChange: (open: boolean) => void }) {
   const open = program !== null;
@@ -1239,12 +1257,33 @@ function SageSheet({ program, onOpenChange }: { program: string | null; onOpenCh
   const [thinking, setThinking] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  // Push page content aside — shrink the site instead of overlaying.
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    const body = document.body;
+    if (open) {
+      body.style.transition = "padding-right 300ms ease";
+      body.style.paddingRight = "440px";
+    } else {
+      body.style.paddingRight = "";
+    }
+    return () => {
+      body.style.paddingRight = "";
+    };
+  }, [open]);
+
   useEffect(() => {
     if (open && program) {
       setMessages([
         {
           role: "sage",
-          text: `Hi, I'm S.A.G.E — Masters' Union's Student Assistance & Guidance Engine. I've got the full playbook on ${program}. Ask me anything: eligibility, fees, curriculum, placements, or how to strengthen your application.`,
+          kind: "text",
+          text: `Hey! I'm S.A.G.E ✨ Think of me as your slightly over-caffeinated guide to ${program}. I've got receipts — student stories, hiring data, curriculum secrets. What do you want to unlock first?`,
+        },
+        {
+          role: "sage",
+          kind: "fact",
+          text: pickRandom(SAGE_FACTS),
         },
       ]);
       setInput("");
@@ -1262,118 +1301,177 @@ function SageSheet({ program, onOpenChange }: { program: string | null; onOpenCh
     setMessages((m) => [...m, { role: "user", text: q }]);
     setInput("");
     setThinking(true);
+
     setTimeout(() => {
-      setMessages((m) => [
-        ...m,
-        {
-          role: "sage",
-          text: `Great question about ${program}. Here's a quick take: ${q.toLowerCase().includes("fee") ? "Tuition is disclosed on the programme page; merit and need-based scholarships cover up to 40% for qualifying candidates." : q.toLowerCase().includes("elig") ? "Applicants need a recognised bachelor's degree (or final-year standing) plus a valid aptitude score. International equivalents are accepted." : q.toLowerCase().includes("plac") || q.toLowerCase().includes("recruit") ? "150+ recruiters visit each year — from Goldman Sachs and McKinsey to Flipkart, Zomato and early-stage founders hiring founding team members." : "The admissions team reviews holistically — academics, aptitude, portfolio, and a founder-style interview. I can walk you through each stage."} Want me to go deeper on any of these?`,
-        },
-      ]);
+      const ql = q.toLowerCase();
+      const replies: SageMsg[] = [];
+
+      if (ql.includes("stor") || ql.includes("alum") || ql.includes("student")) {
+        replies.push({ role: "sage", kind: "story", text: pickRandom(SAGE_STORIES) });
+        replies.push({ role: "sage", kind: "text", text: `Want another one — maybe from ${program} specifically? Or should I show you what the placement report actually looks like?` });
+      } else if (ql.includes("did you know") || ql.includes("stat") || ql.includes("fun")) {
+        replies.push({ role: "sage", kind: "fact", text: pickRandom(SAGE_FACTS) });
+        replies.push({ role: "sage", kind: "fact", text: pickRandom(SAGE_FACTS) });
+        replies.push({ role: "sage", kind: "text", text: "Told you it was fun. Want the outcome data by role? Or by company?" });
+      } else if (ql.includes("fee") || ql.includes("cost") || ql.includes("scholar")) {
+        replies.push({ role: "sage", kind: "text", text: `Real talk on ${program}: think of tuition as a bet on your next 10 years. Merit + need-based scholarships cover up to 40% for qualifying applicants, and we run an income-share style deferral for a slice of every cohort. The ROI benchmark: most graduates recover the full programme cost inside 18 months post-placement.` });
+        replies.push({ role: "sage", kind: "stat", text: "Median payback period across the last 3 cohorts: 14 months. Fastest recorded: 6 months (a founder who raised pre-seed before graduating)." });
+      } else if (ql.includes("elig") || ql.includes("apply") || ql.includes("appli") || ql.includes("strong")) {
+        replies.push({ role: "sage", kind: "text", text: `For ${program}: recognised bachelor's (or final year), a valid aptitude score, and — honestly — a portfolio of proof-of-work. Side projects, cohorts you built, revenue you made, code you shipped. Grades matter less than momentum.` });
+        replies.push({ role: "sage", kind: "text", text: "Pro tip from admissions: candidates who submit a 2-min Loom talking about a problem they can't stop thinking about get short-listed 3x more often." });
+      } else if (ql.includes("plac") || ql.includes("recruit") || ql.includes("comp") || ql.includes("salar") || ql.includes("job")) {
+        replies.push({ role: "sage", kind: "stat", text: "150+ recruiters last year. Median CTC in the top quartile crossed ₹42 LPA. Top offer: ₹1.1Cr. And ~18% chose entrepreneurship over placements." });
+        replies.push({ role: "sage", kind: "text", text: "Names on the list: Goldman Sachs, McKinsey, Bain, Flipkart, Zomato, Razorpay, Meesho, Cred, plus a growing pipeline of YC and Sequoia-backed startups hiring founding team members." });
+      } else if (ql.includes("week") || ql.includes("day") || ql.includes("life") || ql.includes("schedule") || ql.includes("curric")) {
+        replies.push({ role: "sage", kind: "text", text: `A week in ${program}: Mon–Wed you're in intense practitioner-led modules (think an ex-Meta PM breaking down 0-to-1). Thu is Founder's Studio — you ship. Fri is 'Real World Day' — live pitches, investor AMAs, or client sprints. Weekends? Cohort chaos. Hackathons, dinners, sometimes both.` });
+        replies.push({ role: "sage", kind: "fact", text: "Fun fact: the average student here logs 60+ hours a week — because it stops feeling like work by month 2." });
+      } else {
+        replies.push({ role: "sage", kind: "text", text: `Great question on ${program}. Here's the honest answer: the programme is designed so you leave with three things — proof-of-work, a network of practitioners, and an offer. Everything else (fees, curriculum, hostel life) is engineered around those three outcomes.` });
+        replies.push({ role: "sage", kind: "fact", text: pickRandom(SAGE_FACTS) });
+      }
+
+      setMessages((m) => [...m, ...replies]);
       setThinking(false);
     }, 900);
   };
 
-  return (
-    <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="flex w-full flex-col gap-0 bg-[#FBFAF6] p-0 sm:max-w-[440px]">
-        <SheetHeader className="border-b border-black/10 bg-white px-5 py-4 text-left">
-          <div className="flex items-center gap-2">
-            <div className="flex size-8 items-center justify-center rounded-full bg-orange-500/60">
-              <Bot className="size-4 text-white" />
-            </div>
-            <div className="min-w-0">
-              <SheetTitle className="flex items-center gap-1.5 text-[13px] font-bold uppercase tracking-[0.14em] text-black">
-                S.A.G.E
-                <span className="rounded-sm bg-orange-600/50 px-1 py-0.5 text-[8px] font-bold uppercase tracking-[0.12em] text-white">AI</span>
-              </SheetTitle>
-              <SheetDescription className="text-[10px] uppercase tracking-[0.14em] text-black/50">
-                Student Assistance & Guidance Engine
-              </SheetDescription>
-            </div>
-          </div>
-        </SheetHeader>
+  if (!open) return null;
 
-        <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto px-5 py-5">
-          {messages.map((m, i) => (
-            <div key={i} className={cn("flex", m.role === "user" ? "justify-end" : "justify-start")}>
+  const kindStyles: Record<NonNullable<SageMsg["kind"]>, string> = {
+    story: "border-l-4 border-orange-400/70 bg-orange-50/70 text-black",
+    stat: "border-l-4 border-emerald-500/70 bg-emerald-50/70 text-black",
+    fact: "border-l-4 border-sky-500/70 bg-sky-50/70 text-black",
+    text: "border border-black/10 bg-white text-black",
+  };
+
+  const kindLabel: Record<NonNullable<SageMsg["kind"]>, string | null> = {
+    story: "🎓 Alum Story",
+    stat: "📈 By the numbers",
+    fact: "💡 Did you know",
+    text: null,
+  };
+
+  return (
+    <aside className="fixed right-0 top-0 z-40 flex h-screen w-[440px] flex-col border-l border-black/10 bg-[#FBFAF6] shadow-[-8px_0_40px_-12px_rgba(0,0,0,0.15)] animate-slide-in-right">
+      <header className="flex items-center justify-between border-b border-black/10 bg-white px-5 py-4">
+        <div className="flex items-center gap-2.5">
+          <div className="flex size-9 items-center justify-center rounded-full bg-orange-500/60">
+            <Bot className="size-4.5 text-white" />
+          </div>
+          <div className="min-w-0">
+            <div className="flex items-center gap-1.5">
+              <span className="text-[13px] font-bold uppercase tracking-[0.14em] text-black">S.A.G.E</span>
+              <span className="rounded-sm bg-orange-600/50 px-1 py-0.5 text-[8px] font-bold uppercase tracking-[0.12em] text-white">AI</span>
+              <span className="ml-1 flex items-center gap-1 text-[10px] font-medium text-emerald-600">
+                <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                online
+              </span>
+            </div>
+            <p className="truncate text-[10px] uppercase tracking-[0.14em] text-black/50">
+              Talking about · {program}
+            </p>
+          </div>
+        </div>
+        <button
+          type="button"
+          onClick={() => onOpenChange(false)}
+          className="flex size-8 items-center justify-center rounded-full text-black/50 transition-colors hover:bg-black/5 hover:text-black"
+          aria-label="Close chat"
+        >
+          ✕
+        </button>
+      </header>
+
+      <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto px-5 py-5">
+        {messages.map((m, i) => {
+          const kind = m.kind ?? "text";
+          const label = m.role === "sage" ? kindLabel[kind] : null;
+          return (
+            <div key={i} className={cn("flex animate-fade-in", m.role === "user" ? "justify-end" : "justify-start")}>
               <div
                 className={cn(
-                  "max-w-[85%] whitespace-pre-wrap px-3.5 py-2.5 text-[13px] leading-relaxed",
+                  "max-w-[88%] whitespace-pre-wrap px-3.5 py-2.5 text-[13px] leading-relaxed",
                   m.role === "user"
                     ? "bg-black text-white"
-                    : "border border-black/10 bg-white text-black"
+                    : kindStyles[kind]
                 )}
               >
+                {label && (
+                  <div className="mb-1.5 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-black/50">
+                    {label}
+                  </div>
+                )}
                 {m.text}
               </div>
             </div>
-          ))}
-          {thinking && (
-            <div className="flex justify-start">
-              <div className="flex gap-1 border border-black/10 bg-white px-3.5 py-3">
-                <span className="size-1.5 animate-bounce rounded-full bg-orange-500/60 [animation-delay:-0.3s]" />
-                <span className="size-1.5 animate-bounce rounded-full bg-orange-500/60 [animation-delay:-0.15s]" />
-                <span className="size-1.5 animate-bounce rounded-full bg-orange-500/60" />
-              </div>
-            </div>
-          )}
+          );
+        })}
 
-          {messages.length <= 1 && !thinking && (
-            <div className="pt-2">
-              <p className="mb-2 font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-black/40">
-                Try asking
-              </p>
-              <div className="flex flex-col gap-1.5">
-                {SAGE_SUGGESTIONS.map((s) => (
-                  <button
-                    key={s}
-                    type="button"
-                    onClick={() => send(s)}
-                    className="w-full border border-black/10 bg-white px-3 py-2 text-left text-[12px] text-black/70 transition-colors hover:border-orange-400/40 hover:bg-orange-50/50 hover:text-black"
-                  >
-                    {s}
-                  </button>
-                ))}
-              </div>
+        {thinking && (
+          <div className="flex justify-start">
+            <div className="flex items-center gap-1.5 border border-black/10 bg-white px-3.5 py-3">
+              <span className="size-1.5 animate-bounce rounded-full bg-orange-500/60 [animation-delay:-0.3s]" />
+              <span className="size-1.5 animate-bounce rounded-full bg-orange-500/60 [animation-delay:-0.15s]" />
+              <span className="size-1.5 animate-bounce rounded-full bg-orange-500/60" />
+              <span className="ml-1 text-[11px] text-black/50">S.A.G.E is digging through the data…</span>
             </div>
-          )}
-        </div>
-
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            send(input);
-          }}
-          className="border-t border-black/10 bg-white p-3"
-        >
-          <div className="flex items-end gap-2">
-            <textarea
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && !e.shiftKey) {
-                  e.preventDefault();
-                  send(input);
-                }
-              }}
-              placeholder={`Ask about ${program ?? "this programme"}…`}
-              rows={2}
-              className="min-h-[44px] flex-1 resize-none border border-black/15 bg-white px-3 py-2 text-[13px] text-black placeholder:text-black/40 focus:border-orange-400/60 focus:outline-none"
-            />
-            <Button
-              type="submit"
-              disabled={!input.trim() || thinking}
-              className="h-[44px] shrink-0 rounded-none bg-orange-500/70 px-3 text-white hover:bg-orange-500/90"
-            >
-              <ArrowRight className="size-4" />
-            </Button>
           </div>
-          <p className="mt-2 font-mono text-[8px] uppercase tracking-[0.18em] text-black/35">
-            S.A.G.E may make mistakes · Verify with admissions
-          </p>
-        </form>
-      </SheetContent>
-    </Sheet>
+        )}
+
+        {!thinking && (
+          <div className="pt-2">
+            <p className="mb-2 font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-black/40">
+              Quick prompts
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              {SAGE_SUGGESTIONS.map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => send(s)}
+                  className="border border-black/10 bg-white px-2.5 py-1.5 text-left text-[11px] text-black/70 transition-colors hover:border-orange-400/50 hover:bg-orange-50/60 hover:text-black"
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          send(input);
+        }}
+        className="border-t border-black/10 bg-white p-3"
+      >
+        <div className="flex items-end gap-2">
+          <textarea
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                send(input);
+              }
+            }}
+            placeholder={`Ask about ${program ?? "this programme"}…`}
+            rows={2}
+            className="min-h-[44px] flex-1 resize-none border border-black/15 bg-white px-3 py-2 text-[13px] text-black placeholder:text-black/40 focus:border-orange-400/60 focus:outline-none"
+          />
+          <Button
+            type="submit"
+            disabled={!input.trim() || thinking}
+            className="h-[44px] shrink-0 rounded-none bg-orange-500/70 px-3 text-white hover:bg-orange-500/90"
+          >
+            <ArrowRight className="size-4" />
+          </Button>
+        </div>
+        <p className="mt-2 font-mono text-[8px] uppercase tracking-[0.18em] text-black/35">
+          S.A.G.E may make mistakes · Verify with admissions
+        </p>
+      </form>
+    </aside>
   );
 }
