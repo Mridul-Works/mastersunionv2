@@ -66,27 +66,28 @@ const ITEMS: Item[] = [
   {
     id: "bharat",
     number: "N°04",
-    category: "Bharat Immersions · Hub-based",
-    term: "Multi-city",
-    title: "India is the classroom. Learn business on the ground.",
-    role: "Mumbai · Delhi · Punjab · Gujarat",
+    category: "Bharat Immersions · Off-Campus",
+    term: "Year-round",
+    title: "Study business at real factories, HQs and India's biggest showrooms.",
+    role: "PhysicsWallah · Cars24 · boAt · Uber · Fashion HQs",
     description:
-      "PGP Bharat drops cohorts into India's operating hubs — factory floors, family businesses, mandis and unicorn HQs. Rotate cities, decode local playbooks, come back with real ground truth.",
+      "Spend weeks off-campus inside India's most celebrated establishments — unicorn HQs, factory floors, D2C fashion showrooms and wholesale markets. Live consulting projects with Microsoft, Cars24, boAt and Uber replace the case-study binder.",
     image: img05,
-    tags: ["India as classroom", "4+ city hubs", "Unicorn HQs"],
+    tags: ["Unicorn HQs", "Factory floors", "Live consulting"],
   },
   {
     id: "global",
     number: "N°05",
-    category: "Global · Term 4",
+    category: "Global Immersions · Term 4",
     term: "2 weeks",
-    title: "Board Fortune 500 rooms across the world.",
-    role: "In-market immersion",
+    title: "Learn from Stanford, Wharton and Harvard faculty — in-market.",
+    role: "Ivy League faculty · Fortune 500 boardrooms",
     description:
-      "An international module inside operating companies — factory floors, HQ boardrooms, venture partners. Not sight-seeing.",
+      "An international module co-taught by Stanford, Wharton and Harvard professors alongside CXOs from Bain, BCG and McKinsey. Sessions inside Fortune 500 boardrooms and campus visits to the world's top B-schools — not sight-seeing.",
     image: img06,
-    tags: ["Fortune 500 hosts", "1:1 execs", "In-market"],
+    tags: ["Stanford · Wharton · Harvard", "Fortune 500 hosts", "Ivy faculty"],
   },
+
 ];
 
 export default function SignatureCarousel() {
