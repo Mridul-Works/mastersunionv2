@@ -116,28 +116,6 @@ const SCHOOL_STATS = [
   { k: "85%", v: "Fortune 500 within 2 km of class" },
 ];
 
-const PILLARS = [
-  {
-    tag: "01",
-    title: "Learn by doing",
-    body: "You don't submit case-study essays. You launch real ventures, ship real products and manage real money — graded on outcomes, not participation.",
-  },
-  {
-    tag: "02",
-    title: "30·30·40 faculty",
-    body: "30% Ivy-league academics, 30% research-led professors, 40% sitting CEOs, founders and operators running the companies you're studying.",
-  },
-  {
-    tag: "03",
-    title: "Built inside a business district",
-    body: "The campus sits inside DLF Cyber Park, Gurugram — surrounded by 85% of India's Fortune 500 offices within a 2 km walk.",
-  },
-  {
-    tag: "04",
-    title: "Global + Bharat immersion",
-    body: "Every cohort ships a global immersion module alongside a domestic Bharat track — from Fortune 500 boardrooms to Tier-2 factory floors.",
-  },
-];
 
 // -------- Curriculum (pulled from mastersunion.org/pgp-tbm-curriculum) --------
 
@@ -458,27 +436,6 @@ function PgpTbm() {
         </div>
       </section>
 
-      {/* WHY / PILLARS */}
-      <section className="border-b border-black/10">
-        <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-          <div className="mb-10">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">Why this programme exists</div>
-            <h2 className="mt-3 max-w-2xl font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.05] tracking-[-0.02em]">
-              A business school rebuilt around one idea: <em className="italic text-black/60">ship things.</em>
-            </h2>
-          </div>
-          <div className="grid gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-4">
-            {PILLARS.map((p) => (
-              <article key={p.title} className="bg-white/90 p-6 backdrop-blur-sm pastel-fill">
-                <div className="font-display text-[36px] leading-none text-black/25">{p.tag}</div>
-                <h3 className="mt-6 font-display text-[18px] leading-tight tracking-tight">{p.title}</h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-black/70">{p.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* PROGRAMME STRUCTURE — InClass · OutClass · Immersions */}
       <section id="structure" className="border-b border-black/10">
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
@@ -607,13 +564,12 @@ function PgpTbm() {
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
           <div className="mb-10 flex items-end justify-between">
             <div>
-              <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">Curriculum · 16 months · 8 terms</div>
+              <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">The proof · 8 terms · InClass × OutClass</div>
               <h2 className="mt-3 max-w-2xl font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.05] tracking-[-0.02em]">
-                Eight terms. Every one ships something real.
+                What the three engines look like — term by term.
               </h2>
               <p className="mt-4 max-w-2xl text-[14px] leading-relaxed text-black/60">
-                In-class courses across seven tracks, paired with an out-class challenge every term — from the Dropshipping Challenge in Term 1 to raising a real seed fund in Term 7. Curriculum lifted from{" "}
-                <a href="https://mastersunion.org/pgp-tbm-curriculum" target="_blank" rel="noreferrer" className="underline underline-offset-2">mastersunion.org/pgp-tbm-curriculum</a>.
+                Open any term to see the InClass courses (7 tracks) alongside the OutClass challenge students ship that term. The D2C brand and Creator Challenge run continuously; immersions slot in across the middle terms.
               </p>
             </div>
           </div>
