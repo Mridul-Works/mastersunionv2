@@ -22,8 +22,6 @@ import {
   Twitter,
   ShoppingCart,
   Bot,
-  MapPin,
-  Video,
   Coffee,
   UsersRound,
   Footprints,
@@ -32,6 +30,7 @@ import {
   User,
   X,
 } from "lucide-react";
+
 
 import { Link } from "@tanstack/react-router";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
@@ -479,164 +478,106 @@ function RegistrationDialog({
 function AdmissionsConnect() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedSessionId, setSelectedSessionId] = useState<string | undefined>(undefined);
-  const sessionsScrollRef = useRef<HTMLDivElement>(null);
 
   const openFor = (sessionId: string) => {
     setSelectedSessionId(sessionId);
     setDialogOpen(true);
   };
 
-  const scrollBy = (delta: number) => {
-    const el = sessionsScrollRef.current;
-    if (!el) return;
-    const cardWidth = el.firstElementChild?.getBoundingClientRect().width ?? 320;
-    el.scrollTo({ left: el.scrollLeft + delta * cardWidth, behavior: "smooth" });
-  };
+  const featured = ADMISSIONS_CONNECT_SESSIONS.slice(0, 2);
 
   return (
     <div className="col-span-12 mt-14 border-t-2 border-black pt-12">
-      <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p className="mb-2 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-black/50">
-            Admissions Connect
-          </p>
-          <h2
-            className="text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[0.95] tracking-tight text-black"
-            style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-          >
-            Don’t believe AI?
-            <br />
-            <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
-              Talk to humans.
-            </span>
-          </h2>
-        </div>
-        <p className="max-w-[34ch] text-[13px] font-medium leading-snug text-black/60">
-          Book a free session with alumni, parents, faculty or a campus guide. Dates, times and registration below.
+      <header className="mb-10 text-center">
+        <p className="mb-3 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-black/50">
+          Admissions Connect
         </p>
-      </div>
-
-      <div className="relative">
-        <div
-          ref={sessionsScrollRef}
-          className="flex gap-4 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden snap-x snap-mandatory"
+        <h2
+          className="text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1.05] tracking-tight text-black"
+          style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
         >
-          {ADMISSIONS_CONNECT_SESSIONS.map((s) => {
-            const Icon = s.icon;
-            const isInPerson = s.format === "In-person";
-            return (
-              <article
-                key={s.id}
-                className="group flex w-[calc(60%-12px)] min-w-[540px] shrink-0 snap-start gap-4 bg-[#F5F3EE] p-5 transition-all duration-300 hover:-translate-y-1 pastel-fill"
+          Don’t believe AI?{" "}
+          <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+            Talk to humans.
+          </span>
+        </h2>
+      </header>
+
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        {featured.map((s) => (
+          <article
+            key={s.id}
+            className="group relative aspect-[3/4] overflow-hidden rounded-sm bg-[#E5E0D5]/60 shadow-lg transition-transform duration-500 hover:-translate-y-2"
+          >
+            <div className="absolute inset-0">
+              <ImagePlaceholder aspect="auto" className="h-full w-full" label="Portrait" />
+            </div>
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+
+            <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
+              <div className="mb-4">
+                <div className="mb-3 flex items-center gap-2">
+                  <span className="rounded bg-white/10 px-2 py-1 text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm border border-white/20">
+                    {formatSessionDate(s.nextDate)} • {s.nextTime}
+                  </span>
+                  <span className="text-[10px] font-medium uppercase tracking-widest text-white/80">
+                    {s.spotsLeft} spots left
+                  </span>
+                </div>
+                <h3
+                  className="mb-2 text-2xl leading-tight md:text-3xl"
+                  style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                >
+                  {s.title}
+                </h3>
+                <p className="max-w-[280px] text-sm font-light leading-relaxed text-white/80">
+                  {s.description}
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => openFor(s.id)}
+                className="w-full cursor-pointer rounded-sm bg-white py-3.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#F5F3EE]"
               >
-                <div className="w-[150px] shrink-0 self-stretch">
-                  <ImagePlaceholder aspect="auto" className="h-full" />
-                </div>
-
-                <div className="flex flex-1 flex-col justify-between">
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <span className="bg-black px-2 py-1 font-mono text-[8px] font-bold uppercase tracking-[0.12em] text-white transition-colors group-hover:bg-white group-hover:text-black">
-                        {isInPerson ? "IN PERSON" : "VIRTUAL"}
-                      </span>
-                      <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-black/50">
-                        {s.duration}
-                      </span>
-                    </div>
-
-                    <h3
-                      className="mt-3 text-[1rem] font-medium leading-[1.2] tracking-tight text-black transition-colors group-hover:text-black"
-                      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                    >
-                      {s.title}
-                    </h3>
-
-                    <p className="mt-1 font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-black/50">
-                      {s.tagline}
-                    </p>
-
-                    <p className="mt-2 text-[11px] leading-relaxed text-black/50">
-                      {s.description}
-                    </p>
-                  </div>
-
-                  <div className="mt-4 border-t border-black/10 pt-4">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-black/60 transition-colors group-hover:text-black/80">
-                        {formatSessionDate(s.nextDate)}
-                      </span>
-                      <span className="font-mono text-[8px] font-semibold uppercase tracking-[0.12em] text-black/40">
-                        {s.nextTime} {s.timezone}
-                      </span>
-                    </div>
-                    <div className="mt-3 flex items-center gap-3 bg-black/[0.03] p-2.5">
-                      {isInPerson ? (
-                        <MapPin className="size-4 text-black/50" />
-                      ) : (
-                        <Video className="size-4 text-black/50" />
-                      )}
-                      <div className="flex flex-col">
-                        <span className="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-black/70">
-                          {s.format}
-                        </span>
-                        <span className="font-mono text-[8px] font-semibold uppercase tracking-[0.12em] text-black/40">
-                          {s.audience}
-                        </span>
-                      </div>
-                    </div>
-
-                    <button
-                      type="button"
-                      onClick={() => openFor(s.id)}
-                      className="mt-4 inline-flex w-full items-center justify-between border border-black px-4 py-2.5 font-sans text-[10px] font-semibold uppercase tracking-[0.12em] text-black transition-all duration-300 hover:bg-black hover:text-white"
-                    >
-                      Register
-                      <ArrowUpRight className="size-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                    </button>
-
-                    <div className="mt-3 flex items-center gap-2 border border-black/10 bg-black/[0.02] px-2.5 py-2 transition-colors group-hover:border-black/20 group-hover:bg-black/[0.04]">
-                      <Icon className="size-3.5 shrink-0 text-black/40" />
-                      <span className="font-mono text-[8px] font-bold uppercase tracking-[0.12em] text-black/50">
-                        {s.spotsLeft} spots left
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-
-        <div className="mt-6 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => scrollBy(-1)}
-              className="inline-flex size-10 items-center justify-center border border-black/10 text-black transition-colors hover:border-black hover:bg-black hover:text-white"
-              aria-label="Scroll sessions left"
-            >
-              <ChevronLeft className="size-4" />
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollBy(1)}
-              className="inline-flex size-10 items-center justify-center border border-black/10 text-black transition-colors hover:border-black hover:bg-black hover:text-white"
-              aria-label="Scroll sessions right"
-            >
-              <ChevronRight className="size-4" />
-            </button>
-          </div>
-
-          <p className="max-w-[42ch] text-[12px] leading-relaxed text-black/50">
-            Can’t find a slot? Drop a note to <a href="mailto:admissions@mastersunion.org" className="font-semibold text-black underline decoration-black/30 underline-offset-2">admissions@mastersunion.org</a> and we’ll arrange a private call.
-          </p>
-        </div>
+                Register for Session
+              </button>
+            </div>
+          </article>
+        ))}
       </div>
+
+      <div className="mt-10 text-center">
+        <button
+          type="button"
+          onClick={() => {
+            setSelectedSessionId(undefined);
+            setDialogOpen(true);
+          }}
+          className="inline-flex items-center border-b-2 border-black/20 pb-1 text-sm font-semibold text-black/60 transition-all hover:border-black hover:text-black"
+        >
+          View all sessions
+          <ArrowRight className="ml-2 h-4 w-4" />
+        </button>
+      </div>
+
+      <p className="mt-8 text-center text-[12px] leading-relaxed text-black/50">
+        Can’t find a slot? Drop a note to{" "}
+        <a
+          href="mailto:admissions@mastersunion.org"
+          className="font-semibold text-black underline decoration-black/30 underline-offset-2"
+        >
+          admissions@mastersunion.org
+        </a>{" "}
+        and we’ll arrange a private call.
+      </p>
 
       <RegistrationDialog open={dialogOpen} onOpenChange={setDialogOpen} defaultSessionId={selectedSessionId} />
     </div>
   );
 }
+
 
 function Programs() {
   const [activeKey, setActiveKey] = useState<string>(PATHWAYS[0].key);
