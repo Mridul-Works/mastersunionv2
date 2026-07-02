@@ -56,10 +56,10 @@
   --cream: oklch(0.94 0.025 80);
   --ink: oklch(0.16 0.01 80);
 
-  /* Pastel gradient: light cyan to soft blue to warm peach — admissions hover */
-  --pastel-start: oklch(0.98 0.018 220);
-  --pastel-mid: oklch(0.975 0.028 200);
-  --pastel-end: oklch(0.955 0.055 65);
+  /* Pastel gradient: very light cyan to sky-blue to warm peach — admissions hover */
+  --pastel-start: oklch(0.99 0.014 220);
+  --pastel-mid: oklch(0.985 0.020 210);
+  --pastel-end: oklch(0.97 0.05 65);
 }
 
 @layer utilities {
@@ -67,13 +67,13 @@
     transition: color 0.3s ease, background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   }
   .pastel-fill:hover {
-    background: linear-gradient(135deg, var(--pastel-start) 0%, var(--pastel-mid) 55%, var(--pastel-end) 100%);
+    background: linear-gradient(135deg, var(--pastel-start) 0%, var(--pastel-mid) 40%, var(--pastel-end) 100%);
     color: var(--ink);
   }
 }
 
 @utility pastel-gradient {
-  background: linear-gradient(135deg, var(--pastel-start) 0%, var(--pastel-mid) 55%, var(--pastel-end) 100%);
+  background: linear-gradient(135deg, var(--pastel-start) 0%, var(--pastel-mid) 40%, var(--pastel-end) 100%);
 }
 
 
