@@ -564,13 +564,12 @@ function PgpTbm() {
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
           <div className="mb-10 flex items-end justify-between">
             <div>
-              <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">Curriculum · 16 months · 8 terms</div>
+              <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">The proof · 8 terms · InClass × OutClass</div>
               <h2 className="mt-3 max-w-2xl font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.05] tracking-[-0.02em]">
-                Eight terms. Every one ships something real.
+                What the three engines look like — term by term.
               </h2>
               <p className="mt-4 max-w-2xl text-[14px] leading-relaxed text-black/60">
-                In-class courses across seven tracks, paired with an out-class challenge every term — from the Dropshipping Challenge in Term 1 to raising a real seed fund in Term 7. Curriculum lifted from{" "}
-                <a href="https://mastersunion.org/pgp-tbm-curriculum" target="_blank" rel="noreferrer" className="underline underline-offset-2">mastersunion.org/pgp-tbm-curriculum</a>.
+                Open any term to see the InClass courses (7 tracks) alongside the OutClass challenge students ship that term. The D2C brand and Creator Challenge run continuously; immersions slot in across the middle terms.
               </p>
             </div>
           </div>
