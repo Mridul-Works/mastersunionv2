@@ -318,7 +318,7 @@ function Programs() {
                       <span className="block font-sans text-[9px] font-bold uppercase tracking-[0.12em] text-emerald-700">
                         Ask S.A.G.E
                       </span>
-                      <span className="block truncate font-mono text-[7px] font-medium uppercase tracking-[0.12em] text-emerald-700/70">
+                      <span className="block whitespace-nowrap font-mono text-[7px] font-medium uppercase tracking-[0.12em] text-emerald-700/70">
                         Student Assistance & Guidance Engine
                       </span>
                     </div>
