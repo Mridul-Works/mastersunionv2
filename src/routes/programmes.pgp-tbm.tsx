@@ -1,16 +1,78 @@
 import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Plus, Minus, Check, Star, Home, BookOpen, Users, CalendarDays, HelpCircle } from "lucide-react";
+import { ArrowUpRight, Plus, Minus, Check, Star, Home, Layers, BookOpen, Users, CalendarDays, HelpCircle } from "lucide-react";
 import heroBuilding from "@/assets/hero-building-light.webp";
 import SignatureCarousel from "@/components/SignatureCarousel";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
 
 const PGP_NAV: BottomNavItem[] = [
   { id: "top", label: "Overview", icon: Home },
+  { id: "structure", label: "Structure", icon: Layers },
   { id: "curriculum", label: "Curriculum", icon: BookOpen },
   { id: "faculty", label: "Faculty", icon: Users },
   { id: "admissions", label: "Admissions", icon: CalendarDays },
   { id: "faq", label: "FAQ", icon: HelpCircle },
+];
+
+// -------- Programme structure (InClass + OutClass + Immersions) --------
+
+const STRUCTURE_STATS = [
+  { k: "8", v: "Terms across 16 months" },
+  { k: "150+", v: "In-class courses shipped" },
+  { k: "16", v: "Out-class live challenges" },
+  { k: "2", v: "Immersion tracks · Global + Bharat" },
+];
+
+const IN_CLASS_TRACKS = [
+  "Finance & Fintech",
+  "Sales & Marketing",
+  "Management & Strategy",
+  "Product & Tech",
+  "AI & ML",
+  "Communication & Self-Development",
+  "Liberal Arts",
+];
+
+const OUT_CLASS = [
+  {
+    tag: "Runs across terms",
+    title: "Build a D2C Brand",
+    body: "Every student ships a live consumer brand — sourcing, launching and scaling it on Amazon, Blinkit, Instagram and their own store. Graded on real customers and real revenue.",
+    stats: [
+      { k: "₹10L+", v: "Avg. GMV / student team" },
+      { k: "180+", v: "D2C brands launched to date" },
+      { k: "1,000+", v: "Footfall at the offline fair" },
+    ],
+  },
+  {
+    tag: "Runs across terms",
+    title: "Creator Challenge",
+    body: "Students build a personal brand on YouTube, Instagram or LinkedIn from Term 2 onwards — scripting, filming, editing and distributing weekly. Graded on real audience growth.",
+    stats: [
+      { k: "50M+", v: "Cumulative views generated" },
+      { k: "2.5M+", v: "Followers built by past cohorts" },
+      { k: "40+", v: "Creators past 100k followers" },
+    ],
+  },
+];
+
+const IMMERSIONS = [
+  {
+    title: "Global Immersion",
+    body: "A full module on the ground at Fortune 500 HQs and top B-schools — Silicon Valley, Dubai, Singapore, London — meeting operators building at global scale.",
+    stats: [
+      { k: "5+", v: "Countries hosted to date" },
+      { k: "40+", v: "Fortune 500 offices visited" },
+    ],
+  },
+  {
+    title: "Bharat Immersion",
+    body: "A deep dive into Tier-2 & Tier-3 India — factory floors, family businesses, agri-clusters and D2C hubs — to understand the market 90% of India actually buys from.",
+    stats: [
+      { k: "12+", v: "Cities across Bharat" },
+      { k: "100+", v: "SMEs & founders met on ground" },
+    ],
+  },
 ];
 
 
