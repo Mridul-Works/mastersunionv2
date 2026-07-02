@@ -10,17 +10,17 @@ export function ImagePlaceholder({
   return (
     <div
       className={
-        "flex w-full items-center justify-center border border-dashed border-black/25 bg-[#E5E0D5]/60" +
+        "flex w-full items-center justify-center border border-white/10 bg-gradient-to-br from-neutral-900 via-black to-neutral-800" +
         (className ? " " + className : "")
       }
       style={{ aspectRatio: aspect }}
     >
       {label ? (
-        <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-black/30">
+        <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-white/40">
           {label}
         </span>
       ) : (
-        <span className="block h-1 w-1 rounded-full bg-black/20" />
+        <span className="block h-1 w-1 rounded-full bg-white/30" />
       )}
     </div>
   );
@@ -38,17 +38,17 @@ export function ImagePlaceholderMini({
   return (
     <div
       className={
-        "flex w-full items-center justify-center border border-dashed border-black/25 bg-[#E5E0D5]/60" +
+        "flex w-full items-center justify-center border border-white/10 bg-gradient-to-br from-neutral-900 via-black to-neutral-800" +
         (className ? " " + className : "")
       }
       style={{ aspectRatio: aspect }}
     >
       {label ? (
-        <span className="font-mono text-[8px] font-semibold uppercase tracking-[0.16em] text-black/30">
+        <span className="font-mono text-[8px] font-semibold uppercase tracking-[0.16em] text-white/40">
           {label}
         </span>
       ) : (
-        <span className="block h-0.5 w-0.5 rounded-full bg-black/20" />
+        <span className="block h-0.5 w-0.5 rounded-full bg-white/30" />
       )}
     </div>
   );
