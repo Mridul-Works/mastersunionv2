@@ -41,6 +41,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 
 import founderPhoto from "@/assets/founder-pratham-cutout.webp";
 import logoWhite from "@/assets/logo-4.png.asset.json";
@@ -538,6 +539,8 @@ function AdmissionsConnect() {
                     </span>
                   </div>
 
+                  <ImagePlaceholder aspect="4/3" className="mt-3" />
+
                   <h3
                     className="mt-4 text-[1rem] font-medium leading-[1.2] tracking-tight text-black transition-colors group-hover:text-black"
                     style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
@@ -689,11 +692,9 @@ function Programs() {
             className="group relative col-span-1 flex h-[640px] flex-col overflow-hidden md:col-span-2 border border-black"
             style={{ background: active.theme }}
           >
-            <img
-              src={active.image}
-              alt={active.headline}
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover object-center animate-[fadeIn_0.6s_ease-out]"
+            <ImagePlaceholder
+              aspect="auto"
+              className="absolute inset-0"
             />
             {/* Full-height dark scrim for text legibility */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/10 to-black/55" />
@@ -816,6 +817,8 @@ function Programs() {
                       {p.duration}
                     </span>
                   </div>
+
+                  <ImagePlaceholder aspect="16/9" className="mt-3" />
 
                   <h3
                     className="mt-4 text-[1rem] font-medium leading-[1.2] tracking-tight text-black transition-colors group-hover:text-black"
@@ -1033,6 +1036,8 @@ export default function HomeSections() {
                     </span>
                   </div>
 
+                  <ImagePlaceholder aspect="16/9" className="mt-3" />
+
                   <h3
                     className="mt-4 text-[1rem] font-medium leading-[1.25] tracking-tight text-black"
                     style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
@@ -1108,14 +1113,7 @@ export default function HomeSections() {
 
             {/* Photo side */}
             <div className="relative h-64 lg:h-auto">
-              <img
-                src={founderPhoto}
-                alt="Pratham Mittal"
-                loading="lazy"
-                width={1024}
-                height={1024}
-                className="absolute inset-0 h-full w-full object-contain object-[bottom_right]"
-              />
+              <ImagePlaceholder aspect="1" className="absolute inset-0 h-full w-full" />
               <div className="absolute inset-0 bg-gradient-to-r from-[var(--pastel-start)]/80 via-transparent to-transparent" />
             </div>
           </div>
@@ -1145,6 +1143,8 @@ export default function HomeSections() {
                     </div>
                     <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/40">{p.tag}</span>
                   </div>
+
+                  <ImagePlaceholder aspect="16/9" className="mt-6" />
 
                   <div className="mt-12">
                     <h3 className="text-[1.6rem] font-medium leading-[1.15] tracking-tight text-black md:text-[1.85rem]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>

@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CHAPTERS } from "./chapters";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -289,15 +290,15 @@ function Slide({
           transition={{ duration: SLIDE_DURATION, ease: EASE }}
           className="absolute inset-0 flex items-center justify-center p-6 md:p-12"
         >
-          <motion.img
-            src={project.image}
-            alt={project.headline}
-            className="h-full w-full object-contain drop-shadow-2xl"
+          <motion.div
+            className="h-full w-full"
             initial={{ scale: 1.15, x: direction * 40 }}
             animate={{ scale: 1, x: 0 }}
             exit={{ scale: 1.05, x: -direction * 40 }}
             transition={{ duration: SLIDE_DURATION * 1.2, ease: EASE }}
-          />
+          >
+            <ImagePlaceholder aspect="4/3" className="h-full w-full" />
+          </motion.div>
         </motion.div>
 
         <div className="pointer-events-none absolute left-6 bottom-6 z-10 md:left-10 md:bottom-10">
