@@ -479,8 +479,131 @@ function PgpTbm() {
         </div>
       </section>
 
+      {/* PROGRAMME STRUCTURE — InClass · OutClass · Immersions */}
+      <section id="structure" className="border-b border-black/10">
+        <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
+          <div className="mb-10 max-w-3xl">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">How the programme is structured</div>
+            <h2 className="mt-3 font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.05] tracking-[-0.02em]">
+              Three engines. One outcome — <em className="italic text-black/60">operators who ship.</em>
+            </h2>
+            <p className="mt-5 text-[15px] leading-relaxed text-black/65">
+              Every term at Masters' Union runs on three parallel engines. <strong>InClass</strong> builds the fundamentals across seven tracks. <strong>OutClass</strong> forces you to apply them on live ventures that run across terms. <strong>Immersions</strong> take you to the ground — globally and across Bharat — to learn how business actually happens.
+            </p>
+          </div>
+
+          {/* Outcome stat strip */}
+          <div className="mb-14 grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
+            {STRUCTURE_STATS.map((s) => (
+              <div key={s.v} className="bg-white/90 p-6 backdrop-blur-sm">
+                <div className="font-display text-[38px] leading-none tracking-tight">{s.k}</div>
+                <div className="mt-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-black/60">{s.v}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* ENGINE 1 — InClass */}
+          <div className="grid gap-8 border-t border-black/10 py-10 md:grid-cols-[280px_1fr] md:gap-16">
+            <div>
+              <div className="font-display text-[42px] leading-none text-black/25">01</div>
+              <div className="mt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-black/55">InClass · Fundamentals</div>
+              <h3 className="mt-2 font-display text-[26px] leading-tight tracking-tight">The learning core</h3>
+              <p className="mt-3 text-[13.5px] leading-relaxed text-black/65">
+                Seven tracks, taught across all 8 terms by a mix of Ivy academics, research faculty and 40% sitting operators. Every course is graded on a real deliverable, never on rote exams.
+              </p>
+            </div>
+            <div>
+              <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
+                {IN_CLASS_TRACKS.map((t) => (
+                  <div key={t} className="bg-white/90 p-4 text-[13px] font-medium leading-tight text-black/80 pastel-fill">
+                    {t}
+                  </div>
+                ))}
+                <div className="bg-black p-4 text-[12px] font-semibold uppercase tracking-[0.14em] text-white/90">
+                  150+ courses · 8 terms
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ENGINE 2 — OutClass */}
+          <div className="grid gap-8 border-t border-black/10 py-10 md:grid-cols-[280px_1fr] md:gap-16">
+            <div>
+              <div className="font-display text-[42px] leading-none text-black/25">02</div>
+              <div className="mt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-700">OutClass · Live ventures</div>
+              <h3 className="mt-2 font-display text-[26px] leading-tight tracking-tight">Two flagships. Real customers, real revenue.</h3>
+              <p className="mt-3 text-[13.5px] leading-relaxed text-black/65">
+                Two OutClass tracks run continuously alongside InClass across terms. Both are graded on outcomes measured in the open market — not on decks.
+              </p>
+            </div>
+            <div className="grid gap-px bg-black/10 md:grid-cols-2">
+              {OUT_CLASS.map((o) => (
+                <article key={o.title} className="bg-white/90 p-6 backdrop-blur-sm pastel-fill">
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-700">{o.tag}</div>
+                  <h4 className="mt-3 font-display text-[22px] leading-tight tracking-tight">{o.title}</h4>
+                  <p className="mt-2 text-[13px] leading-relaxed text-black/65">{o.body}</p>
+                  <dl className="mt-5 grid grid-cols-3 gap-3 border-t border-black/10 pt-4">
+                    {o.stats.map((s) => (
+                      <div key={s.v}>
+                        <dt className="font-display text-[22px] leading-none tracking-tight">{s.k}</dt>
+                        <dd className="mt-1.5 text-[10.5px] leading-snug text-black/55">{s.v}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          {/* ENGINE 3 — Immersions */}
+          <div className="grid gap-8 border-t border-black/10 py-10 md:grid-cols-[280px_1fr] md:gap-16">
+            <div>
+              <div className="font-display text-[42px] leading-none text-black/25">03</div>
+              <div className="mt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-black/55">Immersions · On the ground</div>
+              <h3 className="mt-2 font-display text-[26px] leading-tight tracking-tight">Two tracks. Global boardrooms to Bharat factories.</h3>
+              <p className="mt-3 text-[13.5px] leading-relaxed text-black/65">
+                Students opt into immersion modules across terms — going where the business actually happens, not where slides describe it.
+              </p>
+            </div>
+            <div className="grid gap-px bg-black/10 md:grid-cols-2">
+              {IMMERSIONS.map((im) => (
+                <article key={im.title} className="bg-white/90 p-6 backdrop-blur-sm pastel-fill">
+                  <h4 className="font-display text-[22px] leading-tight tracking-tight">{im.title}</h4>
+                  <p className="mt-2 text-[13px] leading-relaxed text-black/65">{im.body}</p>
+                  <dl className="mt-5 grid grid-cols-2 gap-3 border-t border-black/10 pt-4">
+                    {im.stats.map((s) => (
+                      <div key={s.v}>
+                        <dt className="font-display text-[26px] leading-none tracking-tight">{s.k}</dt>
+                        <dd className="mt-1.5 text-[11px] leading-snug text-black/55">{s.v}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          {/* Outcome closer */}
+          <div className="mt-12 grid gap-px bg-black/10 sm:grid-cols-3">
+            <div className="bg-black p-6 text-white">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/50">Outcomes · Class of 2025</div>
+              <div className="mt-3 font-display text-[28px] leading-tight">Numbers over narrative.</div>
+            </div>
+            <div className="bg-white/90 p-6 pastel-fill">
+              <div className="font-display text-[38px] leading-none tracking-tight">₹34.6 LPA</div>
+              <div className="mt-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-black/55">Median CTC · flagship cohort</div>
+            </div>
+            <div className="bg-white/90 p-6 pastel-fill">
+              <div className="font-display text-[38px] leading-none tracking-tight">200+</div>
+              <div className="mt-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-black/55">Startups founded on campus</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CURRICULUM */}
       <section id="curriculum" className="border-b border-black/10">
+
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
           <div className="mb-10 flex items-end justify-between">
             <div>
