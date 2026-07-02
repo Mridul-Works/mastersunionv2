@@ -561,7 +561,7 @@ function PgpTbm() {
       </section>
 
       {/* FAQ */}
-      <section className="border-b border-black/10 bg-white">
+      <section className="border-b border-black/10">
         <div className="mx-auto grid max-w-[1180px] gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.6fr_1fr] lg:gap-16">
           <div>
             <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">FAQ</div>
@@ -569,18 +569,18 @@ function PgpTbm() {
               Everything you were about to email us.
             </h2>
           </div>
-          <div className="border-t border-black/10">
+          <div className="border-t border-black/10 bg-white/90 backdrop-blur-sm">
             {FAQ.map((f, i) => {
               const open = openFaq === i;
               return (
                 <div key={f.q} className="border-b border-black/10">
-                  <button type="button" onClick={() => setOpenFaq(open ? null : i)} className="flex w-full items-center justify-between gap-6 py-5 text-left">
+                  <button type="button" onClick={() => setOpenFaq(open ? null : i)} className="flex w-full items-center justify-between gap-6 py-5 text-left px-5">
                     <span className="font-display text-[18px] leading-tight">{f.q}</span>
                     <span className="flex size-8 items-center justify-center border border-black/15 text-black/70">
                       {open ? <Minus className="size-4" /> : <Plus className="size-4" />}
                     </span>
                   </button>
-                  {open && <p className="pb-6 pr-14 text-[14px] leading-relaxed text-black/70">{f.a}</p>}
+                  {open && <p className="pb-6 pr-14 pl-5 text-[14px] leading-relaxed text-black/70">{f.a}</p>}
                 </div>
               );
             })}
