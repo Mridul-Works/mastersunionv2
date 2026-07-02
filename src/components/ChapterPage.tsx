@@ -149,7 +149,7 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
       </section>
 
       {/* CLOSING */}
-      <section className="mx-auto max-w-5xl px-5 py-24 text-center md:px-10 md:py-32">
+      <section id="closing" className="mx-auto max-w-5xl px-5 py-24 text-center md:px-10 md:py-32">
         <p className="text-balance text-[clamp(1.4rem,3vw,2.4rem)] italic leading-[1.2] text-black/90">
           {chapter.closing}
         </p>
