@@ -134,18 +134,11 @@ export default function SignatureCarousel() {
     };
   }, []);
 
-  const jump = (i: number) => {
-    const st = ScrollTrigger.getAll().find((s) => s.trigger === sectionRef.current);
-    if (!st) return;
-    const p = (i + 0.5) / ITEMS.length;
-    const y = st.start + (st.end - st.start) * p;
-    const lenis = (window as any).__lenis;
-    if (lenis?.scrollTo) lenis.scrollTo(y, { duration: 1.1 });
-    else window.scrollTo({ top: y, behavior: "smooth" });
-  };
-
-
-  const project = ITEMS[index];
+  return (
+    <section
+      ref={sectionRef}
+      className="relative h-screen w-full overflow-hidden bg-[#0a0a0a] text-white"
+    >
 
   return (
     <section
