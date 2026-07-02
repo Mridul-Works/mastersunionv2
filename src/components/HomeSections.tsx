@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -503,7 +504,7 @@ function AdmissionsConnect() {
         </h2>
       </header>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div className="mx-auto grid max-w-[720px] grid-cols-1 gap-6 md:grid-cols-2">
         {featured.map((s) => (
           <article
             key={s.id}
@@ -1238,7 +1239,13 @@ function SageSheet({ program, onOpenChange }: { program: string | null; onOpenCh
   const [messages, setMessages] = useState<SageMsg[]>([]);
   const [input, setInput] = useState("");
   const [thinking, setThinking] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
 
   // Push page content aside — shrink the site instead of overlaying.
   useEffect(() => {
@@ -1347,7 +1354,9 @@ function SageSheet({ program, onOpenChange }: { program: string | null; onOpenCh
     text: null,
   };
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <aside className="fixed right-0 top-0 z-[110] flex h-screen w-[440px] flex-col border-l border-black/10 bg-[#FBFAF6] shadow-[-8px_0_40px_-12px_rgba(0,0,0,0.15)] animate-slide-in-right">
       <header className="relative flex items-center border-b border-black/10 bg-white px-5 py-4">
         <div className="flex min-w-0 items-center gap-2.5 pr-20">
@@ -1471,6 +1480,8 @@ function SageSheet({ program, onOpenChange }: { program: string | null; onOpenCh
           S.A.G.E may make mistakes · Verify with admissions
         </p>
       </form>
-    </aside>
+    </aside>,
+    document.body
   );
+
 }
