@@ -1480,6 +1480,8 @@ function SageSheet({ program, onOpenChange }: { program: string | null; onOpenCh
           S.A.G.E may make mistakes · Verify with admissions
         </p>
       </form>
-    </aside>
+    </aside>,
+    document.body
   );
+
 }
