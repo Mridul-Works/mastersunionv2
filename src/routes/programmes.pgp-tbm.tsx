@@ -419,7 +419,7 @@ function PgpTbm() {
       </section>
 
       {/* CURRICULUM */}
-      <section id="curriculum" className="border-b border-black/10 bg-white">
+      <section id="curriculum" className="border-b border-black/10">
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
           <div className="mb-10 flex items-end justify-between">
             <div>
@@ -437,7 +437,7 @@ function PgpTbm() {
             {TERMS.map((t, i) => {
               const open = openTerm === i;
               return (
-                <li key={t.label} className="bg-white">
+                <li key={t.label} className="bg-white/90 backdrop-blur-sm">
                   <button
                     type="button"
                     onClick={() => setOpenTerm(open ? null : i)}
