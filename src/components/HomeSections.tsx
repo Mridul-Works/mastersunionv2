@@ -312,14 +312,16 @@ function Programs() {
                     <ArrowUpRight className="size-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </a>
 
-                  <div className="mt-3 flex items-center gap-2 border border-black/10 bg-black/[0.03] px-3 py-2">
-                    <Bot className="size-3.5 text-black/70" />
-                    <span className="font-mono text-[8px] font-bold uppercase tracking-[0.12em] text-black/70">
-                      S.A.G.E
-                    </span>
-                    <span className="font-mono text-[7px] uppercase tracking-[0.1em] text-black/45">
-                      Student Assistance & Guidance Engine
-                    </span>
+                  <div className="mt-3 flex items-center gap-2 border border-emerald-700/20 bg-emerald-50/[0.35] px-2.5 py-2 transition-colors hover:border-emerald-700/40 hover:bg-emerald-50/[0.55]">
+                    <Bot className="size-3.5 shrink-0 text-emerald-700" />
+                    <div className="min-w-0 flex-1">
+                      <span className="block font-sans text-[9px] font-bold uppercase tracking-[0.12em] text-emerald-700">
+                        Ask S.A.G.E
+                      </span>
+                      <span className="block whitespace-nowrap font-mono text-[7px] font-medium uppercase tracking-[0.12em] text-emerald-700/70">
+                        Student Assistance & Guidance Engine
+                      </span>
+                    </div>
                   </div>
                 </article>
               ))}
