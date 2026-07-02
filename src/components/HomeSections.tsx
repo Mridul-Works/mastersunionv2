@@ -527,76 +527,80 @@ function AdmissionsConnect() {
             return (
               <article
                 key={s.id}
-                className="group w-[calc(24%-12px)] flex-shrink-0 snap-start bg-[#F5F3EE] p-5 transition-all duration-300 hover:-translate-y-1 pastel-fill flex flex-col justify-between"
+                className="group flex w-[calc(60%-12px)] min-w-[540px] shrink-0 snap-start gap-4 bg-[#F5F3EE] p-5 transition-all duration-300 hover:-translate-y-1 pastel-fill"
               >
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="bg-black px-2 py-1 font-mono text-[8px] font-bold uppercase tracking-[0.12em] text-white transition-colors group-hover:bg-white group-hover:text-black">
-                      {isInPerson ? "IN PERSON" : "VIRTUAL"}
-                    </span>
-                    <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-black/50">
-                      {s.duration}
-                    </span>
-                  </div>
-
-                  <ImagePlaceholder aspect="2/3" className="mt-3" />
-
-                  <h3
-                    className="mt-4 text-[1rem] font-medium leading-[1.2] tracking-tight text-black transition-colors group-hover:text-black"
-                    style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                  >
-                    {s.title}
-                  </h3>
-
-                  <p className="mt-2 font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-black/50">
-                    {s.tagline}
-                  </p>
-
-                  <p className="mt-3 text-[11px] leading-relaxed text-black/50">
-                    {s.description}
-                  </p>
+                <div className="w-[150px] shrink-0 self-stretch">
+                  <ImagePlaceholder aspect="auto" className="h-full" />
                 </div>
 
-                <div className="mt-5 border-t border-black/10 pt-4">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-black/60 transition-colors group-hover:text-black/80">
-                      {formatSessionDate(s.nextDate)}
-                    </span>
-                    <span className="font-mono text-[8px] font-semibold uppercase tracking-[0.12em] text-black/40">
-                      {s.nextTime} {s.timezone}
-                    </span>
+                <div className="flex flex-1 flex-col justify-between">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="bg-black px-2 py-1 font-mono text-[8px] font-bold uppercase tracking-[0.12em] text-white transition-colors group-hover:bg-white group-hover:text-black">
+                        {isInPerson ? "IN PERSON" : "VIRTUAL"}
+                      </span>
+                      <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-black/50">
+                        {s.duration}
+                      </span>
+                    </div>
+
+                    <h3
+                      className="mt-3 text-[1rem] font-medium leading-[1.2] tracking-tight text-black transition-colors group-hover:text-black"
+                      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                    >
+                      {s.title}
+                    </h3>
+
+                    <p className="mt-1 font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-black/50">
+                      {s.tagline}
+                    </p>
+
+                    <p className="mt-2 text-[11px] leading-relaxed text-black/50">
+                      {s.description}
+                    </p>
                   </div>
-                  <div className="mt-3 flex items-center gap-3 bg-black/[0.03] p-2.5">
-                    {isInPerson ? (
-                      <MapPin className="size-4 text-black/50" />
-                    ) : (
-                      <Video className="size-4 text-black/50" />
-                    )}
-                    <div className="flex flex-col">
-                      <span className="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-black/70">
-                        {s.format}
+
+                  <div className="mt-4 border-t border-black/10 pt-4">
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-black/60 transition-colors group-hover:text-black/80">
+                        {formatSessionDate(s.nextDate)}
                       </span>
                       <span className="font-mono text-[8px] font-semibold uppercase tracking-[0.12em] text-black/40">
-                        {s.audience}
+                        {s.nextTime} {s.timezone}
+                      </span>
+                    </div>
+                    <div className="mt-3 flex items-center gap-3 bg-black/[0.03] p-2.5">
+                      {isInPerson ? (
+                        <MapPin className="size-4 text-black/50" />
+                      ) : (
+                        <Video className="size-4 text-black/50" />
+                      )}
+                      <div className="flex flex-col">
+                        <span className="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-black/70">
+                          {s.format}
+                        </span>
+                        <span className="font-mono text-[8px] font-semibold uppercase tracking-[0.12em] text-black/40">
+                          {s.audience}
+                        </span>
+                      </div>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => openFor(s.id)}
+                      className="mt-4 inline-flex w-full items-center justify-between border border-black px-4 py-2.5 font-sans text-[10px] font-semibold uppercase tracking-[0.12em] text-black transition-all duration-300 hover:bg-black hover:text-white"
+                    >
+                      Register
+                      <ArrowUpRight className="size-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    </button>
+
+                    <div className="mt-3 flex items-center gap-2 border border-black/10 bg-black/[0.02] px-2.5 py-2 transition-colors group-hover:border-black/20 group-hover:bg-black/[0.04]">
+                      <Icon className="size-3.5 shrink-0 text-black/40" />
+                      <span className="font-mono text-[8px] font-bold uppercase tracking-[0.12em] text-black/50">
+                        {s.spotsLeft} spots left
                       </span>
                     </div>
                   </div>
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => openFor(s.id)}
-                  className="mt-5 inline-flex w-full items-center justify-between border border-black px-4 py-2.5 font-sans text-[10px] font-semibold uppercase tracking-[0.12em] text-black transition-all duration-300 hover:bg-black hover:text-white"
-                >
-                  Register
-                  <ArrowUpRight className="size-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                </button>
-
-                <div className="mt-3 flex items-center gap-2 border border-black/10 bg-black/[0.02] px-2.5 py-2 transition-colors group-hover:border-black/20 group-hover:bg-black/[0.04]">
-                  <Icon className="size-3.5 shrink-0 text-black/40" />
-                  <span className="font-mono text-[8px] font-bold uppercase tracking-[0.12em] text-black/50">
-                    {s.spotsLeft} spots left
-                  </span>
                 </div>
               </article>
             );
