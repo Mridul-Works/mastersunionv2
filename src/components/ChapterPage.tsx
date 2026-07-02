@@ -1,15 +1,23 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Home, Quote, BarChart3, BookOpen, CheckCircle2 } from "lucide-react";
 import type { Chapter } from "./chapters";
-import BottomNav from "./BottomNav";
+import BottomNav, { type BottomNavItem } from "./BottomNav";
 
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
 
+const CHAPTER_NAV: BottomNavItem[] = [
+  { id: "top", label: "Top", icon: Home },
+  { id: "point", label: "Point", icon: Quote },
+  { id: "stats", label: "Stats", icon: BarChart3 },
+  { id: "story", label: "Story", icon: BookOpen },
+  { id: "proof", label: "Proof", icon: CheckCircle2 },
+];
+
 export function ChapterPage({ chapter }: { chapter: Chapter }) {
   return (
     <main className="min-h-screen bg-white pb-28 text-black md:pb-32" style={{ fontFamily: INTER }}>
-      <BottomNav />
+      <BottomNav items={CHAPTER_NAV} applyHref="#closing" />
       {/* Chapter marker */}
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">
         <Link
@@ -55,7 +63,7 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
       </section>
 
       {/* PULL QUOTE */}
-      <section className="border-y border-black/10 bg-neutral-50">
+      <section id="point" className="border-y border-black/10 bg-neutral-50">
         <div className="mx-auto max-w-5xl px-5 py-20 md:px-10 md:py-28">
           <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
             The point
@@ -67,7 +75,7 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
       </section>
 
       {/* STATS STRIP */}
-      <section className="mx-auto max-w-6xl px-5 pt-20 md:px-10">
+      <section id="stats" className="mx-auto max-w-6xl px-5 pt-20 md:px-10">
         <div className="grid grid-cols-2 gap-px bg-black/10 md:grid-cols-4">
           {chapter.stats.map((s, i) => (
             <div key={i} className="bg-white px-4 py-10 text-center">
@@ -83,7 +91,7 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
       </section>
 
       {/* NARRATIVE SECTIONS */}
-      <section className="mx-auto max-w-5xl px-5 py-20 md:px-10 md:py-28">
+      <section id="story" className="mx-auto max-w-5xl px-5 py-20 md:px-10 md:py-28">
         <div className="space-y-16">
           {chapter.sections.map((sec, i) => (
             <article key={i} className="grid grid-cols-1 gap-6 border-t border-black/10 pt-10 md:grid-cols-12 md:gap-10">
@@ -106,7 +114,7 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
       </section>
 
       {/* PROOF + IN THE ROOM */}
-      <section className="border-t border-black/10 bg-neutral-50">
+      <section id="proof" className="border-t border-black/10 bg-neutral-50">
         <div className="mx-auto max-w-6xl px-5 py-20 md:grid md:grid-cols-2 md:gap-16 md:px-10 md:py-24">
           <div>
             <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
@@ -141,7 +149,7 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
       </section>
 
       {/* CLOSING */}
-      <section className="mx-auto max-w-5xl px-5 py-24 text-center md:px-10 md:py-32">
+      <section id="closing" className="mx-auto max-w-5xl px-5 py-24 text-center md:px-10 md:py-32">
         <p className="text-balance text-[clamp(1.4rem,3vw,2.4rem)] italic leading-[1.2] text-black/90">
           {chapter.closing}
         </p>

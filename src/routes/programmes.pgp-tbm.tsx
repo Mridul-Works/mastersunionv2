@@ -1,9 +1,17 @@
 import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowUpRight, Plus, Minus, Check, Star } from "lucide-react";
+import { ArrowUpRight, Plus, Minus, Check, Star, Home, BookOpen, Users, CalendarDays, HelpCircle } from "lucide-react";
 import heroBuilding from "@/assets/hero-building-light.webp";
 import SignatureCarousel from "@/components/SignatureCarousel";
-import BottomNav from "@/components/BottomNav";
+import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
+
+const PGP_NAV: BottomNavItem[] = [
+  { id: "top", label: "Overview", icon: Home },
+  { id: "curriculum", label: "Curriculum", icon: BookOpen },
+  { id: "faculty", label: "Faculty", icon: Users },
+  { id: "admissions", label: "Admissions", icon: CalendarDays },
+  { id: "faq", label: "FAQ", icon: HelpCircle },
+];
 
 
 
@@ -296,7 +304,7 @@ function PgpTbm() {
         "--pastel-mid": "oklch(0.985 0.020 210 / 0.4)",
       } as React.CSSProperties}
     >
-      <BottomNav applyHref="#apply" />
+      <BottomNav items={PGP_NAV} applyHref="#apply" />
 
 
       {/* HERO */}
@@ -491,7 +499,7 @@ function PgpTbm() {
 
 
       {/* FACULTY */}
-      <section className="border-b border-black/10">
+      <section id="faculty" className="border-b border-black/10">
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
           <div className="mb-10">
             <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">The 30·30·40 faculty model</div>
@@ -515,7 +523,7 @@ function PgpTbm() {
       </section>
 
       {/* ADMISSIONS TIMELINE */}
-      <section className="border-b border-black/10">
+      <section id="admissions" className="border-b border-black/10">
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
           <div className="mb-10">
             <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">Admissions · Cohort 2026</div>
@@ -536,7 +544,7 @@ function PgpTbm() {
       </section>
 
       {/* FAQ */}
-      <section className="border-b border-black/10">
+      <section id="faq" className="border-b border-black/10">
         <div className="mx-auto grid max-w-[1180px] gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.6fr_1fr] lg:gap-16">
           <div>
             <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">FAQ</div>
