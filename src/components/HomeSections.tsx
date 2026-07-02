@@ -529,7 +529,9 @@ function AdmissionsConnect() {
                 key={s.id}
                 className="group flex w-[calc(60%-12px)] min-w-[540px] shrink-0 snap-start gap-4 bg-[#F5F3EE] p-5 transition-all duration-300 hover:-translate-y-1 pastel-fill"
               >
-                <ImagePlaceholder aspect="auto" className="w-[150px] shrink-0 self-stretch" />
+                <div className="w-[150px] shrink-0 self-stretch">
+                  <ImagePlaceholder aspect="auto" className="h-full" />
+                </div>
 
                 <div className="flex flex-1 flex-col justify-between">
                   <div>
