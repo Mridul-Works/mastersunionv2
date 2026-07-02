@@ -30,6 +30,7 @@ import {
   Flame,
   Check,
   User,
+  X,
 } from "lucide-react";
 
 import { Link } from "@tanstack/react-router";
