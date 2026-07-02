@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { ArrowUpRight, ArrowRight, ChevronLeft, ChevronRight, Hourglass, Quote, GraduationCap, Rocket, Briefcase, Users, Mic, ChefHat, Building2, Instagram, Linkedin, Youtube, Twitter, ShoppingCart } from "lucide-react";
+import { ArrowUpRight, ArrowRight, ChevronLeft, ChevronRight, Hourglass, Quote, GraduationCap, Rocket, Briefcase, Users, Mic, ChefHat, Building2, Instagram, Linkedin, Youtube, Twitter, ShoppingCart, Bot } from "lucide-react";
 
 import { Link } from "@tanstack/react-router";
 import founderPhoto from "@/assets/founder-pratham-cutout.webp";
@@ -311,6 +311,16 @@ function Programs() {
                     Apply Now
                     <ArrowUpRight className="size-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </a>
+
+                  <div className="mt-3 flex items-center gap-2 border border-black/10 bg-black/[0.03] px-3 py-2">
+                    <Bot className="size-3.5 text-black/70" />
+                    <span className="font-mono text-[8px] font-bold uppercase tracking-[0.12em] text-black/70">
+                      S.A.G.E
+                    </span>
+                    <span className="font-mono text-[7px] uppercase tracking-[0.1em] text-black/45">
+                      Student Assistance & Guidance Engine
+                    </span>
+                  </div>
                 </article>
               ))}
             </div>
