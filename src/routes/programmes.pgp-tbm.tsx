@@ -381,14 +381,14 @@ function PgpTbm() {
       </section>
 
       {/* SCHOOL-WIDE PROOF */}
-      <section className="border-b border-black/10 bg-white">
+      <section className="border-b border-black/10">
         <div className="mx-auto max-w-[1180px] px-4 py-14 sm:px-6">
           <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">
             The school behind the programme
           </div>
           <div className="mt-6 grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
             {SCHOOL_STATS.map((st) => (
-              <div key={st.v} className="bg-white p-6">
+              <div key={st.v} className="bg-white/90 p-6 backdrop-blur-sm">
                 <div className="font-display text-[38px] leading-none tracking-tight">{st.k}</div>
                 <div className="mt-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-black/60">{st.v}</div>
               </div>
@@ -408,7 +408,7 @@ function PgpTbm() {
           </div>
           <div className="grid gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-4">
             {PILLARS.map((p) => (
-              <article key={p.title} className="bg-white p-6 pastel-fill">
+              <article key={p.title} className="bg-white/90 p-6 backdrop-blur-sm pastel-fill">
                 <div className="font-display text-[36px] leading-none text-black/25">{p.tag}</div>
                 <h3 className="mt-6 font-display text-[18px] leading-tight tracking-tight">{p.title}</h3>
                 <p className="mt-2 text-[13px] leading-relaxed text-black/70">{p.body}</p>
@@ -419,7 +419,7 @@ function PgpTbm() {
       </section>
 
       {/* CURRICULUM */}
-      <section id="curriculum" className="border-b border-black/10 bg-white">
+      <section id="curriculum" className="border-b border-black/10">
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
           <div className="mb-10 flex items-end justify-between">
             <div>
@@ -437,7 +437,7 @@ function PgpTbm() {
             {TERMS.map((t, i) => {
               const open = openTerm === i;
               return (
-                <li key={t.label} className="bg-white">
+                <li key={t.label} className="bg-white/90 backdrop-blur-sm">
                   <button
                     type="button"
                     onClick={() => setOpenTerm(open ? null : i)}
@@ -506,7 +506,7 @@ function PgpTbm() {
           </div>
           <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
             {SIGNATURE.map((sg) => (
-              <div key={sg.k} className="bg-white p-6 pastel-fill">
+              <div key={sg.k} className="bg-white/90 p-6 backdrop-blur-sm pastel-fill">
                 <div className="font-display text-[20px] leading-tight">{sg.k}</div>
                 <div className="mt-2 text-[13px] text-black/65">{sg.v}</div>
               </div>
@@ -516,7 +516,7 @@ function PgpTbm() {
       </section>
 
       {/* FACULTY */}
-      <section className="border-b border-black/10 bg-white">
+      <section className="border-b border-black/10">
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
           <div className="mb-10">
             <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">The 30·30·40 faculty model</div>
@@ -526,7 +526,7 @@ function PgpTbm() {
           </div>
           <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
             {FACULTY.map((f) => (
-              <div key={f.name} className="bg-white p-6 pastel-fill">
+              <div key={f.name} className="bg-white/90 p-6 backdrop-blur-sm pastel-fill">
                 <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50">{f.tag}</div>
                 <div className="mt-4 font-display text-[22px] leading-tight">{f.name}</div>
                 <div className="mt-1 text-[13px] text-black/60">{f.role}</div>
@@ -550,7 +550,7 @@ function PgpTbm() {
           </div>
           <ol className="grid gap-px bg-black/10 md:grid-cols-5">
             {TIMELINE.map((t, i) => (
-              <li key={t.t} className="bg-white p-5 pastel-fill">
+              <li key={t.t} className="bg-white/90 p-5 backdrop-blur-sm pastel-fill">
                 <div className="font-display text-[28px] leading-none text-black/30">{String(i + 1).padStart(2, "0")}</div>
                 <div className="mt-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-black/55">{t.d}</div>
                 <div className="mt-1 font-display text-[15px] leading-tight text-black/85">{t.t}</div>
@@ -561,7 +561,7 @@ function PgpTbm() {
       </section>
 
       {/* FAQ */}
-      <section className="border-b border-black/10 bg-white">
+      <section className="border-b border-black/10">
         <div className="mx-auto grid max-w-[1180px] gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.6fr_1fr] lg:gap-16">
           <div>
             <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">FAQ</div>
@@ -569,18 +569,18 @@ function PgpTbm() {
               Everything you were about to email us.
             </h2>
           </div>
-          <div className="border-t border-black/10">
+          <div className="border-t border-black/10 bg-white/90 backdrop-blur-sm">
             {FAQ.map((f, i) => {
               const open = openFaq === i;
               return (
                 <div key={f.q} className="border-b border-black/10">
-                  <button type="button" onClick={() => setOpenFaq(open ? null : i)} className="flex w-full items-center justify-between gap-6 py-5 text-left">
+                  <button type="button" onClick={() => setOpenFaq(open ? null : i)} className="flex w-full items-center justify-between gap-6 py-5 text-left px-5">
                     <span className="font-display text-[18px] leading-tight">{f.q}</span>
                     <span className="flex size-8 items-center justify-center border border-black/15 text-black/70">
                       {open ? <Minus className="size-4" /> : <Plus className="size-4" />}
                     </span>
                   </button>
-                  {open && <p className="pb-6 pr-14 text-[14px] leading-relaxed text-black/70">{f.a}</p>}
+                  {open && <p className="pb-6 pr-14 pl-5 text-[14px] leading-relaxed text-black/70">{f.a}</p>}
                 </div>
               );
             })}
