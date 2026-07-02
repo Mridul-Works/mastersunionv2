@@ -544,7 +544,7 @@ function PgpTbm() {
       </section>
 
       {/* FAQ */}
-      <section className="border-b border-black/10">
+      <section id="faq" className="border-b border-black/10">
         <div className="mx-auto grid max-w-[1180px] gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.6fr_1fr] lg:gap-16">
           <div>
             <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">FAQ</div>
