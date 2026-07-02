@@ -850,28 +850,33 @@ function Programs() {
                     <ArrowUpRight className="size-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </a>
 
-                  <div className="mt-3 flex items-center gap-2 border border-orange-300/40 bg-orange-50/[0.85] px-2.5 py-2 transition-colors hover:border-orange-400/60 hover:bg-orange-50">
+                  <button
+                    type="button"
+                    onClick={() => setSageProgram(p.title)}
+                    className="mt-3 flex w-full items-center gap-2 border border-orange-300/25 bg-orange-50/40 px-2.5 py-2 text-left transition-colors hover:border-orange-400/40 hover:bg-orange-50/70"
+                  >
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-1">
-                        <span className="font-sans text-[9px] font-bold uppercase tracking-[0.12em] text-orange-800">
+                        <span className="font-sans text-[9px] font-bold uppercase tracking-[0.12em] text-orange-800/60">
                           ASK
                         </span>
-                        <Bot className="size-3.5 shrink-0 text-orange-600" />
-                        <span className="font-sans text-[9px] font-bold uppercase tracking-[0.12em] text-orange-800">
+                        <Bot className="size-3.5 shrink-0 text-orange-600/60" />
+                        <span className="font-sans text-[9px] font-bold uppercase tracking-[0.12em] text-orange-800/60">
                           S.A.G.E
                         </span>
-                        <span className="ml-0.5 rounded-sm bg-orange-600 px-1 py-0.5 font-sans text-[6px] font-bold uppercase tracking-[0.12em] text-white">
+                        <span className="ml-0.5 rounded-sm bg-orange-600/50 px-1 py-0.5 font-sans text-[6px] font-bold uppercase tracking-[0.12em] text-white">
                           AI
                         </span>
                       </div>
                       <span
-                        className="block font-sans text-[5px] font-medium uppercase tracking-[0.02em] text-orange-700/70"
+                        className="block font-sans text-[5px] font-medium uppercase tracking-[0.02em] text-orange-700/50"
                         style={{ whiteSpace: "nowrap" }}
                       >
                         Student Assistance & Guidance Engine
                       </span>
                     </div>
-                  </div>
+                    <ArrowUpRight className="size-3 shrink-0 text-orange-700/50" />
+                  </button>
                 </article>
               ))}
             </div>
@@ -880,6 +885,11 @@ function Programs() {
           </div>
         </div>
       </div>
+
+      <SageSheet
+        program={sageProgram}
+        onOpenChange={(open) => !open && setSageProgram(null)}
+      />
     </section>
   );
 }
