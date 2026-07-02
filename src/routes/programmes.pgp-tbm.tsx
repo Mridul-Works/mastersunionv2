@@ -408,7 +408,7 @@ function PgpTbm() {
           </div>
           <div className="grid gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-4">
             {PILLARS.map((p) => (
-              <article key={p.title} className="bg-white p-6 pastel-fill">
+              <article key={p.title} className="bg-white/90 p-6 backdrop-blur-sm pastel-fill">
                 <div className="font-display text-[36px] leading-none text-black/25">{p.tag}</div>
                 <h3 className="mt-6 font-display text-[18px] leading-tight tracking-tight">{p.title}</h3>
                 <p className="mt-2 text-[13px] leading-relaxed text-black/70">{p.body}</p>
