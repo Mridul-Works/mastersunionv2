@@ -22,8 +22,6 @@ import {
   Twitter,
   ShoppingCart,
   Bot,
-  CalendarDays,
-  Timer,
   MapPin,
   Video,
   Coffee,
