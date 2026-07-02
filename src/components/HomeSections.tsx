@@ -503,7 +503,7 @@ function AdmissionsConnect() {
         </h2>
       </header>
 
-      <div className="mx-auto grid max-w-3xl grid-cols-1 gap-6 md:grid-cols-2">
+      <div className="mx-auto grid max-w-[720px] grid-cols-1 gap-6 md:grid-cols-2">
         {featured.map((s) => (
           <article
             key={s.id}
