@@ -22,8 +22,6 @@ import {
   Twitter,
   ShoppingCart,
   Bot,
-  MapPin,
-  Video,
   Coffee,
   UsersRound,
   Footprints,
@@ -32,6 +30,7 @@ import {
   User,
   X,
 } from "lucide-react";
+
 
 import { Link } from "@tanstack/react-router";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
