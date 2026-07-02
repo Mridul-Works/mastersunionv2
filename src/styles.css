@@ -56,10 +56,10 @@
   --cream: oklch(0.94 0.025 80);
   --ink: oklch(0.16 0.01 80);
 
-  /* Pastel gradient: cyan to light blue to soft cream — admissions hover */
-  --pastel-start: oklch(0.95 0.02 210);
-  --pastel-mid: oklch(0.95 0.03 215);
-  --pastel-end: oklch(0.96 0.018 100);
+  /* Pastel gradient: light cyan to soft blue to warm peach — admissions hover */
+  --pastel-start: oklch(0.965 0.02 210);
+  --pastel-mid: oklch(0.965 0.03 205);
+  --pastel-end: oklch(0.97 0.03 70);
 }
 
 @layer utilities {
