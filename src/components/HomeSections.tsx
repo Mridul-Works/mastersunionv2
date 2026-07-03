@@ -1123,7 +1123,7 @@ export default function HomeSections() {
         <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-10 md:py-32">
           <SectionHead eyebrow="The pedagogy" title={<>How Masters' Union <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>actually</span> teaches.</>} lede="Eight systems that work in concert — built so theory never outpaces practice." />
 
-          <div className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-16 grid grid-cols-1 items-start gap-5 md:grid-cols-2 lg:grid-cols-4">
             {PEDAGOGY.map((p) => {
               const Icon = p.icon;
               return (
