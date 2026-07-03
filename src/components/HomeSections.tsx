@@ -519,7 +519,7 @@ function AdmissionsConnect() {
             {featured.map((s) => (
               <div
                 key={s.id}
-                className="w-[92%] flex-shrink-0 px-2 md:w-[88%] md:px-4 lg:w-[84%]
+                className="w-[92%] flex-shrink-0 px-2 md:w-[88%] md:px-4 lg:w-[84%]"
               >
                 <article className="group relative mx-auto aspect-[16/9] max-h-[420px] w-full max-w-[980px] overflow-hidden rounded-sm bg-[#E5E0D5]/60 shadow-lg transition-transform duration-500 hover:scale-[1.01]">
                   <div className="absolute inset-0">
