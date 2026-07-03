@@ -521,7 +521,7 @@ function AdmissionsConnect() {
                 key={s.id}
                 className="w-[92%] flex-shrink-0 px-2 md:w-[88%] md:px-4 lg:w-[84%]"
               >
-                <article className="group relative mx-auto aspect-[16/9] max-h-[420px] w-full max-w-[980px] overflow-hidden rounded-sm bg-[#E5E0D5]/60 shadow-lg transition-transform duration-500 hover:scale-[1.01]">
+                <article className="group relative mx-auto aspect-[16/9] max-h-[420px] w-full max-w-[980px] overflow-hidden rounded-none bg-[#E5E0D5]/60 shadow-lg transition-transform duration-500 hover:scale-[1.01]">
                   <div className="absolute inset-0">
                     <ImagePlaceholder aspect="auto" className="h-full w-full" label="Session" />
                   </div>
@@ -553,7 +553,7 @@ function AdmissionsConnect() {
                       <button
                         type="button"
                         onClick={() => openFor(s.id)}
-                        className="rounded-sm bg-white px-8 py-3.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#F5F3EE]"
+                        className="rounded-none bg-white px-8 py-3.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#F5F3EE]"
                       >
                         Register for Session
                       </button>
