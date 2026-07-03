@@ -1016,7 +1016,7 @@ export default function HomeSections() {
               {NEWS.map((n) => (
                 <article
                   key={n.title}
-                  className="group w-[calc(25%-12px)] min-w-[260px] flex-shrink-0 snap-start bg-[#F5F3EE] p-5 transition-all duration-300 hover:-translate-y-1 pastel-fill"
+                  className="group w-[calc(25%-12px)] min-w-[260px] flex-shrink-0 snap-start p-5 transition-all duration-300 hover:-translate-y-1 pastel-fill"
                 >
                   <div className="flex items-center gap-2">
                     <span className="bg-black px-2 py-1 font-mono text-[8px] font-bold uppercase tracking-[0.12em] text-white">
@@ -1036,7 +1036,7 @@ export default function HomeSections() {
                     {n.title}
                   </h3>
 
-                  <div className="mt-5 border-t border-black/10 pt-4">
+                  <div className="mt-5 pt-4">
                     <p className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-black/60">
                       Source · {n.source}
                     </p>
@@ -1044,7 +1044,7 @@ export default function HomeSections() {
 
                   <a
                     href="#"
-                    className="mt-4 inline-flex w-full items-center justify-between border border-black px-4 py-2.5 font-sans text-[10px] font-semibold uppercase tracking-[0.12em] text-black transition-all duration-300 hover:bg-black hover:text-white"
+                    className="mt-4 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-widest text-black underline underline-offset-4 decoration-black/20 transition-colors hover:decoration-black"
                   >
                     Read Story
                     <ArrowUpRight className="size-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
