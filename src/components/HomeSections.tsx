@@ -8,7 +8,6 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
-  Hourglass,
   Quote,
   GraduationCap,
   Rocket,
@@ -31,6 +30,7 @@ import {
   User,
   X,
 } from "lucide-react";
+
 
 
 import { Link } from "@tanstack/react-router";
