@@ -491,7 +491,7 @@ function AdmissionsConnect() {
 
   return (
     <div className="col-span-12 mt-14 border-t-2 border-black pt-12">
-      <header className="mb-10 text-center">
+      <header className="mb-10 max-w-3xl">
         <p className="mb-3 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-black/50">
           Admissions Connect
         </p>
@@ -504,6 +504,10 @@ function AdmissionsConnect() {
             Talk to humans.
           </span>
         </h2>
+        <p className="mt-5 max-w-2xl text-[15px] font-medium leading-snug text-black/70">
+          Join live, small-group sessions with alumni, parents, faculty and current students.
+          Ask the questions search engines can’t answer and get honest answers from people who’ve been through it.
+        </p>
       </header>
 
       <div className="relative mx-auto max-w-[1280px]">
