@@ -831,17 +831,18 @@ function Programs() {
                   </h3>
 
                   <div className="mt-5 border-t border-black/10 pt-4">
-                    <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
-                      <span className="text-[12px] font-semibold text-black whitespace-nowrap">{p.status}</span>
+                    <div className="text-[12px] font-semibold text-black">{p.status}</div>
+                    <div className="mt-2 flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-2 text-[13px] font-semibold tabular-nums text-black">
+                        <Hourglass className="size-3.5 text-black/40" />
+                        <CompactCountdown target={p.deadline} />
+                      </div>
                       <span className="text-[10px] font-medium uppercase tracking-wider text-black/45 whitespace-nowrap">
                         Closes {formatDeadline(p.deadline)}
                       </span>
                     </div>
-                    <div className="mt-3 flex items-center gap-2 text-[13px] font-semibold tabular-nums text-black">
-                      <Hourglass className="size-3.5 text-black/40" />
-                      <CompactCountdown target={p.deadline} />
-                    </div>
                   </div>
+
 
 
                   <a
