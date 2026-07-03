@@ -1139,7 +1139,7 @@ export default function HomeSections() {
                     <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/40">{p.tag}</span>
                   </div>
 
-                  <ImagePlaceholder aspect="4/3" className="mt-4 border-0" />
+                  <ImagePlaceholder aspect="16/9" className="mt-4 border-0" />
 
                   <div className="mt-5">
                     <h3 className="text-[1.15rem] font-medium leading-[1.15] tracking-tight text-black md:text-[1.25rem]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
