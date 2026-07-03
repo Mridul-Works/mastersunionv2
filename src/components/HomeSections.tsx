@@ -553,7 +553,7 @@ function AdmissionsConnect() {
                       <button
                         type="button"
                         onClick={() => openFor(s.id)}
-                        className="rounded-sm bg-white px-8 py-3.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#F5F3EE]"
+                        className="rounded-none bg-white px-8 py-3.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#F5F3EE]"
                       >
                         Register for Session
                       </button>
