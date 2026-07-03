@@ -1186,6 +1186,32 @@ export default function HomeSections() {
                 </Link>
               );
             })}
+
+            {/* Filler placeholder for the empty grid cell */}
+            <div className="group relative hidden flex-col overflow-hidden rounded-[8px] bg-[#EFEDEA] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)] lg:flex lg:flex-col">
+              <div className="flex items-start justify-between gap-4 p-6 md:p-7">
+                <span className="inline-flex items-center rounded-md bg-white/70 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/75 backdrop-blur-sm">
+                  09 · More
+                </span>
+                <div className="flex size-8 items-center justify-center rounded-md bg-black/10 text-black/70">
+                  <ArrowUpRight className="size-4" />
+                </div>
+              </div>
+              <div className="px-6 md:px-7">
+                <h3
+                  className="text-[1.35rem] font-semibold leading-[1.15] tracking-tight text-black md:text-[1.6rem]"
+                  style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                >
+                  Even more systems.
+                </h3>
+                <p className="mt-3 text-[13px] leading-[1.6] text-black/70 line-clamp-3">
+                  New labs and challenges are added every cohort.
+                </p>
+              </div>
+              <div className="relative mt-6 mx-3 mb-3 flex flex-1 overflow-hidden rounded-[6px]">
+                <ImagePlaceholder aspect="4/3" className="w-full h-full" label="Coming soon" />
+              </div>
+            </div>
           </div>
 
         </div>
