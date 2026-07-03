@@ -831,9 +831,9 @@ function Programs() {
                   </h3>
 
                   <div className="mt-5 border-t border-black/10 pt-4">
-                    <div className="flex items-center justify-between gap-3">
-                      <span className="text-[12px] font-semibold text-black">{p.status}</span>
-                      <span className="text-[10px] font-medium uppercase tracking-wider text-black/45">
+                    <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+                      <span className="text-[12px] font-semibold text-black whitespace-nowrap">{p.status}</span>
+                      <span className="text-[10px] font-medium uppercase tracking-wider text-black/45 whitespace-nowrap">
                         Closes {formatDeadline(p.deadline)}
                       </span>
                     </div>
@@ -842,6 +842,7 @@ function Programs() {
                       <CompactCountdown target={p.deadline} />
                     </div>
                   </div>
+
 
                   <a
                     href="#"
