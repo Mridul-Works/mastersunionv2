@@ -297,7 +297,7 @@ function Slide({
             exit={{ scale: 1.05, x: -direction * 40 }}
             transition={{ duration: SLIDE_DURATION * 1.2, ease: EASE }}
           >
-            <ImagePlaceholder aspect="4/3" className="h-full w-full" />
+            <ImagePlaceholder aspect="3/2" className="h-full w-full" />
           </motion.div>
         </motion.div>
 
