@@ -1126,17 +1126,23 @@ export default function HomeSections() {
           <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2">
             {PEDAGOGY.map((p) => {
               const Icon = p.icon;
+              const imageLabel = p.tag.split(" · ")[1] ?? p.tag;
               return (
                 <Link
                   key={p.tag}
                   to={p.route}
                   className="group relative flex aspect-[4/3] flex-col overflow-hidden rounded-none bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.25)] md:p-10"
                 >
-                  <div className="flex items-start justify-between">
-                    <div className="flex size-12 items-center justify-center rounded-none bg-black/5 text-black/70">
-                      <Icon className="size-6" />
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="flex size-12 items-center justify-center rounded-none bg-black/5 text-black/70">
+                        <Icon className="size-6" />
+                      </div>
+                      <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/40">{p.tag}</span>
                     </div>
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/40">{p.tag}</span>
+                    <div className="w-16 shrink-0 md:w-20">
+                      <ImagePlaceholder label={imageLabel} aspect="4/3" />
+                    </div>
                   </div>
 
                   <div className="mt-8">
