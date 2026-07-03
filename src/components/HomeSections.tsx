@@ -963,17 +963,6 @@ function CompactCountdown({ target }: { target: string }) {
   );
 }
 
-  const { days, hours, minutes } = useCountdown(target);
-  return (
-    <div className="flex items-center gap-1">
-      <span>{days}d</span>
-      <span className="text-black/25">:</span>
-      <span>{String(hours).padStart(2, "0")}h</span>
-      <span className="text-black/25">:</span>
-      <span>{String(minutes).padStart(2, "0")}m</span>
-    </div>
-  );
-}
 
 
 
