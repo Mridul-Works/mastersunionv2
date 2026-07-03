@@ -504,7 +504,7 @@ function AdmissionsConnect() {
         </h2>
       </header>
 
-      <div className="mx-auto grid max-w-[1120px] grid-cols-1 gap-4 md:grid-cols-3 md:grid-rows-3 md:auto-rows-[minmax(220px,auto)]">
+      <div className="mx-auto grid max-w-[1120px] grid-cols-1 gap-4 md:grid-cols-4 md:grid-rows-3 md:auto-rows-[minmax(220px,auto)]">
         {featured.map((s, i) => {
           const Icon = s.icon;
           const isLarge = i === 0;
