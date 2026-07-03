@@ -1131,43 +1131,47 @@ export default function HomeSections() {
                 <Link
                   key={p.tag}
                   to={p.route}
-                  className="group relative flex aspect-[4/3] flex-col overflow-hidden rounded-none bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.25)] md:p-10"
+                  className="group relative flex flex-col overflow-hidden rounded-none bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.25)]"
                 >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex items-center gap-3">
-                      <div className="flex size-12 items-center justify-center rounded-none bg-black/5 text-black/70">
-                        <Icon className="size-6" />
+                  {/* Large image — rectangle on top, 4:3 */}
+                  <div className="relative w-full">
+                    <ImagePlaceholder
+                      label={imageLabel}
+                      aspect="4/3"
+                      className="w-full"
+                    />
+                    <div className="absolute left-5 top-5 md:left-6 md:top-6">
+                      <div className="flex items-center gap-2.5 rounded-none border border-black/10 bg-white/90 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/70 shadow-sm backdrop-blur-sm">
+                        <Icon className="size-4" />
+                        <span>{p.tag}</span>
                       </div>
-                      <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/40">{p.tag}</span>
-                    </div>
-                    <div className="w-16 shrink-0 md:w-20">
-                      <ImagePlaceholder label={imageLabel} aspect="4/3" />
                     </div>
                   </div>
 
-                  <div className="mt-8">
-                    <h3 className="text-[1.35rem] font-medium leading-[1.15] tracking-tight text-black md:text-[1.6rem]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+                  {/* Content */}
+                  <div className="flex flex-1 flex-col p-7 md:p-10">
+                    <h3 className="text-[1.45rem] font-medium leading-[1.15] tracking-tight text-black md:text-[1.8rem]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
                       {p.title}
                     </h3>
-                    <p className="mt-4 text-[14px] leading-[1.6] text-black/70">
+                    <p className="mt-4 text-[14px] leading-[1.65] text-black/70">
                       {p.body}
                     </p>
-                  </div>
 
-                  <div className="mt-auto">
-                    <div className="grid grid-cols-3 gap-4 bg-black/[0.03] p-5">
-                      {p.stats.map((s) => (
-                        <div key={s.label}>
-                          <div className="text-[clamp(1.25rem,2.5vw,1.75rem)] font-semibold leading-none tracking-tight text-black">{s.value}</div>
-                          <div className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-black/45">{s.label}</div>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="mt-6 flex items-center justify-between">
-                      <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-black underline underline-offset-4 decoration-black/20 transition-colors group-hover:decoration-black">
-                        {p.cta}
-                        <ArrowUpRight className="size-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                      </span>
+                    <div className="mt-auto pt-8">
+                      <div className="grid grid-cols-3 gap-4 bg-black/[0.03] p-5">
+                        {p.stats.map((s) => (
+                          <div key={s.label}>
+                            <div className="text-[clamp(1.25rem,2.5vw,1.75rem)] font-semibold leading-none tracking-tight text-black">{s.value}</div>
+                            <div className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-black/45">{s.label}</div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="mt-6 flex items-center justify-between">
+                        <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-black underline underline-offset-4 decoration-black/20 transition-colors group-hover:decoration-black">
+                          {p.cta}
+                          <ArrowUpRight className="size-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </Link>
