@@ -1131,7 +1131,7 @@ export default function HomeSections() {
                 <Link
                   key={p.tag}
                   to={p.route}
-                  className={`group relative flex flex-col justify-between overflow-hidden rounded-none border border-black/10 bg-white p-8 transition-all hover:-translate-y-1 hover:border-black/30 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.25)] md:p-10 ${
+                  className={`group relative flex flex-col justify-between overflow-hidden rounded-none bg-white p-8 transition-all hover:-translate-y-1 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.25)] md:p-10 ${
                     featured ? "lg:col-span-2 lg:row-span-1" : ""
                   }`}
                 >
@@ -1152,7 +1152,7 @@ export default function HomeSections() {
                   </div>
 
                   {p.stats && (
-                    <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4 border-t border-black/10 pt-5">
+                    <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4 pt-5">
                       {p.stats.map((s) => (
                         <div key={s.label}>
                           <div className="text-[21px] font-semibold tracking-tight text-black">{s.value}</div>
@@ -1162,7 +1162,7 @@ export default function HomeSections() {
                     </div>
                   )}
 
-                  <span className="mt-10 inline-flex w-full items-center justify-center gap-2 border-2 border-black bg-white px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-black transition-all duration-300 group-hover:bg-black group-hover:text-white">
+                  <span className="mt-10 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-black underline underline-offset-4 decoration-black/20 transition-colors group-hover:decoration-black">
                     {p.cta}
                     <ArrowUpRight className="size-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </span>
