@@ -479,6 +479,8 @@ function RegistrationDialog({
 function AdmissionsConnect() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedSessionId, setSelectedSessionId] = useState<string | undefined>(undefined);
+  const [current, setCurrent] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   const openFor = (sessionId: string) => {
     setSelectedSessionId(sessionId);
@@ -504,49 +506,101 @@ function AdmissionsConnect() {
         </h2>
       </header>
 
-      <div className="mx-auto grid max-w-[1120px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {featured.map((s) => (
-          <article
-            key={s.id}
-            className="group relative aspect-[3/4] overflow-hidden rounded-sm bg-[#E5E0D5]/60 shadow-lg transition-transform duration-500 hover:-translate-y-2"
+      <div className="relative mx-auto max-w-[1280px]">
+        <div className="overflow-hidden" ref={(el) => {
+          if (el) {
+            carouselRef.current = el;
+          }
+        }}>
+          <div
+            className="flex transition-transform duration-700 ease-out"
+            style={{ transform: `translateX(-${current * 100}%)` }}
           >
-            <div className="absolute inset-0">
-              <ImagePlaceholder aspect="auto" className="h-full w-full" label="Portrait" />
-            </div>
-
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-
-            <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
-              <div className="mb-4">
-                <div className="mb-3 flex items-center gap-2">
-                  <span className="rounded bg-white/10 px-2 py-1 text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm border border-white/20">
-                    {formatSessionDate(s.nextDate)} • {s.nextTime}
-                  </span>
-                  <span className="text-[10px] font-medium uppercase tracking-widest text-white/80">
-                    {s.spotsLeft} spots left
-                  </span>
-                </div>
-                <h3
-                  className="mb-2 text-2xl leading-tight md:text-3xl"
-                  style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-                >
-                  {s.title}
-                </h3>
-                <p className="max-w-[280px] text-sm font-light leading-relaxed text-white/80">
-                  {s.description}
-                </p>
-              </div>
-
-              <button
-                type="button"
-                onClick={() => openFor(s.id)}
-                className="w-full cursor-pointer rounded-sm bg-white py-3.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#F5F3EE]"
+            {featured.map((s) => (
+              <div
+                key={s.id}
+                className="w-[92%] flex-shrink-0 px-2 md:w-[88%] md:px-4 lg:w-[84%]"
               >
-                Register for Session
+                <article className="group relative mx-auto aspect-[16/9] max-h-[420px] w-full max-w-[980px] overflow-hidden rounded-sm bg-[#E5E0D5]/60 shadow-lg transition-transform duration-500 hover:scale-[1.01]">
+                  <div className="absolute inset-0">
+                    <ImagePlaceholder aspect="auto" className="h-full w-full" label="Session" />
+                  </div>
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+
+                  <div className="absolute inset-0 flex flex-col justify-end p-6 text-white md:p-10">
+                    <div className="mb-4">
+                      <div className="mb-3 flex items-center gap-2">
+                        <span className="rounded border border-white/20 bg-white/10 px-2 py-1 text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm">
+                          {formatSessionDate(s.nextDate)} • {s.nextTime}
+                        </span>
+                        <span className="text-[10px] font-medium uppercase tracking-widest text-white/80">
+                          {s.spotsLeft} spots left
+                        </span>
+                      </div>
+                      <h3
+                        className="mb-2 max-w-[720px] text-[clamp(1.5rem,4vw,3rem)] leading-tight"
+                        style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                      >
+                        {s.title}
+                      </h3>
+                      <p className="max-w-[620px] text-sm font-light leading-relaxed text-white/80 md:text-base">
+                        {s.description}
+                      </p>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <button
+                        type="button"
+                        onClick={() => openFor(s.id)}
+                        className="rounded-sm bg-white px-8 py-3.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#F5F3EE]"
+                      >
+                        Register for Session
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Carousel controls */}
+        <div className="mt-8 flex items-center justify-center gap-3">
+          <button
+            type="button"
+            onClick={() => setCurrent((c) => (c - 1 + featured.length) % featured.length)}
+            aria-label="Previous session"
+            className="flex size-10 items-center justify-center rounded-none border border-black/15 text-black/70 transition-all hover:bg-black hover:text-white"
+          >
+            <ChevronLeft className="size-5" />
+          </button>
+
+          <div className="flex items-center gap-2">
+            {featured.map((s, i) => (
+              <button
+                key={s.id}
+                onClick={() => setCurrent(i)}
+                aria-label={`Go to session ${i + 1}`}
+                className="h-[3px] w-8 cursor-pointer overflow-hidden bg-black/15"
+              >
+                <span
+                  className="block h-full origin-left bg-black transition-transform duration-500 ease-out"
+                  style={{ transform: `scaleX(${i === current ? 1 : 0})` }}
+                />
               </button>
-            </div>
-          </article>
-        ))}
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setCurrent((c) => (c + 1) % featured.length)}
+            aria-label="Next session"
+            className="flex size-10 items-center justify-center rounded-none border border-black/15 text-black/70 transition-all hover:bg-black hover:text-white"
+          >
+            <ChevronRight className="size-5" />
+          </button>
+        </div>
       </div>
 
       <div className="mt-10 text-center">
