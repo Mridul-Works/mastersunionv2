@@ -1123,46 +1123,43 @@ export default function HomeSections() {
         <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-10 md:py-32">
           <SectionHead eyebrow="The pedagogy" title={<>How Masters' Union <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>actually</span> teaches.</>} lede="Eight systems that work in concert — built so theory never outpaces practice." />
 
-          <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {PEDAGOGY.map((p, i) => {
+          <div className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {PEDAGOGY.map((p) => {
               const Icon = p.icon;
-              const featured = i === 0;
               return (
                 <Link
                   key={p.tag}
                   to={p.route}
-                  className={`group relative flex flex-col justify-between overflow-hidden rounded-none bg-white p-8 transition-all hover:-translate-y-1 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.25)] md:p-10 ${
-                    featured ? "lg:col-span-2 lg:row-span-1" : ""
-                  }`}
+                  className="group relative flex flex-col overflow-hidden rounded-none bg-white p-5 transition-all hover:-translate-y-1 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.25)] md:p-6"
                 >
                   <div className="flex items-start justify-between">
-                    <div className={`flex size-12 items-center justify-center rounded-none ${featured ? "bg-black text-white" : "bg-black/5 text-black/70"}`}>
-                      <Icon className="size-5" />
+                    <div className="flex size-10 items-center justify-center rounded-none bg-black/5 text-black/70">
+                      <Icon className="size-4" />
                     </div>
                     <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/40">{p.tag}</span>
                   </div>
 
-                  <ImagePlaceholder aspect="16/9" className="mt-6" />
+                  <ImagePlaceholder aspect="4/3" className="mt-4 border-0" />
 
-                  <div className="mt-12">
-                    <h3 className="text-[1.6rem] font-medium leading-[1.15] tracking-tight text-black md:text-[1.85rem]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+                  <div className="mt-5">
+                    <h3 className="text-[1.15rem] font-medium leading-[1.15] tracking-tight text-black md:text-[1.25rem]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
                       {p.title}
                     </h3>
-                    <p className="mt-5 text-[14px] leading-relaxed text-black/65">{p.body}</p>
+                    <p className="mt-3 text-[13px] leading-relaxed text-black/65">{p.body}</p>
                   </div>
 
                   {p.stats && (
-                    <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4 pt-5">
+                    <div className="mt-5 flex flex-wrap gap-x-5 gap-y-3">
                       {p.stats.map((s) => (
                         <div key={s.label}>
-                          <div className="text-[21px] font-semibold tracking-tight text-black">{s.value}</div>
+                          <div className="text-[17px] font-semibold tracking-tight text-black">{s.value}</div>
                           <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-black/45">{s.label}</div>
                         </div>
                       ))}
                     </div>
                   )}
 
-                  <span className="mt-10 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-black underline underline-offset-4 decoration-black/20 transition-colors group-hover:decoration-black">
+                  <span className="mt-6 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-black underline underline-offset-4 decoration-black/20 transition-colors group-hover:decoration-black">
                     {p.cta}
                     <ArrowUpRight className="size-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </span>
