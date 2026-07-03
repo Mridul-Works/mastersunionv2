@@ -514,7 +514,7 @@ function AdmissionsConnect() {
             return (
               <article
                 key={s.id}
-                className="group relative row-span-3 aspect-[3/4] overflow-hidden rounded-sm bg-[#E5E0D5]/60 shadow-lg transition-transform duration-500 hover:-translate-y-2 md:aspect-auto"
+                className="group relative md:col-span-2 md:row-span-2 aspect-[3/4] overflow-hidden rounded-sm bg-[#E5E0D5]/60 shadow-lg transition-transform duration-500 hover:-translate-y-2 md:aspect-auto"
               >
                 <div className="absolute inset-0">
                   <ImagePlaceholder aspect="auto" className="h-full w-full" label="Portrait" />
