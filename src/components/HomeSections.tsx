@@ -839,12 +839,13 @@ function Programs() {
 
                   <div className="mt-4 border-t border-black/10 pt-4">
                     <div className="flex items-center gap-2 text-xs text-black/60">
-                      <span className="font-semibold uppercase tracking-wider text-black">{p.status}</span>
+                      <span className="font-semibold text-black">{p.status}</span>
                       <span className="text-black/30">·</span>
                       <span>
                         Closes in <DaysRemaining target={p.deadline} /> days
                       </span>
                     </div>
+
                     <div className="mt-4 flex items-center justify-between">
                       <a
                         href="#"
