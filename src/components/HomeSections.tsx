@@ -504,17 +504,17 @@ function AdmissionsConnect() {
         </h2>
       </header>
 
-      <div className="mx-auto grid max-w-[1120px] grid-cols-1 gap-5 md:grid-cols-3 md:auto-rows-[minmax(180px,auto)]">
+      <div className="mx-auto grid max-w-[1120px] grid-cols-1 gap-4 md:grid-cols-3 md:grid-rows-3 md:auto-rows-[minmax(220px,auto)]">
         {featured.map((s, i) => {
           const Icon = s.icon;
           const isLarge = i === 0;
-          const isMedium = i === 1 || i === 2;
+          const isWide = i === 5;
 
           if (isLarge) {
             return (
               <article
                 key={s.id}
-                className="group relative row-span-2 aspect-[3/4] overflow-hidden rounded-sm bg-[#E5E0D5]/60 shadow-lg transition-transform duration-500 hover:-translate-y-2 md:aspect-auto"
+                className="group relative row-span-3 aspect-[3/4] overflow-hidden rounded-sm bg-[#E5E0D5]/60 shadow-lg transition-transform duration-500 hover:-translate-y-2 md:aspect-auto"
               >
                 <div className="absolute inset-0">
                   <ImagePlaceholder aspect="auto" className="h-full w-full" label="Portrait" />
@@ -522,7 +522,7 @@ function AdmissionsConnect() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
                 <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
                   <div className="mb-4">
-                    <div className="mb-3 flex items-center gap-2">
+                    <div className="mb-3 flex flex-wrap items-center gap-2">
                       <span className="rounded border border-white/20 bg-white/10 px-2 py-1 text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm">
                         {formatSessionDate(s.nextDate)} • {s.nextTime}
                       </span>
@@ -552,10 +552,10 @@ function AdmissionsConnect() {
           return (
             <article
               key={s.id}
-              className="group flex flex-col overflow-hidden rounded-sm border border-black/10 bg-[#F5F3EE] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:flex-row"
+              className={`group flex flex-col overflow-hidden rounded-sm border border-black/10 bg-[#F5F3EE] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:flex-row ${isWide ? "md:col-span-2" : ""}`}
             >
-              <div className={`relative shrink-0 ${isMedium ? "sm:w-[40%]" : "sm:w-[36%]"}`}>
-                <ImagePlaceholder aspect="auto" className={`h-full w-full ${isMedium ? "min-h-[200px] sm:min-h-full" : "min-h-[160px] sm:min-h-full"}`} label="Portrait" />
+              <div className={`relative shrink-0 ${isWide ? "sm:w-[30%]" : "sm:w-[38%]"}`}>
+                <ImagePlaceholder aspect="auto" className={`h-full w-full ${isWide ? "min-h-[160px] sm:min-h-full" : "min-h-[180px] sm:min-h-full"}`} label="Portrait" />
                 <div className="absolute left-4 top-4 flex flex-col items-center justify-center rounded-sm border border-white/20 bg-white/90 px-2 py-2 text-center shadow-sm backdrop-blur-sm">
                   <span className="text-[9px] font-bold uppercase tracking-wider text-black/60">
                     {new Date(`${s.nextDate}T00:00:00`).toLocaleDateString("en-GB", { month: "short" })}
@@ -578,11 +578,11 @@ function AdmissionsConnect() {
                     </span>
                   </div>
                   <h3
-                    className={`mb-2 font-semibold leading-snug text-black ${isMedium ? "text-xl sm:text-2xl" : "text-lg sm:text-xl"}`}
+                    className="mb-2 text-xl font-semibold leading-snug text-black sm:text-2xl"
                     style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                   >
                     {s.title}
-                  </h3>
+                    </h3>
                   <p className="max-w-[320px] text-sm leading-relaxed text-black/65">
                     {s.description}
                   </p>
