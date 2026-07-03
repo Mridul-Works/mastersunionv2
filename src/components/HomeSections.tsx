@@ -554,8 +554,8 @@ function AdmissionsConnect() {
               key={s.id}
               className={`group flex flex-col overflow-hidden rounded-sm border border-black/10 bg-[#F5F3EE] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:flex-row ${isWide ? "md:col-span-4" : "md:col-span-1"}`}
             >
-              <div className={`relative shrink-0 ${isWide ? "sm:w-[30%]" : "sm:w-[38%]"}`}>
-                <ImagePlaceholder aspect="auto" className={`h-full w-full ${isWide ? "min-h-[160px] sm:min-h-full" : "min-h-[180px] sm:min-h-full"}`} label="Portrait" />
+              <div className={`relative shrink-0 ${isWide ? "sm:w-[25%]" : "sm:w-[38%]"}`}>
+                <ImagePlaceholder aspect="auto" className={`h-full w-full ${isWide ? "min-h-[160px] sm:min-h-full" : "min-h-[180px] sm:min-h-full"}`} label={isWide ? undefined : "Portrait"} />
                 <div className="absolute left-4 top-4 flex flex-col items-center justify-center rounded-sm border border-white/20 bg-white/90 px-2 py-2 text-center shadow-sm backdrop-blur-sm">
                   <span className="text-[9px] font-bold uppercase tracking-wider text-black/60">
                     {new Date(`${s.nextDate}T00:00:00`).toLocaleDateString("en-GB", { month: "short" })}
