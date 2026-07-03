@@ -813,82 +813,59 @@ function Programs() {
               {PROGRAMS.map((p) => (
                 <article
                   key={p.title}
-                  className="w-[calc(24%-12px)] flex-shrink-0 snap-start bg-[#F5F3EE] p-5 transition-all duration-300 hover:-translate-y-1 pastel-fill"
+                  className="group w-[calc(24%-12px)] flex-shrink-0 snap-start border border-black/10 bg-[#F5F3EE] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-black/25 pastel-fill"
                 >
-                  <div className="flex items-center gap-2">
-                    <span className="bg-black px-2 py-1 font-mono text-[8px] font-bold uppercase tracking-[0.12em] text-white transition-colors group-hover:bg-white group-hover:text-black">
-                      {p.mode}
-                    </span>
-                    <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-black/50">
-                      {p.duration}
-                    </span>
+                  <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-black/50">
+                    <span className="bg-black px-2 py-1 text-white">{p.mode}</span>
+                    <span>{p.duration}</span>
+                    <span className="text-black/30">·</span>
+                    <span className="text-black/40">{p.round}</span>
                   </div>
 
-                  <ImagePlaceholder aspect="16/9" className="mt-3" />
+
+                  <ImagePlaceholder aspect="16/9" className="mt-4" />
 
                   <h3
-                    className="mt-4 text-[1rem] font-medium leading-[1.2] tracking-tight text-black transition-colors group-hover:text-black"
+                    className="mt-4 text-[17px] font-semibold leading-[1.25] tracking-tight text-black"
                     style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                   >
                     {p.title}
                   </h3>
 
-                  <p className="mt-2 font-mono text-[9px] font-semibold uppercase tracking-[0.12em] text-black/50">
-                    {p.round}
-                  </p>
-
                   <div className="mt-5 border-t border-black/10 pt-4">
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-[9px] font-bold uppercase tracking-[0.14em] text-black/60 transition-colors group-hover:text-black/80">
-                        {p.status}
-                      </span>
-                      <span className="font-mono text-[8px] font-semibold uppercase tracking-[0.12em] text-black/40">
+                    <div className="text-[12px] font-semibold text-black">{p.status}</div>
+                    <div className="mt-2 flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-2 text-[13px] font-semibold tabular-nums text-black">
+                        <Hourglass className="size-3.5 text-black/40" />
+                        <CompactCountdown target={p.deadline} />
+                      </div>
+                      <span className="text-[10px] font-medium uppercase tracking-wider text-black/45 whitespace-nowrap">
                         Closes {formatDeadline(p.deadline)}
                       </span>
                     </div>
-                    <div className="mt-3 flex items-center gap-3 bg-black/[0.03] p-2.5">
-                      <Hourglass className="size-4 text-black/50" />
-                      <Countdown target={p.deadline} />
-                    </div>
                   </div>
+
+
 
                   <a
                     href="#"
-                    className="mt-5 inline-flex w-full items-center justify-between border border-black px-4 py-2.5 font-sans text-[10px] font-semibold uppercase tracking-[0.12em] text-black transition-all duration-300 hover:bg-black hover:text-white"
+                    className="mt-5 inline-flex w-full items-center justify-between bg-black px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:bg-black/85"
                   >
                     Apply Now
-                    <ArrowUpRight className="size-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                    <ArrowUpRight className="size-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </a>
 
                   <button
                     type="button"
                     onClick={() => setSageProgram(p.title)}
-                    className="mt-3 flex w-full items-center gap-2 border border-orange-300/25 bg-orange-50/40 px-2.5 py-2 text-left transition-colors hover:border-orange-400/40 hover:bg-orange-50/70"
+                    className="mt-3 inline-flex w-full items-center justify-center gap-2 border border-black/10 px-3 py-2.5 text-[11px] font-semibold text-black/60 transition-all hover:border-black/25 hover:bg-black/[0.03] hover:text-black"
                   >
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-1">
-                        <span className="font-sans text-[9px] font-bold uppercase tracking-[0.12em] text-orange-800/60">
-                          ASK
-                        </span>
-                        <Bot className="size-3.5 shrink-0 text-orange-600/60" />
-                        <span className="font-sans text-[9px] font-bold uppercase tracking-[0.12em] text-orange-800/60">
-                          S.A.G.E
-                        </span>
-                        <span className="ml-0.5 rounded-sm bg-orange-600/50 px-1 py-0.5 font-sans text-[6px] font-bold uppercase tracking-[0.12em] text-white">
-                          AI
-                        </span>
-                      </div>
-                      <span
-                        className="block font-sans text-[5px] font-medium uppercase tracking-[0.02em] text-orange-700/50"
-                        style={{ whiteSpace: "nowrap" }}
-                      >
-                        Student Assistance & Guidance Engine
-                      </span>
-                    </div>
-                    <ArrowUpRight className="size-3 shrink-0 text-orange-700/50" />
+                    <Bot className="size-3.5" />
+                    <span>Ask S.A.G.E.</span>
                   </button>
                 </article>
               ))}
+
             </div>
 
             <AdmissionsConnect />
@@ -976,6 +953,21 @@ function Countdown({ target }: { target: string }) {
     </div>
   );
 }
+
+function CompactCountdown({ target }: { target: string }) {
+  const { days, hours, minutes } = useCountdown(target);
+  return (
+    <div className="flex items-center gap-1">
+      <span>{days}d</span>
+      <span className="text-black/25">:</span>
+      <span>{String(hours).padStart(2, "0")}h</span>
+      <span className="text-black/25">:</span>
+      <span>{String(minutes).padStart(2, "0")}m</span>
+    </div>
+  );
+}
+
+
 
 
 const PEDAGOGY = [
