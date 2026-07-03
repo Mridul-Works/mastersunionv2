@@ -552,7 +552,7 @@ function AdmissionsConnect() {
           return (
             <article
               key={s.id}
-              className={`group flex flex-col overflow-hidden rounded-sm border border-black/10 bg-[#F5F3EE] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:flex-row ${isWide ? "md:col-span-2" : ""}`}
+              className={`group flex flex-col overflow-hidden rounded-sm border border-black/10 bg-[#F5F3EE] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg sm:flex-row ${isWide ? "md:col-span-4" : "md:col-span-1"}`}
             >
               <div className={`relative shrink-0 ${isWide ? "sm:w-[30%]" : "sm:w-[38%]"}`}>
                 <ImagePlaceholder aspect="auto" className={`h-full w-full ${isWide ? "min-h-[160px] sm:min-h-full" : "min-h-[180px] sm:min-h-full"}`} label="Portrait" />
