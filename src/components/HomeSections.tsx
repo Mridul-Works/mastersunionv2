@@ -813,7 +813,7 @@ function Programs() {
               {PROGRAMS.map((p) => (
                 <article
                   key={p.title}
-                  className="group w-[calc(24%-12px)] flex-shrink-0 snap-start border border-black/10 bg-[#F5F3EE] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-black/25 pastel-fill"
+                  className="group w-[calc(24%-12px)] flex-shrink-0 snap-start bg-[#F5F3EE] p-5 transition-all duration-300 hover:-translate-y-1 pastel-fill"
                 >
                   <div className="overflow-hidden">
                     <ImagePlaceholder
@@ -837,7 +837,7 @@ function Programs() {
                     {p.title}
                   </h3>
 
-                  <div className="mt-4 border-t border-black/10 pt-4">
+                  <div className="mt-4 pt-4">
                     <div className="flex items-center gap-2 text-xs text-black/60">
                       <span className="font-semibold text-black">{p.status}</span>
                       <span className="text-black/30">·</span>
