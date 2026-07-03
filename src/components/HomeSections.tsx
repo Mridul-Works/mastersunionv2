@@ -479,6 +479,8 @@ function RegistrationDialog({
 function AdmissionsConnect() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedSessionId, setSelectedSessionId] = useState<string | undefined>(undefined);
+  const [current, setCurrent] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   const openFor = (sessionId: string) => {
     setSelectedSessionId(sessionId);
