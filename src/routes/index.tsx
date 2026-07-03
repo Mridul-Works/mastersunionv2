@@ -366,28 +366,14 @@ function Index() {
                     aria-label="Play campus film"
                     className="group relative flex cursor-pointer flex-col items-center gap-4 focus:outline-none md:items-end"
                   >
-                    <div className="relative flex items-center justify-center">
-                      {/* Outer pulsing square */}
-                      <div className="mu-ping-gold absolute inset-0 rounded-none border border-[#C9A84C]/40" />
+                    <div className="relative flex size-28 items-center justify-center">
+                      {/* Outer expanding rings on hover */}
+                      <div className="absolute inset-0 rounded-full border border-[#C9A84C]/20 transition-all duration-1000 ease-out group-hover:scale-150 group-hover:opacity-0" />
+                      <div className="absolute inset-0 rounded-full border border-[#C9A84C]/10 transition-all duration-1000 ease-out delay-150 group-hover:scale-[1.75] group-hover:opacity-0" />
 
-                      {/* Main button body */}
-                      <div className="relative flex size-24 items-center justify-center rounded-none border border-[#C9A84C]/40 bg-[#1F4D3F]/20 backdrop-blur-xl transition-all duration-700 group-hover:scale-110 group-hover:border-[#C9A84C] group-hover:bg-[#6B1F2A]/30">
-                        {/* Inner glow */}
-                        <div className="absolute inset-0 rounded-none shadow-[inset_0_0_24px_rgba(201,168,76,0.15)] transition-all duration-500 group-hover:shadow-[inset_0_0_32px_rgba(201,168,76,0.35)]" />
-
-                        {/* Play icon */}
-                        <svg
-                          className="relative size-8 fill-current text-[#C9A84C] transition-transform duration-500 group-hover:scale-110"
-                          viewBox="0 0 24 24"
-                          style={{ transform: "translateX(2px)" }}
-                        >
-                          <path d="M5 3l14 9-14 9V3z" />
-                        </svg>
-                      </div>
-
-                      {/* Circular label */}
-                      <div className="absolute -inset-4 transition-transform duration-[10000ms] linear group-hover:rotate-12">
-                        <svg viewBox="0 0 100 100" className="h-full w-full opacity-50">
+                      {/* Rotating circular text label */}
+                      <div className="absolute -inset-5 mu-spin-slow transition-all duration-500 group-hover:[animation-duration:6s]">
+                        <svg viewBox="0 0 100 100" className="h-full w-full opacity-60 transition-opacity duration-500 group-hover:opacity-100">
                           <path id="muCirclePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
                           <text className="text-[6px] uppercase tracking-[0.4em] fill-[#FAF8F4]">
                             <textPath xlinkHref="#muCirclePath" style={{ fontFamily: "'Montserrat', sans-serif" }}>
@@ -396,6 +382,30 @@ function Index() {
                           </text>
                         </svg>
                       </div>
+
+                      {/* Main gradient button body */}
+                      <div className="relative size-24 overflow-hidden rounded-full p-[2px] transition-transform duration-500 ease-out group-hover:scale-110">
+                        {/* Animated gradient border */}
+                        <div className="absolute inset-0 mu-gradient-shimmer" />
+
+                        {/* Button interior */}
+                        <div className="relative flex h-full w-full items-center justify-center rounded-full bg-[#1A211A]/80 backdrop-blur-xl">
+                          {/* Inner gradient glow */}
+                          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#C9A84C]/15 via-transparent to-[#1F4D3F]/25 opacity-60 transition-opacity duration-500 group-hover:opacity-100" />
+
+                          {/* Play icon */}
+                          <svg
+                            className="relative z-10 size-8 fill-current text-[#C9A84C] transition-all duration-500 group-hover:scale-110 group-hover:text-[#FAF8F4]"
+                            viewBox="0 0 24 24"
+                            style={{ transform: "translateX(2px)" }}
+                          >
+                            <path d="M5 3l14 9-14 9V3z" />
+                          </svg>
+                        </div>
+                      </div>
+
+                      {/* Soft outer glow */}
+                      <div className="absolute inset-0 rounded-full bg-[#C9A84C]/0 blur-2xl transition-all duration-700 group-hover:bg-[#C9A84C]/20" />
                     </div>
 
                     <div className="text-center md:text-right">

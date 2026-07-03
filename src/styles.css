@@ -104,3 +104,22 @@
   animation: mu-ping-gold 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
+@keyframes mu-spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.mu-spin-slow {
+  animation: mu-spin-slow 14s linear infinite;
+}
+
+@keyframes mu-shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.mu-gradient-shimmer {
+  background: linear-gradient(135deg, #C9A84C 0%, #E8D6A8 35%, #1F4D3F 70%, #6B1F2A 100%);
+  background-size: 300% 300%;
+  animation: mu-shimmer 8s ease infinite;
+}
+
