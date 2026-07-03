@@ -49,6 +49,14 @@ import pathwaySchool from "@/assets/pathways/school.webp";
 import pathwayCollege from "@/assets/pathways/college.webp";
 import pathwayWork from "@/assets/pathways/work.webp";
 import pathwayOwner from "@/assets/pathways/owner.webp";
+import edExecutive from "@/assets/programs/editorial-executive.jpg.asset.json";
+import edVentures from "@/assets/programs/editorial-ventures.jpg.asset.json";
+import edB2B from "@/assets/programs/editorial-b2b.jpg.asset.json";
+import edGlobal from "@/assets/programs/editorial-global.jpg.asset.json";
+import edPostgrad from "@/assets/programs/editorial-postgraduate.jpg.asset.json";
+import edAI from "@/assets/programs/editorial-ai.jpg.asset.json";
+import edImmersions from "@/assets/programs/editorial-immersions.jpg.asset.json";
+import edFamily from "@/assets/programs/editorial-family-business.jpg.asset.json";
 
 type Programme = { title: string; duration: string; format: string; href?: string };
 type Pathway = {
