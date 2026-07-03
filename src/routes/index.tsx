@@ -349,7 +349,7 @@ function Index() {
 
               {/* Hero row */}
               <div className="mb-12 grid grid-cols-12 items-end gap-8 md:mb-20">
-                <div className="col-span-12 md:col-span-9 lg:col-span-8">
+                <div className="col-span-12 flex flex-col gap-10 md:col-span-10 lg:col-span-9">
                   <h1
                     className="text-7xl italic leading-[0.8] tracking-tighter text-white md:text-[110px] lg:text-[130px]"
                     style={{ fontFamily: "'Fraunces', serif" }}
@@ -357,22 +357,20 @@ function Index() {
                     Learn by <br />
                     <span className="mt-2 block not-italic md:ml-24">Doing.</span>
                   </h1>
-                </div>
 
-                <div className="col-span-12 flex md:col-span-3 md:justify-end lg:col-span-4">
                   <button
                     type="button"
                     onClick={playIntroVideo}
                     aria-label="Play campus film"
-                    className="group relative flex cursor-pointer flex-col items-center gap-4 focus:outline-none md:items-end"
+                    className="group relative flex cursor-pointer items-center gap-5 focus:outline-none md:ml-24"
                   >
-                    <div className="relative flex size-28 items-center justify-center">
+                    <div className="relative flex size-20 items-center justify-center">
                       {/* Outer expanding rings on hover */}
                       <div className="absolute inset-0 rounded-full border border-[#C9A84C]/20 transition-all duration-1000 ease-out group-hover:scale-150 group-hover:opacity-0" />
                       <div className="absolute inset-0 rounded-full border border-[#C9A84C]/10 transition-all duration-1000 ease-out delay-150 group-hover:scale-[1.75] group-hover:opacity-0" />
 
                       {/* Rotating circular text label */}
-                      <div className="absolute -inset-5 mu-spin-slow transition-all duration-500 group-hover:[animation-duration:6s]">
+                      <div className="absolute -inset-4 mu-spin-slow transition-all duration-500 group-hover:[animation-duration:6s]">
                         <svg viewBox="0 0 100 100" className="h-full w-full opacity-60 transition-opacity duration-500 group-hover:opacity-100">
                           <path id="muCirclePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
                           <text className="text-[6px] uppercase tracking-[0.4em] fill-[#FAF8F4]">
@@ -384,7 +382,7 @@ function Index() {
                       </div>
 
                       {/* Main gradient button body */}
-                      <div className="relative size-24 overflow-hidden rounded-full p-[2px] transition-transform duration-500 ease-out group-hover:scale-110">
+                      <div className="relative size-16 overflow-hidden rounded-full p-[2px] transition-transform duration-500 ease-out group-hover:scale-110">
                         {/* Animated gradient border */}
                         <div className="absolute inset-0 mu-gradient-shimmer" />
 
@@ -395,7 +393,7 @@ function Index() {
 
                           {/* Play icon */}
                           <svg
-                            className="relative z-10 size-8 fill-current text-[#C9A84C] transition-all duration-500 group-hover:scale-110 group-hover:text-[#FAF8F4]"
+                            className="relative z-10 size-6 fill-current text-[#C9A84C] transition-all duration-500 group-hover:scale-110 group-hover:text-[#FAF8F4]"
                             viewBox="0 0 24 24"
                             style={{ transform: "translateX(2px)" }}
                           >
@@ -408,7 +406,7 @@ function Index() {
                       <div className="absolute inset-0 rounded-full bg-[#C9A84C]/0 blur-2xl transition-all duration-700 group-hover:bg-[#C9A84C]/20" />
                     </div>
 
-                    <div className="text-center md:text-right">
+                    <div className="text-left">
                       <span
                         className="block text-[10px] font-semibold uppercase tracking-[3px] text-[#C9A84C]"
                         style={{ fontFamily: "'Montserrat', sans-serif" }}
@@ -416,7 +414,7 @@ function Index() {
                         Watch Now
                       </span>
                       <span
-                        className="mt-1 block text-xl font-light italic text-[#FAF8F4]"
+                        className="mt-1 block text-lg font-light italic text-[#FAF8F4]"
                         style={{ fontFamily: "'Fraunces', serif" }}
                       >
                         Campus Film
