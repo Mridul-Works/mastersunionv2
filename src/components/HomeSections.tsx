@@ -8,7 +8,6 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
-  Hourglass,
   Quote,
   GraduationCap,
   Rocket,
@@ -31,6 +30,7 @@ import {
   User,
   X,
 } from "lucide-react";
+
 
 
 import { Link } from "@tanstack/react-router";
@@ -815,56 +815,56 @@ function Programs() {
                   key={p.title}
                   className="group w-[calc(24%-12px)] flex-shrink-0 snap-start border border-black/10 bg-[#F5F3EE] p-5 transition-all duration-300 hover:-translate-y-1 hover:border-black/25 pastel-fill"
                 >
-                  <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-black/50">
-                    <span className="bg-black px-2 py-1 text-white">{p.mode}</span>
+                  <div className="overflow-hidden">
+                    <ImagePlaceholder
+                      aspect="4/3"
+                      className="transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+
+                  <div className="mt-4 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-black/45">
+                    <span>{p.mode}</span>
+                    <span className="text-black/25">·</span>
                     <span>{p.duration}</span>
-                    <span className="text-black/30">·</span>
+                    <span className="text-black/25">·</span>
                     <span className="text-black/40">{p.round}</span>
                   </div>
 
-
-                  <ImagePlaceholder aspect="16/9" className="mt-4" />
-
                   <h3
-                    className="mt-4 text-[17px] font-semibold leading-[1.25] tracking-tight text-black"
+                    className="mt-3 text-[18px] font-semibold leading-[1.25] tracking-tight text-black"
                     style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                   >
                     {p.title}
                   </h3>
 
-                  <div className="mt-5 border-t border-black/10 pt-4">
-                    <div className="text-[12px] font-semibold text-black">{p.status}</div>
-                    <div className="mt-2 flex items-center justify-between gap-3">
-                      <div className="flex items-center gap-2 text-[13px] font-semibold tabular-nums text-black">
-                        <Hourglass className="size-3.5 text-black/40" />
-                        <CompactCountdown target={p.deadline} />
-                      </div>
-                      <span className="text-[10px] font-medium uppercase tracking-wider text-black/45 whitespace-nowrap">
-                        Closes {formatDeadline(p.deadline)}
+                  <div className="mt-4 border-t border-black/10 pt-4">
+                    <div className="flex items-center gap-2 text-xs text-black/60">
+                      <span className="font-semibold text-black">{p.status}</span>
+                      <span className="text-black/30">·</span>
+                      <span>
+                        Closes in <DaysRemaining target={p.deadline} /> days
                       </span>
                     </div>
+
+                    <div className="mt-4 flex items-center justify-between">
+                      <a
+                        href="#"
+                        className="text-[11px] font-semibold uppercase tracking-widest text-black underline underline-offset-4 decoration-black/20 transition-colors hover:decoration-black"
+                      >
+                        Apply Now
+                      </a>
+                      <button
+                        type="button"
+                        onClick={() => setSageProgram(p.title)}
+                        className="text-[11px] font-semibold text-black/50 underline underline-offset-4 decoration-black/20 transition-colors hover:text-black hover:decoration-black"
+                      >
+                        Ask S.A.G.E.
+                      </button>
+                    </div>
                   </div>
-
-
-
-                  <a
-                    href="#"
-                    className="mt-5 inline-flex w-full items-center justify-between bg-black px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:bg-black/85"
-                  >
-                    Apply Now
-                    <ArrowUpRight className="size-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                  </a>
-
-                  <button
-                    type="button"
-                    onClick={() => setSageProgram(p.title)}
-                    className="mt-3 inline-flex w-full items-center justify-center gap-2 border border-black/10 px-3 py-2.5 text-[11px] font-semibold text-black/60 transition-all hover:border-black/25 hover:bg-black/[0.03] hover:text-black"
-                  >
-                    <Bot className="size-3.5" />
-                    <span>Ask S.A.G.E.</span>
-                  </button>
                 </article>
               ))}
+
 
             </div>
 
@@ -954,18 +954,11 @@ function Countdown({ target }: { target: string }) {
   );
 }
 
-function CompactCountdown({ target }: { target: string }) {
-  const { days, hours, minutes } = useCountdown(target);
-  return (
-    <div className="flex items-center gap-1">
-      <span>{days}d</span>
-      <span className="text-black/25">:</span>
-      <span>{String(hours).padStart(2, "0")}h</span>
-      <span className="text-black/25">:</span>
-      <span>{String(minutes).padStart(2, "0")}m</span>
-    </div>
-  );
+function DaysRemaining({ target }: { target: string }) {
+  const { days } = useCountdown(target);
+  return <span className="tabular-nums">{days}</span>;
 }
+
 
 
 
