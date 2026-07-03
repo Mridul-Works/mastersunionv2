@@ -369,7 +369,7 @@ function Index() {
                     <div className="relative flex size-28 items-center justify-center">
                       {/* Outer expanding rings on hover */}
                       <div className="absolute inset-0 rounded-full border border-[#C9A84C]/20 transition-all duration-1000 ease-out group-hover:scale-150 group-hover:opacity-0" />
-                      <div className="absolute inset-0 rounded-full border border-[#C9A84C]/10 transition-all duration-1000 ease-out delay-150 group-hover:scale-175 group-hover:opacity-0" />
+                      <div className="absolute inset-0 rounded-full border border-[#C9A84C]/10 transition-all duration-1000 ease-out delay-150 group-hover:scale-[1.75] group-hover:opacity-0" />
 
                       {/* Rotating circular text label */}
                       <div className="absolute -inset-5 mu-spin-slow transition-all duration-500 group-hover:[animation-duration:6s]">
