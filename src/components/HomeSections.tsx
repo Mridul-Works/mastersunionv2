@@ -818,8 +818,10 @@ function Programs() {
                   <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-black/50">
                     <span className="bg-black px-2 py-1 text-white">{p.mode}</span>
                     <span>{p.duration}</span>
-                    <span className="ml-auto text-black/40">{p.round}</span>
+                    <span className="text-black/30">·</span>
+                    <span className="text-black/40">{p.round}</span>
                   </div>
+
 
                   <ImagePlaceholder aspect="16/9" className="mt-4" />
 
