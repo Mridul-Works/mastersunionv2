@@ -1131,54 +1131,55 @@ export default function HomeSections() {
         <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-10 md:py-32">
           <SectionHead eyebrow="The pedagogy" title={<>How Masters' Union <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>actually</span> teaches.</>} lede="Eight systems that work in concert — built so theory never outpaces practice." />
 
-          <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2">
-            {PEDAGOGY.map((p) => {
+          <div className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {PEDAGOGY.map((p, i) => {
               const Icon = p.icon;
-              const imageLabel = p.tag.split(" · ")[1] ?? p.tag;
+              // Bento: card 0 spans 2 cols; card 4 spans 2 cols
+              const span = i === 0 || i === 4 ? "lg:col-span-2" : "";
               return (
                 <Link
                   key={p.tag}
                   to={p.route}
-                  className="group relative flex flex-col overflow-hidden rounded-none bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.25)]"
+                  className={`group relative flex flex-col overflow-hidden rounded-[8px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)] ${span}`}
+                  style={{ backgroundColor: p.bg }}
                 >
-                  {/* Large image — rectangle on top, 4:3 */}
-                  <div className="relative w-full">
-                    <ImagePlaceholder
-                      label={imageLabel}
-                      aspect="4/3"
-                      className="w-full"
-                    />
-                    <div className="absolute left-5 top-5 md:left-6 md:top-6">
-                      <div className="flex items-center gap-2.5 rounded-none border border-black/10 bg-white/90 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/70 shadow-sm backdrop-blur-sm">
-                        <Icon className="size-4" />
-                        <span>{p.tag}</span>
-                      </div>
+                  {/* Top: tag + icon + title on colored background */}
+                  <div className="flex items-start justify-between gap-4 p-6 md:p-7">
+                    <span className="inline-flex items-center rounded-md bg-white/70 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/75 backdrop-blur-sm">
+                      {p.tag}
+                    </span>
+                    <div className="flex size-8 items-center justify-center rounded-md bg-black/10 text-black/70">
+                      <Icon className="size-4" />
                     </div>
                   </div>
-
-                  {/* Content */}
-                  <div className="flex flex-1 flex-col p-7 md:p-10">
-                    <h3 className="text-[1.45rem] font-medium leading-[1.15] tracking-tight text-black md:text-[1.8rem]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+                  <div className="px-6 md:px-7">
+                    <h3
+                      className="text-[1.35rem] font-semibold leading-[1.15] tracking-tight text-black md:text-[1.6rem]"
+                      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                    >
                       {p.title}
                     </h3>
-                    <p className="mt-4 text-[14px] leading-[1.65] text-black/70">
+                    <p className="mt-3 text-[13px] leading-[1.6] text-black/70 line-clamp-3">
                       {p.body}
                     </p>
+                  </div>
 
-                    <div className="mt-auto pt-8">
-                      <div className="grid grid-cols-3 gap-4 bg-black/[0.03] p-5">
-                        {p.stats.map((s) => (
-                          <div key={s.label}>
-                            <div className="text-[clamp(1.25rem,2.5vw,1.75rem)] font-semibold leading-none tracking-tight text-black">{s.value}</div>
-                            <div className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-black/45">{s.label}</div>
-                          </div>
-                        ))}
-                      </div>
-                      <div className="mt-6 flex items-center justify-between">
-                        <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-black underline underline-offset-4 decoration-black/20 transition-colors group-hover:decoration-black">
-                          {p.cta}
-                          <ArrowUpRight className="size-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                        </span>
+                  {/* Bottom: large image with CTA overlay */}
+                  <div className="relative mt-6 mx-3 mb-3 overflow-hidden rounded-[6px]">
+                    <img
+                      src={p.image}
+                      alt={p.title}
+                      loading="lazy"
+                      className={`w-full object-cover transition-transform duration-500 group-hover:scale-[1.03] ${
+                        i === 0 || i === 4 ? "aspect-[16/9]" : "aspect-[4/3]"
+                      }`}
+                    />
+                    <div className="absolute inset-x-4 bottom-4 flex items-center justify-between">
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-black">
+                        {p.cta}
+                      </span>
+                      <div className="flex size-10 items-center justify-center rounded-full bg-black text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                        <ArrowUpRight className="size-4" />
                       </div>
                     </div>
                   </div>
@@ -1186,6 +1187,7 @@ export default function HomeSections() {
               );
             })}
           </div>
+
         </div>
       </section>
 
