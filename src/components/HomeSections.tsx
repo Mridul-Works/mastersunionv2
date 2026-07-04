@@ -29,6 +29,11 @@ import {
   Check,
   User,
   X,
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  MessageCircle,
 } from "lucide-react";
 
 
