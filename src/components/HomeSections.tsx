@@ -1248,7 +1248,6 @@ export default function HomeSections() {
               </div>
             </div>
           </div>
-          </div>
 
         </div>
       </section>
