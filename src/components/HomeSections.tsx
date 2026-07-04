@@ -1261,7 +1261,7 @@ export default function HomeSections() {
               <img
                 src={logoWhite.url}
                 alt="Masters' Union"
-                className="h-12 w-auto brightness-0 invert md:h-14"
+                className="h-10 w-auto brightness-0 invert md:h-12"
               />
               <p className="mt-8 max-w-sm text-[13px] leading-relaxed text-white/55">
                 DLF Cyberpark, Phase III<br />
