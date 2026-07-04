@@ -983,6 +983,7 @@ const PEDAGOGY = [
 ] as const;
 
 export default function HomeSections() {
+  const [applyOpen, setApplyOpen] = useState(false);
   return (
     <div className="bg-white text-black" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       {/* NEWS */}
