@@ -1192,15 +1192,11 @@ export default function HomeSections() {
               );
             })}
 
-            {/* Apply now — high-conversion grid closer */}
-            <button
-              type="button"
-              onClick={() => setApplyOpen(true)}
-              className="group relative flex flex-col overflow-hidden rounded-[8px] bg-black text-left text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.45)]"
-            >
+            {/* Admissions contact card */}
+            <div className="group relative flex flex-col overflow-hidden rounded-[8px] bg-black text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.45)]">
               <div className="flex items-start justify-between gap-4 p-6 md:p-7">
                 <span className="inline-flex items-center rounded-md bg-white/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/80 backdrop-blur-sm">
-                  Admissions
+                  Admissions Office
                 </span>
                 <div className="flex size-8 items-center justify-center rounded-md bg-white/10 text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
                   <ArrowUpRight className="size-4" />
@@ -1211,24 +1207,47 @@ export default function HomeSections() {
                   className="text-[1.6rem] font-semibold leading-[1.1] tracking-tight text-white md:text-[2rem]"
                   style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                 >
-                  Apply now.
+                  Talk to us.
                 </h3>
                 <p className="mt-3 text-[13px] leading-[1.6] text-white/70">
-                  Cohort 2026 is filling up. Submit your profile and get a decision in 48 hours.
+                  Our admissions team replies within 24 hours. Call, WhatsApp or email.
                 </p>
               </div>
-              <div className="relative mx-3 mb-3 mt-6 flex flex-1 flex-col justify-end overflow-hidden rounded-[6px] bg-white/10 p-5">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/60">
-                  Round 2 closes soon
-                </p>
-                <span className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-4 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-black transition-transform group-hover:translate-x-1">
-                  Start application
-                  <ArrowRight className="size-4" />
-                </span>
+              <div className="relative mx-3 mb-3 mt-6 flex flex-1 flex-col justify-end gap-3 overflow-hidden rounded-[6px] bg-white/10 p-5">
+                <a
+                  href="tel:+917669186660"
+                  className="flex items-center gap-3 text-[13px] font-medium text-white/90 transition-colors hover:text-white"
+                >
+                  <Phone className="size-4 shrink-0 text-[#C9A84C]" />
+                  +91 76691 86660
+                </a>
+                <a
+                  href="https://wa.me/917669186660"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-3 text-[13px] font-medium text-white/90 transition-colors hover:text-white"
+                >
+                  <MessageCircle className="size-4 shrink-0 text-[#C9A84C]" />
+                  WhatsApp
+                </a>
+                <a
+                  href="mailto:admissions@mastersunion.org"
+                  className="flex items-center gap-3 text-[13px] font-medium text-white/90 transition-colors hover:text-white"
+                >
+                  <Mail className="size-4 shrink-0 text-[#C9A84C]" />
+                  admissions@mastersunion.org
+                </a>
+                <div className="flex items-start gap-3 text-[13px] font-medium text-white/70">
+                  <MapPin className="size-4 shrink-0 text-[#C9A84C]" />
+                  <span>DLF Cyber Park, Gurugram, Haryana 122008</span>
+                </div>
+                <div className="mt-1 flex items-center gap-3 text-[11px] font-medium text-white/50">
+                  <Clock className="size-3.5 shrink-0" />
+                  Mon–Sat · 10 AM – 6 PM IST
+                </div>
               </div>
-            </button>
-
-            <RegistrationDialog open={applyOpen} onOpenChange={setApplyOpen} />
+            </div>
+          </div>
           </div>
 
         </div>
