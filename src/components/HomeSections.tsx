@@ -1219,7 +1219,7 @@ export default function HomeSections() {
                   className="flex items-center gap-3 text-[13px] font-medium text-white/90 transition-colors hover:text-white"
                 >
                   <Phone className="size-4 shrink-0 text-[#C9A84C]" />
-                  +91 76691 86660
+                  <span className="whitespace-nowrap">+91 76691 86660</span>
                 </a>
                 <a
                   href="https://wa.me/917669186660"
