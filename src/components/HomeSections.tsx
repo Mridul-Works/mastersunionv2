@@ -1233,7 +1233,7 @@ function PedagogyPinnedScroll() {
       style={{ height: sectionHeight }}
     >
       <div className="sticky top-0 h-screen overflow-hidden">
-        <div className="mx-auto flex h-full max-w-[1280px] flex-col px-6 pt-16 md:px-10 md:pt-20">
+        <div className="mx-auto flex h-full max-w-[1280px] flex-col px-6 pt-10 pb-6 md:px-10 md:pt-14 md:pb-8">
           <SectionHead
             eyebrow="The pedagogy"
             title={
@@ -1248,7 +1248,8 @@ function PedagogyPinnedScroll() {
             lede="Eight systems that work in concert — built so theory never outpaces practice."
           />
 
-          <div className="relative mt-10 flex-1 overflow-hidden">
+          <div className="relative mt-6 min-h-0 flex-1 overflow-hidden md:mt-8">
+
             <div
               ref={trackRef}
               className="flex h-full items-center gap-5 md:gap-6 will-change-transform"
