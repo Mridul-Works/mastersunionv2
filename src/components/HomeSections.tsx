@@ -1245,6 +1245,7 @@ function PedagogyPinnedScroll() {
             }
             lede="Eight systems that turn every class into a live brief, every project into proof, and every student into someone worth hiring — or funding."
             stack
+            compact
           />
 
           <div className="relative mt-6 min-h-0 flex-1 overflow-hidden md:mt-8">
