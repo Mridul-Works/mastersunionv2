@@ -32,9 +32,9 @@ export default function TenThings() {
         scrollTrigger: {
           trigger: pinRef.current,
           start: "top top",
-          end: "+=100%",
+          end: "+=170%",
           pin: true,
-          scrub: 0.6,
+          scrub: 0.7,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
@@ -43,7 +43,7 @@ export default function TenThings() {
       tl.to(widgetRef.current, { xPercent: 0, ease: "none" }, 0).to(
         introRef.current,
         { yPercent: -30, opacity: 0, ease: "none" },
-        0,
+        0.35,
       );
     }, pinRef);
 
