@@ -1244,6 +1244,7 @@ function PedagogyPinnedScroll() {
               </>
             }
             lede="Eight systems that turn every class into a live brief, every project into proof, and every student into someone worth hiring — or funding."
+            stack
           />
 
           <div className="relative mt-6 min-h-0 flex-1 overflow-hidden md:mt-8">
@@ -1349,10 +1350,10 @@ function PedagogyPinnedScroll() {
   );
 }
 
-function SectionHead({ eyebrow, title, lede, icon: Icon }: { eyebrow: string; title: React.ReactNode; lede: string; icon?: React.ComponentType<{ className?: string }> }) {
+function SectionHead({ eyebrow, title, lede, icon: Icon, stack }: { eyebrow: string; title: React.ReactNode; lede: string; icon?: React.ComponentType<{ className?: string }>; stack?: boolean }) {
   return (
-    <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-      <div className="max-w-3xl">
+    <div className={cn("flex flex-col gap-8", stack ? "md:flex-col" : "md:flex-row md:items-end md:justify-between")}>
+      <div className={stack ? "max-w-6xl" : "max-w-2xl"}>
         <div className="flex items-center gap-3">
           {Icon && <Icon className="size-4 text-black/70" />}
           <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-black/50">{eyebrow}</p>
@@ -1361,7 +1362,7 @@ function SectionHead({ eyebrow, title, lede, icon: Icon }: { eyebrow: string; ti
           {title}
         </h2>
       </div>
-      <p className="max-w-sm text-[15px] leading-relaxed text-black/60">{lede}</p>
+      <p className={cn("text-[15px] leading-relaxed text-black/60", stack ? "max-w-xl" : "max-w-sm")}>{lede}</p>
     </div>
   );
 }
