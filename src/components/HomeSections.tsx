@@ -1239,7 +1239,9 @@ function PedagogyPinnedScroll() {
             title={
               <>
                 <span className="md:block md:whitespace-nowrap">Real stakes.</span>
+                <span className="md:hidden">{" "}</span>
                 <span className="md:block md:whitespace-nowrap">Real portfolios.</span>
+                <span className="md:hidden">{" "}</span>
                 <span className="md:block md:whitespace-nowrap">The Masters' Union experience.</span>
               </>
             }
