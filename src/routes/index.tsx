@@ -220,17 +220,33 @@ function Index() {
 
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white pb-[100px]">
       {/* NAV */}
       <header
-        className={`fixed inset-x-0 top-0 z-[100] hidden px-4 pt-3 sm:px-6 sm:pt-4 transition-all duration-500 md:block ${
+        className={`fixed inset-x-0 bottom-0 z-[100] hidden px-4 pb-3 sm:px-6 sm:pb-4 transition-all duration-500 md:block ${
           navVisible
             ? navHidden
-              ? "opacity-0 -translate-y-6 pointer-events-none"
+              ? "opacity-0 translate-y-6 pointer-events-none"
               : "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 -translate-y-4 pointer-events-none"
+            : "opacity-0 translate-y-4 pointer-events-none"
         }`}
       >
+        {menuOpen && (
+          <div className="mb-3 rounded-none border border-black/10 bg-white/95 p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.12)] backdrop-blur-xl md:hidden">
+            <nav className="flex flex-col gap-1">
+              {NAV.map((item) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  onClick={() => setMenuOpen(false)}
+                  className="rounded-none px-4 py-3 text-[14px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
+                >
+                  {item}
+                </a>
+              ))}
+            </nav>
+          </div>
+        )}
         <div className="mx-auto flex max-w-[1180px] items-center justify-between rounded-none border border-black/10 bg-white/80 px-2 py-1.5 shadow-[0_6px_24px_-12px_rgba(0,0,0,0.15)] backdrop-blur-xl">
           <a href="/" className="flex items-center gap-2 rounded-none px-2.5 py-1">
             <img src={logoAsset.url} alt="Masters' Union" className="h-5 w-auto" />
@@ -265,22 +281,6 @@ function Index() {
             </button>
           </div>
         </div>
-        {menuOpen && (
-          <div className="mt-3 rounded-none border border-black/10 bg-white/95 p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.12)] backdrop-blur-xl md:hidden">
-            <nav className="flex flex-col gap-1">
-              {NAV.map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  onClick={() => setMenuOpen(false)}
-                  className="rounded-none px-4 py-3 text-[14px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
-                >
-                  {item}
-                </a>
-              ))}
-            </nav>
-          </div>
-        )}
       </header>
 
       <div id="hero-curtain" className="relative">
