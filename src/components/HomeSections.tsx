@@ -1232,7 +1232,7 @@ function PedagogyPinnedScroll() {
       className="relative border-t border-black/10 bg-neutral-50"
       style={{ height: sectionHeight }}
     >
-      <div className="sticky top-0 h-screen overflow-hidden">
+      <div className="sticky top-0 h-[120vh] overflow-hidden">
         <div className="mx-auto flex h-full max-w-[1280px] flex-col px-6 pt-10 pb-6 md:px-10 md:pt-14 md:pb-8">
           <SectionHead
             eyebrow="Learning experience"
