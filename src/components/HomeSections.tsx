@@ -1148,21 +1148,23 @@ export default function HomeSections() {
                     key={p.tag}
                     to={p.route}
                     className="group relative flex w-[86vw] max-w-[340px] shrink-0 snap-start flex-col overflow-hidden rounded-[32px] p-6 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.25)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.4)] md:w-[340px] md:p-7"
-                    style={{ backgroundColor: p.bg, aspectRatio: "3/5" }}
+                    style={{ background: p.bg, aspectRatio: "3/5" }}
                   >
-                    {/* Top row: index + icon */}
+                    {/* Eyebrow row */}
                     <div className="flex items-center justify-between">
-                      <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-black/50">
-                        Shot {String(i + 1).padStart(2, "0")}
+                      <span className="inline-flex items-center gap-2 rounded-full bg-white/55 px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-black/80 backdrop-blur-sm">
+                        <span className="text-black/50">{String(i + 1).padStart(2, "0")}</span>
+                        <span className="h-3 w-px bg-black/25" />
+                        {p.tag}
                       </span>
-                      <div className="flex size-9 items-center justify-center rounded-full bg-white/60 text-black/70 backdrop-blur-sm">
+                      <div className="flex size-9 items-center justify-center rounded-full bg-white/55 text-black/75 backdrop-blur-sm">
                         <Icon className="size-4" />
                       </div>
                     </div>
 
-                    {/* Big headline with colored first word */}
+                    {/* Big headline with italic first word */}
                     <h3
-                      className="mt-5 text-[1.7rem] font-semibold leading-[1.05] tracking-tight text-black md:text-[1.9rem]"
+                      className="mt-8 text-[1.9rem] font-semibold leading-[1.05] tracking-tight text-black md:text-[2.1rem]"
                       style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                     >
                       <span className="italic font-light text-black/90" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
@@ -1171,30 +1173,15 @@ export default function HomeSections() {
                       {rest ? " " + rest : ""}
                     </h3>
 
-                    {/* Image window */}
-                    <div className="relative mt-5 flex-1 overflow-hidden rounded-[22px] bg-black/5">
-                      <img
-                        src={p.image}
-                        alt={p.title}
-                        loading="lazy"
-                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                      />
-                      <div className="absolute left-3 top-3">
-                        <span className="inline-flex items-center rounded-full bg-white/90 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.18em] text-black backdrop-blur-sm">
-                          {p.tag}
-                        </span>
-                      </div>
-                      <div className="absolute bottom-3 right-3">
-                        <div className="flex size-10 items-center justify-center rounded-full bg-black text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-                          <ArrowUpRight className="size-4" />
-                        </div>
+                    {/* Caption + CTA at bottom */}
+                    <div className="mt-auto flex items-end justify-between gap-4 pt-6">
+                      <p className="max-w-[24ch] text-[12.5px] leading-[1.5] text-black/70 line-clamp-3">
+                        {p.body}
+                      </p>
+                      <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-black text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                        <ArrowUpRight className="size-4" />
                       </div>
                     </div>
-
-                    {/* Caption */}
-                    <p className="mt-4 text-[12.5px] leading-[1.5] text-black/65 line-clamp-2">
-                      {p.body}
-                    </p>
                   </Link>
                 );
               })}
