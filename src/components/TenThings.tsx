@@ -159,8 +159,8 @@ export default function TenThings() {
 
 
       {/* Card widget — stacked on mobile, slides in from right on desktop */}
-      <div ref={widgetRef} className="relative z-20 bg-[#F1EFE7] md:absolute md:left-0 md:right-0 md:top-1/2 md:h-[70vh] md:-translate-y-1/2 md:will-change-transform">
-        <div className="relative h-full min-h-[720px] w-full overflow-hidden bg-[#F1EFE7] md:min-h-0">
+      <div ref={widgetRef} className="relative z-20 bg-[#F1EFE7] md:absolute md:inset-0 md:will-change-transform">
+        <div className="relative min-h-[720px] w-full overflow-hidden bg-[#F1EFE7] md:h-full md:min-h-[640px]">
 
 
 
