@@ -304,12 +304,12 @@ function Index() {
             <div className="absolute inset-0 bg-[#2A312A]/10 mix-blend-multiply" />
           </div>
 
-          {/* Video (no autoplay) */}
+          {/* Video (no autoplay / no autoload) */}
           <video
             ref={videoElRef}
             src={campusVideo.url}
             playsInline
-            preload="metadata"
+            preload="none"
             onPlay={() => setPlaying(true)}
             onPlaying={() => {
               if (heroLockedRef.current || window.scrollY > 8) {
