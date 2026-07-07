@@ -478,8 +478,8 @@ function Index() {
         type="button"
         onClick={rewatchVideo}
         aria-label="Rewatch intro video"
-        className={`fixed bottom-6 left-6 z-[90] flex items-center gap-2 rounded-none border border-black/10 bg-white/95 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-black shadow-[0_12px_32px_-8px_rgba(0,0,0,0.12)] backdrop-blur-xl transition-all duration-500 hover:scale-105 ${
-          showRewatch ? "opacity-100 translate-y-0 pointer-events-auto animate-bounce" : "opacity-0 translate-y-6 pointer-events-none"
+        className={`fixed top-6 right-6 z-[90] flex items-center gap-2 rounded-none border border-black/10 bg-white/95 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-black shadow-[0_12px_32px_-8px_rgba(0,0,0,0.12)] backdrop-blur-xl transition-all duration-500 hover:scale-105 ${
+          showRewatch ? "opacity-100 translate-y-0 pointer-events-auto animate-bounce" : "opacity-0 -translate-y-6 pointer-events-none"
         }`}
       >
         <ArrowUp className="size-4" />
