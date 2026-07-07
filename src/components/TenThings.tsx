@@ -187,8 +187,9 @@ export default function TenThings() {
           </div>
 
 
-          {/* Giant ghost numeral */}
-          <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
+          {/* Giant ghost numeral — desktop only (overlaps text on mobile) */}
+          <div className="pointer-events-none absolute inset-0 z-0 hidden items-center justify-center md:flex">
+
             <AnimatePresence mode="popLayout">
               <motion.span
                 key={`ghost-${index}`}
