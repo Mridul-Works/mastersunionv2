@@ -1136,118 +1136,123 @@ export default function HomeSections() {
         <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-10 md:py-32">
           <SectionHead eyebrow="The pedagogy" title={<>How Masters' Union <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>actually</span> teaches.</>} lede="Eight systems that work in concert — built so theory never outpaces practice." />
 
-          <div className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {PEDAGOGY.map((p, i) => {
-              const Icon = p.icon;
-              // Bento: card 0 spans 2 cols; card 4 spans 2 cols
-              const span = i === 0 || i === 4 ? "lg:col-span-2" : "";
-              return (
-                <Link
-                  key={p.tag}
-                  to={p.route}
-                  className={`group relative flex flex-col overflow-hidden rounded-[8px] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)] ${span}`}
-                  style={{ backgroundColor: p.bg }}
-                >
-                  {/* Top: tag + icon + title on colored background */}
-                  <div className="flex items-start justify-between gap-4 p-6 md:p-7">
-                    <span className="inline-flex items-center rounded-md bg-white/70 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/75 backdrop-blur-sm">
-                      {p.tag}
-                    </span>
-                    <div className="flex size-8 items-center justify-center rounded-md bg-black/10 text-black/70">
-                      <Icon className="size-4" />
-                    </div>
-                  </div>
-                  <div className="px-6 md:px-7">
-                    <h3
-                      className="text-[1.35rem] font-semibold leading-[1.15] tracking-tight text-black md:text-[1.6rem]"
-                      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                    >
-                      {p.title}
-                    </h3>
-                    <p className="mt-3 text-[13px] leading-[1.6] text-black/70 line-clamp-3">
-                      {p.body}
-                    </p>
-                  </div>
-
-                  {/* Bottom: large image with CTA overlay */}
-                  <div className="relative mt-6 mx-3 mb-3 overflow-hidden rounded-[6px]">
-                    <img
-                      src={p.image}
-                      alt={p.title}
-                      loading="lazy"
-                      className={`w-full object-cover transition-transform duration-500 group-hover:scale-[1.03] ${
-                        i === 0 || i === 4 ? "aspect-[16/9]" : "aspect-[4/3]"
-                      }`}
-                    />
-                    <div className="absolute inset-x-4 bottom-4 flex items-center justify-between">
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-black">
-                        {p.cta}
+          <div className="relative mt-16 -mx-6 md:-mx-10">
+            <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-6 pt-2 md:gap-6 md:px-10 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              {PEDAGOGY.map((p, i) => {
+                const Icon = p.icon;
+                // Split title into first accent word (colored) + remainder
+                const [firstWord, ...restWords] = p.title.split(" ");
+                const rest = restWords.join(" ");
+                return (
+                  <Link
+                    key={p.tag}
+                    to={p.route}
+                    className="group relative flex w-[86vw] max-w-[340px] shrink-0 snap-start flex-col overflow-hidden rounded-[32px] p-6 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.25)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.4)] md:w-[340px] md:p-7"
+                    style={{ backgroundColor: p.bg, aspectRatio: "3/5" }}
+                  >
+                    {/* Top row: index + icon */}
+                    <div className="flex items-center justify-between">
+                      <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-black/50">
+                        Shot {String(i + 1).padStart(2, "0")}
                       </span>
-                      <div className="flex size-10 items-center justify-center rounded-full bg-black text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-                        <ArrowUpRight className="size-4" />
+                      <div className="flex size-9 items-center justify-center rounded-full bg-white/60 text-black/70 backdrop-blur-sm">
+                        <Icon className="size-4" />
                       </div>
                     </div>
-                  </div>
-                </Link>
-              );
-            })}
 
-            {/* Admissions contact card */}
-            <div className="group relative flex flex-col overflow-hidden rounded-[8px] bg-black text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-30px_rgba(0,0,0,0.45)]">
-              <div className="flex items-start justify-between gap-4 p-6 md:p-7">
-                <span className="inline-flex items-center rounded-md bg-white/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/80 backdrop-blur-sm">
-                  Admissions Office
-                </span>
-                <div className="flex size-8 items-center justify-center rounded-md bg-white/10 text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-                  <ArrowUpRight className="size-4" />
+                    {/* Big headline with colored first word */}
+                    <h3
+                      className="mt-5 text-[1.7rem] font-semibold leading-[1.05] tracking-tight text-black md:text-[1.9rem]"
+                      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                    >
+                      <span className="italic font-light text-black/90" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+                        {firstWord}
+                      </span>
+                      {rest ? " " + rest : ""}
+                    </h3>
+
+                    {/* Image window */}
+                    <div className="relative mt-5 flex-1 overflow-hidden rounded-[22px] bg-black/5">
+                      <img
+                        src={p.image}
+                        alt={p.title}
+                        loading="lazy"
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                      />
+                      <div className="absolute left-3 top-3">
+                        <span className="inline-flex items-center rounded-full bg-white/90 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.18em] text-black backdrop-blur-sm">
+                          {p.tag}
+                        </span>
+                      </div>
+                      <div className="absolute bottom-3 right-3">
+                        <div className="flex size-10 items-center justify-center rounded-full bg-black text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                          <ArrowUpRight className="size-4" />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Caption */}
+                    <p className="mt-4 text-[12.5px] leading-[1.5] text-black/65 line-clamp-2">
+                      {p.body}
+                    </p>
+                  </Link>
+                );
+              })}
+
+              {/* Admissions contact card — same phone-card shape */}
+              <div
+                className="group relative flex w-[86vw] max-w-[340px] shrink-0 snap-start flex-col overflow-hidden rounded-[32px] bg-black p-6 text-white shadow-[0_20px_50px_-25px_rgba(0,0,0,0.4)] transition-all duration-500 hover:-translate-y-2 md:w-[340px] md:p-7"
+                style={{ aspectRatio: "3/5" }}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">
+                    Admissions
+                  </span>
+                  <div className="flex size-9 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm">
+                    <ArrowUpRight className="size-4" />
+                  </div>
                 </div>
-              </div>
-              <div className="px-6 md:px-7">
+
                 <h3
-                  className="text-[1.6rem] font-semibold leading-[1.1] tracking-tight text-white md:text-[2rem]"
+                  className="mt-5 text-[1.7rem] font-semibold leading-[1.05] tracking-tight text-white md:text-[1.9rem]"
                   style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                 >
-                  Talk to us.
+                  <span className="italic font-light text-[#C9A84C]" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+                    Talk
+                  </span>{" "}
+                  to us.
                 </h3>
-                <p className="mt-3 text-[13px] leading-[1.6] text-white/70">
-                  Our admissions team replies within 24 hours. Call, WhatsApp or email.
+
+                <div className="mt-5 flex flex-1 flex-col justify-end gap-3 rounded-[22px] bg-white/[0.06] p-5">
+                  <a href="tel:+917669186660" className="flex items-center gap-3 text-[13px] font-medium text-white/90 hover:text-white">
+                    <Phone className="size-4 shrink-0 text-[#C9A84C]" />
+                    +91 76691 86660
+                  </a>
+                  <a href="https://wa.me/917669186660" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-[13px] font-medium text-white/90 hover:text-white">
+                    <MessageCircle className="size-4 shrink-0 text-[#C9A84C]" />
+                    WhatsApp
+                  </a>
+                  <a href="mailto:admissions@mastersunion.org" className="flex items-center gap-3 text-[13px] font-medium text-white/90 hover:text-white">
+                    <Mail className="size-4 shrink-0 text-[#C9A84C]" />
+                    admissions@mastersunion.org
+                  </a>
+                  <div className="flex items-start gap-3 text-[12px] font-medium text-white/60">
+                    <MapPin className="size-4 shrink-0 text-[#C9A84C]" />
+                    <span>DLF Cyber Park, Gurugram 122008</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[10.5px] font-medium text-white/45">
+                    <Clock className="size-3.5 shrink-0" />
+                    Mon–Sat · 10 AM – 6 PM IST
+                  </div>
+                </div>
+
+                <p className="mt-4 text-[12.5px] leading-[1.5] text-white/60">
+                  Our admissions team replies within 24 hours.
                 </p>
-              </div>
-              <div className="relative mx-3 mb-3 mt-6 flex flex-1 flex-col justify-end gap-3 overflow-hidden rounded-[6px] bg-white/10 p-5">
-                <a
-                  href="tel:+917669186660"
-                  className="flex items-center gap-3 text-[13px] font-medium text-white/90 transition-colors hover:text-white"
-                >
-                  <Phone className="size-4 shrink-0 text-[#C9A84C]" />
-                  <span className="whitespace-nowrap">+91 76691 86660</span>
-                </a>
-                <a
-                  href="https://wa.me/917669186660"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-3 text-[13px] font-medium text-white/90 transition-colors hover:text-white"
-                >
-                  <MessageCircle className="size-4 shrink-0 text-[#C9A84C]" />
-                  WhatsApp
-                </a>
-                <a
-                  href="mailto:admissions@mastersunion.org"
-                  className="flex items-center gap-3 text-[13px] font-medium text-white/90 transition-colors hover:text-white"
-                >
-                  <Mail className="size-4 shrink-0 text-[#C9A84C]" />
-                  admissions@mastersunion.org
-                </a>
-                <div className="flex items-start gap-3 text-[13px] font-medium text-white/70">
-                  <MapPin className="size-4 shrink-0 text-[#C9A84C]" />
-                  <span>DLF Cyber Park, Gurugram, Haryana 122008</span>
-                </div>
-                <div className="mt-1 flex items-center gap-3 text-[11px] font-medium text-white/50">
-                  <Clock className="size-3.5 shrink-0" />
-                  Mon–Sat · 10 AM – 6 PM IST
-                </div>
               </div>
             </div>
           </div>
+
 
         </div>
       </section>
