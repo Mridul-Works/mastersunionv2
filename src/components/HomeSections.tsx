@@ -1248,7 +1248,7 @@ function PedagogyPinnedScroll() {
             compact
           />
 
-          <div className="relative mt-6 min-h-0 flex-1 overflow-hidden md:mt-8">
+          <div className="relative mt-4 min-h-0 flex-1 overflow-hidden md:mt-6">
 
             <div
               ref={trackRef}
