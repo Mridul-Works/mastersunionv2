@@ -1235,17 +1235,9 @@ function PedagogyPinnedScroll() {
       <div className="sticky top-0 h-screen overflow-hidden">
         <div className="mx-auto flex h-full max-w-[1280px] flex-col px-6 pt-10 pb-6 md:px-10 md:pt-14 md:pb-8">
           <SectionHead
-            eyebrow="The pedagogy"
-            title={
-              <>
-                How Masters' Union{" "}
-                <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
-                  actually
-                </span>{" "}
-                teaches.
-              </>
-            }
-            lede="Eight systems that work in concert — built so theory never outpaces practice."
+            eyebrow="Learning experience"
+            title="We don't do lectures. We do live fire."
+            lede="Eight systems that turn every class into a real brief, every project into a portfolio, and every student into someone worth hiring — or funding."
           />
 
           <div className="relative mt-6 min-h-0 flex-1 overflow-hidden md:mt-8">
