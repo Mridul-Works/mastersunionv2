@@ -660,7 +660,7 @@ function Programs() {
   return (
     <section id="programs" className="border-t border-black/10 bg-[#F5F3EE]">
 
-      <div className="mx-auto grid max-w-[1280px] grid-cols-12 gap-6 px-6 py-20 md:px-10 md:py-28">
+      <div className="mx-auto grid max-w-[1280px] grid-cols-12 gap-6 px-5 py-14 md:px-10 md:py-28">
         {/* Editorial intro */}
         <div className="col-span-12 lg:col-span-4">
           <h2 className="mb-8 inline-block border-b border-black pb-2 font-mono text-[10px] font-bold uppercase tracking-[0.32em]">
@@ -992,7 +992,7 @@ export default function HomeSections() {
     <div className="bg-white text-black" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       {/* NEWS */}
       <section id="news" className="border-t border-black/10 bg-white">
-        <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10 md:py-28">
+        <div className="mx-auto max-w-[1280px] px-5 py-14 md:px-10 md:py-28">
           <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="mb-2 font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-black/50">
