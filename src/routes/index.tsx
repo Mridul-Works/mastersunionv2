@@ -253,12 +253,16 @@ function Index() {
             <nav className="flex flex-col gap-1">
               {NAV.map((item) => (
                 <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  onClick={() => setMenuOpen(false)}
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setMenuOpen(false);
+                    scrollToId(item.id);
+                  }}
                   className="rounded-none px-4 py-3 text-[14px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
                 >
-                  {item}
+                  {item.label}
                 </a>
               ))}
             </nav>
@@ -271,11 +275,15 @@ function Index() {
           <nav className="hidden items-center gap-0.5 md:flex">
             {NAV.map((item) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToId(item.id);
+                }}
                 className="rounded-none px-3 py-1.5 text-[12px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
               >
-                {item}
+                {item.label}
               </a>
             ))}
           </nav>
