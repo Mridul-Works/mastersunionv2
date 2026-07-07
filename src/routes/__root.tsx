@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import SmoothScroll from "../components/SmoothScroll";
+import MobileBottomBar from "../components/MobileBottomBar";
 
 
 function NotFoundComponent() {
@@ -131,6 +132,7 @@ function RootComponent() {
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
       </SmoothScroll>
+      <MobileBottomBar />
     </QueryClientProvider>
   );
 }
