@@ -312,12 +312,18 @@ function Slide({
 
         <div className="pointer-events-none absolute left-6 bottom-6 z-10 hidden md:left-10 md:bottom-10 md:block">
           <StaggeredText delay={0.05} k={`bignum-${index}`}>
-            <span
-              className="block font-black leading-none tracking-tighter text-[#1A211A]"
-              style={{ fontSize: "clamp(64px, 8vw, 120px)" }}
-            >
-              {String(index + 1).padStart(2, "0")}
-            </span>
+            <div className="flex flex-col items-start leading-none">
+              <span
+                className="block font-black leading-none tracking-tighter text-[#1A211A]"
+                style={{ fontSize: "clamp(48px, 6vw, 84px)" }}
+              >
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <div className="mt-2.5 flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-[#1A211A]/70">
+                <span className="inline-block h-1.5 w-1.5 bg-[#1A211A]" />
+                <span>{project.tag}</span>
+              </div>
+            </div>
           </StaggeredText>
         </div>
 
