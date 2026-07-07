@@ -310,7 +310,7 @@ function Slide({
           </motion.div>
         </motion.div>
 
-        <div className="pointer-events-none absolute left-6 bottom-6 z-10 md:left-10 md:bottom-10">
+        <div className="pointer-events-none absolute left-6 bottom-6 z-10 hidden md:left-10 md:bottom-10 md:block">
           <StaggeredText delay={0.05} k={`bignum-${index}`}>
             <span
               className="block font-black leading-none tracking-tighter text-[#1A211A]"
