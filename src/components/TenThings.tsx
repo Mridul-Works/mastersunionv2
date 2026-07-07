@@ -142,8 +142,8 @@ export default function TenThings() {
           </div>
         </div>
 
-        {/* Scroll hint */}
-        <div className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3 md:bottom-10">
+        {/* Scroll hint — desktop only */}
+        <div className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-3 md:bottom-10 md:flex">
           <span
             className="text-[9px] uppercase tracking-[0.3em] text-[#1A211A]/40"
             style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
@@ -158,9 +158,10 @@ export default function TenThings() {
 
 
 
-      {/* Card widget — slides in from right on scroll */}
-      <div ref={widgetRef} className="absolute inset-0 z-20 bg-[#F1EFE7] will-change-transform">
-        <div className="relative h-full min-h-[640px] w-full overflow-hidden bg-[#F1EFE7]">
+      {/* Card widget — stacked on mobile, slides in from right on desktop */}
+      <div ref={widgetRef} className="relative z-20 bg-[#F1EFE7] md:absolute md:inset-0 md:will-change-transform">
+        <div className="relative min-h-[720px] w-full overflow-hidden bg-[#F1EFE7] md:h-full md:min-h-[640px]">
+
 
 
 
