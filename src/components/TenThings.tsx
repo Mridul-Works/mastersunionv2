@@ -322,7 +322,7 @@ function Slide({
 
       </div>
 
-      <div className="relative z-10 flex items-end px-6 pb-24 md:items-center md:px-12 md:pb-0">
+      <div className="relative z-10 flex items-end px-6 pb-44 md:items-center md:px-12 md:pb-0">
         <div className="max-w-[460px]">
           <StaggeredText delay={0.15} k={`meta-${index}`}>
             <p
