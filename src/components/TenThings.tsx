@@ -79,7 +79,7 @@ export default function TenThings() {
 
   return (
     <section className="relative bg-[#F1EFE7] text-[#1A211A]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-      <div ref={pinRef} className="relative w-full overflow-hidden md:h-[72vh]">
+      <div ref={pinRef} className="relative w-full overflow-hidden md:h-[62vh]">
       {/* Intro headline — stacked on mobile, absolute hero on desktop */}
       <div ref={introRef} className="relative z-0 flex flex-col justify-center overflow-hidden bg-[#F1EFE7] px-6 py-16 text-[#1A211A] md:absolute md:inset-0 md:px-12 md:py-20 md:will-change-transform">
 
