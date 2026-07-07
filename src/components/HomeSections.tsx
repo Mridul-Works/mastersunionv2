@@ -1350,15 +1350,20 @@ function PedagogyPinnedScroll() {
   );
 }
 
-function SectionHead({ eyebrow, title, lede, icon: Icon, stack }: { eyebrow: string; title: React.ReactNode; lede: string; icon?: React.ComponentType<{ className?: string }>; stack?: boolean }) {
+function SectionHead({ eyebrow, title, lede, icon: Icon, stack, compact }: { eyebrow: string; title: React.ReactNode; lede: string; icon?: React.ComponentType<{ className?: string }>; stack?: boolean; compact?: boolean }) {
   return (
-    <div className={cn("flex flex-col gap-8", stack ? "md:flex-col" : "md:flex-row md:items-end md:justify-between")}>
+    <div className={cn("flex flex-col", compact && stack ? "gap-4" : "gap-8", stack ? "md:flex-col" : "md:flex-row md:items-end md:justify-between")}>
       <div className={stack ? "max-w-6xl" : "max-w-2xl"}>
         <div className="flex items-center gap-3">
           {Icon && <Icon className="size-4 text-black/70" />}
           <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-black/50">{eyebrow}</p>
         </div>
-        <h2 className="mt-5 text-[clamp(2rem,5vw,3.5rem)] font-medium leading-[0.95] tracking-tight text-black md:text-[clamp(2.5rem,5vw,4rem)]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+        <h2 className={cn(
+          "mt-5 font-medium leading-[0.95] tracking-tight text-black",
+          compact && stack
+            ? "text-[clamp(1.8rem,4.5vw,3rem)] md:text-[clamp(2.2rem,4.5vw,3.5rem)]"
+            : "text-[clamp(2rem,5vw,3.5rem)] md:text-[clamp(2.5rem,5vw,4rem)]"
+        )} style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
           {title}
         </h2>
       </div>
