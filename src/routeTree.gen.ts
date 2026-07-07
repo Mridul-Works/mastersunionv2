@@ -19,6 +19,7 @@ import { Route as FoodLabRouteImport } from './routes/food-lab'
 import { Route as FacultyRouteImport } from './routes/faculty'
 import { Route as CreatorChallengeRouteImport } from './routes/creator-challenge'
 import { Route as CampusRouteImport } from './routes/campus'
+import { Route as Applications_centerRouteImport } from './routes/applications_center'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProgrammesPgpTbmRouteImport } from './routes/programmes.pgp-tbm'
 
@@ -72,6 +73,11 @@ const CampusRoute = CampusRouteImport.update({
   path: '/campus',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Applications_centerRoute = Applications_centerRouteImport.update({
+  id: '/applications_center',
+  path: '/applications_center',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -85,6 +91,7 @@ const ProgrammesPgpTbmRoute = ProgrammesPgpTbmRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/applications_center': typeof Applications_centerRoute
   '/campus': typeof CampusRoute
   '/creator-challenge': typeof CreatorChallengeRoute
   '/faculty': typeof FacultyRoute
@@ -99,6 +106,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/applications_center': typeof Applications_centerRoute
   '/campus': typeof CampusRoute
   '/creator-challenge': typeof CreatorChallengeRoute
   '/faculty': typeof FacultyRoute
@@ -114,6 +122,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/applications_center': typeof Applications_centerRoute
   '/campus': typeof CampusRoute
   '/creator-challenge': typeof CreatorChallengeRoute
   '/faculty': typeof FacultyRoute
@@ -130,6 +139,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/applications_center'
     | '/campus'
     | '/creator-challenge'
     | '/faculty'
@@ -144,6 +154,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/applications_center'
     | '/campus'
     | '/creator-challenge'
     | '/faculty'
@@ -158,6 +169,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/applications_center'
     | '/campus'
     | '/creator-challenge'
     | '/faculty'
@@ -173,6 +185,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  Applications_centerRoute: typeof Applications_centerRoute
   CampusRoute: typeof CampusRoute
   CreatorChallengeRoute: typeof CreatorChallengeRoute
   FacultyRoute: typeof FacultyRoute
@@ -258,6 +271,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CampusRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/applications_center': {
+      id: '/applications_center'
+      path: '/applications_center'
+      fullPath: '/applications_center'
+      preLoaderRoute: typeof Applications_centerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -277,6 +297,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  Applications_centerRoute: Applications_centerRoute,
   CampusRoute: CampusRoute,
   CreatorChallengeRoute: CreatorChallengeRoute,
   FacultyRoute: FacultyRoute,

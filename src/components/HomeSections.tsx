@@ -861,7 +861,7 @@ function Programs() {
 
                     <div className="mt-4 flex items-center justify-between">
                       <a
-                        href="#"
+                        href="/applications_center"
                         className="text-[11px] font-semibold uppercase tracking-widest text-black underline underline-offset-4 decoration-black/20 transition-colors hover:decoration-black"
                       >
                         Apply Now
