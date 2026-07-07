@@ -1352,7 +1352,7 @@ function PedagogyPinnedScroll() {
 function SectionHead({ eyebrow, title, lede, icon: Icon }: { eyebrow: string; title: React.ReactNode; lede: string; icon?: React.ComponentType<{ className?: string }> }) {
   return (
     <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-      <div className="max-w-2xl">
+      <div className="max-w-3xl">
         <div className="flex items-center gap-3">
           {Icon && <Icon className="size-4 text-black/70" />}
           <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-black/50">{eyebrow}</p>
