@@ -1237,7 +1237,7 @@ function PedagogyPinnedScroll() {
           <SectionHead
             eyebrow="Learning experience"
             title="Real stakes. Real portfolios. The Masters' Union experience."
-            lede="Eight systems that turn every class into a real brief, every project into a portfolio, and every student into someone worth hiring — or funding."
+            lede="Eight systems that turn every class into a live brief, every project into proof, and every student into someone worth hiring — or funding."
           />
 
           <div className="relative mt-6 min-h-0 flex-1 overflow-hidden md:mt-8">
