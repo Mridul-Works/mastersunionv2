@@ -1289,7 +1289,7 @@ function PedagogyPinnedScroll() {
 
               {/* Admissions contact card */}
               <div
-                className="group relative flex h-full max-h-[600px] w-[86vw] max-w-[340px] shrink-0 flex-col overflow-hidden rounded-[32px] bg-black p-6 text-white shadow-[0_20px_50px_-25px_rgba(0,0,0,0.4)] md:w-[340px] md:p-7"
+                className="group relative flex h-full max-h-[640px] w-[86vw] max-w-[340px] shrink-0 flex-col overflow-hidden rounded-[32px] bg-black p-6 text-white shadow-[0_20px_50px_-25px_rgba(0,0,0,0.4)] md:w-[340px] md:p-7"
               >
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">Admissions</span>
