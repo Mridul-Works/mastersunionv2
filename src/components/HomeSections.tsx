@@ -1132,117 +1132,8 @@ export default function HomeSections() {
       </section>
 
       {/* PEDAGOGY */}
-      <section id="pedagogy" className="border-t border-black/10 bg-neutral-50">
-        <div className="mx-auto max-w-[1280px] px-6 py-24 md:px-10 md:py-32">
-          <SectionHead eyebrow="The pedagogy" title={<>How Masters' Union <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>actually</span> teaches.</>} lede="Eight systems that work in concert — built so theory never outpaces practice." />
+      <PedagogyPinnedScroll />
 
-          <div className="relative mt-16 -mx-6 md:-mx-10">
-            <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-6 pt-2 md:gap-6 md:px-10 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              {PEDAGOGY.map((p, i) => {
-                const Icon = p.icon;
-                // Split title into first accent word (colored) + remainder
-                const [firstWord, ...restWords] = p.title.split(" ");
-                const rest = restWords.join(" ");
-                return (
-                  <Link
-                    key={p.tag}
-                    to={p.route}
-                    className="group relative flex w-[86vw] max-w-[340px] shrink-0 snap-start flex-col overflow-hidden rounded-[32px] p-6 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.25)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.4)] md:w-[340px] md:p-7"
-                    style={{ background: p.bg, aspectRatio: "3/5" }}
-                  >
-                    {/* Eyebrow row */}
-                    <div className="flex items-center justify-between">
-                      <span className="inline-flex items-center gap-2 rounded-full bg-white/55 px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-black/80 backdrop-blur-sm">
-                        <span className="text-black/50">{String(i + 1).padStart(2, "0")}</span>
-                        <span className="h-3 w-px bg-black/25" />
-                        {p.tag}
-                      </span>
-                      <div className="flex size-9 items-center justify-center rounded-full bg-white/55 text-black/75 backdrop-blur-sm">
-                        <Icon className="size-4" />
-                      </div>
-                    </div>
-
-                    {/* Big headline with italic first word */}
-                    <h3
-                      className="mt-8 text-[1.9rem] font-semibold leading-[1.05] tracking-tight text-black md:text-[2.1rem]"
-                      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                    >
-                      <span className="italic font-light text-black/90" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
-                        {firstWord}
-                      </span>
-                      {rest ? " " + rest : ""}
-                    </h3>
-
-                    {/* Caption + CTA at bottom */}
-                    <div className="mt-auto flex items-end justify-between gap-4 pt-6">
-                      <p className="max-w-[24ch] text-[12.5px] leading-[1.5] text-black/70 line-clamp-3">
-                        {p.body}
-                      </p>
-                      <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-black text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-                        <ArrowUpRight className="size-4" />
-                      </div>
-                    </div>
-                  </Link>
-                );
-              })}
-
-              {/* Admissions contact card — same phone-card shape */}
-              <div
-                className="group relative flex w-[86vw] max-w-[340px] shrink-0 snap-start flex-col overflow-hidden rounded-[32px] bg-black p-6 text-white shadow-[0_20px_50px_-25px_rgba(0,0,0,0.4)] transition-all duration-500 hover:-translate-y-2 md:w-[340px] md:p-7"
-                style={{ aspectRatio: "3/5" }}
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">
-                    Admissions
-                  </span>
-                  <div className="flex size-9 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm">
-                    <ArrowUpRight className="size-4" />
-                  </div>
-                </div>
-
-                <h3
-                  className="mt-5 text-[1.7rem] font-semibold leading-[1.05] tracking-tight text-white md:text-[1.9rem]"
-                  style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                >
-                  <span className="italic font-light text-[#C9A84C]" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
-                    Talk
-                  </span>{" "}
-                  to us.
-                </h3>
-
-                <div className="mt-5 flex flex-1 flex-col justify-end gap-3 rounded-[22px] bg-white/[0.06] p-5">
-                  <a href="tel:+917669186660" className="flex items-center gap-3 text-[13px] font-medium text-white/90 hover:text-white">
-                    <Phone className="size-4 shrink-0 text-[#C9A84C]" />
-                    +91 76691 86660
-                  </a>
-                  <a href="https://wa.me/917669186660" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-[13px] font-medium text-white/90 hover:text-white">
-                    <MessageCircle className="size-4 shrink-0 text-[#C9A84C]" />
-                    WhatsApp
-                  </a>
-                  <a href="mailto:admissions@mastersunion.org" className="flex items-center gap-3 text-[13px] font-medium text-white/90 hover:text-white">
-                    <Mail className="size-4 shrink-0 text-[#C9A84C]" />
-                    admissions@mastersunion.org
-                  </a>
-                  <div className="flex items-start gap-3 text-[12px] font-medium text-white/60">
-                    <MapPin className="size-4 shrink-0 text-[#C9A84C]" />
-                    <span>DLF Cyber Park, Gurugram 122008</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-[10.5px] font-medium text-white/45">
-                    <Clock className="size-3.5 shrink-0" />
-                    Mon–Sat · 10 AM – 6 PM IST
-                  </div>
-                </div>
-
-                <p className="mt-4 text-[12.5px] leading-[1.5] text-white/60">
-                  Our admissions team replies within 24 hours.
-                </p>
-              </div>
-            </div>
-          </div>
-
-
-        </div>
-      </section>
 
 
       {/* FOOTER */}
@@ -1285,6 +1176,177 @@ export default function HomeSections() {
         </div>
       </footer>
     </div>
+  );
+}
+
+function PedagogyPinnedScroll() {
+  const pinRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [translateX, setTranslateX] = useState(0);
+  const [sectionHeight, setSectionHeight] = useState("300vh");
+
+  useEffect(() => {
+    let maxScroll = 0;
+    let pinHeight = 0;
+
+    const measure = () => {
+      const track = trackRef.current;
+      if (!track) return;
+      const vw = window.innerWidth;
+      maxScroll = Math.max(0, track.scrollWidth - vw);
+      // Total pinned scroll = 1 viewport of intro + maxScroll of horizontal travel
+      pinHeight = window.innerHeight + maxScroll;
+      setSectionHeight(`${pinHeight}px`);
+    };
+
+    const onScroll = () => {
+      const el = pinRef.current;
+      if (!el || maxScroll <= 0) return;
+      const rect = el.getBoundingClientRect();
+      // progress: 0 when top hits viewport top, 1 when bottom reaches viewport bottom
+      const scrolled = Math.min(Math.max(-rect.top, 0), maxScroll);
+      setTranslateX(scrolled);
+    };
+
+    measure();
+    onScroll();
+    window.addEventListener("resize", measure);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    const ro = new ResizeObserver(() => {
+      measure();
+      onScroll();
+    });
+    if (trackRef.current) ro.observe(trackRef.current);
+
+    return () => {
+      window.removeEventListener("resize", measure);
+      window.removeEventListener("scroll", onScroll);
+      ro.disconnect();
+    };
+  }, []);
+
+  return (
+    <section
+      id="pedagogy"
+      ref={pinRef}
+      className="relative border-t border-black/10 bg-neutral-50"
+      style={{ height: sectionHeight }}
+    >
+      <div className="sticky top-0 h-screen overflow-hidden">
+        <div className="mx-auto flex h-full max-w-[1280px] flex-col px-6 pt-16 md:px-10 md:pt-20">
+          <SectionHead
+            eyebrow="The pedagogy"
+            title={
+              <>
+                How Masters' Union{" "}
+                <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+                  actually
+                </span>{" "}
+                teaches.
+              </>
+            }
+            lede="Eight systems that work in concert — built so theory never outpaces practice."
+          />
+
+          <div className="relative mt-10 flex-1 overflow-hidden">
+            <div
+              ref={trackRef}
+              className="flex h-full items-center gap-5 md:gap-6 will-change-transform"
+              style={{ transform: `translate3d(-${translateX}px, 0, 0)`, transition: "transform 60ms linear" }}
+            >
+              {PEDAGOGY.map((p, i) => {
+                const Icon = p.icon;
+                const [firstWord, ...restWords] = p.title.split(" ");
+                const rest = restWords.join(" ");
+                return (
+                  <Link
+                    key={p.tag}
+                    to={p.route}
+                    className="group relative flex h-[70vh] max-h-[560px] w-[86vw] max-w-[340px] shrink-0 flex-col overflow-hidden rounded-[32px] p-6 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.25)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.4)] md:w-[340px] md:p-7"
+                    style={{ background: p.bg }}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="inline-flex items-center gap-2 rounded-full bg-white/55 px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-black/80 backdrop-blur-sm">
+                        <span className="text-black/50">{String(i + 1).padStart(2, "0")}</span>
+                        <span className="h-3 w-px bg-black/25" />
+                        {p.tag}
+                      </span>
+                      <div className="flex size-9 items-center justify-center rounded-full bg-white/55 text-black/75 backdrop-blur-sm">
+                        <Icon className="size-4" />
+                      </div>
+                    </div>
+                    <h3
+                      className="mt-8 text-[1.9rem] font-semibold leading-[1.05] tracking-tight text-black md:text-[2.1rem]"
+                      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                    >
+                      <span className="italic font-light text-black/90" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+                        {firstWord}
+                      </span>
+                      {rest ? " " + rest : ""}
+                    </h3>
+                    <div className="mt-auto flex items-end justify-between gap-4 pt-6">
+                      <p className="max-w-[24ch] text-[12.5px] leading-[1.5] text-black/70 line-clamp-3">{p.body}</p>
+                      <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-black text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                        <ArrowUpRight className="size-4" />
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+
+              {/* Admissions contact card */}
+              <div
+                className="group relative flex h-[70vh] max-h-[560px] w-[86vw] max-w-[340px] shrink-0 flex-col overflow-hidden rounded-[32px] bg-black p-6 text-white shadow-[0_20px_50px_-25px_rgba(0,0,0,0.4)] md:w-[340px] md:p-7"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">Admissions</span>
+                  <div className="flex size-9 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm">
+                    <ArrowUpRight className="size-4" />
+                  </div>
+                </div>
+                <h3
+                  className="mt-5 text-[1.7rem] font-semibold leading-[1.05] tracking-tight text-white md:text-[1.9rem]"
+                  style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                >
+                  <span className="italic font-light text-[#C9A84C]" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+                    Talk
+                  </span>{" "}
+                  to us.
+                </h3>
+                <div className="mt-5 flex flex-1 flex-col justify-end gap-3 rounded-[22px] bg-white/[0.06] p-5">
+                  <a href="tel:+917669186660" className="flex items-center gap-3 text-[13px] font-medium text-white/90 hover:text-white">
+                    <Phone className="size-4 shrink-0 text-[#C9A84C]" />
+                    +91 76691 86660
+                  </a>
+                  <a href="https://wa.me/917669186660" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-[13px] font-medium text-white/90 hover:text-white">
+                    <MessageCircle className="size-4 shrink-0 text-[#C9A84C]" />
+                    WhatsApp
+                  </a>
+                  <a href="mailto:admissions@mastersunion.org" className="flex items-center gap-3 text-[13px] font-medium text-white/90 hover:text-white">
+                    <Mail className="size-4 shrink-0 text-[#C9A84C]" />
+                    admissions@mastersunion.org
+                  </a>
+                  <div className="flex items-start gap-3 text-[12px] font-medium text-white/60">
+                    <MapPin className="size-4 shrink-0 text-[#C9A84C]" />
+                    <span>DLF Cyber Park, Gurugram 122008</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[10.5px] font-medium text-white/45">
+                    <Clock className="size-3.5 shrink-0" />
+                    Mon–Sat · 10 AM – 6 PM IST
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Progress hint */}
+          <div className="pointer-events-none flex items-center justify-between px-1 pb-6 pt-4 text-[10px] font-mono uppercase tracking-[0.24em] text-black/40">
+            <span>Scroll to advance</span>
+            <span>{PEDAGOGY.length + 1} widgets</span>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
