@@ -1238,9 +1238,9 @@ function PedagogyPinnedScroll() {
             eyebrow="Learning experience"
             title={
               <>
-                <span className="md:block">Real stakes.</span>{' '}
-                <span className="md:block">Real portfolios.</span>{' '}
-                <span className="md:block">The Masters' Union experience.</span>
+                <span className="md:block md:whitespace-nowrap">Real stakes.</span>{' '}
+                <span className="md:block md:whitespace-nowrap">Real portfolios.</span>{' '}
+                <span className="md:block md:whitespace-nowrap">The Masters' Union experience.</span>
               </>
             }
             lede="Eight systems that turn every class into a live brief, every project into proof, and every student into someone worth hiring — or funding."
