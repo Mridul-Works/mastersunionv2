@@ -85,6 +85,11 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
+  @media (max-width: 767px) {
+    body {
+      padding-bottom: calc(88px + env(safe-area-inset-bottom));
+    }
+  }
 }
 
 @keyframes mu-pan-down {
