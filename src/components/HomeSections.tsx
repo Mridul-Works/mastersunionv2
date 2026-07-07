@@ -1236,7 +1236,13 @@ function PedagogyPinnedScroll() {
         <div className="mx-auto flex h-full max-w-[1280px] flex-col px-6 pt-10 pb-6 md:px-10 md:pt-14 md:pb-8">
           <SectionHead
             eyebrow="Learning experience"
-            title="Real stakes. Real portfolios. The Masters' Union experience."
+            title={
+              <>
+                <span className="md:block">Real stakes.</span>{' '}
+                <span className="md:block">Real portfolios.</span>{' '}
+                <span className="md:block">The Masters' Union experience.</span>
+              </>
+            }
             lede="Eight systems that turn every class into a live brief, every project into proof, and every student into someone worth hiring — or funding."
           />
 
