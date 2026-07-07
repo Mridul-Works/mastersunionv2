@@ -58,7 +58,7 @@ export function BottomNav({
   }, [items]);
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-[100] flex justify-center px-3 pb-3 sm:pb-5">
+    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-[100] hidden justify-center px-3 pb-3 sm:pb-5 md:flex">
       <nav
         aria-label="Section navigation"
         className="pointer-events-auto flex w-full max-w-[560px] items-center gap-1 rounded-full border border-black/10 bg-white/85 p-1.5 shadow-[0_18px_50px_-18px_rgba(0,0,0,0.4)] backdrop-blur-xl sm:max-w-[620px]"
