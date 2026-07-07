@@ -114,7 +114,7 @@ export default function TenThings() {
               >
                 marketing.
               </em>
-              <br className="hidden md:block" />
+              <br />
               <span className="font-light italic" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
                 10 things about Masters' Union
               </span>
