@@ -1236,7 +1236,7 @@ function PedagogyPinnedScroll() {
         <div className="mx-auto flex h-full max-w-[1280px] flex-col px-6 pt-10 pb-6 md:px-10 md:pt-14 md:pb-8">
           <SectionHead
             eyebrow="Learning experience"
-            title="We don't do lectures. We do live fire."
+            title="Lectures are for spectators. Experience is for builders."
             lede="Eight systems that turn every class into a real brief, every project into a portfolio, and every student into someone worth hiring — or funding."
           />
 
