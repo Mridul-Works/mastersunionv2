@@ -1194,8 +1194,8 @@ function PedagogyPinnedScroll() {
       if (!track) return;
       const vw = window.innerWidth;
       maxScroll = Math.max(0, track.scrollWidth - vw);
-      // Total pinned scroll = 1 viewport of intro + maxScroll of horizontal travel
-      pinHeight = window.innerHeight + maxScroll;
+      // Total pinned scroll = 1.2 viewports of intro + maxScroll of horizontal travel
+      pinHeight = 1.2 * window.innerHeight + maxScroll;
       setSectionHeight(`${pinHeight}px`);
     };
 
