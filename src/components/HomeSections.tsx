@@ -977,14 +977,14 @@ function DaysRemaining({ target }: { target: string }) {
 
 
 const PEDAGOGY = [
-  { icon: GraduationCap, tag: "01 · Faculty", title: "Taught by the people building the companies you study.", body: "40% of faculty are sitting CEOs, MDs and CXOs. 30% visiting from Harvard, Wharton, Kellogg and Booth. The slides update on Monday morning.", stats: [{ value: "40%", label: "Industry practitioners" }, { value: "200+", label: "Visiting experts" }, { value: "30%", label: "Ivy-league visiting" }], cta: "Meet the faculty", route: "/faculty", image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80", bg: "#E6DFF5" },
-  { icon: Rocket, tag: "02 · Entrepreneurship", title: "30+ ventures. ₹593 Cr in combined valuation.", body: "An on-campus venture studio that handles incorporation, hiring, and warm intros to Sequoia, Blume and Y Combinator. Six alumni on Shark Tank India.", stats: [{ value: "30+", label: "Active startups" }, { value: "₹593 Cr", label: "Combined valuation" }, { value: "6", label: "On Shark Tank India" }], cta: "See the startups", route: "/startups", image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80", bg: "#F4D9C4" },
-  { icon: Briefcase, tag: "03 · Career", title: "100% placement. ₹61.98L highest CTC.", body: "28% of grads join as Founder's Office or Chief of Staff. 3× average pre-MBA salary jump and 10–20% annual growth post-grad.", stats: [{ value: "₹61.98L", label: "Highest CTC" }, { value: "3×", label: "Average salary jump" }, { value: "100%", label: "Placement" }], cta: "Read the report", route: "/placements", image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80", bg: "#DCE5D4" },
-  { icon: Users, tag: "04 · Mentor Union", title: "500+ operators. Median response under an hour.", body: "Founders mid-build, investors mid-cheque, CMOs mid-quarter. No office hours, no waiting lists — just answers when you need them.", stats: [{ value: "500+", label: "Mentors" }, { value: "<1 hr", label: "Median response" }, { value: "On demand", label: "Always on" }], cta: "Browse mentors", route: "/mentors", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80", bg: "#F0E5B8" },
-  { icon: ShoppingCart, tag: "05 · D2C Challenge", title: "Real revenue. Real stores. Real P&L.", body: "Students launch live dropshipping stores and get graded on the market, not the memo. In the PGP TBM 2025 cohort, 75 days of selling produced ₹3.3 Cr+ in revenue and the top store hit ₹45.4 L.", stats: [{ value: "₹3.3 Cr+", label: "Cohort revenue" }, { value: "₹45.4 L", label: "Top team" }, { value: "75 days", label: "Challenge sprint" }], cta: "See the scoreboard", route: "/how-we-teach", image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80", bg: "#D6E4EE" },
-  { icon: Mic, tag: "06 · Creator Challenge", title: "Build your brand. Win the creator challenge.", body: "A full content studio on campus where students grow personal brands on YouTube, Instagram and LinkedIn. Recent winners hit 1.2M impressions and 120K unique viewers.", stats: [{ value: "1.2M+", label: "Impressions" }, { value: "120K", label: "Unique viewers" }, { value: "₹2 L", label: "Winner prize" }], cta: "See the creators", route: "/creator-challenge", image: "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=800&q=80", bg: "#F0D5D8" },
-  { icon: ChefHat, tag: "07 · Food Lab", title: "A commercial kitchen inside a B-school.", body: "Lexi's went from a classroom concept to Gurgaon's highest-rated sandwich brand. FSSAI-certified production line, 4.5★ on Zomato, ₹1 Cr+ ARR.", stats: [{ value: "4.5★", label: "Zomato rating" }, { value: "₹1 Cr+", label: "Student brand ARR" }, { value: "FSSAI", label: "Certified" }], cta: "Tour the lab", route: "/food-lab", image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80", bg: "#E4C9B8" },
-  { icon: Building2, tag: "08 · MU Ventures", title: "The fund that backs cohorts before convocation.", body: "An in-house venture arm that writes pre-seed cheques into student companies — and opens the door to a 200+ investor network for the next round.", stats: [{ value: "200+", label: "Investor network" }, { value: "Pre-seed", label: "Cheques written" }, { value: "On campus", label: "Venture arm" }], cta: "Pitch the fund", route: "/startups", image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80", bg: "#D8E8DD" },
+  { icon: GraduationCap, tag: "Faculty", title: "Taught by the people building the companies you study.", body: "40% of faculty are sitting CEOs, MDs and CXOs. 30% visiting from Harvard, Wharton, Kellogg and Booth. The slides update on Monday morning.", stats: [{ value: "40%", label: "Industry practitioners" }, { value: "200+", label: "Visiting experts" }, { value: "30%", label: "Ivy-league visiting" }], cta: "Meet the faculty", route: "/faculty", bg: "radial-gradient(130% 100% at 20% 15%, #FFD3E4 0%, #F49AC2 45%, #E15C93 100%)" },
+  { icon: Rocket, tag: "Entrepreneurship", title: "30+ ventures. ₹593 Cr in combined valuation.", body: "An on-campus venture studio that handles incorporation, hiring, and warm intros to Sequoia, Blume and Y Combinator. Six alumni on Shark Tank India.", stats: [{ value: "30+", label: "Active startups" }, { value: "₹593 Cr", label: "Combined valuation" }, { value: "6", label: "On Shark Tank India" }], cta: "See the startups", route: "/startups", bg: "radial-gradient(130% 100% at 80% 25%, #DECBFF 0%, #B8A4F5 45%, #8770E8 100%)" },
+  { icon: Briefcase, tag: "Career", title: "100% placement. ₹61.98L highest CTC.", body: "28% of grads join as Founder's Office or Chief of Staff. 3× average pre-MBA salary jump and 10–20% annual growth post-grad.", stats: [{ value: "₹61.98L", label: "Highest CTC" }, { value: "3×", label: "Average salary jump" }, { value: "100%", label: "Placement" }], cta: "Read the report", route: "/placements", bg: "radial-gradient(130% 100% at 25% 80%, #EDF7B0 0%, #C6E26A 45%, #94BE35 100%)" },
+  { icon: Users, tag: "Mentor Union", title: "500+ operators. Median response under an hour.", body: "Founders mid-build, investors mid-cheque, CMOs mid-quarter. No office hours, no waiting lists — just answers when you need them.", stats: [{ value: "500+", label: "Mentors" }, { value: "<1 hr", label: "Median response" }, { value: "On demand", label: "Always on" }], cta: "Browse mentors", route: "/mentors", bg: "radial-gradient(130% 100% at 75% 25%, #D4E6FF 0%, #8FB8F5 50%, #4F86DE 100%)" },
+  { icon: ShoppingCart, tag: "D2C Challenge", title: "Real revenue. Real stores. Real P&L.", body: "Students launch live dropshipping stores and get graded on the market, not the memo. In the PGP TBM 2025 cohort, 75 days of selling produced ₹3.3 Cr+ in revenue and the top store hit ₹45.4 L.", stats: [{ value: "₹3.3 Cr+", label: "Cohort revenue" }, { value: "₹45.4 L", label: "Top team" }, { value: "75 days", label: "Challenge sprint" }], cta: "See the scoreboard", route: "/how-we-teach", bg: "radial-gradient(130% 100% at 20% 20%, #FFDEBF 0%, #FFB07A 45%, #F38434 100%)" },
+  { icon: Mic, tag: "Creator Challenge", title: "Build your brand. Win the creator challenge.", body: "A full content studio on campus where students grow personal brands on YouTube, Instagram and LinkedIn. Recent winners hit 1.2M impressions and 120K unique viewers.", stats: [{ value: "1.2M+", label: "Impressions" }, { value: "120K", label: "Unique viewers" }, { value: "₹2 L", label: "Winner prize" }], cta: "See the creators", route: "/creator-challenge", bg: "radial-gradient(130% 100% at 80% 80%, #FFC0CE 0%, #FF8AA8 45%, #E54E7C 100%)" },
+  { icon: ChefHat, tag: "Food Lab", title: "A commercial kitchen inside a B-school.", body: "Lexi's went from a classroom concept to Gurgaon's highest-rated sandwich brand. FSSAI-certified production line, 4.5★ on Zomato, ₹1 Cr+ ARR.", stats: [{ value: "4.5★", label: "Zomato rating" }, { value: "₹1 Cr+", label: "Student brand ARR" }, { value: "FSSAI", label: "Certified" }], cta: "Tour the lab", route: "/food-lab", bg: "radial-gradient(130% 100% at 30% 30%, #BFF3D9 0%, #7AD9A8 45%, #33B876 100%)" },
+  { icon: Building2, tag: "MU Ventures", title: "The fund that backs cohorts before convocation.", body: "An in-house venture arm that writes pre-seed cheques into student companies — and opens the door to a 200+ investor network for the next round.", stats: [{ value: "200+", label: "Investor network" }, { value: "Pre-seed", label: "Cheques written" }, { value: "On campus", label: "Venture arm" }], cta: "Pitch the fund", route: "/startups", bg: "radial-gradient(130% 100% at 75% 30%, #CDDCFF 0%, #8FA8F0 50%, #5170D3 100%)" },
 ] as const;
 
 export default function HomeSections() {
@@ -1148,21 +1148,23 @@ export default function HomeSections() {
                     key={p.tag}
                     to={p.route}
                     className="group relative flex w-[86vw] max-w-[340px] shrink-0 snap-start flex-col overflow-hidden rounded-[32px] p-6 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.25)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.4)] md:w-[340px] md:p-7"
-                    style={{ backgroundColor: p.bg, aspectRatio: "3/5" }}
+                    style={{ background: p.bg, aspectRatio: "3/5" }}
                   >
-                    {/* Top row: index + icon */}
+                    {/* Eyebrow row */}
                     <div className="flex items-center justify-between">
-                      <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-black/50">
-                        Shot {String(i + 1).padStart(2, "0")}
+                      <span className="inline-flex items-center gap-2 rounded-full bg-white/55 px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-black/80 backdrop-blur-sm">
+                        <span className="text-black/50">{String(i + 1).padStart(2, "0")}</span>
+                        <span className="h-3 w-px bg-black/25" />
+                        {p.tag}
                       </span>
-                      <div className="flex size-9 items-center justify-center rounded-full bg-white/60 text-black/70 backdrop-blur-sm">
+                      <div className="flex size-9 items-center justify-center rounded-full bg-white/55 text-black/75 backdrop-blur-sm">
                         <Icon className="size-4" />
                       </div>
                     </div>
 
-                    {/* Big headline with colored first word */}
+                    {/* Big headline with italic first word */}
                     <h3
-                      className="mt-5 text-[1.7rem] font-semibold leading-[1.05] tracking-tight text-black md:text-[1.9rem]"
+                      className="mt-8 text-[1.9rem] font-semibold leading-[1.05] tracking-tight text-black md:text-[2.1rem]"
                       style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                     >
                       <span className="italic font-light text-black/90" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
@@ -1171,30 +1173,15 @@ export default function HomeSections() {
                       {rest ? " " + rest : ""}
                     </h3>
 
-                    {/* Image window */}
-                    <div className="relative mt-5 flex-1 overflow-hidden rounded-[22px] bg-black/5">
-                      <img
-                        src={p.image}
-                        alt={p.title}
-                        loading="lazy"
-                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                      />
-                      <div className="absolute left-3 top-3">
-                        <span className="inline-flex items-center rounded-full bg-white/90 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.18em] text-black backdrop-blur-sm">
-                          {p.tag}
-                        </span>
-                      </div>
-                      <div className="absolute bottom-3 right-3">
-                        <div className="flex size-10 items-center justify-center rounded-full bg-black text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-                          <ArrowUpRight className="size-4" />
-                        </div>
+                    {/* Caption + CTA at bottom */}
+                    <div className="mt-auto flex items-end justify-between gap-4 pt-6">
+                      <p className="max-w-[24ch] text-[12.5px] leading-[1.5] text-black/70 line-clamp-3">
+                        {p.body}
+                      </p>
+                      <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-black text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                        <ArrowUpRight className="size-4" />
                       </div>
                     </div>
-
-                    {/* Caption */}
-                    <p className="mt-4 text-[12.5px] leading-[1.5] text-black/65 line-clamp-2">
-                      {p.body}
-                    </p>
                   </Link>
                 );
               })}
