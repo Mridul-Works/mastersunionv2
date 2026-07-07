@@ -27,7 +27,24 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const NAV = ["Programs", "Faculty", "Admissions", "Campus", "About"];
+const NAV: { label: string; id: string }[] = [
+  { label: "Programs", id: "programs" },
+  { label: "Pedagogy", id: "pedagogy" },
+  { label: "Founders", id: "founders" },
+  { label: "News", id: "news" },
+];
+
+const scrollToId = (id: string) => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const y = window.scrollY + el.getBoundingClientRect().top;
+  const lenis = (window as any).__lenis;
+  if (lenis?.scrollTo) {
+    lenis.scrollTo(y, { duration: 1.2 });
+  } else {
+    window.scrollTo({ top: y, behavior: "smooth" });
+  }
+};
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
