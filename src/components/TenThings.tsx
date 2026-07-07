@@ -21,6 +21,10 @@ export default function TenThings() {
   useEffect(() => {
     if (!pinRef.current || !widgetRef.current || !introRef.current) return;
 
+    // Skip the pinned scroll-choreography on mobile — it causes overlap and clipping.
+    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+    if (!isDesktop) return;
+
     const ctx = gsap.context(() => {
       gsap.set(widgetRef.current, { xPercent: 100 });
 
@@ -53,6 +57,7 @@ export default function TenThings() {
       ctx.revert();
     };
   }, []);
+
 
 
 
