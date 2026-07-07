@@ -223,7 +223,7 @@ function Index() {
     <main className="min-h-screen bg-white">
       {/* NAV */}
       <header
-        className={`fixed inset-x-0 top-0 z-[100] px-4 pt-3 sm:px-6 sm:pt-4 transition-all duration-500 ${
+        className={`fixed inset-x-0 top-0 z-[100] hidden px-4 pt-3 sm:px-6 sm:pt-4 transition-all duration-500 md:block ${
           navVisible
             ? navHidden
               ? "opacity-0 -translate-y-6 pointer-events-none"
