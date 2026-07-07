@@ -1233,7 +1233,7 @@ function PedagogyPinnedScroll() {
       style={{ height: sectionHeight }}
     >
       <div className="sticky top-0 h-screen overflow-hidden">
-        <div className="mx-auto flex h-full max-w-[1280px] flex-col px-6 pt-16 md:px-10 md:pt-20">
+        <div className="mx-auto flex h-full max-w-[1280px] flex-col px-6 pt-10 pb-6 md:px-10 md:pt-14 md:pb-8">
           <SectionHead
             eyebrow="The pedagogy"
             title={
@@ -1248,7 +1248,8 @@ function PedagogyPinnedScroll() {
             lede="Eight systems that work in concert — built so theory never outpaces practice."
           />
 
-          <div className="relative mt-10 flex-1 overflow-hidden">
+          <div className="relative mt-6 min-h-0 flex-1 overflow-hidden md:mt-8">
+
             <div
               ref={trackRef}
               className="flex h-full items-center gap-5 md:gap-6 will-change-transform"
@@ -1262,7 +1263,7 @@ function PedagogyPinnedScroll() {
                   <Link
                     key={p.tag}
                     to={p.route}
-                    className="group relative flex h-[70vh] max-h-[560px] w-[86vw] max-w-[340px] shrink-0 flex-col overflow-hidden rounded-[32px] p-6 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.25)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.4)] md:w-[340px] md:p-7"
+                    className="group relative flex h-full max-h-[560px] w-[86vw] max-w-[340px] shrink-0 flex-col overflow-hidden rounded-[32px] p-6 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.25)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.4)] md:w-[340px] md:p-7"
                     style={{ background: p.bg }}
                   >
                     <div className="flex items-center justify-between">
@@ -1296,7 +1297,7 @@ function PedagogyPinnedScroll() {
 
               {/* Admissions contact card */}
               <div
-                className="group relative flex h-[70vh] max-h-[560px] w-[86vw] max-w-[340px] shrink-0 flex-col overflow-hidden rounded-[32px] bg-black p-6 text-white shadow-[0_20px_50px_-25px_rgba(0,0,0,0.4)] md:w-[340px] md:p-7"
+                className="group relative flex h-full max-h-[560px] w-[86vw] max-w-[340px] shrink-0 flex-col overflow-hidden rounded-[32px] bg-black p-6 text-white shadow-[0_20px_50px_-25px_rgba(0,0,0,0.4)] md:w-[340px] md:p-7"
               >
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">Admissions</span>
