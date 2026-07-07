@@ -538,7 +538,7 @@ function AdmissionsConnect() {
                 key={s.id}
                 className="w-[92%] flex-shrink-0 px-2 md:w-[88%] md:px-4 lg:w-[84%]"
               >
-                <article className="group relative mx-auto aspect-[16/9] max-h-[420px] w-full max-w-[980px] overflow-hidden rounded-none bg-[#E5E0D5]/60 shadow-lg transition-transform duration-500 hover:scale-[1.01]">
+                <article className="group relative mx-auto min-h-[440px] w-full max-w-[980px] overflow-hidden rounded-none bg-[#E5E0D5]/60 shadow-lg transition-transform duration-500 hover:scale-[1.01] md:aspect-[16/9] md:min-h-0 md:max-h-[420px]">
                   <div className="absolute inset-0">
                     <ImagePlaceholder aspect="auto" className="h-full w-full" label="Session" />
                   </div>
@@ -826,7 +826,7 @@ function Programs() {
               {PROGRAMS.map((p) => (
                 <article
                   key={p.title}
-                  className="group w-[calc(24%-12px)] flex-shrink-0 snap-start bg-[#F5F3EE] p-5 transition-all duration-300 hover:-translate-y-1 pastel-fill"
+                  className="group w-[82%] sm:w-[56%] md:w-[calc(24%-12px)] flex-shrink-0 snap-start bg-[#F5F3EE] p-5 transition-all duration-300 hover:-translate-y-1 pastel-fill"
                 >
                   <div className="overflow-hidden">
                     <ImagePlaceholder

@@ -21,6 +21,10 @@ export default function TenThings() {
   useEffect(() => {
     if (!pinRef.current || !widgetRef.current || !introRef.current) return;
 
+    // Skip the pinned scroll-choreography on mobile — it causes overlap and clipping.
+    const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+    if (!isDesktop) return;
+
     const ctx = gsap.context(() => {
       gsap.set(widgetRef.current, { xPercent: 100 });
 
@@ -59,6 +63,7 @@ export default function TenThings() {
 
 
 
+
   const go = (delta: number) => {
     setDirection(delta > 0 ? 1 : -1);
     setIndex((i) => (i + delta + CHAPTERS.length) % CHAPTERS.length);
@@ -74,9 +79,10 @@ export default function TenThings() {
 
   return (
     <section className="relative bg-[#F1EFE7] text-[#1A211A]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-      <div ref={pinRef} className="relative h-screen w-full overflow-hidden">
-      {/* Intro headline — full-screen editorial hero */}
-      <div ref={introRef} className="absolute inset-0 z-0 flex flex-col justify-center overflow-hidden bg-[#F1EFE7] px-6 py-20 text-[#1A211A] md:px-12 will-change-transform">
+      <div ref={pinRef} className="relative w-full overflow-hidden md:h-screen">
+      {/* Intro headline — stacked on mobile, absolute hero on desktop */}
+      <div ref={introRef} className="relative z-0 flex flex-col justify-center overflow-hidden bg-[#F1EFE7] px-6 py-16 text-[#1A211A] md:absolute md:inset-0 md:px-12 md:py-20 md:will-change-transform">
+
 
         <div className="pointer-events-none absolute -left-40 top-1/4 h-[30vh] w-[30vh] -translate-y-1/2 rounded-full bg-[#1A211A]/[0.04] blur-[80px]" />
         <div className="pointer-events-none absolute -right-40 bottom-1/4 h-[30vh] w-[30vh] translate-y-1/2 rounded-full bg-[#1A211A]/[0.04] blur-[80px]" />
@@ -108,7 +114,7 @@ export default function TenThings() {
               >
                 marketing.
               </em>
-              <br className="hidden md:block" />
+              <br />
               <span className="font-light italic" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
                 10 things about Masters' Union
               </span>
@@ -136,8 +142,8 @@ export default function TenThings() {
           </div>
         </div>
 
-        {/* Scroll hint */}
-        <div className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-3 md:bottom-10">
+        {/* Scroll hint — desktop only */}
+        <div className="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-3 md:bottom-10 md:flex">
           <span
             className="text-[9px] uppercase tracking-[0.3em] text-[#1A211A]/40"
             style={{ fontFamily: "'Inter', system-ui, sans-serif", fontWeight: 500 }}
@@ -152,9 +158,10 @@ export default function TenThings() {
 
 
 
-      {/* Card widget — slides in from right on scroll */}
-      <div ref={widgetRef} className="absolute inset-0 z-20 bg-[#F1EFE7] will-change-transform">
-        <div className="relative h-full min-h-[640px] w-full overflow-hidden bg-[#F1EFE7]">
+      {/* Card widget — stacked on mobile, slides in from right on desktop */}
+      <div ref={widgetRef} className="relative z-20 bg-[#F1EFE7] md:absolute md:inset-0 md:will-change-transform">
+        <div className="relative min-h-[720px] w-full overflow-hidden bg-[#F1EFE7] md:h-full md:min-h-[640px]">
+
 
 
 
@@ -180,8 +187,9 @@ export default function TenThings() {
           </div>
 
 
-          {/* Giant ghost numeral */}
-          <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
+          {/* Giant ghost numeral — desktop only (overlaps text on mobile) */}
+          <div className="pointer-events-none absolute inset-0 z-0 hidden items-center justify-center md:flex">
+
             <AnimatePresence mode="popLayout">
               <motion.span
                 key={`ghost-${index}`}
@@ -205,11 +213,12 @@ export default function TenThings() {
 
           {/* Bottom nav: tag / progress / arrows */}
           <div className="pointer-events-none absolute inset-x-0 bottom-0 z-30 flex flex-col gap-3 px-6 pb-6 md:flex-row md:items-end md:justify-between md:px-12 md:pb-10">
-            {/* Tag */}
-            <div className="pointer-events-auto flex items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-[#1A211A]/70">
+            {/* Tag — hidden on mobile (already shown in slide meta) */}
+            <div className="pointer-events-auto hidden items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-[#1A211A]/70 md:flex">
               <span className="inline-block h-1.5 w-1.5 bg-[#1A211A]" />
               <span className="min-w-[80px]">{project.tag}</span>
             </div>
+
 
             {/* Progress */}
             <div className="flex items-center gap-2">
@@ -301,7 +310,7 @@ function Slide({
           </motion.div>
         </motion.div>
 
-        <div className="pointer-events-none absolute left-6 bottom-6 z-10 md:left-10 md:bottom-10">
+        <div className="pointer-events-none absolute left-6 bottom-6 z-10 hidden md:left-10 md:bottom-10 md:block">
           <StaggeredText delay={0.05} k={`bignum-${index}`}>
             <span
               className="block font-black leading-none tracking-tighter text-[#1A211A]"
@@ -314,7 +323,7 @@ function Slide({
 
       </div>
 
-      <div className="relative z-10 flex items-end px-6 pb-24 md:items-center md:px-12 md:pb-0">
+      <div className="relative z-10 flex items-end px-6 pb-44 md:items-center md:px-12 md:pb-0">
         <div className="max-w-[460px]">
           <StaggeredText delay={0.15} k={`meta-${index}`}>
             <p
