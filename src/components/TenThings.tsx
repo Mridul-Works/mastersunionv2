@@ -294,7 +294,7 @@ function Slide({
             transition: { duration: SLIDE_DURATION * 0.85, ease: EASE },
           }}
           transition={{ duration: SLIDE_DURATION, ease: EASE }}
-          className="relative w-full max-w-[540px]"
+          className="relative w-full max-w-[620px]"
           style={{ aspectRatio: "3 / 2" }}
         >
           <motion.div
