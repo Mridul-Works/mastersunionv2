@@ -861,19 +861,7 @@ function FacultyShowcase() {
             className="relative mx-auto aspect-[4/5] w-full max-w-[260px] overflow-hidden bg-neutral-900 sm:mx-0 sm:max-w-[300px]"
             style={{ boxShadow: "0 40px 90px -40px rgba(0,0,0,0.45)" }}
           >
-            {FACULTY.map((f, i) => (
-              <img
-                key={f.image}
-                src={f.image}
-                alt={f.name}
-                className="absolute inset-0 h-full w-full object-cover object-center"
-                style={{
-                  filter: "grayscale(1) contrast(1.08) brightness(0.94)",
-                  opacity: i === idx ? 1 : 0,
-                  transition: "opacity 800ms cubic-bezier(0.4,0,0.2,1)",
-                }}
-              />
-            ))}
+            <ImagePlaceholder label={`${active.name} portrait`} aspect="4/5" className="absolute inset-0 h-full w-full" />
             <div
               aria-hidden
               className="pointer-events-none absolute inset-0"
