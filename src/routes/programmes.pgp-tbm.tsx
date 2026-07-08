@@ -771,19 +771,10 @@ function AlumniShowcase() {
             className="group relative flex w-[300px] shrink-0 snap-start flex-col overflow-hidden border border-black/10 bg-white shadow-[0_1px_0_rgba(0,0,0,0.03),0_20px_40px_-30px_rgba(0,0,0,0.25)] transition-transform hover:-translate-y-1 sm:w-[320px]"
           >
             <div className="relative aspect-[4/3] overflow-hidden bg-neutral-900">
-              <img
-                src={a.image}
-                alt={a.name}
-                className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"
-                style={{ filter: "grayscale(1) contrast(1.08) brightness(0.92)" }}
-              />
+              <ImagePlaceholder label={`${a.name} portrait`} aspect="4/3" className="absolute inset-0 h-full w-full" />
               <div
                 aria-hidden
-                className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${a.accent} opacity-25 mix-blend-multiply`}
-              />
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent"
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"
               />
               <span className="absolute left-3 top-3 rounded-full bg-black/45 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
                 {a.batch}
