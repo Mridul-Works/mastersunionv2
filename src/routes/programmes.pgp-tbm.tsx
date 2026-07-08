@@ -696,6 +696,16 @@ function initialsOf(name: string) {
   return name.split(" ").map((n) => n[0]).slice(0, 2).join("").toUpperCase();
 }
 
+function Eyebrow({ num, label }: { num: string; label: string }) {
+  return (
+    <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-smoke-50/60">
+      <span className="text-smoke-700">/{num}</span>
+      <span className="h-px w-8 bg-foreground/20" />
+      <span>{label}</span>
+    </div>
+  );
+}
+
 function AlumniShowcase() {
   const [idx, setIdx] = useState(0);
   const total = ALUMNI.length;
@@ -1414,29 +1424,20 @@ function PgpTbm() {
       </section>
 
       {/* FACULTY */}
-      <section id="faculty" className="border-b border-black/10">
-        <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-          <div className="mb-10">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">The 30·30·40 faculty model</div>
-            <h2 className="mt-3 max-w-2xl font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.05] tracking-[-0.02em]">
-              30% Ivy academics. 30% research faculty. 40% sitting operators.
+      <section id="faculty" className="relative border-b border-black/10 bg-smoke-950 py-12 md:py-16">
+        <div className="mx-auto max-w-7xl px-5 md:px-6">
+          <Eyebrow num="04" label="Faculty" />
+          <div className="mt-6 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+            <h2 className="max-w-4xl font-display text-[2rem] font-bold leading-[1.08] tracking-tight text-smoke-50 md:text-6xl md:leading-[1.05]">
+              30% Ivy academics. 30% research faculty.{" "}
+              <span className="font-serif-italic font-normal">40% sitting operators.</span>
             </h2>
+            <p className="max-w-sm text-sm text-smoke-50/60">
+              The 30·30·40 faculty model brings academics, researchers and operators into one teaching bench.
+            </p>
           </div>
 
           <FacultyShowcase />
-
-          <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
-            {FACULTY.map((f) => (
-              <div key={f.name} className="bg-white/90 p-6 backdrop-blur-sm pastel-fill">
-                <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50">{f.tag}</div>
-                <div className="mt-4 font-display text-[22px] leading-tight">{f.name}</div>
-                <div className="mt-1 text-[13px] text-black/60">{f.role}</div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-6 text-[12px] uppercase tracking-[0.14em] text-black/50">
-            + 200 practitioners across strategy, product, capital and design.
-          </div>
         </div>
       </section>
 
