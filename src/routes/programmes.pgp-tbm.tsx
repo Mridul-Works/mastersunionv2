@@ -189,13 +189,73 @@ const OUTCOME_ROLES = [
 ];
 
 // -------- Faculty --------
-const FACULTY = [
-  { name: "Kunal Shah", role: "Founder, CRED", tag: "Consumer Behaviour" },
-  { name: "Deepinder Goyal", role: "Founder, Zomato", tag: "Building at Scale" },
-  { name: "Nithin Kamath", role: "Founder, Zerodha", tag: "Capital Markets" },
-  { name: "Ronnie Screwvala", role: "Founder, upGrad · UTV", tag: "Media & Ventures" },
-  { name: "Radhika Gupta", role: "CEO, Edelweiss AMC", tag: "Asset Management" },
-  { name: "Anand Chandrasekaran", role: "GM, Meta", tag: "Product Leadership" },
+import facultyFaverie from "@/assets/faculty/faverie.png.asset.json";
+import facultyLanMa from "@/assets/faculty/lanma.png.asset.json";
+import facultyZal from "@/assets/faculty/zal.png.asset.json";
+import facultyDaniel from "@/assets/faculty/daniel.png.asset.json";
+import facultyManoj from "@/assets/faculty/manoj.png.asset.json";
+import facultyBhupesh from "@/assets/faculty/bhupesh.png.asset.json";
+import facultyNandini from "@/assets/faculty/nandini.png.asset.json";
+import facultyGarima from "@/assets/faculty/garima.png.asset.json";
+
+type FacultyMember = {
+  name: string;
+  role: string;
+  tag: string;
+  image: string;
+  bio: string;
+  focus: string[];
+};
+
+const FACULTY: FacultyMember[] = [
+  {
+    name: "Kunal Shah",
+    role: "Founder, CRED",
+    tag: "Consumer Behaviour",
+    image: facultyFaverie.url,
+    bio: "Built India's most-loved consumer fintech brand. Teaches the psychology of trust, status and retention that turns a product into a habit — and a habit into a business.",
+    focus: ["Consumer Psychology", "Retention Economics", "Brand as Behaviour"],
+  },
+  {
+    name: "Deepinder Goyal",
+    role: "Founder, Zomato",
+    tag: "Building at Scale",
+    image: facultyDaniel.url,
+    bio: "Scaled a food-delivery startup into a listed consumer platform across 1,000+ cities. Brings first-hand frameworks on org design, marketplace economics and building through cycles.",
+    focus: ["Marketplace Design", "Org Building at Scale", "Public-Market Playbook"],
+  },
+  {
+    name: "Nithin Kamath",
+    role: "Founder, Zerodha",
+    tag: "Capital Markets",
+    image: facultyManoj.url,
+    bio: "Built India's largest brokerage without a single rupee of external capital. Teaches capital markets from the inside — how retail investors actually behave and how durable businesses are financed.",
+    focus: ["Capital Markets Structure", "Bootstrapped Scaling", "Retail Investor Behaviour"],
+  },
+  {
+    name: "Ronnie Screwvala",
+    role: "Founder, upGrad · UTV",
+    tag: "Media & Ventures",
+    image: facultyZal.url,
+    bio: "Built and exited one of India's largest media houses, then rebuilt in edtech. Advises operators on category creation, storytelling, and the second-act discipline of serial founders.",
+    focus: ["Category Creation", "Media & Distribution", "Serial Entrepreneurship"],
+  },
+  {
+    name: "Radhika Gupta",
+    role: "CEO, Edelweiss AMC",
+    tag: "Asset Management",
+    image: facultyNandini.url,
+    bio: "Runs one of India's fastest-growing asset managers. Translates institutional-grade portfolio construction into frameworks operators can use to think about risk, allocation and long-horizon compounding.",
+    focus: ["Asset Allocation", "Risk Frameworks", "Long-Horizon Compounding"],
+  },
+  {
+    name: "Anand Chandrasekaran",
+    role: "GM, Meta",
+    tag: "Product Leadership",
+    image: facultyBhupesh.url,
+    bio: "Has led product at Meta, Snap, Airtel and Bharti — shipping to hundreds of millions of users. Teaches the craft of product decisions, review culture and how great PMs actually earn trust with engineering.",
+    focus: ["Product Strategy", "Review Culture", "Cross-Functional Leadership"],
+  },
 ];
 
 // -------- Admissions & FAQ --------
@@ -535,6 +595,7 @@ type Alum = {
   linkedin: string;
   calendly?: string;
   accent: string;
+  image: string;
 };
 
 const ALUMNI: Alum[] = [
@@ -548,6 +609,7 @@ const ALUMNI: Alum[] = [
     linkedin: "https://www.linkedin.com/",
     calendly: "https://cal.com/",
     accent: "from-emerald-400 to-teal-600",
+    image: facultyNandini.url,
   },
   {
     name: "Rohan Iyer",
@@ -559,6 +621,7 @@ const ALUMNI: Alum[] = [
     linkedin: "https://www.linkedin.com/",
     calendly: "https://cal.com/",
     accent: "from-amber-400 to-orange-600",
+    image: facultyBhupesh.url,
   },
   {
     name: "Sanya Kapoor",
@@ -569,6 +632,7 @@ const ALUMNI: Alum[] = [
     quote: "Running a real P&L for 16 months is a better filter than any DCF model.",
     linkedin: "https://www.linkedin.com/",
     accent: "from-indigo-400 to-violet-600",
+    image: facultyGarima.url,
   },
   {
     name: "Kabir Menon",
@@ -580,6 +644,7 @@ const ALUMNI: Alum[] = [
     linkedin: "https://www.linkedin.com/",
     calendly: "https://cal.com/",
     accent: "from-rose-400 to-pink-600",
+    image: facultyZal.url,
   },
   {
     name: "Meera Joshi",
@@ -590,6 +655,7 @@ const ALUMNI: Alum[] = [
     quote: "Bharat Immersion is why I chose consumer strategy over generalist consulting.",
     linkedin: "https://www.linkedin.com/",
     accent: "from-sky-400 to-blue-600",
+    image: facultyLanMa.url,
   },
   {
     name: "Aarav Suri",
@@ -601,6 +667,7 @@ const ALUMNI: Alum[] = [
     linkedin: "https://www.linkedin.com/",
     calendly: "https://cal.com/",
     accent: "from-lime-400 to-emerald-600",
+    image: facultyDaniel.url,
   },
   {
     name: "Ishita Rao",
@@ -611,6 +678,7 @@ const ALUMNI: Alum[] = [
     quote: "I walked into Nykaa having already run a live D2C P&L for 14 months.",
     linkedin: "https://www.linkedin.com/",
     accent: "from-fuchsia-400 to-purple-600",
+    image: facultyFaverie.url,
   },
   {
     name: "Dev Shah",
@@ -622,6 +690,7 @@ const ALUMNI: Alum[] = [
     linkedin: "https://www.linkedin.com/",
     calendly: "https://cal.com/",
     accent: "from-slate-500 to-zinc-800",
+    image: facultyManoj.url,
   },
 ];
 
@@ -701,30 +770,41 @@ function AlumniShowcase() {
             data-alum-card
             className="group relative flex w-[300px] shrink-0 snap-start flex-col overflow-hidden border border-black/10 bg-white shadow-[0_1px_0_rgba(0,0,0,0.03),0_20px_40px_-30px_rgba(0,0,0,0.25)] transition-transform hover:-translate-y-1 sm:w-[320px]"
           >
-            <div className={`relative h-24 bg-gradient-to-br ${a.accent}`}>
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.35),transparent_50%)]" />
-              <span className="absolute left-4 top-4 rounded-full bg-black/25 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
+            <div className="relative aspect-[4/3] overflow-hidden bg-neutral-900">
+              <img
+                src={a.image}
+                alt={a.name}
+                className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"
+                style={{ filter: "grayscale(1) contrast(1.08) brightness(0.92)" }}
+              />
+              <div
+                aria-hidden
+                className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${a.accent} opacity-25 mix-blend-multiply`}
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent"
+              />
+              <span className="absolute left-3 top-3 rounded-full bg-black/45 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
                 {a.batch}
               </span>
-              <span className="absolute right-4 top-4 rounded-full bg-white/85 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-black/75">
+              <span className="absolute right-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-black/80">
                 {a.domain}
               </span>
-              <div className="absolute -bottom-8 left-5">
-                <div className={`grid size-16 place-items-center rounded-full border-4 border-white bg-gradient-to-br ${a.accent} font-display text-[20px] leading-none text-white shadow-md`}>
-                  {initialsOf(a.name)}
+              <div className="absolute inset-x-4 bottom-3">
+                <div className="font-display text-[17px] leading-tight tracking-tight text-white">{a.name}</div>
+                <div className="mt-0.5 text-[11.5px] text-white/75">
+                  {a.role} · <span className="text-white">{a.company}</span>
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-1 flex-col p-5 pt-11">
-              <div className="font-display text-[18px] leading-tight tracking-tight">{a.name}</div>
-              <div className="mt-1 text-[12.5px] text-black/70">
-                {a.role} · <span className="text-black">{a.company}</span>
-              </div>
 
-              <p className="mt-4 border-l-2 border-black/15 pl-3 text-[12.5px] italic leading-relaxed text-black/65">
+            <div className="flex flex-1 flex-col p-5">
+              <p className="border-l-2 border-black/15 pl-3 text-[12.5px] italic leading-relaxed text-black/70">
                 "{a.quote}"
               </p>
+
 
               <div className="mt-auto flex items-center gap-2 pt-5">
                 <a
@@ -770,6 +850,192 @@ function AlumniShowcase() {
     </div>
   );
 }
+
+
+function FacultyShowcase() {
+  const [idx, setIdx] = useState(0);
+  const total = FACULTY.length;
+  const active = FACULTY[idx];
+  const nextIdx = (idx + 1) % total;
+  const next = FACULTY[nextIdx];
+  const go = (dir: 1 | -1) => setIdx((i) => (i + dir + total) % total);
+
+  return (
+    <div className="mt-8 grid gap-8 lg:gap-12 lg:[grid-template-columns:minmax(0,1fr)_minmax(0,0.32fr)]">
+      {/* Featured */}
+      <article className="relative">
+        <div className="grid gap-6 sm:gap-10 items-start grid-cols-1 sm:[grid-template-columns:minmax(0,0.55fr)_minmax(0,1fr)]">
+          {/* Portrait cross-fade */}
+          <div
+            className="relative mx-auto aspect-[4/5] w-full max-w-[260px] overflow-hidden bg-neutral-900 sm:mx-0 sm:max-w-[300px]"
+            style={{ boxShadow: "0 40px 90px -40px rgba(0,0,0,0.45)" }}
+          >
+            {FACULTY.map((f, i) => (
+              <img
+                key={f.image}
+                src={f.image}
+                alt={f.name}
+                className="absolute inset-0 h-full w-full object-cover object-center"
+                style={{
+                  filter: "grayscale(1) contrast(1.08) brightness(0.94)",
+                  opacity: i === idx ? 1 : 0,
+                  transition: "opacity 800ms cubic-bezier(0.4,0,0.2,1)",
+                }}
+              />
+            ))}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0"
+              style={{ background: "linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.75) 100%)" }}
+            />
+            <div className="absolute bottom-4 left-4 right-4">
+              <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/85">
+                {active.tag}
+              </p>
+            </div>
+          </div>
+
+          {/* Content cross-fade */}
+          <div className="relative">
+            {FACULTY.map((f, i) => (
+              <div
+                key={f.name}
+                className="flex flex-col"
+                style={{
+                  position: i === idx ? "relative" : "absolute",
+                  inset: i === idx ? "auto" : 0,
+                  opacity: i === idx ? 1 : 0,
+                  transform: i === idx ? "translateY(0)" : "translateY(6px)",
+                  transition: "opacity 700ms cubic-bezier(0.4,0,0.2,1), transform 700ms cubic-bezier(0.4,0,0.2,1)",
+                  pointerEvents: i === idx ? "auto" : "none",
+                }}
+              >
+                <div className="mb-4 flex items-center gap-3">
+                  <span className="inline-block h-px w-8 bg-black/60" />
+                  <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-black/55">
+                    Faculty · {String(i + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+                  </span>
+                </div>
+                <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-black/50">
+                  {f.tag}
+                </p>
+                <h3 className="font-display leading-[1.05] tracking-[-0.02em]" style={{ fontSize: "clamp(1.6rem, 2.4vw, 2.2rem)" }}>
+                  {f.name}
+                </h3>
+                <p className="mt-1.5 text-[14px] text-black/60">{f.role}</p>
+                <div className="mt-5 h-px w-10 bg-black/40" />
+                <p className="mt-4 text-[14px] leading-[1.7] text-black/75">{f.bio}</p>
+
+                <div className="mt-6">
+                  <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.24em] text-black/50">
+                    Focus areas
+                  </p>
+                  <ul className="space-y-2">
+                    {f.focus.map((p) => (
+                      <li key={p} className="flex gap-3 text-[13.5px] text-black/80">
+                        <span className="text-black/40">—</span>
+                        <span>{p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+
+            {/* Controls */}
+            <div className="mt-8 flex items-center gap-5 border-t border-black/10 pt-5">
+              <div className="flex gap-1.5">
+                {FACULTY.map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => setIdx(i)}
+                    aria-label={`Go to faculty ${i + 1}`}
+                    className="transition-all duration-500 ease-out"
+                    style={{
+                      width: i === idx ? "28px" : "8px",
+                      height: "2px",
+                      background: i === idx ? "rgb(0,0,0)" : "rgba(0,0,0,0.2)",
+                    }}
+                  />
+                ))}
+              </div>
+              <div className="h-px flex-1 bg-black/10" />
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => go(-1)}
+                  aria-label="Previous faculty"
+                  className="grid size-9 place-items-center border border-black/15 text-black/70 transition-colors hover:bg-black hover:text-white"
+                >
+                  <ChevronLeft className="size-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => go(1)}
+                  aria-label="Next faculty"
+                  className="grid size-9 place-items-center border border-black/15 text-black/70 transition-colors hover:bg-black hover:text-white"
+                >
+                  <ChevronRight className="size-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      {/* Up next */}
+      <aside className="hidden lg:flex flex-col gap-5">
+        <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-black/45">Up next</p>
+        <button
+          type="button"
+          onClick={() => go(1)}
+          className="group relative block overflow-hidden bg-neutral-900 text-left"
+          style={{ aspectRatio: "4 / 5", boxShadow: "0 30px 70px -40px rgba(0,0,0,0.45)" }}
+        >
+          {FACULTY.map((f, i) => (
+            <img
+              key={f.image}
+              src={f.image}
+              alt={f.name}
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.05]"
+              style={{
+                filter: "grayscale(1) contrast(1.08) brightness(0.9)",
+                opacity: i === nextIdx ? 1 : 0,
+                transitionProperty: "transform, opacity",
+                transitionDuration: "1200ms, 800ms",
+                transitionTimingFunction: "cubic-bezier(0.4,0,0.2,1)",
+              }}
+            />
+          ))}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0"
+            style={{ background: "linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.85) 100%)" }}
+          />
+          <div className="absolute bottom-4 left-4 right-4">
+            <p className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.24em] text-white/80">{next.tag}</p>
+            <p className="font-display text-[17px] leading-tight text-white">{next.name}</p>
+            <span className="mt-2 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-white/85 opacity-0 transition-opacity duration-400 group-hover:opacity-100">
+              View <ArrowUpRight className="size-3" />
+            </span>
+          </div>
+        </button>
+        <div className="flex items-baseline gap-2 font-display">
+          <span className="leading-none text-black" style={{ fontSize: "clamp(2.4rem, 4vw, 3.4rem)", fontWeight: 300 }}>
+            {String(idx + 1).padStart(2, "0")}
+          </span>
+          <span className="leading-none text-black/25" style={{ fontSize: "clamp(1.6rem, 2.4vw, 2rem)" }}>
+            /{String(total).padStart(2, "0")}
+          </span>
+        </div>
+      </aside>
+    </div>
+  );
+}
+
+
+
 
 
 function PgpTbm() {
@@ -1069,8 +1335,10 @@ function PgpTbm() {
             <h2 className="mt-3 max-w-2xl font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.05] tracking-[-0.02em]">
               30% Ivy academics. 30% research faculty. 40% sitting operators.
             </h2>
-            <ImagePlaceholder label="Faculty" className="mt-5 max-w-3xl" aspect="16/9" />
           </div>
+
+          <FacultyShowcase />
+
           <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
             {FACULTY.map((f) => (
               <div key={f.name} className="bg-white/90 p-6 backdrop-blur-sm pastel-fill">
