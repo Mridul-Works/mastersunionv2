@@ -341,6 +341,8 @@ function PgpTbm() {
             </p>
           </div>
 
+          <ImagePlaceholder label="The three engines" className="mb-10" aspect="21/9" />
+
           <div className="mb-16 grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
             {MODEL_STATS.map((s) => (
               <div key={s.v} className="bg-white/90 p-6 backdrop-blur-sm">
