@@ -969,7 +969,9 @@ function AlumniShowcase() {
           </div>
         </aside>
       </div>
+      )}
     </div>
+
   );
 }
 
