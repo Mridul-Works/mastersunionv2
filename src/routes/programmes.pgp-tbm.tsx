@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowUpRight,
@@ -8,8 +8,6 @@ import {
   Star,
   Linkedin,
   Calendar,
-  ChevronLeft,
-  ChevronRight,
 } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
@@ -698,146 +696,241 @@ function initialsOf(name: string) {
   return name.split(" ").map((n) => n[0]).slice(0, 2).join("").toUpperCase();
 }
 
-function AlumniShowcase() {
-  const scrollerRef = useRef<HTMLDivElement>(null);
-  const [activeDomain, setActiveDomain] = useState<string>("All");
-  const domains = ["All", ...Array.from(new Set(ALUMNI.map((a) => a.domain)))];
-  const visible = activeDomain === "All" ? ALUMNI : ALUMNI.filter((a) => a.domain === activeDomain);
+function Eyebrow({ num, label }: { num: string; label: string }) {
+  return (
+    <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-smoke-50/60">
+      <span className="text-smoke-700">/{num}</span>
+      <span className="h-px w-8 bg-foreground/20" />
+      <span>{label}</span>
+    </div>
+  );
+}
 
-  const scrollBy = (dir: 1 | -1) => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    const card = el.querySelector<HTMLElement>("[data-alum-card]");
-    const step = card ? card.offsetWidth + 16 : el.clientWidth * 0.8;
-    el.scrollBy({ left: dir * step, behavior: "smooth" });
-  };
+function AlumniShowcase() {
+  const [idx, setIdx] = useState(0);
+  const total = ALUMNI.length;
+  const active = ALUMNI[idx];
+  const nextIdx = (idx + 1) % total;
+  const next = ALUMNI[nextIdx];
+  const go = (dir: 1 | -1) => setIdx((i) => (i + dir + total) % total);
 
   return (
-    <div className="mt-12">
-      <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
+    <div className="mt-16">
+      <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
         <div>
-          <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/55">Alumni Network</div>
-          <div className="mt-2 font-display text-[22px] leading-tight tracking-tight">Talk to someone who's been through it.</div>
-          <p className="mt-1 text-[13px] text-black/60">1,400+ alumni across product, startups, finance and consulting. Meet a few — and reach out.</p>
+          <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-smoke-50/45">Alumni Network</div>
+          <h3 className="mt-3 max-w-4xl font-display text-[2rem] font-bold leading-[1.08] tracking-tight text-smoke-50 md:text-6xl md:leading-[1.05]">
+            Talk to someone who's been through it. <span className="font-serif-italic">Then build yours.</span>
+          </h3>
         </div>
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={() => scrollBy(-1)}
-            aria-label="Previous alumni"
-            className="grid size-10 place-items-center border border-black/15 bg-white/80 text-black/70 transition-colors hover:bg-black hover:text-white"
-          >
-            <ChevronLeft className="size-4" />
-          </button>
-          <button
-            type="button"
-            onClick={() => scrollBy(1)}
-            aria-label="Next alumni"
-            className="grid size-10 place-items-center border border-black/15 bg-white/80 text-black/70 transition-colors hover:bg-black hover:text-white"
-          >
-            <ChevronRight className="size-4" />
-          </button>
-        </div>
+        <p className="max-w-sm text-sm text-smoke-50/60">
+          1,400+ alumni across product, startups, finance and consulting. Meet a few — and reach out.
+        </p>
       </div>
 
-      <div className="mb-5 flex flex-wrap gap-2">
-        {domains.map((d) => {
-          const isActive = d === activeDomain;
-          return (
-            <button
-              key={d}
-              type="button"
-              onClick={() => setActiveDomain(d)}
-              className={`rounded-full border px-3 py-1.5 text-[11.5px] font-medium transition-colors ${
-                isActive
-                  ? "border-black bg-black text-white"
-                  : "border-black/15 bg-white/70 text-black/70 hover:border-black/40"
-              }`}
+      <div className="mt-16 grid gap-10 lg:gap-14 lg:[grid-template-columns:minmax(0,1fr)_minmax(0,0.34fr)]">
+        {/* Featured */}
+        <article className="relative lg:min-h-[620px]">
+          <div className="grid gap-8 lg:gap-14 items-start grid-cols-1 sm:[grid-template-columns:minmax(0,0.6fr)_minmax(0,1fr)]">
+            {/* Portrait cross-fade stack */}
+            <div
+              className="relative mx-auto aspect-[3/4] w-full max-w-[260px] overflow-hidden sm:mx-0 sm:aspect-[4/5] sm:max-w-[320px]"
+              style={{
+                boxShadow: "0 60px 140px -40px rgba(0,0,0,0.95)",
+              }}
             >
-              {d}
-            </button>
-          );
-        })}
-      </div>
-
-      <div
-        ref={scrollerRef}
-        className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {visible.map((a) => (
-          <article
-            key={a.name}
-            data-alum-card
-            className="group relative flex w-[300px] shrink-0 snap-start flex-col overflow-hidden border border-black/10 bg-white shadow-[0_1px_0_rgba(0,0,0,0.03),0_20px_40px_-30px_rgba(0,0,0,0.25)] transition-transform hover:-translate-y-1 sm:w-[320px]"
-          >
-            <div className="relative aspect-[4/3] overflow-hidden">
-              <ImagePlaceholder label={`${a.name} portrait`} aspect="4/3" className="absolute inset-0 h-full w-full" />
+              {ALUMNI.map((a, i) => (
+                <div
+                  key={a.name}
+                  className="absolute inset-0"
+                  style={{
+                    opacity: i === idx ? 1 : 0,
+                    transition: "opacity 900ms cubic-bezier(0.4,0,0.2,1)",
+                  }}
+                >
+                  <ImagePlaceholder label={`${a.name} portrait`} aspect="4/5" className="h-full w-full" />
+                </div>
+              ))}
               <div
                 aria-hidden
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/80 via-black/30 to-transparent"
+                className="pointer-events-none absolute inset-0 mix-blend-color"
+                style={{ background: "linear-gradient(180deg, rgba(0,156,80,0.18) 0%, rgba(0,72,34,0.42) 100%)" }}
               />
-              <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-black/80 backdrop-blur-sm">
-                {a.batch}
-              </span>
-              <span className="absolute right-3 top-3 rounded-full bg-black/80 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white">
-                {a.domain}
-              </span>
-              <div className="absolute inset-x-4 bottom-3">
-                <div className="font-display text-[17px] leading-tight tracking-tight text-white drop-shadow">{a.name}</div>
-                <div className="mt-0.5 text-[11.5px] text-white/85 drop-shadow">
-                  {a.role} · <span className="text-white">{a.company}</span>
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0"
+                style={{ background: "linear-gradient(180deg, rgba(13,20,16,0) 40%, rgba(13,20,16,0.7) 100%)" }}
+              />
+              <div className="absolute bottom-5 left-5 right-5">
+                <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-smoke-300">
+                  {active.domain}
+                </p>
+              </div>
+            </div>
+
+            {/* Content cross-fade */}
+            <div className="relative">
+              {ALUMNI.map((a, i) => (
+                <div
+                  key={a.name}
+                  className="flex flex-col"
+                  style={{
+                    position: i === idx ? "relative" : "absolute",
+                    inset: i === idx ? "auto" : 0,
+                    opacity: i === idx ? 1 : 0,
+                    transform: i === idx ? "translateY(0)" : "translateY(8px)",
+                    transition:
+                      "opacity 800ms cubic-bezier(0.4,0,0.2,1), transform 800ms cubic-bezier(0.4,0,0.2,1)",
+                    pointerEvents: i === idx ? "auto" : "none",
+                  }}
+                >
+                  <div className="mb-6 flex items-center gap-3">
+                    <span className="inline-block h-px w-8 bg-smoke-300" />
+                    <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-smoke-50/70">
+                      Alumni · {String(i + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke-50/50">
+                    {a.batch} / {a.domain}
+                  </p>
+                  <h3 className="font-display font-bold leading-[1.05] tracking-tight text-smoke-50" style={{ fontSize: "clamp(1.9rem, 2.8vw, 2.6rem)" }}>
+                    {a.name}
+                  </h3>
+                  <p className="mt-2 text-base text-smoke-50/65">{a.role} · {a.company}</p>
+                  <div className="mt-6 h-px w-12 bg-smoke-300/60" />
+                  <p className="mt-5 text-[15px] leading-[1.7] text-smoke-50/85 md:mt-6 md:text-base md:leading-[1.75]">“{a.quote}”</p>
+
+                  <div className="mt-8">
+                    <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.28em] text-smoke-50/50">
+                      Selected Portfolio
+                    </p>
+                    <ul className="space-y-2.5">
+                      {[a.company, a.domain, a.batch].map((p) => (
+                        <li key={p} className="flex gap-3 text-[0.94rem] text-smoke-50/85">
+                          <span className="text-smoke-300">—</span>
+                          <span>{p}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <a
+                      href={a.linkedin}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 border border-smoke-50/15 px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke-50 transition-colors duration-500 hover:bg-smoke-300/10"
+                    >
+                      <Linkedin className="size-3.5" /> Connect
+                    </a>
+                    {a.calendly && (
+                      <a
+                        href={a.calendly}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 border border-smoke-50/15 px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke-50 transition-colors duration-500 hover:bg-smoke-300/10"
+                        aria-label={`Book a call with ${a.name}`}
+                      >
+                        <Calendar className="size-3.5" /> Book
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ))}
+
+              {/* Controls */}
+              <div className="mt-10 flex items-center gap-5 border-t border-smoke-50/10 pt-6">
+                <div className="flex gap-1.5">
+                  {ALUMNI.map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => setIdx(i)}
+                      aria-label={`Go to alumni ${i + 1}`}
+                      className="transition-all duration-700 ease-out"
+                      style={{
+                        width: i === idx ? "32px" : "8px",
+                        height: "2px",
+                        background: i === idx ? "var(--smoke-300)" : "rgba(13,20,16,0.25)",
+                      }}
+                    />
+                  ))}
+                </div>
+                <div className="h-px flex-1 bg-smoke-50/10" />
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => go(-1)}
+                    aria-label="Previous alumni"
+                    className="flex h-10 w-10 items-center justify-center text-smoke-50 transition-colors duration-500 hover:bg-smoke-300/10"
+                  >
+                    ←
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => go(1)}
+                    aria-label="Next alumni"
+                    className="flex h-10 w-10 items-center justify-center text-smoke-50 transition-colors duration-500 hover:bg-smoke-300/10"
+                  >
+                    →
+                  </button>
                 </div>
               </div>
             </div>
-
-
-
-            <div className="flex flex-1 flex-col p-5">
-              <p className="border-l-2 border-black/15 pl-3 text-[12.5px] italic leading-relaxed text-black/70">
-                "{a.quote}"
-              </p>
-
-
-              <div className="mt-auto flex items-center gap-2 pt-5">
-                <a
-                  href={a.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex flex-1 items-center justify-center gap-1.5 border border-black bg-black px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-white hover:text-black"
-                >
-                  <Linkedin className="size-3.5" /> Connect
-                </a>
-                {a.calendly && (
-                  <a
-                    href={a.calendly}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center justify-center gap-1.5 border border-black/20 bg-white px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-black/80 transition-colors hover:border-black hover:bg-black hover:text-white"
-                    aria-label={`Book a call with ${a.name}`}
-                  >
-                    <Calendar className="size-3.5" /> Book
-                  </a>
-                )}
-              </div>
-            </div>
-          </article>
-        ))}
-
-        <a
-          href="#apply"
-          className="group relative flex w-[280px] shrink-0 snap-start flex-col justify-between border border-dashed border-black/25 bg-white/60 p-6 text-black/75 transition-colors hover:border-black hover:bg-black hover:text-white"
-        >
-          <div>
-            <div className="text-[10px] font-semibold uppercase tracking-[0.2em] opacity-70">Alumni directory</div>
-            <div className="mt-2 font-display text-[22px] leading-tight tracking-tight">Browse 1,400+ operators</div>
-            <p className="mt-3 text-[12.5px] leading-relaxed opacity-80">
-              Full directory unlocks after Round 1. Filter by domain, company, and batch.
-            </p>
           </div>
-          <span className="mt-6 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em]">
-            Request access <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </span>
-        </a>
+        </article>
+
+        {/* Up Next */}
+        <aside className="mx-auto flex w-full flex-col gap-6 lg:mx-0">
+          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-smoke-50/45">Up Next</p>
+          <button
+            type="button"
+            onClick={() => go(1)}
+            className="group relative block overflow-hidden text-left"
+            style={{ aspectRatio: "4 / 5", boxShadow: "0 40px 100px -40px rgba(0,0,0,0.9)" }}
+          >
+            {ALUMNI.map((a, i) => (
+              <div
+                key={a.name}
+                className="absolute inset-0 transition-transform duration-[1400ms] ease-out group-hover:scale-[1.06]"
+                style={{
+                  opacity: i === nextIdx ? 1 : 0,
+                  transitionProperty: "transform, opacity",
+                  transitionDuration: "1400ms, 900ms",
+                  transitionTimingFunction: "cubic-bezier(0.4,0,0.2,1)",
+                }}
+              >
+                <ImagePlaceholder label={`${a.name} portrait`} aspect="4/5" className="h-full w-full" />
+              </div>
+            ))}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 mix-blend-color"
+              style={{ background: "linear-gradient(180deg, rgba(0,156,80,0.18) 0%, rgba(0,72,34,0.5) 100%)" }}
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0"
+              style={{ background: "linear-gradient(180deg, rgba(13,20,16,0) 45%, rgba(13,20,16,0.8) 100%)" }}
+            />
+            <div className="absolute bottom-5 left-5 right-5">
+              <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.28em] text-smoke-300">{next.domain}</p>
+              <p className="font-display text-lg font-bold leading-tight text-smoke-900">{next.name}</p>
+              <span className="mt-3 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke-900/85 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                View <ArrowUpRight className="size-3" />
+              </span>
+            </div>
+          </button>
+
+          <div className="flex items-baseline gap-2 font-display">
+            <span className="leading-none text-smoke-50" style={{ fontSize: "clamp(3rem, 5vw, 4.4rem)", fontWeight: 300 }}>
+              {String(idx + 1).padStart(2, "0")}
+            </span>
+            <span className="leading-none text-smoke-50/30" style={{ fontSize: "clamp(2rem, 3vw, 2.4rem)" }}>
+              /{String(total).padStart(2, "0")}
+            </span>
+          </div>
+        </aside>
       </div>
     </div>
   );
@@ -853,23 +946,41 @@ function FacultyShowcase() {
   const go = (dir: 1 | -1) => setIdx((i) => (i + dir + total) % total);
 
   return (
-    <div className="mt-8 grid gap-8 lg:gap-12 lg:[grid-template-columns:minmax(0,1fr)_minmax(0,0.32fr)]">
+    <div className="mt-16 grid gap-10 lg:gap-14 lg:[grid-template-columns:minmax(0,1fr)_minmax(0,0.34fr)]">
       {/* Featured */}
-      <article className="relative">
-        <div className="grid gap-6 sm:gap-10 items-start grid-cols-1 sm:[grid-template-columns:minmax(0,0.55fr)_minmax(0,1fr)]">
-          {/* Portrait cross-fade */}
+      <article className="relative lg:min-h-[620px]">
+        <div className="grid gap-8 lg:gap-14 items-start grid-cols-1 sm:[grid-template-columns:minmax(0,0.6fr)_minmax(0,1fr)]">
+          {/* Portrait cross-fade stack */}
           <div
-            className="relative mx-auto aspect-[4/5] w-full max-w-[260px] overflow-hidden bg-neutral-900 sm:mx-0 sm:max-w-[300px]"
-            style={{ boxShadow: "0 40px 90px -40px rgba(0,0,0,0.45)" }}
+            className="relative mx-auto aspect-[3/4] w-full max-w-[260px] overflow-hidden sm:mx-0 sm:aspect-[4/5] sm:max-w-[320px]"
+            style={{
+              boxShadow: "0 60px 140px -40px rgba(0,0,0,0.95)",
+            }}
           >
-            <ImagePlaceholder label={`${active.name} portrait`} aspect="4/5" className="absolute inset-0 h-full w-full" />
+            {FACULTY.map((f, i) => (
+              <div
+                key={f.name}
+                className="absolute inset-0"
+                style={{
+                  opacity: i === idx ? 1 : 0,
+                  transition: "opacity 900ms cubic-bezier(0.4,0,0.2,1)",
+                }}
+              >
+                <ImagePlaceholder label={`${f.name} portrait`} aspect="4/5" className="h-full w-full" />
+              </div>
+            ))}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 mix-blend-color"
+              style={{ background: "linear-gradient(180deg, rgba(0,156,80,0.18) 0%, rgba(0,72,34,0.42) 100%)" }}
+            />
             <div
               aria-hidden
               className="pointer-events-none absolute inset-0"
-              style={{ background: "linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.75) 100%)" }}
+              style={{ background: "linear-gradient(180deg, rgba(13,20,16,0) 40%, rgba(13,20,16,0.7) 100%)" }}
             />
-            <div className="absolute bottom-4 left-4 right-4">
-              <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/85">
+            <div className="absolute bottom-5 left-5 right-5">
+              <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-smoke-300">
                 {active.tag}
               </p>
             </div>
@@ -885,35 +996,36 @@ function FacultyShowcase() {
                   position: i === idx ? "relative" : "absolute",
                   inset: i === idx ? "auto" : 0,
                   opacity: i === idx ? 1 : 0,
-                  transform: i === idx ? "translateY(0)" : "translateY(6px)",
-                  transition: "opacity 700ms cubic-bezier(0.4,0,0.2,1), transform 700ms cubic-bezier(0.4,0,0.2,1)",
+                  transform: i === idx ? "translateY(0)" : "translateY(8px)",
+                  transition:
+                    "opacity 800ms cubic-bezier(0.4,0,0.2,1), transform 800ms cubic-bezier(0.4,0,0.2,1)",
                   pointerEvents: i === idx ? "auto" : "none",
                 }}
               >
-                <div className="mb-4 flex items-center gap-3">
-                  <span className="inline-block h-px w-8 bg-black/60" />
-                  <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-black/55">
+                <div className="mb-6 flex items-center gap-3">
+                  <span className="inline-block h-px w-8 bg-smoke-300" />
+                  <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-smoke-50/70">
                     Faculty · {String(i + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
                   </span>
                 </div>
-                <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-black/50">
+                <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke-50/50">
                   {f.tag}
                 </p>
-                <h3 className="font-display leading-[1.05] tracking-[-0.02em]" style={{ fontSize: "clamp(1.6rem, 2.4vw, 2.2rem)" }}>
+                <h3 className="font-display font-bold leading-[1.05] tracking-tight text-smoke-50" style={{ fontSize: "clamp(1.9rem, 2.8vw, 2.6rem)" }}>
                   {f.name}
                 </h3>
-                <p className="mt-1.5 text-[14px] text-black/60">{f.role}</p>
-                <div className="mt-5 h-px w-10 bg-black/40" />
-                <p className="mt-4 text-[14px] leading-[1.7] text-black/75">{f.bio}</p>
+                <p className="mt-2 text-base text-smoke-50/65">{f.role}</p>
+                <div className="mt-6 h-px w-12 bg-smoke-300/60" />
+                <p className="mt-5 text-[15px] leading-[1.7] text-smoke-50/85 md:mt-6 md:text-base md:leading-[1.75]">{f.bio}</p>
 
-                <div className="mt-6">
-                  <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.24em] text-black/50">
-                    Focus areas
+                <div className="mt-8">
+                  <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.28em] text-smoke-50/50">
+                    Selected Portfolio
                   </p>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2.5">
                     {f.focus.map((p) => (
-                      <li key={p} className="flex gap-3 text-[13.5px] text-black/80">
-                        <span className="text-black/40">—</span>
+                      <li key={p} className="flex gap-3 text-[0.94rem] text-smoke-50/85">
+                        <span className="text-smoke-300">—</span>
                         <span>{p}</span>
                       </li>
                     ))}
@@ -923,7 +1035,7 @@ function FacultyShowcase() {
             ))}
 
             {/* Controls */}
-            <div className="mt-8 flex items-center gap-5 border-t border-black/10 pt-5">
+            <div className="mt-10 flex items-center gap-5 border-t border-smoke-50/10 pt-6">
               <div className="flex gap-1.5">
                 {FACULTY.map((_, i) => (
                   <button
@@ -931,32 +1043,32 @@ function FacultyShowcase() {
                     type="button"
                     onClick={() => setIdx(i)}
                     aria-label={`Go to faculty ${i + 1}`}
-                    className="transition-all duration-500 ease-out"
+                    className="transition-all duration-700 ease-out"
                     style={{
-                      width: i === idx ? "28px" : "8px",
+                      width: i === idx ? "32px" : "8px",
                       height: "2px",
-                      background: i === idx ? "rgb(0,0,0)" : "rgba(0,0,0,0.2)",
+                      background: i === idx ? "var(--smoke-300)" : "rgba(13,20,16,0.25)",
                     }}
                   />
                 ))}
               </div>
-              <div className="h-px flex-1 bg-black/10" />
+              <div className="h-px flex-1 bg-smoke-50/10" />
               <div className="flex gap-2">
                 <button
                   type="button"
                   onClick={() => go(-1)}
                   aria-label="Previous faculty"
-                  className="grid size-9 place-items-center border border-black/15 text-black/70 transition-colors hover:bg-black hover:text-white"
+                  className="flex h-10 w-10 items-center justify-center text-smoke-50 transition-colors duration-500 hover:bg-smoke-300/10"
                 >
-                  <ChevronLeft className="size-4" />
+                  ←
                 </button>
                 <button
                   type="button"
                   onClick={() => go(1)}
                   aria-label="Next faculty"
-                  className="grid size-9 place-items-center border border-black/15 text-black/70 transition-colors hover:bg-black hover:text-white"
+                  className="flex h-10 w-10 items-center justify-center text-smoke-50 transition-colors duration-500 hover:bg-smoke-300/10"
                 >
-                  <ChevronRight className="size-4" />
+                  →
                 </button>
               </div>
             </div>
@@ -964,34 +1076,52 @@ function FacultyShowcase() {
         </div>
       </article>
 
-      {/* Up next */}
-      <aside className="hidden lg:flex flex-col gap-5">
-        <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-black/45">Up next</p>
+      {/* Up Next */}
+      <aside className="mx-auto flex w-full flex-col gap-6 lg:mx-0">
+        <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-smoke-50/45">Up Next</p>
         <button
           type="button"
           onClick={() => go(1)}
-          className="group relative block overflow-hidden bg-neutral-900 text-left"
-          style={{ aspectRatio: "4 / 5", boxShadow: "0 30px 70px -40px rgba(0,0,0,0.45)" }}
+          className="group relative block overflow-hidden text-left"
+          style={{ aspectRatio: "4 / 5", boxShadow: "0 40px 100px -40px rgba(0,0,0,0.9)" }}
         >
-          <ImagePlaceholder label={`${next.name} portrait`} aspect="4/5" className="absolute inset-0 h-full w-full" />
+          {FACULTY.map((f, i) => (
+            <div
+              key={f.name}
+              className="absolute inset-0 transition-transform duration-[1400ms] ease-out group-hover:scale-[1.06]"
+              style={{
+                opacity: i === nextIdx ? 1 : 0,
+                transitionProperty: "transform, opacity",
+                transitionDuration: "1400ms, 900ms",
+                transitionTimingFunction: "cubic-bezier(0.4,0,0.2,1)",
+              }}
+            >
+              <ImagePlaceholder label={`${f.name} portrait`} aspect="4/5" className="h-full w-full" />
+            </div>
+          ))}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 mix-blend-color"
+            style={{ background: "linear-gradient(180deg, rgba(0,156,80,0.18) 0%, rgba(0,72,34,0.5) 100%)" }}
+          />
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"
-            style={{ background: "linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.85) 100%)" }}
+            style={{ background: "linear-gradient(180deg, rgba(13,20,16,0) 45%, rgba(13,20,16,0.8) 100%)" }}
           />
-          <div className="absolute bottom-4 left-4 right-4">
-            <p className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.24em] text-white/80">{next.tag}</p>
-            <p className="font-display text-[17px] leading-tight text-white">{next.name}</p>
-            <span className="mt-2 inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-white/85 opacity-0 transition-opacity duration-400 group-hover:opacity-100">
+          <div className="absolute bottom-5 left-5 right-5">
+            <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.28em] text-smoke-300">{next.tag}</p>
+            <p className="font-display text-lg font-bold leading-tight text-smoke-900">{next.name}</p>
+            <span className="mt-3 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke-900/85 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
               View <ArrowUpRight className="size-3" />
             </span>
           </div>
         </button>
         <div className="flex items-baseline gap-2 font-display">
-          <span className="leading-none text-black" style={{ fontSize: "clamp(2.4rem, 4vw, 3.4rem)", fontWeight: 300 }}>
+          <span className="leading-none text-smoke-50" style={{ fontSize: "clamp(3rem, 5vw, 4.4rem)", fontWeight: 300 }}>
             {String(idx + 1).padStart(2, "0")}
           </span>
-          <span className="leading-none text-black/25" style={{ fontSize: "clamp(1.6rem, 2.4vw, 2rem)" }}>
+          <span className="leading-none text-smoke-50/30" style={{ fontSize: "clamp(2rem, 3vw, 2.4rem)" }}>
             /{String(total).padStart(2, "0")}
           </span>
         </div>
@@ -1294,29 +1424,20 @@ function PgpTbm() {
       </section>
 
       {/* FACULTY */}
-      <section id="faculty" className="border-b border-black/10">
-        <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-          <div className="mb-10">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">The 30·30·40 faculty model</div>
-            <h2 className="mt-3 max-w-2xl font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.05] tracking-[-0.02em]">
-              30% Ivy academics. 30% research faculty. 40% sitting operators.
+      <section id="faculty" className="relative border-b border-black/10 bg-smoke-950 py-12 md:py-16">
+        <div className="mx-auto max-w-7xl px-5 md:px-6">
+          <Eyebrow num="04" label="Faculty" />
+          <div className="mt-6 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+            <h2 className="max-w-4xl font-display text-[2rem] font-bold leading-[1.08] tracking-tight text-smoke-50 md:text-6xl md:leading-[1.05]">
+              30% Ivy academics. 30% research faculty.{" "}
+              <span className="font-serif-italic font-normal">40% sitting operators.</span>
             </h2>
+            <p className="max-w-sm text-sm text-smoke-50/60">
+              The 30·30·40 faculty model brings academics, researchers and operators into one teaching bench.
+            </p>
           </div>
 
           <FacultyShowcase />
-
-          <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
-            {FACULTY.map((f) => (
-              <div key={f.name} className="bg-white/90 p-6 backdrop-blur-sm pastel-fill">
-                <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50">{f.tag}</div>
-                <div className="mt-4 font-display text-[22px] leading-tight">{f.name}</div>
-                <div className="mt-1 text-[13px] text-black/60">{f.role}</div>
-              </div>
-            ))}
-          </div>
-          <div className="mt-6 text-[12px] uppercase tracking-[0.14em] text-black/50">
-            + 200 practitioners across strategy, product, capital and design.
-          </div>
         </div>
       </section>
 
