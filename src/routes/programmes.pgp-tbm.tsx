@@ -659,6 +659,7 @@ function PgpTbm() {
             <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-white/60">
               Rolling admits. No GMAT / CAT required. Round 1 closes {deadline.toDateString()}.
             </p>
+            <ImagePlaceholder label="Apply" className="mt-6 max-w-lg" aspect="16/9" />
           </div>
           <div className="flex flex-col gap-3">
             <a href="#" className="inline-flex items-center justify-between gap-3 bg-white px-6 py-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-black transition-transform hover:scale-[1.01] pastel-fill">
