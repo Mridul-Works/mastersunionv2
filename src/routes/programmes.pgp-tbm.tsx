@@ -776,12 +776,12 @@ function AlumniShowcase() {
                 boxShadow: "0 60px 140px -40px rgba(0,0,0,0.95)",
               }}
             >
-              {ALUMNI.map((a, i) => (
+              {filtered.map((a, i) => (
                 <div
                   key={a.name}
                   className="absolute inset-0"
                   style={{
-                    opacity: i === idx ? 1 : 0,
+                    opacity: i === safeIdx ? 1 : 0,
                     transition: "opacity 900ms cubic-bezier(0.4,0,0.2,1)",
                   }}
                 >
@@ -807,18 +807,18 @@ function AlumniShowcase() {
 
             {/* Content cross-fade */}
             <div className="relative">
-              {ALUMNI.map((a, i) => (
+              {filtered.map((a, i) => (
                 <div
                   key={a.name}
                   className="flex flex-col"
                   style={{
-                    position: i === idx ? "relative" : "absolute",
-                    inset: i === idx ? "auto" : 0,
-                    opacity: i === idx ? 1 : 0,
-                    transform: i === idx ? "translateY(0)" : "translateY(8px)",
+                    position: i === safeIdx ? "relative" : "absolute",
+                    inset: i === safeIdx ? "auto" : 0,
+                    opacity: i === safeIdx ? 1 : 0,
+                    transform: i === safeIdx ? "translateY(0)" : "translateY(8px)",
                     transition:
                       "opacity 800ms cubic-bezier(0.4,0,0.2,1), transform 800ms cubic-bezier(0.4,0,0.2,1)",
-                    pointerEvents: i === idx ? "auto" : "none",
+                    pointerEvents: i === safeIdx ? "auto" : "none",
                   }}
                 >
                   <div className="mb-6 flex items-center gap-3">
@@ -878,7 +878,7 @@ function AlumniShowcase() {
               {/* Controls */}
               <div className="mt-10 flex items-center gap-5 border-t border-smoke-50/10 pt-6">
                 <div className="flex gap-1.5">
-                  {ALUMNI.map((_, i) => (
+                  {filtered.map((_, i) => (
                     <button
                       key={i}
                       type="button"
@@ -886,9 +886,9 @@ function AlumniShowcase() {
                       aria-label={`Go to alumni ${i + 1}`}
                       className="transition-all duration-700 ease-out"
                       style={{
-                        width: i === idx ? "32px" : "8px",
+                        width: i === safeIdx ? "32px" : "8px",
                         height: "2px",
-                        background: i === idx ? "var(--smoke-300)" : "rgba(13,20,16,0.25)",
+                        background: i === safeIdx ? "var(--smoke-300)" : "rgba(13,20,16,0.25)",
                       }}
                     />
                   ))}
@@ -926,7 +926,7 @@ function AlumniShowcase() {
             className="group relative block overflow-hidden text-left"
             style={{ aspectRatio: "4 / 5", boxShadow: "0 40px 100px -40px rgba(0,0,0,0.9)" }}
           >
-            {ALUMNI.map((a, i) => (
+            {filtered.map((a, i) => (
               <div
                 key={a.name}
                 className="absolute inset-0 transition-transform duration-[1400ms] ease-out group-hover:scale-[1.06]"
