@@ -770,20 +770,35 @@ function AlumniShowcase() {
             data-alum-card
             className="group relative flex w-[300px] shrink-0 snap-start flex-col overflow-hidden border border-black/10 bg-white shadow-[0_1px_0_rgba(0,0,0,0.03),0_20px_40px_-30px_rgba(0,0,0,0.25)] transition-transform hover:-translate-y-1 sm:w-[320px]"
           >
-            <div className={`relative h-24 bg-gradient-to-br ${a.accent}`}>
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.35),transparent_50%)]" />
-              <span className="absolute left-4 top-4 rounded-full bg-black/25 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
+            <div className="relative aspect-[4/3] overflow-hidden bg-neutral-900">
+              <img
+                src={a.image}
+                alt={a.name}
+                className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"
+                style={{ filter: "grayscale(1) contrast(1.08) brightness(0.92)" }}
+              />
+              <div
+                aria-hidden
+                className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${a.accent} opacity-25 mix-blend-multiply`}
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent"
+              />
+              <span className="absolute left-3 top-3 rounded-full bg-black/45 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
                 {a.batch}
               </span>
-              <span className="absolute right-4 top-4 rounded-full bg-white/85 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-black/75">
+              <span className="absolute right-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-black/80">
                 {a.domain}
               </span>
-              <div className="absolute -bottom-8 left-5">
-                <div className={`grid size-16 place-items-center rounded-full border-4 border-white bg-gradient-to-br ${a.accent} font-display text-[20px] leading-none text-white shadow-md`}>
-                  {initialsOf(a.name)}
+              <div className="absolute inset-x-4 bottom-3">
+                <div className="font-display text-[17px] leading-tight tracking-tight text-white">{a.name}</div>
+                <div className="mt-0.5 text-[11.5px] text-white/75">
+                  {a.role} · <span className="text-white">{a.company}</span>
                 </div>
               </div>
             </div>
+
 
             <div className="flex flex-1 flex-col p-5 pt-11">
               <div className="font-display text-[18px] leading-tight tracking-tight">{a.name}</div>
