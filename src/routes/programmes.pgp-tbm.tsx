@@ -244,55 +244,69 @@ function useCountdown(target: Date) {
 }
 
 // -------- 8-term Gantt calendar --------
-const TERM_MONTHS = ["Aug '26", "Oct '26", "Dec '26", "Feb '27", "Apr '27", "Jun '27", "Aug '27", "Oct '27"];
+const TERM_META = [
+  { months: "Months 1–2", window: "Aug – Sep '26" },
+  { months: "Months 3–4", window: "Oct – Nov '26" },
+  { months: "Months 5–6", window: "Dec '26 – Jan '27" },
+  { months: "Months 7–8", window: "Feb – Mar '27" },
+  { months: "Months 9–10", window: "Apr – May '27" },
+  { months: "Months 11–12", window: "Jun – Jul '27" },
+  { months: "Months 13–14", window: "Aug – Sep '27" },
+  { months: "Months 15–16", window: "Oct – Nov '27" },
+];
 
 type Lane = {
   key: string;
   engine: "in" | "d2c" | "creator" | "capstone" | "imm";
   label: string;
+  sub: string;
   bars: { start: number; end: number; text: string; tone: "d2c" | "creator" | "imm" | "capstone" }[];
 };
 
 const IN_CLASS_TRACKS = [
-  "Fundamentals · Finance · Sales",
-  "GTM · Product mindset · LLMs",
-  "Storytelling · Banking · No-code",
-  "Valuation · UI/UX · Crisis mgmt",
-  "Models · Analytics · B2B",
-  "Pricing · PE/VC · Copy",
-  "IPOs · IP law · ML",
-  "DeFi · Risk · Compliance",
+  "Fundamentals, Finance & Sales",
+  "Go-to-market, Product mindset & AI",
+  "Storytelling, Banking & No-code",
+  "Valuation, UI/UX & Crisis management",
+  "Business models, Analytics & B2B",
+  "Pricing, PE / VC & Copywriting",
+  "IPOs, IP law & Machine learning",
+  "DeFi, Risk & Compliance",
 ];
 
 const OUT_LANES: Lane[] = [
   {
     key: "d2c",
     engine: "d2c",
-    label: "D2C Brand",
-    bars: [{ start: 1, end: 6, text: "Dropship → Hackathon → Consulting → MVP → GTM → PMF", tone: "d2c" }],
+    label: "Build a real brand",
+    sub: "Live D2C venture",
+    bars: [{ start: 1, end: 6, text: "Launch → Market → MVP → Grow → Find product-market fit", tone: "d2c" }],
   },
   {
     key: "creator",
     engine: "creator",
-    label: "Creator Challenge",
-    bars: [{ start: 2, end: 6, text: "Kickoff → Brand → Community → Distribution → Monetise", tone: "creator" }],
+    label: "Grow a real audience",
+    sub: "Creator challenge",
+    bars: [{ start: 2, end: 6, text: "Kickoff → Personal brand → Community → Distribution → Monetise", tone: "creator" }],
   },
   {
     key: "imm",
     engine: "imm",
-    label: "Immersions",
+    label: "Travel & learn",
+    sub: "On-ground immersions",
     bars: [
-      { start: 4, end: 4, text: "Global Immersion", tone: "imm" },
-      { start: 5, end: 5, text: "Bharat Immersion", tone: "imm" },
+      { start: 4, end: 4, text: "Global Immersion (abroad)", tone: "imm" },
+      { start: 5, end: 5, text: "Bharat Immersion (India)", tone: "imm" },
     ],
   },
   {
     key: "capstone",
     engine: "capstone",
-    label: "Capstones",
+    label: "Prove it",
+    sub: "Final challenges",
     bars: [
       { start: 7, end: 7, text: "Raise a Seed Fund", tone: "capstone" },
-      { start: 8, end: 8, text: "One-Day Profit", tone: "capstone" },
+      { start: 8, end: 8, text: "One-Day Profit challenge", tone: "capstone" },
     ],
   },
 ];
@@ -311,17 +325,25 @@ const TONE_DOTS: Record<string, string> = {
   capstone: "bg-black",
 };
 
+const LANE_TONE_LABELS: Record<string, string> = {
+  d2c: "Live D2C brand",
+  creator: "Creator challenge",
+  imm: "Immersion trip",
+  capstone: "Final challenge",
+};
+
 function TermsGantt() {
   const [active, setActive] = useState<number | null>(null);
   const activeTerm = active ?? 1;
 
   const activityForTerm = (t: number) => {
     const items: { label: string; tone: string }[] = [];
-    items.push({ label: `InClass: ${IN_CLASS_TRACKS[t - 1]}`, tone: "in" });
+    items.push({ label: `Classroom: ${IN_CLASS_TRACKS[t - 1]}`, tone: "in" });
     for (const lane of OUT_LANES) {
       for (const b of lane.bars) {
         if (t >= b.start && t <= b.end) {
-          items.push({ label: `${lane.label}${b.start !== b.end ? " (continuing)" : ""}`, tone: b.tone });
+          const continuing = b.start !== b.end && (t !== b.start);
+          items.push({ label: `${lane.label}${continuing ? " (continues)" : ""}`, tone: b.tone });
         }
       }
     }
@@ -332,31 +354,40 @@ function TermsGantt() {
     <section id="terms" className="border-b border-black/10 bg-[radial-gradient(circle_at_10%_0%,rgba(16,185,129,0.06),transparent_40%),radial-gradient(circle_at_90%_100%,rgba(245,158,11,0.06),transparent_40%)]">
       <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
         {/* Header */}
-        <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
-          <div className="max-w-2xl">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">The proof · 8 terms in one view</div>
-            <h2 className="mt-3 font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.03] tracking-[-0.02em]">
-              The whole 16 months, on one calendar.
-            </h2>
-            <p className="mt-4 text-[14px] leading-relaxed text-black/60">
-              Every row is an engine. Every column is a term. Hover — or tap — a term to see what's live that fortnight.
-            </p>
+        <div className="mb-8 max-w-2xl">
+          <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">The proof · 8 terms in one view</div>
+          <h2 className="mt-3 font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.03] tracking-[-0.02em]">
+            The whole 16 months, on one calendar.
+          </h2>
+          <p className="mt-4 text-[14px] leading-relaxed text-black/60">
+            The programme is split into <strong>8 terms of 2 months each</strong>. Every row below is one type of learning. Every column is one term. Hover — or tap — any term to see everything you'll be doing that fortnight.
+          </p>
+        </div>
+
+        {/* How to read + Legend */}
+        <div className="mb-6 grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
+          <div className="inline-flex flex-wrap items-center gap-x-4 gap-y-1 text-[11.5px] text-black/60">
+            <span className="inline-flex items-center gap-2"><span className="grid size-5 place-items-center rounded-full border border-black/20 text-[10px] font-semibold">↔</span> Long bars = runs across several terms</span>
+            <span className="inline-flex items-center gap-2"><span className="grid size-5 place-items-center rounded-full border border-black/20 text-[10px] font-semibold">■</span> Single blocks = one specific term</span>
           </div>
           <div className="flex flex-wrap gap-3 text-[11px] text-black/60">
-            <span className="inline-flex items-center gap-2"><span className={`size-2.5 ${TONE_DOTS.d2c}`} /> D2C Brand</span>
-            <span className="inline-flex items-center gap-2"><span className={`size-2.5 ${TONE_DOTS.creator}`} /> Creator Challenge</span>
-            <span className="inline-flex items-center gap-2"><span className={`size-2.5 ${TONE_DOTS.imm}`} /> Immersion</span>
-            <span className="inline-flex items-center gap-2"><span className={`size-2.5 ${TONE_DOTS.capstone}`} /> Capstone</span>
+            <span className="inline-flex items-center gap-2"><span className={`size-2.5 ${TONE_DOTS.d2c}`} /> Live D2C brand</span>
+            <span className="inline-flex items-center gap-2"><span className={`size-2.5 ${TONE_DOTS.creator}`} /> Creator challenge</span>
+            <span className="inline-flex items-center gap-2"><span className={`size-2.5 ${TONE_DOTS.imm}`} /> Immersion trip</span>
+            <span className="inline-flex items-center gap-2"><span className={`size-2.5 ${TONE_DOTS.capstone}`} /> Final challenge</span>
           </div>
         </div>
 
         {/* Gantt */}
         <div className="overflow-x-auto">
-          <div className="min-w-[820px] rounded-sm border border-black/10 bg-white/80 shadow-[0_1px_0_rgba(0,0,0,0.03),0_20px_40px_-30px_rgba(0,0,0,0.25)]">
+          <div className="min-w-[960px] rounded-sm border border-black/10 bg-white/80 shadow-[0_1px_0_rgba(0,0,0,0.03),0_20px_40px_-30px_rgba(0,0,0,0.25)]">
             {/* Column header */}
-            <div className="grid grid-cols-[140px_repeat(8,1fr)] border-b border-black/10">
-              <div className="p-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-black/40">Aug '26 → Oct '27</div>
-              {TERM_MONTHS.map((m, i) => {
+            <div className="grid grid-cols-[190px_repeat(8,1fr)] border-b border-black/10">
+              <div className="p-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-black/40">
+                <div>Aug '26 → Nov '27</div>
+                <div className="mt-1 normal-case tracking-normal text-black/45">16 months on campus</div>
+              </div>
+              {TERM_META.map((m, i) => {
                 const t = i + 1;
                 const isActive = active === t;
                 return (
@@ -370,17 +401,21 @@ function TermsGantt() {
                     onClick={() => setActive(t)}
                     className={`group relative border-l border-black/10 p-3 text-left transition-colors ${isActive ? "bg-black text-white" : "bg-white/80 hover:bg-black/[0.03]"}`}
                   >
-                    <div className={`font-display text-[18px] leading-none tracking-tight ${isActive ? "text-white" : "text-black"}`}>T{t}</div>
-                    <div className={`mt-1 text-[10px] uppercase tracking-[0.14em] ${isActive ? "text-white/70" : "text-black/45"}`}>{m}</div>
+                    <div className={`font-display text-[15px] leading-tight tracking-tight ${isActive ? "text-white" : "text-black"}`}>Term {t}</div>
+                    <div className={`mt-1 text-[10px] leading-tight ${isActive ? "text-white/75" : "text-black/50"}`}>{m.months}</div>
+                    <div className={`mt-0.5 text-[9.5px] uppercase tracking-[0.12em] ${isActive ? "text-white/55" : "text-black/35"}`}>{m.window}</div>
                   </button>
                 );
               })}
             </div>
 
             {/* InClass lane */}
-            <div className="grid grid-cols-[140px_repeat(8,1fr)] border-b border-black/10">
-              <div className="flex items-center gap-2 p-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-black/60">
-                <span className="size-1.5 rounded-full bg-black/70" /> InClass
+            <div className="grid grid-cols-[190px_repeat(8,1fr)] border-b border-black/10">
+              <div className="flex flex-col justify-center gap-0.5 p-3">
+                <div className="inline-flex items-center gap-2 text-[12px] font-semibold text-black">
+                  <span className="size-1.5 rounded-full bg-black/70" /> In the classroom
+                </div>
+                <div className="text-[10.5px] text-black/50">Business fundamentals</div>
               </div>
               {IN_CLASS_TRACKS.map((track, i) => {
                 const t = i + 1;
@@ -398,10 +433,13 @@ function TermsGantt() {
 
             {/* OutClass lanes with spanning bars */}
             {OUT_LANES.map((lane) => (
-              <div key={lane.key} className="grid grid-cols-[140px_repeat(8,1fr)] border-b border-black/10 last:border-b-0">
-                <div className="flex items-center gap-2 p-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-black/60">
-                  <span className={`size-1.5 rounded-full ${TONE_DOTS[lane.engine === "capstone" ? "capstone" : lane.engine === "imm" ? "imm" : lane.engine]}`} />
-                  {lane.label}
+              <div key={lane.key} className="grid grid-cols-[190px_repeat(8,1fr)] border-b border-black/10 last:border-b-0">
+                <div className="flex flex-col justify-center gap-0.5 p-3">
+                  <div className="inline-flex items-center gap-2 text-[12px] font-semibold text-black">
+                    <span className={`size-1.5 rounded-full ${TONE_DOTS[lane.engine === "capstone" ? "capstone" : lane.engine === "imm" ? "imm" : lane.engine]}`} />
+                    {lane.label}
+                  </div>
+                  <div className="text-[10.5px] text-black/50">{lane.sub}</div>
                 </div>
                 {/* Track row with absolutely placed bars */}
                 <div className="relative col-span-8 h-16">
@@ -426,7 +464,11 @@ function TermsGantt() {
                       >
                         <div className="flex items-center justify-between gap-2">
                           <span className="truncate">{b.text}</span>
-                          {spans > 1 && <span className="shrink-0 text-[10px] opacity-70">{spans} terms</span>}
+                          {spans > 1 && (
+                            <span className="shrink-0 rounded-full bg-white/25 px-1.5 py-0.5 text-[9.5px] font-semibold uppercase tracking-[0.1em]">
+                              {spans} terms
+                            </span>
+                          )}
                         </div>
                       </div>
                     );
@@ -438,15 +480,23 @@ function TermsGantt() {
         </div>
 
         {/* Detail panel */}
-        <div className="mt-6 grid gap-4 md:grid-cols-[140px_1fr] md:items-start">
-          <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-black/50">
-            {active ? `Live in T${activeTerm}` : `Hover a term ↑`}
+        <div className="mt-6 grid gap-4 rounded-sm border border-black/10 bg-white/70 p-5 md:grid-cols-[180px_1fr] md:items-start">
+          <div>
+            <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/45">
+              {active ? `You'll be doing this in` : `Preview a term`}
+            </div>
+            <div className="mt-1 font-display text-[22px] leading-tight tracking-tight">
+              {active ? `Term ${activeTerm}` : `Hover a column ↑`}
+            </div>
+            {active && (
+              <div className="mt-1 text-[11px] text-black/55">{TERM_META[activeTerm - 1].window}</div>
+            )}
           </div>
           <div className="flex flex-wrap gap-2">
             {activityForTerm(activeTerm).map((item, i) => (
               <span
                 key={i}
-                className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[12px] transition-opacity ${active ? "opacity-100" : "opacity-60"} ${
+                className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[12px] transition-opacity ${active ? "opacity-100" : "opacity-55"} ${
                   item.tone === "in"
                     ? "border-black/15 bg-white text-black/75"
                     : item.tone === "d2c"
@@ -464,14 +514,15 @@ function TermsGantt() {
           </div>
         </div>
 
-        <div className="mt-8 text-[12px] text-black/55">
+        <div className="mt-6 text-[12px] text-black/55">
           Full curriculum at{" "}
-          <a href="https://mastersunion.org/pgp-tbm-curriculum" target="_blank" rel="noreferrer" className="underline underline-offset-2">mastersunion.org/pgp-tbm-curriculum</a>. Non-mandatory 3-month internship follows the on-campus terms.
+          <a href="https://mastersunion.org/pgp-tbm-curriculum" target="_blank" rel="noreferrer" className="underline underline-offset-2">mastersunion.org/pgp-tbm-curriculum</a>. A non-mandatory 3-month internship follows the on-campus terms.
         </div>
       </div>
     </section>
   );
 }
+
 
 // -------- Alumni Showcase --------
 type Alum = {
