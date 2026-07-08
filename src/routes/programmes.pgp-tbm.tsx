@@ -770,25 +770,26 @@ function AlumniShowcase() {
             data-alum-card
             className="group relative flex w-[300px] shrink-0 snap-start flex-col overflow-hidden border border-black/10 bg-white shadow-[0_1px_0_rgba(0,0,0,0.03),0_20px_40px_-30px_rgba(0,0,0,0.25)] transition-transform hover:-translate-y-1 sm:w-[320px]"
           >
-            <div className="relative aspect-[4/3] overflow-hidden bg-neutral-900">
+            <div className="relative aspect-[4/3] overflow-hidden">
               <ImagePlaceholder label={`${a.name} portrait`} aspect="4/3" className="absolute inset-0 h-full w-full" />
               <div
                 aria-hidden
-                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/80 via-black/30 to-transparent"
               />
-              <span className="absolute left-3 top-3 rounded-full bg-black/45 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
+              <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-black/80 backdrop-blur-sm">
                 {a.batch}
               </span>
-              <span className="absolute right-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-black/80">
+              <span className="absolute right-3 top-3 rounded-full bg-black/80 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white">
                 {a.domain}
               </span>
               <div className="absolute inset-x-4 bottom-3">
-                <div className="font-display text-[17px] leading-tight tracking-tight text-white">{a.name}</div>
-                <div className="mt-0.5 text-[11.5px] text-white/75">
+                <div className="font-display text-[17px] leading-tight tracking-tight text-white drop-shadow">{a.name}</div>
+                <div className="mt-0.5 text-[11.5px] text-white/85 drop-shadow">
                   {a.role} · <span className="text-white">{a.company}</span>
                 </div>
               </div>
             </div>
+
 
 
             <div className="flex flex-1 flex-col p-5">
