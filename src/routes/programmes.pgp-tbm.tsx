@@ -8,8 +8,6 @@ import {
   Star,
   Linkedin,
   Calendar,
-  ChevronLeft,
-  ChevronRight,
 } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
