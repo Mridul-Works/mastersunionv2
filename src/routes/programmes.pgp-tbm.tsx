@@ -734,7 +734,38 @@ function AlumniShowcase() {
         </p>
       </div>
 
+
+      {/* Industry filters */}
+      <div className="mt-10 flex flex-wrap items-center gap-2 border-t border-smoke-50/10 pt-6">
+        <span className="mr-2 font-mono text-[10px] uppercase tracking-[0.28em] text-smoke-50/45">Filter · Industry</span>
+        {industries.map((ind) => {
+          const isActive = ind === industry;
+          const count = ind === "All" ? ALUMNI.length : ALUMNI.filter((a) => a.domain === ind).length;
+          return (
+            <button
+              key={ind}
+              type="button"
+              onClick={() => handleIndustry(ind)}
+              className={`inline-flex items-center gap-2 border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] transition-colors duration-300 ${
+                isActive
+                  ? "border-smoke-300 bg-smoke-300/15 text-smoke-50"
+                  : "border-smoke-50/15 text-smoke-50/60 hover:border-smoke-50/40 hover:text-smoke-50"
+              }`}
+            >
+              <span>{ind}</span>
+              <span className={isActive ? "text-smoke-300" : "text-smoke-50/35"}>{count}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      {total === 0 ? (
+        <div className="mt-16 border border-smoke-50/10 p-10 text-center font-mono text-[11px] uppercase tracking-[0.24em] text-smoke-50/50">
+          No alumni in this industry yet.
+        </div>
+      ) : (
       <div className="mt-16 grid gap-10 lg:gap-14 lg:[grid-template-columns:minmax(0,1fr)_minmax(0,0.34fr)]">
+
         {/* Featured */}
         <article className="relative lg:min-h-[620px]">
           <div className="grid gap-8 lg:gap-14 items-start grid-cols-1 sm:[grid-template-columns:minmax(0,0.6fr)_minmax(0,1fr)]">
