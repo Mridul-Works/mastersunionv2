@@ -961,7 +961,8 @@ function AlumniShowcase() {
 
           <div className="flex items-baseline gap-2 font-display">
             <span className="leading-none text-smoke-50" style={{ fontSize: "clamp(3rem, 5vw, 4.4rem)", fontWeight: 300 }}>
-              {String(idx + 1).padStart(2, "0")}
+              {String(safeIdx + 1).padStart(2, "0")}
+
             </span>
             <span className="leading-none text-smoke-50/30" style={{ fontSize: "clamp(2rem, 3vw, 2.4rem)" }}>
               /{String(total).padStart(2, "0")}
