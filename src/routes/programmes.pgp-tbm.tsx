@@ -308,7 +308,7 @@ function PgpTbm() {
 
           <div className="relative">
             <div className="relative aspect-[4/5] overflow-hidden border border-black/10 bg-black">
-              <img src={heroBuilding} alt="Masters' Union campus, DLF Cyber Park" className="h-full w-full object-cover" />
+              <ImagePlaceholder label="Hero visual" className="h-full w-full" aspect="4/5" />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-5 text-white">
                 <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/70">The Campus</div>
                 <div className="mt-1 font-display text-[20px] leading-tight">DLF Cyber Park, Gurugram</div>
