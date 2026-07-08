@@ -397,6 +397,7 @@ function PgpTbm() {
               </p>
             </div>
             <div className="space-y-px bg-black/10">
+              <ImagePlaceholder label="OutClass ventures" aspect="16/9" />
               {OUT_CLASS.map((o) => (
                 <article key={o.title} className="bg-white/90 p-6 pastel-fill">
                   <div className="flex flex-wrap items-baseline justify-between gap-3">
