@@ -371,6 +371,7 @@ function PgpTbm() {
               </dl>
             </div>
             <div className="grid gap-px bg-black/10 sm:grid-cols-2">
+              <ImagePlaceholder label="InClass tracks" aspect="16/9" className="sm:col-span-2" />
               {IN_CLASS.tracks.map((t) => (
                 <div key={t.name} className="bg-white/90 p-5 pastel-fill">
                   <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50">Track</div>
