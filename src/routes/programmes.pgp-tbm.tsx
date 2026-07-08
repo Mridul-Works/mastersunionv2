@@ -6,23 +6,17 @@ import {
   Minus,
   Check,
   Star,
-  Home,
-  Layers,
-  CalendarDays,
-  Users,
-  Trophy,
-  HelpCircle,
 } from "lucide-react";
 import heroBuilding from "@/assets/hero-building-light.webp";
-import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
+import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 
-const PGP_NAV: BottomNavItem[] = [
-  { id: "top", label: "Overview", icon: Home },
-  { id: "model", label: "The Model", icon: Layers },
-  { id: "terms", label: "8 Terms", icon: CalendarDays },
-  { id: "outcomes", label: "Outcomes", icon: Trophy },
-  { id: "faculty", label: "Faculty", icon: Users },
-  { id: "faq", label: "FAQ", icon: HelpCircle },
+const PGP_NAV: SectionNavItem[] = [
+  { id: "top", label: "Overview" },
+  { id: "model", label: "The Model" },
+  { id: "terms", label: "8 Terms" },
+  { id: "outcomes", label: "Outcomes" },
+  { id: "faculty", label: "Faculty" },
+  { id: "faq", label: "FAQ" },
 ];
 
 export const Route = createFileRoute("/programmes/pgp-tbm")({
@@ -257,7 +251,7 @@ function PgpTbm() {
         "--pastel-mid": "oklch(0.985 0.020 210 / 0.4)",
       } as React.CSSProperties}
     >
-      <BottomNav items={PGP_NAV} applyHref="#apply" />
+      <SectionNav items={PGP_NAV} applyHref="#apply" />
 
       {/* HERO */}
       <section className="relative overflow-hidden border-b border-black/10 pt-28 sm:pt-32">
