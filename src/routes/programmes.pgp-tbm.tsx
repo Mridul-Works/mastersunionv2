@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowUpRight,
@@ -6,9 +6,14 @@ import {
   Minus,
   Check,
   Star,
+  Linkedin,
+  Calendar,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
+
 
 const PGP_NAV: SectionNavItem[] = [
   { id: "top", label: "Overview" },
@@ -468,6 +473,253 @@ function TermsGantt() {
   );
 }
 
+// -------- Alumni Showcase --------
+type Alum = {
+  name: string;
+  batch: string;
+  role: string;
+  company: string;
+  domain: string;
+  quote: string;
+  linkedin: string;
+  calendly?: string;
+  accent: string;
+};
+
+const ALUMNI: Alum[] = [
+  {
+    name: "Ananya Verma",
+    batch: "PGP '23",
+    role: "Product Manager",
+    company: "Zomato",
+    domain: "Product",
+    quote: "My D2C brand from Term 2 became my portfolio piece at Zomato interviews.",
+    linkedin: "https://www.linkedin.com/",
+    calendly: "https://cal.com/",
+    accent: "from-emerald-400 to-teal-600",
+  },
+  {
+    name: "Rohan Iyer",
+    batch: "PGP '22",
+    role: "Founder & CEO",
+    company: "Kettl (Seed · $1.2M)",
+    domain: "Startup",
+    quote: "The Creator Challenge taught me distribution before I knew I'd need it as a founder.",
+    linkedin: "https://www.linkedin.com/",
+    calendly: "https://cal.com/",
+    accent: "from-amber-400 to-orange-600",
+  },
+  {
+    name: "Sanya Kapoor",
+    batch: "PGP '24",
+    role: "Investment Analyst",
+    company: "Peak XV Partners",
+    domain: "VC & Finance",
+    quote: "Running a real P&L for 16 months is a better filter than any DCF model.",
+    linkedin: "https://www.linkedin.com/",
+    accent: "from-indigo-400 to-violet-600",
+  },
+  {
+    name: "Kabir Menon",
+    batch: "PGP '23",
+    role: "Growth Lead",
+    company: "CRED",
+    domain: "Growth",
+    quote: "The InClass GTM track plugged straight into my first CRED growth sprint.",
+    linkedin: "https://www.linkedin.com/",
+    calendly: "https://cal.com/",
+    accent: "from-rose-400 to-pink-600",
+  },
+  {
+    name: "Meera Joshi",
+    batch: "PGP '22",
+    role: "Consultant",
+    company: "Bain & Company",
+    domain: "Consulting",
+    quote: "Bharat Immersion is why I chose consumer strategy over generalist consulting.",
+    linkedin: "https://www.linkedin.com/",
+    accent: "from-sky-400 to-blue-600",
+  },
+  {
+    name: "Aarav Suri",
+    batch: "PGP '24",
+    role: "Co-founder",
+    company: "Motif Labs (YC W25)",
+    domain: "Startup",
+    quote: "Met my co-founder in the T5 Bharat Immersion. We shipped MVP by T7.",
+    linkedin: "https://www.linkedin.com/",
+    calendly: "https://cal.com/",
+    accent: "from-lime-400 to-emerald-600",
+  },
+  {
+    name: "Ishita Rao",
+    batch: "PGP '23",
+    role: "Brand Manager",
+    company: "Nykaa",
+    domain: "Consumer",
+    quote: "I walked into Nykaa having already run a live D2C P&L for 14 months.",
+    linkedin: "https://www.linkedin.com/",
+    accent: "from-fuchsia-400 to-purple-600",
+  },
+  {
+    name: "Dev Shah",
+    batch: "PGP '22",
+    role: "Associate",
+    company: "Kotak Investment Banking",
+    domain: "Finance",
+    quote: "The PE/VC track in Term 6 was taught by people who actually write cheques.",
+    linkedin: "https://www.linkedin.com/",
+    calendly: "https://cal.com/",
+    accent: "from-slate-500 to-zinc-800",
+  },
+];
+
+function initialsOf(name: string) {
+  return name.split(" ").map((n) => n[0]).slice(0, 2).join("").toUpperCase();
+}
+
+function AlumniShowcase() {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const [activeDomain, setActiveDomain] = useState<string>("All");
+  const domains = ["All", ...Array.from(new Set(ALUMNI.map((a) => a.domain)))];
+  const visible = activeDomain === "All" ? ALUMNI : ALUMNI.filter((a) => a.domain === activeDomain);
+
+  const scrollBy = (dir: 1 | -1) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-alum-card]");
+    const step = card ? card.offsetWidth + 16 : el.clientWidth * 0.8;
+    el.scrollBy({ left: dir * step, behavior: "smooth" });
+  };
+
+  return (
+    <div className="mt-12">
+      <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/55">Alumni Network</div>
+          <div className="mt-2 font-display text-[22px] leading-tight tracking-tight">Talk to someone who's been through it.</div>
+          <p className="mt-1 text-[13px] text-black/60">1,400+ alumni across product, startups, finance and consulting. Meet a few — and reach out.</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => scrollBy(-1)}
+            aria-label="Previous alumni"
+            className="grid size-10 place-items-center border border-black/15 bg-white/80 text-black/70 transition-colors hover:bg-black hover:text-white"
+          >
+            <ChevronLeft className="size-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollBy(1)}
+            aria-label="Next alumni"
+            className="grid size-10 place-items-center border border-black/15 bg-white/80 text-black/70 transition-colors hover:bg-black hover:text-white"
+          >
+            <ChevronRight className="size-4" />
+          </button>
+        </div>
+      </div>
+
+      <div className="mb-5 flex flex-wrap gap-2">
+        {domains.map((d) => {
+          const isActive = d === activeDomain;
+          return (
+            <button
+              key={d}
+              type="button"
+              onClick={() => setActiveDomain(d)}
+              className={`rounded-full border px-3 py-1.5 text-[11.5px] font-medium transition-colors ${
+                isActive
+                  ? "border-black bg-black text-white"
+                  : "border-black/15 bg-white/70 text-black/70 hover:border-black/40"
+              }`}
+            >
+              {d}
+            </button>
+          );
+        })}
+      </div>
+
+      <div
+        ref={scrollerRef}
+        className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {visible.map((a) => (
+          <article
+            key={a.name}
+            data-alum-card
+            className="group relative flex w-[300px] shrink-0 snap-start flex-col overflow-hidden border border-black/10 bg-white shadow-[0_1px_0_rgba(0,0,0,0.03),0_20px_40px_-30px_rgba(0,0,0,0.25)] transition-transform hover:-translate-y-1 sm:w-[320px]"
+          >
+            <div className={`relative h-24 bg-gradient-to-br ${a.accent}`}>
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.35),transparent_50%)]" />
+              <span className="absolute left-4 top-4 rounded-full bg-black/25 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
+                {a.batch}
+              </span>
+              <span className="absolute right-4 top-4 rounded-full bg-white/85 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-black/75">
+                {a.domain}
+              </span>
+              <div className="absolute -bottom-8 left-5">
+                <div className={`grid size-16 place-items-center rounded-full border-4 border-white bg-gradient-to-br ${a.accent} font-display text-[20px] leading-none text-white shadow-md`}>
+                  {initialsOf(a.name)}
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-1 flex-col p-5 pt-11">
+              <div className="font-display text-[18px] leading-tight tracking-tight">{a.name}</div>
+              <div className="mt-1 text-[12.5px] text-black/70">
+                {a.role} · <span className="text-black">{a.company}</span>
+              </div>
+
+              <p className="mt-4 border-l-2 border-black/15 pl-3 text-[12.5px] italic leading-relaxed text-black/65">
+                "{a.quote}"
+              </p>
+
+              <div className="mt-auto flex items-center gap-2 pt-5">
+                <a
+                  href={a.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex flex-1 items-center justify-center gap-1.5 border border-black bg-black px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-white hover:text-black"
+                >
+                  <Linkedin className="size-3.5" /> Connect
+                </a>
+                {a.calendly && (
+                  <a
+                    href={a.calendly}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-1.5 border border-black/20 bg-white px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-black/80 transition-colors hover:border-black hover:bg-black hover:text-white"
+                    aria-label={`Book a call with ${a.name}`}
+                  >
+                    <Calendar className="size-3.5" /> Book
+                  </a>
+                )}
+              </div>
+            </div>
+          </article>
+        ))}
+
+        <a
+          href="#apply"
+          className="group relative flex w-[280px] shrink-0 snap-start flex-col justify-between border border-dashed border-black/25 bg-white/60 p-6 text-black/75 transition-colors hover:border-black hover:bg-black hover:text-white"
+        >
+          <div>
+            <div className="text-[10px] font-semibold uppercase tracking-[0.2em] opacity-70">Alumni directory</div>
+            <div className="mt-2 font-display text-[22px] leading-tight tracking-tight">Browse 1,400+ operators</div>
+            <p className="mt-3 text-[12.5px] leading-relaxed opacity-80">
+              Full directory unlocks after Round 1. Filter by domain, company, and batch.
+            </p>
+          </div>
+          <span className="mt-6 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em]">
+            Request access <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </span>
+        </a>
+      </div>
+    </div>
+  );
+}
+
 
 function PgpTbm() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -708,8 +960,8 @@ function PgpTbm() {
             <h2 className="mt-3 font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.03] tracking-[-0.02em]">
               We publish numbers, not narrative.
             </h2>
-            <ImagePlaceholder label="Outcomes" className="mt-5" aspect="16/9" />
           </div>
+
 
           <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
             {OUTCOME_HEADLINE.map((s) => (
@@ -752,6 +1004,9 @@ function PgpTbm() {
               </ul>
             </div>
           </div>
+
+          <AlumniShowcase />
+
         </div>
       </section>
 
