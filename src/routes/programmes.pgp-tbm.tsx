@@ -7,7 +7,7 @@ import {
   Check,
   Star,
 } from "lucide-react";
-import heroBuilding from "@/assets/hero-building-light.webp";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 
 const PGP_NAV: SectionNavItem[] = [
@@ -308,7 +308,7 @@ function PgpTbm() {
 
           <div className="relative">
             <div className="relative aspect-[4/5] overflow-hidden border border-black/10 bg-black">
-              <img src={heroBuilding} alt="Masters' Union campus, DLF Cyber Park" className="h-full w-full object-cover" />
+              <ImagePlaceholder label="Hero visual" className="h-full w-full" aspect="4/5" />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-5 text-white">
                 <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/70">The Campus</div>
                 <div className="mt-1 font-display text-[20px] leading-tight">DLF Cyber Park, Gurugram</div>
@@ -341,6 +341,8 @@ function PgpTbm() {
             </p>
           </div>
 
+          <ImagePlaceholder label="The three engines" className="mb-10" aspect="21/9" />
+
           <div className="mb-16 grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
             {MODEL_STATS.map((s) => (
               <div key={s.v} className="bg-white/90 p-6 backdrop-blur-sm">
@@ -369,6 +371,7 @@ function PgpTbm() {
               </dl>
             </div>
             <div className="grid gap-px bg-black/10 sm:grid-cols-2">
+              <ImagePlaceholder label="InClass tracks" aspect="16/9" className="sm:col-span-2" />
               {IN_CLASS.tracks.map((t) => (
                 <div key={t.name} className="bg-white/90 p-5 pastel-fill">
                   <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50">Track</div>
@@ -394,6 +397,7 @@ function PgpTbm() {
               </p>
             </div>
             <div className="space-y-px bg-black/10">
+              <ImagePlaceholder label="OutClass ventures" aspect="16/9" />
               {OUT_CLASS.map((o) => (
                 <article key={o.title} className="bg-white/90 p-6 pastel-fill">
                   <div className="flex flex-wrap items-baseline justify-between gap-3">
@@ -441,6 +445,7 @@ function PgpTbm() {
               </p>
             </div>
             <div className="grid gap-px bg-black/10 md:grid-cols-2">
+              <ImagePlaceholder label="Immersions" aspect="16/9" className="md:col-span-2" />
               {IMMERSIONS.map((im) => (
                 <article key={im.title} className="bg-white/90 p-6 pastel-fill">
                   <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-indigo-700">{im.tag}</div>
@@ -472,6 +477,7 @@ function PgpTbm() {
             <p className="mt-4 text-[14px] leading-relaxed text-black/60">
               Each row is a term. InClass runs left. OutClass ventures and Immersions run right.
             </p>
+            <ImagePlaceholder label="8-term timeline" className="mt-5" aspect="16/9" />
             <div className="mt-5 flex flex-wrap gap-3 text-[11px] text-black/60">
               <span className="inline-flex items-center gap-2"><span className="size-2.5 bg-emerald-500" /> D2C Brand</span>
               <span className="inline-flex items-center gap-2"><span className="size-2.5 bg-amber-500" /> Creator Challenge</span>
@@ -517,6 +523,7 @@ function PgpTbm() {
             <h2 className="mt-3 font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.03] tracking-[-0.02em]">
               We publish numbers, not narrative.
             </h2>
+            <ImagePlaceholder label="Outcomes" className="mt-5" aspect="16/9" />
           </div>
 
           <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
@@ -571,6 +578,7 @@ function PgpTbm() {
             <h2 className="mt-3 max-w-2xl font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.05] tracking-[-0.02em]">
               30% Ivy academics. 30% research faculty. 40% sitting operators.
             </h2>
+            <ImagePlaceholder label="Faculty" className="mt-5 max-w-3xl" aspect="16/9" />
           </div>
           <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
             {FACULTY.map((f) => (
@@ -595,6 +603,7 @@ function PgpTbm() {
             <h2 className="mt-3 font-display text-[clamp(1.8rem,3.4vw,2.6rem)] leading-[1.05] tracking-[-0.02em]">
               From application to campus, in five steps.
             </h2>
+            <ImagePlaceholder label="Admissions journey" className="mt-5 max-w-3xl" aspect="16/9" />
           </div>
           <ol className="grid gap-px bg-black/10 md:grid-cols-5">
             {TIMELINE.map((t, i) => (
@@ -616,6 +625,7 @@ function PgpTbm() {
             <h2 className="mt-3 font-display text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.05] tracking-[-0.02em]">
               Everything you were about to email us.
             </h2>
+            <ImagePlaceholder label="FAQ" className="mt-5" aspect="16/9" />
           </div>
           <div className="border-t border-black/10 bg-white/90 backdrop-blur-sm">
             {FAQ.map((f, i) => {
@@ -649,6 +659,7 @@ function PgpTbm() {
             <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-white/60">
               Rolling admits. No GMAT / CAT required. Round 1 closes {deadline.toDateString()}.
             </p>
+            <ImagePlaceholder label="Apply" className="mt-6 max-w-lg" aspect="16/9" />
           </div>
           <div className="flex flex-col gap-3">
             <a href="#" className="inline-flex items-center justify-between gap-3 bg-white px-6 py-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-black transition-transform hover:scale-[1.01] pastel-fill">
