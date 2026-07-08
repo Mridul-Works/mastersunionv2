@@ -707,12 +707,18 @@ function Eyebrow({ num, label }: { num: string; label: string }) {
 }
 
 function AlumniShowcase() {
+  const industries = ["All", ...Array.from(new Set(ALUMNI.map((a) => a.domain)))];
+  const [industry, setIndustry] = useState<string>("All");
+  const filtered = industry === "All" ? ALUMNI : ALUMNI.filter((a) => a.domain === industry);
   const [idx, setIdx] = useState(0);
-  const total = ALUMNI.length;
-  const active = ALUMNI[idx];
-  const nextIdx = (idx + 1) % total;
-  const next = ALUMNI[nextIdx];
-  const go = (dir: 1 | -1) => setIdx((i) => (i + dir + total) % total);
+  const total = filtered.length;
+  const safeIdx = total > 0 ? Math.min(idx, total - 1) : 0;
+  const active = filtered[safeIdx];
+  const nextIdx = total > 0 ? (safeIdx + 1) % total : 0;
+  const next = filtered[nextIdx];
+  const go = (dir: 1 | -1) => setIdx((i) => total === 0 ? 0 : (safeIdx + dir + total) % total);
+  const handleIndustry = (v: string) => { setIndustry(v); setIdx(0); };
+
 
   return (
     <div className="mt-16">
