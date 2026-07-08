@@ -251,7 +251,7 @@ function PgpTbm() {
         "--pastel-mid": "oklch(0.985 0.020 210 / 0.4)",
       } as React.CSSProperties}
     >
-      <BottomNav items={PGP_NAV} applyHref="#apply" />
+      <SectionNav items={PGP_NAV} applyHref="#apply" />
 
       {/* HERO */}
       <section className="relative overflow-hidden border-b border-black/10 pt-28 sm:pt-32">
