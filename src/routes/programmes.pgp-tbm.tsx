@@ -960,7 +960,7 @@ function PgpTbm() {
             <h2 className="mt-3 font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.03] tracking-[-0.02em]">
               We publish numbers, not narrative.
             </h2>
-            <ImagePlaceholder label="Outcomes" className="mt-5" aspect="16/9" />
+            </div>
           </div>
 
           <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
