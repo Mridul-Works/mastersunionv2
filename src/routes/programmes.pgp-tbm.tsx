@@ -578,6 +578,7 @@ function PgpTbm() {
             <h2 className="mt-3 max-w-2xl font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.05] tracking-[-0.02em]">
               30% Ivy academics. 30% research faculty. 40% sitting operators.
             </h2>
+            <ImagePlaceholder label="Faculty" className="mt-5 max-w-3xl" aspect="16/9" />
           </div>
           <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
             {FACULTY.map((f) => (
