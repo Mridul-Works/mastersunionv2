@@ -800,15 +800,11 @@ function AlumniShowcase() {
             </div>
 
 
-            <div className="flex flex-1 flex-col p-5 pt-11">
-              <div className="font-display text-[18px] leading-tight tracking-tight">{a.name}</div>
-              <div className="mt-1 text-[12.5px] text-black/70">
-                {a.role} · <span className="text-black">{a.company}</span>
-              </div>
-
-              <p className="mt-4 border-l-2 border-black/15 pl-3 text-[12.5px] italic leading-relaxed text-black/65">
+            <div className="flex flex-1 flex-col p-5">
+              <p className="border-l-2 border-black/15 pl-3 text-[12.5px] italic leading-relaxed text-black/70">
                 "{a.quote}"
               </p>
+
 
               <div className="mt-auto flex items-center gap-2 pt-5">
                 <a
