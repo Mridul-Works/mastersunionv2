@@ -445,6 +445,7 @@ function PgpTbm() {
               </p>
             </div>
             <div className="grid gap-px bg-black/10 md:grid-cols-2">
+              <ImagePlaceholder label="Immersions" aspect="16/9" className="md:col-span-2" />
               {IMMERSIONS.map((im) => (
                 <article key={im.title} className="bg-white/90 p-6 pastel-fill">
                   <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-indigo-700">{im.tag}</div>
