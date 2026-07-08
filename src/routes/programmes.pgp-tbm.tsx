@@ -603,6 +603,7 @@ function PgpTbm() {
             <h2 className="mt-3 font-display text-[clamp(1.8rem,3.4vw,2.6rem)] leading-[1.05] tracking-[-0.02em]">
               From application to campus, in five steps.
             </h2>
+            <ImagePlaceholder label="Admissions journey" className="mt-5 max-w-3xl" aspect="16/9" />
           </div>
           <ol className="grid gap-px bg-black/10 md:grid-cols-5">
             {TIMELINE.map((t, i) => (
