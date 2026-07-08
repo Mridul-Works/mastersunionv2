@@ -707,12 +707,18 @@ function Eyebrow({ num, label }: { num: string; label: string }) {
 }
 
 function AlumniShowcase() {
+  const industries = ["All", ...Array.from(new Set(ALUMNI.map((a) => a.domain)))];
+  const [industry, setIndustry] = useState<string>("All");
+  const filtered = industry === "All" ? ALUMNI : ALUMNI.filter((a) => a.domain === industry);
   const [idx, setIdx] = useState(0);
-  const total = ALUMNI.length;
-  const active = ALUMNI[idx];
-  const nextIdx = (idx + 1) % total;
-  const next = ALUMNI[nextIdx];
-  const go = (dir: 1 | -1) => setIdx((i) => (i + dir + total) % total);
+  const total = filtered.length;
+  const safeIdx = total > 0 ? Math.min(idx, total - 1) : 0;
+  const active = filtered[safeIdx];
+  const nextIdx = total > 0 ? (safeIdx + 1) % total : 0;
+  const next = filtered[nextIdx];
+  const go = (dir: 1 | -1) => setIdx((i) => total === 0 ? 0 : (safeIdx + dir + total) % total);
+  const handleIndustry = (v: string) => { setIndustry(v); setIdx(0); };
+
 
   return (
     <div className="mt-16">
@@ -728,7 +734,38 @@ function AlumniShowcase() {
         </p>
       </div>
 
+
+      {/* Industry filters */}
+      <div className="mt-10 flex flex-wrap items-center gap-2 border-t border-smoke-50/10 pt-6">
+        <span className="mr-2 font-mono text-[10px] uppercase tracking-[0.28em] text-smoke-50/45">Filter · Industry</span>
+        {industries.map((ind) => {
+          const isActive = ind === industry;
+          const count = ind === "All" ? ALUMNI.length : ALUMNI.filter((a) => a.domain === ind).length;
+          return (
+            <button
+              key={ind}
+              type="button"
+              onClick={() => handleIndustry(ind)}
+              className={`inline-flex items-center gap-2 border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] transition-colors duration-300 ${
+                isActive
+                  ? "border-smoke-300 bg-smoke-300/15 text-smoke-50"
+                  : "border-smoke-50/15 text-smoke-50/60 hover:border-smoke-50/40 hover:text-smoke-50"
+              }`}
+            >
+              <span>{ind}</span>
+              <span className={isActive ? "text-smoke-300" : "text-smoke-50/35"}>{count}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      {total === 0 ? (
+        <div className="mt-16 border border-smoke-50/10 p-10 text-center font-mono text-[11px] uppercase tracking-[0.24em] text-smoke-50/50">
+          No alumni in this industry yet.
+        </div>
+      ) : (
       <div className="mt-16 grid gap-10 lg:gap-14 lg:[grid-template-columns:minmax(0,1fr)_minmax(0,0.34fr)]">
+
         {/* Featured */}
         <article className="relative lg:min-h-[620px]">
           <div className="grid gap-8 lg:gap-14 items-start grid-cols-1 sm:[grid-template-columns:minmax(0,0.6fr)_minmax(0,1fr)]">
@@ -739,12 +776,12 @@ function AlumniShowcase() {
                 boxShadow: "0 60px 140px -40px rgba(0,0,0,0.95)",
               }}
             >
-              {ALUMNI.map((a, i) => (
+              {filtered.map((a, i) => (
                 <div
                   key={a.name}
                   className="absolute inset-0"
                   style={{
-                    opacity: i === idx ? 1 : 0,
+                    opacity: i === safeIdx ? 1 : 0,
                     transition: "opacity 900ms cubic-bezier(0.4,0,0.2,1)",
                   }}
                 >
@@ -770,18 +807,18 @@ function AlumniShowcase() {
 
             {/* Content cross-fade */}
             <div className="relative">
-              {ALUMNI.map((a, i) => (
+              {filtered.map((a, i) => (
                 <div
                   key={a.name}
                   className="flex flex-col"
                   style={{
-                    position: i === idx ? "relative" : "absolute",
-                    inset: i === idx ? "auto" : 0,
-                    opacity: i === idx ? 1 : 0,
-                    transform: i === idx ? "translateY(0)" : "translateY(8px)",
+                    position: i === safeIdx ? "relative" : "absolute",
+                    inset: i === safeIdx ? "auto" : 0,
+                    opacity: i === safeIdx ? 1 : 0,
+                    transform: i === safeIdx ? "translateY(0)" : "translateY(8px)",
                     transition:
                       "opacity 800ms cubic-bezier(0.4,0,0.2,1), transform 800ms cubic-bezier(0.4,0,0.2,1)",
-                    pointerEvents: i === idx ? "auto" : "none",
+                    pointerEvents: i === safeIdx ? "auto" : "none",
                   }}
                 >
                   <div className="mb-6 flex items-center gap-3">
@@ -841,7 +878,7 @@ function AlumniShowcase() {
               {/* Controls */}
               <div className="mt-10 flex items-center gap-5 border-t border-smoke-50/10 pt-6">
                 <div className="flex gap-1.5">
-                  {ALUMNI.map((_, i) => (
+                  {filtered.map((_, i) => (
                     <button
                       key={i}
                       type="button"
@@ -849,9 +886,9 @@ function AlumniShowcase() {
                       aria-label={`Go to alumni ${i + 1}`}
                       className="transition-all duration-700 ease-out"
                       style={{
-                        width: i === idx ? "32px" : "8px",
+                        width: i === safeIdx ? "32px" : "8px",
                         height: "2px",
-                        background: i === idx ? "var(--smoke-300)" : "rgba(13,20,16,0.25)",
+                        background: i === safeIdx ? "var(--smoke-300)" : "rgba(13,20,16,0.25)",
                       }}
                     />
                   ))}
@@ -889,7 +926,7 @@ function AlumniShowcase() {
             className="group relative block overflow-hidden text-left"
             style={{ aspectRatio: "4 / 5", boxShadow: "0 40px 100px -40px rgba(0,0,0,0.9)" }}
           >
-            {ALUMNI.map((a, i) => (
+            {filtered.map((a, i) => (
               <div
                 key={a.name}
                 className="absolute inset-0 transition-transform duration-[1400ms] ease-out group-hover:scale-[1.06]"
@@ -924,7 +961,8 @@ function AlumniShowcase() {
 
           <div className="flex items-baseline gap-2 font-display">
             <span className="leading-none text-smoke-50" style={{ fontSize: "clamp(3rem, 5vw, 4.4rem)", fontWeight: 300 }}>
-              {String(idx + 1).padStart(2, "0")}
+              {String(safeIdx + 1).padStart(2, "0")}
+
             </span>
             <span className="leading-none text-smoke-50/30" style={{ fontSize: "clamp(2rem, 3vw, 2.4rem)" }}>
               /{String(total).padStart(2, "0")}
@@ -932,7 +970,9 @@ function AlumniShowcase() {
           </div>
         </aside>
       </div>
+      )}
     </div>
+
   );
 }
 
