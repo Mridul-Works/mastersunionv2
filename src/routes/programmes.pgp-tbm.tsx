@@ -595,6 +595,7 @@ type Alum = {
   linkedin: string;
   calendly?: string;
   accent: string;
+  image: string;
 };
 
 const ALUMNI: Alum[] = [
@@ -608,6 +609,7 @@ const ALUMNI: Alum[] = [
     linkedin: "https://www.linkedin.com/",
     calendly: "https://cal.com/",
     accent: "from-emerald-400 to-teal-600",
+    image: facultyNandini.url,
   },
   {
     name: "Rohan Iyer",
@@ -619,6 +621,7 @@ const ALUMNI: Alum[] = [
     linkedin: "https://www.linkedin.com/",
     calendly: "https://cal.com/",
     accent: "from-amber-400 to-orange-600",
+    image: facultyBhupesh.url,
   },
   {
     name: "Sanya Kapoor",
@@ -629,6 +632,7 @@ const ALUMNI: Alum[] = [
     quote: "Running a real P&L for 16 months is a better filter than any DCF model.",
     linkedin: "https://www.linkedin.com/",
     accent: "from-indigo-400 to-violet-600",
+    image: facultyGarima.url,
   },
   {
     name: "Kabir Menon",
@@ -640,6 +644,7 @@ const ALUMNI: Alum[] = [
     linkedin: "https://www.linkedin.com/",
     calendly: "https://cal.com/",
     accent: "from-rose-400 to-pink-600",
+    image: facultyZal.url,
   },
   {
     name: "Meera Joshi",
@@ -650,6 +655,7 @@ const ALUMNI: Alum[] = [
     quote: "Bharat Immersion is why I chose consumer strategy over generalist consulting.",
     linkedin: "https://www.linkedin.com/",
     accent: "from-sky-400 to-blue-600",
+    image: facultyLanMa.url,
   },
   {
     name: "Aarav Suri",
@@ -661,6 +667,7 @@ const ALUMNI: Alum[] = [
     linkedin: "https://www.linkedin.com/",
     calendly: "https://cal.com/",
     accent: "from-lime-400 to-emerald-600",
+    image: facultyDaniel.url,
   },
   {
     name: "Ishita Rao",
@@ -671,6 +678,7 @@ const ALUMNI: Alum[] = [
     quote: "I walked into Nykaa having already run a live D2C P&L for 14 months.",
     linkedin: "https://www.linkedin.com/",
     accent: "from-fuchsia-400 to-purple-600",
+    image: facultyFaverie.url,
   },
   {
     name: "Dev Shah",
@@ -682,6 +690,7 @@ const ALUMNI: Alum[] = [
     linkedin: "https://www.linkedin.com/",
     calendly: "https://cal.com/",
     accent: "from-slate-500 to-zinc-800",
+    image: facultyManoj.url,
   },
 ];
 
