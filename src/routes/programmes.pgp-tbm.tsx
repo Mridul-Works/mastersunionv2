@@ -189,13 +189,73 @@ const OUTCOME_ROLES = [
 ];
 
 // -------- Faculty --------
-const FACULTY = [
-  { name: "Kunal Shah", role: "Founder, CRED", tag: "Consumer Behaviour" },
-  { name: "Deepinder Goyal", role: "Founder, Zomato", tag: "Building at Scale" },
-  { name: "Nithin Kamath", role: "Founder, Zerodha", tag: "Capital Markets" },
-  { name: "Ronnie Screwvala", role: "Founder, upGrad · UTV", tag: "Media & Ventures" },
-  { name: "Radhika Gupta", role: "CEO, Edelweiss AMC", tag: "Asset Management" },
-  { name: "Anand Chandrasekaran", role: "GM, Meta", tag: "Product Leadership" },
+import facultyFaverie from "@/assets/faculty/faverie.png.asset.json";
+import facultyLanMa from "@/assets/faculty/lanma.png.asset.json";
+import facultyZal from "@/assets/faculty/zal.png.asset.json";
+import facultyDaniel from "@/assets/faculty/daniel.png.asset.json";
+import facultyManoj from "@/assets/faculty/manoj.png.asset.json";
+import facultyBhupesh from "@/assets/faculty/bhupesh.png.asset.json";
+import facultyNandini from "@/assets/faculty/nandini.png.asset.json";
+import facultyGarima from "@/assets/faculty/garima.png.asset.json";
+
+type FacultyMember = {
+  name: string;
+  role: string;
+  tag: string;
+  image: string;
+  bio: string;
+  focus: string[];
+};
+
+const FACULTY: FacultyMember[] = [
+  {
+    name: "Kunal Shah",
+    role: "Founder, CRED",
+    tag: "Consumer Behaviour",
+    image: facultyFaverie.url,
+    bio: "Built India's most-loved consumer fintech brand. Teaches the psychology of trust, status and retention that turns a product into a habit — and a habit into a business.",
+    focus: ["Consumer Psychology", "Retention Economics", "Brand as Behaviour"],
+  },
+  {
+    name: "Deepinder Goyal",
+    role: "Founder, Zomato",
+    tag: "Building at Scale",
+    image: facultyDaniel.url,
+    bio: "Scaled a food-delivery startup into a listed consumer platform across 1,000+ cities. Brings first-hand frameworks on org design, marketplace economics and building through cycles.",
+    focus: ["Marketplace Design", "Org Building at Scale", "Public-Market Playbook"],
+  },
+  {
+    name: "Nithin Kamath",
+    role: "Founder, Zerodha",
+    tag: "Capital Markets",
+    image: facultyManoj.url,
+    bio: "Built India's largest brokerage without a single rupee of external capital. Teaches capital markets from the inside — how retail investors actually behave and how durable businesses are financed.",
+    focus: ["Capital Markets Structure", "Bootstrapped Scaling", "Retail Investor Behaviour"],
+  },
+  {
+    name: "Ronnie Screwvala",
+    role: "Founder, upGrad · UTV",
+    tag: "Media & Ventures",
+    image: facultyZal.url,
+    bio: "Built and exited one of India's largest media houses, then rebuilt in edtech. Advises operators on category creation, storytelling, and the second-act discipline of serial founders.",
+    focus: ["Category Creation", "Media & Distribution", "Serial Entrepreneurship"],
+  },
+  {
+    name: "Radhika Gupta",
+    role: "CEO, Edelweiss AMC",
+    tag: "Asset Management",
+    image: facultyNandini.url,
+    bio: "Runs one of India's fastest-growing asset managers. Translates institutional-grade portfolio construction into frameworks operators can use to think about risk, allocation and long-horizon compounding.",
+    focus: ["Asset Allocation", "Risk Frameworks", "Long-Horizon Compounding"],
+  },
+  {
+    name: "Anand Chandrasekaran",
+    role: "GM, Meta",
+    tag: "Product Leadership",
+    image: facultyBhupesh.url,
+    bio: "Has led product at Meta, Snap, Airtel and Bharti — shipping to hundreds of millions of users. Teaches the craft of product decisions, review culture and how great PMs actually earn trust with engineering.",
+    focus: ["Product Strategy", "Review Culture", "Cross-Functional Leadership"],
+  },
 ];
 
 // -------- Admissions & FAQ --------
