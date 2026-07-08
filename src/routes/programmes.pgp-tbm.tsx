@@ -7,7 +7,7 @@ import {
   Check,
   Star,
 } from "lucide-react";
-import heroBuilding from "@/assets/hero-building-light.webp";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 
 const PGP_NAV: SectionNavItem[] = [
