@@ -238,6 +238,237 @@ function useCountdown(target: Date) {
   return { d, h };
 }
 
+// -------- 8-term Gantt calendar --------
+const TERM_MONTHS = ["Aug '26", "Oct '26", "Dec '26", "Feb '27", "Apr '27", "Jun '27", "Aug '27", "Oct '27"];
+
+type Lane = {
+  key: string;
+  engine: "in" | "d2c" | "creator" | "capstone" | "imm";
+  label: string;
+  bars: { start: number; end: number; text: string; tone: "d2c" | "creator" | "imm" | "capstone" }[];
+};
+
+const IN_CLASS_TRACKS = [
+  "Fundamentals · Finance · Sales",
+  "GTM · Product mindset · LLMs",
+  "Storytelling · Banking · No-code",
+  "Valuation · UI/UX · Crisis mgmt",
+  "Models · Analytics · B2B",
+  "Pricing · PE/VC · Copy",
+  "IPOs · IP law · ML",
+  "DeFi · Risk · Compliance",
+];
+
+const OUT_LANES: Lane[] = [
+  {
+    key: "d2c",
+    engine: "d2c",
+    label: "D2C Brand",
+    bars: [{ start: 1, end: 6, text: "Dropship → Hackathon → Consulting → MVP → GTM → PMF", tone: "d2c" }],
+  },
+  {
+    key: "creator",
+    engine: "creator",
+    label: "Creator Challenge",
+    bars: [{ start: 2, end: 6, text: "Kickoff → Brand → Community → Distribution → Monetise", tone: "creator" }],
+  },
+  {
+    key: "imm",
+    engine: "imm",
+    label: "Immersions",
+    bars: [
+      { start: 4, end: 4, text: "Global Immersion", tone: "imm" },
+      { start: 5, end: 5, text: "Bharat Immersion", tone: "imm" },
+    ],
+  },
+  {
+    key: "capstone",
+    engine: "capstone",
+    label: "Capstones",
+    bars: [
+      { start: 7, end: 7, text: "Raise a Seed Fund", tone: "capstone" },
+      { start: 8, end: 8, text: "One-Day Profit", tone: "capstone" },
+    ],
+  },
+];
+
+const TONE_STYLES: Record<"d2c" | "creator" | "imm" | "capstone", string> = {
+  d2c: "bg-emerald-500 text-white",
+  creator: "bg-amber-500 text-black",
+  imm: "bg-indigo-500 text-white",
+  capstone: "bg-black text-white",
+};
+
+const TONE_DOTS: Record<string, string> = {
+  d2c: "bg-emerald-500",
+  creator: "bg-amber-500",
+  imm: "bg-indigo-500",
+  capstone: "bg-black",
+};
+
+function TermsGantt() {
+  const [active, setActive] = useState<number | null>(null);
+  const activeTerm = active ?? 1;
+
+  const activityForTerm = (t: number) => {
+    const items: { label: string; tone: string }[] = [];
+    items.push({ label: `InClass: ${IN_CLASS_TRACKS[t - 1]}`, tone: "in" });
+    for (const lane of OUT_LANES) {
+      for (const b of lane.bars) {
+        if (t >= b.start && t <= b.end) {
+          items.push({ label: `${lane.label}${b.start !== b.end ? " (continuing)" : ""}`, tone: b.tone });
+        }
+      }
+    }
+    return items;
+  };
+
+  return (
+    <section id="terms" className="border-b border-black/10 bg-[radial-gradient(circle_at_10%_0%,rgba(16,185,129,0.06),transparent_40%),radial-gradient(circle_at_90%_100%,rgba(245,158,11,0.06),transparent_40%)]">
+      <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
+        {/* Header */}
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
+          <div className="max-w-2xl">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">The proof · 8 terms in one view</div>
+            <h2 className="mt-3 font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.03] tracking-[-0.02em]">
+              The whole 16 months, on one calendar.
+            </h2>
+            <p className="mt-4 text-[14px] leading-relaxed text-black/60">
+              Every row is an engine. Every column is a term. Hover — or tap — a term to see what's live that fortnight.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3 text-[11px] text-black/60">
+            <span className="inline-flex items-center gap-2"><span className={`size-2.5 ${TONE_DOTS.d2c}`} /> D2C Brand</span>
+            <span className="inline-flex items-center gap-2"><span className={`size-2.5 ${TONE_DOTS.creator}`} /> Creator Challenge</span>
+            <span className="inline-flex items-center gap-2"><span className={`size-2.5 ${TONE_DOTS.imm}`} /> Immersion</span>
+            <span className="inline-flex items-center gap-2"><span className={`size-2.5 ${TONE_DOTS.capstone}`} /> Capstone</span>
+          </div>
+        </div>
+
+        {/* Gantt */}
+        <div className="overflow-x-auto">
+          <div className="min-w-[820px] rounded-sm border border-black/10 bg-white/80 shadow-[0_1px_0_rgba(0,0,0,0.03),0_20px_40px_-30px_rgba(0,0,0,0.25)]">
+            {/* Column header */}
+            <div className="grid grid-cols-[140px_repeat(8,1fr)] border-b border-black/10">
+              <div className="p-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-black/40">Aug '26 → Oct '27</div>
+              {TERM_MONTHS.map((m, i) => {
+                const t = i + 1;
+                const isActive = active === t;
+                return (
+                  <button
+                    key={t}
+                    type="button"
+                    onMouseEnter={() => setActive(t)}
+                    onMouseLeave={() => setActive(null)}
+                    onFocus={() => setActive(t)}
+                    onBlur={() => setActive(null)}
+                    onClick={() => setActive(t)}
+                    className={`group relative border-l border-black/10 p-3 text-left transition-colors ${isActive ? "bg-black text-white" : "bg-white/80 hover:bg-black/[0.03]"}`}
+                  >
+                    <div className={`font-display text-[18px] leading-none tracking-tight ${isActive ? "text-white" : "text-black"}`}>T{t}</div>
+                    <div className={`mt-1 text-[10px] uppercase tracking-[0.14em] ${isActive ? "text-white/70" : "text-black/45"}`}>{m}</div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* InClass lane */}
+            <div className="grid grid-cols-[140px_repeat(8,1fr)] border-b border-black/10">
+              <div className="flex items-center gap-2 p-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-black/60">
+                <span className="size-1.5 rounded-full bg-black/70" /> InClass
+              </div>
+              {IN_CLASS_TRACKS.map((track, i) => {
+                const t = i + 1;
+                const isActive = active === t;
+                return (
+                  <div
+                    key={t}
+                    className={`border-l border-black/10 p-3 text-[11.5px] leading-snug transition-colors ${isActive ? "bg-black/[0.04] text-black" : "text-black/70"}`}
+                  >
+                    {track}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* OutClass lanes with spanning bars */}
+            {OUT_LANES.map((lane) => (
+              <div key={lane.key} className="grid grid-cols-[140px_repeat(8,1fr)] border-b border-black/10 last:border-b-0">
+                <div className="flex items-center gap-2 p-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-black/60">
+                  <span className={`size-1.5 rounded-full ${TONE_DOTS[lane.engine === "capstone" ? "capstone" : lane.engine === "imm" ? "imm" : lane.engine]}`} />
+                  {lane.label}
+                </div>
+                {/* Track row with absolutely placed bars */}
+                <div className="relative col-span-8 h-16">
+                  {/* Column dividers + hover highlight */}
+                  <div className="absolute inset-0 grid grid-cols-8">
+                    {Array.from({ length: 8 }).map((_, i) => {
+                      const t = i + 1;
+                      const isActive = active === t;
+                      return <div key={t} className={`border-l border-black/10 transition-colors ${isActive ? "bg-black/[0.04]" : ""}`} />;
+                    })}
+                  </div>
+                  {/* Bars */}
+                  {lane.bars.map((b, bi) => {
+                    const leftPct = ((b.start - 1) / 8) * 100;
+                    const widthPct = ((b.end - b.start + 1) / 8) * 100;
+                    const spans = b.end - b.start + 1;
+                    return (
+                      <div
+                        key={bi}
+                        className={`absolute top-1/2 -translate-y-1/2 rounded-[3px] px-3 py-2 text-[11.5px] font-medium tracking-tight shadow-sm transition-transform hover:-translate-y-[calc(50%+2px)] ${TONE_STYLES[b.tone]}`}
+                        style={{ left: `calc(${leftPct}% + 6px)`, width: `calc(${widthPct}% - 12px)` }}
+                      >
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="truncate">{b.text}</span>
+                          {spans > 1 && <span className="shrink-0 text-[10px] opacity-70">{spans} terms</span>}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Detail panel */}
+        <div className="mt-6 grid gap-4 md:grid-cols-[140px_1fr] md:items-start">
+          <div className="text-[11px] font-semibold uppercase tracking-[0.16em] text-black/50">
+            {active ? `Live in T${activeTerm}` : `Hover a term ↑`}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {activityForTerm(activeTerm).map((item, i) => (
+              <span
+                key={i}
+                className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[12px] transition-opacity ${active ? "opacity-100" : "opacity-60"} ${
+                  item.tone === "in"
+                    ? "border-black/15 bg-white text-black/75"
+                    : item.tone === "d2c"
+                    ? "border-emerald-500/30 bg-emerald-50 text-emerald-800"
+                    : item.tone === "creator"
+                    ? "border-amber-500/30 bg-amber-50 text-amber-800"
+                    : item.tone === "imm"
+                    ? "border-indigo-500/30 bg-indigo-50 text-indigo-800"
+                    : "border-black/70 bg-black text-white"
+                }`}
+              >
+                {item.label}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-8 text-[12px] text-black/55">
+          Full curriculum at{" "}
+          <a href="https://mastersunion.org/pgp-tbm-curriculum" target="_blank" rel="noreferrer" className="underline underline-offset-2">mastersunion.org/pgp-tbm-curriculum</a>. Non-mandatory 3-month internship follows the on-campus terms.
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
 function PgpTbm() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const deadline = new Date("2026-08-15T23:59:59+05:30");
@@ -466,54 +697,8 @@ function PgpTbm() {
         </div>
       </section>
 
-      {/* 8 TERMS · The three engines, term by term */}
-      <section id="terms" className="border-b border-black/10">
-        <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-          <div className="mb-10 max-w-3xl">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">The proof · 8 terms in one view</div>
-            <h2 className="mt-3 font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.03] tracking-[-0.02em]">
-              What the three engines look like — term by term.
-            </h2>
-            <p className="mt-4 text-[14px] leading-relaxed text-black/60">
-              Each row is a term. InClass runs left. OutClass ventures and Immersions run right.
-            </p>
-            <ImagePlaceholder label="8-term timeline" className="mt-5" aspect="16/9" />
-            <div className="mt-5 flex flex-wrap gap-3 text-[11px] text-black/60">
-              <span className="inline-flex items-center gap-2"><span className="size-2.5 bg-emerald-500" /> D2C Brand</span>
-              <span className="inline-flex items-center gap-2"><span className="size-2.5 bg-amber-500" /> Creator Challenge</span>
-              <span className="inline-flex items-center gap-2"><span className="size-2.5 bg-indigo-500" /> Immersion</span>
-            </div>
-          </div>
-
-          <div className="space-y-px bg-black/10">
-            <div className="hidden grid-cols-[70px_1.1fr_1.4fr] gap-px bg-black/10 md:grid">
-              <div className="bg-white/90 p-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-black/50">Term</div>
-              <div className="bg-white/90 p-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-black/50">InClass focus</div>
-              <div className="bg-white/90 p-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-black/50">OutClass + Immersions</div>
-            </div>
-            {TERM_MATRIX.map((row) => (
-              <div key={row.term} className="grid gap-px bg-black/10 md:grid-cols-[70px_1.1fr_1.4fr]">
-                <div className="bg-white/90 p-4 font-display text-[20px] leading-none tracking-tight">{row.term}</div>
-                <div className="bg-white/90 p-4 text-[13px] leading-snug text-black/75">{row.inClass}</div>
-                <div className="bg-white/90 p-3">
-                  <div className="flex flex-wrap gap-1.5">
-                    {row.outClass.map((c) => (
-                      <span key={c.label} className={`inline-flex items-center px-2.5 py-1.5 text-[11.5px] leading-tight ${ENGINE_COLORS[c.kind]}`}>
-                        {c.label}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-6 text-[12px] text-black/55">
-            Curriculum lifted from{" "}
-            <a href="https://mastersunion.org/pgp-tbm-curriculum" target="_blank" rel="noreferrer" className="underline underline-offset-2">mastersunion.org/pgp-tbm-curriculum</a>. Non-mandatory 3-month internship follows the on-campus terms.
-          </div>
-        </div>
-      </section>
+      {/* 8 TERMS · Gantt calendar of the three engines */}
+      <TermsGantt />
 
       {/* OUTCOMES */}
       <section id="outcomes" className="border-b border-black/10 bg-white/40">
