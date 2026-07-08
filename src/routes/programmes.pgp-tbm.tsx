@@ -47,7 +47,7 @@ const FACTS = [
   { k: "Duration", v: "16 Months", note: "Incl. 3-month internship" },
   { k: "Format", v: "On Campus", note: "DLF Cyber Park · Gurugram" },
   { k: "Eligibility", v: "2–5 yrs", note: "No CAT / GMAT" },
-  { k: "Cohort", v: "2026", note: "Rolling admissions · Round 4" },
+  { k: "Intake", v: "Rolling", note: "Round 4 admissions open" },
 ];
 
 // -------- The Model : three engines --------
@@ -257,12 +257,52 @@ const FACULTY: FacultyMember[] = [
 ];
 
 // -------- Admissions & FAQ --------
-const TIMELINE = [
-  { d: "Step 1", t: "Submit application (15 min)" },
-  { d: "Step 2", t: "Aptitude assessment" },
-  { d: "Step 3", t: "Operator interview" },
-  { d: "Step 4", t: "Admit + scholarship review" },
-  { d: "Start", t: "Cohort 2026 begins on campus" },
+// Sourced from mastersunion.org/pgp-tbm-admissions-and-fees
+const APPLICATION_STEPS = [
+  {
+    step: "01",
+    title: "Complete the Application Form",
+    summary:
+      "Fill out your details and upload supporting documents so the admissions team can review your profile.",
+    points: [
+      "Latest resume — any clean, concise format works",
+      "Qualification documents covering academics, work and extra-curriculars",
+      "Optional: upload your CAT / GMAT / GMAT Focus score",
+    ],
+  },
+  {
+    step: "02",
+    title: "MU-BAAT",
+    summary:
+      "The Masters' Union Business Aptitude & Admissions Test — an online, recorded conversation that evaluates business aptitude, clarity of thought and creative thinking.",
+    points: [
+      "45–60 minutes · 9 questions across 5 sections",
+      "Only required if you haven't submitted a CAT / GMAT score you're happy with",
+      "Test link is shared the day after the application deadline",
+    ],
+  },
+  {
+    step: "03",
+    title: "Personal Interview",
+    summary:
+      "Shortlisted applicants are invited to an interview conducted by distinguished faculty members and seasoned industry leaders.",
+    points: [
+      "Invitations sent 3–5 days before the interview",
+      "Faculty + operator panel evaluation",
+      "Date, venue and time confirmed in advance",
+    ],
+  },
+  {
+    step: "04",
+    title: "Final Admission Decision",
+    summary:
+      "The admissions committee slots applicants into accepted, waitlisted or not-accepted pools.",
+    points: [
+      "Offers include the full financial structure for the programme",
+      "Waitlisted candidates are promoted on a rolling basis — no ranked list",
+      "Not-accepted applicants may re-apply in the next academic year",
+    ],
+  },
 ];
 
 const FAQ = [
@@ -1196,7 +1236,7 @@ function PgpTbm() {
             <div className="flex flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-black/60">
               <span className="inline-flex items-center gap-2 border border-black/15 bg-white/70 px-3 py-1">
                 <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                Cohort 2026 · Round 4 open
+                Round 4 admissions open
               </span>
               <span className="inline-flex items-center gap-1 border border-black/15 bg-white/70 px-3 py-1">
                 <Star className="size-3 fill-current" /> Accredited by EFMD & AACSB
@@ -1484,19 +1524,37 @@ function PgpTbm() {
       {/* ADMISSIONS */}
       <section id="admissions" className="border-b border-black/10">
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-          <div className="mb-10">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">Admissions · Cohort 2026</div>
-            <h2 className="mt-3 font-display text-[clamp(1.8rem,3.4vw,2.6rem)] leading-[1.05] tracking-[-0.02em]">
-              From application to campus, in five steps.
-            </h2>
-            <ImagePlaceholder label="Admissions journey" className="mt-5 max-w-3xl" aspect="16/9" />
+          <div className="mb-12 grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-end">
+            <div>
+              <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">
+                Admissions & Application Process
+              </div>
+              <h2 className="mt-3 font-display text-[clamp(1.8rem,3.4vw,2.6rem)] leading-[1.05] tracking-[-0.02em]">
+                Four steps from application to campus.
+              </h2>
+              <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-black/65">
+                A holistic evaluation across academics, professional experience, communication and
+                business aptitude. No cut-offs — the admissions committee reviews every profile in full.
+              </p>
+            </div>
+            <ImagePlaceholder label="Admissions journey" className="w-full" aspect="4/3" />
           </div>
-          <ol className="grid gap-px bg-black/10 md:grid-cols-5">
-            {TIMELINE.map((t, i) => (
-              <li key={t.t} className="bg-white/90 p-5 backdrop-blur-sm pastel-fill">
-                <div className="font-display text-[28px] leading-none text-black/30">{String(i + 1).padStart(2, "0")}</div>
-                <div className="mt-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-black/55">{t.d}</div>
-                <div className="mt-1 font-display text-[15px] leading-tight text-black/85">{t.t}</div>
+          <ol className="grid gap-px bg-black/10 md:grid-cols-2">
+            {APPLICATION_STEPS.map((s) => (
+              <li key={s.step} className="flex flex-col gap-4 bg-white/90 p-7 backdrop-blur-sm pastel-fill">
+                <div className="flex items-baseline gap-4">
+                  <div className="font-display text-[40px] leading-none text-black/25">{s.step}</div>
+                  <div className="font-display text-[20px] leading-tight text-black/90">{s.title}</div>
+                </div>
+                <p className="text-[14px] leading-relaxed text-black/70">{s.summary}</p>
+                <ul className="mt-1 space-y-2 border-t border-black/10 pt-4">
+                  {s.points.map((p) => (
+                    <li key={p} className="flex gap-3 text-[13px] leading-relaxed text-black/70">
+                      <span className="mt-[7px] size-1.5 shrink-0 rounded-full bg-black/40" />
+                      <span>{p}</span>
+                    </li>
+                  ))}
+                </ul>
               </li>
             ))}
           </ol>
@@ -1536,7 +1594,7 @@ function PgpTbm() {
       <section id="apply" className="bg-black text-white">
         <div className="mx-auto grid max-w-[1180px] gap-10 px-4 py-24 sm:px-6 lg:grid-cols-[1.4fr_1fr] lg:items-end">
           <div>
-            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/50">Cohort 2026 · Round 4 open</div>
+            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/50">Round 4 admissions open</div>
             <h2 className="mt-3 font-display text-[clamp(2rem,5vw,4rem)] leading-[1] tracking-[-0.02em]">
               You have 15 minutes.
               <br />
