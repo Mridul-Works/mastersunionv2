@@ -466,54 +466,8 @@ function PgpTbm() {
         </div>
       </section>
 
-      {/* 8 TERMS · The three engines, term by term */}
-      <section id="terms" className="border-b border-black/10">
-        <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-          <div className="mb-10 max-w-3xl">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">The proof · 8 terms in one view</div>
-            <h2 className="mt-3 font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.03] tracking-[-0.02em]">
-              What the three engines look like — term by term.
-            </h2>
-            <p className="mt-4 text-[14px] leading-relaxed text-black/60">
-              Each row is a term. InClass runs left. OutClass ventures and Immersions run right.
-            </p>
-            <ImagePlaceholder label="8-term timeline" className="mt-5" aspect="16/9" />
-            <div className="mt-5 flex flex-wrap gap-3 text-[11px] text-black/60">
-              <span className="inline-flex items-center gap-2"><span className="size-2.5 bg-emerald-500" /> D2C Brand</span>
-              <span className="inline-flex items-center gap-2"><span className="size-2.5 bg-amber-500" /> Creator Challenge</span>
-              <span className="inline-flex items-center gap-2"><span className="size-2.5 bg-indigo-500" /> Immersion</span>
-            </div>
-          </div>
-
-          <div className="space-y-px bg-black/10">
-            <div className="hidden grid-cols-[70px_1.1fr_1.4fr] gap-px bg-black/10 md:grid">
-              <div className="bg-white/90 p-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-black/50">Term</div>
-              <div className="bg-white/90 p-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-black/50">InClass focus</div>
-              <div className="bg-white/90 p-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-black/50">OutClass + Immersions</div>
-            </div>
-            {TERM_MATRIX.map((row) => (
-              <div key={row.term} className="grid gap-px bg-black/10 md:grid-cols-[70px_1.1fr_1.4fr]">
-                <div className="bg-white/90 p-4 font-display text-[20px] leading-none tracking-tight">{row.term}</div>
-                <div className="bg-white/90 p-4 text-[13px] leading-snug text-black/75">{row.inClass}</div>
-                <div className="bg-white/90 p-3">
-                  <div className="flex flex-wrap gap-1.5">
-                    {row.outClass.map((c) => (
-                      <span key={c.label} className={`inline-flex items-center px-2.5 py-1.5 text-[11.5px] leading-tight ${ENGINE_COLORS[c.kind]}`}>
-                        {c.label}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-6 text-[12px] text-black/55">
-            Curriculum lifted from{" "}
-            <a href="https://mastersunion.org/pgp-tbm-curriculum" target="_blank" rel="noreferrer" className="underline underline-offset-2">mastersunion.org/pgp-tbm-curriculum</a>. Non-mandatory 3-month internship follows the on-campus terms.
-          </div>
-        </div>
-      </section>
+      {/* 8 TERMS · Gantt calendar of the three engines */}
+      <TermsGantt />
 
       {/* OUTCOMES */}
       <section id="outcomes" className="border-b border-black/10 bg-white/40">
