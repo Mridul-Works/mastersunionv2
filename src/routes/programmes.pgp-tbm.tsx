@@ -477,6 +477,7 @@ function PgpTbm() {
             <p className="mt-4 text-[14px] leading-relaxed text-black/60">
               Each row is a term. InClass runs left. OutClass ventures and Immersions run right.
             </p>
+            <ImagePlaceholder label="8-term timeline" className="mt-5" aspect="16/9" />
             <div className="mt-5 flex flex-wrap gap-3 text-[11px] text-black/60">
               <span className="inline-flex items-center gap-2"><span className="size-2.5 bg-emerald-500" /> D2C Brand</span>
               <span className="inline-flex items-center gap-2"><span className="size-2.5 bg-amber-500" /> Creator Challenge</span>
