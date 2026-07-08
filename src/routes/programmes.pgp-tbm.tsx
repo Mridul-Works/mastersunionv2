@@ -771,19 +771,10 @@ function AlumniShowcase() {
             className="group relative flex w-[300px] shrink-0 snap-start flex-col overflow-hidden border border-black/10 bg-white shadow-[0_1px_0_rgba(0,0,0,0.03),0_20px_40px_-30px_rgba(0,0,0,0.25)] transition-transform hover:-translate-y-1 sm:w-[320px]"
           >
             <div className="relative aspect-[4/3] overflow-hidden bg-neutral-900">
-              <img
-                src={a.image}
-                alt={a.name}
-                className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-[900ms] ease-out group-hover:scale-[1.05]"
-                style={{ filter: "grayscale(1) contrast(1.08) brightness(0.92)" }}
-              />
+              <ImagePlaceholder label={`${a.name} portrait`} aspect="4/3" className="absolute inset-0 h-full w-full" />
               <div
                 aria-hidden
-                className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${a.accent} opacity-25 mix-blend-multiply`}
-              />
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent"
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"
               />
               <span className="absolute left-3 top-3 rounded-full bg-black/45 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
                 {a.batch}
@@ -870,19 +861,7 @@ function FacultyShowcase() {
             className="relative mx-auto aspect-[4/5] w-full max-w-[260px] overflow-hidden bg-neutral-900 sm:mx-0 sm:max-w-[300px]"
             style={{ boxShadow: "0 40px 90px -40px rgba(0,0,0,0.45)" }}
           >
-            {FACULTY.map((f, i) => (
-              <img
-                key={f.image}
-                src={f.image}
-                alt={f.name}
-                className="absolute inset-0 h-full w-full object-cover object-center"
-                style={{
-                  filter: "grayscale(1) contrast(1.08) brightness(0.94)",
-                  opacity: i === idx ? 1 : 0,
-                  transition: "opacity 800ms cubic-bezier(0.4,0,0.2,1)",
-                }}
-              />
-            ))}
+            <ImagePlaceholder label={`${active.name} portrait`} aspect="4/5" className="absolute inset-0 h-full w-full" />
             <div
               aria-hidden
               className="pointer-events-none absolute inset-0"
@@ -993,21 +972,7 @@ function FacultyShowcase() {
           className="group relative block overflow-hidden bg-neutral-900 text-left"
           style={{ aspectRatio: "4 / 5", boxShadow: "0 30px 70px -40px rgba(0,0,0,0.45)" }}
         >
-          {FACULTY.map((f, i) => (
-            <img
-              key={f.image}
-              src={f.image}
-              alt={f.name}
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.05]"
-              style={{
-                filter: "grayscale(1) contrast(1.08) brightness(0.9)",
-                opacity: i === nextIdx ? 1 : 0,
-                transitionProperty: "transform, opacity",
-                transitionDuration: "1200ms, 800ms",
-                transitionTimingFunction: "cubic-bezier(0.4,0,0.2,1)",
-              }}
-            />
-          ))}
+          <ImagePlaceholder label={`${next.name} portrait`} aspect="4/5" className="absolute inset-0 h-full w-full" />
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0"
