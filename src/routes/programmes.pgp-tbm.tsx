@@ -1338,7 +1338,7 @@ function PgpTbm() {
           </div>
 
           <FacultyShowcase />
-          </div>
+
           <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
             {FACULTY.map((f) => (
               <div key={f.name} className="bg-white/90 p-6 backdrop-blur-sm pastel-fill">
