@@ -962,7 +962,6 @@ function PgpTbm() {
             </h2>
           </div>
 
-          </div>
 
           <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
             {OUTCOME_HEADLINE.map((s) => (
