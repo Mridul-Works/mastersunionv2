@@ -625,6 +625,7 @@ function PgpTbm() {
             <h2 className="mt-3 font-display text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.05] tracking-[-0.02em]">
               Everything you were about to email us.
             </h2>
+            <ImagePlaceholder label="FAQ" className="mt-5" aspect="16/9" />
           </div>
           <div className="border-t border-black/10 bg-white/90 backdrop-blur-sm">
             {FAQ.map((f, i) => {
