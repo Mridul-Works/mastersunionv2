@@ -462,7 +462,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
               The whole 16 months, on one calendar.
             </h2>
             <p className="mt-4 text-[14px] leading-relaxed text-black/60">
-              The programme is split into <strong>8 terms of 2 months each</strong>. Every row below is one type of learning. Every column is one term. Hover — or tap — any term to see everything you'll be doing that fortnight.
+              8 terms · 2 months each. Rows are what you're learning, columns are when. Tap a term to see it in detail.
             </p>
           </div>
         )}
