@@ -1025,8 +1025,8 @@ function initialsOf(name: string) {
 
 function Eyebrow({ num, label }: { num: string; label: string }) {
   return (
-    <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.22em] text-smoke-50/60">
-      <span className="text-smoke-700">/{num}</span>
+    <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.22em] text-foreground/60">
+      <span className="text-muted-foreground">/{num}</span>
       <span className="h-px w-8 bg-foreground/20" />
       <span>{label}</span>
     </div>
@@ -1337,7 +1337,7 @@ function FacultyShowcase() {
               style={{ background: "linear-gradient(180deg, rgba(13,20,16,0) 40%, rgba(13,20,16,0.7) 100%)" }}
             />
             <div className="absolute bottom-5 left-5 right-5">
-              <p className="font-mono text-xs uppercase tracking-[0.28em] text-smoke-300">
+              <p className="font-mono text-xs uppercase tracking-[0.28em] text-muted-foreground">
                 {active.tag}
               </p>
             </div>
@@ -1360,29 +1360,29 @@ function FacultyShowcase() {
                 }}
               >
                 <div className="mb-6 flex items-center gap-3">
-                  <span className="inline-block h-px w-8 bg-smoke-300" />
-                  <span className="font-mono text-xs uppercase tracking-[0.28em] text-smoke-50/70">
+                  <span className="inline-block h-px w-8 bg-foreground/40" />
+                  <span className="font-mono text-xs uppercase tracking-[0.28em] text-foreground/70">
                     Faculty · {String(i + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
                   </span>
                 </div>
-                <p className="mb-4 font-mono text-xs uppercase tracking-[0.24em] text-smoke-50/50">
+                <p className="mb-4 font-mono text-xs uppercase tracking-[0.24em] text-foreground/50">
                   {f.tag}
                 </p>
-                <h3 className="font-display text-3xl font-bold leading-[1.05] tracking-tight text-smoke-50">
+                <h3 className="font-display text-3xl font-bold leading-[1.05] tracking-tight text-foreground">
                   {f.name}
                 </h3>
-                <p className="mt-2 text-sm text-smoke-50/65">{f.role}</p>
-                <div className="mt-6 h-px w-12 bg-smoke-300/60" />
-                <p className="mt-5 text-sm leading-[1.7] text-smoke-50/85 md:mt-6 md:text-sm md:leading-[1.75]">{f.bio}</p>
+                <p className="mt-2 text-sm text-foreground/65">{f.role}</p>
+                <div className="mt-6 h-px w-12 bg-foreground/30" />
+                <p className="mt-5 text-sm leading-[1.7] text-foreground/85 md:mt-6 md:text-sm md:leading-[1.75]">{f.bio}</p>
 
                 <div className="mt-8">
-                  <p className="mb-4 font-mono text-xs uppercase tracking-[0.28em] text-smoke-50/50">
+                  <p className="mb-4 font-mono text-xs uppercase tracking-[0.28em] text-foreground/50">
                     Selected Portfolio
                   </p>
                   <ul className="space-y-2.5">
                     {f.focus.map((p) => (
-                      <li key={p} className="flex gap-3 text-sm text-smoke-50/85">
-                        <span className="text-smoke-300">—</span>
+                      <li key={p} className="flex gap-3 text-sm text-foreground/85">
+                        <span className="text-muted-foreground">—</span>
                         <span>{p}</span>
                       </li>
                     ))}
@@ -1392,7 +1392,7 @@ function FacultyShowcase() {
             ))}
 
             {/* Controls */}
-            <div className="mt-10 flex items-center gap-5 border-t border-smoke-50/10 pt-6">
+            <div className="mt-10 flex items-center gap-5 border-t border-border pt-6">
               <div className="flex gap-1.5">
                 {FACULTY.map((_, i) => (
                   <button
@@ -1409,13 +1409,13 @@ function FacultyShowcase() {
                   />
                 ))}
               </div>
-              <div className="h-px flex-1 bg-smoke-50/10" />
+              <div className="h-px flex-1 bg-muted/40" />
               <div className="flex gap-2">
                 <button
                   type="button"
                   onClick={() => go(-1)}
                   aria-label="Previous faculty"
-                  className="flex h-10 w-10 items-center justify-center text-smoke-50 transition-colors duration-500 hover:bg-smoke-300/10"
+                  className="flex h-10 w-10 items-center justify-center text-foreground transition-colors duration-500 hover:bg-muted/60"
                 >
                   ←
                 </button>
@@ -1423,7 +1423,7 @@ function FacultyShowcase() {
                   type="button"
                   onClick={() => go(1)}
                   aria-label="Next faculty"
-                  className="flex h-10 w-10 items-center justify-center text-smoke-50 transition-colors duration-500 hover:bg-smoke-300/10"
+                  className="flex h-10 w-10 items-center justify-center text-foreground transition-colors duration-500 hover:bg-muted/60"
                 >
                   →
                 </button>
@@ -1435,7 +1435,7 @@ function FacultyShowcase() {
 
       {/* Up Next */}
       <aside className="mx-auto flex w-full flex-col gap-6 lg:mx-0">
-        <p className="font-mono text-xs uppercase tracking-[0.32em] text-smoke-50/45">Up Next</p>
+        <p className="font-mono text-xs uppercase tracking-[0.32em] text-foreground/45">Up Next</p>
         <button
           type="button"
           onClick={() => go(1)}
@@ -1467,7 +1467,7 @@ function FacultyShowcase() {
             style={{ background: "linear-gradient(180deg, rgba(13,20,16,0) 45%, rgba(13,20,16,0.8) 100%)" }}
           />
           <div className="absolute bottom-5 left-5 right-5">
-            <p className="mb-2 font-mono text-xs uppercase tracking-[0.28em] text-smoke-300">{next.tag}</p>
+            <p className="mb-2 font-mono text-xs uppercase tracking-[0.28em] text-muted-foreground">{next.tag}</p>
             <p className="font-display text-sm font-bold leading-tight text-smoke-900">{next.name}</p>
             <span className="mt-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.24em] text-smoke-900/85 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
               View <ArrowUpRight className="size-3" />
@@ -1475,10 +1475,10 @@ function FacultyShowcase() {
           </div>
         </button>
         <div className="flex items-baseline gap-2 font-display">
-          <span className="text-3xl font-light leading-none text-smoke-50">
+          <span className="text-3xl font-light leading-none text-foreground">
             {String(idx + 1).padStart(2, "0")}
           </span>
-          <span className="text-3xl leading-none text-smoke-50/30">
+          <span className="text-3xl leading-none text-foreground/30">
             /{String(total).padStart(2, "0")}
           </span>
         </div>
