@@ -686,19 +686,19 @@ const OUT_LANES: Lane[] = [
 
 
 const TONE_ACCENT: Record<string, string> = {
-  in: "bg-black",
+  in: "bg-foreground",
   d2c: "bg-[#0F8F6E]",
   creator: "bg-[#E38330]",
   imm: "bg-[#39B5D7]",
-  capstone: "bg-black",
+  capstone: "bg-foreground",
 };
 
 const TONE_INK: Record<string, string> = {
-  in: "text-black",
+  in: "text-foreground",
   d2c: "text-[#0F8F6E]",
   creator: "text-[#E38330]",
   imm: "text-[#2A7E96]",
-  capstone: "text-black",
+  capstone: "text-foreground",
 };
 
 const LANE_TONE_LABELS: Record<string, string> = {
