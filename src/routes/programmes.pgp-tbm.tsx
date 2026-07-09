@@ -1553,8 +1553,29 @@ function PgpTbm() {
                   </li>
                 </ul>
               </div>
+
+              <div className="mt-8 border-t border-black/10 pt-6">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/55">Ventures built on campus</div>
+                <div className="mt-4 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4">
+                  {STARTUP_LOGOS.map((logo) => (
+                    <div
+                      key={logo.name}
+                      className="flex aspect-[3/2] items-center justify-center bg-white p-3"
+                      title={logo.name}
+                    >
+                      <img
+                        src={logo.url}
+                        alt={`${logo.name} logo`}
+                        className="max-h-full max-w-full object-contain opacity-80 transition hover:opacity-100"
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
+
 
           <div className="mt-16">
             <AlumniShowcase />
