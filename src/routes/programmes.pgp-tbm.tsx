@@ -1668,7 +1668,7 @@ function PgpTbm() {
               {IN_CLASS.tracks.map((t, i) => (
                 <article key={t.name} className="bg-white p-4">
                   <div className="flex items-center gap-2">
-                    <span className="inline-flex size-6 items-center justify-center bg-amber-500 text-xs font-semibold text-white">M{i + 1}</span>
+                    <span className="inline-flex size-6 items-center justify-center bg-smoke-400 text-xs font-semibold text-white">M{i + 1}</span>
                     <h4 className="font-display text-sm leading-tight">{t.name}</h4>
                   </div>
                   <p className="mt-2 text-xs leading-snug text-black/60">{t.eg}</p>
