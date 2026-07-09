@@ -8,6 +8,13 @@ import {
   Star,
   Linkedin,
   Calendar,
+  Clock,
+  Users,
+  BookOpen,
+  TrendingUp,
+  MapPin,
+  ChevronRight,
+  GraduationCap,
 } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
