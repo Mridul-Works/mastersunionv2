@@ -50,13 +50,6 @@ const FACTS = [
   { k: "Intake", v: "Rolling", note: "Round 4 admissions open" },
 ];
 
-// -------- The Model : three engines --------
-const MODEL_STATS = [
-  { k: "8", v: "Terms across 16 months" },
-  { k: "150+", v: "InClass courses" },
-  { k: "2", v: "OutClass ventures that run across terms" },
-  { k: "2", v: "Immersion tracks · Global + Bharat" },
-];
 
 
 
@@ -1316,14 +1309,6 @@ function PgpTbm() {
 
           <TermsGantt embedded />
 
-          <div className="mb-10 grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
-            {MODEL_STATS.map((s) => (
-              <div key={s.v} className="bg-white/90 p-6 backdrop-blur-sm">
-                <div className="font-display text-[38px] leading-none tracking-tight">{s.k}</div>
-                <div className="mt-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-black/60">{s.v}</div>
-              </div>
-            ))}
-          </div>
 
 
 
