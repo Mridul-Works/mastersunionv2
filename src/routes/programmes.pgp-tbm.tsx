@@ -632,7 +632,8 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
           <a href="https://mastersunion.org/pgp-tbm-curriculum" target="_blank" rel="noreferrer" className="underline underline-offset-2">mastersunion.org/pgp-tbm-curriculum</a>. A non-mandatory 3-month internship follows the on-campus terms.
         </div>
       </div>
-    </section>
+    </Wrapper>
+
   );
 }
 
