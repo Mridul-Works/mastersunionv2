@@ -763,9 +763,9 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
 
         {/* Gantt */}
         <div className="overflow-x-auto">
-          <div className="min-w-[960px] rounded-sm bg-white/80 p-3 shadow-[0_1px_0_rgba(0,0,0,0.03),0_20px_40px_-30px_rgba(0,0,0,0.25)]">
+          <div className="min-w-[960px] border border-black/10 p-3">
             {/* Column header */}
-            <div className="grid grid-cols-[190px_repeat(8,1fr)] rounded-t-sm bg-black/[0.02] px-2 pt-2">
+            <div className="grid grid-cols-[190px_repeat(8,1fr)] border-b border-black/10 px-2 pt-2">
               <div className="flex flex-col gap-1 p-3">
                 <div className="flex h-5 items-center font-display text-sm leading-none tracking-tight text-black/40">
                   Aug '26 → Nov '27
@@ -789,7 +789,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     onFocus={() => setActive(t)}
                     onBlur={() => setActive(null)}
                     onClick={() => setActive(t)}
-                    className={`group relative flex flex-col gap-1 p-3 text-left transition-colors rounded-sm ${isActive ? "bg-black text-white" : "bg-white/80 hover:bg-black/[0.03]"}`}
+                    className={`group relative flex flex-col gap-1 p-3 text-left transition-colors ${isActive ? "bg-black text-white" : "hover:bg-black/[0.04]"}`}
                   >
                     <div className={`flex h-5 items-center font-display text-sm leading-none tracking-tight ${isActive ? "text-white" : "text-black"}`}>
                       Term {t}
@@ -806,7 +806,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
             </div>
 
             {/* InClass lane */}
-            <div className="grid grid-cols-[190px_repeat(8,1fr)] px-2 py-3 bg-white/60">
+            <div className="grid grid-cols-[190px_repeat(8,1fr)] border-t border-black/5 px-2 py-3">
               <div className="flex flex-col justify-center gap-0.5 p-3">
                 <div className="inline-flex items-center gap-2 text-xs font-semibold text-black">
                   <span className="size-1.5 rounded-full bg-black/70" /> In the classroom
@@ -819,7 +819,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                 return (
                   <div
                     key={t}
-                    className={`p-3 text-xs leading-snug transition-colors rounded-sm ${isActive ? "bg-black/[0.04] text-black" : "text-black/70"}`}
+                    className={`p-3 text-xs leading-snug transition-colors ${isActive ? "bg-black/[0.05] text-black" : "text-black/70"}`}
                   >
                     {track}
                   </div>
@@ -829,7 +829,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
 
             {/* OutClass lanes with spanning bars */}
             {OUT_LANES.map((lane) => (
-              <div key={lane.key} className="grid grid-cols-[190px_repeat(8,1fr)] px-2 py-3 odd:bg-black/[0.015] even:bg-white/60">
+              <div key={lane.key} className="grid grid-cols-[190px_repeat(8,1fr)] border-t border-black/5 px-2 py-3">
                 <div className="flex flex-col justify-center gap-0.5 p-3">
                   <div className="inline-flex items-center gap-2 text-xs font-semibold text-black">
                     <span className={`size-1.5 rounded-full ${TONE_DOTS[lane.engine === "capstone" ? "capstone" : lane.engine === "imm" ? "imm" : lane.engine]}`} />
@@ -844,7 +844,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     {Array.from({ length: 8 }).map((_, i) => {
                       const t = i + 1;
                       const isActive = active === t;
-                      return <div key={t} className={`transition-colors rounded-sm ${isActive ? "bg-black/[0.04]" : ""}`} />;
+                      return <div key={t} className={`transition-colors ${isActive ? "bg-black/[0.05]" : ""}`} />;
                     })}
                   </div>
                   {/* Bars */}
@@ -856,7 +856,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     return (
                       <div
                         key={bi}
-                        className={`absolute top-1/2 -translate-y-1/2 rounded-[3px] px-3 py-2 text-xs font-medium tracking-tight shadow-sm ${TONE_STYLES[b.tone]}`}
+                        className={`absolute top-1/2 -translate-y-1/2 px-3 py-2 text-xs font-medium tracking-tight ${TONE_STYLES[b.tone]}`}
                         style={{ left: `calc(${leftPct}% + 6px)`, width: `calc(${widthPct}% - 12px)` }}
                       >
                         <span className="block truncate">{b.text}</span>
@@ -870,7 +870,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
         </div>
 
         {/* Detail panel */}
-        <div className="mt-6 grid gap-4 rounded-sm bg-white/70 p-5 md:grid-cols-[180px_1fr] md:items-start">
+        <div className="mt-6 grid gap-4 border border-black/10 p-5 md:grid-cols-[180px_1fr] md:items-start">
           <div>
             <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/45">
               {active ? `You'll be doing this in` : `Preview a term`}
@@ -1777,7 +1777,7 @@ function PgpTbm() {
           {/* Two-panel grid */}
           <div className="grid gap-6 lg:grid-cols-2">
             {/* CAREERS PANEL */}
-            <div className="group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card/80 p-8 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-30px_rgba(0,0,0,0.15)] transition hover:shadow-[0_1px_0_rgba(0,0,0,0.02),0_30px_80px_-30px_rgba(20,184,166,0.25)]">
+            <div className="group relative flex flex-col overflow-hidden border border-border bg-card/80 p-8 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-30px_rgba(0,0,0,0.15)] transition hover:shadow-[0_1px_0_rgba(0,0,0,0.02),0_30px_80px_-30px_rgba(20,184,166,0.25)]">
               <div className="flex items-center justify-between">
                 <div className="inline-flex items-center gap-2 rounded-full bg-teal/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-teal-700">
                   01 · Careers
@@ -1800,7 +1800,7 @@ function PgpTbm() {
               {/* Secondary stats */}
               <div className="mt-8 grid grid-cols-2 gap-4">
                 {OUTCOME_HEADLINE.slice(1).map((s) => (
-                  <div key={s.v} className="rounded-2xl border border-border bg-muted/50 p-4">
+                  <div key={s.v} className="border border-border bg-muted/50 p-4">
                     <div className="font-display text-2xl leading-none tracking-tight text-black/90">{s.k}</div>
                     <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-black/55">{s.v}</div>
                   </div>
@@ -1835,7 +1835,7 @@ function PgpTbm() {
                   {CAREER_LOGOS.map((logo) => (
                     <div
                       key={logo.name}
-                      className="flex h-16 items-center justify-center rounded-xl border border-border bg-white p-2 transition hover:border-teal-200 hover:bg-teal-50/40"
+                      className="flex h-16 items-center justify-center border border-border bg-white p-2 transition hover:border-teal-200 hover:bg-teal-50/40"
                       title={logo.name}
                     >
                       <img
@@ -1855,7 +1855,7 @@ function PgpTbm() {
             </div>
 
             {/* STARTUPS PANEL */}
-            <div className="group relative flex flex-col overflow-hidden rounded-3xl border border-emerald-900/10 bg-gradient-to-br from-emerald-50/60 via-white to-teal-50/40 p-8 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-30px_rgba(0,0,0,0.15)] transition hover:shadow-[0_1px_0_rgba(0,0,0,0.02),0_30px_80px_-30px_rgba(16,185,129,0.3)]">
+            <div className="group relative flex flex-col overflow-hidden border border-emerald-900/10 bg-gradient-to-br from-emerald-50/60 via-white to-teal-50/40 p-8 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-30px_rgba(0,0,0,0.15)] transition hover:shadow-[0_1px_0_rgba(0,0,0,0.02),0_30px_80px_-30px_rgba(16,185,129,0.3)]">
               <div className="flex items-center justify-between">
                 <div className="inline-flex items-center gap-2 rounded-full bg-emerald-100/80 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-800">
                   02 · Startups
@@ -1877,7 +1877,7 @@ function PgpTbm() {
               {/* Secondary stats */}
               <div className="mt-8 grid grid-cols-2 gap-4">
                 {OUTCOME_STARTUP.slice(1).map((s) => (
-                  <div key={s.v} className="rounded-2xl border border-emerald-900/5 bg-white/70 p-4 backdrop-blur">
+                  <div key={s.v} className="border border-emerald-900/5 bg-white/70 p-4 backdrop-blur">
                     <div className="font-display text-2xl leading-none tracking-tight text-emerald-950">{s.k}</div>
                     <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-900/60">{s.v}</div>
                   </div>
@@ -1896,7 +1896,7 @@ function PgpTbm() {
                   ].map((row) => (
                     <li
                       key={row.label}
-                      className="flex items-center justify-between rounded-xl border border-emerald-900/5 bg-white/60 px-4 py-2.5"
+                      className="flex items-center justify-between border border-emerald-900/5 bg-white/60 px-4 py-2.5"
                     >
                       <span className="text-black/75">{row.label}</span>
                       <span className="rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-2.5 py-0.5 font-display text-xs font-semibold tabular-nums text-white shadow-sm">
@@ -1914,7 +1914,7 @@ function PgpTbm() {
                   {STARTUP_LOGOS.map((logo) => (
                     <div
                       key={logo.name}
-                      className="flex h-16 items-center justify-center rounded-xl border border-emerald-900/5 bg-white/80 p-2 transition hover:border-emerald-300 hover:bg-emerald-50/60"
+                      className="flex h-16 items-center justify-center border border-emerald-900/5 bg-white/80 p-2 transition hover:border-emerald-300 hover:bg-emerald-50/60"
                       title={logo.name}
                     >
                       <img
