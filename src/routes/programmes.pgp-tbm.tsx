@@ -362,39 +362,39 @@ type Lane = {
 };
 
 const IN_CLASS_TRACKS = [
-  "Finance & Fintech · Sales & Marketing",
-  "Management & Strategy · Product & Tech",
-  "Sales & Marketing · Communication",
-  "AI & ML · Product & Tech",
-  "Finance & Fintech · Management & Strategy",
-  "Sales & Marketing · AI & ML",
-  "Product & Tech · Liberal Arts",
-  "Finance & Fintech · Communication",
+  "Finance · Sales",
+  "Strategy · Product",
+  "Marketing · Comms",
+  "AI/ML · Product",
+  "Finance · Strategy",
+  "Sales · AI/ML",
+  "Product · Liberal Arts",
+  "Finance · Comms",
 ];
 
 const OUT_LANES: Lane[] = [
   {
     key: "d2c",
     engine: "d2c",
-    label: "Build a D2C brand",
+    label: "D2C brand",
     sub: "Live consumer venture",
-    bars: [{ start: 1, end: 8, text: "Launch → Offline fair → Scale → GTM → PMF → One-Day Profit", tone: "d2c" }],
+    bars: [{ start: 1, end: 8, text: "Launch → Scale → PMF → Profit", tone: "d2c" }],
   },
   {
     key: "creator",
     engine: "creator",
     label: "Creator Challenge",
     sub: "Personal brand in the wild",
-    bars: [{ start: 2, end: 6, text: "Kickoff → Brand → Community → Distribution → Monetise", tone: "creator" }],
+    bars: [{ start: 2, end: 6, text: "Brand → Community → Monetise", tone: "creator" }],
   },
   {
     key: "imm",
     engine: "imm",
     label: "Immersions",
-    sub: "On-ground · mid-terms",
+    sub: "On-ground trips",
     bars: [
-      { start: 4, end: 4, text: "Global Immersion", tone: "imm" },
-      { start: 5, end: 5, text: "Bharat Immersion", tone: "imm" },
+      { start: 4, end: 4, text: "Global", tone: "imm" },
+      { start: 5, end: 5, text: "Bharat", tone: "imm" },
     ],
   },
 ];
