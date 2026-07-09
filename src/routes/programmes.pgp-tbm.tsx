@@ -1074,11 +1074,11 @@ function AlumniShowcase() {
       {/* Header */}
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
             ALUMNI NETWORK
           </div>
-          <h3 className="mt-3 max-w-3xl font-display text-4xl font-bold leading-[1.02] tracking-tight text-black md:text-5xl">
+          <h3 className="mt-3 max-w-3xl font-display text-3xl font-bold leading-[1.03] tracking-tight text-foreground">
             Success <span className="font-serif-italic font-normal">stories.</span>
           </h3>
         </div>
@@ -1089,7 +1089,7 @@ function AlumniShowcase() {
 
       {/* Industry filters */}
       <div className="mt-8 flex flex-wrap items-center gap-2 border-t border-black/10 pt-5">
-        <span className="mr-2 font-mono text-[10px] uppercase tracking-[0.28em] text-black/45">Filter · Industry</span>
+        <span className="mr-2 font-mono text-xs uppercase tracking-[0.28em] text-black/45">Filter · Industry</span>
         {industries.map((ind) => {
           const isActive = ind === industry;
           const count = ind === "All" ? ALUMNI.length : ALUMNI.filter((a) => a.domain === ind).length;
@@ -1098,7 +1098,7 @@ function AlumniShowcase() {
               key={ind}
               type="button"
               onClick={() => handleIndustry(ind)}
-              className={`inline-flex items-center gap-2 rounded-none border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] transition-all duration-300 ${
+              className={`inline-flex items-center gap-2 rounded-none border px-3 py-1.5 font-mono text-xs uppercase tracking-[0.22em] transition-all duration-300 ${
                 isActive
                   ? "border-black bg-black text-white"
                   : "border-black/15 text-black/60 hover:border-black/40 hover:text-black"
@@ -1147,7 +1147,7 @@ function AlumniShowcase() {
               {/* Top-left brand chip */}
               <div className="absolute left-6 top-6 z-10 flex items-center gap-2 rounded-none bg-white/90 px-3 py-1.5 backdrop-blur">
                 <span className="h-1.5 w-1.5 rounded-none bg-teal" />
-                <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-black/70">
+                <span className="font-mono text-xs uppercase tracking-[0.24em] text-black/70">
                   {active.domain} · {active.batch}
                 </span>
               </div>
@@ -1166,7 +1166,7 @@ function AlumniShowcase() {
                       pointerEvents: i === safeIdx ? "auto" : "none",
                     }}
                   >
-                    <p className="max-w-xl font-display text-2xl font-semibold leading-[1.2] text-white md:text-[28px] md:leading-[1.18]">
+                    <p className="max-w-xl font-display text-xl font-semibold leading-[1.22] text-white md:text-2xl">
                       &ldquo;{a.quote}&rdquo;
                     </p>
                     <div className="mt-6 flex items-end justify-between gap-4">
@@ -1179,7 +1179,7 @@ function AlumniShowcase() {
                           href={a.linkedin}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex h-9 items-center gap-1.5 rounded-none bg-white px-3 font-mono text-[10px] uppercase tracking-[0.22em] text-black transition hover:bg-white/85"
+                          className="inline-flex h-9 items-center gap-1.5 rounded-none bg-white px-3 font-mono text-xs uppercase tracking-[0.22em] text-black transition hover:bg-white/85"
                         >
                           <Linkedin className="size-3" /> Connect
                         </a>
@@ -1188,7 +1188,7 @@ function AlumniShowcase() {
                             href={a.calendly}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex h-9 items-center gap-1.5 rounded-none border border-white/60 px-3 font-mono text-[10px] uppercase tracking-[0.22em] text-white transition hover:bg-white/10"
+                            className="inline-flex h-9 items-center gap-1.5 rounded-none border border-white/60 px-3 font-mono text-xs uppercase tracking-[0.22em] text-white transition hover:bg-white/10"
                           >
                             <Calendar className="size-3" /> Book
                           </a>
@@ -1205,26 +1205,26 @@ function AlumniShowcase() {
               {/* Dark card */}
               {secondary && (
                 <div className="rounded-none bg-black p-6 text-white md:p-7">
-                  <p className="font-display text-lg leading-[1.35] text-white md:text-xl">
+                  <p className="font-display text-base leading-[1.35] text-white md:text-lg">
                     &ldquo;{secondary.quote}&rdquo;
                   </p>
                   <div className="mt-5 grid grid-cols-2 gap-4 border-t border-white/10 pt-4">
                     <div>
                       <p className="font-display text-2xl font-semibold text-white">{secondary.batch}</p>
-                      <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-white/55">Batch</p>
+                      <p className="mt-0.5 font-mono text-xs uppercase tracking-[0.2em] text-white/55">Batch</p>
                     </div>
                     <div>
                       <p className="font-display text-2xl font-semibold text-white">{secondary.domain}</p>
-                      <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-white/55">Track</p>
+                      <p className="mt-0.5 font-mono text-xs uppercase tracking-[0.2em] text-white/55">Track</p>
                     </div>
                   </div>
                   <div className="mt-5 flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-none bg-white/10 font-mono text-[11px] text-white">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-none bg-white/10 font-mono text-xs text-white">
                       {initialsOf(secondary.name)}
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-white">{secondary.name}</p>
-                      <p className="text-[11px] text-white/60">{secondary.role} · {secondary.company}</p>
+                      <p className="text-xs text-white/60">{secondary.role} · {secondary.company}</p>
                     </div>
                   </div>
                 </div>
@@ -1233,26 +1233,26 @@ function AlumniShowcase() {
               {/* Light card */}
               {tertiary && (
                 <div className="rounded-none border border-black/10 bg-white p-6 md:p-7">
-                  <p className="font-display text-lg leading-[1.35] text-black md:text-xl">
+                  <p className="font-display text-base leading-[1.35] text-black md:text-lg">
                     &ldquo;{tertiary.quote}&rdquo;
                   </p>
                   <div className="mt-5 grid grid-cols-2 gap-4 border-t border-black/10 pt-4">
                     <div>
                       <p className="font-display text-2xl font-semibold text-black">{tertiary.batch}</p>
-                      <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-black/50">Batch</p>
+                      <p className="mt-0.5 font-mono text-xs uppercase tracking-[0.2em] text-black/50">Batch</p>
                     </div>
                     <div>
                       <p className="font-display text-2xl font-semibold text-black">{tertiary.domain}</p>
-                      <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-black/50">Track</p>
+                      <p className="mt-0.5 font-mono text-xs uppercase tracking-[0.2em] text-black/50">Track</p>
                     </div>
                   </div>
                   <div className="mt-5 flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-none bg-black/5 font-mono text-[11px] text-black">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-none bg-black/5 font-mono text-xs text-black">
                       {initialsOf(tertiary.name)}
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-black">{tertiary.name}</p>
-                      <p className="text-[11px] text-black/60">{tertiary.role} · {tertiary.company}</p>
+                      <p className="text-xs text-black/60">{tertiary.role} · {tertiary.company}</p>
                     </div>
                   </div>
                 </div>
@@ -1263,10 +1263,10 @@ function AlumniShowcase() {
           {/* Controls */}
           <div className="mt-6 flex items-center gap-5 border-t border-black/10 pt-5">
             <div className="flex items-baseline gap-2 font-display">
-              <span className="text-2xl font-semibold leading-none text-black">
+              <span className="text-xl font-semibold leading-none text-black">
                 {String(safeIdx + 1).padStart(2, "0")}
               </span>
-              <span className="text-2xl leading-none text-black/30">
+              <span className="text-xl leading-none text-black/30">
                 /{String(total).padStart(2, "0")}
               </span>
             </div>
