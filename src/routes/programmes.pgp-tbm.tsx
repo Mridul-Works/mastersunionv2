@@ -362,39 +362,39 @@ type Lane = {
 };
 
 const IN_CLASS_TRACKS = [
-  "Finance & Fintech · Sales & Marketing",
-  "Management & Strategy · Product & Tech",
-  "Sales & Marketing · Communication",
-  "AI & ML · Product & Tech",
-  "Finance & Fintech · Management & Strategy",
-  "Sales & Marketing · AI & ML",
-  "Product & Tech · Liberal Arts",
-  "Finance & Fintech · Communication",
+  "Finance · Sales",
+  "Strategy · Product",
+  "Marketing · Comms",
+  "AI/ML · Product",
+  "Finance · Strategy",
+  "Sales · AI/ML",
+  "Product · Liberal Arts",
+  "Finance · Comms",
 ];
 
 const OUT_LANES: Lane[] = [
   {
     key: "d2c",
     engine: "d2c",
-    label: "Build a D2C brand",
+    label: "D2C brand",
     sub: "Live consumer venture",
-    bars: [{ start: 1, end: 8, text: "Launch → Offline fair → Scale → GTM → PMF → One-Day Profit", tone: "d2c" }],
+    bars: [{ start: 1, end: 8, text: "Launch → Scale → PMF → Profit", tone: "d2c" }],
   },
   {
     key: "creator",
     engine: "creator",
     label: "Creator Challenge",
     sub: "Personal brand in the wild",
-    bars: [{ start: 2, end: 6, text: "Kickoff → Brand → Community → Distribution → Monetise", tone: "creator" }],
+    bars: [{ start: 2, end: 6, text: "Brand → Community → Monetise", tone: "creator" }],
   },
   {
     key: "imm",
     engine: "imm",
     label: "Immersions",
-    sub: "On-ground · mid-terms",
+    sub: "On-ground trips",
     bars: [
-      { start: 4, end: 4, text: "Global Immersion", tone: "imm" },
-      { start: 5, end: 5, text: "Bharat Immersion", tone: "imm" },
+      { start: 4, end: 4, text: "Global", tone: "imm" },
+      { start: 5, end: 5, text: "Bharat", tone: "imm" },
     ],
   },
 ];
@@ -462,23 +462,17 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
               The whole 16 months, on one calendar.
             </h2>
             <p className="mt-4 text-[14px] leading-relaxed text-black/60">
-              The programme is split into <strong>8 terms of 2 months each</strong>. Every row below is one type of learning. Every column is one term. Hover — or tap — any term to see everything you'll be doing that fortnight.
+              8 terms · 2 months each. Rows are what you're learning, columns are when. Tap a term to see it in detail.
             </p>
           </div>
         )}
 
 
-        {/* How to read + Legend */}
-        <div className="mb-6 grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
-          <div className="inline-flex flex-wrap items-center gap-x-4 gap-y-1 text-[11.5px] text-black/60">
-            <span className="inline-flex items-center gap-2"><span className="grid size-5 place-items-center rounded-full border border-black/20 text-[10px] font-semibold">↔</span> Long bars = runs across several terms</span>
-            <span className="inline-flex items-center gap-2"><span className="grid size-5 place-items-center rounded-full border border-black/20 text-[10px] font-semibold">■</span> Single blocks = one specific term</span>
-          </div>
-          <div className="flex flex-wrap gap-3 text-[11px] text-black/60">
-            <span className="inline-flex items-center gap-2"><span className={`size-2.5 ${TONE_DOTS.d2c}`} /> Live D2C brand</span>
-            <span className="inline-flex items-center gap-2"><span className={`size-2.5 ${TONE_DOTS.creator}`} /> Creator challenge</span>
-            <span className="inline-flex items-center gap-2"><span className={`size-2.5 ${TONE_DOTS.imm}`} /> Immersion trip</span>
-          </div>
+        {/* Legend */}
+        <div className="mb-5 flex flex-wrap items-center justify-end gap-x-4 gap-y-1 text-[11px] text-black/55">
+          <span className="inline-flex items-center gap-1.5"><span className={`size-2 rounded-full ${TONE_DOTS.d2c}`} /> D2C</span>
+          <span className="inline-flex items-center gap-1.5"><span className={`size-2 rounded-full ${TONE_DOTS.creator}`} /> Creator</span>
+          <span className="inline-flex items-center gap-1.5"><span className={`size-2 rounded-full ${TONE_DOTS.imm}`} /> Immersion</span>
         </div>
 
 
@@ -560,20 +554,14 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     const leftPct = ((b.start - 1) / 8) * 100;
                     const widthPct = ((b.end - b.start + 1) / 8) * 100;
                     const spans = b.end - b.start + 1;
+                    void spans;
                     return (
                       <div
                         key={bi}
-                        className={`absolute top-1/2 -translate-y-1/2 rounded-[3px] px-3 py-2 text-[11.5px] font-medium tracking-tight shadow-sm transition-transform hover:-translate-y-[calc(50%+2px)] ${TONE_STYLES[b.tone]}`}
+                        className={`absolute top-1/2 -translate-y-1/2 rounded-[3px] px-3 py-2 text-[11.5px] font-medium tracking-tight shadow-sm ${TONE_STYLES[b.tone]}`}
                         style={{ left: `calc(${leftPct}% + 6px)`, width: `calc(${widthPct}% - 12px)` }}
                       >
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="truncate">{b.text}</span>
-                          {spans > 1 && (
-                            <span className="shrink-0 rounded-full bg-white/25 px-1.5 py-0.5 text-[9.5px] font-semibold uppercase tracking-[0.1em]">
-                              {spans} terms
-                            </span>
-                          )}
-                        </div>
+                        <span className="block truncate">{b.text}</span>
                       </div>
                     );
                   })}
