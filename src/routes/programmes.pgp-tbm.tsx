@@ -1835,7 +1835,7 @@ function PgpTbm() {
                   {CAREER_LOGOS.map((logo) => (
                     <div
                       key={logo.name}
-                      className="flex h-16 items-center justify-center rounded-xl border border-border bg-white p-2 transition hover:border-teal-200 hover:bg-teal-50/40"
+                      className="flex h-16 items-center justify-center border border-border bg-white p-2 transition hover:border-teal-200 hover:bg-teal-50/40"
                       title={logo.name}
                     >
                       <img
