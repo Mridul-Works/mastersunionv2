@@ -161,11 +161,11 @@ function AdmissionPathwaysSection() {
           <div>
             <div className="mb-3 flex items-center gap-2">
               <Star size={14} className="text-black" fill="currentColor" />
-              <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-black/60">
+              <span className="text-xs font-bold uppercase tracking-[0.22em] text-black/60">
                 ADMISSION PATHWAYS
               </span>
             </div>
-            <h2 className="font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.15] tracking-[-0.02em]">
+            <h2 className="font-display text-3xl leading-[1.15] tracking-[-0.02em]">
               Two Programmes.
               <br />
               <span className="font-bold">One Mission.</span>
@@ -195,7 +195,7 @@ function AdmissionPathwaysSection() {
                   >
                     <div className="mb-3 flex items-center justify-between sm:mb-6">
                       <span
-                        className={`font-sans text-2xl font-bold leading-none tracking-tighter transition-colors duration-300 sm:text-5xl md:text-6xl ${
+                        className={`font-sans text-sm font-bold leading-none tracking-tighter transition-colors duration-300 sm:text-3xl ${
                           isActive ? p.accentClass : "text-black/15"
                         }`}
                       >
@@ -211,14 +211,14 @@ function AdmissionPathwaysSection() {
                     </div>
 
                     <p
-                      className={`mb-1 text-[9px] font-bold uppercase leading-tight tracking-[0.15em] transition-colors sm:mb-2 sm:text-xs sm:tracking-[0.2em] ${
+                      className={`mb-1 text-xs font-bold uppercase leading-tight tracking-[0.15em] transition-colors sm:mb-2 sm:text-xs sm:tracking-[0.2em] ${
                         isActive ? p.accentClass : "text-black/50"
                       }`}
                     >
                       {p.label}
                     </p>
 
-                    <h3 className="mb-3 font-sans text-base font-bold tracking-tight text-black sm:mb-6 sm:text-2xl">
+                    <h3 className="mb-3 font-sans text-sm font-bold tracking-tight text-black sm:mb-6 sm:text-sm">
                       {p.shortTitle}
                     </h3>
 
@@ -242,7 +242,7 @@ function AdmissionPathwaysSection() {
                     </div>
 
                     <div
-                      className={`flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider transition-all sm:gap-2 sm:text-sm ${
+                      className={`flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider transition-all sm:gap-2 sm:text-sm ${
                         isActive ? p.accentClass : "text-black/40 group-hover:text-black/60"
                       }`}
                     >
@@ -270,7 +270,7 @@ function AdmissionPathwaysSection() {
                   {active.label}
                 </span>
 
-                <h3 className="mb-2 font-sans text-xl font-bold tracking-tight text-black sm:text-2xl md:text-3xl">
+                <h3 className="mb-2 font-sans text-sm font-bold tracking-tight text-black sm:text-sm md:text-3xl">
                   {active.fullTitle}
                 </h3>
                 <p className="mb-6 text-sm leading-relaxed text-black/65 sm:mb-8">{active.ideal}</p>
@@ -286,7 +286,7 @@ function AdmissionPathwaysSection() {
                       className="border border-black/10 bg-white px-3 py-3 sm:px-5 sm:py-4"
                     >
                       <stat.icon size={14} className="mb-1.5 text-black/50 sm:mb-2" />
-                      <p className="mb-0.5 text-[9px] font-semibold uppercase tracking-wider text-black/55 sm:mb-1 sm:text-xs">
+                      <p className="mb-0.5 text-xs font-semibold uppercase tracking-wider text-black/55 sm:mb-1 sm:text-xs">
                         {stat.label}
                       </p>
                       <p className="break-words text-xs font-semibold text-black sm:text-sm">{stat.value}</p>
@@ -299,12 +299,12 @@ function AdmissionPathwaysSection() {
                   {active.highlights.map((h, i) => (
                     <div key={i} className="rounded border border-black/10 bg-white p-3 sm:p-4">
                       <span
-                        className="mb-1 block font-display text-2xl font-extrabold sm:text-3xl"
+                        className="mb-1 block font-display text-sm font-extrabold sm:text-3xl"
                         style={{ color: active.color }}
                       >
                         {h.stat}
                       </span>
-                      <span className="text-[10px] leading-snug text-black/65 sm:text-xs">{h.desc}</span>
+                      <span className="text-xs leading-snug text-black/65 sm:text-xs">{h.desc}</span>
                     </div>
                   ))}
                 </div>
@@ -752,11 +752,11 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
       <div className={innerClass}>
         {!embedded && (
           <div className="mb-8 max-w-2xl">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">The proof · 8 terms in one view</div>
-            <h2 className="mt-3 font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.03] tracking-[-0.02em]">
+            <div className="text-xs font-semibold uppercase tracking-[0.22em] text-black/50">The proof · 8 terms in one view</div>
+            <h2 className="mt-3 font-display text-3xl leading-[1.03] tracking-[-0.02em]">
               The whole 16 months, on one calendar.
             </h2>
-            <p className="mt-4 text-[14px] leading-relaxed text-black/60">
+            <p className="mt-4 text-sm leading-relaxed text-black/60">
               8 terms · 2 months each. Rows are what you're learning, columns are when. Tap a term to see it in detail.
             </p>
           </div>
@@ -764,7 +764,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
 
 
         {/* Legend */}
-        <div className="mb-5 flex flex-wrap items-center justify-end gap-x-4 gap-y-1 text-[11px] text-black/55">
+        <div className="mb-5 flex flex-wrap items-center justify-end gap-x-4 gap-y-1 text-xs text-black/55">
           <span className="inline-flex items-center gap-1.5"><span className={`size-2 rounded-full ${TONE_DOTS.d2c}`} /> D2C</span>
           <span className="inline-flex items-center gap-1.5"><span className={`size-2 rounded-full ${TONE_DOTS.creator}`} /> Creator</span>
           <span className="inline-flex items-center gap-1.5"><span className={`size-2 rounded-full ${TONE_DOTS.imm}`} /> Immersion</span>
@@ -776,7 +776,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
           <div className="min-w-[960px] rounded-sm border border-black/10 bg-white/80 shadow-[0_1px_0_rgba(0,0,0,0.03),0_20px_40px_-30px_rgba(0,0,0,0.25)]">
             {/* Column header */}
             <div className="grid grid-cols-[190px_repeat(8,1fr)] border-b border-black/10">
-              <div className="p-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-black/40">
+              <div className="p-3 text-xs font-semibold uppercase tracking-[0.16em] text-black/40">
                 <div>Aug '26 → Nov '27</div>
                 <div className="mt-1 normal-case tracking-normal text-black/45">16 months on campus</div>
               </div>
@@ -794,9 +794,9 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     onClick={() => setActive(t)}
                     className={`group relative border-l border-black/10 p-3 text-left transition-colors ${isActive ? "bg-black text-white" : "bg-white/80 hover:bg-black/[0.03]"}`}
                   >
-                    <div className={`font-display text-[15px] leading-tight tracking-tight ${isActive ? "text-white" : "text-black"}`}>Term {t}</div>
-                    <div className={`mt-1 text-[10px] leading-tight ${isActive ? "text-white/75" : "text-black/50"}`}>{m.months}</div>
-                    <div className={`mt-0.5 text-[9.5px] uppercase tracking-[0.12em] ${isActive ? "text-white/55" : "text-black/35"}`}>{m.window}</div>
+                    <div className={`font-display text-sm leading-tight tracking-tight ${isActive ? "text-white" : "text-black"}`}>Term {t}</div>
+                    <div className={`mt-1 text-xs leading-tight ${isActive ? "text-white/75" : "text-black/50"}`}>{m.months}</div>
+                    <div className={`mt-0.5 text-xs uppercase tracking-[0.12em] ${isActive ? "text-white/55" : "text-black/35"}`}>{m.window}</div>
                   </button>
                 );
               })}
@@ -805,10 +805,10 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
             {/* InClass lane */}
             <div className="grid grid-cols-[190px_repeat(8,1fr)] border-b border-black/10">
               <div className="flex flex-col justify-center gap-0.5 p-3">
-                <div className="inline-flex items-center gap-2 text-[12px] font-semibold text-black">
+                <div className="inline-flex items-center gap-2 text-xs font-semibold text-black">
                   <span className="size-1.5 rounded-full bg-black/70" /> In the classroom
                 </div>
-                <div className="text-[10.5px] text-black/50">Business fundamentals</div>
+                <div className="text-xs text-black/50">Business fundamentals</div>
               </div>
               {IN_CLASS_TRACKS.map((track, i) => {
                 const t = i + 1;
@@ -816,7 +816,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                 return (
                   <div
                     key={t}
-                    className={`border-l border-black/10 p-3 text-[11.5px] leading-snug transition-colors ${isActive ? "bg-black/[0.04] text-black" : "text-black/70"}`}
+                    className={`border-l border-black/10 p-3 text-xs leading-snug transition-colors ${isActive ? "bg-black/[0.04] text-black" : "text-black/70"}`}
                   >
                     {track}
                   </div>
@@ -828,11 +828,11 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
             {OUT_LANES.map((lane) => (
               <div key={lane.key} className="grid grid-cols-[190px_repeat(8,1fr)] border-b border-black/10 last:border-b-0">
                 <div className="flex flex-col justify-center gap-0.5 p-3">
-                  <div className="inline-flex items-center gap-2 text-[12px] font-semibold text-black">
+                  <div className="inline-flex items-center gap-2 text-xs font-semibold text-black">
                     <span className={`size-1.5 rounded-full ${TONE_DOTS[lane.engine === "capstone" ? "capstone" : lane.engine === "imm" ? "imm" : lane.engine]}`} />
                     {lane.label}
                   </div>
-                  <div className="text-[10.5px] text-black/50">{lane.sub}</div>
+                  <div className="text-xs text-black/50">{lane.sub}</div>
                 </div>
                 {/* Track row with absolutely placed bars */}
                 <div className="relative col-span-8 h-16">
@@ -853,7 +853,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     return (
                       <div
                         key={bi}
-                        className={`absolute top-1/2 -translate-y-1/2 rounded-[3px] px-3 py-2 text-[11.5px] font-medium tracking-tight shadow-sm ${TONE_STYLES[b.tone]}`}
+                        className={`absolute top-1/2 -translate-y-1/2 rounded-[3px] px-3 py-2 text-xs font-medium tracking-tight shadow-sm ${TONE_STYLES[b.tone]}`}
                         style={{ left: `calc(${leftPct}% + 6px)`, width: `calc(${widthPct}% - 12px)` }}
                       >
                         <span className="block truncate">{b.text}</span>
@@ -869,21 +869,21 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
         {/* Detail panel */}
         <div className="mt-6 grid gap-4 rounded-sm border border-black/10 bg-white/70 p-5 md:grid-cols-[180px_1fr] md:items-start">
           <div>
-            <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/45">
+            <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/45">
               {active ? `You'll be doing this in` : `Preview a term`}
             </div>
-            <div className="mt-1 font-display text-[22px] leading-tight tracking-tight">
-              {active ? `Term ${activeTerm}` : `Hover a column ↑`}
+            <div className="mt-1 font-display leading-tight tracking-tight">
+              {active ? <span className="text-3xl">Term {activeTerm}</span> : <span className="text-sm">Hover a column ↑</span>}
             </div>
             {active && (
-              <div className="mt-1 text-[11px] text-black/55">{TERM_META[activeTerm - 1].window}</div>
+              <div className="mt-1 text-xs text-black/55">{TERM_META[activeTerm - 1].window}</div>
             )}
           </div>
           <div className="flex flex-wrap gap-2">
             {activityForTerm(activeTerm).map((item, i) => (
               <span
                 key={i}
-                className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[12px] transition-opacity ${active ? "opacity-100" : "opacity-55"} ${
+                className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs transition-opacity ${active ? "opacity-100" : "opacity-55"} ${
                   item.tone === "in"
                     ? "border-black/15 bg-white text-black/75"
                     : item.tone === "d2c"
@@ -1025,7 +1025,7 @@ function initialsOf(name: string) {
 
 function Eyebrow({ num, label }: { num: string; label: string }) {
   return (
-    <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-smoke-50/60">
+    <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.22em] text-smoke-50/60">
       <span className="text-smoke-700">/{num}</span>
       <span className="h-px w-8 bg-foreground/20" />
       <span>{label}</span>
@@ -1051,8 +1051,8 @@ function AlumniShowcase() {
     <div className="mt-16">
       <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
         <div>
-          <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-smoke-50/45">Alumni Network</div>
-          <h3 className="mt-3 max-w-4xl font-display text-[2rem] font-bold leading-[1.08] tracking-tight text-smoke-50 md:text-6xl md:leading-[1.05]">
+          <div className="text-xs font-semibold uppercase tracking-[0.2em] text-smoke-50/45">Alumni Network</div>
+          <h3 className="mt-3 max-w-4xl font-display text-3xl font-bold leading-[1.08] tracking-tight text-smoke-50 md:text-3xl md:leading-[1.05]">
             Talk to someone who's been through it. <span className="font-serif-italic">Then build yours.</span>
           </h3>
         </div>
@@ -1064,7 +1064,7 @@ function AlumniShowcase() {
 
       {/* Industry filters */}
       <div className="mt-10 flex flex-wrap items-center gap-2 border-t border-smoke-50/10 pt-6">
-        <span className="mr-2 font-mono text-[10px] uppercase tracking-[0.28em] text-smoke-50/45">Filter · Industry</span>
+        <span className="mr-2 font-mono text-xs uppercase tracking-[0.28em] text-smoke-50/45">Filter · Industry</span>
         {industries.map((ind) => {
           const isActive = ind === industry;
           const count = ind === "All" ? ALUMNI.length : ALUMNI.filter((a) => a.domain === ind).length;
@@ -1073,7 +1073,7 @@ function AlumniShowcase() {
               key={ind}
               type="button"
               onClick={() => handleIndustry(ind)}
-              className={`inline-flex items-center gap-2 border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] transition-colors duration-300 ${
+              className={`inline-flex items-center gap-2 border px-3 py-1.5 font-mono text-xs uppercase tracking-[0.22em] transition-colors duration-300 ${
                 isActive
                   ? "border-smoke-300 bg-smoke-300/15 text-smoke-50"
                   : "border-smoke-50/15 text-smoke-50/60 hover:border-smoke-50/40 hover:text-smoke-50"
@@ -1087,7 +1087,7 @@ function AlumniShowcase() {
       </div>
 
       {total === 0 ? (
-        <div className="mt-16 border border-smoke-50/10 p-10 text-center font-mono text-[11px] uppercase tracking-[0.24em] text-smoke-50/50">
+        <div className="mt-16 border border-smoke-50/10 p-10 text-center font-mono text-xs uppercase tracking-[0.24em] text-smoke-50/50">
           No alumni in this industry yet.
         </div>
       ) : (
@@ -1126,7 +1126,7 @@ function AlumniShowcase() {
                 style={{ background: "linear-gradient(180deg, rgba(13,20,16,0) 40%, rgba(13,20,16,0.7) 100%)" }}
               />
               <div className="absolute bottom-5 left-5 right-5">
-                <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-smoke-300">
+                <p className="font-mono text-xs uppercase tracking-[0.28em] text-smoke-300">
                   {active.domain}
                 </p>
               </div>
@@ -1150,27 +1150,27 @@ function AlumniShowcase() {
                 >
                   <div className="mb-6 flex items-center gap-3">
                     <span className="inline-block h-px w-8 bg-smoke-300" />
-                    <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-smoke-50/70">
+                    <span className="font-mono text-xs uppercase tracking-[0.28em] text-smoke-50/70">
                       Alumni · {String(i + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
                     </span>
                   </div>
-                  <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke-50/50">
+                  <p className="mb-4 font-mono text-xs uppercase tracking-[0.24em] text-smoke-50/50">
                     {a.batch} / {a.domain}
                   </p>
-                  <h3 className="font-display font-bold leading-[1.05] tracking-tight text-smoke-50" style={{ fontSize: "clamp(1.9rem, 2.8vw, 2.6rem)" }}>
+                  <h3 className="font-display text-3xl font-bold leading-[1.05] tracking-tight text-smoke-50">
                     {a.name}
                   </h3>
-                  <p className="mt-2 text-base text-smoke-50/65">{a.role} · {a.company}</p>
+                  <p className="mt-2 text-sm text-smoke-50/65">{a.role} · {a.company}</p>
                   <div className="mt-6 h-px w-12 bg-smoke-300/60" />
-                  <p className="mt-5 text-[15px] leading-[1.7] text-smoke-50/85 md:mt-6 md:text-base md:leading-[1.75]">“{a.quote}”</p>
+                  <p className="mt-5 text-sm leading-[1.7] text-smoke-50/85 md:mt-6 md:text-sm md:leading-[1.75]">“{a.quote}”</p>
 
                   <div className="mt-8">
-                    <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.28em] text-smoke-50/50">
+                    <p className="mb-4 font-mono text-xs uppercase tracking-[0.28em] text-smoke-50/50">
                       Selected Portfolio
                     </p>
                     <ul className="space-y-2.5">
                       {[a.company, a.domain, a.batch].map((p) => (
-                        <li key={p} className="flex gap-3 text-[0.94rem] text-smoke-50/85">
+                        <li key={p} className="flex gap-3 text-sm text-smoke-50/85">
                           <span className="text-smoke-300">—</span>
                           <span>{p}</span>
                         </li>
@@ -1183,7 +1183,7 @@ function AlumniShowcase() {
                       href={a.linkedin}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-2 border border-smoke-50/15 px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke-50 transition-colors duration-500 hover:bg-smoke-300/10"
+                      className="inline-flex items-center gap-2 border border-smoke-50/15 px-4 py-2.5 font-mono text-xs uppercase tracking-[0.24em] text-smoke-50 transition-colors duration-500 hover:bg-smoke-300/10"
                     >
                       <Linkedin className="size-3.5" /> Connect
                     </a>
@@ -1192,7 +1192,7 @@ function AlumniShowcase() {
                         href={a.calendly}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-2 border border-smoke-50/15 px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke-50 transition-colors duration-500 hover:bg-smoke-300/10"
+                        className="inline-flex items-center gap-2 border border-smoke-50/15 px-4 py-2.5 font-mono text-xs uppercase tracking-[0.24em] text-smoke-50 transition-colors duration-500 hover:bg-smoke-300/10"
                         aria-label={`Book a call with ${a.name}`}
                       >
                         <Calendar className="size-3.5" /> Book
@@ -1246,7 +1246,7 @@ function AlumniShowcase() {
 
         {/* Up Next */}
         <aside className="mx-auto flex w-full flex-col gap-6 lg:mx-0">
-          <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-smoke-50/45">Up Next</p>
+          <p className="font-mono text-xs uppercase tracking-[0.32em] text-smoke-50/45">Up Next</p>
           <button
             type="button"
             onClick={() => go(1)}
@@ -1278,20 +1278,20 @@ function AlumniShowcase() {
               style={{ background: "linear-gradient(180deg, rgba(13,20,16,0) 45%, rgba(13,20,16,0.8) 100%)" }}
             />
             <div className="absolute bottom-5 left-5 right-5">
-              <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.28em] text-smoke-300">{next.domain}</p>
-              <p className="font-display text-lg font-bold leading-tight text-smoke-900">{next.name}</p>
-              <span className="mt-3 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke-900/85 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+              <p className="mb-2 font-mono text-xs uppercase tracking-[0.28em] text-smoke-300">{next.domain}</p>
+              <p className="font-display text-sm font-bold leading-tight text-smoke-900">{next.name}</p>
+              <span className="mt-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.24em] text-smoke-900/85 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                 View <ArrowUpRight className="size-3" />
               </span>
             </div>
           </button>
 
           <div className="flex items-baseline gap-2 font-display">
-            <span className="leading-none text-smoke-50" style={{ fontSize: "clamp(3rem, 5vw, 4.4rem)", fontWeight: 300 }}>
+            <span className="text-3xl font-light leading-none text-smoke-50">
               {String(safeIdx + 1).padStart(2, "0")}
 
             </span>
-            <span className="leading-none text-smoke-50/30" style={{ fontSize: "clamp(2rem, 3vw, 2.4rem)" }}>
+            <span className="text-3xl leading-none text-smoke-50/30">
               /{String(total).padStart(2, "0")}
             </span>
           </div>
@@ -1347,7 +1347,7 @@ function FacultyShowcase() {
               style={{ background: "linear-gradient(180deg, rgba(13,20,16,0) 40%, rgba(13,20,16,0.7) 100%)" }}
             />
             <div className="absolute bottom-5 left-5 right-5">
-              <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-smoke-300">
+              <p className="font-mono text-xs uppercase tracking-[0.28em] text-smoke-300">
                 {active.tag}
               </p>
             </div>
@@ -1371,27 +1371,27 @@ function FacultyShowcase() {
               >
                 <div className="mb-6 flex items-center gap-3">
                   <span className="inline-block h-px w-8 bg-smoke-300" />
-                  <span className="font-mono text-[10px] uppercase tracking-[0.28em] text-smoke-50/70">
+                  <span className="font-mono text-xs uppercase tracking-[0.28em] text-smoke-50/70">
                     Faculty · {String(i + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
                   </span>
                 </div>
-                <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke-50/50">
+                <p className="mb-4 font-mono text-xs uppercase tracking-[0.24em] text-smoke-50/50">
                   {f.tag}
                 </p>
-                <h3 className="font-display font-bold leading-[1.05] tracking-tight text-smoke-50" style={{ fontSize: "clamp(1.9rem, 2.8vw, 2.6rem)" }}>
+                <h3 className="font-display text-3xl font-bold leading-[1.05] tracking-tight text-smoke-50">
                   {f.name}
                 </h3>
-                <p className="mt-2 text-base text-smoke-50/65">{f.role}</p>
+                <p className="mt-2 text-sm text-smoke-50/65">{f.role}</p>
                 <div className="mt-6 h-px w-12 bg-smoke-300/60" />
-                <p className="mt-5 text-[15px] leading-[1.7] text-smoke-50/85 md:mt-6 md:text-base md:leading-[1.75]">{f.bio}</p>
+                <p className="mt-5 text-sm leading-[1.7] text-smoke-50/85 md:mt-6 md:text-sm md:leading-[1.75]">{f.bio}</p>
 
                 <div className="mt-8">
-                  <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.28em] text-smoke-50/50">
+                  <p className="mb-4 font-mono text-xs uppercase tracking-[0.28em] text-smoke-50/50">
                     Selected Portfolio
                   </p>
                   <ul className="space-y-2.5">
                     {f.focus.map((p) => (
-                      <li key={p} className="flex gap-3 text-[0.94rem] text-smoke-50/85">
+                      <li key={p} className="flex gap-3 text-sm text-smoke-50/85">
                         <span className="text-smoke-300">—</span>
                         <span>{p}</span>
                       </li>
@@ -1445,7 +1445,7 @@ function FacultyShowcase() {
 
       {/* Up Next */}
       <aside className="mx-auto flex w-full flex-col gap-6 lg:mx-0">
-        <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-smoke-50/45">Up Next</p>
+        <p className="font-mono text-xs uppercase tracking-[0.32em] text-smoke-50/45">Up Next</p>
         <button
           type="button"
           onClick={() => go(1)}
@@ -1477,18 +1477,18 @@ function FacultyShowcase() {
             style={{ background: "linear-gradient(180deg, rgba(13,20,16,0) 45%, rgba(13,20,16,0.8) 100%)" }}
           />
           <div className="absolute bottom-5 left-5 right-5">
-            <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.28em] text-smoke-300">{next.tag}</p>
-            <p className="font-display text-lg font-bold leading-tight text-smoke-900">{next.name}</p>
-            <span className="mt-3 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.24em] text-smoke-900/85 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+            <p className="mb-2 font-mono text-xs uppercase tracking-[0.28em] text-smoke-300">{next.tag}</p>
+            <p className="font-display text-sm font-bold leading-tight text-smoke-900">{next.name}</p>
+            <span className="mt-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.24em] text-smoke-900/85 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
               View <ArrowUpRight className="size-3" />
             </span>
           </div>
         </button>
         <div className="flex items-baseline gap-2 font-display">
-          <span className="leading-none text-smoke-50" style={{ fontSize: "clamp(3rem, 5vw, 4.4rem)", fontWeight: 300 }}>
+          <span className="text-3xl font-light leading-none text-smoke-50">
             {String(idx + 1).padStart(2, "0")}
           </span>
-          <span className="leading-none text-smoke-50/30" style={{ fontSize: "clamp(2rem, 3vw, 2.4rem)" }}>
+          <span className="text-3xl leading-none text-smoke-50/30">
             /{String(total).padStart(2, "0")}
           </span>
         </div>
@@ -1520,7 +1520,7 @@ function PgpTbm() {
       <section className="relative overflow-hidden border-b border-black/10 pt-28 sm:pt-32">
         <div className="mx-auto grid max-w-[1180px] gap-10 px-4 pb-14 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14 lg:pb-20">
           <div className="flex flex-col gap-8">
-            <div className="flex flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-black/60">
+            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-black/60">
               <span className="inline-flex items-center gap-2 border border-black/15 bg-white/70 px-3 py-1">
                 <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 Round 4 admissions open
@@ -1531,15 +1531,15 @@ function PgpTbm() {
             </div>
 
             <div>
-              <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">
+              <div className="text-xs font-semibold uppercase tracking-[0.22em] text-black/50">
                 PGP in Technology & Business Management
               </div>
-              <h1 className="mt-4 font-display text-[clamp(2.4rem,6vw,4.8rem)] leading-[0.98] tracking-[-0.03em]">
+              <h1 className="mt-4 font-display text-3xl font-bold leading-[0.98] tracking-[-0.03em]">
                 Learn business
                 <br />
                 <span className="text-black/50">by running one.</span>
               </h1>
-              <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-black/70">
+              <p className="mt-6 max-w-xl text-sm leading-relaxed text-black/70">
                 16 months at Masters' Union structured around three engines — <strong>InClass</strong> fundamentals,
                 <strong> OutClass</strong> live ventures and <strong>Immersions</strong> on the ground.
                 Graded on outcomes measured in the open market.
@@ -1547,13 +1547,13 @@ function PgpTbm() {
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
-              <a href="#apply" className="inline-flex items-center gap-2 bg-black px-6 py-3.5 text-[12px] font-semibold uppercase tracking-[0.14em] text-white transition-transform hover:scale-[1.02] pastel-fill">
+              <a href="#apply" className="inline-flex items-center gap-2 bg-black px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-transform hover:scale-[1.02] pastel-fill">
                 Start application <ArrowUpRight className="size-4" />
               </a>
-              <a href="#model" className="inline-flex items-center gap-2 border border-black/20 bg-transparent px-6 py-3.5 text-[12px] font-semibold uppercase tracking-[0.14em] text-black hover:bg-black/5">
+              <a href="#model" className="inline-flex items-center gap-2 border border-black/20 bg-transparent px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-black hover:bg-black/5">
                 See the model ↓
               </a>
-              <div className="flex items-center gap-2 text-[11px] text-black/55">
+              <div className="flex items-center gap-2 text-xs text-black/55">
                 <Check className="size-3.5" /> No CAT / GMAT · 15 min to apply
               </div>
             </div>
@@ -1564,14 +1564,14 @@ function PgpTbm() {
             <div className="relative aspect-[4/5] overflow-hidden border border-black/10 bg-black">
               <ImagePlaceholder label="Hero visual" className="h-full w-full" aspect="4/5" />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-5 text-white">
-                <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/70">The Campus</div>
-                <div className="mt-1 font-display text-[20px] leading-tight">DLF Cyber Park, Gurugram</div>
-                <div className="mt-1 text-[11px] text-white/60">85% of Fortune 500 within a 2 km walk</div>
+                <div className="text-xs font-semibold uppercase tracking-[0.22em] text-white/70">The Campus</div>
+                <div className="mt-1 font-display text-sm leading-tight">DLF Cyber Park, Gurugram</div>
+                <div className="mt-1 text-xs text-white/60">85% of Fortune 500 within a 2 km walk</div>
               </div>
             </div>
             <div className="absolute -bottom-5 -left-5 hidden border border-black/10 bg-white px-4 py-3 shadow-lg lg:block">
-              <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50">Round 1 closes</div>
-              <div className="font-display text-[22px] leading-none tabular-nums">
+              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/50">Round 1 closes</div>
+              <div className="font-display text-3xl leading-none tabular-nums">
                 {String(d).padStart(2, "0")}d · {String(h).padStart(2, "0")}h
               </div>
             </div>
@@ -1585,11 +1585,11 @@ function PgpTbm() {
       <section id="model" className="border-b border-black/10">
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
           <div className="mb-12 max-w-3xl">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">How 16 months are structured</div>
-            <h2 className="mt-3 font-display text-[clamp(1.9rem,4vw,3.2rem)] leading-[1.03] tracking-[-0.02em]">
+            <div className="text-xs font-semibold uppercase tracking-[0.22em] text-black/50">How 16 months are structured</div>
+            <h2 className="mt-3 font-display text-3xl leading-[1.03] tracking-[-0.02em]">
               Three engines. In parallel. <em className="italic text-black/60">Every term.</em>
             </h2>
-            <p className="mt-5 text-[15px] leading-relaxed text-black/65">
+            <p className="mt-5 text-sm leading-relaxed text-black/65">
               You don't pick between theory and practice — you get both, every week.
               <strong> InClass</strong> teaches the fundamentals across 7 tracks.
               <strong> OutClass</strong> forces you to apply them on two live ventures — a D2C brand and a Creator Challenge — that run across terms.
@@ -1610,17 +1610,17 @@ function PgpTbm() {
           {/* ENGINE 01 — InClass */}
           <div className="grid gap-8 border-t border-black/10 py-12 md:grid-cols-[300px_1fr] md:gap-16">
             <div>
-              <div className="font-display text-[46px] leading-none text-black/25">01</div>
-              <div className="mt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-black/55">InClass · The learning core</div>
-              <h3 className="mt-2 font-display text-[28px] leading-tight tracking-tight">Seven tracks. Zero rote exams.</h3>
-              <p className="mt-3 text-[13.5px] leading-relaxed text-black/65">
+              <div className="font-display text-3xl leading-none text-black/25">01</div>
+              <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-black/55">InClass · The learning core</div>
+              <h3 className="mt-2 font-display text-3xl leading-tight tracking-tight">Seven tracks. Zero rote exams.</h3>
+              <p className="mt-3 text-sm leading-relaxed text-black/65">
                 Taught by 30% Ivy academics, 30% research faculty and 40% sitting operators. Every course is graded on a real deliverable — a P&amp;L, a shipped feature, a live campaign.
               </p>
               <dl className="mt-6 grid grid-cols-3 gap-3 border-t border-black/10 pt-4">
                 {IN_CLASS.stats.map((s) => (
                   <div key={s.v}>
-                    <dt className="font-display text-[24px] leading-none tracking-tight">{s.k}</dt>
-                    <dd className="mt-1.5 text-[10.5px] leading-snug text-black/55">{s.v}</dd>
+                    <dt className="font-display text-3xl leading-none tracking-tight">{s.k}</dt>
+                    <dd className="mt-1.5 text-xs leading-snug text-black/55">{s.v}</dd>
                   </div>
                 ))}
               </dl>
@@ -1629,14 +1629,14 @@ function PgpTbm() {
               <ImagePlaceholder label="InClass tracks" aspect="16/9" className="sm:col-span-2" />
               {IN_CLASS.tracks.map((t) => (
                 <div key={t.name} className="bg-white/90 p-5 pastel-fill">
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50">Track</div>
-                  <div className="mt-2 font-display text-[17px] leading-tight tracking-tight">{t.name}</div>
-                  <div className="mt-2 text-[12px] leading-snug text-black/60">{t.eg}</div>
+                  <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/50">Track</div>
+                  <div className="mt-2 font-display text-sm leading-tight tracking-tight">{t.name}</div>
+                  <div className="mt-2 text-xs leading-snug text-black/60">{t.eg}</div>
                 </div>
               ))}
               <div className="bg-black p-5 text-white">
-                <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/60">Delivered as</div>
-                <div className="mt-2 font-display text-[17px] leading-tight">150+ courses · 8 terms · project-graded</div>
+                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">Delivered as</div>
+                <div className="mt-2 font-display text-sm leading-tight">150+ courses · 8 terms · project-graded</div>
               </div>
             </div>
           </div>
@@ -1644,10 +1644,10 @@ function PgpTbm() {
           {/* ENGINE 02 — OutClass */}
           <div className="grid gap-8 border-t border-black/10 py-12 md:grid-cols-[300px_1fr] md:gap-16">
             <div>
-              <div className="font-display text-[46px] leading-none text-black/25">02</div>
-              <div className="mt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-700">OutClass · Live ventures across terms</div>
-              <h3 className="mt-2 font-display text-[28px] leading-tight tracking-tight">Real customers. Real revenue. Real followers.</h3>
-              <p className="mt-3 text-[13.5px] leading-relaxed text-black/65">
+              <div className="font-display text-3xl leading-none text-black/25">02</div>
+              <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">OutClass · Live ventures across terms</div>
+              <h3 className="mt-2 font-display text-3xl leading-tight tracking-tight">Real customers. Real revenue. Real followers.</h3>
+              <p className="mt-3 text-sm leading-relaxed text-black/65">
                 Two flagship OutClass tracks run continuously alongside InClass. Both are graded on outcomes measured in the open market — not in decks.
               </p>
             </div>
@@ -1657,29 +1657,29 @@ function PgpTbm() {
                 <article key={o.title} className="bg-white/90 p-6 pastel-fill">
                   <div className="flex flex-wrap items-baseline justify-between gap-3">
                     <div>
-                      <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-700">{o.tag}</div>
-                      <h4 className="mt-2 font-display text-[24px] leading-tight tracking-tight">{o.title}</h4>
+                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">{o.tag}</div>
+                      <h4 className="mt-2 font-display text-3xl leading-tight tracking-tight">{o.title}</h4>
                     </div>
                     <div className="flex flex-wrap gap-4">
                       {o.stats.map((s) => (
                         <div key={s.v}>
-                          <div className="font-display text-[22px] leading-none tracking-tight">{s.k}</div>
-                          <div className="mt-1 text-[10px] uppercase tracking-[0.12em] text-black/55">{s.v}</div>
+                          <div className="font-display text-3xl leading-none tracking-tight">{s.k}</div>
+                          <div className="mt-1 text-xs uppercase tracking-[0.12em] text-black/55">{s.v}</div>
                         </div>
                       ))}
                     </div>
                   </div>
-                  <p className="mt-4 max-w-3xl text-[13px] leading-relaxed text-black/65">{o.body}</p>
+                  <p className="mt-4 max-w-3xl text-sm leading-relaxed text-black/65">{o.body}</p>
                   <div className="mt-6">
-                    <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50">Term-by-term arc</div>
+                    <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/50">Term-by-term arc</div>
                     <ol className="mt-3 grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
                       {o.arc.map((a, i) => (
                         <li key={`${o.title}-${i}`} className="bg-white p-4">
                           <div className="flex items-center gap-2">
-                            <span className="inline-flex size-6 items-center justify-center bg-emerald-500 text-[10px] font-semibold text-white">{a.t}</span>
-                            <span className="font-display text-[14px] leading-tight">{a.h}</span>
+                            <span className="inline-flex size-6 items-center justify-center bg-emerald-500 text-xs font-semibold text-white">{a.t}</span>
+                            <span className="font-display text-sm leading-tight">{a.h}</span>
                           </div>
-                          <div className="mt-2 text-[11.5px] leading-snug text-black/60">{a.d}</div>
+                          <div className="mt-2 text-xs leading-snug text-black/60">{a.d}</div>
                         </li>
                       ))}
                     </ol>
@@ -1692,10 +1692,10 @@ function PgpTbm() {
           {/* ENGINE 03 — Immersions */}
           <div className="grid gap-8 border-t border-black/10 py-12 md:grid-cols-[300px_1fr] md:gap-16">
             <div>
-              <div className="font-display text-[46px] leading-none text-black/25">03</div>
-              <div className="mt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-indigo-700">Immersions · On the ground</div>
-              <h3 className="mt-2 font-display text-[28px] leading-tight tracking-tight">Global boardrooms. Bharat factory floors.</h3>
-              <p className="mt-3 text-[13.5px] leading-relaxed text-black/65">
+              <div className="font-display text-3xl leading-none text-black/25">03</div>
+              <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-indigo-700">Immersions · On the ground</div>
+              <h3 className="mt-2 font-display text-3xl leading-tight tracking-tight">Global boardrooms. Bharat factory floors.</h3>
+              <p className="mt-3 text-sm leading-relaxed text-black/65">
                 Optional immersion modules that slot into Terms 4 and 5. Two tracks, one goal: see business where it actually happens — not where slides describe it.
               </p>
             </div>
@@ -1703,14 +1703,14 @@ function PgpTbm() {
               <ImagePlaceholder label="Immersions" aspect="16/9" className="md:col-span-2" />
               {IMMERSIONS.map((im) => (
                 <article key={im.title} className="bg-white/90 p-6 pastel-fill">
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-indigo-700">{im.tag}</div>
-                  <h4 className="mt-2 font-display text-[22px] leading-tight tracking-tight">{im.title}</h4>
-                  <p className="mt-3 text-[13px] leading-relaxed text-black/65">{im.body}</p>
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-700">{im.tag}</div>
+                  <h4 className="mt-2 font-display text-3xl leading-tight tracking-tight">{im.title}</h4>
+                  <p className="mt-3 text-sm leading-relaxed text-black/65">{im.body}</p>
                   <dl className="mt-5 grid grid-cols-3 gap-3 border-t border-black/10 pt-4">
                     {im.stats.map((s) => (
                       <div key={s.v}>
-                        <dt className="font-display text-[24px] leading-none tracking-tight">{s.k}</dt>
-                        <dd className="mt-1.5 text-[10.5px] leading-snug text-black/55">{s.v}</dd>
+                        <dt className="font-display text-3xl leading-none tracking-tight">{s.k}</dt>
+                        <dd className="mt-1.5 text-xs leading-snug text-black/55">{s.v}</dd>
                       </div>
                     ))}
                   </dl>
@@ -1728,8 +1728,8 @@ function PgpTbm() {
       <section id="outcomes" className="border-b border-black/10 bg-white/40">
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
           <div className="mb-12 max-w-3xl">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">Outcomes · Careers & Startups</div>
-            <h2 className="mt-3 font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.03] tracking-[-0.02em]">
+            <div className="text-xs font-semibold uppercase tracking-[0.22em] text-black/50">Outcomes · Careers & Startups</div>
+            <h2 className="mt-3 font-display text-3xl leading-[1.03] tracking-[-0.02em]">
               Two paths out. Both measured in numbers.
             </h2>
           </div>
@@ -1738,32 +1738,32 @@ function PgpTbm() {
             {/* CAREERS */}
             <div className="flex flex-col bg-white p-8">
               <div className="flex items-baseline justify-between border-b border-black/10 pb-4">
-                <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">01 · Careers</div>
-                <div className="text-[11px] text-black/50">Class of 2025</div>
+                <div className="text-xs font-semibold uppercase tracking-[0.22em] text-black/55">01 · Careers</div>
+                <div className="text-xs text-black/50">Class of 2025</div>
               </div>
 
               <div className="mt-6">
-                <div className="font-display text-[56px] leading-none tracking-tight">{OUTCOME_HEADLINE[0].k}</div>
-                <div className="mt-2 text-[11.5px] font-semibold uppercase tracking-[0.14em] text-black/60">{OUTCOME_HEADLINE[0].v}</div>
+                <div className="font-display text-3xl leading-none tracking-tight">{OUTCOME_HEADLINE[0].k}</div>
+                <div className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-black/60">{OUTCOME_HEADLINE[0].v}</div>
               </div>
 
               <div className="mt-6 grid grid-cols-3 gap-px bg-black/10">
                 {OUTCOME_HEADLINE.slice(1).map((s) => (
                   <div key={s.v} className="bg-white py-4">
-                    <div className="font-display text-[22px] leading-none tracking-tight">{s.k}</div>
-                    <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-black/55">{s.v}</div>
+                    <div className="font-display text-3xl leading-none tracking-tight">{s.k}</div>
+                    <div className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-black/55">{s.v}</div>
                   </div>
                 ))}
               </div>
 
               <div className="mt-8 flex-1">
-                <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/55">Where alumni land</div>
+                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-black/55">Where alumni land</div>
                 <ul className="mt-4 space-y-3">
                   {OUTCOME_ROLES.map((r) => (
                     <li key={r.role}>
-                      <div className="flex items-baseline justify-between text-[13px]">
+                      <div className="flex items-baseline justify-between text-sm">
                         <span className="text-black/75">{r.role}</span>
-                        <span className="font-display text-[15px] tabular-nums">{r.pct}</span>
+                        <span className="font-display text-sm tabular-nums">{r.pct}</span>
                       </div>
                       <div className="mt-1.5 h-1 w-full bg-black/5">
                         <div className="h-full bg-black/70" style={{ width: r.pct }} />
@@ -1774,7 +1774,7 @@ function PgpTbm() {
               </div>
 
               <div className="mt-8 border-t border-black/10 pt-6">
-                <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/55">Where alumni got hired</div>
+                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-black/55">Where alumni got hired</div>
                 <div className="mt-4 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4">
                   {CAREER_LOGOS.map((logo) => (
                     <div
@@ -1791,55 +1791,55 @@ function PgpTbm() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-3 text-right text-[11px] font-semibold italic text-black/55">and many more...</div>
+                <div className="mt-3 text-right text-xs font-semibold italic text-black/55">and many more...</div>
               </div>
             </div>
 
             {/* STARTUPS */}
             <div className="flex flex-col bg-white p-8">
               <div className="flex items-baseline justify-between border-b border-black/10 pb-4">
-                <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-700">02 · Startups</div>
-                <div className="text-[11px] text-black/50">Founded on campus</div>
+                <div className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-700">02 · Startups</div>
+                <div className="text-xs text-black/50">Founded on campus</div>
               </div>
 
               <div className="mt-6">
-                <div className="font-display text-[56px] leading-none tracking-tight">{OUTCOME_STARTUP[0].k}</div>
-                <div className="mt-2 text-[11.5px] font-semibold uppercase tracking-[0.14em] text-black/60">{OUTCOME_STARTUP[0].v}</div>
+                <div className="font-display text-3xl leading-none tracking-tight">{OUTCOME_STARTUP[0].k}</div>
+                <div className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-black/60">{OUTCOME_STARTUP[0].v}</div>
               </div>
 
               <div className="mt-6 grid grid-cols-2 gap-px bg-black/10">
                 {OUTCOME_STARTUP.slice(1).map((s) => (
                   <div key={s.v} className="bg-white py-4">
-                    <div className="font-display text-[22px] leading-none tracking-tight">{s.k}</div>
-                    <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-black/55">{s.v}</div>
+                    <div className="font-display text-3xl leading-none tracking-tight">{s.k}</div>
+                    <div className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-black/55">{s.v}</div>
                   </div>
                 ))}
               </div>
 
               <div className="mt-8 flex-1">
-                <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/55">What ventures produce</div>
-                <ul className="mt-4 space-y-3 border-t border-black/10 pt-4 text-[13px] text-black/75">
+                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-black/55">What ventures produce</div>
+                <ul className="mt-4 space-y-3 border-t border-black/10 pt-4 text-sm text-black/75">
                   <li className="flex items-baseline justify-between gap-4">
                     <span>D2C brands built in Term 2</span>
-                    <span className="font-display text-[15px] tabular-nums">Live</span>
+                    <span className="font-display text-sm tabular-nums">Live</span>
                   </li>
                   <li className="flex items-baseline justify-between gap-4">
                     <span>Creator Challenge ventures</span>
-                    <span className="font-display text-[15px] tabular-nums">Live</span>
+                    <span className="font-display text-sm tabular-nums">Live</span>
                   </li>
                   <li className="flex items-baseline justify-between gap-4">
                     <span>Graded on open-market outcomes</span>
-                    <span className="font-display text-[15px] tabular-nums">Yes</span>
+                    <span className="font-display text-sm tabular-nums">Yes</span>
                   </li>
                   <li className="flex items-baseline justify-between gap-4">
                     <span>Founder / Own venture track</span>
-                    <span className="font-display text-[15px] tabular-nums">18%</span>
+                    <span className="font-display text-sm tabular-nums">18%</span>
                   </li>
                 </ul>
               </div>
 
               <div className="mt-8 border-t border-black/10 pt-6">
-                <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/55">Ventures built on campus</div>
+                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-black/55">Ventures built on campus</div>
                 <div className="mt-4 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4">
                   {STARTUP_LOGOS.map((logo) => (
                     <div
@@ -1856,7 +1856,7 @@ function PgpTbm() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-3 text-right text-[11px] font-semibold italic text-black/55">and many more...</div>
+                <div className="mt-3 text-right text-xs font-semibold italic text-black/55">and many more...</div>
               </div>
             </div>
           </div>
@@ -1874,7 +1874,7 @@ function PgpTbm() {
         <div className="mx-auto max-w-7xl px-5 md:px-6">
           <Eyebrow num="04" label="Faculty" />
           <div className="mt-6 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-            <h2 className="max-w-4xl font-display text-[2rem] font-bold leading-[1.08] tracking-tight text-smoke-50 md:text-6xl md:leading-[1.05]">
+            <h2 className="max-w-4xl font-display text-3xl font-bold leading-[1.08] tracking-tight text-smoke-50 md:text-3xl md:leading-[1.05]">
               30% Ivy academics. 30% research faculty.{" "}
               <span className="font-serif-italic font-normal">40% sitting operators.</span>
             </h2>
@@ -1892,13 +1892,13 @@ function PgpTbm() {
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
           <div className="mb-12 grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-end">
             <div>
-              <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">
+              <div className="text-xs font-semibold uppercase tracking-[0.22em] text-black/50">
                 Admissions & Application Process
               </div>
-              <h2 className="mt-3 font-display text-[clamp(1.8rem,3.4vw,2.6rem)] leading-[1.05] tracking-[-0.02em]">
+              <h2 className="mt-3 font-display text-3xl leading-[1.05] tracking-[-0.02em]">
                 Four steps from application to campus.
               </h2>
-              <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-black/65">
+              <p className="mt-4 max-w-xl text-sm leading-relaxed text-black/65">
                 A holistic evaluation across academics, professional experience, communication and
                 business aptitude. No cut-offs — the admissions committee reviews every profile in full.
               </p>
@@ -1909,13 +1909,13 @@ function PgpTbm() {
             {APPLICATION_STEPS.map((s) => (
               <li key={s.step} className="flex flex-col gap-4 bg-white/90 p-7 backdrop-blur-sm pastel-fill">
                 <div className="flex items-baseline gap-4">
-                  <div className="font-display text-[40px] leading-none text-black/25">{s.step}</div>
-                  <div className="font-display text-[20px] leading-tight text-black/90">{s.title}</div>
+                  <div className="font-display text-3xl leading-none text-black/25">{s.step}</div>
+                  <div className="font-display text-sm leading-tight text-black/90">{s.title}</div>
                 </div>
-                <p className="text-[14px] leading-relaxed text-black/70">{s.summary}</p>
+                <p className="text-sm leading-relaxed text-black/70">{s.summary}</p>
                 <ul className="mt-1 space-y-2 border-t border-black/10 pt-4">
                   {s.points.map((p) => (
-                    <li key={p} className="flex gap-3 text-[13px] leading-relaxed text-black/70">
+                    <li key={p} className="flex gap-3 text-sm leading-relaxed text-black/70">
                       <span className="mt-[7px] size-1.5 shrink-0 rounded-full bg-black/40" />
                       <span>{p}</span>
                     </li>
@@ -1931,8 +1931,8 @@ function PgpTbm() {
       <section id="faq" className="border-b border-black/10">
         <div className="mx-auto grid max-w-[1180px] gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.6fr_1fr] lg:gap-16">
           <div>
-            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">FAQ</div>
-            <h2 className="mt-3 font-display text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.05] tracking-[-0.02em]">
+            <div className="text-xs font-semibold uppercase tracking-[0.22em] text-black/50">FAQ</div>
+            <h2 className="mt-3 font-display text-3xl leading-[1.05] tracking-[-0.02em]">
               Everything you were about to email us.
             </h2>
             <ImagePlaceholder label="FAQ" className="mt-5" aspect="16/9" />
@@ -1943,12 +1943,12 @@ function PgpTbm() {
               return (
                 <div key={f.q} className="border-b border-black/10">
                   <button type="button" onClick={() => setOpenFaq(open ? null : i)} className="flex w-full items-center justify-between gap-6 py-5 text-left px-5">
-                    <span className="font-display text-[18px] leading-tight">{f.q}</span>
+                    <span className="font-display text-sm leading-tight">{f.q}</span>
                     <span className="flex size-8 items-center justify-center border border-black/15 text-black/70">
                       {open ? <Minus className="size-4" /> : <Plus className="size-4" />}
                     </span>
                   </button>
-                  {open && <p className="pb-6 pr-14 pl-5 text-[14px] leading-relaxed text-black/70">{f.a}</p>}
+                  {open && <p className="pb-6 pr-14 pl-5 text-sm leading-relaxed text-black/70">{f.a}</p>}
                 </div>
               );
             })}
@@ -1960,32 +1960,32 @@ function PgpTbm() {
       <section id="apply" className="bg-black text-white">
         <div className="mx-auto grid max-w-[1180px] gap-10 px-4 py-24 sm:px-6 lg:grid-cols-[1.4fr_1fr] lg:items-end">
           <div>
-            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/50">Round 4 admissions open</div>
-            <h2 className="mt-3 font-display text-[clamp(2rem,5vw,4rem)] leading-[1] tracking-[-0.02em]">
+            <div className="text-xs font-semibold uppercase tracking-[0.22em] text-white/50">Round 4 admissions open</div>
+            <h2 className="mt-3 font-display text-3xl leading-[1] tracking-[-0.02em]">
               You have 15 minutes.
               <br />
               <em className="italic text-white/70">We have a seat.</em>
             </h2>
-            <p className="mt-6 max-w-lg text-[15px] leading-relaxed text-white/60">
+            <p className="mt-6 max-w-lg text-sm leading-relaxed text-white/60">
               Rolling admits. No GMAT / CAT required. Round 1 closes {deadline.toDateString()}.
             </p>
             <ImagePlaceholder label="Apply" className="mt-6 max-w-lg" aspect="16/9" />
           </div>
           <div className="flex flex-col gap-3">
-            <a href="#" className="inline-flex items-center justify-between gap-3 bg-white px-6 py-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-black transition-transform hover:scale-[1.01] pastel-fill">
+            <a href="#" className="inline-flex items-center justify-between gap-3 bg-white px-6 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-black transition-transform hover:scale-[1.01] pastel-fill">
               Start application <ArrowUpRight className="size-5" />
             </a>
-            <a href="#" className="inline-flex items-center justify-between gap-3 border border-white/20 px-6 py-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/90 hover:bg-white/5">
+            <a href="#" className="inline-flex items-center justify-between gap-3 border border-white/20 px-6 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white/90 hover:bg-white/5">
               Talk to admissions <ArrowUpRight className="size-5" />
             </a>
-            <a href="https://mastersunion.org/pgp-technology-and-business-management" target="_blank" rel="noreferrer" className="inline-flex items-center justify-between gap-3 border border-white/20 px-6 py-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/90 hover:bg-white/5">
+            <a href="https://mastersunion.org/pgp-technology-and-business-management" target="_blank" rel="noreferrer" className="inline-flex items-center justify-between gap-3 border border-white/20 px-6 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white/90 hover:bg-white/5">
               Download brochure <ArrowUpRight className="size-5" />
             </a>
           </div>
         </div>
       </section>
 
-      <footer className="bg-black py-8 text-center text-[11px] uppercase tracking-[0.22em] text-white/40">
+      <footer className="bg-black py-8 text-center text-xs uppercase tracking-[0.22em] text-white/40">
         © {new Date().getFullYear()} Masters' Union · PGP in Technology & Business Management
       </footer>
     </main>
