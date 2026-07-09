@@ -1930,14 +1930,19 @@ function PgpTbm() {
       </section>
 
       {/* ADMISSIONS */}
-      <section id="admissions" className="border-b border-black/10">
-        <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-          <div className="mb-12 grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-end">
+      <section id="admissions" className="relative overflow-hidden border-b border-black/10 bg-gradient-to-b from-white via-neutral-50/60 to-white">
+        {/* soft ambient glows */}
+        <div aria-hidden className="pointer-events-none absolute -top-32 left-1/4 h-96 w-96 rounded-full bg-gradient-to-br from-indigo-200/40 via-violet-200/30 to-transparent blur-3xl" />
+        <div aria-hidden className="pointer-events-none absolute -bottom-32 right-1/3 h-96 w-96 rounded-full bg-gradient-to-tr from-emerald-200/40 via-teal-200/30 to-transparent blur-3xl" />
+
+        <div className="relative mx-auto max-w-[1180px] px-4 py-24 sm:px-6">
+          <div className="mb-14 grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-end">
             <div>
-              <div className="text-xs font-semibold uppercase tracking-[0.22em] text-black/50">
+              <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-black/60 backdrop-blur">
+                <span className="h-1.5 w-1.5 rounded-full bg-violet-500" />
                 Admissions & Application Process
               </div>
-              <h2 className="mt-3 font-display text-3xl leading-[1.05] tracking-[-0.02em]">
+              <h2 className="mt-4 font-display text-4xl leading-[1.02] tracking-[-0.03em] sm:text-5xl">
                 Four steps from application to campus.
               </h2>
               <p className="mt-4 max-w-xl text-sm leading-relaxed text-black/65">
@@ -1947,9 +1952,9 @@ function PgpTbm() {
             </div>
             <ImagePlaceholder label="Admissions journey" className="w-full" aspect="4/3" />
           </div>
-          <ol className="grid gap-px bg-black/10 md:grid-cols-2">
+          <ol className="grid gap-4 md:grid-cols-2">
             {APPLICATION_STEPS.map((s) => (
-              <li key={s.step} className="flex flex-col gap-4 bg-white/90 p-7 backdrop-blur-sm pastel-fill">
+              <li key={s.step} className="group relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-7 shadow-[0_1px_0_rgba(0,0,0,0.02),0_12px_40px_-20px_rgba(0,0,0,0.12)] transition hover:shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-20px_rgba(99,102,241,0.18)] backdrop-blur-sm">
                 <div className="flex items-baseline gap-4">
                   <div className="font-display text-3xl leading-none text-black/25">{s.step}</div>
                   <div className="font-display text-sm leading-tight text-black/90">{s.title}</div>
