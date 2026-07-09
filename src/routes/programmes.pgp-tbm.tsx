@@ -1609,9 +1609,9 @@ function PgpTbm() {
               <ImagePlaceholder label="InClass tracks" aspect="16/9" className="sm:col-span-2" />
               {IN_CLASS.tracks.map((t) => (
                 <article key={t.name} className="bg-white/90 p-6 pastel-fill">
-                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-black/55">Track</div>
-                  <h4 className="mt-2 font-display text-2xl leading-tight tracking-tight">{t.name}</h4>
-                  <p className="mt-3 text-sm leading-relaxed text-black/65">{t.eg}</p>
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-700">Track</div>
+                  <h4 className="mt-2 font-display text-3xl leading-tight tracking-tight">{t.name}</h4>
+                  <p className="mt-4 max-w-3xl text-sm leading-relaxed text-black/65">{t.eg}</p>
                 </article>
               ))}
               <div className="bg-black p-6 text-white">
