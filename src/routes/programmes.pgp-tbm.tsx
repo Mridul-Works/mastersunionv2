@@ -24,7 +24,6 @@ import momsAsset from "@/assets/startup-logos/Moms.png.asset.json";
 import monarqueAsset from "@/assets/startup-logos/Monarque.png.asset.json";
 import nivaraAsset from "@/assets/startup-logos/Nivara.png.asset.json";
 import woodysAsset from "@/assets/startup-logos/WoodysPizzeria.png.asset.json";
-import yangoAsset from "@/assets/startup-logos/Yango.png.asset.json";
 
 const STARTUP_LOGOS: { name: string; url: string }[] = [
   { name: "Bambaii", url: bambaiiAsset.url },
@@ -39,7 +38,6 @@ const STARTUP_LOGOS: { name: string; url: string }[] = [
   { name: "Monarque", url: monarqueAsset.url },
   { name: "Nivara", url: nivaraAsset.url },
   { name: "Woody's Pizzeria", url: woodysAsset.url },
-  { name: "Yango", url: yangoAsset.url },
 ];
 
 import metaAsset from "@/assets/career-logos/Meta.png.asset.json";
