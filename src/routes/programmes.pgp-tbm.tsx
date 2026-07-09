@@ -48,7 +48,6 @@ import flipkartAsset from "@/assets/career-logos/Flipkart.png.asset.json";
 import bainAsset from "@/assets/career-logos/BainAndCompany.png.asset.json";
 import goodCapitalAsset from "@/assets/career-logos/GoodCapital.png.asset.json";
 import accentureAsset from "@/assets/career-logos/Accenture.png.asset.json";
-import waterbridgeAsset from "@/assets/career-logos/Waterbridge.png.asset.json";
 import kaptureAsset from "@/assets/career-logos/Kapture.png.asset.json";
 import zeptoAsset from "@/assets/career-logos/Zepto.png.asset.json";
 import bloombergAsset from "@/assets/career-logos/Bloomberg.png.asset.json";
@@ -67,7 +66,6 @@ const CAREER_LOGOS: { name: string; url: string }[] = [
   { name: "ICICI", url: iciciAsset.url },
   { name: "Kapture", url: kaptureAsset.url },
   { name: "Good Capital", url: goodCapitalAsset.url },
-  { name: "Waterbridge", url: waterbridgeAsset.url },
 ];
 
 
