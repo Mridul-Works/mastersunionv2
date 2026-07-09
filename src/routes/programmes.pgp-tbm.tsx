@@ -1855,7 +1855,7 @@ function PgpTbm() {
             </div>
 
             {/* STARTUPS PANEL */}
-            <div className="group relative flex flex-col overflow-hidden rounded-3xl border border-emerald-900/10 bg-gradient-to-br from-emerald-50/60 via-white to-teal-50/40 p-8 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-30px_rgba(0,0,0,0.15)] transition hover:shadow-[0_1px_0_rgba(0,0,0,0.02),0_30px_80px_-30px_rgba(16,185,129,0.3)]">
+            <div className="group relative flex flex-col overflow-hidden border border-emerald-900/10 bg-gradient-to-br from-emerald-50/60 via-white to-teal-50/40 p-8 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-30px_rgba(0,0,0,0.15)] transition hover:shadow-[0_1px_0_rgba(0,0,0,0.02),0_30px_80px_-30px_rgba(16,185,129,0.3)]">
               <div className="flex items-center justify-between">
                 <div className="inline-flex items-center gap-2 rounded-full bg-emerald-100/80 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-800">
                   02 · Startups
