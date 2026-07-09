@@ -1545,12 +1545,12 @@ function PgpTbm() {
             {/* Left: headline + copy */}
             <div className="flex flex-col justify-between gap-10">
               <div>
-                <h1 className="font-display text-[clamp(2.5rem,5.5vw,4.5rem)] font-semibold leading-[0.95] tracking-[-0.035em]">
+                <h1 className="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1] tracking-[-0.03em]">
                   Learn business
                   <br />
                   <span className="font-normal text-foreground/40">by running one.</span>
                 </h1>
-                <p className="mt-7 max-w-xl text-base leading-relaxed text-foreground/65 md:text-lg">
+                <p className="mt-6 max-w-xl text-base leading-relaxed text-foreground/65">
                   16 months at Masters' Union structured around three engines —
                   <strong className="font-semibold text-foreground"> InClass</strong> fundamentals,
                   <strong className="font-semibold text-foreground"> OutClass</strong> live ventures and
