@@ -763,7 +763,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
 
         {/* Gantt */}
         <div className="overflow-x-auto">
-          <div className="min-w-[960px] rounded-sm bg-white/80 p-3 shadow-[0_1px_0_rgba(0,0,0,0.03),0_20px_40px_-30px_rgba(0,0,0,0.25)]">
+          <div className="min-w-[960px] border border-black/10 p-3">
             {/* Column header */}
             <div className="grid grid-cols-[190px_repeat(8,1fr)] rounded-t-sm bg-black/[0.02] px-2 pt-2">
               <div className="flex flex-col gap-1 p-3">
