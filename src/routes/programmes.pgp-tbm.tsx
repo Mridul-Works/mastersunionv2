@@ -1470,8 +1470,8 @@ function PgpTbm() {
         </div>
       </section>
 
-      {/* 8 TERMS · Gantt calendar of the three engines */}
-      <TermsGantt />
+
+
 
       {/* OUTCOMES */}
       <section id="outcomes" className="border-b border-black/10 bg-white/40">
