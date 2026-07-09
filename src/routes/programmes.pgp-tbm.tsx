@@ -190,7 +190,7 @@ function AdmissionPathwaysSection() {
                   <div className={`h-1.5 w-full transition-all duration-300 ${isActive ? p.accentBg : "bg-black/10"}`} />
                   <div
                     className={`border px-3 py-4 transition-all duration-300 sm:px-6 sm:py-8 ${
-                      isActive ? "border-black/15 bg-black/[0.03]" : "border-black/10 bg-white hover:bg-black/[0.02]"
+                      isActive ? "border-black/15 bg-white" : "border-black/10 bg-white hover:bg-black/[0.02]"
                     }`}
                   >
                     <div className="mb-3 flex items-center justify-between sm:mb-6">
