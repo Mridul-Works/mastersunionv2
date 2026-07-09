@@ -4,7 +4,6 @@ import {
   ArrowUpRight,
   Plus,
   Minus,
-  Check,
   Star,
   Linkedin,
   Calendar,
@@ -1535,12 +1534,12 @@ function PgpTbm() {
               <div className="text-xs font-semibold uppercase tracking-[0.22em] text-black/50">
                 PGP in Technology & Business Management
               </div>
-              <h1 className="mt-4 font-display text-3xl font-bold leading-[0.98] tracking-[-0.03em]">
+              <h1 className="mt-4 font-display text-5xl font-bold leading-[0.98] tracking-[-0.03em]">
                 Learn business
                 <br />
                 <span className="text-black/50">by running one.</span>
               </h1>
-              <p className="mt-6 max-w-xl text-sm leading-relaxed text-black/70">
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-black/70">
                 16 months at Masters' Union structured around three engines — <strong>InClass</strong> fundamentals,
                 <strong> OutClass</strong> live ventures and <strong>Immersions</strong> on the ground.
                 Graded on outcomes measured in the open market.
@@ -1554,9 +1553,6 @@ function PgpTbm() {
               <a href="#model" className="inline-flex items-center gap-2 border border-black/20 bg-transparent px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-black hover:bg-black/5">
                 See the model ↓
               </a>
-              <div className="flex items-center gap-2 text-xs text-black/55">
-                <Check className="size-3.5" /> No CAT / GMAT · 15 min to apply
-              </div>
             </div>
 
           </div>
