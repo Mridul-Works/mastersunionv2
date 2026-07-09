@@ -889,8 +889,8 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
         </div>
 
         {/* Term detail strip */}
-        <div className="mt-5 grid gap-0 border border-black/15 md:grid-cols-[220px_1fr]">
-          <div className="border-b border-black/10 bg-black p-5 text-white md:border-b-0 md:border-r">
+        <div className="mt-5 grid gap-0 border border-foreground/15 md:grid-cols-[220px_1fr]">
+          <div className="border-b border-foreground/10 bg-smoke-50 p-5 text-white md:border-b-0 md:border-r">
             <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">{active ? "In this term" : "Preview a term"}</div>
             <div className="mt-2 font-display text-3xl leading-none tracking-tight">
               {active ? `Term ${active}` : "—"}
@@ -899,7 +899,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
               {active ? TERM_META[active - 1].window : "Hover a column above"}
             </div>
           </div>
-          <div className="grid grid-cols-1 divide-y divide-black/10 sm:grid-cols-2 sm:divide-x sm:divide-y-0 md:grid-cols-4">
+          <div className="grid grid-cols-1 divide-y divide-foreground/10 sm:grid-cols-2 sm:divide-x sm:divide-y-0 md:grid-cols-4">
             {ROWS.map((row) => {
               const cell = active ? row.cells[active - 1] : null;
               return (
@@ -908,11 +908,11 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     <span className={`h-2 w-2 ${TONE_ACCENT[row.engine]}`} />
                     {row.label}
                   </div>
-                  <div className="mt-2 font-display text-sm tracking-tight text-black">
-                    {cell ? cell.text : <span className="text-black/25">—</span>}
+                  <div className="mt-2 font-display text-sm tracking-tight text-foreground">
+                    {cell ? cell.text : <span className="text-foreground/25">—</span>}
                   </div>
                   {cell?.note && (
-                    <div className="mt-0.5 text-[11px] text-black/55">{cell.note}</div>
+                    <div className="mt-0.5 text-[11px] text-foreground/55">{cell.note}</div>
                   )}
                 </div>
               );
