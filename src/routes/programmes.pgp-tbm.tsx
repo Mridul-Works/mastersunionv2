@@ -6,6 +6,9 @@ import {
   Minus,
   Star,
   Linkedin,
+  Instagram,
+  Youtube,
+  Twitter,
   Calendar,
   Clock,
   Users,
@@ -18,6 +21,7 @@ import {
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 import { cn } from "@/lib/utils";
+import logoWhite from "@/assets/logo-4.png.asset.json";
 
 import bambaiiAsset from "@/assets/startup-logos/Bambaii.png.asset.json";
 import beyondVedaAsset from "@/assets/startup-logos/BeyondVeda.png.asset.json";
@@ -2014,9 +2018,59 @@ function PgpTbm() {
         </div>
       </section>
 
-      <footer className="bg-black py-8 text-center text-xs uppercase tracking-[0.22em] text-white/40">
-        © {new Date().getFullYear()} Masters' Union · PGP in Technology & Business Management
+      <footer className="border-t border-black/10 bg-black text-white">
+        <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10">
+          <div className="grid gap-12 md:grid-cols-12">
+            <div className="md:col-span-5">
+              <img
+                src={logoWhite.url}
+                alt="Masters' Union"
+                className="h-10 w-auto brightness-0 invert md:h-12"
+              />
+              <p className="mt-8 max-w-sm text-[13px] leading-relaxed text-white/55">
+                DLF Cyberpark, Phase III<br />
+                Gurugram 122002, India<br />
+                hello@mastersunion.org
+              </p>
+              <div className="mt-8 flex items-center gap-3">
+                {[Instagram, Linkedin, Youtube, Twitter].map((Icon, i) => (
+                  <a key={i} href="#" className="flex size-10 items-center justify-center rounded-none border border-white/15 text-white/60 transition-colors hover:border-white hover:text-white">
+                    <Icon className="size-4" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <FooterCol title="Programs" links={["PGP in Tech & Business Management", "PGP in Quantitative Finance", "UG in Tech & Business Management", "Executive Programs"]} />
+            <FooterCol title="Campus" links={["Faculty", "Mentors", "Outclass", "Food Lab", "MU Ventures"]} />
+            <FooterCol title="Connect" links={["Admissions", "Press & Media", "Careers at MU", "Brochure (PDF)"]} />
+          </div>
+
+          <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-[11px] uppercase tracking-[0.22em] text-white/40 md:flex-row md:items-center">
+            <span>© {new Date().getFullYear()} Masters' Union Education Pvt. Ltd.</span>
+            <div className="flex flex-wrap gap-6">
+              <a href="#" className="hover:text-white/80">Privacy</a>
+              <a href="#" className="hover:text-white/80">Terms</a>
+              <a href="#" className="hover:text-white/80">Code of Conduct</a>
+            </div>
+          </div>
+        </div>
       </footer>
     </main>
+  );
+}
+
+function FooterCol({ title, links }: { title: string; links: string[] }) {
+  return (
+    <div className="md:col-span-2 lg:col-span-2">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white">{title}</p>
+      <ul className="mt-5 space-y-3">
+        {links.map((l) => (
+          <li key={l}>
+            <a href="#" className="text-[13px] text-white/70 transition-colors hover:text-white">{l}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
