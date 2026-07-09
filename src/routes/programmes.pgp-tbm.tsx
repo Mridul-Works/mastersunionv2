@@ -803,7 +803,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
 
         {/* Legend */}
         <div className="mb-4 flex flex-wrap items-center gap-x-5 gap-y-1 text-[11px] uppercase tracking-[0.16em] text-foreground/50">
-          <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-foreground" /> InClass</span>
+          <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-smoke-400" /> InClass</span>
           <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-[#0F8F6E]" /> D2C</span>
           <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-[#E38330]" /> Creator</span>
           <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-[#39B5D7]" /> Immersion</span>
