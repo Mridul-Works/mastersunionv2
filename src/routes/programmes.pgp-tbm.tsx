@@ -1685,7 +1685,7 @@ function PgpTbm() {
           <div className="grid gap-8 border-t border-black/10 py-12 md:grid-cols-[300px_1fr] md:gap-16">
             <div>
               <div className="font-display text-3xl leading-none text-black/25">02</div>
-              <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">OutClass · Live ventures across terms</div>
+              <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-smoke-400">OutClass · Live ventures across terms</div>
               <h3 className="mt-2 font-display text-3xl leading-tight tracking-tight">Real customers. Real revenue. Real followers.</h3>
               <p className="mt-3 text-sm leading-relaxed text-black/65">
                 Two flagship OutClass tracks run continuously alongside InClass. Both are graded on outcomes measured in the open market — not in decks.
@@ -1697,7 +1697,7 @@ function PgpTbm() {
                 <article key={o.title} className="bg-white/90 p-6 pastel-fill">
                   <div className="flex flex-wrap items-baseline justify-between gap-3">
                     <div>
-                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">{o.tag}</div>
+                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-smoke-400">{o.tag}</div>
                       <h4 className="mt-2 font-display text-3xl leading-tight tracking-tight">{o.title}</h4>
                     </div>
                     <div className="flex flex-wrap gap-4">
@@ -1716,7 +1716,7 @@ function PgpTbm() {
                       {o.arc.map((a, i) => (
                         <li key={`${o.title}-${i}`} className="bg-white p-4">
                           <div className="flex items-center gap-2">
-                            <span className="inline-flex size-6 items-center justify-center bg-emerald-500 text-xs font-semibold text-white">{a.t}</span>
+                            <span className="inline-flex size-6 items-center justify-center bg-smoke-400 text-xs font-semibold text-white">{a.t}</span>
                             <span className="font-display text-sm leading-tight">{a.h}</span>
                           </div>
                           <div className="mt-2 text-xs leading-snug text-black/60">{a.d}</div>
