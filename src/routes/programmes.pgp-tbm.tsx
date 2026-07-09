@@ -686,19 +686,19 @@ const OUT_LANES: Lane[] = [
 
 
 const TONE_ACCENT: Record<string, string> = {
-  in: "bg-black",
+  in: "bg-smoke-400",
   d2c: "bg-[#0F8F6E]",
   creator: "bg-[#E38330]",
   imm: "bg-[#39B5D7]",
-  capstone: "bg-black",
+  capstone: "bg-smoke-400",
 };
 
 const TONE_INK: Record<string, string> = {
-  in: "text-black",
+  in: "text-foreground",
   d2c: "text-[#0F8F6E]",
   creator: "text-[#E38330]",
   imm: "text-[#2A7E96]",
-  capstone: "text-black",
+  capstone: "text-foreground",
 };
 
 const LANE_TONE_LABELS: Record<string, string> = {
@@ -791,19 +791,19 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
       <div className={innerClass}>
         {!embedded && (
           <div className="mb-8 max-w-2xl">
-            <div className="text-xs font-semibold uppercase tracking-[0.22em] text-black/50">The proof · 8 terms in one view</div>
+            <div className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/50">The proof · 8 terms in one view</div>
             <h2 className="mt-3 font-display text-3xl leading-[1.03] tracking-[-0.02em]">
               The whole 16 months, on one calendar.
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-black/60">
+            <p className="mt-4 text-sm leading-relaxed text-foreground/60">
               Rows are engines, columns are terms. Every cell is what you actually do that term.
             </p>
           </div>
         )}
 
         {/* Legend */}
-        <div className="mb-4 flex flex-wrap items-center gap-x-5 gap-y-1 text-[11px] uppercase tracking-[0.16em] text-black/50">
-          <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-black" /> InClass</span>
+        <div className="mb-4 flex flex-wrap items-center gap-x-5 gap-y-1 text-[11px] uppercase tracking-[0.16em] text-foreground/50">
+          <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-smoke-400" /> InClass</span>
           <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-[#0F8F6E]" /> D2C</span>
           <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-[#E38330]" /> Creator</span>
           <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-[#39B5D7]" /> Immersion</span>
@@ -812,11 +812,11 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
         {/* Matrix */}
         <div className="overflow-x-auto">
           <div
-            className="min-w-[980px] border border-black/15 divide-y divide-black/10"
+            className="min-w-[980px] border border-foreground/15 divide-y divide-foreground/10"
             onMouseLeave={() => setActive(null)}
           >
             {/* Header row: Term columns */}
-            <div className="grid grid-cols-[200px_repeat(8,1fr)] divide-x divide-black/10 bg-black text-white">
+            <div className="grid grid-cols-[200px_repeat(8,1fr)] divide-x divide-foreground/10 bg-smoke-400 text-white">
               <div className="flex flex-col justify-center gap-1 px-4 py-4">
                 <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">Aug '26 → Nov '27</div>
                 <div className="font-display text-sm tracking-tight text-white/90">16 months · 8 terms</div>
@@ -831,14 +831,14 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     onMouseEnter={() => setActive(t)}
                     onFocus={() => setActive(t)}
                     onClick={() => setActive(t)}
-                    className={`group relative flex flex-col items-start gap-1 px-3 py-4 text-left transition-colors ${isActive ? "bg-white text-black" : "text-white hover:bg-white/10"}`}
+                    className={`group relative flex flex-col items-start gap-1 px-3 py-4 text-left transition-colors ${isActive ? "bg-card text-foreground" : "text-white hover:bg-white/10"}`}
                   >
                     <div className="flex items-baseline gap-1.5">
-                      <span className={`font-display text-lg leading-none tracking-tight ${isActive ? "text-black" : "text-white"}`}>{String(t).padStart(2, "0")}</span>
-                      <span className={`text-[10px] uppercase tracking-[0.18em] ${isActive ? "text-black/50" : "text-white/50"}`}>Term</span>
+                      <span className={`font-display text-lg leading-none tracking-tight ${isActive ? "text-foreground" : "text-white"}`}>{String(t).padStart(2, "0")}</span>
+                      <span className={`text-[10px] uppercase tracking-[0.18em] ${isActive ? "text-foreground/50" : "text-white/50"}`}>Term</span>
                     </div>
-                    <div className={`text-[11px] leading-tight ${isActive ? "text-black/70" : "text-white/70"}`}>{m.months}</div>
-                    <div className={`text-[10px] uppercase tracking-[0.14em] ${isActive ? "text-black/45" : "text-white/45"}`}>{m.window}</div>
+                    <div className={`text-[11px] leading-tight ${isActive ? "text-foreground/70" : "text-white/70"}`}>{m.months}</div>
+                    <div className={`text-[10px] uppercase tracking-[0.14em] ${isActive ? "text-foreground/45" : "text-white/45"}`}>{m.window}</div>
                   </button>
                 );
               })}
@@ -846,14 +846,14 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
 
             {/* Data rows */}
             {ROWS.map((row) => (
-              <div key={row.key} className="grid grid-cols-[200px_repeat(8,1fr)] divide-x divide-black/10">
+              <div key={row.key} className="grid grid-cols-[200px_repeat(8,1fr)] divide-x divide-foreground/10">
                 {/* Row label */}
                 <div className="flex flex-col justify-center gap-1 px-4 py-4">
                   <div className={`flex items-center gap-2 font-display text-sm tracking-tight ${TONE_INK[row.engine]}`}>
                     <span className={`h-3 w-[3px] ${TONE_ACCENT[row.engine]}`} />
                     {row.label}
                   </div>
-                  <div className="text-[11px] uppercase tracking-[0.14em] text-black/45">{row.sub}</div>
+                  <div className="text-[11px] uppercase tracking-[0.14em] text-foreground/45">{row.sub}</div>
                 </div>
                 {row.cells.map((cell, i) => {
                   const t = i + 1;
@@ -863,7 +863,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                       <div
                         key={t}
                         onMouseEnter={() => setActive(t)}
-                        className={`relative min-h-[76px] transition-colors ${isActive ? "bg-black/[0.04]" : "bg-[repeating-linear-gradient(135deg,transparent_0_6px,rgba(0,0,0,0.04)_6px_7px)]"}`}
+                        className={`relative min-h-[76px] transition-colors ${isActive ? "bg-foreground/[0.04]" : "bg-[repeating-linear-gradient(135deg,transparent_0_6px,rgba(40,38,36,0.04)_6px_7px)]"}`}
                       />
                     );
                   }
@@ -871,13 +871,13 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     <div
                       key={t}
                       onMouseEnter={() => setActive(t)}
-                      className={`group relative flex min-h-[76px] flex-col justify-between px-3 py-3 transition-colors ${isActive ? "bg-black text-white" : "bg-white"}`}
+                      className={`group relative flex min-h-[76px] flex-col justify-between px-3 py-3 transition-colors ${isActive ? "bg-smoke-400 text-white" : "bg-white"}`}
                     >
                       <div className={`h-[3px] w-6 ${TONE_ACCENT[cell.tone]} ${isActive ? "opacity-100" : "opacity-90"}`} />
                       <div>
-                        <div className={`font-display text-[13px] leading-tight tracking-tight ${isActive ? "text-white" : "text-black"}`}>{cell.text}</div>
+                        <div className={`font-display text-[13px] leading-tight tracking-tight ${isActive ? "text-white" : "text-foreground"}`}>{cell.text}</div>
                         {cell.note && (
-                          <div className={`mt-0.5 text-[10px] uppercase tracking-[0.14em] ${isActive ? "text-white/60" : "text-black/45"}`}>{cell.note}</div>
+                          <div className={`mt-0.5 text-[10px] uppercase tracking-[0.14em] ${isActive ? "text-white/60" : "text-foreground/45"}`}>{cell.note}</div>
                         )}
                       </div>
                     </div>
@@ -889,8 +889,8 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
         </div>
 
         {/* Term detail strip */}
-        <div className="mt-5 grid gap-0 border border-black/15 md:grid-cols-[220px_1fr]">
-          <div className="border-b border-black/10 bg-black p-5 text-white md:border-b-0 md:border-r">
+        <div className="mt-5 grid gap-0 border border-foreground/15 md:grid-cols-[220px_1fr]">
+          <div className="border-b border-foreground/10 bg-smoke-400 p-5 text-white md:border-b-0 md:border-r">
             <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">{active ? "In this term" : "Preview a term"}</div>
             <div className="mt-2 font-display text-3xl leading-none tracking-tight">
               {active ? `Term ${active}` : "—"}
@@ -899,7 +899,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
               {active ? TERM_META[active - 1].window : "Hover a column above"}
             </div>
           </div>
-          <div className="grid grid-cols-1 divide-y divide-black/10 sm:grid-cols-2 sm:divide-x sm:divide-y-0 md:grid-cols-4">
+          <div className="grid grid-cols-1 divide-y divide-foreground/10 sm:grid-cols-2 sm:divide-x sm:divide-y-0 md:grid-cols-4">
             {ROWS.map((row) => {
               const cell = active ? row.cells[active - 1] : null;
               return (
@@ -908,11 +908,11 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     <span className={`h-2 w-2 ${TONE_ACCENT[row.engine]}`} />
                     {row.label}
                   </div>
-                  <div className="mt-2 font-display text-sm tracking-tight text-black">
-                    {cell ? cell.text : <span className="text-black/25">—</span>}
+                  <div className="mt-2 font-display text-sm tracking-tight text-foreground">
+                    {cell ? cell.text : <span className="text-foreground/25">—</span>}
                   </div>
                   {cell?.note && (
-                    <div className="mt-0.5 text-[11px] text-black/55">{cell.note}</div>
+                    <div className="mt-0.5 text-[11px] text-foreground/55">{cell.note}</div>
                   )}
                 </div>
               );
