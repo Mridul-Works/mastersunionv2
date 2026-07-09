@@ -696,17 +696,17 @@ const OUT_LANES: Lane[] = [
 
 
 const TONE_STYLES: Record<"d2c" | "creator" | "imm" | "capstone", string> = {
-  d2c: "bg-emerald-500 text-white",
-  creator: "bg-amber-500 text-black",
-  imm: "bg-indigo-500 text-white",
-  capstone: "bg-black text-white",
+  d2c: "bg-gradient-to-r from-emerald-400 via-teal-500 to-emerald-600 text-white",
+  creator: "bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 text-black",
+  imm: "bg-gradient-to-r from-indigo-400 via-violet-500 to-indigo-600 text-white",
+  capstone: "bg-gradient-to-r from-slate-700 via-slate-900 to-black text-white",
 };
 
 const TONE_DOTS: Record<string, string> = {
-  d2c: "bg-emerald-500",
-  creator: "bg-amber-500",
-  imm: "bg-indigo-500",
-  capstone: "bg-black",
+  d2c: "bg-gradient-to-br from-emerald-400 to-teal-600",
+  creator: "bg-gradient-to-br from-amber-400 to-orange-500",
+  imm: "bg-gradient-to-br from-indigo-400 to-violet-600",
+  capstone: "bg-gradient-to-br from-slate-700 to-black",
 };
 
 const LANE_TONE_LABELS: Record<string, string> = {
