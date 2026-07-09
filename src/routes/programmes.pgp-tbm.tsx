@@ -362,52 +362,43 @@ type Lane = {
 };
 
 const IN_CLASS_TRACKS = [
-  "Fundamentals, Finance & Sales",
-  "Go-to-market, Product mindset & AI",
-  "Storytelling, Banking & No-code",
-  "Valuation, UI/UX & Crisis management",
-  "Business models, Analytics & B2B",
-  "Pricing, PE / VC & Copywriting",
-  "IPOs, IP law & Machine learning",
-  "DeFi, Risk & Compliance",
+  "Finance & Fintech · Sales & Marketing",
+  "Management & Strategy · Product & Tech",
+  "Sales & Marketing · Communication",
+  "AI & ML · Product & Tech",
+  "Finance & Fintech · Management & Strategy",
+  "Sales & Marketing · AI & ML",
+  "Product & Tech · Liberal Arts",
+  "Finance & Fintech · Communication",
 ];
 
 const OUT_LANES: Lane[] = [
   {
     key: "d2c",
     engine: "d2c",
-    label: "Build a real brand",
-    sub: "Live D2C venture",
-    bars: [{ start: 1, end: 6, text: "Launch → Market → MVP → Grow → Find product-market fit", tone: "d2c" }],
+    label: "Build a D2C brand",
+    sub: "Live consumer venture",
+    bars: [{ start: 1, end: 8, text: "Launch → Offline fair → Scale → GTM → PMF → One-Day Profit", tone: "d2c" }],
   },
   {
     key: "creator",
     engine: "creator",
-    label: "Grow a real audience",
-    sub: "Creator challenge",
-    bars: [{ start: 2, end: 6, text: "Kickoff → Personal brand → Community → Distribution → Monetise", tone: "creator" }],
+    label: "Creator Challenge",
+    sub: "Personal brand in the wild",
+    bars: [{ start: 2, end: 6, text: "Kickoff → Brand → Community → Distribution → Monetise", tone: "creator" }],
   },
   {
     key: "imm",
     engine: "imm",
-    label: "Travel & learn",
-    sub: "On-ground immersions",
+    label: "Immersions",
+    sub: "On-ground · mid-terms",
     bars: [
-      { start: 4, end: 4, text: "Global Immersion (abroad)", tone: "imm" },
-      { start: 5, end: 5, text: "Bharat Immersion (India)", tone: "imm" },
-    ],
-  },
-  {
-    key: "capstone",
-    engine: "capstone",
-    label: "Prove it",
-    sub: "Final challenges",
-    bars: [
-      { start: 7, end: 7, text: "Raise a Seed Fund", tone: "capstone" },
-      { start: 8, end: 8, text: "One-Day Profit challenge", tone: "capstone" },
+      { start: 4, end: 4, text: "Global Immersion", tone: "imm" },
+      { start: 5, end: 5, text: "Bharat Immersion", tone: "imm" },
     ],
   },
 ];
+
 
 const TONE_STYLES: Record<"d2c" | "creator" | "imm" | "capstone", string> = {
   d2c: "bg-emerald-500 text-white",
