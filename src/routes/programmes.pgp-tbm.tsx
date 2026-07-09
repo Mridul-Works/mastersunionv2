@@ -1896,7 +1896,7 @@ function PgpTbm() {
                   ].map((row) => (
                     <li
                       key={row.label}
-                      className="flex items-center justify-between rounded-xl border border-emerald-900/5 bg-white/60 px-4 py-2.5"
+                      className="flex items-center justify-between border border-emerald-900/5 bg-white/60 px-4 py-2.5"
                     >
                       <span className="text-black/75">{row.label}</span>
                       <span className="rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-2.5 py-0.5 font-display text-xs font-semibold tabular-nums text-white shadow-sm">
