@@ -1500,8 +1500,6 @@ function FacultyShowcase() {
 
 function PgpTbm() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const deadline = new Date("2026-08-15T23:59:59+05:30");
-  const { d, h } = useCountdown(deadline);
 
   return (
     <main
