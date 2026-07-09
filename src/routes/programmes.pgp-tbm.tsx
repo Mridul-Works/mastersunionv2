@@ -468,17 +468,11 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
         )}
 
 
-        {/* How to read + Legend */}
-        <div className="mb-6 grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
-          <div className="inline-flex flex-wrap items-center gap-x-4 gap-y-1 text-[11.5px] text-black/60">
-            <span className="inline-flex items-center gap-2"><span className="grid size-5 place-items-center rounded-full border border-black/20 text-[10px] font-semibold">↔</span> Long bars = runs across several terms</span>
-            <span className="inline-flex items-center gap-2"><span className="grid size-5 place-items-center rounded-full border border-black/20 text-[10px] font-semibold">■</span> Single blocks = one specific term</span>
-          </div>
-          <div className="flex flex-wrap gap-3 text-[11px] text-black/60">
-            <span className="inline-flex items-center gap-2"><span className={`size-2.5 ${TONE_DOTS.d2c}`} /> Live D2C brand</span>
-            <span className="inline-flex items-center gap-2"><span className={`size-2.5 ${TONE_DOTS.creator}`} /> Creator challenge</span>
-            <span className="inline-flex items-center gap-2"><span className={`size-2.5 ${TONE_DOTS.imm}`} /> Immersion trip</span>
-          </div>
+        {/* Legend */}
+        <div className="mb-5 flex flex-wrap items-center justify-end gap-x-4 gap-y-1 text-[11px] text-black/55">
+          <span className="inline-flex items-center gap-1.5"><span className={`size-2 rounded-full ${TONE_DOTS.d2c}`} /> D2C</span>
+          <span className="inline-flex items-center gap-1.5"><span className={`size-2 rounded-full ${TONE_DOTS.creator}`} /> Creator</span>
+          <span className="inline-flex items-center gap-1.5"><span className={`size-2 rounded-full ${TONE_DOTS.imm}`} /> Immersion</span>
         </div>
 
 
