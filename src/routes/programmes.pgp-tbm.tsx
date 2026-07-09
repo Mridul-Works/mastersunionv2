@@ -349,11 +349,6 @@ export const Route = createFileRoute("/programmes/pgp-tbm")({
   component: PgpTbm,
 });
 
-// -------- Hero fact sheet --------
-const FACTS = [
-  { k: "Duration", v: "16 Months", note: "Incl. 3-month internship" },
-  { k: "Format", v: "On Campus", note: "DLF Cyber Park · Gurugram" },
-];
 
 
 
