@@ -1298,7 +1298,7 @@ function PgpTbm() {
       {/* THE MODEL — three engines */}
       <section id="model" className="border-b border-black/10">
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-          <div className="mb-10 max-w-3xl">
+          <div className="mb-12 max-w-3xl">
             <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">How 16 months are structured</div>
             <h2 className="mt-3 font-display text-[clamp(1.9rem,4vw,3.2rem)] leading-[1.03] tracking-[-0.02em]">
               Three engines. In parallel. <em className="italic text-black/60">Every term.</em>
@@ -1308,20 +1308,12 @@ function PgpTbm() {
               <strong> InClass</strong> teaches the fundamentals across 7 tracks.
               <strong> OutClass</strong> forces you to apply them on two live ventures — a D2C brand and a Creator Challenge — that run across terms.
               <strong> Immersions</strong> take you to the ground, globally and across Bharat.
+              The whole 16 months is laid out on one calendar: every row is one engine, every column is one 2-month term. Hover or tap any term to see what you'll be doing then.
             </p>
           </div>
-
 
           {/* Unified calendar: 8 terms × 3 engines on one grid */}
-          <div className="mb-8 max-w-2xl">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">The calendar · 8 terms × 3 engines</div>
-            <h3 className="mt-3 font-display text-[clamp(1.5rem,2.8vw,2.2rem)] leading-[1.05] tracking-[-0.02em]">
-              The whole 16 months, on one calendar.
-            </h3>
-            <p className="mt-3 text-[14px] leading-relaxed text-black/60">
-              Every row is one engine. Every column is one term of 2 months. Hover — or tap — any term to see everything you'll be doing then.
-            </p>
-          </div>
+
           <TermsGantt embedded />
 
           <div className="mb-10 grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
