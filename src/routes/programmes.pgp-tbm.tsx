@@ -95,7 +95,7 @@ const PATHWAYS = [
     fullTitle: "PGP in Technology & Business Management",
     accentClass: "text-black",
     accentBg: "bg-black",
-    color: "#ffd000",
+    color: "#000000",
     quickStats: [
       { icon: Clock, text: "16 months full-time" },
       { icon: Users, text: ">1 year work experience" },
@@ -123,9 +123,9 @@ const PATHWAYS = [
     label: "Young Leaders",
     shortTitle: "PGP TBM YLC",
     fullTitle: "Young Leaders' Certificate Programme",
-    accentClass: "text-[#E38330]",
-    accentBg: "bg-[#E38330]",
-    color: "#E38330",
+    accentClass: "text-black",
+    accentBg: "bg-black",
+    color: "#000000",
     quickStats: [
       { icon: Clock, text: "24 months full-time" },
       { icon: Users, text: "0–1 year experience" },
