@@ -1779,13 +1779,13 @@ function PgpTbm() {
                   {CAREER_LOGOS.map((logo) => (
                     <div
                       key={logo.name}
-                      className="flex aspect-[3/2] items-center justify-center bg-white p-3"
+                      className="flex h-16 items-center justify-center bg-white p-2"
                       title={logo.name}
                     >
                       <img
                         src={logo.url}
                         alt={`${logo.name} logo`}
-                        className="max-h-full max-w-full object-contain opacity-80 transition hover:opacity-100"
+                        className="h-8 w-auto max-w-[85%] object-contain opacity-80 transition hover:opacity-100"
                         loading="lazy"
                       />
                     </div>
@@ -1844,13 +1844,13 @@ function PgpTbm() {
                   {STARTUP_LOGOS.map((logo) => (
                     <div
                       key={logo.name}
-                      className="flex aspect-[3/2] items-center justify-center bg-white p-3"
+                      className="flex h-16 items-center justify-center bg-white p-2"
                       title={logo.name}
                     >
                       <img
                         src={logo.url}
                         alt={`${logo.name} logo`}
-                        className="max-h-full max-w-full object-contain opacity-80 transition hover:opacity-100"
+                        className="h-8 w-auto max-w-[85%] object-contain opacity-80 transition hover:opacity-100"
                         loading="lazy"
                       />
                     </div>
