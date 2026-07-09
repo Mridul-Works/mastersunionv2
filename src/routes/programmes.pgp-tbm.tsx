@@ -154,7 +154,7 @@ function AdmissionPathwaysSection() {
   const active = PATHWAYS.find((p) => p.id === selected);
 
   return (
-    <section id="pathways" className="relative overflow-hidden border-b border-black/10 bg-gradient-to-b from-background via-muted/50 to-background text-black">
+    <section id="pathways" className="relative overflow-hidden border-b border-black/10 text-black">
       <div aria-hidden className="pointer-events-none absolute -top-32 left-1/4 h-96 w-96 rounded-full bg-gradient-to-br from-teal/25 via-sage/20 to-transparent blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute -bottom-32 right-1/3 h-96 w-96 rounded-full bg-gradient-to-tr from-cream/40 via-sage/30 to-transparent blur-3xl" />
       <div className="mx-auto max-w-[1180px] px-4 py-16 sm:px-6 sm:py-20">
@@ -1496,7 +1496,7 @@ function PgpTbm() {
 
   return (
     <main
-      className="min-h-screen bg-white text-[color:var(--ink)] pb-28 md:pb-32"
+      className="min-h-screen bg-gradient-to-b from-background via-muted/50 to-background text-[color:var(--ink)] pb-28 md:pb-32"
       style={{
         "--pastel-start": "oklch(0.99 0.014 220 / 0.4)",
         "--pastel-mid": "oklch(0.985 0.020 210 / 0.4)",
@@ -1561,7 +1561,7 @@ function PgpTbm() {
       <AdmissionPathwaysSection />
 
       {/* THE MODEL — three engines */}
-      <section id="model" className="relative overflow-hidden border-b border-black/10 bg-gradient-to-b from-background via-muted/50 to-background">
+      <section id="model" className="relative overflow-hidden border-b border-black/10">
         <div aria-hidden className="pointer-events-none absolute -top-32 left-1/4 h-96 w-96 rounded-full bg-gradient-to-br from-teal/25 via-sage/20 to-transparent blur-3xl" />
         <div aria-hidden className="pointer-events-none absolute -bottom-32 right-1/3 h-96 w-96 rounded-full bg-gradient-to-tr from-cream/40 via-sage/30 to-transparent blur-3xl" />
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
@@ -1711,7 +1711,7 @@ function PgpTbm() {
 
 
       {/* OUTCOMES */}
-      <section id="outcomes" className="relative overflow-hidden border-b border-black/10 bg-gradient-to-b from-background via-muted/50 to-background">
+      <section id="outcomes" className="relative overflow-hidden border-b border-black/10">
         {/* soft ambient glows */}
         <div aria-hidden className="pointer-events-none absolute -top-32 left-1/3 h-96 w-96 rounded-full bg-gradient-to-br from-teal/25 via-sage/20 to-transparent blur-3xl" />
         <div aria-hidden className="pointer-events-none absolute -bottom-32 right-1/4 h-96 w-96 rounded-full bg-gradient-to-tr from-cream/40 via-sage/30 to-transparent blur-3xl" />
@@ -1902,7 +1902,7 @@ function PgpTbm() {
       </section>
 
       {/* FACULTY */}
-      <section id="faculty" className="relative overflow-hidden border-b border-black/10 bg-gradient-to-b from-background via-muted/50 to-background py-12 md:py-16">
+      <section id="faculty" className="relative overflow-hidden border-b border-black/10 py-12 md:py-16">
         <div aria-hidden className="pointer-events-none absolute -top-32 left-1/4 h-96 w-96 rounded-full bg-gradient-to-br from-teal/25 via-sage/20 to-transparent blur-3xl" />
         <div aria-hidden className="pointer-events-none absolute -bottom-32 right-1/3 h-96 w-96 rounded-full bg-gradient-to-tr from-cream/40 via-sage/30 to-transparent blur-3xl" />
         <div className="relative mx-auto max-w-7xl px-5 md:px-6">
@@ -1922,7 +1922,7 @@ function PgpTbm() {
       </section>
 
       {/* ADMISSIONS */}
-      <section id="admissions" className="relative overflow-hidden border-b border-black/10 bg-gradient-to-b from-background via-muted/50 to-background">
+      <section id="admissions" className="relative overflow-hidden border-b border-black/10">
         {/* soft ambient glows */}
         <div aria-hidden className="pointer-events-none absolute -top-32 left-1/4 h-96 w-96 rounded-full bg-gradient-to-br from-teal/25 via-sage/20 to-transparent blur-3xl" />
         <div aria-hidden className="pointer-events-none absolute -bottom-32 right-1/3 h-96 w-96 rounded-full bg-gradient-to-tr from-cream/40 via-sage/30 to-transparent blur-3xl" />
@@ -1994,7 +1994,7 @@ function PgpTbm() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="relative overflow-hidden border-b border-black/10 bg-gradient-to-b from-background via-muted/50 to-background">
+      <section id="faq" className="relative overflow-hidden border-b border-black/10">
         <div className="relative mx-auto grid max-w-[1180px] gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.6fr_1fr] lg:gap-16">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
