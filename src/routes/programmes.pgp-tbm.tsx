@@ -870,7 +870,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
         </div>
 
         {/* Detail panel */}
-        <div className="mt-6 grid gap-4 rounded-sm bg-white/70 p-5 md:grid-cols-[180px_1fr] md:items-start">
+        <div className="mt-6 grid gap-4 border border-black/10 p-5 md:grid-cols-[180px_1fr] md:items-start">
           <div>
             <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/45">
               {active ? `You'll be doing this in` : `Preview a term`}
