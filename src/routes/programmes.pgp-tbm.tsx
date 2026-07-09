@@ -819,7 +819,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                 return (
                   <div
                     key={t}
-                    className={`p-3 text-xs leading-snug transition-colors rounded-sm ${isActive ? "bg-black/[0.04] text-black" : "text-black/70"}`}
+                    className={`p-3 text-xs leading-snug transition-colors ${isActive ? "bg-black/[0.05] text-black" : "text-black/70"}`}
                   >
                     {track}
                   </div>
