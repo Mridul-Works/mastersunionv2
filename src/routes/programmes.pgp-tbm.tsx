@@ -93,8 +93,8 @@ const PATHWAYS = [
     label: "Experienced Professionals",
     shortTitle: "PGP TBM",
     fullTitle: "PGP in Technology & Business Management",
-    accentClass: "text-[#ffd000]",
-    accentBg: "bg-[#ffd000]",
+    accentClass: "text-black",
+    accentBg: "bg-black",
     color: "#ffd000",
     quickStats: [
       { icon: Clock, text: "16 months full-time" },
