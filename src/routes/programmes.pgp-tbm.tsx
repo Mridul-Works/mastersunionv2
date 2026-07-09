@@ -155,8 +155,6 @@ function AdmissionPathwaysSection() {
 
   return (
     <section id="pathways" className="relative overflow-hidden border-b border-black/10 text-black">
-      <div aria-hidden className="pointer-events-none absolute -top-32 left-1/4 h-96 w-96 rounded-full bg-gradient-to-br from-teal/25 via-sage/20 to-transparent blur-3xl" />
-      <div aria-hidden className="pointer-events-none absolute -bottom-32 right-1/3 h-96 w-96 rounded-full bg-gradient-to-tr from-cream/40 via-sage/30 to-transparent blur-3xl" />
       <div className="mx-auto max-w-[1180px] px-4 py-16 sm:px-6 sm:py-20">
         {/* Header */}
         <div className="mb-8 flex flex-col gap-4 sm:mb-12 md:flex-row md:items-end md:justify-between">
@@ -1562,8 +1560,6 @@ function PgpTbm() {
 
       {/* THE MODEL — three engines */}
       <section id="model" className="relative overflow-hidden border-b border-black/10">
-        <div aria-hidden className="pointer-events-none absolute -top-32 left-1/4 h-96 w-96 rounded-full bg-gradient-to-br from-teal/25 via-sage/20 to-transparent blur-3xl" />
-        <div aria-hidden className="pointer-events-none absolute -bottom-32 right-1/3 h-96 w-96 rounded-full bg-gradient-to-tr from-cream/40 via-sage/30 to-transparent blur-3xl" />
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
           <div className="mb-12 max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
