@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
+import SectionDivider from "@/components/SectionDivider";
 import { cn } from "@/lib/utils";
 import logoWhite from "@/assets/logo-4.png.asset.json";
 
@@ -158,7 +159,7 @@ function AdmissionPathwaysSection() {
   const active = PATHWAYS.find((p) => p.id === selected);
 
   return (
-    <section id="pathways" className="relative overflow-hidden border-b border-black/10 text-black">
+    <section id="pathways" className="relative overflow-hidden text-black">
       <div className="mx-auto max-w-[1180px] px-4 py-16 sm:px-6 sm:py-20">
         {/* Header */}
         <div className="mb-8 flex flex-col gap-4 sm:mb-12 md:flex-row md:items-end md:justify-between">
@@ -1507,7 +1508,7 @@ function PgpTbm() {
       <SectionNav items={PGP_NAV} applyHref="#apply" />
 
       {/* HERO */}
-      <section className="relative overflow-hidden border-b border-black/10 pt-28 sm:pt-32">
+      <section className="relative overflow-hidden pt-28 sm:pt-32">
         <div className="mx-auto max-w-[1180px] px-4 pb-16 sm:px-6 sm:pb-24">
           {/* Top eyebrow row */}
           <div className="mb-10 flex flex-col gap-4 border-b border-black/10 pb-6 sm:mb-14 md:flex-row md:items-end md:justify-between">
@@ -1594,12 +1595,14 @@ function PgpTbm() {
           </div>
         </div>
       </section>
-
+      <SectionDivider />
 
       <AdmissionPathwaysSection />
 
+      <SectionDivider />
+
       {/* THE MODEL — three engines */}
-      <section id="model" className="relative overflow-hidden border-b border-black/10">
+      <section id="model" className="relative overflow-hidden">
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
           <div className="mb-12 max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
@@ -1746,8 +1749,10 @@ function PgpTbm() {
 
 
 
+      <SectionDivider />
+
       {/* OUTCOMES */}
-      <section id="outcomes" className="relative overflow-hidden border-b border-black/10">
+      <section id="outcomes" className="relative overflow-hidden">
         {/* soft ambient glows */}
 
         <div className="relative mx-auto max-w-[1180px] px-4 py-24 sm:px-6">
@@ -1935,8 +1940,10 @@ function PgpTbm() {
         </div>
       </section>
 
+      <SectionDivider />
+
       {/* FACULTY */}
-      <section id="faculty" className="relative overflow-hidden border-b border-black/10 py-12 md:py-16">
+      <section id="faculty" className="relative overflow-hidden py-12 md:py-16">
         <div className="relative mx-auto max-w-7xl px-5 md:px-6">
           <Eyebrow num="04" label="Faculty" />
           <div className="mt-6 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
@@ -1953,8 +1960,10 @@ function PgpTbm() {
         </div>
       </section>
 
+      <SectionDivider />
+
       {/* ADMISSIONS */}
-      <section id="admissions" className="relative overflow-hidden border-b border-black/10">
+      <section id="admissions" className="relative overflow-hidden">
         {/* soft ambient glows */}
 
         <div className="relative mx-auto max-w-[1180px] px-4 py-24 sm:px-6">
@@ -2023,8 +2032,10 @@ function PgpTbm() {
         </div>
       </section>
 
+      <SectionDivider />
+
       {/* FAQ */}
-      <section id="faq" className="relative overflow-hidden border-b border-black/10">
+      <section id="faq" className="relative overflow-hidden">
         <div className="relative mx-auto grid max-w-[1180px] gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.6fr_1fr] lg:gap-16">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
