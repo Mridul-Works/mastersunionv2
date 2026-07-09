@@ -761,9 +761,16 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
           <div className="min-w-[960px] rounded-sm bg-white/80 p-3 shadow-[0_1px_0_rgba(0,0,0,0.03),0_20px_40px_-30px_rgba(0,0,0,0.25)]">
             {/* Column header */}
             <div className="grid grid-cols-[190px_repeat(8,1fr)] rounded-t-sm bg-black/[0.02] px-2 pt-2">
-              <div className="p-3 text-xs font-semibold uppercase tracking-[0.16em] text-black/40">
-                <div>Aug '26 → Nov '27</div>
-                <div className="mt-1 normal-case tracking-normal text-black/45">16 months on campus</div>
+              <div className="flex flex-col gap-1 p-3">
+                <div className="flex h-5 items-center font-display text-sm leading-none tracking-tight text-black/40">
+                  Aug '26 → Nov '27
+                </div>
+                <div className="flex h-5 items-center text-xs leading-none text-black/50">
+                  16 months on campus
+                </div>
+                <div className="flex h-4 items-center text-xs leading-none uppercase tracking-[0.12em] text-transparent">
+                  —
+                </div>
               </div>
               {TERM_META.map((m, i) => {
                 const t = i + 1;
@@ -777,11 +784,17 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     onFocus={() => setActive(t)}
                     onBlur={() => setActive(null)}
                     onClick={() => setActive(t)}
-                    className={`group relative p-3 text-left transition-colors rounded-sm ${isActive ? "bg-black text-white" : "bg-white/80 hover:bg-black/[0.03]"}`}
+                    className={`group relative flex flex-col gap-1 p-3 text-left transition-colors rounded-sm ${isActive ? "bg-black text-white" : "bg-white/80 hover:bg-black/[0.03]"}`}
                   >
-                    <div className={`font-display text-sm leading-tight tracking-tight ${isActive ? "text-white" : "text-black"}`}>Term {t}</div>
-                    <div className={`mt-1 text-xs leading-tight ${isActive ? "text-white/75" : "text-black/50"}`}>{m.months}</div>
-                    <div className={`mt-0.5 text-xs uppercase tracking-[0.12em] ${isActive ? "text-white/55" : "text-black/35"}`}>{m.window}</div>
+                    <div className={`flex h-5 items-center font-display text-sm leading-none tracking-tight ${isActive ? "text-white" : "text-black"}`}>
+                      Term {t}
+                    </div>
+                    <div className={`flex h-5 items-center text-xs leading-none ${isActive ? "text-white/75" : "text-black/50"}`}>
+                      {m.months}
+                    </div>
+                    <div className={`flex h-4 items-center text-xs leading-none uppercase tracking-[0.12em] ${isActive ? "text-white/55" : "text-black/35"}`}>
+                      {m.window}
+                    </div>
                   </button>
                 );
               })}
