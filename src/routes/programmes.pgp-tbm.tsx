@@ -1729,7 +1729,7 @@ function PgpTbm() {
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                Outcomes · Class of 2025
+                OUTCOMES
               </div>
               <h2 className="mt-4 font-display text-4xl leading-[1.02] tracking-[-0.03em] text-foreground sm:text-5xl">
                 Two paths out.
