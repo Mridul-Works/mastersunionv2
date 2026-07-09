@@ -2032,8 +2032,10 @@ function PgpTbm() {
         </div>
       </section>
 
+      <SectionDivider />
+
       {/* FAQ */}
-      <section id="faq" className="relative overflow-hidden border-b border-black/10">
+      <section id="faq" className="relative overflow-hidden">
         <div className="relative mx-auto grid max-w-[1180px] gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.6fr_1fr] lg:gap-16">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
