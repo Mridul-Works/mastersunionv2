@@ -1592,7 +1592,7 @@ function PgpTbm() {
             <div>
               <div className="font-display text-3xl leading-none text-black/25">01</div>
               <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-black/55">InClass · The learning core</div>
-              <h3 className="mt-2 font-display text-3xl leading-tight tracking-tight">Seven tracks. Zero rote exams.</h3>
+              <h3 className="mt-2 font-display text-3xl leading-tight tracking-tight">Seven modules. Zero rote exams.</h3>
               <p className="mt-3 text-sm leading-relaxed text-black/65">
                 Taught by 30% Ivy academics, 30% research faculty and 40% sitting operators. Every course is graded on a real deliverable — a P&amp;L, a shipped feature, a live campaign.
               </p>
