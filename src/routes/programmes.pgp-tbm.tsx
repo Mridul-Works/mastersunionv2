@@ -1872,17 +1872,17 @@ function PgpTbm() {
             {/* STARTUPS PANEL */}
             <div className="group relative flex flex-col overflow-hidden border border-emerald-900/10 bg-gradient-to-br from-emerald-50/60 via-white to-teal-50/40 p-8 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-30px_rgba(0,0,0,0.15)] transition hover:shadow-[0_1px_0_rgba(0,0,0,0.02),0_30px_80px_-30px_rgba(16,185,129,0.3)]">
               <div className="flex items-center justify-between">
-                <div className="inline-flex items-center gap-2 rounded-full bg-emerald-100/80 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-800">
+                <div className="inline-flex items-center gap-2 rounded-full bg-emerald-100/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-800">
                   02 · Startups
                 </div>
-                <div className="text-[11px] uppercase tracking-[0.18em] text-emerald-900/40">Founded on campus</div>
+                <div className="text-xs uppercase tracking-[0.18em] text-emerald-900/40">Founded on campus</div>
               </div>
 
               {/* Hero stat */}
               <div className="mt-8">
-                <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-900/60">Startups founded on campus</div>
+                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-900/60">Startups founded on campus</div>
                 <div className="mt-2 flex items-baseline gap-3">
-                  <span className="bg-gradient-to-br from-emerald-600 via-teal-600 to-emerald-800 bg-clip-text font-display text-6xl leading-none tracking-tight text-transparent sm:text-7xl">
+                  <span className="bg-gradient-to-br from-emerald-600 via-teal-600 to-emerald-800 bg-clip-text font-display text-4xl leading-none tracking-tight text-transparent sm:text-5xl">
                     200+
                   </span>
                 </div>
@@ -1893,15 +1893,15 @@ function PgpTbm() {
               <div className="mt-8 grid grid-cols-2 gap-4">
                 {OUTCOME_STARTUP.slice(1).map((s) => (
                   <div key={s.v} className="border border-emerald-900/5 bg-white/70 p-4 backdrop-blur">
-                    <div className="font-display text-2xl leading-none tracking-tight text-emerald-950">{s.k}</div>
-                    <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-900/60">{s.v}</div>
+                    <div className="font-display text-3xl leading-none tracking-tight text-emerald-950">{s.k}</div>
+                    <div className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-emerald-900/60">{s.v}</div>
                   </div>
                 ))}
               </div>
 
               {/* What ventures produce */}
               <div className="mt-8">
-                <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-900/60">What ventures produce</div>
+                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-900/60">What ventures produce</div>
                 <ul className="mt-4 space-y-2.5 text-sm">
                   {[
                     { label: "D2C brands built in Term 2", value: "Live" },
@@ -1924,7 +1924,7 @@ function PgpTbm() {
 
               {/* Startup logos */}
               <div className="mt-8 border-t border-emerald-900/10 pt-6">
-                <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-900/60">Ventures built on campus</div>
+                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-900/60">Ventures built on campus</div>
                 <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4">
                   {STARTUP_LOGOS.map((logo) => (
                     <div
