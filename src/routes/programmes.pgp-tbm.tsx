@@ -1434,57 +1434,101 @@ function PgpTbm() {
       {/* OUTCOMES */}
       <section id="outcomes" className="border-b border-black/10 bg-white/40">
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-          <div className="mb-10 max-w-3xl">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">Outcomes · What the three engines produce</div>
+          <div className="mb-12 max-w-3xl">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">Outcomes · Careers & Startups</div>
             <h2 className="mt-3 font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.03] tracking-[-0.02em]">
-              We publish numbers, not narrative.
+              Two paths out. Both measured in numbers.
             </h2>
           </div>
 
-
-          <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
-            {OUTCOME_HEADLINE.map((s) => (
-              <div key={s.v} className="bg-white p-6">
-                <div className="font-display text-[40px] leading-none tracking-tight">{s.k}</div>
-                <div className="mt-3 text-[11.5px] font-semibold uppercase tracking-[0.14em] text-black/60">{s.v}</div>
+          <div className="grid gap-px bg-black/10 md:grid-cols-2">
+            {/* CAREERS */}
+            <div className="flex flex-col bg-white p-8">
+              <div className="flex items-baseline justify-between border-b border-black/10 pb-4">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">01 · Careers</div>
+                <div className="text-[11px] text-black/50">Class of 2025</div>
               </div>
-            ))}
-          </div>
 
-          <div className="mt-10 grid gap-8 md:grid-cols-[1fr_1fr] md:gap-12">
-            <div className="border border-black/10 bg-white/90 p-6 pastel-fill">
-              <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-700">Startup outcomes</div>
-              <div className="mt-2 font-display text-[22px] leading-tight tracking-tight">Ventures born inside the programme</div>
-              <dl className="mt-5 space-y-4 border-t border-black/10 pt-4">
-                {OUTCOME_STARTUP.map((s) => (
-                  <div key={s.v} className="flex items-baseline justify-between gap-4">
-                    <dt className="text-[13px] text-black/70">{s.v}</dt>
-                    <dd className="font-display text-[26px] leading-none tracking-tight">{s.k}</dd>
+              <div className="mt-6">
+                <div className="font-display text-[56px] leading-none tracking-tight">{OUTCOME_HEADLINE[0].k}</div>
+                <div className="mt-2 text-[11.5px] font-semibold uppercase tracking-[0.14em] text-black/60">{OUTCOME_HEADLINE[0].v}</div>
+              </div>
+
+              <div className="mt-6 grid grid-cols-3 gap-px bg-black/10">
+                {OUTCOME_HEADLINE.slice(1).map((s) => (
+                  <div key={s.v} className="bg-white py-4">
+                    <div className="font-display text-[22px] leading-none tracking-tight">{s.k}</div>
+                    <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-black/55">{s.v}</div>
                   </div>
                 ))}
-              </dl>
+              </div>
+
+              <div className="mt-8 flex-1">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/55">Where alumni land</div>
+                <ul className="mt-4 space-y-3">
+                  {OUTCOME_ROLES.map((r) => (
+                    <li key={r.role}>
+                      <div className="flex items-baseline justify-between text-[13px]">
+                        <span className="text-black/75">{r.role}</span>
+                        <span className="font-display text-[15px] tabular-nums">{r.pct}</span>
+                      </div>
+                      <div className="mt-1.5 h-1 w-full bg-black/5">
+                        <div className="h-full bg-black/70" style={{ width: r.pct }} />
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
-            <div className="border border-black/10 bg-white/90 p-6 pastel-fill">
-              <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/55">Where alumni land</div>
-              <div className="mt-2 font-display text-[22px] leading-tight tracking-tight">Role distribution · Class of 2025</div>
-              <ul className="mt-5 space-y-3 border-t border-black/10 pt-4">
-                {OUTCOME_ROLES.map((r) => (
-                  <li key={r.role}>
-                    <div className="flex items-baseline justify-between text-[13px]">
-                      <span className="text-black/75">{r.role}</span>
-                      <span className="font-display text-[16px] tabular-nums">{r.pct}</span>
-                    </div>
-                    <div className="mt-1.5 h-1 w-full bg-black/5">
-                      <div className="h-full bg-black/70" style={{ width: r.pct }} />
-                    </div>
-                  </li>
+            {/* STARTUPS */}
+            <div className="flex flex-col bg-white p-8">
+              <div className="flex items-baseline justify-between border-b border-black/10 pb-4">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-700">02 · Startups</div>
+                <div className="text-[11px] text-black/50">Founded on campus</div>
+              </div>
+
+              <div className="mt-6">
+                <div className="font-display text-[56px] leading-none tracking-tight">{OUTCOME_STARTUP[0].k}</div>
+                <div className="mt-2 text-[11.5px] font-semibold uppercase tracking-[0.14em] text-black/60">{OUTCOME_STARTUP[0].v}</div>
+              </div>
+
+              <div className="mt-6 grid grid-cols-2 gap-px bg-black/10">
+                {OUTCOME_STARTUP.slice(1).map((s) => (
+                  <div key={s.v} className="bg-white py-4">
+                    <div className="font-display text-[22px] leading-none tracking-tight">{s.k}</div>
+                    <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-black/55">{s.v}</div>
+                  </div>
                 ))}
-              </ul>
+              </div>
+
+              <div className="mt-8 flex-1">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/55">What ventures produce</div>
+                <ul className="mt-4 space-y-3 border-t border-black/10 pt-4 text-[13px] text-black/75">
+                  <li className="flex items-baseline justify-between gap-4">
+                    <span>D2C brands built in Term 2</span>
+                    <span className="font-display text-[15px] tabular-nums">Live</span>
+                  </li>
+                  <li className="flex items-baseline justify-between gap-4">
+                    <span>Creator Challenge ventures</span>
+                    <span className="font-display text-[15px] tabular-nums">Live</span>
+                  </li>
+                  <li className="flex items-baseline justify-between gap-4">
+                    <span>Graded on open-market outcomes</span>
+                    <span className="font-display text-[15px] tabular-nums">Yes</span>
+                  </li>
+                  <li className="flex items-baseline justify-between gap-4">
+                    <span>Founder / Own venture track</span>
+                    <span className="font-display text-[15px] tabular-nums">18%</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
 
-          <AlumniShowcase />
+          <div className="mt-16">
+            <AlumniShowcase />
+          </div>
 
         </div>
       </section>
