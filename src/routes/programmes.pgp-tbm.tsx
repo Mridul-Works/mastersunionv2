@@ -554,20 +554,14 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     const leftPct = ((b.start - 1) / 8) * 100;
                     const widthPct = ((b.end - b.start + 1) / 8) * 100;
                     const spans = b.end - b.start + 1;
+                    void spans;
                     return (
                       <div
                         key={bi}
-                        className={`absolute top-1/2 -translate-y-1/2 rounded-[3px] px-3 py-2 text-[11.5px] font-medium tracking-tight shadow-sm transition-transform hover:-translate-y-[calc(50%+2px)] ${TONE_STYLES[b.tone]}`}
+                        className={`absolute top-1/2 -translate-y-1/2 rounded-[3px] px-3 py-2 text-[11.5px] font-medium tracking-tight shadow-sm ${TONE_STYLES[b.tone]}`}
                         style={{ left: `calc(${leftPct}% + 6px)`, width: `calc(${widthPct}% - 12px)` }}
                       >
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="truncate">{b.text}</span>
-                          {spans > 1 && (
-                            <span className="shrink-0 rounded-full bg-white/25 px-1.5 py-0.5 text-[9.5px] font-semibold uppercase tracking-[0.1em]">
-                              {spans} terms
-                            </span>
-                          )}
-                        </div>
+                        <span className="block truncate">{b.text}</span>
                       </div>
                     );
                   })}
