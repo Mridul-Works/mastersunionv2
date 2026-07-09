@@ -829,7 +829,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
 
             {/* OutClass lanes with spanning bars */}
             {OUT_LANES.map((lane) => (
-              <div key={lane.key} className="grid grid-cols-[190px_repeat(8,1fr)] px-2 py-3 odd:bg-black/[0.015] even:bg-white/60">
+              <div key={lane.key} className="grid grid-cols-[190px_repeat(8,1fr)] border-t border-black/5 px-2 py-3">
                 <div className="flex flex-col justify-center gap-0.5 p-3">
                   <div className="inline-flex items-center gap-2 text-xs font-semibold text-black">
                     <span className={`size-1.5 rounded-full ${TONE_DOTS[lane.engine === "capstone" ? "capstone" : lane.engine === "imm" ? "imm" : lane.engine]}`} />
