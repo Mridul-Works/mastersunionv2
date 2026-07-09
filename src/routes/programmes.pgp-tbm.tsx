@@ -1749,8 +1749,10 @@ function PgpTbm() {
 
 
 
+      <SectionDivider />
+
       {/* OUTCOMES */}
-      <section id="outcomes" className="relative overflow-hidden border-b border-black/10">
+      <section id="outcomes" className="relative overflow-hidden">
         {/* soft ambient glows */}
 
         <div className="relative mx-auto max-w-[1180px] px-4 py-24 sm:px-6">
