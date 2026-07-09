@@ -880,19 +880,19 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
             )}
           </div>
           <div className="flex flex-wrap gap-2">
-            {activityForTerm(activeTerm).map((item, i) => (
+          {activityForTerm(activeTerm).map((item, i) => (
               <span
                 key={i}
                 className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs transition-opacity ${active ? "opacity-100" : "opacity-55"} ${
                   item.tone === "in"
-                    ? "border-black/15 bg-white text-black/75"
+                    ? "border-black/15 bg-gradient-to-r from-white to-black/[0.03] text-black/75"
                     : item.tone === "d2c"
-                    ? "border-emerald-500/30 bg-emerald-50 text-emerald-800"
+                    ? "border-emerald-500/30 bg-gradient-to-r from-emerald-50 to-teal-50 text-emerald-800"
                     : item.tone === "creator"
-                    ? "border-amber-500/30 bg-amber-50 text-amber-800"
+                    ? "border-amber-500/30 bg-gradient-to-r from-amber-50 to-orange-50 text-amber-800"
                     : item.tone === "imm"
-                    ? "border-indigo-500/30 bg-indigo-50 text-indigo-800"
-                    : "border-black/70 bg-black text-white"
+                    ? "border-indigo-500/30 bg-gradient-to-r from-indigo-50 to-violet-50 text-indigo-800"
+                    : "border-black/70 bg-gradient-to-r from-slate-800 to-black text-white"
                 }`}
               >
                 {item.label}
