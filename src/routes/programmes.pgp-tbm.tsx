@@ -765,7 +765,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
         <div className="overflow-x-auto">
           <div className="min-w-[960px] border border-black/10 p-3">
             {/* Column header */}
-            <div className="grid grid-cols-[190px_repeat(8,1fr)] rounded-t-sm bg-black/[0.02] px-2 pt-2">
+            <div className="grid grid-cols-[190px_repeat(8,1fr)] border-b border-black/10 px-2 pt-2">
               <div className="flex flex-col gap-1 p-3">
                 <div className="flex h-5 items-center font-display text-sm leading-none tracking-tight text-black/40">
                   Aug '26 → Nov '27
