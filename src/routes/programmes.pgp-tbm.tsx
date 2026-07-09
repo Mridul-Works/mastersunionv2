@@ -2026,35 +2026,6 @@ function PgpTbm() {
         </div>
       </section>
 
-      {/* APPLY CTA */}
-      <section id="apply" className="bg-black text-white">
-        <div className="mx-auto grid max-w-[1180px] gap-10 px-4 py-24 sm:px-6 lg:grid-cols-[1.4fr_1fr] lg:items-end">
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-[0.22em] text-white/50">Round 4 admissions open</div>
-            <h2 className="mt-3 font-display text-3xl leading-[1] tracking-[-0.02em]">
-              You have 15 minutes.
-              <br />
-              <em className="italic text-white/70">We have a seat.</em>
-            </h2>
-            <p className="mt-6 max-w-lg text-sm leading-relaxed text-white/60">
-              Rolling admits. No GMAT / CAT required. Round 1 closes {deadline.toDateString()}.
-            </p>
-            <ImagePlaceholder label="Apply" className="mt-6 max-w-lg" aspect="16/9" />
-          </div>
-          <div className="flex flex-col gap-3">
-            <a href="#" className="inline-flex items-center justify-between gap-3 bg-white px-6 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-black transition-transform hover:scale-[1.01] pastel-fill">
-              Start application <ArrowUpRight className="size-5" />
-            </a>
-            <a href="#" className="inline-flex items-center justify-between gap-3 border border-white/20 px-6 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white/90 hover:bg-white/5">
-              Talk to admissions <ArrowUpRight className="size-5" />
-            </a>
-            <a href="https://mastersunion.org/pgp-technology-and-business-management" target="_blank" rel="noreferrer" className="inline-flex items-center justify-between gap-3 border border-white/20 px-6 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white/90 hover:bg-white/5">
-              Download brochure <ArrowUpRight className="size-5" />
-            </a>
-          </div>
-        </div>
-      </section>
-
       <footer className="bg-black py-8 text-center text-xs uppercase tracking-[0.22em] text-white/40">
         © {new Date().getFullYear()} Masters' Union · PGP in Technology & Business Management
       </footer>
