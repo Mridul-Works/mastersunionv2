@@ -758,9 +758,9 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
 
         {/* Gantt */}
         <div className="overflow-x-auto">
-          <div className="min-w-[960px] rounded-sm border border-black/10 bg-white/80 shadow-[0_1px_0_rgba(0,0,0,0.03),0_20px_40px_-30px_rgba(0,0,0,0.25)]">
+          <div className="min-w-[960px] rounded-sm bg-white/80 p-3 shadow-[0_1px_0_rgba(0,0,0,0.03),0_20px_40px_-30px_rgba(0,0,0,0.25)]">
             {/* Column header */}
-            <div className="grid grid-cols-[190px_repeat(8,1fr)] border-b border-black/10">
+            <div className="grid grid-cols-[190px_repeat(8,1fr)] rounded-t-sm bg-black/[0.02] px-2 pt-2">
               <div className="p-3 text-xs font-semibold uppercase tracking-[0.16em] text-black/40">
                 <div>Aug '26 → Nov '27</div>
                 <div className="mt-1 normal-case tracking-normal text-black/45">16 months on campus</div>
@@ -777,7 +777,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     onFocus={() => setActive(t)}
                     onBlur={() => setActive(null)}
                     onClick={() => setActive(t)}
-                    className={`group relative border-l border-black/10 p-3 text-left transition-colors ${isActive ? "bg-black text-white" : "bg-white/80 hover:bg-black/[0.03]"}`}
+                    className={`group relative p-3 text-left transition-colors rounded-sm ${isActive ? "bg-black text-white" : "bg-white/80 hover:bg-black/[0.03]"}`}
                   >
                     <div className={`font-display text-sm leading-tight tracking-tight ${isActive ? "text-white" : "text-black"}`}>Term {t}</div>
                     <div className={`mt-1 text-xs leading-tight ${isActive ? "text-white/75" : "text-black/50"}`}>{m.months}</div>
@@ -788,7 +788,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
             </div>
 
             {/* InClass lane */}
-            <div className="grid grid-cols-[190px_repeat(8,1fr)] border-b border-black/10">
+            <div className="grid grid-cols-[190px_repeat(8,1fr)] px-2 py-3 bg-white/60">
               <div className="flex flex-col justify-center gap-0.5 p-3">
                 <div className="inline-flex items-center gap-2 text-xs font-semibold text-black">
                   <span className="size-1.5 rounded-full bg-black/70" /> In the classroom
@@ -801,7 +801,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                 return (
                   <div
                     key={t}
-                    className={`border-l border-black/10 p-3 text-xs leading-snug transition-colors ${isActive ? "bg-black/[0.04] text-black" : "text-black/70"}`}
+                    className={`p-3 text-xs leading-snug transition-colors rounded-sm ${isActive ? "bg-black/[0.04] text-black" : "text-black/70"}`}
                   >
                     {track}
                   </div>
@@ -811,7 +811,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
 
             {/* OutClass lanes with spanning bars */}
             {OUT_LANES.map((lane) => (
-              <div key={lane.key} className="grid grid-cols-[190px_repeat(8,1fr)] border-b border-black/10 last:border-b-0">
+              <div key={lane.key} className="grid grid-cols-[190px_repeat(8,1fr)] px-2 py-3 odd:bg-black/[0.015] even:bg-white/60">
                 <div className="flex flex-col justify-center gap-0.5 p-3">
                   <div className="inline-flex items-center gap-2 text-xs font-semibold text-black">
                     <span className={`size-1.5 rounded-full ${TONE_DOTS[lane.engine === "capstone" ? "capstone" : lane.engine === "imm" ? "imm" : lane.engine]}`} />
@@ -826,7 +826,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     {Array.from({ length: 8 }).map((_, i) => {
                       const t = i + 1;
                       const isActive = active === t;
-                      return <div key={t} className={`border-l border-black/10 transition-colors ${isActive ? "bg-black/[0.04]" : ""}`} />;
+                      return <div key={t} className={`transition-colors rounded-sm ${isActive ? "bg-black/[0.04]" : ""}`} />;
                     })}
                   </div>
                   {/* Bars */}
@@ -852,7 +852,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
         </div>
 
         {/* Detail panel */}
-        <div className="mt-6 grid gap-4 rounded-sm border border-black/10 bg-white/70 p-5 md:grid-cols-[180px_1fr] md:items-start">
+        <div className="mt-6 grid gap-4 rounded-sm bg-white/70 p-5 md:grid-cols-[180px_1fr] md:items-start">
           <div>
             <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/45">
               {active ? `You'll be doing this in` : `Preview a term`}
