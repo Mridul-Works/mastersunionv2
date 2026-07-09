@@ -685,18 +685,20 @@ const OUT_LANES: Lane[] = [
 ];
 
 
-const TONE_STYLES: Record<"d2c" | "creator" | "imm" | "capstone", string> = {
-  d2c: "bg-gradient-to-r from-emerald-100 via-teal-100 to-emerald-200 text-emerald-900",
-  creator: "bg-gradient-to-r from-amber-100 via-orange-100 to-amber-200 text-amber-900",
-  imm: "bg-gradient-to-r from-indigo-100 via-violet-100 to-indigo-200 text-indigo-900",
-  capstone: "bg-gradient-to-r from-slate-200 via-slate-400 to-slate-600 text-white",
+const TONE_ACCENT: Record<string, string> = {
+  in: "bg-black",
+  d2c: "bg-[#0F8F6E]",
+  creator: "bg-[#E38330]",
+  imm: "bg-[#39B5D7]",
+  capstone: "bg-black",
 };
 
-const TONE_DOTS: Record<string, string> = {
-  d2c: "bg-gradient-to-br from-emerald-300 to-teal-400",
-  creator: "bg-gradient-to-br from-amber-300 to-orange-400",
-  imm: "bg-gradient-to-br from-indigo-300 to-violet-400",
-  capstone: "bg-gradient-to-br from-slate-400 to-slate-600",
+const TONE_INK: Record<string, string> = {
+  in: "text-black",
+  d2c: "text-[#0F8F6E]",
+  creator: "text-[#E38330]",
+  imm: "text-[#2A7E96]",
+  capstone: "text-black",
 };
 
 const LANE_TONE_LABELS: Record<string, string> = {
@@ -706,36 +708,83 @@ const LANE_TONE_LABELS: Record<string, string> = {
   capstone: "Final challenge",
 };
 
+type RowDef = {
+  key: string;
+  engine: "in" | "d2c" | "creator" | "imm";
+  label: string;
+  sub: string;
+  cells: (null | { text: string; note?: string; tone: "in" | "d2c" | "creator" | "imm" })[];
+};
+
+const ROWS: RowDef[] = [
+  {
+    key: "in",
+    engine: "in",
+    label: "InClass",
+    sub: "Business fundamentals",
+    cells: IN_CLASS_TRACKS.map((t) => ({ text: t, tone: "in" as const })),
+  },
+  {
+    key: "d2c",
+    engine: "d2c",
+    label: "D2C brand",
+    sub: "Live consumer venture",
+    cells: [
+      { text: "Launch", note: "Idea → SKU", tone: "d2c" },
+      { text: "Ship", note: "First orders", tone: "d2c" },
+      { text: "Scale", note: "Paid + retention", tone: "d2c" },
+      { text: "PMF", note: "Cohorts hold", tone: "d2c" },
+      { text: "Margin", note: "Unit economics", tone: "d2c" },
+      { text: "Profit", note: "Cashflow positive", tone: "d2c" },
+      { text: "Handoff", note: "Board review", tone: "d2c" },
+      { text: "Exit note", note: "Case + demo day", tone: "d2c" },
+    ],
+  },
+  {
+    key: "creator",
+    engine: "creator",
+    label: "Creator",
+    sub: "Personal brand",
+    cells: [
+      null,
+      { text: "Brand", note: "Voice + niche", tone: "creator" },
+      { text: "Community", note: "First 1k", tone: "creator" },
+      { text: "Publish", note: "Weekly cadence", tone: "creator" },
+      { text: "Monetise", note: "Offer + funnel", tone: "creator" },
+      { text: "Compound", note: "Distribution", tone: "creator" },
+      null,
+      null,
+    ],
+  },
+  {
+    key: "imm",
+    engine: "imm",
+    label: "Immersions",
+    sub: "On-ground trips",
+    cells: [
+      null,
+      null,
+      null,
+      { text: "Global", note: "SF / Dubai", tone: "imm" },
+      { text: "Bharat", note: "Tier-2 markets", tone: "imm" },
+      null,
+      null,
+      null,
+    ],
+  },
+];
+
 function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
   const [active, setActive] = useState<number | null>(null);
-  const activeTerm = active ?? 1;
-
-
-  const activityForTerm = (t: number) => {
-    const items: { label: string; tone: string }[] = [];
-    items.push({ label: `Classroom: ${IN_CLASS_TRACKS[t - 1]}`, tone: "in" });
-    for (const lane of OUT_LANES) {
-      for (const b of lane.bars) {
-        if (t >= b.start && t <= b.end) {
-          const continuing = b.start !== b.end && (t !== b.start);
-          items.push({ label: `${lane.label}${continuing ? " (continues)" : ""}`, tone: b.tone });
-        }
-      }
-    }
-    return items;
-  };
 
   const Wrapper: React.ElementType = embedded ? "div" : "section";
   const wrapperProps = embedded
     ? { id: "terms", className: "" }
     : {
         id: "terms",
-        className:
-          "border-b border-black/10 bg-[radial-gradient(circle_at_10%_0%,rgba(16,185,129,0.06),transparent_40%),radial-gradient(circle_at_90%_100%,rgba(245,158,11,0.06),transparent_40%)]",
+        className: "bg-white",
       };
-  const innerClass = embedded
-    ? ""
-    : "mx-auto max-w-[1180px] px-4 py-20 sm:px-6";
+  const innerClass = embedded ? "" : "mx-auto max-w-[1180px] px-4 py-20 sm:px-6";
 
   return (
     <Wrapper {...wrapperProps}>
@@ -747,35 +796,30 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
               The whole 16 months, on one calendar.
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-black/60">
-              8 terms · 2 months each. Rows are what you're learning, columns are when. Tap a term to see it in detail.
+              Rows are engines, columns are terms. Every cell is what you actually do that term.
             </p>
           </div>
         )}
 
-
         {/* Legend */}
-        <div className="mb-5 flex flex-wrap items-center justify-end gap-x-4 gap-y-1 text-xs text-black/55">
-          <span className="inline-flex items-center gap-1.5"><span className={`size-2 rounded-full ${TONE_DOTS.d2c}`} /> D2C</span>
-          <span className="inline-flex items-center gap-1.5"><span className={`size-2 rounded-full ${TONE_DOTS.creator}`} /> Creator</span>
-          <span className="inline-flex items-center gap-1.5"><span className={`size-2 rounded-full ${TONE_DOTS.imm}`} /> Immersion</span>
+        <div className="mb-4 flex flex-wrap items-center gap-x-5 gap-y-1 text-[11px] uppercase tracking-[0.16em] text-black/50">
+          <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-black" /> InClass</span>
+          <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-[#0F8F6E]" /> D2C</span>
+          <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-[#E38330]" /> Creator</span>
+          <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-[#39B5D7]" /> Immersion</span>
         </div>
 
-
-        {/* Gantt */}
+        {/* Matrix */}
         <div className="overflow-x-auto">
-          <div className="min-w-[960px] border border-black/10 p-3">
-            {/* Column header */}
-            <div className="grid grid-cols-[190px_repeat(8,1fr)] border-b border-black/10 px-2 pt-2">
-              <div className="flex flex-col gap-1 p-3">
-                <div className="flex h-5 items-center font-display text-sm leading-none tracking-tight text-black/40">
-                  Aug '26 → Nov '27
-                </div>
-                <div className="flex h-5 items-center text-xs leading-none text-black/50">
-                  16 months on campus
-                </div>
-                <div className="flex h-4 items-center text-xs leading-none uppercase tracking-[0.12em] text-transparent">
-                  —
-                </div>
+          <div
+            className="min-w-[980px] border border-black/15 divide-y divide-black/10"
+            onMouseLeave={() => setActive(null)}
+          >
+            {/* Header row: Term columns */}
+            <div className="grid grid-cols-[200px_repeat(8,1fr)] divide-x divide-black/10 bg-black text-white">
+              <div className="flex flex-col justify-center gap-1 px-4 py-4">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">Aug '26 → Nov '27</div>
+                <div className="font-display text-sm tracking-tight text-white/90">16 months · 8 terms</div>
               </div>
               {TERM_META.map((m, i) => {
                 const t = i + 1;
@@ -785,125 +829,96 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     key={t}
                     type="button"
                     onMouseEnter={() => setActive(t)}
-                    onMouseLeave={() => setActive(null)}
                     onFocus={() => setActive(t)}
-                    onBlur={() => setActive(null)}
                     onClick={() => setActive(t)}
-                    className={`group relative flex flex-col gap-1 p-3 text-left transition-colors ${isActive ? "bg-black text-white" : "hover:bg-black/[0.04]"}`}
+                    className={`group relative flex flex-col items-start gap-1 px-3 py-4 text-left transition-colors ${isActive ? "bg-white text-black" : "text-white hover:bg-white/10"}`}
                   >
-                    <div className={`flex h-5 items-center font-display text-sm leading-none tracking-tight ${isActive ? "text-white" : "text-black"}`}>
-                      Term {t}
+                    <div className="flex items-baseline gap-1.5">
+                      <span className={`font-display text-lg leading-none tracking-tight ${isActive ? "text-black" : "text-white"}`}>{String(t).padStart(2, "0")}</span>
+                      <span className={`text-[10px] uppercase tracking-[0.18em] ${isActive ? "text-black/50" : "text-white/50"}`}>Term</span>
                     </div>
-                    <div className={`flex h-5 items-center text-xs leading-none ${isActive ? "text-white/75" : "text-black/50"}`}>
-                      {m.months}
-                    </div>
-                    <div className={`flex h-4 items-center text-xs leading-none uppercase tracking-[0.12em] ${isActive ? "text-white/55" : "text-black/35"}`}>
-                      {m.window}
-                    </div>
+                    <div className={`text-[11px] leading-tight ${isActive ? "text-black/70" : "text-white/70"}`}>{m.months}</div>
+                    <div className={`text-[10px] uppercase tracking-[0.14em] ${isActive ? "text-black/45" : "text-white/45"}`}>{m.window}</div>
                   </button>
                 );
               })}
             </div>
 
-            {/* InClass lane */}
-            <div className="grid grid-cols-[190px_repeat(8,1fr)] border-t border-black/5 px-2 py-3">
-              <div className="flex flex-col justify-center gap-0.5 p-3">
-                <div className="inline-flex items-center gap-2 text-xs font-semibold text-black">
-                  <span className="size-1.5 rounded-full bg-black/70" /> In the classroom
+            {/* Data rows */}
+            {ROWS.map((row) => (
+              <div key={row.key} className="grid grid-cols-[200px_repeat(8,1fr)] divide-x divide-black/10">
+                {/* Row label */}
+                <div className="flex flex-col justify-center gap-1 px-4 py-4">
+                  <div className={`flex items-center gap-2 font-display text-sm tracking-tight ${TONE_INK[row.engine]}`}>
+                    <span className={`h-3 w-[3px] ${TONE_ACCENT[row.engine]}`} />
+                    {row.label}
+                  </div>
+                  <div className="text-[11px] uppercase tracking-[0.14em] text-black/45">{row.sub}</div>
                 </div>
-                <div className="text-xs text-black/50">Business fundamentals</div>
-              </div>
-              {IN_CLASS_TRACKS.map((track, i) => {
-                const t = i + 1;
-                const isActive = active === t;
-                return (
-                  <div
-                    key={t}
-                    className={`p-3 text-xs leading-snug transition-colors ${isActive ? "bg-black/[0.05] text-black" : "text-black/70"}`}
-                  >
-                    {track}
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* OutClass lanes with spanning bars */}
-            {OUT_LANES.map((lane) => (
-              <div key={lane.key} className="grid grid-cols-[190px_repeat(8,1fr)] border-t border-black/5 px-2 py-3">
-                <div className="flex flex-col justify-center gap-0.5 p-3">
-                  <div className="inline-flex items-center gap-2 text-xs font-semibold text-black">
-                    <span className={`size-1.5 rounded-full ${TONE_DOTS[lane.engine === "capstone" ? "capstone" : lane.engine === "imm" ? "imm" : lane.engine]}`} />
-                    {lane.label}
-                  </div>
-                  <div className="text-xs text-black/50">{lane.sub}</div>
-                </div>
-                {/* Track row with absolutely placed bars */}
-                <div className="relative col-span-8 h-16">
-                  {/* Column dividers + hover highlight */}
-                  <div className="absolute inset-0 grid grid-cols-8">
-                    {Array.from({ length: 8 }).map((_, i) => {
-                      const t = i + 1;
-                      const isActive = active === t;
-                      return <div key={t} className={`transition-colors ${isActive ? "bg-black/[0.05]" : ""}`} />;
-                    })}
-                  </div>
-                  {/* Bars */}
-                  {lane.bars.map((b, bi) => {
-                    const leftPct = ((b.start - 1) / 8) * 100;
-                    const widthPct = ((b.end - b.start + 1) / 8) * 100;
-                    const spans = b.end - b.start + 1;
-                    void spans;
+                {row.cells.map((cell, i) => {
+                  const t = i + 1;
+                  const isActive = active === t;
+                  if (!cell) {
                     return (
                       <div
-                        key={bi}
-                        className={`absolute top-1/2 -translate-y-1/2 px-3 py-2 text-xs font-medium tracking-tight ${TONE_STYLES[b.tone]}`}
-                        style={{ left: `calc(${leftPct}% + 6px)`, width: `calc(${widthPct}% - 12px)` }}
-                      >
-                        <span className="block truncate">{b.text}</span>
-                      </div>
+                        key={t}
+                        onMouseEnter={() => setActive(t)}
+                        className={`relative min-h-[76px] transition-colors ${isActive ? "bg-black/[0.04]" : "bg-[repeating-linear-gradient(135deg,transparent_0_6px,rgba(0,0,0,0.04)_6px_7px)]"}`}
+                      />
                     );
-                  })}
-                </div>
+                  }
+                  return (
+                    <div
+                      key={t}
+                      onMouseEnter={() => setActive(t)}
+                      className={`group relative flex min-h-[76px] flex-col justify-between px-3 py-3 transition-colors ${isActive ? "bg-black text-white" : "bg-white"}`}
+                    >
+                      <div className={`h-[3px] w-6 ${TONE_ACCENT[cell.tone]} ${isActive ? "opacity-100" : "opacity-90"}`} />
+                      <div>
+                        <div className={`font-display text-[13px] leading-tight tracking-tight ${isActive ? "text-white" : "text-black"}`}>{cell.text}</div>
+                        {cell.note && (
+                          <div className={`mt-0.5 text-[10px] uppercase tracking-[0.14em] ${isActive ? "text-white/60" : "text-black/45"}`}>{cell.note}</div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             ))}
           </div>
         </div>
 
-        {/* Detail panel */}
-        <div className="mt-6 grid gap-4 border border-black/10 p-5 md:grid-cols-[180px_1fr] md:items-start">
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/45">
-              {active ? `You'll be doing this in` : `Preview a term`}
+        {/* Term detail strip */}
+        <div className="mt-5 grid gap-0 border border-black/15 md:grid-cols-[220px_1fr]">
+          <div className="border-b border-black/10 bg-black p-5 text-white md:border-b-0 md:border-r">
+            <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">{active ? "In this term" : "Preview a term"}</div>
+            <div className="mt-2 font-display text-3xl leading-none tracking-tight">
+              {active ? `Term ${active}` : "—"}
             </div>
-            <div className="mt-1 font-display leading-tight tracking-tight">
-              {active ? <span className="text-3xl">Term {activeTerm}</span> : <span className="text-sm">Hover a column ↑</span>}
+            <div className="mt-2 text-[11px] uppercase tracking-[0.16em] text-white/55">
+              {active ? TERM_META[active - 1].window : "Hover a column above"}
             </div>
-            {active && (
-              <div className="mt-1 text-xs text-black/55">{TERM_META[activeTerm - 1].window}</div>
-            )}
           </div>
-          <div className="flex flex-wrap gap-2">
-          {activityForTerm(activeTerm).map((item, i) => (
-              <span
-                key={i}
-                className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs transition-opacity ${active ? "opacity-100" : "opacity-55"} ${
-                  item.tone === "in"
-                    ? "border-black/15 bg-gradient-to-r from-white to-black/[0.03] text-black/75"
-                    : item.tone === "d2c"
-                    ? "border-emerald-500/30 bg-gradient-to-r from-emerald-50 to-teal-50 text-emerald-800"
-                    : item.tone === "creator"
-                    ? "border-amber-500/30 bg-gradient-to-r from-amber-50 to-orange-50 text-amber-800"
-                    : item.tone === "imm"
-                    ? "border-indigo-500/30 bg-gradient-to-r from-indigo-50 to-violet-50 text-indigo-800"
-                    : "border-black/70 bg-gradient-to-r from-slate-800 to-black text-white"
-                }`}
-              >
-                {item.label}
-              </span>
-            ))}
+          <div className="grid grid-cols-1 divide-y divide-black/10 sm:grid-cols-2 sm:divide-x sm:divide-y-0 md:grid-cols-4">
+            {ROWS.map((row) => {
+              const cell = active ? row.cells[active - 1] : null;
+              return (
+                <div key={row.key} className="p-4">
+                  <div className={`flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] ${TONE_INK[row.engine]}`}>
+                    <span className={`h-2 w-2 ${TONE_ACCENT[row.engine]}`} />
+                    {row.label}
+                  </div>
+                  <div className="mt-2 font-display text-sm tracking-tight text-black">
+                    {cell ? cell.text : <span className="text-black/25">—</span>}
+                  </div>
+                  {cell?.note && (
+                    <div className="mt-0.5 text-[11px] text-black/55">{cell.note}</div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
-
 
       </div>
     </Wrapper>
