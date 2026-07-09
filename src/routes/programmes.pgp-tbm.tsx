@@ -1526,17 +1526,17 @@ function PgpTbm() {
       <section className="relative overflow-hidden pt-28 sm:pt-32">
         <div className="mx-auto max-w-[1180px] px-4 pb-16 sm:px-6 sm:pb-24">
           {/* Top eyebrow row */}
-          <div className="mb-10 flex flex-col gap-4 border-b border-black/10 pb-6 sm:mb-14 md:flex-row md:items-end md:justify-between">
-            <div className="flex flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
-              <span className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-white/70 px-3 py-1">
-                <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <div className="mb-10 flex flex-col gap-4 border-b border-foreground/10 pb-6 sm:mb-14 md:flex-row md:items-end md:justify-between">
+            <div className="flex flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground/55">
+              <span className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-card/80 px-3 py-1">
+                <span className="size-1.5 rounded-full bg-smoke-400 animate-pulse" />
                 Round 4 admissions open
               </span>
-              <span className="inline-flex items-center gap-1 rounded-full border border-black/15 bg-white/70 px-3 py-1">
+              <span className="inline-flex items-center gap-1 rounded-full border border-foreground/15 bg-card/80 px-3 py-1">
                 <Star className="size-3 fill-current" /> Accredited by EFMD & AACSB
               </span>
             </div>
-            <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/45">
+            <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground/45">
               PGP · Technology & Business Management
             </div>
           </div>
@@ -1545,29 +1545,29 @@ function PgpTbm() {
             {/* Left: headline + copy */}
             <div className="flex flex-col justify-between gap-10">
               <div>
-                <h1 className="font-display text-5xl font-semibold leading-[0.98] tracking-[-0.03em] sm:text-6xl md:text-[68px]">
+                <h1 className="font-display text-[clamp(2.75rem,7.5vw,6rem)] font-semibold leading-[0.92] tracking-[-0.04em]">
                   Learn business
                   <br />
-                  <span className="text-black/45">by running one.</span>
+                  <span className="font-normal text-foreground/40">by running one.</span>
                 </h1>
-                <p className="mt-8 max-w-xl text-base leading-relaxed text-black/65">
+                <p className="mt-8 max-w-xl text-lg leading-relaxed text-foreground/65 md:text-xl">
                   16 months at Masters' Union structured around three engines —
-                  <strong className="font-semibold text-black"> InClass</strong> fundamentals,
-                  <strong className="font-semibold text-black"> OutClass</strong> live ventures and
-                  <strong className="font-semibold text-black"> Immersions</strong> on the ground.
+                  <strong className="font-semibold text-foreground"> InClass</strong> fundamentals,
+                  <strong className="font-semibold text-foreground"> OutClass</strong> live ventures and
+                  <strong className="font-semibold text-foreground"> Immersions</strong> on the ground.
                   Graded on outcomes measured in the open market.
                 </p>
 
                 <div className="mt-10 flex flex-wrap items-center gap-3">
                   <a
                     href="#apply"
-                    className="inline-flex items-center gap-2 rounded-full bg-black px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-transform hover:scale-[1.02]"
+                    className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-primary-foreground transition-transform hover:scale-[1.02]"
                   >
                     Start application <ArrowUpRight className="size-4" />
                   </a>
                   <a
                     href="#model"
-                    className="inline-flex items-center gap-2 rounded-full border border-black/20 px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-black hover:bg-black/5"
+                    className="inline-flex items-center gap-2 rounded-full border border-foreground/20 px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-foreground hover:bg-foreground/5"
                   >
                     See the model ↓
                   </a>
@@ -1575,18 +1575,18 @@ function PgpTbm() {
               </div>
 
               {/* Inline stat strip — matches the page's card/section aesthetic */}
-              <div className="grid grid-cols-2 gap-0 border-t border-black/10 pt-6 sm:grid-cols-4">
+              <div className="grid grid-cols-2 gap-0 border-t border-foreground/10 pt-6 sm:grid-cols-4">
                 {[
                   { k: "16", v: "Months" },
                   { k: "₹34.6L", v: "Median CTC" },
                   { k: "200+", v: "Startups founded" },
                   { k: "145+", v: "Recruiters" },
                 ].map((s) => (
-                  <div key={s.v} className="border-l border-black/10 px-4 first:border-l-0 first:pl-0">
-                    <div className="font-display text-2xl font-semibold leading-none tracking-tight text-black sm:text-3xl">
+                  <div key={s.v} className="border-l border-foreground/10 px-4 first:border-l-0 first:pl-0">
+                    <div className="font-display text-3xl font-semibold leading-none tracking-tight text-foreground sm:text-4xl">
                       {s.k}
                     </div>
-                    <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50">
+                    <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-foreground/50">
                       {s.v}
                     </div>
                   </div>
@@ -1596,14 +1596,14 @@ function PgpTbm() {
 
             {/* Right: image card */}
             <div className="relative">
-              <div className="relative aspect-[4/5] overflow-hidden border border-black/10 bg-black">
+              <div className="relative aspect-[4/5] overflow-hidden border border-foreground/10 bg-primary">
                 <ImagePlaceholder label="Hero visual" className="h-full w-full" aspect="4/5" />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-5 text-white">
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/70">
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/80 via-primary/30 to-transparent p-5 text-primary-foreground">
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary-foreground/70">
                     The Campus
                   </div>
                   <div className="mt-1 font-display text-sm leading-tight">DLF Cyber Park, Gurugram</div>
-                  <div className="mt-1 text-xs text-white/60">85% of Fortune 500 within a 2 km walk</div>
+                  <div className="mt-1 text-xs text-primary-foreground/60">85% of Fortune 500 within a 2 km walk</div>
                 </div>
               </div>
             </div>
