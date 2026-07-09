@@ -362,7 +362,7 @@ const IN_CLASS = {
     { name: "Liberal Arts", eg: "Geopolitics · Economies · Philosophy" },
   ],
   stats: [
-    { k: "150+", v: "Courses across 7 tracks" },
+    { k: "150+", v: "Courses across 7 modules" },
     { k: "40%", v: "Faculty are sitting operators" },
     { k: "0", v: "Rote exams" },
   ],
@@ -1571,7 +1571,7 @@ function PgpTbm() {
             </h2>
             <p className="mt-5 text-sm leading-relaxed text-black/65">
               You don't pick between theory and practice — you get both, every week.
-              <strong> InClass</strong> teaches the fundamentals across 7 tracks.
+              <strong> InClass</strong> teaches the fundamentals across 7 modules.
               <strong> OutClass</strong> forces you to apply them on two live ventures — a D2C brand and a Creator Challenge — that run across terms.
               <strong> Immersions</strong> take you to the ground, globally and across Bharat.
               The whole 16 months is laid out on one calendar: every row is one engine, every column is one 2-month term. Hover or tap any term to see what you'll be doing then.
@@ -1605,16 +1605,18 @@ function PgpTbm() {
                 ))}
               </dl>
             </div>
-            <div className="grid gap-px bg-black/10 sm:grid-cols-2">
-              <ImagePlaceholder label="InClass tracks" aspect="16/9" className="sm:col-span-2" />
-              {IN_CLASS.tracks.map((t) => (
-                <article key={t.name} className="bg-white/90 p-6 pastel-fill">
-                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-700">Track</div>
-                  <h4 className="mt-2 font-display text-3xl leading-tight tracking-tight">{t.name}</h4>
-                  <p className="mt-4 max-w-3xl text-sm leading-relaxed text-black/65">{t.eg}</p>
+            <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
+              <ImagePlaceholder label="InClass modules" aspect="16/9" className="sm:col-span-2 lg:col-span-3" />
+              {IN_CLASS.tracks.map((t, i) => (
+                <article key={t.name} className="bg-white p-4">
+                  <div className="flex items-center gap-2">
+                    <span className="inline-flex size-6 items-center justify-center bg-amber-500 text-xs font-semibold text-white">M{i + 1}</span>
+                    <h4 className="font-display text-sm leading-tight">{t.name}</h4>
+                  </div>
+                  <p className="mt-2 text-xs leading-snug text-black/60">{t.eg}</p>
                 </article>
               ))}
-              <div className="bg-black p-6 text-white">
+              <div className="bg-black p-6 text-white sm:col-span-2 lg:col-span-2">
                 <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">Delivered as</div>
                 <div className="mt-2 font-display text-2xl leading-tight">150+ courses · 8 terms · project-graded</div>
               </div>
