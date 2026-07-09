@@ -2059,3 +2059,18 @@ function PgpTbm() {
     </main>
   );
 }
+
+function FooterCol({ title, links }: { title: string; links: string[] }) {
+  return (
+    <div className="md:col-span-2 lg:col-span-2">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white">{title}</p>
+      <ul className="mt-5 space-y-3">
+        {links.map((l) => (
+          <li key={l}>
+            <a href="#" className="text-[13px] text-white/70 transition-colors hover:text-white">{l}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
