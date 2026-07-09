@@ -430,9 +430,10 @@ const LANE_TONE_LABELS: Record<string, string> = {
   capstone: "Final challenge",
 };
 
-function TermsGantt() {
+function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
   const [active, setActive] = useState<number | null>(null);
   const activeTerm = active ?? 1;
+
 
   const activityForTerm = (t: number) => {
     const items: { label: string; tone: string }[] = [];
@@ -448,19 +449,33 @@ function TermsGantt() {
     return items;
   };
 
+  const Wrapper: React.ElementType = embedded ? "div" : "section";
+  const wrapperProps = embedded
+    ? { id: "terms", className: "" }
+    : {
+        id: "terms",
+        className:
+          "border-b border-black/10 bg-[radial-gradient(circle_at_10%_0%,rgba(16,185,129,0.06),transparent_40%),radial-gradient(circle_at_90%_100%,rgba(245,158,11,0.06),transparent_40%)]",
+      };
+  const innerClass = embedded
+    ? ""
+    : "mx-auto max-w-[1180px] px-4 py-20 sm:px-6";
+
   return (
-    <section id="terms" className="border-b border-black/10 bg-[radial-gradient(circle_at_10%_0%,rgba(16,185,129,0.06),transparent_40%),radial-gradient(circle_at_90%_100%,rgba(245,158,11,0.06),transparent_40%)]">
-      <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-        {/* Header */}
-        <div className="mb-8 max-w-2xl">
-          <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">The proof · 8 terms in one view</div>
-          <h2 className="mt-3 font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.03] tracking-[-0.02em]">
-            The whole 16 months, on one calendar.
-          </h2>
-          <p className="mt-4 text-[14px] leading-relaxed text-black/60">
-            The programme is split into <strong>8 terms of 2 months each</strong>. Every row below is one type of learning. Every column is one term. Hover — or tap — any term to see everything you'll be doing that fortnight.
-          </p>
-        </div>
+    <Wrapper {...wrapperProps}>
+      <div className={innerClass}>
+        {!embedded && (
+          <div className="mb-8 max-w-2xl">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">The proof · 8 terms in one view</div>
+            <h2 className="mt-3 font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.03] tracking-[-0.02em]">
+              The whole 16 months, on one calendar.
+            </h2>
+            <p className="mt-4 text-[14px] leading-relaxed text-black/60">
+              The programme is split into <strong>8 terms of 2 months each</strong>. Every row below is one type of learning. Every column is one term. Hover — or tap — any term to see everything you'll be doing that fortnight.
+            </p>
+          </div>
+        )}
+
 
         {/* How to read + Legend */}
         <div className="mb-6 grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
@@ -617,7 +632,8 @@ function TermsGantt() {
           <a href="https://mastersunion.org/pgp-tbm-curriculum" target="_blank" rel="noreferrer" className="underline underline-offset-2">mastersunion.org/pgp-tbm-curriculum</a>. A non-mandatory 3-month internship follows the on-campus terms.
         </div>
       </div>
-    </section>
+    </Wrapper>
+
   );
 }
 
@@ -1317,9 +1333,7 @@ function PgpTbm() {
             </p>
           </div>
 
-          <ImagePlaceholder label="The three engines" className="mb-10" aspect="21/9" />
-
-          <div className="mb-16 grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mb-10 grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
             {MODEL_STATS.map((s) => (
               <div key={s.v} className="bg-white/90 p-6 backdrop-blur-sm">
                 <div className="font-display text-[38px] leading-none tracking-tight">{s.k}</div>
@@ -1327,6 +1341,20 @@ function PgpTbm() {
               </div>
             ))}
           </div>
+
+          {/* Unified calendar: 8 terms × 3 engines on one grid */}
+          <div className="mb-8 max-w-2xl">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">The calendar · 8 terms × 3 engines</div>
+            <h3 className="mt-3 font-display text-[clamp(1.5rem,2.8vw,2.2rem)] leading-[1.05] tracking-[-0.02em]">
+              The whole 16 months, on one calendar.
+            </h3>
+            <p className="mt-3 text-[14px] leading-relaxed text-black/60">
+              Every row is one engine. Every column is one term of 2 months. Hover — or tap — any term to see everything you'll be doing then.
+            </p>
+          </div>
+          <TermsGantt embedded />
+
+
 
           {/* ENGINE 01 — InClass */}
           <div className="grid gap-8 border-t border-black/10 py-12 md:grid-cols-[300px_1fr] md:gap-16">
@@ -1442,8 +1470,8 @@ function PgpTbm() {
         </div>
       </section>
 
-      {/* 8 TERMS · Gantt calendar of the three engines */}
-      <TermsGantt />
+
+
 
       {/* OUTCOMES */}
       <section id="outcomes" className="border-b border-black/10 bg-white/40">
