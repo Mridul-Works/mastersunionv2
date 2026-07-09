@@ -856,7 +856,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     return (
                       <div
                         key={bi}
-                        className={`absolute top-1/2 -translate-y-1/2 rounded-[3px] px-3 py-2 text-xs font-medium tracking-tight shadow-sm ${TONE_STYLES[b.tone]}`}
+                        className={`absolute top-1/2 -translate-y-1/2 px-3 py-2 text-xs font-medium tracking-tight ${TONE_STYLES[b.tone]}`}
                         style={{ left: `calc(${leftPct}% + 6px)`, width: `calc(${widthPct}% - 12px)` }}
                       >
                         <span className="block truncate">{b.text}</span>
