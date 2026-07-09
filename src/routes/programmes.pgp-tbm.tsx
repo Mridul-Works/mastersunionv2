@@ -1205,26 +1205,26 @@ function AlumniShowcase() {
               {/* Dark card */}
               {secondary && (
                 <div className="rounded-none bg-black p-6 text-white md:p-7">
-                  <p className="font-display text-lg leading-[1.35] text-white md:text-xl">
+                  <p className="font-display text-base leading-[1.35] text-white md:text-lg">
                     &ldquo;{secondary.quote}&rdquo;
                   </p>
                   <div className="mt-5 grid grid-cols-2 gap-4 border-t border-white/10 pt-4">
                     <div>
                       <p className="font-display text-2xl font-semibold text-white">{secondary.batch}</p>
-                      <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-white/55">Batch</p>
+                      <p className="mt-0.5 font-mono text-xs uppercase tracking-[0.2em] text-white/55">Batch</p>
                     </div>
                     <div>
                       <p className="font-display text-2xl font-semibold text-white">{secondary.domain}</p>
-                      <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-white/55">Track</p>
+                      <p className="mt-0.5 font-mono text-xs uppercase tracking-[0.2em] text-white/55">Track</p>
                     </div>
                   </div>
                   <div className="mt-5 flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-none bg-white/10 font-mono text-[11px] text-white">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-none bg-white/10 font-mono text-xs text-white">
                       {initialsOf(secondary.name)}
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-white">{secondary.name}</p>
-                      <p className="text-[11px] text-white/60">{secondary.role} · {secondary.company}</p>
+                      <p className="text-xs text-white/60">{secondary.role} · {secondary.company}</p>
                     </div>
                   </div>
                 </div>
@@ -1233,26 +1233,26 @@ function AlumniShowcase() {
               {/* Light card */}
               {tertiary && (
                 <div className="rounded-none border border-black/10 bg-white p-6 md:p-7">
-                  <p className="font-display text-lg leading-[1.35] text-black md:text-xl">
+                  <p className="font-display text-base leading-[1.35] text-black md:text-lg">
                     &ldquo;{tertiary.quote}&rdquo;
                   </p>
                   <div className="mt-5 grid grid-cols-2 gap-4 border-t border-black/10 pt-4">
                     <div>
                       <p className="font-display text-2xl font-semibold text-black">{tertiary.batch}</p>
-                      <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-black/50">Batch</p>
+                      <p className="mt-0.5 font-mono text-xs uppercase tracking-[0.2em] text-black/50">Batch</p>
                     </div>
                     <div>
                       <p className="font-display text-2xl font-semibold text-black">{tertiary.domain}</p>
-                      <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-black/50">Track</p>
+                      <p className="mt-0.5 font-mono text-xs uppercase tracking-[0.2em] text-black/50">Track</p>
                     </div>
                   </div>
                   <div className="mt-5 flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-none bg-black/5 font-mono text-[11px] text-black">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-none bg-black/5 font-mono text-xs text-black">
                       {initialsOf(tertiary.name)}
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-black">{tertiary.name}</p>
-                      <p className="text-[11px] text-black/60">{tertiary.role} · {tertiary.company}</p>
+                      <p className="text-xs text-black/60">{tertiary.role} · {tertiary.company}</p>
                     </div>
                   </div>
                 </div>
@@ -1263,10 +1263,10 @@ function AlumniShowcase() {
           {/* Controls */}
           <div className="mt-6 flex items-center gap-5 border-t border-black/10 pt-5">
             <div className="flex items-baseline gap-2 font-display">
-              <span className="text-2xl font-semibold leading-none text-black">
+              <span className="text-xl font-semibold leading-none text-black">
                 {String(safeIdx + 1).padStart(2, "0")}
               </span>
-              <span className="text-2xl leading-none text-black/30">
+              <span className="text-xl leading-none text-black/30">
                 /{String(total).padStart(2, "0")}
               </span>
             </div>
