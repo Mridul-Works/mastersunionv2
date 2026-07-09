@@ -430,9 +430,10 @@ const LANE_TONE_LABELS: Record<string, string> = {
   capstone: "Final challenge",
 };
 
-function TermsGantt() {
+function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
   const [active, setActive] = useState<number | null>(null);
   const activeTerm = active ?? 1;
+
 
   const activityForTerm = (t: number) => {
     const items: { label: string; tone: string }[] = [];
