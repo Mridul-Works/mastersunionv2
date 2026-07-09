@@ -1595,6 +1595,8 @@ function PgpTbm() {
         </div>
       </section>
 
+      <AdmissionPathwaysSection />
+
       {/* THE MODEL — three engines */}
       <section id="model" className="border-b border-black/10">
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
