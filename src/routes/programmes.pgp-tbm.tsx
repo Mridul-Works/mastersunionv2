@@ -159,11 +159,9 @@ function AdmissionPathwaysSection() {
         {/* Header */}
         <div className="mb-8 flex flex-col gap-4 sm:mb-12 md:flex-row md:items-end md:justify-between">
           <div>
-            <div className="mb-3 flex items-center gap-2">
-              <Star size={14} className="text-black" fill="currentColor" />
-              <span className="text-xs font-bold uppercase tracking-[0.22em] text-black/60">
-                ADMISSION PATHWAYS
-              </span>
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              ADMISSION PATHWAYS
             </div>
             <h2 className="font-display text-3xl leading-[1.15] tracking-[-0.02em]">
               Two Programmes.
@@ -1055,7 +1053,10 @@ function AlumniShowcase() {
       {/* Header */}
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div>
-          <div className="text-[11px] font-semibold uppercase tracking-[0.24em] text-black/45">Alumni Network</div>
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            ALUMNI NETWORK
+          </div>
           <h3 className="mt-3 max-w-3xl font-display text-4xl font-bold leading-[1.02] tracking-tight text-black md:text-5xl">
             Success <span className="font-serif-italic font-normal">stories.</span>
           </h3>
@@ -1578,7 +1579,10 @@ function PgpTbm() {
       <section id="model" className="border-b border-black/10">
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
           <div className="mb-12 max-w-3xl">
-            <div className="text-xs font-semibold uppercase tracking-[0.22em] text-black/50">How 16 months are structured</div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              THE MODEL
+            </div>
             <h2 className="mt-3 font-display text-3xl leading-[1.03] tracking-[-0.02em]">
               Three engines. In parallel. <em className="italic text-black/60">Every term.</em>
             </h2>
@@ -1935,8 +1939,8 @@ function PgpTbm() {
         <div className="relative mx-auto max-w-[1180px] px-4 py-24 sm:px-6">
           <div className="mb-14 max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
-              <span className="h-1.5 w-1.5 rounded-full bg-teal" />
-              Admissions & Application Process
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              ADMISSIONS
             </div>
             <h2 className="mt-4 font-display text-4xl leading-[1.02] tracking-[-0.03em] text-foreground sm:text-5xl">
               Four steps from application to{" "}
@@ -2002,7 +2006,10 @@ function PgpTbm() {
       <section id="faq" className="relative overflow-hidden border-b border-black/10 bg-gradient-to-b from-background via-muted/50 to-background">
         <div className="relative mx-auto grid max-w-[1180px] gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.6fr_1fr] lg:gap-16">
           <div>
-            <div className="text-xs font-semibold uppercase tracking-[0.22em] text-black/50">FAQ</div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              FAQ
+            </div>
             <h2 className="mt-3 font-display text-3xl leading-[1.05] tracking-[-0.02em]">
               Everything you were about to email us.
             </h2>
