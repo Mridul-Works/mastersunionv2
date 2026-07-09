@@ -1609,19 +1609,19 @@ function PgpTbm() {
           </div>
 
           {/* ENGINE 02 — OutClass */}
-          <div className="grid gap-8 border-t border-black/10 py-12 md:grid-cols-[300px_1fr] md:gap-16">
+          <div className="grid gap-8 border-t border-border/60 py-12 md:grid-cols-[300px_1fr] md:gap-16">
             <div>
-              <div className="font-display text-3xl leading-none text-black/25">02</div>
+              <div className="font-display text-3xl leading-none text-muted-foreground/50">02</div>
               <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">OutClass · Live ventures across terms</div>
               <h3 className="mt-2 font-display text-3xl leading-tight tracking-tight">Real customers. Real revenue. Real followers.</h3>
-              <p className="mt-3 text-sm leading-relaxed text-black/65">
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                 Two flagship OutClass tracks run continuously alongside InClass. Both are graded on outcomes measured in the open market — not in decks.
               </p>
             </div>
-            <div className="space-y-px bg-black/10">
-              <ImagePlaceholder label="OutClass ventures" aspect="16/9" />
+            <div className="space-y-4 rounded-2xl bg-muted/40 p-3">
+              <ImagePlaceholder label="OutClass ventures" aspect="16/9" className="rounded-xl" />
               {OUT_CLASS.map((o) => (
-                <article key={o.title} className="bg-white/90 p-6 pastel-fill">
+                <article key={o.title} className="rounded-xl bg-card p-6 shadow-sm">
                   <div className="flex flex-wrap items-baseline justify-between gap-3">
                     <div>
                       <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">{o.tag}</div>
@@ -1631,22 +1631,25 @@ function PgpTbm() {
                       {o.stats.map((s) => (
                         <div key={s.v}>
                           <div className="font-display text-3xl leading-none tracking-tight">{s.k}</div>
-                          <div className="mt-1 text-xs uppercase tracking-[0.12em] text-black/55">{s.v}</div>
+                          <div className="mt-1 text-xs uppercase tracking-[0.12em] text-muted-foreground">{s.v}</div>
                         </div>
                       ))}
                     </div>
                   </div>
-                  <p className="mt-4 max-w-3xl text-sm leading-relaxed text-black/65">{o.body}</p>
+                  <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">{o.body}</p>
                   <div className="mt-6">
-                    <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/50">Term-by-term arc</div>
-                    <ol className="mt-3 grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
+                    <div className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">Term-by-term arc</div>
+                    <ol className="mt-3 flex flex-wrap gap-3">
                       {o.arc.map((a, i) => (
-                        <li key={`${o.title}-${i}`} className="bg-white p-4">
-                          <div className="flex items-center gap-2">
-                            <span className="inline-flex size-6 items-center justify-center bg-emerald-500 text-xs font-semibold text-white">{a.t}</span>
-                            <span className="font-display text-sm leading-tight">{a.h}</span>
+                        <li key={`${o.title}-${i}`} className="relative flex min-w-[160px] flex-1 items-start gap-3 rounded-lg bg-secondary/60 p-4">
+                          <span className="inline-flex size-7 shrink-0 items-center justify-center rounded-md bg-emerald-500 text-[11px] font-bold text-white">{a.t}</span>
+                          <div>
+                            <div className="font-display text-sm leading-tight tracking-tight">{a.h}</div>
+                            <div className="mt-1 text-xs leading-snug text-muted-foreground">{a.d}</div>
                           </div>
-                          <div className="mt-2 text-xs leading-snug text-black/60">{a.d}</div>
+                          {i !== o.arc.length - 1 && (
+                            <span className="absolute -right-2 top-1/2 hidden -translate-y-1/2 text-muted-foreground/40 lg:block">→</span>
+                          )}
                         </li>
                       ))}
                     </ol>
