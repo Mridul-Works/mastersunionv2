@@ -478,9 +478,9 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
             <span className="inline-flex items-center gap-2"><span className={`size-2.5 ${TONE_DOTS.d2c}`} /> Live D2C brand</span>
             <span className="inline-flex items-center gap-2"><span className={`size-2.5 ${TONE_DOTS.creator}`} /> Creator challenge</span>
             <span className="inline-flex items-center gap-2"><span className={`size-2.5 ${TONE_DOTS.imm}`} /> Immersion trip</span>
-            </div>
           </div>
         </div>
+
 
         {/* Gantt */}
         <div className="overflow-x-auto">
