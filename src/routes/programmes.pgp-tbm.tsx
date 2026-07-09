@@ -12,6 +12,36 @@ import {
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 
+import bambaiiAsset from "@/assets/startup-logos/Bambaii.png.asset.json";
+import beyondVedaAsset from "@/assets/startup-logos/BeyondVeda.png.asset.json";
+import blueBrewAsset from "@/assets/startup-logos/BlueBrew.png.asset.json";
+import eatAtlasAsset from "@/assets/startup-logos/EatAtlas.png.asset.json";
+import fnorAsset from "@/assets/startup-logos/FNOR.png.asset.json";
+import flourishFoodsAsset from "@/assets/startup-logos/FlourishFoods.png.asset.json";
+import kazeAsset from "@/assets/startup-logos/Kaze.png.asset.json";
+import lexisAsset from "@/assets/startup-logos/Lexis.png.asset.json";
+import momsAsset from "@/assets/startup-logos/Moms.png.asset.json";
+import monarqueAsset from "@/assets/startup-logos/Monarque.png.asset.json";
+import nivaraAsset from "@/assets/startup-logos/Nivara.png.asset.json";
+import woodysAsset from "@/assets/startup-logos/WoodysPizzeria.png.asset.json";
+import yangoAsset from "@/assets/startup-logos/Yango.png.asset.json";
+
+const STARTUP_LOGOS: { name: string; url: string }[] = [
+  { name: "Bambaii", url: bambaiiAsset.url },
+  { name: "BeyondVeda", url: beyondVedaAsset.url },
+  { name: "BlueBrew", url: blueBrewAsset.url },
+  { name: "EatAtlas", url: eatAtlasAsset.url },
+  { name: "FNOR", url: fnorAsset.url },
+  { name: "Flourish Foods", url: flourishFoodsAsset.url },
+  { name: "Kaze", url: kazeAsset.url },
+  { name: "Lexi's", url: lexisAsset.url },
+  { name: "Mom's", url: momsAsset.url },
+  { name: "Monarque", url: monarqueAsset.url },
+  { name: "Nivara", url: nivaraAsset.url },
+  { name: "Woody's Pizzeria", url: woodysAsset.url },
+  { name: "Yango", url: yangoAsset.url },
+];
+
 
 const PGP_NAV: SectionNavItem[] = [
   { id: "top", label: "Overview" },
