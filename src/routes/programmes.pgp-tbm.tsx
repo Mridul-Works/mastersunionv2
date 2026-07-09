@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
+import { cn } from "@/lib/utils";
 
 import bambaiiAsset from "@/assets/startup-logos/Bambaii.png.asset.json";
 import beyondVedaAsset from "@/assets/startup-logos/BeyondVeda.png.asset.json";
