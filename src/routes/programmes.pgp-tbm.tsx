@@ -1614,7 +1614,7 @@ function PgpTbm() {
                   <p className="mt-3 text-sm leading-relaxed text-black/65">{t.eg}</p>
                 </article>
               ))}
-              <div className="bg-black p-6 text-white sm:col-span-2">
+              <div className="bg-black p-6 text-white">
                 <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">Delivered as</div>
                 <div className="mt-2 font-display text-2xl leading-tight">150+ courses · 8 terms · project-graded</div>
               </div>
