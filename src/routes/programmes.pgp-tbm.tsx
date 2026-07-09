@@ -620,18 +620,6 @@ const FAQ = [
   },
 ];
 
-// -------- Countdown --------
-function useCountdown(target: Date) {
-  const [now, setNow] = useState(() => Date.now());
-  useEffect(() => {
-    const id = setInterval(() => setNow(Date.now()), 1000);
-    return () => clearInterval(id);
-  }, []);
-  const diff = Math.max(0, target.getTime() - now);
-  const d = Math.floor(diff / 86400000);
-  const h = Math.floor((diff % 86400000) / 3600000);
-  return { d, h };
-}
 
 // -------- 8-term Gantt calendar --------
 const TERM_META = [
