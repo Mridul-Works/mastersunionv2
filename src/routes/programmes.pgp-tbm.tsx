@@ -6,6 +6,9 @@ import {
   Minus,
   Star,
   Linkedin,
+  Instagram,
+  Youtube,
+  Twitter,
   Calendar,
   Clock,
   Users,
@@ -18,6 +21,7 @@ import {
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 import { cn } from "@/lib/utils";
+import logoWhite from "@/assets/logo-4.png.asset.json";
 
 import bambaiiAsset from "@/assets/startup-logos/Bambaii.png.asset.json";
 import beyondVedaAsset from "@/assets/startup-logos/BeyondVeda.png.asset.json";
