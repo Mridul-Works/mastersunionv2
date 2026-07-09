@@ -1940,8 +1940,10 @@ function PgpTbm() {
         </div>
       </section>
 
+      <SectionDivider />
+
       {/* FACULTY */}
-      <section id="faculty" className="relative overflow-hidden border-b border-black/10 py-12 md:py-16">
+      <section id="faculty" className="relative overflow-hidden py-12 md:py-16">
         <div className="relative mx-auto max-w-7xl px-5 md:px-6">
           <Eyebrow num="04" label="Faculty" />
           <div className="mt-6 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
@@ -1958,8 +1960,10 @@ function PgpTbm() {
         </div>
       </section>
 
+      <SectionDivider />
+
       {/* ADMISSIONS */}
-      <section id="admissions" className="relative overflow-hidden border-b border-black/10">
+      <section id="admissions" className="relative overflow-hidden">
         {/* soft ambient glows */}
 
         <div className="relative mx-auto max-w-[1180px] px-4 py-24 sm:px-6">
