@@ -1718,26 +1718,26 @@ function PgpTbm() {
 
 
       {/* OUTCOMES */}
-      <section id="outcomes" className="relative overflow-hidden border-b border-black/10 bg-gradient-to-b from-white via-neutral-50/60 to-white">
+      <section id="outcomes" className="relative overflow-hidden border-b border-black/10 bg-gradient-to-b from-background via-muted/50 to-background">
         {/* soft ambient glows */}
-        <div aria-hidden className="pointer-events-none absolute -top-32 left-1/3 h-96 w-96 rounded-full bg-gradient-to-br from-indigo-200/40 via-violet-200/30 to-transparent blur-3xl" />
-        <div aria-hidden className="pointer-events-none absolute -bottom-32 right-1/4 h-96 w-96 rounded-full bg-gradient-to-tr from-emerald-200/40 via-teal-200/30 to-transparent blur-3xl" />
+        <div aria-hidden className="pointer-events-none absolute -top-32 left-1/3 h-96 w-96 rounded-full bg-gradient-to-br from-teal/25 via-sage/20 to-transparent blur-3xl" />
+        <div aria-hidden className="pointer-events-none absolute -bottom-32 right-1/4 h-96 w-96 rounded-full bg-gradient-to-tr from-cream/40 via-sage/30 to-transparent blur-3xl" />
 
         <div className="relative mx-auto max-w-[1180px] px-4 py-24 sm:px-6">
           {/* Header */}
           <div className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
-              <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-black/60 backdrop-blur">
+              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
                 Outcomes · Class of 2025
               </div>
-              <h2 className="mt-4 font-display text-4xl leading-[1.02] tracking-[-0.03em] sm:text-5xl">
+              <h2 className="mt-4 font-display text-4xl leading-[1.02] tracking-[-0.03em] text-foreground sm:text-5xl">
                 Two paths out.
                 <br />
-                <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-emerald-600 bg-clip-text text-transparent">Both measured in numbers.</span>
+                <span className="bg-gradient-to-r from-teal-500 via-emerald-600 to-sage-500 bg-clip-text text-transparent">Both measured in numbers.</span>
               </h2>
             </div>
-            <p className="max-w-sm text-sm leading-relaxed text-black/60">
+            <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
               Graded on the open market — salaries, offers, funded ventures. No vanity metrics, no soft claims.
             </p>
           </div>
@@ -1745,9 +1745,9 @@ function PgpTbm() {
           {/* Two-panel grid */}
           <div className="grid gap-6 lg:grid-cols-2">
             {/* CAREERS PANEL */}
-            <div className="group relative flex flex-col overflow-hidden rounded-3xl border border-black/10 bg-white p-8 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-30px_rgba(0,0,0,0.15)] transition hover:shadow-[0_1px_0_rgba(0,0,0,0.02),0_30px_80px_-30px_rgba(79,70,229,0.25)]">
+            <div className="group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card/80 p-8 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-30px_rgba(0,0,0,0.15)] transition hover:shadow-[0_1px_0_rgba(0,0,0,0.02),0_30px_80px_-30px_rgba(20,184,166,0.25)]">
               <div className="flex items-center justify-between">
-                <div className="inline-flex items-center gap-2 rounded-full bg-indigo-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-indigo-700">
+                <div className="inline-flex items-center gap-2 rounded-full bg-teal/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-teal-700">
                   01 · Careers
                 </div>
                 <div className="text-[11px] uppercase tracking-[0.18em] text-black/40">Class of 2025</div>
@@ -1757,18 +1757,18 @@ function PgpTbm() {
               <div className="mt-8">
                 <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-black/55">Median CTC</div>
                 <div className="mt-2 flex items-baseline gap-3">
-                  <span className="bg-gradient-to-br from-indigo-600 via-violet-600 to-indigo-800 bg-clip-text font-display text-6xl leading-none tracking-tight text-transparent sm:text-7xl">
+                  <span className="bg-gradient-to-br from-teal-500 via-emerald-600 to-sage-600 bg-clip-text font-display text-6xl leading-none tracking-tight text-transparent sm:text-7xl">
                     ₹34.6
                   </span>
                   <span className="font-display text-2xl text-black/70">LPA</span>
                 </div>
-                <div className="mt-2 h-px w-16 bg-gradient-to-r from-indigo-500 to-transparent" />
+                <div className="mt-2 h-px w-16 bg-gradient-to-r from-teal-500 to-transparent" />
               </div>
 
               {/* Secondary stats */}
               <div className="mt-8 grid grid-cols-2 gap-4">
                 {OUTCOME_HEADLINE.slice(1).map((s) => (
-                  <div key={s.v} className="rounded-2xl border border-black/5 bg-neutral-50/70 p-4">
+                  <div key={s.v} className="rounded-2xl border border-border bg-muted/50 p-4">
                     <div className="font-display text-2xl leading-none tracking-tight text-black/90">{s.k}</div>
                     <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-black/55">{s.v}</div>
                   </div>
@@ -1783,11 +1783,11 @@ function PgpTbm() {
                     <li key={r.role}>
                       <div className="flex items-baseline justify-between text-sm">
                         <span className="text-black/75">{r.role}</span>
-                        <span className="font-display text-sm font-semibold tabular-nums text-indigo-700">{r.pct}</span>
+                        <span className="font-display text-sm font-semibold tabular-nums text-teal-700">{r.pct}</span>
                       </div>
                       <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-black/5">
                         <div
-                          className="h-full rounded-full bg-gradient-to-r from-indigo-500 via-violet-500 to-indigo-600"
+                          className="h-full rounded-full bg-gradient-to-r from-teal-500 via-emerald-500 to-sage-500"
                           style={{ width: r.pct }}
                         />
                       </div>
@@ -1803,7 +1803,7 @@ function PgpTbm() {
                   {CAREER_LOGOS.map((logo) => (
                     <div
                       key={logo.name}
-                      className="flex h-16 items-center justify-center rounded-xl border border-black/5 bg-white p-2 transition hover:border-indigo-200 hover:bg-indigo-50/40"
+                      className="flex h-16 items-center justify-center rounded-xl border border-border bg-white p-2 transition hover:border-teal-200 hover:bg-teal-50/40"
                       title={logo.name}
                     >
                       <img
