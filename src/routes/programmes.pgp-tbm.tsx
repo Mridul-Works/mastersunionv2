@@ -1564,7 +1564,7 @@ function PgpTbm() {
               </div>
             </div>
 
-            <dl className="grid grid-cols-2 gap-px border-t border-black/10 bg-black/10 sm:grid-cols-4">
+            <dl className="grid grid-cols-3 gap-px border-t border-black/10 bg-black/10">
               {FACTS.map((f) => (
                 <div key={f.k} className="bg-white p-4">
                   <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50">{f.k}</dt>
