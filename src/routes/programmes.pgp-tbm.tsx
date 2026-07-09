@@ -846,14 +846,14 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
 
             {/* Data rows */}
             {ROWS.map((row) => (
-              <div key={row.key} className="grid grid-cols-[200px_repeat(8,1fr)] divide-x divide-black/10">
+              <div key={row.key} className="grid grid-cols-[200px_repeat(8,1fr)] divide-x divide-foreground/10">
                 {/* Row label */}
                 <div className="flex flex-col justify-center gap-1 px-4 py-4">
                   <div className={`flex items-center gap-2 font-display text-sm tracking-tight ${TONE_INK[row.engine]}`}>
                     <span className={`h-3 w-[3px] ${TONE_ACCENT[row.engine]}`} />
                     {row.label}
                   </div>
-                  <div className="text-[11px] uppercase tracking-[0.14em] text-black/45">{row.sub}</div>
+                  <div className="text-[11px] uppercase tracking-[0.14em] text-foreground/45">{row.sub}</div>
                 </div>
                 {row.cells.map((cell, i) => {
                   const t = i + 1;
@@ -863,7 +863,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                       <div
                         key={t}
                         onMouseEnter={() => setActive(t)}
-                        className={`relative min-h-[76px] transition-colors ${isActive ? "bg-black/[0.04]" : "bg-[repeating-linear-gradient(135deg,transparent_0_6px,rgba(0,0,0,0.04)_6px_7px)]"}`}
+                        className={`relative min-h-[76px] transition-colors ${isActive ? "bg-foreground/[0.04]" : "bg-[repeating-linear-gradient(135deg,transparent_0_6px,rgba(40,38,36,0.04)_6px_7px)]"}`}
                       />
                     );
                   }
@@ -871,13 +871,13 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     <div
                       key={t}
                       onMouseEnter={() => setActive(t)}
-                      className={`group relative flex min-h-[76px] flex-col justify-between px-3 py-3 transition-colors ${isActive ? "bg-black text-white" : "bg-white"}`}
+                      className={`group relative flex min-h-[76px] flex-col justify-between px-3 py-3 transition-colors ${isActive ? "bg-smoke-50 text-white" : "bg-white"}`}
                     >
                       <div className={`h-[3px] w-6 ${TONE_ACCENT[cell.tone]} ${isActive ? "opacity-100" : "opacity-90"}`} />
                       <div>
-                        <div className={`font-display text-[13px] leading-tight tracking-tight ${isActive ? "text-white" : "text-black"}`}>{cell.text}</div>
+                        <div className={`font-display text-[13px] leading-tight tracking-tight ${isActive ? "text-white" : "text-foreground"}`}>{cell.text}</div>
                         {cell.note && (
-                          <div className={`mt-0.5 text-[10px] uppercase tracking-[0.14em] ${isActive ? "text-white/60" : "text-black/45"}`}>{cell.note}</div>
+                          <div className={`mt-0.5 text-[10px] uppercase tracking-[0.14em] ${isActive ? "text-white/60" : "text-foreground/45"}`}>{cell.note}</div>
                         )}
                       </div>
                     </div>
