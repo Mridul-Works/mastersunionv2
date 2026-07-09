@@ -1608,15 +1608,15 @@ function PgpTbm() {
             <div className="grid gap-px bg-black/10 sm:grid-cols-2">
               <ImagePlaceholder label="InClass tracks" aspect="16/9" className="sm:col-span-2" />
               {IN_CLASS.tracks.map((t) => (
-                <div key={t.name} className="bg-white/90 p-5 pastel-fill">
-                  <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/50">Track</div>
-                  <div className="mt-2 font-display text-sm leading-tight tracking-tight">{t.name}</div>
-                  <div className="mt-2 text-xs leading-snug text-black/60">{t.eg}</div>
-                </div>
+                <article key={t.name} className="bg-white/90 p-6 pastel-fill">
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-black/55">Track</div>
+                  <h4 className="mt-2 font-display text-2xl leading-tight tracking-tight">{t.name}</h4>
+                  <p className="mt-3 text-sm leading-relaxed text-black/65">{t.eg}</p>
+                </article>
               ))}
-              <div className="bg-black p-5 text-white">
+              <div className="bg-black p-6 text-white">
                 <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">Delivered as</div>
-                <div className="mt-2 font-display text-sm leading-tight">150+ courses · 8 terms · project-graded</div>
+                <div className="mt-2 font-display text-2xl leading-tight">150+ courses · 8 terms · project-graded</div>
               </div>
             </div>
           </div>
