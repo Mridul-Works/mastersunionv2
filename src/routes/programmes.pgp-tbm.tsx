@@ -1903,8 +1903,6 @@ function PgpTbm() {
 
       {/* FACULTY */}
       <section id="faculty" className="relative overflow-hidden border-b border-black/10 py-12 md:py-16">
-        <div aria-hidden className="pointer-events-none absolute -top-32 left-1/4 h-96 w-96 rounded-full bg-gradient-to-br from-teal/25 via-sage/20 to-transparent blur-3xl" />
-        <div aria-hidden className="pointer-events-none absolute -bottom-32 right-1/3 h-96 w-96 rounded-full bg-gradient-to-tr from-cream/40 via-sage/30 to-transparent blur-3xl" />
         <div className="relative mx-auto max-w-7xl px-5 md:px-6">
           <Eyebrow num="04" label="Faculty" />
           <div className="mt-6 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
