@@ -1778,7 +1778,7 @@ function PgpTbm() {
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
                 OUTCOMES
               </div>
-              <h2 className="mt-4 font-display text-4xl leading-[1.02] tracking-[-0.03em] text-foreground sm:text-5xl">
+              <h2 className="mt-4 font-display text-3xl leading-[1.03] tracking-[-0.02em] text-foreground">
                 Two paths out.
                 <br />
                 <span className="bg-gradient-to-r from-teal-500 via-emerald-600 to-sage-500 bg-clip-text text-transparent">Both measured in numbers.</span>
@@ -1794,20 +1794,20 @@ function PgpTbm() {
             {/* CAREERS PANEL */}
             <div className="group relative flex flex-col overflow-hidden border border-border bg-card/80 p-8 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-30px_rgba(0,0,0,0.15)] transition hover:shadow-[0_1px_0_rgba(0,0,0,0.02),0_30px_80px_-30px_rgba(20,184,166,0.25)]">
               <div className="flex items-center justify-between">
-                <div className="inline-flex items-center gap-2 rounded-full bg-teal/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-teal-700">
+                <div className="inline-flex items-center gap-2 rounded-full bg-teal/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-teal-700">
                   01 · Careers
                 </div>
-                <div className="text-[11px] uppercase tracking-[0.18em] text-black/40">Class of 2025</div>
+                <div className="text-xs uppercase tracking-[0.18em] text-black/40">Class of 2025</div>
               </div>
 
               {/* Hero stat */}
               <div className="mt-8">
-                <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-black/55">Median CTC</div>
+                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-black/55">Median CTC</div>
                 <div className="mt-2 flex items-baseline gap-3">
-                  <span className="bg-gradient-to-br from-teal-500 via-emerald-600 to-sage-600 bg-clip-text font-display text-6xl leading-none tracking-tight text-transparent sm:text-7xl">
+                  <span className="bg-gradient-to-br from-teal-500 via-emerald-600 to-sage-600 bg-clip-text font-display text-4xl leading-none tracking-tight text-transparent sm:text-5xl">
                     ₹34.6
                   </span>
-                  <span className="font-display text-2xl text-black/70">LPA</span>
+                  <span className="font-display text-xl text-black/70">LPA</span>
                 </div>
                 <div className="mt-2 h-px w-16 bg-gradient-to-r from-teal-500 to-transparent" />
               </div>
@@ -1816,15 +1816,15 @@ function PgpTbm() {
               <div className="mt-8 grid grid-cols-2 gap-4">
                 {OUTCOME_HEADLINE.slice(1).map((s) => (
                   <div key={s.v} className="border border-border bg-muted/50 p-4">
-                    <div className="font-display text-2xl leading-none tracking-tight text-black/90">{s.k}</div>
-                    <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-black/55">{s.v}</div>
+                    <div className="font-display text-3xl leading-none tracking-tight text-black/90">{s.k}</div>
+                    <div className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-black/55">{s.v}</div>
                   </div>
                 ))}
               </div>
 
               {/* Roles */}
               <div className="mt-8">
-                <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-black/55">Where alumni land</div>
+                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-black/55">Where alumni land</div>
                 <ul className="mt-4 space-y-3.5">
                   {OUTCOME_ROLES.map((r) => (
                     <li key={r.role}>
@@ -1845,7 +1845,7 @@ function PgpTbm() {
 
               {/* Logos */}
               <div className="mt-8 border-t border-black/10 pt-6">
-                <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-black/55">Where alumni got hired</div>
+                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-black/55">Where alumni got hired</div>
                 <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4">
                   {CAREER_LOGOS.map((logo) => (
                     <div
