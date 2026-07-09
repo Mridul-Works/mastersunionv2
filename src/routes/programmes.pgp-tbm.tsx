@@ -1660,27 +1660,27 @@ function PgpTbm() {
           </div>
 
           {/* ENGINE 03 — Immersions */}
-          <div className="grid gap-8 border-t border-black/10 py-12 md:grid-cols-[300px_1fr] md:gap-16">
+          <div className="grid gap-8 border-t border-border/60 py-12 md:grid-cols-[300px_1fr] md:gap-16">
             <div>
-              <div className="font-display text-3xl leading-none text-black/25">03</div>
+              <div className="font-display text-3xl leading-none text-muted-foreground/50">03</div>
               <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-indigo-700">Immersions · On the ground</div>
               <h3 className="mt-2 font-display text-3xl leading-tight tracking-tight">Global boardrooms. Bharat factory floors.</h3>
-              <p className="mt-3 text-sm leading-relaxed text-black/65">
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                 Optional immersion modules that slot into Terms 4 and 5. Two tracks, one goal: see business where it actually happens — not where slides describe it.
               </p>
             </div>
-            <div className="grid gap-px bg-black/10 md:grid-cols-2">
-              <ImagePlaceholder label="Immersions" aspect="16/9" className="md:col-span-2" />
+            <div className="grid gap-4 rounded-2xl bg-muted/40 p-3 md:grid-cols-2">
+              <ImagePlaceholder label="Immersions" aspect="16/9" className="rounded-xl md:col-span-2" />
               {IMMERSIONS.map((im) => (
-                <article key={im.title} className="bg-white/90 p-6 pastel-fill">
+                <article key={im.title} className="rounded-xl bg-card p-6 shadow-sm">
                   <div className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-700">{im.tag}</div>
                   <h4 className="mt-2 font-display text-3xl leading-tight tracking-tight">{im.title}</h4>
-                  <p className="mt-3 text-sm leading-relaxed text-black/65">{im.body}</p>
-                  <dl className="mt-5 grid grid-cols-3 gap-3 border-t border-black/10 pt-4">
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{im.body}</p>
+                  <dl className="mt-5 grid grid-cols-3 gap-3 rounded-xl bg-secondary/60 p-4">
                     {im.stats.map((s) => (
                       <div key={s.v}>
                         <dt className="font-display text-3xl leading-none tracking-tight">{s.k}</dt>
-                        <dd className="mt-1.5 text-xs leading-snug text-black/55">{s.v}</dd>
+                        <dd className="mt-1.5 text-xs leading-snug text-muted-foreground">{s.v}</dd>
                       </div>
                     ))}
                   </dl>
