@@ -1575,53 +1575,53 @@ function PgpTbm() {
 
 
           {/* ENGINE 01 — InClass */}
-          <div className="grid gap-8 border-t border-black/10 py-12 md:grid-cols-[300px_1fr] md:gap-16">
+          <div className="grid gap-8 border-t border-border/60 py-12 md:grid-cols-[300px_1fr] md:gap-16">
             <div>
-              <div className="font-display text-3xl leading-none text-black/25">01</div>
-              <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-black/55">InClass · The learning core</div>
+              <div className="font-display text-3xl leading-none text-muted-foreground/50">01</div>
+              <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">InClass · The learning core</div>
               <h3 className="mt-2 font-display text-3xl leading-tight tracking-tight">Seven tracks. Zero rote exams.</h3>
-              <p className="mt-3 text-sm leading-relaxed text-black/65">
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                 Taught by 30% Ivy academics, 30% research faculty and 40% sitting operators. Every course is graded on a real deliverable — a P&amp;L, a shipped feature, a live campaign.
               </p>
-              <dl className="mt-6 grid grid-cols-3 gap-3 border-t border-black/10 pt-4">
+              <dl className="mt-6 grid grid-cols-3 gap-3 rounded-xl bg-muted/60 p-4">
                 {IN_CLASS.stats.map((s) => (
                   <div key={s.v}>
                     <dt className="font-display text-3xl leading-none tracking-tight">{s.k}</dt>
-                    <dd className="mt-1.5 text-xs leading-snug text-black/55">{s.v}</dd>
+                    <dd className="mt-1.5 text-xs leading-snug text-muted-foreground">{s.v}</dd>
                   </div>
                 ))}
               </dl>
             </div>
-            <div className="grid gap-px bg-black/10 sm:grid-cols-2">
+            <div className="grid gap-3 rounded-2xl bg-muted/40 p-3 sm:grid-cols-2">
               <ImagePlaceholder label="InClass tracks" aspect="16/9" className="sm:col-span-2" />
               {IN_CLASS.tracks.map((t) => (
-                <div key={t.name} className="bg-white/90 p-5 pastel-fill">
-                  <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/50">Track</div>
+                <div key={t.name} className="rounded-xl bg-card p-5 shadow-sm transition-all hover:shadow-md">
+                  <div className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">Track</div>
                   <div className="mt-2 font-display text-sm leading-tight tracking-tight">{t.name}</div>
-                  <div className="mt-2 text-xs leading-snug text-black/60">{t.eg}</div>
+                  <div className="mt-2 text-xs leading-snug text-muted-foreground">{t.eg}</div>
                 </div>
               ))}
-              <div className="bg-black p-5 text-white">
-                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">Delivered as</div>
+              <div className="rounded-xl bg-foreground p-5 text-primary-foreground">
+                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/60">Delivered as</div>
                 <div className="mt-2 font-display text-sm leading-tight">150+ courses · 8 terms · project-graded</div>
               </div>
             </div>
           </div>
 
           {/* ENGINE 02 — OutClass */}
-          <div className="grid gap-8 border-t border-black/10 py-12 md:grid-cols-[300px_1fr] md:gap-16">
+          <div className="grid gap-8 border-t border-border/60 py-12 md:grid-cols-[300px_1fr] md:gap-16">
             <div>
-              <div className="font-display text-3xl leading-none text-black/25">02</div>
+              <div className="font-display text-3xl leading-none text-muted-foreground/50">02</div>
               <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">OutClass · Live ventures across terms</div>
               <h3 className="mt-2 font-display text-3xl leading-tight tracking-tight">Real customers. Real revenue. Real followers.</h3>
-              <p className="mt-3 text-sm leading-relaxed text-black/65">
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                 Two flagship OutClass tracks run continuously alongside InClass. Both are graded on outcomes measured in the open market — not in decks.
               </p>
             </div>
-            <div className="space-y-px bg-black/10">
-              <ImagePlaceholder label="OutClass ventures" aspect="16/9" />
+            <div className="space-y-4 rounded-2xl bg-muted/40 p-3">
+              <ImagePlaceholder label="OutClass ventures" aspect="16/9" className="rounded-xl" />
               {OUT_CLASS.map((o) => (
-                <article key={o.title} className="bg-white/90 p-6 pastel-fill">
+                <article key={o.title} className="rounded-xl bg-card p-6 shadow-sm">
                   <div className="flex flex-wrap items-baseline justify-between gap-3">
                     <div>
                       <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">{o.tag}</div>
@@ -1631,22 +1631,25 @@ function PgpTbm() {
                       {o.stats.map((s) => (
                         <div key={s.v}>
                           <div className="font-display text-3xl leading-none tracking-tight">{s.k}</div>
-                          <div className="mt-1 text-xs uppercase tracking-[0.12em] text-black/55">{s.v}</div>
+                          <div className="mt-1 text-xs uppercase tracking-[0.12em] text-muted-foreground">{s.v}</div>
                         </div>
                       ))}
                     </div>
                   </div>
-                  <p className="mt-4 max-w-3xl text-sm leading-relaxed text-black/65">{o.body}</p>
+                  <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">{o.body}</p>
                   <div className="mt-6">
-                    <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/50">Term-by-term arc</div>
-                    <ol className="mt-3 grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
+                    <div className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">Term-by-term arc</div>
+                    <ol className="mt-3 flex flex-wrap gap-3">
                       {o.arc.map((a, i) => (
-                        <li key={`${o.title}-${i}`} className="bg-white p-4">
-                          <div className="flex items-center gap-2">
-                            <span className="inline-flex size-6 items-center justify-center bg-emerald-500 text-xs font-semibold text-white">{a.t}</span>
-                            <span className="font-display text-sm leading-tight">{a.h}</span>
+                        <li key={`${o.title}-${i}`} className="relative flex min-w-[160px] flex-1 items-start gap-3 rounded-lg bg-secondary/60 p-4">
+                          <span className="inline-flex size-7 shrink-0 items-center justify-center rounded-md bg-emerald-500 text-[11px] font-bold text-white">{a.t}</span>
+                          <div>
+                            <div className="font-display text-sm leading-tight tracking-tight">{a.h}</div>
+                            <div className="mt-1 text-xs leading-snug text-muted-foreground">{a.d}</div>
                           </div>
-                          <div className="mt-2 text-xs leading-snug text-black/60">{a.d}</div>
+                          {i !== o.arc.length - 1 && (
+                            <span className="absolute -right-2 top-1/2 hidden -translate-y-1/2 text-muted-foreground/40 lg:block">→</span>
+                          )}
                         </li>
                       ))}
                     </ol>
@@ -1657,27 +1660,27 @@ function PgpTbm() {
           </div>
 
           {/* ENGINE 03 — Immersions */}
-          <div className="grid gap-8 border-t border-black/10 py-12 md:grid-cols-[300px_1fr] md:gap-16">
+          <div className="grid gap-8 border-t border-border/60 py-12 md:grid-cols-[300px_1fr] md:gap-16">
             <div>
-              <div className="font-display text-3xl leading-none text-black/25">03</div>
+              <div className="font-display text-3xl leading-none text-muted-foreground/50">03</div>
               <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-indigo-700">Immersions · On the ground</div>
               <h3 className="mt-2 font-display text-3xl leading-tight tracking-tight">Global boardrooms. Bharat factory floors.</h3>
-              <p className="mt-3 text-sm leading-relaxed text-black/65">
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                 Optional immersion modules that slot into Terms 4 and 5. Two tracks, one goal: see business where it actually happens — not where slides describe it.
               </p>
             </div>
-            <div className="grid gap-px bg-black/10 md:grid-cols-2">
-              <ImagePlaceholder label="Immersions" aspect="16/9" className="md:col-span-2" />
+            <div className="grid gap-4 rounded-2xl bg-muted/40 p-3 md:grid-cols-2">
+              <ImagePlaceholder label="Immersions" aspect="16/9" className="rounded-xl md:col-span-2" />
               {IMMERSIONS.map((im) => (
-                <article key={im.title} className="bg-white/90 p-6 pastel-fill">
+                <article key={im.title} className="rounded-xl bg-card p-6 shadow-sm">
                   <div className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-700">{im.tag}</div>
                   <h4 className="mt-2 font-display text-3xl leading-tight tracking-tight">{im.title}</h4>
-                  <p className="mt-3 text-sm leading-relaxed text-black/65">{im.body}</p>
-                  <dl className="mt-5 grid grid-cols-3 gap-3 border-t border-black/10 pt-4">
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{im.body}</p>
+                  <dl className="mt-5 grid grid-cols-3 gap-3 rounded-xl bg-secondary/60 p-4">
                     {im.stats.map((s) => (
                       <div key={s.v}>
                         <dt className="font-display text-3xl leading-none tracking-tight">{s.k}</dt>
-                        <dd className="mt-1.5 text-xs leading-snug text-black/55">{s.v}</dd>
+                        <dd className="mt-1.5 text-xs leading-snug text-muted-foreground">{s.v}</dd>
                       </div>
                     ))}
                   </dl>
