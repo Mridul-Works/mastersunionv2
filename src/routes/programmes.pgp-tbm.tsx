@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
+import { cn } from "@/lib/utils";
 
 import bambaiiAsset from "@/assets/startup-logos/Bambaii.png.asset.json";
 import beyondVedaAsset from "@/assets/startup-logos/BeyondVeda.png.asset.json";
@@ -60,14 +61,14 @@ import zeptoAsset from "@/assets/career-logos/Zepto.png.asset.json";
 import bloombergAsset from "@/assets/career-logos/Bloomberg.png.asset.json";
 import iciciAsset from "@/assets/career-logos/ICICI.png.asset.json";
 
-const CAREER_LOGOS: { name: string; url: string }[] = [
+const CAREER_LOGOS: { name: string; url: string; className?: string }[] = [
   { name: "McKinsey", url: mckinseyAsset.url },
   { name: "Bain & Company", url: bainAsset.url },
   { name: "Accenture", url: accentureAsset.url },
   { name: "Meta", url: metaAsset.url },
   { name: "ServiceNow", url: servicenowAsset.url },
   { name: "Flipkart", url: flipkartAsset.url },
-  { name: "Zepto", url: zeptoAsset.url },
+  { name: "Zepto", url: zeptoAsset.url, className: "h-6 max-w-[75%]" },
   { name: "Cred", url: credAsset.url },
   { name: "Bloomberg", url: bloombergAsset.url },
   { name: "ICICI", url: iciciAsset.url },
@@ -1785,7 +1786,10 @@ function PgpTbm() {
                       <img
                         src={logo.url}
                         alt={`${logo.name} logo`}
-                        className="h-8 w-auto max-w-[85%] object-contain opacity-80 transition hover:opacity-100"
+                        className={cn(
+                          "h-8 w-auto max-w-[85%] object-contain opacity-80 transition hover:opacity-100",
+                          logo.className
+                        )}
                         loading="lazy"
                       />
                     </div>
