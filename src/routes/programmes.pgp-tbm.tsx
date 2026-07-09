@@ -195,7 +195,7 @@ function AdmissionPathwaysSection() {
                   >
                     <div className="mb-3 flex items-center justify-between sm:mb-6">
                       <span
-                        className={`font-sans text-sm font-bold leading-none tracking-tighter transition-colors duration-300 sm:text-3xl md:text-3xl ${
+                        className={`font-sans text-sm font-bold leading-none tracking-tighter transition-colors duration-300 sm:text-3xl ${
                           isActive ? p.accentClass : "text-black/15"
                         }`}
                       >
@@ -872,7 +872,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
             <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/45">
               {active ? `You'll be doing this in` : `Preview a term`}
             </div>
-            <div className="mt-1 font-display text-[22px] leading-tight tracking-tight">
+            <div className="mt-1 font-display text-3xl leading-tight tracking-tight">
               {active ? `Term ${activeTerm}` : `Hover a column ↑`}
             </div>
             {active && (
@@ -1052,7 +1052,7 @@ function AlumniShowcase() {
       <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
         <div>
           <div className="text-xs font-semibold uppercase tracking-[0.2em] text-smoke-50/45">Alumni Network</div>
-          <h3 className="mt-3 max-w-4xl font-display text-[2rem] font-bold leading-[1.08] tracking-tight text-smoke-50 md:text-3xl md:leading-[1.05]">
+          <h3 className="mt-3 max-w-4xl font-display text-3xl font-bold leading-[1.08] tracking-tight text-smoke-50 md:text-3xl md:leading-[1.05]">
             Talk to someone who's been through it. <span className="font-serif-italic">Then build yours.</span>
           </h3>
         </div>
@@ -1287,7 +1287,7 @@ function AlumniShowcase() {
           </button>
 
           <div className="flex items-baseline gap-2 font-display">
-            <span className="leading-none text-smoke-50" style={{ fontSize: "clamp(3rem, 5vw, 4.4rem)", fontWeight: 300 }}>
+            <span className="leading-none text-smoke-50" className="text-3xl font-light">
               {String(safeIdx + 1).padStart(2, "0")}
 
             </span>
@@ -1485,7 +1485,7 @@ function FacultyShowcase() {
           </div>
         </button>
         <div className="flex items-baseline gap-2 font-display">
-          <span className="leading-none text-smoke-50" style={{ fontSize: "clamp(3rem, 5vw, 4.4rem)", fontWeight: 300 }}>
+          <span className="leading-none text-smoke-50" className="text-3xl font-light">
             {String(idx + 1).padStart(2, "0")}
           </span>
           <span className="leading-none text-smoke-50/30" className="text-3xl">
@@ -1565,13 +1565,13 @@ function PgpTbm() {
               <ImagePlaceholder label="Hero visual" className="h-full w-full" aspect="4/5" />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-5 text-white">
                 <div className="text-xs font-semibold uppercase tracking-[0.22em] text-white/70">The Campus</div>
-                <div className="mt-1 font-display text-[20px] leading-tight">DLF Cyber Park, Gurugram</div>
+                <div className="mt-1 font-display text-sm leading-tight">DLF Cyber Park, Gurugram</div>
                 <div className="mt-1 text-xs text-white/60">85% of Fortune 500 within a 2 km walk</div>
               </div>
             </div>
             <div className="absolute -bottom-5 -left-5 hidden border border-black/10 bg-white px-4 py-3 shadow-lg lg:block">
               <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/50">Round 1 closes</div>
-              <div className="font-display text-[22px] leading-none tabular-nums">
+              <div className="font-display text-3xl leading-none tabular-nums">
                 {String(d).padStart(2, "0")}d · {String(h).padStart(2, "0")}h
               </div>
             </div>
@@ -1610,16 +1610,16 @@ function PgpTbm() {
           {/* ENGINE 01 — InClass */}
           <div className="grid gap-8 border-t border-black/10 py-12 md:grid-cols-[300px_1fr] md:gap-16">
             <div>
-              <div className="font-display text-[46px] leading-none text-black/25">01</div>
+              <div className="font-display text-3xl leading-none text-black/25">01</div>
               <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-black/55">InClass · The learning core</div>
-              <h3 className="mt-2 font-display text-[28px] leading-tight tracking-tight">Seven tracks. Zero rote exams.</h3>
+              <h3 className="mt-2 font-display text-3xl leading-tight tracking-tight">Seven tracks. Zero rote exams.</h3>
               <p className="mt-3 text-sm leading-relaxed text-black/65">
                 Taught by 30% Ivy academics, 30% research faculty and 40% sitting operators. Every course is graded on a real deliverable — a P&amp;L, a shipped feature, a live campaign.
               </p>
               <dl className="mt-6 grid grid-cols-3 gap-3 border-t border-black/10 pt-4">
                 {IN_CLASS.stats.map((s) => (
                   <div key={s.v}>
-                    <dt className="font-display text-[24px] leading-none tracking-tight">{s.k}</dt>
+                    <dt className="font-display text-3xl leading-none tracking-tight">{s.k}</dt>
                     <dd className="mt-1.5 text-xs leading-snug text-black/55">{s.v}</dd>
                   </div>
                 ))}
@@ -1630,13 +1630,13 @@ function PgpTbm() {
               {IN_CLASS.tracks.map((t) => (
                 <div key={t.name} className="bg-white/90 p-5 pastel-fill">
                   <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/50">Track</div>
-                  <div className="mt-2 font-display text-[17px] leading-tight tracking-tight">{t.name}</div>
+                  <div className="mt-2 font-display text-sm leading-tight tracking-tight">{t.name}</div>
                   <div className="mt-2 text-xs leading-snug text-black/60">{t.eg}</div>
                 </div>
               ))}
               <div className="bg-black p-5 text-white">
                 <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">Delivered as</div>
-                <div className="mt-2 font-display text-[17px] leading-tight">150+ courses · 8 terms · project-graded</div>
+                <div className="mt-2 font-display text-sm leading-tight">150+ courses · 8 terms · project-graded</div>
               </div>
             </div>
           </div>
@@ -1644,9 +1644,9 @@ function PgpTbm() {
           {/* ENGINE 02 — OutClass */}
           <div className="grid gap-8 border-t border-black/10 py-12 md:grid-cols-[300px_1fr] md:gap-16">
             <div>
-              <div className="font-display text-[46px] leading-none text-black/25">02</div>
+              <div className="font-display text-3xl leading-none text-black/25">02</div>
               <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">OutClass · Live ventures across terms</div>
-              <h3 className="mt-2 font-display text-[28px] leading-tight tracking-tight">Real customers. Real revenue. Real followers.</h3>
+              <h3 className="mt-2 font-display text-3xl leading-tight tracking-tight">Real customers. Real revenue. Real followers.</h3>
               <p className="mt-3 text-sm leading-relaxed text-black/65">
                 Two flagship OutClass tracks run continuously alongside InClass. Both are graded on outcomes measured in the open market — not in decks.
               </p>
@@ -1658,18 +1658,18 @@ function PgpTbm() {
                   <div className="flex flex-wrap items-baseline justify-between gap-3">
                     <div>
                       <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-700">{o.tag}</div>
-                      <h4 className="mt-2 font-display text-[24px] leading-tight tracking-tight">{o.title}</h4>
+                      <h4 className="mt-2 font-display text-3xl leading-tight tracking-tight">{o.title}</h4>
                     </div>
                     <div className="flex flex-wrap gap-4">
                       {o.stats.map((s) => (
                         <div key={s.v}>
-                          <div className="font-display text-[22px] leading-none tracking-tight">{s.k}</div>
+                          <div className="font-display text-3xl leading-none tracking-tight">{s.k}</div>
                           <div className="mt-1 text-xs uppercase tracking-[0.12em] text-black/55">{s.v}</div>
                         </div>
                       ))}
                     </div>
                   </div>
-                  <p className="mt-4 max-w-3xl text-[13px] leading-relaxed text-black/65">{o.body}</p>
+                  <p className="mt-4 max-w-3xl text-sm leading-relaxed text-black/65">{o.body}</p>
                   <div className="mt-6">
                     <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/50">Term-by-term arc</div>
                     <ol className="mt-3 grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
@@ -1692,9 +1692,9 @@ function PgpTbm() {
           {/* ENGINE 03 — Immersions */}
           <div className="grid gap-8 border-t border-black/10 py-12 md:grid-cols-[300px_1fr] md:gap-16">
             <div>
-              <div className="font-display text-[46px] leading-none text-black/25">03</div>
+              <div className="font-display text-3xl leading-none text-black/25">03</div>
               <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-indigo-700">Immersions · On the ground</div>
-              <h3 className="mt-2 font-display text-[28px] leading-tight tracking-tight">Global boardrooms. Bharat factory floors.</h3>
+              <h3 className="mt-2 font-display text-3xl leading-tight tracking-tight">Global boardrooms. Bharat factory floors.</h3>
               <p className="mt-3 text-sm leading-relaxed text-black/65">
                 Optional immersion modules that slot into Terms 4 and 5. Two tracks, one goal: see business where it actually happens — not where slides describe it.
               </p>
@@ -1704,12 +1704,12 @@ function PgpTbm() {
               {IMMERSIONS.map((im) => (
                 <article key={im.title} className="bg-white/90 p-6 pastel-fill">
                   <div className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-700">{im.tag}</div>
-                  <h4 className="mt-2 font-display text-[22px] leading-tight tracking-tight">{im.title}</h4>
-                  <p className="mt-3 text-[13px] leading-relaxed text-black/65">{im.body}</p>
+                  <h4 className="mt-2 font-display text-3xl leading-tight tracking-tight">{im.title}</h4>
+                  <p className="mt-3 text-sm leading-relaxed text-black/65">{im.body}</p>
                   <dl className="mt-5 grid grid-cols-3 gap-3 border-t border-black/10 pt-4">
                     {im.stats.map((s) => (
                       <div key={s.v}>
-                        <dt className="font-display text-[24px] leading-none tracking-tight">{s.k}</dt>
+                        <dt className="font-display text-3xl leading-none tracking-tight">{s.k}</dt>
                         <dd className="mt-1.5 text-xs leading-snug text-black/55">{s.v}</dd>
                       </div>
                     ))}
@@ -1743,14 +1743,14 @@ function PgpTbm() {
               </div>
 
               <div className="mt-6">
-                <div className="font-display text-[56px] leading-none tracking-tight">{OUTCOME_HEADLINE[0].k}</div>
+                <div className="font-display text-3xl leading-none tracking-tight">{OUTCOME_HEADLINE[0].k}</div>
                 <div className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-black/60">{OUTCOME_HEADLINE[0].v}</div>
               </div>
 
               <div className="mt-6 grid grid-cols-3 gap-px bg-black/10">
                 {OUTCOME_HEADLINE.slice(1).map((s) => (
                   <div key={s.v} className="bg-white py-4">
-                    <div className="font-display text-[22px] leading-none tracking-tight">{s.k}</div>
+                    <div className="font-display text-3xl leading-none tracking-tight">{s.k}</div>
                     <div className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-black/55">{s.v}</div>
                   </div>
                 ))}
@@ -1761,7 +1761,7 @@ function PgpTbm() {
                 <ul className="mt-4 space-y-3">
                   {OUTCOME_ROLES.map((r) => (
                     <li key={r.role}>
-                      <div className="flex items-baseline justify-between text-[13px]">
+                      <div className="flex items-baseline justify-between text-sm">
                         <span className="text-black/75">{r.role}</span>
                         <span className="font-display text-sm tabular-nums">{r.pct}</span>
                       </div>
@@ -1803,14 +1803,14 @@ function PgpTbm() {
               </div>
 
               <div className="mt-6">
-                <div className="font-display text-[56px] leading-none tracking-tight">{OUTCOME_STARTUP[0].k}</div>
+                <div className="font-display text-3xl leading-none tracking-tight">{OUTCOME_STARTUP[0].k}</div>
                 <div className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-black/60">{OUTCOME_STARTUP[0].v}</div>
               </div>
 
               <div className="mt-6 grid grid-cols-2 gap-px bg-black/10">
                 {OUTCOME_STARTUP.slice(1).map((s) => (
                   <div key={s.v} className="bg-white py-4">
-                    <div className="font-display text-[22px] leading-none tracking-tight">{s.k}</div>
+                    <div className="font-display text-3xl leading-none tracking-tight">{s.k}</div>
                     <div className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-black/55">{s.v}</div>
                   </div>
                 ))}
@@ -1818,7 +1818,7 @@ function PgpTbm() {
 
               <div className="mt-8 flex-1">
                 <div className="text-xs font-semibold uppercase tracking-[0.2em] text-black/55">What ventures produce</div>
-                <ul className="mt-4 space-y-3 border-t border-black/10 pt-4 text-[13px] text-black/75">
+                <ul className="mt-4 space-y-3 border-t border-black/10 pt-4 text-sm text-black/75">
                   <li className="flex items-baseline justify-between gap-4">
                     <span>D2C brands built in Term 2</span>
                     <span className="font-display text-sm tabular-nums">Live</span>
@@ -1874,7 +1874,7 @@ function PgpTbm() {
         <div className="mx-auto max-w-7xl px-5 md:px-6">
           <Eyebrow num="04" label="Faculty" />
           <div className="mt-6 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-            <h2 className="max-w-4xl font-display text-[2rem] font-bold leading-[1.08] tracking-tight text-smoke-50 md:text-3xl md:leading-[1.05]">
+            <h2 className="max-w-4xl font-display text-3xl font-bold leading-[1.08] tracking-tight text-smoke-50 md:text-3xl md:leading-[1.05]">
               30% Ivy academics. 30% research faculty.{" "}
               <span className="font-serif-italic font-normal">40% sitting operators.</span>
             </h2>
@@ -1909,13 +1909,13 @@ function PgpTbm() {
             {APPLICATION_STEPS.map((s) => (
               <li key={s.step} className="flex flex-col gap-4 bg-white/90 p-7 backdrop-blur-sm pastel-fill">
                 <div className="flex items-baseline gap-4">
-                  <div className="font-display text-[40px] leading-none text-black/25">{s.step}</div>
-                  <div className="font-display text-[20px] leading-tight text-black/90">{s.title}</div>
+                  <div className="font-display text-3xl leading-none text-black/25">{s.step}</div>
+                  <div className="font-display text-sm leading-tight text-black/90">{s.title}</div>
                 </div>
                 <p className="text-sm leading-relaxed text-black/70">{s.summary}</p>
                 <ul className="mt-1 space-y-2 border-t border-black/10 pt-4">
                   {s.points.map((p) => (
-                    <li key={p} className="flex gap-3 text-[13px] leading-relaxed text-black/70">
+                    <li key={p} className="flex gap-3 text-sm leading-relaxed text-black/70">
                       <span className="mt-[7px] size-1.5 shrink-0 rounded-full bg-black/40" />
                       <span>{p}</span>
                     </li>
@@ -1943,7 +1943,7 @@ function PgpTbm() {
               return (
                 <div key={f.q} className="border-b border-black/10">
                   <button type="button" onClick={() => setOpenFaq(open ? null : i)} className="flex w-full items-center justify-between gap-6 py-5 text-left px-5">
-                    <span className="font-display text-[18px] leading-tight">{f.q}</span>
+                    <span className="font-display text-sm leading-tight">{f.q}</span>
                     <span className="flex size-8 items-center justify-center border border-black/15 text-black/70">
                       {open ? <Minus className="size-4" /> : <Plus className="size-4" />}
                     </span>
@@ -1972,13 +1972,13 @@ function PgpTbm() {
             <ImagePlaceholder label="Apply" className="mt-6 max-w-lg" aspect="16/9" />
           </div>
           <div className="flex flex-col gap-3">
-            <a href="#" className="inline-flex items-center justify-between gap-3 bg-white px-6 py-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-black transition-transform hover:scale-[1.01] pastel-fill">
+            <a href="#" className="inline-flex items-center justify-between gap-3 bg-white px-6 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-black transition-transform hover:scale-[1.01] pastel-fill">
               Start application <ArrowUpRight className="size-5" />
             </a>
-            <a href="#" className="inline-flex items-center justify-between gap-3 border border-white/20 px-6 py-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/90 hover:bg-white/5">
+            <a href="#" className="inline-flex items-center justify-between gap-3 border border-white/20 px-6 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white/90 hover:bg-white/5">
               Talk to admissions <ArrowUpRight className="size-5" />
             </a>
-            <a href="https://mastersunion.org/pgp-technology-and-business-management" target="_blank" rel="noreferrer" className="inline-flex items-center justify-between gap-3 border border-white/20 px-6 py-4 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/90 hover:bg-white/5">
+            <a href="https://mastersunion.org/pgp-technology-and-business-management" target="_blank" rel="noreferrer" className="inline-flex items-center justify-between gap-3 border border-white/20 px-6 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white/90 hover:bg-white/5">
               Download brochure <ArrowUpRight className="size-5" />
             </a>
           </div>
