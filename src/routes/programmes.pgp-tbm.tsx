@@ -871,7 +871,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     <div
                       key={t}
                       onMouseEnter={() => setActive(t)}
-                      className={`group relative flex min-h-[76px] flex-col justify-between px-3 py-3 transition-colors ${isActive ? "bg-smoke-50 text-white" : "bg-white"}`}
+                      className={`group relative flex min-h-[76px] flex-col justify-between px-3 py-3 transition-colors ${isActive ? "bg-smoke-100 text-white" : "bg-white"}`}
                     >
                       <div className={`h-[3px] w-6 ${TONE_ACCENT[cell.tone]} ${isActive ? "opacity-100" : "opacity-90"}`} />
                       <div>
