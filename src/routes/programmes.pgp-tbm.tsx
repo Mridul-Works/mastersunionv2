@@ -1930,40 +1930,47 @@ function PgpTbm() {
       </section>
 
       {/* ADMISSIONS */}
-      <section id="admissions" className="relative overflow-hidden border-b border-black/10 bg-gradient-to-b from-white via-neutral-50/60 to-white">
+      <section id="admissions" className="relative overflow-hidden border-b border-black/10 bg-gradient-to-b from-background via-muted/50 to-background">
         {/* soft ambient glows */}
-        <div aria-hidden className="pointer-events-none absolute -top-32 left-1/4 h-96 w-96 rounded-full bg-gradient-to-br from-indigo-200/40 via-violet-200/30 to-transparent blur-3xl" />
-        <div aria-hidden className="pointer-events-none absolute -bottom-32 right-1/3 h-96 w-96 rounded-full bg-gradient-to-tr from-emerald-200/40 via-teal-200/30 to-transparent blur-3xl" />
+        <div aria-hidden className="pointer-events-none absolute -top-32 left-1/4 h-96 w-96 rounded-full bg-gradient-to-br from-teal/25 via-sage/20 to-transparent blur-3xl" />
+        <div aria-hidden className="pointer-events-none absolute -bottom-32 right-1/3 h-96 w-96 rounded-full bg-gradient-to-tr from-cream/40 via-sage/30 to-transparent blur-3xl" />
 
         <div className="relative mx-auto max-w-[1180px] px-4 py-24 sm:px-6">
           <div className="mb-14 grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-end">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-black/60 backdrop-blur">
-                <span className="h-1.5 w-1.5 rounded-full bg-violet-500" />
+              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
+                <span className="h-1.5 w-1.5 rounded-full bg-teal" />
                 Admissions & Application Process
               </div>
-              <h2 className="mt-4 font-display text-4xl leading-[1.02] tracking-[-0.03em] sm:text-5xl">
-                Four steps from application to campus.
+              <h2 className="mt-4 font-display text-4xl leading-[1.02] tracking-[-0.03em] text-foreground sm:text-5xl">
+                Four steps from application to{" "}
+                <span className="font-serif-italic">campus.</span>
               </h2>
-              <p className="mt-4 max-w-xl text-sm leading-relaxed text-black/65">
+              <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
                 A holistic evaluation across academics, professional experience, communication and
                 business aptitude. No cut-offs — the admissions committee reviews every profile in full.
               </p>
             </div>
             <ImagePlaceholder label="Admissions journey" className="w-full" aspect="4/3" />
           </div>
+
           <ol className="grid gap-4 md:grid-cols-2">
             {APPLICATION_STEPS.map((s) => (
-              <li key={s.step} className="group relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-black/10 bg-white/80 p-7 shadow-[0_1px_0_rgba(0,0,0,0.02),0_12px_40px_-20px_rgba(0,0,0,0.12)] transition hover:shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-20px_rgba(99,102,241,0.18)] backdrop-blur-sm">
+              <li
+                key={s.step}
+                className="group relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-border bg-card/80 p-7 shadow-[0_1px_0_rgba(0,0,0,0.02),0_12px_40px_-20px_rgba(0,0,0,0.12)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_1px_0_rgba(0,0,0,0.02),0_24px_60px_-20px_rgba(20,184,166,0.18)] backdrop-blur-sm"
+              >
                 <div className="flex items-baseline gap-4">
-                  <div className="font-display text-3xl leading-none text-black/25">{s.step}</div>
-                  <div className="font-display text-sm leading-tight text-black/90">{s.title}</div>
+                  <div className="font-display text-3xl leading-none text-teal/70 transition-colors group-hover:text-teal">
+                    {s.step}
+                  </div>
+                  <div className="font-display text-sm leading-tight text-foreground">{s.title}</div>
                 </div>
-                <p className="text-sm leading-relaxed text-black/70">{s.summary}</p>
-                <ul className="mt-1 space-y-2 border-t border-black/10 pt-4">
+                <p className="text-sm leading-relaxed text-muted-foreground">{s.summary}</p>
+                <ul className="mt-1 space-y-2 border-t border-border pt-4">
                   {s.points.map((p) => (
-                    <li key={p} className="flex gap-3 text-sm leading-relaxed text-black/70">
-                      <span className="mt-[7px] size-1.5 shrink-0 rounded-full bg-black/40" />
+                    <li key={p} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
+                      <span className="mt-[7px] size-1.5 shrink-0 rounded-full bg-teal/60" />
                       <span>{p}</span>
                     </li>
                   ))}
