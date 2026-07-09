@@ -349,11 +349,6 @@ export const Route = createFileRoute("/programmes/pgp-tbm")({
   component: PgpTbm,
 });
 
-// -------- Hero fact sheet --------
-const FACTS = [
-  { k: "Duration", v: "16 Months", note: "Incl. 3-month internship" },
-  { k: "Format", v: "On Campus", note: "DLF Cyber Park · Gurugram" },
-];
 
 
 
@@ -1563,15 +1558,6 @@ function PgpTbm() {
               </div>
             </div>
 
-            <dl className="grid grid-cols-2 gap-px border-t border-black/10 bg-black/10">
-              {FACTS.map((f) => (
-                <div key={f.k} className="bg-white p-4">
-                  <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50">{f.k}</dt>
-                  <dd className="mt-1.5 font-display text-[22px] leading-none tracking-tight">{f.v}</dd>
-                  <div className="mt-1.5 text-[11px] leading-snug text-black/55">{f.note}</div>
-                </div>
-              ))}
-            </dl>
           </div>
 
           <div className="relative">
