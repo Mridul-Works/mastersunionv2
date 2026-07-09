@@ -1508,57 +1508,93 @@ function PgpTbm() {
 
       {/* HERO */}
       <section className="relative overflow-hidden border-b border-black/10 pt-28 sm:pt-32">
-        <div className="mx-auto grid max-w-[1180px] gap-10 px-4 pb-14 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14 lg:pb-20">
-          <div className="flex flex-col gap-8">
-            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-black/60">
-              <span className="inline-flex items-center gap-2 border border-black/15 bg-white/70 px-3 py-1">
+        <div className="mx-auto max-w-[1180px] px-4 pb-16 sm:px-6 sm:pb-24">
+          {/* Top eyebrow row */}
+          <div className="mb-10 flex flex-col gap-4 border-b border-black/10 pb-6 sm:mb-14 md:flex-row md:items-end md:justify-between">
+            <div className="flex flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
+              <span className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-white/70 px-3 py-1">
                 <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 Round 4 admissions open
               </span>
-              <span className="inline-flex items-center gap-1 border border-black/15 bg-white/70 px-3 py-1">
+              <span className="inline-flex items-center gap-1 rounded-full border border-black/15 bg-white/70 px-3 py-1">
                 <Star className="size-3 fill-current" /> Accredited by EFMD & AACSB
               </span>
             </div>
-
-            <div>
-              <div className="text-xs font-semibold uppercase tracking-[0.22em] text-black/50">
-                PGP in Technology & Business Management
-              </div>
-              <h1 className="mt-4 font-display text-5xl font-bold leading-[0.98] tracking-[-0.03em]">
-                Learn business
-                <br />
-                <span className="text-black/50">by running one.</span>
-              </h1>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-black/70">
-                16 months at Masters' Union structured around three engines — <strong>InClass</strong> fundamentals,
-                <strong> OutClass</strong> live ventures and <strong>Immersions</strong> on the ground.
-                Graded on outcomes measured in the open market.
-              </p>
+            <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/45">
+              PGP · Technology & Business Management
             </div>
-
-            <div className="flex flex-wrap items-center gap-3">
-              <a href="#apply" className="inline-flex items-center gap-2 bg-black px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-transform hover:scale-[1.02] pastel-fill">
-                Start application <ArrowUpRight className="size-4" />
-              </a>
-              <a href="#model" className="inline-flex items-center gap-2 border border-black/20 bg-transparent px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-black hover:bg-black/5">
-                See the model ↓
-              </a>
-            </div>
-
           </div>
 
-          <div className="relative">
-            <div className="relative aspect-[4/5] overflow-hidden border border-black/10 bg-black">
-              <ImagePlaceholder label="Hero visual" className="h-full w-full" aspect="4/5" />
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-5 text-white">
-                <div className="text-xs font-semibold uppercase tracking-[0.22em] text-white/70">The Campus</div>
-                <div className="mt-1 font-display text-sm leading-tight">DLF Cyber Park, Gurugram</div>
-                <div className="mt-1 text-xs text-white/60">85% of Fortune 500 within a 2 km walk</div>
+          <div className="grid gap-12 lg:grid-cols-[1.35fr_0.65fr] lg:gap-16">
+            {/* Left: headline + copy */}
+            <div className="flex flex-col justify-between gap-10">
+              <div>
+                <h1 className="font-display text-5xl font-semibold leading-[0.98] tracking-[-0.03em] sm:text-6xl md:text-[68px]">
+                  Learn business
+                  <br />
+                  <span className="text-black/45">by running one.</span>
+                </h1>
+                <p className="mt-8 max-w-xl text-base leading-relaxed text-black/65">
+                  16 months at Masters' Union structured around three engines —
+                  <strong className="font-semibold text-black"> InClass</strong> fundamentals,
+                  <strong className="font-semibold text-black"> OutClass</strong> live ventures and
+                  <strong className="font-semibold text-black"> Immersions</strong> on the ground.
+                  Graded on outcomes measured in the open market.
+                </p>
+
+                <div className="mt-10 flex flex-wrap items-center gap-3">
+                  <a
+                    href="#apply"
+                    className="inline-flex items-center gap-2 rounded-full bg-black px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-transform hover:scale-[1.02]"
+                  >
+                    Start application <ArrowUpRight className="size-4" />
+                  </a>
+                  <a
+                    href="#model"
+                    className="inline-flex items-center gap-2 rounded-full border border-black/20 px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-black hover:bg-black/5"
+                  >
+                    See the model ↓
+                  </a>
+                </div>
+              </div>
+
+              {/* Inline stat strip — matches the page's card/section aesthetic */}
+              <div className="grid grid-cols-2 gap-0 border-t border-black/10 pt-6 sm:grid-cols-4">
+                {[
+                  { k: "16", v: "Months" },
+                  { k: "₹34.6L", v: "Median CTC" },
+                  { k: "200+", v: "Startups founded" },
+                  { k: "145+", v: "Recruiters" },
+                ].map((s) => (
+                  <div key={s.v} className="border-l border-black/10 px-4 first:border-l-0 first:pl-0">
+                    <div className="font-display text-2xl font-semibold leading-none tracking-tight text-black sm:text-3xl">
+                      {s.k}
+                    </div>
+                    <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50">
+                      {s.v}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right: image card */}
+            <div className="relative">
+              <div className="relative aspect-[4/5] overflow-hidden border border-black/10 bg-black">
+                <ImagePlaceholder label="Hero visual" className="h-full w-full" aspect="4/5" />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-5 text-white">
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/70">
+                    The Campus
+                  </div>
+                  <div className="mt-1 font-display text-sm leading-tight">DLF Cyber Park, Gurugram</div>
+                  <div className="mt-1 text-xs text-white/60">85% of Fortune 500 within a 2 km walk</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
 
       <AdmissionPathwaysSection />
 
