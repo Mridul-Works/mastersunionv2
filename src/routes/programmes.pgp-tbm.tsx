@@ -696,17 +696,17 @@ const OUT_LANES: Lane[] = [
 
 
 const TONE_STYLES: Record<"d2c" | "creator" | "imm" | "capstone", string> = {
-  d2c: "bg-emerald-500 text-white",
-  creator: "bg-amber-500 text-black",
-  imm: "bg-indigo-500 text-white",
-  capstone: "bg-black text-white",
+  d2c: "bg-gradient-to-r from-emerald-400 via-teal-500 to-emerald-600 text-white",
+  creator: "bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 text-black",
+  imm: "bg-gradient-to-r from-indigo-400 via-violet-500 to-indigo-600 text-white",
+  capstone: "bg-gradient-to-r from-slate-700 via-slate-900 to-black text-white",
 };
 
 const TONE_DOTS: Record<string, string> = {
-  d2c: "bg-emerald-500",
-  creator: "bg-amber-500",
-  imm: "bg-indigo-500",
-  capstone: "bg-black",
+  d2c: "bg-gradient-to-br from-emerald-400 to-teal-600",
+  creator: "bg-gradient-to-br from-amber-400 to-orange-500",
+  imm: "bg-gradient-to-br from-indigo-400 to-violet-600",
+  capstone: "bg-gradient-to-br from-slate-700 to-black",
 };
 
 const LANE_TONE_LABELS: Record<string, string> = {
@@ -880,19 +880,19 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
             )}
           </div>
           <div className="flex flex-wrap gap-2">
-            {activityForTerm(activeTerm).map((item, i) => (
+          {activityForTerm(activeTerm).map((item, i) => (
               <span
                 key={i}
                 className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs transition-opacity ${active ? "opacity-100" : "opacity-55"} ${
                   item.tone === "in"
-                    ? "border-black/15 bg-white text-black/75"
+                    ? "border-black/15 bg-gradient-to-r from-white to-black/[0.03] text-black/75"
                     : item.tone === "d2c"
-                    ? "border-emerald-500/30 bg-emerald-50 text-emerald-800"
+                    ? "border-emerald-500/30 bg-gradient-to-r from-emerald-50 to-teal-50 text-emerald-800"
                     : item.tone === "creator"
-                    ? "border-amber-500/30 bg-amber-50 text-amber-800"
+                    ? "border-amber-500/30 bg-gradient-to-r from-amber-50 to-orange-50 text-amber-800"
                     : item.tone === "imm"
-                    ? "border-indigo-500/30 bg-indigo-50 text-indigo-800"
-                    : "border-black/70 bg-black text-white"
+                    ? "border-indigo-500/30 bg-gradient-to-r from-indigo-50 to-violet-50 text-indigo-800"
+                    : "border-black/70 bg-gradient-to-r from-slate-800 to-black text-white"
                 }`}
               >
                 {item.label}
