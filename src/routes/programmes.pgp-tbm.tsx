@@ -1545,12 +1545,12 @@ function PgpTbm() {
             {/* Left: headline + copy */}
             <div className="flex flex-col justify-between gap-10">
               <div>
-                <h1 className="font-display text-[clamp(2.75rem,7.5vw,6rem)] font-semibold leading-[0.92] tracking-[-0.04em]">
+                <h1 className="font-display text-[clamp(1.875rem,3.5vw,2.75rem)] font-semibold leading-[1.05] tracking-[-0.03em]">
                   Learn business
                   <br />
                   <span className="font-normal text-foreground/40">by running one.</span>
                 </h1>
-                <p className="mt-8 max-w-xl text-lg leading-relaxed text-foreground/65 md:text-xl">
+                <p className="mt-6 max-w-xl text-base leading-relaxed text-foreground/65">
                   16 months at Masters' Union structured around three engines —
                   <strong className="font-semibold text-foreground"> InClass</strong> fundamentals,
                   <strong className="font-semibold text-foreground"> OutClass</strong> live ventures and
@@ -1583,7 +1583,7 @@ function PgpTbm() {
                   { k: "145+", v: "Recruiters" },
                 ].map((s) => (
                   <div key={s.v} className="border-l border-foreground/10 px-4 first:border-l-0 first:pl-0">
-                    <div className="font-display text-3xl font-semibold leading-none tracking-tight text-foreground sm:text-4xl">
+                    <div className="font-display text-2xl font-semibold leading-none tracking-tight text-foreground sm:text-3xl">
                       {s.k}
                     </div>
                     <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-foreground/50">
