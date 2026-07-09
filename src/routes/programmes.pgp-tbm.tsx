@@ -890,7 +890,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
 
         {/* Term detail strip */}
         <div className="mt-5 grid gap-0 border border-foreground/15 md:grid-cols-[220px_1fr]">
-          <div className="border-b border-foreground/10 bg-smoke-100 p-5 text-white md:border-b-0 md:border-r">
+          <div className="border-b border-foreground/10 bg-smoke-200 p-5 text-white md:border-b-0 md:border-r">
             <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">{active ? "In this term" : "Preview a term"}</div>
             <div className="mt-2 font-display text-3xl leading-none tracking-tight">
               {active ? `Term ${active}` : "—"}
