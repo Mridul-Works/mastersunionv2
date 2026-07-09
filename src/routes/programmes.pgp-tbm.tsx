@@ -618,10 +618,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
           </div>
         </div>
 
-        <div className="mt-6 text-[12px] text-black/55">
-          Full curriculum at{" "}
-          <a href="https://mastersunion.org/pgp-tbm-curriculum" target="_blank" rel="noreferrer" className="underline underline-offset-2">mastersunion.org/pgp-tbm-curriculum</a>. A non-mandatory 3-month internship follows the on-campus terms.
-        </div>
+
       </div>
     </Wrapper>
 
