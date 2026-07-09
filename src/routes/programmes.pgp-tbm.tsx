@@ -1914,7 +1914,7 @@ function PgpTbm() {
                   {STARTUP_LOGOS.map((logo) => (
                     <div
                       key={logo.name}
-                      className="flex h-16 items-center justify-center rounded-xl border border-emerald-900/5 bg-white/80 p-2 transition hover:border-emerald-300 hover:bg-emerald-50/60"
+                      className="flex h-16 items-center justify-center border border-emerald-900/5 bg-white/80 p-2 transition hover:border-emerald-300 hover:bg-emerald-50/60"
                       title={logo.name}
                     >
                       <img
