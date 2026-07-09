@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
+import SectionDivider from "@/components/SectionDivider";
 import { cn } from "@/lib/utils";
 import logoWhite from "@/assets/logo-4.png.asset.json";
 
@@ -158,7 +159,7 @@ function AdmissionPathwaysSection() {
   const active = PATHWAYS.find((p) => p.id === selected);
 
   return (
-    <section id="pathways" className="relative overflow-hidden border-b border-black/10 text-black">
+    <section id="pathways" className="relative overflow-hidden text-black">
       <div className="mx-auto max-w-[1180px] px-4 py-16 sm:px-6 sm:py-20">
         {/* Header */}
         <div className="mb-8 flex flex-col gap-4 sm:mb-12 md:flex-row md:items-end md:justify-between">
@@ -1507,7 +1508,7 @@ function PgpTbm() {
       <SectionNav items={PGP_NAV} applyHref="#apply" />
 
       {/* HERO */}
-      <section className="relative overflow-hidden border-b border-black/10 pt-28 sm:pt-32">
+      <section className="relative overflow-hidden pt-28 sm:pt-32">
         <div className="mx-auto max-w-[1180px] px-4 pb-16 sm:px-6 sm:pb-24">
           {/* Top eyebrow row */}
           <div className="mb-10 flex flex-col gap-4 border-b border-black/10 pb-6 sm:mb-14 md:flex-row md:items-end md:justify-between">
