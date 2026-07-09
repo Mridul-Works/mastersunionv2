@@ -463,7 +463,6 @@ const ENGINE_COLORS: Record<EngineCell["kind"], string> = {
 const OUTCOME_HEADLINE = [
   { k: "₹34.6 LPA", v: "Median CTC · Class of 2025" },
   { k: "₹1.2 Cr", v: "Highest domestic offer" },
-  { k: "97%", v: "Placement rate" },
   { k: "500+", v: "Recruiters on campus" },
 ];
 
