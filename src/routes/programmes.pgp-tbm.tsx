@@ -463,7 +463,6 @@ const ENGINE_COLORS: Record<EngineCell["kind"], string> = {
 const OUTCOME_HEADLINE = [
   { k: "₹34.6 LPA", v: "Median CTC · Class of 2025" },
   { k: "₹1.2 Cr", v: "Highest domestic offer" },
-  { k: "97%", v: "Placement rate" },
   { k: "500+", v: "Recruiters on campus" },
 ];
 
@@ -1722,68 +1721,99 @@ function PgpTbm() {
 
 
       {/* OUTCOMES */}
-      <section id="outcomes" className="border-b border-black/10 bg-white/40">
-        <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-          <div className="mb-12 max-w-3xl">
-            <div className="text-xs font-semibold uppercase tracking-[0.22em] text-black/50">Outcomes · Careers & Startups</div>
-            <h2 className="mt-3 font-display text-3xl leading-[1.03] tracking-[-0.02em]">
-              Two paths out. Both measured in numbers.
-            </h2>
+      <section id="outcomes" className="relative overflow-hidden border-b border-black/10 bg-gradient-to-b from-white via-neutral-50/60 to-white">
+        {/* soft ambient glows */}
+        <div aria-hidden className="pointer-events-none absolute -top-32 left-1/3 h-96 w-96 rounded-full bg-gradient-to-br from-indigo-200/40 via-violet-200/30 to-transparent blur-3xl" />
+        <div aria-hidden className="pointer-events-none absolute -bottom-32 right-1/4 h-96 w-96 rounded-full bg-gradient-to-tr from-emerald-200/40 via-teal-200/30 to-transparent blur-3xl" />
+
+        <div className="relative mx-auto max-w-[1180px] px-4 py-24 sm:px-6">
+          {/* Header */}
+          <div className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-black/60 backdrop-blur">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                Outcomes · Class of 2025
+              </div>
+              <h2 className="mt-4 font-display text-4xl leading-[1.02] tracking-[-0.03em] sm:text-5xl">
+                Two paths out.
+                <br />
+                <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-emerald-600 bg-clip-text text-transparent">Both measured in numbers.</span>
+              </h2>
+            </div>
+            <p className="max-w-sm text-sm leading-relaxed text-black/60">
+              Graded on the open market — salaries, offers, funded ventures. No vanity metrics, no soft claims.
+            </p>
           </div>
 
-          <div className="grid gap-px bg-black/10 md:grid-cols-2">
-            {/* CAREERS */}
-            <div className="flex flex-col bg-white p-8">
-              <div className="flex items-baseline justify-between border-b border-black/10 pb-4">
-                <div className="text-xs font-semibold uppercase tracking-[0.22em] text-black/55">01 · Careers</div>
-                <div className="text-xs text-black/50">Class of 2025</div>
+          {/* Two-panel grid */}
+          <div className="grid gap-6 lg:grid-cols-2">
+            {/* CAREERS PANEL */}
+            <div className="group relative flex flex-col overflow-hidden rounded-3xl border border-black/10 bg-white p-8 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-30px_rgba(0,0,0,0.15)] transition hover:shadow-[0_1px_0_rgba(0,0,0,0.02),0_30px_80px_-30px_rgba(79,70,229,0.25)]">
+              <div className="flex items-center justify-between">
+                <div className="inline-flex items-center gap-2 rounded-full bg-indigo-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-indigo-700">
+                  01 · Careers
+                </div>
+                <div className="text-[11px] uppercase tracking-[0.18em] text-black/40">Class of 2025</div>
               </div>
 
-              <div className="mt-6">
-                <div className="font-display text-3xl leading-none tracking-tight">{OUTCOME_HEADLINE[0].k}</div>
-                <div className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-black/60">{OUTCOME_HEADLINE[0].v}</div>
+              {/* Hero stat */}
+              <div className="mt-8">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-black/55">Median CTC</div>
+                <div className="mt-2 flex items-baseline gap-3">
+                  <span className="bg-gradient-to-br from-indigo-600 via-violet-600 to-indigo-800 bg-clip-text font-display text-6xl leading-none tracking-tight text-transparent sm:text-7xl">
+                    ₹34.6
+                  </span>
+                  <span className="font-display text-2xl text-black/70">LPA</span>
+                </div>
+                <div className="mt-2 h-px w-16 bg-gradient-to-r from-indigo-500 to-transparent" />
               </div>
 
-              <div className="mt-6 grid grid-cols-3 gap-px bg-black/10">
+              {/* Secondary stats */}
+              <div className="mt-8 grid grid-cols-2 gap-4">
                 {OUTCOME_HEADLINE.slice(1).map((s) => (
-                  <div key={s.v} className="bg-white py-4">
-                    <div className="font-display text-3xl leading-none tracking-tight">{s.k}</div>
-                    <div className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-black/55">{s.v}</div>
+                  <div key={s.v} className="rounded-2xl border border-black/5 bg-neutral-50/70 p-4">
+                    <div className="font-display text-2xl leading-none tracking-tight text-black/90">{s.k}</div>
+                    <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-black/55">{s.v}</div>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-8 flex-1">
-                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-black/55">Where alumni land</div>
-                <ul className="mt-4 space-y-3">
+              {/* Roles */}
+              <div className="mt-8">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-black/55">Where alumni land</div>
+                <ul className="mt-4 space-y-3.5">
                   {OUTCOME_ROLES.map((r) => (
                     <li key={r.role}>
                       <div className="flex items-baseline justify-between text-sm">
                         <span className="text-black/75">{r.role}</span>
-                        <span className="font-display text-sm tabular-nums">{r.pct}</span>
+                        <span className="font-display text-sm font-semibold tabular-nums text-indigo-700">{r.pct}</span>
                       </div>
-                      <div className="mt-1.5 h-1 w-full bg-black/5">
-                        <div className="h-full bg-black/70" style={{ width: r.pct }} />
+                      <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-black/5">
+                        <div
+                          className="h-full rounded-full bg-gradient-to-r from-indigo-500 via-violet-500 to-indigo-600"
+                          style={{ width: r.pct }}
+                        />
                       </div>
                     </li>
                   ))}
                 </ul>
               </div>
 
+              {/* Logos */}
               <div className="mt-8 border-t border-black/10 pt-6">
-                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-black/55">Where alumni got hired</div>
-                <div className="mt-4 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-black/55">Where alumni got hired</div>
+                <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4">
                   {CAREER_LOGOS.map((logo) => (
                     <div
                       key={logo.name}
-                      className="flex h-16 items-center justify-center bg-white p-2"
+                      className="flex h-16 items-center justify-center rounded-xl border border-black/5 bg-white p-2 transition hover:border-indigo-200 hover:bg-indigo-50/40"
                       title={logo.name}
                     >
                       <img
                         src={logo.url}
                         alt={`${logo.name} logo`}
                         className={cn(
-                          "h-8 w-auto max-w-[85%] object-contain opacity-80 transition hover:opacity-100",
+                          "h-8 w-auto max-w-[85%] object-contain opacity-70 transition group-hover:opacity-90 hover:!opacity-100",
                           logo.className
                         )}
                         loading="lazy"
@@ -1791,75 +1821,87 @@ function PgpTbm() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-3 text-right text-xs font-semibold italic text-black/55">and many more...</div>
+                <div className="mt-3 text-right text-xs font-medium italic text-black/50">and many more…</div>
               </div>
             </div>
 
-            {/* STARTUPS */}
-            <div className="flex flex-col bg-white p-8">
-              <div className="flex items-baseline justify-between border-b border-black/10 pb-4">
-                <div className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-700">02 · Startups</div>
-                <div className="text-xs text-black/50">Founded on campus</div>
+            {/* STARTUPS PANEL */}
+            <div className="group relative flex flex-col overflow-hidden rounded-3xl border border-emerald-900/10 bg-gradient-to-br from-emerald-50/60 via-white to-teal-50/40 p-8 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-30px_rgba(0,0,0,0.15)] transition hover:shadow-[0_1px_0_rgba(0,0,0,0.02),0_30px_80px_-30px_rgba(16,185,129,0.3)]">
+              <div className="flex items-center justify-between">
+                <div className="inline-flex items-center gap-2 rounded-full bg-emerald-100/80 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-800">
+                  02 · Startups
+                </div>
+                <div className="text-[11px] uppercase tracking-[0.18em] text-emerald-900/40">Founded on campus</div>
               </div>
 
-              <div className="mt-6">
-                <div className="font-display text-3xl leading-none tracking-tight">{OUTCOME_STARTUP[0].k}</div>
-                <div className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-black/60">{OUTCOME_STARTUP[0].v}</div>
+              {/* Hero stat */}
+              <div className="mt-8">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-900/60">Startups founded on campus</div>
+                <div className="mt-2 flex items-baseline gap-3">
+                  <span className="bg-gradient-to-br from-emerald-600 via-teal-600 to-emerald-800 bg-clip-text font-display text-6xl leading-none tracking-tight text-transparent sm:text-7xl">
+                    200+
+                  </span>
+                </div>
+                <div className="mt-2 h-px w-16 bg-gradient-to-r from-emerald-500 to-transparent" />
               </div>
 
-              <div className="mt-6 grid grid-cols-2 gap-px bg-black/10">
+              {/* Secondary stats */}
+              <div className="mt-8 grid grid-cols-2 gap-4">
                 {OUTCOME_STARTUP.slice(1).map((s) => (
-                  <div key={s.v} className="bg-white py-4">
-                    <div className="font-display text-3xl leading-none tracking-tight">{s.k}</div>
-                    <div className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-black/55">{s.v}</div>
+                  <div key={s.v} className="rounded-2xl border border-emerald-900/5 bg-white/70 p-4 backdrop-blur">
+                    <div className="font-display text-2xl leading-none tracking-tight text-emerald-950">{s.k}</div>
+                    <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-900/60">{s.v}</div>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-8 flex-1">
-                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-black/55">What ventures produce</div>
-                <ul className="mt-4 space-y-3 border-t border-black/10 pt-4 text-sm text-black/75">
-                  <li className="flex items-baseline justify-between gap-4">
-                    <span>D2C brands built in Term 2</span>
-                    <span className="font-display text-sm tabular-nums">Live</span>
-                  </li>
-                  <li className="flex items-baseline justify-between gap-4">
-                    <span>Creator Challenge ventures</span>
-                    <span className="font-display text-sm tabular-nums">Live</span>
-                  </li>
-                  <li className="flex items-baseline justify-between gap-4">
-                    <span>Graded on open-market outcomes</span>
-                    <span className="font-display text-sm tabular-nums">Yes</span>
-                  </li>
-                  <li className="flex items-baseline justify-between gap-4">
-                    <span>Founder / Own venture track</span>
-                    <span className="font-display text-sm tabular-nums">18%</span>
-                  </li>
+              {/* What ventures produce */}
+              <div className="mt-8">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-900/60">What ventures produce</div>
+                <ul className="mt-4 space-y-2.5 text-sm">
+                  {[
+                    { label: "D2C brands built in Term 2", value: "Live" },
+                    { label: "Creator Challenge ventures", value: "Live" },
+                    { label: "Graded on open-market outcomes", value: "Yes" },
+                    { label: "Founder / Own venture track", value: "18%" },
+                  ].map((row) => (
+                    <li
+                      key={row.label}
+                      className="flex items-center justify-between rounded-xl border border-emerald-900/5 bg-white/60 px-4 py-2.5"
+                    >
+                      <span className="text-black/75">{row.label}</span>
+                      <span className="rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-2.5 py-0.5 font-display text-xs font-semibold tabular-nums text-white shadow-sm">
+                        {row.value}
+                      </span>
+                    </li>
+                  ))}
                 </ul>
               </div>
 
-              <div className="mt-8 border-t border-black/10 pt-6">
-                <div className="text-xs font-semibold uppercase tracking-[0.2em] text-black/55">Ventures built on campus</div>
-                <div className="mt-4 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4">
+              {/* Startup logos */}
+              <div className="mt-8 border-t border-emerald-900/10 pt-6">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-900/60">Ventures built on campus</div>
+                <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4">
                   {STARTUP_LOGOS.map((logo) => (
                     <div
                       key={logo.name}
-                      className="flex h-16 items-center justify-center bg-white p-2"
+                      className="flex h-16 items-center justify-center rounded-xl border border-emerald-900/5 bg-white/80 p-2 transition hover:border-emerald-300 hover:bg-emerald-50/60"
                       title={logo.name}
                     >
                       <img
                         src={logo.url}
                         alt={`${logo.name} logo`}
-                        className="h-8 w-auto max-w-[85%] object-contain opacity-80 transition hover:opacity-100"
+                        className="h-8 w-auto max-w-[85%] object-contain opacity-75 transition hover:opacity-100"
                         loading="lazy"
                       />
                     </div>
                   ))}
                 </div>
-                <div className="mt-3 text-right text-xs font-semibold italic text-black/55">and many more...</div>
+                <div className="mt-3 text-right text-xs font-medium italic text-emerald-900/50">and many more…</div>
               </div>
             </div>
           </div>
+
 
 
           <div className="mt-16">
