@@ -844,7 +844,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     {Array.from({ length: 8 }).map((_, i) => {
                       const t = i + 1;
                       const isActive = active === t;
-                      return <div key={t} className={`transition-colors rounded-sm ${isActive ? "bg-black/[0.04]" : ""}`} />;
+                      return <div key={t} className={`transition-colors ${isActive ? "bg-black/[0.05]" : ""}`} />;
                     })}
                   </div>
                   {/* Bars */}
