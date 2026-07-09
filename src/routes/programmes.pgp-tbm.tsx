@@ -812,11 +812,11 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
         {/* Matrix */}
         <div className="overflow-x-auto">
           <div
-            className="min-w-[980px] border border-black/15 divide-y divide-black/10"
+            className="min-w-[980px] border border-foreground/15 divide-y divide-foreground/10"
             onMouseLeave={() => setActive(null)}
           >
             {/* Header row: Term columns */}
-            <div className="grid grid-cols-[200px_repeat(8,1fr)] divide-x divide-black/10 bg-black text-white">
+            <div className="grid grid-cols-[200px_repeat(8,1fr)] divide-x divide-foreground/10 bg-smoke-50 text-white">
               <div className="flex flex-col justify-center gap-1 px-4 py-4">
                 <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">Aug '26 → Nov '27</div>
                 <div className="font-display text-sm tracking-tight text-white/90">16 months · 8 terms</div>
@@ -831,14 +831,14 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     onMouseEnter={() => setActive(t)}
                     onFocus={() => setActive(t)}
                     onClick={() => setActive(t)}
-                    className={`group relative flex flex-col items-start gap-1 px-3 py-4 text-left transition-colors ${isActive ? "bg-white text-black" : "text-white hover:bg-white/10"}`}
+                    className={`group relative flex flex-col items-start gap-1 px-3 py-4 text-left transition-colors ${isActive ? "bg-card text-foreground" : "text-white hover:bg-white/10"}`}
                   >
                     <div className="flex items-baseline gap-1.5">
-                      <span className={`font-display text-lg leading-none tracking-tight ${isActive ? "text-black" : "text-white"}`}>{String(t).padStart(2, "0")}</span>
-                      <span className={`text-[10px] uppercase tracking-[0.18em] ${isActive ? "text-black/50" : "text-white/50"}`}>Term</span>
+                      <span className={`font-display text-lg leading-none tracking-tight ${isActive ? "text-foreground" : "text-white"}`}>{String(t).padStart(2, "0")}</span>
+                      <span className={`text-[10px] uppercase tracking-[0.18em] ${isActive ? "text-foreground/50" : "text-white/50"}`}>Term</span>
                     </div>
-                    <div className={`text-[11px] leading-tight ${isActive ? "text-black/70" : "text-white/70"}`}>{m.months}</div>
-                    <div className={`text-[10px] uppercase tracking-[0.14em] ${isActive ? "text-black/45" : "text-white/45"}`}>{m.window}</div>
+                    <div className={`text-[11px] leading-tight ${isActive ? "text-foreground/70" : "text-white/70"}`}>{m.months}</div>
+                    <div className={`text-[10px] uppercase tracking-[0.14em] ${isActive ? "text-foreground/45" : "text-white/45"}`}>{m.window}</div>
                   </button>
                 );
               })}
