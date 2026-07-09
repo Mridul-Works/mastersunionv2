@@ -1575,34 +1575,34 @@ function PgpTbm() {
 
 
           {/* ENGINE 01 — InClass */}
-          <div className="grid gap-8 border-t border-black/10 py-12 md:grid-cols-[300px_1fr] md:gap-16">
+          <div className="grid gap-8 border-t border-border/60 py-12 md:grid-cols-[300px_1fr] md:gap-16">
             <div>
-              <div className="font-display text-3xl leading-none text-black/25">01</div>
-              <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-black/55">InClass · The learning core</div>
+              <div className="font-display text-3xl leading-none text-muted-foreground/50">01</div>
+              <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">InClass · The learning core</div>
               <h3 className="mt-2 font-display text-3xl leading-tight tracking-tight">Seven tracks. Zero rote exams.</h3>
-              <p className="mt-3 text-sm leading-relaxed text-black/65">
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                 Taught by 30% Ivy academics, 30% research faculty and 40% sitting operators. Every course is graded on a real deliverable — a P&amp;L, a shipped feature, a live campaign.
               </p>
-              <dl className="mt-6 grid grid-cols-3 gap-3 border-t border-black/10 pt-4">
+              <dl className="mt-6 grid grid-cols-3 gap-3 rounded-xl bg-muted/60 p-4">
                 {IN_CLASS.stats.map((s) => (
                   <div key={s.v}>
                     <dt className="font-display text-3xl leading-none tracking-tight">{s.k}</dt>
-                    <dd className="mt-1.5 text-xs leading-snug text-black/55">{s.v}</dd>
+                    <dd className="mt-1.5 text-xs leading-snug text-muted-foreground">{s.v}</dd>
                   </div>
                 ))}
               </dl>
             </div>
-            <div className="grid gap-px bg-black/10 sm:grid-cols-2">
+            <div className="grid gap-3 rounded-2xl bg-muted/40 p-3 sm:grid-cols-2">
               <ImagePlaceholder label="InClass tracks" aspect="16/9" className="sm:col-span-2" />
               {IN_CLASS.tracks.map((t) => (
-                <div key={t.name} className="bg-white/90 p-5 pastel-fill">
-                  <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/50">Track</div>
+                <div key={t.name} className="rounded-xl bg-card p-5 shadow-sm transition-all hover:shadow-md">
+                  <div className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">Track</div>
                   <div className="mt-2 font-display text-sm leading-tight tracking-tight">{t.name}</div>
-                  <div className="mt-2 text-xs leading-snug text-black/60">{t.eg}</div>
+                  <div className="mt-2 text-xs leading-snug text-muted-foreground">{t.eg}</div>
                 </div>
               ))}
-              <div className="bg-black p-5 text-white">
-                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">Delivered as</div>
+              <div className="rounded-xl bg-foreground p-5 text-primary-foreground">
+                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/60">Delivered as</div>
                 <div className="mt-2 font-display text-sm leading-tight">150+ courses · 8 terms · project-graded</div>
               </div>
             </div>
