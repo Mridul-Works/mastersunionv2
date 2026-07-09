@@ -1777,7 +1777,7 @@ function PgpTbm() {
           {/* Two-panel grid */}
           <div className="grid gap-6 lg:grid-cols-2">
             {/* CAREERS PANEL */}
-            <div className="group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card/80 p-8 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-30px_rgba(0,0,0,0.15)] transition hover:shadow-[0_1px_0_rgba(0,0,0,0.02),0_30px_80px_-30px_rgba(20,184,166,0.25)]">
+            <div className="group relative flex flex-col overflow-hidden border border-border bg-card/80 p-8 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-30px_rgba(0,0,0,0.15)] transition hover:shadow-[0_1px_0_rgba(0,0,0,0.02),0_30px_80px_-30px_rgba(20,184,166,0.25)]">
               <div className="flex items-center justify-between">
                 <div className="inline-flex items-center gap-2 rounded-full bg-teal/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-teal-700">
                   01 · Careers
