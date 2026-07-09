@@ -8,6 +8,13 @@ import {
   Star,
   Linkedin,
   Calendar,
+  Clock,
+  Users,
+  BookOpen,
+  TrendingUp,
+  MapPin,
+  ChevronRight,
+  GraduationCap,
 } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
@@ -71,12 +78,256 @@ const CAREER_LOGOS: { name: string; url: string }[] = [
 
 const PGP_NAV: SectionNavItem[] = [
   { id: "top", label: "Overview" },
+  { id: "pathways", label: "Pathways" },
   { id: "model", label: "The Model" },
   { id: "terms", label: "8 Terms" },
   { id: "outcomes", label: "Outcomes" },
   { id: "faculty", label: "Faculty" },
   { id: "faq", label: "FAQ" },
 ];
+
+const PATHWAYS = [
+  {
+    id: "tbm",
+    num: "01",
+    label: "Experienced Professionals",
+    shortTitle: "PGP TBM",
+    fullTitle: "PGP in Technology & Business Management",
+    accentClass: "text-[#ffd000]",
+    accentBg: "bg-[#ffd000]",
+    color: "#ffd000",
+    quickStats: [
+      { icon: Clock, text: "16 months full-time" },
+      { icon: Users, text: ">1 year work experience" },
+      { icon: BookOpen, text: "120 credits (Inclass + Outclass)" },
+      { icon: TrendingUp, text: "Avg. CTC: ₹33.39 LPA" },
+    ],
+    location: "Gurugram (DLF Cyberpark)",
+    cohortSize: "~120",
+    nextCohort: "June 2026",
+    ideal:
+      "Built for ambitious professionals with 1–8 years of experience ready to leap into tech-forward leadership roles — learn from CXOs of Google, McKinsey & Bain, not just textbooks.",
+    highlights: [
+      { stat: "₹1.28 Cr", desc: "Highest CTC placed" },
+      { stat: "145+", desc: "Marquee recruiters — Google, Flipkart, Zomato & more" },
+      { stat: "₹5 Cr", desc: "Student-led investment fund — real startups & equities" },
+      { stat: "20+", desc: "Cities covered in Bharat Immersion field programme" },
+      { stat: "100+", desc: "VCs at Demo Day — launch your startup on campus" },
+      { stat: "11.2%", desc: "Students placed as EiR & Chief of Staff at top startups" },
+    ],
+    applyLink: "https://mastersunion.org/pgp-tbm-applynow",
+  },
+  {
+    id: "ylc",
+    num: "02",
+    label: "Young Leaders",
+    shortTitle: "PGP TBM YLC",
+    fullTitle: "Young Leaders' Certificate Programme",
+    accentClass: "text-[#E38330]",
+    accentBg: "bg-[#E38330]",
+    color: "#E38330",
+    quickStats: [
+      { icon: Clock, text: "24 months full-time" },
+      { icon: Users, text: "0–1 year experience" },
+      { icon: BookOpen, text: "200 credits (Inclass + Outclass)" },
+      { icon: TrendingUp, text: "Avg. CTC: ₹28.24 LPA" },
+    ],
+    location: "Gurugram (DLF Cyberpark)",
+    cohortSize: "~80",
+    nextCohort: "June 2026",
+    ideal:
+      "Designed for fresh graduates and early-career go-getters (0–1 year experience) who want to fast-track into leadership — with extra foundational depth and a mandatory industry internship.",
+    highlights: [
+      { stat: "₹46.22 LPA", desc: "Highest CTC placed" },
+      { stat: "100+", desc: "Recruiting companies across sectors" },
+      { stat: "₹2 Cr+", desc: "Earned collectively in Dropshipping Challenge" },
+      { stat: "200", desc: "Credits — deeper foundational business & tech modules" },
+      { stat: "Day 1", desc: "Startup incubation — graduate with a running business" },
+      { stat: "1M+", desc: "Followers built via Creator-preneur track" },
+    ],
+    applyLink: "https://mastersunion.org/pgp-tbm-applynow",
+  },
+];
+
+function AdmissionPathwaysSection() {
+  const [selected, setSelected] = useState<string | null>("tbm");
+  const active = PATHWAYS.find((p) => p.id === selected);
+
+  return (
+    <section id="pathways" className="bg-[#0a0a0a] text-white border-b border-black/10">
+      <div className="mx-auto max-w-[1180px] px-4 py-16 sm:px-6 sm:py-20">
+        {/* Header */}
+        <div className="mb-8 flex flex-col gap-4 sm:mb-12 md:flex-row md:items-end md:justify-between">
+          <div>
+            <div className="mb-3 flex items-center gap-2">
+              <Star size={14} className="text-[#ffd000]" fill="currentColor" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#ffd000]">
+                ADMISSION PATHWAYS
+              </span>
+            </div>
+            <h2 className="font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.15] tracking-[-0.02em]">
+              Two Programmes.
+              <br />
+              <span className="font-bold">One Mission.</span>
+            </h2>
+          </div>
+          <p className="max-w-sm text-sm leading-relaxed text-white/55 md:text-right">
+            Choose the pathway that matches your experience level and career ambitions. Both lead to transformative outcomes.
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-0 lg:flex-row">
+          {/* Left: Programme cards */}
+          <div className="grid shrink-0 grid-cols-2 gap-0 lg:w-[360px] lg:grid-cols-1">
+            {PATHWAYS.map((p) => {
+              const isActive = selected === p.id;
+              return (
+                <button
+                  key={p.id}
+                  onClick={() => setSelected(isActive ? null : p.id)}
+                  className="group relative overflow-hidden text-left transition-all duration-300"
+                >
+                  <div className={`h-1.5 w-full transition-all duration-300 ${isActive ? p.accentBg : "bg-white/10"}`} />
+                  <div
+                    className={`border px-3 py-4 transition-all duration-300 sm:px-6 sm:py-8 ${
+                      isActive ? "border-white/15 bg-white/[0.04]" : "border-white/10 bg-white/[0.02] hover:bg-white/[0.03]"
+                    }`}
+                  >
+                    <div className="mb-3 flex items-center justify-between sm:mb-6">
+                      <span
+                        className={`font-sans text-2xl font-bold leading-none tracking-tighter transition-colors duration-300 sm:text-5xl md:text-6xl ${
+                          isActive ? p.accentClass : "text-white/15"
+                        }`}
+                      >
+                        {p.num}
+                      </span>
+                      <div
+                        className={`flex h-7 w-7 items-center justify-center transition-all duration-300 sm:h-10 sm:w-10 ${
+                          isActive ? `${p.accentBg} text-black` : "bg-white/10 text-white/50"
+                        }`}
+                      >
+                        <ArrowUpRight size={16} className="sm:h-[18px] sm:w-[18px]" />
+                      </div>
+                    </div>
+
+                    <p
+                      className={`mb-1 text-[9px] font-bold uppercase leading-tight tracking-[0.15em] transition-colors sm:mb-2 sm:text-xs sm:tracking-[0.2em] ${
+                        isActive ? p.accentClass : "text-white/50"
+                      }`}
+                    >
+                      {p.label}
+                    </p>
+
+                    <h3 className="mb-3 font-sans text-base font-bold tracking-tight text-white sm:mb-6 sm:text-2xl">
+                      {p.shortTitle}
+                    </h3>
+
+                    <div className={`mb-3 h-px w-full transition-colors sm:mb-6 ${isActive ? "bg-white/20" : "bg-white/10"}`} />
+
+                    <div className="mb-8 hidden space-y-4 sm:block">
+                      {p.quickStats.map((h) => {
+                        const HIcon = h.icon;
+                        return (
+                          <div key={h.text} className="flex items-center gap-3">
+                            <HIcon
+                              size={14}
+                              className={`shrink-0 transition-colors ${isActive ? p.accentClass : "text-white/40"}`}
+                            />
+                            <span className={`text-sm transition-colors ${isActive ? "text-white/80" : "text-white/50"}`}>
+                              {h.text}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    <div
+                      className={`flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider transition-all sm:gap-2 sm:text-sm ${
+                        isActive ? p.accentClass : "text-white/40 group-hover:text-white/60"
+                      }`}
+                    >
+                      {isActive ? "Viewing" : "View"}
+                      <ChevronRight
+                        size={12}
+                        className={`transition-transform sm:h-[14px] sm:w-[14px] ${isActive ? "rotate-90" : "group-hover:translate-x-1"}`}
+                      />
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Right: expanded detail panel */}
+          {active && (
+            <div className="max-h-[80vh] min-w-0 flex-1 overflow-y-auto border border-t-0 border-white/15 bg-white/[0.04] lg:max-h-none lg:border-l-0 lg:border-t">
+              <div className={`h-1.5 w-full ${active.accentBg}`} />
+              <div className="p-5 sm:p-6 md:p-8">
+                <span
+                  className="mb-3 inline-block text-xs font-bold uppercase tracking-[0.2em]"
+                  style={{ color: active.color }}
+                >
+                  {active.label}
+                </span>
+
+                <h3 className="mb-2 font-sans text-xl font-bold tracking-tight text-white sm:text-2xl md:text-3xl">
+                  {active.fullTitle}
+                </h3>
+                <p className="mb-6 text-sm leading-relaxed text-white/60 sm:mb-8">{active.ideal}</p>
+
+                <div className="mb-6 grid grid-cols-1 gap-0 sm:mb-8 sm:grid-cols-3">
+                  {[
+                    { icon: MapPin, label: "Location", value: active.location },
+                    { icon: Users, label: "Cohort Size", value: active.cohortSize },
+                    { icon: GraduationCap, label: "Next Cohort", value: active.nextCohort },
+                  ].map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="border border-white/10 bg-white/[0.02] px-3 py-3 sm:px-5 sm:py-4"
+                    >
+                      <stat.icon size={14} className="mb-1.5 text-white/50 sm:mb-2" />
+                      <p className="mb-0.5 text-[9px] font-semibold uppercase tracking-wider text-white/50 sm:mb-1 sm:text-xs">
+                        {stat.label}
+                      </p>
+                      <p className="break-words text-xs font-semibold text-white sm:text-sm">{stat.value}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-white/50 sm:mb-4">Programme Highlights</p>
+                <div className="mb-6 grid grid-cols-2 gap-2 sm:mb-8 sm:grid-cols-3 sm:gap-3 md:gap-4">
+                  {active.highlights.map((h, i) => (
+                    <div key={i} className="rounded border border-white/10 bg-white/[0.02] p-3 sm:p-4">
+                      <span
+                        className="mb-1 block font-display text-2xl font-extrabold sm:text-3xl"
+                        style={{ color: active.color }}
+                      >
+                        {h.stat}
+                      </span>
+                      <span className="text-[10px] leading-snug text-white/60 sm:text-xs">{h.desc}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+                  <a
+                    href={active.applyLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#ffd000] px-6 py-3 text-sm font-semibold text-black transition-colors hover:bg-[#ffdb33] sm:w-auto"
+                  >
+                    Apply for {active.shortTitle} <ArrowUpRight size={16} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 
 export const Route = createFileRoute("/programmes/pgp-tbm")({
   head: () => ({
@@ -1343,6 +1594,8 @@ function PgpTbm() {
           </div>
         </div>
       </section>
+
+      <AdmissionPathwaysSection />
 
       {/* THE MODEL — three engines */}
       <section id="model" className="border-b border-black/10">
