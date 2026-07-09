@@ -1172,11 +1172,6 @@ function AlumniShowcase() {
               {/* Dark card */}
               {secondary && (
                 <div className="rounded-none bg-black p-6 text-white md:p-7">
-                  <div className="mb-4 flex items-center gap-1 text-teal">
-                    {"★★★★★".split("").map((s, i) => (
-                      <span key={i} className="text-xs">{s}</span>
-                    ))}
-                  </div>
                   <p className="font-display text-lg leading-[1.35] text-white md:text-xl">
                     &ldquo;{secondary.quote}&rdquo;
                   </p>
@@ -1205,11 +1200,6 @@ function AlumniShowcase() {
               {/* Light card */}
               {tertiary && (
                 <div className="rounded-none border border-black/10 bg-white p-6 md:p-7">
-                  <div className="mb-4 flex items-center gap-1 text-orange-500">
-                    {"★★★★★".split("").map((s, i) => (
-                      <span key={i} className="text-xs">{s}</span>
-                    ))}
-                  </div>
                   <p className="font-display text-lg leading-[1.35] text-black md:text-xl">
                     &ldquo;{tertiary.quote}&rdquo;
                   </p>
