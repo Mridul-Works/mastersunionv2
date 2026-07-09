@@ -458,7 +458,7 @@ const TERM_MATRIX: TermRow[] = [
 const ENGINE_COLORS: Record<EngineCell["kind"], string> = {
   in: "bg-white/90 text-black/80",
   d2c: "bg-emerald-50 text-emerald-800 border-l-2 border-emerald-500",
-  creator: "bg-amber-50 text-amber-800 border-l-2 border-amber-500",
+  creator: "bg-teal-50 text-teal-800 border-l-2 border-teal-500",
   imm: "bg-indigo-50 text-indigo-800 border-l-2 border-indigo-500",
 };
 
@@ -963,7 +963,7 @@ const ALUMNI: Alum[] = [
     quote: "The Creator Challenge taught me distribution before I knew I'd need it as a founder.",
     linkedin: "https://www.linkedin.com/",
     calendly: "https://cal.com/",
-    accent: "from-amber-400 to-orange-600",
+    accent: "from-teal-400 to-cyan-600",
     image: facultyBhupesh.url,
   },
   {
