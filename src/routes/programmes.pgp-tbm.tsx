@@ -620,18 +620,6 @@ const FAQ = [
   },
 ];
 
-// -------- Countdown --------
-function useCountdown(target: Date) {
-  const [now, setNow] = useState(() => Date.now());
-  useEffect(() => {
-    const id = setInterval(() => setNow(Date.now()), 1000);
-    return () => clearInterval(id);
-  }, []);
-  const diff = Math.max(0, target.getTime() - now);
-  const d = Math.floor(diff / 86400000);
-  const h = Math.floor((diff % 86400000) / 3600000);
-  return { d, h };
-}
 
 // -------- 8-term Gantt calendar --------
 const TERM_META = [
@@ -1500,8 +1488,6 @@ function FacultyShowcase() {
 
 function PgpTbm() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const deadline = new Date("2026-08-15T23:59:59+05:30");
-  const { d, h } = useCountdown(deadline);
 
   return (
     <main
@@ -1557,16 +1543,10 @@ function PgpTbm() {
           <div className="relative">
             <div className="relative aspect-[4/5] overflow-hidden border border-black/10 bg-black">
               <ImagePlaceholder label="Hero visual" className="h-full w-full" aspect="4/5" />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-5 text-white">
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent p-5 text-white">
                 <div className="text-xs font-semibold uppercase tracking-[0.22em] text-white/70">The Campus</div>
                 <div className="mt-1 font-display text-sm leading-tight">DLF Cyber Park, Gurugram</div>
                 <div className="mt-1 text-xs text-white/60">85% of Fortune 500 within a 2 km walk</div>
-              </div>
-            </div>
-            <div className="absolute -bottom-5 -left-5 hidden border border-black/10 bg-white px-4 py-3 shadow-lg lg:block">
-              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/50">Round 1 closes</div>
-              <div className="font-display text-3xl leading-none tabular-nums">
-                {String(d).padStart(2, "0")}d · {String(h).padStart(2, "0")}h
               </div>
             </div>
           </div>
