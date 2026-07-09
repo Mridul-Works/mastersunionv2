@@ -203,7 +203,7 @@ function AdmissionPathwaysSection() {
                       </span>
                       <div
                         className={`flex h-7 w-7 items-center justify-center transition-all duration-300 sm:h-10 sm:w-10 ${
-                          isActive ? `${p.accentBg} text-black` : "bg-black/10 text-black/50"
+                          isActive ? `${p.accentBg} text-white` : "bg-black/10 text-black/50"
                         }`}
                       >
                         <ArrowUpRight size={16} className="sm:h-[18px] sm:w-[18px]" />
