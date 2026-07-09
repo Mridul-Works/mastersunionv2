@@ -154,7 +154,9 @@ function AdmissionPathwaysSection() {
   const active = PATHWAYS.find((p) => p.id === selected);
 
   return (
-    <section id="pathways" className="border-b border-black/10 bg-white text-black">
+    <section id="pathways" className="relative overflow-hidden border-b border-black/10 bg-gradient-to-b from-background via-muted/50 to-background text-black">
+      <div aria-hidden className="pointer-events-none absolute -top-32 left-1/4 h-96 w-96 rounded-full bg-gradient-to-br from-teal/25 via-sage/20 to-transparent blur-3xl" />
+      <div aria-hidden className="pointer-events-none absolute -bottom-32 right-1/3 h-96 w-96 rounded-full bg-gradient-to-tr from-cream/40 via-sage/30 to-transparent blur-3xl" />
       <div className="mx-auto max-w-[1180px] px-4 py-16 sm:px-6 sm:py-20">
         {/* Header */}
         <div className="mb-8 flex flex-col gap-4 sm:mb-12 md:flex-row md:items-end md:justify-between">
@@ -1559,7 +1561,9 @@ function PgpTbm() {
       <AdmissionPathwaysSection />
 
       {/* THE MODEL — three engines */}
-      <section id="model" className="border-b border-black/10">
+      <section id="model" className="relative overflow-hidden border-b border-black/10 bg-gradient-to-b from-background via-muted/50 to-background">
+        <div aria-hidden className="pointer-events-none absolute -top-32 left-1/4 h-96 w-96 rounded-full bg-gradient-to-br from-teal/25 via-sage/20 to-transparent blur-3xl" />
+        <div aria-hidden className="pointer-events-none absolute -bottom-32 right-1/3 h-96 w-96 rounded-full bg-gradient-to-tr from-cream/40 via-sage/30 to-transparent blur-3xl" />
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
           <div className="mb-12 max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
@@ -1898,15 +1902,17 @@ function PgpTbm() {
       </section>
 
       {/* FACULTY */}
-      <section id="faculty" className="relative border-b border-black/10 bg-smoke-950 py-12 md:py-16">
-        <div className="mx-auto max-w-7xl px-5 md:px-6">
+      <section id="faculty" className="relative overflow-hidden border-b border-black/10 bg-gradient-to-b from-background via-muted/50 to-background py-12 md:py-16">
+        <div aria-hidden className="pointer-events-none absolute -top-32 left-1/4 h-96 w-96 rounded-full bg-gradient-to-br from-teal/25 via-sage/20 to-transparent blur-3xl" />
+        <div aria-hidden className="pointer-events-none absolute -bottom-32 right-1/3 h-96 w-96 rounded-full bg-gradient-to-tr from-cream/40 via-sage/30 to-transparent blur-3xl" />
+        <div className="relative mx-auto max-w-7xl px-5 md:px-6">
           <Eyebrow num="04" label="Faculty" />
           <div className="mt-6 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-            <h2 className="max-w-4xl font-display text-3xl font-bold leading-[1.08] tracking-tight text-smoke-50 md:text-3xl md:leading-[1.05]">
+            <h2 className="max-w-4xl font-display text-3xl font-bold leading-[1.08] tracking-tight text-foreground md:text-3xl md:leading-[1.05]">
               30% Ivy academics. 30% research faculty.{" "}
               <span className="font-serif-italic font-normal">40% sitting operators.</span>
             </h2>
-            <p className="max-w-sm text-sm text-smoke-50/60">
+            <p className="max-w-sm text-sm text-muted-foreground">
               The 30·30·40 faculty model brings academics, researchers and operators into one teaching bench.
             </p>
           </div>
