@@ -1076,7 +1076,7 @@ function AlumniShowcase() {
               key={ind}
               type="button"
               onClick={() => handleIndustry(ind)}
-              className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] transition-all duration-300 ${
+              className={`inline-flex items-center gap-2 rounded-none border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] transition-all duration-300 ${
                 isActive
                   ? "border-black bg-black text-white"
                   : "border-black/15 text-black/60 hover:border-black/40 hover:text-black"
@@ -1090,7 +1090,7 @@ function AlumniShowcase() {
       </div>
 
       {total === 0 ? (
-        <div className="mt-12 rounded-3xl border border-black/10 bg-white/60 p-10 text-center font-mono text-xs uppercase tracking-[0.24em] text-black/50">
+        <div className="mt-12 rounded-none border border-black/10 bg-white/60 p-10 text-center font-mono text-xs uppercase tracking-[0.24em] text-black/50">
           No alumni in this industry yet.
         </div>
       ) : (
@@ -1098,7 +1098,7 @@ function AlumniShowcase() {
           <div className="mt-10 grid gap-5 lg:grid-cols-12">
             {/* FEATURE — Portrait + quote overlay */}
             <article
-              className="relative col-span-12 overflow-hidden rounded-[28px] lg:col-span-7 lg:min-h-[560px]"
+              className="relative col-span-12 overflow-hidden rounded-none lg:col-span-7 lg:min-h-[560px]"
               style={{ boxShadow: "0 40px 120px -40px rgba(0,0,0,0.35)" }}
             >
               {filtered.map((a, i) => (
@@ -1123,8 +1123,8 @@ function AlumniShowcase() {
               ))}
 
               {/* Top-left brand chip */}
-              <div className="absolute left-6 top-6 z-10 flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 backdrop-blur">
-                <span className="h-1.5 w-1.5 rounded-full bg-teal" />
+              <div className="absolute left-6 top-6 z-10 flex items-center gap-2 rounded-none bg-white/90 px-3 py-1.5 backdrop-blur">
+                <span className="h-1.5 w-1.5 rounded-none bg-teal" />
                 <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-black/70">
                   {active.domain} · {active.batch}
                 </span>
@@ -1157,7 +1157,7 @@ function AlumniShowcase() {
                           href={a.linkedin}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex h-9 items-center gap-1.5 rounded-full bg-white px-3 font-mono text-[10px] uppercase tracking-[0.22em] text-black transition hover:bg-white/85"
+                          className="inline-flex h-9 items-center gap-1.5 rounded-none bg-white px-3 font-mono text-[10px] uppercase tracking-[0.22em] text-black transition hover:bg-white/85"
                         >
                           <Linkedin className="size-3" /> Connect
                         </a>
@@ -1166,7 +1166,7 @@ function AlumniShowcase() {
                             href={a.calendly}
                             target="_blank"
                             rel="noreferrer"
-                            className="inline-flex h-9 items-center gap-1.5 rounded-full border border-white/60 px-3 font-mono text-[10px] uppercase tracking-[0.22em] text-white transition hover:bg-white/10"
+                            className="inline-flex h-9 items-center gap-1.5 rounded-none border border-white/60 px-3 font-mono text-[10px] uppercase tracking-[0.22em] text-white transition hover:bg-white/10"
                           >
                             <Calendar className="size-3" /> Book
                           </a>
@@ -1182,7 +1182,7 @@ function AlumniShowcase() {
             <div className="col-span-12 grid gap-5 lg:col-span-5">
               {/* Dark card */}
               {secondary && (
-                <div className="rounded-[28px] bg-black p-6 text-white md:p-7">
+                <div className="rounded-none bg-black p-6 text-white md:p-7">
                   <div className="mb-4 flex items-center gap-1 text-teal">
                     {"★★★★★".split("").map((s, i) => (
                       <span key={i} className="text-xs">{s}</span>
@@ -1202,7 +1202,7 @@ function AlumniShowcase() {
                     </div>
                   </div>
                   <div className="mt-5 flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 font-mono text-[11px] text-white">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-none bg-white/10 font-mono text-[11px] text-white">
                       {initialsOf(secondary.name)}
                     </div>
                     <div>
@@ -1215,7 +1215,7 @@ function AlumniShowcase() {
 
               {/* Light card */}
               {tertiary && (
-                <div className="rounded-[28px] border border-black/10 bg-white p-6 md:p-7">
+                <div className="rounded-none border border-black/10 bg-white p-6 md:p-7">
                   <div className="mb-4 flex items-center gap-1 text-orange-500">
                     {"★★★★★".split("").map((s, i) => (
                       <span key={i} className="text-xs">{s}</span>
@@ -1235,7 +1235,7 @@ function AlumniShowcase() {
                     </div>
                   </div>
                   <div className="mt-5 flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-black/5 font-mono text-[11px] text-black">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-none bg-black/5 font-mono text-[11px] text-black">
                       {initialsOf(tertiary.name)}
                     </div>
                     <div>
@@ -1279,7 +1279,7 @@ function AlumniShowcase() {
                 type="button"
                 onClick={() => go(-1)}
                 aria-label="Previous alumni"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-black/15 text-black transition hover:bg-black hover:text-white"
+                className="flex h-10 w-10 items-center justify-center rounded-none border border-black/15 text-black transition hover:bg-black hover:text-white"
               >
                 ←
               </button>
@@ -1287,7 +1287,7 @@ function AlumniShowcase() {
                 type="button"
                 onClick={() => go(1)}
                 aria-label="Next alumni"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-black/15 text-black transition hover:bg-black hover:text-white"
+                className="flex h-10 w-10 items-center justify-center rounded-none border border-black/15 text-black transition hover:bg-black hover:text-white"
               >
                 →
               </button>
