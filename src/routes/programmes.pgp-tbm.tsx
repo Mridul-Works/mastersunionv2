@@ -789,7 +789,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     onFocus={() => setActive(t)}
                     onBlur={() => setActive(null)}
                     onClick={() => setActive(t)}
-                    className={`group relative flex flex-col gap-1 p-3 text-left transition-colors rounded-sm ${isActive ? "bg-black text-white" : "bg-white/80 hover:bg-black/[0.03]"}`}
+                    className={`group relative flex flex-col gap-1 p-3 text-left transition-colors ${isActive ? "bg-black text-white" : "hover:bg-black/[0.04]"}`}
                   >
                     <div className={`flex h-5 items-center font-display text-sm leading-none tracking-tight ${isActive ? "text-white" : "text-black"}`}>
                       Term {t}
