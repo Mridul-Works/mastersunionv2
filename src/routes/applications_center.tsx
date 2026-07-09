@@ -62,7 +62,7 @@ function ApplicationsCenter() {
   const timeline = useMemo(() => buildTimeline(selected.deadline), [selected]);
 
   return (
-    <div className="min-h-screen bg-[#F5F3EE] text-black">
+    <div className="min-h-screen bg-white text-black">
       {/* Header */}
       <header className="border-b border-black/10 bg-[#F5F3EE]/90 backdrop-blur sticky top-0 z-30">
         <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4">
