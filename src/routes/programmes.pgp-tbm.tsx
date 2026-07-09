@@ -872,8 +872,8 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
             <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/45">
               {active ? `You'll be doing this in` : `Preview a term`}
             </div>
-            <div className="mt-1 font-display text-3xl leading-tight tracking-tight">
-              {active ? `Term ${activeTerm}` : `Hover a column ↑`}
+            <div className="mt-1 font-display leading-tight tracking-tight">
+              {active ? <span className="text-3xl">Term {activeTerm}</span> : <span className="text-sm">Hover a column ↑</span>}
             </div>
             {active && (
               <div className="mt-1 text-xs text-black/55">{TERM_META[activeTerm - 1].window}</div>
