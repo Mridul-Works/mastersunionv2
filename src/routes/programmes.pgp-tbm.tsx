@@ -42,6 +42,36 @@ const STARTUP_LOGOS: { name: string; url: string }[] = [
   { name: "Yango", url: yangoAsset.url },
 ];
 
+import metaAsset from "@/assets/career-logos/Meta.png.asset.json";
+import mckinseyAsset from "@/assets/career-logos/McKinsey.png.asset.json";
+import credAsset from "@/assets/career-logos/Cred.png.asset.json";
+import servicenowAsset from "@/assets/career-logos/Servicenow.png.asset.json";
+import flipkartAsset from "@/assets/career-logos/Flipkart.png.asset.json";
+import bainAsset from "@/assets/career-logos/BainAndCompany.png.asset.json";
+import goodCapitalAsset from "@/assets/career-logos/GoodCapital.png.asset.json";
+import accentureAsset from "@/assets/career-logos/Accenture.png.asset.json";
+import waterbridgeAsset from "@/assets/career-logos/Waterbridge.png.asset.json";
+import kaptureAsset from "@/assets/career-logos/Kapture.png.asset.json";
+import zeptoAsset from "@/assets/career-logos/Zepto.png.asset.json";
+import bloombergAsset from "@/assets/career-logos/Bloomberg.png.asset.json";
+import iciciAsset from "@/assets/career-logos/ICICI.png.asset.json";
+
+const CAREER_LOGOS: { name: string; url: string }[] = [
+  { name: "McKinsey", url: mckinseyAsset.url },
+  { name: "Bain & Company", url: bainAsset.url },
+  { name: "Accenture", url: accentureAsset.url },
+  { name: "Meta", url: metaAsset.url },
+  { name: "ServiceNow", url: servicenowAsset.url },
+  { name: "Flipkart", url: flipkartAsset.url },
+  { name: "Zepto", url: zeptoAsset.url },
+  { name: "Cred", url: credAsset.url },
+  { name: "Bloomberg", url: bloombergAsset.url },
+  { name: "ICICI", url: iciciAsset.url },
+  { name: "Kapture", url: kaptureAsset.url },
+  { name: "Good Capital", url: goodCapitalAsset.url },
+  { name: "Waterbridge", url: waterbridgeAsset.url },
+];
+
 
 const PGP_NAV: SectionNavItem[] = [
   { id: "top", label: "Overview" },
