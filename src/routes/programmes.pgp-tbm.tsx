@@ -1534,7 +1534,7 @@ function PgpTbm() {
               <div className="text-xs font-semibold uppercase tracking-[0.22em] text-black/50">
                 PGP in Technology & Business Management
               </div>
-              <h1 className="mt-4 font-display text-3xl leading-[0.98] tracking-[-0.03em]">
+              <h1 className="mt-4 font-display text-3xl font-bold leading-[0.98] tracking-[-0.03em]">
                 Learn business
                 <br />
                 <span className="text-black/50">by running one.</span>
