@@ -1333,9 +1333,7 @@ function PgpTbm() {
             </p>
           </div>
 
-          <ImagePlaceholder label="The three engines" className="mb-10" aspect="21/9" />
-
-          <div className="mb-16 grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mb-10 grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
             {MODEL_STATS.map((s) => (
               <div key={s.v} className="bg-white/90 p-6 backdrop-blur-sm">
                 <div className="font-display text-[38px] leading-none tracking-tight">{s.k}</div>
@@ -1343,6 +1341,20 @@ function PgpTbm() {
               </div>
             ))}
           </div>
+
+          {/* Unified calendar: 8 terms × 3 engines on one grid */}
+          <div className="mb-8 max-w-2xl">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">The calendar · 8 terms × 3 engines</div>
+            <h3 className="mt-3 font-display text-[clamp(1.5rem,2.8vw,2.2rem)] leading-[1.05] tracking-[-0.02em]">
+              The whole 16 months, on one calendar.
+            </h3>
+            <p className="mt-3 text-[14px] leading-relaxed text-black/60">
+              Every row is one engine. Every column is one term of 2 months. Hover — or tap — any term to see everything you'll be doing then.
+            </p>
+          </div>
+          <TermsGantt embedded />
+
+
 
           {/* ENGINE 01 — InClass */}
           <div className="grid gap-8 border-t border-black/10 py-12 md:grid-cols-[300px_1fr] md:gap-16">
