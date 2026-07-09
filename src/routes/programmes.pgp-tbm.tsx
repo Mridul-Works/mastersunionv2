@@ -1877,7 +1877,7 @@ function PgpTbm() {
               {/* Secondary stats */}
               <div className="mt-8 grid grid-cols-2 gap-4">
                 {OUTCOME_STARTUP.slice(1).map((s) => (
-                  <div key={s.v} className="rounded-2xl border border-emerald-900/5 bg-white/70 p-4 backdrop-blur">
+                  <div key={s.v} className="border border-emerald-900/5 bg-white/70 p-4 backdrop-blur">
                     <div className="font-display text-2xl leading-none tracking-tight text-emerald-950">{s.k}</div>
                     <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-emerald-900/60">{s.v}</div>
                   </div>
