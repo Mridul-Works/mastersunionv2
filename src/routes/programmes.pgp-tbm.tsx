@@ -1046,24 +1046,28 @@ function AlumniShowcase() {
   const handleIndustry = (v: string) => { setIndustry(v); setIdx(0); };
 
 
+  const secondary = filtered[nextIdx];
+  const tertiaryIdx = total > 0 ? (safeIdx + 2) % total : 0;
+  const tertiary = filtered[tertiaryIdx];
+
   return (
     <div className="mt-16">
-      <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+      {/* Header */}
+      <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div>
-          <div className="text-xs font-semibold uppercase tracking-[0.2em] text-smoke-50/45">Alumni Network</div>
-          <h3 className="mt-3 max-w-4xl font-display text-3xl font-bold leading-[1.08] tracking-tight text-smoke-50 md:text-3xl md:leading-[1.05]">
-            Talk to someone who's been through it. <span className="font-serif-italic">Then build yours.</span>
+          <div className="text-[11px] font-semibold uppercase tracking-[0.24em] text-black/45">Alumni Network</div>
+          <h3 className="mt-3 max-w-3xl font-display text-4xl font-bold leading-[1.02] tracking-tight text-black md:text-5xl">
+            Success <span className="font-serif-italic font-normal">stories.</span>
           </h3>
         </div>
-        <p className="max-w-sm text-sm text-smoke-50/60">
-          1,400+ alumni across product, startups, finance and consulting. Meet a few — and reach out.
+        <p className="max-w-sm text-sm leading-relaxed text-black/60">
+          Our work speaks for itself, but our 1,400+ alumni say it even better. Meet a few — and reach out.
         </p>
       </div>
 
-
       {/* Industry filters */}
-      <div className="mt-10 flex flex-wrap items-center gap-2 border-t border-smoke-50/10 pt-6">
-        <span className="mr-2 font-mono text-xs uppercase tracking-[0.28em] text-smoke-50/45">Filter · Industry</span>
+      <div className="mt-8 flex flex-wrap items-center gap-2 border-t border-black/10 pt-5">
+        <span className="mr-2 font-mono text-[10px] uppercase tracking-[0.28em] text-black/45">Filter · Industry</span>
         {industries.map((ind) => {
           const isActive = ind === industry;
           const count = ind === "All" ? ALUMNI.length : ALUMNI.filter((a) => a.domain === ind).length;
@@ -1072,35 +1076,30 @@ function AlumniShowcase() {
               key={ind}
               type="button"
               onClick={() => handleIndustry(ind)}
-              className={`inline-flex items-center gap-2 border px-3 py-1.5 font-mono text-xs uppercase tracking-[0.22em] transition-colors duration-300 ${
+              className={`inline-flex items-center gap-2 rounded-full border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] transition-all duration-300 ${
                 isActive
-                  ? "border-smoke-300 bg-smoke-300/15 text-smoke-50"
-                  : "border-smoke-50/15 text-smoke-50/60 hover:border-smoke-50/40 hover:text-smoke-50"
+                  ? "border-black bg-black text-white"
+                  : "border-black/15 text-black/60 hover:border-black/40 hover:text-black"
               }`}
             >
               <span>{ind}</span>
-              <span className={isActive ? "text-smoke-300" : "text-smoke-50/35"}>{count}</span>
+              <span className={isActive ? "text-white/60" : "text-black/35"}>{count}</span>
             </button>
           );
         })}
       </div>
 
       {total === 0 ? (
-        <div className="mt-16 border border-smoke-50/10 p-10 text-center font-mono text-xs uppercase tracking-[0.24em] text-smoke-50/50">
+        <div className="mt-12 rounded-3xl border border-black/10 bg-white/60 p-10 text-center font-mono text-xs uppercase tracking-[0.24em] text-black/50">
           No alumni in this industry yet.
         </div>
       ) : (
-      <div className="mt-16 grid gap-10 lg:gap-14 lg:[grid-template-columns:minmax(0,1fr)_minmax(0,0.34fr)]">
-
-        {/* Featured */}
-        <article className="relative lg:min-h-[620px]">
-          <div className="grid gap-8 lg:gap-14 items-start grid-cols-1 sm:[grid-template-columns:minmax(0,0.6fr)_minmax(0,1fr)]">
-            {/* Portrait cross-fade stack */}
-            <div
-              className="relative mx-auto aspect-[3/4] w-full max-w-[260px] overflow-hidden sm:mx-0 sm:aspect-[4/5] sm:max-w-[320px]"
-              style={{
-                boxShadow: "0 60px 140px -40px rgba(0,0,0,0.95)",
-              }}
+        <>
+          <div className="mt-10 grid gap-5 lg:grid-cols-12">
+            {/* FEATURE — Portrait + quote overlay */}
+            <article
+              className="relative col-span-12 overflow-hidden rounded-[28px] lg:col-span-7 lg:min-h-[560px]"
+              style={{ boxShadow: "0 40px 120px -40px rgba(0,0,0,0.35)" }}
             >
               {filtered.map((a, i) => (
                 <div
@@ -1108,197 +1107,195 @@ function AlumniShowcase() {
                   className="absolute inset-0"
                   style={{
                     opacity: i === safeIdx ? 1 : 0,
-                    transition: "opacity 900ms cubic-bezier(0.4,0,0.2,1)",
+                    transition: "opacity 800ms cubic-bezier(0.4,0,0.2,1)",
                   }}
                 >
                   <ImagePlaceholder label={`${a.name} portrait`} aspect="4/5" className="h-full w-full" />
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, rgba(233,90,50,0.55) 0%, rgba(232,140,60,0.25) 45%, rgba(0,0,0,0) 70%), linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.75) 100%)",
+                    }}
+                  />
                 </div>
               ))}
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 mix-blend-color"
-                style={{ background: "linear-gradient(180deg, rgba(0,156,80,0.18) 0%, rgba(0,72,34,0.42) 100%)" }}
-              />
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0"
-                style={{ background: "linear-gradient(180deg, rgba(13,20,16,0) 40%, rgba(13,20,16,0.7) 100%)" }}
-              />
-              <div className="absolute bottom-5 left-5 right-5">
-                <p className="font-mono text-xs uppercase tracking-[0.28em] text-smoke-300">
-                  {active.domain}
-                </p>
+
+              {/* Top-left brand chip */}
+              <div className="absolute left-6 top-6 z-10 flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 backdrop-blur">
+                <span className="h-1.5 w-1.5 rounded-full bg-teal" />
+                <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-black/70">
+                  {active.domain} · {active.batch}
+                </span>
               </div>
-            </div>
 
-            {/* Content cross-fade */}
-            <div className="relative">
-              {filtered.map((a, i) => (
-                <div
-                  key={a.name}
-                  className="flex flex-col"
-                  style={{
-                    position: i === safeIdx ? "relative" : "absolute",
-                    inset: i === safeIdx ? "auto" : 0,
-                    opacity: i === safeIdx ? 1 : 0,
-                    transform: i === safeIdx ? "translateY(0)" : "translateY(8px)",
-                    transition:
-                      "opacity 800ms cubic-bezier(0.4,0,0.2,1), transform 800ms cubic-bezier(0.4,0,0.2,1)",
-                    pointerEvents: i === safeIdx ? "auto" : "none",
-                  }}
-                >
-                  <div className="mb-6 flex items-center gap-3">
-                    <span className="inline-block h-px w-8 bg-smoke-300" />
-                    <span className="font-mono text-xs uppercase tracking-[0.28em] text-smoke-50/70">
-                      Alumni · {String(i + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-                    </span>
-                  </div>
-                  <p className="mb-4 font-mono text-xs uppercase tracking-[0.24em] text-smoke-50/50">
-                    {a.batch} / {a.domain}
-                  </p>
-                  <h3 className="font-display text-3xl font-bold leading-[1.05] tracking-tight text-smoke-50">
-                    {a.name}
-                  </h3>
-                  <p className="mt-2 text-sm text-smoke-50/65">{a.role} · {a.company}</p>
-                  <div className="mt-6 h-px w-12 bg-smoke-300/60" />
-                  <p className="mt-5 text-sm leading-[1.7] text-smoke-50/85 md:mt-6 md:text-sm md:leading-[1.75]">“{a.quote}”</p>
-
-                  <div className="mt-8">
-                    <p className="mb-4 font-mono text-xs uppercase tracking-[0.28em] text-smoke-50/50">
-                      Selected Portfolio
+              {/* Bottom content */}
+              <div className="absolute inset-x-0 bottom-0 z-10 p-7 md:p-9">
+                {filtered.map((a, i) => (
+                  <div
+                    key={a.name}
+                    style={{
+                      opacity: i === safeIdx ? 1 : 0,
+                      transform: i === safeIdx ? "translateY(0)" : "translateY(10px)",
+                      transition: "opacity 700ms ease, transform 700ms ease",
+                      position: i === safeIdx ? "relative" : "absolute",
+                      inset: i === safeIdx ? "auto" : "auto 1.75rem 1.75rem 1.75rem",
+                      pointerEvents: i === safeIdx ? "auto" : "none",
+                    }}
+                  >
+                    <p className="max-w-xl font-display text-2xl font-semibold leading-[1.2] text-white md:text-[28px] md:leading-[1.18]">
+                      &ldquo;{a.quote}&rdquo;
                     </p>
-                    <ul className="space-y-2.5">
-                      {[a.company, a.domain, a.batch].map((p) => (
-                        <li key={p} className="flex gap-3 text-sm text-smoke-50/85">
-                          <span className="text-smoke-300">—</span>
-                          <span>{p}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="mt-6 flex items-end justify-between gap-4">
+                      <div>
+                        <p className="font-display text-base font-semibold text-white">{a.name}</p>
+                        <p className="text-xs text-white/75">{a.role} · {a.company}</p>
+                      </div>
+                      <div className="flex gap-2">
+                        <a
+                          href={a.linkedin}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex h-9 items-center gap-1.5 rounded-full bg-white px-3 font-mono text-[10px] uppercase tracking-[0.22em] text-black transition hover:bg-white/85"
+                        >
+                          <Linkedin className="size-3" /> Connect
+                        </a>
+                        {a.calendly && (
+                          <a
+                            href={a.calendly}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex h-9 items-center gap-1.5 rounded-full border border-white/60 px-3 font-mono text-[10px] uppercase tracking-[0.22em] text-white transition hover:bg-white/10"
+                          >
+                            <Calendar className="size-3" /> Book
+                          </a>
+                        )}
+                      </div>
+                    </div>
                   </div>
-
-                  <div className="mt-8 flex flex-wrap gap-3">
-                    <a
-                      href={a.linkedin}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-2 border border-smoke-50/15 px-4 py-2.5 font-mono text-xs uppercase tracking-[0.24em] text-smoke-50 transition-colors duration-500 hover:bg-smoke-300/10"
-                    >
-                      <Linkedin className="size-3.5" /> Connect
-                    </a>
-                    {a.calendly && (
-                      <a
-                        href={a.calendly}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-2 border border-smoke-50/15 px-4 py-2.5 font-mono text-xs uppercase tracking-[0.24em] text-smoke-50 transition-colors duration-500 hover:bg-smoke-300/10"
-                        aria-label={`Book a call with ${a.name}`}
-                      >
-                        <Calendar className="size-3.5" /> Book
-                      </a>
-                    )}
-                  </div>
-                </div>
-              ))}
-
-              {/* Controls */}
-              <div className="mt-10 flex items-center gap-5 border-t border-smoke-50/10 pt-6">
-                <div className="flex gap-1.5">
-                  {filtered.map((_, i) => (
-                    <button
-                      key={i}
-                      type="button"
-                      onClick={() => setIdx(i)}
-                      aria-label={`Go to alumni ${i + 1}`}
-                      className="transition-all duration-700 ease-out"
-                      style={{
-                        width: i === safeIdx ? "32px" : "8px",
-                        height: "2px",
-                        background: i === safeIdx ? "var(--smoke-300)" : "rgba(13,20,16,0.25)",
-                      }}
-                    />
-                  ))}
-                </div>
-                <div className="h-px flex-1 bg-smoke-50/10" />
-                <div className="flex gap-2">
-                  <button
-                    type="button"
-                    onClick={() => go(-1)}
-                    aria-label="Previous alumni"
-                    className="flex h-10 w-10 items-center justify-center text-smoke-50 transition-colors duration-500 hover:bg-smoke-300/10"
-                  >
-                    ←
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => go(1)}
-                    aria-label="Next alumni"
-                    className="flex h-10 w-10 items-center justify-center text-smoke-50 transition-colors duration-500 hover:bg-smoke-300/10"
-                  >
-                    →
-                  </button>
-                </div>
+                ))}
               </div>
+            </article>
+
+            {/* RIGHT column — Two testimonial cards */}
+            <div className="col-span-12 grid gap-5 lg:col-span-5">
+              {/* Dark card */}
+              {secondary && (
+                <div className="rounded-[28px] bg-black p-6 text-white md:p-7">
+                  <div className="mb-4 flex items-center gap-1 text-teal">
+                    {"★★★★★".split("").map((s, i) => (
+                      <span key={i} className="text-xs">{s}</span>
+                    ))}
+                  </div>
+                  <p className="font-display text-lg leading-[1.35] text-white md:text-xl">
+                    &ldquo;{secondary.quote}&rdquo;
+                  </p>
+                  <div className="mt-5 grid grid-cols-2 gap-4 border-t border-white/10 pt-4">
+                    <div>
+                      <p className="font-display text-2xl font-semibold text-white">{secondary.batch}</p>
+                      <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-white/55">Batch</p>
+                    </div>
+                    <div>
+                      <p className="font-display text-2xl font-semibold text-white">{secondary.domain}</p>
+                      <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-white/55">Track</p>
+                    </div>
+                  </div>
+                  <div className="mt-5 flex items-center gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 font-mono text-[11px] text-white">
+                      {initialsOf(secondary.name)}
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-white">{secondary.name}</p>
+                      <p className="text-[11px] text-white/60">{secondary.role} · {secondary.company}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Light card */}
+              {tertiary && (
+                <div className="rounded-[28px] border border-black/10 bg-white p-6 md:p-7">
+                  <div className="mb-4 flex items-center gap-1 text-orange-500">
+                    {"★★★★★".split("").map((s, i) => (
+                      <span key={i} className="text-xs">{s}</span>
+                    ))}
+                  </div>
+                  <p className="font-display text-lg leading-[1.35] text-black md:text-xl">
+                    &ldquo;{tertiary.quote}&rdquo;
+                  </p>
+                  <div className="mt-5 grid grid-cols-2 gap-4 border-t border-black/10 pt-4">
+                    <div>
+                      <p className="font-display text-2xl font-semibold text-black">{tertiary.batch}</p>
+                      <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-black/50">Batch</p>
+                    </div>
+                    <div>
+                      <p className="font-display text-2xl font-semibold text-black">{tertiary.domain}</p>
+                      <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-black/50">Track</p>
+                    </div>
+                  </div>
+                  <div className="mt-5 flex items-center gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-black/5 font-mono text-[11px] text-black">
+                      {initialsOf(tertiary.name)}
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-black">{tertiary.name}</p>
+                      <p className="text-[11px] text-black/60">{tertiary.role} · {tertiary.company}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-        </article>
 
-        {/* Up Next */}
-        <aside className="mx-auto flex w-full flex-col gap-6 lg:mx-0">
-          <p className="font-mono text-xs uppercase tracking-[0.32em] text-smoke-50/45">Up Next</p>
-          <button
-            type="button"
-            onClick={() => go(1)}
-            className="group relative block overflow-hidden text-left"
-            style={{ aspectRatio: "4 / 5", boxShadow: "0 40px 100px -40px rgba(0,0,0,0.9)" }}
-          >
-            {filtered.map((a, i) => (
-              <div
-                key={a.name}
-                className="absolute inset-0 transition-transform duration-[1400ms] ease-out group-hover:scale-[1.06]"
-                style={{
-                  opacity: i === nextIdx ? 1 : 0,
-                  transitionProperty: "transform, opacity",
-                  transitionDuration: "1400ms, 900ms",
-                  transitionTimingFunction: "cubic-bezier(0.4,0,0.2,1)",
-                }}
-              >
-                <ImagePlaceholder label={`${a.name} portrait`} aspect="4/5" className="h-full w-full" />
-              </div>
-            ))}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 mix-blend-color"
-              style={{ background: "linear-gradient(180deg, rgba(0,156,80,0.18) 0%, rgba(0,72,34,0.5) 100%)" }}
-            />
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0"
-              style={{ background: "linear-gradient(180deg, rgba(13,20,16,0) 45%, rgba(13,20,16,0.8) 100%)" }}
-            />
-            <div className="absolute bottom-5 left-5 right-5">
-              <p className="mb-2 font-mono text-xs uppercase tracking-[0.28em] text-smoke-300">{next.domain}</p>
-              <p className="font-display text-sm font-bold leading-tight text-smoke-900">{next.name}</p>
-              <span className="mt-3 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.24em] text-smoke-900/85 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                View <ArrowUpRight className="size-3" />
+          {/* Controls */}
+          <div className="mt-6 flex items-center gap-5 border-t border-black/10 pt-5">
+            <div className="flex items-baseline gap-2 font-display">
+              <span className="text-2xl font-semibold leading-none text-black">
+                {String(safeIdx + 1).padStart(2, "0")}
+              </span>
+              <span className="text-2xl leading-none text-black/30">
+                /{String(total).padStart(2, "0")}
               </span>
             </div>
-          </button>
-
-          <div className="flex items-baseline gap-2 font-display">
-            <span className="text-3xl font-light leading-none text-smoke-50">
-              {String(safeIdx + 1).padStart(2, "0")}
-
-            </span>
-            <span className="text-3xl leading-none text-smoke-50/30">
-              /{String(total).padStart(2, "0")}
-            </span>
+            <div className="flex flex-1 gap-1.5">
+              {filtered.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setIdx(i)}
+                  aria-label={`Go to alumni ${i + 1}`}
+                  className="transition-all duration-500 ease-out"
+                  style={{
+                    width: i === safeIdx ? "28px" : "8px",
+                    height: "2px",
+                    background: i === safeIdx ? "rgb(0,0,0)" : "rgba(0,0,0,0.2)",
+                  }}
+                />
+              ))}
+            </div>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => go(-1)}
+                aria-label="Previous alumni"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-black/15 text-black transition hover:bg-black hover:text-white"
+              >
+                ←
+              </button>
+              <button
+                type="button"
+                onClick={() => go(1)}
+                aria-label="Next alumni"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-black/15 text-black transition hover:bg-black hover:text-white"
+              >
+                →
+              </button>
+            </div>
           </div>
-        </aside>
-      </div>
+        </>
       )}
     </div>
-
   );
 }
 
