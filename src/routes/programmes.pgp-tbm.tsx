@@ -1933,22 +1933,19 @@ function PgpTbm() {
         <div aria-hidden className="pointer-events-none absolute -bottom-32 right-1/3 h-96 w-96 rounded-full bg-gradient-to-tr from-cream/40 via-sage/30 to-transparent blur-3xl" />
 
         <div className="relative mx-auto max-w-[1180px] px-4 py-24 sm:px-6">
-          <div className="mb-14 grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-end">
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
-                <span className="h-1.5 w-1.5 rounded-full bg-teal" />
-                Admissions & Application Process
-              </div>
-              <h2 className="mt-4 font-display text-4xl leading-[1.02] tracking-[-0.03em] text-foreground sm:text-5xl">
-                Four steps from application to{" "}
-                <span className="font-serif-italic">campus.</span>
-              </h2>
-              <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
-                A holistic evaluation across academics, professional experience, communication and
-                business aptitude. No cut-offs — the admissions committee reviews every profile in full.
-              </p>
+          <div className="mb-14 max-w-3xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
+              <span className="h-1.5 w-1.5 rounded-full bg-teal" />
+              Admissions & Application Process
             </div>
-            <ImagePlaceholder label="Admissions journey" className="w-full" aspect="4/3" />
+            <h2 className="mt-4 font-display text-4xl leading-[1.02] tracking-[-0.03em] text-foreground sm:text-5xl">
+              Four steps from application to{" "}
+              <span className="font-serif-italic">campus.</span>
+            </h2>
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
+              A holistic evaluation across academics, professional experience, communication and
+              business aptitude. No cut-offs — the admissions committee reviews every profile in full.
+            </p>
           </div>
 
           <ol className="grid gap-4 md:grid-cols-2">
@@ -1979,27 +1976,26 @@ function PgpTbm() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="border-b border-black/10">
-        <div className="mx-auto grid max-w-[1180px] gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.6fr_1fr] lg:gap-16">
+      <section id="faq" className="relative overflow-hidden border-b border-black/10 bg-gradient-to-b from-background via-muted/50 to-background">
+        <div className="relative mx-auto grid max-w-[1180px] gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.6fr_1fr] lg:gap-16">
           <div>
             <div className="text-xs font-semibold uppercase tracking-[0.22em] text-black/50">FAQ</div>
             <h2 className="mt-3 font-display text-3xl leading-[1.05] tracking-[-0.02em]">
               Everything you were about to email us.
             </h2>
-            <ImagePlaceholder label="FAQ" className="mt-5" aspect="16/9" />
           </div>
-          <div className="border-t border-black/10 bg-white/90 backdrop-blur-sm">
+          <div className="border-t border-border bg-card/80 backdrop-blur-sm">
             {FAQ.map((f, i) => {
               const open = openFaq === i;
               return (
-                <div key={f.q} className="border-b border-black/10">
+                <div key={f.q} className="border-b border-border">
                   <button type="button" onClick={() => setOpenFaq(open ? null : i)} className="flex w-full items-center justify-between gap-6 py-5 text-left px-5">
-                    <span className="font-display text-sm leading-tight">{f.q}</span>
-                    <span className="flex size-8 items-center justify-center border border-black/15 text-black/70">
+                    <span className="font-display text-sm leading-tight text-foreground">{f.q}</span>
+                    <span className="flex size-8 items-center justify-center border border-border text-foreground/70">
                       {open ? <Minus className="size-4" /> : <Plus className="size-4" />}
                     </span>
                   </button>
-                  {open && <p className="pb-6 pr-14 pl-5 text-sm leading-relaxed text-black/70">{f.a}</p>}
+                  {open && <p className="pb-6 pr-14 pl-5 text-sm leading-relaxed text-muted-foreground">{f.a}</p>}
                 </div>
               );
             })}
