@@ -1972,6 +1972,29 @@ function PgpTbm() {
               </li>
             ))}
           </ol>
+
+          <div className="mt-12 grid gap-3 sm:grid-cols-3">
+            <a
+              href="#"
+              className="inline-flex items-center justify-between gap-3 bg-foreground px-6 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-background transition-transform hover:scale-[1.01]"
+            >
+              Start application <ArrowUpRight className="size-5" />
+            </a>
+            <a
+              href="#"
+              className="inline-flex items-center justify-between gap-3 border border-border bg-card/80 px-6 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-foreground transition-colors hover:bg-muted/80"
+            >
+              Talk to admissions <ArrowUpRight className="size-5" />
+            </a>
+            <a
+              href="https://mastersunion.org/pgp-technology-and-business-management"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-between gap-3 border border-border bg-card/80 px-6 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-foreground transition-colors hover:bg-muted/80"
+            >
+              Download brochure <ArrowUpRight className="size-5" />
+            </a>
+          </div>
         </div>
       </section>
 
