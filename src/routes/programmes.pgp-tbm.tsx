@@ -260,7 +260,7 @@ function AdmissionPathwaysSection() {
 
           {/* Right: expanded detail panel */}
           {active && (
-            <div className="max-h-[80vh] min-w-0 flex-1 overflow-y-auto border border-t-0 border-black/15 bg-black/[0.03] lg:max-h-none lg:border-l-0 lg:border-t">
+            <div className="max-h-[80vh] min-w-0 flex-1 overflow-y-auto border border-t-0 border-black/15 bg-white lg:max-h-none lg:border-l-0 lg:border-t">
               <div className={`h-1.5 w-full ${active.accentBg}`} />
               <div className="p-5 sm:p-6 md:p-8">
                 <span
