@@ -1595,12 +1595,14 @@ function PgpTbm() {
           </div>
         </div>
       </section>
-
+      <SectionDivider />
 
       <AdmissionPathwaysSection />
 
+      <SectionDivider />
+
       {/* THE MODEL — three engines */}
-      <section id="model" className="relative overflow-hidden border-b border-black/10">
+      <section id="model" className="relative overflow-hidden">
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
           <div className="mb-12 max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
