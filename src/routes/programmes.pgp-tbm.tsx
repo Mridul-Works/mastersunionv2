@@ -1157,7 +1157,7 @@ function AlumniShowcase() {
                   <p className="mb-4 font-mono text-xs uppercase tracking-[0.24em] text-smoke-50/50">
                     {a.batch} / {a.domain}
                   </p>
-                  <h3 className="font-display font-bold leading-[1.05] tracking-tight text-smoke-50" className="text-3xl">
+                  <h3 className="font-display text-3xl font-bold leading-[1.05] tracking-tight text-smoke-50">
                     {a.name}
                   </h3>
                   <p className="mt-2 text-sm text-smoke-50/65">{a.role} · {a.company}</p>
@@ -1287,11 +1287,11 @@ function AlumniShowcase() {
           </button>
 
           <div className="flex items-baseline gap-2 font-display">
-            <span className="leading-none text-smoke-50" className="text-3xl font-light">
+            <span className="text-3xl font-light leading-none text-smoke-50">
               {String(safeIdx + 1).padStart(2, "0")}
 
             </span>
-            <span className="leading-none text-smoke-50/30" className="text-3xl">
+            <span className="text-3xl leading-none text-smoke-50/30">
               /{String(total).padStart(2, "0")}
             </span>
           </div>
@@ -1378,7 +1378,7 @@ function FacultyShowcase() {
                 <p className="mb-4 font-mono text-xs uppercase tracking-[0.24em] text-smoke-50/50">
                   {f.tag}
                 </p>
-                <h3 className="font-display font-bold leading-[1.05] tracking-tight text-smoke-50" className="text-3xl">
+                <h3 className="font-display text-3xl font-bold leading-[1.05] tracking-tight text-smoke-50">
                   {f.name}
                 </h3>
                 <p className="mt-2 text-sm text-smoke-50/65">{f.role}</p>
@@ -1485,10 +1485,10 @@ function FacultyShowcase() {
           </div>
         </button>
         <div className="flex items-baseline gap-2 font-display">
-          <span className="leading-none text-smoke-50" className="text-3xl font-light">
+          <span className="text-3xl font-light leading-none text-smoke-50">
             {String(idx + 1).padStart(2, "0")}
           </span>
-          <span className="leading-none text-smoke-50/30" className="text-3xl">
+          <span className="text-3xl leading-none text-smoke-50/30">
             /{String(total).padStart(2, "0")}
           </span>
         </div>
