@@ -1494,7 +1494,7 @@ function PgpTbm() {
 
   return (
     <main
-      className="min-h-screen pastel-gradient text-[color:var(--ink)] pb-28 md:pb-32"
+      className="min-h-screen bg-white text-[color:var(--ink)] pb-28 md:pb-32"
       style={{
         "--pastel-start": "oklch(0.99 0.014 220 / 0.4)",
         "--pastel-mid": "oklch(0.985 0.020 210 / 0.4)",
