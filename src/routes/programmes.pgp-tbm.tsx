@@ -1545,7 +1545,7 @@ function PgpTbm() {
             {/* Left: headline + copy */}
             <div className="flex flex-col justify-between gap-10">
               <div>
-                <h1 className="font-display text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1] tracking-[-0.03em]">
+                <h1 className="font-display text-[clamp(1.875rem,3.5vw,2.75rem)] font-semibold leading-[1.05] tracking-[-0.03em]">
                   Learn business
                   <br />
                   <span className="font-normal text-foreground/40">by running one.</span>
