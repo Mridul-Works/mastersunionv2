@@ -24,7 +24,6 @@ import momsAsset from "@/assets/startup-logos/Moms.png.asset.json";
 import monarqueAsset from "@/assets/startup-logos/Monarque.png.asset.json";
 import nivaraAsset from "@/assets/startup-logos/Nivara.png.asset.json";
 import woodysAsset from "@/assets/startup-logos/WoodysPizzeria.png.asset.json";
-import yangoAsset from "@/assets/startup-logos/Yango.png.asset.json";
 
 const STARTUP_LOGOS: { name: string; url: string }[] = [
   { name: "Bambaii", url: bambaiiAsset.url },
@@ -39,7 +38,6 @@ const STARTUP_LOGOS: { name: string; url: string }[] = [
   { name: "Monarque", url: monarqueAsset.url },
   { name: "Nivara", url: nivaraAsset.url },
   { name: "Woody's Pizzeria", url: woodysAsset.url },
-  { name: "Yango", url: yangoAsset.url },
 ];
 
 import metaAsset from "@/assets/career-logos/Meta.png.asset.json";
@@ -50,7 +48,6 @@ import flipkartAsset from "@/assets/career-logos/Flipkart.png.asset.json";
 import bainAsset from "@/assets/career-logos/BainAndCompany.png.asset.json";
 import goodCapitalAsset from "@/assets/career-logos/GoodCapital.png.asset.json";
 import accentureAsset from "@/assets/career-logos/Accenture.png.asset.json";
-import waterbridgeAsset from "@/assets/career-logos/Waterbridge.png.asset.json";
 import kaptureAsset from "@/assets/career-logos/Kapture.png.asset.json";
 import zeptoAsset from "@/assets/career-logos/Zepto.png.asset.json";
 import bloombergAsset from "@/assets/career-logos/Bloomberg.png.asset.json";
@@ -69,7 +66,6 @@ const CAREER_LOGOS: { name: string; url: string }[] = [
   { name: "ICICI", url: iciciAsset.url },
   { name: "Kapture", url: kaptureAsset.url },
   { name: "Good Capital", url: goodCapitalAsset.url },
-  { name: "Waterbridge", url: waterbridgeAsset.url },
 ];
 
 
