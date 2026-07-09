@@ -791,19 +791,19 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
       <div className={innerClass}>
         {!embedded && (
           <div className="mb-8 max-w-2xl">
-            <div className="text-xs font-semibold uppercase tracking-[0.22em] text-black/50">The proof · 8 terms in one view</div>
+            <div className="text-xs font-semibold uppercase tracking-[0.22em] text-foreground/50">The proof · 8 terms in one view</div>
             <h2 className="mt-3 font-display text-3xl leading-[1.03] tracking-[-0.02em]">
               The whole 16 months, on one calendar.
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-black/60">
+            <p className="mt-4 text-sm leading-relaxed text-foreground/60">
               Rows are engines, columns are terms. Every cell is what you actually do that term.
             </p>
           </div>
         )}
 
         {/* Legend */}
-        <div className="mb-4 flex flex-wrap items-center gap-x-5 gap-y-1 text-[11px] uppercase tracking-[0.16em] text-black/50">
-          <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-black" /> InClass</span>
+        <div className="mb-4 flex flex-wrap items-center gap-x-5 gap-y-1 text-[11px] uppercase tracking-[0.16em] text-foreground/50">
+          <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-foreground" /> InClass</span>
           <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-[#0F8F6E]" /> D2C</span>
           <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-[#E38330]" /> Creator</span>
           <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-[#39B5D7]" /> Immersion</span>
