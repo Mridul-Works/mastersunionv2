@@ -4,7 +4,6 @@ import {
   ArrowUpRight,
   Plus,
   Minus,
-  Check,
   Star,
   Linkedin,
   Calendar,
