@@ -353,7 +353,6 @@ export const Route = createFileRoute("/programmes/pgp-tbm")({
 const FACTS = [
   { k: "Duration", v: "16 Months", note: "Incl. 3-month internship" },
   { k: "Format", v: "On Campus", note: "DLF Cyber Park · Gurugram" },
-  { k: "Eligibility", v: "2–5 yrs", note: "No CAT / GMAT" },
 ];
 
 
@@ -1564,7 +1563,7 @@ function PgpTbm() {
               </div>
             </div>
 
-            <dl className="grid grid-cols-3 gap-px border-t border-black/10 bg-black/10">
+            <dl className="grid grid-cols-2 gap-px border-t border-black/10 bg-black/10">
               {FACTS.map((f) => (
                 <div key={f.k} className="bg-white p-4">
                   <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50">{f.k}</dt>
