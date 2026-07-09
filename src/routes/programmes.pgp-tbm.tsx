@@ -97,7 +97,7 @@ const PATHWAYS = [
     accentBg: "bg-black",
     color: "#000000",
     quickStats: [
-      { icon: Clock, text: "16 months full-time" },
+      { icon: Clock, text: "16 Months" },
       { icon: Users, text: ">1 year work experience" },
       { icon: BookOpen, text: "120 credits (Inclass + Outclass)" },
       { icon: TrendingUp, text: "Avg. CTC: ₹33.39 LPA" },
@@ -127,7 +127,7 @@ const PATHWAYS = [
     accentBg: "bg-black",
     color: "#000000",
     quickStats: [
-      { icon: Clock, text: "24 months full-time" },
+      { icon: Clock, text: "24 Mo" },
       { icon: Users, text: "0–1 year experience" },
       { icon: BookOpen, text: "200 credits (Inclass + Outclass)" },
       { icon: TrendingUp, text: "Avg. CTC: ₹28.24 LPA" },
