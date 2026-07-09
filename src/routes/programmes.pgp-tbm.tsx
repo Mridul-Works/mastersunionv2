@@ -354,7 +354,6 @@ const FACTS = [
   { k: "Duration", v: "16 Months", note: "Incl. 3-month internship" },
   { k: "Format", v: "On Campus", note: "DLF Cyber Park · Gurugram" },
   { k: "Eligibility", v: "2–5 yrs", note: "No CAT / GMAT" },
-  { k: "Intake", v: "Rolling", note: "Round 4 admissions open" },
 ];
 
 
