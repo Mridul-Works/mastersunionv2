@@ -449,19 +449,33 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
     return items;
   };
 
+  const Wrapper: React.ElementType = embedded ? "div" : "section";
+  const wrapperProps = embedded
+    ? { id: "terms", className: "" }
+    : {
+        id: "terms",
+        className:
+          "border-b border-black/10 bg-[radial-gradient(circle_at_10%_0%,rgba(16,185,129,0.06),transparent_40%),radial-gradient(circle_at_90%_100%,rgba(245,158,11,0.06),transparent_40%)]",
+      };
+  const innerClass = embedded
+    ? ""
+    : "mx-auto max-w-[1180px] px-4 py-20 sm:px-6";
+
   return (
-    <section id="terms" className="border-b border-black/10 bg-[radial-gradient(circle_at_10%_0%,rgba(16,185,129,0.06),transparent_40%),radial-gradient(circle_at_90%_100%,rgba(245,158,11,0.06),transparent_40%)]">
-      <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-        {/* Header */}
-        <div className="mb-8 max-w-2xl">
-          <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">The proof · 8 terms in one view</div>
-          <h2 className="mt-3 font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.03] tracking-[-0.02em]">
-            The whole 16 months, on one calendar.
-          </h2>
-          <p className="mt-4 text-[14px] leading-relaxed text-black/60">
-            The programme is split into <strong>8 terms of 2 months each</strong>. Every row below is one type of learning. Every column is one term. Hover — or tap — any term to see everything you'll be doing that fortnight.
-          </p>
-        </div>
+    <Wrapper {...wrapperProps}>
+      <div className={innerClass}>
+        {!embedded && (
+          <div className="mb-8 max-w-2xl">
+            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">The proof · 8 terms in one view</div>
+            <h2 className="mt-3 font-display text-[clamp(1.8rem,3.6vw,3rem)] leading-[1.03] tracking-[-0.02em]">
+              The whole 16 months, on one calendar.
+            </h2>
+            <p className="mt-4 text-[14px] leading-relaxed text-black/60">
+              The programme is split into <strong>8 terms of 2 months each</strong>. Every row below is one type of learning. Every column is one term. Hover — or tap — any term to see everything you'll be doing that fortnight.
+            </p>
+          </div>
+        )}
+
 
         {/* How to read + Legend */}
         <div className="mb-6 grid gap-4 md:grid-cols-[1fr_auto] md:items-center">
