@@ -1713,8 +1713,6 @@ function PgpTbm() {
       {/* OUTCOMES */}
       <section id="outcomes" className="relative overflow-hidden border-b border-black/10">
         {/* soft ambient glows */}
-        <div aria-hidden className="pointer-events-none absolute -top-32 left-1/3 h-96 w-96 rounded-full bg-gradient-to-br from-teal/25 via-sage/20 to-transparent blur-3xl" />
-        <div aria-hidden className="pointer-events-none absolute -bottom-32 right-1/4 h-96 w-96 rounded-full bg-gradient-to-tr from-cream/40 via-sage/30 to-transparent blur-3xl" />
 
         <div className="relative mx-auto max-w-[1180px] px-4 py-24 sm:px-6">
           {/* Header */}
