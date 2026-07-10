@@ -1782,9 +1782,10 @@ function PgpTbm() {
             </div>
             <div className="grid gap-px bg-black/10 md:grid-cols-2">
               <ImagePlaceholder label="Immersions" aspect="16/9" className="md:col-span-2" />
-              {IMMERSIONS.map((im) => {
+{IMMERSIONS.map((im) => {
                 const isGlobal = im.title.includes("Global");
                 const Icon = isGlobal ? Globe : MapPin;
+                const [hero, ...rest] = im.stats;
                 return (
                   <article key={im.title} className="bg-white/90 p-6 pastel-fill">
                     <div className="flex flex-wrap items-baseline justify-between gap-3">
@@ -1798,20 +1799,35 @@ function PgpTbm() {
                     </div>
                     <p className="mt-3 max-w-3xl text-sm leading-relaxed text-black/65">{im.body}</p>
 
-                    {/* Immersion metrics */}
-                    <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                      {im.stats.map((s, i) => (
+                    {/* Bento immersion metrics */}
+                    <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                      {/* Hero metric */}
+                      <div className="relative row-span-1 flex flex-col justify-between overflow-hidden border border-black/10 bg-gradient-to-br from-teal/5 to-white p-5 sm:row-span-2">
+                        <div className="absolute left-0 top-0 h-1.5 w-full bg-gradient-to-r from-teal to-sage" />
+                        <div className="inline-flex size-8 items-center justify-center bg-teal/10 text-teal">
+                          <Icon className="size-4" />
+                        </div>
+                        <div className="mt-4">
+                          <div className="font-display text-5xl leading-none tracking-tight text-ink">
+                            {hero.k}
+                          </div>
+                          <div className="mt-1.5 text-xs font-medium uppercase tracking-[0.12em] text-black/60">
+                            {hero.v}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Supporting metrics */}
+                      {rest.map((s, i) => (
                         <div
                           key={s.v}
-                          className="relative overflow-hidden border border-black/10 bg-white p-5"
+                          className="relative flex flex-col justify-between overflow-hidden border border-black/10 p-5"
                         >
                           <div className="absolute left-0 top-0 h-1.5 w-full bg-gradient-to-r from-teal to-sage" />
-                          <div className="flex items-start justify-between">
-                            <div className="inline-flex size-8 items-center justify-center bg-teal/10 text-teal">
-                              {i === 0 ? <Icon className="size-4" /> : i === 1 ? <TrendingUp className="size-4" /> : <Users className="size-4" />}
-                            </div>
+                          <div className="inline-flex size-8 items-center justify-center bg-teal/10 text-teal">
+                            {i === 0 ? <TrendingUp className="size-4" /> : <Users className="size-4" />}
                           </div>
-                          <div className="mt-3">
+                          <div className="mt-4">
                             <div className="font-display text-4xl leading-none tracking-tight text-ink">
                               {s.k}
                             </div>
