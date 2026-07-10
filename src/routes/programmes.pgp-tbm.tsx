@@ -1695,39 +1695,76 @@ function PgpTbm() {
             </div>
             <div className="space-y-px bg-black/10">
               <ImagePlaceholder label="OutClass ventures" aspect="16/9" />
-              {OUT_CLASS.map((o) => (
-                <article key={o.title} className="bg-white/90 p-6 pastel-fill">
-                  <div className="flex flex-wrap items-baseline justify-between gap-3">
-                    <div>
-                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-smoke-400">{o.tag}</div>
-                      <h4 className="mt-2 font-display text-3xl leading-tight tracking-tight">{o.title}</h4>
+              {OUT_CLASS.map((o, idx) => {
+                const isD2C = idx === 0;
+                const accent = isD2C ? "emerald" : "teal";
+                const Icon = isD2C ? Store : Play;
+                return (
+                  <article key={o.title} className="bg-white/90 p-6 pastel-fill">
+                    <div className="flex flex-wrap items-baseline justify-between gap-3">
+                      <div>
+                        <div className="text-xs font-semibold uppercase tracking-[0.2em] text-smoke-400">{o.tag}</div>
+                        <h4 className="mt-2 font-display text-3xl leading-tight tracking-tight">{o.title}</h4>
+                      </div>
                     </div>
-                    <div className="flex flex-wrap gap-4">
-                      {o.stats.map((s) => (
-                        <div key={s.v}>
-                          <div className="font-display text-3xl leading-none tracking-tight">{s.k}</div>
-                          <div className="mt-1 text-xs uppercase tracking-[0.12em] text-black/55">{s.v}</div>
+                    <p className="mt-3 max-w-3xl text-sm leading-relaxed text-black/65">{o.body}</p>
+
+                    {/* Outcome metrics */}
+                    <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                      {o.stats.map((s, i) => (
+                        <div
+                          key={s.v}
+                          className={cn(
+                            "relative overflow-hidden rounded-xl border p-5",
+                            isD2C
+                              ? "border-emerald-900/10 bg-gradient-to-br from-emerald-50/80 to-white"
+                              : "border-teal-900/10 bg-gradient-to-br from-teal-50/80 to-white"
+                          )}
+                        >
+                          <div className={cn(
+                            "absolute left-0 top-0 h-1 w-full",
+                            isD2C ? "bg-gradient-to-r from-emerald-500 to-teal-500" : "bg-gradient-to-r from-teal-500 to-cyan-500"
+                          )} />
+                          <div className="flex items-start justify-between">
+                            <div className={cn(
+                              "inline-flex size-8 items-center justify-center rounded-lg",
+                              isD2C ? "bg-emerald-500/10 text-emerald-700" : "bg-teal-500/10 text-teal-700"
+                            )}>
+                              {i === 0 ? <Icon className="size-4" /> : i === 1 ? <TrendingUp className="size-4" /> : <Users className="size-4" />}
+                            </div>
+                          </div>
+                          <div className="mt-3">
+                            <div className={cn(
+                              "font-display text-4xl leading-none tracking-tight",
+                              isD2C ? "text-emerald-900" : "text-teal-900"
+                            )}>
+                              {s.k}
+                            </div>
+                            <div className="mt-1.5 text-xs font-medium uppercase tracking-[0.12em] text-black/60">
+                              {s.v}
+                            </div>
+                          </div>
                         </div>
                       ))}
                     </div>
-                  </div>
-                  <p className="mt-4 max-w-3xl text-sm leading-relaxed text-black/65">{o.body}</p>
-                  <div className="mt-6">
-                    <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/50">Term-by-term arc</div>
-                    <ol className="mt-3 grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
-                      {o.arc.map((a, i) => (
-                        <li key={`${o.title}-${i}`} className="bg-white p-4">
-                          <div className="flex items-center gap-2">
-                            <span className="inline-flex size-6 items-center justify-center bg-smoke-400 text-xs font-semibold text-white">{a.t}</span>
-                            <span className="font-display text-sm leading-tight">{a.h}</span>
-                          </div>
-                          <div className="mt-2 text-xs leading-snug text-black/60">{a.d}</div>
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-                </article>
-              ))}
+
+                    <div className="mt-6">
+                      <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/50">Term-by-term arc</div>
+                      <ol className="mt-3 grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
+                        {o.arc.map((a, i) => (
+                          <li key={`${o.title}-${i}`} className="bg-white p-4">
+                            <div className="flex items-center gap-2">
+                              <span className="inline-flex size-6 items-center justify-center bg-smoke-400 text-xs font-semibold text-white">{a.t}</span>
+                              <span className="font-display text-sm leading-tight">{a.h}</span>
+                            </div>
+                            <div className="mt-2 text-xs leading-snug text-black/60">{a.d}</div>
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </div>
 
