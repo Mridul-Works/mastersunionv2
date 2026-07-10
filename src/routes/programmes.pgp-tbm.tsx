@@ -1851,7 +1851,7 @@ function PgpTbm() {
               <h2 className="mt-4 font-display text-3xl leading-[1.03] tracking-[-0.02em] text-foreground">
                 Two paths out.
                 <br />
-                <span className="bg-gradient-to-r from-teal-500 via-emerald-600 to-sage-500 bg-clip-text text-transparent">Both measured in numbers.</span>
+                <span className="text-foreground">Both measured in numbers.</span>
               </h2>
             </div>
             <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
@@ -1874,7 +1874,7 @@ function PgpTbm() {
               <div className="mt-8">
                 <div className="text-xs font-semibold uppercase tracking-[0.2em] text-black/55">Median CTC</div>
                 <div className="mt-2 flex items-baseline gap-3">
-                  <span className="bg-gradient-to-br from-teal-500 via-emerald-600 to-sage-600 bg-clip-text font-display text-4xl leading-none tracking-tight text-transparent sm:text-5xl">
+                  <span className="font-display text-4xl leading-none tracking-tight text-ink sm:text-5xl">
                     ₹34.6
                   </span>
                   <span className="font-display text-xl text-black/70">LPA</span>
@@ -1952,7 +1952,7 @@ function PgpTbm() {
               <div className="mt-8">
                 <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-900/60">Startups founded on campus</div>
                 <div className="mt-2 flex items-baseline gap-3">
-                  <span className="bg-gradient-to-br from-emerald-600 via-teal-600 to-emerald-800 bg-clip-text font-display text-4xl leading-none tracking-tight text-transparent sm:text-5xl">
+                  <span className="font-display text-4xl leading-none tracking-tight text-ink sm:text-5xl">
                     200+
                   </span>
                 </div>
