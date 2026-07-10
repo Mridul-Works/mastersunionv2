@@ -463,7 +463,7 @@ const ENGINE_COLORS: Record<EngineCell["kind"], string> = {
   in: "bg-white/90 text-black/80",
   d2c: "bg-emerald-50 text-emerald-800 border-l-2 border-emerald-500",
   creator: "bg-teal-50 text-teal-800 border-l-2 border-teal-500",
-  imm: "bg-indigo-50 text-indigo-800 border-l-2 border-indigo-500",
+  imm: "bg-teal/10 text-ink border-l-2 border-teal",
 };
 
 // -------- Outcomes --------
@@ -693,7 +693,7 @@ const TONE_ACCENT: Record<string, string> = {
   in: "bg-smoke-400",
   d2c: "bg-[#0F8F6E]",
   creator: "bg-[#E38330]",
-  imm: "bg-[#39B5D7]",
+  imm: "bg-teal",
   capstone: "bg-smoke-400",
 };
 
@@ -701,7 +701,7 @@ const TONE_INK: Record<string, string> = {
   in: "text-foreground",
   d2c: "text-[#0F8F6E]",
   creator: "text-[#E38330]",
-  imm: "text-[#2A7E96]",
+  imm: "text-teal",
   capstone: "text-foreground",
 };
 
@@ -810,7 +810,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
           <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-smoke-400" /> InClass</span>
           <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-[#0F8F6E]" /> D2C</span>
           <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-[#E38330]" /> Creator</span>
-          <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-[#39B5D7]" /> Immersion</span>
+          <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-teal" /> Immersion</span>
         </div>
 
         {/* Matrix */}
@@ -1774,7 +1774,7 @@ function PgpTbm() {
           <div className="grid gap-8 border-t border-black/10 py-12 md:grid-cols-[300px_1fr] md:gap-16">
             <div>
               <div className="font-display text-3xl leading-none text-black/25">03</div>
-              <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-indigo-700">Immersions · On the ground</div>
+              <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-teal">Immersions · On the ground</div>
               <h3 className="mt-2 font-display text-3xl leading-tight tracking-tight">Global boardrooms. Bharat factory floors.</h3>
               <p className="mt-3 text-sm leading-relaxed text-black/65">
                 Optional immersion modules that slot into Terms 4 and 5. Two tracks, one goal: see business where it actually happens — not where slides describe it.
@@ -1782,23 +1782,52 @@ function PgpTbm() {
             </div>
             <div className="grid gap-px bg-black/10 md:grid-cols-2">
               <ImagePlaceholder label="Immersions" aspect="16/9" className="md:col-span-2" />
-              {IMMERSIONS.map((im) => (
-                <article key={im.title} className="bg-white/90 p-6 pastel-fill">
-                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-indigo-700">{im.tag}</div>
-                  <h4 className="mt-2 font-display text-3xl leading-tight tracking-tight">{im.title}</h4>
-                  <p className="mt-3 text-sm leading-relaxed text-black/65">{im.body}</p>
-                  <dl className="mt-5 grid grid-cols-3 gap-3 border-t border-black/10 pt-4">
-                    {im.stats.map((s) => (
-                      <div key={s.v}>
-                        <dt className="font-display text-3xl leading-none tracking-tight">{s.k}</dt>
-                        <dd className="mt-1.5 text-xs leading-snug text-black/55">{s.v}</dd>
+              {IMMERSIONS.map((im) => {
+                const isGlobal = im.title.includes("Global");
+                const Icon = isGlobal ? Globe : MapPin;
+                return (
+                  <article key={im.title} className="bg-white/90 p-6 pastel-fill">
+                    <div className="flex flex-wrap items-baseline justify-between gap-3">
+                      <div>
+                        <div className="text-xs font-semibold uppercase tracking-[0.2em] text-smoke-400">{im.tag}</div>
+                        <h4 className="mt-2 font-display text-3xl leading-tight tracking-tight">{im.title}</h4>
                       </div>
-                    ))}
-                  </dl>
-                </article>
-              ))}
+                      <div className="inline-flex size-10 items-center justify-center bg-teal/10 text-teal">
+                        <Icon className="size-5" />
+                      </div>
+                    </div>
+                    <p className="mt-3 max-w-3xl text-sm leading-relaxed text-black/65">{im.body}</p>
+
+                    {/* Immersion metrics */}
+                    <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                      {im.stats.map((s, i) => (
+                        <div
+                          key={s.v}
+                          className="relative overflow-hidden border border-black/10 bg-white p-5"
+                        >
+                          <div className="absolute left-0 top-0 h-1.5 w-full bg-gradient-to-r from-teal to-sage" />
+                          <div className="flex items-start justify-between">
+                            <div className="inline-flex size-8 items-center justify-center bg-teal/10 text-teal">
+                              {i === 0 ? <Icon className="size-4" /> : i === 1 ? <TrendingUp className="size-4" /> : <Users className="size-4" />}
+                            </div>
+                          </div>
+                          <div className="mt-3">
+                            <div className="font-display text-4xl leading-none tracking-tight text-ink">
+                              {s.k}
+                            </div>
+                            <div className="mt-1.5 text-xs font-medium uppercase tracking-[0.12em] text-black/60">
+                              {s.v}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </div>
+
         </div>
       </section>
 
