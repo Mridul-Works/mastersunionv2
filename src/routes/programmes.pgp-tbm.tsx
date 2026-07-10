@@ -978,7 +978,7 @@ const ALUMNI: Alum[] = [
     domain: "VC & Finance",
     quote: "Running a real P&L for 16 months is a better filter than any DCF model.",
     linkedin: "https://www.linkedin.com/",
-    accent: "from-indigo-400 to-violet-600",
+    accent: "from-teal to-sage",
     image: facultyGarima.url,
   },
   {
