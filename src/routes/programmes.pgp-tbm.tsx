@@ -17,6 +17,8 @@ import {
   MapPin,
   ChevronRight,
   GraduationCap,
+  Store,
+  Play,
 } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
