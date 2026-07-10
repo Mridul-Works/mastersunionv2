@@ -15,7 +15,9 @@ import {
   BookOpen,
   TrendingUp,
   MapPin,
+  Globe,
   ChevronRight,
+
   GraduationCap,
   Store,
   Play,
