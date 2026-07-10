@@ -1715,19 +1715,19 @@ function PgpTbm() {
                         <div
                           key={s.v}
                           className={cn(
-                            "relative overflow-hidden rounded-xl border p-5",
+                            "relative overflow-hidden border p-5",
                             isD2C
-                              ? "border-emerald-900/10 bg-gradient-to-br from-emerald-50/80 to-white"
-                              : "border-teal-900/10 bg-gradient-to-br from-teal-50/80 to-white"
+                              ? "border-emerald-900/15 bg-gradient-to-br from-emerald-50/90 to-white"
+                              : "border-teal-900/15 bg-gradient-to-br from-teal-50/90 to-white"
                           )}
                         >
                           <div className={cn(
-                            "absolute left-0 top-0 h-1 w-full",
+                            "absolute left-0 top-0 h-1.5 w-full",
                             isD2C ? "bg-gradient-to-r from-emerald-500 to-teal-500" : "bg-gradient-to-r from-teal-500 to-cyan-500"
                           )} />
                           <div className="flex items-start justify-between">
                             <div className={cn(
-                              "inline-flex size-8 items-center justify-center rounded-lg",
+                              "inline-flex size-8 items-center justify-center",
                               isD2C ? "bg-emerald-500/10 text-emerald-700" : "bg-teal-500/10 text-teal-700"
                             )}>
                               {i === 0 ? <Icon className="size-4" /> : i === 1 ? <TrendingUp className="size-4" /> : <Users className="size-4" />}
