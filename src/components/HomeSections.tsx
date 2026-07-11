@@ -1265,32 +1265,52 @@ function PedagogyPinnedScroll() {
                   <Link
                     key={p.tag}
                     to={p.route}
-                    className="group relative flex h-full max-h-[720px] w-[86vw] max-w-[340px] shrink-0 flex-col overflow-hidden rounded-[32px] p-6 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.25)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_70px_-25px_rgba(0,0,0,0.4)] md:w-[340px] md:p-7"
+                    className="group relative flex h-full max-h-[720px] w-[86vw] max-w-[340px] shrink-0 flex-col overflow-hidden border border-black/10 shadow-[0_18px_40px_-24px_rgba(0,0,0,0.28)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_28px_60px_-24px_rgba(0,0,0,0.4)] md:w-[340px]"
                     style={{ background: p.bg }}
                   >
-                    <div className="flex items-center justify-between">
-                      <span className="inline-flex items-center gap-2 rounded-full bg-white/55 px-3 py-1 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-black/80 backdrop-blur-sm">
-                        <span className="text-black/50">{String(i + 1).padStart(2, "0")}</span>
-                        <span className="h-3 w-px bg-black/25" />
+                    {/* Top band: index + icon */}
+                    <div className="relative flex items-start justify-between border-b border-black/10 px-6 pt-6 pb-4 md:px-7">
+                      <span
+                        className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-black/55"
+                      >
                         {p.tag}
                       </span>
-                      <div className="flex size-9 items-center justify-center rounded-full bg-white/55 text-black/75 backdrop-blur-sm">
+                      <div className="flex size-8 items-center justify-center border border-black/15 bg-white/40 text-black/75 backdrop-blur-sm">
                         <Icon className="size-4" />
                       </div>
-                    </div>
-                    <h3
-                      className="mt-8 text-[1.9rem] font-semibold leading-[1.05] tracking-tight text-black md:text-[2.1rem]"
-                      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                    >
-                      <span className="italic font-light text-black/90" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
-                        {firstWord}
+                      <span
+                        aria-hidden
+                        className="pointer-events-none absolute -bottom-4 right-5 font-mono text-[64px] font-semibold leading-none tracking-tight text-black/10 md:text-[76px]"
+                        style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                      >
+                        {String(i + 1).padStart(2, "0")}
                       </span>
-                      {rest ? " " + rest : ""}
-                    </h3>
-                    <div className="mt-auto flex items-end justify-between gap-4 pt-6">
-                      <p className="max-w-[24ch] text-[12.5px] leading-[1.5] text-black/70 line-clamp-3">{p.body}</p>
-                      <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-black text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-                        <ArrowUpRight className="size-4" />
+                    </div>
+
+                    {/* Title block */}
+                    <div className="px-6 pt-8 md:px-7">
+                      <h3
+                        className="text-[1.9rem] font-semibold leading-[1.05] tracking-tight text-black md:text-[2.05rem]"
+                        style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                      >
+                        <span className="italic font-light text-black/90" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+                          {firstWord}
+                        </span>
+                        {rest ? " " + rest : ""}
+                      </h3>
+                      <div className="mt-5 h-px w-10 bg-black/40" />
+                    </div>
+
+                    {/* Body + CTA */}
+                    <div className="mt-auto flex flex-col gap-5 px-6 pb-6 pt-6 md:px-7">
+                      <p className="text-[12.5px] leading-[1.55] text-black/70 line-clamp-4">{p.body}</p>
+                      <div className="flex items-center justify-between border-t border-black/15 pt-4">
+                        <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-black/70">
+                          Explore
+                        </span>
+                        <div className="flex size-8 items-center justify-center bg-black text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                          <ArrowUpRight className="size-4" />
+                        </div>
                       </div>
                     </div>
                   </Link>
