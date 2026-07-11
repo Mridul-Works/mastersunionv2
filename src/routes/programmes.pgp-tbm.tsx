@@ -1667,20 +1667,50 @@ function PgpTbm() {
                 ))}
               </dl>
             </div>
-            <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
-              <ImagePlaceholder label="InClass modules" aspect="16/9" className="sm:col-span-2 lg:col-span-3" />
-              {IN_CLASS.tracks.map((t, i) => (
-                <article key={t.name} className="bg-white p-4">
-                  <div className="flex items-center gap-2">
-                    <span className="inline-flex size-6 items-center justify-center bg-smoke-400 text-xs font-semibold text-white">M{i + 1}</span>
-                    <h4 className="font-display text-sm leading-tight">{t.name}</h4>
+            <div className="space-y-4">
+              <ImagePlaceholder label="InClass modules" aspect="16/9" className="border border-black/10" />
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                {IN_CLASS.tracks.map((t, i) => (
+                  <article
+                    key={t.name}
+                    className="group relative flex gap-4 border border-black/10 bg-white p-5 transition-colors hover:border-black/30"
+                  >
+                    <span className="absolute left-0 top-0 h-full w-[3px] bg-smoke-300 transition-colors group-hover:bg-black" />
+                    <div className="flex flex-col items-start">
+                      <span className="font-display text-2xl leading-none tracking-tight text-black/25">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-black/40">
+                        Module
+                      </span>
+                    </div>
+                    <div className="flex-1 border-l border-black/10 pl-4">
+                      <h4 className="font-display text-base leading-tight tracking-tight">{t.name}</h4>
+                      <p className="mt-1.5 text-xs leading-snug text-black/60">{t.eg}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              <div className="flex flex-wrap items-center justify-between gap-4 border border-black/10 bg-black p-6 text-white">
+                <div>
+                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">Delivered as</div>
+                  <div className="mt-2 font-display text-2xl leading-tight tracking-tight">
+                    150+ courses · 8 terms · project-graded
                   </div>
-                  <p className="mt-2 text-xs leading-snug text-black/60">{t.eg}</p>
-                </article>
-              ))}
-              <div className="bg-black p-6 text-white sm:col-span-2 lg:col-span-2">
-                <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">Delivered as</div>
-                <div className="mt-2 font-display text-2xl leading-tight">150+ courses · 8 terms · project-graded</div>
+                </div>
+                <div className="flex items-center gap-6">
+                  <div>
+                    <div className="font-display text-3xl leading-none tracking-tight">150+</div>
+                    <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/50">Courses</div>
+                  </div>
+                  <div className="h-8 w-px bg-white/20" />
+                  <div>
+                    <div className="font-display text-3xl leading-none tracking-tight">8</div>
+                    <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/50">Terms</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
