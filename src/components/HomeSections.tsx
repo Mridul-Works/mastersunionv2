@@ -34,6 +34,8 @@ import {
   MapPin,
   Clock,
   MessageCircle,
+  BookOpen,
+
 } from "lucide-react";
 
 
@@ -947,7 +949,9 @@ function DaysRemaining({ target }: { target: string }) {
 
 
 const PEDAGOGY = [
+  { icon: BookOpen, tag: "How we teach", title: "If the store doesn't sell, you don't pass. The market is the examiner.", body: "Day 1 of Term 1, every cohort splits into 50 teams. Each team gets a budget, a category and eight weeks to build, launch and scale a live D2C store. No simulations, no case studies — you ship a product, take payments and handle returns. Your grade is a weighted blend of revenue, gross margin and unit economics.", stats: [{ value: "₹3.38 Cr", label: "Cohort revenue" }, { value: "₹45L", label: "Top team, 8 weeks" }, { value: "50", label: "Live stores launched" }], cta: "See the syllabus", route: "/how-we-teach", bg: "radial-gradient(130% 100% at 25% 20%, #F5E9D4 0%, #E9B79A 45%, #C46A57 100%)" },
   { icon: GraduationCap, tag: "Faculty", title: "Taught by the people building the companies you study.", body: "40% of faculty are sitting CEOs, MDs and CXOs. 30% visiting from Harvard, Wharton, Kellogg and Booth. The slides update on Monday morning.", stats: [{ value: "40%", label: "Industry practitioners" }, { value: "200+", label: "Visiting experts" }, { value: "30%", label: "Ivy-league visiting" }], cta: "Meet the faculty", route: "/faculty", bg: "radial-gradient(130% 100% at 20% 15%, #FFD3E4 0%, #F49AC2 45%, #E15C93 100%)" },
+
   { icon: Rocket, tag: "Entrepreneurship", title: "30+ ventures. ₹593 Cr in combined valuation.", body: "An on-campus venture studio that handles incorporation, hiring, and warm intros to Sequoia, Blume and Y Combinator. Six alumni on Shark Tank India.", stats: [{ value: "30+", label: "Active startups" }, { value: "₹593 Cr", label: "Combined valuation" }, { value: "6", label: "On Shark Tank India" }], cta: "See the startups", route: "/startups", bg: "radial-gradient(130% 100% at 80% 25%, #DECBFF 0%, #B8A4F5 45%, #8770E8 100%)" },
   { icon: Briefcase, tag: "Career", title: "100% placement. ₹61.98L highest CTC.", body: "28% of grads join as Founder's Office or Chief of Staff. 3× average pre-MBA salary jump and 10–20% annual growth post-grad.", stats: [{ value: "₹61.98L", label: "Highest CTC" }, { value: "3×", label: "Average salary jump" }, { value: "100%", label: "Placement" }], cta: "Read the report", route: "/placements", bg: "radial-gradient(130% 100% at 25% 80%, #EDF7B0 0%, #C6E26A 45%, #94BE35 100%)" },
   { icon: Users, tag: "Mentor Union", title: "500+ operators. Median response under an hour.", body: "Founders mid-build, investors mid-cheque, CMOs mid-quarter. No office hours, no waiting lists — just answers when you need them.", stats: [{ value: "500+", label: "Mentors" }, { value: "<1 hr", label: "Median response" }, { value: "On demand", label: "Always on" }], cta: "Browse mentors", route: "/mentors", bg: "radial-gradient(130% 100% at 75% 25%, #D4E6FF 0%, #8FB8F5 50%, #4F86DE 100%)" },
@@ -1196,30 +1200,11 @@ function PedagogySelector() {
         {/* Left: list of 8 options */}
         <div className="md:col-span-5 lg:col-span-4">
           <p className="mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-black/45">
-            Explore · 8 systems
+            Explore · {PEDAGOGY.length} systems
           </p>
           <ul className="flex flex-col border-t border-black/15">
-            <li className="border-b border-black/15">
-              <Link
-                to="/how-we-teach"
-                className="group flex w-full items-center justify-between gap-4 py-4 text-left text-black transition-colors"
-              >
-                <div className="flex items-center gap-4 min-w-0">
-                  <span className="font-mono text-[11px] font-semibold tabular-nums text-black/40 w-6">
-                    ↗
-                  </span>
-                  <span
-                    className="truncate text-[17px] md:text-[19px] font-semibold tracking-tight"
-                    style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                  >
-                    How we teach — Overview
-                  </span>
-                </div>
-                <ArrowUpRight className="size-4 shrink-0 text-black/70 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-            </li>
-
             {PEDAGOGY.map((item, i) => {
+
               const isActive = i === active;
               return (
                 <li key={item.tag} className="border-b border-black/15">
