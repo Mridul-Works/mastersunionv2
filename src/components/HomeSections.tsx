@@ -1180,193 +1180,107 @@ export default function HomeSections() {
 }
 
 function PedagogyPinnedScroll() {
-  const pinRef = useRef<HTMLElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [translateX, setTranslateX] = useState(0);
-  const [sectionHeight, setSectionHeight] = useState("300vh");
-
-  useEffect(() => {
-    let maxScroll = 0;
-    let pinHeight = 0;
-
-    const measure = () => {
-      const track = trackRef.current;
-      if (!track) return;
-      const vw = window.innerWidth;
-      maxScroll = Math.max(0, track.scrollWidth - vw);
-      // Total pinned scroll = 1.2 viewports of intro + maxScroll of horizontal travel
-      pinHeight = 1.2 * window.innerHeight + maxScroll;
-      setSectionHeight(`${pinHeight}px`);
-    };
-
-    const onScroll = () => {
-      const el = pinRef.current;
-      if (!el || maxScroll <= 0) return;
-      const rect = el.getBoundingClientRect();
-      // progress: 0 when top hits viewport top, 1 when bottom reaches viewport bottom
-      const scrolled = Math.min(Math.max(-rect.top, 0), maxScroll);
-      setTranslateX(scrolled);
-    };
-
-    measure();
-    onScroll();
-    window.addEventListener("resize", measure);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    const ro = new ResizeObserver(() => {
-      measure();
-      onScroll();
-    });
-    if (trackRef.current) ro.observe(trackRef.current);
-
-    return () => {
-      window.removeEventListener("resize", measure);
-      window.removeEventListener("scroll", onScroll);
-      ro.disconnect();
-    };
-  }, []);
-
   return (
-    <section
-      id="pedagogy"
-      ref={pinRef}
-      className="relative border-t border-black/10 bg-neutral-50"
-      style={{ height: sectionHeight }}
-    >
-      <div className="sticky top-0 h-screen overflow-hidden">
-        <div className="mx-auto flex h-full max-w-[1280px] flex-col px-6 pt-6 pb-4 md:px-10 md:pt-8 md:pb-6">
-          <SectionHead
-            eyebrow="Learning experience"
-            title={
-              <>
-                <span className="md:block md:whitespace-nowrap">Real stakes.</span>
-                <span className="md:hidden">{" "}</span>
-                <span className="md:block md:whitespace-nowrap">Real portfolios.</span>
-                <span className="md:hidden">{" "}</span>
-                <span className="md:block md:whitespace-nowrap">The Masters' Union experience.</span>
-              </>
-            }
-            lede="Eight systems that turn every class into a live brief, every project into proof, and every student into someone worth hiring — or funding."
-            stack
-            compact
-          />
-
-          <div className="relative mt-4 min-h-0 flex-1 overflow-hidden md:mt-6">
-
-            <div
-              ref={trackRef}
-              className="flex h-full items-center gap-5 md:gap-6 will-change-transform"
-              style={{ transform: `translate3d(-${translateX}px, 0, 0)`, transition: "transform 60ms linear" }}
+    <section id="pedagogy" className="relative border-t border-black/10 bg-neutral-50">
+      <div className="mx-auto max-w-[1400px] px-5 pt-16 pb-6 md:px-10 md:pt-24">
+        {/* Editorial hero */}
+        <div className="grid gap-8 md:grid-cols-12 md:gap-10">
+          <div className="md:col-span-8">
+            <p className="mb-6 font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-black/55">
+              — The Masters' Union experience
+            </p>
+            <h2
+              className="text-[clamp(2.5rem,7vw,6rem)] font-semibold leading-[0.92] tracking-[-0.02em] text-black"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
             >
-              {PEDAGOGY.map((p, i) => {
-                const Icon = p.icon;
-                const [firstWord, ...restWords] = p.title.split(" ");
-                const rest = restWords.join(" ");
-                return (
-                  <Link
-                    key={p.tag}
-                    to={p.route}
-                    className="group relative flex h-full max-h-[720px] w-[86vw] max-w-[340px] shrink-0 flex-col overflow-hidden border border-black/10 shadow-[0_18px_40px_-24px_rgba(0,0,0,0.28)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_28px_60px_-24px_rgba(0,0,0,0.4)] md:w-[340px]"
-                    style={{ background: p.bg }}
-                  >
-                    {/* Top band: index + icon */}
-                    <div className="relative flex items-start justify-between border-b border-black/10 px-6 pt-6 pb-4 md:px-7">
-                      <span
-                        className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-black/55"
-                      >
-                        {p.tag}
-                      </span>
-                      <div className="flex size-8 items-center justify-center border border-black/15 bg-white/40 text-black/75 backdrop-blur-sm">
-                        <Icon className="size-4" />
-                      </div>
-                      <span
-                        aria-hidden
-                        className="pointer-events-none absolute -bottom-4 right-5 font-mono text-[64px] font-semibold leading-none tracking-tight text-black/10 md:text-[76px]"
-                        style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-                      >
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                    </div>
-
-                    {/* Title block */}
-                    <div className="px-6 pt-8 md:px-7">
-                      <h3
-                        className="text-[1.9rem] font-semibold leading-[1.05] tracking-tight text-black md:text-[2.05rem]"
-                        style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                      >
-                        <span className="italic font-light text-black/90" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
-                          {firstWord}
-                        </span>
-                        {rest ? " " + rest : ""}
-                      </h3>
-                      <div className="mt-5 h-px w-10 bg-black/40" />
-                    </div>
-
-                    {/* Body + CTA */}
-                    <div className="mt-auto flex flex-col gap-5 px-6 pb-6 pt-6 md:px-7">
-                      <p className="text-[12.5px] leading-[1.55] text-black/70 line-clamp-4">{p.body}</p>
-                      <div className="flex items-center justify-between border-t border-black/15 pt-4">
-                        <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-black/70">
-                          Explore
-                        </span>
-                        <div className="flex size-8 items-center justify-center bg-black text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-                          <ArrowUpRight className="size-4" />
-                        </div>
-                      </div>
-                    </div>
-                  </Link>
-                );
-              })}
-
-              {/* Admissions contact card */}
-              <div
-                className="group relative flex h-full max-h-[720px] w-[86vw] max-w-[340px] shrink-0 flex-col overflow-hidden rounded-[32px] bg-black p-6 text-white shadow-[0_20px_50px_-25px_rgba(0,0,0,0.4)] md:w-[340px] md:p-7"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">Admissions</span>
-                  <div className="flex size-9 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm">
-                    <ArrowUpRight className="size-4" />
-                  </div>
-                </div>
-                <h3
-                  className="mt-5 text-[1.7rem] font-semibold leading-[1.05] tracking-tight text-white md:text-[1.9rem]"
+              Real stakes.{" "}
+              <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+                Real portfolios.
+              </span>
+              <br />
+              The learning experience
+              <span className="inline-flex translate-y-[-0.15em] items-center">
+                <Link
+                  to="/how-we-teach"
+                  className="mx-3 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-black px-6 py-3 text-[15px] font-medium text-white transition-transform hover:-translate-y-0.5 md:px-8 md:py-4 md:text-[17px]"
                   style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                 >
-                  <span className="italic font-light text-[#C9A84C]" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
-                    Talk
-                  </span>{" "}
-                  to us.
-                </h3>
-                <div className="mt-5 flex flex-1 flex-col justify-end gap-3 rounded-[22px] bg-white/[0.06] p-5">
-                  <a href="tel:+917669186660" className="flex items-center gap-3 text-[13px] font-medium text-white/90 hover:text-white">
-                    <Phone className="size-4 shrink-0 text-[#C9A84C]" />
-                    +91 76691 86660
-                  </a>
-                  <a href="https://wa.me/917669186660" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-[13px] font-medium text-white/90 hover:text-white">
-                    <MessageCircle className="size-4 shrink-0 text-[#C9A84C]" />
-                    WhatsApp
-                  </a>
-                  <a href="mailto:admissions@mastersunion.org" className="flex items-center gap-3 text-[13px] font-medium text-white/90 hover:text-white">
-                    <Mail className="size-4 shrink-0 text-[#C9A84C]" />
-                    admissions@mastersunion.org
-                  </a>
-                  <div className="flex items-start gap-3 text-[12px] font-medium text-white/60">
-                    <MapPin className="size-4 shrink-0 text-[#C9A84C]" />
-                    <span>DLF Cyber Park, Gurugram 122008</span>
+                  How we teach
+                  <ArrowUpRight className="size-4" />
+                </Link>
+              </span>{" "}
+              built at MU.
+            </h2>
+          </div>
+          <div className="flex items-end md:col-span-4">
+            <p className="max-w-[36ch] text-[14px] leading-[1.55] text-black/65 md:text-[15px]">
+              Eight systems that turn every class into a live brief, every project into proof, and every student into someone worth hiring — or funding.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Bento grid */}
+      <div className="mx-auto max-w-[1400px] px-5 pb-20 md:px-10 md:pb-28">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {PEDAGOGY.map((p, i) => {
+            const Icon = p.icon;
+            return (
+              <Link
+                key={p.tag}
+                to={p.route}
+                className="group relative flex aspect-[3/4] flex-col justify-between overflow-hidden p-6 transition-transform duration-500 hover:-translate-y-1"
+                style={{ background: p.bg }}
+              >
+                {/* Numbered index + icon */}
+                <div className="flex items-start justify-between">
+                  <div className="flex size-11 items-center justify-center rounded-full border border-black/25 font-mono text-[13px] font-semibold text-black/70">
+                    {String(i + 1).padStart(2, "0")}
                   </div>
-                  <div className="flex items-center gap-2 text-[10.5px] font-medium text-white/45">
-                    <Clock className="size-3.5 shrink-0" />
-                    Mon–Sat · 10 AM – 6 PM IST
+                  <div className="flex size-9 items-center justify-center border border-black/15 bg-white/40 text-black/75 backdrop-blur-sm">
+                    <Icon className="size-4" />
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
 
-          {/* Progress hint */}
-          <div className="pointer-events-none flex items-center justify-between px-1 pb-6 pt-4 text-[10px] font-mono uppercase tracking-[0.24em] text-black/40">
-            <span>Scroll to advance</span>
-            <span>{PEDAGOGY.length + 1} widgets</span>
-          </div>
+                {/* Stat rows — nav-list style */}
+                <div className="mt-6 flex flex-col">
+                  {p.stats.map((s, idx) => (
+                    <div
+                      key={idx}
+                      className={cn(
+                        "flex items-center justify-between border-t border-black/15 py-2.5",
+                        idx === p.stats.length - 1 && "border-b"
+                      )}
+                    >
+                      <div className="flex items-baseline gap-2 min-w-0">
+                        <span
+                          className="font-semibold text-black text-[15px] tabular-nums shrink-0"
+                          style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                        >
+                          {s.value}
+                        </span>
+                        <span className="truncate text-[11px] text-black/60">{s.label}</span>
+                      </div>
+                      <ArrowUpRight className="size-3.5 shrink-0 text-black/50" />
+                    </div>
+                  ))}
+                </div>
+
+                {/* Title block bottom */}
+                <div className="mt-6">
+                  <p className="mb-3 font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-black/55">
+                    {p.tag}
+                  </p>
+                  <h3
+                    className="text-[1.35rem] font-semibold leading-[1.1] tracking-tight text-black md:text-[1.45rem]"
+                    style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                  >
+                    {p.title}
+                  </h3>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>
