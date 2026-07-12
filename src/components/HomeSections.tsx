@@ -1174,7 +1174,7 @@ function PedagogyPinnedScroll() {
     <section id="pedagogy" className="relative border-t border-black/10 bg-neutral-50">
       <div className="mx-auto max-w-[1400px] px-5 pt-16 pb-6 md:px-10 md:pt-24">
         {/* Editorial hero */}
-        <div className="flex flex-col items-center text-center gap-6">
+        <div className="flex flex-col items-start text-left gap-6">
           <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-black/55">
             — The Masters' Union experience
           </p>
