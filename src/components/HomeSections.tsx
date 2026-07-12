@@ -523,98 +523,70 @@ function AdmissionsConnect() {
         </p>
       </header>
 
-      {(() => {
-        const CARD_COLORS = [
-          { bg: "#1F6B4A", fg: "#FFFFFF", swatch: "#EDD9A8" },
-          { bg: "#C8397A", fg: "#FFFFFF", swatch: "#F3E3C7" },
-          { bg: "#4A2A8A", fg: "#FFFFFF", swatch: "#E9C4A8" },
-          { bg: "#D9612C", fg: "#FFFFFF", swatch: "#F3E3C7" },
-          { bg: "#0F5559", fg: "#FFFFFF", swatch: "#E7C7A2" },
-          { bg: "#1B2A6B", fg: "#FFFFFF", swatch: "#F0C9D7" },
-        ];
-        return (
-          <div className="relative -mx-6 md:-mx-10">
-            <div
-              className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-6 md:gap-6 md:px-10"
-              style={{ scrollbarWidth: "thin" }}
+      <div className="relative -mx-6 md:-mx-10">
+        <div
+          className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-6 md:gap-6 md:px-10"
+          style={{ scrollbarWidth: "thin" }}
+        >
+          {featured.map((s) => (
+            <article
+              key={s.id}
+              className="group relative flex snap-start shrink-0 flex-col justify-between overflow-hidden rounded-none border border-black/10 bg-white p-7 text-black transition-transform duration-500 hover:-translate-y-1 md:p-9"
+              style={{
+                width: "min(88vw, 360px)",
+                minHeight: "520px",
+              }}
             >
-              {featured.map((s, i) => {
-                const c = CARD_COLORS[i % CARD_COLORS.length];
-                return (
-                  <article
-                    key={s.id}
-                    className="group relative flex snap-start shrink-0 flex-col justify-between overflow-hidden rounded-none p-7 transition-transform duration-500 hover:-translate-y-1 md:p-9"
-                    style={{
-                      background: c.bg,
-                      color: c.fg,
-                      width: "min(88vw, 360px)",
-                      minHeight: "520px",
-                    }}
-                  >
-                    {/* Top: colored placeholder + meta */}
-                    <div className="flex items-start justify-between gap-4">
-                      <div
-                        aria-hidden
-                        className="h-24 w-28 shrink-0 rounded-none"
-                        style={{ background: c.swatch }}
-                      />
-                      <span
-                        className="font-mono text-[10px] uppercase tracking-[0.22em] text-right"
-                        style={{ color: `${c.fg}B3` }}
-                      >
-                        {formatSessionDate(s.nextDate)}<br />{s.nextTime}
-                      </span>
-                    </div>
+              {/* Top: neutral placeholder + meta */}
+              <div className="flex items-start justify-between gap-4">
+                <div
+                  aria-hidden
+                  className="h-24 w-28 shrink-0 rounded-none bg-[#EFECE4]"
+                />
+                <span className="text-right font-mono text-[10px] uppercase tracking-[0.22em] text-black/55">
+                  {formatSessionDate(s.nextDate)}<br />{s.nextTime}
+                </span>
+              </div>
 
-                    {/* Middle: big title */}
-                    <div className="mt-6">
-                      <h3
-                        className="text-[26px] font-semibold leading-[1.05] tracking-tight md:text-[30px]"
-                        style={{ fontFamily: "'Fraunces', Georgia, serif", color: c.fg }}
-                      >
-                        {s.title}
-                      </h3>
-                      <p
-                        className="mt-4 text-[13.5px] leading-[1.55]"
-                        style={{ color: `${c.fg}D9` }}
-                      >
-                        {s.description}
-                      </p>
-                      <p
-                        className="mt-3 font-mono text-[10px] uppercase tracking-[0.22em]"
-                        style={{ color: `${c.fg}99` }}
-                      >
-                        {s.spotsLeft} spots left
-                      </p>
-                    </div>
+              {/* Middle: big title */}
+              <div className="mt-6">
+                <h3
+                  className="text-[26px] font-semibold leading-[1.05] tracking-tight text-black md:text-[30px]"
+                  style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                >
+                  {s.title}
+                </h3>
+                <p className="mt-4 text-[13.5px] leading-[1.55] text-black/70">
+                  {s.description}
+                </p>
+                <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.22em] text-black/50">
+                  {s.spotsLeft} spots left
+                </p>
+              </div>
 
-                    {/* Bottom: CTA + download icon */}
-                    <div className="mt-6 flex items-end justify-between gap-4">
-                      <button
-                        type="button"
-                        onClick={() => openFor(s.id)}
-                        className="inline-flex items-center gap-2 border-b pb-1 font-mono text-[12px] font-semibold uppercase tracking-[0.22em] transition-transform hover:-translate-y-0.5"
-                        style={{ color: c.fg, borderColor: `${c.fg}80` }}
-                      >
-                        Register for session
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => openFor(s.id)}
-                        aria-label="Register"
-                        className="flex size-9 items-center justify-center rounded-none border transition-colors"
-                        style={{ borderColor: `${c.fg}66`, color: c.fg }}
-                      >
-                        <ArrowRight className="size-4" />
-                      </button>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        );
-      })()}
+              {/* Bottom: CTA + arrow */}
+              <div className="mt-6 flex items-end justify-between gap-4">
+                <button
+                  type="button"
+                  onClick={() => openFor(s.id)}
+                  className="inline-flex items-center gap-2 border-b border-black/40 pb-1 font-mono text-[12px] font-semibold uppercase tracking-[0.22em] text-black transition-transform hover:-translate-y-0.5"
+                >
+                  Register for session
+                </button>
+                <button
+                  type="button"
+                  onClick={() => openFor(s.id)}
+                  aria-label="Register"
+                  className="flex size-9 items-center justify-center rounded-none border border-black/20 text-black transition-colors hover:bg-black hover:text-white"
+                >
+                  <ArrowRight className="size-4" />
+                </button>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
 
 
       <div className="mt-10 text-center">
