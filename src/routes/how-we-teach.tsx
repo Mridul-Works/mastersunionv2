@@ -192,26 +192,6 @@ function HowWeTeachPage() {
         </div>
       </div>
 
-      {/* TICKER */}
-      <div
-        className="mt-6 overflow-hidden border-y border-black/10 bg-black text-white"
-        style={{ fontFamily: MONO }}
-      >
-        <div className="ticker-track flex whitespace-nowrap py-3 text-[12px] uppercase tracking-[0.22em]">
-          {[...TICKER, ...TICKER].map((line, i) => (
-            <span key={i} className="mx-8 inline-flex items-center gap-8">
-              <span>{line}</span>
-              <span aria-hidden className="text-white/40">
-                ·
-              </span>
-            </span>
-          ))}
-        </div>
-        <style>{`
-          @keyframes tickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-          .ticker-track { animation: tickerScroll 60s linear infinite; }
-        `}</style>
-      </div>
 
       {/* HERO */}
       <section className="mx-auto max-w-6xl px-5 pb-16 pt-20 md:px-10 md:pt-28">
