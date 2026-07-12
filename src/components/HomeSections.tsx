@@ -505,7 +505,15 @@ function AdmissionsConnect() {
   const featured = ADMISSIONS_CONNECT_SESSIONS;
 
   return (
-    <div className="col-span-12 mt-14 border-t-2 border-black pt-12">
+    <div className="col-span-12 mt-14 pt-12 relative">
+      <div
+        aria-hidden
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, #39B5D7, #F7D544, #E38330, transparent)",
+        }}
+      />
       <header className="mb-10 max-w-3xl">
         <p className="mb-3 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-black/50">
           Admissions Connect
