@@ -1229,6 +1229,26 @@ function PedagogySelector() {
             Explore · 8 systems
           </p>
           <ul className="flex flex-col border-t border-black/15">
+            <li className="border-b border-black/15">
+              <Link
+                to="/how-we-teach"
+                className="group flex w-full items-center justify-between gap-4 py-4 text-left text-black transition-colors"
+              >
+                <div className="flex items-center gap-4 min-w-0">
+                  <span className="font-mono text-[11px] font-semibold tabular-nums text-black/40 w-6">
+                    ↗
+                  </span>
+                  <span
+                    className="truncate text-[17px] md:text-[19px] font-semibold tracking-tight"
+                    style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                  >
+                    How we teach — Overview
+                  </span>
+                </div>
+                <ArrowUpRight className="size-4 shrink-0 text-black/70 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+            </li>
+
             {PEDAGOGY.map((item, i) => {
               const isActive = i === active;
               return (
