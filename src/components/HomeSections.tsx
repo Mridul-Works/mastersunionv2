@@ -1097,7 +1097,6 @@ export default function HomeSections() {
                 </div>
               </div>
             </div>
-            </div>
 
             {/* Photo side */}
             <div className="relative h-64 lg:h-auto">
