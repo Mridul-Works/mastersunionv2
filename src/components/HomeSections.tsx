@@ -1198,19 +1198,9 @@ function PedagogyPinnedScroll() {
                 Real portfolios.
               </span>
               <br />
-              The learning experience
-              <span className="inline-flex translate-y-[-0.15em] items-center">
-                <Link
-                  to="/how-we-teach"
-                  className="mx-3 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-black px-6 py-3 text-[15px] font-medium text-white transition-transform hover:-translate-y-0.5 md:px-8 md:py-4 md:text-[17px]"
-                  style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                >
-                  How we teach
-                  <ArrowUpRight className="size-4" />
-                </Link>
-              </span>{" "}
-              built at MU.
+              The learning experience built at MU.
             </h2>
+
           </div>
           <div className="flex items-end md:col-span-4">
             <p className="max-w-[36ch] text-[14px] leading-[1.55] text-black/65 md:text-[15px]">
