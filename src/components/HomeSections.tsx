@@ -1198,19 +1198,9 @@ function PedagogyPinnedScroll() {
                 Real portfolios.
               </span>
               <br />
-              The learning experience
-              <span className="inline-flex translate-y-[-0.15em] items-center">
-                <Link
-                  to="/how-we-teach"
-                  className="mx-3 inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-black px-6 py-3 text-[15px] font-medium text-white transition-transform hover:-translate-y-0.5 md:px-8 md:py-4 md:text-[17px]"
-                  style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                >
-                  How we teach
-                  <ArrowUpRight className="size-4" />
-                </Link>
-              </span>{" "}
-              built at MU.
+              The learning experience built at MU.
             </h2>
+
           </div>
           <div className="flex items-end md:col-span-4">
             <p className="max-w-[36ch] text-[14px] leading-[1.55] text-black/65 md:text-[15px]">
@@ -1239,6 +1229,26 @@ function PedagogySelector() {
             Explore · 8 systems
           </p>
           <ul className="flex flex-col border-t border-black/15">
+            <li className="border-b border-black/15">
+              <Link
+                to="/how-we-teach"
+                className="group flex w-full items-center justify-between gap-4 py-4 text-left text-black transition-colors"
+              >
+                <div className="flex items-center gap-4 min-w-0">
+                  <span className="font-mono text-[11px] font-semibold tabular-nums text-black/40 w-6">
+                    ↗
+                  </span>
+                  <span
+                    className="truncate text-[17px] md:text-[19px] font-semibold tracking-tight"
+                    style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                  >
+                    How we teach — Overview
+                  </span>
+                </div>
+                <ArrowUpRight className="size-4 shrink-0 text-black/70 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+            </li>
+
             {PEDAGOGY.map((item, i) => {
               const isActive = i === active;
               return (
