@@ -1073,6 +1073,17 @@ function AlumniShowcase() {
   const tertiaryIdx = total > 0 ? (safeIdx + 2) % total : 0;
   const tertiary = filtered[tertiaryIdx];
 
+  const CARD_COLORS = [
+    { bg: "#1F6B4A", fg: "#FFFFFF", swatch: "#F2C9D1" },
+    { bg: "#C8397A", fg: "#FFFFFF", swatch: "#F4D8A8" },
+    { bg: "#4A2A8A", fg: "#FFFFFF", swatch: "#E9C4A8" },
+    { bg: "#D9612C", fg: "#FFFFFF", swatch: "#F3E3C7" },
+    { bg: "#0F5559", fg: "#FFFFFF", swatch: "#E7C7A2" },
+    { bg: "#1B2A6B", fg: "#FFFFFF", swatch: "#F0C9D7" },
+    { bg: "#7A1F3D", fg: "#FFFFFF", swatch: "#EED3B6" },
+    { bg: "#2E7D32", fg: "#FFFFFF", swatch: "#F1CFC4" },
+  ];
+
   return (
     <div className="mt-16">
       {/* Header */}
@@ -1121,146 +1132,90 @@ function AlumniShowcase() {
         </div>
       ) : (
         <>
-          <div className="mt-10 grid gap-5 lg:grid-cols-12">
-            {/* FEATURE — Portrait + quote overlay */}
-            <article
-              className="relative col-span-12 overflow-hidden rounded-none lg:col-span-7 lg:min-h-[560px]"
-              style={{ boxShadow: "0 40px 120px -40px rgba(0,0,0,0.35)" }}
+          {/* Horizontal scrolling card rail */}
+          <div className="relative mt-10 -mx-5 md:-mx-10">
+            <div
+              className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-6 md:gap-6 md:px-10"
+              style={{ scrollbarWidth: "thin" }}
             >
-              {filtered.map((a, i) => (
-                <div
-                  key={a.name}
-                  className="absolute inset-0"
-                  style={{
-                    opacity: i === safeIdx ? 1 : 0,
-                    transition: "opacity 800ms cubic-bezier(0.4,0,0.2,1)",
-                  }}
-                >
-                  <ImagePlaceholder label={`${a.name} portrait`} aspect="4/5" className="h-full w-full" />
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute inset-0"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, rgba(233,90,50,0.55) 0%, rgba(232,140,60,0.25) 45%, rgba(0,0,0,0) 70%), linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.75) 100%)",
-                    }}
-                  />
-                </div>
-              ))}
-
-              {/* Top-left brand chip */}
-              <div className="absolute left-6 top-6 z-10 flex items-center gap-2 rounded-none bg-white/90 px-3 py-1.5 backdrop-blur">
-                <span className="h-1.5 w-1.5 rounded-none bg-teal" />
-                <span className="font-mono text-xs uppercase tracking-[0.24em] text-black/70">
-                  {active.domain} · {active.batch}
-                </span>
-              </div>
-
-              {/* Bottom content */}
-              <div className="absolute inset-x-0 bottom-0 z-10 p-7 md:p-9">
-                {filtered.map((a, i) => (
-                  <div
+              {filtered.map((a, i) => {
+                const c = CARD_COLORS[i % CARD_COLORS.length];
+                return (
+                  <article
                     key={a.name}
+                    className="group relative flex snap-start shrink-0 flex-col justify-between overflow-hidden rounded-none p-7 transition-transform duration-500 hover:-translate-y-1 md:p-9"
                     style={{
-                      opacity: i === safeIdx ? 1 : 0,
-                      transform: i === safeIdx ? "translateY(0)" : "translateY(10px)",
-                      transition: "opacity 700ms ease, transform 700ms ease",
-                      position: i === safeIdx ? "relative" : "absolute",
-                      inset: i === safeIdx ? "auto" : "auto 1.75rem 1.75rem 1.75rem",
-                      pointerEvents: i === safeIdx ? "auto" : "none",
+                      background: c.bg,
+                      color: c.fg,
+                      width: "min(88vw, 380px)",
+                      minHeight: "440px",
                     }}
                   >
-                    <p className="max-w-xl font-display text-xl font-semibold leading-[1.22] text-white md:text-2xl">
-                      &ldquo;{a.quote}&rdquo;
-                    </p>
+                    {/* Top: swatch (photo placeholder) + meta */}
+                    <div className="flex items-start justify-between gap-4">
+                      <div
+                        aria-hidden
+                        className="h-24 w-28 shrink-0 rounded-none"
+                        style={{ background: c.swatch }}
+                      />
+                      <span
+                        className="font-mono text-[10px] uppercase tracking-[0.24em]"
+                        style={{ color: `${c.fg}B3` }}
+                      >
+                        {a.domain} · {a.batch}
+                      </span>
+                    </div>
+
+                    {/* Middle: big title */}
+                    <div className="mt-6">
+                      <h4
+                        className="font-display text-[28px] font-semibold leading-[1.05] tracking-tight md:text-[32px]"
+                        style={{ color: c.fg }}
+                      >
+                        {a.name}
+                      </h4>
+                      <p
+                        className="mt-2 font-mono text-[11px] uppercase tracking-[0.22em]"
+                        style={{ color: `${c.fg}CC` }}
+                      >
+                        {a.role} · {a.company}
+                      </p>
+
+                      <p
+                        className="mt-5 text-[13.5px] leading-[1.55]"
+                        style={{ color: `${c.fg}D9` }}
+                      >
+                        &ldquo;{a.quote}&rdquo;
+                      </p>
+                    </div>
+
+                    {/* Bottom: CTA + icon */}
                     <div className="mt-6 flex items-end justify-between gap-4">
-                      <div>
-                        <p className="font-display text-base font-semibold text-white">{a.name}</p>
-                        <p className="text-xs text-white/75">{a.role} · {a.company}</p>
-                      </div>
-                      <div className="flex gap-2">
+                      <a
+                        href={a.linkedin}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 border-b pb-1 font-mono text-[12px] font-semibold uppercase tracking-[0.22em] transition-transform hover:-translate-y-0.5"
+                        style={{ color: c.fg, borderColor: `${c.fg}80` }}
+                      >
+                        Connect on LinkedIn
+                      </a>
+                      {a.calendly && (
                         <a
-                          href={a.linkedin}
+                          href={a.calendly}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex h-9 items-center gap-1.5 rounded-none bg-white px-3 font-mono text-xs uppercase tracking-[0.22em] text-black transition hover:bg-white/85"
+                          aria-label="Book a chat"
+                          className="flex size-9 items-center justify-center rounded-none border transition-colors"
+                          style={{ borderColor: `${c.fg}66`, color: c.fg }}
                         >
-                          <Linkedin className="size-3" /> Connect
+                          <Calendar className="size-4" />
                         </a>
-                        {a.calendly && (
-                          <a
-                            href={a.calendly}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="inline-flex h-9 items-center gap-1.5 rounded-none border border-white/60 px-3 font-mono text-xs uppercase tracking-[0.22em] text-white transition hover:bg-white/10"
-                          >
-                            <Calendar className="size-3" /> Book
-                          </a>
-                        )}
-                      </div>
+                      )}
                     </div>
-                  </div>
-                ))}
-              </div>
-            </article>
-
-            {/* RIGHT column — Two testimonial cards */}
-            <div className="col-span-12 grid gap-5 lg:col-span-5">
-              {/* Dark card */}
-              {secondary && (
-                <div className="rounded-none bg-black p-6 text-white md:p-7">
-                  <p className="font-display text-base leading-[1.35] text-white md:text-lg">
-                    &ldquo;{secondary.quote}&rdquo;
-                  </p>
-                  <div className="mt-5 grid grid-cols-2 gap-4 border-t border-white/10 pt-4">
-                    <div>
-                      <p className="font-display text-2xl font-semibold text-white">{secondary.batch}</p>
-                      <p className="mt-0.5 font-mono text-xs uppercase tracking-[0.2em] text-white/55">Batch</p>
-                    </div>
-                    <div>
-                      <p className="font-display text-2xl font-semibold text-white">{secondary.domain}</p>
-                      <p className="mt-0.5 font-mono text-xs uppercase tracking-[0.2em] text-white/55">Track</p>
-                    </div>
-                  </div>
-                  <div className="mt-5 flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-none bg-white/10 font-mono text-xs text-white">
-                      {initialsOf(secondary.name)}
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-white">{secondary.name}</p>
-                      <p className="text-xs text-white/60">{secondary.role} · {secondary.company}</p>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Light card */}
-              {tertiary && (
-                <div className="rounded-none border border-black/10 bg-white p-6 md:p-7">
-                  <p className="font-display text-base leading-[1.35] text-black md:text-lg">
-                    &ldquo;{tertiary.quote}&rdquo;
-                  </p>
-                  <div className="mt-5 grid grid-cols-2 gap-4 border-t border-black/10 pt-4">
-                    <div>
-                      <p className="font-display text-2xl font-semibold text-black">{tertiary.batch}</p>
-                      <p className="mt-0.5 font-mono text-xs uppercase tracking-[0.2em] text-black/50">Batch</p>
-                    </div>
-                    <div>
-                      <p className="font-display text-2xl font-semibold text-black">{tertiary.domain}</p>
-                      <p className="mt-0.5 font-mono text-xs uppercase tracking-[0.2em] text-black/50">Track</p>
-                    </div>
-                  </div>
-                  <div className="mt-5 flex items-center gap-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-none bg-black/5 font-mono text-xs text-black">
-                      {initialsOf(tertiary.name)}
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-black">{tertiary.name}</p>
-                      <p className="text-xs text-black/60">{tertiary.role} · {tertiary.company}</p>
-                    </div>
-                  </div>
-                </div>
-              )}
+                  </article>
+                );
+              })}
             </div>
           </div>
 
@@ -1314,6 +1269,7 @@ function AlumniShowcase() {
     </div>
   );
 }
+
 
 
 function FacultyShowcase() {
