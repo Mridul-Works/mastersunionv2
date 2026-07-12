@@ -1220,72 +1220,142 @@ function PedagogyPinnedScroll() {
         </div>
       </div>
 
-      {/* Bento grid */}
-      <div className="mx-auto max-w-[1400px] px-5 pb-20 md:px-10 md:pb-28">
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {PEDAGOGY.map((p, i) => {
-            const Icon = p.icon;
-            return (
-              <Link
-                key={p.tag}
-                to={p.route}
-                className="group relative flex aspect-[3/4] flex-col justify-between overflow-hidden p-6 transition-transform duration-500 hover:-translate-y-1"
-                style={{ background: p.bg }}
-              >
-                {/* Numbered index + icon */}
-                <div className="flex items-start justify-between">
-                  <div className="flex size-11 items-center justify-center rounded-full border border-black/25 font-mono text-[13px] font-semibold text-black/70">
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <div className="flex size-9 items-center justify-center border border-black/15 bg-white/40 text-black/75 backdrop-blur-sm">
-                    <Icon className="size-4" />
-                  </div>
-                </div>
-
-                {/* Stat rows — nav-list style */}
-                <div className="mt-6 flex flex-col">
-                  {p.stats.map((s, idx) => (
-                    <div
-                      key={idx}
-                      className={cn(
-                        "flex items-center justify-between border-t border-black/15 py-2.5",
-                        idx === p.stats.length - 1 && "border-b"
-                      )}
-                    >
-                      <div className="flex items-baseline gap-2 min-w-0">
-                        <span
-                          className="font-semibold text-black text-[15px] tabular-nums shrink-0"
-                          style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                        >
-                          {s.value}
-                        </span>
-                        <span className="truncate text-[11px] text-black/60">{s.label}</span>
-                      </div>
-                      <ArrowUpRight className="size-3.5 shrink-0 text-black/50" />
-                    </div>
-                  ))}
-                </div>
-
-                {/* Title block bottom */}
-                <div className="mt-6">
-                  <p className="mb-3 font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-black/55">
-                    {p.tag}
-                  </p>
-                  <h3
-                    className="text-[1.35rem] font-semibold leading-[1.1] tracking-tight text-black md:text-[1.45rem]"
-                    style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                  >
-                    {p.title}
-                  </h3>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-      </div>
+      {/* Interactive selector: 8 options on the left, live widget on the right */}
+      <PedagogySelector />
     </section>
   );
 }
+
+function PedagogySelector() {
+  const [active, setActive] = useState(0);
+  const p = PEDAGOGY[active];
+  const Icon = p.icon;
+  return (
+    <div className="mx-auto max-w-[1400px] px-5 pb-20 md:px-10 md:pb-28">
+      <div className="grid gap-6 md:grid-cols-12 md:gap-8">
+        {/* Left: list of 8 options */}
+        <div className="md:col-span-5 lg:col-span-4">
+          <p className="mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-black/45">
+            Explore · 8 systems
+          </p>
+          <ul className="flex flex-col border-t border-black/15">
+            {PEDAGOGY.map((item, i) => {
+              const isActive = i === active;
+              return (
+                <li key={item.tag} className="border-b border-black/15">
+                  <button
+                    type="button"
+                    onClick={() => setActive(i)}
+                    onMouseEnter={() => setActive(i)}
+                    className={cn(
+                      "group flex w-full items-center justify-between gap-4 py-4 text-left transition-colors",
+                      isActive ? "text-black" : "text-black/60 hover:text-black"
+                    )}
+                  >
+                    <div className="flex items-center gap-4 min-w-0">
+                      <span className="font-mono text-[11px] font-semibold tabular-nums text-black/40 w-6">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span
+                        className={cn(
+                          "truncate text-[17px] md:text-[19px] tracking-tight transition-all",
+                          isActive ? "font-semibold" : "font-medium"
+                        )}
+                        style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                      >
+                        {item.tag}
+                      </span>
+                    </div>
+                    <ArrowUpRight
+                      className={cn(
+                        "size-4 shrink-0 transition-transform",
+                        isActive ? "text-black translate-x-0.5 -translate-y-0.5" : "text-black/35 group-hover:text-black/70"
+                      )}
+                    />
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+
+        {/* Right: active widget */}
+        <div className="md:col-span-7 lg:col-span-8">
+          <Link
+            key={p.tag}
+            to={p.route}
+            className="group relative flex min-h-[520px] flex-col justify-between overflow-hidden p-7 transition-transform md:min-h-[620px] md:p-10"
+            style={{ background: p.bg }}
+          >
+            {/* Top row */}
+            <div className="flex items-start justify-between">
+              <div className="flex items-center gap-3">
+                <div className="flex size-11 items-center justify-center rounded-full border border-black/25 font-mono text-[13px] font-semibold text-black/70">
+                  {String(active + 1).padStart(2, "0")}
+                </div>
+                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-black/60">
+                  {p.tag}
+                </span>
+              </div>
+              <div className="flex size-11 items-center justify-center border border-black/15 bg-white/40 text-black/75 backdrop-blur-sm">
+                <Icon className="size-5" />
+              </div>
+            </div>
+
+            {/* Middle: big title */}
+            <div className="my-8 max-w-[22ch]">
+              <h3
+                className="text-[clamp(1.9rem,3.6vw,3.1rem)] font-semibold leading-[1.02] tracking-[-0.01em] text-black"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+              >
+                {p.title}
+              </h3>
+              <p className="mt-5 max-w-[52ch] text-[13.5px] leading-[1.6] text-black/70 md:text-[14.5px]">
+                {p.body}
+              </p>
+            </div>
+
+            {/* Bottom: stats + CTA */}
+            <div className="flex flex-col gap-6">
+              <div className="grid grid-cols-3 border-t border-black/20">
+                {p.stats.map((s, idx) => (
+                  <div
+                    key={idx}
+                    className={cn(
+                      "flex flex-col gap-1 py-4 pr-3",
+                      idx > 0 && "border-l border-black/20 pl-4"
+                    )}
+                  >
+                    <span
+                      className="text-[1.6rem] font-semibold leading-none tracking-tight text-black md:text-[2rem]"
+                      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                    >
+                      {s.value}
+                    </span>
+                    <span className="text-[11px] leading-snug text-black/60">
+                      {s.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <div className="flex items-center justify-between border-t border-black/20 pt-5">
+                <span className="text-[12px] font-semibold uppercase tracking-[0.24em] text-black/75">
+                  {p.cta}
+                </span>
+                <div className="flex size-11 items-center justify-center bg-black text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                  <ArrowUpRight className="size-5" />
+                </div>
+              </div>
+            </div>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PedagogySelector_unused() {
+  return null;
 
 function SectionHead({ eyebrow, title, lede, icon: Icon, stack, compact }: { eyebrow: string; title: React.ReactNode; lede: string; icon?: React.ComponentType<{ className?: string }>; stack?: boolean; compact?: boolean }) {
   return (
