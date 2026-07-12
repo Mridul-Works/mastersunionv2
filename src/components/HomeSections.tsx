@@ -1354,8 +1354,6 @@ function PedagogySelector() {
   );
 }
 
-function PedagogySelector_unused() {
-  return null;
 
 function SectionHead({ eyebrow, title, lede, icon: Icon, stack, compact }: { eyebrow: string; title: React.ReactNode; lede: string; icon?: React.ComponentType<{ className?: string }>; stack?: boolean; compact?: boolean }) {
   return (
