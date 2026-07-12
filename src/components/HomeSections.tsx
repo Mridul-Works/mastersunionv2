@@ -492,8 +492,8 @@ function RegistrationDialog({
 function AdmissionsConnect() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedSessionId, setSelectedSessionId] = useState<string | undefined>(undefined);
-  const [current, setCurrent] = useState(0);
-  const carouselRef = useRef<HTMLDivElement>(null);
+
+
 
   const openFor = (sessionId: string) => {
     setSelectedSessionId(sessionId);
@@ -523,102 +523,99 @@ function AdmissionsConnect() {
         </p>
       </header>
 
-      <div className="relative mx-auto max-w-[1280px]">
-        <div className="overflow-hidden" ref={(el) => {
-          if (el) {
-            carouselRef.current = el;
-          }
-        }}>
-          <div
-            className="flex transition-transform duration-700 ease-out"
-            style={{ transform: `translateX(-${current * 100}%)` }}
-          >
-            {featured.map((s) => (
-              <div
-                key={s.id}
-                className="w-[92%] flex-shrink-0 px-2 md:w-[88%] md:px-4 lg:w-[84%]"
-              >
-                <article className="group relative mx-auto min-h-[440px] w-full max-w-[980px] overflow-hidden rounded-none bg-[#E5E0D5]/60 shadow-lg transition-transform duration-500 hover:scale-[1.01] md:aspect-[16/9] md:min-h-0 md:max-h-[420px]">
-                  <div className="absolute inset-0">
-                    <ImagePlaceholder aspect="auto" className="h-full w-full" label="Session" />
-                  </div>
+      {(() => {
+        const CARD_COLORS = [
+          { bg: "#1F6B4A", fg: "#FFFFFF", swatch: "#EDD9A8" },
+          { bg: "#C8397A", fg: "#FFFFFF", swatch: "#F3E3C7" },
+          { bg: "#4A2A8A", fg: "#FFFFFF", swatch: "#E9C4A8" },
+          { bg: "#D9612C", fg: "#FFFFFF", swatch: "#F3E3C7" },
+          { bg: "#0F5559", fg: "#FFFFFF", swatch: "#E7C7A2" },
+          { bg: "#1B2A6B", fg: "#FFFFFF", swatch: "#F0C9D7" },
+        ];
+        return (
+          <div className="relative -mx-6 md:-mx-10">
+            <div
+              className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-6 md:gap-6 md:px-10"
+              style={{ scrollbarWidth: "thin" }}
+            >
+              {featured.map((s, i) => {
+                const c = CARD_COLORS[i % CARD_COLORS.length];
+                return (
+                  <article
+                    key={s.id}
+                    className="group relative flex snap-start shrink-0 flex-col justify-between overflow-hidden rounded-none p-7 transition-transform duration-500 hover:-translate-y-1 md:p-9"
+                    style={{
+                      background: c.bg,
+                      color: c.fg,
+                      width: "min(88vw, 360px)",
+                      minHeight: "520px",
+                    }}
+                  >
+                    {/* Top: colored placeholder + meta */}
+                    <div className="flex items-start justify-between gap-4">
+                      <div
+                        aria-hidden
+                        className="h-24 w-28 shrink-0 rounded-none"
+                        style={{ background: c.swatch }}
+                      />
+                      <span
+                        className="font-mono text-[10px] uppercase tracking-[0.22em] text-right"
+                        style={{ color: `${c.fg}B3` }}
+                      >
+                        {formatSessionDate(s.nextDate)}<br />{s.nextTime}
+                      </span>
+                    </div>
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-
-                  <div className="absolute inset-0 flex flex-col justify-end p-6 text-white md:p-10">
-                    <div className="mb-4">
-                      <div className="mb-3 flex items-center gap-2">
-                        <span className="rounded border border-white/20 bg-white/10 px-2 py-1 text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm">
-                          {formatSessionDate(s.nextDate)} • {s.nextTime}
-                        </span>
-                        <span className="text-[10px] font-medium uppercase tracking-widest text-white/80">
-                          {s.spotsLeft} spots left
-                        </span>
-                      </div>
+                    {/* Middle: big title */}
+                    <div className="mt-6">
                       <h3
-                        className="mb-2 max-w-[720px] text-[clamp(1.5rem,4vw,3rem)] leading-tight"
-                        style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                        className="text-[26px] font-semibold leading-[1.05] tracking-tight md:text-[30px]"
+                        style={{ fontFamily: "'Fraunces', Georgia, serif", color: c.fg }}
                       >
                         {s.title}
                       </h3>
-                      <p className="max-w-[620px] text-sm font-light leading-relaxed text-white/80 md:text-base">
+                      <p
+                        className="mt-4 text-[13.5px] leading-[1.55]"
+                        style={{ color: `${c.fg}D9` }}
+                      >
                         {s.description}
+                      </p>
+                      <p
+                        className="mt-3 font-mono text-[10px] uppercase tracking-[0.22em]"
+                        style={{ color: `${c.fg}99` }}
+                      >
+                        {s.spotsLeft} spots left
                       </p>
                     </div>
 
-                    <div className="flex items-center gap-3">
+                    {/* Bottom: CTA + download icon */}
+                    <div className="mt-6 flex items-end justify-between gap-4">
                       <button
                         type="button"
                         onClick={() => openFor(s.id)}
-                        className="rounded-none bg-white px-8 py-3.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-black transition-colors hover:bg-[#F5F3EE]"
+                        className="inline-flex items-center gap-2 border-b pb-1 font-mono text-[12px] font-semibold uppercase tracking-[0.22em] transition-transform hover:-translate-y-0.5"
+                        style={{ color: c.fg, borderColor: `${c.fg}80` }}
                       >
-                        Register for Session
+                        Register for session
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => openFor(s.id)}
+                        aria-label="Register"
+                        className="flex size-9 items-center justify-center rounded-none border transition-colors"
+                        style={{ borderColor: `${c.fg}66`, color: c.fg }}
+                      >
+                        <ArrowRight className="size-4" />
                       </button>
                     </div>
-                  </div>
-                </article>
-              </div>
-            ))}
+                  </article>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        );
+      })()}
 
-        {/* Carousel controls */}
-        <div className="mt-8 flex items-center justify-center gap-3">
-          <button
-            type="button"
-            onClick={() => setCurrent((c) => (c - 1 + featured.length) % featured.length)}
-            aria-label="Previous session"
-            className="flex size-10 items-center justify-center rounded-none border border-black/15 text-black/70 transition-all hover:bg-black hover:text-white"
-          >
-            <ChevronLeft className="size-5" />
-          </button>
-
-          <div className="flex items-center gap-2">
-            {featured.map((s, i) => (
-              <button
-                key={s.id}
-                onClick={() => setCurrent(i)}
-                aria-label={`Go to session ${i + 1}`}
-                className="h-[3px] w-8 cursor-pointer overflow-hidden bg-black/15"
-              >
-                <span
-                  className="block h-full origin-left bg-black transition-transform duration-500 ease-out"
-                  style={{ transform: `scaleX(${i === current ? 1 : 0})` }}
-                />
-              </button>
-            ))}
-          </div>
-
-          <button
-            type="button"
-            onClick={() => setCurrent((c) => (c + 1) % featured.length)}
-            aria-label="Next session"
-            className="flex size-10 items-center justify-center rounded-none border border-black/15 text-black/70 transition-all hover:bg-black hover:text-white"
-          >
-            <ChevronRight className="size-5" />
-          </button>
-        </div>
-      </div>
 
       <div className="mt-10 text-center">
         <button
