@@ -519,7 +519,7 @@ function AdmissionsConnect() {
           Admissions Connect
         </p>
         <h2
-          className="text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1.05] tracking-tight text-black"
+          className="text-[clamp(1.75rem,4vw,3.25rem)] font-semibold leading-[1.05] tracking-tight text-black"
           style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
         >
           Don’t believe AI?{" "}
