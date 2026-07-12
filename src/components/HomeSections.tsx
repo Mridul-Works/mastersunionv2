@@ -535,8 +535,7 @@ function AdmissionsConnect() {
 
       <div className="relative -mx-6 md:-mx-10">
         <div
-          className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-6 md:gap-6 md:px-10"
-          style={{ scrollbarWidth: "thin" }}
+          className="scrollbar-hover-only flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-6 md:gap-6 md:px-10"
         >
           {featured.map((s) => (
             <article
