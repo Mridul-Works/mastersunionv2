@@ -34,6 +34,8 @@ import {
   MapPin,
   Clock,
   MessageCircle,
+  BookOpen,
+
 } from "lucide-react";
 
 
