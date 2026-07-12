@@ -552,8 +552,9 @@ function AdmissionsConnect() {
               <div className="mt-6">
                 <h3
                   className="text-[26px] font-semibold leading-[1.05] tracking-tight text-black md:text-[30px]"
-                  style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                  style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                 >
+
                   {s.title}
                 </h3>
                 <p className="mt-4 text-[13.5px] leading-[1.55] text-black/70">
