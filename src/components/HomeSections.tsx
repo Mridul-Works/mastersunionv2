@@ -1086,7 +1086,17 @@ export default function HomeSections() {
                     </p>
                   </div>
                 </div>
+                <div className="mt-8">
+                  <Link
+                    to="/how-we-teach"
+                    className="group inline-flex items-center gap-2 rounded-full bg-black px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-black/85"
+                  >
+                    See how we teach
+                    <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
+                </div>
               </div>
+            </div>
             </div>
 
             {/* Photo side */}
