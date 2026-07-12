@@ -1174,30 +1174,26 @@ function PedagogyPinnedScroll() {
     <section id="pedagogy" className="relative border-t border-black/10 bg-neutral-50">
       <div className="mx-auto max-w-[1400px] px-5 pt-16 pb-6 md:px-10 md:pt-24">
         {/* Editorial hero */}
-        <div className="grid gap-8 md:grid-cols-12 md:gap-10">
-          <div className="md:col-span-8">
-            <p className="mb-6 font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-black/55">
-              — The Masters' Union experience
-            </p>
-            <h2
-              className="text-[clamp(2.5rem,7vw,6rem)] font-semibold leading-[0.92] tracking-[-0.02em] text-black"
-              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-            >
-              Real stakes.{" "}
-              <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
-                Real portfolios.
-              </span>
-              <br />
-              The learning experience built at MU.
-            </h2>
-
-          </div>
-          <div className="flex items-end md:col-span-4">
-            <p className="max-w-[36ch] text-[14px] leading-[1.55] text-black/65 md:text-[15px]">
-              Eight systems that turn every class into a live brief, every project into proof, and every student into someone worth hiring — or funding.
-            </p>
-          </div>
+        <div className="flex flex-col items-center text-center gap-6">
+          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-black/55">
+            — The Masters' Union experience
+          </p>
+          <h2
+            className="text-[clamp(1.75rem,4vw,3.25rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-black"
+            style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+          >
+            Real stakes.{" "}
+            <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+              Real portfolios.
+            </span>
+            <br />
+            The learning experience built at MU.
+          </h2>
+          <p className="max-w-[52ch] text-[14px] leading-[1.55] text-black/65 md:text-[15px]">
+            Eight systems that turn every class into a live brief, every project into proof, and every student into someone worth hiring — or funding.
+          </p>
         </div>
+
       </div>
 
       {/* Interactive selector: 8 options on the left, live widget on the right */}
