@@ -258,12 +258,13 @@ function JourneyScroll() {
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-neutral-100">
         {/* progress bar */}
-        <ProgressRail progress={scrollYProgress} labels={["Journey", "Sem 1", "Sem 2", "Sem 3"]} />
+        <ProgressRail progress={scrollYProgress} labels={["Philosophy", "Sem 1", "Sem 2", "Sem 3"]} />
 
-        {/* Stop 0 — overview */}
+        {/* Stop 0 — philosophy */}
         <Stage progress={scrollYProgress} start={0} end={slot} first>
-          <OverviewStage />
+          <PhilosophyStage />
         </Stage>
+
 
         {/* Stops 1..3 — semesters */}
         {SEMESTERS.map((sem, i) => (
