@@ -1640,7 +1640,7 @@ function PgpTbm() {
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
           <div className="mb-12 max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              <span className="h-1.5 w-1.5 rounded-full bg-teal" />
               THE MODEL
             </div>
             <h2 className="mt-3 font-display text-3xl leading-[1.03] tracking-[-0.02em]">
