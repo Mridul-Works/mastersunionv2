@@ -496,17 +496,17 @@ function ImmersionsPage() {
             <div className="text-xs font-semibold uppercase tracking-[0.22em] text-teal">
               Global immersion companies
             </div>
-            <div className="mt-4 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7">
+            <div className="mt-4 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-6">
               {GLOBAL_PARTNERS.map((l) => (
                 <div
                   key={l.name}
                   title={l.name}
-                  className="flex h-20 items-center justify-center bg-white p-3 opacity-75 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+                  className="flex h-20 items-center justify-center bg-white px-3 opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
                 >
                   <img
                     src={l.src}
                     alt={l.name}
-                    className="h-9 w-auto max-w-full object-contain"
+                    className="max-h-8 w-auto max-w-[85%] object-contain"
                     loading="lazy"
                   />
                 </div>
@@ -517,17 +517,17 @@ function ImmersionsPage() {
             <div className="text-xs font-semibold uppercase tracking-[0.22em] text-teal">
               Bharat on-ground partners
             </div>
-            <div className="mt-4 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7">
+            <div className="mt-4 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-6">
               {BHARAT_PARTNERS.map((l) => (
                 <div
                   key={l.name}
                   title={l.name}
-                  className="flex h-20 items-center justify-center bg-white p-3 opacity-75 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+                  className="flex h-20 items-center justify-center bg-white px-3 opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
                 >
                   <img
                     src={l.src}
                     alt={l.name}
-                    className="h-9 w-auto max-w-full object-contain"
+                    className="max-h-8 w-auto max-w-[85%] object-contain"
                     loading="lazy"
                   />
                 </div>
