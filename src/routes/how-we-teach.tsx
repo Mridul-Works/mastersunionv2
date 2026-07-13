@@ -557,17 +557,24 @@ function FounderQuote() {
   return (
     <section
       ref={ref}
-      className="relative border-t border-white/10 bg-black text-white"
-      style={{ fontFamily: INTER, height: "300vh" }}
+      className="relative border-t border-black/10 text-white"
+      style={{
+        fontFamily: INTER,
+        height: "300vh",
+        background:
+          "radial-gradient(130% 100% at 25% 25%, #C7EBD8 0%, #7EC9A7 45%, #2F8E68 100%)",
+      }}
     >
+
       <div className="sticky top-0 flex min-h-screen items-center">
         <div className="mx-auto w-full max-w-5xl px-5 py-20 md:px-10 md:py-24">
           <div
-            className="text-[11px] uppercase tracking-[0.3em] text-white/50"
+            className="text-[11px] uppercase tracking-[0.3em] text-black/60"
             style={{ fontFamily: MONO }}
           >
             A note from the founder
           </div>
+
 
           <div className="mt-8 space-y-6 text-balance text-[clamp(1.15rem,2.2vw,1.9rem)] leading-[1.4] tracking-[-0.01em]">
             {FOUNDER_QUOTE_PARAGRAPHS.map((p, pi) => {
@@ -599,11 +606,12 @@ function FounderQuote() {
           </div>
 
           <div
-            className="mt-10 text-[11px] uppercase tracking-[0.28em] text-white/60"
+            className="mt-10 text-[11px] uppercase tracking-[0.28em] text-black/70"
             style={{ fontFamily: MONO }}
           >
             — Pratham Mittal, Founder, Masters&apos; Union
           </div>
+
         </div>
       </div>
     </section>
@@ -625,7 +633,7 @@ function RevealWord({
   const opacity = useTransform(progress, [start, end], [0.12, 1]);
   return (
     <>
-      <motion.span style={{ opacity, color: "rgba(255,255,255,1)" }} className="inline">
+      <motion.span style={{ opacity, color: "#0a2a1c" }} className="inline">
         {children}
       </motion.span>{" "}
     </>
