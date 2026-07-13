@@ -1,16 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Home, Quote, BarChart3, BookOpen, CheckCircle2 } from "lucide-react";
-import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
+import { ArrowUpRight } from "lucide-react";
+import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
 
-const PAGE_NAV: BottomNavItem[] = [
-  { id: "top", label: "Top", icon: Home },
-  { id: "sem1", label: "Sem 1", icon: BookOpen },
-  { id: "sem2", label: "Sem 2", icon: BarChart3 },
-  { id: "report", label: "Report", icon: CheckCircle2 },
-  { id: "philosophy", label: "Philosophy", icon: Quote },
+const PAGE_NAV: SectionNavItem[] = [
+  { id: "top", label: "Overview" },
+  { id: "sem1", label: "Sem 1" },
+  { id: "sem2", label: "Sem 2" },
+  { id: "report", label: "Report" },
+  { id: "philosophy", label: "Philosophy" },
 ];
 
 const TICKER = [
@@ -173,7 +173,7 @@ function HowWeTeachPage() {
       className="min-h-screen bg-white pb-28 text-black md:pb-32"
       style={{ fontFamily: INTER }}
     >
-      <BottomNav items={PAGE_NAV} applyHref="#apply" />
+      <SectionNav items={PAGE_NAV} applyHref="#apply" />
 
       {/* Top marker */}
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">

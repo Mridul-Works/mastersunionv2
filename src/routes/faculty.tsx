@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Home, Users, GraduationCap, Globe2, Quote } from "lucide-react";
-import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
+import { ArrowUpRight, Quote } from "lucide-react";
+import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 
 import manojAsset from "@/assets/faculty/manoj.png.asset.json";
 import bhupeshAsset from "@/assets/faculty/bhupesh.png.asset.json";
@@ -23,12 +23,12 @@ const faverieImg = faverieAsset.url;
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
 
-const NAV: BottomNavItem[] = [
-  { id: "top", label: "Top", icon: Home },
-  { id: "model", label: "Model", icon: Users },
-  { id: "practitioners", label: "Industry", icon: Quote },
-  { id: "full-time", label: "Full-time", icon: GraduationCap },
-  { id: "visiting", label: "Visiting", icon: Globe2 },
+const NAV: SectionNavItem[] = [
+  { id: "top", label: "Overview" },
+  { id: "model", label: "Model" },
+  { id: "practitioners", label: "Industry" },
+  { id: "full-time", label: "Full-time" },
+  { id: "visiting", label: "Visiting" },
 ];
 
 type Practitioner = { name: string; role: string; blurb: string };
@@ -112,7 +112,7 @@ export const Route = createFileRoute("/faculty")({
 function FacultyPage() {
   return (
     <main className="min-h-screen bg-white pb-28 text-black md:pb-32" style={{ fontFamily: INTER }}>
-      <BottomNav items={NAV} applyHref="#cta" />
+      <SectionNav items={NAV} applyHref="#cta" />
 
       {/* Chapter marker */}
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">
