@@ -554,33 +554,34 @@ function AdmissionsConnect() {
               key={s.id}
               className="group relative flex snap-start shrink-0 flex-col overflow-hidden rounded-none border border-black/10 bg-white text-black transition-[box-shadow,border-color] duration-300 ease-out hover:border-black/30 hover:shadow-[0_14px_40px_-20px_rgba(0,0,0,0.2)]"
               style={{
-                width: "min(88vw, 380px)",
-                minHeight: "620px",
+                width: "min(78vw, 300px)",
+                minHeight: "500px",
               }}
             >
               {/* Top: full-width editorial portrait */}
               <div className="relative w-full overflow-hidden">
                 <ImagePlaceholder
                   aspect="4/3"
-                  className="h-64 w-full md:h-72"
+                  className="h-48 w-full md:h-56"
                 />
 
-                <span className="absolute right-4 top-4 rounded-sm bg-white/90 px-2 py-1 text-right font-mono text-[10px] uppercase tracking-[0.22em] text-black/70 backdrop-blur">
+                <span className="absolute right-3 top-3 rounded-sm bg-white/90 px-2 py-1 text-right font-mono text-[9px] uppercase tracking-[0.22em] text-black/70 backdrop-blur">
                   {formatSessionDate(s.nextDate)}<br />{s.nextTime}
                 </span>
               </div>
 
-              <div className="flex flex-1 flex-col justify-between p-7 md:p-8">
+              <div className="flex flex-1 flex-col justify-between p-5 md:p-6">
 
               {/* Middle: big title */}
-              <div className="mt-6">
+              <div className="mt-4">
                 <h3
-                  className="text-[26px] font-semibold leading-[1.05] tracking-tight text-black md:text-[30px]"
+                  className="text-[20px] font-semibold leading-[1.05] tracking-tight text-black md:text-[22px]"
                   style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                 >
 
                   {s.title}
                 </h3>
+
                 <p className="mt-4 text-[13.5px] leading-[1.55] text-black/70">
                   {s.description}
                 </p>
