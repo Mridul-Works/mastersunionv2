@@ -1879,7 +1879,7 @@ function PgpTbm() {
                             <img
                               src={l.src}
                               alt={l.name}
-                              className="max-h-full max-w-full object-contain"
+                              className="h-8 w-auto max-w-full object-contain"
                               loading="lazy"
                             />
                           </div>
