@@ -223,7 +223,7 @@ const FORMATS: Format[] = [
           <div className="text-[10.5px] font-semibold uppercase tracking-[0.22em] text-black/50">
             Partner campuses
           </div>
-          <div className="mt-3 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-5">
+          <div className="mt-3 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-6">
             {[
               { name: "SDA Bocconi", src: bocconiLogo.url },
               { name: "Imperial College London", src: imperialLogo.url },
@@ -237,17 +237,16 @@ const FORMATS: Format[] = [
               { name: "Singapore Management University", src: smuLogo.url },
               { name: "CUHK Business School", src: cuhkLogo.url },
               { name: "Illinois Tech", src: illinoisLogo.url },
-              { name: "Griffith University", src: griffithLogo.url },
             ].map((l) => (
               <div
                 key={l.name}
                 title={l.name}
-                className="flex h-16 items-center justify-center bg-white p-2 opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+                className="flex h-20 items-center justify-center bg-white px-3 opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
               >
                 <img
                   src={l.src}
                   alt={l.name}
-                  className="h-8 w-auto max-w-full object-contain"
+                  className="max-h-8 w-auto max-w-[85%] object-contain"
                   loading="lazy"
                 />
               </div>
