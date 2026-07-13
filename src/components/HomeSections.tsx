@@ -552,26 +552,28 @@ function AdmissionsConnect() {
           {featured.map((s) => (
             <article
               key={s.id}
-              className="group relative flex snap-start shrink-0 flex-col justify-between overflow-hidden rounded-none border border-black/10 bg-white p-7 text-black transition-[box-shadow,border-color] duration-300 ease-out hover:border-black/30 hover:shadow-[0_14px_40px_-20px_rgba(0,0,0,0.2)] md:p-9"
+              className="group relative flex snap-start shrink-0 flex-col overflow-hidden rounded-none border border-black/10 bg-white text-black transition-[box-shadow,border-color] duration-300 ease-out hover:border-black/30 hover:shadow-[0_14px_40px_-20px_rgba(0,0,0,0.2)]"
               style={{
-                width: "min(88vw, 360px)",
-                minHeight: "520px",
+                width: "min(88vw, 380px)",
+                minHeight: "620px",
               }}
             >
-              {/* Top: editorial portrait + meta */}
-              <div className="flex items-start justify-between gap-4">
+              {/* Top: full-width editorial portrait */}
+              <div className="relative w-full overflow-hidden">
                 <img
                   src={s.image}
                   alt=""
                   loading="lazy"
                   width={1024}
                   height={1024}
-                  className="h-24 w-28 shrink-0 rounded-none object-cover"
+                  className="h-64 w-full object-cover md:h-72"
                 />
-                <span className="text-right font-mono text-[10px] uppercase tracking-[0.22em] text-black/55">
+                <span className="absolute right-4 top-4 rounded-sm bg-white/90 px-2 py-1 text-right font-mono text-[10px] uppercase tracking-[0.22em] text-black/70 backdrop-blur">
                   {formatSessionDate(s.nextDate)}<br />{s.nextTime}
                 </span>
               </div>
+
+              <div className="flex flex-1 flex-col justify-between p-7 md:p-8">
 
               {/* Middle: big title */}
               <div className="mt-6">
@@ -607,6 +609,7 @@ function AdmissionsConnect() {
                 >
                   <ArrowRight className="size-4" />
                 </button>
+              </div>
               </div>
             </article>
           ))}
