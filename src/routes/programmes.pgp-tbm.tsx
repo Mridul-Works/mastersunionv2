@@ -2069,7 +2069,7 @@ function PgpTbm() {
                       <img
                         src={logo.url}
                         alt={`${logo.name} logo`}
-                        className="h-8 w-auto max-w-[85%] object-contain opacity-75 transition hover:opacity-100"
+                        className="h-8 w-auto max-w-full object-contain opacity-75 transition hover:opacity-100"
                         loading="lazy"
                       />
                     </div>
