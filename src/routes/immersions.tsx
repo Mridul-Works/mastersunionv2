@@ -520,7 +520,7 @@ function ImmersionsPage() {
 
 
       {/* DID YOU KNOW — standalone programmes */}
-      <section className="mx-auto max-w-6xl px-5 pt-20 md:px-10 md:pt-28">
+      <section id="standalone" className="mx-auto max-w-6xl px-5 pt-20 md:px-10 md:pt-28">
         <div className="border border-black/10 bg-neutral-50 p-6 md:p-10">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
@@ -564,7 +564,7 @@ function ImmersionsPage() {
       </section>
 
       {/* WHY CREDITS */}
-      <section className="mx-auto max-w-6xl px-5 pt-20 md:px-10 md:pt-28">
+      <section id="credits" className="mx-auto max-w-6xl px-5 pt-20 md:px-10 md:pt-28">
         <div className="grid gap-8 border-t border-black/10 pt-12 md:grid-cols-[280px_1fr] md:gap-16">
           <div>
             <div className="text-xs font-semibold uppercase tracking-[0.24em] text-teal">
@@ -591,7 +591,7 @@ function ImmersionsPage() {
       </section>
 
       {/* CTA */}
-      <section className="mx-auto max-w-6xl px-5 pt-20 md:px-10 md:pt-28">
+      <section id="apply" className="mx-auto max-w-6xl px-5 pt-20 md:px-10 md:pt-28">
         <div className="relative overflow-hidden border border-black bg-black p-8 text-white md:p-14">
           <div className="grid gap-6 md:grid-cols-[1.4fr_1fr] md:items-end md:gap-10">
             <h2 className="text-[clamp(1.8rem,4vw,3rem)] font-semibold leading-[1.05] tracking-tight">
