@@ -626,7 +626,7 @@ function RevealWord({
   end: number;
   children: React.ReactNode;
 }) {
-  const opacity = useTransform(progress, [start, end], [0.15, 1]);
+  const opacity = useTransform(progress, [start, end], [0.12, 1]);
   return (
     <>
       <motion.span style={{ opacity, color: "rgba(255,255,255,1)" }} className="inline">
