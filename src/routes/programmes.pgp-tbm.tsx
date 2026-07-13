@@ -169,7 +169,7 @@ function AdmissionPathwaysSection() {
         <div className="mb-8 flex flex-col gap-4 sm:mb-12 md:flex-row md:items-end md:justify-between">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
               ADMISSION PATHWAYS
             </div>
             <h2 className="font-display text-3xl leading-[1.15] tracking-[-0.02em]">
@@ -520,7 +520,7 @@ const TERM_MATRIX: TermRow[] = [
 const ENGINE_COLORS: Record<EngineCell["kind"], string> = {
   in: "bg-white/90 text-black/80",
   d2c: "bg-emerald-50 text-emerald-800 border-l-2 border-emerald-500",
-  creator: "bg-teal-50 text-teal-800 border-l-2 border-teal-500",
+  creator: "bg-emerald-50 text-emerald-700 border-l-2 border-emerald-400",
   imm: "bg-teal/10 text-ink border-l-2 border-teal",
 };
 
@@ -1013,7 +1013,7 @@ const ALUMNI: Alum[] = [
     quote: "My D2C brand from Term 2 became my portfolio piece at Zomato interviews.",
     linkedin: "https://www.linkedin.com/",
     calendly: "https://cal.com/",
-    accent: "from-emerald-400 to-teal-600",
+    accent: "from-emerald-400 to-emerald-500",
     image: facultyNandini.url,
   },
   {
@@ -1025,7 +1025,7 @@ const ALUMNI: Alum[] = [
     quote: "The Creator Challenge taught me distribution before I knew I'd need it as a founder.",
     linkedin: "https://www.linkedin.com/",
     calendly: "https://cal.com/",
-    accent: "from-teal-400 to-cyan-600",
+    accent: "from-emerald-300 to-emerald-500",
     image: facultyBhupesh.url,
   },
   {
@@ -1036,7 +1036,7 @@ const ALUMNI: Alum[] = [
     domain: "VC & Finance",
     quote: "Running a real P&L for 16 months is a better filter than any DCF model.",
     linkedin: "https://www.linkedin.com/",
-    accent: "from-teal to-sage",
+    accent: "from-teal to-emerald-400",
     image: facultyGarima.url,
   },
   {
@@ -1071,7 +1071,7 @@ const ALUMNI: Alum[] = [
     quote: "Met my co-founder in the T5 Bharat Immersion. We shipped MVP by T7.",
     linkedin: "https://www.linkedin.com/",
     calendly: "https://cal.com/",
-    accent: "from-lime-400 to-emerald-600",
+    accent: "from-emerald-300 to-emerald-600",
     image: facultyDaniel.url,
   },
   {
@@ -1148,7 +1148,7 @@ function AlumniShowcase() {
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div>
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
             ALUMNI NETWORK
           </div>
           <h3 className="mt-3 max-w-3xl font-display text-3xl font-bold leading-[1.03] tracking-tight text-foreground">
@@ -1639,7 +1639,7 @@ function PgpTbm() {
         <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
           <div className="mb-12 max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
               THE MODEL
             </div>
             <h2 className="mt-3 font-display text-3xl leading-[1.03] tracking-[-0.02em]">
@@ -1764,17 +1764,17 @@ function PgpTbm() {
                             "relative overflow-hidden border p-5",
                             isD2C
                               ? "border-emerald-900/15 bg-gradient-to-br from-emerald-50/90 to-white"
-                              : "border-teal-900/15 bg-gradient-to-br from-teal-50/90 to-white"
+                              : "border-emerald-800/15 bg-gradient-to-br from-emerald-50/90 to-white"
                           )}
                         >
                           <div className={cn(
                             "absolute left-0 top-0 h-1.5 w-full",
-                            isD2C ? "bg-gradient-to-r from-emerald-500 to-teal-500" : "bg-gradient-to-r from-teal-500 to-cyan-500"
+                            isD2C ? "bg-gradient-to-r from-emerald-500 to-emerald-400" : "bg-gradient-to-r from-emerald-400 to-emerald-400"
                           )} />
                           <div className="flex items-start justify-between">
                             <div className={cn(
                               "inline-flex size-8 items-center justify-center",
-                              isD2C ? "bg-emerald-500/10 text-emerald-700" : "bg-teal-500/10 text-teal-700"
+                              isD2C ? "bg-emerald-400/10 text-emerald-700" : "bg-emerald-400/10 text-emerald-600"
                             )}>
                               {i === 0 ? <Icon className="size-4" /> : i === 1 ? <TrendingUp className="size-4" /> : <Users className="size-4" />}
                             </div>
@@ -1782,7 +1782,7 @@ function PgpTbm() {
                           <div className="mt-3">
                             <div className={cn(
                               "font-display text-4xl leading-none tracking-tight",
-                              isD2C ? "text-emerald-900" : "text-teal-900"
+                              isD2C ? "text-emerald-900" : "text-emerald-800"
                             )}>
                               {s.k}
                             </div>
@@ -1953,7 +1953,7 @@ function PgpTbm() {
           <div className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                 OUTCOMES
               </div>
               <h2 className="mt-4 font-display text-3xl leading-[1.03] tracking-[-0.02em] text-foreground">
@@ -1972,7 +1972,7 @@ function PgpTbm() {
             {/* CAREERS PANEL */}
             <div className="group relative flex flex-col overflow-hidden border border-border bg-card/80 p-8 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-30px_rgba(0,0,0,0.15)] transition hover:shadow-[0_1px_0_rgba(0,0,0,0.02),0_30px_80px_-30px_rgba(20,184,166,0.25)]">
               <div className="flex items-center justify-between">
-                <div className="inline-flex items-center gap-2 rounded-full bg-teal/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-teal-700">
+                <div className="inline-flex items-center gap-2 rounded-full bg-teal/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">
                   01 · Careers
                 </div>
                 <div className="text-xs uppercase tracking-[0.18em] text-black/40">Class of 2025</div>
@@ -1987,7 +1987,7 @@ function PgpTbm() {
                   </span>
                   <span className="font-display text-xl text-black/70">LPA</span>
                 </div>
-                <div className="mt-2 h-px w-16 bg-gradient-to-r from-teal-500 to-transparent" />
+                <div className="mt-2 h-px w-16 bg-gradient-to-r from-emerald-400 to-transparent" />
               </div>
 
               {/* Secondary stats */}
@@ -2008,11 +2008,11 @@ function PgpTbm() {
                     <li key={r.role}>
                       <div className="flex items-baseline justify-between text-sm">
                         <span className="text-black/75">{r.role}</span>
-                        <span className="font-display text-sm font-semibold tabular-nums text-teal-700">{r.pct}</span>
+                        <span className="font-display text-sm font-semibold tabular-nums text-emerald-600">{r.pct}</span>
                       </div>
                       <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-black/5">
                         <div
-                          className="h-full rounded-full bg-gradient-to-r from-teal-500 via-emerald-500 to-sage-500"
+                          className="h-full rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-400"
                           style={{ width: r.pct }}
                         />
                       </div>
@@ -2028,7 +2028,7 @@ function PgpTbm() {
                   {CAREER_LOGOS.map((logo) => (
                     <div
                       key={logo.name}
-                      className="flex h-16 items-center justify-center border border-border bg-white p-2 transition hover:border-teal-200 hover:bg-teal-50/40"
+                      className="flex h-16 items-center justify-center border border-border bg-white p-2 transition hover:border-emerald-200 hover:bg-emerald-50/40"
                       title={logo.name}
                     >
                       <img
@@ -2048,7 +2048,7 @@ function PgpTbm() {
             </div>
 
             {/* STARTUPS PANEL */}
-            <div className="group relative flex flex-col overflow-hidden border border-emerald-900/10 bg-gradient-to-br from-emerald-50/60 via-white to-teal-50/40 p-8 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-30px_rgba(0,0,0,0.15)] transition hover:shadow-[0_1px_0_rgba(0,0,0,0.02),0_30px_80px_-30px_rgba(16,185,129,0.3)]">
+            <div className="group relative flex flex-col overflow-hidden border border-emerald-900/10 bg-gradient-to-br from-emerald-50/60 via-white to-emerald-50/40 p-8 shadow-[0_1px_0_rgba(0,0,0,0.02),0_20px_60px_-30px_rgba(0,0,0,0.15)] transition hover:shadow-[0_1px_0_rgba(0,0,0,0.02),0_30px_80px_-30px_rgba(16,185,129,0.3)]">
               <div className="flex items-center justify-between">
                 <div className="inline-flex items-center gap-2 rounded-full bg-emerald-100/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-800">
                   02 · Startups
@@ -2092,7 +2092,7 @@ function PgpTbm() {
                       className="flex items-center justify-between border border-emerald-900/5 bg-white/60 px-4 py-2.5"
                     >
                       <span className="text-black/75">{row.label}</span>
-                      <span className="rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-2.5 py-0.5 font-display text-xs font-semibold tabular-nums text-white shadow-sm">
+                      <span className="rounded-full bg-gradient-to-r from-emerald-500 to-emerald-400 px-2.5 py-0.5 font-display text-xs font-semibold tabular-nums text-white shadow-sm">
                         {row.value}
                       </span>
                     </li>
@@ -2162,7 +2162,7 @@ function PgpTbm() {
         <div className="relative mx-auto max-w-[1180px] px-4 py-24 sm:px-6">
           <div className="mb-14 max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
               ADMISSIONS
             </div>
             <h2 className="mt-4 font-display text-4xl leading-[1.02] tracking-[-0.03em] text-foreground sm:text-5xl">
@@ -2232,7 +2232,7 @@ function PgpTbm() {
         <div className="relative mx-auto grid max-w-[1180px] gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.6fr_1fr] lg:gap-16">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
               FAQ
             </div>
             <h2 className="mt-3 font-display text-3xl leading-[1.05] tracking-[-0.02em]">
