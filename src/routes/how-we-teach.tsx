@@ -171,6 +171,10 @@ function HowWeTeachPage() {
       {/* FOUNDER QUOTE — dark, scroll text reveal */}
       <FounderQuote />
 
+      {/* IMMERSIVE JOURNEY — zoom cards after the letter */}
+      <JourneyScroll />
+
+
 
       {/* REPORT CARD */}
       <section id="report" className="border-t border-black/10 bg-black text-white">
@@ -546,67 +550,70 @@ function FounderQuote() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 0.85", "end 0.35"],
+    offset: ["start start", "end end"],
   });
 
-  const words = FOUNDER_QUOTE_PARAGRAPHS.flatMap((p, pi) =>
-    p.split(" ").map((w, wi) => ({ w, key: `${pi}-${wi}`, pi })),
+  const totalWords = FOUNDER_QUOTE_PARAGRAPHS.reduce(
+    (acc, p) => acc + p.split(" ").length,
+    0,
   );
-  const total = words.length;
 
   return (
     <section
       ref={ref}
       className="relative border-t border-white/10 bg-black text-white"
-      style={{ fontFamily: INTER }}
+      style={{ fontFamily: INTER, height: "300vh" }}
     >
-      <div className="mx-auto max-w-5xl px-5 py-32 md:px-10 md:py-48">
-        <div
-          className="text-[11px] uppercase tracking-[0.3em] text-white/50"
-          style={{ fontFamily: MONO }}
-        >
-          A note from the founder
-        </div>
+      <div className="sticky top-0 flex min-h-screen items-center">
+        <div className="mx-auto w-full max-w-5xl px-5 py-20 md:px-10 md:py-24">
+          <div
+            className="text-[11px] uppercase tracking-[0.3em] text-white/50"
+            style={{ fontFamily: MONO }}
+          >
+            A note from the founder
+          </div>
 
-        <div className="mt-10 space-y-8 text-balance text-[clamp(1.35rem,2.6vw,2.35rem)] leading-[1.35] tracking-[-0.01em]">
-          {FOUNDER_QUOTE_PARAGRAPHS.map((p, pi) => {
-            const before = FOUNDER_QUOTE_PARAGRAPHS.slice(0, pi).reduce(
-              (acc, s) => acc + s.split(" ").length,
-              0,
-            );
-            const pWords = p.split(" ");
-            return (
-              <p key={pi}>
-                {pWords.map((w, wi) => {
-                  const idx = before + wi;
-                  const start = idx / total;
-                  const end = Math.min(1, start + 1.2 / total);
-                  return (
-                    <RevealWord
-                      key={`${pi}-${wi}`}
-                      progress={scrollYProgress}
-                      start={start}
-                      end={end}
-                    >
-                      {w}
-                    </RevealWord>
-                  );
-                })}
-              </p>
-            );
-          })}
-        </div>
+          <div className="mt-8 space-y-6 text-balance text-[clamp(1.15rem,2.2vw,1.9rem)] leading-[1.4] tracking-[-0.01em]">
+            {FOUNDER_QUOTE_PARAGRAPHS.map((p, pi) => {
+              const before = FOUNDER_QUOTE_PARAGRAPHS.slice(0, pi).reduce(
+                (acc, s) => acc + s.split(" ").length,
+                0,
+              );
+              const pWords = p.split(" ");
+              return (
+                <p key={pi}>
+                  {pWords.map((w, wi) => {
+                    const idx = before + wi;
+                    const start = idx / totalWords;
+                    const end = Math.min(1, start + 1.5 / totalWords);
+                    return (
+                      <RevealWord
+                        key={`${pi}-${wi}`}
+                        progress={scrollYProgress}
+                        start={start}
+                        end={end}
+                      >
+                        {w}
+                      </RevealWord>
+                    );
+                  })}
+                </p>
+              );
+            })}
+          </div>
 
-        <div
-          className="mt-14 text-[11px] uppercase tracking-[0.28em] text-white/60"
-          style={{ fontFamily: MONO }}
-        >
-          — Pratham Mittal, Founder, Masters&apos; Union
+          <div
+            className="mt-10 text-[11px] uppercase tracking-[0.28em] text-white/60"
+            style={{ fontFamily: MONO }}
+          >
+            — Pratham Mittal, Founder, Masters&apos; Union
+          </div>
         </div>
       </div>
     </section>
   );
 }
+
 
 function RevealWord({
   progress,
@@ -619,7 +626,7 @@ function RevealWord({
   end: number;
   children: React.ReactNode;
 }) {
-  const opacity = useTransform(progress, [start, end], [0.15, 1]);
+  const opacity = useTransform(progress, [start, end], [0.12, 1]);
   return (
     <>
       <motion.span style={{ opacity, color: "rgba(255,255,255,1)" }} className="inline">
