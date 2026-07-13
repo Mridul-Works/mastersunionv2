@@ -2,14 +2,23 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Home, Users, GraduationCap, Globe2, Quote } from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
 
-import manojImg from "@/assets/faculty/manoj.png";
-import bhupeshImg from "@/assets/faculty/bhupesh.png";
-import nandiniImg from "@/assets/faculty/nandini.png";
-import garimaImg from "@/assets/faculty/garima.png";
-import zalImg from "@/assets/faculty/zal.png";
-import danielImg from "@/assets/faculty/daniel.png";
-import lanmaImg from "@/assets/faculty/lanma.png";
-import faverieImg from "@/assets/faculty/faverie.png";
+import manojAsset from "@/assets/faculty/manoj.png.asset.json";
+import bhupeshAsset from "@/assets/faculty/bhupesh.png.asset.json";
+import nandiniAsset from "@/assets/faculty/nandini.png.asset.json";
+import garimaAsset from "@/assets/faculty/garima.png.asset.json";
+import zalAsset from "@/assets/faculty/zal.png.asset.json";
+import danielAsset from "@/assets/faculty/daniel.png.asset.json";
+import lanmaAsset from "@/assets/faculty/lanma.png.asset.json";
+import faverieAsset from "@/assets/faculty/faverie.png.asset.json";
+
+const manojImg = manojAsset.url;
+const bhupeshImg = bhupeshAsset.url;
+const nandiniImg = nandiniAsset.url;
+const garimaImg = garimaAsset.url;
+const zalImg = zalAsset.url;
+const danielImg = danielAsset.url;
+const lanmaImg = lanmaAsset.url;
+const faverieImg = faverieAsset.url;
 
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
