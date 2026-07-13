@@ -875,14 +875,14 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
         {/* Matrix */}
         <div className="overflow-x-auto">
           <div
-            className="min-w-[980px] border border-foreground/15 divide-y divide-foreground/10"
+            className="min-w-[980px] border border-teal/40 divide-y divide-teal/25"
             onMouseLeave={() => setActive(null)}
           >
             {/* Header row: Term columns */}
-            <div className="grid grid-cols-[200px_repeat(8,1fr)] divide-x divide-foreground/10 bg-teal text-white">
+            <div className="grid grid-cols-[200px_repeat(8,1fr)] divide-x divide-teal/25 bg-white text-foreground">
               <div className="flex flex-col justify-center gap-1 px-4 py-4">
-                <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">Aug '26 → Nov '27</div>
-                <div className="font-display text-sm tracking-tight text-white/90">16 months · 8 terms</div>
+                <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-teal/70">Aug '26 → Nov '27</div>
+                <div className="font-display text-sm tracking-tight text-teal">16 months · 8 terms</div>
               </div>
               {TERM_META.map((m, i) => {
                 const t = i + 1;
@@ -894,14 +894,14 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     onMouseEnter={() => setActive(t)}
                     onFocus={() => setActive(t)}
                     onClick={() => setActive(t)}
-                    className={`group relative flex flex-col items-start gap-1 px-3 py-4 text-left transition-colors ${isActive ? "bg-card text-foreground" : "text-white hover:bg-white/10"}`}
+                    className={`group relative flex flex-col items-start gap-1 px-3 py-4 text-left transition-colors ${isActive ? "bg-teal/[0.12] text-foreground" : "text-foreground hover:bg-teal/[0.08]"}`}
                   >
                     <div className="flex items-baseline gap-1.5">
-                      <span className={`font-display text-lg leading-none tracking-tight ${isActive ? "text-foreground" : "text-white"}`}>{String(t).padStart(2, "0")}</span>
-                      <span className={`text-[10px] uppercase tracking-[0.18em] ${isActive ? "text-foreground/50" : "text-white/50"}`}>Term</span>
+                      <span className="font-display text-lg leading-none tracking-tight text-teal">{String(t).padStart(2, "0")}</span>
+                      <span className="text-[10px] uppercase tracking-[0.18em] text-teal/60">Term</span>
                     </div>
-                    <div className={`text-[11px] leading-tight ${isActive ? "text-foreground/70" : "text-white/70"}`}>{m.months}</div>
-                    <div className={`text-[10px] uppercase tracking-[0.14em] ${isActive ? "text-foreground/45" : "text-white/45"}`}>{m.window}</div>
+                    <div className="text-[11px] leading-tight text-foreground/70">{m.months}</div>
+                    <div className="text-[10px] uppercase tracking-[0.14em] text-foreground/45">{m.window}</div>
                   </button>
                 );
               })}
@@ -909,7 +909,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
 
             {/* Data rows */}
             {ROWS.map((row) => (
-              <div key={row.key} className="grid grid-cols-[200px_repeat(8,1fr)] divide-x divide-foreground/10">
+              <div key={row.key} className="grid grid-cols-[200px_repeat(8,1fr)] divide-x divide-teal/25">
                 {/* Row label */}
                 <div className="flex flex-col justify-center gap-1 px-4 py-4">
                   <div className={`flex items-center gap-2 font-display text-sm tracking-tight ${TONE_INK[row.engine]}`}>
@@ -926,7 +926,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                       <div
                         key={t}
                         onMouseEnter={() => setActive(t)}
-                        className={`relative min-h-[76px] transition-colors ${isActive ? "bg-foreground/[0.04]" : "bg-[repeating-linear-gradient(135deg,transparent_0_6px,rgba(40,38,36,0.04)_6px_7px)]"}`}
+                        className={`relative min-h-[76px] transition-colors ${isActive ? "bg-teal/[0.08]" : "bg-[repeating-linear-gradient(135deg,transparent_0_6px,rgba(0,106,78,0.06)_6px_7px)]"}`}
                       />
                     );
                   }
@@ -934,13 +934,13 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
                     <div
                       key={t}
                       onMouseEnter={() => setActive(t)}
-                      className={`group relative flex min-h-[76px] flex-col justify-between px-3 py-3 transition-colors ${isActive ? "bg-smoke-400 text-white" : "bg-white"}`}
+                      className={`group relative flex min-h-[76px] flex-col justify-between px-3 py-3 transition-colors ${isActive ? "bg-teal/[0.12] text-foreground" : "bg-white hover:bg-teal/[0.08]"}`}
                     >
-                      <div className={`h-[3px] w-6 ${TONE_ACCENT[cell.tone]} ${isActive ? "opacity-100" : "opacity-90"}`} />
+                      <div className={`h-[3px] w-6 ${TONE_ACCENT[cell.tone]} opacity-90`} />
                       <div>
-                        <div className={`font-display text-[13px] leading-tight tracking-tight ${isActive ? "text-white" : "text-foreground"}`}>{cell.text}</div>
+                        <div className="font-display text-[13px] leading-tight tracking-tight text-foreground">{cell.text}</div>
                         {cell.note && (
-                          <div className={`mt-0.5 text-[10px] uppercase tracking-[0.14em] ${isActive ? "text-white/60" : "text-foreground/45"}`}>{cell.note}</div>
+                          <div className="mt-0.5 text-[10px] uppercase tracking-[0.14em] text-foreground/50">{cell.note}</div>
                         )}
                       </div>
                     </div>
@@ -951,14 +951,15 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
           </div>
         </div>
 
+
         {/* Term detail strip */}
-        <div className="mt-5 grid gap-0 border border-foreground/15 md:grid-cols-[220px_1fr]">
-          <div className="border-b border-foreground/10 bg-smoke-400 p-5 text-white md:border-b-0 md:border-r">
-            <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">{active ? "In this term" : "Preview a term"}</div>
-            <div className="mt-2 font-display text-3xl leading-none tracking-tight">
+        <div className="mt-5 grid gap-0 border border-teal/40 md:grid-cols-[220px_1fr]">
+          <div className="border-b border-teal/25 bg-white p-5 text-foreground md:border-b-0 md:border-r">
+            <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-teal/70">{active ? "In this term" : "Preview a term"}</div>
+            <div className="mt-2 font-display text-3xl leading-none tracking-tight text-teal">
               {active ? `Term ${active}` : "—"}
             </div>
-            <div className="mt-2 text-[11px] uppercase tracking-[0.16em] text-white/55">
+            <div className="mt-2 text-[11px] uppercase tracking-[0.16em] text-foreground/55">
               {active ? TERM_META[active - 1].window : "Hover a column above"}
             </div>
           </div>
