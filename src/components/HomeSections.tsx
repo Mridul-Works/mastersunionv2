@@ -1193,7 +1193,7 @@ function PedagogyPinnedScroll() {
             The learning experience built at MU.
           </h2>
           <p className="max-w-[52ch] text-[14px] leading-[1.55] text-black/65 md:text-[15px]">
-            Eight systems that turn every class into a live brief, every project into proof, and every student into someone worth hiring — or funding.
+            Nine systems that turn every class into a live brief, every project into proof, and every student into someone worth hiring — or funding.
           </p>
         </div>
 
