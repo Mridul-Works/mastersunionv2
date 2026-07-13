@@ -494,12 +494,10 @@ const BHARAT_PARTNER_LOGOS: { name: string; src: string }[] = [
   { name: "ITC", src: itcLogo.url },
   { name: "Godrej Industries", src: godrejLogo.url },
   { name: "Adani Ports", src: adaniPortsLogo.url },
-  { name: "Adani Wilmar", src: adaniWilmarLogo.url },
   { name: "Amul", src: amulLogo.url },
   { name: "Zepto", src: zeptoLogo.url },
   { name: "Zerodha", src: zerodhaLogo.url },
   { name: "CRED", src: credLogo.url },
-  { name: "Lenskart", src: lenskartLogo.url },
 ];
 
 
