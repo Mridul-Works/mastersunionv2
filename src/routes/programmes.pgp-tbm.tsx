@@ -459,20 +459,18 @@ import wbsLogo from "@/assets/immersion-logos/wbs.png.asset.json";
 import cuhkLogo from "@/assets/immersion-logos/cuhk.png.asset.json";
 
 const GLOBAL_PARTNER_LOGOS: { name: string; src: string }[] = [
-  { name: "Imperial College London", src: imperialLogo.url },
   { name: "SDA Bocconi", src: bocconiLogo.url },
   { name: "ESCP Business School", src: escpLogo.url },
   { name: "Warwick Business School", src: wbsLogo.url },
   { name: "Ivey Business School", src: iveyLogo.url },
   { name: "Nottingham Business School", src: nbsLogo.url },
   { name: "Singapore Management University", src: smuLogo.url },
-  { name: "CUHK", src: cuhkLogo.url },
   { name: "Foster School of Business", src: fosterLogo.url },
   { name: "Babson College", src: babsonLogo.url },
   { name: "University of California", src: ucLogo.url },
   { name: "Illinois Tech", src: illinoisLogo.url },
-  { name: "Griffith University", src: griffithLogo.url },
 ];
+
 
 import zeptoLogo from "@/assets/bharat-logos/zepto.png.asset.json";
 import zerodhaLogo from "@/assets/bharat-logos/zerodha.png.asset.json";
