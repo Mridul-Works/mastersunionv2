@@ -170,6 +170,10 @@ function HowWeTeachPage() {
       {/* IMMERSIVE JOURNEY */}
       <JourneyScroll />
 
+      {/* FOUNDER QUOTE — dark, scroll text reveal */}
+      <FounderQuote />
+
+
       {/* REPORT CARD */}
       <section id="report" className="border-t border-black/10 bg-black text-white">
         <div className="mx-auto max-w-6xl px-5 py-24 md:px-10 md:py-32">
@@ -525,3 +529,105 @@ function SemesterStage({ sem, index }: { sem: Semester; index: number }) {
     </div>
   );
 }
+
+/* ============================================================
+   Founder quote — dark section with scroll-driven word reveal
+   ============================================================ */
+
+const FOUNDER_QUOTE_PARAGRAPHS: string[] = [
+  "Most schools teach you how to analyse a business. We make you run one.",
+  "Every semester, what you learn in class — you deploy outside it. On a real business. With real customers. For real money.",
+  "We don't believe in case studies about someone else's decisions. We believe in putting you in a position where you have to make the decision yourself — and live with what happens next.",
+  "The frameworks you learn on Monday should be stress-tested by Friday. The concept you study in the morning should have a real-world application by the afternoon. And at the end of the term, your grade doesn't come from me or any professor in this building.",
+  "It comes from the market.",
+  "Revenue. Margin. Profit. NPS. Four numbers. No subjectivity. No partial credit for a well-structured answer that didn't actually work.",
+  "That is the only education worth giving. And it is the only one we know how to deliver.",
+];
+
+function FounderQuote() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 0.85", "end 0.35"],
+  });
+
+  const words = FOUNDER_QUOTE_PARAGRAPHS.flatMap((p, pi) =>
+    p.split(" ").map((w, wi) => ({ w, key: `${pi}-${wi}`, pi })),
+  );
+  const total = words.length;
+
+  return (
+    <section
+      ref={ref}
+      className="relative border-t border-white/10 bg-black text-white"
+      style={{ fontFamily: INTER }}
+    >
+      <div className="mx-auto max-w-5xl px-5 py-32 md:px-10 md:py-48">
+        <div
+          className="text-[11px] uppercase tracking-[0.3em] text-white/50"
+          style={{ fontFamily: MONO }}
+        >
+          A note from the founder
+        </div>
+
+        <div className="mt-10 space-y-8 text-balance text-[clamp(1.35rem,2.6vw,2.35rem)] leading-[1.35] tracking-[-0.01em]">
+          {FOUNDER_QUOTE_PARAGRAPHS.map((p, pi) => {
+            const before = FOUNDER_QUOTE_PARAGRAPHS.slice(0, pi).reduce(
+              (acc, s) => acc + s.split(" ").length,
+              0,
+            );
+            const pWords = p.split(" ");
+            return (
+              <p key={pi}>
+                {pWords.map((w, wi) => {
+                  const idx = before + wi;
+                  const start = idx / total;
+                  const end = Math.min(1, start + 1.2 / total);
+                  return (
+                    <RevealWord
+                      key={`${pi}-${wi}`}
+                      progress={scrollYProgress}
+                      start={start}
+                      end={end}
+                    >
+                      {w}
+                    </RevealWord>
+                  );
+                })}
+              </p>
+            );
+          })}
+        </div>
+
+        <div
+          className="mt-14 text-[11px] uppercase tracking-[0.28em] text-white/60"
+          style={{ fontFamily: MONO }}
+        >
+          — Pratham Mittal, Founder, Masters&apos; Union
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RevealWord({
+  progress,
+  start,
+  end,
+  children,
+}: {
+  progress: MotionValue<number>;
+  start: number;
+  end: number;
+  children: React.ReactNode;
+}) {
+  const opacity = useTransform(progress, [start, end], [0.15, 1]);
+  return (
+    <>
+      <motion.span style={{ opacity, color: "rgba(255,255,255,1)" }} className="inline">
+        {children}
+      </motion.span>{" "}
+    </>
+  );
+}
+
