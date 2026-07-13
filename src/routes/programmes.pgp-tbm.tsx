@@ -1747,7 +1747,7 @@ function PgpTbm() {
                 const accent = isD2C ? "emerald" : "teal";
                 const Icon = isD2C ? Store : Play;
                 return (
-                  <article key={o.title} className="bg-white/90 p-6 pastel-fill">
+                  <article key={o.title} className="bg-white/90 p-6">
                     <div className="flex flex-wrap items-baseline justify-between gap-3">
                       <div>
                         <div className="text-xs font-semibold uppercase tracking-[0.2em] text-smoke-400">{o.tag}</div>
