@@ -43,6 +43,21 @@
   --color-smoke-950: var(--smoke-950);
   --color-teal: var(--teal);
 
+  /* Bottle-green scale — overrides Tailwind's default emerald palette
+     so every `emerald-*` utility across the project renders in one
+     unified bottle green (matches THE MODEL indicator). */
+  --color-emerald-50: #E8F1EC;
+  --color-emerald-100: #C7DECF;
+  --color-emerald-200: #9BC2A9;
+  --color-emerald-300: #6BA382;
+  --color-emerald-400: #3D8A63;
+  --color-emerald-500: #006A4E;
+  --color-emerald-600: #005A42;
+  --color-emerald-700: #004A37;
+  --color-emerald-800: #003A2B;
+  --color-emerald-900: #002A20;
+  --color-emerald-950: #001C15;
+
   --font-display: "Inter", system-ui, sans-serif;
   --font-sans: "Inter", system-ui, sans-serif;
   --font-serif: Georgia, ui-serif, serif;
@@ -82,7 +97,7 @@
   --smoke-800: oklch(0.96 0.004 150);
   --smoke-900: oklch(1 0 0);
   --smoke-950: oklch(0.96 0.009 115);
-  --teal: oklch(0.76 0.17 162);
+  --teal: #006A4E;
 
   /* Pastel gradient: very light cyan to sky-blue to warm peach — admissions hover */
   --pastel-start: oklch(0.99 0.014 220 / 0.6);
