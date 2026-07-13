@@ -97,6 +97,7 @@ const ADMISSIONS_CONNECT_SESSIONS = [
     timezone: "IST",
     audience: "Students & parents",
     spotsLeft: 12,
+    image: acChai,
   },
   {
     id: "parents-speak",
@@ -111,6 +112,7 @@ const ADMISSIONS_CONNECT_SESSIONS = [
     timezone: "IST",
     audience: "Parents & guardians",
     spotsLeft: 8,
+    image: acParents,
   },
   {
     id: "campus-walk",
@@ -125,6 +127,7 @@ const ADMISSIONS_CONNECT_SESSIONS = [
     timezone: "IST",
     audience: "Prospective students",
     spotsLeft: 15,
+    image: acCampus,
   },
   {
     id: "faculty-fireside",
@@ -139,6 +142,7 @@ const ADMISSIONS_CONNECT_SESSIONS = [
     timezone: "IST",
     audience: "Serious applicants",
     spotsLeft: 6,
+    image: acFaculty,
   },
   {
     id: "admissions-office-hours",
@@ -153,6 +157,7 @@ const ADMISSIONS_CONNECT_SESSIONS = [
     timezone: "IST",
     audience: "Applicants",
     spotsLeft: 10,
+    image: acOffice,
   },
   {
     id: "cohort-preview",
@@ -167,6 +172,7 @@ const ADMISSIONS_CONNECT_SESSIONS = [
     timezone: "IST",
     audience: "Serious applicants",
     spotsLeft: 20,
+    image: acCohort,
   },
 ] as const;
 
