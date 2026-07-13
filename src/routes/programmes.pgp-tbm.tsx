@@ -444,6 +444,37 @@ const IMMERSIONS = [
   },
 ];
 
+import babsonLogo from "@/assets/immersion-logos/babson.png.asset.json";
+import bocconiLogo from "@/assets/immersion-logos/sda-bocconi.png.asset.json";
+import escpLogo from "@/assets/immersion-logos/escp.png.asset.json";
+import fosterLogo from "@/assets/immersion-logos/foster.png.asset.json";
+import griffithLogo from "@/assets/immersion-logos/griffith.png.asset.json";
+import illinoisLogo from "@/assets/immersion-logos/illinois-tech.png.asset.json";
+import imperialLogo from "@/assets/immersion-logos/imperial-1.png.asset.json";
+import iveyLogo from "@/assets/immersion-logos/ivey.png.asset.json";
+import nbsLogo from "@/assets/immersion-logos/nbs.png.asset.json";
+import smuLogo from "@/assets/immersion-logos/smu.png.asset.json";
+import ucLogo from "@/assets/immersion-logos/uc.png.asset.json";
+import wbsLogo from "@/assets/immersion-logos/wbs.png.asset.json";
+import cuhkLogo from "@/assets/immersion-logos/cuhk.png.asset.json";
+
+const GLOBAL_PARTNER_LOGOS: { name: string; src: string }[] = [
+  { name: "Imperial College London", src: imperialLogo.url },
+  { name: "SDA Bocconi", src: bocconiLogo.url },
+  { name: "ESCP Business School", src: escpLogo.url },
+  { name: "Warwick Business School", src: wbsLogo.url },
+  { name: "Ivey Business School", src: iveyLogo.url },
+  { name: "Nottingham Business School", src: nbsLogo.url },
+  { name: "Singapore Management University", src: smuLogo.url },
+  { name: "CUHK", src: cuhkLogo.url },
+  { name: "Foster School of Business", src: fosterLogo.url },
+  { name: "Babson College", src: babsonLogo.url },
+  { name: "University of California", src: ucLogo.url },
+  { name: "Illinois Tech", src: illinoisLogo.url },
+  { name: "Griffith University", src: griffithLogo.url },
+];
+
+
 // -------- 8-term timeline (three engines, term by term) --------
 type EngineCell = { label: string; kind: "in" | "d2c" | "creator" | "imm" };
 type TermRow = { term: string; inClass: string; outClass: EngineCell[] };
@@ -1798,7 +1829,32 @@ function PgpTbm() {
                       <p className="mt-3 text-[13.5px] leading-relaxed text-black/65">
                         {im.body}
                       </p>
+
+                      {isGlobal && (
+                        <div className="mt-5 border-t border-dashed border-black/10 pt-4">
+                          <div className="mb-3 font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-black/45">
+                            Partner B-schools
+                          </div>
+                          <div className="grid grid-cols-4 items-center gap-x-4 gap-y-3 sm:grid-cols-5">
+                            {GLOBAL_PARTNER_LOGOS.map((l) => (
+                              <div
+                                key={l.name}
+                                className="flex h-10 items-center justify-center"
+                                title={l.name}
+                              >
+                                <img
+                                  src={l.src}
+                                  alt={l.name}
+                                  className="max-h-10 max-w-full object-contain opacity-70 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
+                                  loading="lazy"
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
+
 
                     {/* Stat footer — 3 equal columns with hairline dividers */}
                     <dl className="mt-2 grid grid-cols-3 border-t border-black/10">
