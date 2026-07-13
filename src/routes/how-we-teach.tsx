@@ -770,10 +770,11 @@ function RevealWord({
   end: number;
   children: React.ReactNode;
 }) {
-  const opacity = useTransform(progress, [start, end], [0.15, 1]);
+  const opacity = useTransform(progress, [start, end], [0.18, 1]);
   return (
     <>
-      <motion.span style={{ opacity, color: "#f5f7f5" }} className="inline">
+      <motion.span style={{ opacity, color: "#1a1a1a" }} className="inline">
+
         {children}
       </motion.span>{" "}
     </>
