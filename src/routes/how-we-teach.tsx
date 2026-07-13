@@ -592,7 +592,7 @@ function FounderQuote() {
                   src={prathamPortrait.url}
                   alt="Pratham Mittal, Founder, Masters' Union"
                   className="h-full w-full object-cover"
-                  style={{ objectPosition: "center 15%" }}
+                  style={{ objectPosition: "22% 25%" }}
                 />
                 <div
                   aria-hidden
