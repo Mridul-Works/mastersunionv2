@@ -488,7 +488,7 @@ import nseLogo from "@/assets/bharat-logos/nse.png.asset.json";
 import bseLogo from "@/assets/bharat-logos/bse.png.asset.json";
 
 const BHARAT_PARTNER_LOGOS: { name: string; src: string }[] = [
-  { name: "Reserve Bank of India", src: rbiLogo.url },
+  
   { name: "NSE", src: nseLogo.url },
   { name: "BSE", src: bseLogo.url },
   { name: "Infosys", src: infosysLogo.url },
