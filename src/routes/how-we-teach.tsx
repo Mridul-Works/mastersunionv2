@@ -551,21 +551,21 @@ function FounderQuote() {
   return (
     <section
       ref={ref}
-      className="relative border-t border-white/5 text-white"
+      className="relative border-t border-black/5 text-neutral-900"
       style={{
         fontFamily: INTER,
         height: "300vh",
         background:
-          "radial-gradient(140% 100% at 15% 0%, #12241d 0%, #0a1411 50%, #05090800 100%), #040807",
+          "radial-gradient(140% 100% at 15% 0%, #f2ebdc 0%, #f6f1e4 45%, #faf6ec 100%), #faf6ec",
       }}
     >
       {/* Newsprint grain + vignette */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.35] mix-blend-overlay"
+        className="pointer-events-none absolute inset-0 opacity-[0.35] mix-blend-multiply"
         style={{
           backgroundImage:
-            "radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)",
+            "radial-gradient(rgba(0,0,0,0.08) 1px, transparent 1px)",
           backgroundSize: "3px 3px",
         }}
       />
@@ -574,7 +574,7 @@ function FounderQuote() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(55% 45% at 12% 25%, rgba(126,201,167,0.14) 0%, transparent 70%)",
+            "radial-gradient(55% 45% at 12% 25%, rgba(46,120,86,0.10) 0%, transparent 70%)",
         }}
       />
 
@@ -582,11 +582,11 @@ function FounderQuote() {
         <div className="relative mx-auto w-full max-w-[1240px] px-6 py-16 md:px-12 md:py-20">
           {/* Top editorial rail */}
           <div
-            className="mb-10 flex items-center justify-between border-b border-white/10 pb-4 text-[10px] uppercase tracking-[0.32em] text-white/45 md:mb-14"
+            className="mb-10 flex items-center justify-between border-b border-black/15 pb-4 text-[10px] uppercase tracking-[0.32em] text-neutral-500 md:mb-14"
             style={{ fontFamily: MONO }}
           >
             <span className="flex items-center gap-3">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#7EC9A7]" />
+              <span className="h-1.5 w-1.5 rounded-full bg-[#2e7856]" />
               Vol. 01 · Founder&apos;s Letter
             </span>
             <span className="hidden md:inline">Masters&apos; Union · New Delhi</span>
@@ -602,7 +602,7 @@ function FounderQuote() {
                   className="absolute -inset-8 blur-3xl"
                   style={{
                     background:
-                      "radial-gradient(circle at 30% 30%, rgba(126,201,167,0.22) 0%, transparent 70%)",
+                      "radial-gradient(circle at 30% 30%, rgba(46,120,86,0.18) 0%, transparent 70%)",
                   }}
                 />
                 <div
@@ -611,7 +611,7 @@ function FounderQuote() {
                     aspectRatio: "4 / 5",
                     borderRadius: "2px",
                     boxShadow:
-                      "0 50px 120px -30px rgba(0,0,0,0.85), inset 0 0 0 1px rgba(255,255,255,0.06)",
+                      "0 40px 90px -30px rgba(60,45,20,0.35), inset 0 0 0 1px rgba(0,0,0,0.08)",
                   }}
                 >
                   <img
@@ -620,7 +620,7 @@ function FounderQuote() {
                     className="h-full w-full object-cover"
                     style={{
                       objectPosition: "22% 25%",
-                      filter: "grayscale(0.35) contrast(1.05) saturate(0.85)",
+                      filter: "grayscale(0.2) contrast(1.03) saturate(0.9)",
                     }}
                   />
                   <div
@@ -628,31 +628,31 @@ function FounderQuote() {
                     className="pointer-events-none absolute inset-0"
                     style={{
                       background:
-                        "linear-gradient(180deg, rgba(5,8,7,0.05) 0%, transparent 30%, transparent 60%, rgba(5,8,7,0.75) 100%), linear-gradient(90deg, rgba(126,201,167,0.08) 0%, transparent 40%)",
+                        "linear-gradient(180deg, transparent 0%, transparent 55%, rgba(30,25,15,0.55) 100%)",
                     }}
                   />
                   {/* Caption bar */}
                   <div
-                    className="absolute inset-x-0 bottom-0 flex items-end justify-between px-5 pb-4 pt-16 text-[10px] uppercase tracking-[0.28em] text-white/75"
+                    className="absolute inset-x-0 bottom-0 flex items-end justify-between px-5 pb-4 pt-16 text-[10px] uppercase tracking-[0.28em] text-white/90"
                     style={{ fontFamily: MONO }}
                   >
                     <span>Pratham Mittal</span>
-                    <span className="text-[#7EC9A7]/80">Founder</span>
+                    <span className="text-[#a8e2c4]">Founder</span>
                   </div>
                 </div>
 
                 {/* Side meta */}
                 <div
-                  className="mt-6 grid grid-cols-2 gap-4 text-[10px] uppercase tracking-[0.28em] text-white/40"
+                  className="mt-6 grid grid-cols-2 gap-4 text-[10px] uppercase tracking-[0.28em] text-neutral-500"
                   style={{ fontFamily: MONO }}
                 >
                   <div>
-                    <div className="text-white/30">Filed</div>
-                    <div className="mt-1 text-white/70">Convocation, 2024</div>
+                    <div className="text-neutral-400">Filed</div>
+                    <div className="mt-1 text-neutral-700">Convocation, 2024</div>
                   </div>
                   <div>
-                    <div className="text-white/30">On record</div>
-                    <div className="mt-1 text-white/70">The one rule</div>
+                    <div className="text-neutral-400">On record</div>
+                    <div className="mt-1 text-neutral-700">The one rule</div>
                   </div>
                 </div>
               </div>
@@ -662,7 +662,7 @@ function FounderQuote() {
             <div className="relative md:col-span-7">
               <div
                 aria-hidden
-                className="absolute -left-2 -top-10 select-none leading-none text-white/[0.06] md:-left-4 md:-top-16"
+                className="absolute -left-2 -top-10 select-none leading-none text-black/[0.07] md:-left-4 md:-top-16"
                 style={{
                   fontFamily: "Georgia, serif",
                   fontSize: "clamp(9rem, 18vw, 18rem)",
@@ -674,15 +674,15 @@ function FounderQuote() {
 
               <div className="relative">
                 <div
-                  className="flex items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-[#7EC9A7]"
+                  className="flex items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-[#2e7856]"
                   style={{ fontFamily: MONO }}
                 >
-                  <span className="h-px w-10 bg-[#7EC9A7]/60" />
+                  <span className="h-px w-10 bg-[#2e7856]/60" />
                   A note from the founder
                 </div>
 
                 <div
-                  className="mt-8 space-y-6 text-balance text-[clamp(1.15rem,1.9vw,1.7rem)] font-light leading-[1.5] tracking-[-0.01em] text-white/90"
+                  className="mt-8 space-y-6 text-balance text-[clamp(1.15rem,1.9vw,1.7rem)] font-light leading-[1.5] tracking-[-0.01em] text-neutral-800"
                   style={{ fontFamily: "Georgia, serif" }}
                 >
                   {FOUNDER_QUOTE_PARAGRAPHS.map((p, pi) => {
@@ -700,7 +700,7 @@ function FounderQuote() {
                     return (
                       <p
                         key={pi}
-                        className={isOpener ? "text-[clamp(1.5rem,2.6vw,2.4rem)] leading-[1.25] text-white" : ""}
+                        className={isOpener ? "text-[clamp(1.5rem,2.6vw,2.4rem)] leading-[1.25] text-neutral-900" : ""}
                       >
                         {pWords.map((w, wi) => {
                           const idx = before + wi;
@@ -723,10 +723,10 @@ function FounderQuote() {
                 </div>
 
                 {/* Signature block */}
-                <div className="mt-12 flex flex-wrap items-end justify-between gap-6 border-t border-white/10 pt-6">
+                <div className="mt-12 flex flex-wrap items-end justify-between gap-6 border-t border-black/15 pt-6">
                   <div>
                     <div
-                      className="text-[26px] tracking-tight text-white"
+                      className="text-[26px] tracking-tight text-neutral-900"
                       style={{
                         fontFamily: "Georgia, serif",
                         fontStyle: "italic",
@@ -735,17 +735,17 @@ function FounderQuote() {
                       Pratham Mittal
                     </div>
                     <div
-                      className="mt-1 text-[10px] uppercase tracking-[0.32em] text-white/50"
+                      className="mt-1 text-[10px] uppercase tracking-[0.32em] text-neutral-500"
                       style={{ fontFamily: MONO }}
                     >
                       Founder · Masters&apos; Union
                     </div>
                   </div>
                   <div
-                    className="text-[10px] uppercase tracking-[0.32em] text-white/35"
+                    className="text-[10px] uppercase tracking-[0.32em] text-neutral-400"
                     style={{ fontFamily: MONO }}
                   >
-                    <span className="text-[#7EC9A7]/70">///</span> End of note
+                    <span className="text-[#2e7856]/80">///</span> End of note
                   </div>
                 </div>
               </div>
@@ -755,6 +755,7 @@ function FounderQuote() {
       </div>
     </section>
   );
+
 }
 
 
