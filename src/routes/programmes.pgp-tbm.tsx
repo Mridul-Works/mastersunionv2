@@ -879,7 +879,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
             onMouseLeave={() => setActive(null)}
           >
             {/* Header row: Term columns */}
-            <div className="grid grid-cols-[200px_repeat(8,1fr)] divide-x divide-foreground/10 bg-smoke-400 text-white">
+            <div className="grid grid-cols-[200px_repeat(8,1fr)] divide-x divide-foreground/10 bg-teal text-white">
               <div className="flex flex-col justify-center gap-1 px-4 py-4">
                 <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">Aug '26 → Nov '27</div>
                 <div className="font-display text-sm tracking-tight text-white/90">16 months · 8 terms</div>
