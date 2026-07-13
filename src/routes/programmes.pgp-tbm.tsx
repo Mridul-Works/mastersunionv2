@@ -1824,114 +1824,72 @@ function PgpTbm() {
                 Optional immersion modules that slot into Terms 4 and 5. Two tracks, one goal: see business where it actually happens — not where slides describe it.
               </p>
             </div>
-            <div className="grid gap-8 md:grid-cols-2 lg:gap-10">
-              {IMMERSIONS.map((im) => {
+            <div className="space-y-px bg-black/10">
+              {IMMERSIONS.map((im, idx) => {
                 const isGlobal = im.title.includes("Global");
                 const logos = isGlobal ? GLOBAL_PARTNER_LOGOS : BHARAT_PARTNER_LOGOS;
-                const dossierEyebrow = isGlobal ? "Dossier 01 // Archive" : "Dossier 02 // Field Study";
-                const stampText = isGlobal ? "INTL_CERTIFIED" : "GROUND_VERIFIED";
                 const logosLabel = isGlobal ? "Partner B-schools" : "On-ground partners";
+                const tag = isGlobal ? "Global · Terms 4–5" : "Bharat · Terms 4–5";
                 return (
-                  <article
-                    key={im.title}
-                    className={`group relative flex flex-col border border-slate-200 bg-[#fdfdfc] transition-all duration-500 hover:shadow-[0_0_60px_rgba(0,0,0,0.08)] ${
-                      isGlobal
-                        ? "shadow-[16px_16px_0_rgba(13,148,136,0.06)]"
-                        : "shadow-[16px_16px_0_rgba(20,184,166,0.06)]"
-                    }`}
-                  >
-                    <div className="flex-1 p-8 lg:p-10">
-                      {/* Header / Stamp */}
-                      <div className="mb-10 flex items-start justify-between gap-4">
-                        <div className="space-y-1.5">
-                          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-teal">
-                            {dossierEyebrow}
-                          </p>
-                          <h4
-                            className={`text-[32px] font-bold leading-[1.05] tracking-tight text-slate-900 md:text-[38px] ${
-                              isGlobal ? "italic" : ""
-                            }`}
-                            style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-                          >
-                            {im.title}
-                          </h4>
-                        </div>
-                        <div
-                          className={`shrink-0 p-2 ${
-                            isGlobal
-                              ? "rotate-3 rounded-sm border-2 border-dashed border-teal/40"
-                              : "-rotate-12 rounded-full border-2 border-double border-teal/30"
-                          }`}
-                        >
-                          <span
-                            className={`inline-block px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-teal ${
-                              isGlobal ? "bg-teal/5" : ""
-                            }`}
-                          >
-                            {stampText}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Description */}
-                      <p className="mb-8 max-w-md text-sm leading-relaxed text-slate-600">
-                        {im.body}
-                      </p>
-
-                      {/* Logo Grid */}
+                  <article key={im.title} className="bg-white/90 p-6 pastel-fill">
+                    <div className="flex flex-wrap items-baseline justify-between gap-3">
                       <div>
-                        <p className="mb-4 font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-slate-400">
-                          {logosLabel}
-                        </p>
-                        <div className="grid grid-cols-5 gap-3">
-                          {logos.map((l) => (
-                            <div
-                              key={l.name}
-                              title={l.name}
-                              className="flex h-12 items-center justify-center border border-slate-100 p-2 opacity-60 grayscale transition-all duration-300 hover:border-teal/30 hover:opacity-100 hover:grayscale-0"
-                            >
-                              <img
-                                src={l.src}
-                                alt={l.name}
-                                className="max-h-full max-w-full object-contain"
-                                loading="lazy"
-                              />
-                            </div>
-                          ))}
-                        </div>
+                        <div className="text-xs font-semibold uppercase tracking-[0.2em] text-smoke-400">{tag}</div>
+                        <h4 className="mt-2 font-display text-3xl leading-tight tracking-tight">{im.title}</h4>
                       </div>
                     </div>
+                    <p className="mt-3 max-w-3xl text-sm leading-relaxed text-black/65">{im.body}</p>
 
-                    {/* Stats Footer */}
-                    <dl
-                      className={`grid grid-cols-3 border-t border-slate-100 ${
-                        isGlobal ? "bg-slate-50/50" : "bg-teal/[0.04]"
-                      }`}
-                    >
+                    {/* Outcome metrics — matches OutClass style */}
+                    <div className="mt-6 grid gap-3 sm:grid-cols-3">
                       {im.stats.map((s, i) => (
                         <div
                           key={s.v}
-                          className={`flex flex-col items-center p-6 text-center ${
-                            i > 0 ? "border-l border-slate-100" : ""
-                          }`}
+                          className="relative overflow-hidden border border-emerald-900/15 bg-gradient-to-br from-emerald-50/90 to-white p-5"
                         >
-                          <dt
-                            className={`font-mono text-2xl font-bold ${
-                              isGlobal ? "text-teal" : "text-teal"
-                            }`}
-                          >
-                            {s.k}
-                          </dt>
-                          <dd className="mt-1 font-mono text-[9px] font-medium uppercase tracking-tight text-slate-500">
-                            {s.v}
-                          </dd>
+                          <div className="absolute left-0 top-0 h-1.5 w-full bg-gradient-to-r from-emerald-500 to-emerald-400" />
+                          <div className="flex items-start justify-between">
+                            <div className="inline-flex size-8 items-center justify-center bg-emerald-400/10 text-emerald-700">
+                              {i === 0 ? <Globe className="size-4" /> : i === 1 ? <Building2 className="size-4" /> : <Users className="size-4" />}
+                            </div>
+                          </div>
+                          <div className="mt-3">
+                            <div className="font-display text-4xl leading-none tracking-tight text-emerald-900">
+                              {s.k}
+                            </div>
+                            <div className="mt-1.5 text-xs font-medium uppercase tracking-[0.12em] text-black/60">
+                              {s.v}
+                            </div>
+                          </div>
                         </div>
                       ))}
-                    </dl>
+                    </div>
+
+                    {/* Partner logos — matches OutClass term-by-term arc grid */}
+                    <div className="mt-6">
+                      <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/50">{logosLabel}</div>
+                      <div className="mt-3 grid gap-px bg-black/10 grid-cols-5">
+                        {logos.map((l) => (
+                          <div
+                            key={l.name}
+                            title={l.name}
+                            className="flex h-16 items-center justify-center bg-white p-3 opacity-70 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+                          >
+                            <img
+                              src={l.src}
+                              alt={l.name}
+                              className="max-h-full max-w-full object-contain"
+                              loading="lazy"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </article>
                 );
               })}
             </div>
+
 
 
           </div>
