@@ -1012,7 +1012,7 @@ export default function HomeSections() {
               {NEWS.map((n) => (
                 <article
                   key={n.title}
-                  className="group w-[calc(25%-12px)] min-w-[260px] flex-shrink-0 snap-start p-5 transition-all duration-300 hover:-translate-y-1 pastel-fill"
+                  className="group w-[calc(25%-12px)] min-w-[260px] flex-shrink-0 snap-start p-5 pastel-fill [will-change:background-color,box-shadow] hover:shadow-[0_10px_30px_-15px_rgba(0,0,0,0.15)]"
                 >
                   <div className="flex items-center gap-2">
                     <span className="bg-black px-2 py-1 font-mono text-[8px] font-bold uppercase tracking-[0.12em] text-white">
