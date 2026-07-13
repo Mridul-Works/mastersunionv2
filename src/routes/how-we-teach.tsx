@@ -606,11 +606,12 @@ function FounderQuote() {
           </div>
 
           <div
-            className="mt-10 text-[11px] uppercase tracking-[0.28em] text-white/60"
+            className="mt-10 text-[11px] uppercase tracking-[0.28em] text-black/70"
             style={{ fontFamily: MONO }}
           >
             — Pratham Mittal, Founder, Masters&apos; Union
           </div>
+
         </div>
       </div>
     </section>
