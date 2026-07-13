@@ -116,7 +116,6 @@ const BHARAT_PARTNERS = [
 
 const CAMPUS_PARTNERS = [
   { name: "SDA Bocconi", src: bocconiLogo.url },
-  { name: "Imperial College London", src: imperialLogo.url },
   { name: "ESCP Business School", src: escpLogo.url },
   { name: "Warwick Business School", src: wbsLogo.url },
   { name: "Nottingham Business School", src: nbsLogo.url },
@@ -125,9 +124,10 @@ const CAMPUS_PARTNERS = [
   { name: "Babson College", src: babsonLogo.url },
   { name: "University of California", src: ucLogo.url },
   { name: "Singapore Management University", src: smuLogo.url },
-  { name: "CUHK Business School", src: cuhkLogo.url },
   { name: "Illinois Tech", src: illinoisLogo.url },
+  { name: "Griffith University", src: griffithLogo.url },
 ];
+
 
 function LogoStrip({
   items,
