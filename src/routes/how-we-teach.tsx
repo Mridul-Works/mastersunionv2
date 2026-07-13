@@ -628,33 +628,11 @@ function FounderQuote() {
                     className="pointer-events-none absolute inset-0"
                     style={{
                       background:
-                        "linear-gradient(180deg, transparent 0%, transparent 55%, rgba(30,25,15,0.55) 100%)",
+                        "linear-gradient(180deg, transparent 0%, transparent 65%, rgba(30,25,15,0.35) 100%)",
                     }}
                   />
-                  {/* Caption bar */}
-                  <div
-                    className="absolute inset-x-0 bottom-0 flex items-end justify-between px-5 pb-4 pt-16 text-[10px] uppercase tracking-[0.28em] text-white/90"
-                    style={{ fontFamily: MONO }}
-                  >
-                    <span>Pratham Mittal</span>
-                    <span className="text-[#a8e2c4]">Founder</span>
-                  </div>
                 </div>
 
-                {/* Side meta */}
-                <div
-                  className="mt-6 grid grid-cols-2 gap-4 text-[10px] uppercase tracking-[0.28em] text-neutral-500"
-                  style={{ fontFamily: MONO }}
-                >
-                  <div>
-                    <div className="text-neutral-400">Filed</div>
-                    <div className="mt-1 text-neutral-700">Convocation, 2024</div>
-                  </div>
-                  <div>
-                    <div className="text-neutral-400">On record</div>
-                    <div className="mt-1 text-neutral-700">The one rule</div>
-                  </div>
-                </div>
               </div>
             </div>
 
