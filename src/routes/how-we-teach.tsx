@@ -569,11 +569,12 @@ function FounderQuote() {
       <div className="sticky top-0 flex min-h-screen items-center">
         <div className="mx-auto w-full max-w-5xl px-5 py-20 md:px-10 md:py-24">
           <div
-            className="text-[11px] uppercase tracking-[0.3em] text-white/50"
+            className="text-[11px] uppercase tracking-[0.3em] text-black/60"
             style={{ fontFamily: MONO }}
           >
             A note from the founder
           </div>
+
 
           <div className="mt-8 space-y-6 text-balance text-[clamp(1.15rem,2.2vw,1.9rem)] leading-[1.4] tracking-[-0.01em]">
             {FOUNDER_QUOTE_PARAGRAPHS.map((p, pi) => {
