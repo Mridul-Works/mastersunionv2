@@ -223,7 +223,7 @@ const FORMATS: Format[] = [
           <div className="text-[10.5px] font-semibold uppercase tracking-[0.22em] text-black/50">
             Partner campuses
           </div>
-          <div className="mt-3 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-5">
+          <div className="mt-3 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-6">
             {[
               { name: "SDA Bocconi", src: bocconiLogo.url },
               { name: "Imperial College London", src: imperialLogo.url },
@@ -237,17 +237,16 @@ const FORMATS: Format[] = [
               { name: "Singapore Management University", src: smuLogo.url },
               { name: "CUHK Business School", src: cuhkLogo.url },
               { name: "Illinois Tech", src: illinoisLogo.url },
-              { name: "Griffith University", src: griffithLogo.url },
             ].map((l) => (
               <div
                 key={l.name}
                 title={l.name}
-                className="flex h-16 items-center justify-center bg-white p-2 opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+                className="flex h-20 items-center justify-center bg-white px-3 opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
               >
                 <img
                   src={l.src}
                   alt={l.name}
-                  className="h-8 w-auto max-w-full object-contain"
+                  className="max-h-8 w-auto max-w-[85%] object-contain"
                   loading="lazy"
                 />
               </div>
@@ -300,13 +299,10 @@ const GLOBAL_PARTNERS = [
   { name: "Disneyland", src: disneylandLogo.url },
   { name: "Station F", src: stationFLogo.url },
   { name: "United Nations", src: unitedNationsLogo.url },
-  { name: "Zaanse Schans", src: zaanseSchansLogo.url },
 ];
 
 const BHARAT_PARTNERS = [
   { name: "Adani Ports", src: adaniPortsLogo.url },
-  { name: "Adani Wilmar", src: adaniWilmarLogo.url },
-  { name: "Adani Solar", src: adaniSolarLogo.url },
   { name: "ITC", src: itcLogo.url },
   { name: "Amul", src: amulLogo.url },
   { name: "Infosys", src: infosysLogo.url },
@@ -316,26 +312,10 @@ const BHARAT_PARTNERS = [
   { name: "CRED", src: credLogo.url },
   { name: "Zerodha", src: zerodhaLogo.url },
   { name: "NSE", src: nseLogo.url },
-  { name: "BSE", src: bseLogo.url },
   { name: "Reserve Bank of India", src: rbiLogo.url },
   { name: "Dharma Productions", src: dharmaProductionsLogo.url },
-  { name: "Mercedes", src: mercedesLogo.url },
-  { name: "Sonalika", src: sonalikaLogo.url },
-  { name: "Sesa Goa", src: sesaGoaLogo.url },
-  { name: "Goa Shipyard", src: goaShipyardLogo.url },
-  { name: "Indo Rifles", src: indoRiflesLogo.url },
-  { name: "Addverb", src: addverbLogo.url },
-  { name: "Cingularity", src: cingularityLogo.url },
-  { name: "Ada", src: adaLogo.url },
-  { name: "Cazulo", src: cazuloLogo.url },
-  { name: "NIVIA", src: niviaLogo.url },
-  { name: "Cordella Cruises", src: cordellaCruisesLogo.url },
-  { name: "Dabbawalas", src: dabbawalasLogo.url },
-  { name: "Universal Booksellers", src: universalBooksellersLogo.url },
-  { name: "LPU", src: lpuLogo.url },
-  { name: "Government of Uttar Pradesh", src: govUpLogo.url },
-  { name: "NDMA", src: ndmaLogo.url },
 ];
+
 
 
 const STANDALONE = [
@@ -516,17 +496,17 @@ function ImmersionsPage() {
             <div className="text-xs font-semibold uppercase tracking-[0.22em] text-teal">
               Global immersion companies
             </div>
-            <div className="mt-4 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7">
+            <div className="mt-4 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-6">
               {GLOBAL_PARTNERS.map((l) => (
                 <div
                   key={l.name}
                   title={l.name}
-                  className="flex h-20 items-center justify-center bg-white p-3 opacity-75 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+                  className="flex h-20 items-center justify-center bg-white px-3 opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
                 >
                   <img
                     src={l.src}
                     alt={l.name}
-                    className="h-9 w-auto max-w-full object-contain"
+                    className="max-h-8 w-auto max-w-[85%] object-contain"
                     loading="lazy"
                   />
                 </div>
@@ -537,17 +517,17 @@ function ImmersionsPage() {
             <div className="text-xs font-semibold uppercase tracking-[0.22em] text-teal">
               Bharat on-ground partners
             </div>
-            <div className="mt-4 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7">
+            <div className="mt-4 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-6">
               {BHARAT_PARTNERS.map((l) => (
                 <div
                   key={l.name}
                   title={l.name}
-                  className="flex h-20 items-center justify-center bg-white p-3 opacity-75 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+                  className="flex h-20 items-center justify-center bg-white px-3 opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
                 >
                   <img
                     src={l.src}
                     alt={l.name}
-                    className="h-9 w-auto max-w-full object-contain"
+                    className="max-h-8 w-auto max-w-[85%] object-contain"
                     loading="lazy"
                   />
                 </div>
