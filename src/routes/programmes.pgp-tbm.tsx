@@ -1993,10 +1993,7 @@ function PgpTbm() {
                       <img
                         src={logo.url}
                         alt={`${logo.name} logo`}
-                        className={cn(
-                          "h-8 w-auto max-w-[85%] object-contain opacity-70 transition group-hover:opacity-90 hover:!opacity-100",
-                          logo.className
-                        )}
+                        className="h-8 w-auto max-w-full object-contain opacity-70 transition group-hover:opacity-90 hover:!opacity-100"
                         loading="lazy"
                       />
                     </div>
