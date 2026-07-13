@@ -560,13 +560,9 @@ function AdmissionsConnect() {
             >
               {/* Top: full-width editorial portrait */}
               <div className="relative w-full overflow-hidden">
-                <img
-                  src={s.image}
-                  alt=""
-                  loading="lazy"
-                  width={1024}
-                  height={1024}
-                  className="h-64 w-full object-cover md:h-72"
+                <div
+                  className="h-64 w-full md:h-72 bg-[#EFECE4] bg-[linear-gradient(135deg,#EFECE4_25%,#E4E0D6_25%,#E4E0D6_50%,#EFECE4_50%,#EFECE4_75%,#E4E0D6_75%,#E4E0D6_100%)] bg-[length:20px_20px]"
+                  aria-hidden
                 />
                 <span className="absolute right-4 top-4 rounded-sm bg-white/90 px-2 py-1 text-right font-mono text-[10px] uppercase tracking-[0.22em] text-black/70 backdrop-blur">
                   {formatSessionDate(s.nextDate)}<br />{s.nextTime}
