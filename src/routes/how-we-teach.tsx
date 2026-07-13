@@ -167,8 +167,6 @@ function HowWeTeachPage() {
       </div>
 
 
-      {/* IMMERSIVE JOURNEY */}
-      <JourneyScroll />
 
       {/* FOUNDER QUOTE — dark, scroll text reveal */}
       <FounderQuote />
