@@ -173,7 +173,7 @@ function HowWeTeachPage() {
       className="min-h-screen bg-white pb-28 text-black md:pb-32"
       style={{ fontFamily: INTER }}
     >
-      <BottomNav items={PAGE_NAV} applyHref="#apply" />
+      <SectionNav items={PAGE_NAV} applyHref="#apply" />
 
       {/* Top marker */}
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">
