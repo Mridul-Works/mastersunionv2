@@ -610,6 +610,7 @@ function AdmissionsConnect() {
                   <ArrowRight className="size-4" />
                 </button>
               </div>
+              </div>
             </article>
           ))}
         </div>
