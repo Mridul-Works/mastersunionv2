@@ -574,25 +574,38 @@ function FounderQuote() {
             <div className="relative">
               <div
                 aria-hidden
-                className="absolute -inset-4 rounded-full blur-2xl"
+                className="absolute -inset-6 rounded-[28px] blur-3xl"
                 style={{
                   background:
-                    "radial-gradient(circle, rgba(126,201,167,0.35) 0%, transparent 70%)",
+                    "radial-gradient(circle at 30% 30%, rgba(126,201,167,0.28) 0%, transparent 70%)",
                 }}
               />
               <div
-                className="relative h-40 w-40 overflow-hidden rounded-full border border-white/15 md:h-56 md:w-56"
-                style={{ boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7)" }}
+                className="relative overflow-hidden rounded-2xl border border-white/10"
+                style={{
+                  width: "clamp(220px, 28vw, 340px)",
+                  aspectRatio: "3 / 4",
+                  boxShadow: "0 40px 100px -30px rgba(0,0,0,0.75)",
+                }}
               >
                 <img
                   src={prathamPortrait.url}
                   alt="Pratham Mittal, Founder, Masters' Union"
                   className="h-full w-full object-cover"
-                  style={{ objectPosition: "center 20%" }}
+                  style={{ objectPosition: "center 15%" }}
+                />
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, transparent 55%, rgba(5,8,7,0.55) 100%)",
+                  }}
                 />
               </div>
             </div>
           </div>
+
 
           <div>
             <div
