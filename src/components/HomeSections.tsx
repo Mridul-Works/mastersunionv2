@@ -558,11 +558,15 @@ function AdmissionsConnect() {
                 minHeight: "520px",
               }}
             >
-              {/* Top: neutral placeholder + meta */}
+              {/* Top: editorial portrait + meta */}
               <div className="flex items-start justify-between gap-4">
-                <div
-                  aria-hidden
-                  className="h-24 w-28 shrink-0 rounded-none bg-[#EFECE4]"
+                <img
+                  src={s.image}
+                  alt=""
+                  loading="lazy"
+                  width={1024}
+                  height={1024}
+                  className="h-24 w-28 shrink-0 rounded-none object-cover"
                 />
                 <span className="text-right font-mono text-[10px] uppercase tracking-[0.22em] text-black/55">
                   {formatSessionDate(s.nextDate)}<br />{s.nextTime}
