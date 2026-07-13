@@ -171,10 +171,27 @@ function HowWeTeachPage() {
       {/* FOUNDER QUOTE — dark, scroll text reveal */}
       <FounderQuote />
 
-      {/* IMMERSIVE JOURNEY — zoom cards after the letter */}
-      <JourneyScroll />
+      {/* PHILOSOPHY */}
+      <section id="philosophy" className="border-t border-black/10 bg-neutral-50">
+        <div className="mx-auto max-w-5xl px-5 py-24 md:px-10 md:py-32">
+          <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
+            Philosophy
+          </div>
+          <blockquote className="mt-8 text-balance text-[clamp(1.6rem,3.6vw,3rem)] italic leading-[1.15] tracking-[-0.01em]">
+            &ldquo;Traditional B-schools grade you on how well you understood the case study. We grade
+            you on whether you became one.&rdquo;
+          </blockquote>
 
-
+          <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
+            {PILLARS.map((p) => (
+              <div key={p.title} className="border-t border-black pt-6">
+                <h3 className="text-[clamp(1.1rem,1.5vw,1.3rem)] leading-tight">{p.title}</h3>
+                <p className="mt-3 text-[15px] leading-[1.65] text-black/75">{p.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* REPORT CARD */}
       <section id="report" className="border-t border-black/10 bg-black text-white">
@@ -204,27 +221,6 @@ function HowWeTeachPage() {
         </div>
       </section>
 
-      {/* PHILOSOPHY */}
-      <section id="philosophy" className="border-t border-black/10 bg-neutral-50">
-        <div className="mx-auto max-w-5xl px-5 py-24 md:px-10 md:py-32">
-          <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
-            Philosophy
-          </div>
-          <blockquote className="mt-8 text-balance text-[clamp(1.6rem,3.6vw,3rem)] italic leading-[1.15] tracking-[-0.01em]">
-            &ldquo;Traditional B-schools grade you on how well you understood the case study. We grade
-            you on whether you became one.&rdquo;
-          </blockquote>
-
-          <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
-            {PILLARS.map((p) => (
-              <div key={p.title} className="border-t border-black pt-6">
-                <h3 className="text-[clamp(1.1rem,1.5vw,1.3rem)] leading-tight">{p.title}</h3>
-                <p className="mt-3 text-[15px] leading-[1.65] text-black/75">{p.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* CTA */}
       <section id="apply" className="mx-auto max-w-5xl px-5 py-24 text-center md:px-10 md:py-32">
