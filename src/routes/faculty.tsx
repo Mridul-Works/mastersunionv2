@@ -23,12 +23,12 @@ const faverieImg = faverieAsset.url;
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
 
-const NAV: BottomNavItem[] = [
-  { id: "top", label: "Top", icon: Home },
-  { id: "model", label: "Model", icon: Users },
-  { id: "practitioners", label: "Industry", icon: Quote },
-  { id: "full-time", label: "Full-time", icon: GraduationCap },
-  { id: "visiting", label: "Visiting", icon: Globe2 },
+const NAV: SectionNavItem[] = [
+  { id: "top", label: "Overview" },
+  { id: "model", label: "Model" },
+  { id: "practitioners", label: "Industry" },
+  { id: "full-time", label: "Full-time" },
+  { id: "visiting", label: "Visiting" },
 ];
 
 type Practitioner = { name: string; role: string; blurb: string };
