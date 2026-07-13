@@ -1832,7 +1832,7 @@ function PgpTbm() {
                 const logosLabel = isGlobal ? "Partner B-schools" : "On-ground partners";
                 const tag = isGlobal ? "Global · Terms 4–5" : "Bharat · Terms 4–5";
                 return (
-                  <article key={im.title} className="bg-white/90 p-6 pastel-fill">
+                  <article key={im.title} className="bg-white/90 p-6">
                     <div className="flex flex-wrap items-baseline justify-between gap-3">
                       <div>
                         <div className="text-xs font-semibold uppercase tracking-[0.2em] text-smoke-400">{tag}</div>
