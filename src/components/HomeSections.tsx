@@ -1279,7 +1279,7 @@ function PedagogySelector() {
           <Link
             key={p.tag}
             to={p.route}
-            className="group relative flex min-h-[520px] flex-col justify-between overflow-hidden p-7 transition-transform md:min-h-[620px] md:p-10"
+            className="group relative flex h-[620px] flex-col justify-between overflow-hidden p-7 transition-transform md:h-[720px] md:p-10"
             style={{ background: p.bg }}
           >
             {/* Top row */}
