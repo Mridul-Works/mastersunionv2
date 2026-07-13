@@ -582,20 +582,20 @@ function AdmissionsConnect() {
                   {s.title}
                 </h3>
 
-                <p className="mt-4 text-[13.5px] leading-[1.55] text-black/70">
+                <p className="mt-3 text-[12.5px] leading-[1.55] text-black/70">
                   {s.description}
                 </p>
-                <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.22em] text-black/50">
+                <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.22em] text-black/50">
                   {s.spotsLeft} spots left
                 </p>
               </div>
 
               {/* Bottom: CTA + arrow */}
-              <div className="mt-6 flex items-end justify-between gap-4">
+              <div className="mt-5 flex items-end justify-between gap-4">
                 <button
                   type="button"
                   onClick={() => openFor(s.id)}
-                  className="inline-flex items-center gap-2 border-b border-black/40 pb-1 font-mono text-[12px] font-semibold uppercase tracking-[0.22em] text-black transition-transform hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 border-b border-black/40 pb-1 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-black transition-transform hover:-translate-y-0.5"
                 >
                   Register for session
                 </button>
@@ -603,11 +603,12 @@ function AdmissionsConnect() {
                   type="button"
                   onClick={() => openFor(s.id)}
                   aria-label="Register"
-                  className="flex size-9 items-center justify-center rounded-none border border-black/20 text-black transition-colors hover:bg-black hover:text-white"
+                  className="flex size-8 items-center justify-center rounded-none border border-black/20 text-black transition-colors hover:bg-black hover:text-white"
                 >
                   <ArrowRight className="size-4" />
                 </button>
               </div>
+
               </div>
             </article>
           ))}
