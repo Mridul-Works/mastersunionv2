@@ -170,6 +170,10 @@ function HowWeTeachPage() {
       {/* IMMERSIVE JOURNEY */}
       <JourneyScroll />
 
+      {/* FOUNDER QUOTE — dark, scroll text reveal */}
+      <FounderQuote />
+
+
       {/* REPORT CARD */}
       <section id="report" className="border-t border-black/10 bg-black text-white">
         <div className="mx-auto max-w-6xl px-5 py-24 md:px-10 md:py-32">
