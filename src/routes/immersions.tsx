@@ -542,9 +542,8 @@ function ImmersionsPage() {
                   <p className="mt-2 text-[13px] leading-[1.55] text-black/65">{s.body}</p>
                 </div>
                 <div className="flex items-center justify-between border-t border-black/10 pt-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-teal">
-                  <span className="truncate">
-                    {s.href.replace(/^https?:\/\//, "").replace(/\/$/, "")}
-                  </span>
+                  <span className="truncate">Know more</span>
+
                   <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </div>
               </a>
