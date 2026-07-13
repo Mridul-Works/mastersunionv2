@@ -350,29 +350,47 @@ function Stage({
   last?: boolean;
   children: React.ReactNode;
 }) {
-  // width of a stop
   const w = end - start;
   const enterEnd = start + w * 0.35;
   const holdEnd = start + w * 0.7;
 
-  // Scale: zoom IN from small (0.35) to 1 during enter,
-  // hold at 1, then zoom PAST (scale up to 2.2) and fade out.
-  const scale = useTransform(
-    progress,
-    [start - w * 0.2, enterEnd, holdEnd, end + w * 0.1],
-    [first ? 1 : 0.35, 1, 1, last ? 1 : 2.2]
-  );
-  const opacity = useTransform(
-    progress,
-    [start - w * 0.25, start, enterEnd, holdEnd, end],
-    [first ? 1 : 0, first ? 1 : 0.15, 1, 1, last ? 1 : 0]
-  );
-  const blur = useTransform(opacity, (o) => `blur(${(1 - o) * 8}px)`);
+  const lerp = (a: number, b: number, t: number) => a + (b - a) * Math.min(1, Math.max(0, t));
+
+  const scale = useTransform(progress, (v) => {
+    if (v <= enterEnd) {
+      const from = first ? 1 : 0.35;
+      const t = (v - (start - w * 0.2)) / (enterEnd - (start - w * 0.2));
+      return lerp(from, 1, t);
+    }
+    if (v <= holdEnd) return 1;
+    const to = last ? 1 : 2.2;
+    const t = (v - holdEnd) / (end + w * 0.1 - holdEnd);
+    return lerp(1, to, t);
+  });
+
+  const opacity = useTransform(progress, (v) => {
+    if (first && v < start) return 1;
+    if (last && v > end) return 1;
+    if (v < start) {
+      const t = (v - (start - w * 0.25)) / (w * 0.25);
+      return lerp(0, 0.15, t);
+    }
+    if (v < enterEnd) {
+      const t = (v - start) / (enterEnd - start);
+      return lerp(0.15, 1, t);
+    }
+    if (v < holdEnd) return 1;
+    if (v < end) {
+      const t = (v - holdEnd) / (end - holdEnd);
+      return lerp(1, 0, t);
+    }
+    return 0;
+  });
 
   return (
     <motion.div
       className="absolute inset-0 flex items-center justify-center will-change-transform"
-      style={{ scale, opacity, filter: blur }}
+      style={{ scale, opacity }}
     >
       {children}
     </motion.div>
