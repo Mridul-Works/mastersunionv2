@@ -20,6 +20,7 @@ import {
 
   GraduationCap,
   Store,
+  Building2,
   Play,
 } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
