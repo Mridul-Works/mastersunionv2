@@ -750,7 +750,7 @@ const OUT_LANES: Lane[] = [
 
 const TONE_ACCENT: Record<string, string> = {
   in: "bg-smoke-400",
-  d2c: "bg-[#0F8F6E]",
+  d2c: "bg-teal",
   creator: "bg-[#E38330]",
   imm: "bg-teal",
   capstone: "bg-smoke-400",
@@ -758,7 +758,7 @@ const TONE_ACCENT: Record<string, string> = {
 
 const TONE_INK: Record<string, string> = {
   in: "text-foreground",
-  d2c: "text-[#0F8F6E]",
+  d2c: "text-teal",
   creator: "text-[#E38330]",
   imm: "text-teal",
   capstone: "text-foreground",
@@ -867,7 +867,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
         {/* Legend */}
         <div className="mb-4 flex flex-wrap items-center gap-x-5 gap-y-1 text-[11px] uppercase tracking-[0.16em] text-foreground/50">
           <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-smoke-400" /> InClass</span>
-          <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-[#0F8F6E]" /> D2C</span>
+          <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-teal" /> D2C</span>
           <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-[#E38330]" /> Creator</span>
           <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-teal" /> Immersion</span>
         </div>
@@ -1133,14 +1133,14 @@ function AlumniShowcase() {
   const tertiary = filtered[tertiaryIdx];
 
   const CARD_COLORS = [
-    { bg: "#1F6B4A", fg: "#FFFFFF", swatch: "#F2C9D1" },
+    { bg: "#5C2E1F", fg: "#FFFFFF", swatch: "#F2C9D1" },
     { bg: "#C8397A", fg: "#FFFFFF", swatch: "#F4D8A8" },
     { bg: "#4A2A8A", fg: "#FFFFFF", swatch: "#E9C4A8" },
     { bg: "#D9612C", fg: "#FFFFFF", swatch: "#F3E3C7" },
     { bg: "#0F5559", fg: "#FFFFFF", swatch: "#E7C7A2" },
     { bg: "#1B2A6B", fg: "#FFFFFF", swatch: "#F0C9D7" },
     { bg: "#7A1F3D", fg: "#FFFFFF", swatch: "#EED3B6" },
-    { bg: "#2E7D32", fg: "#FFFFFF", swatch: "#F1CFC4" },
+    { bg: "#3A2E7D", fg: "#FFFFFF", swatch: "#F1CFC4" },
   ];
 
   return (
