@@ -798,15 +798,16 @@ function Programs() {
             </p>
           </div>
 
-          <div className="relative">
+          <div className="relative -mx-6 md:-mx-10">
             <div
               ref={admissionsScrollRef}
-              className="flex gap-4 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden snap-x snap-mandatory"
+              className="scrollbar-hover-only flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-6 md:gap-6 md:px-10"
             >
               {PROGRAMS.map((p) => (
                 <article
                   key={p.title}
-                  className="group w-[82%] sm:w-[56%] md:w-[calc(24%-12px)] flex-shrink-0 snap-start bg-[#F5F3EE] p-5 transition-all duration-300 hover:-translate-y-1 pastel-fill"
+                  className="group flex-shrink-0 snap-start bg-[#F5F3EE] p-5 transition-all duration-300 hover:-translate-y-1 pastel-fill"
+                  style={{ width: "min(82vw, 320px)" }}
                 >
                   <div className="overflow-hidden">
                     <ImagePlaceholder
