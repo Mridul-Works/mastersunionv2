@@ -171,27 +171,9 @@ function HowWeTeachPage() {
       {/* FOUNDER QUOTE — dark, scroll text reveal */}
       <FounderQuote />
 
-      {/* PHILOSOPHY */}
-      <section id="philosophy" className="border-t border-black/10 bg-neutral-50">
-        <div className="mx-auto max-w-5xl px-5 py-24 md:px-10 md:py-32">
-          <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
-            Philosophy
-          </div>
-          <blockquote className="mt-8 text-balance text-[clamp(1.6rem,3.6vw,3rem)] italic leading-[1.15] tracking-[-0.01em]">
-            &ldquo;Traditional B-schools grade you on how well you understood the case study. We grade
-            you on whether you became one.&rdquo;
-          </blockquote>
+      {/* IMMERSIVE JOURNEY — Philosophy first, then semesters */}
+      <JourneyScroll />
 
-          <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
-            {PILLARS.map((p) => (
-              <div key={p.title} className="border-t border-black pt-6">
-                <h3 className="text-[clamp(1.1rem,1.5vw,1.3rem)] leading-tight">{p.title}</h3>
-                <p className="mt-3 text-[15px] leading-[1.65] text-black/75">{p.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* REPORT CARD */}
       <section id="report" className="border-t border-black/10 bg-black text-white">
@@ -276,12 +258,13 @@ function JourneyScroll() {
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-neutral-100">
         {/* progress bar */}
-        <ProgressRail progress={scrollYProgress} labels={["Journey", "Sem 1", "Sem 2", "Sem 3"]} />
+        <ProgressRail progress={scrollYProgress} labels={["Philosophy", "Sem 1", "Sem 2", "Sem 3"]} />
 
-        {/* Stop 0 — overview */}
+        {/* Stop 0 — philosophy */}
         <Stage progress={scrollYProgress} start={0} end={slot} first>
-          <OverviewStage />
+          <PhilosophyStage />
         </Stage>
+
 
         {/* Stops 1..3 — semesters */}
         {SEMESTERS.map((sem, i) => (
@@ -384,51 +367,44 @@ function ProgressRail({
   );
 }
 
-function OverviewStage() {
+function PhilosophyStage() {
   return (
     <div className="mx-auto flex h-full max-w-5xl flex-col items-center justify-center px-6 text-center">
       <div
         className="text-[11px] uppercase tracking-[0.35em] text-black/55"
         style={{ fontFamily: MONO }}
       >
-        The journey
+        Philosophy
       </div>
-      <h2 className="mt-6 text-balance text-[clamp(2.2rem,6vw,5rem)] font-medium leading-[0.95] tracking-[-0.03em]">
-        Three semesters.<br />One venture built.
-      </h2>
-      <p className="mt-8 max-w-[52ch] text-[clamp(1rem,1.5vw,1.25rem)] leading-[1.55] text-black/65">
-        Keep scrolling — you&apos;ll zoom into each semester in order. Product first. Audience next.
-        Capital last.
-      </p>
+      <blockquote className="mt-6 max-w-[28ch] text-balance text-[clamp(1.4rem,3.2vw,2.6rem)] italic leading-[1.15] tracking-[-0.01em]">
+        &ldquo;Traditional B-schools grade you on how well you understood the case study. We grade
+        you on whether you became one.&rdquo;
+      </blockquote>
 
-      <div className="mt-14 grid w-full grid-cols-3 gap-3 md:gap-6">
-        {SEMESTERS.map((s, i) => (
+      <div className="mt-12 grid w-full grid-cols-1 gap-4 text-left md:grid-cols-3 md:gap-6">
+        {PILLARS.map((p) => (
           <div
-            key={s.id}
-            className="border border-black/15 bg-white/70 p-4 text-left backdrop-blur md:p-6"
+            key={p.title}
+            className="border border-black/15 bg-white/75 p-5 backdrop-blur md:p-6"
           >
-            <div
-              className="text-[10px] uppercase tracking-[0.3em] text-black/50"
-              style={{ fontFamily: MONO }}
-            >
-              0{i + 1}
-            </div>
-            <div className="mt-3 text-[clamp(0.95rem,1.3vw,1.15rem)] leading-tight">
-              {s.title}
-            </div>
+            <h3 className="text-[clamp(1rem,1.35vw,1.2rem)] leading-tight">{p.title}</h3>
+            <p className="mt-3 text-[13.5px] leading-[1.6] text-black/75 md:text-[14.5px]">
+              {p.body}
+            </p>
           </div>
         ))}
       </div>
 
       <div
-        className="mt-14 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.35em] text-black/50"
+        className="mt-12 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.35em] text-black/50"
         style={{ fontFamily: MONO }}
       >
-        <span>↓</span> Scroll to zoom in
+        <span>↓</span> Scroll to zoom into each semester
       </div>
     </div>
   );
 }
+
 
 function SemesterStage({ sem, index }: { sem: Semester; index: number }) {
   const dark = sem.accent === "#111111";
