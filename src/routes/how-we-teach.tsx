@@ -557,9 +557,15 @@ function FounderQuote() {
   return (
     <section
       ref={ref}
-      className="relative border-t border-white/10 bg-black text-white"
-      style={{ fontFamily: INTER, height: "300vh" }}
+      className="relative border-t border-black/10 text-white"
+      style={{
+        fontFamily: INTER,
+        height: "300vh",
+        background:
+          "radial-gradient(130% 100% at 25% 25%, #C7EBD8 0%, #7EC9A7 45%, #2F8E68 100%)",
+      }}
     >
+
       <div className="sticky top-0 flex min-h-screen items-center">
         <div className="mx-auto w-full max-w-5xl px-5 py-20 md:px-10 md:py-24">
           <div
