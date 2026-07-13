@@ -84,6 +84,83 @@ const HERO_STATS = [
   { k: "Real", v: "Companies, not campuses" },
 ];
 
+const GLOBAL_PARTNERS = [
+  { name: "Nissan", src: nissanLogo.url },
+  { name: "Rakuten", src: rakutenLogo.url },
+  { name: "Porsche", src: porscheLogo.url },
+  { name: "Daikin", src: daikinLogo.url },
+  { name: "Heineken", src: heinekenLogo.url },
+  { name: "Philips", src: philipsLogo.url },
+  { name: "Rabobank", src: rabobankLogo.url },
+  { name: "Agoda", src: agodaLogo.url },
+  { name: "Universal Studios", src: universalStudiosLogo.url },
+  { name: "Disneyland", src: disneylandLogo.url },
+  { name: "Station F", src: stationFLogo.url },
+  { name: "United Nations", src: unitedNationsLogo.url },
+];
+
+const BHARAT_PARTNERS = [
+  { name: "Adani Ports", src: adaniPortsLogo.url },
+  { name: "ITC", src: itcLogo.url },
+  { name: "Amul", src: amulLogo.url },
+  { name: "Infosys", src: infosysLogo.url },
+  { name: "Godrej Industries", src: godrejLogo.url },
+  { name: "Lenskart", src: lenskartLogo.url },
+  { name: "Zepto", src: zeptoLogo.url },
+  { name: "CRED", src: credLogo.url },
+  { name: "Zerodha", src: zerodhaLogo.url },
+  { name: "NSE", src: nseLogo.url },
+  { name: "Reserve Bank of India", src: rbiLogo.url },
+  { name: "Dharma Productions", src: dharmaProductionsLogo.url },
+];
+
+const CAMPUS_PARTNERS = [
+  { name: "SDA Bocconi", src: bocconiLogo.url },
+  { name: "Imperial College London", src: imperialLogo.url },
+  { name: "ESCP Business School", src: escpLogo.url },
+  { name: "Warwick Business School", src: wbsLogo.url },
+  { name: "Nottingham Business School", src: nbsLogo.url },
+  { name: "Ivey Business School", src: iveyLogo.url },
+  { name: "Foster School of Business", src: fosterLogo.url },
+  { name: "Babson College", src: babsonLogo.url },
+  { name: "University of California", src: ucLogo.url },
+  { name: "Singapore Management University", src: smuLogo.url },
+  { name: "CUHK Business School", src: cuhkLogo.url },
+  { name: "Illinois Tech", src: illinoisLogo.url },
+];
+
+function LogoStrip({
+  items,
+  label,
+}: {
+  items: { name: string; src: string }[];
+  label: string;
+}) {
+  return (
+    <div className="mt-6 border-t border-black/10 pt-5">
+      <div className="text-[10.5px] font-semibold uppercase tracking-[0.24em] text-black/50">
+        {label}
+      </div>
+      <div className="mt-3 grid grid-cols-3 gap-px overflow-hidden rounded-sm bg-black/10 sm:grid-cols-4 md:grid-cols-6">
+        {items.map((l) => (
+          <div
+            key={l.name}
+            title={l.name}
+            className="flex h-16 items-center justify-center bg-white px-3 opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+          >
+            <img
+              src={l.src}
+              alt={l.name}
+              className="max-h-7 w-auto max-w-[85%] object-contain"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 type Format = {
   n: string;
   tag: string;
@@ -95,6 +172,7 @@ type Format = {
   icon: React.ComponentType<{ className?: string }>;
   gradient: string;
 };
+
 
 const FORMATS: Format[] = [
   {
@@ -153,6 +231,7 @@ const FORMATS: Format[] = [
           Masters' Union for two consecutive years. Harvard Business School India immersion
           students have visited campus.
         </p>
+        <LogoStrip items={GLOBAL_PARTNERS} label="Companies visited on global immersions" />
       </div>
     ),
     footnote: "Elective · Academic credits awarded · GIP Reports available for Japan, Europe, Singapore, UAE.",
@@ -181,6 +260,7 @@ const FORMATS: Format[] = [
           is replaced entirely. Every lesson happens inside a real business, with real operators,
           in real time.
         </p>
+        <LogoStrip items={BHARAT_PARTNERS} label="Bharat on-ground partners" />
       </>
     ),
     footnote: "Elective · Replaces classroom instruction for the full term · Academic credits awarded.",
@@ -219,40 +299,7 @@ const FORMATS: Format[] = [
           <strong className="font-semibold text-black/85">SDA Bocconi</strong> — Europe's #1
           business school by multiple rankings. Milan. Strategy, luxury, and European business.
         </p>
-        <div className="pt-4">
-          <div className="text-[10.5px] font-semibold uppercase tracking-[0.22em] text-black/50">
-            Partner campuses
-          </div>
-          <div className="mt-3 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-6">
-            {[
-              { name: "SDA Bocconi", src: bocconiLogo.url },
-              { name: "Imperial College London", src: imperialLogo.url },
-              { name: "ESCP Business School", src: escpLogo.url },
-              { name: "Warwick Business School", src: wbsLogo.url },
-              { name: "Nottingham Business School", src: nbsLogo.url },
-              { name: "Ivey Business School", src: iveyLogo.url },
-              { name: "Foster School of Business", src: fosterLogo.url },
-              { name: "Babson College", src: babsonLogo.url },
-              { name: "University of California", src: ucLogo.url },
-              { name: "Singapore Management University", src: smuLogo.url },
-              { name: "CUHK Business School", src: cuhkLogo.url },
-              { name: "Illinois Tech", src: illinoisLogo.url },
-            ].map((l) => (
-              <div
-                key={l.name}
-                title={l.name}
-                className="flex h-20 items-center justify-center bg-white px-3 opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
-              >
-                <img
-                  src={l.src}
-                  alt={l.name}
-                  className="max-h-8 w-auto max-w-[85%] object-contain"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+        <LogoStrip items={CAMPUS_PARTNERS} label="Partner campuses" />
       </div>
     ),
     footnote: "Elective · Students self-apply to partner programmes · MU provides guidance and support.",
@@ -286,35 +333,6 @@ const FORMATS: Format[] = [
   },
 ];
 
-const GLOBAL_PARTNERS = [
-  { name: "Nissan", src: nissanLogo.url },
-  { name: "Rakuten", src: rakutenLogo.url },
-  { name: "Porsche", src: porscheLogo.url },
-  { name: "Daikin", src: daikinLogo.url },
-  { name: "Heineken", src: heinekenLogo.url },
-  { name: "Philips", src: philipsLogo.url },
-  { name: "Rabobank", src: rabobankLogo.url },
-  { name: "Agoda", src: agodaLogo.url },
-  { name: "Universal Studios", src: universalStudiosLogo.url },
-  { name: "Disneyland", src: disneylandLogo.url },
-  { name: "Station F", src: stationFLogo.url },
-  { name: "United Nations", src: unitedNationsLogo.url },
-];
-
-const BHARAT_PARTNERS = [
-  { name: "Adani Ports", src: adaniPortsLogo.url },
-  { name: "ITC", src: itcLogo.url },
-  { name: "Amul", src: amulLogo.url },
-  { name: "Infosys", src: infosysLogo.url },
-  { name: "Godrej Industries", src: godrejLogo.url },
-  { name: "Lenskart", src: lenskartLogo.url },
-  { name: "Zepto", src: zeptoLogo.url },
-  { name: "CRED", src: credLogo.url },
-  { name: "Zerodha", src: zerodhaLogo.url },
-  { name: "NSE", src: nseLogo.url },
-  { name: "Reserve Bank of India", src: rbiLogo.url },
-  { name: "Dharma Productions", src: dharmaProductionsLogo.url },
-];
 
 
 
@@ -489,54 +507,6 @@ function ImmersionsPage() {
         </div>
       </section>
 
-      {/* PARTNER LOGOS */}
-      <section className="mx-auto max-w-6xl px-5 pt-20 md:px-10 md:pt-28">
-        <div className="grid gap-10 md:gap-14">
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-[0.22em] text-teal">
-              Global immersion companies
-            </div>
-            <div className="mt-4 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-6">
-              {GLOBAL_PARTNERS.map((l) => (
-                <div
-                  key={l.name}
-                  title={l.name}
-                  className="flex h-20 items-center justify-center bg-white px-3 opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
-                >
-                  <img
-                    src={l.src}
-                    alt={l.name}
-                    className="max-h-8 w-auto max-w-[85%] object-contain"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-[0.22em] text-teal">
-              Bharat on-ground partners
-            </div>
-            <div className="mt-4 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-6">
-              {BHARAT_PARTNERS.map((l) => (
-                <div
-                  key={l.name}
-                  title={l.name}
-                  className="flex h-20 items-center justify-center bg-white px-3 opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
-                >
-                  <img
-                    src={l.src}
-                    alt={l.name}
-                    className="max-h-8 w-auto max-w-[85%] object-contain"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-      </section>
 
       {/* DID YOU KNOW — standalone programmes */}
       <section className="mx-auto max-w-6xl px-5 pt-20 md:px-10 md:pt-28">
