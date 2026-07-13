@@ -171,6 +171,10 @@ function HowWeTeachPage() {
       {/* FOUNDER QUOTE — dark, scroll text reveal */}
       <FounderQuote />
 
+      {/* IMMERSIVE JOURNEY — zoom cards after the letter */}
+      <JourneyScroll />
+
+
 
       {/* REPORT CARD */}
       <section id="report" className="border-t border-black/10 bg-black text-white">
