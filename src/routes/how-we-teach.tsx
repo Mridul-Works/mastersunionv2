@@ -556,122 +556,198 @@ function FounderQuote() {
         fontFamily: INTER,
         height: "300vh",
         background:
-          "radial-gradient(120% 90% at 80% 10%, #1a2f24 0%, #0b1512 45%, #050807 100%)",
+          "radial-gradient(140% 100% at 15% 0%, #12241d 0%, #0a1411 50%, #05090800 100%), #040807",
       }}
     >
+      {/* Newsprint grain + vignette */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.35] mix-blend-overlay"
+        style={{
+          backgroundImage:
+            "radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)",
+          backgroundSize: "3px 3px",
+        }}
+      />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(60% 50% at 20% 30%, rgba(126,201,167,0.18) 0%, transparent 70%), radial-gradient(50% 40% at 90% 80%, rgba(47,142,104,0.15) 0%, transparent 70%)",
+            "radial-gradient(55% 45% at 12% 25%, rgba(126,201,167,0.14) 0%, transparent 70%)",
         }}
       />
 
-      <div className="sticky top-0 flex min-h-screen items-center">
-        <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-10 px-5 py-20 md:grid-cols-[auto,1fr] md:gap-14 md:px-10 md:py-24">
-          <div className="flex justify-center md:justify-start">
-            <div className="relative">
-              <div
-                aria-hidden
-                className="absolute -inset-6 rounded-[28px] blur-3xl"
-                style={{
-                  background:
-                    "radial-gradient(circle at 30% 30%, rgba(126,201,167,0.28) 0%, transparent 70%)",
-                }}
-              />
-              <div
-                className="relative overflow-hidden rounded-2xl border border-white/10"
-                style={{
-                  width: "clamp(220px, 28vw, 340px)",
-                  aspectRatio: "3 / 4",
-                  boxShadow: "0 40px 100px -30px rgba(0,0,0,0.75)",
-                }}
-              >
-                <img
-                  src={prathamPortrait.url}
-                  alt="Pratham Mittal, Founder, Masters' Union"
-                  className="h-full w-full object-cover"
-                  style={{ objectPosition: "22% 25%" }}
-                />
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(180deg, transparent 55%, rgba(5,8,7,0.55) 100%)",
-                  }}
-                />
-              </div>
-            </div>
+      <div className="sticky top-0 flex min-h-screen items-center overflow-hidden">
+        <div className="relative mx-auto w-full max-w-[1240px] px-6 py-16 md:px-12 md:py-20">
+          {/* Top editorial rail */}
+          <div
+            className="mb-10 flex items-center justify-between border-b border-white/10 pb-4 text-[10px] uppercase tracking-[0.32em] text-white/45 md:mb-14"
+            style={{ fontFamily: MONO }}
+          >
+            <span className="flex items-center gap-3">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#7EC9A7]" />
+              Vol. 01 · Founder&apos;s Letter
+            </span>
+            <span className="hidden md:inline">Masters&apos; Union · New Delhi</span>
+            <span>№ 001</span>
           </div>
 
+          <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-12 md:gap-14">
+            {/* Portrait column */}
+            <div className="md:col-span-5">
+              <div className="relative">
+                <div
+                  aria-hidden
+                  className="absolute -inset-8 blur-3xl"
+                  style={{
+                    background:
+                      "radial-gradient(circle at 30% 30%, rgba(126,201,167,0.22) 0%, transparent 70%)",
+                  }}
+                />
+                <div
+                  className="relative overflow-hidden"
+                  style={{
+                    aspectRatio: "4 / 5",
+                    borderRadius: "2px",
+                    boxShadow:
+                      "0 50px 120px -30px rgba(0,0,0,0.85), inset 0 0 0 1px rgba(255,255,255,0.06)",
+                  }}
+                >
+                  <img
+                    src={prathamPortrait.url}
+                    alt="Pratham Mittal, Founder, Masters' Union"
+                    className="h-full w-full object-cover"
+                    style={{
+                      objectPosition: "22% 25%",
+                      filter: "grayscale(0.35) contrast(1.05) saturate(0.85)",
+                    }}
+                  />
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, rgba(5,8,7,0.05) 0%, transparent 30%, transparent 60%, rgba(5,8,7,0.75) 100%), linear-gradient(90deg, rgba(126,201,167,0.08) 0%, transparent 40%)",
+                    }}
+                  />
+                  {/* Caption bar */}
+                  <div
+                    className="absolute inset-x-0 bottom-0 flex items-end justify-between px-5 pb-4 pt-16 text-[10px] uppercase tracking-[0.28em] text-white/75"
+                    style={{ fontFamily: MONO }}
+                  >
+                    <span>Pratham Mittal</span>
+                    <span className="text-[#7EC9A7]/80">Founder</span>
+                  </div>
+                </div>
 
-          <div>
-            <div
-              className="flex items-center gap-3 text-[11px] uppercase tracking-[0.3em] text-[#7EC9A7]"
-              style={{ fontFamily: MONO }}
-            >
-              <span className="h-px w-8 bg-[#7EC9A7]/60" />
-              A note from the founder
+                {/* Side meta */}
+                <div
+                  className="mt-6 grid grid-cols-2 gap-4 text-[10px] uppercase tracking-[0.28em] text-white/40"
+                  style={{ fontFamily: MONO }}
+                >
+                  <div>
+                    <div className="text-white/30">Filed</div>
+                    <div className="mt-1 text-white/70">Convocation, 2024</div>
+                  </div>
+                  <div>
+                    <div className="text-white/30">On record</div>
+                    <div className="mt-1 text-white/70">The one rule</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div
-              aria-hidden
-              className="mt-6 text-6xl leading-none text-white/15"
-              style={{ fontFamily: "Georgia, serif" }}
-            >
-              &ldquo;
-            </div>
-
-            <div className="mt-2 space-y-5 text-balance text-[clamp(1.1rem,2vw,1.75rem)] font-light leading-[1.45] tracking-[-0.01em]">
-              {FOUNDER_QUOTE_PARAGRAPHS.map((p, pi) => {
-                const before = FOUNDER_QUOTE_PARAGRAPHS.slice(0, pi).reduce(
-                  (acc, s) => acc + s.split(" ").length,
-                  0,
-                );
-                const pWords = p.split(" ");
-                // Section is 300vh with a sticky panel: scrollYProgress goes 0→1
-                // but the panel is only pinned from ~0 to ~0.66. Keep the reveal
-                // inside that window so words don't finish after the panel unpins.
-                const REVEAL_START = 0.08;
-                const REVEAL_END = 0.62;
-                const span = REVEAL_END - REVEAL_START;
-                const wordStep = span / Math.max(1, totalWords - 1);
-                // Each word fades over ~4 word-slots so neighbouring words overlap smoothly.
-                const wordFade = wordStep * 4;
-                return (
-                  <p key={pi}>
-                    {pWords.map((w, wi) => {
-                      const idx = before + wi;
-                      const start = REVEAL_START + idx * wordStep;
-                      const end = Math.min(REVEAL_END, start + wordFade);
-                      return (
-                        <RevealWord
-                          key={`${pi}-${wi}`}
-                          progress={scrollYProgress}
-                          start={start}
-                          end={end}
-                        >
-                          {w}
-                        </RevealWord>
-                      );
-                    })}
-                  </p>
-                );
-              })}
-            </div>
-
-            <div className="mt-10 flex items-center gap-4">
-              <span className="h-px w-10 bg-white/30" />
+            {/* Quote column */}
+            <div className="relative md:col-span-7">
               <div
-                className="text-[11px] uppercase tracking-[0.28em] text-white/70"
-                style={{ fontFamily: MONO }}
+                aria-hidden
+                className="absolute -left-2 -top-10 select-none leading-none text-white/[0.06] md:-left-4 md:-top-16"
+                style={{
+                  fontFamily: "Georgia, serif",
+                  fontSize: "clamp(9rem, 18vw, 18rem)",
+                  fontWeight: 400,
+                }}
               >
-                Pratham Mittal
-                <span className="ml-2 text-white/40">
-                  Founder, Masters&apos; Union
-                </span>
+                &ldquo;
+              </div>
+
+              <div className="relative">
+                <div
+                  className="flex items-center gap-3 text-[10px] uppercase tracking-[0.32em] text-[#7EC9A7]"
+                  style={{ fontFamily: MONO }}
+                >
+                  <span className="h-px w-10 bg-[#7EC9A7]/60" />
+                  A note from the founder
+                </div>
+
+                <div
+                  className="mt-8 space-y-6 text-balance text-[clamp(1.15rem,1.9vw,1.7rem)] font-light leading-[1.5] tracking-[-0.01em] text-white/90"
+                  style={{ fontFamily: "Georgia, serif" }}
+                >
+                  {FOUNDER_QUOTE_PARAGRAPHS.map((p, pi) => {
+                    const before = FOUNDER_QUOTE_PARAGRAPHS.slice(0, pi).reduce(
+                      (acc, s) => acc + s.split(" ").length,
+                      0,
+                    );
+                    const pWords = p.split(" ");
+                    const REVEAL_START = 0.08;
+                    const REVEAL_END = 0.62;
+                    const span = REVEAL_END - REVEAL_START;
+                    const wordStep = span / Math.max(1, totalWords - 1);
+                    const wordFade = wordStep * 4;
+                    const isOpener = pi === 0;
+                    return (
+                      <p
+                        key={pi}
+                        className={isOpener ? "text-[clamp(1.5rem,2.6vw,2.4rem)] leading-[1.25] text-white" : ""}
+                      >
+                        {pWords.map((w, wi) => {
+                          const idx = before + wi;
+                          const start = REVEAL_START + idx * wordStep;
+                          const end = Math.min(REVEAL_END, start + wordFade);
+                          return (
+                            <RevealWord
+                              key={`${pi}-${wi}`}
+                              progress={scrollYProgress}
+                              start={start}
+                              end={end}
+                            >
+                              {w}
+                            </RevealWord>
+                          );
+                        })}
+                      </p>
+                    );
+                  })}
+                </div>
+
+                {/* Signature block */}
+                <div className="mt-12 flex flex-wrap items-end justify-between gap-6 border-t border-white/10 pt-6">
+                  <div>
+                    <div
+                      className="text-[26px] tracking-tight text-white"
+                      style={{
+                        fontFamily: "Georgia, serif",
+                        fontStyle: "italic",
+                      }}
+                    >
+                      Pratham Mittal
+                    </div>
+                    <div
+                      className="mt-1 text-[10px] uppercase tracking-[0.32em] text-white/50"
+                      style={{ fontFamily: MONO }}
+                    >
+                      Founder · Masters&apos; Union
+                    </div>
+                  </div>
+                  <div
+                    className="text-[10px] uppercase tracking-[0.32em] text-white/35"
+                    style={{ fontFamily: MONO }}
+                  >
+                    <span className="text-[#7EC9A7]/70">///</span> End of note
+                  </div>
+                </div>
               </div>
             </div>
           </div>
