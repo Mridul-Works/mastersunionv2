@@ -364,35 +364,6 @@ const FORMATS: Format[] = [
   },
 ];
 
-const GLOBAL_PARTNERS = [
-  { name: "Nissan", src: nissanLogo.url },
-  { name: "Rakuten", src: rakutenLogo.url },
-  { name: "Porsche", src: porscheLogo.url },
-  { name: "Daikin", src: daikinLogo.url },
-  { name: "Heineken", src: heinekenLogo.url },
-  { name: "Philips", src: philipsLogo.url },
-  { name: "Rabobank", src: rabobankLogo.url },
-  { name: "Agoda", src: agodaLogo.url },
-  { name: "Universal Studios", src: universalStudiosLogo.url },
-  { name: "Disneyland", src: disneylandLogo.url },
-  { name: "Station F", src: stationFLogo.url },
-  { name: "United Nations", src: unitedNationsLogo.url },
-];
-
-const BHARAT_PARTNERS = [
-  { name: "Adani Ports", src: adaniPortsLogo.url },
-  { name: "ITC", src: itcLogo.url },
-  { name: "Amul", src: amulLogo.url },
-  { name: "Infosys", src: infosysLogo.url },
-  { name: "Godrej Industries", src: godrejLogo.url },
-  { name: "Lenskart", src: lenskartLogo.url },
-  { name: "Zepto", src: zeptoLogo.url },
-  { name: "CRED", src: credLogo.url },
-  { name: "Zerodha", src: zerodhaLogo.url },
-  { name: "NSE", src: nseLogo.url },
-  { name: "Reserve Bank of India", src: rbiLogo.url },
-  { name: "Dharma Productions", src: dharmaProductionsLogo.url },
-];
 
 
 
