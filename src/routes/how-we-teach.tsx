@@ -142,13 +142,30 @@ export const Route = createFileRoute("/how-we-teach")({
 });
 
 function HowWeTeachPage() {
+  const [showNav, setShowNav] = useState(false);
+  const navSentinelRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = navSentinelRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        // Show nav once the sentinel (placed right after semester cards) enters view
+        setShowNav(entry.isIntersecting || entry.boundingClientRect.top < 0);
+      },
+      { rootMargin: "0px 0px -80% 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <main
       id="top"
       className="min-h-screen bg-white pb-28 text-black md:pb-32"
       style={{ fontFamily: INTER }}
     >
-      <SectionNav items={PAGE_NAV} applyHref="#apply" />
+      {showNav && <SectionNav items={PAGE_NAV} applyHref="#apply" />}
 
       {/* Top marker */}
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">
@@ -175,6 +192,8 @@ function HowWeTeachPage() {
       {/* IMMERSIVE JOURNEY — Philosophy first, then semesters */}
       <JourneyScroll />
 
+      {/* Sentinel — nav appears after this point */}
+      <div ref={navSentinelRef} aria-hidden />
 
       {/* REPORT CARD */}
       <section id="report" className="border-t border-black/10 bg-black text-white">
