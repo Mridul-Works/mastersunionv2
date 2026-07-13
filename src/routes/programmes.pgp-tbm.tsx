@@ -953,13 +953,13 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
 
 
         {/* Term detail strip */}
-        <div className="mt-5 grid gap-0 border border-foreground/15 md:grid-cols-[220px_1fr]">
-          <div className="border-b border-foreground/10 bg-smoke-400 p-5 text-white md:border-b-0 md:border-r">
-            <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">{active ? "In this term" : "Preview a term"}</div>
-            <div className="mt-2 font-display text-3xl leading-none tracking-tight">
+        <div className="mt-5 grid gap-0 border border-teal/40 md:grid-cols-[220px_1fr]">
+          <div className="border-b border-teal/25 bg-white p-5 text-foreground md:border-b-0 md:border-r">
+            <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-teal/70">{active ? "In this term" : "Preview a term"}</div>
+            <div className="mt-2 font-display text-3xl leading-none tracking-tight text-teal">
               {active ? `Term ${active}` : "—"}
             </div>
-            <div className="mt-2 text-[11px] uppercase tracking-[0.16em] text-white/55">
+            <div className="mt-2 text-[11px] uppercase tracking-[0.16em] text-foreground/55">
               {active ? TERM_META[active - 1].window : "Hover a column above"}
             </div>
           </div>
