@@ -35,7 +35,7 @@ import {
   Clock,
   MessageCircle,
   BookOpen,
-
+  Globe,
 } from "lucide-react";
 
 
