@@ -173,14 +173,37 @@ export function MobileBottomBar() {
           <button
             type="button"
             onClick={() => setSageOpen(true)}
-            aria-label="Open SAGE"
-            className="relative -my-3 mx-1 grid size-14 shrink-0 place-items-center rounded-full bg-black text-white shadow-[0_10px_28px_-8px_rgba(0,0,0,0.55)] transition hover:scale-105 active:scale-95"
+            aria-label="Ask SAGE"
+            className="group relative -my-3 mx-1 grid size-16 shrink-0 place-items-center rounded-full transition hover:scale-105 active:scale-95"
           >
-            <Sparkles className="size-5" strokeWidth={1.8} />
+            {/* Colorful conic gradient ring */}
+            <span
+              aria-hidden
+              className="absolute inset-0 rounded-full opacity-90 blur-[2px] animate-[spin_6s_linear_infinite]"
+              style={{
+                background:
+                  "conic-gradient(from 0deg, #ff6a3d, #ffcf3d, #3dd68c, #3d9bff, #b46bff, #ff6a3d)",
+              }}
+            />
+            <span
+              aria-hidden
+              className="absolute inset-[3px] rounded-full bg-white"
+            />
+            {/* Inner logo */}
+            <span
+              className="relative grid size-11 place-items-center rounded-full text-white shadow-[0_8px_20px_-6px_rgba(0,0,0,0.45)]"
+              style={{
+                background:
+                  "radial-gradient(circle at 30% 25%, #ffffff33 0%, transparent 45%), linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)",
+              }}
+            >
+              <Sparkles className="size-5 drop-shadow-[0_0_6px_rgba(255,207,61,0.7)]" strokeWidth={1.8} />
+            </span>
             <span className="absolute -bottom-4 text-[9px] font-semibold uppercase tracking-[0.2em] text-black/70">
-              SAGE
+              Ask SAGE
             </span>
           </button>
+
 
           {/* Apply */}
           <a
