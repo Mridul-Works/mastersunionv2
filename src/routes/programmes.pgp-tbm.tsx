@@ -1865,7 +1865,7 @@ function PgpTbm() {
                             <div className="mb-3 font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-black/45">
                               {label}
                             </div>
-                            <div className="grid grid-cols-4 items-center gap-x-4 gap-y-3 sm:grid-cols-5">
+                            <div className="grid grid-cols-5 items-center gap-x-3 gap-y-3">
                               {logos.map((l) => (
                                 <div
                                   key={l.name}
