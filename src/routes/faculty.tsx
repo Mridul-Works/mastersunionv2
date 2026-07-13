@@ -112,7 +112,7 @@ export const Route = createFileRoute("/faculty")({
 function FacultyPage() {
   return (
     <main className="min-h-screen bg-white pb-28 text-black md:pb-32" style={{ fontFamily: INTER }}>
-      <BottomNav items={NAV} applyHref="#cta" />
+      <SectionNav items={NAV} applyHref="#cta" />
 
       {/* Chapter marker */}
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">
