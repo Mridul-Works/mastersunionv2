@@ -1709,25 +1709,6 @@ function PgpTbm() {
                 ))}
               </div>
 
-              <div className="flex flex-wrap items-center justify-between gap-4 border border-black/10 bg-black p-6 text-white">
-                <div>
-                  <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">Delivered as</div>
-                  <div className="mt-2 font-display text-2xl leading-tight tracking-tight">
-                    150+ courses · 8 terms · project-graded
-                  </div>
-                </div>
-                <div className="flex items-center gap-6">
-                  <div>
-                    <div className="font-display text-3xl leading-none tracking-tight">150+</div>
-                    <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/50">Courses</div>
-                  </div>
-                  <div className="h-8 w-px bg-white/20" />
-                  <div>
-                    <div className="font-display text-3xl leading-none tracking-tight">8</div>
-                    <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/50">Terms</div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
