@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 import prathamPortrait from "@/assets/founder-pratham.jpg.asset.json";
