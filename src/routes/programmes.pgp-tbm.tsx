@@ -1624,7 +1624,7 @@ function PgpTbm() {
               </dl>
             </div>
             <div className="space-y-4">
-              <ImagePlaceholder label="InClass modules" aspect="16/9" className="border border-black/10" />
+
 
               <div className="grid gap-3 sm:grid-cols-2">
                 {IN_CLASS.tracks.map((t, i) => (
