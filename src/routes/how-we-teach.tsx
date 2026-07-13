@@ -264,24 +264,24 @@ function JourneyScroll() {
     offset: ["start start", "end end"],
   });
 
-  // 4 stops: Overview map, Sem1, Sem2, Sem3
-  // Divide the 0-1 range into 4 equal slots.
-  const STOPS = 4;
-  const slot = 1 / STOPS; // 0.25
+  // 4 stops: Philosophy, Sem1, Sem2, Sem3.
+  // Last stop gets a tighter slot so we exit into the next section
+  // as soon as Sem 3 lands — no dead scroll after it.
+  const BOUNDS = [0, 0.28, 0.56, 0.84, 1.0];
 
   return (
     <section
       id="journey"
       ref={wrapRef}
       className="relative"
-      style={{ height: `${STOPS * 130}vh` }}
+      style={{ height: "440vh" }}
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-neutral-100">
         {/* progress bar */}
         <ProgressRail progress={scrollYProgress} labels={["Philosophy", "Sem 1", "Sem 2", "Sem 3"]} />
 
         {/* Stop 0 — philosophy */}
-        <Stage progress={scrollYProgress} start={0} end={slot} first>
+        <Stage progress={scrollYProgress} start={BOUNDS[0]} end={BOUNDS[1]} first>
           <PhilosophyStage />
         </Stage>
 
@@ -291,8 +291,8 @@ function JourneyScroll() {
           <Stage
             key={sem.id}
             progress={scrollYProgress}
-            start={(i + 1) * slot}
-            end={(i + 2) * slot}
+            start={BOUNDS[i + 1]}
+            end={BOUNDS[i + 2]}
             last={i === SEMESTERS.length - 1}
           >
             <SemesterStage sem={sem} index={i + 1} />
@@ -302,6 +302,7 @@ function JourneyScroll() {
     </section>
   );
 }
+
 
 function Stage({
   progress,
