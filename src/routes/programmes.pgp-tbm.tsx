@@ -459,20 +459,18 @@ import wbsLogo from "@/assets/immersion-logos/wbs.png.asset.json";
 import cuhkLogo from "@/assets/immersion-logos/cuhk.png.asset.json";
 
 const GLOBAL_PARTNER_LOGOS: { name: string; src: string }[] = [
-  { name: "Imperial College London", src: imperialLogo.url },
   { name: "SDA Bocconi", src: bocconiLogo.url },
   { name: "ESCP Business School", src: escpLogo.url },
   { name: "Warwick Business School", src: wbsLogo.url },
   { name: "Ivey Business School", src: iveyLogo.url },
   { name: "Nottingham Business School", src: nbsLogo.url },
   { name: "Singapore Management University", src: smuLogo.url },
-  { name: "CUHK", src: cuhkLogo.url },
   { name: "Foster School of Business", src: fosterLogo.url },
   { name: "Babson College", src: babsonLogo.url },
   { name: "University of California", src: ucLogo.url },
   { name: "Illinois Tech", src: illinoisLogo.url },
-  { name: "Griffith University", src: griffithLogo.url },
 ];
+
 
 import zeptoLogo from "@/assets/bharat-logos/zepto.png.asset.json";
 import zerodhaLogo from "@/assets/bharat-logos/zerodha.png.asset.json";
@@ -496,12 +494,10 @@ const BHARAT_PARTNER_LOGOS: { name: string; src: string }[] = [
   { name: "ITC", src: itcLogo.url },
   { name: "Godrej Industries", src: godrejLogo.url },
   { name: "Adani Ports", src: adaniPortsLogo.url },
-  { name: "Adani Wilmar", src: adaniWilmarLogo.url },
   { name: "Amul", src: amulLogo.url },
   { name: "Zepto", src: zeptoLogo.url },
   { name: "Zerodha", src: zerodhaLogo.url },
   { name: "CRED", src: credLogo.url },
-  { name: "Lenskart", src: lenskartLogo.url },
 ];
 
 
@@ -1869,7 +1865,7 @@ function PgpTbm() {
                             <div className="mb-3 font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-black/45">
                               {label}
                             </div>
-                            <div className="grid grid-cols-4 items-center gap-x-4 gap-y-3 sm:grid-cols-5">
+                            <div className="grid grid-cols-5 items-center gap-x-3 gap-y-3">
                               {logos.map((l) => (
                                 <div
                                   key={l.name}
