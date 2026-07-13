@@ -299,13 +299,10 @@ const GLOBAL_PARTNERS = [
   { name: "Disneyland", src: disneylandLogo.url },
   { name: "Station F", src: stationFLogo.url },
   { name: "United Nations", src: unitedNationsLogo.url },
-  { name: "Zaanse Schans", src: zaanseSchansLogo.url },
 ];
 
 const BHARAT_PARTNERS = [
   { name: "Adani Ports", src: adaniPortsLogo.url },
-  { name: "Adani Wilmar", src: adaniWilmarLogo.url },
-  { name: "Adani Solar", src: adaniSolarLogo.url },
   { name: "ITC", src: itcLogo.url },
   { name: "Amul", src: amulLogo.url },
   { name: "Infosys", src: infosysLogo.url },
@@ -315,26 +312,10 @@ const BHARAT_PARTNERS = [
   { name: "CRED", src: credLogo.url },
   { name: "Zerodha", src: zerodhaLogo.url },
   { name: "NSE", src: nseLogo.url },
-  { name: "BSE", src: bseLogo.url },
   { name: "Reserve Bank of India", src: rbiLogo.url },
   { name: "Dharma Productions", src: dharmaProductionsLogo.url },
-  { name: "Mercedes", src: mercedesLogo.url },
-  { name: "Sonalika", src: sonalikaLogo.url },
-  { name: "Sesa Goa", src: sesaGoaLogo.url },
-  { name: "Goa Shipyard", src: goaShipyardLogo.url },
-  { name: "Indo Rifles", src: indoRiflesLogo.url },
-  { name: "Addverb", src: addverbLogo.url },
-  { name: "Cingularity", src: cingularityLogo.url },
-  { name: "Ada", src: adaLogo.url },
-  { name: "Cazulo", src: cazuloLogo.url },
-  { name: "NIVIA", src: niviaLogo.url },
-  { name: "Cordella Cruises", src: cordellaCruisesLogo.url },
-  { name: "Dabbawalas", src: dabbawalasLogo.url },
-  { name: "Universal Booksellers", src: universalBooksellersLogo.url },
-  { name: "LPU", src: lpuLogo.url },
-  { name: "Government of Uttar Pradesh", src: govUpLogo.url },
-  { name: "NDMA", src: ndmaLogo.url },
 ];
+
 
 
 const STANDALONE = [
