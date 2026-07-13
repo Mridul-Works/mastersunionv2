@@ -231,6 +231,7 @@ const FORMATS: Format[] = [
           Masters' Union for two consecutive years. Harvard Business School India immersion
           students have visited campus.
         </p>
+        <LogoStrip items={GLOBAL_PARTNERS} label="Companies visited on global immersions" />
       </div>
     ),
     footnote: "Elective · Academic credits awarded · GIP Reports available for Japan, Europe, Singapore, UAE.",
