@@ -1879,7 +1879,11 @@ function PgpTbm() {
                             <img
                               src={l.src}
                               alt={l.name}
-                              className="h-8 w-auto max-w-full object-contain"
+                              className={`w-auto max-w-full object-contain ${
+                                l.name === "Warwick Business School" || l.name === "University of California"
+                                  ? "h-12"
+                                  : "h-8"
+                              }`}
                               loading="lazy"
                             />
                           </div>
