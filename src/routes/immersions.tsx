@@ -260,6 +260,7 @@ const FORMATS: Format[] = [
           is replaced entirely. Every lesson happens inside a real business, with real operators,
           in real time.
         </p>
+        <LogoStrip items={BHARAT_PARTNERS} label="Bharat on-ground partners" />
       </>
     ),
     footnote: "Elective · Replaces classroom instruction for the full term · Academic credits awarded.",
