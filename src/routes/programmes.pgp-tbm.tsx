@@ -444,6 +444,37 @@ const IMMERSIONS = [
   },
 ];
 
+import babsonLogo from "@/assets/immersion-logos/babson.png.asset.json";
+import bocconiLogo from "@/assets/immersion-logos/sda-bocconi.png.asset.json";
+import escpLogo from "@/assets/immersion-logos/escp.png.asset.json";
+import fosterLogo from "@/assets/immersion-logos/foster.png.asset.json";
+import griffithLogo from "@/assets/immersion-logos/griffith.png.asset.json";
+import illinoisLogo from "@/assets/immersion-logos/illinois-tech.png.asset.json";
+import imperialLogo from "@/assets/immersion-logos/imperial-1.png.asset.json";
+import iveyLogo from "@/assets/immersion-logos/ivey.png.asset.json";
+import nbsLogo from "@/assets/immersion-logos/nbs.png.asset.json";
+import smuLogo from "@/assets/immersion-logos/smu.png.asset.json";
+import ucLogo from "@/assets/immersion-logos/uc.png.asset.json";
+import wbsLogo from "@/assets/immersion-logos/wbs.png.asset.json";
+import cuhkLogo from "@/assets/immersion-logos/cuhk.png.asset.json";
+
+const GLOBAL_PARTNER_LOGOS: { name: string; src: string }[] = [
+  { name: "Imperial College London", src: imperialLogo.url },
+  { name: "SDA Bocconi", src: bocconiLogo.url },
+  { name: "ESCP Business School", src: escpLogo.url },
+  { name: "Warwick Business School", src: wbsLogo.url },
+  { name: "Ivey Business School", src: iveyLogo.url },
+  { name: "Nottingham Business School", src: nbsLogo.url },
+  { name: "Singapore Management University", src: smuLogo.url },
+  { name: "CUHK", src: cuhkLogo.url },
+  { name: "Foster School of Business", src: fosterLogo.url },
+  { name: "Babson College", src: babsonLogo.url },
+  { name: "University of California", src: ucLogo.url },
+  { name: "Illinois Tech", src: illinoisLogo.url },
+  { name: "Griffith University", src: griffithLogo.url },
+];
+
+
 // -------- 8-term timeline (three engines, term by term) --------
 type EngineCell = { label: string; kind: "in" | "d2c" | "creator" | "imm" };
 type TermRow = { term: string; inClass: string; outClass: EngineCell[] };
