@@ -531,61 +531,108 @@ function FounderQuote() {
   return (
     <section
       ref={ref}
-      className="relative border-t border-black/10 text-white"
+      className="relative border-t border-white/5 text-white"
       style={{
         fontFamily: INTER,
         height: "300vh",
         background:
-          "radial-gradient(130% 100% at 25% 25%, #C7EBD8 0%, #7EC9A7 45%, #2F8E68 100%)",
+          "radial-gradient(120% 90% at 80% 10%, #1a2f24 0%, #0b1512 45%, #050807 100%)",
       }}
     >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(60% 50% at 20% 30%, rgba(126,201,167,0.18) 0%, transparent 70%), radial-gradient(50% 40% at 90% 80%, rgba(47,142,104,0.15) 0%, transparent 70%)",
+        }}
+      />
 
       <div className="sticky top-0 flex min-h-screen items-center">
-        <div className="mx-auto w-full max-w-5xl px-5 py-20 md:px-10 md:py-24">
-          <div
-            className="text-[11px] uppercase tracking-[0.3em] text-black/60"
-            style={{ fontFamily: MONO }}
-          >
-            A note from the founder
+        <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-10 px-5 py-20 md:grid-cols-[auto,1fr] md:gap-14 md:px-10 md:py-24">
+          <div className="flex justify-center md:justify-start">
+            <div className="relative">
+              <div
+                aria-hidden
+                className="absolute -inset-4 rounded-full blur-2xl"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(126,201,167,0.35) 0%, transparent 70%)",
+                }}
+              />
+              <div
+                className="relative h-40 w-40 overflow-hidden rounded-full border border-white/15 md:h-56 md:w-56"
+                style={{ boxShadow: "0 30px 80px -20px rgba(0,0,0,0.7)" }}
+              >
+                <img
+                  src={prathamPortrait.url}
+                  alt="Pratham Mittal, Founder, Masters' Union"
+                  className="h-full w-full object-cover"
+                  style={{ objectPosition: "center 20%" }}
+                />
+              </div>
+            </div>
           </div>
 
+          <div>
+            <div
+              className="flex items-center gap-3 text-[11px] uppercase tracking-[0.3em] text-[#7EC9A7]"
+              style={{ fontFamily: MONO }}
+            >
+              <span className="h-px w-8 bg-[#7EC9A7]/60" />
+              A note from the founder
+            </div>
 
-          <div className="mt-8 space-y-6 text-balance text-[clamp(1.15rem,2.2vw,1.9rem)] leading-[1.4] tracking-[-0.01em]">
-            {FOUNDER_QUOTE_PARAGRAPHS.map((p, pi) => {
-              const before = FOUNDER_QUOTE_PARAGRAPHS.slice(0, pi).reduce(
-                (acc, s) => acc + s.split(" ").length,
-                0,
-              );
-              const pWords = p.split(" ");
-              return (
-                <p key={pi}>
-                  {pWords.map((w, wi) => {
-                    const idx = before + wi;
-                    const start = idx / totalWords;
-                    const end = Math.min(1, start + 1.5 / totalWords);
-                    return (
-                      <RevealWord
-                        key={`${pi}-${wi}`}
-                        progress={scrollYProgress}
-                        start={start}
-                        end={end}
-                      >
-                        {w}
-                      </RevealWord>
-                    );
-                  })}
-                </p>
-              );
-            })}
+            <div
+              aria-hidden
+              className="mt-6 text-6xl leading-none text-white/15"
+              style={{ fontFamily: "Georgia, serif" }}
+            >
+              &ldquo;
+            </div>
+
+            <div className="mt-2 space-y-5 text-balance text-[clamp(1.1rem,2vw,1.75rem)] font-light leading-[1.45] tracking-[-0.01em]">
+              {FOUNDER_QUOTE_PARAGRAPHS.map((p, pi) => {
+                const before = FOUNDER_QUOTE_PARAGRAPHS.slice(0, pi).reduce(
+                  (acc, s) => acc + s.split(" ").length,
+                  0,
+                );
+                const pWords = p.split(" ");
+                return (
+                  <p key={pi}>
+                    {pWords.map((w, wi) => {
+                      const idx = before + wi;
+                      const start = idx / totalWords;
+                      const end = Math.min(1, start + 1.5 / totalWords);
+                      return (
+                        <RevealWord
+                          key={`${pi}-${wi}`}
+                          progress={scrollYProgress}
+                          start={start}
+                          end={end}
+                        >
+                          {w}
+                        </RevealWord>
+                      );
+                    })}
+                  </p>
+                );
+              })}
+            </div>
+
+            <div className="mt-10 flex items-center gap-4">
+              <span className="h-px w-10 bg-white/30" />
+              <div
+                className="text-[11px] uppercase tracking-[0.28em] text-white/70"
+                style={{ fontFamily: MONO }}
+              >
+                Pratham Mittal
+                <span className="ml-2 text-white/40">
+                  Founder, Masters&apos; Union
+                </span>
+              </div>
+            </div>
           </div>
-
-          <div
-            className="mt-10 text-[11px] uppercase tracking-[0.28em] text-black/70"
-            style={{ fontFamily: MONO }}
-          >
-            — Pratham Mittal, Founder, Masters&apos; Union
-          </div>
-
         </div>
       </div>
     </section>
@@ -604,10 +651,10 @@ function RevealWord({
   end: number;
   children: React.ReactNode;
 }) {
-  const opacity = useTransform(progress, [start, end], [0.12, 1]);
+  const opacity = useTransform(progress, [start, end], [0.15, 1]);
   return (
     <>
-      <motion.span style={{ opacity, color: "#0a2a1c" }} className="inline">
+      <motion.span style={{ opacity, color: "#f5f7f5" }} className="inline">
         {children}
       </motion.span>{" "}
     </>
