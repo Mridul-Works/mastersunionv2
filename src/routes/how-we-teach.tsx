@@ -633,7 +633,7 @@ function RevealWord({
   const opacity = useTransform(progress, [start, end], [0.12, 1]);
   return (
     <>
-      <motion.span style={{ opacity, color: "rgba(255,255,255,1)" }} className="inline">
+      <motion.span style={{ opacity, color: "#0a2a1c" }} className="inline">
         {children}
       </motion.span>{" "}
     </>
