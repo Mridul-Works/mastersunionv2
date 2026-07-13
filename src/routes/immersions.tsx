@@ -10,23 +10,54 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import babsonLogo from "@/assets/immersion-logos/babson.png.asset.json";
-import bocconiLogo from "@/assets/immersion-logos/sda-bocconi.png.asset.json";
-import fosterLogo from "@/assets/immersion-logos/foster.png.asset.json";
-import griffithLogo from "@/assets/immersion-logos/griffith.png.asset.json";
-import illinoisLogo from "@/assets/immersion-logos/illinois-tech.png.asset.json";
-import imperialLogo from "@/assets/immersion-logos/imperial-1.png.asset.json";
-import smuLogo from "@/assets/immersion-logos/smu.png.asset.json";
-import ucLogo from "@/assets/immersion-logos/uc.png.asset.json";
+// Global immersion companies (from Drive)
+import daikinLogo from "@/assets/immersions/global/daikin.png.asset.json";
+import universalStudiosLogo from "@/assets/immersions/global/universal-studios.png.asset.json";
+import heinekenLogo from "@/assets/immersions/global/heineken.png.asset.json";
+import rabobankLogo from "@/assets/immersions/global/rabobank.png.asset.json";
+import agodaLogo from "@/assets/immersions/global/agoda.png.asset.json";
+import philipsLogo from "@/assets/immersions/global/philips.png.asset.json";
+import nissanLogo from "@/assets/immersions/global/nissan.png.asset.json";
+import disneylandLogo from "@/assets/immersions/global/disneyland.png.asset.json";
+import stationFLogo from "@/assets/immersions/global/station-f.png.asset.json";
+import rakutenLogo from "@/assets/immersions/global/rakuten.png.asset.json";
+import unitedNationsLogo from "@/assets/immersions/global/united-nations.png.asset.json";
+import porscheLogo from "@/assets/immersions/global/porsche.png.asset.json";
+import zaanseSchansLogo from "@/assets/immersions/global/zaanse-schans.png.asset.json";
 
-import zeptoLogo from "@/assets/bharat-logos/zepto.png.asset.json";
-import credLogo from "@/assets/bharat-logos/cred.png.asset.json";
-import lenskartLogo from "@/assets/bharat-logos/lenskart.png.asset.json";
-import amulLogo from "@/assets/bharat-logos/amul.png.asset.json";
-import infosysLogo from "@/assets/bharat-logos/infosys.png.asset.json";
-import itcLogo from "@/assets/bharat-logos/itc.png.asset.json";
-import godrejLogo from "@/assets/bharat-logos/godrej.png.asset.json";
-import adaniPortsLogo from "@/assets/bharat-logos/adani-ports.png.asset.json";
+// Bharat immersion companies (from Drive)
+import indoRiflesLogo from "@/assets/immersions/bharat/indo-rifles.png.asset.json";
+import adaniSolarLogo from "@/assets/immersions/bharat/adani-solar.png.asset.json";
+import zeptoLogo from "@/assets/immersions/bharat/zepto.png.asset.json";
+import dabbawalasLogo from "@/assets/immersions/bharat/dabbawalas.png.asset.json";
+import adaniWilmarLogo from "@/assets/immersions/bharat/adani-wilmar.png.asset.json";
+import zerodhaLogo from "@/assets/immersions/bharat/zerodha.png.asset.json";
+import mercedesLogo from "@/assets/immersions/bharat/mercedes.png.asset.json";
+import universalBooksellersLogo from "@/assets/immersions/bharat/universal-booksellers.png.asset.json";
+import niviaLogo from "@/assets/immersions/bharat/nivia.png.asset.json";
+import dharmaProductionsLogo from "@/assets/immersions/bharat/dharma-productions.png.asset.json";
+import bseLogo from "@/assets/immersions/bharat/bse.png.asset.json";
+import goaShipyardLogo from "@/assets/immersions/bharat/goa-shipyard.png.asset.json";
+import lpuLogo from "@/assets/immersions/bharat/lpu.png.asset.json";
+import godrejLogo from "@/assets/immersions/bharat/godrej.png.asset.json";
+import govUpLogo from "@/assets/immersions/bharat/gov-up.png.asset.json";
+import infosysLogo from "@/assets/immersions/bharat/infosys.png.asset.json";
+import nseLogo from "@/assets/immersions/bharat/nse.png.asset.json";
+import ndmaLogo from "@/assets/immersions/bharat/ndma.png.asset.json";
+import adaniPortsLogo from "@/assets/immersions/bharat/adani-ports.png.asset.json";
+import amulLogo from "@/assets/immersions/bharat/amul.png.asset.json";
+import cordellaCruisesLogo from "@/assets/immersions/bharat/cordella-cruises.png.asset.json";
+import addverbLogo from "@/assets/immersions/bharat/addverb.png.asset.json";
+import cingularityLogo from "@/assets/immersions/bharat/cingularity.png.asset.json";
+import rbiLogo from "@/assets/immersions/bharat/rbi.png.asset.json";
+import lenskartLogo from "@/assets/immersions/bharat/lenskart.png.asset.json";
+import sesaGoaLogo from "@/assets/immersions/bharat/sesa-goa.png.asset.json";
+import sonalikaLogo from "@/assets/immersions/bharat/sonalika.png.asset.json";
+import adaLogo from "@/assets/immersions/bharat/ada.png.asset.json";
+import cazuloLogo from "@/assets/immersions/bharat/cazulo.png.asset.json";
+import credLogo from "@/assets/immersions/bharat/cred.png.asset.json";
+import itcLogo from "@/assets/immersions/bharat/itc.png.asset.json";
+
 
 const INTER = "'Inter', system-ui, sans-serif";
 const SERIF = "'Fraunces', Georgia, serif";
