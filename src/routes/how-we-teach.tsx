@@ -436,19 +436,33 @@ function SemesterStage({ sem, index }: { sem: Semester; index: number }) {
       {/* huge decorative number */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-6 -top-10 select-none text-[42vw] font-medium leading-none tracking-[-0.06em] md:-right-10 md:-top-24"
-        style={{ color: dark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.05)" }}
+        className="pointer-events-none absolute -right-6 -top-10 select-none text-[42vw] font-semibold leading-none tracking-[-0.06em] md:-right-10 md:-top-24"
+        style={{ color: dark ? "rgba(255,255,255,0.14)" : "rgba(0,0,0,0.10)" }}
       >
         0{index}
       </div>
 
       <div className="relative mx-auto flex h-full max-w-6xl flex-col justify-center px-6 py-16 md:px-10">
         <div
-          className="text-[11px] uppercase tracking-[0.35em] opacity-60"
-          style={{ fontFamily: MONO }}
+          className="inline-flex w-fit items-center gap-2 rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em]"
+          style={{
+            fontFamily: MONO,
+            borderColor: dark ? "rgba(255,255,255,0.25)" : "rgba(0,0,0,0.2)",
+            backgroundColor: dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.04)",
+          }}
         >
-          {sem.eyebrow}
+          <span className="opacity-70">Semester</span>
+          <span
+            className="rounded-full px-2 py-0.5 text-[11px] font-bold tracking-[0.15em]"
+            style={{
+              backgroundColor: dark ? "#ffffff" : "#111111",
+              color: dark ? "#111111" : "#ffffff",
+            }}
+          >
+            {sem.eyebrow.replace(/^Semester\s*/i, "")}
+          </span>
         </div>
+
         <h2 className="mt-4 max-w-[16ch] text-balance text-[clamp(2rem,6vw,5rem)] font-medium leading-[0.95] tracking-[-0.03em]">
           {sem.title}
         </h2>
