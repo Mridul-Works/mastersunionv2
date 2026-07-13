@@ -507,54 +507,6 @@ function ImmersionsPage() {
         </div>
       </section>
 
-      {/* PARTNER LOGOS */}
-      <section className="mx-auto max-w-6xl px-5 pt-20 md:px-10 md:pt-28">
-        <div className="grid gap-10 md:gap-14">
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-[0.22em] text-teal">
-              Global immersion companies
-            </div>
-            <div className="mt-4 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-6">
-              {GLOBAL_PARTNERS.map((l) => (
-                <div
-                  key={l.name}
-                  title={l.name}
-                  className="flex h-20 items-center justify-center bg-white px-3 opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
-                >
-                  <img
-                    src={l.src}
-                    alt={l.name}
-                    className="max-h-8 w-auto max-w-[85%] object-contain"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-[0.22em] text-teal">
-              Bharat on-ground partners
-            </div>
-            <div className="mt-4 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-6">
-              {BHARAT_PARTNERS.map((l) => (
-                <div
-                  key={l.name}
-                  title={l.name}
-                  className="flex h-20 items-center justify-center bg-white px-3 opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
-                >
-                  <img
-                    src={l.src}
-                    alt={l.name}
-                    className="max-h-8 w-auto max-w-[85%] object-contain"
-                    loading="lazy"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-      </section>
 
       {/* DID YOU KNOW — standalone programmes */}
       <section className="mx-auto max-w-6xl px-5 pt-20 md:px-10 md:pt-28">
