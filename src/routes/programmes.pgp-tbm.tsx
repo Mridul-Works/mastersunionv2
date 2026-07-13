@@ -1766,68 +1766,61 @@ function PgpTbm() {
                 Optional immersion modules that slot into Terms 4 and 5. Two tracks, one goal: see business where it actually happens — not where slides describe it.
               </p>
             </div>
-            <div className="grid gap-px bg-black/10 md:grid-cols-2">
-              <ImagePlaceholder label="Immersions" aspect="16/9" className="md:col-span-2" />
-{IMMERSIONS.map((im) => {
+            <div className="grid gap-6 md:grid-cols-2">
+              {IMMERSIONS.map((im) => {
                 const isGlobal = im.title.includes("Global");
                 const Icon = isGlobal ? Globe : MapPin;
-                const [hero, ...rest] = im.stats;
+                const stampLabel = isGlobal ? "INTL / DOSSIER 01" : "IND / DOSSIER 02";
                 return (
-                  <article key={im.title} className="bg-white/90 p-6 pastel-fill">
-                    <div className="flex flex-wrap items-baseline justify-between gap-3">
-                      <div>
-                        <div className="text-xs font-semibold uppercase tracking-[0.2em] text-smoke-400">{im.tag}</div>
-                        <h4 className="mt-2 font-display text-3xl leading-tight tracking-tight">{im.title}</h4>
+                  <article
+                    key={im.title}
+                    className="group relative flex flex-col overflow-hidden border border-black/10 bg-white transition-colors hover:border-black/30"
+                  >
+                    {/* Passport stamp header */}
+                    <div className="flex items-center justify-between border-b border-dashed border-black/15 px-6 py-3">
+                      <div className="flex items-center gap-2 text-teal">
+                        <Icon className="size-4" strokeWidth={1.6} />
+                        <span className="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-black/50">
+                          {stampLabel}
+                        </span>
                       </div>
-                      <div className="inline-flex size-10 items-center justify-center bg-teal/10 text-teal">
-                        <Icon className="size-5" />
-                      </div>
+                      <span className="inline-flex items-center gap-1.5 border border-teal/25 bg-teal/5 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-teal">
+                        <span className="size-1 rounded-full bg-teal" />
+                        {im.tag}
+                      </span>
                     </div>
-                    <p className="mt-3 max-w-3xl text-sm leading-relaxed text-black/65">{im.body}</p>
 
-                    {/* Bento immersion metrics */}
-                    <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                      {/* Hero metric */}
-                      <div className="relative row-span-1 flex flex-col justify-between overflow-hidden border border-black/10 bg-gradient-to-br from-teal/5 to-white p-5 sm:row-span-2">
-                        <div className="absolute left-0 top-0 h-1.5 w-full bg-gradient-to-r from-teal to-sage" />
-                        <div className="inline-flex size-8 items-center justify-center bg-teal/10 text-teal">
-                          <Icon className="size-4" />
-                        </div>
-                        <div className="mt-4">
-                          <div className="font-display text-5xl leading-none tracking-tight text-ink">
-                            {hero.k}
-                          </div>
-                          <div className="mt-1.5 text-xs font-medium uppercase tracking-[0.12em] text-black/60">
-                            {hero.v}
-                          </div>
-                        </div>
-                      </div>
+                    {/* Body */}
+                    <div className="flex-1 px-6 pt-6 pb-4">
+                      <h4 className="font-display text-[26px] leading-[1.1] tracking-tight md:text-3xl">
+                        {im.title}
+                      </h4>
+                      <p className="mt-3 text-[13.5px] leading-relaxed text-black/65">
+                        {im.body}
+                      </p>
+                    </div>
 
-                      {/* Supporting metrics */}
-                      {rest.map((s, i) => (
+                    {/* Stat footer — 3 equal columns with hairline dividers */}
+                    <dl className="mt-2 grid grid-cols-3 border-t border-black/10">
+                      {im.stats.map((s, i) => (
                         <div
                           key={s.v}
-                          className="relative flex flex-col justify-between overflow-hidden border border-black/10 p-5"
+                          className={`px-5 py-5 ${i > 0 ? "border-l border-black/10" : ""}`}
                         >
-                          <div className="absolute left-0 top-0 h-1.5 w-full bg-gradient-to-r from-teal to-sage" />
-                          <div className="inline-flex size-8 items-center justify-center bg-teal/10 text-teal">
-                            {i === 0 ? <TrendingUp className="size-4" /> : <Users className="size-4" />}
-                          </div>
-                          <div className="mt-4">
-                            <div className="font-display text-4xl leading-none tracking-tight text-ink">
-                              {s.k}
-                            </div>
-                            <div className="mt-1.5 text-xs font-medium uppercase tracking-[0.12em] text-black/60">
-                              {s.v}
-                            </div>
-                          </div>
+                          <dt className="font-display text-[32px] leading-none tracking-tight text-ink">
+                            {s.k}
+                          </dt>
+                          <dd className="mt-2 text-[10.5px] font-medium uppercase leading-snug tracking-[0.12em] text-black/55">
+                            {s.v}
+                          </dd>
                         </div>
                       ))}
-                    </div>
+                    </dl>
                   </article>
                 );
               })}
             </div>
+
           </div>
 
         </div>
