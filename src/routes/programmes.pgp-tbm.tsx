@@ -1824,81 +1824,105 @@ function PgpTbm() {
                 Optional immersion modules that slot into Terms 4 and 5. Two tracks, one goal: see business where it actually happens — not where slides describe it.
               </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-8 md:grid-cols-2 lg:gap-10">
               {IMMERSIONS.map((im) => {
                 const isGlobal = im.title.includes("Global");
-                const Icon = isGlobal ? Globe : MapPin;
-                const stampLabel = isGlobal ? "INTL / DOSSIER 01" : "IND / DOSSIER 02";
+                const logos = isGlobal ? GLOBAL_PARTNER_LOGOS : BHARAT_PARTNER_LOGOS;
+                const dossierEyebrow = isGlobal ? "Dossier 01 // Archive" : "Dossier 02 // Field Study";
+                const stampText = isGlobal ? "INTL_CERTIFIED" : "GROUND_VERIFIED";
+                const logosLabel = isGlobal ? "Partner B-schools" : "On-ground partners";
                 return (
                   <article
                     key={im.title}
-                    className="group relative flex flex-col overflow-hidden border border-black/10 bg-white transition-colors hover:border-black/30"
+                    className={`group relative flex flex-col border border-slate-200 bg-[#fdfdfc] transition-all duration-500 hover:shadow-[0_0_60px_rgba(0,0,0,0.08)] ${
+                      isGlobal
+                        ? "shadow-[16px_16px_0_rgba(13,148,136,0.06)]"
+                        : "shadow-[16px_16px_0_rgba(20,184,166,0.06)]"
+                    }`}
                   >
-                    {/* Passport stamp header */}
-                    <div className="flex items-center justify-between border-b border-dashed border-black/15 px-6 py-3">
-                      <div className="flex items-center gap-2 text-teal">
-                        <Icon className="size-4" strokeWidth={1.6} />
-                        <span className="font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-black/50">
-                          {stampLabel}
-                        </span>
+                    <div className="flex-1 p-8 lg:p-10">
+                      {/* Header / Stamp */}
+                      <div className="mb-10 flex items-start justify-between gap-4">
+                        <div className="space-y-1.5">
+                          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-teal">
+                            {dossierEyebrow}
+                          </p>
+                          <h4
+                            className={`text-[32px] font-bold leading-[1.05] tracking-tight text-slate-900 md:text-[38px] ${
+                              isGlobal ? "italic" : ""
+                            }`}
+                            style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                          >
+                            {im.title}
+                          </h4>
+                        </div>
+                        <div
+                          className={`shrink-0 p-2 ${
+                            isGlobal
+                              ? "rotate-3 rounded-sm border-2 border-dashed border-teal/40"
+                              : "-rotate-12 rounded-full border-2 border-double border-teal/30"
+                          }`}
+                        >
+                          <span
+                            className={`inline-block px-2 py-1 font-mono text-[10px] font-bold uppercase tracking-wider text-teal ${
+                              isGlobal ? "bg-teal/5" : ""
+                            }`}
+                          >
+                            {stampText}
+                          </span>
+                        </div>
                       </div>
-                      <span className="inline-flex items-center gap-1.5 border border-teal/25 bg-teal/5 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-teal">
-                        <span className="size-1 rounded-full bg-teal" />
-                        {im.tag}
-                      </span>
-                    </div>
 
-                    {/* Body */}
-                    <div className="flex-1 px-6 pt-6 pb-4">
-                      <h4 className="font-display text-[26px] leading-[1.1] tracking-tight md:text-3xl">
-                        {im.title}
-                      </h4>
-                      <p className="mt-3 text-[13.5px] leading-relaxed text-black/65">
+                      {/* Description */}
+                      <p className="mb-8 max-w-md text-sm leading-relaxed text-slate-600">
                         {im.body}
                       </p>
 
-                      {(() => {
-                        const logos = isGlobal ? GLOBAL_PARTNER_LOGOS : BHARAT_PARTNER_LOGOS;
-                        const label = isGlobal ? "Partner B-schools" : "On-ground partners";
-                        return (
-                          <div className="mt-5 border-t border-dashed border-black/10 pt-4">
-                            <div className="mb-3 font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-black/45">
-                              {label}
+                      {/* Logo Grid */}
+                      <div>
+                        <p className="mb-4 font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-slate-400">
+                          {logosLabel}
+                        </p>
+                        <div className="grid grid-cols-5 gap-3">
+                          {logos.map((l) => (
+                            <div
+                              key={l.name}
+                              title={l.name}
+                              className="flex h-12 items-center justify-center border border-slate-100 p-2 opacity-60 grayscale transition-all duration-300 hover:border-teal/30 hover:opacity-100 hover:grayscale-0"
+                            >
+                              <img
+                                src={l.src}
+                                alt={l.name}
+                                className="max-h-full max-w-full object-contain"
+                                loading="lazy"
+                              />
                             </div>
-                            <div className="grid grid-cols-5 items-center gap-x-3 gap-y-3">
-                              {logos.map((l) => (
-                                <div
-                                  key={l.name}
-                                  className="flex h-10 items-center justify-center"
-                                  title={l.name}
-                                >
-                                  <img
-                                    src={l.src}
-                                    alt={l.name}
-                                    className="max-h-10 max-w-full object-contain opacity-70 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
-                                    loading="lazy"
-                                  />
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        );
-                      })()}
-
+                          ))}
+                        </div>
+                      </div>
                     </div>
 
-
-                    {/* Stat footer — 3 equal columns with hairline dividers */}
-                    <dl className="mt-2 grid grid-cols-3 border-t border-black/10">
+                    {/* Stats Footer */}
+                    <dl
+                      className={`grid grid-cols-3 border-t border-slate-100 ${
+                        isGlobal ? "bg-slate-50/50" : "bg-teal/[0.04]"
+                      }`}
+                    >
                       {im.stats.map((s, i) => (
                         <div
                           key={s.v}
-                          className={`px-5 py-5 ${i > 0 ? "border-l border-black/10" : ""}`}
+                          className={`flex flex-col items-center p-6 text-center ${
+                            i > 0 ? "border-l border-slate-100" : ""
+                          }`}
                         >
-                          <dt className="font-display text-[32px] leading-none tracking-tight text-ink">
+                          <dt
+                            className={`font-mono text-2xl font-bold ${
+                              isGlobal ? "text-teal" : "text-teal"
+                            }`}
+                          >
                             {s.k}
                           </dt>
-                          <dd className="mt-2 text-[10.5px] font-medium uppercase leading-snug tracking-[0.12em] text-black/55">
+                          <dd className="mt-1 font-mono text-[9px] font-medium uppercase tracking-tight text-slate-500">
                             {s.v}
                           </dd>
                         </div>
@@ -1908,6 +1932,7 @@ function PgpTbm() {
                 );
               })}
             </div>
+
 
           </div>
 
