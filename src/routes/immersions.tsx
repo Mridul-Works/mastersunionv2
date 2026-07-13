@@ -394,6 +394,8 @@ function ImmersionsPage() {
       className="min-h-screen bg-white pb-28 text-black md:pb-32"
       style={{ fontFamily: INTER }}
     >
+      <SectionNav items={IMMERSIONS_NAV} applyHref="#apply" />
+
       {/* Top bar */}
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">
         <Link
@@ -408,7 +410,7 @@ function ImmersionsPage() {
       </div>
 
       {/* HERO */}
-      <section className="mx-auto max-w-6xl px-5 pt-16 md:px-10 md:pt-24">
+      <section id="top" className="mx-auto max-w-6xl px-5 pt-16 md:px-10 md:pt-24">
         <div className="text-xs font-semibold uppercase tracking-[0.28em] text-teal">
           — Immersions at Masters&apos; Union
         </div>
