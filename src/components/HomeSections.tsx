@@ -540,7 +540,7 @@ function AdmissionsConnect() {
           {featured.map((s) => (
             <article
               key={s.id}
-              className="group relative flex snap-start shrink-0 flex-col justify-between overflow-hidden rounded-none border border-black/10 bg-white p-7 text-black transition-transform duration-500 hover:-translate-y-1 md:p-9"
+              className="group relative flex snap-start shrink-0 flex-col justify-between overflow-hidden rounded-none border border-black/10 bg-white p-7 text-black transition-[box-shadow,border-color] duration-300 ease-out hover:border-black/30 hover:shadow-[0_14px_40px_-20px_rgba(0,0,0,0.2)] md:p-9"
               style={{
                 width: "min(88vw, 360px)",
                 minHeight: "520px",
