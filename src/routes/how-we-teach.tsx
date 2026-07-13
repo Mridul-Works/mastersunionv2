@@ -509,14 +509,12 @@ function SemesterStage({ sem, index }: { sem: Semester; index: number }) {
    ============================================================ */
 
 const FOUNDER_QUOTE_PARAGRAPHS: string[] = [
-  "Most schools teach you how to analyse a business. We make you run one.",
-  "Every semester, what you learn in class — you deploy outside it. On a real business. With real customers. For real money.",
-  "We don't believe in case studies about someone else's decisions. We believe in putting you in a position where you have to make the decision yourself — and live with what happens next.",
-  "The frameworks you learn on Monday should be stress-tested by Friday. The concept you study in the morning should have a real-world application by the afternoon. And at the end of the term, your grade doesn't come from me or any professor in this building.",
-  "It comes from the market.",
-  "Revenue. Margin. Profit. NPS. Four numbers. No subjectivity. No partial credit for a well-structured answer that didn't actually work.",
-  "That is the only education worth giving. And it is the only one we know how to deliver.",
+  "We had one rule when we built this place.",
+  "Nothing you learn here should stay in the classroom.",
+  "Every concept has a real application. Every semester has a real business. Every grade has a real number behind it — one the market gave you, not us.",
+  "We don't prepare you for the real world. We put you in it from day one.",
 ];
+
 
 function FounderQuote() {
   const ref = useRef<HTMLDivElement>(null);
