@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Home, Users, GraduationCap, Globe2, Quote } from "lucide-react";
-import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
+import { ArrowUpRight } from "lucide-react";
+import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 
 import manojAsset from "@/assets/faculty/manoj.png.asset.json";
 import bhupeshAsset from "@/assets/faculty/bhupesh.png.asset.json";
