@@ -631,12 +631,21 @@ function FounderQuote() {
                   0,
                 );
                 const pWords = p.split(" ");
+                // Section is 300vh with a sticky panel: scrollYProgress goes 0→1
+                // but the panel is only pinned from ~0 to ~0.66. Keep the reveal
+                // inside that window so words don't finish after the panel unpins.
+                const REVEAL_START = 0.08;
+                const REVEAL_END = 0.62;
+                const span = REVEAL_END - REVEAL_START;
+                const wordStep = span / Math.max(1, totalWords - 1);
+                // Each word fades over ~4 word-slots so neighbouring words overlap smoothly.
+                const wordFade = wordStep * 4;
                 return (
                   <p key={pi}>
                     {pWords.map((w, wi) => {
                       const idx = before + wi;
-                      const start = idx / totalWords;
-                      const end = Math.min(1, start + 1.5 / totalWords);
+                      const start = REVEAL_START + idx * wordStep;
+                      const end = Math.min(REVEAL_END, start + wordFade);
                       return (
                         <RevealWord
                           key={`${pi}-${wi}`}
