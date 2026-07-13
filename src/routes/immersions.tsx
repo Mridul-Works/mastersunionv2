@@ -58,6 +58,21 @@ import cazuloLogo from "@/assets/immersions/bharat/cazulo.png.asset.json";
 import credLogo from "@/assets/immersions/bharat/cred.png.asset.json";
 import itcLogo from "@/assets/immersions/bharat/itc.png.asset.json";
 
+// Summer / Semester Abroad partner campuses
+import babsonLogo from "@/assets/immersions/campuses/babson.png.asset.json";
+import bocconiLogo from "@/assets/immersions/campuses/sda-bocconi.png.asset.json";
+import fosterLogo from "@/assets/immersions/campuses/foster.png.asset.json";
+import griffithLogo from "@/assets/immersions/campuses/griffith.png.asset.json";
+import illinoisLogo from "@/assets/immersions/campuses/illinois-tech.png.asset.json";
+import imperialLogo from "@/assets/immersions/campuses/imperial.png.asset.json";
+import smuLogo from "@/assets/immersions/campuses/smu.png.asset.json";
+import ucLogo from "@/assets/immersions/campuses/uc.png.asset.json";
+import escpLogo from "@/assets/immersions/campuses/escp.png.asset.json";
+import nbsLogo from "@/assets/immersions/campuses/nbs.png.asset.json";
+import wbsLogo from "@/assets/immersions/campuses/wbs.png.asset.json";
+import iveyLogo from "@/assets/immersions/campuses/ivey.png.asset.json";
+import cuhkLogo from "@/assets/immersions/campuses/cuhk.png.asset.json";
+
 
 const INTER = "'Inter', system-ui, sans-serif";
 const SERIF = "'Fraunces', Georgia, serif";
