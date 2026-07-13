@@ -35,7 +35,7 @@ import {
   Clock,
   MessageCircle,
   BookOpen,
-
+  Globe,
 } from "lucide-react";
 
 
@@ -968,6 +968,7 @@ const PEDAGOGY = [
   { icon: Mic, tag: "Creator Challenge", title: "Build your brand. Win the creator challenge.", body: "A full content studio on campus where students grow personal brands on YouTube, Instagram and LinkedIn. Recent winners hit 1.2M impressions and 120K unique viewers.", stats: [{ value: "1.2M+", label: "Impressions" }, { value: "120K", label: "Unique viewers" }, { value: "₹2 L", label: "Winner prize" }], cta: "See the creators", route: "/creator-challenge", bg: "radial-gradient(130% 100% at 80% 80%, #FFC0CE 0%, #FF8AA8 45%, #E54E7C 100%)" },
   { icon: ChefHat, tag: "Food Lab", title: "A commercial kitchen inside a B-school.", body: "Lexi's went from a classroom concept to Gurgaon's highest-rated sandwich brand. FSSAI-certified production line, 4.5★ on Zomato, ₹1 Cr+ ARR.", stats: [{ value: "4.5★", label: "Zomato rating" }, { value: "₹1 Cr+", label: "Student brand ARR" }, { value: "FSSAI", label: "Certified" }], cta: "Tour the lab", route: "/food-lab", bg: "radial-gradient(130% 100% at 30% 30%, #BFF3D9 0%, #7AD9A8 45%, #33B876 100%)" },
   { icon: Building2, tag: "MU Ventures", title: "The fund that backs cohorts before convocation.", body: "An in-house venture arm that writes pre-seed cheques into student companies — and opens the door to a 200+ investor network for the next round.", stats: [{ value: "200+", label: "Investor network" }, { value: "Pre-seed", label: "Cheques written" }, { value: "On campus", label: "Venture arm" }], cta: "Pitch the fund", route: "/startups", bg: "radial-gradient(130% 100% at 75% 30%, #CDDCFF 0%, #8FA8F0 50%, #5170D3 100%)" },
+  { icon: Globe, tag: "Immersions", title: "Global boardrooms. Bharat factory floors.", body: "Optional immersion modules in Terms 4 & 5 — Silicon Valley, Dubai, Singapore, London for Global; Tier-2/3 India factory floors, family businesses and D2C hubs for Bharat.", stats: [{ value: "12", label: "Partner B-schools" }, { value: "40+", label: "Fortune 500 offices" }, { value: "12+", label: "Bharat cities" }], cta: "See the immersions", route: "/immersions", bg: "radial-gradient(130% 100% at 25% 25%, #C7EBD8 0%, #7EC9A7 45%, #2F8E68 100%)" },
 ] as const;
 
 export default function HomeSections() {
