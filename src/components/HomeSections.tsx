@@ -779,7 +779,7 @@ function Programs() {
           <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="mb-2 font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-black/50">
-                Admissions · Cohort 2026
+                ADMISSIONS BOARD
               </p>
               <h2
                 className="text-[clamp(1.75rem,4vw,3.25rem)] font-semibold leading-[1.05] tracking-tight text-black"
