@@ -64,6 +64,12 @@ import edPostgrad from "@/assets/programs/editorial-postgraduate.jpg.asset.json"
 import edAI from "@/assets/programs/editorial-ai.jpg.asset.json";
 import edImmersions from "@/assets/programs/editorial-immersions.jpg.asset.json";
 import edFamily from "@/assets/programs/editorial-family-business.jpg.asset.json";
+import acChai from "@/assets/admissions/chai-alum.jpg";
+import acParents from "@/assets/admissions/parents-speak.jpg";
+import acCampus from "@/assets/admissions/campus-walk.jpg";
+import acFaculty from "@/assets/admissions/faculty-fireside.jpg";
+import acOffice from "@/assets/admissions/office-hours.jpg";
+import acCohort from "@/assets/admissions/cohort-preview.jpg";
 
 type Programme = { title: string; duration: string; format: string; href?: string };
 type Pathway = {
@@ -91,6 +97,7 @@ const ADMISSIONS_CONNECT_SESSIONS = [
     timezone: "IST",
     audience: "Students & parents",
     spotsLeft: 12,
+    image: acChai,
   },
   {
     id: "parents-speak",
@@ -105,6 +112,7 @@ const ADMISSIONS_CONNECT_SESSIONS = [
     timezone: "IST",
     audience: "Parents & guardians",
     spotsLeft: 8,
+    image: acParents,
   },
   {
     id: "campus-walk",
@@ -119,6 +127,7 @@ const ADMISSIONS_CONNECT_SESSIONS = [
     timezone: "IST",
     audience: "Prospective students",
     spotsLeft: 15,
+    image: acCampus,
   },
   {
     id: "faculty-fireside",
@@ -133,6 +142,7 @@ const ADMISSIONS_CONNECT_SESSIONS = [
     timezone: "IST",
     audience: "Serious applicants",
     spotsLeft: 6,
+    image: acFaculty,
   },
   {
     id: "admissions-office-hours",
@@ -147,6 +157,7 @@ const ADMISSIONS_CONNECT_SESSIONS = [
     timezone: "IST",
     audience: "Applicants",
     spotsLeft: 10,
+    image: acOffice,
   },
   {
     id: "cohort-preview",
@@ -161,6 +172,7 @@ const ADMISSIONS_CONNECT_SESSIONS = [
     timezone: "IST",
     audience: "Serious applicants",
     spotsLeft: 20,
+    image: acCohort,
   },
 ] as const;
 
@@ -546,11 +558,15 @@ function AdmissionsConnect() {
                 minHeight: "520px",
               }}
             >
-              {/* Top: neutral placeholder + meta */}
+              {/* Top: editorial portrait + meta */}
               <div className="flex items-start justify-between gap-4">
-                <div
-                  aria-hidden
-                  className="h-24 w-28 shrink-0 rounded-none bg-[#EFECE4]"
+                <img
+                  src={s.image}
+                  alt=""
+                  loading="lazy"
+                  width={1024}
+                  height={1024}
+                  className="h-24 w-28 shrink-0 rounded-none object-cover"
                 />
                 <span className="text-right font-mono text-[10px] uppercase tracking-[0.22em] text-black/55">
                   {formatSessionDate(s.nextDate)}<br />{s.nextTime}
