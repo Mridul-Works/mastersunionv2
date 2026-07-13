@@ -299,40 +299,7 @@ const FORMATS: Format[] = [
           <strong className="font-semibold text-black/85">SDA Bocconi</strong> — Europe's #1
           business school by multiple rankings. Milan. Strategy, luxury, and European business.
         </p>
-        <div className="pt-4">
-          <div className="text-[10.5px] font-semibold uppercase tracking-[0.22em] text-black/50">
-            Partner campuses
-          </div>
-          <div className="mt-3 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-6">
-            {[
-              { name: "SDA Bocconi", src: bocconiLogo.url },
-              { name: "Imperial College London", src: imperialLogo.url },
-              { name: "ESCP Business School", src: escpLogo.url },
-              { name: "Warwick Business School", src: wbsLogo.url },
-              { name: "Nottingham Business School", src: nbsLogo.url },
-              { name: "Ivey Business School", src: iveyLogo.url },
-              { name: "Foster School of Business", src: fosterLogo.url },
-              { name: "Babson College", src: babsonLogo.url },
-              { name: "University of California", src: ucLogo.url },
-              { name: "Singapore Management University", src: smuLogo.url },
-              { name: "CUHK Business School", src: cuhkLogo.url },
-              { name: "Illinois Tech", src: illinoisLogo.url },
-            ].map((l) => (
-              <div
-                key={l.name}
-                title={l.name}
-                className="flex h-20 items-center justify-center bg-white px-3 opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
-              >
-                <img
-                  src={l.src}
-                  alt={l.name}
-                  className="max-h-8 w-auto max-w-[85%] object-contain"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+        <LogoStrip items={CAMPUS_PARTNERS} label="Partner campuses" />
       </div>
     ),
     footnote: "Elective · Students self-apply to partner programmes · MU provides guidance and support.",
