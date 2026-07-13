@@ -64,6 +64,12 @@ import edPostgrad from "@/assets/programs/editorial-postgraduate.jpg.asset.json"
 import edAI from "@/assets/programs/editorial-ai.jpg.asset.json";
 import edImmersions from "@/assets/programs/editorial-immersions.jpg.asset.json";
 import edFamily from "@/assets/programs/editorial-family-business.jpg.asset.json";
+import acChai from "@/assets/admissions/chai-alum.jpg";
+import acParents from "@/assets/admissions/parents-speak.jpg";
+import acCampus from "@/assets/admissions/campus-walk.jpg";
+import acFaculty from "@/assets/admissions/faculty-fireside.jpg";
+import acOffice from "@/assets/admissions/office-hours.jpg";
+import acCohort from "@/assets/admissions/cohort-preview.jpg";
 
 type Programme = { title: string; duration: string; format: string; href?: string };
 type Pathway = {
