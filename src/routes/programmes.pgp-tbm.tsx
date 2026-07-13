@@ -1798,7 +1798,32 @@ function PgpTbm() {
                       <p className="mt-3 text-[13.5px] leading-relaxed text-black/65">
                         {im.body}
                       </p>
+
+                      {isGlobal && (
+                        <div className="mt-5 border-t border-dashed border-black/10 pt-4">
+                          <div className="mb-3 font-mono text-[10px] font-medium uppercase tracking-[0.22em] text-black/45">
+                            Partner B-schools
+                          </div>
+                          <div className="grid grid-cols-4 items-center gap-x-4 gap-y-3 sm:grid-cols-5">
+                            {GLOBAL_PARTNER_LOGOS.map((l) => (
+                              <div
+                                key={l.name}
+                                className="flex h-10 items-center justify-center"
+                                title={l.name}
+                              >
+                                <img
+                                  src={l.src}
+                                  alt={l.name}
+                                  className="max-h-10 max-w-full object-contain opacity-70 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
+                                  loading="lazy"
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
+
 
                     {/* Stat footer — 3 equal columns with hairline dividers */}
                     <dl className="mt-2 grid grid-cols-3 border-t border-black/10">
