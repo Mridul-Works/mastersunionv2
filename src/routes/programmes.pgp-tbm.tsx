@@ -474,6 +474,37 @@ const GLOBAL_PARTNER_LOGOS: { name: string; src: string }[] = [
   { name: "Griffith University", src: griffithLogo.url },
 ];
 
+import zeptoLogo from "@/assets/bharat-logos/zepto.png.asset.json";
+import zerodhaLogo from "@/assets/bharat-logos/zerodha.png.asset.json";
+import credLogo from "@/assets/bharat-logos/cred.png.asset.json";
+import lenskartLogo from "@/assets/bharat-logos/lenskart.png.asset.json";
+import amulLogo from "@/assets/bharat-logos/amul.png.asset.json";
+import infosysLogo from "@/assets/bharat-logos/infosys.png.asset.json";
+import itcLogo from "@/assets/bharat-logos/itc.png.asset.json";
+import godrejLogo from "@/assets/bharat-logos/godrej.png.asset.json";
+import adaniPortsLogo from "@/assets/bharat-logos/adani-ports.png.asset.json";
+import adaniWilmarLogo from "@/assets/bharat-logos/adani-wilmar.png.asset.json";
+import rbiLogo from "@/assets/bharat-logos/rbi.png.asset.json";
+import nseLogo from "@/assets/bharat-logos/nse.png.asset.json";
+import bseLogo from "@/assets/bharat-logos/bse.png.asset.json";
+
+const BHARAT_PARTNER_LOGOS: { name: string; src: string }[] = [
+  { name: "Reserve Bank of India", src: rbiLogo.url },
+  { name: "NSE", src: nseLogo.url },
+  { name: "BSE", src: bseLogo.url },
+  { name: "Infosys", src: infosysLogo.url },
+  { name: "ITC", src: itcLogo.url },
+  { name: "Godrej Industries", src: godrejLogo.url },
+  { name: "Adani Ports", src: adaniPortsLogo.url },
+  { name: "Adani Wilmar", src: adaniWilmarLogo.url },
+  { name: "Amul", src: amulLogo.url },
+  { name: "Zepto", src: zeptoLogo.url },
+  { name: "Zerodha", src: zerodhaLogo.url },
+  { name: "CRED", src: credLogo.url },
+  { name: "Lenskart", src: lenskartLogo.url },
+];
+
+
 
 // -------- 8-term timeline (three engines, term by term) --------
 type EngineCell = { label: string; kind: "in" | "d2c" | "creator" | "imm" };
