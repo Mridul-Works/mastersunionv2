@@ -455,7 +455,7 @@ function ImmersionsPage() {
       </section>
 
       {/* FIVE FORMATS */}
-      <section className="mx-auto max-w-6xl px-5 pt-20 md:px-10 md:pt-28">
+      <section id="formats" className="mx-auto max-w-6xl px-5 pt-20 md:px-10 md:pt-28">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-black/50">
             Five formats · One system
