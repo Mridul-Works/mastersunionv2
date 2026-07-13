@@ -166,43 +166,6 @@ function HowWeTeachPage() {
         </div>
       </div>
 
-      {/* HERO */}
-      <section className="mx-auto max-w-6xl px-5 pb-10 pt-20 md:px-10 md:pt-28">
-        <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
-          The Masters&apos; Union journey
-        </div>
-        <h1 className="mt-6 max-w-[18ch] text-balance text-[clamp(2.6rem,8vw,7rem)] font-medium leading-[0.95] tracking-[-0.03em]">
-          Your grade is your revenue.
-        </h1>
-        <p className="mt-10 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-black/70">
-          Scroll to zoom into every semester — from the first product you list, to the audience you
-          build, to the venture you raise capital for.
-        </p>
-
-        <div className="mt-16 grid grid-cols-2 gap-px border border-black/10 bg-black/10 md:grid-cols-4">
-          {HERO_STATS.map((s) => (
-            <div key={s.label} className="bg-white px-4 py-10 text-center">
-              <div className="text-[clamp(1.6rem,3.2vw,2.8rem)] leading-none tracking-[-0.03em]">
-                {s.value}
-              </div>
-              <div
-                className="mx-auto mt-3 max-w-[22ch] text-[10px] uppercase tracking-[0.2em] text-black/60"
-                style={{ fontFamily: MONO }}
-              >
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div
-          className="mt-16 flex items-center gap-3 text-[11px] uppercase tracking-[0.3em] text-black/55"
-          style={{ fontFamily: MONO }}
-        >
-          <span className="h-px w-10 bg-black/30" />
-          Scroll to begin the journey
-        </div>
-      </section>
 
       {/* IMMERSIVE JOURNEY */}
       <JourneyScroll />
