@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
+import prathamPortrait from "@/assets/founder-pratham.jpg.asset.json";
 
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
