@@ -9,6 +9,15 @@ import {
   Layers,
   Sparkles,
 } from "lucide-react";
+import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
+
+const IMMERSIONS_NAV: SectionNavItem[] = [
+  { id: "top", label: "Overview" },
+  { id: "formats", label: "Formats" },
+  { id: "standalone", label: "Standalone" },
+  { id: "credits", label: "Credits" },
+  { id: "apply", label: "Apply" },
+];
 
 // Global immersion companies (from Drive)
 import daikinLogo from "@/assets/immersions/global/daikin.png.asset.json";
