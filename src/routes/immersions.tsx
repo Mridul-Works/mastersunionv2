@@ -58,6 +58,21 @@ import cazuloLogo from "@/assets/immersions/bharat/cazulo.png.asset.json";
 import credLogo from "@/assets/immersions/bharat/cred.png.asset.json";
 import itcLogo from "@/assets/immersions/bharat/itc.png.asset.json";
 
+// Summer / Semester Abroad partner campuses
+import babsonLogo from "@/assets/immersions/campuses/babson.png.asset.json";
+import bocconiLogo from "@/assets/immersions/campuses/sda-bocconi.png.asset.json";
+import fosterLogo from "@/assets/immersions/campuses/foster.png.asset.json";
+import griffithLogo from "@/assets/immersions/campuses/griffith.png.asset.json";
+import illinoisLogo from "@/assets/immersions/campuses/illinois-tech.png.asset.json";
+import imperialLogo from "@/assets/immersions/campuses/imperial.png.asset.json";
+import smuLogo from "@/assets/immersions/campuses/smu.png.asset.json";
+import ucLogo from "@/assets/immersions/campuses/uc.png.asset.json";
+import escpLogo from "@/assets/immersions/campuses/escp.png.asset.json";
+import nbsLogo from "@/assets/immersions/campuses/nbs.png.asset.json";
+import wbsLogo from "@/assets/immersions/campuses/wbs.png.asset.json";
+import iveyLogo from "@/assets/immersions/campuses/ivey.png.asset.json";
+import cuhkLogo from "@/assets/immersions/campuses/cuhk.png.asset.json";
+
 
 const INTER = "'Inter', system-ui, sans-serif";
 const SERIF = "'Fraunces', Georgia, serif";
@@ -204,6 +219,41 @@ const FORMATS: Format[] = [
           <strong className="font-semibold text-black/85">SDA Bocconi</strong> — Europe's #1
           business school by multiple rankings. Milan. Strategy, luxury, and European business.
         </p>
+        <div className="pt-4">
+          <div className="text-[10.5px] font-semibold uppercase tracking-[0.22em] text-black/50">
+            Partner campuses
+          </div>
+          <div className="mt-3 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-4 md:grid-cols-5">
+            {[
+              { name: "SDA Bocconi", src: bocconiLogo.url },
+              { name: "Imperial College London", src: imperialLogo.url },
+              { name: "ESCP Business School", src: escpLogo.url },
+              { name: "Warwick Business School", src: wbsLogo.url },
+              { name: "Nottingham Business School", src: nbsLogo.url },
+              { name: "Ivey Business School", src: iveyLogo.url },
+              { name: "Foster School of Business", src: fosterLogo.url },
+              { name: "Babson College", src: babsonLogo.url },
+              { name: "University of California", src: ucLogo.url },
+              { name: "Singapore Management University", src: smuLogo.url },
+              { name: "CUHK Business School", src: cuhkLogo.url },
+              { name: "Illinois Tech", src: illinoisLogo.url },
+              { name: "Griffith University", src: griffithLogo.url },
+            ].map((l) => (
+              <div
+                key={l.name}
+                title={l.name}
+                className="flex h-16 items-center justify-center bg-white p-2 opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+              >
+                <img
+                  src={l.src}
+                  alt={l.name}
+                  className="h-8 w-auto max-w-full object-contain"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     ),
     footnote: "Elective · Students self-apply to partner programmes · MU provides guidance and support.",
