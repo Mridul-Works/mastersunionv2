@@ -147,7 +147,19 @@ const SECTIONS: Record<string, { pullQuote: string; sections: { heading: string;
     proof: ["$10M investment vehicle", "₹10–20L cheque sizes", "<10 days for most decisions", "All founders under 25"],
     closing: "Most people apply for jobs. A few apply to build the future.",
   },
+  "/d2c-challenge": {
+    pullQuote: "Your exam is a Stripe dashboard. Your grade is your revenue. Welcome to Term 1.",
+    sections: [
+      { heading: "How it works", body: "Every student sources a product, builds a store, runs ads, handles orders, and manages returns. No simulation. No sample dataset. Real suppliers. Real customers. Real money changing hands. The Dropshipping Fair generated ₹3.38 Cr across 50 teams in a single semester." },
+      { heading: "The scoreboard", body: "Revenue. Margin. Profit. NPS. Four numbers, no subjectivity. 50 teams compete simultaneously, averaging ₹4L+ per team in Term 1 — before their first midterm. The Shopify dashboard is the report card." },
+      { heading: "What you actually learn", body: "Unit economics, pricing strategy, digital marketing, customer psychology — taught by practitioners from Amazon, McKinsey, and India's D2C founders. By the end of Term 1, you have made mistakes, fixed them, and learned more about unit economics from one semester of doing than most people learn in an entire MBA from reading." },
+      { heading: "Brands born here", body: "Lexi's Gourmet Sandwiches (Co'24) — ₹1 Cr+ ARR, 4.5+/5 on Swiggy and Zomato within three months, now expanding from Gurgaon to Delhi. Eat Atlas — premium chips and dips with a global-flavours D2C model. Unit economics learned InClass, validated OutClass." },
+    ],
+    proof: ["₹3.38 Cr cohort revenue, Co'25", "50 teams competing simultaneously", "₹4L+ average revenue per team", "0 simulation assignments"],
+    closing: "The number on your Shopify dashboard is not a proxy for learning. It is the learning.",
+  },
 };
+
 
 function withSections<T extends { route: string }>(c: T): T & { pullQuote: string; sections: { heading: string; body: string }[]; proof: string[]; closing: string } {
   const s = SECTIONS[c.route];
