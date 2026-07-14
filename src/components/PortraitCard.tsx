@@ -75,8 +75,6 @@ function scribble(v: number): ReactNode {
 }
 
 export function PortraitCard({ name, img, chip = "MU", variant = 0, className = "" }: Props) {
-  const uid = useId();
-  const gradId = `mu-scribble-${uid.replace(/[:]/g, "")}`;
   const initials = name
     .replace(/^(Dr|Captain|Prof)\s+/i, "")
     .replace(/^@/, "")
