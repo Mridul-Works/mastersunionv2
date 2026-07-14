@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { ArrowRight, Calendar, CheckCircle2, ChevronLeft, ClipboardList, Clock, FileText, GraduationCap, Sparkles } from "lucide-react";
+import { PageMasthead } from "@/components/PageMasthead";
 
 type Program = {
   id: string;
