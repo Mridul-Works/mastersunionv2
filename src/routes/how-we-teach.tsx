@@ -167,6 +167,8 @@ function HowWeTeachPage() {
       style={{ fontFamily: INTER }}
     >
       {showNav && <SectionNav items={PAGE_NAV} applyHref="#apply" />}
+      <PageMasthead title="How We Teach" caption="A pedagogy built on live ledgers, real customers, and the discipline of consequence." />
+
 
       {/* Top marker */}
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">
