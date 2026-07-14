@@ -1287,7 +1287,17 @@ function PedagogySelector() {
             style={{ background: p.bg }}
           >
             {/* Main content area */}
-            <div className="relative flex flex-1 flex-col justify-between p-7 md:p-10">
+            <div className="relative flex flex-1 flex-col justify-between overflow-hidden p-7 md:p-10">
+              {/* Feature image — subject bleeding from the right, like the reference lookbook */}
+              <img
+                src={p.img}
+                alt=""
+                aria-hidden
+                className="pointer-events-none absolute inset-y-0 right-0 h-full w-[62%] object-cover object-center opacity-95 mix-blend-luminosity [mask-image:linear-gradient(to_right,transparent_0%,black_28%,black_100%)]"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-black/5" />
+              <div className="relative flex h-full flex-col justify-between">
+
               {/* Top row */}
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3">
