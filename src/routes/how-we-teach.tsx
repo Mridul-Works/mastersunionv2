@@ -195,30 +195,118 @@ function HowWeTeachPage() {
       {/* Sentinel — nav appears after this point */}
       <div ref={navSentinelRef} aria-hidden />
 
-      {/* REPORT CARD */}
-      <section id="report" className="border-t border-black/10 bg-black text-white">
-        <div className="mx-auto max-w-6xl px-5 py-24 md:px-10 md:py-32">
-          <div className="text-[11px] uppercase tracking-[0.3em] text-white/60" style={{ fontFamily: MONO }}>
-            Your report card
-          </div>
-          <h2 className="mt-4 max-w-[24ch] text-balance text-[clamp(2rem,5vw,3.4rem)] font-medium leading-[1.05] tracking-[-0.02em]">
-            What your report card looks like.
-          </h2>
-          <p className="mt-6 max-w-[60ch] text-[clamp(1rem,1.4vw,1.2rem)] leading-[1.6] text-white/75">
-            Four metrics. No rubric. No subjective scoring. Just what the market decided about your work.
-          </p>
+      {/* REPORT CARD — editorial transcript */}
+      <section id="report" className="relative border-t border-black/10 bg-black text-white">
+        {/* subtle grid backdrop */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
+            backgroundSize: "80px 80px",
+          }}
+        />
 
-          <div className="mt-14 grid grid-cols-1 gap-px bg-white/15 md:grid-cols-2">
-            {REPORT_CARD.map((r) => (
-              <div key={r.metric} className="bg-black p-8 md:p-10">
-                <div className="text-[11px] uppercase tracking-[0.3em] text-white/60" style={{ fontFamily: MONO }}>
-                  {r.metric}
-                </div>
-                <p className="mt-4 text-[clamp(1.05rem,1.5vw,1.25rem)] leading-[1.55] text-white/90">
-                  {r.body}
-                </p>
+        <div className="relative mx-auto max-w-6xl px-5 py-24 md:px-10 md:py-32">
+          {/* Masthead */}
+          <div className="flex items-baseline justify-between border-b border-white/20 pb-6">
+            <div
+              className="text-[10px] uppercase tracking-[0.35em] text-white/60"
+              style={{ fontFamily: MONO }}
+            >
+              Transcript · Vol. 01
+            </div>
+            <div
+              className="text-[10px] uppercase tracking-[0.35em] text-white/60"
+              style={{ fontFamily: MONO }}
+            >
+              Issued by the market
+            </div>
+          </div>
+
+          <div className="mt-10 grid gap-10 md:grid-cols-12">
+            <div className="md:col-span-5">
+              <h2 className="text-balance text-[clamp(2rem,4.6vw,3.4rem)] font-medium leading-[1.02] tracking-[-0.02em]">
+                Your report card,<br />
+                <span className="italic text-white/70">graded in public.</span>
+              </h2>
+              <p className="mt-6 max-w-[38ch] text-[clamp(0.98rem,1.2vw,1.1rem)] leading-[1.65] text-white/70">
+                Four metrics. No rubric. No subjective scoring. Just what the market decided about your work.
+              </p>
+
+              <div
+                className="mt-10 inline-flex items-center gap-3 border border-white/25 px-4 py-2 text-[10px] uppercase tracking-[0.3em] text-white/80"
+                style={{ fontFamily: MONO }}
+              >
+                <span className="size-1.5 rounded-full bg-emerald-400" />
+                Grade · Pass / Ship / Repeat
               </div>
-            ))}
+            </div>
+
+            {/* Ledger */}
+            <ol className="md:col-span-7">
+              {REPORT_CARD.map((r, i) => (
+                <li
+                  key={r.metric}
+                  className="group grid grid-cols-[auto_1fr_auto] items-start gap-x-6 gap-y-3 border-t border-white/15 py-7 first:border-t-0 md:py-8"
+                >
+                  <div
+                    className="pt-2 text-[10px] uppercase tracking-[0.3em] text-white/40 tabular-nums"
+                    style={{ fontFamily: MONO }}
+                  >
+                    {r.code}
+                  </div>
+
+                  <div>
+                    <div className="flex items-baseline gap-3">
+                      <h3 className="text-[clamp(1.6rem,2.6vw,2.15rem)] font-medium leading-none tracking-[-0.02em]">
+                        {r.metric}
+                      </h3>
+                      <span
+                        className="text-[10px] uppercase tracking-[0.28em] text-white/45"
+                        style={{ fontFamily: MONO }}
+                      >
+                        / {r.unit}
+                      </span>
+                    </div>
+                    <p className="mt-3 max-w-[52ch] text-[0.98rem] leading-[1.6] text-white/75">
+                      {r.body}
+                    </p>
+                  </div>
+
+                  <div className="pt-1 text-right">
+                    <div
+                      className="text-[10px] uppercase tracking-[0.3em] text-white/40"
+                      style={{ fontFamily: MONO }}
+                    >
+                      Verdict
+                    </div>
+                    <div
+                      className="mt-1 text-[clamp(1rem,1.4vw,1.15rem)] font-medium tracking-[-0.01em] text-white transition-colors group-hover:text-emerald-300"
+                    >
+                      {r.verdict}
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          {/* Footer stamp */}
+          <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-white/20 pt-6">
+            <div
+              className="text-[10px] uppercase tracking-[0.35em] text-white/50"
+              style={{ fontFamily: MONO }}
+            >
+              No curve · No credit · No re-sit
+            </div>
+            <div
+              className="text-[10px] uppercase tracking-[0.35em] text-white/50"
+              style={{ fontFamily: MONO }}
+            >
+              Signed — The Customer
+            </div>
           </div>
         </div>
       </section>
