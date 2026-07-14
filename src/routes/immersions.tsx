@@ -483,18 +483,9 @@ function ImmersionsPage() {
           {FORMATS.map((f) => {
             const Icon = f.icon;
             return (
-              <li key={f.n} className="group relative overflow-hidden">
-                {/* Hover: cream wash sweeping in from the left */}
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute inset-0 origin-left scale-x-0 bg-[#f4f0e8] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
-                />
-                {/* Hover: hairline top rule that draws in */}
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-black transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
-                />
-                <article className="relative grid grid-cols-[auto_1fr] gap-x-6 gap-y-4 py-10 transition-[padding] duration-500 ease-out group-hover:md:pl-6 md:grid-cols-[6rem_11rem_1fr] md:gap-x-10 md:py-14">
+              <li key={f.n} className="group relative">
+                <article className="relative grid grid-cols-[auto_1fr] gap-x-6 gap-y-4 py-10 md:grid-cols-[6rem_11rem_1fr] md:gap-x-10 md:py-14">
+
                   {/* Numeral */}
                   <div className="col-span-1 md:col-span-1">
                     <div className="relative inline-block overflow-hidden font-display text-[3.2rem] font-light leading-none tracking-tight md:text-[4.2rem]">
