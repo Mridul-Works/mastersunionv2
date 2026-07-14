@@ -569,21 +569,11 @@ function FounderQuote() {
       className="relative border-t border-black/5 text-neutral-900"
       style={{
         fontFamily: INTER,
-        height: "300vh",
+        height: "200vh",
         background:
           "radial-gradient(140% 100% at 15% 0%, #f2ebdc 0%, #f6f1e4 45%, #faf6ec 100%), #faf6ec",
       }}
     >
-      {/* Newsprint grain + vignette */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.35] mix-blend-multiply"
-        style={{
-          backgroundImage:
-            "radial-gradient(rgba(0,0,0,0.08) 1px, transparent 1px)",
-          backgroundSize: "3px 3px",
-        }}
-      />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -602,11 +592,11 @@ function FounderQuote() {
           >
             <span className="flex items-center gap-3">
               <span className="h-1.5 w-1.5 rounded-full bg-[#2e7856]" />
-              Vol. 01 · Founder&apos;s Letter
+              Founder&apos;s Letter
             </span>
             <span className="hidden md:inline">Masters&apos; Union · New Delhi</span>
-            <span>№ 001</span>
           </div>
+
 
           <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-12 md:gap-14">
             {/* Portrait column */}
