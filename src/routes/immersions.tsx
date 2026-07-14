@@ -483,24 +483,34 @@ function ImmersionsPage() {
           {FORMATS.map((f) => {
             const Icon = f.icon;
             return (
-              <li key={f.n} className="group relative">
-                {/* Hover accent bar */}
+              <li key={f.n} className="group relative overflow-hidden">
+                {/* Hover: cream wash sweeping in from the left */}
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute inset-y-0 left-0 w-px bg-black origin-top scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100"
+                  className="pointer-events-none absolute inset-0 origin-left scale-x-0 bg-[#f4f0e8] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
                 />
-                <article className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-4 py-10 md:grid-cols-[6rem_11rem_1fr] md:gap-x-10 md:py-14">
+                {/* Hover: hairline top rule that draws in */}
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-black transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
+                />
+                <article className="relative grid grid-cols-[auto_1fr] gap-x-6 gap-y-4 py-10 transition-[padding] duration-500 ease-out group-hover:md:pl-6 md:grid-cols-[6rem_11rem_1fr] md:gap-x-10 md:py-14">
                   {/* Numeral */}
                   <div className="col-span-1 md:col-span-1">
-                    <div className="font-display text-[3.2rem] font-light leading-none tracking-tight text-black/25 transition-colors duration-500 group-hover:text-black md:text-[4.2rem]">
-                      {f.n}
+                    <div className="relative inline-block overflow-hidden font-display text-[3.2rem] font-light leading-none tracking-tight md:text-[4.2rem]">
+                      <span className="block text-black/25 transition-all duration-500 ease-out group-hover:-translate-y-full group-hover:opacity-0">
+                        {f.n}
+                      </span>
+                      <span className="absolute inset-0 block translate-y-full text-black transition-transform duration-500 ease-out group-hover:translate-y-0">
+                        {f.n}
+                      </span>
                     </div>
                   </div>
 
                   {/* Meta column */}
                   <div className="col-span-1 flex flex-col gap-3 md:col-span-1">
-                    <div className="flex size-10 items-center justify-center rounded-full border border-black/15 text-black/70 transition-colors duration-500 group-hover:border-black group-hover:bg-black group-hover:text-white">
-                      <Icon className="size-4" />
+                    <div className="flex size-10 items-center justify-center rounded-full border border-black/15 text-black/70 transition-all duration-500 group-hover:rotate-45 group-hover:border-black group-hover:bg-black group-hover:text-white">
+                      <Icon className="size-4 transition-transform duration-500 group-hover:-rotate-45" />
                     </div>
                     <div>
                       <div className="text-[10.5px] font-semibold uppercase tracking-[0.26em] text-black/55">
@@ -517,8 +527,12 @@ function ImmersionsPage() {
 
                   {/* Content column */}
                   <div className="col-span-2 md:col-span-1">
-                    <h3 className="font-display text-[1.55rem] font-semibold leading-[1.15] tracking-tight text-black md:text-[1.9rem]">
-                      {f.title}
+                    <h3 className="flex items-start gap-3 font-display text-[1.55rem] font-semibold leading-[1.15] tracking-tight text-black md:text-[1.9rem]">
+                      <span>{f.title}</span>
+                      <ArrowUpRight
+                        aria-hidden
+                        className="mt-1 size-5 shrink-0 -translate-x-2 opacity-0 transition-all duration-500 ease-out group-hover:translate-x-0 group-hover:opacity-100 md:size-6"
+                      />
                     </h3>
                     <p className="mt-3 max-w-xl text-[14.5px] leading-[1.6] text-black/70">
                       {f.lede}
@@ -527,12 +541,13 @@ function ImmersionsPage() {
                       {f.body}
                     </div>
                     <div className="mt-6 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">
-                      <span className="h-px w-6 bg-black/30" />
+                      <span className="h-px w-6 bg-black/30 transition-all duration-500 group-hover:w-14 group-hover:bg-black" />
                       {f.footnote}
                     </div>
                   </div>
                 </article>
               </li>
+
             );
           })}
         </ol>
