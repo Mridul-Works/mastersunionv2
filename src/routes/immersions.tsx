@@ -396,6 +396,8 @@ function ImmersionsPage() {
       style={{ fontFamily: INTER }}
     >
       <SectionNav items={IMMERSIONS_NAV} applyHref="#apply" />
+      <PageMasthead title="Immersions" caption="Learning happens on the ground — inside factories, trading floors, and studios across Bharat and the world." />
+
 
       {/* Top bar */}
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">
