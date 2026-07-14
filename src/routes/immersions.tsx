@@ -10,6 +10,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
+import { PageMasthead } from "@/components/PageMasthead";
 
 const IMMERSIONS_NAV: SectionNavItem[] = [
   { id: "top", label: "Overview" },
