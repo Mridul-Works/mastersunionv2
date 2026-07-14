@@ -259,24 +259,11 @@ function FacultyPage() {
         </h2>
 
         <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-4">
-          {VISITING.map((v) => (
+          {VISITING.map((v, i) => (
             <article key={v.name} className="group">
-              <div className="aspect-square w-full overflow-hidden bg-[#ececec]">
-                {v.img ? (
-                  <img
-                    src={v.img}
-                    alt={v.name}
-                    className="h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0"
-                  />
-                ) : (
-                  <Initials name={v.name} />
-                )}
-              </div>
-              <h3 className="mt-4 text-[0.95rem] font-medium leading-tight text-black">
-                {v.name}
-              </h3>
+              <PortraitCard name={v.name} img={v.img} variant={i + 4} chip="Visiting" />
               <div
-                className="mt-1 text-[11px] leading-snug text-black/55"
+                className="mt-4 text-[11px] leading-snug text-black/55"
                 style={{ fontFamily: MONO }}
               >
                 {v.role}
