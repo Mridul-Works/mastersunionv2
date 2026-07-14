@@ -456,66 +456,86 @@ function ImmersionsPage() {
 
       {/* FIVE FORMATS */}
       <section id="formats" className="mx-auto max-w-6xl px-5 pt-20 md:px-10 md:pt-28">
-        <div className="max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-black/50">
-            Five formats · One system
-          </p>
-          <h2 className="mt-4 text-[clamp(1.6rem,3.4vw,2.5rem)] font-semibold leading-[1.08] tracking-tight text-black">
-            Different lengths. Different geographies.{" "}
-            <span className="italic font-light" style={{ fontFamily: SERIF }}>
-              Same principle.
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-2xl">
+            <p className="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.28em] text-black/50">
+              <span className="h-px w-8 bg-black/30" />
+              Five formats · One system
+            </p>
+            <h2 className="mt-4 text-[clamp(1.6rem,3.4vw,2.5rem)] font-semibold leading-[1.08] tracking-tight text-black">
+              Different lengths. Different geographies.{" "}
+              <span className="italic font-light" style={{ fontFamily: SERIF }}>
+                Same principle.
+              </span>
+            </h2>
+          </div>
+          <div
+            className="hidden shrink-0 text-right text-[11px] font-semibold uppercase tracking-[0.28em] text-black/40 md:block"
+            style={{ fontFamily: SERIF }}
+          >
+            <span className="italic font-light normal-case tracking-normal text-[13px] text-black/60">
+              Scroll the index →
             </span>
-          </h2>
+          </div>
         </div>
 
-        <div className="mt-12 space-y-6">
+        <ol className="mt-14 divide-y divide-black/10 border-y border-black/10">
           {FORMATS.map((f) => {
             const Icon = f.icon;
             return (
-              <article
-                key={f.n}
-                className="grid gap-6 border border-black/10 bg-white md:grid-cols-[280px_1fr]"
-              >
-                {/* Left panel — visual */}
-                <div
-                  className="relative flex flex-col justify-between p-6 md:p-8"
-                  style={{ background: f.gradient }}
-                >
-                  <div className="flex items-start justify-between">
-                    <div className="font-display text-4xl font-semibold leading-none tracking-tight text-black/70 md:text-5xl">
+              <li key={f.n} className="group relative">
+                {/* Hover accent bar */}
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-y-0 left-0 w-px bg-black origin-top scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100"
+                />
+                <article className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-4 py-10 md:grid-cols-[6rem_11rem_1fr] md:gap-x-10 md:py-14">
+                  {/* Numeral */}
+                  <div className="col-span-1 md:col-span-1">
+                    <div className="font-display text-[3.2rem] font-light leading-none tracking-tight text-black/25 transition-colors duration-500 group-hover:text-black md:text-[4.2rem]">
                       {f.n}
                     </div>
-                    <div className="flex size-11 items-center justify-center border border-black/20 bg-white/45 text-black/75 backdrop-blur-sm">
-                      <Icon className="size-5" />
-                    </div>
                   </div>
-                  <div className="mt-14 md:mt-20">
-                    <div className="text-[10.5px] font-semibold uppercase tracking-[0.26em] text-black/70">
-                      {f.tag}
-                    </div>
-                    <div className="mt-2 text-[12px] font-medium text-black/70">
-                      {f.duration}
-                    </div>
-                  </div>
-                </div>
 
-                {/* Right panel — content */}
-                <div className="p-6 md:py-8 md:pl-8 md:pr-10">
-                  <h3 className="font-display text-[1.55rem] font-semibold leading-[1.15] tracking-tight text-black md:text-[1.75rem]">
-                    {f.title}
-                  </h3>
-                  <p className="mt-3 text-[14px] leading-[1.55] text-black/70">{f.lede}</p>
-                  <div className="mt-5 space-y-3 text-[13.5px] leading-[1.6] text-black/70">
-                    {f.body}
+                  {/* Meta column */}
+                  <div className="col-span-1 flex flex-col gap-3 md:col-span-1">
+                    <div className="flex size-10 items-center justify-center rounded-full border border-black/15 text-black/70 transition-colors duration-500 group-hover:border-black group-hover:bg-black group-hover:text-white">
+                      <Icon className="size-4" />
+                    </div>
+                    <div>
+                      <div className="text-[10.5px] font-semibold uppercase tracking-[0.26em] text-black/55">
+                        {f.tag}
+                      </div>
+                      <div
+                        className="mt-1.5 text-[13px] italic font-light text-black/70"
+                        style={{ fontFamily: SERIF }}
+                      >
+                        {f.duration}
+                      </div>
+                    </div>
                   </div>
-                  <div className="mt-6 border-t border-black/10 pt-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-black/55">
-                    {f.footnote}
+
+                  {/* Content column */}
+                  <div className="col-span-2 md:col-span-1">
+                    <h3 className="font-display text-[1.55rem] font-semibold leading-[1.15] tracking-tight text-black md:text-[1.9rem]">
+                      {f.title}
+                    </h3>
+                    <p className="mt-3 max-w-xl text-[14.5px] leading-[1.6] text-black/70">
+                      {f.lede}
+                    </p>
+                    <div className="mt-5 max-w-xl space-y-3 text-[13.5px] leading-[1.65] text-black/65">
+                      {f.body}
+                    </div>
+                    <div className="mt-6 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-black/50">
+                      <span className="h-px w-6 bg-black/30" />
+                      {f.footnote}
+                    </div>
                   </div>
-                </div>
-              </article>
+                </article>
+              </li>
             );
           })}
-        </div>
+        </ol>
       </section>
 
 
