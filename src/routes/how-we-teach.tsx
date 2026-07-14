@@ -264,18 +264,18 @@ function JourneyScroll() {
     offset: ["start start", "end end"],
   });
 
-  // 4 stops: Philosophy, Sem1, Sem2, Sem3.
-  // Last stop gets a tighter slot so we exit into the next section
-  // as soon as Sem 3 lands — no dead scroll after it.
-  const BOUNDS = [0, 0.28, 0.56, 0.84, 1.0];
+  // 4 stops: Philosophy (short), Sem1, Sem2, Sem3.
+  // Philosophy gets a tight slot so users land on Sem 1 quickly.
+  const BOUNDS = [0, 0.16, 0.44, 0.72, 1.0];
 
   return (
     <section
       id="journey"
       ref={wrapRef}
       className="relative"
-      style={{ height: "440vh" }}
+      style={{ height: "340vh" }}
     >
+
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-neutral-100">
         {/* progress bar */}
         <ProgressRail progress={scrollYProgress} labels={["Philosophy", "Sem 1", "Sem 2", "Sem 3"]} />
@@ -569,21 +569,11 @@ function FounderQuote() {
       className="relative border-t border-black/5 text-neutral-900"
       style={{
         fontFamily: INTER,
-        height: "300vh",
+        height: "200vh",
         background:
           "radial-gradient(140% 100% at 15% 0%, #f2ebdc 0%, #f6f1e4 45%, #faf6ec 100%), #faf6ec",
       }}
     >
-      {/* Newsprint grain + vignette */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.35] mix-blend-multiply"
-        style={{
-          backgroundImage:
-            "radial-gradient(rgba(0,0,0,0.08) 1px, transparent 1px)",
-          backgroundSize: "3px 3px",
-        }}
-      />
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -602,11 +592,11 @@ function FounderQuote() {
           >
             <span className="flex items-center gap-3">
               <span className="h-1.5 w-1.5 rounded-full bg-[#2e7856]" />
-              Vol. 01 · Founder&apos;s Letter
+              Founder&apos;s Letter
             </span>
             <span className="hidden md:inline">Masters&apos; Union · New Delhi</span>
-            <span>№ 001</span>
           </div>
+
 
           <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-12 md:gap-14">
             {/* Portrait column */}
