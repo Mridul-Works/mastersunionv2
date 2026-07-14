@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Home, BarChart3, ClipboardList, Store } from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
+import { PortraitCard } from "@/components/PortraitCard";
 
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
@@ -87,12 +88,13 @@ function Page() {
 
       <section id="brands" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Brands Born Here</div>
-        <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2">
-          {BRANDS.map((b) => (
-            <article key={b.name} className="bg-white p-8 md:p-10">
-              <h3 className="text-[1.25rem] font-medium leading-tight">{b.name}</h3>
+        <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
+          {BRANDS.map((b, i) => (
+            <article key={b.name} className="flex flex-col">
+              <PortraitCard name={b.name} variant={i} chip="Brand" />
+              <h3 className="mt-5 text-[1.25rem] font-medium leading-tight">{b.name}</h3>
               <div className="mt-2 text-[10px] uppercase tracking-[0.22em] text-black/60" style={{ fontFamily: MONO }}>{b.meta}</div>
-              <p className="mt-5 text-[1rem] leading-[1.7] text-black/75">{b.body}</p>
+              <p className="mt-4 text-[1rem] leading-[1.7] text-black/75">{b.body}</p>
             </article>
           ))}
         </div>

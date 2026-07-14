@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Home, BarChart3, Layers, Trophy, GraduationCap } from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
+import { PortraitCard } from "@/components/PortraitCard";
 
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
@@ -123,24 +124,26 @@ function Page() {
 
       <section id="winners" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>UG Winners — Class of 2028</div>
-        <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-3">
-          {WINNERS.map((w) => (
-            <article key={w.name} className="bg-white p-7">
-              <div className="text-[10px] uppercase tracking-[0.22em] text-black/60" style={{ fontFamily: MONO }}>{w.place}</div>
-              <h3 className="mt-3 text-[1.15rem] font-medium leading-tight">{w.name}</h3>
+        <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {WINNERS.map((w, i) => (
+            <article key={w.name} className="flex flex-col">
+              <PortraitCard name={w.name} variant={i} chip="Winner" />
+              <div className="mt-4 text-[10px] uppercase tracking-[0.22em] text-black/60" style={{ fontFamily: MONO }}>{w.place}</div>
+              <h3 className="mt-2 text-[1.15rem] font-medium leading-tight">{w.name}</h3>
               <div className="mt-1 text-[12px] italic text-black/60">{w.role}</div>
-              <p className="mt-4 text-[0.92rem] leading-[1.65] text-black/75">{w.body}</p>
+              <p className="mt-3 text-[0.92rem] leading-[1.65] text-black/75">{w.body}</p>
             </article>
           ))}
         </div>
 
         <div className="mt-16 text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Other Finalists Worth Noting</div>
-        <div className="mt-6 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-4">
-          {FINALISTS.map((f) => (
-            <div key={f.name} className="bg-white p-6">
-              <div className="text-[1rem] font-medium leading-tight">{f.name}</div>
+        <div className="mt-6 grid grid-cols-2 gap-8 md:grid-cols-4">
+          {FINALISTS.map((f, i) => (
+            <div key={f.name} className="flex flex-col">
+              <PortraitCard name={f.name} variant={i + 3} chip="Finalist" />
+              <div className="mt-4 text-[0.98rem] font-medium leading-tight">{f.name}</div>
               <div className="mt-1 text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>{f.handle}</div>
-              <p className="mt-4 text-[0.88rem] leading-[1.6] text-black/70">{f.note}</p>
+              <p className="mt-3 text-[0.85rem] leading-[1.55] text-black/70">{f.note}</p>
             </div>
           ))}
         </div>
@@ -149,13 +152,18 @@ function Page() {
       <section id="mentors" className="mt-24 border-t border-black/10 bg-neutral-50 md:mt-32">
         <div className="mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-24">
           <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Mentors</div>
-          <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2">
-            {MENTORS.map((m) => (
-              <article key={m.name} className="bg-white p-8">
-                <h3 className="text-[1.15rem] font-medium leading-tight">{m.name}</h3>
-                <div className="mt-1 text-[11px] uppercase tracking-[0.22em] text-black/60" style={{ fontFamily: MONO }}>{m.handle}</div>
-                <div className="mt-2 text-[12px] italic text-black/60">{m.role}</div>
-                <p className="mt-4 text-[0.95rem] leading-[1.7] text-black/75">{m.body}</p>
+          <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2">
+            {MENTORS.map((m, i) => (
+              <article key={m.name} className="flex flex-col sm:flex-row sm:gap-6">
+                <div className="w-full sm:w-[45%] sm:flex-shrink-0">
+                  <PortraitCard name={m.name} variant={i + 1} chip="Mentor" />
+                </div>
+                <div className="mt-4 sm:mt-0 sm:flex-1">
+                  <h3 className="text-[1.15rem] font-medium leading-tight">{m.name}</h3>
+                  <div className="mt-1 text-[11px] uppercase tracking-[0.22em] text-black/60" style={{ fontFamily: MONO }}>{m.handle}</div>
+                  <div className="mt-2 text-[12px] italic text-black/60">{m.role}</div>
+                  <p className="mt-3 text-[0.9rem] leading-[1.6] text-black/75">{m.body}</p>
+                </div>
               </article>
             ))}
           </div>
