@@ -119,24 +119,8 @@ export function PortraitCard({ name, img, chip = "MU", variant = 0, className = 
         {chip}
       </div>
 
-      {/* Gradient scribble overlay */}
-      <svg
-        viewBox="0 0 240 240"
-        className="pointer-events-none absolute inset-0 z-[5] h-full w-full"
-        preserveAspectRatio="none"
-        aria-hidden
-      >
-        <defs>
-          <linearGradient id={gradId} x1="0" y1="0" x2="1" y2="0.2">
-            <stop offset="0%" stopColor="#39B5D7" />
-            <stop offset="47%" stopColor="#F7D544" />
-            <stop offset="100%" stopColor="#E38330" />
-          </linearGradient>
-        </defs>
-        <g stroke={`url(#${gradId})`} opacity="0.92">
-          {scribble(variant)}
-        </g>
-      </svg>
+
+
     </div>
   );
 }
