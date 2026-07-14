@@ -237,13 +237,22 @@ const RAW_CHAPTERS = [
     cta: "Live the day", route: "/life-at-mu", bg: "#8A3A12", ink: "#F2E4CB", image: mu09,
   },
   {
-    n: "10", tag: "Placements",
-    headline: "Our alumni salaries grow 10–20% every single year after they leave.",
-    body: "₹61.98L highest CTC. 3x average salary jump. But the real flex? 28% of grads join as Founder's Office or Chief of Staff — because they already built things, not just studied them.",
-    stat: "₹61.98L", label: "Highest CTC — and it keeps growing",
-    stats: [{ value: "₹61.98L", label: "Highest CTC" }, { value: "3x", label: "Pre-MBA salary jump" }, { value: "10–20%", label: "Annual growth" }],
-    chips: ["Zepto", "McKinsey", "a16z", "Razorpay", "Google", "Peak XV"],
+    n: "10", tag: "Careers",
+    headline: "Not just what you earn on day one. What you earn every year after.",
+    body: "₹61.98L highest CTC. 3.03× average salary jump. 28% of grads join as Founder's Office or Chief of Staff. 148 recruiters — Bain, BCG, McKinsey, Google, Zerodha. And if you'd rather build: ₹50,000/month for a year, no equity taken.",
+    stat: "₹61.98L", label: "Highest CTC, Co'24",
+    stats: [{ value: "₹28.52L", label: "Average CTC, Co'24" }, { value: "₹61.98L", label: "Highest CTC" }, { value: "3.03×", label: "Pre-MBA salary jump" }, { value: "148", label: "Total recruiters" }],
+    chips: ["Bain", "BCG", "McKinsey", "Google", "Zerodha", "Zepto"],
     cta: "See salaries", route: "/placements", bg: "#4A5A1E", ink: "#EFE7D0", image: mu10,
+  },
+  {
+    n: "11", tag: "MU Ventures",
+    headline: "The first cheque before day zero.",
+    body: "A $10M vehicle for founders under 25. Three funds — Dropout, Founders', Creator. Cheques from ₹10–20L. Most decisions in under 10 days. Sector-agnostic. All you need is an idea, an insight, and the courage to start.",
+    stat: "$10M", label: "Investment vehicle for under-25 founders",
+    stats: [{ value: "$10M", label: "Fund size" }, { value: "₹10–20L", label: "Cheque sizes" }, { value: "<10 days", label: "Most decisions" }, { value: "Under 25", label: "All founders" }],
+    chips: ["Dropout Fund", "Founders' Fund", "Creator Fund", "Cryptique", "ORBIT", "Blue Brew"],
+    cta: "Get funded", route: "/mu-ventures", bg: "#2A1E4A", ink: "#EDE4CE", image: mu02,
   },
 ];
 
