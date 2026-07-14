@@ -33,6 +33,7 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
         </div>
       </div>
 
+      <PageMasthead title={chapter.tag} eyebrow={`Chapter ${chapter.n} / 10`} caption={chapter.headline} />
 
       {/* HERO */}
       <section className="mx-auto max-w-6xl px-5 pb-16 pt-16 md:px-10 md:pt-24">
