@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Home, Quote, BarChart3, BookOpen, CheckCircle2 } from "lucide-react";
 import type { Chapter } from "./chapters";
 import BottomNav, { type BottomNavItem } from "./BottomNav";
+import { PageMasthead } from "./PageMasthead";
 
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
