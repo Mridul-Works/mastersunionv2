@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Home, Quote, BarChart3, Building2, Trophy } from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
+import { PortraitCard } from "@/components/PortraitCard";
 
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
