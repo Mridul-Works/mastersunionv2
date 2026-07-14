@@ -167,10 +167,10 @@ const RAW_CHAPTERS = [
   {
     n: "02", tag: "Entrepreneurship",
     headline: "Our students built startups worth ₹593 crore.",
-    body: "30+ startups. 6 Shark Tank India appearances. One founder was still figuring out his hostel mess timetable. We don't incubate ideas. We incubate revenue.",
+    body: "30+ startups. ₹593 Cr total valuation. 6 Shark Tank India appearances — including one by a first-year undergraduate. We do not wait for students to graduate before calling them founders. The portfolio starts on day one.",
     stat: "₹593 Cr", label: "Total valuation of student startups",
     stats: [{ value: "₹593 Cr", label: "Total valuation" }, { value: "₹480 Cr", label: "Projected revenue, FY26" }, { value: "6", label: "On Shark Tank India" }, { value: "180+", label: "Jobs created" }],
-    chips: ["Shark Tank", "Sequoia Spark", "Blume", "Titan Capital", "Y Combinator"],
+    chips: ["MU Fund ₹5 Cr", "MU Grants ₹1.2 Cr", "Founder's Fellowship", "Demo Day 100+ VCs"],
     cta: "Start building", route: "/startups", bg: "#1F4D3F", ink: "#EFE7D6", image: mu03,
   },
   {
