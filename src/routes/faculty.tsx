@@ -219,21 +219,33 @@ function FacultyPage() {
             25 PhD faculty. Active researchers. Published in the journals McKinsey and the world&apos;s best B-schools read.
           </h2>
 
-          <div className="mt-12 grid gap-px bg-black/10 sm:grid-cols-2 md:grid-cols-3">
+          <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-4">
             {FULLTIME.map((f) => (
-              <div key={f.name} className="bg-white p-6">
-                <div className="aspect-square w-full overflow-hidden ring-1 ring-black/10">
+              <div key={f.name} className="group">
+                <div className="aspect-square w-full overflow-hidden bg-[#ececec]">
                   {f.img ? (
-                    <img src={f.img} alt={f.name} className="h-full w-full object-cover grayscale" />
+                    <img
+                      src={f.img}
+                      alt={f.name}
+                      className="h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0"
+                    />
                   ) : (
                     <Initials name={f.name} />
                   )}
                 </div>
-                <h3 className="mt-4 text-[1rem] leading-tight text-black">{f.name}</h3>
-                <div className="mt-1 text-[11px] uppercase tracking-[0.16em] text-black/60" style={{ fontFamily: MONO }}>{f.note}</div>
+                <h3 className="mt-4 text-[0.95rem] font-medium leading-tight text-black">
+                  {f.name}
+                </h3>
+                <div
+                  className="mt-1 text-[11px] leading-snug text-black/55"
+                  style={{ fontFamily: MONO }}
+                >
+                  {f.note}
+                </div>
               </div>
             ))}
           </div>
+
 
           <p className="mt-10 max-w-[62ch] text-[1rem] leading-[1.6] text-black/70">
             And 19 more across finance, marketing, operations, organisational behaviour, economics, data science, and strategy.
@@ -261,22 +273,36 @@ function FacultyPage() {
           Professors who teach here because they believe in what Masters&apos; Union is building.
         </h2>
 
-        <div className="mt-12 grid gap-px bg-black/10 sm:grid-cols-2 md:grid-cols-3">
+        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-4">
           {VISITING.map((v) => (
-            <article key={v.name} className="bg-white p-6">
-              <div className="aspect-[4/5] w-full overflow-hidden ring-1 ring-black/10">
+            <article key={v.name} className="group">
+              <div className="aspect-square w-full overflow-hidden bg-[#ececec]">
                 {v.img ? (
-                  <img src={v.img} alt={v.name} className="h-full w-full object-cover grayscale" />
+                  <img
+                    src={v.img}
+                    alt={v.name}
+                    className="h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0"
+                  />
                 ) : (
                   <Initials name={v.name} />
                 )}
               </div>
-              <h3 className="mt-4 text-[1rem] leading-tight text-black">{v.name}</h3>
-              <div className="mt-1 text-[11px] uppercase tracking-[0.16em] text-black/60" style={{ fontFamily: MONO }}>{v.role}</div>
-              <div className="mt-2 text-[0.9rem] text-black/70">{v.school}</div>
+              <h3 className="mt-4 text-[0.95rem] font-medium leading-tight text-black">
+                {v.name}
+              </h3>
+              <div
+                className="mt-1 text-[11px] leading-snug text-black/55"
+                style={{ fontFamily: MONO }}
+              >
+                {v.role}
+              </div>
+              <div className="mt-0.5 text-[11px] leading-snug text-black/45" style={{ fontFamily: MONO }}>
+                {v.school}
+              </div>
             </article>
           ))}
         </div>
+
 
         <div className="mt-14 border-l-2 border-black/80 bg-neutral-50 p-8 md:p-10">
           <p className="max-w-[70ch] text-[1.05rem] leading-[1.65] text-black/80">
