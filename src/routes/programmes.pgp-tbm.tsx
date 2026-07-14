@@ -1542,6 +1542,8 @@ function PgpTbm() {
       } as React.CSSProperties}
     >
       <SectionNav items={PGP_NAV} applyHref="#apply" />
+      <PageMasthead title="PGP-TBM" eyebrow="Postgraduate Programme" caption="The flagship postgraduate programme in Technology & Business Management." />
+
 
       {/* HERO */}
       <section className="relative overflow-hidden pt-28 sm:pt-32">
