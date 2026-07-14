@@ -1352,7 +1352,9 @@ function PedagogySelector() {
                   </div>
                 </div>
               </div>
+              </div>
             </div>
+
 
             {/* Right rail — vertical index & CTA (reference-style) */}
             <div className="relative hidden w-[92px] shrink-0 border-l border-black/10 md:flex md:flex-col md:items-center md:justify-between md:py-10 lg:w-[110px]">
