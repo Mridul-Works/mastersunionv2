@@ -75,6 +75,8 @@ function ApplicationsCenter() {
           </div>
         </div>
       </header>
+      <PageMasthead title="Applications" eyebrow="Admissions · Cohort 2026" caption="Choose a programme. Submit your application. Track every round from one place." />
+
 
       {/* Hero */}
       <section className="mx-auto max-w-[1400px] px-6 pt-14 pb-10">
