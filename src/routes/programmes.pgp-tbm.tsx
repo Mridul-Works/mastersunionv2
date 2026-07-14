@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
+import { PageMasthead } from "@/components/PageMasthead";
 import SectionDivider from "@/components/SectionDivider";
 import { cn } from "@/lib/utils";
 import logoWhite from "@/assets/logo-4.png.asset.json";
