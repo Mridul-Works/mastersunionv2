@@ -18,6 +18,7 @@ import { Route as ImmersionsRouteImport } from './routes/immersions'
 import { Route as HowWeTeachRouteImport } from './routes/how-we-teach'
 import { Route as FoodLabRouteImport } from './routes/food-lab'
 import { Route as FacultyRouteImport } from './routes/faculty'
+import { Route as D2cChallengeRouteImport } from './routes/d2c-challenge'
 import { Route as CreatorChallengeRouteImport } from './routes/creator-challenge'
 import { Route as CampusRouteImport } from './routes/campus'
 import { Route as Applications_centerRouteImport } from './routes/applications_center'
@@ -69,6 +70,11 @@ const FacultyRoute = FacultyRouteImport.update({
   path: '/faculty',
   getParentRoute: () => rootRouteImport,
 } as any)
+const D2cChallengeRoute = D2cChallengeRouteImport.update({
+  id: '/d2c-challenge',
+  path: '/d2c-challenge',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CreatorChallengeRoute = CreatorChallengeRouteImport.update({
   id: '/creator-challenge',
   path: '/creator-challenge',
@@ -100,6 +106,7 @@ export interface FileRoutesByFullPath {
   '/applications_center': typeof Applications_centerRoute
   '/campus': typeof CampusRoute
   '/creator-challenge': typeof CreatorChallengeRoute
+  '/d2c-challenge': typeof D2cChallengeRoute
   '/faculty': typeof FacultyRoute
   '/food-lab': typeof FoodLabRoute
   '/how-we-teach': typeof HowWeTeachRoute
@@ -116,6 +123,7 @@ export interface FileRoutesByTo {
   '/applications_center': typeof Applications_centerRoute
   '/campus': typeof CampusRoute
   '/creator-challenge': typeof CreatorChallengeRoute
+  '/d2c-challenge': typeof D2cChallengeRoute
   '/faculty': typeof FacultyRoute
   '/food-lab': typeof FoodLabRoute
   '/how-we-teach': typeof HowWeTeachRoute
@@ -133,6 +141,7 @@ export interface FileRoutesById {
   '/applications_center': typeof Applications_centerRoute
   '/campus': typeof CampusRoute
   '/creator-challenge': typeof CreatorChallengeRoute
+  '/d2c-challenge': typeof D2cChallengeRoute
   '/faculty': typeof FacultyRoute
   '/food-lab': typeof FoodLabRoute
   '/how-we-teach': typeof HowWeTeachRoute
@@ -151,6 +160,7 @@ export interface FileRouteTypes {
     | '/applications_center'
     | '/campus'
     | '/creator-challenge'
+    | '/d2c-challenge'
     | '/faculty'
     | '/food-lab'
     | '/how-we-teach'
@@ -167,6 +177,7 @@ export interface FileRouteTypes {
     | '/applications_center'
     | '/campus'
     | '/creator-challenge'
+    | '/d2c-challenge'
     | '/faculty'
     | '/food-lab'
     | '/how-we-teach'
@@ -183,6 +194,7 @@ export interface FileRouteTypes {
     | '/applications_center'
     | '/campus'
     | '/creator-challenge'
+    | '/d2c-challenge'
     | '/faculty'
     | '/food-lab'
     | '/how-we-teach'
@@ -200,6 +212,7 @@ export interface RootRouteChildren {
   Applications_centerRoute: typeof Applications_centerRoute
   CampusRoute: typeof CampusRoute
   CreatorChallengeRoute: typeof CreatorChallengeRoute
+  D2cChallengeRoute: typeof D2cChallengeRoute
   FacultyRoute: typeof FacultyRoute
   FoodLabRoute: typeof FoodLabRoute
   HowWeTeachRoute: typeof HowWeTeachRoute
@@ -277,6 +290,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FacultyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/d2c-challenge': {
+      id: '/d2c-challenge'
+      path: '/d2c-challenge'
+      fullPath: '/d2c-challenge'
+      preLoaderRoute: typeof D2cChallengeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/creator-challenge': {
       id: '/creator-challenge'
       path: '/creator-challenge'
@@ -320,6 +340,7 @@ const rootRouteChildren: RootRouteChildren = {
   Applications_centerRoute: Applications_centerRoute,
   CampusRoute: CampusRoute,
   CreatorChallengeRoute: CreatorChallengeRoute,
+  D2cChallengeRoute: D2cChallengeRoute,
   FacultyRoute: FacultyRoute,
   FoodLabRoute: FoodLabRoute,
   HowWeTeachRoute: HowWeTeachRoute,
@@ -334,13 +355,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
