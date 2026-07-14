@@ -1293,9 +1293,10 @@ function PedagogySelector() {
                 src={p.img}
                 alt=""
                 aria-hidden
-                className="pointer-events-none absolute inset-y-0 right-0 h-full w-[62%] object-cover object-center opacity-95 mix-blend-luminosity [mask-image:linear-gradient(to_right,transparent_0%,black_28%,black_100%)]"
+                className="pointer-events-none absolute inset-y-0 right-0 h-full w-[62%] object-cover object-center [mask-image:linear-gradient(to_right,transparent_0%,black_35%,black_100%)]"
               />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-black/5" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-black/10" />
+
               <div className="relative flex h-full flex-col justify-between">
 
               {/* Top row */}
