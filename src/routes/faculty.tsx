@@ -206,34 +206,39 @@ function FacultyPage() {
             const bg = gradients[i % gradients.length];
             const photo = PRACTITIONER_PHOTOS[p.name];
             return (
-              <article
-                key={p.name}
-                className="group relative flex aspect-[3/4] flex-col justify-between overflow-hidden rounded-2xl p-5 text-white shadow-[0_10px_30px_-15px_rgba(0,0,0,0.35)] transition-transform duration-500 hover:-translate-y-1"
-                style={{ background: bg }}
-              >
-                {photo && (
-                  <img
-                    src={photo}
-                    alt={p.name}
-                    className="absolute inset-0 h-full w-full object-cover opacity-90 mix-blend-luminosity transition duration-500 group-hover:mix-blend-normal group-hover:opacity-100"
-                  />
-                )}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+              <article key={p.name} className="group flex flex-col">
                 <div
-                  className="relative text-[10px] uppercase tracking-[0.24em] text-white/85"
-                  style={{ fontFamily: MONO }}
+                  className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl"
+                  style={{ background: bg }}
                 >
-                  {p.name}
-                </div>
-                <div className="relative">
-                  <h3 className="text-balance text-[1.15rem] font-medium leading-[1.15] tracking-[-0.01em] text-white md:text-[1.35rem]">
-                    {p.role}
-                  </h3>
-                  <div className="mt-4 flex items-center gap-1.5 text-[10px] uppercase tracking-[0.28em] text-white/90" style={{ fontFamily: MONO }}>
-                    <span>Read</span>
-                    <ArrowUpRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.8} />
+                  {photo ? (
+                    <img
+                      src={photo}
+                      alt={p.name}
+                      className="absolute inset-0 h-full w-full object-cover mix-blend-luminosity opacity-95 transition duration-500 group-hover:mix-blend-normal group-hover:opacity-100"
+                    />
+                  ) : (
+                    <Initials name={p.name} />
+                  )}
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/35 to-transparent" />
+                  <div
+                    className="absolute inset-x-0 bottom-0 px-4 pb-3 text-[10px] uppercase tracking-[0.22em] text-white"
+                    style={{ fontFamily: MONO }}
+                  >
+                    {p.name}
                   </div>
                 </div>
+                <h3 className="mt-4 text-balance text-[1.02rem] font-semibold leading-[1.2] tracking-[-0.01em] text-black md:text-[1.1rem]">
+                  {p.role}
+                </h3>
+                <a
+                  href="#"
+                  className="mt-3 inline-flex items-center gap-1 text-[11px] uppercase tracking-[0.22em] text-black/80 transition-colors hover:text-black"
+                  style={{ fontFamily: MONO }}
+                >
+                  Read
+                  <ArrowUpRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.8} />
+                </a>
               </article>
             );
           })}
