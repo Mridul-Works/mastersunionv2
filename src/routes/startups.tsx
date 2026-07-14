@@ -192,17 +192,18 @@ function StartupsPage() {
             while enrolled — and the market noticed.
           </p>
 
-          <div className="mt-12 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-3">
-            {PORTFOLIO.map((p) => (
-              <article key={p.name} className="flex flex-col bg-white p-7">
-                <h3 className="text-[1.15rem] font-medium leading-tight text-black">{p.name}</h3>
+          <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {PORTFOLIO.map((p, i) => (
+              <article key={p.name} className="flex flex-col">
+                <PortraitCard name={p.name} variant={i} chip="Portfolio" />
+                <h3 className="mt-5 text-[1.15rem] font-medium leading-tight text-black">{p.name}</h3>
                 <div
                   className="mt-2 text-[10px] uppercase tracking-[0.22em] text-black/60"
                   style={{ fontFamily: MONO }}
                 >
                   {p.meta}
                 </div>
-                <p className="mt-5 text-[0.95rem] leading-[1.65] text-black/75">{p.body}</p>
+                <p className="mt-4 text-[0.95rem] leading-[1.65] text-black/75">{p.body}</p>
               </article>
             ))}
           </div>
