@@ -148,12 +148,13 @@ function Page() {
 
       <section id="brands" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Brands Already Cooking</div>
-        <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2">
-          {BRANDS.map((b) => (
-            <article key={b.name} className="bg-white p-8 md:p-10">
-              <h3 className="text-[1.25rem] font-medium leading-tight">{b.name}</h3>
+        <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
+          {BRANDS.map((b, i) => (
+            <article key={b.name} className="flex flex-col">
+              <PortraitCard name={b.name} variant={i} chip="Brand" />
+              <h3 className="mt-5 text-[1.25rem] font-medium leading-tight">{b.name}</h3>
               <div className="mt-2 text-[10px] uppercase tracking-[0.22em] text-black/60" style={{ fontFamily: MONO }}>{b.meta}</div>
-              <p className="mt-5 text-[1rem] leading-[1.7] text-black/75">{b.body}</p>
+              <p className="mt-4 text-[1rem] leading-[1.7] text-black/75">{b.body}</p>
             </article>
           ))}
         </div>
@@ -161,12 +162,13 @@ function Page() {
 
       <section id="mentors" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Mentors &amp; Partners</div>
-        <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-4">
-          {MENTORS.map((m) => (
-            <div key={m.name} className="bg-white p-6">
-              <div className="text-[1rem] font-medium leading-tight">{m.name}</div>
+        <div className="mt-10 grid grid-cols-2 gap-8 md:grid-cols-4">
+          {MENTORS.map((m, i) => (
+            <div key={m.name} className="flex flex-col">
+              <PortraitCard name={m.name} variant={i} chip="Mentor" />
+              <div className="mt-4 text-[0.98rem] font-medium leading-tight">{m.name}</div>
               <div className="mt-1 text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>{m.role}</div>
-              <p className="mt-4 text-[0.88rem] leading-[1.6] text-black/70">{m.note}</p>
+              <p className="mt-3 text-[0.85rem] leading-[1.55] text-black/70">{m.note}</p>
             </div>
           ))}
         </div>

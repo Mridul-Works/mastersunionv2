@@ -124,13 +124,14 @@ function Page() {
 
       <section id="winners" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>UG Winners — Class of 2028</div>
-        <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-3">
-          {WINNERS.map((w) => (
-            <article key={w.name} className="bg-white p-7">
-              <div className="text-[10px] uppercase tracking-[0.22em] text-black/60" style={{ fontFamily: MONO }}>{w.place}</div>
-              <h3 className="mt-3 text-[1.15rem] font-medium leading-tight">{w.name}</h3>
+        <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {WINNERS.map((w, i) => (
+            <article key={w.name} className="flex flex-col">
+              <PortraitCard name={w.name} variant={i} chip="Winner" />
+              <div className="mt-4 text-[10px] uppercase tracking-[0.22em] text-black/60" style={{ fontFamily: MONO }}>{w.place}</div>
+              <h3 className="mt-2 text-[1.15rem] font-medium leading-tight">{w.name}</h3>
               <div className="mt-1 text-[12px] italic text-black/60">{w.role}</div>
-              <p className="mt-4 text-[0.92rem] leading-[1.65] text-black/75">{w.body}</p>
+              <p className="mt-3 text-[0.92rem] leading-[1.65] text-black/75">{w.body}</p>
             </article>
           ))}
         </div>
