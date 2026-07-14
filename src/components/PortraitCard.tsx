@@ -1,5 +1,3 @@
-import { useId, type ReactNode } from "react";
-
 const SERIF = "'Fraunces', 'Times New Roman', serif";
 
 type Props = {
@@ -10,73 +8,8 @@ type Props = {
   className?: string;
 };
 
-function scribble(v: number): ReactNode {
-  switch (v % 6) {
-    case 0:
-      // circle loop
-      return (
-        <path
-          d="M55,140 C35,70 140,35 190,70 C240,105 220,190 145,200 C75,210 50,155 65,120 C80,88 145,80 185,115"
-          fill="none"
-          strokeWidth="9"
-          strokeLinecap="round"
-        />
-      );
-    case 1:
-      // squiggle underline
-      return (
-        <path
-          d="M25,195 Q55,155 90,195 T160,195 T225,195"
-          fill="none"
-          strokeWidth="10"
-          strokeLinecap="round"
-        />
-      );
-    case 2:
-      // bracket frame
-      return (
-        <>
-          <path d="M40,35 L20,35 L20,220 L45,220" fill="none" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M200,35 L220,35 L220,220 L195,220" fill="none" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" />
-        </>
-      );
-    case 3:
-      // star burst
-      return (
-        <path
-          d="M180,60 L200,90 M200,60 L180,90 M188,50 L192,100 M165,75 L215,75"
-          fill="none"
-          strokeWidth="7"
-          strokeLinecap="round"
-        />
-      );
-    case 4:
-      // zigzag lightning
-      return (
-        <path
-          d="M30,180 L70,140 L110,185 L150,140 L195,190 L225,155"
-          fill="none"
-          strokeWidth="9"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      );
-    default:
-      // spiral scribble
-      return (
-        <path
-          d="M120,120 m-70,0 a70,70 0 1,0 140,0 a70,70 0 1,0 -140,0 M120,120 m-40,0 a40,40 0 1,0 80,0"
-          fill="none"
-          strokeWidth="7"
-          strokeLinecap="round"
-        />
-      );
-  }
-}
 
 export function PortraitCard({ name, img, chip = "MU", variant = 0, className = "" }: Props) {
-  const uid = useId();
-  const gradId = `mu-scribble-${uid.replace(/[:]/g, "")}`;
   const initials = name
     .replace(/^(Dr|Captain|Prof)\s+/i, "")
     .replace(/^@/, "")
@@ -119,24 +52,8 @@ export function PortraitCard({ name, img, chip = "MU", variant = 0, className = 
         {chip}
       </div>
 
-      {/* Gradient scribble overlay */}
-      <svg
-        viewBox="0 0 240 240"
-        className="pointer-events-none absolute inset-0 z-[5] h-full w-full"
-        preserveAspectRatio="none"
-        aria-hidden
-      >
-        <defs>
-          <linearGradient id={gradId} x1="0" y1="0" x2="1" y2="0.2">
-            <stop offset="0%" stopColor="#39B5D7" />
-            <stop offset="47%" stopColor="#F7D544" />
-            <stop offset="100%" stopColor="#E38330" />
-          </linearGradient>
-        </defs>
-        <g stroke={`url(#${gradId})`} opacity="0.92">
-          {scribble(variant)}
-        </g>
-      </svg>
+
+
     </div>
   );
 }
