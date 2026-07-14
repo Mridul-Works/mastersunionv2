@@ -1282,71 +1282,103 @@ function PedagogySelector() {
           <Link
             key={p.tag}
             to={p.route}
-            className="group relative flex h-[620px] flex-col justify-between overflow-hidden p-7 transition-transform md:h-[720px] md:p-10"
+            className="group relative flex h-[620px] overflow-hidden bg-white md:h-[720px]"
             style={{ background: p.bg }}
           >
-            {/* Top row */}
-            <div className="flex items-start justify-between">
-              <div className="flex items-center gap-3">
-                <div className="flex size-11 items-center justify-center rounded-full border border-black/25 font-mono text-[13px] font-semibold text-black/70">
-                  {String(active + 1).padStart(2, "0")}
+            {/* Main content area */}
+            <div className="relative flex flex-1 flex-col justify-between p-7 md:p-10">
+              {/* Top row */}
+              <div className="flex items-start justify-between">
+                <div className="flex items-center gap-3">
+                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-black/60">
+                    {p.tag}
+                  </span>
                 </div>
-                <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-black/60">
-                  {p.tag}
+                <div className="flex size-11 items-center justify-center border border-black/15 bg-white/40 text-black/75 backdrop-blur-sm">
+                  <Icon className="size-5" />
+                </div>
+              </div>
+
+              {/* Middle: big title */}
+              <div className="my-8 max-w-[22ch]">
+                <h3
+                  className="text-[clamp(1.9rem,3.6vw,3.1rem)] font-semibold leading-[1.02] tracking-[-0.01em] text-black"
+                  style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                >
+                  {p.title}
+                </h3>
+                <p className="mt-5 max-w-[52ch] text-[13.5px] leading-[1.6] text-black/70 md:text-[14.5px]">
+                  {p.body}
+                </p>
+              </div>
+
+              {/* Bottom: stats + arrow CTA */}
+              <div className="flex flex-col gap-6">
+                <div className="grid grid-cols-3 border-t border-black/20">
+                  {p.stats.map((s, idx) => (
+                    <div
+                      key={idx}
+                      className={cn(
+                        "flex flex-col gap-1 py-4 pr-3",
+                        idx > 0 && "border-l border-black/20 pl-4"
+                      )}
+                    >
+                      <span
+                        className="text-[1.6rem] font-semibold leading-none tracking-tight text-black md:text-[2rem]"
+                        style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                      >
+                        {s.value}
+                      </span>
+                      <span className="text-[11px] leading-snug text-black/60">
+                        {s.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex items-center">
+                  <div className="flex size-12 items-center justify-center bg-black text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                    <ArrowUpRight className="size-5" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right rail — vertical index & CTA (reference-style) */}
+            <div className="relative hidden w-[92px] shrink-0 border-l border-black/10 md:flex md:flex-col md:items-center md:justify-between md:py-10 lg:w-[110px]">
+              {/* Big vertical index number */}
+              <div
+                className="flex flex-col items-center leading-[0.85] tracking-[-0.04em] text-black"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif", writingMode: "vertical-rl" }}
+              >
+                <span className="rotate-180 text-[clamp(3rem,5vw,4.5rem)] font-semibold tabular-nums">
+                  {String(active + 1).padStart(3, "0")}
                 </span>
               </div>
-              <div className="flex size-11 items-center justify-center border border-black/15 bg-white/40 text-black/75 backdrop-blur-sm">
-                <Icon className="size-5" />
-              </div>
-            </div>
 
-            {/* Middle: big title */}
-            <div className="my-8 max-w-[22ch]">
-              <h3
-                className="text-[clamp(1.9rem,3.6vw,3.1rem)] font-semibold leading-[1.02] tracking-[-0.01em] text-black"
-                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-              >
-                {p.title}
-              </h3>
-              <p className="mt-5 max-w-[52ch] text-[13.5px] leading-[1.6] text-black/70 md:text-[14.5px]">
-                {p.body}
-              </p>
-            </div>
-
-            {/* Bottom: stats + CTA */}
-            <div className="flex flex-col gap-6">
-              <div className="grid grid-cols-3 border-t border-black/20">
-                {p.stats.map((s, idx) => (
-                  <div
-                    key={idx}
+              {/* Dot pagination */}
+              <div className="flex flex-col items-center gap-2">
+                {PEDAGOGY.map((_, i) => (
+                  <span
+                    key={i}
                     className={cn(
-                      "flex flex-col gap-1 py-4 pr-3",
-                      idx > 0 && "border-l border-black/20 pl-4"
+                      "block size-1.5 rounded-full transition-all",
+                      i === active ? "bg-black scale-125" : "bg-black/25"
                     )}
-                  >
-                    <span
-                      className="text-[1.6rem] font-semibold leading-none tracking-tight text-black md:text-[2rem]"
-                      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                    >
-                      {s.value}
-                    </span>
-                    <span className="text-[11px] leading-snug text-black/60">
-                      {s.label}
-                    </span>
-                  </div>
+                  />
                 ))}
               </div>
-              <div className="flex items-center justify-between border-t border-black/20 pt-5">
-                <span className="text-[12px] font-semibold uppercase tracking-[0.24em] text-black/75">
-                  {p.cta}
-                </span>
-                <div className="flex size-11 items-center justify-center bg-black text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-                  <ArrowUpRight className="size-5" />
-                </div>
-              </div>
+
+              {/* Vertical CTA label */}
+              <span
+                className="font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-black/70"
+                style={{ writingMode: "vertical-rl" }}
+              >
+                {p.cta}
+              </span>
             </div>
           </Link>
         </div>
+
       </div>
     </div>
   );
