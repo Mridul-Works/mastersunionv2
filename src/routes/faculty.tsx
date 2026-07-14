@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Quote } from "lucide-react";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
+import { PortraitCard } from "@/components/PortraitCard";
 
 import manojAsset from "@/assets/faculty/manoj.png.asset.json";
 import bhupeshAsset from "@/assets/faculty/bhupesh.png.asset.json";
@@ -192,24 +193,11 @@ function FacultyPage() {
         </h2>
 
         <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-4">
-          {PRACTITIONERS.map((p) => (
+          {PRACTITIONERS.map((p, i) => (
             <article key={p.name} className="group">
-              <div className="aspect-square w-full overflow-hidden bg-[#ececec]">
-                {PRACTITIONER_PHOTOS[p.name] ? (
-                  <img
-                    src={PRACTITIONER_PHOTOS[p.name]}
-                    alt={p.name}
-                    className="h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0"
-                  />
-                ) : (
-                  <Initials name={p.name} />
-                )}
-              </div>
-              <h3 className="mt-4 text-[0.95rem] font-medium leading-tight text-black">
-                {p.name}
-              </h3>
+              <PortraitCard name={p.name} img={PRACTITIONER_PHOTOS[p.name]} variant={i} />
               <div
-                className="mt-1 text-[11px] leading-snug text-black/55"
+                className="mt-4 text-[11px] leading-snug text-black/55"
                 style={{ fontFamily: MONO }}
               >
                 {p.role}
@@ -230,24 +218,11 @@ function FacultyPage() {
           </h2>
 
           <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-4">
-            {FULLTIME.map((f) => (
+          {FULLTIME.map((f, i) => (
               <div key={f.name} className="group">
-                <div className="aspect-square w-full overflow-hidden bg-[#ececec]">
-                  {f.img ? (
-                    <img
-                      src={f.img}
-                      alt={f.name}
-                      className="h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0"
-                    />
-                  ) : (
-                    <Initials name={f.name} />
-                  )}
-                </div>
-                <h3 className="mt-4 text-[0.95rem] font-medium leading-tight text-black">
-                  {f.name}
-                </h3>
+                <PortraitCard name={f.name} img={f.img} variant={i + 2} />
                 <div
-                  className="mt-1 text-[11px] leading-snug text-black/55"
+                  className="mt-4 text-[11px] leading-snug text-black/55"
                   style={{ fontFamily: MONO }}
                 >
                   {f.note}
