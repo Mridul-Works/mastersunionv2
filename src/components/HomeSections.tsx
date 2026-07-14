@@ -70,6 +70,10 @@ import acCampus from "@/assets/admissions/campus-walk.jpg";
 import acFaculty from "@/assets/admissions/faculty-fireside.jpg";
 import acOffice from "@/assets/admissions/office-hours.jpg";
 import acCohort from "@/assets/admissions/cohort-preview.jpg";
+import facBhupesh from "@/assets/faculty/bhupesh.png.asset.json";
+import facDaniel from "@/assets/faculty/daniel.png.asset.json";
+import facNandini from "@/assets/faculty/nandini.png.asset.json";
+
 
 type Programme = { title: string; duration: string; format: string; href?: string };
 type Pathway = {
