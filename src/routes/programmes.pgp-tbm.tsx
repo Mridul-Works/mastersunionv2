@@ -25,7 +25,6 @@ import {
 } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
-import { PageMasthead } from "@/components/PageMasthead";
 import SectionDivider from "@/components/SectionDivider";
 import { cn } from "@/lib/utils";
 import logoWhite from "@/assets/logo-4.png.asset.json";
@@ -1542,8 +1541,6 @@ function PgpTbm() {
       } as React.CSSProperties}
     >
       <SectionNav items={PGP_NAV} applyHref="#apply" />
-      <PageMasthead title="PGP-TBM" eyebrow="Postgraduate Programme" caption="The flagship postgraduate programme in Technology & Business Management." />
-
 
       {/* HERO */}
       <section className="relative overflow-hidden pt-28 sm:pt-32">

@@ -2,7 +2,6 @@ import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Home, Quote, BarChart3, BookOpen, CheckCircle2 } from "lucide-react";
 import type { Chapter } from "./chapters";
 import BottomNav, { type BottomNavItem } from "./BottomNav";
-import { PageMasthead } from "./PageMasthead";
 
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
@@ -33,7 +32,6 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
         </div>
       </div>
 
-      <PageMasthead title={chapter.tag} eyebrow={`Chapter ${chapter.n} / 10`} caption={chapter.headline} />
 
       {/* HERO */}
       <section className="mx-auto max-w-6xl px-5 pb-16 pt-16 md:px-10 md:pt-24">
