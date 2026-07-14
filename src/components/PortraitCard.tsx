@@ -1,4 +1,4 @@
-import { useId, type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 const SERIF = "'Fraunces', 'Times New Roman', serif";
 
