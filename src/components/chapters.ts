@@ -266,6 +266,15 @@ const RAW_CHAPTERS = [
     chips: ["Dropout Fund", "Founders' Fund", "Creator Fund", "Cryptique", "ORBIT", "Blue Brew"],
     cta: "Get funded", route: "/mu-ventures", bg: "#2A1E4A", ink: "#EDE4CE", image: mu02,
   },
+  {
+    n: "12", tag: "D2C Challenge",
+    headline: "Your exam is a Stripe dashboard. Your grade is your revenue.",
+    body: "Every student runs a real D2C store in Term 1 — sourcing, ads, orders, returns. 50 teams generated ₹3.38 Cr in a single semester, ₹4L+ per team on average — before their first midterm.",
+    stat: "₹3.38 Cr", label: "Cohort revenue — before midterms",
+    stats: [{ value: "₹3.38 Cr", label: "Cohort revenue" }, { value: "50", label: "Competing teams" }, { value: "₹4L+", label: "Avg per team" }, { value: "0", label: "Simulations" }],
+    chips: ["Shopify", "Meta Ads", "Stripe", "Razorpay", "Live stores", "Real P&L"],
+    cta: "See the scoreboard", route: "/d2c-challenge", bg: "#0F3D2E", ink: "#F1E7D2", image: mu01,
+  },
 ];
 
 export const CHAPTERS: Chapter[] = RAW_CHAPTERS.map((c) => withSections(c));
@@ -273,3 +282,4 @@ export const CHAPTERS: Chapter[] = RAW_CHAPTERS.map((c) => withSections(c));
 export const CHAPTERS_BY_ROUTE: Record<string, Chapter> = Object.fromEntries(
   CHAPTERS.map((c) => [c.route, c])
 );
+
