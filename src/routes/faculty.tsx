@@ -191,24 +191,34 @@ function FacultyPage() {
           The people who teach here are not between jobs. They are active.
         </h2>
 
-        <div className="mt-14 grid gap-px bg-black/10 md:grid-cols-2">
+        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-4">
           {PRACTITIONERS.map((p) => (
-            <article key={p.name} className="flex gap-5 bg-white p-6 md:p-8">
-              <div className="h-20 w-20 flex-none overflow-hidden ring-1 ring-black/10 md:h-24 md:w-24">
+            <article key={p.name} className="group">
+              <div className="aspect-square w-full overflow-hidden bg-[#ececec]">
                 {PRACTITIONER_PHOTOS[p.name] ? (
-                  <img src={PRACTITIONER_PHOTOS[p.name]} alt={p.name} className="h-full w-full object-cover grayscale" />
+                  <img
+                    src={PRACTITIONER_PHOTOS[p.name]}
+                    alt={p.name}
+                    className="h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0"
+                  />
                 ) : (
                   <Initials name={p.name} />
                 )}
               </div>
-              <div className="min-w-0">
-                <h3 className="text-[1.05rem] leading-tight tracking-[-0.01em] text-black">{p.name}</h3>
-                <div className="mt-1 text-[11px] uppercase tracking-[0.16em] text-black/60" style={{ fontFamily: MONO }}>{p.role}</div>
-                <p className="mt-3 text-[0.92rem] leading-[1.55] text-black/75">{p.blurb}</p>
+              <h3 className="mt-4 text-[0.95rem] font-medium leading-tight text-black">
+                {p.name}
+              </h3>
+              <div
+                className="mt-1 text-[11px] leading-snug text-black/55"
+                style={{ fontFamily: MONO }}
+              >
+                {p.role}
               </div>
+              <p className="mt-3 text-[0.85rem] leading-[1.55] text-black/70">{p.blurb}</p>
             </article>
           ))}
         </div>
+
       </section>
 
       {/* FULL-TIME FACULTY */}
