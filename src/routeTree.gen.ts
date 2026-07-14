@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StartupsRouteImport } from './routes/startups'
 import { Route as PlacementsRouteImport } from './routes/placements'
+import { Route as MuVenturesRouteImport } from './routes/mu-ventures'
 import { Route as MentorsRouteImport } from './routes/mentors'
 import { Route as LifeAtMuRouteImport } from './routes/life-at-mu'
 import { Route as ImmersionsRouteImport } from './routes/immersions'
@@ -31,6 +32,11 @@ const StartupsRoute = StartupsRouteImport.update({
 const PlacementsRoute = PlacementsRouteImport.update({
   id: '/placements',
   path: '/placements',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MuVenturesRoute = MuVenturesRouteImport.update({
+  id: '/mu-ventures',
+  path: '/mu-ventures',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MentorsRoute = MentorsRouteImport.update({
@@ -100,6 +106,7 @@ export interface FileRoutesByFullPath {
   '/immersions': typeof ImmersionsRoute
   '/life-at-mu': typeof LifeAtMuRoute
   '/mentors': typeof MentorsRoute
+  '/mu-ventures': typeof MuVenturesRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
   '/programmes/pgp-tbm': typeof ProgrammesPgpTbmRoute
@@ -115,6 +122,7 @@ export interface FileRoutesByTo {
   '/immersions': typeof ImmersionsRoute
   '/life-at-mu': typeof LifeAtMuRoute
   '/mentors': typeof MentorsRoute
+  '/mu-ventures': typeof MuVenturesRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
   '/programmes/pgp-tbm': typeof ProgrammesPgpTbmRoute
@@ -131,6 +139,7 @@ export interface FileRoutesById {
   '/immersions': typeof ImmersionsRoute
   '/life-at-mu': typeof LifeAtMuRoute
   '/mentors': typeof MentorsRoute
+  '/mu-ventures': typeof MuVenturesRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
   '/programmes/pgp-tbm': typeof ProgrammesPgpTbmRoute
@@ -148,6 +157,7 @@ export interface FileRouteTypes {
     | '/immersions'
     | '/life-at-mu'
     | '/mentors'
+    | '/mu-ventures'
     | '/placements'
     | '/startups'
     | '/programmes/pgp-tbm'
@@ -163,6 +173,7 @@ export interface FileRouteTypes {
     | '/immersions'
     | '/life-at-mu'
     | '/mentors'
+    | '/mu-ventures'
     | '/placements'
     | '/startups'
     | '/programmes/pgp-tbm'
@@ -178,6 +189,7 @@ export interface FileRouteTypes {
     | '/immersions'
     | '/life-at-mu'
     | '/mentors'
+    | '/mu-ventures'
     | '/placements'
     | '/startups'
     | '/programmes/pgp-tbm'
@@ -194,6 +206,7 @@ export interface RootRouteChildren {
   ImmersionsRoute: typeof ImmersionsRoute
   LifeAtMuRoute: typeof LifeAtMuRoute
   MentorsRoute: typeof MentorsRoute
+  MuVenturesRoute: typeof MuVenturesRoute
   PlacementsRoute: typeof PlacementsRoute
   StartupsRoute: typeof StartupsRoute
   ProgrammesPgpTbmRoute: typeof ProgrammesPgpTbmRoute
@@ -213,6 +226,13 @@ declare module '@tanstack/react-router' {
       path: '/placements'
       fullPath: '/placements'
       preLoaderRoute: typeof PlacementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mu-ventures': {
+      id: '/mu-ventures'
+      path: '/mu-ventures'
+      fullPath: '/mu-ventures'
+      preLoaderRoute: typeof MuVenturesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mentors': {
@@ -306,6 +326,7 @@ const rootRouteChildren: RootRouteChildren = {
   ImmersionsRoute: ImmersionsRoute,
   LifeAtMuRoute: LifeAtMuRoute,
   MentorsRoute: MentorsRoute,
+  MuVenturesRoute: MuVenturesRoute,
   PlacementsRoute: PlacementsRoute,
   StartupsRoute: StartupsRoute,
   ProgrammesPgpTbmRoute: ProgrammesPgpTbmRoute,
