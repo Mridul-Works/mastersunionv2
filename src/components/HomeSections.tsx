@@ -1282,7 +1282,7 @@ function PedagogySelector() {
           <Link
             key={p.tag}
             to={p.route}
-            className="group relative flex h-[620px] overflow-hidden bg-white md:h-[720px]"
+            className="group relative flex h-[720px] overflow-hidden bg-white md:h-[840px]"
             style={{ background: p.bg }}
           >
             {/* Main content area */}
