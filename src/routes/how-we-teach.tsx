@@ -264,18 +264,18 @@ function JourneyScroll() {
     offset: ["start start", "end end"],
   });
 
-  // 4 stops: Philosophy, Sem1, Sem2, Sem3.
-  // Last stop gets a tighter slot so we exit into the next section
-  // as soon as Sem 3 lands — no dead scroll after it.
-  const BOUNDS = [0, 0.28, 0.56, 0.84, 1.0];
+  // 4 stops: Philosophy (short), Sem1, Sem2, Sem3.
+  // Philosophy gets a tight slot so users land on Sem 1 quickly.
+  const BOUNDS = [0, 0.16, 0.44, 0.72, 1.0];
 
   return (
     <section
       id="journey"
       ref={wrapRef}
       className="relative"
-      style={{ height: "440vh" }}
+      style={{ height: "340vh" }}
     >
+
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-neutral-100">
         {/* progress bar */}
         <ProgressRail progress={scrollYProgress} labels={["Philosophy", "Sem 1", "Sem 2", "Sem 3"]} />
