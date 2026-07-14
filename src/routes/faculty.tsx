@@ -191,32 +191,52 @@ function FacultyPage() {
           The people who teach here are not between jobs. They are active.
         </h2>
 
-        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-4">
-          {PRACTITIONERS.map((p) => (
-            <article key={p.name} className="group">
-              <div className="aspect-square w-full overflow-hidden bg-[#ececec]">
-                {PRACTITIONER_PHOTOS[p.name] ? (
-                  <img
-                    src={PRACTITIONER_PHOTOS[p.name]}
-                    alt={p.name}
-                    className="h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0"
-                  />
-                ) : (
-                  <Initials name={p.name} />
-                )}
-              </div>
-              <h3 className="mt-4 text-[0.95rem] font-medium leading-tight text-black">
-                {p.name}
-              </h3>
-              <div
-                className="mt-1 text-[11px] leading-snug text-black/55"
-                style={{ fontFamily: MONO }}
+        <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-5 lg:grid-cols-4">
+          {PRACTITIONERS.map((p, i) => {
+            const gradients = [
+              "linear-gradient(155deg,#f6a26b 0%,#d96a5a 55%,#7a3352 100%)",
+              "linear-gradient(160deg,#8fb3d9 0%,#5a6fb0 55%,#2d2a5e 100%)",
+              "linear-gradient(150deg,#f4c9a1 0%,#c96a6a 60%,#4e1f3b 100%)",
+              "linear-gradient(160deg,#e58aad 0%,#a04478 55%,#3e1638 100%)",
+              "linear-gradient(155deg,#b8c6e0 0%,#6a7db0 55%,#1f2547 100%)",
+              "linear-gradient(150deg,#f2b48a 0%,#a94d5e 55%,#3a1638 100%)",
+              "linear-gradient(160deg,#c9a4d4 0%,#7a4a9e 55%,#2a1747 100%)",
+              "linear-gradient(155deg,#e8a07a 0%,#8a3a52 55%,#2b1030 100%)",
+            ];
+            const bg = gradients[i % gradients.length];
+            const photo = PRACTITIONER_PHOTOS[p.name];
+            return (
+              <article
+                key={p.name}
+                className="group relative flex aspect-[3/4] flex-col justify-between overflow-hidden rounded-2xl p-5 text-white shadow-[0_10px_30px_-15px_rgba(0,0,0,0.35)] transition-transform duration-500 hover:-translate-y-1"
+                style={{ background: bg }}
               >
-                {p.role}
-              </div>
-              <p className="mt-3 text-[0.85rem] leading-[1.55] text-black/70">{p.blurb}</p>
-            </article>
-          ))}
+                {photo && (
+                  <img
+                    src={photo}
+                    alt={p.name}
+                    className="absolute inset-0 h-full w-full object-cover opacity-90 mix-blend-luminosity transition duration-500 group-hover:mix-blend-normal group-hover:opacity-100"
+                  />
+                )}
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+                <div
+                  className="relative text-[10px] uppercase tracking-[0.24em] text-white/85"
+                  style={{ fontFamily: MONO }}
+                >
+                  {p.name}
+                </div>
+                <div className="relative">
+                  <h3 className="text-balance text-[1.15rem] font-medium leading-[1.15] tracking-[-0.01em] text-white md:text-[1.35rem]">
+                    {p.role}
+                  </h3>
+                  <div className="mt-4 flex items-center gap-1.5 text-[10px] uppercase tracking-[0.28em] text-white/90" style={{ fontFamily: MONO }}>
+                    <span>Read</span>
+                    <ArrowUpRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.8} />
+                  </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
 
       </section>
