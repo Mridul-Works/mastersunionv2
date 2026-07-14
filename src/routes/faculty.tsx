@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Quote } from "lucide-react";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
+import { PageMasthead } from "@/components/PageMasthead";
 
 import manojAsset from "@/assets/faculty/manoj.png.asset.json";
 import bhupeshAsset from "@/assets/faculty/bhupesh.png.asset.json";
@@ -113,6 +114,8 @@ function FacultyPage() {
   return (
     <main className="min-h-screen bg-white pb-28 text-black md:pb-32" style={{ fontFamily: INTER }}>
       <SectionNav items={NAV} applyHref="#cta" />
+      <PageMasthead title="Faculty" caption="Practitioners, not lecturers. The people who built the industries we teach." />
+
 
       {/* Chapter marker */}
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">

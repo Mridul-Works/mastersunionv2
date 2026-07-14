@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
+import { PageMasthead } from "@/components/PageMasthead";
 import prathamPortrait from "@/assets/founder-pratham.jpg.asset.json";
 
 const INTER = "'Inter', system-ui, sans-serif";
@@ -166,6 +167,8 @@ function HowWeTeachPage() {
       style={{ fontFamily: INTER }}
     >
       {showNav && <SectionNav items={PAGE_NAV} applyHref="#apply" />}
+      <PageMasthead title="How We Teach" caption="A pedagogy built on live ledgers, real customers, and the discipline of consequence." />
+
 
       {/* Top marker */}
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">

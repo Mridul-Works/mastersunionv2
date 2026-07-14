@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { ArrowRight, Calendar, CheckCircle2, ChevronLeft, ClipboardList, Clock, FileText, GraduationCap, Sparkles } from "lucide-react";
+import { PageMasthead } from "@/components/PageMasthead";
 
 type Program = {
   id: string;
@@ -74,6 +75,8 @@ function ApplicationsCenter() {
           </div>
         </div>
       </header>
+      <PageMasthead title="Applications" eyebrow="Admissions · Cohort 2026" caption="Choose a programme. Submit your application. Track every round from one place." />
+
 
       {/* Hero */}
       <section className="mx-auto max-w-[1400px] px-6 pt-14 pb-10">
