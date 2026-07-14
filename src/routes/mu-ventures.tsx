@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Home, BarChart3, Wallet, Layers, Store, Users } from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
-import { PortraitCard } from "@/components/PortraitCard";
 
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
@@ -131,13 +130,12 @@ function Page() {
 
       <section id="portfolio" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Portfolio</div>
-        <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
-          {PORTFOLIO.map((p, i) => (
-            <article key={p.name} className="flex flex-col">
-              <PortraitCard name={p.name} img={undefined} variant={i} chip="MUV" />
-              <h3 className="mt-5 text-[1.2rem] font-medium leading-tight">{p.name}</h3>
+        <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2">
+          {PORTFOLIO.map((p) => (
+            <article key={p.name} className="bg-white p-8">
+              <h3 className="text-[1.2rem] font-medium leading-tight">{p.name}</h3>
               <div className="mt-2 text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>{p.tagline}</div>
-              <p className="mt-4 text-[0.98rem] leading-[1.7] text-black/75">{p.body}</p>
+              <p className="mt-5 text-[0.98rem] leading-[1.7] text-black/75">{p.body}</p>
             </article>
           ))}
         </div>
@@ -145,13 +143,12 @@ function Page() {
 
       <section id="team" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>The Team</div>
-        <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
-          {TEAM.map((t, i) => (
-            <article key={t.name} className="flex flex-col">
-              <PortraitCard name={t.name} img={undefined} variant={i + 1} chip="Team" />
-              <h3 className="mt-4 text-[1rem] font-medium leading-tight">{t.name}</h3>
-              <div className="mt-1 text-[11px] uppercase tracking-[0.18em] text-black/60" style={{ fontFamily: MONO }}>{t.role}</div>
-              <p className="mt-3 text-[0.88rem] leading-[1.6] text-black/70">{t.body}</p>
+        <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2">
+          {TEAM.map((t) => (
+            <article key={t.name} className="bg-white p-8">
+              <h3 className="text-[1.15rem] font-medium leading-tight">{t.name}</h3>
+              <div className="mt-2 text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>{t.role}</div>
+              <p className="mt-4 text-[0.95rem] leading-[1.7] text-black/75">{t.body}</p>
             </article>
           ))}
         </div>
