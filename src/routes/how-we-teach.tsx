@@ -108,10 +108,10 @@ const SEMESTERS: Semester[] = [
 ];
 
 const REPORT_CARD = [
-  { metric: "Revenue", body: "Did real people pay real money for what you built? The Stripe dashboard doesn't lie." },
-  { metric: "Margin", body: "Did you keep enough of it? A business that sells but bleeds is not a business yet." },
-  { metric: "Profit", body: "Are your unit economics sound? Every rupee in needs to justify itself." },
-  { metric: "NPS", body: "Would your customers recommend you? The only score that predicts everything else." },
+  { code: "M-01", metric: "Revenue", unit: "INR", verdict: "Paid", body: "Did real people pay real money for what you built? The Stripe dashboard doesn't lie." },
+  { code: "M-02", metric: "Margin", unit: "%", verdict: "Kept", body: "Did you keep enough of it? A business that sells but bleeds is not a business yet." },
+  { code: "M-03", metric: "Profit", unit: "Unit econ", verdict: "Sound", body: "Are your unit economics sound? Every rupee in needs to justify itself." },
+  { code: "M-04", metric: "NPS", unit: "0—100", verdict: "Loved", body: "Would your customers recommend you? The only score that predicts everything else." },
 ];
 
 const PILLARS = [
