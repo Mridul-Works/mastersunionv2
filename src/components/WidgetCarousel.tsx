@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, ArrowLeft, Share2, Search } from "lucide-react";
+import { ArrowRight, ArrowLeft, Share2 } from "lucide-react";
 
 type Slide = {
   id: string;
