@@ -193,12 +193,12 @@ export default function WidgetCarousel() {
                   transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
                   className="absolute inset-0"
                 >
-                  <img
-                    src={current.image}
-                    alt={current.title}
-                    className="h-full w-full object-cover"
+                  <div
+                    className="h-full w-full"
+                    style={{ backgroundColor: current.accent }}
+                    aria-label={current.title}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/40" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/35" />
                   {/* Big title */}
                   <div className="absolute inset-0 flex items-center px-6 md:px-14">
                     <motion.h3
