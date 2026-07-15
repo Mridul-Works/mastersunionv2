@@ -355,7 +355,7 @@ function Index() {
           <div
             className={`absolute inset-0 transition-opacity duration-500 ${playing ? "opacity-0 pointer-events-none" : "opacity-100"}`}
           >
-            <div className="relative mx-auto flex h-full w-full max-w-[1320px] flex-col justify-between px-6 py-10 md:px-12 md:py-12">
+            <div className="relative mx-auto flex h-full w-full max-w-[1320px] flex-col justify-between px-8 py-10 md:px-16 md:py-12">
               {/* Top branding */}
               <div className="flex items-start justify-between">
                 <div className="flex flex-col">
