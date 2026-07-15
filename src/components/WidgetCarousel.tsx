@@ -9,11 +9,12 @@ import flourish from "@/assets/startup-logos/FlourishFoods.png.asset.json";
 import beyondVeda from "@/assets/startup-logos/BeyondVeda.png.asset.json";
 import blueBrew from "@/assets/startup-logos/BlueBrew.png.asset.json";
 import imperial from "@/assets/immersions/campuses/imperial.png.asset.json";
-import babson from "@/assets/immersions/campuses/babson.png.asset.json";
-import ivey from "@/assets/immersions/campuses/ivey.png.asset.json";
-import escp from "@/assets/immersions/campuses/escp.png.asset.json";
+// babson, ivey, escp swapped out for company immersion logos
 import bocconi from "@/assets/immersions/campuses/sda-bocconi.png.asset.json";
-// wbs logo removed to keep 5 logos
+import rbi from "@/assets/immersions/bharat/rbi.png.asset.json";
+import zepto from "@/assets/immersions/bharat/zepto.png.asset.json";
+import porsche from "@/assets/immersions/global/porsche.png.asset.json";
+import rakuten from "@/assets/immersions/global/rakuten.png.asset.json";
 
 type SlideLogo = { src: string; alt: string };
 
@@ -48,11 +49,10 @@ const SLIDES: Slide[] = [
     href: "/immersions",
     logos: [
       { src: imperial.url, alt: "Imperial College" },
-      { src: babson.url, alt: "Babson" },
-      { src: ivey.url, alt: "Ivey" },
-      { src: escp.url, alt: "ESCP" },
       { src: bocconi.url, alt: "SDA Bocconi" },
-      
+      { src: porsche.url, alt: "Porsche" },
+      { src: rakuten.url, alt: "Rakuten" },
+      { src: rbi.url, alt: "RBI" },
     ],
   },
   {
@@ -283,7 +283,7 @@ export default function WidgetCarousel() {
                     {current.logos && current.logos.length > 0 && (
                       <div className="mt-5">
                         <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-white/50">
-                          {current.id === "immersions" ? "Partner campuses" : "Brands born here"}
+                          {current.id === "immersions" ? "Campuses & hosts" : "Brands born here"}
                         </div>
                         <div className="flex flex-nowrap items-center gap-6 overflow-hidden">
                           {current.logos.map((logo) => (
