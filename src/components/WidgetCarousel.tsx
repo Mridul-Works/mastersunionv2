@@ -2,6 +2,14 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ArrowLeft, Share2 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import lexis from "@/assets/startup-logos/Lexis.png.asset.json";
+import eatAtlas from "@/assets/startup-logos/EatAtlas.png.asset.json";
+import woodys from "@/assets/startup-logos/WoodysPizzeria.png.asset.json";
+import flourish from "@/assets/startup-logos/FlourishFoods.png.asset.json";
+import beyondVeda from "@/assets/startup-logos/BeyondVeda.png.asset.json";
+import blueBrew from "@/assets/startup-logos/BlueBrew.png.asset.json";
+
+type SlideLogo = { src: string; alt: string };
 
 type Slide = {
   id: string;
@@ -14,7 +22,9 @@ type Slide = {
   image: string;
   accent: string;
   href: string;
+  logos?: SlideLogo[];
 };
+
 
 const SLIDES: Slide[] = [
   {
@@ -58,7 +68,16 @@ const SLIDES: Slide[] = [
       "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?auto=format&fit=crop&w=1600&q=80",
     accent: "#E2431E",
     href: "/d2c-challenge",
+    logos: [
+      { src: lexis.url, alt: "Lexi's Gourmet Sandwiches" },
+      { src: eatAtlas.url, alt: "Eat Atlas" },
+      { src: woodys.url, alt: "Woody's Pizzeria" },
+      { src: flourish.url, alt: "Flourish Foods" },
+      { src: beyondVeda.url, alt: "Beyond Veda" },
+      { src: blueBrew.url, alt: "Blue Brew" },
+    ],
   },
+
   {
     id: "creator",
     number: "04",
@@ -181,7 +200,36 @@ export default function WidgetCarousel() {
                     </motion.h3>
                   </div>
 
+                  {current.logos && current.logos.length > 0 && (
+                    <motion.div
+                      key={current.id + "-logos"}
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.35, duration: 0.6 }}
+                      className="absolute inset-x-6 bottom-6 md:inset-x-14 md:bottom-10"
+                    >
+                      <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-white/70">
+                        Brands born here
+                      </div>
+                      <div className="flex flex-wrap items-center gap-2 md:gap-3">
+                        {current.logos.map((logo) => (
+                          <div
+                            key={logo.alt}
+                            className="flex h-10 items-center justify-center rounded-sm bg-white/95 px-3 backdrop-blur md:h-12 md:px-4"
+                          >
+                            <img
+                              src={logo.src}
+                              alt={logo.alt}
+                              className="max-h-6 w-auto object-contain md:max-h-7"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+
                 </motion.div>
+
               </AnimatePresence>
             </div>
 
