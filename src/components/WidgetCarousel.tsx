@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ArrowLeft, Share2 } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 type Slide = {
   id: string;
@@ -11,74 +12,66 @@ type Slide = {
   title: string;
   description: string;
   image: string;
-  accent: string; // hex for the "next up" panel + accents
+  accent: string;
+  href: string;
 };
 
 const SLIDES: Slide[] = [
   {
-    id: "entrepreneurship",
-    number: "01",
-    kicker: "Entrepreneurship",
-    category: "Portfolio",
-    tags: ["Startups", "Fund & Grants"],
-    title: "Founders",
-    description:
-      "30+ student startups. ₹593 Cr in valuation. Six appearances on Shark Tank India. The portfolio starts on day one.",
-    image:
-      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80",
-    accent: "#1E3AE2",
-  },
-  {
-    id: "career",
-    number: "02",
-    kicker: "Career",
-    category: "Placements",
-    tags: ["Recruiters", "Outcomes"],
-    title: "Outcomes",
-    description:
-      "McKinsey, Bain, Meta, Bloomberg, Cred, Zepto. Cohorts moving from case rooms into the rooms where decisions actually get made.",
-    image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80",
-    accent: "#E2431E",
-  },
-  {
-    id: "mentors",
-    number: "03",
-    kicker: "Mentor Union",
-    category: "Network",
-    tags: ["Operators", "Investors"],
-    title: "Mentors",
-    description:
-      "A live network of operators, investors, founders and practitioners. Students get warm intros to the people who actually build.",
-    image:
-      "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1600&q=80",
-    accent: "#0F7A4A",
-  },
-  {
     id: "immersions",
-    number: "04",
+    number: "01",
     kicker: "Immersions",
-    category: "Global",
-    tags: ["Bharat", "World"],
+    category: "Bharat & Global",
+    tags: ["5 Formats", "20+ Cities"],
     title: "Immersions",
     description:
-      "From Dabbawalas to Disneyland, RBI to Rakuten. Classrooms wherever the business actually happens.",
+      "From factory floors to startup offices — Dabbawalas to Disneyland, RBI to Rakuten. 5 formats, 20+ cities, real companies. Classrooms wherever the business actually happens.",
     image:
       "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1600&q=80",
     accent: "#B58900",
+    href: "/immersions",
   },
   {
-    id: "campus",
-    number: "05",
-    kicker: "Life at MU",
-    category: "Campus",
-    tags: ["Gurugram", "Community"],
-    title: "Campus",
+    id: "entrepreneurship",
+    number: "02",
+    kicker: "Entrepreneurship",
+    category: "Portfolio",
+    tags: ["30+ Startups", "₹593 Cr"],
+    title: "Founders",
     description:
-      "A working campus in Gurugram — studios, war rooms, a food lab, and a fund. Built for people who ship.",
+      "30+ student startups. ₹593 Cr in total valuation. Six appearances on Shark Tank India — including a first-year undergrad. The portfolio starts on day one.",
     image:
-      "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1600&q=80",
-    accent: "#111111",
+      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80",
+    accent: "#1E3AE2",
+    href: "/startups",
+  },
+  {
+    id: "d2c",
+    number: "03",
+    kicker: "D2C Challenge",
+    category: "Term 1",
+    tags: ["₹3.38 Cr Revenue", "50 Teams"],
+    title: "D2C",
+    description:
+      "₹3.38 Cr revenue. 50 teams. One semester. Real suppliers, real customers, real money. Term 1 is a live dropshipping business, not a case study.",
+    image:
+      "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?auto=format&fit=crop&w=1600&q=80",
+    accent: "#E2431E",
+    href: "/d2c-challenge",
+  },
+  {
+    id: "creator",
+    number: "04",
+    kicker: "Creator Challenge",
+    category: "On-Campus",
+    tags: ["46M+ Reach", "5M+ Followers"],
+    title: "Creators",
+    description:
+      "46M+ reach. 5M+ followers. 120+ creators. ₹10L+ prize pool. Real brand deals, real revenue — all while enrolled.",
+    image:
+      "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=1600&q=80",
+    accent: "#0F7A4A",
+    href: "/creator-challenge",
   },
 ];
 
