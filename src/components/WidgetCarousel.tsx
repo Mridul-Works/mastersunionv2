@@ -72,6 +72,12 @@ const SLIDES: Slide[] = [
     image: widgetFounders,
     accent: "#1E3AE2",
     href: "/startups",
+    stats: [
+      { value: "30+", label: "Student startups" },
+      { value: "₹593 Cr", label: "Total valuation" },
+      { value: "6", label: "Shark Tank pitches" },
+      { value: "Day 1", label: "Portfolio begins" },
+    ],
   },
   {
     id: "d2c",
