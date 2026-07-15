@@ -285,7 +285,7 @@ export default function WidgetCarousel() {
                     {current.logos && current.logos.length > 0 && (
                       <div className="mt-5">
                         <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-white/50">
-                          {current.id === "immersions" ? "Partner campuses" : "Brands born here"}
+                          {current.id === "immersions" ? "Campuses & hosts" : "Brands born here"}
                         </div>
                         <div className="flex flex-nowrap items-center gap-6 overflow-hidden">
                           {current.logos.map((logo) => (
