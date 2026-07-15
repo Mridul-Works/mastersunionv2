@@ -269,19 +269,39 @@ export default function WidgetCarousel() {
               {/* Description */}
               <div className="relative min-h-[80px] flex-1 overflow-hidden">
                 <AnimatePresence initial={false} custom={dir} mode="popLayout">
-                  <motion.p
+                  <motion.div
                     key={current.id + "-d"}
                     custom={dir}
                     initial={{ y: dir === 1 ? 24 : -24, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: dir === 1 ? -24 : 24, opacity: 0 }}
                     transition={{ duration: 0.5, delay: 0.05 }}
-                    className="max-w-md text-sm leading-relaxed text-white/70"
+                    className="max-w-md"
                   >
-                    {current.description}
-                  </motion.p>
+                    <p className="text-sm leading-relaxed text-white/70">
+                      {current.description}
+                    </p>
+                    {current.logos && current.logos.length > 0 && (
+                      <div className="mt-5">
+                        <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-white/50">
+                          {current.id === "immersions" ? "Partner campuses" : "Brands born here"}
+                        </div>
+                        <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+                          {current.logos.map((logo) => (
+                            <img
+                              key={logo.alt}
+                              src={logo.src}
+                              alt={logo.alt}
+                              className="h-6 w-auto object-contain opacity-80 brightness-0 invert md:h-7"
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </motion.div>
                 </AnimatePresence>
               </div>
+
 
               {/* Actions */}
               <div className="flex flex-col justify-between gap-6 md:items-end">
