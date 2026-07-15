@@ -85,7 +85,6 @@ const SLIDES: Slide[] = [
     logos: [
       { src: lexis.url, alt: "Lexi's Gourmet Sandwiches" },
       { src: eatAtlas.url, alt: "Eat Atlas" },
-      { src: woodys.url, alt: "Woody's Pizzeria" },
       { src: flourish.url, alt: "Flourish Foods" },
       { src: beyondVeda.url, alt: "Beyond Veda" },
       { src: blueBrew.url, alt: "Blue Brew" },
