@@ -495,8 +495,8 @@ function Index() {
           className="relative z-10 bg-white shadow-[0_-30px_80px_-20px_rgba(0,0,0,0.12)]"
         >
           <TenThings />
-          <WidgetCarousel />
           <HomeSections />
+
         </div>
       </div>
 

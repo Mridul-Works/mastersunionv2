@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect } from "react";
+import WidgetCarousel from "@/components/WidgetCarousel";
+
 import { createPortal } from "react-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -1144,6 +1146,10 @@ export default function HomeSections() {
 
       {/* PEDAGOGY */}
       <PedagogyPinnedScroll />
+
+      <WidgetCarousel />
+
+
 
 
 
