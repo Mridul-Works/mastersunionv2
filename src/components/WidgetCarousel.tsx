@@ -68,7 +68,7 @@ const SLIDES: Slide[] = [
     tags: ["30+ Startups", "₹593 Cr"],
     title: "Founders",
     description:
-      "30+ student startups. ₹593 Cr in total valuation. Six appearances on Shark Tank India — including a first-year undergrad. The portfolio starts on day one.",
+      "Student-led ventures backed from day one — from dorm-room prototypes to Shark Tank India pitches. The portfolio grows while the coursework runs.",
     image: widgetFounders,
     accent: "#1E3AE2",
     href: "/startups",
