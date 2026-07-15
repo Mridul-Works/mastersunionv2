@@ -46,6 +46,14 @@ const SLIDES: Slide[] = [
       "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1600&q=80",
     accent: "#B58900",
     href: "/immersions",
+    logos: [
+      { src: imperial.url, alt: "Imperial College" },
+      { src: babson.url, alt: "Babson" },
+      { src: ivey.url, alt: "Ivey" },
+      { src: escp.url, alt: "ESCP" },
+      { src: bocconi.url, alt: "SDA Bocconi" },
+      { src: wbs.url, alt: "Warwick Business School" },
+    ],
   },
   {
     id: "entrepreneurship",
