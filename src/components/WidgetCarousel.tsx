@@ -108,10 +108,16 @@ const SLIDES: Slide[] = [
     tags: ["46M+ Reach", "5M+ Followers"],
     title: "Creators",
     description:
-      "46M+ reach. 5M+ followers. 120+ creators. ₹10L+ prize pool. Real brand deals, real revenue — all while enrolled.",
+      "A live on-campus creator bootcamp where students build audiences, land brand deals, and monetise while enrolled — culminating in a ₹10L+ prize showdown.",
     image: widgetCreators,
     accent: "#0F7A4A",
     href: "/creator-challenge",
+    stats: [
+      { value: "46M+", label: "Total reach" },
+      { value: "5M+", label: "Followers built" },
+      { value: "120+", label: "Student creators" },
+      { value: "₹10L+", label: "Prize pool" },
+    ],
   },
 ];
 
