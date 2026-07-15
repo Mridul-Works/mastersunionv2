@@ -15,6 +15,10 @@ import rbi from "@/assets/immersions/bharat/rbi.png.asset.json";
 import zepto from "@/assets/immersions/bharat/zepto.png.asset.json";
 import porsche from "@/assets/immersions/global/porsche.png.asset.json";
 import rakuten from "@/assets/immersions/global/rakuten.png.asset.json";
+import widgetImmersions from "@/assets/widget/widget-immersions.jpg.asset.json";
+import widgetFounders from "@/assets/widget/widget-founders.jpg.asset.json";
+import widgetD2C from "@/assets/widget/widget-d2c.jpg.asset.json";
+import widgetCreators from "@/assets/widget/widget-creators.jpg.asset.json";
 
 type SlideLogo = { src: string; alt: string };
 
@@ -43,8 +47,7 @@ const SLIDES: Slide[] = [
     title: "Immersions",
     description:
       "From factory floors to startup offices — Dabbawalas to Disneyland, RBI to Rakuten. 5 formats, 20+ cities, real companies. Classrooms wherever the business actually happens.",
-    image:
-      "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1600&q=80",
+    image: widgetImmersions.url,
     accent: "#B58900",
     href: "/immersions",
     logos: [
@@ -64,8 +67,7 @@ const SLIDES: Slide[] = [
     title: "Founders",
     description:
       "30+ student startups. ₹593 Cr in total valuation. Six appearances on Shark Tank India — including a first-year undergrad. The portfolio starts on day one.",
-    image:
-      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80",
+    image: widgetFounders.url,
     accent: "#1E3AE2",
     href: "/startups",
   },
@@ -78,8 +80,7 @@ const SLIDES: Slide[] = [
     title: "D2C",
     description:
       "₹3.38 Cr revenue. 50 teams. One semester. Real suppliers, real customers, real money. Term 1 is a live dropshipping business, not a case study.",
-    image:
-      "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?auto=format&fit=crop&w=1600&q=80",
+    image: widgetD2C.url,
     accent: "#E2431E",
     href: "/d2c-challenge",
     logos: [
@@ -100,8 +101,7 @@ const SLIDES: Slide[] = [
     title: "Creators",
     description:
       "46M+ reach. 5M+ followers. 120+ creators. ₹10L+ prize pool. Real brand deals, real revenue — all while enrolled.",
-    image:
-      "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=1600&q=80",
+    image: widgetCreators.url,
     accent: "#0F7A4A",
     href: "/creator-challenge",
   },
@@ -285,11 +285,11 @@ export default function WidgetCarousel() {
                         <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-white/50">
                           {current.id === "immersions" ? "Campuses & hosts" : "Brands born here"}
                         </div>
-                        <div className="flex flex-nowrap items-center gap-6 overflow-hidden">
+                        <div className="flex flex-nowrap items-center gap-7 overflow-hidden">
                           {current.logos.map((logo) => (
                             <div
                               key={logo.alt}
-                              className="flex h-5 w-16 shrink-0 items-center justify-center"
+                              className="flex h-8 w-24 shrink-0 items-center justify-center"
                             >
                               <img
                                 src={logo.src}
