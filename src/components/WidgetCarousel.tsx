@@ -15,10 +15,10 @@ import rbi from "@/assets/immersions/bharat/rbi.png.asset.json";
 import zepto from "@/assets/immersions/bharat/zepto.png.asset.json";
 import porsche from "@/assets/immersions/global/porsche.png.asset.json";
 import rakuten from "@/assets/immersions/global/rakuten.png.asset.json";
-import widgetImmersions from "@/assets/widget/widget-immersions.jpg.asset.json";
-import widgetFounders from "@/assets/widget/widget-founders.jpg.asset.json";
-import widgetD2C from "@/assets/widget/widget-d2c.jpg.asset.json";
-import widgetCreators from "@/assets/widget/widget-creators.jpg.asset.json";
+import widgetImmersions from "@/assets/widget/widget-immersions.jpg";
+import widgetFounders from "@/assets/widget/widget-founders.jpg";
+import widgetD2C from "@/assets/widget/widget-d2c.jpg";
+import widgetCreators from "@/assets/widget/widget-creators.jpg";
 
 type SlideLogo = { src: string; alt: string };
 
