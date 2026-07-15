@@ -1145,6 +1145,10 @@ export default function HomeSections() {
       {/* PEDAGOGY */}
       <PedagogyPinnedScroll />
 
+      <WidgetCarousel />
+
+
+
 
 
       {/* FOOTER */}
