@@ -250,15 +250,15 @@ export default function WidgetCarousel() {
 
               {/* Actions */}
               <div className="flex flex-col justify-between gap-6 md:items-end">
-                <button
-                  type="button"
+                <Link
+                  to={current.href}
                   className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white"
                 >
                   Learn more
                   <span className="flex size-6 items-center justify-center rounded-full bg-white text-black">
                     <ArrowRight className="size-3" />
                   </span>
-                </button>
+                </Link>
                 <div className="flex items-center gap-4">
                   <button
                     type="button"
