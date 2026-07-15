@@ -13,7 +13,10 @@ import babson from "@/assets/immersions/campuses/babson.png.asset.json";
 import ivey from "@/assets/immersions/campuses/ivey.png.asset.json";
 import escp from "@/assets/immersions/campuses/escp.png.asset.json";
 import bocconi from "@/assets/immersions/campuses/sda-bocconi.png.asset.json";
-// wbs logo removed to keep 5 logos
+import rbi from "@/assets/immersions/bharat/rbi.png.asset.json";
+import zepto from "@/assets/immersions/bharat/zepto.png.asset.json";
+import porsche from "@/assets/immersions/global/porsche.png.asset.json";
+import rakuten from "@/assets/immersions/global/rakuten.png.asset.json";
 
 type SlideLogo = { src: string; alt: string };
 
