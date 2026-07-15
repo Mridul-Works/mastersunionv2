@@ -252,7 +252,7 @@ export default function WidgetCarousel() {
 
           {/* Bottom bar */}
           <div className="relative grid grid-cols-1 md:grid-cols-[1fr_240px] lg:grid-cols-[1fr_320px]">
-            <div className="relative flex flex-col gap-6 bg-black px-6 py-8 text-white md:flex-row md:items-start md:gap-10 md:px-10 md:py-10">
+            <div className="relative flex flex-col gap-6 bg-black px-6 py-8 text-white md:flex-row md:items-stretch md:gap-10 md:px-10 md:py-10 md:min-h-[320px]">
               {/* Left: number + category */}
               <div className="relative h-16 min-w-[160px] overflow-hidden md:h-20">
                 <AnimatePresence initial={false} custom={dir} mode="popLayout">
