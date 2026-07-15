@@ -881,10 +881,12 @@ function Programs() {
 
 
             </div>
-
-            <AdmissionsConnect />
           </div>
+
+          <AdmissionsConnect />
         </div>
+      </div>
+
       </div>
 
       <SageSheet
