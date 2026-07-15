@@ -377,7 +377,7 @@ function Index() {
               <div className="mb-12 grid grid-cols-12 items-end gap-8 md:mb-20">
                 <div className="col-span-12 flex flex-col gap-10 md:col-span-10 lg:col-span-9">
                   <h1
-                    className="-ml-[0.06em] text-7xl italic leading-[0.8] tracking-tighter text-white md:text-[110px] lg:text-[130px]"
+                    className="ml-[0.05em] text-7xl italic leading-[0.8] tracking-tighter text-white md:text-[110px] lg:text-[130px]"
                     style={{ fontFamily: "'Fraunces', serif" }}
                   >
                     Learn by <br />
