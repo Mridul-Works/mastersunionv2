@@ -21,6 +21,7 @@ import widgetD2C from "@/assets/widget/widget-d2c.jpg";
 import widgetCreators from "@/assets/widget/widget-creators.jpg";
 
 type SlideLogo = { src: string; alt: string };
+type SlideStat = { value: string; label: string };
 
 type Slide = {
   id: string;
@@ -34,6 +35,7 @@ type Slide = {
   accent: string;
   href: string;
   logos?: SlideLogo[];
+  stats?: SlideStat[];
 };
 
 
@@ -66,10 +68,16 @@ const SLIDES: Slide[] = [
     tags: ["30+ Startups", "₹593 Cr"],
     title: "Founders",
     description:
-      "30+ student startups. ₹593 Cr in total valuation. Six appearances on Shark Tank India — including a first-year undergrad. The portfolio starts on day one.",
+      "Student-led ventures backed from day one — from dorm-room prototypes to Shark Tank India pitches. The portfolio grows while the coursework runs.",
     image: widgetFounders,
     accent: "#1E3AE2",
     href: "/startups",
+    stats: [
+      { value: "30+", label: "Student startups" },
+      { value: "₹593 Cr", label: "Total valuation" },
+      { value: "6", label: "Shark Tank pitches" },
+      { value: "Day 1", label: "Portfolio begins" },
+    ],
   },
   {
     id: "d2c",
@@ -100,10 +108,16 @@ const SLIDES: Slide[] = [
     tags: ["46M+ Reach", "5M+ Followers"],
     title: "Creators",
     description:
-      "46M+ reach. 5M+ followers. 120+ creators. ₹10L+ prize pool. Real brand deals, real revenue — all while enrolled.",
+      "A live on-campus creator bootcamp where students build audiences, land brand deals, and monetise while enrolled — culminating in a ₹10L+ prize showdown.",
     image: widgetCreators,
     accent: "#0F7A4A",
     href: "/creator-challenge",
+    stats: [
+      { value: "46M+", label: "Total reach" },
+      { value: "5M+", label: "Followers built" },
+      { value: "120+", label: "Student creators" },
+      { value: "₹10L+", label: "Prize pool" },
+    ],
   },
 ];
 
@@ -296,6 +310,25 @@ export default function WidgetCarousel() {
                                 alt={logo.alt}
                                 className="max-h-full max-w-full object-contain opacity-80 brightness-0 invert"
                               />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {(!current.logos || current.logos.length === 0) && current.stats && current.stats.length > 0 && (
+                      <div className="mt-5">
+                        <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-white/50">
+                          By the numbers
+                        </div>
+                        <div className="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4">
+                          {current.stats.map((s) => (
+                            <div key={s.label} className="flex flex-col">
+                              <div className="text-lg font-semibold tracking-tight text-white md:text-xl">
+                                {s.value}
+                              </div>
+                              <div className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-white/50">
+                                {s.label}
+                              </div>
                             </div>
                           ))}
                         </div>
