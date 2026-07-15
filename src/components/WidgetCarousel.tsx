@@ -340,7 +340,7 @@ export default function WidgetCarousel() {
 
 
               {/* Actions */}
-              <div className="flex flex-col justify-between gap-6 md:items-end">
+              <div className="flex flex-col justify-between gap-6 md:items-end md:min-w-[180px] md:self-stretch">
                 <Link
                   to={current.href}
                   className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white"
