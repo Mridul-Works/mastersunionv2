@@ -52,7 +52,7 @@ const SLIDES: Slide[] = [
       { src: ivey.url, alt: "Ivey" },
       { src: escp.url, alt: "ESCP" },
       { src: bocconi.url, alt: "SDA Bocconi" },
-      { src: wbs.url, alt: "Warwick Business School" },
+      
     ],
   },
   {
