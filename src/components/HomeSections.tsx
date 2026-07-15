@@ -547,9 +547,9 @@ function AdmissionsConnect() {
         </p>
       </header>
 
-      <div className="relative -mx-6 md:-mx-10">
+      <div className="relative -mx-5 md:-mx-10">
         <div
-          className="scrollbar-hover-only flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-6 md:gap-6 md:px-10"
+          className="scrollbar-hover-only flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-6 md:gap-6 md:px-10"
         >
           {featured.map((s) => (
             <article
@@ -818,10 +818,10 @@ function Programs() {
             </p>
           </div>
 
-          <div className="relative -mx-6 md:-mx-10">
+          <div className="relative -mx-5 md:-mx-10">
             <div
               ref={admissionsScrollRef}
-              className="scrollbar-hover-only flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-6 md:gap-6 md:px-10"
+              className="scrollbar-hover-only flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-6 md:gap-6 md:px-10"
             >
               {PROGRAMS.map((p) => (
                 <article
@@ -1087,7 +1087,7 @@ export default function HomeSections() {
 
       {/* FOUNDER'S MESSAGE */}
       <section id="founders" className="border-t border-black/10 bg-[#F5F3EE]">
-        <div className="mx-auto max-w-[1280px] px-6 pb-6 md:px-10 md:pb-8">
+        <div className="mx-auto max-w-[1280px] px-5 pb-6 md:px-10 md:pb-8">
           <div
             className="relative overflow-hidden rounded-none min-h-[520px] md:min-h-[640px] grid grid-cols-1 lg:grid-cols-2 pastel-gradient"
           >
@@ -1155,7 +1155,7 @@ export default function HomeSections() {
 
       {/* FOOTER */}
       <footer className="border-t border-black/10 bg-black text-white">
-        <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10">
+        <div className="mx-auto max-w-[1280px] px-5 py-20 md:px-10">
           <div className="grid gap-12 md:grid-cols-12">
             <div className="md:col-span-5">
               <img
@@ -1199,7 +1199,7 @@ export default function HomeSections() {
 function PedagogyPinnedScroll() {
   return (
     <section id="pedagogy" className="relative border-t border-black/10 bg-neutral-50">
-      <div className="mx-auto max-w-[1400px] px-5 pt-16 pb-6 md:px-10 md:pt-24">
+      <div className="mx-auto max-w-[1280px] px-5 pt-16 pb-6 md:px-10 md:pt-24">
         {/* Editorial hero */}
         <div className="flex flex-col items-start text-left gap-6">
           <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-black/55">
@@ -1234,7 +1234,7 @@ function PedagogySelector() {
   const p = PEDAGOGY[active];
   const Icon = p.icon;
   return (
-    <div className="mx-auto max-w-[1400px] px-5 pb-20 md:px-10 md:pb-28">
+    <div className="mx-auto max-w-[1280px] px-5 pb-20 md:px-10 md:pb-28">
       <div className="grid gap-6 md:grid-cols-12 md:gap-8">
         {/* Left: list of 8 options */}
         <div className="md:col-span-5 lg:col-span-4">

@@ -136,7 +136,7 @@ export default function WidgetCarousel() {
       onMouseLeave={() => setPaused(false)}
       style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
     >
-      <div className="mx-auto max-w-[1320px] px-4 md:px-8">
+      <div className="mx-auto max-w-[1280px] px-5 md:px-10">
         {/* Section eyebrow */}
         <div className="mb-8 flex items-end justify-between">
           <div>
