@@ -193,12 +193,12 @@ export default function WidgetCarousel() {
                   transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
                   className="absolute inset-0"
                 >
-                  <img
-                    src={current.image}
-                    alt={current.title}
-                    className="h-full w-full object-cover"
+                  <div
+                    className="h-full w-full"
+                    style={{ backgroundColor: current.accent }}
+                    aria-label={current.title}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/40" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/35" />
                   {/* Big title */}
                   <div className="absolute inset-0 flex items-center px-6 md:px-14">
                     <motion.h3
@@ -222,15 +222,15 @@ export default function WidgetCarousel() {
             {/* Next preview strip (image only) */}
             <div className="relative hidden overflow-hidden bg-black md:block md:h-[520px]">
               <AnimatePresence initial={false} mode="popLayout">
-                <motion.img
+                <motion.div
                   key={next.id + "-preview"}
-                  src={next.image}
-                  alt={next.title}
                   initial={{ x: "100%" }}
                   animate={{ x: 0 }}
                   exit={{ x: "-100%" }}
                   transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
-                  className="absolute inset-0 h-full w-full object-cover"
+                  className="absolute inset-0 h-full w-full"
+                  style={{ backgroundColor: next.accent }}
+                  aria-label={next.title}
                 />
               </AnimatePresence>
             </div>
