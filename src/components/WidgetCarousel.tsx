@@ -222,15 +222,15 @@ export default function WidgetCarousel() {
             {/* Next preview strip (image only) */}
             <div className="relative hidden overflow-hidden bg-black md:block md:h-[520px]">
               <AnimatePresence initial={false} mode="popLayout">
-                <motion.img
+                <motion.div
                   key={next.id + "-preview"}
-                  src={next.image}
-                  alt={next.title}
                   initial={{ x: "100%" }}
                   animate={{ x: 0 }}
                   exit={{ x: "-100%" }}
                   transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
-                  className="absolute inset-0 h-full w-full object-cover"
+                  className="absolute inset-0 h-full w-full"
+                  style={{ backgroundColor: next.accent }}
+                  aria-label={next.title}
                 />
               </AnimatePresence>
             </div>
