@@ -109,22 +109,29 @@ export default function WidgetCarousel() {
       className="relative w-full bg-[#EDEDED] py-16 md:py-24"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
-      style={{ fontFamily: "Inter, sans-serif" }}
+      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
     >
       <div className="mx-auto max-w-[1320px] px-4 md:px-8">
         {/* Section eyebrow */}
         <div className="mb-8 flex items-end justify-between">
           <div>
-            <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-black/50">
-              A closer look
-            </span>
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-black/55">
+              — A closer look
+            </p>
             <h2
-              className="mt-3 text-3xl font-black tracking-tight text-black md:text-5xl"
-              style={{ fontFamily: "'Fraunces', serif" }}
+              className="mt-3 text-[clamp(1.75rem,4vw,3.25rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-black"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
             >
-              Inside Masters' Union
+              Inside{" "}
+              <span
+                className="italic font-light"
+                style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+              >
+                Masters' Union
+              </span>
             </h2>
           </div>
+
           <div className="hidden items-center gap-2 md:flex">
             <button
               type="button"
