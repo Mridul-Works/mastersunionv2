@@ -887,7 +887,6 @@ function Programs() {
         </div>
       </div>
 
-      </div>
 
       <SageSheet
         program={sageProgram}
