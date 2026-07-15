@@ -315,6 +315,25 @@ export default function WidgetCarousel() {
                         </div>
                       </div>
                     )}
+                    {(!current.logos || current.logos.length === 0) && current.stats && current.stats.length > 0 && (
+                      <div className="mt-5">
+                        <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-white/50">
+                          By the numbers
+                        </div>
+                        <div className="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4">
+                          {current.stats.map((s) => (
+                            <div key={s.label} className="flex flex-col">
+                              <div className="text-lg font-semibold tracking-tight text-white md:text-xl">
+                                {s.value}
+                              </div>
+                              <div className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-white/50">
+                                {s.label}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </motion.div>
                 </AnimatePresence>
               </div>
