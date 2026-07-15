@@ -51,11 +51,11 @@ const SLIDES: Slide[] = [
     href: "/immersions",
     logos: [
       { src: imperial.url, alt: "Imperial College" },
-      { src: babson.url, alt: "Babson" },
-      { src: ivey.url, alt: "Ivey" },
-      { src: escp.url, alt: "ESCP" },
       { src: bocconi.url, alt: "SDA Bocconi" },
-      
+      { src: porsche.url, alt: "Porsche" },
+      { src: rakuten.url, alt: "Rakuten" },
+      { src: rbi.url, alt: "RBI" },
+      { src: zepto.url, alt: "Zepto" },
     ],
   },
   {
