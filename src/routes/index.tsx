@@ -496,6 +496,7 @@ function Index() {
         >
           <TenThings />
           <HomeSections />
+          <WidgetCarousel />
         </div>
       </div>
 
