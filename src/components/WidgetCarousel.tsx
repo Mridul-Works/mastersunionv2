@@ -214,38 +214,11 @@ export default function WidgetCarousel() {
                     </motion.h3>
                   </div>
 
-                  {current.logos && current.logos.length > 0 && (
-                    <motion.div
-                      key={current.id + "-logos"}
-                      initial={{ y: 20, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.35, duration: 0.6 }}
-                      className="absolute inset-x-6 bottom-6 md:inset-x-14 md:bottom-10"
-                    >
-                      <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-white/70">
-                        Brands born here
-                      </div>
-                      <div className="flex flex-wrap items-center gap-2 md:gap-3">
-                        {current.logos.map((logo) => (
-                          <div
-                            key={logo.alt}
-                            className="flex h-10 items-center justify-center rounded-sm bg-white/95 px-3 backdrop-blur md:h-12 md:px-4"
-                          >
-                            <img
-                              src={logo.src}
-                              alt={logo.alt}
-                              className="max-h-6 w-auto object-contain md:max-h-7"
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-
                 </motion.div>
 
               </AnimatePresence>
             </div>
+
 
             {/* Next preview strip (image only) */}
             <div className="relative hidden overflow-hidden bg-black md:block md:h-[520px]">
