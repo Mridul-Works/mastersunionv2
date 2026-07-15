@@ -8,6 +8,12 @@ import woodys from "@/assets/startup-logos/WoodysPizzeria.png.asset.json";
 import flourish from "@/assets/startup-logos/FlourishFoods.png.asset.json";
 import beyondVeda from "@/assets/startup-logos/BeyondVeda.png.asset.json";
 import blueBrew from "@/assets/startup-logos/BlueBrew.png.asset.json";
+import imperial from "@/assets/immersions/campuses/imperial.png.asset.json";
+import babson from "@/assets/immersions/campuses/babson.png.asset.json";
+import ivey from "@/assets/immersions/campuses/ivey.png.asset.json";
+import escp from "@/assets/immersions/campuses/escp.png.asset.json";
+import bocconi from "@/assets/immersions/campuses/sda-bocconi.png.asset.json";
+import wbs from "@/assets/immersions/campuses/wbs.png.asset.json";
 
 type SlideLogo = { src: string; alt: string };
 
@@ -40,6 +46,14 @@ const SLIDES: Slide[] = [
       "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1600&q=80",
     accent: "#B58900",
     href: "/immersions",
+    logos: [
+      { src: imperial.url, alt: "Imperial College" },
+      { src: babson.url, alt: "Babson" },
+      { src: ivey.url, alt: "Ivey" },
+      { src: escp.url, alt: "ESCP" },
+      { src: bocconi.url, alt: "SDA Bocconi" },
+      { src: wbs.url, alt: "Warwick Business School" },
+    ],
   },
   {
     id: "entrepreneurship",
@@ -200,38 +214,11 @@ export default function WidgetCarousel() {
                     </motion.h3>
                   </div>
 
-                  {current.logos && current.logos.length > 0 && (
-                    <motion.div
-                      key={current.id + "-logos"}
-                      initial={{ y: 20, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.35, duration: 0.6 }}
-                      className="absolute inset-x-6 bottom-6 md:inset-x-14 md:bottom-10"
-                    >
-                      <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-white/70">
-                        Brands born here
-                      </div>
-                      <div className="flex flex-wrap items-center gap-2 md:gap-3">
-                        {current.logos.map((logo) => (
-                          <div
-                            key={logo.alt}
-                            className="flex h-10 items-center justify-center rounded-sm bg-white/95 px-3 backdrop-blur md:h-12 md:px-4"
-                          >
-                            <img
-                              src={logo.src}
-                              alt={logo.alt}
-                              className="max-h-6 w-auto object-contain md:max-h-7"
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-
                 </motion.div>
 
               </AnimatePresence>
             </div>
+
 
             {/* Next preview strip (image only) */}
             <div className="relative hidden overflow-hidden bg-black md:block md:h-[520px]">
@@ -282,19 +269,39 @@ export default function WidgetCarousel() {
               {/* Description */}
               <div className="relative min-h-[80px] flex-1 overflow-hidden">
                 <AnimatePresence initial={false} custom={dir} mode="popLayout">
-                  <motion.p
+                  <motion.div
                     key={current.id + "-d"}
                     custom={dir}
                     initial={{ y: dir === 1 ? 24 : -24, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: dir === 1 ? -24 : 24, opacity: 0 }}
                     transition={{ duration: 0.5, delay: 0.05 }}
-                    className="max-w-md text-sm leading-relaxed text-white/70"
+                    className="max-w-md"
                   >
-                    {current.description}
-                  </motion.p>
+                    <p className="text-sm leading-relaxed text-white/70">
+                      {current.description}
+                    </p>
+                    {current.logos && current.logos.length > 0 && (
+                      <div className="mt-5">
+                        <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-white/50">
+                          {current.id === "immersions" ? "Partner campuses" : "Brands born here"}
+                        </div>
+                        <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+                          {current.logos.map((logo) => (
+                            <img
+                              key={logo.alt}
+                              src={logo.src}
+                              alt={logo.alt}
+                              className="h-6 w-auto object-contain opacity-80 brightness-0 invert md:h-7"
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </motion.div>
                 </AnimatePresence>
               </div>
+
 
               {/* Actions */}
               <div className="flex flex-col justify-between gap-6 md:items-end">
