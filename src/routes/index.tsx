@@ -355,7 +355,7 @@ function Index() {
           <div
             className={`absolute inset-0 transition-opacity duration-500 ${playing ? "opacity-0 pointer-events-none" : "opacity-100"}`}
           >
-            <div className="relative mx-auto flex h-full w-full max-w-[1320px] flex-col justify-between px-6 py-10 md:px-12 md:py-12">
+            <div className="relative mx-auto flex h-full w-full max-w-[1320px] flex-col justify-between px-8 py-10 md:px-16 md:py-12">
               {/* Top branding */}
               <div className="flex items-start justify-between">
                 <div className="flex flex-col">
@@ -377,7 +377,7 @@ function Index() {
               <div className="mb-12 grid grid-cols-12 items-end gap-8 md:mb-20">
                 <div className="col-span-12 flex flex-col gap-10 md:col-span-10 lg:col-span-9">
                   <h1
-                    className="text-7xl italic leading-[0.8] tracking-tighter text-white md:text-[110px] lg:text-[130px]"
+                    className="ml-[0.05em] text-7xl italic leading-[0.8] tracking-tighter text-white md:text-[110px] lg:text-[130px]"
                     style={{ fontFamily: "'Fraunces', serif" }}
                   >
                     Learn by <br />
@@ -459,7 +459,7 @@ function Index() {
                   A new-age business school where industry leaders mentor the next generation.
                 </p>
 
-                <div className="mx-auto flex flex-col items-center gap-4 md:mx-0">
+                <div className="mx-auto flex flex-col items-center gap-4 md:mx-0 md:items-end">
                   <span
                     className="text-[9px] font-bold uppercase tracking-[0.3em] text-white"
                     style={{ fontFamily: "Inter, sans-serif" }}
