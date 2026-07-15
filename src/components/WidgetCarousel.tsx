@@ -13,7 +13,7 @@ import babson from "@/assets/immersions/campuses/babson.png.asset.json";
 import ivey from "@/assets/immersions/campuses/ivey.png.asset.json";
 import escp from "@/assets/immersions/campuses/escp.png.asset.json";
 import bocconi from "@/assets/immersions/campuses/sda-bocconi.png.asset.json";
-import wbs from "@/assets/immersions/campuses/wbs.png.asset.json";
+// wbs logo removed to keep 5 logos
 
 type SlideLogo = { src: string; alt: string };
 
