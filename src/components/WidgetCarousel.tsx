@@ -47,7 +47,7 @@ const SLIDES: Slide[] = [
     title: "Immersions",
     description:
       "From factory floors to startup offices — Dabbawalas to Disneyland, RBI to Rakuten. 5 formats, 20+ cities, real companies. Classrooms wherever the business actually happens.",
-    image: widgetImmersions.url,
+    image: widgetImmersions,
     accent: "#B58900",
     href: "/immersions",
     logos: [
@@ -67,7 +67,7 @@ const SLIDES: Slide[] = [
     title: "Founders",
     description:
       "30+ student startups. ₹593 Cr in total valuation. Six appearances on Shark Tank India — including a first-year undergrad. The portfolio starts on day one.",
-    image: widgetFounders.url,
+    image: widgetFounders,
     accent: "#1E3AE2",
     href: "/startups",
   },
@@ -80,7 +80,7 @@ const SLIDES: Slide[] = [
     title: "D2C",
     description:
       "₹3.38 Cr revenue. 50 teams. One semester. Real suppliers, real customers, real money. Term 1 is a live dropshipping business, not a case study.",
-    image: widgetD2C.url,
+    image: widgetD2C,
     accent: "#E2431E",
     href: "/d2c-challenge",
     logos: [
@@ -101,7 +101,7 @@ const SLIDES: Slide[] = [
     title: "Creators",
     description:
       "46M+ reach. 5M+ followers. 120+ creators. ₹10L+ prize pool. Real brand deals, real revenue — all while enrolled.",
-    image: widgetCreators.url,
+    image: widgetCreators,
     accent: "#0F7A4A",
     href: "/creator-challenge",
   },
