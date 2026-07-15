@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, ArrowLeft, Share2, Search } from "lucide-react";
+import { ArrowRight, ArrowLeft, Share2 } from "lucide-react";
 
 type Slide = {
   id: string;
@@ -109,22 +109,29 @@ export default function WidgetCarousel() {
       className="relative w-full bg-[#EDEDED] py-16 md:py-24"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
-      style={{ fontFamily: "Inter, sans-serif" }}
+      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
     >
       <div className="mx-auto max-w-[1320px] px-4 md:px-8">
         {/* Section eyebrow */}
         <div className="mb-8 flex items-end justify-between">
           <div>
-            <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-black/50">
-              A closer look
-            </span>
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-black/55">
+              — A closer look
+            </p>
             <h2
-              className="mt-3 text-3xl font-black tracking-tight text-black md:text-5xl"
-              style={{ fontFamily: "'Fraunces', serif" }}
+              className="mt-3 text-[clamp(1.75rem,4vw,3.25rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-black"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
             >
-              Inside Masters' Union
+              Inside{" "}
+              <span
+                className="italic font-light"
+                style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+              >
+                Masters' Union
+              </span>
             </h2>
           </div>
+
           <div className="hidden items-center gap-2 md:flex">
             <button
               type="button"
@@ -167,26 +174,6 @@ export default function WidgetCarousel() {
                     className="h-full w-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/40" />
-                  {/* Chrome */}
-                  <div className="absolute inset-x-0 top-0 flex items-center justify-between px-6 py-5 text-white">
-                    <div className="flex items-center gap-4">
-                      <span className="text-sm font-bold tracking-widest">MU</span>
-                      <button
-                        type="button"
-                        className="flex items-center gap-2 rounded-full border border-white/30 px-3 py-1 text-[11px] uppercase tracking-[0.2em] backdrop-blur-sm"
-                      >
-                        <Search className="size-3" />
-                        Search
-                      </button>
-                    </div>
-                    <button
-                      type="button"
-                      aria-label="Bookmark"
-                      className="flex size-7 items-center justify-center rounded-sm border border-white/30 text-white/80"
-                    >
-                      <span className="block size-3 border border-current" />
-                    </button>
-                  </div>
                   {/* Big title */}
                   <div className="absolute inset-0 flex items-center px-6 md:px-14">
                     <motion.h3
@@ -194,12 +181,13 @@ export default function WidgetCarousel() {
                       initial={{ y: 30, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ delay: 0.2, duration: 0.6 }}
-                      className="text-[64px] font-black leading-[0.9] tracking-tight text-white md:text-[120px] lg:text-[150px]"
-                      style={{ fontFamily: "'Fraunces', serif" }}
+                      className="text-[64px] font-semibold leading-[0.9] tracking-[-0.03em] text-white md:text-[120px] lg:text-[150px]"
+                      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                     >
                       {current.title}
                     </motion.h3>
                   </div>
+
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -236,15 +224,16 @@ export default function WidgetCarousel() {
                     transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
                     className="absolute inset-0"
                   >
-                    <div className="text-3xl font-black md:text-4xl">
+                    <div className="font-mono text-3xl font-semibold tabular-nums md:text-4xl">
                       {current.number}
                     </div>
-                    <div className="mt-2 text-lg font-semibold">
+                    <div className="mt-2 text-lg font-semibold tracking-tight">
                       {current.kicker}
                     </div>
-                    <div className="mt-1 text-[11px] uppercase tracking-[0.2em] text-white/50">
+                    <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.28em] text-white/50">
                       {current.tags.join(" · ")}
                     </div>
+
                   </motion.div>
                 </AnimatePresence>
               </div>
@@ -322,24 +311,25 @@ export default function WidgetCarousel() {
                   transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
                   className="flex flex-1 flex-col"
                 >
-                  <span className="text-[11px] uppercase tracking-[0.25em] text-white/70">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-white/70">
                     Next up
                   </span>
-                  <div className="mt-3 text-3xl font-black md:text-4xl">
+                  <div className="mt-3 font-mono text-3xl font-semibold tabular-nums md:text-4xl">
                     {next.number}
                   </div>
-                  <div className="mt-1 text-[11px] uppercase tracking-[0.2em] text-white/70">
+                  <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.28em] text-white/70">
                     {next.category}
                   </div>
                   <div
-                    className="mt-4 text-2xl font-bold leading-tight md:text-3xl"
-                    style={{ fontFamily: "'Fraunces', serif" }}
+                    className="mt-4 text-2xl font-semibold leading-tight tracking-[-0.02em] md:text-3xl"
+                    style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                   >
                     {next.title}
                   </div>
-                  <div className="mt-3 text-[11px] uppercase tracking-[0.2em] text-white/70">
+                  <div className="mt-3 font-mono text-[11px] uppercase tracking-[0.28em] text-white/70">
                     {next.tags.join(" · ")}
                   </div>
+
                 </motion.div>
               </AnimatePresence>
               <span className="ml-4 mt-auto flex size-8 shrink-0 items-center justify-center rounded-full bg-white text-black transition-transform group-hover:translate-x-1">
