@@ -224,15 +224,16 @@ export default function WidgetCarousel() {
                     transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
                     className="absolute inset-0"
                   >
-                    <div className="text-3xl font-black md:text-4xl">
+                    <div className="font-mono text-3xl font-semibold tabular-nums md:text-4xl">
                       {current.number}
                     </div>
-                    <div className="mt-2 text-lg font-semibold">
+                    <div className="mt-2 text-lg font-semibold tracking-tight">
                       {current.kicker}
                     </div>
-                    <div className="mt-1 text-[11px] uppercase tracking-[0.2em] text-white/50">
+                    <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.28em] text-white/50">
                       {current.tags.join(" · ")}
                     </div>
+
                   </motion.div>
                 </AnimatePresence>
               </div>
