@@ -2,6 +2,14 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ArrowLeft, Share2 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import lexis from "@/assets/startup-logos/Lexis.png.asset.json";
+import eatAtlas from "@/assets/startup-logos/EatAtlas.png.asset.json";
+import woodys from "@/assets/startup-logos/WoodysPizzeria.png.asset.json";
+import flourish from "@/assets/startup-logos/FlourishFoods.png.asset.json";
+import beyondVeda from "@/assets/startup-logos/BeyondVeda.png.asset.json";
+import blueBrew from "@/assets/startup-logos/BlueBrew.png.asset.json";
+
+type SlideLogo = { src: string; alt: string };
 
 type Slide = {
   id: string;
@@ -14,7 +22,9 @@ type Slide = {
   image: string;
   accent: string;
   href: string;
+  logos?: SlideLogo[];
 };
+
 
 const SLIDES: Slide[] = [
   {
