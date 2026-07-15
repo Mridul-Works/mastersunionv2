@@ -311,24 +311,25 @@ export default function WidgetCarousel() {
                   transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
                   className="flex flex-1 flex-col"
                 >
-                  <span className="text-[11px] uppercase tracking-[0.25em] text-white/70">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-white/70">
                     Next up
                   </span>
-                  <div className="mt-3 text-3xl font-black md:text-4xl">
+                  <div className="mt-3 font-mono text-3xl font-semibold tabular-nums md:text-4xl">
                     {next.number}
                   </div>
-                  <div className="mt-1 text-[11px] uppercase tracking-[0.2em] text-white/70">
+                  <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.28em] text-white/70">
                     {next.category}
                   </div>
                   <div
-                    className="mt-4 text-2xl font-bold leading-tight md:text-3xl"
-                    style={{ fontFamily: "'Fraunces', serif" }}
+                    className="mt-4 text-2xl font-semibold leading-tight tracking-[-0.02em] md:text-3xl"
+                    style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                   >
                     {next.title}
                   </div>
-                  <div className="mt-3 text-[11px] uppercase tracking-[0.2em] text-white/70">
+                  <div className="mt-3 font-mono text-[11px] uppercase tracking-[0.28em] text-white/70">
                     {next.tags.join(" · ")}
                   </div>
+
                 </motion.div>
               </AnimatePresence>
               <span className="ml-4 mt-auto flex size-8 shrink-0 items-center justify-center rounded-full bg-white text-black transition-transform group-hover:translate-x-1">
