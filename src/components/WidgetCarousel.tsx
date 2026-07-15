@@ -68,7 +68,16 @@ const SLIDES: Slide[] = [
       "https://images.unsplash.com/photo-1556742044-3c52d6e88c62?auto=format&fit=crop&w=1600&q=80",
     accent: "#E2431E",
     href: "/d2c-challenge",
+    logos: [
+      { src: lexis.url, alt: "Lexi's Gourmet Sandwiches" },
+      { src: eatAtlas.url, alt: "Eat Atlas" },
+      { src: woodys.url, alt: "Woody's Pizzeria" },
+      { src: flourish.url, alt: "Flourish Foods" },
+      { src: beyondVeda.url, alt: "Beyond Veda" },
+      { src: blueBrew.url, alt: "Blue Brew" },
+    ],
   },
+
   {
     id: "creator",
     number: "04",
