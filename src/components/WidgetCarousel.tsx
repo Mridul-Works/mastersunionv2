@@ -21,6 +21,7 @@ import widgetD2C from "@/assets/widget/widget-d2c.jpg";
 import widgetCreators from "@/assets/widget/widget-creators.jpg";
 
 type SlideLogo = { src: string; alt: string };
+type SlideStat = { value: string; label: string };
 
 type Slide = {
   id: string;
@@ -34,6 +35,7 @@ type Slide = {
   accent: string;
   href: string;
   logos?: SlideLogo[];
+  stats?: SlideStat[];
 };
 
 
