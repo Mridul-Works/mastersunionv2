@@ -174,26 +174,6 @@ export default function WidgetCarousel() {
                     className="h-full w-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/40" />
-                  {/* Chrome */}
-                  <div className="absolute inset-x-0 top-0 flex items-center justify-between px-6 py-5 text-white">
-                    <div className="flex items-center gap-4">
-                      <span className="text-sm font-bold tracking-widest">MU</span>
-                      <button
-                        type="button"
-                        className="flex items-center gap-2 rounded-full border border-white/30 px-3 py-1 text-[11px] uppercase tracking-[0.2em] backdrop-blur-sm"
-                      >
-                        <Search className="size-3" />
-                        Search
-                      </button>
-                    </div>
-                    <button
-                      type="button"
-                      aria-label="Bookmark"
-                      className="flex size-7 items-center justify-center rounded-sm border border-white/30 text-white/80"
-                    >
-                      <span className="block size-3 border border-current" />
-                    </button>
-                  </div>
                   {/* Big title */}
                   <div className="absolute inset-0 flex items-center px-6 md:px-14">
                     <motion.h3
@@ -201,12 +181,13 @@ export default function WidgetCarousel() {
                       initial={{ y: 30, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ delay: 0.2, duration: 0.6 }}
-                      className="text-[64px] font-black leading-[0.9] tracking-tight text-white md:text-[120px] lg:text-[150px]"
-                      style={{ fontFamily: "'Fraunces', serif" }}
+                      className="text-[64px] font-semibold leading-[0.9] tracking-[-0.03em] text-white md:text-[120px] lg:text-[150px]"
+                      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                     >
                       {current.title}
                     </motion.h3>
                   </div>
+
                 </motion.div>
               </AnimatePresence>
             </div>
