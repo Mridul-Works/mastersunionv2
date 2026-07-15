@@ -459,7 +459,7 @@ function Index() {
                   A new-age business school where industry leaders mentor the next generation.
                 </p>
 
-                <div className="mx-auto flex flex-col items-center gap-4 md:mx-0">
+                <div className="mx-auto flex flex-col items-center gap-4 md:mx-0 md:items-end">
                   <span
                     className="text-[9px] font-bold uppercase tracking-[0.3em] text-white"
                     style={{ fontFamily: "Inter, sans-serif" }}
