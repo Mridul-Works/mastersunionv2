@@ -55,7 +55,6 @@ const SLIDES: Slide[] = [
       { src: porsche.url, alt: "Porsche" },
       { src: rakuten.url, alt: "Rakuten" },
       { src: rbi.url, alt: "RBI" },
-      { src: zepto.url, alt: "Zepto" },
     ],
   },
   {
