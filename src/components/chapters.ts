@@ -258,7 +258,7 @@ const RAW_CHAPTERS = [
     cta: "See salaries", route: "/placements", bg: "#4A5A1E", ink: "#EFE7D0", image: mu10,
   },
   {
-    n: "12", tag: "D2C Challenge",
+    n: "11", tag: "D2C Challenge",
     headline: "Your exam is a Stripe dashboard. Your grade is your revenue.",
     body: "Every student runs a real D2C store in Term 1 — sourcing, ads, orders, returns. 50 teams generated ₹3.38 Cr in a single semester, ₹4L+ per team on average — before their first midterm.",
     stat: "₹3.38 Cr", label: "Cohort revenue — before midterms",
