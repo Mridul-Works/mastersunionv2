@@ -757,37 +757,13 @@ function FounderQuote() {
                   style={{ fontFamily: "Georgia, serif" }}
                 >
                   {FOUNDER_QUOTE_PARAGRAPHS.map((p, pi) => {
-                    const before = FOUNDER_QUOTE_PARAGRAPHS.slice(0, pi).reduce(
-                      (acc, s) => acc + s.split(" ").length,
-                      0,
-                    );
-                    const pWords = p.split(" ");
-                    const REVEAL_START = 0.08;
-                    const REVEAL_END = 0.62;
-                    const span = REVEAL_END - REVEAL_START;
-                    const wordStep = span / Math.max(1, totalWords - 1);
-                    const wordFade = wordStep * 4;
                     const isOpener = pi === 0;
                     return (
                       <p
                         key={pi}
-                        className={isOpener ? "text-[clamp(1.5rem,2.6vw,2.4rem)] leading-[1.25] text-neutral-900" : ""}
+                        className={isOpener ? "text-[clamp(1.5rem,2.6vw,2.4rem)] leading-[1.25] text-black" : "text-black"}
                       >
-                        {pWords.map((w, wi) => {
-                          const idx = before + wi;
-                          const start = REVEAL_START + idx * wordStep;
-                          const end = Math.min(REVEAL_END, start + wordFade);
-                          return (
-                            <RevealWord
-                              key={`${pi}-${wi}`}
-                              progress={scrollYProgress}
-                              start={start}
-                              end={end}
-                            >
-                              {w}
-                            </RevealWord>
-                          );
-                        })}
+                        {p}
                       </p>
                     );
                   })}
@@ -841,7 +817,12 @@ function RevealWord({
   end: number;
   children: React.ReactNode;
 }) {
-  const opacity = useTransform(progress, [start, end], [0.18, 1]);
+  const opacity = useTransform(progress, (p) => {
+    if (p >= 0.62) return 1;
+    if (p <= start) return 0.18;
+    if (p >= end) return 1;
+    return 0.18 + ((p - start) / (end - start)) * (1 - 0.18);
+  });
   return (
     <>
       <motion.span style={{ opacity, color: "#000" }} className="inline">
