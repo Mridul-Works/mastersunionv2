@@ -299,11 +299,11 @@ export default function WidgetCarousel() {
                         <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-white/50">
                           {current.id === "immersions" ? "Campuses & hosts" : "Brands born here"}
                         </div>
-                        <div className="flex flex-nowrap items-center gap-7 overflow-hidden">
+                        <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
                           {current.logos.map((logo) => (
                             <div
                               key={logo.alt}
-                              className="flex h-8 w-24 shrink-0 items-center justify-center"
+                              className="flex h-7 w-16 shrink-0 items-center justify-center"
                             >
                               <img
                                 src={logo.src}
