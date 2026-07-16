@@ -280,7 +280,7 @@ export default function WidgetCarousel() {
               </div>
 
               {/* Description */}
-              <div className="relative min-h-[80px] flex-1 overflow-hidden">
+              <div className="relative min-h-[80px] flex-1 overflow-hidden md:w-[420px] md:max-w-[420px] md:flex-none">
                 <AnimatePresence initial={false} custom={dir} mode="popLayout">
                   <motion.div
                     key={current.id + "-d"}
@@ -289,7 +289,7 @@ export default function WidgetCarousel() {
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: dir === 1 ? -24 : 24, opacity: 0 }}
                     transition={{ duration: 0.5, delay: 0.05 }}
-                    className="max-w-md"
+                    className="w-full"
                   >
                     <p className="text-sm leading-relaxed text-white/70">
                       {current.description}
@@ -340,7 +340,7 @@ export default function WidgetCarousel() {
 
 
               {/* Actions */}
-              <div className="flex flex-col justify-between gap-6 md:items-end md:min-w-[180px] md:self-stretch">
+              <div className="flex flex-col justify-between gap-6 md:ml-auto md:items-end md:w-[180px] md:min-w-[180px] md:self-stretch">
                 <Link
                   to={current.href}
                   className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white"
