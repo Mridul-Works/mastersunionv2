@@ -213,19 +213,6 @@ export default function WidgetCarousel() {
                     aria-label={current.title}
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/10" />
-                  {/* Big title */}
-                  <div className="absolute inset-0 flex items-center px-6 md:px-14">
-                    <motion.h3
-                      key={current.id + "-t"}
-                      initial={{ y: 30, opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.2, duration: 0.6 }}
-                      className="text-[64px] font-semibold leading-[0.9] tracking-[-0.03em] text-black/80 md:text-[120px] lg:text-[150px]"
-                      style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                    >
-                      {current.title}
-                    </motion.h3>
-                  </div>
 
                 </motion.div>
 
