@@ -753,7 +753,7 @@ function FounderQuote() {
                 </div>
 
                 <div
-                  className="mt-8 space-y-6 text-balance text-[clamp(1.15rem,1.9vw,1.7rem)] font-light leading-[1.5] tracking-[-0.01em] text-neutral-800"
+                  className="mt-8 space-y-6 text-balance text-[clamp(1.15rem,1.9vw,1.7rem)] font-light leading-[1.5] tracking-[-0.01em] text-black"
                   style={{ fontFamily: "Georgia, serif" }}
                 >
                   {FOUNDER_QUOTE_PARAGRAPHS.map((p, pi) => {
