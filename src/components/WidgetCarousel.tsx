@@ -212,13 +212,11 @@ export default function WidgetCarousel() {
                     style={{ backgroundColor: current.accent }}
                     aria-label={current.title}
                   >
-                    {(current.id === "immersions" || current.id === "creator") && (
-                      <img
-                        src={current.image}
-                        alt={current.title}
-                        className="h-full w-full object-cover"
-                      />
-                    )}
+                    <img
+                      src={current.image}
+                      alt={current.title}
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/10" />
 
