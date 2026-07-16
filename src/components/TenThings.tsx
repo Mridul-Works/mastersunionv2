@@ -32,7 +32,7 @@ export default function TenThings() {
         scrollTrigger: {
           trigger: pinRef.current,
           start: "top top",
-          end: "+=170%",
+          end: "+=60%",
           pin: true,
           scrub: 0.7,
           anticipatePin: 1,
