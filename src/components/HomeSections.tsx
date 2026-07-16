@@ -813,20 +813,11 @@ function Programs() {
                 </span>
               </h2>
             </div>
-            <div className="flex flex-col items-start gap-4 md:items-end">
-              <p className="max-w-[28ch] text-[13px] font-medium leading-snug text-black/60 md:text-right">
-                Round-based deadlines. Rolling reviews. Apply before seats fill.
-              </p>
-              <Link
-                to="/applications_center"
-                className="group inline-flex items-center gap-2 border border-black bg-black px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition-colors hover:bg-white hover:text-black"
-              >
-                View all Admissions
-                <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-            </div>
-
+            <p className="max-w-[28ch] text-[13px] font-medium leading-snug text-black/60">
+              Round-based deadlines. Rolling reviews. Apply before seats fill.
+            </p>
           </div>
+
 
           <div className="relative">
             <div
