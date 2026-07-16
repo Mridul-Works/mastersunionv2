@@ -228,7 +228,7 @@ const PATHWAYS: Pathway[] = [
     theme: "linear-gradient(135deg, #e6e8f0 0%, #d4dbe8 40%, #c8d5e8 70%, #b8c9e0 100%)",
     image: pathwayWork,
     programmes: [
-      { title: "PGP in Technology & Business Management (flagship)", duration: "16 Mo", format: "On Campus" },
+      { title: "PGP in Technology & Business Management", duration: "16 MO", format: "ON CAMPUS" },
       { title: "PGP Rise: General Management", duration: "1 Yr", format: "Blended Weekend" },
       { title: "PGP Rise: General Management (Global)", duration: "1 Yr", format: "Online" },
       { title: "PGP in Capital Markets & Trading", duration: "1 Yr", format: "Online/In-Person Weekend" },
