@@ -67,8 +67,11 @@ const SLIDES: Slide[] = [
     logos: [
       { src: imperial.url, alt: "Imperial College" },
       { src: bocconi.url, alt: "SDA Bocconi" },
+      { src: babson.url, alt: "Babson" },
+      { src: ivey.url, alt: "Ivey" },
       { src: porsche.url, alt: "Porsche" },
       { src: rakuten.url, alt: "Rakuten" },
+      { src: disneyland.url, alt: "Disneyland" },
       { src: rbi.url, alt: "RBI" },
     ],
   },
