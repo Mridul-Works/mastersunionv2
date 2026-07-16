@@ -886,7 +886,18 @@ function Programs() {
 
           <AdmissionsConnect />
         </div>
-      </div>
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link
+              to="/applications_center"
+              className="inline-flex items-center border-b-2 border-black/20 pb-1 text-sm font-semibold text-black/60 transition-all hover:border-black hover:text-black"
+            >
+              View all Admissions
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </div>
+
 
 
       <SageSheet
