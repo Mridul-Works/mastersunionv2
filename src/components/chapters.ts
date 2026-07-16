@@ -240,16 +240,7 @@ const RAW_CHAPTERS = [
     cta: "Walk the campus", route: "/campus", bg: "#14233F", ink: "#E6DDC8", image: mu08,
   },
   {
-    n: "09", tag: "Life at MU",
-    headline: "A day here can rather be a bit unusual.",
-    body: "9 AM: Strategy with a sitting CEO. 2 PM: Shoot content in our studio. 6 PM: Call with a Sequoia partner. 11 PM: Kitchen experiments in Food Lab. Sleep is optional. Building is mandatory.",
-    stat: "24/7", label: "Campus access — sleep is optional",
-    stats: [{ value: "40%", label: "Faculty are sitting CEOs" }, { value: "500+", label: "Mentors on call" }, { value: "24/7", label: "Campus access" }],
-    chips: ["Content studio", "Food Lab", "Sequoia calls", "Always-on", "Build mode"],
-    cta: "Live the day", route: "/life-at-mu", bg: "#8A3A12", ink: "#F2E4CB", image: mu09,
-  },
-  {
-    n: "10", tag: "Careers",
+    n: "09", tag: "Careers",
     headline: "Not just what you earn on day one. What you earn every year after.",
     body: "₹61.98L highest CTC. 3.03× average salary jump. 28% of grads join as Founder's Office or Chief of Staff. 148 recruiters — Bain, BCG, McKinsey, Google, Zerodha. And if you'd rather build: ₹50,000/month for a year, no equity taken.",
     stat: "₹61.98L", label: "Highest CTC, Co'24",
@@ -258,7 +249,7 @@ const RAW_CHAPTERS = [
     cta: "See salaries", route: "/placements", bg: "#4A5A1E", ink: "#EFE7D0", image: mu10,
   },
   {
-    n: "11", tag: "D2C Challenge",
+    n: "10", tag: "D2C Challenge",
     headline: "Your exam is a Stripe dashboard. Your grade is your revenue.",
     body: "Every student runs a real D2C store in Term 1 — sourcing, ads, orders, returns. 50 teams generated ₹3.38 Cr in a single semester, ₹4L+ per team on average — before their first midterm.",
     stat: "₹3.38 Cr", label: "Cohort revenue — before midterms",
