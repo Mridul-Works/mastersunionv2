@@ -1856,18 +1856,15 @@ function PgpTbm() {
                           <div
                             key={l.name}
                             title={l.name}
-                            className="flex h-16 items-center justify-center bg-white p-3 opacity-70 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+                            className="flex h-12 items-center justify-center bg-white p-2 opacity-70 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
                           >
                             <img
                               src={l.src}
                               alt={l.name}
-                              className={`w-auto max-w-full object-contain ${
-                                l.name === "Warwick Business School" || l.name === "University of California"
-                                  ? "h-12"
-                                  : "h-8"
-                              }`}
+                              className="h-6 w-auto max-w-full object-contain"
                               loading="lazy"
                             />
+
                           </div>
                         ))}
                       </div>
