@@ -248,8 +248,8 @@ export default function WidgetCarousel() {
             </div>
 
 
-            {/* Next preview strip (image only) */}
-            <div className="relative hidden overflow-hidden bg-black md:block md:h-[520px]">
+            {/* Next preview strip (placeholder) */}
+            <div className="relative hidden overflow-hidden md:block md:h-[520px]">
               <AnimatePresence initial={false} mode="popLayout">
                 <motion.div
                   key={next.id + "-preview"}
@@ -257,16 +257,12 @@ export default function WidgetCarousel() {
                   animate={{ x: 0 }}
                   exit={{ x: "-100%" }}
                   transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
-                  className="absolute inset-0 h-full w-full"
-                  style={{ backgroundColor: next.accent }}
+                  className="absolute inset-0 flex h-full w-full items-center justify-center border border-black/10 bg-gradient-to-br from-neutral-100 via-neutral-200 to-neutral-300"
                   aria-label={next.title}
                 >
-                  <img
-                    src={next.image}
-                    alt={next.title}
-                    className="h-full w-full object-cover"
-                  />
+                  <span className="block h-1 w-1 rounded-full bg-black/30" />
                 </motion.div>
+
               </AnimatePresence>
             </div>
           </div>
