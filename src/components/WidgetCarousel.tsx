@@ -212,13 +212,11 @@ export default function WidgetCarousel() {
                     style={{ backgroundColor: current.accent }}
                     aria-label={current.title}
                   >
-                    {(current.id === "immersions" || current.id === "creator") && (
-                      <img
-                        src={current.image}
-                        alt={current.title}
-                        className="h-full w-full object-cover"
-                      />
-                    )}
+                    <img
+                      src={current.image}
+                      alt={current.title}
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/10" />
 
@@ -240,7 +238,13 @@ export default function WidgetCarousel() {
                   className="absolute inset-0 h-full w-full"
                   style={{ backgroundColor: next.accent }}
                   aria-label={next.title}
-                />
+                >
+                  <img
+                    src={next.image}
+                    alt={next.title}
+                    className="h-full w-full object-cover"
+                  />
+                </motion.div>
               </AnimatePresence>
             </div>
           </div>
