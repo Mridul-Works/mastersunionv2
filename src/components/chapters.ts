@@ -258,15 +258,6 @@ const RAW_CHAPTERS = [
     cta: "See salaries", route: "/placements", bg: "#4A5A1E", ink: "#EFE7D0", image: mu10,
   },
   {
-    n: "11", tag: "MU Ventures",
-    headline: "The first cheque before day zero.",
-    body: "A $10M vehicle for founders under 25. Three funds — Dropout, Founders', Creator. Cheques from ₹10–20L. Most decisions in under 10 days. Sector-agnostic. All you need is an idea, an insight, and the courage to start.",
-    stat: "$10M", label: "Investment vehicle for under-25 founders",
-    stats: [{ value: "$10M", label: "Fund size" }, { value: "₹10–20L", label: "Cheque sizes" }, { value: "<10 days", label: "Most decisions" }, { value: "Under 25", label: "All founders" }],
-    chips: ["Dropout Fund", "Founders' Fund", "Creator Fund", "Cryptique", "ORBIT", "Blue Brew"],
-    cta: "Get funded", route: "/mu-ventures", bg: "#2A1E4A", ink: "#EDE4CE", image: mu02,
-  },
-  {
     n: "12", tag: "D2C Challenge",
     headline: "Your exam is a Stripe dashboard. Your grade is your revenue.",
     body: "Every student runs a real D2C store in Term 1 — sourcing, ads, orders, returns. 50 teams generated ₹3.38 Cr in a single semester, ₹4L+ per team on average — before their first midterm.",
