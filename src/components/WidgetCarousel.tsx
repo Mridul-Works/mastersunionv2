@@ -212,7 +212,7 @@ export default function WidgetCarousel() {
                     style={{ backgroundColor: current.accent }}
                     aria-label={current.title}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-transparent to-black/35" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/10" />
                   {/* Big title */}
                   <div className="absolute inset-0 flex items-center px-6 md:px-14">
                     <motion.h3
@@ -220,7 +220,7 @@ export default function WidgetCarousel() {
                       initial={{ y: 30, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
                       transition={{ delay: 0.2, duration: 0.6 }}
-                      className="text-[64px] font-semibold leading-[0.9] tracking-[-0.03em] text-white md:text-[120px] lg:text-[150px]"
+                      className="text-[64px] font-semibold leading-[0.9] tracking-[-0.03em] text-black/80 md:text-[120px] lg:text-[150px]"
                       style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                     >
                       {current.title}
@@ -383,7 +383,7 @@ export default function WidgetCarousel() {
             <button
               type="button"
               onClick={() => go(1)}
-              className="group relative flex items-start justify-between overflow-hidden px-6 py-8 text-left text-white md:px-8 md:py-10"
+              className="group relative flex items-start justify-between overflow-hidden px-6 py-8 text-left text-black md:px-8 md:py-10"
               style={{ backgroundColor: next.accent }}
             >
               <AnimatePresence initial={false} mode="popLayout">
@@ -395,13 +395,13 @@ export default function WidgetCarousel() {
                   transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
                   className="flex flex-1 flex-col"
                 >
-                  <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-white/70">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-black/60">
                     Next up
                   </span>
                   <div className="mt-3 font-mono text-3xl font-semibold tabular-nums md:text-4xl">
                     {next.number}
                   </div>
-                  <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.28em] text-white/70">
+                  <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.28em] text-black/60">
                     {next.category}
                   </div>
                   <div
@@ -410,7 +410,7 @@ export default function WidgetCarousel() {
                   >
                     {next.title}
                   </div>
-                  <div className="mt-3 font-mono text-[11px] uppercase tracking-[0.28em] text-white/70">
+                  <div className="mt-3 font-mono text-[11px] uppercase tracking-[0.28em] text-black/60">
                     {next.tags.join(" · ")}
                   </div>
 
