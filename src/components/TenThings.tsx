@@ -77,6 +77,29 @@ export default function TenThings() {
 
   const project = CHAPTERS[index];
 
+  // Touch-swipe support for the card widget on mobile (no pin, no scroll-driven anim).
+  const touchStartXRef = useRef<number | null>(null);
+  const touchStartYRef = useRef<number | null>(null);
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartXRef.current = e.touches[0]?.clientX ?? null;
+    touchStartYRef.current = e.touches[0]?.clientY ?? null;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    const sx = touchStartXRef.current;
+    const sy = touchStartYRef.current;
+    if (sx == null || sy == null) return;
+    const ex = e.changedTouches[0]?.clientX ?? sx;
+    const ey = e.changedTouches[0]?.clientY ?? sy;
+    const dx = ex - sx;
+    const dy = ey - sy;
+    // Only treat as horizontal swipe if the motion is clearly horizontal.
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+      go(dx < 0 ? 1 : -1);
+    }
+    touchStartXRef.current = null;
+    touchStartYRef.current = null;
+  };
+
   return (
     <section className="relative bg-[#F1EFE7] text-[#1A211A]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       <div ref={pinRef} className="relative w-full overflow-hidden md:h-screen">
