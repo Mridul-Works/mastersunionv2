@@ -1206,10 +1206,10 @@ function PedagogySelector() {
   const p = PEDAGOGY[active];
   const Icon = p.icon;
   return (
-    <div className="mx-auto max-w-[1280px] px-5 pb-20 md:px-10 md:pb-28">
+    <div className="mx-auto max-w-[1280px] px-5 pt-16 pb-20 md:px-10 md:pt-20 md:pb-28">
       <div className="grid gap-6 md:grid-cols-12 md:gap-8">
-        {/* Left: list of 8 options */}
-        <div className="md:col-span-5 lg:col-span-4">
+        {/* Left: list of options + compact header at bottom */}
+        <div className="flex flex-col md:col-span-5 lg:col-span-4">
           <p className="mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-black/45">
             Explore · {PEDAGOGY.length} systems
           </p>
@@ -1224,7 +1224,7 @@ function PedagogySelector() {
                     onClick={() => setActive(i)}
                     onMouseEnter={() => setActive(i)}
                     className={cn(
-                      "group flex w-full items-center justify-between gap-4 py-4 text-left transition-colors",
+                      "group flex w-full items-center justify-between gap-4 py-3 text-left transition-colors",
                       isActive ? "text-black" : "text-black/60 hover:text-black"
                     )}
                   >
@@ -1234,7 +1234,7 @@ function PedagogySelector() {
                       </span>
                       <span
                         className={cn(
-                          "truncate text-[17px] md:text-[19px] tracking-tight transition-all",
+                          "truncate text-[15px] md:text-[17px] tracking-tight transition-all",
                           isActive ? "font-semibold" : "font-medium"
                         )}
                         style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
@@ -1253,7 +1253,27 @@ function PedagogySelector() {
               );
             })}
           </ul>
+
+          {/* Compact section header — placed below the list, above nothing else */}
+          <div className="mt-8 flex flex-col gap-3">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-black/55">
+              — The Masters' Union experience
+            </p>
+            <h2
+              className="text-[clamp(1.25rem,2.4vw,1.75rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-black"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+            >
+              Real stakes.{" "}
+              <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+                Real portfolios.
+              </span>
+            </h2>
+            <p className="text-[12.5px] leading-[1.55] text-black/65">
+              Systems that turn every class into a live brief and every project into proof.
+            </p>
+          </div>
         </div>
+
 
         {/* Right: active widget */}
         <div className="md:col-span-7 lg:col-span-8">
