@@ -1097,14 +1097,14 @@ export default function HomeSections() {
       <section id="founders" className="border-t border-black/10 bg-[#F5F3EE]">
         <div className="mx-auto max-w-[1280px] px-5 pb-6 md:px-10 md:pb-8">
           <div
-            className="relative overflow-hidden rounded-none min-h-[520px] md:min-h-[640px] grid grid-cols-1 lg:grid-cols-2 pastel-gradient"
+            className="relative overflow-hidden rounded-none min-h-[320px] md:min-h-[380px] grid grid-cols-1 lg:grid-cols-2 pastel-gradient"
           >
             {/* Quote side */}
-            <div className="relative z-10 flex flex-col justify-end p-6 md:p-8 lg:p-12">
+            <div className="relative z-10 flex flex-col justify-center p-6 md:p-8 lg:p-10">
               <div className="max-w-[40ch]">
-                <Quote className="mb-4 size-6 text-black/40" />
+                <Quote className="mb-3 size-5 text-black/40" />
                 <h2
-                  className="text-3xl leading-[1.05] tracking-tight text-black md:text-4xl lg:text-[48px]"
+                  className="text-2xl leading-[1.1] tracking-tight text-black md:text-3xl lg:text-[34px]"
                   style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                 >
                   "If education was working, we wouldn't have built{" "}
@@ -1113,7 +1113,7 @@ export default function HomeSections() {
                   </span>
                   "
                 </h2>
-                <div className="mt-6 flex items-center gap-3">
+                <div className="mt-4 flex items-center gap-3">
                   <div className="h-px w-10 bg-black/30" />
                   <div>
                     <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-black/80">
@@ -1124,20 +1124,20 @@ export default function HomeSections() {
                     </p>
                   </div>
                 </div>
-                <div className="mt-8">
+                <div className="mt-5">
                   <Link
                     to="/how-we-teach"
-                    className="group inline-flex items-center gap-2 rounded-full bg-black px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-black/85"
+                    className="group inline-flex items-center gap-2 rounded-full bg-black px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-black/85"
                   >
                     See how we teach
-                    <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </Link>
                 </div>
               </div>
             </div>
 
             {/* Photo side */}
-            <div className="relative h-64 lg:h-auto">
+            <div className="relative h-48 lg:h-auto">
               <img
                 src={founderPhoto}
                 alt="Pratham Mittal"
@@ -1149,6 +1149,7 @@ export default function HomeSections() {
               <div className="absolute inset-0 bg-gradient-to-r from-[var(--pastel-start)]/80 via-transparent to-transparent" />
             </div>
           </div>
+
         </div>
       </section>
 
