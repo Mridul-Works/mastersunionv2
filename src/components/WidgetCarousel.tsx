@@ -50,7 +50,7 @@ const SLIDES: Slide[] = [
     description:
       "From factory floors to startup offices — Dabbawalas to Disneyland, RBI to Rakuten. 5 formats, 20+ cities, real companies. Classrooms wherever the business actually happens.",
     image: widgetImmersions,
-    accent: "#B58900",
+    accent: "#F5E9C8",
     href: "/immersions",
     logos: [
       { src: imperial.url, alt: "Imperial College" },
@@ -70,7 +70,7 @@ const SLIDES: Slide[] = [
     description:
       "Student-led ventures backed from day one — from dorm-room prototypes to Shark Tank India pitches. The portfolio grows while the coursework runs.",
     image: widgetFounders,
-    accent: "#1E3AE2",
+    accent: "#D6DEFB",
     href: "/startups",
     stats: [
       { value: "30+", label: "Student startups" },
@@ -89,7 +89,7 @@ const SLIDES: Slide[] = [
     description:
       "₹3.38 Cr revenue. 50 teams. One semester. Real suppliers, real customers, real money. Term 1 is a live dropshipping business, not a case study.",
     image: widgetD2C,
-    accent: "#E2431E",
+    accent: "#F7D6C9",
     href: "/d2c-challenge",
     logos: [
       { src: lexis.url, alt: "Lexi's Gourmet Sandwiches" },
@@ -110,7 +110,7 @@ const SLIDES: Slide[] = [
     description:
       "A live on-campus creator bootcamp where students build audiences, land brand deals, and monetise while enrolled — culminating in a ₹10L+ prize showdown.",
     image: widgetCreators,
-    accent: "#0F7A4A",
+    accent: "#CDE7DA",
     href: "/creator-challenge",
     stats: [
       { value: "46M+", label: "Total reach" },
