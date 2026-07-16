@@ -252,9 +252,9 @@ export default function WidgetCarousel() {
 
           {/* Bottom bar */}
           <div className="relative grid grid-cols-1 md:grid-cols-[1fr_240px] lg:grid-cols-[1fr_320px]">
-            <div className="relative flex flex-col gap-6 bg-black px-6 py-8 text-white md:flex-row md:items-stretch md:gap-10 md:px-10 md:py-10 md:min-h-[320px]">
+            <div className="relative flex flex-col gap-6 bg-black px-6 py-8 text-white md:flex-row md:items-stretch md:gap-6 md:px-8 md:py-10 md:min-h-[320px] min-w-0">
               {/* Left: number + category */}
-              <div className="relative h-16 min-w-[160px] overflow-hidden md:h-20">
+              <div className="relative h-16 min-w-[140px] shrink-0 overflow-hidden md:h-20">
                 <AnimatePresence initial={false} custom={dir} mode="popLayout">
                   <motion.div
                     key={current.id + "-num"}
@@ -280,7 +280,7 @@ export default function WidgetCarousel() {
               </div>
 
               {/* Description */}
-              <div className="relative min-h-[80px] flex-1 overflow-hidden md:w-[360px] md:max-w-[360px] md:flex-none">
+              <div className="relative min-h-[80px] min-w-0 flex-1 overflow-hidden md:max-w-[360px]">
                 <AnimatePresence initial={false} custom={dir} mode="popLayout">
                   <motion.div
                     key={current.id + "-d"}
@@ -340,7 +340,7 @@ export default function WidgetCarousel() {
 
 
               {/* Actions */}
-              <div className="flex flex-col justify-between gap-6 md:ml-auto md:items-end md:w-[180px] md:min-w-[180px] md:self-stretch">
+              <div className="flex shrink-0 flex-col justify-between gap-6 md:ml-auto md:items-end md:w-[160px] md:self-stretch">
                 <Link
                   to={current.href}
                   className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white"
