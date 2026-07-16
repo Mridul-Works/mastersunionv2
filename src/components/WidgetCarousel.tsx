@@ -134,11 +134,15 @@ const SLIDES: Slide[] = [
     image: widgetCreators,
     accent: "#CDE7DA",
     href: "/creator-challenge",
-    stats: [
-      { value: "46M+", label: "Total reach" },
-      { value: "5M+", label: "Followers built" },
-      { value: "120+", label: "Student creators" },
-      { value: "₹10L+", label: "Prize pool" },
+    logos: [
+      { src: cred.url, alt: "CRED" },
+      { src: zerodha.url, alt: "Zerodha" },
+      { src: zepto.url, alt: "Zepto" },
+      { src: heineken.url, alt: "Heineken" },
+      { src: rakuten.url, alt: "Rakuten" },
+      { src: disneyland.url, alt: "Disneyland" },
+      { src: porsche.url, alt: "Porsche" },
+      { src: rbi.url, alt: "RBI" },
     ],
   },
 ];
