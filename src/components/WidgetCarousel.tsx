@@ -238,7 +238,13 @@ export default function WidgetCarousel() {
                   className="absolute inset-0 h-full w-full"
                   style={{ backgroundColor: next.accent }}
                   aria-label={next.title}
-                />
+                >
+                  <img
+                    src={next.image}
+                    alt={next.title}
+                    className="h-full w-full object-cover"
+                  />
+                </motion.div>
               </AnimatePresence>
             </div>
           </div>
