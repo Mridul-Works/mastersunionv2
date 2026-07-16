@@ -392,8 +392,8 @@ function Index() {
                   >
                     <div className="relative flex size-20 items-center justify-center">
                       {/* Outer expanding rings on hover */}
-                      <div className="absolute inset-0 rounded-full border border-[#8FBFA8]/20 transition-all duration-1000 ease-out group-hover:scale-150 group-hover:opacity-0" />
-                      <div className="absolute inset-0 rounded-full border border-[#8FBFA8]/10 transition-all duration-1000 ease-out delay-150 group-hover:scale-[1.75] group-hover:opacity-0" />
+                      <div className="absolute inset-0 rounded-full border border-[#C9A84C]/20 transition-all duration-1000 ease-out group-hover:scale-150 group-hover:opacity-0" />
+                      <div className="absolute inset-0 rounded-full border border-[#C9A84C]/10 transition-all duration-1000 ease-out delay-150 group-hover:scale-[1.75] group-hover:opacity-0" />
 
                       {/* Rotating circular text label */}
                       <div className="absolute -inset-4 mu-spin-slow transition-all duration-500 group-hover:[animation-duration:6s]">
@@ -415,11 +415,11 @@ function Index() {
                         {/* Button interior */}
                         <div className="relative flex h-full w-full items-center justify-center rounded-full bg-[#1A211A]/80 backdrop-blur-xl">
                           {/* Inner gradient glow */}
-                          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#8FBFA8]/15 via-transparent to-[#1F4D3F]/25 opacity-60 transition-opacity duration-500 group-hover:opacity-100" />
+                          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#C9A84C]/15 via-transparent to-[#1F4D3F]/25 opacity-60 transition-opacity duration-500 group-hover:opacity-100" />
 
                           {/* Play icon */}
                           <svg
-                            className="relative z-10 size-6 fill-current text-[#8FBFA8] transition-all duration-500 group-hover:scale-110 group-hover:text-[#FAF8F4]"
+                            className="relative z-10 size-6 fill-current text-[#C9A84C] transition-all duration-500 group-hover:scale-110 group-hover:text-[#FAF8F4]"
                             viewBox="0 0 24 24"
                             style={{ transform: "translateX(2px)" }}
                           >
@@ -429,12 +429,12 @@ function Index() {
                       </div>
 
                       {/* Soft outer glow */}
-                      <div className="absolute inset-0 rounded-full bg-[#8FBFA8]/0 blur-2xl transition-all duration-700 group-hover:bg-[#8FBFA8]/20" />
+                      <div className="absolute inset-0 rounded-full bg-[#C9A84C]/0 blur-2xl transition-all duration-700 group-hover:bg-[#C9A84C]/20" />
                     </div>
 
                     <div className="text-left">
                       <span
-                        className="block text-[10px] font-semibold uppercase tracking-[3px] text-[#8FBFA8]"
+                        className="block text-[10px] font-semibold uppercase tracking-[3px] text-[#C9A84C]"
                         style={{ fontFamily: "'Montserrat', sans-serif" }}
                       >
                         Watch Now
