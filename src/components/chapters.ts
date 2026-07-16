@@ -240,7 +240,7 @@ const RAW_CHAPTERS = [
     cta: "Walk the campus", route: "/campus", bg: "#14233F", ink: "#E6DDC8", image: mu08,
   },
   {
-    n: "10", tag: "Careers",
+    n: "09", tag: "Careers",
     headline: "Not just what you earn on day one. What you earn every year after.",
     body: "₹61.98L highest CTC. 3.03× average salary jump. 28% of grads join as Founder's Office or Chief of Staff. 148 recruiters — Bain, BCG, McKinsey, Google, Zerodha. And if you'd rather build: ₹50,000/month for a year, no equity taken.",
     stat: "₹61.98L", label: "Highest CTC, Co'24",
