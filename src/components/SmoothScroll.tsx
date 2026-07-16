@@ -8,6 +8,14 @@ import { useEffect, type ReactNode } from "react";
 export default function SmoothScroll({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (typeof window === "undefined") return;
+
+    // Skip Lenis entirely on touch / small viewports — native momentum scroll
+    // feels better on phones/tablets and avoids janky wheel emulation.
+    const isTouch =
+      window.matchMedia("(hover: none) and (pointer: coarse)").matches ||
+      window.matchMedia("(max-width: 1024px)").matches;
+    if (isTouch) return;
+
     let lenis: any = null;
     let raf = 0;
     let cancelled = false;

@@ -77,6 +77,29 @@ export default function TenThings() {
 
   const project = CHAPTERS[index];
 
+  // Touch-swipe support for the card widget on mobile (no pin, no scroll-driven anim).
+  const touchStartXRef = useRef<number | null>(null);
+  const touchStartYRef = useRef<number | null>(null);
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartXRef.current = e.touches[0]?.clientX ?? null;
+    touchStartYRef.current = e.touches[0]?.clientY ?? null;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    const sx = touchStartXRef.current;
+    const sy = touchStartYRef.current;
+    if (sx == null || sy == null) return;
+    const ex = e.changedTouches[0]?.clientX ?? sx;
+    const ey = e.changedTouches[0]?.clientY ?? sy;
+    const dx = ex - sx;
+    const dy = ey - sy;
+    // Only treat as horizontal swipe if the motion is clearly horizontal.
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+      go(dx < 0 ? 1 : -1);
+    }
+    touchStartXRef.current = null;
+    touchStartYRef.current = null;
+  };
+
   return (
     <section className="relative bg-[#F1EFE7] text-[#1A211A]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       <div ref={pinRef} className="relative w-full overflow-hidden md:h-screen">
@@ -160,7 +183,11 @@ export default function TenThings() {
 
       {/* Card widget — stacked on mobile, slides in from right on desktop */}
       <div ref={widgetRef} className="relative z-20 bg-[#F1EFE7] md:absolute md:inset-0 md:will-change-transform">
-        <div className="relative min-h-[720px] w-full overflow-hidden bg-[#F1EFE7] md:h-full md:min-h-[640px]">
+        <div
+          className="relative min-h-[720px] w-full overflow-hidden bg-[#F1EFE7] touch-pan-y md:h-full md:min-h-[640px]"
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+        >
 
 
 

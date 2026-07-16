@@ -185,3 +185,13 @@
 .scrollbar-hover-only:hover::-webkit-scrollbar { height: 8px; }
 .scrollbar-hover-only:hover::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.25); border-radius: 4px; }
 
+/* Prevent accidental horizontal overflow site-wide (esp. on mobile). */
+html, body { overflow-x: hidden; max-width: 100%; }
+img, video { max-width: 100%; height: auto; }
+
+/* Ensure interactive controls meet touch-target minimums on small screens. */
+@media (hover: none) and (pointer: coarse) {
+  button, a[role="button"], [role="button"] { min-height: 40px; }
+}
+
+
