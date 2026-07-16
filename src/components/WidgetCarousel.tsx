@@ -112,6 +112,9 @@ const SLIDES: Slide[] = [
       { src: flourish.url, alt: "Flourish Foods" },
       { src: beyondVeda.url, alt: "Beyond Veda" },
       { src: blueBrew.url, alt: "Blue Brew" },
+      { src: bambaii.url, alt: "Bambaii" },
+      { src: moms.url, alt: "Moms" },
+      { src: woodys.url, alt: "Woody's Pizzeria" },
     ],
   },
 
