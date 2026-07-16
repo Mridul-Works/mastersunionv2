@@ -234,16 +234,12 @@ export default function WidgetCarousel() {
                   className="absolute inset-0"
                 >
                   <div
-                    className="h-full w-full"
-                    style={{ backgroundColor: current.accent }}
+                    className="flex h-full w-full items-center justify-center border border-black/10 bg-gradient-to-br from-neutral-100 via-neutral-200 to-neutral-300"
                     aria-label={current.title}
                   >
-                    <img
-                      src={current.image}
-                      alt={current.title}
-                      className="h-full w-full object-cover"
-                    />
+                    <span className="block h-1 w-1 rounded-full bg-black/30" />
                   </div>
+
                   <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/10" />
 
                 </motion.div>
