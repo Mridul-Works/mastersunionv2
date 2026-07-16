@@ -280,7 +280,7 @@ export default function WidgetCarousel() {
               </div>
 
               {/* Description */}
-              <div className="relative min-h-[80px] flex-1 overflow-hidden md:w-[420px] md:max-w-[420px] md:flex-none">
+              <div className="relative min-h-[80px] flex-1 overflow-hidden md:w-[360px] md:max-w-[360px] md:flex-none">
                 <AnimatePresence initial={false} custom={dir} mode="popLayout">
                   <motion.div
                     key={current.id + "-d"}
