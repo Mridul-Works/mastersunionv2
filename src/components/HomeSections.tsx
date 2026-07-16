@@ -884,10 +884,6 @@ function Programs() {
             </div>
           </div>
 
-          <AdmissionsConnect />
-        </div>
-          </div>
-
           <div className="mt-10 text-center">
             <Link
               to="/applications_center"
@@ -897,6 +893,12 @@ function Programs() {
               <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </div>
+
+          <AdmissionsConnect />
+        </div>
+      </div>
+
+
 
 
 
