@@ -209,7 +209,7 @@ const PATHWAYS: Pathway[] = [
     theme: "linear-gradient(135deg, #f5e6f0 0%, #f7d9c4 25%, #f8e8d4 50%, #d4e6e0 100%)",
     image: pathwayCollege,
     programmes: [
-      { title: "PGP in Technology & Business Management — Young Leaders Cohort", duration: "24 Mo", format: "On Campus" },
+      { title: "PGP in Technology & Business Management — Young Leaders Cohort", duration: "24 Mo", format: "On Campus", href: "/programmes/pgp-tbm" },
       { title: "PGP in Applied AI & Agentic Systems", duration: "15 Mo", format: "On Campus" },
       { title: "PGP in UI/UX & AI Product Design", duration: "12 Mo", format: "On Campus" },
       { title: "PGP in Human Resources & Organisation Strategy", duration: "16 Mo", format: "On Campus" },
