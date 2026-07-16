@@ -4,17 +4,29 @@ import { ArrowRight, ArrowLeft, Share2 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import lexis from "@/assets/startup-logos/Lexis.png.asset.json";
 import eatAtlas from "@/assets/startup-logos/EatAtlas.png.asset.json";
-// woodys logo removed from D2C slide
 import flourish from "@/assets/startup-logos/FlourishFoods.png.asset.json";
 import beyondVeda from "@/assets/startup-logos/BeyondVeda.png.asset.json";
 import blueBrew from "@/assets/startup-logos/BlueBrew.png.asset.json";
+import bambaii from "@/assets/startup-logos/Bambaii.png.asset.json";
+import fnor from "@/assets/startup-logos/FNOR.png.asset.json";
+import kaze from "@/assets/startup-logos/Kaze.png.asset.json";
+import moms from "@/assets/startup-logos/Moms.png.asset.json";
+import monarque from "@/assets/startup-logos/Monarque.png.asset.json";
+import nivara from "@/assets/startup-logos/Nivara.png.asset.json";
+import yango from "@/assets/startup-logos/Yango.png.asset.json";
+import woodys from "@/assets/startup-logos/WoodysPizzeria.png.asset.json";
 import imperial from "@/assets/immersions/campuses/imperial.png.asset.json";
-// babson, ivey, escp swapped out for company immersion logos
 import bocconi from "@/assets/immersions/campuses/sda-bocconi.png.asset.json";
+import babson from "@/assets/immersions/campuses/babson.png.asset.json";
+import ivey from "@/assets/immersions/campuses/ivey.png.asset.json";
 import rbi from "@/assets/immersions/bharat/rbi.png.asset.json";
 import zepto from "@/assets/immersions/bharat/zepto.png.asset.json";
+import cred from "@/assets/immersions/bharat/cred.png.asset.json";
+import zerodha from "@/assets/immersions/bharat/zerodha.png.asset.json";
 import porsche from "@/assets/immersions/global/porsche.png.asset.json";
 import rakuten from "@/assets/immersions/global/rakuten.png.asset.json";
+import disneyland from "@/assets/immersions/global/disneyland.png.asset.json";
+import heineken from "@/assets/immersions/global/heineken.png.asset.json";
 import widgetImmersions from "@/assets/widget/widget-immersions.jpg";
 import widgetFounders from "@/assets/widget/widget-founders.jpg";
 import widgetD2C from "@/assets/widget/widget-d2c.jpg";
@@ -55,8 +67,11 @@ const SLIDES: Slide[] = [
     logos: [
       { src: imperial.url, alt: "Imperial College" },
       { src: bocconi.url, alt: "SDA Bocconi" },
+      { src: babson.url, alt: "Babson" },
+      { src: ivey.url, alt: "Ivey" },
       { src: porsche.url, alt: "Porsche" },
       { src: rakuten.url, alt: "Rakuten" },
+      { src: disneyland.url, alt: "Disneyland" },
       { src: rbi.url, alt: "RBI" },
     ],
   },
@@ -72,11 +87,15 @@ const SLIDES: Slide[] = [
     image: widgetFounders,
     accent: "#D6DEFB",
     href: "/startups",
-    stats: [
-      { value: "30+", label: "Student startups" },
-      { value: "₹593 Cr", label: "Total valuation" },
-      { value: "6", label: "Shark Tank pitches" },
-      { value: "Day 1", label: "Portfolio begins" },
+    logos: [
+      { src: bambaii.url, alt: "Bambaii" },
+      { src: fnor.url, alt: "FNOR" },
+      { src: kaze.url, alt: "Kaze" },
+      { src: monarque.url, alt: "Monarque" },
+      { src: nivara.url, alt: "Nivara" },
+      { src: yango.url, alt: "Yango" },
+      { src: moms.url, alt: "Moms" },
+      { src: woodys.url, alt: "Woody's Pizzeria" },
     ],
   },
   {
@@ -97,6 +116,9 @@ const SLIDES: Slide[] = [
       { src: flourish.url, alt: "Flourish Foods" },
       { src: beyondVeda.url, alt: "Beyond Veda" },
       { src: blueBrew.url, alt: "Blue Brew" },
+      { src: bambaii.url, alt: "Bambaii" },
+      { src: moms.url, alt: "Moms" },
+      { src: woodys.url, alt: "Woody's Pizzeria" },
     ],
   },
 
@@ -112,11 +134,15 @@ const SLIDES: Slide[] = [
     image: widgetCreators,
     accent: "#CDE7DA",
     href: "/creator-challenge",
-    stats: [
-      { value: "46M+", label: "Total reach" },
-      { value: "5M+", label: "Followers built" },
-      { value: "120+", label: "Student creators" },
-      { value: "₹10L+", label: "Prize pool" },
+    logos: [
+      { src: cred.url, alt: "CRED" },
+      { src: zerodha.url, alt: "Zerodha" },
+      { src: zepto.url, alt: "Zepto" },
+      { src: heineken.url, alt: "Heineken" },
+      { src: rakuten.url, alt: "Rakuten" },
+      { src: disneyland.url, alt: "Disneyland" },
+      { src: porsche.url, alt: "Porsche" },
+      { src: rbi.url, alt: "RBI" },
     ],
   },
 ];
