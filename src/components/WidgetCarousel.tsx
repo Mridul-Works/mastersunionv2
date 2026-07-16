@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, ArrowLeft, Share2 } from "lucide-react";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import lexis from "@/assets/startup-logos/Lexis.png.asset.json";
 import eatAtlas from "@/assets/startup-logos/EatAtlas.png.asset.json";
