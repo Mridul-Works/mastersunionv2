@@ -368,12 +368,6 @@ export default function WidgetCarousel() {
                   </span>
                 </Link>
                 <div className="flex items-center gap-4">
-                  <button
-                    type="button"
-                    className="flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-white/60 hover:text-white"
-                  >
-                    Share <Share2 className="size-3" />
-                  </button>
                   <div className="flex items-center gap-1">
                     <button
                       type="button"
