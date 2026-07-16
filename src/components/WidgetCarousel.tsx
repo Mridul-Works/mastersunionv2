@@ -87,11 +87,15 @@ const SLIDES: Slide[] = [
     image: widgetFounders,
     accent: "#D6DEFB",
     href: "/startups",
-    stats: [
-      { value: "30+", label: "Student startups" },
-      { value: "₹593 Cr", label: "Total valuation" },
-      { value: "6", label: "Shark Tank pitches" },
-      { value: "Day 1", label: "Portfolio begins" },
+    logos: [
+      { src: bambaii.url, alt: "Bambaii" },
+      { src: fnor.url, alt: "FNOR" },
+      { src: kaze.url, alt: "Kaze" },
+      { src: monarque.url, alt: "Monarque" },
+      { src: nivara.url, alt: "Nivara" },
+      { src: yango.url, alt: "Yango" },
+      { src: moms.url, alt: "Moms" },
+      { src: woodys.url, alt: "Woody's Pizzeria" },
     ],
   },
   {
