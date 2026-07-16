@@ -547,9 +547,9 @@ function AdmissionsConnect() {
         </p>
       </header>
 
-      <div className="relative -mx-5 md:-mx-10">
+      <div className="relative">
         <div
-          className="scrollbar-hover-only flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-6 md:gap-6 md:px-10"
+          className="scrollbar-hover-only flex snap-x snap-mandatory gap-5 overflow-x-auto pb-6 md:gap-6"
         >
           {featured.map((s) => (
             <article
