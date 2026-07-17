@@ -99,9 +99,23 @@ const FACULTY = [
   { name: "Faverie", role: "Visiting Faculty · Global Partners", img: faverie.url },
 ];
 
-const CAREER_LOGOS = [mckinsey, bain, accenture, bloomberg, cred, flipkart, icici, meta, servicenow, zepto, goodcapital, waterbridge];
-const VENTURE_LOGOS = [bambaii, beyondveda, bluebrew, eatatlas, fnor, flourish, kaze, lexis, moms, monarque, nivara, woodys];
-const PARTNER_LOGOS = [wbs, imperial, babson, ivey, escp, bocconi, cuhk, smu, nbs, foster, illinois, uc, griffith];
+const CAREER_GROUPS = [
+  { label: "Consulting", logos: [mckinsey, bain, accenture] },
+  { label: "Technology & Product", logos: [meta, servicenow, flipkart, cred, zepto] },
+  { label: "Finance & Data", logos: [bloomberg, icici] },
+  { label: "Venture Capital", logos: [goodcapital, waterbridge] },
+];
+
+const VENTURE_GROUPS = [
+  { label: "Food & Wellness", logos: [bluebrew, eatatlas, flourish, moms, woodys, beyondveda] },
+  { label: "Consumer & Tech", logos: [bambaii, kaze, lexis, monarque, nivara, fnor] },
+];
+
+const PARTNER_GROUPS = [
+  { label: "University Partners", logos: [wbs, imperial, escp, bocconi, nbs, babson, ivey, foster, illinois, uc, cuhk, smu, griffith] },
+  { label: "Global Corporate Immersions", logos: [porsche, philips, heineken, rabobank, rakuten, agoda, nissan, stationF, unitedNations] },
+  { label: "India Corporate Immersions", logos: [godrej, itc, infosys, zeptoImm, credImm, amul, rbi, nse, lenskart] },
+];
 
 const FACULTY_SECTION: Section = {
   id: "faculty",
