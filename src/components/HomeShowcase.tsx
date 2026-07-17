@@ -178,7 +178,7 @@ const PARTNERS_SECTION: Section = {
   eyebrow: "Academic Partnerships",
   title: "Immersions across ",
   titleItalic: "the world's best schools.",
-  lede: "Warwick, Imperial, Babson, Ivey, ESCP, SDA Bocconi and more — weeks abroad, on campus.",
+  lede: "Every Masters' Union student spends weeks studying on the campuses of the world's leading business schools — Warwick, Imperial, Babson, Ivey, ESCP, SDA Bocconi and more. Alongside academics, we partner deeply with India's most iconic companies to bring real boardrooms, factories and trading floors into the classroom.",
   bg: "bg-[#F5F3EE]",
   cta: { label: "Immersion programmes", to: "/immersions" },
   stats: [
