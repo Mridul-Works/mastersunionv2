@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import WidgetCarousel from "@/components/WidgetCarousel";
+import HomeShowcase from "@/components/HomeShowcase";
 
 import { createPortal } from "react-dom";
 import { useForm } from "react-hook-form";
@@ -1094,6 +1095,9 @@ export default function HomeSections() {
 
       {/* PROGRAMS */}
       <Programs />
+
+      {/* FACULTY · CAREER · ENTREPRENEURSHIP · PARTNERSHIPS */}
+      <HomeShowcase />
 
       {/* FOUNDER'S MESSAGE */}
       <section id="founders" className="border-t border-black/10 bg-[#F5F3EE]">
