@@ -238,26 +238,51 @@ function LogoGrid({ logos }: { logos: { url: string; original_filename: string }
 
 function FacultyBlock() {
   return (
-    <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-9">
-      {FACULTY.map((f) => (
-        <div key={f.name} className="group flex flex-col">
-          <div className="relative aspect-[3/4] overflow-hidden bg-black/5">
-            <img
-              src={f.img}
-              alt={f.name}
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.03]"
-            />
+    <div className="flex flex-col gap-10">
+      {/* Composition: 50 / 30 / 20 */}
+      <div className="grid gap-4 md:grid-cols-3">
+        {FACULTY_MIX.map((m) => (
+          <div
+            key={m.title}
+            className="flex flex-col border border-black/10 bg-white p-6 transition hover:border-black/30 hover:shadow-[0_12px_32px_-18px_rgba(0,0,0,0.25)]"
+          >
+            <div className="flex items-baseline gap-3">
+              <span
+                className="text-4xl font-semibold tracking-tight text-black md:text-5xl"
+                style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+              >
+                {m.pct}
+              </span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/50">
+                of faculty
+              </span>
+            </div>
+            <h3 className="mt-4 text-lg font-semibold tracking-tight text-black">{m.title}</h3>
+            <p className="mt-2 text-[13px] leading-relaxed text-black/65">{m.body}</p>
           </div>
-          <p className="mt-2 text-[12px] font-semibold leading-tight text-black">{f.name}</p>
-          <p className="text-[10px] leading-tight text-black/55">{f.role}</p>
-        </div>
-      ))}
+        ))}
+      </div>
+
+      {/* Faculty photo strip */}
+      <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-9">
+        {FACULTY.map((f) => (
+          <div key={f.name} className="group flex flex-col">
+            <div className="relative aspect-[3/4] overflow-hidden bg-black/5">
+              <img
+                src={f.img}
+                alt={f.name}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.03]"
+              />
+            </div>
+            <p className="mt-2 text-[12px] font-semibold leading-tight text-black">{f.name}</p>
+            <p className="text-[10px] leading-tight text-black/55">{f.role}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
-
-export default function HomeShowcase() {
   return (
     <>
       <ShowcaseShell section={FACULTY_SECTION}>
