@@ -94,15 +94,16 @@ type Section = {
 };
 
 const FACULTY_ALL = [
-  { name: "Manoj Kohli", img: manoj.url },
-  { name: "Dr Bhupesh Manoharan", img: bhupesh.url },
-  { name: "Dr Nandini Seth", img: nandini.url },
-  { name: "Dr Garima Chaklader", img: garima.url },
-  { name: "Dr Zal Phiroz", img: zal.url },
-  { name: "Daniel G. Van Der Vliet", img: daniel.url },
-  { name: "Dr Lan Ma", img: lanma.url },
-  { name: "Faverie", img: faverie.url },
+  { name: "Manoj Kohli", role: "Country Head", company: "SoftBank India", img: manoj.url },
+  { name: "Dr Bhupesh Manoharan", role: "Associate Professor", company: "Masters' Union", img: bhupesh.url },
+  { name: "Dr Nandini Seth", role: "Assistant Professor", company: "Masters' Union", img: nandini.url },
+  { name: "Dr Garima Chaklader", role: "Associate Professor", company: "Masters' Union", img: garima.url },
+  { name: "Dr Zal Phiroz", role: "Visiting Faculty", company: "Harvard University", img: zal.url },
+  { name: "Daniel G. Van Der Vliet", role: "Executive Director, Family Business", company: "Cornell University", img: daniel.url },
+  { name: "Dr Lan Ma", role: "Visiting Professor", company: "NYU Stern", img: lanma.url },
+  { name: "Emmanuel Faverie", role: "Visiting Professor", company: "ESCP Business School", img: faverie.url },
 ];
+
 
 const FACULTY_MIX = [
   { pct: "50%", title: "Industry Practitioners", body: "CEOs, founders and operators teaching what they're building today." },
@@ -305,8 +306,9 @@ function CategorizedLogos({ groups, withFilter = false }: { groups: LogoGroup[];
 
 function FacultyBlock() {
   return (
-    <div className="flex flex-col gap-6">
-      <div className="grid gap-3 md:grid-cols-3">
+    <div className="grid gap-6 md:grid-cols-2 md:gap-8">
+      {/* Left: vertical mix */}
+      <div className="flex flex-col gap-3">
         {FACULTY_MIX.map((m) => (
           <div
             key={m.title}
@@ -326,9 +328,10 @@ function FacultyBlock() {
         ))}
       </div>
 
-      <div className="grid grid-cols-4 gap-2 sm:grid-cols-6 md:grid-cols-8">
+      {/* Right: faculty images with designations */}
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-4">
         {FACULTY_ALL.map((f) => (
-          <div key={f.name} title={f.name} className="group">
+          <figure key={f.name} title={f.name} className="group flex flex-col">
             <div className="relative aspect-square overflow-hidden bg-black/5">
               <img
                 src={f.img}
@@ -337,12 +340,20 @@ function FacultyBlock() {
                 className="absolute inset-0 h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.04]"
               />
             </div>
-          </div>
+            <figcaption className="mt-2">
+              <div className="text-[11px] font-semibold leading-tight tracking-tight text-black">
+                {f.name}
+              </div>
+              <div className="mt-0.5 text-[10px] leading-tight text-black/60">{f.role}</div>
+              <div className="text-[10px] leading-tight text-black/45">{f.company}</div>
+            </figcaption>
+          </figure>
         ))}
       </div>
     </div>
   );
 }
+
 
 const ALUM_STORIES = [
   { name: "Aarav Mehta", role: "Business Analyst", company: "McKinsey & Company", logo: mckinsey.url, photo: aaravImg.url, quote: "Live case work in Year 2 got me an offer before final placements." },
