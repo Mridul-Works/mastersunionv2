@@ -283,6 +283,8 @@ function FacultyBlock() {
     </div>
   );
 }
+
+export default function HomeShowcase() {
   return (
     <>
       <ShowcaseShell section={FACULTY_SECTION}>
