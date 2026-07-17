@@ -386,12 +386,21 @@ function FacultyBlock() {
         {visible.map((f) => (
           <figure key={f.name} title={f.name} className="group flex flex-col">
             <div className="relative aspect-square overflow-hidden bg-black/5">
-              <img
-                src={f.img}
-                alt={f.name}
-                loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.04]"
-              />
+              {f.img ? (
+                <img
+                  src={f.img}
+                  alt={f.name}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.04]"
+                />
+              ) : (
+                <div
+                  className="absolute inset-0 flex items-center justify-center bg-neutral-100 text-2xl tracking-tight text-black/35"
+                  style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}
+                >
+                  {f.name.replace(/^Dr\s+|^Captain\s+/i, "").split(/\s+/).map((w) => w[0]).slice(0, 2).join("")}
+                </div>
+              )}
             </div>
             <figcaption className="mt-2">
               <div className="text-[11px] font-semibold leading-tight tracking-tight text-black">
