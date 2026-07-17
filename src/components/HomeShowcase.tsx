@@ -74,6 +74,12 @@ import rbi from "@/assets/immersions/bharat/rbi.png.asset.json";
 import nse from "@/assets/immersions/bharat/nse.png.asset.json";
 import lenskart from "@/assets/immersions/bharat/lenskart.png.asset.json";
 
+// Alumni portraits
+import aaravImg from "@/assets/alumni/aarav.jpg.asset.json";
+import ishaImg from "@/assets/alumni/isha.jpg.asset.json";
+import kabirImg from "@/assets/alumni/kabir.jpg.asset.json";
+import ananyaImg from "@/assets/alumni/ananya.jpg.asset.json";
+
 type Stat = { value: string; label: string };
 type Section = {
   id: string;
