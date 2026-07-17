@@ -113,7 +113,7 @@ const FACULTY_MIX = [
 const CAREER_GROUPS = [
   { label: "Consulting", logos: [mckinsey, bain, accenture] },
   { label: "Tech & Product", logos: [meta, servicenow, flipkart, cred, zepto, infosys, lenskart] },
-  { label: "Finance & Markets", logos: [bloomberg, icici, nse, rbi] },
+  { label: "Finance & Markets", logos: [bloomberg, icici, nse] },
   { label: "Consumer & Corporate", logos: [godrej, itc, amul] },
   { label: "Venture Capital", logos: [goodcapital, waterbridge] },
 ];
@@ -124,8 +124,8 @@ const VENTURE_GROUPS = [
 ];
 
 const PARTNER_GROUPS = [
-  { label: "Academic", logos: [wbs, imperial, escp, bocconi, nbs, babson, ivey, foster, illinois, uc, cuhk, smu, griffith] },
-  { label: "Corporate", logos: [porsche, philips, heineken, rabobank, rakuten, agoda, nissan, stationF, unitedNations, godrej, itc, infosys, zeptoImm, credImm, amul, rbi, nse, lenskart] },
+  { label: "Academic", logos: [wbs, escp, bocconi, nbs, babson, ivey, foster, illinois, uc, smu, griffith] },
+  { label: "Corporate", logos: [porsche, philips, heineken, rabobank, rakuten, agoda, nissan, stationF, unitedNations, godrej, itc, infosys, zeptoImm, credImm, amul, nse, lenskart] },
 ];
 
 const FACULTY_SECTION: Section = {
