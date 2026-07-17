@@ -11,6 +11,28 @@ import daniel from "@/assets/faculty/daniel.png.asset.json";
 import lanma from "@/assets/faculty/lanma.png.asset.json";
 import manoj from "@/assets/faculty/manoj.png.asset.json";
 import faverie from "@/assets/faculty/faverie.png.asset.json";
+import havish from "@/assets/faculty/havish-madhvapaty.png.asset.json";
+import ekhlaque from "@/assets/faculty/ekhlaque-bari.png.asset.json";
+import sumit from "@/assets/faculty/sumit-shukla.png.asset.json";
+import aditya from "@/assets/faculty/aditya-turalapati.png.asset.json";
+import divij from "@/assets/faculty/divij-bajaj.png.asset.json";
+import parikshit from "@/assets/faculty/parikshit-khanna.png.asset.json";
+import karmanya from "@/assets/faculty/karmanya-suri.png.asset.json";
+import gauravA from "@/assets/faculty/gaurav-arora.png.asset.json";
+import daveLewis from "@/assets/faculty/dave-lewis.png.asset.json";
+import umberto from "@/assets/faculty/umberto.png.asset.json";
+import carolina from "@/assets/faculty/carolina.png.asset.json";
+import federico from "@/assets/faculty/federico-biasutti.png.asset.json";
+import paola from "@/assets/faculty/paola-santoro.png.asset.json";
+import rosario from "@/assets/faculty/rosario.png.asset.json";
+import timothy from "@/assets/faculty/timothy-oconnell.png.asset.json";
+import frank from "@/assets/faculty/frank-barry.png.asset.json";
+import mairead from "@/assets/faculty/mairead-braddy.png.asset.json";
+import enno from "@/assets/faculty/enno-masurel.png.asset.json";
+import orestis from "@/assets/faculty/orestis.png.asset.json";
+import annalisa from "@/assets/faculty/annalisa.png.asset.json";
+import evangelos from "@/assets/faculty/evangelos.png.asset.json";
+import xiaoyu from "@/assets/faculty/xiaoyu.png.asset.json";
 
 // Career logos
 import mckinsey from "@/assets/career-logos/McKinsey.png.asset.json";
