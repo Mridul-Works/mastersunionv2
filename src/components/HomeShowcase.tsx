@@ -419,7 +419,7 @@ export default function HomeShowcase() {
         <CategorizedLogos groups={VENTURE_GROUPS} />
       </ShowcaseShell>
       <ShowcaseShell section={PARTNERS_SECTION}>
-        <CategorizedLogos groups={PARTNER_GROUPS} />
+        <CategorizedLogos groups={PARTNER_GROUPS} withFilter />
       </ShowcaseShell>
     </>
   );
