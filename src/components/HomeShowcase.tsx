@@ -163,7 +163,7 @@ const VENTURES_SECTION: Section = {
   eyebrow: "Entrepreneurship",
   title: "Companies started ",
   titleItalic: "before graduation.",
-  lede: "Pre-seed capital, founder studios and GTM labs — students launch while they study.",
+  lede: "Entrepreneurship at Masters' Union isn't a club — it's an operating system. Students access pre-seed capital, in-house founder studios and GTM labs, and launch real companies while they study, backed by mentors who have built and scaled ventures themselves.",
   bg: "bg-white",
   cta: { label: "MU Ventures", to: "/mu-ventures" },
   stats: [
