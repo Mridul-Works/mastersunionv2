@@ -54,6 +54,28 @@ import illinois from "@/assets/immersion-logos/illinois-tech.png.asset.json";
 import uc from "@/assets/immersion-logos/uc.png.asset.json";
 import griffith from "@/assets/immersion-logos/griffith.png.asset.json";
 
+// Corporate immersion logos — Global
+import porsche from "@/assets/immersions/global/porsche.png.asset.json";
+import philips from "@/assets/immersions/global/philips.png.asset.json";
+import heineken from "@/assets/immersions/global/heineken.png.asset.json";
+import rabobank from "@/assets/immersions/global/rabobank.png.asset.json";
+import rakuten from "@/assets/immersions/global/rakuten.png.asset.json";
+import agoda from "@/assets/immersions/global/agoda.png.asset.json";
+import nissan from "@/assets/immersions/global/nissan.png.asset.json";
+import stationF from "@/assets/immersions/global/station-f.png.asset.json";
+import unitedNations from "@/assets/immersions/global/united-nations.png.asset.json";
+
+// Corporate immersion logos — India
+import godrej from "@/assets/immersions/bharat/godrej.png.asset.json";
+import itc from "@/assets/immersions/bharat/itc.png.asset.json";
+import infosys from "@/assets/immersions/bharat/infosys.png.asset.json";
+import zeptoImm from "@/assets/immersions/bharat/zepto.png.asset.json";
+import credImm from "@/assets/immersions/bharat/cred.png.asset.json";
+import amul from "@/assets/immersions/bharat/amul.png.asset.json";
+import rbi from "@/assets/immersions/bharat/rbi.png.asset.json";
+import nse from "@/assets/immersions/bharat/nse.png.asset.json";
+import lenskart from "@/assets/immersions/bharat/lenskart.png.asset.json";
+
 type Section = {
   id: string;
   eyebrow: string;
@@ -65,21 +87,50 @@ type Section = {
   stats: { value: string; label: string }[];
 };
 
-const FACULTY = [
-  { name: "Rohit Kapoor", role: "CEO, Food Marketplace · Swiggy", img: manoj.url },
-  { name: "Manoj Kohli", role: "Former CEO, Airtel International", img: manoj.url },
-  { name: "Dr Bhupesh Manoharan", role: "PhD · Strategy & Organisation", img: bhupesh.url },
-  { name: "Dr Nandini Seth", role: "PhD · Marketing", img: nandini.url },
-  { name: "Dr Garima Chaklader", role: "PhD · Economics", img: garima.url },
-  { name: "Dr Zal Phiroz", role: "Adjunct Prof · Harvard University", img: zal.url },
-  { name: "Daniel G. Van Der Vliet", role: "Executive Director · Cornell", img: daniel.url },
-  { name: "Dr Lan Ma", role: "Adjunct Prof of Business · NYU Stern", img: lanma.url },
-  { name: "Faverie", role: "Visiting Faculty · Global Partners", img: faverie.url },
+const FACULTY_GROUPS = [
+  {
+    label: "Industry Practitioners",
+    people: [
+      { name: "Rohit Kapoor", role: "CEO, Food Marketplace · Swiggy", img: manoj.url },
+      { name: "Manoj Kohli", role: "Former CEO, Airtel International", img: manoj.url },
+    ],
+  },
+  {
+    label: "Full-Time Faculty",
+    people: [
+      { name: "Dr Bhupesh Manoharan", role: "PhD · Strategy & Organisation", img: bhupesh.url },
+      { name: "Dr Nandini Seth", role: "PhD · Marketing", img: nandini.url },
+      { name: "Dr Garima Chaklader", role: "PhD · Economics", img: garima.url },
+    ],
+  },
+  {
+    label: "Visiting Faculty",
+    people: [
+      { name: "Dr Zal Phiroz", role: "Adjunct Prof · Harvard University", img: zal.url },
+      { name: "Daniel G. Van Der Vliet", role: "Executive Director · Cornell", img: daniel.url },
+      { name: "Dr Lan Ma", role: "Adjunct Prof of Business · NYU Stern", img: lanma.url },
+      { name: "Faverie", role: "Visiting Faculty · Global Partners", img: faverie.url },
+    ],
+  },
 ];
 
-const CAREER_LOGOS = [mckinsey, bain, accenture, bloomberg, cred, flipkart, icici, meta, servicenow, zepto, goodcapital, waterbridge];
-const VENTURE_LOGOS = [bambaii, beyondveda, bluebrew, eatatlas, fnor, flourish, kaze, lexis, moms, monarque, nivara, woodys];
-const PARTNER_LOGOS = [wbs, imperial, babson, ivey, escp, bocconi, cuhk, smu, nbs, foster, illinois, uc, griffith];
+const CAREER_GROUPS = [
+  { label: "Consulting", logos: [mckinsey, bain, accenture] },
+  { label: "Technology & Product", logos: [meta, servicenow, flipkart, cred, zepto] },
+  { label: "Finance & Data", logos: [bloomberg, icici] },
+  { label: "Venture Capital", logos: [goodcapital, waterbridge] },
+];
+
+const VENTURE_GROUPS = [
+  { label: "Food & Wellness", logos: [bluebrew, eatatlas, flourish, moms, woodys, beyondveda] },
+  { label: "Consumer & Tech", logos: [bambaii, kaze, lexis, monarque, nivara, fnor] },
+];
+
+const PARTNER_GROUPS = [
+  { label: "University Partners", logos: [wbs, imperial, escp, bocconi, nbs, babson, ivey, foster, illinois, uc, cuhk, smu, griffith] },
+  { label: "Global Corporate Immersions", logos: [porsche, philips, heineken, rabobank, rakuten, agoda, nissan, stationF, unitedNations] },
+  { label: "India Corporate Immersions", logos: [godrej, itc, infosys, zeptoImm, credImm, amul, rbi, nse, lenskart] },
+];
 
 const FACULTY_SECTION: Section = {
   id: "faculty",
@@ -236,6 +287,29 @@ function LogoGrid({ logos }: { logos: { url: string; original_filename: string }
   );
 }
 
+function CategorizedLogos({
+  groups,
+}: {
+  groups: { label: string; logos: { url: string; original_filename: string }[] }[];
+}) {
+  return (
+    <div className="flex flex-col gap-8">
+      {groups.map((g) => (
+        <div key={g.label}>
+          <div className="mb-3 flex items-center gap-3">
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
+              {g.label}
+            </span>
+            <span className="h-px flex-1 bg-black/10" />
+            <span className="font-mono text-[10px] text-black/40">{g.logos.length}</span>
+          </div>
+          <LogoGrid logos={g.logos} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function FacultyBlock() {
   return (
     <div className="flex flex-col gap-10">
@@ -263,20 +337,33 @@ function FacultyBlock() {
         ))}
       </div>
 
-      {/* Faculty photo strip */}
-      <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-9">
-        {FACULTY.map((f) => (
-          <div key={f.name} className="group flex flex-col">
-            <div className="relative aspect-[3/4] overflow-hidden bg-black/5">
-              <img
-                src={f.img}
-                alt={f.name}
-                loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.03]"
-              />
+      {/* Categorised faculty photos */}
+      <div className="flex flex-col gap-8">
+        {FACULTY_GROUPS.map((g) => (
+          <div key={g.label}>
+            <div className="mb-3 flex items-center gap-3">
+              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
+                {g.label}
+              </span>
+              <span className="h-px flex-1 bg-black/10" />
+              <span className="font-mono text-[10px] text-black/40">{g.people.length}</span>
             </div>
-            <p className="mt-2 text-[12px] font-semibold leading-tight text-black">{f.name}</p>
-            <p className="text-[10px] leading-tight text-black/55">{f.role}</p>
+            <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
+              {g.people.map((f) => (
+                <div key={f.name} className="group flex flex-col">
+                  <div className="relative aspect-[3/4] overflow-hidden bg-black/5">
+                    <img
+                      src={f.img}
+                      alt={f.name}
+                      loading="lazy"
+                      className="absolute inset-0 h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.03]"
+                    />
+                  </div>
+                  <p className="mt-2 text-[12px] font-semibold leading-tight text-black">{f.name}</p>
+                  <p className="text-[10px] leading-tight text-black/55">{f.role}</p>
+                </div>
+              ))}
+            </div>
           </div>
         ))}
       </div>
@@ -291,13 +378,13 @@ export default function HomeShowcase() {
         <FacultyBlock />
       </ShowcaseShell>
       <ShowcaseShell section={CAREER_SECTION}>
-        <LogoGrid logos={CAREER_LOGOS} />
+        <CategorizedLogos groups={CAREER_GROUPS} />
       </ShowcaseShell>
       <ShowcaseShell section={VENTURES_SECTION}>
-        <LogoGrid logos={VENTURE_LOGOS} />
+        <CategorizedLogos groups={VENTURE_GROUPS} />
       </ShowcaseShell>
       <ShowcaseShell section={PARTNERS_SECTION}>
-        <LogoGrid logos={PARTNER_LOGOS} />
+        <CategorizedLogos groups={PARTNER_GROUPS} />
       </ShowcaseShell>
     </>
   );
