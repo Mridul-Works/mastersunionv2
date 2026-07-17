@@ -1095,6 +1095,9 @@ export default function HomeSections() {
       {/* PROGRAMS */}
       <Programs />
 
+      {/* FACULTY · CAREER · ENTREPRENEURSHIP · PARTNERSHIPS */}
+      <HomeShowcase />
+
       {/* FOUNDER'S MESSAGE */}
       <section id="founders" className="border-t border-black/10 bg-[#F5F3EE]">
         <div className="mx-auto max-w-[1280px] px-5 pb-6 md:px-10 md:pb-8">
