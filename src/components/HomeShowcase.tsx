@@ -287,6 +287,29 @@ function LogoGrid({ logos }: { logos: { url: string; original_filename: string }
   );
 }
 
+function CategorizedLogos({
+  groups,
+}: {
+  groups: { label: string; logos: { url: string; original_filename: string }[] }[];
+}) {
+  return (
+    <div className="flex flex-col gap-8">
+      {groups.map((g) => (
+        <div key={g.label}>
+          <div className="mb-3 flex items-center gap-3">
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
+              {g.label}
+            </span>
+            <span className="h-px flex-1 bg-black/10" />
+            <span className="font-mono text-[10px] text-black/40">{g.logos.length}</span>
+          </div>
+          <LogoGrid logos={g.logos} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function FacultyBlock() {
   return (
     <div className="flex flex-col gap-10">
@@ -314,20 +337,33 @@ function FacultyBlock() {
         ))}
       </div>
 
-      {/* Faculty photo strip */}
-      <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-9">
-        {FACULTY.map((f) => (
-          <div key={f.name} className="group flex flex-col">
-            <div className="relative aspect-[3/4] overflow-hidden bg-black/5">
-              <img
-                src={f.img}
-                alt={f.name}
-                loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.03]"
-              />
+      {/* Categorised faculty photos */}
+      <div className="flex flex-col gap-8">
+        {FACULTY_GROUPS.map((g) => (
+          <div key={g.label}>
+            <div className="mb-3 flex items-center gap-3">
+              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
+                {g.label}
+              </span>
+              <span className="h-px flex-1 bg-black/10" />
+              <span className="font-mono text-[10px] text-black/40">{g.people.length}</span>
             </div>
-            <p className="mt-2 text-[12px] font-semibold leading-tight text-black">{f.name}</p>
-            <p className="text-[10px] leading-tight text-black/55">{f.role}</p>
+            <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
+              {g.people.map((f) => (
+                <div key={f.name} className="group flex flex-col">
+                  <div className="relative aspect-[3/4] overflow-hidden bg-black/5">
+                    <img
+                      src={f.img}
+                      alt={f.name}
+                      loading="lazy"
+                      className="absolute inset-0 h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.03]"
+                    />
+                  </div>
+                  <p className="mt-2 text-[12px] font-semibold leading-tight text-black">{f.name}</p>
+                  <p className="text-[10px] leading-tight text-black/55">{f.role}</p>
+                </div>
+              ))}
+            </div>
           </div>
         ))}
       </div>
@@ -342,13 +378,13 @@ export default function HomeShowcase() {
         <FacultyBlock />
       </ShowcaseShell>
       <ShowcaseShell section={CAREER_SECTION}>
-        <LogoGrid logos={CAREER_LOGOS} />
+        <CategorizedLogos groups={CAREER_GROUPS} />
       </ShowcaseShell>
       <ShowcaseShell section={VENTURES_SECTION}>
-        <LogoGrid logos={VENTURE_LOGOS} />
+        <CategorizedLogos groups={VENTURE_GROUPS} />
       </ShowcaseShell>
       <ShowcaseShell section={PARTNERS_SECTION}>
-        <LogoGrid logos={PARTNER_LOGOS} />
+        <CategorizedLogos groups={PARTNER_GROUPS} />
       </ShowcaseShell>
     </>
   );
