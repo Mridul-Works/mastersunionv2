@@ -305,32 +305,56 @@ function CategorizedLogos({ groups, withFilter = false }: { groups: LogoGroup[];
 
 
 function FacultyBlock() {
+  const [active, setActive] = useState<string>("All");
+  const visible = active === "All" ? FACULTY_ALL : FACULTY_ALL.filter((f) => f.category === active);
+
   return (
     <div className="grid gap-6 md:grid-cols-2 md:gap-8">
-      {/* Left: vertical mix */}
+      {/* Left: vertical mix (clickable filters) */}
       <div className="flex flex-col gap-3">
-        {FACULTY_MIX.map((m) => (
-          <div
-            key={m.title}
-            className="flex items-start gap-4 border border-black/10 bg-white p-4"
-          >
-            <span
-              className="text-3xl font-semibold leading-none tracking-tight text-black"
-              style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+        {FACULTY_MIX.map((m) => {
+          const isActive = active === m.key;
+          return (
+            <button
+              key={m.title}
+              type="button"
+              onClick={() => setActive(isActive ? "All" : m.key)}
+              aria-pressed={isActive}
+              className={`flex items-start gap-4 border p-4 text-left transition ${
+                isActive
+                  ? "border-black bg-black text-white"
+                  : "border-black/10 bg-white text-black hover:border-black/30 hover:bg-black/[0.02]"
+              }`}
             >
-              {m.pct}
-            </span>
-            <div>
-              <h3 className="text-[13px] font-semibold tracking-tight text-black">{m.title}</h3>
-              <p className="mt-1 text-[12px] leading-snug text-black/60">{m.body}</p>
-            </div>
-          </div>
-        ))}
+              <span
+                className="text-3xl font-semibold leading-none tracking-tight"
+                style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+              >
+                {m.pct}
+              </span>
+              <div>
+                <h3 className="text-[13px] font-semibold tracking-tight">{m.title}</h3>
+                <p className={`mt-1 text-[12px] leading-snug ${isActive ? "text-white/70" : "text-black/60"}`}>
+                  {m.body}
+                </p>
+              </div>
+            </button>
+          );
+        })}
+        {active !== "All" && (
+          <button
+            type="button"
+            onClick={() => setActive("All")}
+            className="self-start text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50 hover:text-black"
+          >
+            ← Show all faculty
+          </button>
+        )}
       </div>
 
       {/* Right: faculty images with designations */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-4">
-        {FACULTY_ALL.map((f) => (
+        {visible.map((f) => (
           <figure key={f.name} title={f.name} className="group flex flex-col">
             <div className="relative aspect-square overflow-hidden bg-black/5">
               <img
