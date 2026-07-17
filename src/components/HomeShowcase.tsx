@@ -1,4 +1,4 @@
-
+import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
@@ -124,9 +124,8 @@ const VENTURE_GROUPS = [
 ];
 
 const PARTNER_GROUPS = [
-  { label: "Universities", logos: [wbs, imperial, escp, bocconi, nbs, babson, ivey, foster, illinois, uc, cuhk, smu, griffith] },
-  { label: "Global Corporates", logos: [porsche, philips, heineken, rabobank, rakuten, agoda, nissan, stationF, unitedNations] },
-  { label: "India Corporates", logos: [godrej, itc, infosys, zeptoImm, credImm, amul, rbi, nse, lenskart] },
+  { label: "Academic", logos: [wbs, imperial, escp, bocconi, nbs, babson, ivey, foster, illinois, uc, cuhk, smu, griffith] },
+  { label: "Corporate", logos: [porsche, philips, heineken, rabobank, rakuten, agoda, nissan, stationF, unitedNations, godrej, itc, infosys, zeptoImm, credImm, amul, rbi, nse, lenskart] },
 ];
 
 const FACULTY_SECTION: Section = {
@@ -243,37 +242,62 @@ function ShowcaseShell({ section, children }: { section: Section; children: Reac
 type Logo = { url: string; original_filename: string };
 type LogoGroup = { label: string; logos: Logo[] };
 
-function CategorizedLogos({ groups }: { groups: LogoGroup[] }) {
-  const visible: Logo[] = groups.flatMap((g) => g.logos);
+function CategorizedLogos({ groups, withFilter = false }: { groups: LogoGroup[]; withFilter?: boolean }) {
+  const [active, setActive] = useState<string>("All");
+  const total = groups.reduce((sum, g) => sum + g.logos.length, 0);
+  const tabs = [{ label: "All", count: total }, ...groups.map((g) => ({ label: g.label, count: g.logos.length }))];
+  const visible: Logo[] = !withFilter || active === "All"
+    ? groups.flatMap((g) => g.logos)
+    : groups.find((g) => g.label === active)?.logos ?? [];
 
   return (
-    <div className="grid grid-cols-3 gap-x-8 gap-y-10 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
-      {visible.map((l) => {
-        const name = l.original_filename.replace(/\.png$/i, "");
-        const key = name.toLowerCase();
-        const scale =
-          key.includes("amul") || key.includes("zepto") || key.includes("nse")
-            ? "h-6"
-            : key.includes("infosys")
-              ? "h-7"
-              : key.includes("meta") || key.includes("goodcapital") || key.includes("waterbridge")
-                ? "h-14"
-                : "h-10";
-        return (
-          <div
-            key={l.url}
-            title={name}
-            className="flex h-14 items-center justify-center"
-          >
-            <img
-              src={l.url}
-              alt={name}
-              loading="lazy"
-              className={`${scale} w-auto object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0`}
-            />
-          </div>
-        );
-      })}
+    <div>
+      {withFilter && (
+        <div className="mb-6 flex flex-wrap items-center gap-1.5">
+          {tabs.map((t) => {
+            const isActive = t.label === active;
+            return (
+              <button
+                key={t.label}
+                type="button"
+                onClick={() => setActive(t.label)}
+                className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-medium tracking-tight transition ${
+                  isActive ? "bg-black text-white" : "bg-black/[0.04] text-black/70 hover:bg-black/[0.08]"
+                }`}
+              >
+                {t.label}
+                <span className={`font-mono text-[10px] ${isActive ? "text-white/60" : "text-black/40"}`}>
+                  {t.count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      )}
+      <div className="grid grid-cols-3 gap-x-8 gap-y-10 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
+        {visible.map((l) => {
+          const name = l.original_filename.replace(/\.png$/i, "");
+          const key = name.toLowerCase();
+          const scale =
+            key.includes("amul") || key.includes("zepto") || key.includes("nse")
+              ? "h-6"
+              : key.includes("infosys")
+                ? "h-7"
+                : key.includes("meta") || key.includes("goodcapital") || key.includes("waterbridge")
+                  ? "h-14"
+                  : "h-10";
+          return (
+            <div key={l.url} title={name} className="flex h-14 items-center justify-center">
+              <img
+                src={l.url}
+                alt={name}
+                loading="lazy"
+                className={`${scale} w-auto object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0`}
+              />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -395,7 +419,7 @@ export default function HomeShowcase() {
         <CategorizedLogos groups={VENTURE_GROUPS} />
       </ShowcaseShell>
       <ShowcaseShell section={PARTNERS_SECTION}>
-        <CategorizedLogos groups={PARTNER_GROUPS} />
+        <CategorizedLogos groups={PARTNER_GROUPS} withFilter />
       </ShowcaseShell>
     </>
   );
