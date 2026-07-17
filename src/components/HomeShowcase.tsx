@@ -324,47 +324,56 @@ function FacultyBlock() {
 }
 
 const ALUM_STORIES = [
-  { name: "Aarav Mehta", role: "Business Analyst", company: "McKinsey & Company", logo: mckinsey.url, quote: "Live case work in Year 2 got me an offer before final placements." },
-  { name: "Isha Rao", role: "Associate Consultant", company: "Bain & Company", logo: bain.url, quote: "MU's practitioner faculty rewired how I break down a problem." },
-  { name: "Kabir Shah", role: "APM", company: "Meta", logo: meta.url, quote: "Building at MU Ventures made the PM interview feel like a normal Tuesday." },
-  { name: "Ananya Gupta", role: "Investor", company: "Good Capital", logo: goodcapital.url, quote: "Pitched a portfolio company on campus, joined the fund that heard the pitch." },
+  { name: "Aarav Mehta", role: "Business Analyst", company: "McKinsey & Company", logo: mckinsey.url, photo: aaravImg.url, quote: "Live case work in Year 2 got me an offer before final placements." },
+  { name: "Isha Rao", role: "Associate Consultant", company: "Bain & Company", logo: bain.url, photo: ishaImg.url, quote: "MU's practitioner faculty rewired how I break down a problem." },
+  { name: "Kabir Shah", role: "APM", company: "Meta", logo: meta.url, photo: kabirImg.url, quote: "Building at MU Ventures made the PM interview feel like a normal Tuesday." },
+  { name: "Ananya Gupta", role: "Investor", company: "Good Capital", logo: goodcapital.url, photo: ananyaImg.url, quote: "Pitched a portfolio company on campus, joined the fund that heard the pitch." },
 ];
 
 function AlumStories() {
   return (
-    <div className="mt-6">
-      <div className="mb-2 flex items-center gap-3">
+    <div>
+      <div className="mb-3 flex items-center gap-3">
         <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
           Alum stories
         </span>
         <span className="h-px flex-1 bg-black/10" />
         <span className="font-mono text-[10px] text-black/40">{ALUM_STORIES.length}</span>
       </div>
-      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {ALUM_STORIES.map((a) => (
           <figure
             key={a.name}
-            className="flex h-full flex-col justify-between border border-black/10 bg-white p-4 transition hover:border-black/30 hover:shadow-[0_12px_32px_-18px_rgba(0,0,0,0.25)]"
+            className="group relative aspect-[4/5] overflow-hidden border border-black/10 bg-black"
           >
-            <blockquote
-              className="text-[13px] leading-snug text-black/75"
-              style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-            >
-              &ldquo;{a.quote}&rdquo;
-            </blockquote>
-            <figcaption className="mt-4 flex items-center justify-between gap-3 border-t border-black/10 pt-3">
-              <div>
-                <p className="text-[12px] font-semibold leading-tight text-black">{a.name}</p>
-                <p className="text-[10px] leading-tight text-black/55">
+            <img
+              src={a.photo}
+              alt={a.name}
+              loading="lazy"
+              width={800}
+              height={1000}
+              className="absolute inset-0 h-full w-full object-cover grayscale transition duration-700 group-hover:grayscale-0 group-hover:scale-[1.03]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+            <img
+              src={a.logo}
+              alt={a.company}
+              loading="lazy"
+              className="absolute right-3 top-3 h-5 w-auto max-w-[70px] object-contain opacity-90 [filter:brightness(0)_invert(1)]"
+            />
+            <figcaption className="absolute inset-x-0 bottom-0 p-4 text-white">
+              <blockquote
+                className="mb-3 text-[13px] leading-snug"
+                style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic" }}
+              >
+                &ldquo;{a.quote}&rdquo;
+              </blockquote>
+              <div className="border-t border-white/25 pt-2">
+                <p className="text-[12px] font-semibold leading-tight">{a.name}</p>
+                <p className="text-[10px] leading-tight text-white/70">
                   {a.role} · {a.company}
                 </p>
               </div>
-              <img
-                src={a.logo}
-                alt={a.company}
-                loading="lazy"
-                className="h-5 w-auto max-w-[70px] object-contain opacity-70"
-              />
             </figcaption>
           </figure>
         ))}
