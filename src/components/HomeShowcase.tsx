@@ -86,15 +86,29 @@ const FACULTY_SECTION: Section = {
   eyebrow: "The Practitioners · Faculty",
   title: "Taught by people who ",
   titleItalic: "actually did it.",
-  lede: "500+ industry masters and PhD academics — from Swiggy, Morgan Stanley, NASA and Harvard — teaching the next generation of operators.",
+  lede: "A deliberate mix of doers, scholars, and global professors — so every class is grounded in what's happening now, why it works, and how the world sees it.",
   bg: "bg-white",
   cta: { label: "Meet the faculty", to: "/faculty" },
-  stats: [
-    { value: "500+", label: "Practitioners" },
-    { value: "60+", label: "PhDs & Ivy academics" },
-    { value: "24", label: "Countries represented" },
-  ],
+  stats: [],
 };
+
+const FACULTY_MIX = [
+  {
+    pct: "50%",
+    title: "Industry Practitioners",
+    body: "Leaders and entrepreneurs sharing insights from what they are doing right now. Not a decade ago. The thing they are working on today — brought into your classroom this afternoon.",
+  },
+  {
+    pct: "30%",
+    title: "Full-Time Faculty",
+    body: "Dedicated educators with PhDs from India's and the world's top institutions. They shape the core curriculum, publish in FT50 and A* journals, and build the intellectual foundation that makes everything stick.",
+  },
+  {
+    pct: "20%",
+    title: "Visiting Faculty",
+    body: "Professors from Harvard, Stanford, Wharton, Kellogg, Columbia, NYU, Cornell, BYU, USC, Imperial College London, and Seattle University — bringing global rigour and international perspective to Gurugram.",
+  },
+];
 
 const CAREER_SECTION: Section = {
   id: "career",
