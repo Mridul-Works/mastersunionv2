@@ -342,7 +342,7 @@ type LogoGroup = { label: string; logos: Logo[] };
 // so a tall-narrow mark doesn't look smaller than a wide wordmark.
 function NormalizedLogo({ src, alt }: { src: string; alt: string }) {
   const [h, setH] = useState<number>(40);
-  const onLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+  const onLoad = (e: SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
     const ratio = img.naturalWidth / Math.max(1, img.naturalHeight); // width per 1 height
     const targetWidth = 110; // px, desired optical width
