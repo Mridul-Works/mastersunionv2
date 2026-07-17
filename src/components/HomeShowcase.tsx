@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
@@ -239,72 +240,64 @@ function ShowcaseShell({ section, children }: { section: Section; children: Reac
   );
 }
 
-function LogoTile({ logo }: { logo: { url: string; original_filename: string } }) {
-  const name = logo.original_filename.replace(/\.png$/i, "");
-  return (
-    <div
-      title={name}
-      className="flex h-11 items-center justify-center bg-white/70 px-2 opacity-80 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
-    >
-      <img
-        src={logo.url}
-        alt={name}
-        loading="lazy"
-        className="h-5 w-auto max-w-full object-contain md:h-6"
-      />
-    </div>
-  );
-}
+type Logo = { url: string; original_filename: string };
+type LogoGroup = { label: string; logos: Logo[] };
 
-function LogoRow({ logos }: { logos: { url: string; original_filename: string }[] }) {
-  return (
-    <div className="grid grid-cols-4 gap-px bg-black/10 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10">
-      {logos.map((l) => (
-        <LogoTile key={l.url} logo={l} />
-      ))}
-    </div>
-  );
-}
-
-function CategorizedLogos({
-  groups,
-}: {
-  groups: { label: string; logos: { url: string; original_filename: string }[] }[];
-}) {
+function CategorizedLogos({ groups }: { groups: LogoGroup[] }) {
+  const [active, setActive] = useState<string>("All");
   const total = groups.reduce((sum, g) => sum + g.logos.length, 0);
+
+  const tabs = [{ label: "All", count: total }, ...groups.map((g) => ({ label: g.label, count: g.logos.length }))];
+  const visible: Logo[] =
+    active === "All" ? groups.flatMap((g) => g.logos) : groups.find((g) => g.label === active)?.logos ?? [];
+
   return (
-    <div className="border border-black/10 bg-white/60">
-      {/* legend */}
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 border-b border-black/10 px-3 py-2">
-        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
-          {total} recruiters
-        </span>
-        <span className="h-3 w-px bg-black/15" />
-        {groups.map((g) => (
-          <span
-            key={g.label}
-            className="font-mono text-[10px] uppercase tracking-[0.16em] text-black/50"
-          >
-            {g.label} <span className="text-black/30">·{g.logos.length}</span>
-          </span>
-        ))}
-      </div>
-      {/* dense grid per group with sticky label rail */}
-      <div className="divide-y divide-black/10">
-        {groups.map((g) => (
-          <div key={g.label} className="grid grid-cols-[110px_1fr] items-stretch">
-            <div className="flex items-center bg-black/[0.03] px-3 py-2">
-              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-black/60">
-                {g.label}
+    <div>
+      {/* Filter tabs */}
+      <div className="mb-6 flex flex-wrap items-center gap-1.5">
+        {tabs.map((t) => {
+          const isActive = t.label === active;
+          return (
+            <button
+              key={t.label}
+              type="button"
+              onClick={() => setActive(t.label)}
+              className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-medium tracking-tight transition ${
+                isActive
+                  ? "bg-black text-white"
+                  : "bg-black/[0.04] text-black/70 hover:bg-black/[0.08]"
+              }`}
+            >
+              {t.label}
+              <span
+                className={`font-mono text-[10px] ${isActive ? "text-white/60" : "text-black/40"}`}
+              >
+                {t.count}
               </span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Clean logo wall — no borders, generous spacing */}
+      <div className="grid grid-cols-3 gap-x-8 gap-y-8 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
+        {visible.map((l) => {
+          const name = l.original_filename.replace(/\.png$/i, "");
+          return (
+            <div
+              key={l.url}
+              title={name}
+              className="flex h-10 items-center justify-center"
+            >
+              <img
+                src={l.url}
+                alt={name}
+                loading="lazy"
+                className="max-h-8 w-auto max-w-full object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
+              />
             </div>
-            <div className="grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-8">
-              {g.logos.map((l) => (
-                <LogoTile key={l.url} logo={l} />
-              ))}
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
