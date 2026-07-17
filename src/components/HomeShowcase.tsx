@@ -114,7 +114,7 @@ const CAREER_GROUPS = [
   { label: "Consulting", logos: [mckinsey, bain, accenture] },
   { label: "Tech & Product", logos: [meta, servicenow, flipkart, cred, zepto, infosys, lenskart] },
   { label: "Finance & Markets", logos: [bloomberg, icici, nse, rbi] },
-  { label: "Consumer & Corporate", logos: [godrej, itc, amul, zeptoImm, credImm] },
+  { label: "Consumer & Corporate", logos: [godrej, itc, amul] },
   { label: "Venture Capital", logos: [goodcapital, waterbridge] },
 ];
 
