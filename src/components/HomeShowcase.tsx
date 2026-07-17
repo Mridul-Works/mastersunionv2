@@ -372,23 +372,9 @@ function CategorizedLogos({ groups, withFilter = false }: { groups: LogoGroup[];
       <div className="grid grid-cols-3 gap-x-8 gap-y-10 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
         {visible.map((l) => {
           const name = l.original_filename.replace(/\.png$/i, "");
-          const key = name.toLowerCase();
-          const scale =
-            key.includes("amul") || key.includes("zepto") || key.includes("nse")
-              ? "h-6"
-              : key.includes("infosys")
-                ? "h-7"
-                : key.includes("meta") || key.includes("goodcapital") || key.includes("waterbridge")
-                  ? "h-14"
-                  : "h-10";
           return (
-            <div key={l.url} title={name} className="flex h-14 items-center justify-center">
-              <img
-                src={l.url}
-                alt={name}
-                loading="lazy"
-                className={`${scale} w-auto object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0`}
-              />
+            <div key={l.url} title={name} className="flex h-16 items-center justify-center">
+              <NormalizedLogo src={l.url} alt={name} />
             </div>
           );
         })}
