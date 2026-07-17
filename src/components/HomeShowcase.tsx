@@ -39,7 +39,7 @@ import monarque from "@/assets/startup-logos/Monarque.png.asset.json";
 import nivara from "@/assets/startup-logos/Nivara.png.asset.json";
 import woodys from "@/assets/startup-logos/WoodysPizzeria.png.asset.json";
 
-// Academic partner logos (immersions)
+// Academic partner logos
 import wbs from "@/assets/immersion-logos/wbs.png.asset.json";
 import imperial from "@/assets/immersion-logos/imperial-1.png.asset.json";
 import babson from "@/assets/immersion-logos/babson.png.asset.json";
@@ -54,7 +54,7 @@ import illinois from "@/assets/immersion-logos/illinois-tech.png.asset.json";
 import uc from "@/assets/immersion-logos/uc.png.asset.json";
 import griffith from "@/assets/immersion-logos/griffith.png.asset.json";
 
-// Corporate immersion logos — Global
+// Corporate immersion logos
 import porsche from "@/assets/immersions/global/porsche.png.asset.json";
 import philips from "@/assets/immersions/global/philips.png.asset.json";
 import heineken from "@/assets/immersions/global/heineken.png.asset.json";
@@ -64,8 +64,6 @@ import agoda from "@/assets/immersions/global/agoda.png.asset.json";
 import nissan from "@/assets/immersions/global/nissan.png.asset.json";
 import stationF from "@/assets/immersions/global/station-f.png.asset.json";
 import unitedNations from "@/assets/immersions/global/united-nations.png.asset.json";
-
-// Corporate immersion logos — India
 import godrej from "@/assets/immersions/bharat/godrej.png.asset.json";
 import itc from "@/assets/immersions/bharat/itc.png.asset.json";
 import infosys from "@/assets/immersions/bharat/infosys.png.asset.json";
@@ -76,6 +74,7 @@ import rbi from "@/assets/immersions/bharat/rbi.png.asset.json";
 import nse from "@/assets/immersions/bharat/nse.png.asset.json";
 import lenskart from "@/assets/immersions/bharat/lenskart.png.asset.json";
 
+type Stat = { value: string; label: string };
 type Section = {
   id: string;
   eyebrow: string;
@@ -84,40 +83,30 @@ type Section = {
   lede: string;
   bg: string;
   cta: { label: string; to: string };
-  stats: { value: string; label: string }[];
+  stats: Stat[];
 };
 
-const FACULTY_GROUPS = [
-  {
-    label: "Industry Practitioners",
-    people: [
-      { name: "Rohit Kapoor", role: "CEO, Food Marketplace · Swiggy", img: manoj.url },
-      { name: "Manoj Kohli", role: "Former CEO, Airtel International", img: manoj.url },
-    ],
-  },
-  {
-    label: "Full-Time Faculty",
-    people: [
-      { name: "Dr Bhupesh Manoharan", role: "PhD · Strategy & Organisation", img: bhupesh.url },
-      { name: "Dr Nandini Seth", role: "PhD · Marketing", img: nandini.url },
-      { name: "Dr Garima Chaklader", role: "PhD · Economics", img: garima.url },
-    ],
-  },
-  {
-    label: "Visiting Faculty",
-    people: [
-      { name: "Dr Zal Phiroz", role: "Adjunct Prof · Harvard University", img: zal.url },
-      { name: "Daniel G. Van Der Vliet", role: "Executive Director · Cornell", img: daniel.url },
-      { name: "Dr Lan Ma", role: "Adjunct Prof of Business · NYU Stern", img: lanma.url },
-      { name: "Faverie", role: "Visiting Faculty · Global Partners", img: faverie.url },
-    ],
-  },
+const FACULTY_ALL = [
+  { name: "Manoj Kohli", img: manoj.url },
+  { name: "Dr Bhupesh Manoharan", img: bhupesh.url },
+  { name: "Dr Nandini Seth", img: nandini.url },
+  { name: "Dr Garima Chaklader", img: garima.url },
+  { name: "Dr Zal Phiroz", img: zal.url },
+  { name: "Daniel G. Van Der Vliet", img: daniel.url },
+  { name: "Dr Lan Ma", img: lanma.url },
+  { name: "Faverie", img: faverie.url },
+];
+
+const FACULTY_MIX = [
+  { pct: "50%", title: "Industry Practitioners", body: "CEOs, founders and operators teaching what they're building today." },
+  { pct: "30%", title: "Full-Time Faculty", body: "PhDs from India's and the world's top institutions. FT50 / A* research." },
+  { pct: "20%", title: "Visiting Faculty", body: "Professors from Harvard, Stanford, Wharton, Kellogg, Columbia, NYU, Cornell, Imperial." },
 ];
 
 const CAREER_GROUPS = [
   { label: "Consulting", logos: [mckinsey, bain, accenture] },
-  { label: "Technology & Product", logos: [meta, servicenow, flipkart, cred, zepto] },
-  { label: "Finance & Data", logos: [bloomberg, icici] },
+  { label: "Tech & Product", logos: [meta, servicenow, flipkart, cred, zepto] },
+  { label: "Finance", logos: [bloomberg, icici] },
   { label: "Venture Capital", logos: [goodcapital, waterbridge] },
 ];
 
@@ -127,78 +116,64 @@ const VENTURE_GROUPS = [
 ];
 
 const PARTNER_GROUPS = [
-  { label: "University Partners", logos: [wbs, imperial, escp, bocconi, nbs, babson, ivey, foster, illinois, uc, cuhk, smu, griffith] },
-  { label: "Global Corporate Immersions", logos: [porsche, philips, heineken, rabobank, rakuten, agoda, nissan, stationF, unitedNations] },
-  { label: "India Corporate Immersions", logos: [godrej, itc, infosys, zeptoImm, credImm, amul, rbi, nse, lenskart] },
+  { label: "Universities", logos: [wbs, imperial, escp, bocconi, nbs, babson, ivey, foster, illinois, uc, cuhk, smu, griffith] },
+  { label: "Global Corporates", logos: [porsche, philips, heineken, rabobank, rakuten, agoda, nissan, stationF, unitedNations] },
+  { label: "India Corporates", logos: [godrej, itc, infosys, zeptoImm, credImm, amul, rbi, nse, lenskart] },
 ];
 
 const FACULTY_SECTION: Section = {
   id: "faculty",
-  eyebrow: "The Practitioners · Faculty",
+  eyebrow: "Faculty",
   title: "Taught by people who ",
   titleItalic: "actually did it.",
-  lede: "A deliberate mix of doers, scholars, and global professors — so every class is grounded in what's happening now, why it works, and how the world sees it.",
+  lede: "A 50 / 30 / 20 mix of practitioners, PhDs and global professors.",
   bg: "bg-white",
   cta: { label: "Meet the faculty", to: "/faculty" },
-  stats: [],
+  stats: [
+    { value: "500+", label: "Faculty" },
+    { value: "60+", label: "PhDs" },
+    { value: "12", label: "Ivy+ schools" },
+  ],
 };
-
-const FACULTY_MIX = [
-  {
-    pct: "50%",
-    title: "Industry Practitioners",
-    body: "Leaders and entrepreneurs sharing insights from what they are doing right now. Not a decade ago. The thing they are working on today — brought into your classroom this afternoon.",
-  },
-  {
-    pct: "30%",
-    title: "Full-Time Faculty",
-    body: "Dedicated educators with PhDs from India's and the world's top institutions. They shape the core curriculum, publish in FT50 and A* journals, and build the intellectual foundation that makes everything stick.",
-  },
-  {
-    pct: "20%",
-    title: "Visiting Faculty",
-    body: "Professors from Harvard, Stanford, Wharton, Kellogg, Columbia, NYU, Cornell, BYU, USC, Imperial College London, and Seattle University — bringing global rigour and international perspective to Gurugram.",
-  },
-];
 
 const CAREER_SECTION: Section = {
   id: "career",
-  eyebrow: "Outcomes · Career",
+  eyebrow: "Career Outcomes",
   title: "Placed where ",
   titleItalic: "decisions are made.",
-  lede: "Consulting, investment banking, product, growth and venture — our alumni ship at the firms shaping the next decade.",
+  lede: "Consulting, product, finance and venture — at the firms shaping the next decade.",
   bg: "bg-[#F5F3EE]",
-  cta: { label: "See placement report", to: "/placements" },
+  cta: { label: "Placement report", to: "/placements" },
   stats: [
     { value: "96%", label: "Placement rate" },
     { value: "₹32.4L", label: "Median CTC" },
-    { value: "400+", label: "Recruiting partners" },
+    { value: "400+", label: "Recruiters" },
   ],
 };
 
 const VENTURES_SECTION: Section = {
   id: "entrepreneurship",
-  eyebrow: "MU Ventures · Entrepreneurship",
+  eyebrow: "Entrepreneurship",
   title: "Companies started ",
   titleItalic: "before graduation.",
-  lede: "In-house pre-seed capital, founder studios and go-to-market labs — students launch real businesses while they study.",
+  lede: "Pre-seed capital, founder studios and GTM labs — students launch while they study.",
   bg: "bg-white",
-  cta: { label: "Explore MU Ventures", to: "/mu-ventures" },
+  cta: { label: "MU Ventures", to: "/mu-ventures" },
   stats: [
     { value: "120+", label: "Student startups" },
     { value: "₹85 Cr+", label: "Raised by alumni" },
-    { value: "$1M", label: "In-house seed fund" },
+    { value: "$1M", label: "In-house fund" },
   ],
 };
 
 const PARTNERS_SECTION: Section = {
   id: "partnerships",
-  eyebrow: "Global Network · Academic Partnerships",
+  eyebrow: "Academic Partnerships",
   title: "Immersions across ",
   titleItalic: "the world's best schools.",
-  lede: "Warwick, Imperial, Babson, Ivey, ESCP, SDA Bocconi and more — cohorts spend weeks abroad learning inside partner institutions.",
+  lede: "Warwick, Imperial, Babson, Ivey, ESCP, SDA Bocconi and more — weeks abroad, on campus.",
   bg: "bg-[#F5F3EE]",
-  cta: { label: "See immersion programmes", to: "/immersions" },
+  cta: { label: "Immersion programmes", to: "/immersions" },
   stats: [
     { value: "13", label: "Partner schools" },
     { value: "9", label: "Countries" },
@@ -206,59 +181,50 @@ const PARTNERS_SECTION: Section = {
   ],
 };
 
-function ShowcaseShell({
-  section,
-  children,
-}: {
-  section: Section;
-  children: React.ReactNode;
-}) {
+function ShowcaseShell({ section, children }: { section: Section; children: React.ReactNode }) {
   return (
     <section id={section.id} className={`border-t border-black/10 ${section.bg}`}>
-      <div className="mx-auto max-w-[1280px] px-5 py-14 md:px-10 md:py-24">
-        <div className="mb-10 flex flex-col gap-6 md:mb-14 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-[46ch]">
-            <p className="mb-2 font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-black/50">
+      <div className="mx-auto max-w-[1280px] px-5 py-10 md:px-10 md:py-14">
+        <div className="mb-6 flex flex-col gap-5 md:mb-8 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-[52ch]">
+            <p className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-black/50">
               {section.eyebrow}
             </p>
             <h2
-              className="text-[clamp(1.75rem,4vw,3.25rem)] font-semibold leading-[1.05] tracking-tight text-black"
+              className="text-[clamp(1.5rem,3vw,2.25rem)] font-semibold leading-[1.1] tracking-tight text-black"
               style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
             >
               {section.title}
-              <span
-                className="italic font-light"
-                style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-              >
+              <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
                 {section.titleItalic}
               </span>
             </h2>
-            <p className="mt-4 text-[14px] leading-relaxed text-black/60">{section.lede}</p>
-            <Link
-              to={section.cta.to}
-              className="group mt-6 inline-flex items-center gap-2 rounded-full bg-black px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-black/85"
-            >
-              {section.cta.label}
-              <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
+            <p className="mt-3 text-[13px] leading-relaxed text-black/60">{section.lede}</p>
           </div>
-          {section.stats.length > 0 && (
-            <dl className="grid grid-cols-3 gap-4 md:max-w-md md:gap-8">
+          <div className="flex flex-col items-start gap-4 md:items-end">
+            <dl className="flex gap-6">
               {section.stats.map((s) => (
                 <div key={s.label}>
-                  <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/45">
-                    {s.label}
-                  </dt>
                   <dd
-                    className="mt-1 text-2xl font-semibold tracking-tight text-black md:text-3xl"
+                    className="text-xl font-semibold tracking-tight text-black md:text-2xl"
                     style={{ fontFamily: "'Fraunces', Georgia, serif" }}
                   >
                     {s.value}
                   </dd>
+                  <dt className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-black/50">
+                    {s.label}
+                  </dt>
                 </div>
               ))}
             </dl>
-          )}
+            <Link
+              to={section.cta.to}
+              className="group inline-flex items-center gap-2 rounded-full bg-black px-3.5 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-black/85"
+            >
+              {section.cta.label}
+              <ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
+          </div>
         </div>
         {children}
       </div>
@@ -266,19 +232,19 @@ function ShowcaseShell({
   );
 }
 
-function LogoGrid({ logos }: { logos: { url: string; original_filename: string }[] }) {
+function LogoRow({ logos }: { logos: { url: string; original_filename: string }[] }) {
   return (
-    <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-6">
+    <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10">
       {logos.map((l) => (
         <div
           key={l.url}
           title={l.original_filename.replace(/\.png$/i, "")}
-          className="flex h-16 items-center justify-center border border-black/10 bg-white p-3 opacity-75 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+          className="flex h-12 items-center justify-center border border-black/10 bg-white px-2 opacity-75 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
         >
           <img
             src={l.url}
             alt={l.original_filename.replace(/\.png$/i, "")}
-            className="h-7 w-auto max-w-full object-contain"
+            className="h-6 w-auto max-w-full object-contain"
             loading="lazy"
           />
         </div>
@@ -293,17 +259,17 @@ function CategorizedLogos({
   groups: { label: string; logos: { url: string; original_filename: string }[] }[];
 }) {
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-5">
       {groups.map((g) => (
         <div key={g.label}>
-          <div className="mb-3 flex items-center gap-3">
+          <div className="mb-2 flex items-center gap-3">
             <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
               {g.label}
             </span>
             <span className="h-px flex-1 bg-black/10" />
             <span className="font-mono text-[10px] text-black/40">{g.logos.length}</span>
           </div>
-          <LogoGrid logos={g.logos} />
+          <LogoRow logos={g.logos} />
         </div>
       ))}
     </div>
@@ -312,57 +278,37 @@ function CategorizedLogos({
 
 function FacultyBlock() {
   return (
-    <div className="flex flex-col gap-10">
-      {/* Composition: 50 / 30 / 20 */}
-      <div className="grid gap-4 md:grid-cols-3">
+    <div className="flex flex-col gap-6">
+      <div className="grid gap-3 md:grid-cols-3">
         {FACULTY_MIX.map((m) => (
           <div
             key={m.title}
-            className="flex flex-col border border-black/10 bg-white p-6 transition hover:border-black/30 hover:shadow-[0_12px_32px_-18px_rgba(0,0,0,0.25)]"
+            className="flex items-start gap-4 border border-black/10 bg-white p-4"
           >
-            <div className="flex items-baseline gap-3">
-              <span
-                className="text-4xl font-semibold tracking-tight text-black md:text-5xl"
-                style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-              >
-                {m.pct}
-              </span>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/50">
-                of faculty
-              </span>
+            <span
+              className="text-3xl font-semibold leading-none tracking-tight text-black"
+              style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+            >
+              {m.pct}
+            </span>
+            <div>
+              <h3 className="text-[13px] font-semibold tracking-tight text-black">{m.title}</h3>
+              <p className="mt-1 text-[12px] leading-snug text-black/60">{m.body}</p>
             </div>
-            <h3 className="mt-4 text-lg font-semibold tracking-tight text-black">{m.title}</h3>
-            <p className="mt-2 text-[13px] leading-relaxed text-black/65">{m.body}</p>
           </div>
         ))}
       </div>
 
-      {/* Categorised faculty photos */}
-      <div className="flex flex-col gap-8">
-        {FACULTY_GROUPS.map((g) => (
-          <div key={g.label}>
-            <div className="mb-3 flex items-center gap-3">
-              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
-                {g.label}
-              </span>
-              <span className="h-px flex-1 bg-black/10" />
-              <span className="font-mono text-[10px] text-black/40">{g.people.length}</span>
-            </div>
-            <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
-              {g.people.map((f) => (
-                <div key={f.name} className="group flex flex-col">
-                  <div className="relative aspect-[3/4] overflow-hidden bg-black/5">
-                    <img
-                      src={f.img}
-                      alt={f.name}
-                      loading="lazy"
-                      className="absolute inset-0 h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.03]"
-                    />
-                  </div>
-                  <p className="mt-2 text-[12px] font-semibold leading-tight text-black">{f.name}</p>
-                  <p className="text-[10px] leading-tight text-black/55">{f.role}</p>
-                </div>
-              ))}
+      <div className="grid grid-cols-4 gap-2 sm:grid-cols-6 md:grid-cols-8">
+        {FACULTY_ALL.map((f) => (
+          <div key={f.name} title={f.name} className="group">
+            <div className="relative aspect-square overflow-hidden bg-black/5">
+              <img
+                src={f.img}
+                alt={f.name}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.04]"
+              />
             </div>
           </div>
         ))}
