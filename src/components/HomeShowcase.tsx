@@ -49,18 +49,38 @@ import goodcapital from "@/assets/career-logos/GoodCapital.png.asset.json";
 import waterbridge from "@/assets/career-logos/Waterbridge.png.asset.json";
 
 // Startup / venture logos
-import bambaii from "@/assets/startup-logos/Bambaii.png.asset.json";
-import beyondveda from "@/assets/startup-logos/BeyondVeda.png.asset.json";
-import bluebrew from "@/assets/startup-logos/BlueBrew.png.asset.json";
-import eatatlas from "@/assets/startup-logos/EatAtlas.png.asset.json";
-import fnor from "@/assets/startup-logos/FNOR.png.asset.json";
-import flourish from "@/assets/startup-logos/FlourishFoods.png.asset.json";
-import kaze from "@/assets/startup-logos/Kaze.png.asset.json";
-import lexis from "@/assets/startup-logos/Lexis.png.asset.json";
-import moms from "@/assets/startup-logos/Moms.png.asset.json";
-import monarque from "@/assets/startup-logos/Monarque.png.asset.json";
-import nivara from "@/assets/startup-logos/Nivara.png.asset.json";
-import woodys from "@/assets/startup-logos/WoodysPizzeria.png.asset.json";
+import vBambaii from "@/assets/venture-logos/Bambaii.png.asset.json";
+import vBanaroma from "@/assets/venture-logos/Banaroma.png.asset.json";
+import vBeyondVeda from "@/assets/venture-logos/BeyondVeda.png.asset.json";
+import vBlueBrew from "@/assets/venture-logos/BlueBrew.png.asset.json";
+import vBullspree from "@/assets/venture-logos/Bullspree.png.asset.json";
+import vEight from "@/assets/venture-logos/EIGHT.png.asset.json";
+import vEatAtlas from "@/assets/venture-logos/EatAtlas.png.asset.json";
+import vEventsa from "@/assets/venture-logos/Eventsa.png.asset.json";
+import vFnor from "@/assets/venture-logos/FNOR.png.asset.json";
+import vFlourish from "@/assets/venture-logos/FlourishFoods.png.asset.json";
+import vGuardex from "@/assets/venture-logos/Guardex.png.asset.json";
+import vHiveschool from "@/assets/venture-logos/Hiveschool.png.asset.json";
+import vJustMyRoots from "@/assets/venture-logos/JustMyRoots.png.asset.json";
+import vKaze from "@/assets/venture-logos/Kaze.png.asset.json";
+import vLexis from "@/assets/venture-logos/Lexis.png.asset.json";
+import vMoms from "@/assets/venture-logos/Moms.png.asset.json";
+import vMonarque from "@/assets/venture-logos/Monarque.png.asset.json";
+import vNivara from "@/assets/venture-logos/Nivara.png.asset.json";
+import vOfflyn from "@/assets/venture-logos/Offlyn.png.asset.json";
+import vPixel from "@/assets/venture-logos/Pixel.png.asset.json";
+import vPlaysuper from "@/assets/venture-logos/Playsuper.png.asset.json";
+import vSaaha from "@/assets/venture-logos/Saaha.png.asset.json";
+import vSeedsAI from "@/assets/venture-logos/SeedsAI.png.asset.json";
+import vShrnm from "@/assets/venture-logos/Shrnm.png.asset.json";
+import vSpawnRight from "@/assets/venture-logos/SpawnRight.png.asset.json";
+import vStartt from "@/assets/venture-logos/Startt.png.asset.json";
+import vTrueBrands from "@/assets/venture-logos/TrueBrandsIndia.png.asset.json";
+import vVinyasa from "@/assets/venture-logos/Vinyasa.png.asset.json";
+import vWittyAdverts from "@/assets/venture-logos/WittyAdverts.png.asset.json";
+import vWoodys from "@/assets/venture-logos/WoodysPizzeria.png.asset.json";
+import vYango from "@/assets/venture-logos/Yango.png.asset.json";
+
 
 // Academic partner logos
 import wbs from "@/assets/immersion-logos/wbs.png.asset.json";
