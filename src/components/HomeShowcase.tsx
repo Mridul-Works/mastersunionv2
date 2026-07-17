@@ -87,16 +87,31 @@ type Section = {
   stats: { value: string; label: string }[];
 };
 
-const FACULTY = [
-  { name: "Rohit Kapoor", role: "CEO, Food Marketplace · Swiggy", img: manoj.url },
-  { name: "Manoj Kohli", role: "Former CEO, Airtel International", img: manoj.url },
-  { name: "Dr Bhupesh Manoharan", role: "PhD · Strategy & Organisation", img: bhupesh.url },
-  { name: "Dr Nandini Seth", role: "PhD · Marketing", img: nandini.url },
-  { name: "Dr Garima Chaklader", role: "PhD · Economics", img: garima.url },
-  { name: "Dr Zal Phiroz", role: "Adjunct Prof · Harvard University", img: zal.url },
-  { name: "Daniel G. Van Der Vliet", role: "Executive Director · Cornell", img: daniel.url },
-  { name: "Dr Lan Ma", role: "Adjunct Prof of Business · NYU Stern", img: lanma.url },
-  { name: "Faverie", role: "Visiting Faculty · Global Partners", img: faverie.url },
+const FACULTY_GROUPS = [
+  {
+    label: "Industry Practitioners",
+    people: [
+      { name: "Rohit Kapoor", role: "CEO, Food Marketplace · Swiggy", img: manoj.url },
+      { name: "Manoj Kohli", role: "Former CEO, Airtel International", img: manoj.url },
+    ],
+  },
+  {
+    label: "Full-Time Faculty",
+    people: [
+      { name: "Dr Bhupesh Manoharan", role: "PhD · Strategy & Organisation", img: bhupesh.url },
+      { name: "Dr Nandini Seth", role: "PhD · Marketing", img: nandini.url },
+      { name: "Dr Garima Chaklader", role: "PhD · Economics", img: garima.url },
+    ],
+  },
+  {
+    label: "Visiting Faculty",
+    people: [
+      { name: "Dr Zal Phiroz", role: "Adjunct Prof · Harvard University", img: zal.url },
+      { name: "Daniel G. Van Der Vliet", role: "Executive Director · Cornell", img: daniel.url },
+      { name: "Dr Lan Ma", role: "Adjunct Prof of Business · NYU Stern", img: lanma.url },
+      { name: "Faverie", role: "Visiting Faculty · Global Partners", img: faverie.url },
+    ],
+  },
 ];
 
 const CAREER_GROUPS = [
