@@ -94,21 +94,21 @@ type Section = {
 };
 
 const FACULTY_ALL = [
-  { name: "Manoj Kohli", role: "Country Head", company: "SoftBank India", img: manoj.url },
-  { name: "Dr Bhupesh Manoharan", role: "Associate Professor", company: "Masters' Union", img: bhupesh.url },
-  { name: "Dr Nandini Seth", role: "Assistant Professor", company: "Masters' Union", img: nandini.url },
-  { name: "Dr Garima Chaklader", role: "Associate Professor", company: "Masters' Union", img: garima.url },
-  { name: "Dr Zal Phiroz", role: "Visiting Faculty", company: "Harvard University", img: zal.url },
-  { name: "Daniel G. Van Der Vliet", role: "Executive Director, Family Business", company: "Cornell University", img: daniel.url },
-  { name: "Dr Lan Ma", role: "Visiting Professor", company: "NYU Stern", img: lanma.url },
-  { name: "Emmanuel Faverie", role: "Visiting Professor", company: "ESCP Business School", img: faverie.url },
+  { name: "Manoj Kohli", role: "Country Head", company: "SoftBank India", img: manoj.url, category: "Industry" },
+  { name: "Dr Bhupesh Manoharan", role: "Associate Professor", company: "Masters' Union", img: bhupesh.url, category: "Full-Time" },
+  { name: "Dr Nandini Seth", role: "Assistant Professor", company: "Masters' Union", img: nandini.url, category: "Full-Time" },
+  { name: "Dr Garima Chaklader", role: "Associate Professor", company: "Masters' Union", img: garima.url, category: "Full-Time" },
+  { name: "Dr Zal Phiroz", role: "Visiting Faculty", company: "Harvard University", img: zal.url, category: "Visiting" },
+  { name: "Daniel G. Van Der Vliet", role: "Executive Director, Family Business", company: "Cornell University", img: daniel.url, category: "Visiting" },
+  { name: "Dr Lan Ma", role: "Visiting Professor", company: "NYU Stern", img: lanma.url, category: "Visiting" },
+  { name: "Emmanuel Faverie", role: "Visiting Professor", company: "ESCP Business School", img: faverie.url, category: "Visiting" },
 ];
 
 
 const FACULTY_MIX = [
-  { pct: "50%", title: "Industry Practitioners", body: "CEOs, founders and operators teaching what they're building today." },
-  { pct: "30%", title: "Full-Time Faculty", body: "PhDs from India's and the world's top institutions. FT50 / A* research." },
-  { pct: "20%", title: "Visiting Faculty", body: "Professors from Harvard, Stanford, Wharton, Kellogg, Columbia, NYU, Cornell, Imperial." },
+  { key: "Industry", pct: "50%", title: "Industry Practitioners", body: "CEOs, founders and operators teaching what they're building today." },
+  { key: "Full-Time", pct: "30%", title: "Full-Time Faculty", body: "PhDs from India's and the world's top institutions. FT50 / A* research." },
+  { key: "Visiting", pct: "20%", title: "Visiting Faculty", body: "Professors from Harvard, Stanford, Wharton, Kellogg, Columbia, NYU, Cornell, Imperial." },
 ];
 
 const CAREER_GROUPS = [
@@ -305,32 +305,56 @@ function CategorizedLogos({ groups, withFilter = false }: { groups: LogoGroup[];
 
 
 function FacultyBlock() {
+  const [active, setActive] = useState<string>("All");
+  const visible = active === "All" ? FACULTY_ALL : FACULTY_ALL.filter((f) => f.category === active);
+
   return (
     <div className="grid gap-6 md:grid-cols-2 md:gap-8">
-      {/* Left: vertical mix */}
+      {/* Left: vertical mix (clickable filters) */}
       <div className="flex flex-col gap-3">
-        {FACULTY_MIX.map((m) => (
-          <div
-            key={m.title}
-            className="flex items-start gap-4 border border-black/10 bg-white p-4"
-          >
-            <span
-              className="text-3xl font-semibold leading-none tracking-tight text-black"
-              style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+        {FACULTY_MIX.map((m) => {
+          const isActive = active === m.key;
+          return (
+            <button
+              key={m.title}
+              type="button"
+              onClick={() => setActive(isActive ? "All" : m.key)}
+              aria-pressed={isActive}
+              className={`flex items-start gap-4 border p-4 text-left transition ${
+                isActive
+                  ? "border-black bg-black text-white"
+                  : "border-black/10 bg-white text-black hover:border-black/30 hover:bg-black/[0.02]"
+              }`}
             >
-              {m.pct}
-            </span>
-            <div>
-              <h3 className="text-[13px] font-semibold tracking-tight text-black">{m.title}</h3>
-              <p className="mt-1 text-[12px] leading-snug text-black/60">{m.body}</p>
-            </div>
-          </div>
-        ))}
+              <span
+                className="text-3xl font-semibold leading-none tracking-tight"
+                style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+              >
+                {m.pct}
+              </span>
+              <div>
+                <h3 className="text-[13px] font-semibold tracking-tight">{m.title}</h3>
+                <p className={`mt-1 text-[12px] leading-snug ${isActive ? "text-white/70" : "text-black/60"}`}>
+                  {m.body}
+                </p>
+              </div>
+            </button>
+          );
+        })}
+        {active !== "All" && (
+          <button
+            type="button"
+            onClick={() => setActive("All")}
+            className="self-start text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50 hover:text-black"
+          >
+            ← Show all faculty
+          </button>
+        )}
       </div>
 
       {/* Right: faculty images with designations */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-4">
-        {FACULTY_ALL.map((f) => (
+        {visible.map((f) => (
           <figure key={f.name} title={f.name} className="group flex flex-col">
             <div className="relative aspect-square overflow-hidden bg-black/5">
               <img
