@@ -1861,7 +1861,7 @@ function PgpTbm() {
                             <img
                               src={l.src}
                               alt={l.name}
-                              className="h-6 w-auto max-w-full object-contain"
+                              className="h-5 w-auto max-w-full object-contain"
                               loading="lazy"
                             />
 
@@ -1976,7 +1976,7 @@ function PgpTbm() {
                       <img
                         src={logo.url}
                         alt={`${logo.name} logo`}
-                        className="h-8 w-auto max-w-full object-contain opacity-70 transition group-hover:opacity-90 hover:!opacity-100"
+                        className="h-5 w-auto max-w-full object-contain opacity-70 transition group-hover:opacity-90 hover:!opacity-100"
                         loading="lazy"
                       />
                     </div>
@@ -2052,7 +2052,7 @@ function PgpTbm() {
                       <img
                         src={logo.url}
                         alt={`${logo.name} logo`}
-                        className="h-8 w-auto max-w-full object-contain opacity-75 transition hover:opacity-100"
+                        className="h-5 w-auto max-w-full object-contain opacity-75 transition hover:opacity-100"
                         loading="lazy"
                       />
                     </div>
