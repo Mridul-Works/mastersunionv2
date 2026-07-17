@@ -133,7 +133,7 @@ const FACULTY_SECTION: Section = {
   eyebrow: "Faculty",
   title: "Taught by people who ",
   titleItalic: "actually did it.",
-  lede: "A 50 / 30 / 20 mix of practitioners, PhDs and global professors.",
+  lede: "Our faculty is a deliberate 50 / 30 / 20 mix of industry practitioners, tenured PhDs and visiting global professors. CXOs, founders and operators lead the majority of classes, while academic rigour is anchored by researchers from Ivy+ and top global schools.",
   bg: "bg-white",
   cta: { label: "Meet the faculty", to: "/faculty" },
   stats: [
