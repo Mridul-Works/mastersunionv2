@@ -252,11 +252,13 @@ function CategorizedLogos({ groups }: { groups: LogoGroup[] }) {
         const name = l.original_filename.replace(/\.png$/i, "");
         const key = name.toLowerCase();
         const scale =
-          key.includes("amul") || key.includes("zepto") || key.includes("infosys")
-            ? "h-7"
-            : key.includes("meta") || key.includes("goodcapital") || key.includes("waterbridge")
-              ? "h-14"
-              : "h-10";
+          key.includes("amul") || key.includes("zepto") || key.includes("nse")
+            ? "h-6"
+            : key.includes("infosys")
+              ? "h-7"
+              : key.includes("meta") || key.includes("goodcapital") || key.includes("waterbridge")
+                ? "h-14"
+                : "h-10";
         return (
           <div
             key={l.url}
