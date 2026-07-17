@@ -94,21 +94,21 @@ type Section = {
 };
 
 const FACULTY_ALL = [
-  { name: "Manoj Kohli", role: "Country Head", company: "SoftBank India", img: manoj.url },
-  { name: "Dr Bhupesh Manoharan", role: "Associate Professor", company: "Masters' Union", img: bhupesh.url },
-  { name: "Dr Nandini Seth", role: "Assistant Professor", company: "Masters' Union", img: nandini.url },
-  { name: "Dr Garima Chaklader", role: "Associate Professor", company: "Masters' Union", img: garima.url },
-  { name: "Dr Zal Phiroz", role: "Visiting Faculty", company: "Harvard University", img: zal.url },
-  { name: "Daniel G. Van Der Vliet", role: "Executive Director, Family Business", company: "Cornell University", img: daniel.url },
-  { name: "Dr Lan Ma", role: "Visiting Professor", company: "NYU Stern", img: lanma.url },
-  { name: "Emmanuel Faverie", role: "Visiting Professor", company: "ESCP Business School", img: faverie.url },
+  { name: "Manoj Kohli", role: "Country Head", company: "SoftBank India", img: manoj.url, category: "Industry" },
+  { name: "Dr Bhupesh Manoharan", role: "Associate Professor", company: "Masters' Union", img: bhupesh.url, category: "Full-Time" },
+  { name: "Dr Nandini Seth", role: "Assistant Professor", company: "Masters' Union", img: nandini.url, category: "Full-Time" },
+  { name: "Dr Garima Chaklader", role: "Associate Professor", company: "Masters' Union", img: garima.url, category: "Full-Time" },
+  { name: "Dr Zal Phiroz", role: "Visiting Faculty", company: "Harvard University", img: zal.url, category: "Visiting" },
+  { name: "Daniel G. Van Der Vliet", role: "Executive Director, Family Business", company: "Cornell University", img: daniel.url, category: "Visiting" },
+  { name: "Dr Lan Ma", role: "Visiting Professor", company: "NYU Stern", img: lanma.url, category: "Visiting" },
+  { name: "Emmanuel Faverie", role: "Visiting Professor", company: "ESCP Business School", img: faverie.url, category: "Visiting" },
 ];
 
 
 const FACULTY_MIX = [
-  { pct: "50%", title: "Industry Practitioners", body: "CEOs, founders and operators teaching what they're building today." },
-  { pct: "30%", title: "Full-Time Faculty", body: "PhDs from India's and the world's top institutions. FT50 / A* research." },
-  { pct: "20%", title: "Visiting Faculty", body: "Professors from Harvard, Stanford, Wharton, Kellogg, Columbia, NYU, Cornell, Imperial." },
+  { key: "Industry", pct: "50%", title: "Industry Practitioners", body: "CEOs, founders and operators teaching what they're building today." },
+  { key: "Full-Time", pct: "30%", title: "Full-Time Faculty", body: "PhDs from India's and the world's top institutions. FT50 / A* research." },
+  { key: "Visiting", pct: "20%", title: "Visiting Faculty", body: "Professors from Harvard, Stanford, Wharton, Kellogg, Columbia, NYU, Cornell, Imperial." },
 ];
 
 const CAREER_GROUPS = [
