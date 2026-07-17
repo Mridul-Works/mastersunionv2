@@ -244,71 +244,38 @@ type Logo = { url: string; original_filename: string };
 type LogoGroup = { label: string; logos: Logo[] };
 
 function CategorizedLogos({ groups }: { groups: LogoGroup[] }) {
-  const [active, setActive] = useState<string>("All");
-  const total = groups.reduce((sum, g) => sum + g.logos.length, 0);
-
-  const tabs = [{ label: "All", count: total }, ...groups.map((g) => ({ label: g.label, count: g.logos.length }))];
-  const visible: Logo[] =
-    active === "All" ? groups.flatMap((g) => g.logos) : groups.find((g) => g.label === active)?.logos ?? [];
+  const visible: Logo[] = groups.flatMap((g) => g.logos);
 
   return (
-    <div>
-      {/* Filter tabs */}
-      <div className="mb-6 flex flex-wrap items-center gap-1.5">
-        {tabs.map((t) => {
-          const isActive = t.label === active;
-          return (
-            <button
-              key={t.label}
-              type="button"
-              onClick={() => setActive(t.label)}
-              className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-medium tracking-tight transition ${
-                isActive
-                  ? "bg-black text-white"
-                  : "bg-black/[0.04] text-black/70 hover:bg-black/[0.08]"
-              }`}
-            >
-              {t.label}
-              <span
-                className={`font-mono text-[10px] ${isActive ? "text-white/60" : "text-black/40"}`}
-              >
-                {t.count}
-              </span>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Clean logo wall — no borders, generous spacing */}
-      <div className="grid grid-cols-3 gap-x-8 gap-y-8 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
-        {visible.map((l) => {
-          const name = l.original_filename.replace(/\.png$/i, "");
-          const key = name.toLowerCase();
-          const scale =
-            key.includes("amul") || key.includes("zepto") || key.includes("infosys")
-              ? "h-7"
-              : key.includes("meta") || key.includes("goodcapital") || key.includes("waterbridge")
-                ? "h-12"
-                : "h-10";
-          return (
-            <div
-              key={l.url}
-              title={name}
-              className="flex h-12 items-center justify-center"
-            >
-              <img
-                src={l.url}
-                alt={name}
-                loading="lazy"
-                className={`${scale} w-auto object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0`}
-              />
-            </div>
-          );
-        })}
-      </div>
+    <div className="grid grid-cols-3 gap-x-8 gap-y-10 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
+      {visible.map((l) => {
+        const name = l.original_filename.replace(/\.png$/i, "");
+        const key = name.toLowerCase();
+        const scale =
+          key.includes("amul") || key.includes("zepto") || key.includes("infosys")
+            ? "h-7"
+            : key.includes("meta") || key.includes("goodcapital") || key.includes("waterbridge")
+              ? "h-14"
+              : "h-10";
+        return (
+          <div
+            key={l.url}
+            title={name}
+            className="flex h-14 items-center justify-center"
+          >
+            <img
+              src={l.url}
+              alt={name}
+              loading="lazy"
+              className={`${scale} w-auto object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0`}
+            />
+          </div>
+        );
+      })}
     </div>
   );
 }
+
 
 function FacultyBlock() {
   return (
