@@ -389,8 +389,10 @@ export default function HomeShowcase() {
         <FacultyBlock />
       </ShowcaseShell>
       <ShowcaseShell section={CAREER_SECTION}>
-        <CategorizedLogos groups={CAREER_GROUPS} />
         <AlumStories />
+        <div className="mt-8">
+          <CategorizedLogos groups={CAREER_GROUPS} />
+        </div>
       </ShowcaseShell>
       <ShowcaseShell section={VENTURES_SECTION}>
         <CategorizedLogos groups={VENTURE_GROUPS} />
