@@ -124,9 +124,8 @@ const VENTURE_GROUPS = [
 ];
 
 const PARTNER_GROUPS = [
-  { label: "Universities", logos: [wbs, imperial, escp, bocconi, nbs, babson, ivey, foster, illinois, uc, cuhk, smu, griffith] },
-  { label: "Global Corporates", logos: [porsche, philips, heineken, rabobank, rakuten, agoda, nissan, stationF, unitedNations] },
-  { label: "India Corporates", logos: [godrej, itc, infosys, zeptoImm, credImm, amul, rbi, nse, lenskart] },
+  { label: "Academic", logos: [wbs, imperial, escp, bocconi, nbs, babson, ivey, foster, illinois, uc, cuhk, smu, griffith] },
+  { label: "Corporate", logos: [porsche, philips, heineken, rabobank, rakuten, agoda, nissan, stationF, unitedNations, godrej, itc, infosys, zeptoImm, credImm, amul, rbi, nse, lenskart] },
 ];
 
 const FACULTY_SECTION: Section = {
