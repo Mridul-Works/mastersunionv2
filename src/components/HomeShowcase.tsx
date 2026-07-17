@@ -317,6 +317,56 @@ function FacultyBlock() {
   );
 }
 
+const ALUM_STORIES = [
+  { name: "Aarav Mehta", role: "Business Analyst", company: "McKinsey & Company", logo: mckinsey.url, quote: "Live case work in Year 2 got me an offer before final placements." },
+  { name: "Isha Rao", role: "Associate Consultant", company: "Bain & Company", logo: bain.url, quote: "MU's practitioner faculty rewired how I break down a problem." },
+  { name: "Kabir Shah", role: "APM", company: "Meta", logo: meta.url, quote: "Building at MU Ventures made the PM interview feel like a normal Tuesday." },
+  { name: "Ananya Gupta", role: "Investor", company: "Good Capital", logo: goodcapital.url, quote: "Pitched a portfolio company on campus, joined the fund that heard the pitch." },
+];
+
+function AlumStories() {
+  return (
+    <div className="mt-6">
+      <div className="mb-2 flex items-center gap-3">
+        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
+          Alum stories
+        </span>
+        <span className="h-px flex-1 bg-black/10" />
+        <span className="font-mono text-[10px] text-black/40">{ALUM_STORIES.length}</span>
+      </div>
+      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+        {ALUM_STORIES.map((a) => (
+          <figure
+            key={a.name}
+            className="flex h-full flex-col justify-between border border-black/10 bg-white p-4 transition hover:border-black/30 hover:shadow-[0_12px_32px_-18px_rgba(0,0,0,0.25)]"
+          >
+            <blockquote
+              className="text-[13px] leading-snug text-black/75"
+              style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+            >
+              &ldquo;{a.quote}&rdquo;
+            </blockquote>
+            <figcaption className="mt-4 flex items-center justify-between gap-3 border-t border-black/10 pt-3">
+              <div>
+                <p className="text-[12px] font-semibold leading-tight text-black">{a.name}</p>
+                <p className="text-[10px] leading-tight text-black/55">
+                  {a.role} · {a.company}
+                </p>
+              </div>
+              <img
+                src={a.logo}
+                alt={a.company}
+                loading="lazy"
+                className="h-5 w-auto max-w-[70px] object-contain opacity-70"
+              />
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function HomeShowcase() {
   return (
     <>
@@ -325,6 +375,7 @@ export default function HomeShowcase() {
       </ShowcaseShell>
       <ShowcaseShell section={CAREER_SECTION}>
         <CategorizedLogos groups={CAREER_GROUPS} />
+        <AlumStories />
       </ShowcaseShell>
       <ShowcaseShell section={VENTURES_SECTION}>
         <CategorizedLogos groups={VENTURE_GROUPS} />
@@ -335,3 +386,4 @@ export default function HomeShowcase() {
     </>
   );
 }
+
