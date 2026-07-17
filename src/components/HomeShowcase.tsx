@@ -111,8 +111,9 @@ const FACULTY_MIX = [
 
 const CAREER_GROUPS = [
   { label: "Consulting", logos: [mckinsey, bain, accenture] },
-  { label: "Tech & Product", logos: [meta, servicenow, flipkart, cred, zepto] },
-  { label: "Finance", logos: [bloomberg, icici] },
+  { label: "Tech & Product", logos: [meta, servicenow, flipkart, cred, zepto, infosys, lenskart] },
+  { label: "Finance & Markets", logos: [bloomberg, icici, nse, rbi] },
+  { label: "Consumer & Corporate", logos: [godrej, itc, amul, zeptoImm, credImm] },
   { label: "Venture Capital", logos: [goodcapital, waterbridge] },
 ];
 
@@ -238,22 +239,28 @@ function ShowcaseShell({ section, children }: { section: Section; children: Reac
   );
 }
 
+function LogoTile({ logo }: { logo: { url: string; original_filename: string } }) {
+  const name = logo.original_filename.replace(/\.png$/i, "");
+  return (
+    <div
+      title={name}
+      className="flex h-11 items-center justify-center bg-white/70 px-2 opacity-80 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
+    >
+      <img
+        src={logo.url}
+        alt={name}
+        loading="lazy"
+        className="h-5 w-auto max-w-full object-contain md:h-6"
+      />
+    </div>
+  );
+}
+
 function LogoRow({ logos }: { logos: { url: string; original_filename: string }[] }) {
   return (
-    <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10">
+    <div className="grid grid-cols-4 gap-px bg-black/10 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10">
       {logos.map((l) => (
-        <div
-          key={l.url}
-          title={l.original_filename.replace(/\.png$/i, "")}
-          className="flex h-12 items-center justify-center border border-black/10 bg-white px-2 opacity-75 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
-        >
-          <img
-            src={l.url}
-            alt={l.original_filename.replace(/\.png$/i, "")}
-            className="h-6 w-auto max-w-full object-contain"
-            loading="lazy"
-          />
-        </div>
+        <LogoTile key={l.url} logo={l} />
       ))}
     </div>
   );
@@ -264,20 +271,41 @@ function CategorizedLogos({
 }: {
   groups: { label: string; logos: { url: string; original_filename: string }[] }[];
 }) {
+  const total = groups.reduce((sum, g) => sum + g.logos.length, 0);
   return (
-    <div className="flex flex-col gap-5">
-      {groups.map((g) => (
-        <div key={g.label}>
-          <div className="mb-2 flex items-center gap-3">
-            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
-              {g.label}
-            </span>
-            <span className="h-px flex-1 bg-black/10" />
-            <span className="font-mono text-[10px] text-black/40">{g.logos.length}</span>
+    <div className="border border-black/10 bg-white/60">
+      {/* legend */}
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 border-b border-black/10 px-3 py-2">
+        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
+          {total} recruiters
+        </span>
+        <span className="h-3 w-px bg-black/15" />
+        {groups.map((g) => (
+          <span
+            key={g.label}
+            className="font-mono text-[10px] uppercase tracking-[0.16em] text-black/50"
+          >
+            {g.label} <span className="text-black/30">·{g.logos.length}</span>
+          </span>
+        ))}
+      </div>
+      {/* dense grid per group with sticky label rail */}
+      <div className="divide-y divide-black/10">
+        {groups.map((g) => (
+          <div key={g.label} className="grid grid-cols-[110px_1fr] items-stretch">
+            <div className="flex items-center bg-black/[0.03] px-3 py-2">
+              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-black/60">
+                {g.label}
+              </span>
+            </div>
+            <div className="grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-8">
+              {g.logos.map((l) => (
+                <LogoTile key={l.url} logo={l} />
+              ))}
+            </div>
           </div>
-          <LogoRow logos={g.logos} />
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
