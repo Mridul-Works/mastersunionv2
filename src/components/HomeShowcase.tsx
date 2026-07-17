@@ -86,15 +86,29 @@ const FACULTY_SECTION: Section = {
   eyebrow: "The Practitioners · Faculty",
   title: "Taught by people who ",
   titleItalic: "actually did it.",
-  lede: "500+ industry masters and PhD academics — from Swiggy, Morgan Stanley, NASA and Harvard — teaching the next generation of operators.",
+  lede: "A deliberate mix of doers, scholars, and global professors — so every class is grounded in what's happening now, why it works, and how the world sees it.",
   bg: "bg-white",
   cta: { label: "Meet the faculty", to: "/faculty" },
-  stats: [
-    { value: "500+", label: "Practitioners" },
-    { value: "60+", label: "PhDs & Ivy academics" },
-    { value: "24", label: "Countries represented" },
-  ],
+  stats: [],
 };
+
+const FACULTY_MIX = [
+  {
+    pct: "50%",
+    title: "Industry Practitioners",
+    body: "Leaders and entrepreneurs sharing insights from what they are doing right now. Not a decade ago. The thing they are working on today — brought into your classroom this afternoon.",
+  },
+  {
+    pct: "30%",
+    title: "Full-Time Faculty",
+    body: "Dedicated educators with PhDs from India's and the world's top institutions. They shape the core curriculum, publish in FT50 and A* journals, and build the intellectual foundation that makes everything stick.",
+  },
+  {
+    pct: "20%",
+    title: "Visiting Faculty",
+    body: "Professors from Harvard, Stanford, Wharton, Kellogg, Columbia, NYU, Cornell, BYU, USC, Imperial College London, and Seattle University — bringing global rigour and international perspective to Gurugram.",
+  },
+];
 
 const CAREER_SECTION: Section = {
   id: "career",
@@ -177,21 +191,23 @@ function ShowcaseShell({
               <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </div>
-          <dl className="grid grid-cols-3 gap-4 md:max-w-md md:gap-8">
-            {section.stats.map((s) => (
-              <div key={s.label}>
-                <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/45">
-                  {s.label}
-                </dt>
-                <dd
-                  className="mt-1 text-2xl font-semibold tracking-tight text-black md:text-3xl"
-                  style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-                >
-                  {s.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
+          {section.stats.length > 0 && (
+            <dl className="grid grid-cols-3 gap-4 md:max-w-md md:gap-8">
+              {section.stats.map((s) => (
+                <div key={s.label}>
+                  <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/45">
+                    {s.label}
+                  </dt>
+                  <dd
+                    className="mt-1 text-2xl font-semibold tracking-tight text-black md:text-3xl"
+                    style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                  >
+                    {s.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          )}
         </div>
         {children}
       </div>
@@ -222,21 +238,48 @@ function LogoGrid({ logos }: { logos: { url: string; original_filename: string }
 
 function FacultyBlock() {
   return (
-    <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-9">
-      {FACULTY.map((f) => (
-        <div key={f.name} className="group flex flex-col">
-          <div className="relative aspect-[3/4] overflow-hidden bg-black/5">
-            <img
-              src={f.img}
-              alt={f.name}
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.03]"
-            />
+    <div className="flex flex-col gap-10">
+      {/* Composition: 50 / 30 / 20 */}
+      <div className="grid gap-4 md:grid-cols-3">
+        {FACULTY_MIX.map((m) => (
+          <div
+            key={m.title}
+            className="flex flex-col border border-black/10 bg-white p-6 transition hover:border-black/30 hover:shadow-[0_12px_32px_-18px_rgba(0,0,0,0.25)]"
+          >
+            <div className="flex items-baseline gap-3">
+              <span
+                className="text-4xl font-semibold tracking-tight text-black md:text-5xl"
+                style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+              >
+                {m.pct}
+              </span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/50">
+                of faculty
+              </span>
+            </div>
+            <h3 className="mt-4 text-lg font-semibold tracking-tight text-black">{m.title}</h3>
+            <p className="mt-2 text-[13px] leading-relaxed text-black/65">{m.body}</p>
           </div>
-          <p className="mt-2 text-[12px] font-semibold leading-tight text-black">{f.name}</p>
-          <p className="text-[10px] leading-tight text-black/55">{f.role}</p>
-        </div>
-      ))}
+        ))}
+      </div>
+
+      {/* Faculty photo strip */}
+      <div className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-9">
+        {FACULTY.map((f) => (
+          <div key={f.name} className="group flex flex-col">
+            <div className="relative aspect-[3/4] overflow-hidden bg-black/5">
+              <img
+                src={f.img}
+                alt={f.name}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.03]"
+              />
+            </div>
+            <p className="mt-2 text-[12px] font-semibold leading-tight text-black">{f.name}</p>
+            <p className="text-[10px] leading-tight text-black/55">{f.role}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
