@@ -213,8 +213,9 @@ const CAREER_GROUPS = [
 ];
 
 const VENTURE_GROUPS = [
-  { label: "Food & Wellness", logos: [bluebrew, eatatlas, flourish, moms, woodys, beyondveda] },
-  { label: "Consumer & Tech", logos: [bambaii, kaze, lexis, monarque, nivara, fnor] },
+  { label: "Food & Beverage", logos: [vBlueBrew, vEatAtlas, vFlourish, vMoms, vWoodys, vBeyondVeda, vSaaha, vJustMyRoots, vBanaroma, vVinyasa] },
+  { label: "Consumer Brands", logos: [vBambaii, vKaze, vLexis, vMonarque, vNivara, vFnor, vTrueBrands, vGuardex, vShrnm, vYango] },
+  { label: "Tech & Platforms", logos: [vOfflyn, vPlaysuper, vSeedsAI, vHiveschool, vSpawnRight, vBullspree, vEventsa, vWittyAdverts, vPixel, vStartt, vEight] },
 ];
 
 const PARTNER_GROUPS = [
