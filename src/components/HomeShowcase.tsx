@@ -11,6 +11,28 @@ import daniel from "@/assets/faculty/daniel.png.asset.json";
 import lanma from "@/assets/faculty/lanma.png.asset.json";
 import manoj from "@/assets/faculty/manoj.png.asset.json";
 import faverie from "@/assets/faculty/faverie.png.asset.json";
+import havish from "@/assets/faculty/havish-madhvapaty.png.asset.json";
+import ekhlaque from "@/assets/faculty/ekhlaque-bari.png.asset.json";
+import sumit from "@/assets/faculty/sumit-shukla.png.asset.json";
+import aditya from "@/assets/faculty/aditya-turalapati.png.asset.json";
+import divij from "@/assets/faculty/divij-bajaj.png.asset.json";
+import parikshit from "@/assets/faculty/parikshit-khanna.png.asset.json";
+import karmanya from "@/assets/faculty/karmanya-suri.png.asset.json";
+import gauravA from "@/assets/faculty/gaurav-arora.png.asset.json";
+import daveLewis from "@/assets/faculty/dave-lewis.png.asset.json";
+import umberto from "@/assets/faculty/umberto.png.asset.json";
+import carolina from "@/assets/faculty/carolina.png.asset.json";
+import federico from "@/assets/faculty/federico-biasutti.png.asset.json";
+import paola from "@/assets/faculty/paola-santoro.png.asset.json";
+import rosario from "@/assets/faculty/rosario.png.asset.json";
+import timothy from "@/assets/faculty/timothy-oconnell.png.asset.json";
+import frank from "@/assets/faculty/frank-barry.png.asset.json";
+import mairead from "@/assets/faculty/mairead-braddy.png.asset.json";
+import enno from "@/assets/faculty/enno-masurel.png.asset.json";
+import orestis from "@/assets/faculty/orestis.png.asset.json";
+import annalisa from "@/assets/faculty/annalisa.png.asset.json";
+import evangelos from "@/assets/faculty/evangelos.png.asset.json";
+import xiaoyu from "@/assets/faculty/xiaoyu.png.asset.json";
 
 // Career logos
 import mckinsey from "@/assets/career-logos/McKinsey.png.asset.json";
@@ -111,6 +133,15 @@ const FACULTY_ALL: { name: string; role: string; company: string; img?: string; 
   { name: "Dr Edward W. Rogers", role: "Former Chief Knowledge Officer", company: "NASA", category: "Industry" },
   { name: "Vivek Gambhir", role: "Former CEO", company: "boAt", category: "Industry" },
   { name: "Sanjiv Bhasin", role: "Former Director", company: "IIFL", category: "Industry" },
+  { name: "Dave Lewis", role: "Former Group CEO", company: "Tesco", img: daveLewis.url, category: "Industry" },
+  { name: "Havish Madhvapaty", role: "Industry Practitioner", company: "Masters' Union", img: havish.url, category: "Industry" },
+  { name: "Ekhlaque Bari", role: "Industry Practitioner", company: "Masters' Union", img: ekhlaque.url, category: "Industry" },
+  { name: "Sumit Shukla", role: "Industry Practitioner", company: "Masters' Union", img: sumit.url, category: "Industry" },
+  { name: "Aditya Turalapati", role: "Industry Practitioner", company: "Masters' Union", img: aditya.url, category: "Industry" },
+  { name: "Divij Bajaj", role: "Industry Practitioner", company: "Masters' Union", img: divij.url, category: "Industry" },
+  { name: "Parikshit Khanna", role: "Industry Practitioner", company: "Masters' Union", img: parikshit.url, category: "Industry" },
+  { name: "Karmanya Suri", role: "Industry Practitioner", company: "Masters' Union", img: karmanya.url, category: "Industry" },
+  { name: "Gaurav Arora", role: "Industry Practitioner", company: "Masters' Union", img: gauravA.url, category: "Industry" },
 
   // Full-Time Faculty
   { name: "Dr Bhupesh Manoharan", role: "PhD · Strategy & Organisation", company: "Masters' Union", img: bhupesh.url, category: "Full-Time" },
@@ -125,6 +156,19 @@ const FACULTY_ALL: { name: string; role: string; company: string; img?: string; 
   { name: "Daniel G. Van Der Vliet", role: "Executive Director, Family Business", company: "Cornell University", img: daniel.url, category: "Visiting" },
   { name: "Dr Lan Ma", role: "Adjunct Professor of Business", company: "NYU Stern", img: lanma.url, category: "Visiting" },
   { name: "Emmanuel Faverie", role: "Visiting Faculty", company: "ESCP Business School", img: faverie.url, category: "Visiting" },
+  { name: "Enno Masurel", role: "Professor of Entrepreneurship", company: "VU Amsterdam", img: enno.url, category: "Visiting" },
+  { name: "Frank Barry", role: "Professor of International Business", company: "Trinity College Dublin", img: frank.url, category: "Visiting" },
+  { name: "Timothy O'Connell", role: "Visiting Faculty", company: "Global Partner Universities", img: timothy.url, category: "Visiting" },
+  { name: "Mairead Braddy", role: "Visiting Faculty", company: "Global Partner Universities", img: mairead.url, category: "Visiting" },
+  { name: "Umberto", role: "Visiting Faculty", company: "SDA Bocconi", img: umberto.url, category: "Visiting" },
+  { name: "Carolina", role: "Visiting Faculty", company: "SDA Bocconi", img: carolina.url, category: "Visiting" },
+  { name: "Federico Biasutti", role: "Visiting Faculty", company: "SDA Bocconi", img: federico.url, category: "Visiting" },
+  { name: "Paola Santoro", role: "Visiting Faculty", company: "SDA Bocconi", img: paola.url, category: "Visiting" },
+  { name: "Rosario", role: "Visiting Faculty", company: "SDA Bocconi", img: rosario.url, category: "Visiting" },
+  { name: "Orestis", role: "Visiting Faculty", company: "Global Partner Universities", img: orestis.url, category: "Visiting" },
+  { name: "Annalisa", role: "Visiting Faculty", company: "Global Partner Universities", img: annalisa.url, category: "Visiting" },
+  { name: "Evangelos", role: "Visiting Faculty", company: "Global Partner Universities", img: evangelos.url, category: "Visiting" },
+  { name: "Xiaoyu", role: "Visiting Faculty", company: "CUHK Business School", img: xiaoyu.url, category: "Visiting" },
   { name: "Rajat Baijal", role: "Adjunct Professor, Enterprise Risk", company: "Columbia University", category: "Visiting" },
   { name: "Dr Shad Morris", role: "Executive Director", company: "Brigham Young University", category: "Visiting" },
   { name: "Dr Rajesh Bhargave", role: "Associate Professor of Marketing", company: "Imperial College London", category: "Visiting" },
