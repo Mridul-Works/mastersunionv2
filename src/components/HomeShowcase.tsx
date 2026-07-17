@@ -94,15 +94,16 @@ type Section = {
 };
 
 const FACULTY_ALL = [
-  { name: "Manoj Kohli", img: manoj.url },
-  { name: "Dr Bhupesh Manoharan", img: bhupesh.url },
-  { name: "Dr Nandini Seth", img: nandini.url },
-  { name: "Dr Garima Chaklader", img: garima.url },
-  { name: "Dr Zal Phiroz", img: zal.url },
-  { name: "Daniel G. Van Der Vliet", img: daniel.url },
-  { name: "Dr Lan Ma", img: lanma.url },
-  { name: "Faverie", img: faverie.url },
+  { name: "Manoj Kohli", role: "Country Head", company: "SoftBank India", img: manoj.url },
+  { name: "Dr Bhupesh Manoharan", role: "Associate Professor", company: "Masters' Union", img: bhupesh.url },
+  { name: "Dr Nandini Seth", role: "Assistant Professor", company: "Masters' Union", img: nandini.url },
+  { name: "Dr Garima Chaklader", role: "Associate Professor", company: "Masters' Union", img: garima.url },
+  { name: "Dr Zal Phiroz", role: "Visiting Faculty", company: "Harvard University", img: zal.url },
+  { name: "Daniel G. Van Der Vliet", role: "Executive Director, Family Business", company: "Cornell University", img: daniel.url },
+  { name: "Dr Lan Ma", role: "Visiting Professor", company: "NYU Stern", img: lanma.url },
+  { name: "Emmanuel Faverie", role: "Visiting Professor", company: "ESCP Business School", img: faverie.url },
 ];
+
 
 const FACULTY_MIX = [
   { pct: "50%", title: "Industry Practitioners", body: "CEOs, founders and operators teaching what they're building today." },
