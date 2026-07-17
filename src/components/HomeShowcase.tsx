@@ -191,21 +191,23 @@ function ShowcaseShell({
               <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </div>
-          <dl className="grid grid-cols-3 gap-4 md:max-w-md md:gap-8">
-            {section.stats.map((s) => (
-              <div key={s.label}>
-                <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/45">
-                  {s.label}
-                </dt>
-                <dd
-                  className="mt-1 text-2xl font-semibold tracking-tight text-black md:text-3xl"
-                  style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-                >
-                  {s.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
+          {section.stats.length > 0 && (
+            <dl className="grid grid-cols-3 gap-4 md:max-w-md md:gap-8">
+              {section.stats.map((s) => (
+                <div key={s.label}>
+                  <dt className="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/45">
+                    {s.label}
+                  </dt>
+                  <dd
+                    className="mt-1 text-2xl font-semibold tracking-tight text-black md:text-3xl"
+                    style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                  >
+                    {s.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          )}
         </div>
         {children}
       </div>
