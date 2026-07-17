@@ -93,15 +93,44 @@ type Section = {
   stats: Stat[];
 };
 
-const FACULTY_ALL = [
-  { name: "Manoj Kohli", role: "Country Head", company: "SoftBank India", img: manoj.url, category: "Industry" },
-  { name: "Dr Bhupesh Manoharan", role: "Associate Professor", company: "Masters' Union", img: bhupesh.url, category: "Full-Time" },
-  { name: "Dr Nandini Seth", role: "Assistant Professor", company: "Masters' Union", img: nandini.url, category: "Full-Time" },
-  { name: "Dr Garima Chaklader", role: "Associate Professor", company: "Masters' Union", img: garima.url, category: "Full-Time" },
-  { name: "Dr Zal Phiroz", role: "Visiting Faculty", company: "Harvard University", img: zal.url, category: "Visiting" },
+const FACULTY_ALL: { name: string; role: string; company: string; img?: string; category: "Industry" | "Full-Time" | "Visiting" }[] = [
+  // Industry Practitioners
+  { name: "Manoj Kohli", role: "Former CEO & MD", company: "SoftBank India", img: manoj.url, category: "Industry" },
+  { name: "Rajat Mathur", role: "Former Managing Director", company: "Morgan Stanley", category: "Industry" },
+  { name: "Naveen Munjal", role: "Managing Director", company: "Hero Electric", category: "Industry" },
+  { name: "Rohit Kapoor", role: "CEO, Food Marketplace", company: "Swiggy", category: "Industry" },
+  { name: "Captain Raghu Raman", role: "Former President", company: "Reliance Industries", category: "Industry" },
+  { name: "Arjun Vaidya", role: "Founder", company: "Dr. Vaidya's", category: "Industry" },
+  { name: "Monica Jasuja", role: "Former Head", company: "Mastercard", category: "Industry" },
+  { name: "Nitin Gaur", role: "Former Director", company: "IBM", category: "Industry" },
+  { name: "Malthi Satish", role: "Former Director, Product", company: "PayPal", category: "Industry" },
+  { name: "Dr Arvind Mayaram", role: "Former Finance Secretary", company: "Government of India", category: "Industry" },
+  { name: "Saurabh Sengupta", role: "Former VP", company: "Zomato", category: "Industry" },
+  { name: "Barkha Dutt", role: "Former Editor", company: "NDTV", category: "Industry" },
+  { name: "Rachel Konrad", role: "Former Director of Communications", company: "Tesla", category: "Industry" },
+  { name: "Dr Edward W. Rogers", role: "Former Chief Knowledge Officer", company: "NASA", category: "Industry" },
+  { name: "Vivek Gambhir", role: "Former CEO", company: "boAt", category: "Industry" },
+  { name: "Sanjiv Bhasin", role: "Former Director", company: "IIFL", category: "Industry" },
+
+  // Full-Time Faculty
+  { name: "Dr Bhupesh Manoharan", role: "PhD · Strategy & Organisation", company: "Masters' Union", img: bhupesh.url, category: "Full-Time" },
+  { name: "Dr Nandini Seth", role: "PhD · Marketing", company: "Masters' Union", img: nandini.url, category: "Full-Time" },
+  { name: "Dr Garima Chaklader", role: "PhD · Economics", company: "Masters' Union", img: garima.url, category: "Full-Time" },
+  { name: "Dr Manu Prasad", role: "PhD · Finance", company: "Masters' Union", category: "Full-Time" },
+  { name: "Dr Kashika Sud", role: "PhD · Organisational Behaviour", company: "Masters' Union", category: "Full-Time" },
+  { name: "Dr Vipin Sreekumar", role: "PhD · Operations", company: "Masters' Union", category: "Full-Time" },
+
+  // Visiting Faculty
+  { name: "Dr Zal Phiroz", role: "Adjunct Professor, Supply Chain", company: "Harvard University", img: zal.url, category: "Visiting" },
   { name: "Daniel G. Van Der Vliet", role: "Executive Director, Family Business", company: "Cornell University", img: daniel.url, category: "Visiting" },
-  { name: "Dr Lan Ma", role: "Visiting Professor", company: "NYU Stern", img: lanma.url, category: "Visiting" },
-  { name: "Emmanuel Faverie", role: "Visiting Professor", company: "ESCP Business School", img: faverie.url, category: "Visiting" },
+  { name: "Dr Lan Ma", role: "Adjunct Professor of Business", company: "NYU Stern", img: lanma.url, category: "Visiting" },
+  { name: "Emmanuel Faverie", role: "Visiting Faculty", company: "ESCP Business School", img: faverie.url, category: "Visiting" },
+  { name: "Rajat Baijal", role: "Adjunct Professor, Enterprise Risk", company: "Columbia University", category: "Visiting" },
+  { name: "Dr Shad Morris", role: "Executive Director", company: "Brigham Young University", category: "Visiting" },
+  { name: "Dr Rajesh Bhargave", role: "Associate Professor of Marketing", company: "Imperial College London", category: "Visiting" },
+  { name: "Meenakshi Rishi", role: "Professor of Economics", company: "Seattle University", category: "Visiting" },
+  { name: "Dr Alireza Kabirian", role: "Professor of Data Sciences", company: "USC", category: "Visiting" },
+  { name: "Dr Kenwyn K. Smith", role: "Professor", company: "Wharton, UPenn", category: "Visiting" },
 ];
 
 
@@ -357,12 +386,21 @@ function FacultyBlock() {
         {visible.map((f) => (
           <figure key={f.name} title={f.name} className="group flex flex-col">
             <div className="relative aspect-square overflow-hidden bg-black/5">
-              <img
-                src={f.img}
-                alt={f.name}
-                loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.04]"
-              />
+              {f.img ? (
+                <img
+                  src={f.img}
+                  alt={f.name}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.04]"
+                />
+              ) : (
+                <div
+                  className="absolute inset-0 flex items-center justify-center bg-neutral-100 text-2xl tracking-tight text-black/35"
+                  style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}
+                >
+                  {f.name.replace(/^Dr\s+|^Captain\s+/i, "").split(/\s+/).map((w) => w[0]).slice(0, 2).join("")}
+                </div>
+              )}
             </div>
             <figcaption className="mt-2">
               <div className="text-[11px] font-semibold leading-tight tracking-tight text-black">
