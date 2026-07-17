@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
@@ -426,36 +426,100 @@ function FacultyBlock() {
       </div>
 
       {/* Right: faculty images with designations */}
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-4">
-        {visible.map((f) => (
-          <figure key={f.name} title={f.name} className="group flex flex-col">
-            <div className="relative aspect-square overflow-hidden bg-black/5">
-              {f.img ? (
-                <img
-                  src={f.img}
-                  alt={f.name}
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.04]"
-                />
-              ) : (
-                <div
-                  className="absolute inset-0 flex items-center justify-center bg-neutral-100 text-2xl tracking-tight text-black/35"
-                  style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}
-                >
-                  {f.name.replace(/^Dr\s+|^Captain\s+/i, "").split(/\s+/).map((w) => w[0]).slice(0, 2).join("")}
-                </div>
-              )}
+      <FacultyPager key={active} items={visible} />
+    </div>
+  );
+}
+
+function FacultyPager({ items }: { items: typeof FACULTY_ALL }) {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const [page, setPage] = useState(0);
+  const PER_PAGE = 16; // 4 cols x 4 rows
+  const pages: typeof FACULTY_ALL[] = [];
+  for (let i = 0; i < items.length; i += PER_PAGE) pages.push(items.slice(i, i + PER_PAGE));
+  const totalPages = Math.max(1, pages.length);
+
+  const go = (dir: 1 | -1) => {
+    const next = Math.min(totalPages - 1, Math.max(0, page + dir));
+    setPage(next);
+    const el = scrollerRef.current;
+    if (el) el.scrollTo({ left: next * el.clientWidth, behavior: "smooth" });
+  };
+
+  return (
+    <div className="relative">
+      <div
+        ref={scrollerRef}
+        className="flex snap-x snap-mandatory overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        onScroll={(e) => {
+          const el = e.currentTarget;
+          const p = Math.round(el.scrollLeft / el.clientWidth);
+          if (p !== page) setPage(p);
+        }}
+      >
+        {pages.map((pageItems, pi) => (
+          <div key={pi} className="w-full flex-shrink-0 snap-start">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-4">
+              {pageItems.map((f) => (
+                <figure key={f.name} title={f.name} className="group flex flex-col">
+                  <div className="relative aspect-square overflow-hidden bg-black/5">
+                    {f.img ? (
+                      <img
+                        src={f.img}
+                        alt={f.name}
+                        loading="lazy"
+                        className="absolute inset-0 h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.04]"
+                      />
+                    ) : (
+                      <div
+                        className="absolute inset-0 flex items-center justify-center bg-neutral-100 text-2xl tracking-tight text-black/35"
+                        style={{ fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace" }}
+                      >
+                        {f.name.replace(/^Dr\s+|^Captain\s+/i, "").split(/\s+/).map((w) => w[0]).slice(0, 2).join("")}
+                      </div>
+                    )}
+                  </div>
+                  <figcaption className="mt-2">
+                    <div className="text-[11px] font-semibold leading-tight tracking-tight text-black">
+                      {f.name}
+                    </div>
+                    <div className="mt-0.5 text-[10px] leading-tight text-black/60">{f.role}</div>
+                    <div className="text-[10px] leading-tight text-black/45">{f.company}</div>
+                  </figcaption>
+                </figure>
+              ))}
             </div>
-            <figcaption className="mt-2">
-              <div className="text-[11px] font-semibold leading-tight tracking-tight text-black">
-                {f.name}
-              </div>
-              <div className="mt-0.5 text-[10px] leading-tight text-black/60">{f.role}</div>
-              <div className="text-[10px] leading-tight text-black/45">{f.company}</div>
-            </figcaption>
-          </figure>
+          </div>
         ))}
       </div>
+
+      {totalPages > 1 && (
+        <div className="mt-4 flex items-center justify-between">
+          <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50">
+            {page + 1} / {totalPages}
+          </div>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => go(-1)}
+              disabled={page === 0}
+              aria-label="Previous faculty"
+              className="flex h-9 w-9 items-center justify-center border border-black/15 text-black transition hover:border-black disabled:opacity-30 disabled:hover:border-black/15"
+            >
+              ←
+            </button>
+            <button
+              type="button"
+              onClick={() => go(1)}
+              disabled={page >= totalPages - 1}
+              aria-label="Next faculty"
+              className="flex h-9 w-9 items-center justify-center border border-black/15 text-black transition hover:border-black disabled:opacity-30 disabled:hover:border-black/15"
+            >
+              →
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
