@@ -54,6 +54,28 @@ import illinois from "@/assets/immersion-logos/illinois-tech.png.asset.json";
 import uc from "@/assets/immersion-logos/uc.png.asset.json";
 import griffith from "@/assets/immersion-logos/griffith.png.asset.json";
 
+// Corporate immersion logos — Global
+import porsche from "@/assets/immersions/global/porsche.png.asset.json";
+import philips from "@/assets/immersions/global/philips.png.asset.json";
+import heineken from "@/assets/immersions/global/heineken.png.asset.json";
+import rabobank from "@/assets/immersions/global/rabobank.png.asset.json";
+import rakuten from "@/assets/immersions/global/rakuten.png.asset.json";
+import agoda from "@/assets/immersions/global/agoda.png.asset.json";
+import nissan from "@/assets/immersions/global/nissan.png.asset.json";
+import stationF from "@/assets/immersions/global/station-f.png.asset.json";
+import unitedNations from "@/assets/immersions/global/united-nations.png.asset.json";
+
+// Corporate immersion logos — India
+import godrej from "@/assets/immersions/bharat/godrej.png.asset.json";
+import itc from "@/assets/immersions/bharat/itc.png.asset.json";
+import infosys from "@/assets/immersions/bharat/infosys.png.asset.json";
+import zeptoImm from "@/assets/immersions/bharat/zepto.png.asset.json";
+import credImm from "@/assets/immersions/bharat/cred.png.asset.json";
+import amul from "@/assets/immersions/bharat/amul.png.asset.json";
+import rbi from "@/assets/immersions/bharat/rbi.png.asset.json";
+import nse from "@/assets/immersions/bharat/nse.png.asset.json";
+import lenskart from "@/assets/immersions/bharat/lenskart.png.asset.json";
+
 type Section = {
   id: string;
   eyebrow: string;
