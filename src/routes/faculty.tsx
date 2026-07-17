@@ -72,10 +72,28 @@ const PRACTITIONERS: Practitioner[] = [
   { name: "Dr Edward W. Rogers", role: "Former Chief Knowledge Officer, NASA", blurb: "Teaches knowledge management, innovation systems, and organisational learning. His previous employer sent people to space." },
   { name: "Vivek Gambhir", role: "Former CEO, boAt", blurb: "Teaches brand building and consumer electronics — the mechanics of building a ₹3,000 Cr consumer brand from near-zero in under a decade." },
   { name: "Sanjiv Bhasin", role: "Former Director, IIFL", blurb: "Teaches equity markets, capital markets strategy, and investment analysis from decades on India's trading floors." },
+  { name: "Dave Lewis", role: "Former Group CEO, Tesco", blurb: "Teaches large-scale organisational transformation and consumer strategy from the turnaround of one of the world's largest retailers." },
+  { name: "Havish Madhvapaty", role: "Industry Practitioner, Masters' Union", blurb: "Teaches marketing, brand strategy and consumer research grounded in live industry engagements." },
+  { name: "Ekhlaque Bari", role: "Industry Practitioner, Masters' Union", blurb: "Teaches technology strategy and enterprise transformation from a career leading large digital programmes." },
+  { name: "Sumit Shukla", role: "Industry Practitioner, Masters' Union", blurb: "Teaches business strategy and operations from years spent building and scaling category-defining businesses." },
+  { name: "Aditya Turalapati", role: "Industry Practitioner, Masters' Union", blurb: "Teaches finance and analytics with a practitioner-first, case-driven approach." },
+  { name: "Divij Bajaj", role: "Industry Practitioner, Masters' Union", blurb: "Teaches product, growth and go-to-market strategy from the front lines of consumer businesses." },
+  { name: "Parikshit Khanna", role: "Industry Practitioner, Masters' Union", blurb: "Teaches technology, product and platform strategy from an operator's vantage point." },
+  { name: "Karmanya Suri", role: "Industry Practitioner, Masters' Union", blurb: "Teaches strategy and general management, blending consulting rigour with startup pace." },
+  { name: "Gaurav Arora", role: "Industry Practitioner, Masters' Union", blurb: "Teaches finance and corporate strategy from a career across capital markets and industry." },
 ];
 
 const PRACTITIONER_PHOTOS: Record<string, string> = {
   "Manoj Kohli": manojImg,
+  "Dave Lewis": daveLewisAsset.url,
+  "Havish Madhvapaty": havishAsset.url,
+  "Ekhlaque Bari": ekhlaqueAsset.url,
+  "Sumit Shukla": sumitAsset.url,
+  "Aditya Turalapati": adityaAsset.url,
+  "Divij Bajaj": divijAsset.url,
+  "Parikshit Khanna": parikshitAsset.url,
+  "Karmanya Suri": karmanyaAsset.url,
+  "Gaurav Arora": gauravAAsset.url,
 };
 
 type FullTimer = { name: string; note: string; img?: string };
@@ -92,14 +110,27 @@ type Visiting = { name: string; role: string; school: string; img?: string };
 const VISITING: Visiting[] = [
   { name: "Dr Zal Phiroz", role: "Adjunct Professor, Supply Chain & Operations", school: "Harvard University", img: zalImg },
   { name: "Daniel G. Van Der Vliet", role: "Executive Director", school: "Cornell University", img: danielImg },
+  { name: "Dr Lan Ma", role: "Adjunct Professor of Business", school: "NYU Stern", img: lanmaImg },
+  { name: "Emmanuel Faverie", role: "Visiting Faculty", school: "ESCP Business School", img: faverieImg },
+  { name: "Enno Masurel", role: "Professor of Entrepreneurship", school: "VU Amsterdam", img: ennoAsset.url },
+  { name: "Frank Barry", role: "Professor of International Business", school: "Trinity College Dublin", img: frankAsset.url },
+  { name: "Timothy O'Connell", role: "Visiting Faculty", school: "Global Partner Universities", img: timothyAsset.url },
+  { name: "Mairead Braddy", role: "Visiting Faculty", school: "Global Partner Universities", img: maireadAsset.url },
+  { name: "Umberto", role: "Visiting Faculty", school: "SDA Bocconi", img: umbertoAsset.url },
+  { name: "Carolina", role: "Visiting Faculty", school: "SDA Bocconi", img: carolinaAsset.url },
+  { name: "Federico Biasutti", role: "Visiting Faculty", school: "SDA Bocconi", img: federicoAsset.url },
+  { name: "Paola Santoro", role: "Visiting Faculty", school: "SDA Bocconi", img: paolaAsset.url },
+  { name: "Rosario", role: "Visiting Faculty", school: "SDA Bocconi", img: rosarioAsset.url },
+  { name: "Orestis", role: "Visiting Faculty", school: "Global Partner Universities", img: orestisAsset.url },
+  { name: "Annalisa", role: "Visiting Faculty", school: "Global Partner Universities", img: annalisaAsset.url },
+  { name: "Evangelos", role: "Visiting Faculty", school: "Global Partner Universities", img: evangelosAsset.url },
+  { name: "Xiaoyu", role: "Visiting Faculty", school: "CUHK Business School", img: xiaoyuAsset.url },
   { name: "Rajat Baijal", role: "Adjunct Professor, Enterprise Risk Management", school: "Columbia University" },
   { name: "Dr Shad Morris", role: "Executive Director", school: "BYU (Brigham Young University)" },
-  { name: "Dr Lan Ma", role: "Adjunct Professor of Business", school: "NYU Stern", img: lanmaImg },
   { name: "Dr Rajesh Bhargave", role: "Associate Professor of Marketing", school: "Imperial College London" },
   { name: "Meenakshi Rishi", role: "Professor of Economics", school: "Seattle University" },
   { name: "Dr Alireza Kabirian", role: "Professor of Data Sciences", school: "USC" },
   { name: "Dr Kenwyn K. Smith", role: "Professor", school: "Wharton School, University of Pennsylvania" },
-  { name: "Faverie", role: "Visiting Faculty", school: "Global Partner Universities", img: faverieImg },
 ];
 
 const TESTIMONIALS = [
