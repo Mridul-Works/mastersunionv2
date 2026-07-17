@@ -133,7 +133,7 @@ const FACULTY_SECTION: Section = {
   eyebrow: "Faculty",
   title: "Taught by people who ",
   titleItalic: "actually did it.",
-  lede: "A 50 / 30 / 20 mix of practitioners, PhDs and global professors.",
+  lede: "Our faculty is a deliberate 50 / 30 / 20 mix of industry practitioners, tenured PhDs and visiting global professors. CXOs, founders and operators lead the majority of classes, while academic rigour is anchored by researchers from Ivy+ and top global schools.",
   bg: "bg-white",
   cta: { label: "Meet the faculty", to: "/faculty" },
   stats: [
@@ -148,7 +148,7 @@ const CAREER_SECTION: Section = {
   eyebrow: "Career Outcomes",
   title: "Placed where ",
   titleItalic: "decisions are made.",
-  lede: "Consulting, product, finance and venture — at the firms shaping the next decade.",
+  lede: "Students graduate into consulting, product, finance and venture roles at the firms shaping the next decade — from McKinsey and Bain to Meta, Flipkart and Bloomberg. Every batch is supported by a dedicated placements team, live recruiter access and year-round industry projects.",
   bg: "bg-[#F5F3EE]",
   cta: { label: "Placement report", to: "/placements" },
   stats: [
@@ -163,7 +163,7 @@ const VENTURES_SECTION: Section = {
   eyebrow: "Entrepreneurship",
   title: "Companies started ",
   titleItalic: "before graduation.",
-  lede: "Pre-seed capital, founder studios and GTM labs — students launch while they study.",
+  lede: "Entrepreneurship at Masters' Union isn't a club — it's an operating system. Students access pre-seed capital, in-house founder studios and GTM labs, and launch real companies while they study, backed by mentors who have built and scaled ventures themselves.",
   bg: "bg-white",
   cta: { label: "MU Ventures", to: "/mu-ventures" },
   stats: [
