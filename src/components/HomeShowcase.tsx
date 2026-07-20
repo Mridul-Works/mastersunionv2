@@ -781,10 +781,10 @@ export default function HomeShowcase() {
       <ShowcaseShell section={VENTURES_SECTION}>
         <FounderFilmstrip />
         <div className="mt-8">
-          <CategorizedLogos groups={VENTURE_GROUPS} />
+          <VenturesSplit />
         </div>
-        <SharkTankBlock />
       </ShowcaseShell>
+
       <ShowcaseShell section={PARTNERS_SECTION}>
         <CategorizedLogos groups={PARTNER_GROUPS} withFilter />
       </ShowcaseShell>
