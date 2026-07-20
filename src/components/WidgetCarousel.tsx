@@ -2,10 +2,10 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import widgetImmersions from "@/assets/widget/widget-immersions.jpg";
-import widgetFounders from "@/assets/widget/widget-founders.jpg";
-import widgetD2C from "@/assets/widget/widget-d2c.jpg";
-import widgetCreators from "@/assets/widget/widget-creators.jpg";
+import widgetCampusLife from "@/assets/widget/widget-campus-life.jpg";
+import widgetAccommodation from "@/assets/widget/widget-accommodation.jpg";
+import widgetClubsFests from "@/assets/widget/widget-clubs-fests.jpg";
+
 
 type Slide = {
   id: string;
@@ -32,7 +32,7 @@ const SLIDES: Slide[] = [
     description:
       "Set in the heart of Gurugram's business district, the MU campus is a compact, working city. Classrooms wired with real-time tech, an auditorium that hosts founders and CEOs every week, a food court that runs into late-night jam sessions, and Starbucks, KFC, Cafe Delhi Heights and Bikanervala on campus itself. The airport is 7.8 km away and Cyber City is a 750m walk.",
     tags: ["Cyber City · 750m", "Airport · 7.8 km", "On-campus F&B", "Gym & clinic on site"],
-    image: widgetFounders,
+    image: widgetCampusLife,
   },
   {
     id: "accommodation",
@@ -45,7 +45,7 @@ const SLIDES: Slide[] = [
     description:
       "MU hostels sit steps from the classrooms — so a 2AM whiteboard session or a pre-dawn founder call is just a walk down the corridor. Rooms come with a personal study nook, centralised AC, ample storage and a tech-savvy setup. Community hubs, social areas, multi-purpose rooms, spacious parking, modern infrastructure, and round-the-clock staff and security keep the day moving without friction.",
     tags: ["Centralised AC rooms", "Community hubs", "24/7 staff & security", "Managed housekeeping"],
-    image: widgetImmersions,
+    image: widgetAccommodation,
   },
   {
     id: "activities",
@@ -58,7 +58,7 @@ const SLIDES: Slide[] = [
     description:
       "The second campus runs on 20+ student-led clubs — Investment, Consulting, Product & Design, Marketing, Debate, Model UN, Sports, Music and more — each backed by a faculty mentor and shipping something every week. The calendar is stacked with the annual cultural fest, sports leagues, hackathons, pitch nights, and open-mic sessions in the content studio.",
     tags: ["20+ Clubs", "Annual fest", "Sports leagues", "Hackathons & open mics"],
-    image: widgetD2C,
+    image: widgetClubsFests,
   },
 ];
 
