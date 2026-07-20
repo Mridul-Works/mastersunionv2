@@ -758,15 +758,25 @@ const SHARK_TANK_PITCHES: Array<{
 function SharkTankCompact() {
   return (
     <div className="relative flex h-full flex-col overflow-hidden rounded-xl border border-black/10 bg-white text-black shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
-      {/* Header with stage image */}
+      {/* Header with colorful gradient (Shark Tank stage palette) */}
       <div className="relative h-[172px] w-full overflow-hidden">
-        <img
-          src={sharkTankStage.url}
-          alt="Shark Tank India stage"
-          loading="lazy"
-          className="absolute inset-0 h-full w-full object-cover"
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(115deg, #F5C24B 0%, #EF6A2A 22%, #D62828 44%, #8E1E5A 64%, #3A2A7A 82%, #0E1A46 100%)",
+          }}
+          aria-hidden
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/10" />
+        <div
+          className="absolute inset-0 opacity-70 mix-blend-screen"
+          style={{
+            background:
+              "radial-gradient(120% 80% at 12% 20%, rgba(255,214,120,0.55) 0%, rgba(255,214,120,0) 55%), radial-gradient(90% 70% at 85% 30%, rgba(255,90,120,0.45) 0%, rgba(255,90,120,0) 60%), radial-gradient(80% 60% at 60% 110%, rgba(80,60,200,0.55) 0%, rgba(80,60,200,0) 65%)",
+          }}
+          aria-hidden
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-white/92 via-white/70 to-transparent" />
         <div className="absolute inset-0 flex flex-col justify-between p-6">
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-black/55">
             Featured on
@@ -784,12 +794,13 @@ function SharkTankCompact() {
                 India.
               </span>
             </h4>
-            <p className="mt-2 max-w-[38ch] text-[11.5px] leading-relaxed text-black/60">
+            <p className="mt-2 max-w-[38ch] text-[11.5px] leading-relaxed text-black/65">
               Six student-founded ventures have pitched on India's biggest startup stage.
             </p>
           </div>
         </div>
       </div>
+
       {/* Stats strip */}
       <div className="grid grid-cols-3 divide-x divide-black/[0.08] border-y border-black/[0.08] bg-[#FAF9F6]">
         {[
