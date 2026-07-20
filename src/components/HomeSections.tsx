@@ -776,50 +776,49 @@ function Programs() {
                 const hasAdmissions = Boolean(pg.deadline || pg.round);
                 return (
                   <li key={pg.title}>
-                    <div className="group/row grid grid-cols-[1.75rem_minmax(0,1fr)_auto] items-center gap-3 border-b border-black/10 py-3.5 transition hover:border-black">
-                      <span className="font-mono text-[10px] text-black/40">
+                    <div className="group/row grid grid-cols-[1.5rem_minmax(0,1fr)_auto] items-center gap-4 border-b border-black/10 py-4 transition hover:border-black/60">
+                      <span className="self-center font-mono text-[10px] tabular-nums text-black/35">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       <div className="min-w-0">
-                        <a
-                          href={detailHref}
-                          target={isInternal ? undefined : "_blank"}
-                          rel={isInternal ? undefined : "noreferrer"}
-                          className="block truncate text-[13px] font-semibold leading-tight text-black hover:underline underline-offset-4 decoration-black/40"
-                        >
-                          {pg.title}
-                        </a>
-                        <div className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] font-medium uppercase tracking-[0.16em] text-black/50">
-                          <span className="font-mono tracking-[0.18em]">
+                        <div className="flex items-baseline gap-2.5">
+                          <a
+                            href={detailHref}
+                            target={isInternal ? undefined : "_blank"}
+                            rel={isInternal ? undefined : "noreferrer"}
+                            className="truncate text-[15px] font-semibold leading-tight tracking-[-0.005em] text-[#1a1a1a] hover:underline underline-offset-4 decoration-black/30"
+                          >
+                            {pg.title}
+                          </a>
+                          <span className="shrink-0 font-mono text-[10px] uppercase tracking-[0.14em] text-black/40">
                             {pg.duration} · {pg.format}
                           </span>
-                          {pg.round && (
-                            <>
-                              <span aria-hidden className="size-1 rounded-full bg-black/30" />
-                              <span className="font-semibold text-black/75">{pg.round}</span>
-                            </>
-                          )}
-                          {pg.deadline && (
-                            <>
-                              <span aria-hidden className="size-1 rounded-full bg-black/30" />
-                              <span className="text-black/55 normal-case tracking-normal">
-                                Closes {formatDeadline(pg.deadline)}
-                                <span className="ml-1 text-black/40">· <DaysRemaining target={pg.deadline} /> days left</span>
-                              </span>
-                            </>
-                          )}
-                          {pg.status && !pg.deadline && (
-                            <>
-                              <span aria-hidden className="size-1 rounded-full bg-black/30" />
-                              <span className="text-black/55">{pg.status}</span>
-                            </>
-                          )}
                         </div>
+                        {hasAdmissions && (
+                          <div className="mt-2 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[11px]">
+                            {pg.round && (
+                              <span className="inline-flex items-center gap-1.5 rounded-full bg-[#F1E9D8] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#8B6B1F]">
+                                <span aria-hidden className="size-1.5 rounded-full bg-[#B8891F]" />
+                                {pg.round}
+                              </span>
+                            )}
+                            {pg.deadline && (
+                              <span className="text-[11px] text-black/55">
+                                Closes <span className="font-medium text-[#1a1a1a]">{formatDeadline(pg.deadline)}</span>
+                                <span className="mx-1.5 text-black/25">·</span>
+                                <span className="text-[#B8501F]"><DaysRemaining target={pg.deadline} /> days left</span>
+                              </span>
+                            )}
+                            {pg.status && !pg.deadline && (
+                              <span className="text-[11px] text-emerald-700">{pg.status}</span>
+                            )}
+                          </div>
+                        )}
                       </div>
                       {hasAdmissions ? (
                         <a
                           href={pg.applyHref ?? "/applications_center"}
-                          className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-black bg-black px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-[#F5F3EE] transition hover:bg-[#F5F3EE] hover:text-black"
+                          className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[#1a1a1a] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[#F5F3EE] transition hover:bg-[#B8501F]"
                         >
                           Apply
                           <ArrowUpRight className="size-3" />
@@ -830,9 +829,9 @@ function Programs() {
                           target={isInternal ? undefined : "_blank"}
                           rel={isInternal ? undefined : "noreferrer"}
                           aria-label={`Open ${pg.title}`}
-                          className="shrink-0"
+                          className="shrink-0 text-black/30 transition group-hover/row:text-black"
                         >
-                          <ArrowUpRight className="size-4 opacity-30 transition group-hover/row:opacity-100" />
+                          <ArrowUpRight className="size-4" />
                         </a>
                       )}
                     </div>
