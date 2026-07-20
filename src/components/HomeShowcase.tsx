@@ -597,14 +597,14 @@ function AlumStories() {
               className="absolute right-4 top-4 z-10 h-4 w-auto max-w-[70px] object-contain opacity-70 mix-blend-multiply"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-            <figcaption className="absolute inset-x-0 bottom-0 p-5 text-white">
+            <figcaption className="absolute inset-x-0 bottom-0 p-4 text-white">
               <h3
-                className="mb-1 text-[22px] leading-tight"
+                className="mb-1 text-[15px] leading-tight"
                 style={{ fontFamily: "'Fraunces', Georgia, serif" }}
               >
                 {a.name}
               </h3>
-              <p className="text-[10px] font-semibold uppercase leading-tight tracking-[0.2em] text-white/75">
+              <p className="text-[9px] font-semibold uppercase leading-tight tracking-[0.18em] text-white/75">
                 {a.role} · {a.company}
               </p>
             </figcaption>
