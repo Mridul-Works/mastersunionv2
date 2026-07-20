@@ -795,20 +795,18 @@ function Programs() {
                         {hasAdmissions && (
                           <div className="mt-2 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[11px]">
                             {pg.round && (
-                              <span className="inline-flex items-center gap-1.5 rounded-full bg-[#F1E9D8] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#8B6B1F]">
-                                <span aria-hidden className="size-1.5 rounded-full bg-[#B8891F]" />
+                              <span className="inline-flex items-center gap-1.5 rounded-full bg-[#E4EFDF] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#4A6B2F]">
+                                <span aria-hidden className="size-1.5 rounded-full bg-[#6B8E4E]" />
                                 {pg.round}
                               </span>
                             )}
                             {pg.deadline && (
                               <span className="text-[11px] text-black/55">
                                 Closes <span className="font-medium text-[#1a1a1a]">{formatDeadline(pg.deadline)}</span>
-                                <span className="mx-1.5 text-black/25">·</span>
-                                <span className="text-[#B8501F]"><DaysRemaining target={pg.deadline} /> days left</span>
                               </span>
                             )}
                             {pg.status && !pg.deadline && (
-                              <span className="text-[11px] text-emerald-700">{pg.status}</span>
+                              <span className="text-[11px] text-[#4A6B2F]">{pg.status}</span>
                             )}
                           </div>
                         )}
@@ -816,7 +814,7 @@ function Programs() {
                       {hasAdmissions ? (
                         <a
                           href={pg.applyHref ?? "/applications_center"}
-                          className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[#1a1a1a] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[#F5F3EE] transition hover:bg-[#B8501F]"
+                          className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[#1a1a1a] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.18em] text-[#F5F3EE] transition hover:bg-[#4A6B2F]"
                         >
                           Apply
                           <ArrowUpRight className="size-3" />
