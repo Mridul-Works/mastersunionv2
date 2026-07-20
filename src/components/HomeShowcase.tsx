@@ -237,11 +237,12 @@ const FACULTY_MIX = [
 ];
 
 const CAREER_GROUPS = [
-  { label: "Consulting", logos: [mckinsey, bain, accenture] },
-  { label: "Tech & Product", logos: [meta, servicenow, flipkart, cred, zepto, infosys, lenskart] },
-  { label: "Finance & Markets", logos: [bloomberg, icici, nse] },
-  { label: "Consumer & Corporate", logos: [godrej, itc, amul] },
-  { label: "Venture Capital", logos: [goodcapital, waterbridge] },
+  { label: "Consulting", logos: [rMckinsey, rBain, rBcg, rAccenture, rDeloitte, rEy, rPwc, rKearney, rOliverWyman] },
+  { label: "Large Tech", logos: [rGoogle, rMeta, rMicrosoft, rYoutube, rServicenow] },
+  { label: "Consumer Tech", logos: [rFlipkart, rZomato, rZepto, rUnacademy, rPhysicsWallah, rMamaEarth] },
+  { label: "BFSI", logos: [rIcici, rHsbc, rCiti, rAmex, rRazorpay, rPineLabs, rCred] },
+  { label: "Venture Capital", logos: [rGoodCapital, rWaterbridge, rAntler, rStride, rIpv] },
+  { label: "Emerging Tech", logos: [rKapture, rTwyn, rWebengage, rZycus, rMindtickle] },
 ];
 
 const VENTURE_GROUPS = [
