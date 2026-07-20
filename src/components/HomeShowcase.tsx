@@ -590,25 +590,28 @@ function AlumStories() {
               height={1067}
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <img
-              src={a.logo}
-              alt={a.company}
-              loading="lazy"
-              className="absolute right-4 top-4 z-10 h-4 w-auto max-w-[70px] object-contain opacity-70 mix-blend-multiply"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-            <figcaption className="absolute inset-x-0 bottom-0 p-4 text-white">
-              <h3
-                className="mb-1 text-[15px] leading-tight"
-                style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-              >
-                {a.name}
-              </h3>
-              <p className="text-[9px] font-semibold uppercase leading-tight tracking-[0.18em] text-white/75">
-                {a.role} · {a.company}
-              </p>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+            <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4 text-white">
+              <div className="min-w-0">
+                <h3
+                  className="mb-0.5 truncate text-[15px] leading-tight"
+                  style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                >
+                  {a.name}
+                </h3>
+                <p className="truncate text-[9px] font-semibold uppercase leading-tight tracking-[0.18em] text-white/70">
+                  {a.role}
+                </p>
+              </div>
+              <img
+                src={a.logo}
+                alt={a.company}
+                loading="lazy"
+                className="h-4 w-auto max-w-[60px] shrink-0 object-contain opacity-90 [filter:brightness(0)_invert(1)]"
+              />
             </figcaption>
           </figure>
+
         ))}
       </div>
 
