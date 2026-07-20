@@ -374,14 +374,16 @@ type LogoGroup = { label: string; logos: Logo[] };
 // Wide logos shrink in height; short/square logos grow in height (within limits)
 // so a tall-narrow mark doesn't look smaller than a wide wordmark.
 function NormalizedLogo({ src, alt, size = "md" }: { src: string; alt: string; size?: "sm" | "md" | "lg" }) {
-  const initial = size === "sm" ? 28 : size === "lg" ? 60 : 44;
+  const boost = /meta|microsoft/i.test(alt) ? 1.6 : 1;
+  const initial = (size === "sm" ? 28 : size === "lg" ? 60 : 44) * boost;
   const [h, setH] = useState<number>(initial);
   const onLoad = (e: SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
     const ratio = img.naturalWidth / Math.max(1, img.naturalHeight);
-    const targetWidth = size === "sm" ? 80 : size === "lg" ? 160 : 120;
+    const targetWidth = (size === "sm" ? 80 : size === "lg" ? 160 : 120) * boost;
     const raw = targetWidth / Math.max(0.4, ratio);
-    const [min, max] = size === "sm" ? [18, 40] : size === "lg" ? [40, 84] : [28, 64];
+    const baseRange: [number, number] = size === "sm" ? [18, 40] : size === "lg" ? [40, 84] : [28, 64];
+    const [min, max] = [baseRange[0] * boost, baseRange[1] * boost];
     const clamped = Math.max(min, Math.min(max, raw));
     setH(clamped);
   };
@@ -396,6 +398,7 @@ function NormalizedLogo({ src, alt, size = "md" }: { src: string; alt: string; s
     />
   );
 }
+
 
 
 
