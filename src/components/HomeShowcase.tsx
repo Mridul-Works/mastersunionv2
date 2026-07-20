@@ -914,7 +914,7 @@ export default function HomeShowcase() {
       </ShowcaseShell>
 
       <ShowcaseShell section={PARTNERS_SECTION}>
-        <CategorizedLogos groups={PARTNER_GROUPS} withFilter />
+        <CategorizedLogos groups={PARTNER_GROUPS} withFilter size="sm" />
       </ShowcaseShell>
     </>
   );
