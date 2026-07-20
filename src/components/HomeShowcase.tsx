@@ -373,14 +373,16 @@ type LogoGroup = { label: string; logos: Logo[] };
 // Renders a logo sized so its bounding width is roughly uniform across the wall.
 // Wide logos shrink in height; short/square logos grow in height (within limits)
 // so a tall-narrow mark doesn't look smaller than a wide wordmark.
-function NormalizedLogo({ src, alt }: { src: string; alt: string }) {
-  const [h, setH] = useState<number>(44);
+function NormalizedLogo({ src, alt, compact = false }: { src: string; alt: string; compact?: boolean }) {
+  const initial = compact ? 28 : 44;
+  const [h, setH] = useState<number>(initial);
   const onLoad = (e: SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
     const ratio = img.naturalWidth / Math.max(1, img.naturalHeight);
-    const targetWidth = 120;
+    const targetWidth = compact ? 80 : 120;
     const raw = targetWidth / Math.max(0.4, ratio);
-    const clamped = Math.max(28, Math.min(64, raw));
+    const [min, max] = compact ? [18, 40] : [28, 64];
+    const clamped = Math.max(min, Math.min(max, raw));
     setH(clamped);
   };
   return (
