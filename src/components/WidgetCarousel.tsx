@@ -170,12 +170,6 @@ export default function WidgetCarousel() {
                   <ArrowUpRight className="size-3.5" />
                 </span>
               </Link>
-              <Link
-                to="/life-at-mu"
-                className="text-[12px] font-medium uppercase tracking-[0.22em] text-white/60 underline-offset-4 hover:text-white hover:underline"
-              >
-                Read the day-in-life
-              </Link>
             </div>
           </div>
         </div>
