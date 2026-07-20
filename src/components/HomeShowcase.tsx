@@ -611,12 +611,9 @@ function AlumStories() {
         </div>
 
         {/* Featured card */}
-        <div className="relative flex-1 max-w-xl">
-          <div className="bg-[#dfe6ec] px-8 md:px-14 py-10 md:py-14">
-            <p className="text-center text-[11px] font-semibold uppercase tracking-[0.35em] text-[#7a90a8] mb-6">
-              {current.name}
-            </p>
-            <div className="aspect-square w-full overflow-hidden bg-stone-300 mb-8">
+        <div className="relative flex-1 max-w-md">
+          <div className="bg-[#dfe6ec] px-6 md:px-10 py-8 md:py-10">
+            <div className="aspect-square w-full max-w-[280px] mx-auto overflow-hidden bg-stone-300 mb-6">
               <img
                 key={current.photo}
                 src={current.photo}
@@ -624,8 +621,11 @@ function AlumStories() {
                 className="h-full w-full object-cover animate-in fade-in duration-700"
               />
             </div>
-            <p className="text-2xl md:text-[28px] leading-tight font-medium text-[#0b1a3a] max-w-sm">
-              {current.quote}
+            <p className="text-xl md:text-2xl leading-tight font-medium text-[#0b1a3a]">
+              {current.name}
+            </p>
+            <p className="text-sm md:text-base text-[#7a90a8] mt-1">
+              {current.company}
             </p>
           </div>
         </div>
