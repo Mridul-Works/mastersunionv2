@@ -652,78 +652,161 @@ function FounderFilmstrip() {
 }
 
 const SHARK_TANK_PITCHES = [
-  { company: "BlueBrew", founder: "Rhea Kapoor & team", pitch: "Cold-brew coffee for Indian palates", ask: "₹50L for 2%", deal: "₹75L for 4%", sharks: "Namita · Anupam" },
-  { company: "Kaze", founder: "Arnav Sethi", pitch: "Design-forward home fragrance brand", ask: "₹1 Cr for 3%", deal: "₹1 Cr for 5%", sharks: "Vineeta · Aman" },
-  { company: "Moms", founder: "Priya Nair", pitch: "Ready-to-cook regional Indian meals", ask: "₹60L for 4%", deal: "₹60L for 6%", sharks: "Namita · Peyush" },
-  { company: "Woody's Pizzeria", founder: "Kabir Malhotra", pitch: "Neapolitan pizza QSR chain", ask: "₹80L for 2.5%", deal: "₹1 Cr for 5%", sharks: "Aman · Anupam" },
+  {
+    company: "Nexera Health",
+    founder: "Himanshu Rajpurohit",
+    cohort: "CEO Challenge",
+    season: "Season 4",
+    pitch: "Redefining workplace wellness for employees across India's fastest-growing companies.",
+    cardImg: "https://images.mastersunion.link/uploads/15042026/v1/Frame16188739811.webp",
+  },
+  {
+    company: "HookD",
+    founder: "Dia Goel",
+    cohort: "PGP TBM Co '23",
+    season: "Season 5",
+    pitch: "India's first ready-to-eat non-vegetarian snacking brand for the country's 70% non-veg consumers.",
+    cardImg: "https://images.mastersunion.link/uploads/15042026/v1/Frame1618873983.webp",
+  },
+  {
+    company: "Meta Fashion",
+    founder: "Arjun Goel",
+    cohort: "UG TBM Co '28",
+    season: "Season 5",
+    pitch: "Building the infrastructure for phygital commerce, connecting in-game discovery with real-world fashion.",
+    cardImg: "https://images.mastersunion.link/uploads/15042026/v1/SharkTankCard.webp",
+  },
+  {
+    company: "Bullspree",
+    founder: "Dharmil Bavishi",
+    cohort: "PGP TBM Co '21",
+    season: "Season 2",
+    pitch: "India's favourite stock market playground for learning and investing.",
+    cardImg: "https://images.mastersunion.link/uploads/15042026/v1/Frame1618873979.webp",
+  },
+  {
+    company: "HiveSchool",
+    founder: "Nikhil Gaur",
+    cohort: "PGP TBM Co '24",
+    season: "Season 4",
+    pitch: "India's first Sales School — training the next generation of GTM operators.",
+    cardImg: "https://images.mastersunion.link/uploads/15042026/v1/Frame1618873982.webp",
+  },
+  {
+    company: "MemoTag",
+    founder: "Reyansh Juneja",
+    cohort: "UG TBM Co '28",
+    season: "Season 4",
+    pitch: "An AI-driven wearable purpose-built for dementia care and family peace of mind.",
+    cardImg: "https://images.mastersunion.link/uploads/25032026/v1/SharkTankCard16.webp",
+  },
 ];
 
 function SharkTankBlock() {
   return (
-    <div className="mt-10 overflow-hidden border border-black/10 bg-[#0b1220] text-white">
-      <div className="grid grid-cols-1 md:grid-cols-[1.05fr_1.4fr]">
-        <div className="relative min-h-[220px] md:min-h-full">
-          <img
-            src={sharkTankStage.url}
-            alt="Shark Tank India stage"
-            loading="lazy"
-            className="absolute inset-0 h-full w-full object-cover opacity-80"
-          />
-          <div className="absolute inset-0 bg-gradient-to-tr from-[#0b1220] via-[#0b1220]/40 to-transparent" />
-          <div className="relative z-10 flex h-full flex-col justify-between p-6 md:p-8">
+    <div className="mt-12">
+      {/* Header band */}
+      <div className="relative overflow-hidden border border-black/10 bg-[#0b1220] text-white">
+        <img
+          src={sharkTankStage.url}
+          alt=""
+          loading="lazy"
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover opacity-45"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0b1220] via-[#0b1220]/70 to-transparent" />
+        <div className="relative z-10 grid grid-cols-1 gap-6 p-6 md:grid-cols-[1.6fr_1fr] md:items-end md:gap-10 md:p-9">
+          <div>
             <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-white/70">
-              Featured on
+              Shark Tank India × Masters&rsquo; Union
             </p>
+            <h3
+              className="mt-3 text-[clamp(1.6rem,3vw,2.4rem)] font-semibold leading-[1.05] tracking-tight"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+            >
+              Our students on&nbsp;
+              <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+                India&rsquo;s biggest startup stage.
+              </span>
+            </h3>
+            <p className="mt-3 max-w-[58ch] text-[13px] leading-relaxed text-white/70">
+              Shark Tank India partners exclusively with Masters&rsquo; Union for its Campus Special Episode.
+              Real founders, real pitches — student ventures from our cohorts on national television.
+            </p>
+          </div>
+          <dl className="flex gap-8 md:justify-end">
             <div>
-              <h3
-                className="text-[clamp(1.5rem,2.6vw,2rem)] font-semibold leading-[1.05] tracking-tight"
+              <dd className="text-2xl font-semibold md:text-3xl" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+                6
+              </dd>
+              <dt className="mt-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/50">
+                Ventures aired
+              </dt>
+            </div>
+            <div>
+              <dd className="text-2xl font-semibold md:text-3xl" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+                4
+              </dd>
+              <dt className="mt-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/50">
+                Seasons featured
+              </dt>
+            </div>
+            <div>
+              <dd className="text-2xl font-semibold md:text-3xl" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+                1
+              </dd>
+              <dt className="mt-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/50">
+                Campus Special
+              </dt>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      {/* Card grid */}
+      <div className="grid grid-cols-1 gap-4 border-x border-b border-black/10 bg-white p-4 sm:grid-cols-2 md:p-6 lg:grid-cols-3">
+        {SHARK_TANK_PITCHES.map((p) => (
+          <article
+            key={p.company}
+            className="group flex flex-col overflow-hidden border border-black/10 bg-white transition hover:border-black/40"
+          >
+            <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-100">
+              <img
+                src={p.cardImg}
+                alt={`${p.company} on Shark Tank India`}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+              <span className="absolute left-3 top-3 rounded-full bg-black/80 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur">
+                {p.season}
+              </span>
+            </div>
+            <div className="flex flex-1 flex-col p-5">
+              <h4
+                className="text-[18px] font-semibold leading-tight text-black"
                 style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
               >
-                Shark Tank
-                <span className="italic font-light ml-2" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
-                  India.
-                </span>
-              </h3>
-              <p className="mt-3 max-w-[42ch] text-[12.5px] leading-relaxed text-white/70">
-                Four student-founded ventures from our cohorts have walked onto the tank — and walked out with cheques from India's most-watched investors.
-              </p>
-            </div>
-            <div className="flex gap-6">
-              <div>
-                <p className="text-2xl font-semibold" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>4</p>
-                <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/50">Ventures aired</p>
-              </div>
-              <div>
-                <p className="text-2xl font-semibold" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>₹3.35 Cr</p>
-                <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/50">Committed on air</p>
+                {p.company}
+              </h4>
+              <p className="mt-2 text-[12.5px] leading-relaxed text-black/65">{p.pitch}</p>
+              <div className="mt-4 flex items-center justify-between border-t border-black/10 pt-3">
+                <div className="min-w-0">
+                  <p className="text-[12px] font-medium text-black truncate">{p.founder}</p>
+                  <p className="mt-0.5 text-[10px] uppercase tracking-[0.14em] text-black/45 truncate">
+                    {p.cohort}
+                  </p>
+                </div>
+                <ArrowUpRight className="size-4 text-black/40 transition group-hover:text-black group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </div>
             </div>
-          </div>
-        </div>
-        <div className="divide-y divide-white/10">
-          {SHARK_TANK_PITCHES.map((p) => (
-            <div key={p.company} className="grid grid-cols-[1.2fr_1fr_1fr] items-center gap-4 px-5 py-4 md:px-7 md:py-5">
-              <div className="min-w-0">
-                <p className="text-[14px] font-semibold text-white truncate">{p.company}</p>
-                <p className="mt-1 text-[11px] text-white/60 truncate">{p.pitch}</p>
-                <p className="mt-1 text-[10px] uppercase tracking-wider text-white/40 truncate">{p.founder}</p>
-              </div>
-              <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/40">Ask → Deal</p>
-                <p className="mt-1 text-[12px] text-white/80">{p.ask}</p>
-                <p className="text-[12px] font-semibold text-emerald-300">{p.deal}</p>
-              </div>
-              <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/40">Sharks in</p>
-                <p className="mt-1 text-[12px] text-white/80 leading-snug">{p.sharks}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+          </article>
+        ))}
       </div>
     </div>
   );
 }
+
+
 
 
 export default function HomeShowcase() {
