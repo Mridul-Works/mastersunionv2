@@ -238,7 +238,8 @@ const PATHWAYS: Pathway[] = [
     theme: "linear-gradient(135deg, #e6e8f0 0%, #d4dbe8 40%, #c8d5e8 70%, #b8c9e0 100%)",
     image: pathwayWork,
     programmes: [
-      { title: "PGP in Technology & Business Management", duration: "16 MO", format: "ON CAMPUS", href: "/programmes/pgp-tbm" },
+      { title: "PGP in Technology & Business Management", duration: "16 MO", format: "ON CAMPUS", href: "/programmes/pgp-tbm", round: "Round 1", deadline: "2026-08-15T23:59:59", status: "Applications Open", applyHref: "/applications_center" },
+      { title: "PGP in Quantitative Finance & Business", duration: "1 Yr", format: "On Campus", round: "Round 2", deadline: "2026-09-30T23:59:59", status: "Applications Open", applyHref: "/applications_center" },
       { title: "PGP Rise: General Management", duration: "1 Yr", format: "Blended Weekend" },
       { title: "PGP Rise: General Management (Global)", duration: "1 Yr", format: "Online" },
       { title: "PGP in Capital Markets & Trading", duration: "1 Yr", format: "Online/In-Person Weekend" },
