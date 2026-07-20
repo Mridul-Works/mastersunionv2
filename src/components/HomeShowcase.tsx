@@ -403,16 +403,21 @@ function CategorizedLogos({ groups, withFilter = false }: { groups: LogoGroup[];
           })}
         </div>
       )}
-      <div className="grid grid-cols-3 gap-x-8 gap-y-10 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
+      <div className="grid grid-cols-3 gap-x-6 gap-y-8 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
         {visible.map((l) => {
           const name = l.original_filename.replace(/\.png$/i, "");
           return (
-            <div key={l.url} title={name} className="flex h-16 items-center justify-center">
+            <div
+              key={l.url}
+              title={name}
+              className="flex h-20 items-center justify-center rounded-lg border border-black/[0.06] bg-white px-3 shadow-[0_1px_2px_rgba(0,0,0,0.02)] transition hover:border-black/15 hover:shadow-[0_4px_14px_rgba(0,0,0,0.06)]"
+            >
               <NormalizedLogo src={l.url} alt={name} />
             </div>
           );
         })}
       </div>
+
     </div>
   );
 }
