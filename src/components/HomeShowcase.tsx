@@ -846,7 +846,7 @@ function SharkTankCompact() {
 function UniformLogoList({ groups }: { groups: LogoGroup[] }) {
   const logos = groups.flatMap((g) => g.logos);
   return (
-    <div className="flex flex-wrap items-center gap-x-10 gap-y-8">
+    <div className="flex flex-wrap items-center gap-x-6 gap-y-5">
       {logos.map((l) => {
         const name = l.original_filename.replace(/\.png$/i, "");
         return (
@@ -856,7 +856,7 @@ function UniformLogoList({ groups }: { groups: LogoGroup[] }) {
             alt={name}
             title={name}
             loading="lazy"
-            className="h-12 w-auto object-contain opacity-95 transition duration-300 hover:opacity-100"
+            className="h-8 w-auto object-contain opacity-95 transition duration-300 hover:opacity-100"
           />
         );
       })}
