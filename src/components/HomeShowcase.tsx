@@ -598,18 +598,10 @@ function AlumStories() {
               className="absolute right-3 top-3 h-5 w-auto max-w-[70px] object-contain opacity-90 [filter:brightness(0)_invert(1)]"
             />
             <figcaption className="absolute inset-x-0 bottom-0 p-4 text-white">
-              <blockquote
-                className="mb-3 text-[13px] leading-snug"
-                style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic" }}
-              >
-                &ldquo;{a.quote}&rdquo;
-              </blockquote>
-              <div className="border-t border-white/25 pt-2">
-                <p className="text-[12px] font-semibold leading-tight">{a.name}</p>
-                <p className="text-[10px] leading-tight text-white/70">
-                  {a.role} · {a.company}
-                </p>
-              </div>
+              <p className="text-[12px] font-semibold leading-tight">{a.name}</p>
+              <p className="text-[10px] leading-tight text-white/70">
+                {a.role} · {a.company}
+              </p>
             </figcaption>
           </figure>
         ))}
