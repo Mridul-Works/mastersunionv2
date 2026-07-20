@@ -348,14 +348,13 @@ type LogoGroup = { label: string; logos: Logo[] };
 // Wide logos shrink in height; short/square logos grow in height (within limits)
 // so a tall-narrow mark doesn't look smaller than a wide wordmark.
 function NormalizedLogo({ src, alt }: { src: string; alt: string }) {
-  const [h, setH] = useState<number>(40);
+  const [h, setH] = useState<number>(44);
   const onLoad = (e: SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
-    const ratio = img.naturalWidth / Math.max(1, img.naturalHeight); // width per 1 height
-    const targetWidth = 110; // px, desired optical width
-    // height so width ~= targetWidth, but clamp so nothing is absurd
+    const ratio = img.naturalWidth / Math.max(1, img.naturalHeight);
+    const targetWidth = 120;
     const raw = targetWidth / Math.max(0.4, ratio);
-    const clamped = Math.max(24, Math.min(56, raw));
+    const clamped = Math.max(28, Math.min(64, raw));
     setH(clamped);
   };
   return (
@@ -365,10 +364,11 @@ function NormalizedLogo({ src, alt }: { src: string; alt: string }) {
       loading="lazy"
       onLoad={onLoad}
       style={{ height: `${h}px` }}
-      className="w-auto max-w-full object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
+      className="w-auto max-w-full object-contain opacity-95 transition duration-300 hover:opacity-100"
     />
   );
 }
+
 
 
 function CategorizedLogos({ groups, withFilter = false }: { groups: LogoGroup[]; withFilter?: boolean }) {
