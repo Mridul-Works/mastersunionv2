@@ -2,10 +2,10 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import widgetImmersions from "@/assets/widget/widget-immersions.jpg";
-import widgetFounders from "@/assets/widget/widget-founders.jpg";
-import widgetD2C from "@/assets/widget/widget-d2c.jpg";
-import widgetCreators from "@/assets/widget/widget-creators.jpg";
+import widgetCampusLife from "@/assets/widget/widget-campus-life.jpg";
+import widgetAccommodation from "@/assets/widget/widget-accommodation.jpg";
+import widgetClubsFests from "@/assets/widget/widget-clubs-fests.jpg";
+
 
 type Slide = {
   id: string;
