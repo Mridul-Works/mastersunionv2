@@ -373,15 +373,15 @@ type LogoGroup = { label: string; logos: Logo[] };
 // Renders a logo sized so its bounding width is roughly uniform across the wall.
 // Wide logos shrink in height; short/square logos grow in height (within limits)
 // so a tall-narrow mark doesn't look smaller than a wide wordmark.
-function NormalizedLogo({ src, alt, compact = false }: { src: string; alt: string; compact?: boolean }) {
-  const initial = compact ? 28 : 44;
+function NormalizedLogo({ src, alt, size = "md" }: { src: string; alt: string; size?: "sm" | "md" | "lg" }) {
+  const initial = size === "sm" ? 28 : size === "lg" ? 60 : 44;
   const [h, setH] = useState<number>(initial);
   const onLoad = (e: SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
     const ratio = img.naturalWidth / Math.max(1, img.naturalHeight);
-    const targetWidth = compact ? 80 : 120;
+    const targetWidth = size === "sm" ? 80 : size === "lg" ? 160 : 120;
     const raw = targetWidth / Math.max(0.4, ratio);
-    const [min, max] = compact ? [18, 40] : [28, 64];
+    const [min, max] = size === "sm" ? [18, 40] : size === "lg" ? [40, 84] : [28, 64];
     const clamped = Math.max(min, Math.min(max, raw));
     setH(clamped);
   };
@@ -399,7 +399,7 @@ function NormalizedLogo({ src, alt, compact = false }: { src: string; alt: strin
 
 
 
-function CategorizedLogos({ groups, withFilter = false, compact = false }: { groups: LogoGroup[]; withFilter?: boolean; compact?: boolean }) {
+function CategorizedLogos({ groups, withFilter = false, size = "md" }: { groups: LogoGroup[]; withFilter?: boolean; size?: "sm" | "md" | "lg" }) {
   const [active, setActive] = useState<string>("All");
   const total = groups.reduce((sum, g) => sum + g.logos.length, 0);
   const tabs = [{ label: "All", count: total }, ...groups.map((g) => ({ label: g.label, count: g.logos.length }))];
@@ -407,11 +407,15 @@ function CategorizedLogos({ groups, withFilter = false, compact = false }: { gro
     ? groups.flatMap((g) => g.logos)
     : groups.find((g) => g.label === active)?.logos ?? [];
 
-  const gridCls = compact
+  const gridCls = size === "sm"
     ? "grid grid-cols-4 gap-x-4 gap-y-5 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-8"
+    : size === "lg"
+    ? "grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
     : "grid grid-cols-3 gap-x-6 gap-y-8 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6";
-  const cellCls = compact
+  const cellCls = size === "sm"
     ? "flex h-14 items-center justify-center rounded-md border border-black/[0.05] bg-white px-2 shadow-[0_1px_2px_rgba(0,0,0,0.02)] transition hover:border-black/15 hover:shadow-[0_4px_14px_rgba(0,0,0,0.06)]"
+    : size === "lg"
+    ? "flex h-28 items-center justify-center rounded-lg border border-black/[0.06] bg-white px-4 shadow-[0_1px_2px_rgba(0,0,0,0.02)] transition hover:border-black/15 hover:shadow-[0_4px_14px_rgba(0,0,0,0.06)]"
     : "flex h-20 items-center justify-center rounded-lg border border-black/[0.06] bg-white px-3 shadow-[0_1px_2px_rgba(0,0,0,0.02)] transition hover:border-black/15 hover:shadow-[0_4px_14px_rgba(0,0,0,0.06)]";
 
   return (
@@ -443,7 +447,7 @@ function CategorizedLogos({ groups, withFilter = false, compact = false }: { gro
           const name = l.original_filename.replace(/\.png$/i, "");
           return (
             <div key={l.url} title={name} className={cellCls}>
-              <NormalizedLogo src={l.url} alt={name} compact={compact} />
+              <NormalizedLogo src={l.url} alt={name} size={size} />
             </div>
           );
         })}
@@ -840,7 +844,7 @@ function VenturesSplit() {
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1fr]">
       <div>
-        <CategorizedLogos groups={VENTURE_GROUPS} />
+        <CategorizedLogos groups={VENTURE_GROUPS} size="lg" />
       </div>
       <SharkTankCompact />
     </div>
@@ -861,7 +865,7 @@ export default function HomeShowcase() {
       <ShowcaseShell section={CAREER_SECTION}>
         <AlumStories />
         <div className="mt-8">
-          <CategorizedLogos groups={CAREER_GROUPS} withFilter compact />
+          <CategorizedLogos groups={CAREER_GROUPS} withFilter size="sm" />
         </div>
       </ShowcaseShell>
       <ShowcaseShell section={VENTURES_SECTION}>
