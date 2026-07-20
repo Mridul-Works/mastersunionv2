@@ -847,108 +847,11 @@ function Programs() {
           </div>
         </div>
 
-        {/* Admissions · Cohort 2026 */}
-        <div className="col-span-12 mt-28 border-t-2 border-black pt-20">
-          <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="mb-2 font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-black/50">
-                ADMISSIONS BOARD
-              </p>
-              <h2
-                className="text-[clamp(1.75rem,4vw,3.25rem)] font-semibold leading-[1.05] tracking-tight text-black"
-
-                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-              >
-                Programmes Accepting
-                <br />
-                <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
-                  Applications.
-                </span>
-              </h2>
-            </div>
-            <p className="max-w-[28ch] text-[13px] font-medium leading-snug text-black/60">
-              Round-based deadlines. Rolling reviews. Apply before seats fill.
-            </p>
-          </div>
-
-
-          <div className="relative">
-            <div
-              ref={admissionsScrollRef}
-              className="scrollbar-hover-only flex snap-x snap-mandatory gap-5 overflow-x-auto pb-6 md:gap-6"
-            >
-              {PROGRAMS.map((p) => (
-                <article
-                  key={p.title}
-                  className="group flex-shrink-0 snap-start bg-[#F5F3EE] p-5 transition-all duration-300 hover:-translate-y-1 pastel-fill"
-                  style={{ width: "min(82vw, 320px)" }}
-                >
-                  <div className="overflow-hidden">
-                    <ImagePlaceholder
-                      aspect="4/3"
-                      className="transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-
-                  <div className="mt-4 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-black/45">
-                    <span>{p.mode}</span>
-                    <span className="text-black/25">·</span>
-                    <span>{p.duration}</span>
-                    <span className="text-black/25">·</span>
-                    <span className="text-black/40">{p.round}</span>
-                  </div>
-
-                  <h3
-                    className="mt-3 text-[18px] font-semibold leading-[1.25] tracking-tight text-black"
-                    style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                  >
-                    {p.title}
-                  </h3>
-
-                  <div className="mt-4 pt-4">
-                    <div className="flex items-center gap-2 text-xs text-black/60">
-                      <span className="font-semibold text-black">{p.status}</span>
-                      <span className="text-black/30">·</span>
-                      <span>
-                        Closes in <DaysRemaining target={p.deadline} /> days
-                      </span>
-                    </div>
-
-                    <div className="mt-4 flex items-center justify-between">
-                      <a
-                        href="/applications_center"
-                        className="text-[11px] font-semibold uppercase tracking-widest text-black underline underline-offset-4 decoration-black/20 transition-colors hover:decoration-black"
-                      >
-                        Apply Now
-                      </a>
-                      <button
-                        type="button"
-                        onClick={() => setSageProgram(p.title)}
-                        className="text-[11px] font-semibold text-black/50 underline underline-offset-4 decoration-black/20 transition-colors hover:text-black hover:decoration-black"
-                      >
-                        Ask S.A.G.E.
-                      </button>
-                    </div>
-                  </div>
-                </article>
-              ))}
-
-
-            </div>
-          </div>
-
-          <div className="mt-10 text-center">
-            <Link
-              to="/applications_center"
-              className="inline-flex items-center border-b-2 border-black/20 pb-1 text-sm font-semibold text-black/60 transition-all hover:border-black hover:text-black"
-            >
-              View all Admissions
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </div>
-
+        {/* Admissions Connect */}
+        <div className="col-span-12 mt-20 border-t border-black/10 pt-14">
           <AdmissionsConnect />
         </div>
+
       </div>
 
 
