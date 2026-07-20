@@ -856,7 +856,7 @@ function UniformLogoList({ groups }: { groups: LogoGroup[] }) {
             alt={name}
             title={name}
             loading="lazy"
-            className="h-24 w-auto object-contain opacity-95 transition duration-300 hover:opacity-100"
+            className="h-12 w-auto object-contain opacity-95 transition duration-300 hover:opacity-100"
           />
         );
       })}
