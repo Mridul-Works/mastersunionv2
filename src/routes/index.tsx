@@ -500,17 +500,20 @@ function Index() {
         </div>
       </div>
 
-      {/* Rewatch button */}
+      {/* Rewatch intro — floating pill */}
       <button
         type="button"
         onClick={rewatchVideo}
         aria-label="Rewatch intro video"
-        className={`fixed top-6 right-6 z-[90] flex items-center gap-2 rounded-none border border-black/10 bg-white/95 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-black shadow-[0_12px_32px_-8px_rgba(0,0,0,0.12)] backdrop-blur-xl transition-all duration-500 hover:scale-105 ${
-          showRewatch ? "opacity-100 translate-y-0 pointer-events-auto animate-bounce" : "opacity-0 -translate-y-6 pointer-events-none"
+        className={`group fixed top-6 right-6 z-[90] flex items-center gap-2.5 rounded-full bg-black/85 pl-1.5 pr-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.22em] text-white/90 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] ring-1 ring-white/10 backdrop-blur-xl transition-all duration-500 hover:bg-black hover:text-white hover:pr-5 ${
+          showRewatch ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-4 pointer-events-none"
         }`}
       >
-        <ArrowUp className="size-4" />
-        Watch intro
+        <span className="relative flex size-7 items-center justify-center rounded-full bg-white text-black transition-transform duration-500 group-hover:scale-110">
+          <span aria-hidden className="absolute inset-0 rounded-full bg-white/60 animate-ping opacity-70" />
+          <Play className="relative size-3 fill-black" />
+        </span>
+        <span>Watch intro</span>
       </button>
     </main>
   );
