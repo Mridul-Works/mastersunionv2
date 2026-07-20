@@ -35,18 +35,43 @@ import evangelos from "@/assets/faculty/evangelos.png.asset.json";
 import xiaoyu from "@/assets/faculty/xiaoyu.png.asset.json";
 
 // Career logos
-import mckinsey from "@/assets/career-logos/McKinsey.png.asset.json";
-import bain from "@/assets/career-logos/BainAndCompany.png.asset.json";
-import accenture from "@/assets/career-logos/Accenture.png.asset.json";
-import bloomberg from "@/assets/career-logos/Bloomberg.png.asset.json";
-import cred from "@/assets/career-logos/Cred.png.asset.json";
-import flipkart from "@/assets/career-logos/Flipkart.png.asset.json";
-import icici from "@/assets/career-logos/ICICI.png.asset.json";
-import meta from "@/assets/career-logos/Meta.png.asset.json";
-import servicenow from "@/assets/career-logos/Servicenow.png.asset.json";
-import zepto from "@/assets/career-logos/Zepto.png.asset.json";
-import goodcapital from "@/assets/career-logos/GoodCapital.png.asset.json";
-import waterbridge from "@/assets/career-logos/Waterbridge.png.asset.json";
+import rMckinsey from "@/assets/recruiter-logos/McKinsey.png.asset.json";
+import rBain from "@/assets/recruiter-logos/Bain.png.asset.json";
+import rBcg from "@/assets/recruiter-logos/BCG.png.asset.json";
+import rAccenture from "@/assets/recruiter-logos/Accenture.png.asset.json";
+import rDeloitte from "@/assets/recruiter-logos/Deloitte.png.asset.json";
+import rEy from "@/assets/recruiter-logos/EY.png.asset.json";
+import rPwc from "@/assets/recruiter-logos/PWC.png.asset.json";
+import rKearney from "@/assets/recruiter-logos/Kearney.png.asset.json";
+import rOliverWyman from "@/assets/recruiter-logos/OliverWyman.png.asset.json";
+import rGoogle from "@/assets/recruiter-logos/Google.png.asset.json";
+import rMeta from "@/assets/recruiter-logos/Meta.png.asset.json";
+import rMicrosoft from "@/assets/recruiter-logos/Microsoft.png.asset.json";
+import rYoutube from "@/assets/recruiter-logos/Youtube.png.asset.json";
+import rServicenow from "@/assets/recruiter-logos/Servicenow.png.asset.json";
+import rFlipkart from "@/assets/recruiter-logos/Flipkart.png.asset.json";
+import rZepto from "@/assets/recruiter-logos/Zepto.png.asset.json";
+import rZomato from "@/assets/recruiter-logos/Zomato.png.asset.json";
+import rUnacademy from "@/assets/recruiter-logos/Unacademy.png.asset.json";
+import rPhysicsWallah from "@/assets/recruiter-logos/PhysicsWallah.png.asset.json";
+import rMamaEarth from "@/assets/recruiter-logos/MamaEarth.png.asset.json";
+import rIcici from "@/assets/recruiter-logos/ICICI.png.asset.json";
+import rHsbc from "@/assets/recruiter-logos/HSBC.png.asset.json";
+import rCiti from "@/assets/recruiter-logos/CITI.png.asset.json";
+import rAmex from "@/assets/recruiter-logos/AmericanExpress.png.asset.json";
+import rRazorpay from "@/assets/recruiter-logos/Razorpay.png.asset.json";
+import rPineLabs from "@/assets/recruiter-logos/PineLabs.png.asset.json";
+import rCred from "@/assets/recruiter-logos/Cred.png.asset.json";
+import rGoodCapital from "@/assets/recruiter-logos/GoodCapital.png.asset.json";
+import rWaterbridge from "@/assets/recruiter-logos/Waterbridge.png.asset.json";
+import rAntler from "@/assets/recruiter-logos/Antler.png.asset.json";
+import rStride from "@/assets/recruiter-logos/StrideVentures.png.asset.json";
+import rIpv from "@/assets/recruiter-logos/IPV.png.asset.json";
+import rKapture from "@/assets/recruiter-logos/Kapture.png.asset.json";
+import rTwyn from "@/assets/recruiter-logos/Twyn.png.asset.json";
+import rWebengage from "@/assets/recruiter-logos/Webengage.png.asset.json";
+import rZycus from "@/assets/recruiter-logos/Zycus.png.asset.json";
+import rMindtickle from "@/assets/recruiter-logos/Mindtickle.png.asset.json";
 
 // Startup / venture logos
 import vBambaii from "@/assets/venture-logos/Bambaii.png.asset.json";
@@ -212,11 +237,12 @@ const FACULTY_MIX = [
 ];
 
 const CAREER_GROUPS = [
-  { label: "Consulting", logos: [mckinsey, bain, accenture] },
-  { label: "Tech & Product", logos: [meta, servicenow, flipkart, cred, zepto, infosys, lenskart] },
-  { label: "Finance & Markets", logos: [bloomberg, icici, nse] },
-  { label: "Consumer & Corporate", logos: [godrej, itc, amul] },
-  { label: "Venture Capital", logos: [goodcapital, waterbridge] },
+  { label: "Consulting", logos: [rMckinsey, rBain, rBcg, rAccenture, rDeloitte, rEy, rPwc, rKearney, rOliverWyman] },
+  { label: "Large Tech", logos: [rGoogle, rMeta, rMicrosoft, rYoutube, rServicenow] },
+  { label: "Consumer Tech", logos: [rFlipkart, rZomato, rZepto, rUnacademy, rPhysicsWallah, rMamaEarth] },
+  { label: "BFSI", logos: [rIcici, rHsbc, rCiti, rAmex, rRazorpay, rPineLabs, rCred] },
+  { label: "Venture Capital", logos: [rGoodCapital, rWaterbridge, rAntler, rStride, rIpv] },
+  { label: "Emerging Tech", logos: [rKapture, rTwyn, rWebengage, rZycus, rMindtickle] },
 ];
 
 const VENTURE_GROUPS = [
@@ -347,14 +373,16 @@ type LogoGroup = { label: string; logos: Logo[] };
 // Renders a logo sized so its bounding width is roughly uniform across the wall.
 // Wide logos shrink in height; short/square logos grow in height (within limits)
 // so a tall-narrow mark doesn't look smaller than a wide wordmark.
-function NormalizedLogo({ src, alt }: { src: string; alt: string }) {
-  const [h, setH] = useState<number>(44);
+function NormalizedLogo({ src, alt, compact = false }: { src: string; alt: string; compact?: boolean }) {
+  const initial = compact ? 28 : 44;
+  const [h, setH] = useState<number>(initial);
   const onLoad = (e: SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
     const ratio = img.naturalWidth / Math.max(1, img.naturalHeight);
-    const targetWidth = 120;
+    const targetWidth = compact ? 80 : 120;
     const raw = targetWidth / Math.max(0.4, ratio);
-    const clamped = Math.max(28, Math.min(64, raw));
+    const [min, max] = compact ? [18, 40] : [28, 64];
+    const clamped = Math.max(min, Math.min(max, raw));
     setH(clamped);
   };
   return (
@@ -371,13 +399,20 @@ function NormalizedLogo({ src, alt }: { src: string; alt: string }) {
 
 
 
-function CategorizedLogos({ groups, withFilter = false }: { groups: LogoGroup[]; withFilter?: boolean }) {
+function CategorizedLogos({ groups, withFilter = false, compact = false }: { groups: LogoGroup[]; withFilter?: boolean; compact?: boolean }) {
   const [active, setActive] = useState<string>("All");
   const total = groups.reduce((sum, g) => sum + g.logos.length, 0);
   const tabs = [{ label: "All", count: total }, ...groups.map((g) => ({ label: g.label, count: g.logos.length }))];
   const visible: Logo[] = !withFilter || active === "All"
     ? groups.flatMap((g) => g.logos)
     : groups.find((g) => g.label === active)?.logos ?? [];
+
+  const gridCls = compact
+    ? "grid grid-cols-4 gap-x-4 gap-y-5 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-8"
+    : "grid grid-cols-3 gap-x-6 gap-y-8 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6";
+  const cellCls = compact
+    ? "flex h-14 items-center justify-center rounded-md border border-black/[0.05] bg-white px-2 shadow-[0_1px_2px_rgba(0,0,0,0.02)] transition hover:border-black/15 hover:shadow-[0_4px_14px_rgba(0,0,0,0.06)]"
+    : "flex h-20 items-center justify-center rounded-lg border border-black/[0.06] bg-white px-3 shadow-[0_1px_2px_rgba(0,0,0,0.02)] transition hover:border-black/15 hover:shadow-[0_4px_14px_rgba(0,0,0,0.06)]";
 
   return (
     <div>
@@ -403,16 +438,12 @@ function CategorizedLogos({ groups, withFilter = false }: { groups: LogoGroup[];
           })}
         </div>
       )}
-      <div className="grid grid-cols-3 gap-x-6 gap-y-8 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
+      <div className={gridCls}>
         {visible.map((l) => {
           const name = l.original_filename.replace(/\.png$/i, "");
           return (
-            <div
-              key={l.url}
-              title={name}
-              className="flex h-20 items-center justify-center rounded-lg border border-black/[0.06] bg-white px-3 shadow-[0_1px_2px_rgba(0,0,0,0.02)] transition hover:border-black/15 hover:shadow-[0_4px_14px_rgba(0,0,0,0.06)]"
-            >
-              <NormalizedLogo src={l.url} alt={name} />
+            <div key={l.url} title={name} className={cellCls}>
+              <NormalizedLogo src={l.url} alt={name} compact={compact} />
             </div>
           );
         })}
@@ -572,10 +603,10 @@ function FacultyPager({ items }: { items: typeof FACULTY_ALL }) {
 
 
 const ALUM_STORIES = [
-  { name: "Aarav Mehta", role: "Business Analyst", company: "McKinsey & Company", logo: mckinsey.url, photo: aaravImg.url, quote: "Live case work in Year 2 got me an offer before final placements." },
-  { name: "Isha Rao", role: "Associate Consultant", company: "Bain & Company", logo: bain.url, photo: ishaImg.url, quote: "MU's practitioner faculty rewired how I break down a problem." },
-  { name: "Kabir Shah", role: "APM", company: "Meta", logo: meta.url, photo: kabirImg.url, quote: "Building at MU Ventures made the PM interview feel like a normal Tuesday." },
-  { name: "Ananya Gupta", role: "Investor", company: "Good Capital", logo: goodcapital.url, photo: ananyaImg.url, quote: "Pitched a portfolio company on campus, joined the fund that heard the pitch." },
+  { name: "Aarav Mehta", role: "Business Analyst", company: "McKinsey & Company", logo: rMckinsey.url, photo: aaravImg.url, quote: "Live case work in Year 2 got me an offer before final placements." },
+  { name: "Isha Rao", role: "Associate Consultant", company: "Bain & Company", logo: rBain.url, photo: ishaImg.url, quote: "MU's practitioner faculty rewired how I break down a problem." },
+  { name: "Kabir Shah", role: "APM", company: "Meta", logo: rMeta.url, photo: kabirImg.url, quote: "Building at MU Ventures made the PM interview feel like a normal Tuesday." },
+  { name: "Ananya Gupta", role: "Investor", company: "Good Capital", logo: rGoodCapital.url, photo: ananyaImg.url, quote: "Pitched a portfolio company on campus, joined the fund that heard the pitch." },
 ];
 
 function AlumStories() {
@@ -830,7 +861,7 @@ export default function HomeShowcase() {
       <ShowcaseShell section={CAREER_SECTION}>
         <AlumStories />
         <div className="mt-8">
-          <CategorizedLogos groups={CAREER_GROUPS} />
+          <CategorizedLogos groups={CAREER_GROUPS} withFilter compact />
         </div>
       </ShowcaseShell>
       <ShowcaseShell section={VENTURES_SECTION}>
