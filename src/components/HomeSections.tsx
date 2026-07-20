@@ -781,18 +781,16 @@ function Programs() {
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       <div className="min-w-0">
-                        <div className="flex items-baseline gap-2.5">
-                          <a
-                            href={detailHref}
-                            target={isInternal ? undefined : "_blank"}
-                            rel={isInternal ? undefined : "noreferrer"}
-                            className="truncate text-[15px] font-semibold leading-tight tracking-[-0.005em] text-[#1a1a1a] hover:underline underline-offset-4 decoration-black/30"
-                          >
-                            {pg.title}
-                          </a>
-                          <span className="shrink-0 font-mono text-[10px] uppercase tracking-[0.14em] text-black/40">
-                            {pg.duration} · {pg.format}
-                          </span>
+                        <a
+                          href={detailHref}
+                          target={isInternal ? undefined : "_blank"}
+                          rel={isInternal ? undefined : "noreferrer"}
+                          className="block text-[15px] font-semibold leading-snug tracking-[-0.005em] text-[#1a1a1a] hover:underline underline-offset-4 decoration-black/30"
+                        >
+                          {pg.title}
+                        </a>
+                        <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.16em] text-black/45">
+                          {pg.duration} · {pg.format}
                         </div>
                         {hasAdmissions && (
                           <div className="mt-2 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[11px]">
