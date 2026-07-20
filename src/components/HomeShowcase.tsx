@@ -916,10 +916,11 @@ export default function HomeShowcase() {
       </ShowcaseShell>
       <ShowcaseShell section={VENTURES_SECTION}>
         <FounderFilmstrip />
-        <div className="mt-8">
+        <div className="mt-5">
           <VenturesSplit />
         </div>
       </ShowcaseShell>
+
 
       <ShowcaseShell section={PARTNERS_SECTION}>
         <CategorizedLogos groups={PARTNER_GROUPS} withFilter size="sm" />
