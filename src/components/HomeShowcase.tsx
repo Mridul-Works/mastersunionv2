@@ -348,14 +348,13 @@ type LogoGroup = { label: string; logos: Logo[] };
 // Wide logos shrink in height; short/square logos grow in height (within limits)
 // so a tall-narrow mark doesn't look smaller than a wide wordmark.
 function NormalizedLogo({ src, alt }: { src: string; alt: string }) {
-  const [h, setH] = useState<number>(40);
+  const [h, setH] = useState<number>(44);
   const onLoad = (e: SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
-    const ratio = img.naturalWidth / Math.max(1, img.naturalHeight); // width per 1 height
-    const targetWidth = 110; // px, desired optical width
-    // height so width ~= targetWidth, but clamp so nothing is absurd
+    const ratio = img.naturalWidth / Math.max(1, img.naturalHeight);
+    const targetWidth = 120;
     const raw = targetWidth / Math.max(0.4, ratio);
-    const clamped = Math.max(24, Math.min(56, raw));
+    const clamped = Math.max(28, Math.min(64, raw));
     setH(clamped);
   };
   return (
@@ -365,10 +364,11 @@ function NormalizedLogo({ src, alt }: { src: string; alt: string }) {
       loading="lazy"
       onLoad={onLoad}
       style={{ height: `${h}px` }}
-      className="w-auto max-w-full object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
+      className="w-auto max-w-full object-contain opacity-95 transition duration-300 hover:opacity-100"
     />
   );
 }
+
 
 
 function CategorizedLogos({ groups, withFilter = false }: { groups: LogoGroup[]; withFilter?: boolean }) {
@@ -403,16 +403,21 @@ function CategorizedLogos({ groups, withFilter = false }: { groups: LogoGroup[];
           })}
         </div>
       )}
-      <div className="grid grid-cols-3 gap-x-8 gap-y-10 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
+      <div className="grid grid-cols-3 gap-x-6 gap-y-8 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
         {visible.map((l) => {
           const name = l.original_filename.replace(/\.png$/i, "");
           return (
-            <div key={l.url} title={name} className="flex h-16 items-center justify-center">
+            <div
+              key={l.url}
+              title={name}
+              className="flex h-20 items-center justify-center rounded-lg border border-black/[0.06] bg-white px-3 shadow-[0_1px_2px_rgba(0,0,0,0.02)] transition hover:border-black/15 hover:shadow-[0_4px_14px_rgba(0,0,0,0.06)]"
+            >
               <NormalizedLogo src={l.url} alt={name} />
             </div>
           );
         })}
       </div>
+
     </div>
   );
 }
@@ -651,120 +656,146 @@ function FounderFilmstrip() {
   );
 }
 
-const SHARK_TANK_PITCHES = [
+const SHARK_TANK_PITCHES: Array<{
+  company: string;
+  founder: string;
+  cohort: string;
+  season: string;
+  pitch: string;
+  logo?: { url: string; original_filename: string };
+  cardImg: string;
+}> = [
   {
     company: "Nexera Health",
     founder: "Himanshu Rajpurohit",
     cohort: "CEO Challenge",
-    season: "Season 4",
-    pitch: "Redefining workplace wellness for employees across India's fastest-growing companies.",
+    season: "S4",
+    pitch: "Redefining workplace wellness for India's fastest-growing companies.",
     cardImg: "https://images.mastersunion.link/uploads/15042026/v1/Frame16188739811.webp",
   },
   {
     company: "HookD",
     founder: "Dia Goel",
-    cohort: "PGP TBM Co '23",
-    season: "Season 5",
-    pitch: "India's first ready-to-eat non-vegetarian snacking brand for the country's 70% non-veg consumers.",
+    cohort: "PGP TBM '23",
+    season: "S5",
+    pitch: "India's first ready-to-eat non-vegetarian snacking brand.",
     cardImg: "https://images.mastersunion.link/uploads/15042026/v1/Frame1618873983.webp",
   },
   {
     company: "Meta Fashion",
     founder: "Arjun Goel",
-    cohort: "UG TBM Co '28",
-    season: "Season 5",
-    pitch: "Building the infrastructure for phygital commerce, connecting in-game discovery with real-world fashion.",
+    cohort: "UG TBM '28",
+    season: "S5",
+    pitch: "Phygital commerce — connecting in-game discovery with real-world fashion.",
     cardImg: "https://images.mastersunion.link/uploads/15042026/v1/SharkTankCard.webp",
   },
   {
     company: "Bullspree",
     founder: "Dharmil Bavishi",
-    cohort: "PGP TBM Co '21",
-    season: "Season 2",
+    cohort: "PGP TBM '21",
+    season: "S2",
     pitch: "India's favourite stock market playground for learning and investing.",
+    logo: vBullspree,
     cardImg: "https://images.mastersunion.link/uploads/15042026/v1/Frame1618873979.webp",
   },
   {
     company: "HiveSchool",
     founder: "Nikhil Gaur",
-    cohort: "PGP TBM Co '24",
-    season: "Season 4",
+    cohort: "PGP TBM '24",
+    season: "S4",
     pitch: "India's first Sales School — training the next generation of GTM operators.",
+    logo: vHiveschool,
     cardImg: "https://images.mastersunion.link/uploads/15042026/v1/Frame1618873982.webp",
   },
   {
     company: "MemoTag",
     founder: "Reyansh Juneja",
-    cohort: "UG TBM Co '28",
-    season: "Season 4",
-    pitch: "An AI-driven wearable purpose-built for dementia care and family peace of mind.",
+    cohort: "UG TBM '28",
+    season: "S4",
+    pitch: "AI-driven wearable purpose-built for dementia care.",
     cardImg: "https://images.mastersunion.link/uploads/25032026/v1/SharkTankCard16.webp",
   },
 ];
 
 function SharkTankCompact() {
   return (
-    <div className="relative flex h-full flex-col overflow-hidden border border-black/10 bg-[#0b1220] text-white">
+    <div className="relative flex h-full flex-col overflow-hidden rounded-xl border border-black/10 bg-white text-black shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
       {/* Header with stage image */}
-      <div className="relative">
-        <div className="relative h-[168px] w-full overflow-hidden">
-          <img
-            src={sharkTankStage.url}
-            alt="Shark Tank India stage"
-            loading="lazy"
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0b1220] via-[#0b1220]/55 to-[#0b1220]/10" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1220]/85 via-transparent to-transparent" />
-          <div className="absolute inset-0 flex flex-col justify-between p-6">
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-white/70">
-              Featured on
-            </p>
-            <div>
-              <h4
-                className="text-[clamp(1.75rem,3.4vw,2.5rem)] font-semibold leading-[0.98] tracking-[-0.02em]"
-                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+      <div className="relative h-[172px] w-full overflow-hidden">
+        <img
+          src={sharkTankStage.url}
+          alt="Shark Tank India stage"
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/10" />
+        <div className="absolute inset-0 flex flex-col justify-between p-6">
+          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-black/55">
+            Featured on
+          </p>
+          <div>
+            <h4
+              className="text-[clamp(1.75rem,3.4vw,2.5rem)] font-semibold leading-[0.98] tracking-[-0.02em] text-black"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+            >
+              Shark Tank{" "}
+              <span
+                className="italic font-light"
+                style={{ fontFamily: "'Fraunces', Georgia, serif" }}
               >
-                Shark Tank{" "}
-                <span
-                  className="italic font-light"
-                  style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-                >
-                  India.
-                </span>
-              </h4>
-              <p className="mt-2 max-w-[38ch] text-[11.5px] leading-relaxed text-white/65">
-                Six student-founded ventures have pitched on India's biggest startup stage.
-              </p>
-            </div>
-          </div>
-        </div>
-        {/* Stats strip */}
-        <div className="grid grid-cols-3 divide-x divide-white/10 border-t border-white/10 bg-[#0a1020]">
-          <div className="px-5 py-3">
-            <p className="text-[18px] font-semibold leading-none" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>6</p>
-            <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/45">Ventures</p>
-          </div>
-          <div className="px-5 py-3">
-            <p className="text-[18px] font-semibold leading-none" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>4</p>
-            <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/45">Seasons</p>
-          </div>
-          <div className="px-5 py-3">
-            <p className="text-[18px] font-semibold leading-none" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>5</p>
-            <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/45">Deals closed</p>
+                India.
+              </span>
+            </h4>
+            <p className="mt-2 max-w-[38ch] text-[11.5px] leading-relaxed text-black/60">
+              Six student-founded ventures have pitched on India's biggest startup stage.
+            </p>
           </div>
         </div>
       </div>
-      <ul className="flex-1 divide-y divide-white/10">
+      {/* Stats strip */}
+      <div className="grid grid-cols-3 divide-x divide-black/[0.08] border-y border-black/[0.08] bg-[#FAF9F6]">
+        {[
+          { v: "6", l: "Ventures" },
+          { v: "4", l: "Seasons" },
+          { v: "5", l: "Deals closed" },
+        ].map((s) => (
+          <div key={s.l} className="px-5 py-3">
+            <p className="text-[18px] font-semibold leading-none text-black" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+              {s.v}
+            </p>
+            <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-black/45">{s.l}</p>
+          </div>
+        ))}
+      </div>
+      <ul className="flex-1 divide-y divide-black/[0.06]">
         {SHARK_TANK_PITCHES.map((p, i) => (
           <li key={p.company} className="flex items-center gap-3 px-5 py-2.5">
-            <span className="w-5 shrink-0 font-mono text-[10px] text-white/40">0{i + 1}</span>
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-[12.5px] font-semibold text-white">{p.company}</p>
-              <p className="truncate text-[10.5px] text-white/55">{p.founder} · {p.cohort}</p>
+            <span className="w-5 shrink-0 font-mono text-[10px] text-black/35">0{i + 1}</span>
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-md border border-black/[0.08] bg-white">
+              {p.logo ? (
+                <img
+                  src={p.logo.url}
+                  alt={p.company}
+                  loading="lazy"
+                  className="max-h-6 max-w-[80%] object-contain"
+                />
+              ) : (
+                <span
+                  className="text-[10px] font-semibold text-black/50"
+                  style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                >
+                  {p.company.slice(0, 1)}
+                </span>
+              )}
             </div>
-            <span className="shrink-0 font-mono text-[9px] uppercase tracking-[0.14em] text-white/40">
-              S{p.season.replace(/\D/g, "")}
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-[12.5px] font-semibold text-black">{p.company}</p>
+              <p className="truncate text-[10.5px] text-black/55">
+                {p.founder} · {p.cohort}
+              </p>
+            </div>
+            <span className="shrink-0 rounded-full bg-black/[0.05] px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.14em] text-black/55">
+              {p.season}
             </span>
           </li>
         ))}
@@ -772,6 +803,7 @@ function SharkTankCompact() {
     </div>
   );
 }
+
 
 function VenturesSplit() {
   return (
