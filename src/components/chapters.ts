@@ -257,6 +257,15 @@ const RAW_CHAPTERS = [
     chips: ["Shopify", "Meta Ads", "Stripe", "Razorpay", "Live stores", "Real P&L"],
     cta: "See the scoreboard", route: "/d2c-challenge", bg: "#0F3D2E", ink: "#F1E7D2", image: mu01,
   },
+  {
+    n: "11", tag: "Life at MU",
+    headline: "A normal day here would be a quarter's worth of memories anywhere else.",
+    body: "9 AM strategy with a sitting CEO. 2 PM shoot in the content studio. 9 PM, three teams plating a new menu in the Food Lab. 1 AM whiteboard wars where the real decisions get made.",
+    stat: "24/7", label: "Campus, kitchen, studio, fund — always on",
+    stats: [{ value: "24/7", label: "Campus access" }, { value: "20+", label: "Student clubs" }, { value: "Daily", label: "Mentor calls" }],
+    chips: ["Content studio", "Food Lab", "Investment lab", "Cohort Slack", "Hostels"],
+    cta: "See campus life", route: "/life-at-mu", bg: "#2A1B3D", ink: "#F1E3CE", image: mu09,
+  },
 ];
 
 export const CHAPTERS: Chapter[] = RAW_CHAPTERS.map((c) => withSections(c));
