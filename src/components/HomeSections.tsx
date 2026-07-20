@@ -74,7 +74,16 @@ import acFaculty from "@/assets/admissions/faculty-fireside.jpg";
 import acOffice from "@/assets/admissions/office-hours.jpg";
 import acCohort from "@/assets/admissions/cohort-preview.jpg";
 
-type Programme = { title: string; duration: string; format: string; href?: string };
+type Programme = {
+  title: string;
+  duration: string;
+  format: string;
+  href?: string;
+  round?: string;
+  deadline?: string;
+  status?: string;
+  applyHref?: string;
+};
 type Pathway = {
   key: string;
   label: string;
