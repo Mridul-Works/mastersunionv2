@@ -566,84 +566,113 @@ const ALUM_STORIES = [
   { name: "Ananya Gupta", role: "Investor", company: "Good Capital", logo: goodcapital.url, photo: ananyaImg.url, quote: "Pitched a portfolio company on campus, joined the fund that heard the pitch." },
 ];
 
+type CardStyle = "purple" | "dark" | "orange";
+
+const CARD_STYLES: { key: CardStyle; bg: string; quoteColor: string; nameColor: string; roleColor: string; logoInvert: boolean; overlay: boolean }[] = [
+  {
+    key: "purple",
+    bg: "bg-[linear-gradient(180deg,#5a4fcf_0%,#4338a8_60%,#3a2f8f_100%)]",
+    quoteColor: "text-white",
+    nameColor: "text-white",
+    roleColor: "text-white/70",
+    logoInvert: true,
+    overlay: true,
+  },
+  {
+    key: "dark",
+    bg: "bg-[#111827]",
+    quoteColor: "text-white",
+    nameColor: "text-white",
+    roleColor: "text-white/60",
+    logoInvert: true,
+    overlay: false,
+  },
+  {
+    key: "orange",
+    bg: "bg-[linear-gradient(180deg,#c9603a_0%,#e07a3a_50%,#f0a04a_100%)]",
+    quoteColor: "text-white",
+    nameColor: "text-white",
+    roleColor: "text-white/70",
+    logoInvert: true,
+    overlay: true,
+  },
+];
+
+function AlumCard({ alum, style, index }: { alum: typeof ALUM_STORIES[number]; style: typeof CARD_STYLES[number]; index: number }) {
+  return (
+    <article
+      key={`${alum.name}-${index}`}
+      className={`relative flex flex-col overflow-hidden ${style.bg} aspect-[3/4] animate-in fade-in duration-700`}
+    >
+      {style.overlay ? (
+        <>
+          {/* Portrait fills card, gradient darkens bottom */}
+          <img src={alum.photo} alt={alum.name} className="absolute inset-0 h-full w-full object-cover object-top mix-blend-luminosity opacity-90" />
+          <div className={`absolute inset-0 ${style.bg} opacity-70`} />
+          <div className="relative z-10 flex flex-1 flex-col justify-between p-6 md:p-8">
+            <div />
+            <div>
+              <p className={`text-sm md:text-base leading-snug ${style.quoteColor} text-center`}>
+                {alum.quote}
+              </p>
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className="relative z-10 flex flex-1 flex-col justify-between p-6 md:p-8">
+          <div>
+            <div className="text-white/40 text-3xl leading-none mb-3">&ldquo;</div>
+            <p className={`text-lg md:text-xl leading-snug ${style.quoteColor}`}>
+              {alum.quote}
+            </p>
+          </div>
+          <div>
+            <div className="flex items-center gap-2 text-emerald-400 text-sm">
+              <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/20">↑</span>
+              <span className="font-semibold text-white text-lg">Top 1%</span>
+            </div>
+            <p className="text-white/50 text-xs mt-1">Placement cohort</p>
+          </div>
+        </div>
+      )}
+
+      {/* Footer: avatar + name */}
+      <div className="relative z-10 border-t border-white/15 px-6 md:px-8 py-4 flex items-center gap-3">
+        <div className="h-8 w-8 rounded-full overflow-hidden bg-white/10 flex-shrink-0">
+          <img src={alum.photo} alt="" className="h-full w-full object-cover" />
+        </div>
+        <div className="min-w-0">
+          <p className={`text-sm font-medium truncate ${style.nameColor}`}>{alum.name}</p>
+          <p className={`text-[11px] truncate ${style.roleColor}`}>{alum.role}, {alum.company}</p>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 function AlumStories() {
-  const [active, setActive] = useState(0);
+  const [offset, setOffset] = useState(0);
   const [paused, setPaused] = useState(false);
-  const current = ALUM_STORIES[active];
   const total = ALUM_STORIES.length;
 
   useEffect(() => {
     if (paused) return;
-    const id = setInterval(() => {
-      setActive((prev) => (prev + 1) % total);
-    }, 4000);
+    const id = setInterval(() => setOffset((p) => (p + 1) % total), 4000);
     return () => clearInterval(id);
   }, [paused, total]);
 
-  const at = (offset: number) => (active + offset + total) % total;
-  // For 4 alums: 2 on left, 1 on right (all 3 others, no dupes)
-  const leftThumbs = [at(-2), at(-1)];
-  const rightThumbs = [at(1)];
-
-  const Thumb = ({ idx }: { idx: number }) => {
-    const a = ALUM_STORIES[idx];
-    return (
-      <button
-        onClick={() => setActive(idx)}
-        className="relative aspect-[3/4] w-20 md:w-24 overflow-hidden bg-stone-200 transition hover:opacity-80 focus:outline-none"
-        aria-label={`View ${a.name}`}
-      >
-        <img src={a.photo} alt={a.name} className="h-full w-full object-cover" />
-      </button>
-    );
-  };
+  const visible = [0, 1, 2].map((i) => ALUM_STORIES[(offset + i) % total]);
 
   return (
     <div
-      className="relative py-12"
+      className="py-8"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="flex items-center justify-center gap-4 md:gap-6">
-        {/* Left thumbs */}
-        <div className="hidden md:flex items-center gap-4">
-          {leftThumbs.map((i) => <Thumb key={i} idx={i} />)}
-        </div>
-
-        {/* Featured card */}
-        <div className="relative flex-1 max-w-md">
-          <div className="bg-[#dfe6ec] px-6 md:px-10 py-8 md:py-10">
-            <div className="aspect-square w-full max-w-[280px] mx-auto overflow-hidden bg-stone-300 mb-6">
-              <img
-                key={current.photo}
-                src={current.photo}
-                alt={current.name}
-                className="h-full w-full object-cover animate-in fade-in duration-700"
-              />
-            </div>
-            <p className="text-xl md:text-2xl leading-tight font-medium text-[#0b1a3a]">
-              {current.name}
-            </p>
-            <p className="text-sm md:text-base text-[#7a90a8] mt-1">
-              {current.company}
-            </p>
-          </div>
-        </div>
-
-        {/* Right thumbs + counter */}
-        <div className="hidden md:flex flex-col items-center gap-8">
-          <div className="flex items-center gap-4">
-            {rightThumbs.map((i) => <Thumb key={i} idx={i} />)}
-          </div>
-          <p className="text-lg text-black/40 font-light">
-            <span className="text-black/70">{active + 1}</span>/{total}
-          </p>
-        </div>
-      </div>
-
-      {/* Mobile thumbs */}
-      <div className="md:hidden mt-6 flex justify-center gap-3">
-        {ALUM_STORIES.map((_, i) => i !== active && <Thumb key={i} idx={i} />)}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+        {visible.map((alum, i) => (
+          <AlumCard key={`${alum.name}-${offset}-${i}`} alum={alum} style={CARD_STYLES[i]} index={offset} />
+        ))}
       </div>
     </div>
   );
