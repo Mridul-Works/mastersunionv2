@@ -702,109 +702,66 @@ const SHARK_TANK_PITCHES = [
   },
 ];
 
-function SharkTankBlock() {
+function SharkTankCompact() {
   return (
-    <div className="mt-12">
-      {/* Header band */}
-      <div className="relative overflow-hidden border border-black/10 bg-[#0b1220] text-white">
+    <div className="relative flex h-full flex-col overflow-hidden border border-black/10 bg-[#0b1220] text-white">
+      <div className="relative px-5 pt-5 pb-4">
         <img
           src={sharkTankStage.url}
           alt=""
-          loading="lazy"
           aria-hidden
-          className="absolute inset-0 h-full w-full object-cover opacity-45"
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover opacity-40"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0b1220] via-[#0b1220]/70 to-transparent" />
-        <div className="relative z-10 grid grid-cols-1 gap-6 p-6 md:grid-cols-[1.6fr_1fr] md:items-end md:gap-10 md:p-9">
-          <div>
-            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-white/70">
-              Shark Tank India × Masters&rsquo; Union
-            </p>
-            <h3
-              className="mt-3 text-[clamp(1.6rem,3vw,2.4rem)] font-semibold leading-[1.05] tracking-tight"
-              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-            >
-              Our students on&nbsp;
-              <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
-                India&rsquo;s biggest startup stage.
-              </span>
-            </h3>
-            <p className="mt-3 max-w-[58ch] text-[13px] leading-relaxed text-white/70">
-              Shark Tank India partners exclusively with Masters&rsquo; Union for its Campus Special Episode.
-              Real founders, real pitches — student ventures from our cohorts on national television.
-            </p>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0b1220]/70 via-[#0b1220]/85 to-[#0b1220]" />
+        <div className="relative z-10">
+          <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.28em] text-white/60">
+            Featured on
+          </p>
+          <h4
+            className="mt-1.5 text-[18px] font-semibold leading-tight tracking-tight"
+            style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+          >
+            Shark Tank
+            <span className="italic font-light ml-1.5" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+              India.
+            </span>
+          </h4>
+          <div className="mt-3 flex gap-5 text-white/80">
+            <div><span className="text-[15px] font-semibold" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>6</span><span className="ml-1 text-[9px] uppercase tracking-wider text-white/50">Ventures</span></div>
+            <div><span className="text-[15px] font-semibold" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>4</span><span className="ml-1 text-[9px] uppercase tracking-wider text-white/50">Seasons</span></div>
           </div>
-          <dl className="flex gap-8 md:justify-end">
-            <div>
-              <dd className="text-2xl font-semibold md:text-3xl" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
-                6
-              </dd>
-              <dt className="mt-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/50">
-                Ventures aired
-              </dt>
-            </div>
-            <div>
-              <dd className="text-2xl font-semibold md:text-3xl" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
-                4
-              </dd>
-              <dt className="mt-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/50">
-                Seasons featured
-              </dt>
-            </div>
-            <div>
-              <dd className="text-2xl font-semibold md:text-3xl" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
-                1
-              </dd>
-              <dt className="mt-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/50">
-                Campus Special
-              </dt>
-            </div>
-          </dl>
         </div>
       </div>
-
-      {/* Card grid */}
-      <div className="grid grid-cols-1 gap-4 border-x border-b border-black/10 bg-white p-4 sm:grid-cols-2 md:p-6 lg:grid-cols-3">
-        {SHARK_TANK_PITCHES.map((p) => (
-          <article
-            key={p.company}
-            className="group flex flex-col overflow-hidden border border-black/10 bg-white transition hover:border-black/40"
-          >
-            <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-100">
-              <img
-                src={p.cardImg}
-                alt={`${p.company} on Shark Tank India`}
-                loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-              />
-              <span className="absolute left-3 top-3 rounded-full bg-black/80 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur">
-                {p.season}
-              </span>
+      <ul className="flex-1 divide-y divide-white/10">
+        {SHARK_TANK_PITCHES.map((p, i) => (
+          <li key={p.company} className="flex items-center gap-3 px-5 py-2.5">
+            <span className="w-5 shrink-0 font-mono text-[10px] text-white/40">0{i + 1}</span>
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-[12.5px] font-semibold text-white">{p.company}</p>
+              <p className="truncate text-[10.5px] text-white/55">{p.founder} · {p.cohort}</p>
             </div>
-            <div className="flex flex-1 flex-col p-5">
-              <h4
-                className="text-[18px] font-semibold leading-tight text-black"
-                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-              >
-                {p.company}
-              </h4>
-              <p className="mt-2 text-[12.5px] leading-relaxed text-black/65">{p.pitch}</p>
-              <div className="mt-4 flex items-center justify-between border-t border-black/10 pt-3">
-                <div className="min-w-0">
-                  <p className="text-[12px] font-medium text-black truncate">{p.founder}</p>
-                  <p className="mt-0.5 text-[10px] uppercase tracking-[0.14em] text-black/45 truncate">
-                    {p.cohort}
-                  </p>
-                </div>
-                <ArrowUpRight className="size-4 text-black/40 transition group-hover:text-black group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-              </div>
-            </div>
-          </article>
+            <span className="shrink-0 font-mono text-[9px] uppercase tracking-[0.14em] text-white/40">
+              S{p.season.replace(/\D/g, "")}
+            </span>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
+
+function VenturesSplit() {
+  return (
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.55fr_1fr]">
+      <div>
+        <CategorizedLogos groups={VENTURE_GROUPS} />
+      </div>
+      <SharkTankCompact />
+    </div>
+  );
+}
+
 
 
 
@@ -824,10 +781,10 @@ export default function HomeShowcase() {
       <ShowcaseShell section={VENTURES_SECTION}>
         <FounderFilmstrip />
         <div className="mt-8">
-          <CategorizedLogos groups={VENTURE_GROUPS} />
+          <VenturesSplit />
         </div>
-        <SharkTankBlock />
       </ShowcaseShell>
+
       <ShowcaseShell section={PARTNERS_SECTION}>
         <CategorizedLogos groups={PARTNER_GROUPS} withFilter />
       </ShowcaseShell>
