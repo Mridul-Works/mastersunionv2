@@ -2,9 +2,11 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import widgetCampusLife from "@/assets/widget/widget-campus-life.jpg";
+import widgetCampusLifeAsset from "@/assets/widget/widget-campus-life.jpg.asset.json";
 import widgetAccommodation from "@/assets/widget/widget-accommodation.jpg";
-import widgetClubsFests from "@/assets/widget/widget-clubs-fests.jpg";
+import widgetClubsFestsAsset from "@/assets/widget/widget-clubs-fests.jpg.asset.json";
+const widgetCampusLife = widgetCampusLifeAsset.url;
+const widgetClubsFests = widgetClubsFestsAsset.url;
 
 
 type Slide = {
