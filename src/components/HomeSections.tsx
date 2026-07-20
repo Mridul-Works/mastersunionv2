@@ -771,27 +771,69 @@ function Programs() {
             </div>
 
             <ul className="flex-1 min-h-0 space-y-0 overflow-y-auto pr-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:w-0 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black/20 [&::-webkit-scrollbar-track]:bg-transparent hover:[&::-webkit-scrollbar]:w-1.5 hover:[scrollbar-width:thin] hover:[&::-webkit-scrollbar-thumb]:bg-black/40">
-              {active.programmes.map((pg, i) => (
-                <li key={pg.title}>
-                  <a
-                    href={pg.href ?? active.viewAllHref}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="group/row grid grid-cols-[auto_minmax(0,1fr)_auto] items-start gap-3 border-b border-black/10 py-3 transition hover:border-black"
-                  >
-                    <span className="mt-1 font-mono text-[10px] text-black/40">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="min-w-0 text-[13px] font-semibold leading-snug text-black">
-                      {pg.title}
-                      <span className="mt-1 block font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-black/45">
-                        {pg.duration} · {pg.format}
+              {active.programmes.map((pg, i) => {
+                const detailHref = pg.href ?? active.viewAllHref;
+                const isInternal = detailHref.startsWith("/");
+                const hasAdmissions = Boolean(pg.deadline || pg.round);
+                return (
+                  <li key={pg.title}>
+                    <div className="group/row grid grid-cols-[auto_minmax(0,1fr)_auto] items-start gap-3 border-b border-black/10 py-3 transition hover:border-black">
+                      <span className="mt-1 font-mono text-[10px] text-black/40">
+                        {String(i + 1).padStart(2, "0")}
                       </span>
-                    </span>
-                    <ArrowUpRight className="mt-1 size-3.5 shrink-0 opacity-30 transition group-hover/row:opacity-100" />
-                  </a>
-                </li>
-              ))}
+                      <div className="min-w-0">
+                        <a
+                          href={detailHref}
+                          target={isInternal ? undefined : "_blank"}
+                          rel={isInternal ? undefined : "noreferrer"}
+                          className="block text-[13px] font-semibold leading-snug text-black hover:underline underline-offset-4 decoration-black/40"
+                        >
+                          {pg.title}
+                        </a>
+                        <span className="mt-1 block font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-black/45">
+                          {pg.duration} · {pg.format}
+                        </span>
+                        {hasAdmissions && (
+                          <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] font-semibold uppercase tracking-[0.16em]">
+                            {pg.round && (
+                              <span className="border border-black/30 px-1.5 py-0.5 text-black/70">
+                                {pg.round}
+                              </span>
+                            )}
+                            {pg.deadline && (
+                              <span className="text-black/55">
+                                Closes {formatDeadline(pg.deadline)} · <DaysRemaining target={pg.deadline} /> days left
+                              </span>
+                            )}
+                            {pg.status && !pg.deadline && (
+                              <span className="text-black/55">{pg.status}</span>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                      {hasAdmissions ? (
+                        <a
+                          href={pg.applyHref ?? "/applications_center"}
+                          className="mt-1 inline-flex shrink-0 items-center gap-1 border border-black bg-black px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[#F5F3EE] transition hover:bg-[#F5F3EE] hover:text-black"
+                        >
+                          Apply
+                          <ArrowUpRight className="size-3" />
+                        </a>
+                      ) : (
+                        <a
+                          href={detailHref}
+                          target={isInternal ? undefined : "_blank"}
+                          rel={isInternal ? undefined : "noreferrer"}
+                          aria-label={`Open ${pg.title}`}
+                          className="mt-1 shrink-0"
+                        >
+                          <ArrowUpRight className="size-3.5 opacity-30 transition group-hover/row:opacity-100" />
+                        </a>
+                      )}
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
 
             {/* Scroll prompt */}
