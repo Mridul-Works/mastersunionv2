@@ -123,6 +123,13 @@ import ishaImg from "@/assets/alumni/isha.jpg.asset.json";
 import kabirImg from "@/assets/alumni/kabir.jpg.asset.json";
 import ananyaImg from "@/assets/alumni/ananya.jpg.asset.json";
 
+// Founder portraits + Shark Tank stage
+import founder1 from "@/assets/founders/founder-1.jpg.asset.json";
+import founder2 from "@/assets/founders/founder-2.jpg.asset.json";
+import founder3 from "@/assets/founders/founder-3.jpg.asset.json";
+import founder4 from "@/assets/founders/founder-4.jpg.asset.json";
+import sharkTankStage from "@/assets/founders/sharktank-stage.jpg.asset.json";
+
 type Stat = { value: string; label: string };
 type Section = {
   id: string;
