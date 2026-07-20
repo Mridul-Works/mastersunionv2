@@ -598,10 +598,10 @@ function FacultyPager({ items }: { items: typeof FACULTY_ALL }) {
 
 
 const ALUM_STORIES = [
-  { name: "Aarav Mehta", role: "Business Analyst", company: "McKinsey & Company", logo: mckinsey.url, photo: aaravImg.url, quote: "Live case work in Year 2 got me an offer before final placements." },
-  { name: "Isha Rao", role: "Associate Consultant", company: "Bain & Company", logo: bain.url, photo: ishaImg.url, quote: "MU's practitioner faculty rewired how I break down a problem." },
-  { name: "Kabir Shah", role: "APM", company: "Meta", logo: meta.url, photo: kabirImg.url, quote: "Building at MU Ventures made the PM interview feel like a normal Tuesday." },
-  { name: "Ananya Gupta", role: "Investor", company: "Good Capital", logo: goodcapital.url, photo: ananyaImg.url, quote: "Pitched a portfolio company on campus, joined the fund that heard the pitch." },
+  { name: "Aarav Mehta", role: "Business Analyst", company: "McKinsey & Company", logo: rMckinsey.url, photo: aaravImg.url, quote: "Live case work in Year 2 got me an offer before final placements." },
+  { name: "Isha Rao", role: "Associate Consultant", company: "Bain & Company", logo: rBain.url, photo: ishaImg.url, quote: "MU's practitioner faculty rewired how I break down a problem." },
+  { name: "Kabir Shah", role: "APM", company: "Meta", logo: rMeta.url, photo: kabirImg.url, quote: "Building at MU Ventures made the PM interview feel like a normal Tuesday." },
+  { name: "Ananya Gupta", role: "Investor", company: "Good Capital", logo: rGoodCapital.url, photo: ananyaImg.url, quote: "Pitched a portfolio company on campus, joined the fund that heard the pitch." },
 ];
 
 function AlumStories() {
