@@ -567,57 +567,73 @@ const ALUM_STORIES = [
 ];
 
 function AlumStories() {
+  const [active, setActive] = useState(0);
+  const current = ALUM_STORIES[active];
+  const thumbs = ALUM_STORIES.map((_, i) => i).filter((i) => i !== active);
+
   return (
-    <div>
-      <div className="mb-3 flex items-center gap-3">
-        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
-          Alum stories
-        </span>
-        <span className="h-px flex-1 bg-black/10" />
-        <span className="font-mono text-[10px] text-black/40">{ALUM_STORIES.length}</span>
-      </div>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {ALUM_STORIES.map((a) => (
-          <figure
-            key={a.name}
-            className="group relative aspect-[3/4] overflow-hidden bg-stone-200"
+    <div className="relative">
+      <div className="grid grid-cols-12 gap-6 lg:gap-10 items-start">
+        {/* Vertical Reviews label */}
+        <div className="col-span-1 hidden md:flex justify-center pt-6">
+          <span
+            className="text-2xl lg:text-3xl font-semibold text-black/85 tracking-tight"
+            style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
           >
-            <img
-              src={a.photo}
-              alt={a.name}
-              loading="lazy"
-              width={800}
-              height={1067}
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
-            <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4 text-white">
-              <div className="min-w-0">
-                <h3
-                  className="mb-0.5 truncate text-[15px] leading-tight"
-                  style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-                >
-                  {a.name}
-                </h3>
-                <p className="truncate text-[9px] font-semibold uppercase leading-tight tracking-[0.18em] text-white/70">
-                  {a.role}
-                </p>
-              </div>
-              <img
-                src={a.logo}
-                alt={a.company}
-                loading="lazy"
-                className="h-4 w-auto max-w-[60px] shrink-0 object-contain opacity-90 [filter:brightness(0)_invert(1)]"
-              />
-            </figcaption>
-          </figure>
+            Alum stories
+          </span>
+        </div>
 
-        ))}
+        {/* Featured portrait */}
+        <div className="col-span-12 md:col-span-5">
+          <div className="aspect-[4/5] w-full overflow-hidden bg-stone-200">
+            <img
+              key={current.photo}
+              src={current.photo}
+              alt={current.name}
+              className="h-full w-full object-cover animate-in fade-in duration-500"
+            />
+          </div>
+        </div>
+
+        {/* Text block */}
+        <div className="col-span-12 md:col-span-6 pt-4 md:pt-10">
+          <p className="text-xl text-black/40 font-light mb-3">#{String(active + 1).padStart(1, "0")}</p>
+          <h3 className="text-2xl lg:text-3xl font-bold tracking-tight text-[#0b1a3a] uppercase mb-4">
+            {current.name}
+          </h3>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-black/50 mb-4">
+            {current.role} · {current.company}
+          </p>
+          <p className="text-[15px] leading-relaxed text-black/70 max-w-md">
+            {current.quote}
+          </p>
+        </div>
       </div>
 
+      {/* Thumbnail row */}
+      <div className="mt-6 grid grid-cols-12 gap-6 lg:gap-10">
+        <div className="hidden md:block col-span-1" />
+        <div className="col-span-12 md:col-span-11 flex gap-3 md:gap-4 flex-wrap">
+          {thumbs.map((i) => {
+            const a = ALUM_STORIES[i];
+            return (
+              <button
+                key={a.name}
+                onClick={() => setActive(i)}
+                className="relative w-24 h-28 md:w-28 md:h-32 overflow-hidden bg-stone-200 ring-1 ring-black/5 transition hover:ring-black/30 focus:outline-none focus:ring-2 focus:ring-black"
+                aria-label={`View ${a.name}`}
+              >
+                <img src={a.photo} alt={a.name} className="h-full w-full object-cover" />
+              </button>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
+
 
 export default function HomeShowcase() {
   return (
