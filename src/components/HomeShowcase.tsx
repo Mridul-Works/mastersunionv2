@@ -611,6 +611,121 @@ function AlumStories() {
 
 
 
+const FOUNDER_STORIES = [
+  { name: "Rhea Kapoor", role: "Co-founder", company: "BlueBrew", photo: founder2.url, quote: "We tested the first 400 bottles from the campus canteen — six months later we were in 12 cities." },
+  { name: "Arnav Sethi", role: "Founder & CEO", company: "Kaze", photo: founder1.url, quote: "The MU Ventures studio put a designer, a dev and a mentor on my table before I had a landing page." },
+  { name: "Ishaan Verma", role: "Co-founder", company: "EatAtlas", photo: founder3.url, quote: "Pre-seed cheque from the in-house fund closed in the same week I pitched." },
+  { name: "Meher Anand", role: "Founder", company: "Nivara", photo: founder4.url, quote: "Two co-founders, one advisor and one recruiter — all from the same 60-person cohort." },
+];
+
+function FounderFilmstrip() {
+  return (
+    <div className="pt-2 pb-4">
+      <p className="mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-black/50">
+        Founders in the making
+      </p>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-x-3 gap-y-6">
+        {FOUNDER_STORIES.map((f, i) => (
+          <figure key={`${f.name}-${i}`} className="flex flex-col">
+            <div className="relative w-full aspect-[3/4] overflow-hidden bg-neutral-200">
+              <img
+                src={f.photo}
+                alt={f.name}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover object-top grayscale contrast-[1.05]"
+              />
+            </div>
+            <figcaption className="mt-3 pr-1">
+              <p className="text-[13px] font-semibold text-black leading-tight">{f.name}.</p>
+              <p className="mt-2 text-[11px] leading-[1.5] text-neutral-700 italic">
+                &ldquo;{f.quote}&rdquo;
+              </p>
+              <p className="mt-2 text-[10px] uppercase tracking-wider text-neutral-500 not-italic">
+                {f.role}, {f.company}
+              </p>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const SHARK_TANK_PITCHES = [
+  { company: "BlueBrew", founder: "Rhea Kapoor & team", pitch: "Cold-brew coffee for Indian palates", ask: "₹50L for 2%", deal: "₹75L for 4%", sharks: "Namita · Anupam" },
+  { company: "Kaze", founder: "Arnav Sethi", pitch: "Design-forward home fragrance brand", ask: "₹1 Cr for 3%", deal: "₹1 Cr for 5%", sharks: "Vineeta · Aman" },
+  { company: "Moms", founder: "Priya Nair", pitch: "Ready-to-cook regional Indian meals", ask: "₹60L for 4%", deal: "₹60L for 6%", sharks: "Namita · Peyush" },
+  { company: "Woody's Pizzeria", founder: "Kabir Malhotra", pitch: "Neapolitan pizza QSR chain", ask: "₹80L for 2.5%", deal: "₹1 Cr for 5%", sharks: "Aman · Anupam" },
+];
+
+function SharkTankBlock() {
+  return (
+    <div className="mt-10 overflow-hidden border border-black/10 bg-[#0b1220] text-white">
+      <div className="grid grid-cols-1 md:grid-cols-[1.05fr_1.4fr]">
+        <div className="relative min-h-[220px] md:min-h-full">
+          <img
+            src={sharkTankStage.url}
+            alt="Shark Tank India stage"
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover opacity-80"
+          />
+          <div className="absolute inset-0 bg-gradient-to-tr from-[#0b1220] via-[#0b1220]/40 to-transparent" />
+          <div className="relative z-10 flex h-full flex-col justify-between p-6 md:p-8">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-white/70">
+              Featured on
+            </p>
+            <div>
+              <h3
+                className="text-[clamp(1.5rem,2.6vw,2rem)] font-semibold leading-[1.05] tracking-tight"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+              >
+                Shark Tank
+                <span className="italic font-light ml-2" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+                  India.
+                </span>
+              </h3>
+              <p className="mt-3 max-w-[42ch] text-[12.5px] leading-relaxed text-white/70">
+                Four student-founded ventures from our cohorts have walked onto the tank — and walked out with cheques from India's most-watched investors.
+              </p>
+            </div>
+            <div className="flex gap-6">
+              <div>
+                <p className="text-2xl font-semibold" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>4</p>
+                <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/50">Ventures aired</p>
+              </div>
+              <div>
+                <p className="text-2xl font-semibold" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>₹3.35 Cr</p>
+                <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/50">Committed on air</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="divide-y divide-white/10">
+          {SHARK_TANK_PITCHES.map((p) => (
+            <div key={p.company} className="grid grid-cols-[1.2fr_1fr_1fr] items-center gap-4 px-5 py-4 md:px-7 md:py-5">
+              <div className="min-w-0">
+                <p className="text-[14px] font-semibold text-white truncate">{p.company}</p>
+                <p className="mt-1 text-[11px] text-white/60 truncate">{p.pitch}</p>
+                <p className="mt-1 text-[10px] uppercase tracking-wider text-white/40 truncate">{p.founder}</p>
+              </div>
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/40">Ask → Deal</p>
+                <p className="mt-1 text-[12px] text-white/80">{p.ask}</p>
+                <p className="text-[12px] font-semibold text-emerald-300">{p.deal}</p>
+              </div>
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/40">Sharks in</p>
+                <p className="mt-1 text-[12px] text-white/80 leading-snug">{p.sharks}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 export default function HomeShowcase() {
   return (
     <>
@@ -624,7 +739,11 @@ export default function HomeShowcase() {
         </div>
       </ShowcaseShell>
       <ShowcaseShell section={VENTURES_SECTION}>
-        <CategorizedLogos groups={VENTURE_GROUPS} />
+        <FounderFilmstrip />
+        <div className="mt-8">
+          <CategorizedLogos groups={VENTURE_GROUPS} />
+        </div>
+        <SharkTankBlock />
       </ShowcaseShell>
       <ShowcaseShell section={PARTNERS_SECTION}>
         <CategorizedLogos groups={PARTNER_GROUPS} withFilter />
@@ -632,4 +751,5 @@ export default function HomeShowcase() {
     </>
   );
 }
+
 
