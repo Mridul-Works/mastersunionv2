@@ -270,7 +270,7 @@ function Slide({
 }) {
   return (
     <motion.section
-      className="absolute inset-0 grid grid-cols-1 md:grid-cols-[1fr_460px]"
+      className="absolute inset-0 grid grid-cols-1 md:grid-cols-[1fr_600px]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
