@@ -32,6 +32,8 @@ import orestisAsset from "@/assets/faculty/orestis.png.asset.json";
 import annalisaAsset from "@/assets/faculty/annalisa.png.asset.json";
 import evangelosAsset from "@/assets/faculty/evangelos.png.asset.json";
 import xiaoyuAsset from "@/assets/faculty/xiaoyu.png.asset.json";
+import raghuAsset from "@/assets/faculty/raghu-raman.png.asset.json";
+import nitinAsset from "@/assets/faculty/nitin-gaur.png.asset.json";
 
 const manojImg = manojAsset.url;
 const bhupeshImg = bhupeshAsset.url;
@@ -94,6 +96,8 @@ const PRACTITIONER_PHOTOS: Record<string, string> = {
   "Parikshit Khanna": parikshitAsset.url,
   "Karmanya Suri": karmanyaAsset.url,
   "Gaurav Arora": gauravAAsset.url,
+  "Captain Raghu Raman": raghuAsset.url,
+  "Nitin Gaur": nitinAsset.url,
 };
 
 type FullTimer = { name: string; note: string; img?: string };
