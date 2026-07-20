@@ -213,13 +213,8 @@ export default function WidgetCarousel() {
 
         {/* Bottom hint + progress */}
         <div className="pointer-events-none absolute inset-x-0 bottom-6 z-30 flex flex-col items-center gap-4 px-6">
-          <div className="hidden items-center gap-3 text-[10px] uppercase tracking-[0.22em] text-white/55 md:flex">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-white" />
-            <span>Drag</span>
-            <span className="text-white/25">·</span>
-            <span>Arrows ← →</span>
-          </div>
           <div className="flex items-center gap-2">
+
             {SLIDES.map((s, i) => (
               <button
                 key={s.id}
