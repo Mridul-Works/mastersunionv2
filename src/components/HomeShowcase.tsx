@@ -447,7 +447,7 @@ function CategorizedLogos({ groups, withFilter = false, size = "md" }: { groups:
           const name = l.original_filename.replace(/\.png$/i, "");
           return (
             <div key={l.url} title={name} className={cellCls}>
-              <NormalizedLogo src={l.url} alt={name} compact={compact} />
+              <NormalizedLogo src={l.url} alt={name} size={size} />
             </div>
           );
         })}
