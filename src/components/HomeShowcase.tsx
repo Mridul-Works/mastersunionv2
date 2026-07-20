@@ -576,36 +576,42 @@ function AlumStories() {
         <span className="h-px flex-1 bg-black/10" />
         <span className="font-mono text-[10px] text-black/40">{ALUM_STORIES.length}</span>
       </div>
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {ALUM_STORIES.map((a) => (
           <figure
             key={a.name}
-            className="group relative aspect-[4/5] overflow-hidden border border-black/10 bg-black"
+            className="group relative aspect-[3/4] overflow-hidden bg-stone-200"
           >
             <img
               src={a.photo}
               alt={a.name}
               loading="lazy"
               width={800}
-              height={1000}
-              className="absolute inset-0 h-full w-full object-cover grayscale transition duration-700 group-hover:grayscale-0 group-hover:scale-[1.03]"
+              height={1067}
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
             <img
               src={a.logo}
               alt={a.company}
               loading="lazy"
-              className="absolute right-3 top-3 h-5 w-auto max-w-[70px] object-contain opacity-90 [filter:brightness(0)_invert(1)]"
+              className="absolute right-4 top-4 z-10 h-4 w-auto max-w-[70px] object-contain opacity-70 mix-blend-multiply"
             />
-            <figcaption className="absolute inset-x-0 bottom-0 p-4 text-white">
-              <p className="text-[12px] font-semibold leading-tight">{a.name}</p>
-              <p className="text-[10px] leading-tight text-white/70">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+            <figcaption className="absolute inset-x-0 bottom-0 p-5 text-white">
+              <h3
+                className="mb-1 text-[22px] leading-tight"
+                style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+              >
+                {a.name}
+              </h3>
+              <p className="text-[10px] font-semibold uppercase leading-tight tracking-[0.2em] text-white/75">
                 {a.role} · {a.company}
               </p>
             </figcaption>
           </figure>
         ))}
       </div>
+
     </div>
   );
 }
