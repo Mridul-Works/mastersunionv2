@@ -705,31 +705,53 @@ const SHARK_TANK_PITCHES = [
 function SharkTankCompact() {
   return (
     <div className="relative flex h-full flex-col overflow-hidden border border-black/10 bg-[#0b1220] text-white">
-      <div className="relative px-5 pt-5 pb-4">
-        <img
-          src={sharkTankStage.url}
-          alt=""
-          aria-hidden
-          loading="lazy"
-          className="absolute inset-0 h-full w-full object-cover opacity-40"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0b1220]/70 via-[#0b1220]/85 to-[#0b1220]" />
-        <div className="relative z-10">
-          <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.28em] text-white/60">
-            Featured on
-          </p>
-          <h4
-            className="mt-1.5 text-[18px] font-semibold leading-tight tracking-tight"
-            style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-          >
-            Shark Tank
-            <span className="italic font-light ml-1.5" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
-              India.
-            </span>
-          </h4>
-          <div className="mt-3 flex gap-5 text-white/80">
-            <div><span className="text-[15px] font-semibold" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>6</span><span className="ml-1 text-[9px] uppercase tracking-wider text-white/50">Ventures</span></div>
-            <div><span className="text-[15px] font-semibold" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>4</span><span className="ml-1 text-[9px] uppercase tracking-wider text-white/50">Seasons</span></div>
+      {/* Header with stage image */}
+      <div className="relative">
+        <div className="relative h-[168px] w-full overflow-hidden">
+          <img
+            src={sharkTankStage.url}
+            alt="Shark Tank India stage"
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0b1220] via-[#0b1220]/55 to-[#0b1220]/10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1220]/85 via-transparent to-transparent" />
+          <div className="absolute inset-0 flex flex-col justify-between p-6">
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-white/70">
+              Featured on
+            </p>
+            <div>
+              <h4
+                className="text-[clamp(1.75rem,3.4vw,2.5rem)] font-semibold leading-[0.98] tracking-[-0.02em]"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+              >
+                Shark Tank{" "}
+                <span
+                  className="italic font-light"
+                  style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                >
+                  India.
+                </span>
+              </h4>
+              <p className="mt-2 max-w-[38ch] text-[11.5px] leading-relaxed text-white/65">
+                Six student-founded ventures have pitched on India's biggest startup stage.
+              </p>
+            </div>
+          </div>
+        </div>
+        {/* Stats strip */}
+        <div className="grid grid-cols-3 divide-x divide-white/10 border-t border-white/10 bg-[#0a1020]">
+          <div className="px-5 py-3">
+            <p className="text-[18px] font-semibold leading-none" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>6</p>
+            <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/45">Ventures</p>
+          </div>
+          <div className="px-5 py-3">
+            <p className="text-[18px] font-semibold leading-none" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>4</p>
+            <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/45">Seasons</p>
+          </div>
+          <div className="px-5 py-3">
+            <p className="text-[18px] font-semibold leading-none" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>5</p>
+            <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/45">Deals closed</p>
           </div>
         </div>
       </div>
@@ -753,7 +775,7 @@ function SharkTankCompact() {
 
 function VenturesSplit() {
   return (
-    <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.55fr_1fr]">
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1fr]">
       <div>
         <CategorizedLogos groups={VENTURE_GROUPS} />
       </div>
@@ -761,6 +783,7 @@ function VenturesSplit() {
     </div>
   );
 }
+
 
 
 
