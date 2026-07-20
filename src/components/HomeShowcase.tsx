@@ -570,82 +570,85 @@ function AlumStories() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const current = ALUM_STORIES[active];
-  const thumbs = ALUM_STORIES.map((_, i) => i).filter((i) => i !== active);
+  const total = ALUM_STORIES.length;
 
   useEffect(() => {
     if (paused) return;
     const id = setInterval(() => {
-      setActive((prev) => (prev + 1) % ALUM_STORIES.length);
+      setActive((prev) => (prev + 1) % total);
     }, 4000);
     return () => clearInterval(id);
-  }, [paused]);
+  }, [paused, total]);
+
+  const at = (offset: number) => (active + offset + total) % total;
+  // For 4 alums: 2 on left, 1 on right (all 3 others, no dupes)
+  const leftThumbs = [at(-2), at(-1)];
+  const rightThumbs = [at(1)];
+
+  const Thumb = ({ idx }: { idx: number }) => {
+    const a = ALUM_STORIES[idx];
+    return (
+      <button
+        onClick={() => setActive(idx)}
+        className="relative aspect-[3/4] w-20 md:w-24 overflow-hidden bg-stone-200 transition hover:opacity-80 focus:outline-none"
+        aria-label={`View ${a.name}`}
+      >
+        <img src={a.photo} alt={a.name} className="h-full w-full object-cover" />
+      </button>
+    );
+  };
 
   return (
     <div
-      className="relative py-8"
+      className="relative py-12"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="grid grid-cols-12 gap-6 lg:gap-10 items-center">
-        {/* Vertical Reviews label */}
-        <div className="col-span-1 hidden md:flex justify-center">
-          <span
-            className="text-3xl lg:text-4xl font-bold text-[#0b1a3a] tracking-tight"
-            style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
-          >
-            Alum stories
-          </span>
+      <div className="flex items-center justify-center gap-4 md:gap-6">
+        {/* Left thumbs */}
+        <div className="hidden md:flex items-center gap-4">
+          {leftThumbs.map((i) => <Thumb key={i} idx={i} />)}
         </div>
 
-        {/* Featured portrait */}
-        <div className="col-span-12 md:col-span-5">
-          <div className="aspect-square w-full overflow-hidden bg-stone-200">
-            <img
-              key={current.photo}
-              src={current.photo}
-              alt={current.name}
-              className="h-full w-full object-cover animate-in fade-in duration-700"
-            />
+        {/* Featured card */}
+        <div className="relative flex-1 max-w-xl">
+          <div className="bg-[#dfe6ec] px-8 md:px-14 py-10 md:py-14">
+            <p className="text-center text-[11px] font-semibold uppercase tracking-[0.35em] text-[#7a90a8] mb-6">
+              {current.name}
+            </p>
+            <div className="aspect-square w-full overflow-hidden bg-stone-300 mb-8">
+              <img
+                key={current.photo}
+                src={current.photo}
+                alt={current.name}
+                className="h-full w-full object-cover animate-in fade-in duration-700"
+              />
+            </div>
+            <p className="text-2xl md:text-[28px] leading-tight font-medium text-[#0b1a3a] max-w-sm">
+              {current.quote}
+            </p>
           </div>
         </div>
 
-        {/* Text block */}
-        <div className="col-span-12 md:col-span-6 md:pl-4">
-          <p className="text-xl text-black/40 font-light mb-3">#{active + 1}</p>
-          <h3 className="text-2xl lg:text-3xl font-bold tracking-tight text-[#0b1a3a] uppercase mb-4">
-            {current.name}
-          </h3>
-          <p className="text-[15px] leading-relaxed text-black/60 max-w-sm mb-3">
-            {current.quote}
-          </p>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-black/40">
-            {current.role} · {current.company}
+        {/* Right thumbs + counter */}
+        <div className="hidden md:flex flex-col items-center gap-8">
+          <div className="flex items-center gap-4">
+            {rightThumbs.map((i) => <Thumb key={i} idx={i} />)}
+          </div>
+          <p className="text-lg text-black/40 font-light">
+            <span className="text-black/70">{active + 1}</span>/{total}
           </p>
         </div>
       </div>
 
-      {/* Thumbnail row - positioned under featured photo */}
-      <div className="mt-6 grid grid-cols-12 gap-6 lg:gap-10">
-        <div className="hidden md:block col-span-1" />
-        <div className="col-span-12 md:col-span-11 flex gap-3 md:gap-4">
-          {thumbs.map((i) => {
-            const a = ALUM_STORIES[i];
-            return (
-              <button
-                key={a.name}
-                onClick={() => setActive(i)}
-                className="relative w-20 h-20 md:w-24 md:h-24 overflow-hidden bg-stone-200 transition hover:opacity-80 focus:outline-none"
-                aria-label={`View ${a.name}`}
-              >
-                <img src={a.photo} alt={a.name} className="h-full w-full object-cover" />
-              </button>
-            );
-          })}
-        </div>
+      {/* Mobile thumbs */}
+      <div className="md:hidden mt-6 flex justify-center gap-3">
+        {ALUM_STORIES.map((_, i) => i !== active && <Thumb key={i} idx={i} />)}
       </div>
     </div>
   );
 }
+
 
 
 export default function HomeShowcase() {
