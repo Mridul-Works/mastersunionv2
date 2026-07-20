@@ -880,7 +880,6 @@ function UniformLogoList({ groups }: { groups: LogoGroup[] }) {
         );
       })}
     </div>
-    </div>
 
   );
 }
