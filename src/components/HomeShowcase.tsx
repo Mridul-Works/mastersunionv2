@@ -861,7 +861,7 @@ export default function HomeShowcase() {
       <ShowcaseShell section={CAREER_SECTION}>
         <AlumStories />
         <div className="mt-8">
-          <CategorizedLogos groups={CAREER_GROUPS} />
+          <CategorizedLogos groups={CAREER_GROUPS} withFilter compact />
         </div>
       </ShowcaseShell>
       <ShowcaseShell section={VENTURES_SECTION}>
