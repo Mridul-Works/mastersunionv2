@@ -22,16 +22,16 @@ type Slide = {
 
 const SLIDES: Slide[] = [
   {
-    id: "clubs",
+    id: "campus",
     number: "01",
-    chapter: "Student Clubs",
-    time: "20+ Clubs · Student-run",
-    title: "Clubs run the",
-    titleItalic: "second campus.",
-    role: "Finance · Consulting · Product · Design · Marketing · Debate",
+    chapter: "Campus Life",
+    time: "Gurugram · On-campus",
+    title: "A campus built like",
+    titleItalic: "a working city.",
+    role: "Classrooms · Auditorium · Food court · Studios · Labs",
     description:
-      "From the Investment Club running live portfolios to the Consulting Club cracking real cases for partner firms, MU's 20+ student clubs are how craft actually gets built. Product, design, marketing, entrepreneurship, debate, sports, arts — every club is student-led, backed by a faculty mentor, and shipping something every week.",
-    tags: ["Investment Club", "Consulting Club", "Product & Design", "Debate & Model UN"],
+      "Set in the heart of Gurugram's business district, the MU campus is a compact, working city. Classrooms wired with real-time tech, an auditorium that hosts founders and CEOs every week, a food court that runs into late-night jam sessions, and Starbucks, KFC, Cafe Delhi Heights and Bikanervala on campus itself. The airport is 7.8 km away and Cyber City is a 750m walk.",
+    tags: ["Cyber City · 750m", "Airport · 7.8 km", "On-campus F&B", "Gym & clinic on site"],
     image: widgetFounders,
   },
   {
@@ -41,26 +41,27 @@ const SLIDES: Slide[] = [
     time: "On-campus · 24/7",
     title: "Live where the",
     titleItalic: "campus never sleeps.",
-    role: "On-campus residences · Single & twin-sharing · Fully managed",
+    role: "On-campus residences · Centralised AC · Fully managed",
     description:
-      "Residences sit steps away from the classrooms, studios and labs — so a 2AM whiteboard session or a pre-dawn founder call is just a walk down the corridor. Fully-furnished rooms, high-speed Wi-Fi, housekeeping, laundry, gym, common lounges and a 24/7 mess and café keep the day moving without friction.",
-    tags: ["On-campus stay", "24/7 mess & café", "Gym & lounges", "Managed housekeeping"],
+      "MU hostels sit steps from the classrooms — so a 2AM whiteboard session or a pre-dawn founder call is just a walk down the corridor. Rooms come with a personal study nook, centralised AC, ample storage and a tech-savvy setup. Community hubs, social areas, multi-purpose rooms, spacious parking, modern infrastructure, and round-the-clock staff and security keep the day moving without friction.",
+    tags: ["Centralised AC rooms", "Community hubs", "24/7 staff & security", "Managed housekeeping"],
     image: widgetImmersions,
   },
   {
     id: "activities",
     number: "03",
     chapter: "Clubs & Activities",
-    time: "Year-round",
-    title: "Fests, sports,",
+    time: "20+ Clubs · Year-round fests",
+    title: "Clubs, fests,",
     titleItalic: "and studio nights.",
-    role: "Annual fest · Sports leagues · Music, film & content studio",
+    role: "20+ student-run clubs · Annual fests · Sports leagues · Content studio",
     description:
-      "The calendar runs on cohort sports leagues, the annual cultural fest, hackathons, pitch nights, and open-mic sessions in the content studio. Add faculty-led treks, wellness weeks, and cohort trips — the extracurricular slate at MU is built to make sure the classroom is only half the story.",
-    tags: ["Annual fest", "Sports leagues", "Hackathons", "Open mics & studio nights"],
+      "The second campus runs on 20+ student-led clubs — Investment, Consulting, Product & Design, Marketing, Debate, Model UN, Sports, Music and more — each backed by a faculty mentor and shipping something every week. The calendar is stacked with the annual cultural fest, sports leagues, hackathons, pitch nights, and open-mic sessions in the content studio.",
+    tags: ["20+ Clubs", "Annual fest", "Sports leagues", "Hackathons & open mics"],
     image: widgetD2C,
   },
 ];
+
 
 const EASE = [0.7, 0, 0.2, 1] as const;
 const SLIDE_DURATION = 0.9;
