@@ -844,7 +844,7 @@ function VenturesSplit() {
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1fr]">
       <div>
-        <CategorizedLogos groups={VENTURE_GROUPS} />
+        <CategorizedLogos groups={VENTURE_GROUPS} size="lg" />
       </div>
       <SharkTankCompact />
     </div>
