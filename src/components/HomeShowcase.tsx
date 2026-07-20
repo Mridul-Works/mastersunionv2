@@ -1,4 +1,4 @@
-import { useRef, useState, type SyntheticEvent } from "react";
+import { useEffect, useRef, useState, type SyntheticEvent } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
