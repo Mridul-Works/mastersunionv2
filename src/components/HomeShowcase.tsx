@@ -843,16 +843,38 @@ function SharkTankCompact() {
 }
 
 
+function UniformLogoList({ groups }: { groups: LogoGroup[] }) {
+  const logos = groups.flatMap((g) => g.logos);
+  return (
+    <div className="flex flex-wrap items-center gap-x-10 gap-y-8">
+      {logos.map((l) => {
+        const name = l.original_filename.replace(/\.png$/i, "");
+        return (
+          <img
+            key={l.url}
+            src={l.url}
+            alt={name}
+            title={name}
+            loading="lazy"
+            className="h-24 w-auto object-contain opacity-95 transition duration-300 hover:opacity-100"
+          />
+        );
+      })}
+    </div>
+  );
+}
+
 function VenturesSplit() {
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1fr]">
       <div>
-        <CategorizedLogos groups={VENTURE_GROUPS} size="lg" />
+        <UniformLogoList groups={VENTURE_GROUPS} />
       </div>
       <SharkTankCompact />
     </div>
   );
 }
+
 
 
 
