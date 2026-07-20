@@ -776,8 +776,8 @@ function Programs() {
                 const hasAdmissions = Boolean(pg.deadline || pg.round);
                 return (
                   <li key={pg.title}>
-                    <div className="group/row grid grid-cols-[auto_minmax(0,1fr)_auto] items-start gap-3 border-b border-black/10 py-3 transition hover:border-black">
-                      <span className="mt-1 font-mono text-[10px] text-black/40">
+                    <div className="group/row grid grid-cols-[1.75rem_minmax(0,1fr)_auto] items-center gap-3 border-b border-black/10 py-3.5 transition hover:border-black">
+                      <span className="font-mono text-[10px] text-black/40">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       <div className="min-w-0">
@@ -785,35 +785,41 @@ function Programs() {
                           href={detailHref}
                           target={isInternal ? undefined : "_blank"}
                           rel={isInternal ? undefined : "noreferrer"}
-                          className="block text-[13px] font-semibold leading-snug text-black hover:underline underline-offset-4 decoration-black/40"
+                          className="block truncate text-[13px] font-semibold leading-tight text-black hover:underline underline-offset-4 decoration-black/40"
                         >
                           {pg.title}
                         </a>
-                        <span className="mt-1 block font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-black/45">
-                          {pg.duration} · {pg.format}
-                        </span>
-                        {hasAdmissions && (
-                          <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] font-semibold uppercase tracking-[0.16em]">
-                            {pg.round && (
-                              <span className="border border-black/30 px-1.5 py-0.5 text-black/70">
-                                {pg.round}
+                        <div className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[10px] font-medium uppercase tracking-[0.16em] text-black/50">
+                          <span className="font-mono tracking-[0.18em]">
+                            {pg.duration} · {pg.format}
+                          </span>
+                          {pg.round && (
+                            <>
+                              <span aria-hidden className="size-1 rounded-full bg-black/30" />
+                              <span className="font-semibold text-black/75">{pg.round}</span>
+                            </>
+                          )}
+                          {pg.deadline && (
+                            <>
+                              <span aria-hidden className="size-1 rounded-full bg-black/30" />
+                              <span className="text-black/55 normal-case tracking-normal">
+                                Closes {formatDeadline(pg.deadline)}
+                                <span className="ml-1 text-black/40">· <DaysRemaining target={pg.deadline} /> days left</span>
                               </span>
-                            )}
-                            {pg.deadline && (
-                              <span className="text-black/55">
-                                Closes {formatDeadline(pg.deadline)} · <DaysRemaining target={pg.deadline} /> days left
-                              </span>
-                            )}
-                            {pg.status && !pg.deadline && (
+                            </>
+                          )}
+                          {pg.status && !pg.deadline && (
+                            <>
+                              <span aria-hidden className="size-1 rounded-full bg-black/30" />
                               <span className="text-black/55">{pg.status}</span>
-                            )}
-                          </div>
-                        )}
+                            </>
+                          )}
+                        </div>
                       </div>
                       {hasAdmissions ? (
                         <a
                           href={pg.applyHref ?? "/applications_center"}
-                          className="mt-1 inline-flex shrink-0 items-center gap-1 border border-black bg-black px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[#F5F3EE] transition hover:bg-[#F5F3EE] hover:text-black"
+                          className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-black bg-black px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-[#F5F3EE] transition hover:bg-[#F5F3EE] hover:text-black"
                         >
                           Apply
                           <ArrowUpRight className="size-3" />
@@ -824,9 +830,9 @@ function Programs() {
                           target={isInternal ? undefined : "_blank"}
                           rel={isInternal ? undefined : "noreferrer"}
                           aria-label={`Open ${pg.title}`}
-                          className="mt-1 shrink-0"
+                          className="shrink-0"
                         >
-                          <ArrowUpRight className="size-3.5 opacity-30 transition group-hover/row:opacity-100" />
+                          <ArrowUpRight className="size-4 opacity-30 transition group-hover/row:opacity-100" />
                         </a>
                       )}
                     </div>
