@@ -22,56 +22,43 @@ type Slide = {
 
 const SLIDES: Slide[] = [
   {
-    id: "morning",
+    id: "clubs",
     number: "01",
-    chapter: "Morning",
-    time: "09:00 — 12:30",
-    title: "Coffee with a",
-    titleItalic: "sitting CEO.",
-    role: "Strategy session · Cohort GTM review",
+    chapter: "Student Clubs",
+    time: "20+ Clubs · Student-run",
+    title: "Clubs run the",
+    titleItalic: "second campus.",
+    role: "Finance · Consulting · Product · Design · Marketing · Debate",
     description:
-      "9 AM strategy session with a practitioner CEO. By 11, you're inside a working group tearing apart a classmate's go-to-market. By lunch, you've signed off on creative for the cohort's e-commerce store.",
-    tags: ["9AM CEO sessions", "Working groups", "Cohort commerce"],
+      "From the Investment Club running live portfolios to the Consulting Club cracking real cases for partner firms, MU's 20+ student clubs are how craft actually gets built. Product, design, marketing, entrepreneurship, debate, sports, arts — every club is student-led, backed by a faculty mentor, and shipping something every week.",
+    tags: ["Investment Club", "Consulting Club", "Product & Design", "Debate & Model UN"],
     image: widgetFounders,
   },
   {
-    id: "afternoon",
+    id: "accommodation",
     number: "02",
-    chapter: "Afternoon",
-    time: "13:00 — 18:00",
-    title: "Content studio,",
-    titleItalic: "unannounced AMAs.",
-    role: "Reels lab · Partner drop-ins",
+    chapter: "Student Accommodation",
+    time: "On-campus · 24/7",
+    title: "Live where the",
+    titleItalic: "campus never sleeps.",
+    role: "On-campus residences · Single & twin-sharing · Fully managed",
     description:
-      "2 PM shoot in the content studio for your Reels challenge. 4 PM, a partner from Peak XV drops by for an unannounced AMA. 6 PM, you're on a call with a Sequoia associate reviewing your friend's pitch deck.",
-    tags: ["Content studio", "Investor AMAs", "Pitch reviews"],
+      "Residences sit steps away from the classrooms, studios and labs — so a 2AM whiteboard session or a pre-dawn founder call is just a walk down the corridor. Fully-furnished rooms, high-speed Wi-Fi, housekeeping, laundry, gym, common lounges and a 24/7 mess and café keep the day moving without friction.",
+    tags: ["On-campus stay", "24/7 mess & café", "Gym & lounges", "Managed housekeeping"],
     image: widgetImmersions,
   },
   {
-    id: "night",
+    id: "activities",
     number: "03",
-    chapter: "Night",
-    time: "18:30 — 01:00",
-    title: "Food lab open.",
-    titleItalic: "Whiteboards louder.",
-    role: "Kitchens · Investment lab · Whiteboard wars",
+    chapter: "Clubs & Activities",
+    time: "Year-round",
+    title: "Fests, sports,",
+    titleItalic: "and studio nights.",
+    role: "Annual fest · Sports leagues · Music, film & content studio",
     description:
-      "9 PM, three teams are in the Food Lab plating a new menu. 11 PM, the investment lab is still half-full. The 1 AM whiteboard wars are where most of the actual decisions get made.",
-    tags: ["Food lab plating", "Investment lab", "1AM whiteboards"],
+      "The calendar runs on cohort sports leagues, the annual cultural fest, hackathons, pitch nights, and open-mic sessions in the content studio. Add faculty-led treks, wellness weeks, and cohort trips — the extracurricular slate at MU is built to make sure the classroom is only half the story.",
+    tags: ["Annual fest", "Sports leagues", "Hackathons", "Open mics & studio nights"],
     image: widgetD2C,
-  },
-  {
-    id: "always-on",
-    number: "04",
-    chapter: "Always on",
-    time: "24 / 7",
-    title: "Sleep optional.",
-    titleItalic: "Building mandatory.",
-    role: "24/7 campus · Always-on cohort Slack",
-    description:
-      "Studio, kitchen, fund and mentor calls sit on the same floor. A normal day here would be a quarter's worth of memories anywhere else — which is exactly the point.",
-    tags: ["24/7 access", "On-site studio, kitchen, fund", "Daily mentor calls"],
-    image: widgetCreators,
   },
 ];
 
@@ -183,12 +170,6 @@ export default function WidgetCarousel() {
                   <ArrowUpRight className="size-3.5" />
                 </span>
               </Link>
-              <Link
-                to="/life-at-mu"
-                className="text-[12px] font-medium uppercase tracking-[0.22em] text-white/60 underline-offset-4 hover:text-white hover:underline"
-              >
-                Read the day-in-life
-              </Link>
             </div>
           </div>
         </div>
@@ -289,7 +270,7 @@ function Slide({
 }) {
   return (
     <motion.section
-      className="absolute inset-0 grid grid-cols-1 md:grid-cols-[1fr_460px]"
+      className="absolute inset-0 grid grid-cols-1 md:grid-cols-[1fr_600px]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -337,7 +318,7 @@ function Slide({
 
       {/* Text rail */}
       <div className="relative z-10 flex items-end px-6 pb-24 md:items-center md:px-12 md:pb-0">
-        <div className="max-w-[420px]">
+        <div className="max-w-[560px]">
           <StaggeredText delay={0.15} k={`meta-${index}`}>
             <p className="text-[11px] uppercase tracking-[0.22em] text-white/55">
               {slide.number}
