@@ -846,21 +846,23 @@ function SharkTankCompact() {
 function UniformLogoList({ groups }: { groups: LogoGroup[] }) {
   const logos = groups.flatMap((g) => g.logos);
   return (
-    <div className="flex flex-wrap items-center gap-x-6 gap-y-5">
+    <div className="grid grid-cols-3 gap-x-4 gap-y-6 sm:grid-cols-4 md:grid-cols-5">
       {logos.map((l) => {
         const name = l.original_filename.replace(/\.png$/i, "");
         return (
-          <img
-            key={l.url}
-            src={l.url}
-            alt={name}
-            title={name}
-            loading="lazy"
-            className="h-8 w-auto object-contain opacity-95 transition duration-300 hover:opacity-100"
-          />
+          <div key={l.url} className="flex h-10 items-center justify-center">
+            <img
+              src={l.url}
+              alt={name}
+              title={name}
+              loading="lazy"
+              className="max-h-8 max-w-full w-auto object-contain opacity-95 transition duration-300 hover:opacity-100"
+            />
+          </div>
         );
       })}
     </div>
+
   );
 }
 
