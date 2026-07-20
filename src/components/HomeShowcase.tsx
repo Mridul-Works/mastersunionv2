@@ -667,14 +667,14 @@ const FOUNDER_STORIES = [
 
 function FounderFilmstrip() {
   return (
-    <div className="pt-2 pb-4">
-      <p className="mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-black/50">
+    <div className="pt-1 pb-2">
+      <p className="mb-3 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-black/50">
         Founders in the making
       </p>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-x-3 gap-y-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-x-3 gap-y-4">
         {FOUNDER_STORIES.map((f, i) => (
           <figure key={`${f.name}-${i}`} className="flex flex-col">
-            <div className="relative w-full aspect-[3/4] overflow-hidden bg-neutral-200">
+            <div className="relative w-full aspect-[4/5] overflow-hidden bg-neutral-200">
               <img
                 src={f.photo}
                 alt={f.name}
@@ -682,12 +682,12 @@ function FounderFilmstrip() {
                 className="absolute inset-0 h-full w-full object-cover object-top grayscale contrast-[1.05]"
               />
             </div>
-            <figcaption className="mt-3 pr-1">
-              <p className="text-[13px] font-semibold text-black leading-tight">{f.name}.</p>
-              <p className="mt-2 text-[11px] leading-[1.5] text-neutral-700 italic">
+            <figcaption className="mt-2 pr-1">
+              <p className="text-[12px] font-semibold text-black leading-tight">{f.name}.</p>
+              <p className="mt-1 text-[11px] leading-[1.45] text-neutral-700 italic line-clamp-3">
                 &ldquo;{f.quote}&rdquo;
               </p>
-              <p className="mt-2 text-[10px] uppercase tracking-wider text-neutral-500 not-italic">
+              <p className="mt-1 text-[10px] uppercase tracking-wider text-neutral-500 not-italic">
                 {f.role}, {f.company}
               </p>
             </figcaption>
@@ -697,6 +697,7 @@ function FounderFilmstrip() {
     </div>
   );
 }
+
 
 const SHARK_TANK_PITCHES: Array<{
   company: string;
