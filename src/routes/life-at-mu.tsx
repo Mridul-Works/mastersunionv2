@@ -12,11 +12,7 @@ export const Route = createFileRoute("/life-at-mu")({
       { name: "description", content: chapter.body.slice(0, 155) },
     ],
   }),
-  component: () => (
-    <>
-      <ChapterPage chapter={chapter} />
-      <DayInLifeCalendar />
-    </>
-  ),
+  component: () => <DayInLifeCalendar />,
 });
+
 
