@@ -152,11 +152,14 @@ import anuragImg from "@/assets/alumni/anurag-bansal.png.asset.json";
 
 
 // Founder portraits + Shark Tank stage
-import founder1 from "@/assets/founders/founder-1.jpg.asset.json";
-import founder2 from "@/assets/founders/founder-2.jpg.asset.json";
-import founder3 from "@/assets/founders/founder-3.jpg.asset.json";
-import founder4 from "@/assets/founders/founder-4.jpg.asset.json";
 import sharkTankStage from "@/assets/founders/sharktank-stage.jpg.asset.json";
+import vfBullspree from "@/assets/founders/ventures/bullspree.jpg.asset.json";
+import vfEight from "@/assets/founders/ventures/eight.jpg.asset.json";
+import vfHiveschool from "@/assets/founders/ventures/hiveschool.jpg.asset.json";
+import vfLexis from "@/assets/founders/ventures/lexis.jpg.asset.json";
+import vfPlaysuper from "@/assets/founders/ventures/playsuper.jpg.asset.json";
+import vfSeedsai from "@/assets/founders/ventures/seedsai.jpg.asset.json";
+import vfWoodys from "@/assets/founders/ventures/woodys.jpg.asset.json";
 
 type Stat = { value: string; label: string };
 type Section = {
@@ -721,36 +724,128 @@ function AlumStories() {
 
 
 const FOUNDER_STORIES = [
-  { name: "Rhea Kapoor", role: "Co-founder", company: "BlueBrew", photo: founder2.url, quote: "We tested the first 400 bottles from the campus canteen — six months later we were in 12 cities." },
-  { name: "Arnav Sethi", role: "Founder & CEO", company: "Kaze", photo: founder1.url, quote: "The MU Ventures studio put a designer, a dev and a mentor on my table before I had a landing page." },
-  { name: "Ishaan Verma", role: "Co-founder", company: "EatAtlas", photo: founder3.url, quote: "Pre-seed cheque from the in-house fund closed in the same week I pitched." },
-  { name: "Meher Anand", role: "Founder", company: "Nivara", photo: founder4.url, quote: "Two co-founders, one advisor and one recruiter — all from the same 60-person cohort." },
+  {
+    name: "Dharmil Bavishi",
+    role: "Founder & CEO",
+    company: "Bullspree",
+    photo: vfBullspree.url,
+    quote: "Built India's favourite stock-market playground out of the MU Ventures studio — from prototype to Shark Tank in under two years.",
+    tag: "Fintech · Seed",
+  },
+  {
+    name: "Nikhil Gaur",
+    role: "Founder & CEO",
+    company: "Hiveschool",
+    photo: vfHiveschool.url,
+    quote: "India's first sales school. The GTM lab put my first 100 hires and my first 100 customers in the same room.",
+    tag: "EdTech · Series A",
+  },
+  {
+    name: "Sarthak Bakshi",
+    role: "Co-founder",
+    company: "PlaySuper",
+    photo: vfPlaysuper.url,
+    quote: "Building the rewards layer for India's gaming ecosystem — pre-seed cheque closed the same week we pitched the in-house fund.",
+    tag: "Gaming · Pre-seed",
+  },
+  {
+    name: "The Lexi's team",
+    role: "Founding team",
+    company: "Lexi's",
+    photo: vfLexis.url,
+    quote: "Four co-founders, one cohort. Lexi's was born in an MU studio and shipped its first 1,000 orders from the campus food court.",
+    tag: "D2C · Consumer",
+  },
+  {
+    name: "The SeedsAI founders",
+    role: "Co-founders",
+    company: "SeedsAI",
+    photo: vfSeedsai.url,
+    quote: "Applied-AI for the next billion enterprises — from a class project to a paid pilot in one semester.",
+    tag: "AI · Pre-seed",
+  },
+  {
+    name: "The Kneighted team",
+    role: "Co-founders",
+    company: "Eight Network",
+    photo: vfEight.url,
+    quote: "Reimagining trust and identity for creators. MU mentors helped us close our first enterprise design partner in month three.",
+    tag: "SaaS · Pre-seed",
+  },
+  {
+    name: "Ansh Somani",
+    role: "Founder",
+    company: "Woody's Pizzeria",
+    photo: vfWoodys.url,
+    quote: "One oven, one MU cohort of taste-testers, and a first store that broke even in six weeks.",
+    tag: "F&B · Bootstrapped",
+  },
 ];
 
 function FounderFilmstrip() {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+
+  const scrollBy = (dir: 1 | -1) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-card]");
+    const step = card ? card.offsetWidth + 12 : el.clientWidth * 0.8;
+    el.scrollBy({ left: step * dir, behavior: "smooth" });
+  };
+
   return (
     <div className="pt-1 pb-2">
-      <p className="mb-3 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-black/50">
-        Founders in the making
-      </p>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-x-3 gap-y-4">
+      <div className="mb-3 flex items-end justify-between gap-4">
+        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-black/50">
+          Founders in the making
+        </p>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => scrollBy(-1)}
+            aria-label="Previous founder"
+            className="flex size-8 items-center justify-center rounded-full border border-black/15 bg-white text-black/70 transition hover:bg-black hover:text-white"
+          >
+            <span className="text-sm leading-none">←</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollBy(1)}
+            aria-label="Next founder"
+            className="flex size-8 items-center justify-center rounded-full border border-black/15 bg-white text-black/70 transition hover:bg-black hover:text-white"
+          >
+            <span className="text-sm leading-none">→</span>
+          </button>
+        </div>
+      </div>
+      <div
+        ref={scrollerRef}
+        className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
         {FOUNDER_STORIES.map((f, i) => (
-          <figure key={`${f.name}-${i}`} className="flex flex-col">
+          <figure
+            key={`${f.company}-${i}`}
+            data-card
+            className="group relative flex shrink-0 snap-start basis-[46%] flex-col md:basis-[23%]"
+          >
             <div className="relative w-full aspect-[4/5] overflow-hidden bg-neutral-200">
               <img
                 src={f.photo}
-                alt={f.name}
+                alt={`${f.name} — ${f.company}`}
                 loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover object-top grayscale contrast-[1.05]"
+                className="absolute inset-0 h-full w-full object-cover object-top grayscale contrast-[1.05] transition duration-500 group-hover:grayscale-0"
               />
+              <span className="absolute left-2 top-2 bg-black/70 px-1.5 py-0.5 text-[9px] uppercase tracking-wider text-white">
+                {f.tag}
+              </span>
             </div>
             <figcaption className="mt-2 pr-1">
-              <p className="text-[12px] font-semibold text-black leading-tight">{f.name}.</p>
+              <p className="text-[12px] font-semibold text-black leading-tight">{f.company}.</p>
               <p className="mt-1 text-[11px] leading-[1.45] text-neutral-700 italic line-clamp-3">
                 &ldquo;{f.quote}&rdquo;
               </p>
               <p className="mt-1 text-[10px] uppercase tracking-wider text-neutral-500 not-italic">
-                {f.role}, {f.company}
+                {f.name} · {f.role}
               </p>
             </figcaption>
           </figure>
