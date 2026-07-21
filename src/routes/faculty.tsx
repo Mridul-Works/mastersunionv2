@@ -152,6 +152,94 @@ function Initials({ name }: { name: string }) {
   );
 }
 
+type EditorialItem = {
+  name: string;
+  role: string;
+  sub?: string;
+  blurb?: string;
+  img?: string;
+};
+
+function Portrait({ item, aspect = "aspect-[4/5]" }: { item: EditorialItem; aspect?: string }) {
+  return (
+    <div className={`w-full overflow-hidden bg-[#ececec] ${aspect}`}>
+      {item.img ? (
+        <img
+          src={item.img}
+          alt={item.name}
+          className="h-full w-full object-cover grayscale transition duration-500 hover:grayscale-0"
+        />
+      ) : (
+        <Initials name={item.name} />
+      )}
+    </div>
+  );
+}
+
+function EditorialCaption({ item }: { item: EditorialItem }) {
+  return (
+    <>
+      <h3 className="mt-4 text-[1rem] font-medium leading-[1.2] tracking-[-0.005em] text-black">
+        {item.name}
+      </h3>
+      <div className="mt-1.5 text-[10.5px] uppercase leading-snug tracking-[0.14em] text-black/55" style={{ fontFamily: MONO }}>
+        {item.role}
+      </div>
+      {item.sub ? (
+        <div className="mt-0.5 text-[10.5px] uppercase leading-snug tracking-[0.14em] text-black/40" style={{ fontFamily: MONO }}>
+          {item.sub}
+        </div>
+      ) : null}
+      {item.blurb ? (
+        <p className="mt-3 text-[13px] leading-[1.55] text-black/70">{item.blurb}</p>
+      ) : null}
+    </>
+  );
+}
+
+function EditorialGrid({ items, sectionLabel }: { items: EditorialItem[]; sectionLabel: string }) {
+  const [hero, ...rest] = items;
+  return (
+    <div className="mt-12 border-t border-black/15">
+      {hero ? (
+        <div className="grid gap-x-8 gap-y-8 border-b border-black/15 py-10 md:grid-cols-12">
+          <div className="md:col-span-6">
+            <Portrait item={hero} aspect="aspect-[4/3]" />
+          </div>
+          <div className="md:col-span-6 md:pl-2">
+            <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
+              Featured · {sectionLabel}
+            </div>
+            <h3 className="mt-3 text-[clamp(1.6rem,2.6vw,2.2rem)] font-medium leading-[1.08] tracking-[-0.015em] text-black">
+              {hero.name}
+            </h3>
+            <div className="mt-3 text-[11px] uppercase tracking-[0.18em] text-black/60" style={{ fontFamily: MONO }}>
+              {hero.role}
+            </div>
+            {hero.sub ? (
+              <div className="mt-1 text-[11px] uppercase tracking-[0.18em] text-black/45" style={{ fontFamily: MONO }}>
+                {hero.sub}
+              </div>
+            ) : null}
+            {hero.blurb ? (
+              <p className="mt-6 max-w-[52ch] text-[1rem] leading-[1.6] text-black/75">{hero.blurb}</p>
+            ) : null}
+          </div>
+        </div>
+      ) : null}
+
+      <div className="grid grid-cols-2 divide-x divide-y divide-black/10 border-b border-black/15 sm:grid-cols-3 md:grid-cols-4">
+        {rest.map((item) => (
+          <article key={item.name} className="p-5 md:p-6">
+            <Portrait item={item} />
+            <EditorialCaption item={item} />
+          </article>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export const Route = createFileRoute("/faculty")({
   head: () => ({
     meta: [
