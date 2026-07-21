@@ -528,14 +528,14 @@ function FacultyPage() {
       <section className="mx-auto max-w-6xl px-5 py-24 md:px-10 md:py-32">
         <div className="grid gap-10 md:grid-cols-12 md:items-end">
           <div className="md:col-span-7">
-            <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Become a Master</div>
-            <h2 className="mt-4 max-w-[22ch] text-balance text-[clamp(1.8rem,4vw,3.2rem)] leading-[1.05] tracking-[-0.01em]">
-              We&apos;re always looking for practitioners who want to teach what they know.
-            </h2>
-            <p className="mt-6 max-w-[58ch] text-[1.05rem] leading-[1.6] text-black/70">
-              If you have built something, led something, invested in something, or shaped something — and you believe the best way to teach business is to have done it — we want to hear from you.
-            </p>
+            <SectionHeader
+              index="05"
+              eyebrow="Become a Master"
+              title={<>We&apos;re always looking for practitioners who want to teach what they know.</>}
+              intro="If you have built something, led something, invested in something, or shaped something — and you believe the best way to teach business is to have done it — we want to hear from you."
+            />
           </div>
+
           <div className="md:col-span-5 md:text-right">
             <a href="https://mastersunion.org/become-a-master" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-black px-6 py-4 text-[11px] uppercase tracking-[0.22em] text-white transition-opacity hover:opacity-80" style={{ fontFamily: MONO }}>
               Apply to teach <ArrowUpRight className="size-3.5" />
