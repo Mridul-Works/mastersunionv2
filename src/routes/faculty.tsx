@@ -64,28 +64,20 @@ function SectionHeader({
   const isCenter = align === "center";
   return (
     <header className={isCenter ? "text-center" : ""}>
-      <div
-        className={`flex items-center gap-4 ${isCenter ? "justify-center" : ""}`}
+      <p
+        className={`mb-3 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-black/50 ${
+          isCenter ? "flex justify-center gap-3" : "flex gap-3"
+        }`}
       >
-        <span
-          className="text-[11px] tracking-[0.28em] text-black/45"
-          style={{ fontFamily: MONO }}
-        >
-          {index}
-        </span>
-        <span className="h-px w-10 bg-black/25" aria-hidden />
-        <span
-          className="text-[11px] uppercase tracking-[0.28em] text-black/60"
-          style={{ fontFamily: MONO }}
-        >
-          {eyebrow}
-        </span>
-      </div>
+        <span>{index}</span>
+        <span aria-hidden className="text-black/25">/</span>
+        <span>{eyebrow}</span>
+      </p>
       <h2
-        className={`mt-6 text-balance text-[clamp(2rem,4.6vw,3.6rem)] font-normal leading-[1.02] tracking-[-0.015em] text-black ${
+        className={`text-[clamp(1.75rem,4vw,3.25rem)] font-semibold leading-[1.05] tracking-tight text-black ${
           isCenter ? "mx-auto max-w-[24ch]" : "max-w-[26ch]"
         }`}
-        style={{ fontFamily: SERIF }}
+        style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
       >
         {title}
       </h2>
@@ -99,6 +91,7 @@ function SectionHeader({
         </p>
       ) : null}
     </header>
+
   );
 }
 
@@ -351,10 +344,18 @@ function FacultyPage() {
           </div>
         </div>
         <h1
-          className="mt-8 max-w-[22ch] text-balance text-[clamp(2.6rem,7.4vw,6.4rem)] font-normal leading-[0.98] tracking-[-0.02em]"
-          style={{ fontFamily: SERIF }}
+          className="mt-8 max-w-[22ch] text-balance text-[clamp(2.4rem,6.4vw,5.5rem)] font-semibold leading-[1.02] tracking-tight text-black"
+          style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
         >
-          At most B-schools, faculty <em className="italic text-black/80">study</em> companies. Here, they <em className="italic text-black/80">ran</em> them — and most still do.
+          At most B-schools, faculty{" "}
+          <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+            study
+          </span>{" "}
+          companies. Here, they{" "}
+          <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+            ran
+          </span>{" "}
+          them — and most still do.
         </h1>
         <p className="mt-10 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55] text-black/70">
           500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered by Ivy League academics and global business leaders — from Harvard to McKinsey, from Wharton to Google. They don&apos;t just teach the playbook. They wrote it.
@@ -369,15 +370,16 @@ function FacultyPage() {
           ].map((s) => (
             <div key={s.l} className="group bg-white px-4 py-10 text-center transition-colors hover:bg-neutral-50">
               <div
-                className="text-[clamp(1.8rem,3.4vw,3rem)] font-normal leading-none tracking-[-0.03em]"
-                style={{ fontFamily: SERIF }}
+                className="text-[clamp(1.6rem,2.4vw,2.25rem)] font-semibold leading-none tracking-tight text-black"
+                style={{ fontFamily: "'Fraunces', Georgia, serif" }}
               >
                 {s.v}
               </div>
-              <div className="mt-3 text-[10px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>{s.l}</div>
+              <div className="mt-3 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black/60">{s.l}</div>
             </div>
           ))}
         </div>
+
 
         <div className="mt-8 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-5 md:grid-cols-9">
           {[
@@ -548,7 +550,7 @@ function FacultyPage() {
       <section className="border-y border-black/10 bg-black text-white">
         <div className="mx-auto max-w-5xl px-5 py-24 text-center md:px-10 md:py-32">
           <div className="text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO }}>The number that matters</div>
-          <div className="mt-8 text-[clamp(4rem,12vw,10rem)] font-normal leading-[0.85] tracking-[-0.04em]" style={{ fontFamily: SERIF }}>500+</div>
+          <div className="mt-8 text-[clamp(4rem,12vw,10rem)] font-semibold leading-[0.85] tracking-tight" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>500+</div>
           <p className="mx-auto mt-8 max-w-[52ch] text-[1.1rem] leading-[1.55] text-white/80">
             Masters on the roster. 50% of them active industry practitioners who were in a meeting this morning before they came to teach you this afternoon.
           </p>
