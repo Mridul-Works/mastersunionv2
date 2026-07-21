@@ -143,11 +143,13 @@ import nse from "@/assets/immersions/bharat/nse.png.asset.json";
 import lenskart from "@/assets/immersions/bharat/lenskart.png.asset.json";
 
 // Alumni portraits
-import aaravImg from "@/assets/alumni/aarav.jpg.asset.json";
-import ishaImg from "@/assets/alumni/isha.jpg.asset.json";
-import kabirImg from "@/assets/alumni/kabir.jpg.asset.json";
-import ananyaImg from "@/assets/alumni/ananya.jpg.asset.json";
-import bullspreeImg from "@/assets/alumni/bullspree-founder.png.asset.json";
+import danielNathImg from "@/assets/alumni/daniel-nath.png.asset.json";
+import jeneeshaImg from "@/assets/alumni/jeneesha-singh.png.asset.json";
+import deepankerImg from "@/assets/alumni/deepanker-mathur.png.asset.json";
+import vibhorImg from "@/assets/alumni/vibhor-agarwal.png.asset.json";
+import mehulImg from "@/assets/alumni/mehul-soni.png.asset.json";
+import anuragImg from "@/assets/alumni/anurag-bansal.png.asset.json";
+
 
 // Founder portraits + Shark Tank stage
 import founder1 from "@/assets/founders/founder-1.jpg.asset.json";
