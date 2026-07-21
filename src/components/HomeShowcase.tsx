@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type SyntheticEvent } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Quote } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import founderPhoto from "@/assets/founder-pratham-cutout.webp";
 
 // Faculty
 import bhupesh from "@/assets/faculty/bhupesh.png.asset.json";
