@@ -336,33 +336,16 @@ function FacultyPage() {
           The people who teach here are not between jobs. They are active.
         </h2>
 
-        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-4">
-          {PRACTITIONERS.map((p) => (
-            <article key={p.name} className="group">
-              <div className="aspect-square w-full overflow-hidden bg-[#ececec]">
-                {PRACTITIONER_PHOTOS[p.name] ? (
-                  <img
-                    src={PRACTITIONER_PHOTOS[p.name]}
-                    alt={p.name}
-                    className="h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0"
-                  />
-                ) : (
-                  <Initials name={p.name} />
-                )}
-              </div>
-              <h3 className="mt-4 text-[0.95rem] font-medium leading-tight text-black">
-                {p.name}
-              </h3>
-              <div
-                className="mt-1 text-[11px] leading-snug text-black/55"
-                style={{ fontFamily: MONO }}
-              >
-                {p.role}
-              </div>
-              <p className="mt-3 text-[0.85rem] leading-[1.55] text-black/70">{p.blurb}</p>
-            </article>
-          ))}
-        </div>
+        <EditorialGrid
+          sectionLabel="Industry Practitioners"
+          items={PRACTITIONERS.map((p) => ({
+            name: p.name,
+            role: p.role,
+            blurb: p.blurb,
+            img: PRACTITIONER_PHOTOS[p.name],
+          }))}
+        />
+
 
       </section>
 
