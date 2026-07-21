@@ -967,7 +967,6 @@ function SharkTankCompact() {
         </div>
       </div>
 
-      </div>
 
       {/* Stats strip */}
       <div className="grid grid-cols-3 divide-x divide-white/[0.08] border-y border-white/[0.08] bg-[#0F0F11]">
