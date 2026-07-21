@@ -91,7 +91,9 @@ const CAREER_LOGOS: { name: string; url: string; className?: string }[] = [
 // Uniform logo — scales each image so visually normalized across a grid.
 // Sized slightly smaller than the homepage's NormalizedLogo.
 function NormalizedLogo({ src, alt }: { src: string; alt: string }) {
-  const boost = /meta|microsoft/i.test(alt)
+  const boost = /warwick|wbs|singapore management|university of california/i.test(alt)
+    ? 1.8
+    : /meta|microsoft/i.test(alt)
     ? 1.5
     : /amul|infosys|nse|bse|zepto|youtube|servicenow|flipkart|google|physics.?wallah|mamaearth|antler|stride|inflection|webengage/i.test(alt)
     ? 0.65
