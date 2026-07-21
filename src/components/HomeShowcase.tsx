@@ -952,7 +952,7 @@ function SharkTankCompact() {
               style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
             >
               <span style={{ color: "#2E8BE6" }}>Shark</span>{" "}
-              <span style={{ color: "#DC2626" }}>Tank</span>{" "}
+              <span style={{ color: "#2E8BE6" }}>Tank</span>{" "}
               <span
                 className="italic font-light"
                 style={{ fontFamily: "'Fraunces', Georgia, serif", color: "#F2C230" }}
