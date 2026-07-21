@@ -870,6 +870,7 @@ const SHARK_TANK_PITCHES: Array<{
     cohort: "CEO Challenge",
     season: "S4",
     pitch: "Redefining workplace wellness for India's fastest-growing companies.",
+    logo: stNexera,
     cardImg: "https://images.mastersunion.link/uploads/15042026/v1/Frame16188739811.webp",
   },
   {
@@ -878,6 +879,7 @@ const SHARK_TANK_PITCHES: Array<{
     cohort: "PGP TBM '23",
     season: "S5",
     pitch: "India's first ready-to-eat non-vegetarian snacking brand.",
+    logo: stHookD,
     cardImg: "https://images.mastersunion.link/uploads/15042026/v1/Frame1618873983.webp",
   },
   {
@@ -886,6 +888,7 @@ const SHARK_TANK_PITCHES: Array<{
     cohort: "UG TBM '28",
     season: "S5",
     pitch: "Phygital commerce — connecting in-game discovery with real-world fashion.",
+    logo: stMetaFashion,
     cardImg: "https://images.mastersunion.link/uploads/15042026/v1/SharkTankCard.webp",
   },
   {
@@ -894,7 +897,7 @@ const SHARK_TANK_PITCHES: Array<{
     cohort: "PGP TBM '21",
     season: "S2",
     pitch: "India's favourite stock market playground for learning and investing.",
-    logo: vBullspree,
+    logo: stBullspree,
     cardImg: "https://images.mastersunion.link/uploads/15042026/v1/Frame1618873979.webp",
   },
   {
@@ -903,7 +906,7 @@ const SHARK_TANK_PITCHES: Array<{
     cohort: "PGP TBM '24",
     season: "S4",
     pitch: "India's first Sales School — training the next generation of GTM operators.",
-    logo: vHiveschool,
+    logo: stHiveschool,
     cardImg: "https://images.mastersunion.link/uploads/15042026/v1/Frame1618873982.webp",
   },
   {
@@ -912,6 +915,7 @@ const SHARK_TANK_PITCHES: Array<{
     cohort: "UG TBM '28",
     season: "S4",
     pitch: "AI-driven wearable purpose-built for dementia care.",
+    logo: stMemoTag,
     cardImg: "https://images.mastersunion.link/uploads/25032026/v1/SharkTankCard16.webp",
   },
 ];
