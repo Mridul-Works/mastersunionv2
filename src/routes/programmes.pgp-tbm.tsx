@@ -593,6 +593,17 @@ import facultyBhupesh from "@/assets/faculty/bhupesh.png.asset.json";
 import facultyNandini from "@/assets/faculty/nandini.png.asset.json";
 import facultyGarima from "@/assets/faculty/garima.png.asset.json";
 
+// -------- Alumni portraits --------
+import alumAnurag from "@/assets/alumni/anurag-bansal.png.asset.json";
+import alumDaniel from "@/assets/alumni/daniel-nath.png.asset.json";
+import alumDeepanker from "@/assets/alumni/deepanker-mathur.png.asset.json";
+import alumDharmil from "@/assets/alumni/dharmil-bavishi.png.asset.json";
+import alumJeneesha from "@/assets/alumni/jeneesha-singh.png.asset.json";
+import alumBadarinadh from "@/assets/alumni/kakaraparthi-badarinadh.png.asset.json";
+import alumMehul from "@/assets/alumni/mehul-soni.png.asset.json";
+import alumPrabhu from "@/assets/alumni/prabhu-guliani.png.asset.json";
+import alumVibhor from "@/assets/alumni/vibhor-agarwal.png.asset.json";
+
 type FacultyMember = {
   name: string;
   role: string;
@@ -1044,97 +1055,109 @@ type Alum = {
 
 const ALUMNI: Alum[] = [
   {
-    name: "Ananya Verma",
-    batch: "PGP '23",
-    role: "Product Manager",
-    company: "Zomato",
-    domain: "Product",
-    quote: "My D2C brand from Term 2 became my portfolio piece at Zomato interviews.",
+    name: "Daniel Nath",
+    batch: "PGP TBM · Cohort '21",
+    role: "Strategy Lead",
+    company: "Google",
+    domain: "Tech",
+    quote: "Masters' Union threw us into real problems with real stakes — that's why the leap to Google felt natural.",
     linkedin: "https://www.linkedin.com/",
     calendly: "https://cal.com/",
     accent: "from-emerald-400 to-emerald-500",
-    image: facultyNandini.url,
+    image: alumDaniel.url,
   },
   {
-    name: "Rohan Iyer",
-    batch: "PGP '22",
-    role: "Founder & CEO",
-    company: "Kettl (Seed · $1.2M)",
-    domain: "Startup",
-    quote: "The Creator Challenge taught me distribution before I knew I'd need it as a founder.",
-    linkedin: "https://www.linkedin.com/",
-    calendly: "https://cal.com/",
-    accent: "from-emerald-300 to-emerald-500",
-    image: facultyBhupesh.url,
-  },
-  {
-    name: "Sanya Kapoor",
-    batch: "PGP '24",
-    role: "Investment Analyst",
-    company: "Peak XV Partners",
-    domain: "VC & Finance",
-    quote: "Running a real P&L for 16 months is a better filter than any DCF model.",
-    linkedin: "https://www.linkedin.com/",
-    accent: "from-teal to-emerald-400",
-    image: facultyGarima.url,
-  },
-  {
-    name: "Kabir Menon",
-    batch: "PGP '23",
-    role: "Growth Lead",
-    company: "CRED",
-    domain: "Growth",
-    quote: "The InClass GTM track plugged straight into my first CRED growth sprint.",
-    linkedin: "https://www.linkedin.com/",
-    calendly: "https://cal.com/",
-    accent: "from-rose-400 to-pink-600",
-    image: facultyZal.url,
-  },
-  {
-    name: "Meera Joshi",
-    batch: "PGP '22",
+    name: "Jeneesha Singh",
+    batch: "PGP TBM · Cohort '21",
     role: "Consultant",
-    company: "Bain & Company",
+    company: "Bain & Co.",
     domain: "Consulting",
-    quote: "Bharat Immersion is why I chose consumer strategy over generalist consulting.",
+    quote: "The consulting projects, live P&Ls and CXO conversations on campus prepared me for day one at Bain.",
     linkedin: "https://www.linkedin.com/",
+    calendly: "https://cal.com/",
     accent: "from-sky-400 to-blue-600",
-    image: facultyLanMa.url,
+    image: alumJeneesha.url,
   },
   {
-    name: "Aarav Suri",
-    batch: "PGP '24",
+    name: "Dharmil Bavishi",
+    batch: "PGP TBM · Cohort '22",
     role: "Co-founder",
-    company: "Motif Labs (YC W25)",
+    company: "Bullspree",
     domain: "Startup",
-    quote: "Met my co-founder in the T5 Bharat Immersion. We shipped MVP by T7.",
+    quote: "I started Bullspree while still on campus. The Founders' Fellowship and mentor network made that possible.",
     linkedin: "https://www.linkedin.com/",
     calendly: "https://cal.com/",
     accent: "from-emerald-300 to-emerald-600",
-    image: facultyDaniel.url,
+    image: alumDharmil.url,
   },
   {
-    name: "Ishita Rao",
-    batch: "PGP '23",
-    role: "Brand Manager",
-    company: "Nykaa",
-    domain: "Consumer",
-    quote: "I walked into Nykaa having already run a live D2C P&L for 14 months.",
-    linkedin: "https://www.linkedin.com/",
-    accent: "from-fuchsia-400 to-purple-600",
-    image: facultyFaverie.url,
-  },
-  {
-    name: "Dev Shah",
-    batch: "PGP '22",
-    role: "Associate",
-    company: "Kotak Investment Banking",
+    name: "Deepankar Mathur",
+    batch: "PGP TBM · Cohort '22",
+    role: "Founder's Office",
+    company: "Zerodha",
     domain: "Finance",
-    quote: "The PE/VC track in Term 6 was taught by people who actually write cheques.",
+    quote: "The pedagogy trained me to think from first principles — exactly what Founder's Office roles demand.",
+    linkedin: "https://www.linkedin.com/",
+    accent: "from-slate-500 to-zinc-800",
+    image: alumDeepanker.url,
+  },
+  {
+    name: "Vibhor Agarwal",
+    batch: "PGP TBM · Cohort '23",
+    role: "Founder's Office",
+    company: "Hike",
+    domain: "Tech",
+    quote: "Every term shipped a new venture. That muscle is what got me the Founder's Office seat at Hike.",
     linkedin: "https://www.linkedin.com/",
     calendly: "https://cal.com/",
-    accent: "from-slate-500 to-zinc-800",
-    image: facultyManoj.url,
+    accent: "from-fuchsia-400 to-purple-600",
+    image: alumVibhor.url,
+  },
+  {
+    name: "Mehul Soni",
+    batch: "PGP TBM · Cohort '24",
+    role: "Quantitative Trader",
+    company: "Avirom Capital",
+    domain: "Finance",
+    quote: "The quant and finance electives were taught by practitioners — no gap between classroom and trading desk.",
+    linkedin: "https://www.linkedin.com/",
+    accent: "from-teal to-emerald-400",
+    image: alumMehul.url,
+  },
+  {
+    name: "Kakaraparthi Badarinadh",
+    batch: "PGP TBM · Cohort '24",
+    role: "Senior Specialist",
+    company: "Talabat",
+    domain: "Product",
+    quote: "Global immersions and consulting projects gave me the profile Talabat was hiring for.",
+    linkedin: "https://www.linkedin.com/",
+    calendly: "https://cal.com/",
+    accent: "from-rose-400 to-pink-600",
+    image: alumBadarinadh.url,
+  },
+  {
+    name: "Prabhu Dayal Guliani",
+    batch: "PGP TBM · Cohort '23",
+    role: "Head of Growth",
+    company: "AMPM",
+    domain: "Growth",
+    quote: "Creator Challenge and D2C sprints gave me the growth playbook I now run at AMPM.",
+    linkedin: "https://www.linkedin.com/",
+    accent: "from-orange-400 to-amber-600",
+    image: alumPrabhu.url,
+  },
+  {
+    name: "Anurag Bansal",
+    batch: "PGP TBM · Cohort '23",
+    role: "Founder's Office",
+    company: "Zerodha",
+    domain: "Finance",
+    quote: "The Creator Challenge and Masters' Union Investment Fund set the foundation for my success.",
+    linkedin: "https://www.linkedin.com/",
+    calendly: "https://cal.com/",
+    accent: "from-emerald-300 to-emerald-500",
+    image: alumAnurag.url,
   },
 ];
 
@@ -1251,10 +1274,16 @@ function AlumniShowcase() {
                     {/* Top: swatch (photo placeholder) + meta */}
                     <div className="flex items-start justify-between gap-4">
                       <div
-                        aria-hidden
-                        className="h-24 w-28 shrink-0 rounded-none"
+                        className="h-24 w-28 shrink-0 overflow-hidden rounded-none"
                         style={{ background: c.swatch }}
-                      />
+                      >
+                        <img
+                          src={a.image}
+                          alt={a.name}
+                          loading="lazy"
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
                       <span
                         className="font-mono text-[10px] uppercase tracking-[0.24em]"
                         style={{ color: `${c.fg}B3` }}
