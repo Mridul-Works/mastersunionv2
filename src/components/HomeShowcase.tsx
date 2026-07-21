@@ -153,6 +153,12 @@ import anuragImg from "@/assets/alumni/anurag-bansal.png.asset.json";
 
 // Founder portraits + Shark Tank stage
 import sharkTankStage from "@/assets/founders/sharktank-stage.jpg.asset.json";
+import stHiveschool from "@/assets/sharktank/HiveSchool.png.asset.json";
+import stMetaFashion from "@/assets/sharktank/MetaFashion.png.asset.json";
+import stHookD from "@/assets/sharktank/HookD.png.asset.json";
+import stNexera from "@/assets/sharktank/NexeraHealth.png.asset.json";
+import stMemoTag from "@/assets/sharktank/MemoTag.png.asset.json";
+import stBullspree from "@/assets/sharktank/Bullspree.png.asset.json";
 import vfBullspree from "@/assets/founders/ventures/bullspree.jpg.asset.json";
 import vfEight from "@/assets/founders/ventures/eight.jpg.asset.json";
 import vfHiveschool from "@/assets/founders/ventures/hiveschool.jpg.asset.json";
