@@ -339,9 +339,9 @@ function FacultyPage() {
 
       </section>
 
-      {/* THE MODEL */}
-      <section id="model" className="border-y border-black/10 bg-neutral-50">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-28">
+      {/* INDUSTRY PRACTITIONERS */}
+      <section id="practitioners" className="border-y border-black/10 bg-neutral-50">
+        <div className="mx-auto max-w-6xl px-5 py-24 md:px-10 md:py-32">
           <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>The model</div>
           <h2 className="mt-4 max-w-[26ch] text-balance text-[clamp(1.8rem,4vw,3.2rem)] leading-[1.05] tracking-[-0.01em]">
             A faculty model designed for real-world mastery.
@@ -350,15 +350,11 @@ function FacultyPage() {
             Most business schools have one kind of faculty. Masters&apos; Union has three — deliberately structured so that students get industry depth, academic rigour, and global perspective inside the same programme, often in the same week.
           </p>
 
-        </div>
-      </section>
+          <div className="mt-16 text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Industry Practitioners</div>
+          <h3 className="mt-4 max-w-[24ch] text-balance text-[clamp(1.6rem,3.4vw,2.6rem)] leading-[1.05] tracking-[-0.01em]">
+            The people who teach here are not between jobs. They are active.
+          </h3>
 
-      {/* INDUSTRY PRACTITIONERS */}
-      <section id="practitioners" className="mx-auto max-w-6xl px-5 py-24 md:px-10 md:py-32">
-        <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Industry Practitioners</div>
-        <h2 className="mt-4 max-w-[24ch] text-balance text-[clamp(1.8rem,4vw,3.2rem)] leading-[1.05] tracking-[-0.01em]">
-          The people who teach here are not between jobs. They are active.
-        </h2>
 
         <EditorialGrid
           sectionLabel="Industry Practitioners"
@@ -378,7 +374,9 @@ function FacultyPage() {
         />
 
 
+        </div>
       </section>
+
 
       {/* FULL-TIME FACULTY */}
       <section id="full-time" className="border-y border-black/10 bg-neutral-50">
