@@ -503,8 +503,13 @@ function FacultyPage() {
       {/* TESTIMONIALS */}
       <section className="border-y border-black/10 bg-neutral-50">
         <div className="mx-auto max-w-6xl px-5 py-24 md:px-10 md:py-28">
-          <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>What students say</div>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <SectionHeader
+            index="04"
+            eyebrow="What students say"
+            title={<>Learning from operators, in their own words.</>}
+          />
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+
             {TESTIMONIALS.map((t) => (
               <figure key={t.a} className="border border-black/10 bg-white p-8">
                 <Quote className="size-5 text-black/40" />
