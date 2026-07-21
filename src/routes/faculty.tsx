@@ -104,11 +104,11 @@ function SectionHeader({
 
 const NAV: SectionNavItem[] = [
   { id: "top", label: "Overview" },
-  { id: "model", label: "Model" },
   { id: "practitioners", label: "Industry" },
   { id: "full-time", label: "Full-time" },
   { id: "visiting", label: "Visiting" },
 ];
+
 
 type Practitioner = { name: string; role: string; blurb: string };
 
