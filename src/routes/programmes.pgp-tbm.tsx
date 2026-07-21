@@ -85,6 +85,38 @@ const CAREER_LOGOS: { name: string; url: string; className?: string }[] = [
   { name: "Good Capital", url: goodCapitalAsset.url },
 ];
 
+// Uniform logo — scales each image so visually normalized across a grid.
+// Sized slightly smaller than the homepage's NormalizedLogo.
+function NormalizedLogo({ src, alt }: { src: string; alt: string }) {
+  const boost = /meta|microsoft/i.test(alt)
+    ? 1.5
+    : /amul|infosys|nse|bse|zepto|youtube|servicenow|flipkart|google|physics.?wallah|mamaearth|antler|stride|inflection|webengage/i.test(alt)
+    ? 0.65
+    : 1;
+  const initial = 32 * boost;
+  const [logoH, setLogoH] = useState<number>(initial);
+  const onLoad = (e: SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget;
+    const ratio = img.naturalWidth / Math.max(1, img.naturalHeight);
+    const targetWidth = 96 * boost;
+    const raw = targetWidth / Math.max(0.4, ratio);
+    const [min, max] = [22 * boost, 52 * boost];
+    setLogoH(Math.max(min, Math.min(max, raw)));
+  };
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      onLoad={onLoad}
+      style={{ height: `${logoH}px` }}
+      className="w-auto max-w-full object-contain opacity-90 transition duration-300 hover:opacity-100"
+    />
+  );
+}
+
+
+
 
 const PGP_NAV: SectionNavItem[] = [
   { id: "top", label: "Overview" },
