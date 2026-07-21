@@ -1883,23 +1883,18 @@ function PgpTbm() {
                     {/* Partner logos — matches OutClass term-by-term arc grid */}
                     <div className="mt-6">
                       <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/50">{logosLabel}</div>
-                      <div className="mt-3 grid gap-px bg-black/10 grid-cols-5">
+                      <div className="mt-3 grid grid-cols-5 gap-x-4 gap-y-5">
                         {logos.map((l) => (
                           <div
                             key={l.name}
                             title={l.name}
-                            className="flex h-12 items-center justify-center bg-white p-2 opacity-70 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+                            className="flex h-14 items-center justify-center opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
                           >
-                            <img
-                              src={l.src}
-                              alt={l.name}
-                              className="h-7 w-auto max-w-full object-contain"
-                              loading="lazy"
-                            />
-
+                            <NormalizedLogo src={l.src} alt={l.name} />
                           </div>
                         ))}
                       </div>
+
                     </div>
                   </article>
                 );
