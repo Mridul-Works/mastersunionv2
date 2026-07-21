@@ -152,11 +152,14 @@ import anuragImg from "@/assets/alumni/anurag-bansal.png.asset.json";
 
 
 // Founder portraits + Shark Tank stage
-import founder1 from "@/assets/founders/founder-1.jpg.asset.json";
-import founder2 from "@/assets/founders/founder-2.jpg.asset.json";
-import founder3 from "@/assets/founders/founder-3.jpg.asset.json";
-import founder4 from "@/assets/founders/founder-4.jpg.asset.json";
 import sharkTankStage from "@/assets/founders/sharktank-stage.jpg.asset.json";
+import vfBullspree from "@/assets/founders/ventures/bullspree.jpg.asset.json";
+import vfEight from "@/assets/founders/ventures/eight.jpg.asset.json";
+import vfHiveschool from "@/assets/founders/ventures/hiveschool.jpg.asset.json";
+import vfLexis from "@/assets/founders/ventures/lexis.jpg.asset.json";
+import vfPlaysuper from "@/assets/founders/ventures/playsuper.jpg.asset.json";
+import vfSeedsai from "@/assets/founders/ventures/seedsai.jpg.asset.json";
+import vfWoodys from "@/assets/founders/ventures/woodys.jpg.asset.json";
 
 type Stat = { value: string; label: string };
 type Section = {
