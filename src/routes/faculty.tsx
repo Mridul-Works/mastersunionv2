@@ -385,6 +385,14 @@ function FacultyPage() {
 
           <EditorialGrid
             sectionLabel="Full-time Faculty"
+            pct="30%"
+            tagline="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing where the best B-schools read."
+            stats={[
+              { v: "25", l: "Full-time PhD faculty" },
+              { v: "50+", l: "FT50 / A* publications" },
+              { v: "PwC · EY", l: "Active research collaborations" },
+              { v: "MU × PwC", l: "Centre for Generative AI" },
+            ]}
             items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
           />
 
