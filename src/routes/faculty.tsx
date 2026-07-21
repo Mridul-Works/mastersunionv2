@@ -361,9 +361,8 @@ function FacultyPage() {
           stats={[
             { v: "250+", l: "Active practitioners on roster" },
             { v: "40+", l: "CXOs & Managing Directors" },
-            { v: "18", l: "Unicorn founders & operators" },
-            { v: "12", l: "Shark Tank India investors" },
           ]}
+
           items={PRACTITIONERS.map((p) => ({
             name: p.name,
             role: p.role,
@@ -390,8 +389,6 @@ function FacultyPage() {
             stats={[
               { v: "25", l: "Full-time PhD faculty" },
               { v: "50+", l: "FT50 / A* publications" },
-              { v: "PwC · EY", l: "Active research collaborations" },
-              { v: "MU × PwC", l: "Centre for Generative AI" },
             ]}
             items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
           />
@@ -402,18 +399,6 @@ function FacultyPage() {
             And 19 more across finance, marketing, operations, organisational behaviour, economics, data science, and strategy.
           </p>
 
-          <div className="mt-8 grid gap-px bg-black/10 sm:grid-cols-3">
-            {[
-              { v: "50+", l: "Research publications in FT50 / A*" },
-              { v: "PwC · EY", l: "Active research collaborations" },
-              { v: "MU × PwC", l: "Upcoming Centre for Generative AI, DLF Cyberpark" },
-            ].map((s) => (
-              <div key={s.l} className="bg-white px-5 py-8">
-                <div className="text-[clamp(1.4rem,2.4vw,2rem)] leading-none tracking-[-0.02em]">{s.v}</div>
-                <div className="mt-3 text-[10px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>{s.l}</div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -429,11 +414,10 @@ function FacultyPage() {
           pct="20%"
           tagline="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
           stats={[
-            { v: "9", l: "Ivy & top global schools" },
             { v: "40+", l: "Visiting professors annually" },
             { v: "12", l: "Countries represented" },
-            { v: "2", l: "Kellogg immersions to MU" },
           ]}
+
           items={VISITING.map((v) => ({ name: v.name, role: v.role, sub: v.school, img: v.img }))}
         />
 
