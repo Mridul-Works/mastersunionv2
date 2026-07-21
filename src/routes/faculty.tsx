@@ -439,12 +439,14 @@ function FacultyPage() {
 
 
       {/* FULL-TIME FACULTY */}
-      <section id="full-time" className="border-y border-black/10 bg-neutral-50">
+      <section id="full-time" className="border-y border-black/10 bg-white">
         <div className="mx-auto max-w-6xl px-5 py-24 md:px-10 md:py-32">
-          <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Full-time Faculty</div>
-          <h2 className="mt-4 max-w-[26ch] text-balance text-[clamp(1.8rem,4vw,3.2rem)] leading-[1.05] tracking-[-0.01em]">
-            25 PhD faculty. Active researchers. Published in the journals McKinsey and the world&apos;s best B-schools read.
-          </h2>
+          <SectionHeader
+            index="02"
+            eyebrow="Full-time Faculty"
+            title={<>25 PhD faculty. Active researchers. Published where the best B-schools read.</>}
+            intro="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing in FT50 and A* journals."
+          />
 
           <EditorialGrid
             sectionLabel="Full-time Faculty"
@@ -457,8 +459,6 @@ function FacultyPage() {
             items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
           />
 
-
-
           <p className="mt-10 max-w-[62ch] text-[1rem] leading-[1.6] text-black/70">
             And 19 more across finance, marketing, operations, organisational behaviour, economics, data science, and strategy.
           </p>
@@ -467,11 +467,15 @@ function FacultyPage() {
       </section>
 
       {/* VISITING */}
-      <section id="visiting" className="mx-auto max-w-6xl px-5 py-24 md:px-10 md:py-32">
-        <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Visiting Faculty</div>
-        <h2 className="mt-4 max-w-[26ch] text-balance text-[clamp(1.8rem,4vw,3.2rem)] leading-[1.05] tracking-[-0.01em]">
-          Professors who teach here because they believe in what Masters&apos; Union is building.
-        </h2>
+      <section id="visiting" className="bg-neutral-50">
+        <div className="mx-auto max-w-6xl px-5 py-24 md:px-10 md:py-32">
+          <SectionHeader
+            index="03"
+            eyebrow="Visiting Faculty"
+            title={<>Professors who teach here because they believe in what Masters&apos; Union is building.</>}
+            intro="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
+          />
+
 
         <EditorialGrid
           sectionLabel="Visiting Faculty"
