@@ -374,7 +374,9 @@ function FacultyPage() {
         />
 
 
+        </div>
       </section>
+
 
       {/* FULL-TIME FACULTY */}
       <section id="full-time" className="border-y border-black/10 bg-neutral-50">
