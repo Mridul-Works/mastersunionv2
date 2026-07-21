@@ -46,6 +46,61 @@ const faverieImg = faverieAsset.url;
 
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
+const SERIF = "'Fraunces', 'Cormorant Garamond', ui-serif, Georgia, serif";
+
+function SectionHeader({
+  index,
+  eyebrow,
+  title,
+  intro,
+  align = "left",
+}: {
+  index: string;
+  eyebrow: string;
+  title: React.ReactNode;
+  intro?: React.ReactNode;
+  align?: "left" | "center";
+}) {
+  const isCenter = align === "center";
+  return (
+    <header className={isCenter ? "text-center" : ""}>
+      <div
+        className={`flex items-center gap-4 ${isCenter ? "justify-center" : ""}`}
+      >
+        <span
+          className="text-[11px] tracking-[0.28em] text-black/45"
+          style={{ fontFamily: MONO }}
+        >
+          {index}
+        </span>
+        <span className="h-px w-10 bg-black/25" aria-hidden />
+        <span
+          className="text-[11px] uppercase tracking-[0.28em] text-black/60"
+          style={{ fontFamily: MONO }}
+        >
+          {eyebrow}
+        </span>
+      </div>
+      <h2
+        className={`mt-6 text-balance text-[clamp(2rem,4.6vw,3.6rem)] font-normal leading-[1.02] tracking-[-0.015em] text-black ${
+          isCenter ? "mx-auto max-w-[24ch]" : "max-w-[26ch]"
+        }`}
+        style={{ fontFamily: SERIF }}
+      >
+        {title}
+      </h2>
+      {intro ? (
+        <p
+          className={`mt-6 text-[1.05rem] leading-[1.6] text-black/70 ${
+            isCenter ? "mx-auto max-w-[62ch]" : "max-w-[62ch]"
+          }`}
+        >
+          {intro}
+        </p>
+      ) : null}
+    </header>
+  );
+}
 
 const NAV: SectionNavItem[] = [
   { id: "top", label: "Overview" },
