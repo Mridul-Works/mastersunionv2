@@ -143,11 +143,13 @@ import nse from "@/assets/immersions/bharat/nse.png.asset.json";
 import lenskart from "@/assets/immersions/bharat/lenskart.png.asset.json";
 
 // Alumni portraits
-import aaravImg from "@/assets/alumni/aarav.jpg.asset.json";
-import ishaImg from "@/assets/alumni/isha.jpg.asset.json";
-import kabirImg from "@/assets/alumni/kabir.jpg.asset.json";
-import ananyaImg from "@/assets/alumni/ananya.jpg.asset.json";
-import bullspreeImg from "@/assets/alumni/bullspree-founder.png.asset.json";
+import danielNathImg from "@/assets/alumni/daniel-nath.png.asset.json";
+import jeneeshaImg from "@/assets/alumni/jeneesha-singh.png.asset.json";
+import deepankerImg from "@/assets/alumni/deepanker-mathur.png.asset.json";
+import vibhorImg from "@/assets/alumni/vibhor-agarwal.png.asset.json";
+import mehulImg from "@/assets/alumni/mehul-soni.png.asset.json";
+import anuragImg from "@/assets/alumni/anurag-bansal.png.asset.json";
+
 
 // Founder portraits + Shark Tank stage
 import founder1 from "@/assets/founders/founder-1.jpg.asset.json";
@@ -671,12 +673,14 @@ function FacultyPager({ items }: { items: typeof FACULTY_ALL }) {
 
 
 const ALUM_STORIES = [
-  { name: "Aarav Mehta", role: "Business Analyst", company: "McKinsey & Company", logo: rMckinsey.url, photo: aaravImg.url, quote: "Live case work in Year 2 got me an offer before final placements." },
-  { name: "Isha Rao", role: "Associate Consultant", company: "Bain & Company", logo: rBain.url, photo: ishaImg.url, quote: "MU's practitioner faculty rewired how I break down a problem." },
-  { name: "Kabir Shah", role: "APM", company: "Meta", logo: rMeta.url, photo: kabirImg.url, quote: "Building at MU Ventures made the PM interview feel like a normal Tuesday." },
-  { name: "Rohan Verma", role: "Founder & CEO", company: "Bullspree", logo: rMeta.url, photo: bullspreeImg.url, quote: "Started Bullspree in Year 2 at MU — the campus was our first pitch room, first hiring pool, and first cheque." },
-  { name: "Ananya Gupta", role: "Investor", company: "Good Capital", logo: rGoodCapital.url, photo: ananyaImg.url, quote: "Pitched a portfolio company on campus, joined the fund that heard the pitch." },
+  { name: "Daniel Nath", role: "Strategy Lead", company: "Google", photo: danielNathImg.url, quote: "MU's live projects put me across the table from real operators before I'd graduated." },
+  { name: "Jeneesha Singh", role: "Consultant", company: "Bain & Company", photo: jeneeshaImg.url, quote: "Case work with practitioner faculty rewired how I structure a problem end to end." },
+  { name: "Deepankar Mathur", role: "Founder's Office", company: "Zerodha", photo: deepankerImg.url, quote: "Two years of live capital markets work at MU is why the founder's office felt like home." },
+  { name: "Vibhor Agarwal", role: "Founder's Office", company: "Hike", photo: vibhorImg.url, quote: "I shipped product from Day 1 at MU — that's the only reason I could ship from Day 1 at Hike." },
+  { name: "Mehul Soni", role: "Quantitative Trader", company: "Avirom Capital", photo: mehulImg.url, quote: "The quant electives at MU are the reason I could sit a trading desk interview and hold my own." },
+  { name: "Anurag Bansal", role: "Founder's Office", company: "Zerodha", photo: anuragImg.url, quote: "MU made the leap from classroom to a 12-person founder's team feel like the next class, not a jump." },
 ];
+
 
 function AlumStories() {
   const items = ALUM_STORIES.length >= 6
