@@ -1012,33 +1012,32 @@ function SharkTankCompact() {
 function UniformLogoList({ groups }: { groups: LogoGroup[] }) {
   const logos = groups.flatMap((g) => g.logos);
   return (
-    <div className="grid grid-cols-3 gap-x-5 gap-y-7 sm:grid-cols-4">
+    <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3">
       {logos.map((l, i) => {
         const name = l.original_filename.replace(/\.png$/i, "");
         const boost = i === 4;
         return (
-          <div key={l.url} className="flex h-12 items-center justify-center">
+          <div key={l.url} className="flex h-14 items-center justify-center">
             <img
               src={l.url}
               alt={name}
               title={name}
               loading="lazy"
               className={`w-auto object-contain opacity-95 transition duration-300 hover:opacity-100 ${
-                boost ? "max-h-[72px] max-w-full" : "max-h-9 max-w-[80%]"
+                boost ? "max-h-[80px] max-w-full" : "max-h-10 max-w-[75%]"
               }`}
             />
           </div>
         );
       })}
     </div>
-
   );
 }
 
 function VenturesSplit() {
   return (
-    <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1fr]">
-      <div>
+    <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1fr] lg:gap-14">
+      <div className="lg:pr-4">
         <UniformLogoList groups={VENTURE_GROUPS} />
       </div>
       <SharkTankCompact />
