@@ -313,11 +313,29 @@ function FacultyPage() {
           ))}
         </div>
 
-        <div className="mt-8 flex flex-wrap gap-2">
-          {["Harvard", "Wharton", "Stanford", "Kellogg", "Cornell", "NYU", "Columbia", "USC", "Imperial"].map((c) => (
-            <span key={c} className="rounded-none border border-black/15 px-3 py-1.5 text-[12px] text-black/80" style={{ fontFamily: MONO }}>{c}</span>
+        <div className="mt-8 flex flex-wrap items-center gap-x-10 gap-y-6">
+          {[
+            { name: "Harvard", domain: "harvard.edu" },
+            { name: "Wharton", domain: "wharton.upenn.edu" },
+            { name: "Stanford", domain: "stanford.edu" },
+            { name: "Kellogg", domain: "kellogg.northwestern.edu" },
+            { name: "Cornell", domain: "cornell.edu" },
+            { name: "NYU", domain: "nyu.edu" },
+            { name: "Columbia", domain: "columbia.edu" },
+            { name: "USC", domain: "usc.edu" },
+            { name: "Imperial", domain: "imperial.ac.uk" },
+          ].map((c) => (
+            <img
+              key={c.name}
+              src={`https://logo.clearbit.com/${c.domain}`}
+              alt={c.name}
+              title={c.name}
+              className="h-8 w-auto object-contain opacity-80 grayscale transition hover:opacity-100 hover:grayscale-0"
+              loading="lazy"
+            />
           ))}
         </div>
+
       </section>
 
       {/* THE MODEL */}
