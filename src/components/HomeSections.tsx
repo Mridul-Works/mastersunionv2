@@ -11,7 +11,7 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
-  Quote,
+  
   GraduationCap,
   Rocket,
   Briefcase,
@@ -53,7 +53,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { cn } from "@/lib/utils";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 
-import founderPhoto from "@/assets/founder-pratham-cutout.webp";
+
 import logoWhite from "@/assets/logo-4.png.asset.json";
 import pathwaySchool from "@/assets/pathways/school.webp";
 import pathwayCollege from "@/assets/pathways/college.webp";
