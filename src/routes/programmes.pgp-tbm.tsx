@@ -29,61 +29,64 @@ import SectionDivider from "@/components/SectionDivider";
 import { cn } from "@/lib/utils";
 import logoWhite from "@/assets/logo-4.png.asset.json";
 
-import bambaiiAsset from "@/assets/startup-logos/Bambaii.png.asset.json";
-import beyondVedaAsset from "@/assets/startup-logos/BeyondVeda.png.asset.json";
-import blueBrewAsset from "@/assets/startup-logos/BlueBrew.png.asset.json";
-import eatAtlasAsset from "@/assets/startup-logos/EatAtlas.png.asset.json";
-import fnorAsset from "@/assets/startup-logos/FNOR.png.asset.json";
-import flourishFoodsAsset from "@/assets/startup-logos/FlourishFoods.png.asset.json";
-import kazeAsset from "@/assets/startup-logos/Kaze.png.asset.json";
-import lexisAsset from "@/assets/startup-logos/Lexis.png.asset.json";
-import momsAsset from "@/assets/startup-logos/Moms.png.asset.json";
-import monarqueAsset from "@/assets/startup-logos/Monarque.png.asset.json";
-import nivaraAsset from "@/assets/startup-logos/Nivara.png.asset.json";
-import woodysAsset from "@/assets/startup-logos/WoodysPizzeria.png.asset.json";
+// Startup logos — sourced from homepage Entrepreneurship venture set
+import vJustMyRoots from "@/assets/venture-logos/JustMyRoots.png.asset.json";
+import vHiveschool from "@/assets/venture-logos/Hiveschool.png.asset.json";
+import vPlaysuper from "@/assets/venture-logos/Playsuper.png.asset.json";
+import vSeedsAI from "@/assets/venture-logos/SeedsAI.png.asset.json";
+import vStartt from "@/assets/venture-logos/Startt.png.asset.json";
+import vPixel from "@/assets/venture-logos/Pixel.png.asset.json";
+import vYango from "@/assets/venture-logos/Yango.png.asset.json";
+import vEight from "@/assets/venture-logos/EIGHT.png.asset.json";
+import vGuardex from "@/assets/venture-logos/Guardex.png.asset.json";
+import vTrueBrands from "@/assets/venture-logos/TrueBrandsIndia.png.asset.json";
+import vVinyasa from "@/assets/venture-logos/Vinyasa.png.asset.json";
+import vShrnm from "@/assets/venture-logos/Shrnm.png.asset.json";
 
 const STARTUP_LOGOS: { name: string; url: string }[] = [
-  { name: "Bambaii", url: bambaiiAsset.url },
-  { name: "BeyondVeda", url: beyondVedaAsset.url },
-  { name: "BlueBrew", url: blueBrewAsset.url },
-  { name: "EatAtlas", url: eatAtlasAsset.url },
-  { name: "FNOR", url: fnorAsset.url },
-  { name: "Flourish Foods", url: flourishFoodsAsset.url },
-  { name: "Kaze", url: kazeAsset.url },
-  { name: "Lexi's", url: lexisAsset.url },
-  { name: "Mom's", url: momsAsset.url },
-  { name: "Monarque", url: monarqueAsset.url },
-  { name: "Nivara", url: nivaraAsset.url },
-  { name: "Woody's Pizzeria", url: woodysAsset.url },
+  { name: "JustMyRoots", url: vJustMyRoots.url },
+  { name: "Hiveschool", url: vHiveschool.url },
+  { name: "Playsuper", url: vPlaysuper.url },
+  { name: "SeedsAI", url: vSeedsAI.url },
+  { name: "Startt", url: vStartt.url },
+  { name: "Pixel", url: vPixel.url },
+  { name: "Yango", url: vYango.url },
+  { name: "EIGHT", url: vEight.url },
+  { name: "Guardex", url: vGuardex.url },
+  { name: "TrueBrands India", url: vTrueBrands.url },
+  { name: "Vinyasa", url: vVinyasa.url },
+  { name: "Shrnm", url: vShrnm.url },
 ];
 
-import metaAsset from "@/assets/career-logos/Meta.png.asset.json";
-import mckinseyAsset from "@/assets/career-logos/McKinsey.png.asset.json";
-import credAsset from "@/assets/career-logos/Cred.png.asset.json";
-import servicenowAsset from "@/assets/career-logos/Servicenow.png.asset.json";
-import flipkartAsset from "@/assets/career-logos/Flipkart.png.asset.json";
-import bainAsset from "@/assets/career-logos/BainAndCompany.png.asset.json";
-import goodCapitalAsset from "@/assets/career-logos/GoodCapital.png.asset.json";
-import accentureAsset from "@/assets/career-logos/Accenture.png.asset.json";
-import kaptureAsset from "@/assets/career-logos/Kapture.png.asset.json";
-import zeptoAsset from "@/assets/career-logos/Zepto.png.asset.json";
-import bloombergAsset from "@/assets/career-logos/Bloomberg.png.asset.json";
-import iciciAsset from "@/assets/career-logos/ICICI.png.asset.json";
+// Career/recruiter logos — sourced from homepage Career Outcomes set
+import rMckinsey from "@/assets/recruiter-logos/McKinsey.png.asset.json";
+import rBain from "@/assets/recruiter-logos/Bain.png.asset.json";
+import rBcg from "@/assets/recruiter-logos/BCG.png.asset.json";
+import rAccenture from "@/assets/recruiter-logos/Accenture.png.asset.json";
+import rGoogle from "@/assets/recruiter-logos/Google.png.asset.json";
+import rMeta from "@/assets/recruiter-logos/Meta.png.asset.json";
+import rMicrosoft from "@/assets/recruiter-logos/Microsoft.png.asset.json";
+import rFlipkart from "@/assets/recruiter-logos/Flipkart.png.asset.json";
+import rZomato from "@/assets/recruiter-logos/Zomato.png.asset.json";
+import rRazorpay from "@/assets/recruiter-logos/Razorpay.png.asset.json";
+import rCred from "@/assets/recruiter-logos/Cred.png.asset.json";
+import rIcici from "@/assets/recruiter-logos/ICICI.png.asset.json";
 
 const CAREER_LOGOS: { name: string; url: string; className?: string }[] = [
-  { name: "McKinsey", url: mckinseyAsset.url },
-  { name: "Bain & Company", url: bainAsset.url },
-  { name: "Accenture", url: accentureAsset.url },
-  { name: "Meta", url: metaAsset.url },
-  { name: "ServiceNow", url: servicenowAsset.url },
-  { name: "Flipkart", url: flipkartAsset.url },
-  { name: "Zepto", url: zeptoAsset.url, className: "h-6 max-w-[75%]" },
-  { name: "Cred", url: credAsset.url },
-  { name: "Bloomberg", url: bloombergAsset.url },
-  { name: "ICICI", url: iciciAsset.url },
-  { name: "Kapture", url: kaptureAsset.url },
-  { name: "Good Capital", url: goodCapitalAsset.url },
+  { name: "McKinsey", url: rMckinsey.url },
+  { name: "Bain", url: rBain.url },
+  { name: "BCG", url: rBcg.url },
+  { name: "Accenture", url: rAccenture.url },
+  { name: "Google", url: rGoogle.url },
+  { name: "Meta", url: rMeta.url },
+  { name: "Microsoft", url: rMicrosoft.url },
+  { name: "Flipkart", url: rFlipkart.url },
+  { name: "Zomato", url: rZomato.url },
+  { name: "Razorpay", url: rRazorpay.url },
+  { name: "Cred", url: rCred.url },
+  { name: "ICICI", url: rIcici.url },
 ];
+
 
 // Uniform logo — scales each image so visually normalized across a grid.
 // Sized slightly smaller than the homepage's NormalizedLogo.
