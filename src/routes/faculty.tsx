@@ -64,28 +64,20 @@ function SectionHeader({
   const isCenter = align === "center";
   return (
     <header className={isCenter ? "text-center" : ""}>
-      <div
-        className={`flex items-center gap-4 ${isCenter ? "justify-center" : ""}`}
+      <p
+        className={`mb-3 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-black/50 ${
+          isCenter ? "flex justify-center gap-3" : "flex gap-3"
+        }`}
       >
-        <span
-          className="text-[11px] tracking-[0.28em] text-black/45"
-          style={{ fontFamily: MONO }}
-        >
-          {index}
-        </span>
-        <span className="h-px w-10 bg-black/25" aria-hidden />
-        <span
-          className="text-[11px] uppercase tracking-[0.28em] text-black/60"
-          style={{ fontFamily: MONO }}
-        >
-          {eyebrow}
-        </span>
-      </div>
+        <span>{index}</span>
+        <span aria-hidden className="text-black/25">/</span>
+        <span>{eyebrow}</span>
+      </p>
       <h2
-        className={`mt-6 text-balance text-[clamp(2rem,4.6vw,3.6rem)] font-normal leading-[1.02] tracking-[-0.015em] text-black ${
+        className={`text-[clamp(1.75rem,4vw,3.25rem)] font-semibold leading-[1.05] tracking-tight text-black ${
           isCenter ? "mx-auto max-w-[24ch]" : "max-w-[26ch]"
         }`}
-        style={{ fontFamily: SERIF }}
+        style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
       >
         {title}
       </h2>
@@ -99,6 +91,7 @@ function SectionHeader({
         </p>
       ) : null}
     </header>
+
   );
 }
 
