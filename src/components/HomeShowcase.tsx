@@ -147,6 +147,7 @@ import aaravImg from "@/assets/alumni/aarav.jpg.asset.json";
 import ishaImg from "@/assets/alumni/isha.jpg.asset.json";
 import kabirImg from "@/assets/alumni/kabir.jpg.asset.json";
 import ananyaImg from "@/assets/alumni/ananya.jpg.asset.json";
+import bullspreeImg from "@/assets/alumni/bullspree-founder.png.asset.json";
 
 // Founder portraits + Shark Tank stage
 import founder1 from "@/assets/founders/founder-1.jpg.asset.json";
