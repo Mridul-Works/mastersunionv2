@@ -812,12 +812,11 @@ const TONE_INK: Record<string, string> = {
   capstone: "text-foreground",
 };
 
-// Card palette inspired by editorial calendar UIs (yellow / lavender / pink / cream).
-const CARD_STYLES: Record<string, { bg: string; ring: string; chip: string; ink: string }> = {
-  in:      { bg: "bg-white",            ring: "ring-black/5",       chip: "bg-black/[0.05] text-foreground/70", ink: "text-foreground" },
-  d2c:     { bg: "bg-[#F7D774]",        ring: "ring-black/5",       chip: "bg-black/10 text-black/70",          ink: "text-black" },
-  creator: { bg: "bg-[#F6B9C1]",        ring: "ring-black/5",       chip: "bg-black/10 text-black/70",          ink: "text-black" },
-  imm:     { bg: "bg-[#C9BDF2]",        ring: "ring-black/5",       chip: "bg-black/10 text-black/70",          ink: "text-black" },
+const LANE_TONE_LABELS: Record<string, string> = {
+  d2c: "Live D2C brand",
+  creator: "Creator challenge",
+  imm: "Immersion trip",
+  capstone: "Final challenge",
 };
 
 type RowDef = {
@@ -887,12 +886,15 @@ const ROWS: RowDef[] = [
 ];
 
 function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
-  const [active, setActive] = useState<number | null>(4);
+  const [active, setActive] = useState<number | null>(null);
 
   const Wrapper: React.ElementType = embedded ? "div" : "section";
   const wrapperProps = embedded
     ? { id: "terms", className: "" }
-    : { id: "terms", className: "bg-white" };
+    : {
+        id: "terms",
+        className: "bg-white",
+      };
   const innerClass = embedded ? "" : "mx-auto max-w-[1180px] px-4 py-20 sm:px-6";
 
   return (
@@ -910,157 +912,129 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
           </div>
         )}
 
-        <div className="rounded-[28px] bg-[#FBF7EE] p-4 sm:p-6 ring-1 ring-black/5">
-          {/* Toolbar */}
-          <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-            <div>
-              <div className="text-[10px] font-semibold uppercase tracking-[0.24em] text-foreground/45">
-                Aug '26 → Nov '27
-              </div>
-              <div className="mt-1 font-display text-2xl leading-none tracking-tight text-foreground">
-                Your 16 months, week by week.
-              </div>
-            </div>
-            <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.16em] text-foreground/55">
-              <span className="inline-flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[#F7D774]" /> D2C</span>
-              <span className="inline-flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[#F6B9C1]" /> Creator</span>
-              <span className="inline-flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-[#C9BDF2]" /> Immersion</span>
-              <span className="inline-flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-white ring-1 ring-black/15" /> InClass</span>
-            </div>
-          </div>
+        {/* Legend */}
+        <div className="mb-4 flex flex-wrap items-center gap-x-5 gap-y-1 text-[11px] uppercase tracking-[0.16em] text-foreground/50">
+          <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-smoke-400" /> InClass</span>
+          <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-teal" /> D2C</span>
+          <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-[#E38330]" /> Creator</span>
+          <span className="inline-flex items-center gap-2"><span className="h-[3px] w-5 bg-teal" /> Immersion</span>
+        </div>
 
-          <div className="overflow-x-auto">
-            <div className="min-w-[980px]" onMouseLeave={() => setActive(null)}>
-              {/* Header row: term pills */}
-              <div className="grid grid-cols-[180px_repeat(8,1fr)] gap-2">
-                <div />
-                {TERM_META.map((m, i) => {
-                  const t = i + 1;
-                  const isActive = active === t;
-                  return (
-                    <button
-                      key={t}
-                      type="button"
-                      onMouseEnter={() => setActive(t)}
-                      onFocus={() => setActive(t)}
-                      onClick={() => setActive(t)}
-                      className={`flex flex-col items-center gap-0.5 rounded-2xl px-3 py-2.5 text-center transition-colors ${
-                        isActive
-                          ? "bg-[#111] text-white"
-                          : "bg-white text-foreground hover:bg-white/70"
-                      }`}
-                    >
-                      <span className={`text-[10px] uppercase tracking-[0.18em] ${isActive ? "text-white/60" : "text-foreground/45"}`}>
-                        Term {String(t).padStart(2, "0")}
-                      </span>
-                      <span className="font-display text-base leading-tight tracking-tight">
-                        {m.window.split(" ")[0]}
-                      </span>
-                    </button>
-                  );
-                })}
+        {/* Matrix */}
+        <div className="overflow-x-auto">
+          <div
+            className="min-w-[980px] border border-teal/40 divide-y divide-teal/25"
+            onMouseLeave={() => setActive(null)}
+          >
+            {/* Header row: Term columns */}
+            <div className="grid grid-cols-[200px_repeat(8,1fr)] divide-x divide-teal/25 bg-white text-foreground">
+              <div className="flex flex-col justify-center gap-1 px-4 py-4">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-teal/70">Aug '26 → Nov '27</div>
+                <div className="font-display text-sm tracking-tight text-teal">16 months · 8 terms</div>
               </div>
-
-              {/* Data rows */}
-              <div className="mt-3 space-y-2">
-                {ROWS.map((row) => (
-                  <div key={row.key} className="grid grid-cols-[180px_repeat(8,1fr)] gap-2">
-                    {/* Row label */}
-                    <div className="flex flex-col justify-center rounded-2xl bg-white/60 px-4 py-3">
-                      <div className={`flex items-center gap-2 font-display text-sm tracking-tight ${TONE_INK[row.engine]}`}>
-                        <span className={`h-2 w-2 rounded-full ${TONE_ACCENT[row.engine]}`} />
-                        {row.label}
-                      </div>
-                      <div className="mt-0.5 text-[10px] uppercase tracking-[0.14em] text-foreground/45">{row.sub}</div>
-                    </div>
-
-                    {row.cells.map((cell, i) => {
-                      const t = i + 1;
-                      const isActive = active === t;
-                      if (!cell) {
-                        return (
-                          <div
-                            key={t}
-                            onMouseEnter={() => setActive(t)}
-                            className={`min-h-[92px] rounded-2xl border border-dashed transition-colors ${
-                              isActive ? "border-black/20 bg-white/40" : "border-black/10"
-                            }`}
-                          />
-                        );
-                      }
-                      const style = CARD_STYLES[cell.tone];
-                      return (
-                        <div
-                          key={t}
-                          onMouseEnter={() => setActive(t)}
-                          className={`group relative flex min-h-[92px] flex-col justify-between rounded-2xl px-3 py-3 ring-1 transition-all ${style.bg} ${style.ring} ${
-                            isActive ? "-translate-y-0.5 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.25)]" : ""
-                          }`}
-                        >
-                          <div>
-                            <div className={`font-display text-[13px] leading-tight tracking-tight ${style.ink}`}>
-                              {cell.text}
-                            </div>
-                            {cell.note && (
-                              <div className={`mt-1 text-[11px] leading-snug ${cell.tone === "in" ? "text-foreground/55" : "text-black/60"}`}>
-                                {cell.note}
-                              </div>
-                            )}
-                          </div>
-                          <div className="flex items-center justify-between">
-                            <span className={`rounded-full px-2 py-0.5 text-[9px] font-medium uppercase tracking-[0.14em] ${style.chip}`}>
-                              T{t}
-                            </span>
-                            <span className={`text-[9px] uppercase tracking-[0.14em] ${cell.tone === "in" ? "text-foreground/40" : "text-black/45"}`}>
-                              {row.label}
-                            </span>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Term detail strip */}
-          <div className="mt-6 grid gap-2 md:grid-cols-[220px_1fr]">
-            <div className="rounded-2xl bg-[#111] p-5 text-white">
-              <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50">
-                {active ? "In this term" : "Preview a term"}
-              </div>
-              <div className="mt-2 font-display text-3xl leading-none tracking-tight">
-                {active ? `Term ${active}` : "—"}
-              </div>
-              <div className="mt-2 text-[11px] uppercase tracking-[0.16em] text-white/55">
-                {active ? TERM_META[active - 1].window : "Hover a term above"}
-              </div>
-            </div>
-            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-4">
-              {ROWS.map((row) => {
-                const cell = active ? row.cells[active - 1] : null;
-                const style = cell ? CARD_STYLES[cell.tone] : CARD_STYLES.in;
+              {TERM_META.map((m, i) => {
+                const t = i + 1;
+                const isActive = active === t;
                 return (
-                  <div key={row.key} className={`rounded-2xl p-4 ring-1 ring-black/5 ${cell ? style.bg : "bg-white/60"}`}>
-                    <div className={`flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] ${cell && cell.tone !== "in" ? "text-black/60" : TONE_INK[row.engine]}`}>
-                      <span className={`h-2 w-2 rounded-full ${TONE_ACCENT[row.engine]}`} />
-                      {row.label}
+                  <button
+                    key={t}
+                    type="button"
+                    onMouseEnter={() => setActive(t)}
+                    onFocus={() => setActive(t)}
+                    onClick={() => setActive(t)}
+                    className={`group relative flex flex-col items-start gap-1 px-3 py-4 text-left transition-colors ${isActive ? "bg-teal/[0.12] text-foreground" : "text-foreground hover:bg-teal/[0.08]"}`}
+                  >
+                    <div className="flex items-baseline gap-1.5">
+                      <span className="font-display text-lg leading-none tracking-tight text-teal">{String(t).padStart(2, "0")}</span>
+                      <span className="text-[10px] uppercase tracking-[0.18em] text-teal/60">Term</span>
                     </div>
-                    <div className={`mt-2 font-display text-sm tracking-tight ${cell && cell.tone !== "in" ? "text-black" : "text-foreground"}`}>
-                      {cell ? cell.text : <span className="text-foreground/25">—</span>}
-                    </div>
-                    {cell?.note && (
-                      <div className={`mt-0.5 text-[11px] ${cell.tone !== "in" ? "text-black/60" : "text-foreground/55"}`}>{cell.note}</div>
-                    )}
-                  </div>
+                    <div className="text-[11px] leading-tight text-foreground/70">{m.months}</div>
+                    <div className="text-[10px] uppercase tracking-[0.14em] text-foreground/45">{m.window}</div>
+                  </button>
                 );
               })}
             </div>
+
+            {/* Data rows */}
+            {ROWS.map((row) => (
+              <div key={row.key} className="grid grid-cols-[200px_repeat(8,1fr)] divide-x divide-teal/25">
+                {/* Row label */}
+                <div className="flex flex-col justify-center gap-1 px-4 py-4">
+                  <div className={`flex items-center gap-2 font-display text-sm tracking-tight ${TONE_INK[row.engine]}`}>
+                    <span className={`h-3 w-[3px] ${TONE_ACCENT[row.engine]}`} />
+                    {row.label}
+                  </div>
+                  <div className="text-[11px] uppercase tracking-[0.14em] text-foreground/45">{row.sub}</div>
+                </div>
+                {row.cells.map((cell, i) => {
+                  const t = i + 1;
+                  const isActive = active === t;
+                  if (!cell) {
+                    return (
+                      <div
+                        key={t}
+                        onMouseEnter={() => setActive(t)}
+                        className={`relative min-h-[76px] transition-colors ${isActive ? "bg-teal/[0.08]" : "bg-[repeating-linear-gradient(135deg,transparent_0_6px,rgba(0,106,78,0.06)_6px_7px)]"}`}
+                      />
+                    );
+                  }
+                  return (
+                    <div
+                      key={t}
+                      onMouseEnter={() => setActive(t)}
+                      className={`group relative flex min-h-[76px] flex-col justify-between px-3 py-3 transition-colors ${isActive ? "bg-teal/[0.12] text-foreground" : "bg-white hover:bg-teal/[0.08]"}`}
+                    >
+                      <div className={`h-[3px] w-6 ${TONE_ACCENT[cell.tone]} opacity-90`} />
+                      <div>
+                        <div className="font-display text-[13px] leading-tight tracking-tight text-foreground">{cell.text}</div>
+                        {cell.note && (
+                          <div className="mt-0.5 text-[10px] uppercase tracking-[0.14em] text-foreground/50">{cell.note}</div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
           </div>
         </div>
+
+
+        {/* Term detail strip */}
+        <div className="mt-5 grid gap-0 border border-teal/40 md:grid-cols-[220px_1fr]">
+          <div className="border-b border-teal/25 bg-white p-5 text-foreground md:border-b-0 md:border-r">
+            <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-teal/70">{active ? "In this term" : "Preview a term"}</div>
+            <div className="mt-2 font-display text-3xl leading-none tracking-tight text-teal">
+              {active ? `Term ${active}` : "—"}
+            </div>
+            <div className="mt-2 text-[11px] uppercase tracking-[0.16em] text-foreground/55">
+              {active ? TERM_META[active - 1].window : "Hover a column above"}
+            </div>
+          </div>
+          <div className="grid grid-cols-1 divide-y divide-foreground/10 sm:grid-cols-2 sm:divide-x sm:divide-y-0 md:grid-cols-4">
+            {ROWS.map((row) => {
+              const cell = active ? row.cells[active - 1] : null;
+              return (
+                <div key={row.key} className="p-4">
+                  <div className={`flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] ${TONE_INK[row.engine]}`}>
+                    <span className={`h-2 w-2 ${TONE_ACCENT[row.engine]}`} />
+                    {row.label}
+                  </div>
+                  <div className="mt-2 font-display text-sm tracking-tight text-foreground">
+                    {cell ? cell.text : <span className="text-foreground/25">—</span>}
+                  </div>
+                  {cell?.note && (
+                    <div className="mt-0.5 text-[11px] text-foreground/55">{cell.note}</div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
       </div>
     </Wrapper>
+
   );
 }
 
