@@ -1081,13 +1081,8 @@ export default function HomeShowcase() {
 
       <FounderQuote />
 
-      <ShowcaseShell section={VENTURES_SECTION}>
-        <StatsBand stats={VENTURES_RICH_STATS} tone="light" />
-        <FounderFilmstrip />
-        <div className="mt-5">
-          <VenturesSplit />
-        </div>
-      </ShowcaseShell>
+      <VenturesScaffold />
+
 
       <ShowcaseShell section={PARTNERS_SECTION}>
         <CategorizedLogos groups={PARTNER_GROUPS} withFilter size="sm" />
