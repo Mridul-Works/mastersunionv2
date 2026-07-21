@@ -818,30 +818,31 @@ function FounderFilmstrip() {
           <figure
             key={`${f.company}-${i}`}
             data-card
-            className="group relative flex shrink-0 snap-start basis-[80%] flex-col sm:basis-[52%] md:basis-[34%]"
+            className="group relative flex shrink-0 snap-start basis-[65%] flex-col sm:basis-[38%] md:basis-[25%]"
           >
-            <div className="relative w-full aspect-[4/5] overflow-hidden bg-neutral-200">
+            <div className="relative w-full aspect-[3/4] overflow-hidden bg-neutral-100">
               <img
                 src={f.photo}
                 alt={`${f.name} — ${f.company}`}
                 loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover object-top grayscale contrast-[1.05] transition duration-500 group-hover:grayscale-0"
+                className="absolute inset-0 h-full w-full object-cover object-center grayscale contrast-[1.05] transition duration-500 group-hover:grayscale-0"
               />
               <span className="absolute left-2 top-2 bg-black/70 px-1.5 py-0.5 text-[9px] uppercase tracking-wider text-white">
                 {f.tag}
               </span>
             </div>
             <figcaption className="mt-2 pr-1">
-              <p className="text-[12px] font-semibold text-black leading-tight">{f.company}.</p>
-              <p className="mt-1 text-[11px] leading-[1.45] text-neutral-700 italic line-clamp-3">
+              <p className="text-[11px] font-semibold text-black leading-tight">{f.company}.</p>
+              <p className="mt-1 text-[10.5px] leading-[1.45] text-neutral-700 italic line-clamp-2">
                 &ldquo;{f.quote}&rdquo;
               </p>
-              <p className="mt-1 text-[10px] uppercase tracking-wider text-neutral-500 not-italic">
+              <p className="mt-1 text-[9.5px] uppercase tracking-wider text-neutral-500 not-italic">
                 {f.name} · {f.role}
               </p>
             </figcaption>
           </figure>
         ))}
+
       </div>
     </div>
   );
