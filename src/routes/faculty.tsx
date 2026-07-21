@@ -357,32 +357,11 @@ function FacultyPage() {
             25 PhD faculty. Active researchers. Published in the journals McKinsey and the world&apos;s best B-schools read.
           </h2>
 
-          <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-4">
-            {FULLTIME.map((f) => (
-              <div key={f.name} className="group">
-                <div className="aspect-square w-full overflow-hidden bg-[#ececec]">
-                  {f.img ? (
-                    <img
-                      src={f.img}
-                      alt={f.name}
-                      className="h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0"
-                    />
-                  ) : (
-                    <Initials name={f.name} />
-                  )}
-                </div>
-                <h3 className="mt-4 text-[0.95rem] font-medium leading-tight text-black">
-                  {f.name}
-                </h3>
-                <div
-                  className="mt-1 text-[11px] leading-snug text-black/55"
-                  style={{ fontFamily: MONO }}
-                >
-                  {f.note}
-                </div>
-              </div>
-            ))}
-          </div>
+          <EditorialGrid
+            sectionLabel="Full-time Faculty"
+            items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
+          />
+
 
 
           <p className="mt-10 max-w-[62ch] text-[1rem] leading-[1.6] text-black/70">
