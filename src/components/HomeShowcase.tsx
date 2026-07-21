@@ -1060,6 +1060,305 @@ function VenturesSplit() {
 }
 
 
+function VenturesScaffold() {
+  const allLogos = VENTURE_GROUPS.flatMap((g) => g.logos);
+  const founders = FOUNDER_STORIES.slice(0, 4);
+  const stats = [
+    { value: "120+", label: "Companies built", accent: false },
+    { value: "₹85 Cr+", label: "Raised by alumni", accent: false },
+    { value: "$10M", label: "In-house fund", accent: false },
+    { value: "40+", label: "Founder mentors", accent: false },
+    { value: "6", label: "Shark Tank pitches", accent: true },
+    { value: "3", label: "Founder studios", accent: true },
+  ];
+
+  return (
+    <section id="entrepreneurship" className="border-t border-black/10 bg-[#F5F3EE]">
+      <div className="mx-auto max-w-[1280px] px-5 py-10 md:px-10 md:py-14">
+        <div className="flex flex-col border-x border-black/10">
+          {/* Header row */}
+          <div className="grid grid-cols-1 border-y border-black/10 md:grid-cols-12">
+            <div className="border-b border-black/10 p-8 md:col-span-8 md:border-b-0 md:border-r md:p-14">
+              <p
+                className="mb-6 text-[10px] font-semibold uppercase tracking-[0.28em] text-[#3F5B33]"
+                style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace" }}
+              >
+                Entrepreneurship — Case study in venturing
+              </p>
+              <h2
+                className="text-[clamp(2rem,5.2vw,4.75rem)] font-semibold leading-[0.95] tracking-tight text-black"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+              >
+                Companies started{" "}
+                <span
+                  className="font-normal italic text-[#3F5B33] underline decoration-1 underline-offset-[10px]"
+                  style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                >
+                  before
+                </span>{" "}
+                graduation.
+              </h2>
+            </div>
+            <div className="flex flex-col justify-end bg-white p-8 md:col-span-4 md:p-10">
+              <p className="mb-6 text-[14px] leading-relaxed text-black/70">
+                Entrepreneurship at Masters' Union isn't a club — it's an operating system. Real capital, in-house studios, and mentors who've built the ventures our students are trying to.
+              </p>
+              <Link
+                to="/mu-ventures"
+                className="group flex w-full items-center justify-between rounded-full bg-black px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition-colors hover:bg-[#3F5B33]"
+              >
+                <span>Explore MU Ventures</span>
+                <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+            </div>
+          </div>
+
+          {/* Main split: sticky stats + founders */}
+          <div className="grid grid-cols-1 border-b border-black/10 md:grid-cols-12">
+            {/* Stats rail */}
+            <aside className="border-b border-black/10 bg-[#DDE7D6]/25 md:col-span-3 md:border-b-0 md:border-r">
+              <div className="md:sticky md:top-0">
+                {stats.map((s, i) => (
+                  <div
+                    key={s.label}
+                    className={`p-6 md:p-7 ${i < stats.length - 1 ? "border-b border-black/10" : ""}`}
+                  >
+                    <p
+                      className={`mb-2 text-[clamp(2rem,2.4vw,2.8rem)] leading-none italic ${
+                        s.accent ? "text-[#3F5B33]" : "text-black"
+                      }`}
+                      style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                    >
+                      {s.value}
+                    </p>
+                    <p
+                      className="text-[10px] uppercase tracking-[0.2em] text-black/55"
+                      style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace" }}
+                    >
+                      {s.label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </aside>
+
+            {/* Founders 2x2 */}
+            <div className="bg-white md:col-span-9">
+              <div className="grid grid-cols-1 md:grid-cols-2">
+                {founders.map((f, i) => {
+                  const isSage = i === 1;
+                  const borderCls = [
+                    // borders between the 4 cells
+                    i === 0 ? "border-b border-black/10 md:border-r" : "",
+                    i === 1 ? "border-b border-black/10" : "",
+                    i === 2 ? "md:border-r border-black/10" : "",
+                    i === 3 ? "" : "",
+                  ].join(" ");
+                  return (
+                    <article
+                      key={f.company}
+                      className={`group flex flex-col justify-between p-8 md:p-10 ${borderCls} ${
+                        isSage ? "bg-[#3F5B33] text-white" : ""
+                      }`}
+                    >
+                      <div>
+                        {!isSage && (
+                          <div className="relative mb-6 aspect-[4/5] w-full overflow-hidden bg-[#F5F3EE]">
+                            <img
+                              src={f.photo}
+                              alt={`${f.name} — ${f.company}`}
+                              loading="lazy"
+                              className="absolute inset-0 h-full w-full object-cover object-center grayscale contrast-[1.05] transition duration-500 group-hover:grayscale-0"
+                            />
+                          </div>
+                        )}
+                        <p
+                          className={`mb-6 leading-tight ${
+                            isSage
+                              ? "text-[clamp(1.5rem,2vw,2rem)] italic"
+                              : "text-[17px] md:text-[19px] font-medium tracking-tight"
+                          }`}
+                          style={
+                            isSage
+                              ? { fontFamily: "'Fraunces', Georgia, serif" }
+                              : { fontFamily: "'Inter', system-ui, sans-serif" }
+                          }
+                        >
+                          &ldquo;{f.quote}&rdquo;
+                        </p>
+                        {isSage && (
+                          <p className="mb-8 text-[13px] leading-relaxed text-white/70">
+                            Backed early by MU Ventures and now scaling with product, community and GTM support built into the programme.
+                          </p>
+                        )}
+                      </div>
+                      <div
+                        className={`flex items-center justify-between gap-4 pt-4 text-[10.5px] uppercase tracking-[0.18em] ${
+                          isSage ? "text-white/85" : "text-[#3F5B33]"
+                        }`}
+                        style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace" }}
+                      >
+                        <span className="font-semibold">
+                          {f.name} — {f.company}
+                        </span>
+                        <span
+                          className={`flex size-9 shrink-0 items-center justify-center border text-[11px] ${
+                            isSage ? "border-white/25 text-white" : "border-black/15 text-black/70"
+                          }`}
+                        >
+                          0{i + 1}
+                        </span>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {/* Portfolio logo grid */}
+          <div className="border-b border-black/10 bg-white">
+            <div className="border-b border-black/5 px-6 py-5 text-center">
+              <p
+                className="text-[9px] uppercase tracking-[0.4em] text-black/40"
+                style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace" }}
+              >
+                Portfolio ventures · {allLogos.length} companies · 2021—2026
+              </p>
+            </div>
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
+              {allLogos.map((l, i) => {
+                const name = l.original_filename.replace(/\.png$/i, "");
+                const isLastCol = (i + 1) % 8 === 0;
+                const row = Math.floor(i / 8);
+                const totalRows = Math.ceil(allLogos.length / 8);
+                const isLastRow = row === totalRows - 1;
+                return (
+                  <div
+                    key={l.url}
+                    className={`flex h-24 items-center justify-center px-3 opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 ${
+                      !isLastCol ? "md:border-r border-black/5" : ""
+                    } ${!isLastRow ? "border-b border-black/5" : ""}`}
+                  >
+                    <img
+                      src={l.url}
+                      alt={name}
+                      title={name}
+                      loading="lazy"
+                      className="max-h-9 max-w-[80%] object-contain"
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Shark Tank anchor block */}
+          <div className="relative overflow-hidden bg-[#05122E] p-8 text-white md:p-14">
+            <div
+              className="pointer-events-none absolute inset-0 opacity-90 mix-blend-screen"
+              aria-hidden
+              style={{
+                background:
+                  "radial-gradient(60% 55% at 12% 20%, rgba(46,139,230,0.35) 0%, rgba(46,139,230,0) 65%), radial-gradient(55% 55% at 90% 15%, rgba(242,194,48,0.28) 0%, rgba(242,194,48,0) 70%), radial-gradient(65% 60% at 75% 110%, rgba(220,38,38,0.28) 0%, rgba(220,38,38,0) 70%)",
+              }}
+            />
+            <div className="relative flex flex-col gap-10 md:flex-row md:items-start md:gap-12">
+              <div className="flex-1">
+                <div className="mb-5 flex items-center gap-4">
+                  <div className="flex items-baseline gap-2">
+                    <span
+                      className="text-[clamp(1.75rem,3vw,2.5rem)] font-extrabold tracking-[-0.02em]"
+                      style={{ fontFamily: "'Inter', system-ui, sans-serif", color: "#2E8BE6" }}
+                    >
+                      SHARK TANK
+                    </span>
+                    <span
+                      className="text-[clamp(1.5rem,2.6vw,2.15rem)] italic font-light"
+                      style={{ fontFamily: "'Fraunces', Georgia, serif", color: "#F2C230" }}
+                    >
+                      India.
+                    </span>
+                  </div>
+                  <div className="h-px flex-1 bg-white/15" />
+                </div>
+                <p className="max-w-[52ch] text-[15px] leading-relaxed text-white/80">
+                  Our students train to pitch at the highest level. Six MU ventures have been featured on Shark Tank India across four seasons — with{" "}
+                  <span className="font-semibold text-white">five closing on-air deals</span> from sharks including Namita Thapar, Aman Gupta and Peyush Bansal.
+                </p>
+                <div className="mt-8 grid max-w-md grid-cols-3 gap-6 border-t border-white/10 pt-6">
+                  {[
+                    { v: "6", l: "Ventures" },
+                    { v: "4", l: "Seasons" },
+                    { v: "5", l: "Deals closed" },
+                  ].map((s) => (
+                    <div key={s.l}>
+                      <p
+                        className="text-[clamp(1.75rem,2.4vw,2.25rem)] leading-none italic text-[#F2C230]"
+                        style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                      >
+                        {s.v}
+                      </p>
+                      <p
+                        className="mt-2 text-[9px] uppercase tracking-[0.22em] text-white/50"
+                        style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace" }}
+                      >
+                        {s.l}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 md:w-[46%]">
+                {SHARK_TANK_PITCHES.map((p, i) => (
+                  <div
+                    key={p.company}
+                    className="flex items-center gap-3 border border-white/10 bg-white/[0.04] p-4 transition-colors hover:bg-white/[0.08]"
+                  >
+                    <span
+                      className="w-5 shrink-0 text-[9px] text-white/40"
+                      style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace" }}
+                    >
+                      0{i + 1}
+                    </span>
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden border border-white/10 bg-white/[0.04]">
+                      {p.logo ? (
+                        <img
+                          src={p.logo.url}
+                          alt={p.company}
+                          loading="lazy"
+                          className="max-h-6 max-w-[80%] object-contain [filter:brightness(0)_invert(1)]"
+                        />
+                      ) : null}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-[12.5px] font-semibold">{p.company}</p>
+                      <p className="truncate text-[10.5px] text-white/55">
+                        {p.founder} · {p.cohort}
+                      </p>
+                    </div>
+                    <span
+                      className="shrink-0 rounded-full bg-white/[0.08] px-2 py-0.5 text-[9px] uppercase tracking-[0.14em] text-white/70"
+                      style={{ fontFamily: "'JetBrains Mono', ui-monospace, monospace" }}
+                    >
+                      {p.season}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+
+
+
 
 
 
