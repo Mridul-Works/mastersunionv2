@@ -197,39 +197,57 @@ function EditorialCaption({ item }: { item: EditorialItem }) {
   );
 }
 
-function EditorialGrid({ items, sectionLabel }: { items: EditorialItem[]; sectionLabel: string }) {
-  const [hero, ...rest] = items;
+type FacultyStat = { v: string; l: string };
+
+function EditorialGrid({
+  items,
+  sectionLabel,
+  pct,
+  tagline,
+  stats,
+}: {
+  items: EditorialItem[];
+  sectionLabel: string;
+  pct: string;
+  tagline: string;
+  stats: FacultyStat[];
+}) {
   return (
     <div className="mt-12 border-t border-black/15">
-      {hero ? (
-        <div className="grid gap-x-8 gap-y-8 border-b border-black/15 py-10 md:grid-cols-12">
-          <div className="md:col-span-6">
-            <Portrait item={hero} aspect="aspect-[4/3]" />
+      {/* STATS HERO — replaces featured faculty */}
+      <div className="grid gap-x-8 gap-y-10 border-b border-black/15 py-10 md:grid-cols-12 md:py-14">
+        <div className="md:col-span-5">
+          <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
+            The Mix · {sectionLabel}
           </div>
-          <div className="md:col-span-6 md:pl-2">
-            <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
-              Featured · {sectionLabel}
+          <div className="mt-4 flex items-baseline gap-3">
+            <div className="text-[clamp(4rem,10vw,8rem)] font-medium leading-[0.85] tracking-[-0.04em] text-black">
+              {pct}
             </div>
-            <h3 className="mt-3 text-[clamp(1.6rem,2.6vw,2.2rem)] font-medium leading-[1.08] tracking-[-0.015em] text-black">
-              {hero.name}
-            </h3>
-            <div className="mt-3 text-[11px] uppercase tracking-[0.18em] text-black/60" style={{ fontFamily: MONO }}>
-              {hero.role}
+            <div className="text-[11px] uppercase tracking-[0.2em] text-black/55" style={{ fontFamily: MONO }}>
+              of faculty
             </div>
-            {hero.sub ? (
-              <div className="mt-1 text-[11px] uppercase tracking-[0.18em] text-black/45" style={{ fontFamily: MONO }}>
-                {hero.sub}
+          </div>
+          <p className="mt-6 max-w-[38ch] text-[1rem] leading-[1.6] text-black/75">{tagline}</p>
+        </div>
+        <div className="md:col-span-7">
+          <div className="grid h-full grid-cols-2 divide-x divide-y divide-black/10 border border-black/10">
+            {stats.map((s) => (
+              <div key={s.l} className="p-6 md:p-7">
+                <div className="text-[clamp(1.6rem,3vw,2.4rem)] leading-none tracking-[-0.03em] text-black">
+                  {s.v}
+                </div>
+                <div className="mt-3 text-[10px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>
+                  {s.l}
+                </div>
               </div>
-            ) : null}
-            {hero.blurb ? (
-              <p className="mt-6 max-w-[52ch] text-[1rem] leading-[1.6] text-black/75">{hero.blurb}</p>
-            ) : null}
+            ))}
           </div>
         </div>
-      ) : null}
+      </div>
 
       <div className="grid grid-cols-2 divide-x divide-y divide-black/10 border-b border-black/15 sm:grid-cols-3 md:grid-cols-4">
-        {rest.map((item) => (
+        {items.map((item) => (
           <article key={item.name} className="p-5 md:p-6">
             <Portrait item={item} />
             <EditorialCaption item={item} />
@@ -338,6 +356,14 @@ function FacultyPage() {
 
         <EditorialGrid
           sectionLabel="Industry Practitioners"
+          pct="50%"
+          tagline="Half of the faculty are active operators — CEOs, MDs, founders and investors bringing this week's decisions into the classroom."
+          stats={[
+            { v: "250+", l: "Active practitioners on roster" },
+            { v: "40+", l: "CXOs & Managing Directors" },
+            { v: "18", l: "Unicorn founders & operators" },
+            { v: "12", l: "Shark Tank India investors" },
+          ]}
           items={PRACTITIONERS.map((p) => ({
             name: p.name,
             role: p.role,
@@ -359,6 +385,14 @@ function FacultyPage() {
 
           <EditorialGrid
             sectionLabel="Full-time Faculty"
+            pct="30%"
+            tagline="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing where the best B-schools read."
+            stats={[
+              { v: "25", l: "Full-time PhD faculty" },
+              { v: "50+", l: "FT50 / A* publications" },
+              { v: "PwC · EY", l: "Active research collaborations" },
+              { v: "MU × PwC", l: "Centre for Generative AI" },
+            ]}
             items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
           />
 
@@ -392,6 +426,14 @@ function FacultyPage() {
 
         <EditorialGrid
           sectionLabel="Visiting Faculty"
+          pct="20%"
+          tagline="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
+          stats={[
+            { v: "9", l: "Ivy & top global schools" },
+            { v: "40+", l: "Visiting professors annually" },
+            { v: "12", l: "Countries represented" },
+            { v: "2", l: "Kellogg immersions to MU" },
+          ]}
           items={VISITING.map((v) => ({ name: v.name, role: v.role, sub: v.school, img: v.img }))}
         />
 
