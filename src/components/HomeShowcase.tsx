@@ -296,9 +296,9 @@ const CAREER_RICH_STATS: RichStat[] = [
 const VENTURES_RICH_STATS: RichStat[] = [
   { value: "120+", label: "Student startups", note: "Launched during programme", delta: "▲ 24 YoY" },
   { value: "₹85 Cr+", label: "Raised by alumni", note: "Seed & pre-seed rounds" },
-  { value: "$1M", label: "In-house fund", note: "Deployed via MU Ventures" },
+  { value: "$10M", label: "In-house fund", note: "Deployed via MU Ventures" },
   { value: "40+", label: "Founder mentors", note: "Unicorn & YC operators" },
-  { value: "9", label: "Shark Tank features", note: "On-air deals & offers" },
+  { value: "6", label: "Shark Tank features", note: "On-air deals & offers" },
   { value: "3", label: "Founder studios", note: "D2C · Creator · Tech" },
 ];
 
