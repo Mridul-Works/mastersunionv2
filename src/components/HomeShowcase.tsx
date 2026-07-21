@@ -674,6 +674,7 @@ const ALUM_STORIES = [
   { name: "Aarav Mehta", role: "Business Analyst", company: "McKinsey & Company", logo: rMckinsey.url, photo: aaravImg.url, quote: "Live case work in Year 2 got me an offer before final placements." },
   { name: "Isha Rao", role: "Associate Consultant", company: "Bain & Company", logo: rBain.url, photo: ishaImg.url, quote: "MU's practitioner faculty rewired how I break down a problem." },
   { name: "Kabir Shah", role: "APM", company: "Meta", logo: rMeta.url, photo: kabirImg.url, quote: "Building at MU Ventures made the PM interview feel like a normal Tuesday." },
+  { name: "Rohan Verma", role: "Founder & CEO", company: "Bullspree", logo: rMeta.url, photo: bullspreeImg.url, quote: "Started Bullspree in Year 2 at MU — the campus was our first pitch room, first hiring pool, and first cheque." },
   { name: "Ananya Gupta", role: "Investor", company: "Good Capital", logo: rGoodCapital.url, photo: ananyaImg.url, quote: "Pitched a portfolio company on campus, joined the fund that heard the pitch." },
 ];
 
