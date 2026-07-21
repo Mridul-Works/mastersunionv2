@@ -313,28 +313,29 @@ function FacultyPage() {
           ))}
         </div>
 
-        <div className="mt-8 flex flex-wrap items-center gap-x-10 gap-y-6">
+        <div className="mt-8 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-5 md:grid-cols-9">
           {[
-            { name: "Harvard", domain: "harvard.edu" },
-            { name: "Wharton", domain: "wharton.upenn.edu" },
-            { name: "Stanford", domain: "stanford.edu" },
-            { name: "Kellogg", domain: "kellogg.northwestern.edu" },
-            { name: "Cornell", domain: "cornell.edu" },
-            { name: "NYU", domain: "nyu.edu" },
-            { name: "Columbia", domain: "columbia.edu" },
-            { name: "USC", domain: "usc.edu" },
-            { name: "Imperial", domain: "imperial.ac.uk" },
+            "Harvard",
+            "Wharton",
+            "Stanford",
+            "Kellogg",
+            "Cornell",
+            "NYU",
+            "Columbia",
+            "USC",
+            "Imperial",
           ].map((c) => (
-            <img
-              key={c.name}
-              src={`https://logo.clearbit.com/${c.domain}`}
-              alt={c.name}
-              title={c.name}
-              className="h-8 w-auto object-contain opacity-80 grayscale transition hover:opacity-100 hover:grayscale-0"
-              loading="lazy"
-            />
+            <div
+              key={c}
+              className="flex h-16 items-center justify-center bg-white px-3 text-center text-[0.95rem] tracking-[0.02em] text-black/85"
+              style={{ fontFamily: "'Fraunces', 'Cormorant Garamond', ui-serif, Georgia, serif" }}
+              title={c}
+            >
+              {c}
+            </div>
           ))}
         </div>
+
 
       </section>
 
