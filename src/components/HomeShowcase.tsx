@@ -820,7 +820,7 @@ function FounderFilmstrip() {
             data-card
             className="group relative flex shrink-0 snap-start basis-[65%] flex-col sm:basis-[38%] md:basis-[25%]"
           >
-            <div className="relative w-full aspect-[3/4] overflow-hidden bg-neutral-100">
+            <div className="relative w-full aspect-[16/10] overflow-hidden bg-neutral-100">
               <img
                 src={f.photo}
                 alt={`${f.name} — ${f.company}`}
