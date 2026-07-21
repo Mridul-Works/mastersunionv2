@@ -426,6 +426,14 @@ function FacultyPage() {
 
         <EditorialGrid
           sectionLabel="Visiting Faculty"
+          pct="20%"
+          tagline="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
+          stats={[
+            { v: "9", l: "Ivy & top global schools" },
+            { v: "40+", l: "Visiting professors annually" },
+            { v: "12", l: "Countries represented" },
+            { v: "2", l: "Kellogg immersions to MU" },
+          ]}
           items={VISITING.map((v) => ({ name: v.name, role: v.role, sub: v.school, img: v.img }))}
         />
 
