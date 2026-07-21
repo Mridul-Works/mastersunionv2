@@ -1993,22 +1993,18 @@ function PgpTbm() {
               {/* Logos */}
               <div className="mt-8 border-t border-black/10 pt-6">
                 <div className="text-xs font-semibold uppercase tracking-[0.2em] text-black/55">Where alumni got hired</div>
-                <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4">
+                <div className="mt-4 grid grid-cols-3 gap-x-4 gap-y-5 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4">
                   {CAREER_LOGOS.map((logo) => (
                     <div
                       key={logo.name}
-                      className="flex h-16 items-center justify-center border border-border bg-white p-2 transition hover:border-emerald-200 hover:bg-emerald-50/40"
+                      className="flex h-14 items-center justify-center"
                       title={logo.name}
                     >
-                      <img
-                        src={logo.url}
-                        alt={`${logo.name} logo`}
-                        className="h-7 w-auto max-w-full object-contain opacity-70 transition group-hover:opacity-90 hover:!opacity-100"
-                        loading="lazy"
-                      />
+                      <NormalizedLogo src={logo.url} alt={logo.name} />
                     </div>
                   ))}
                 </div>
+
                 <div className="mt-3 text-right text-xs font-medium italic text-black/50">and many more…</div>
               </div>
             </div>
