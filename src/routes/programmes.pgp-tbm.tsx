@@ -96,14 +96,14 @@ function NormalizedLogo({ src, alt }: { src: string; alt: string }) {
     : /amul|infosys|nse|bse|zepto|youtube|servicenow|flipkart|google|physics.?wallah|mamaearth|antler|stride|inflection|webengage/i.test(alt)
     ? 0.65
     : 1;
-  const initial = 32 * boost;
+  const initial = 26 * boost;
   const [logoH, setLogoH] = useState<number>(initial);
   const onLoad = (e: SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget;
     const ratio = img.naturalWidth / Math.max(1, img.naturalHeight);
-    const targetWidth = 96 * boost;
+    const targetWidth = 78 * boost;
     const raw = targetWidth / Math.max(0.4, ratio);
-    const [min, max] = [22 * boost, 52 * boost];
+    const [min, max] = [18 * boost, 42 * boost];
     setLogoH(Math.max(min, Math.min(max, raw)));
   };
   return (
