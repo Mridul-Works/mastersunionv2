@@ -1089,8 +1089,12 @@ export default function HomeShowcase() {
         </div>
       </ShowcaseShell>
 
-
-
+      <ShowcaseShell section={PARTNERS_SECTION}>
+        <CategorizedLogos groups={PARTNER_GROUPS} withFilter size="sm" />
+      </ShowcaseShell>
+    </>
+  );
+}
 
 function FounderQuote() {
   return (
@@ -1149,11 +1153,5 @@ function FounderQuote() {
   );
 }
 
-      <ShowcaseShell section={PARTNERS_SECTION}>
-        <CategorizedLogos groups={PARTNER_GROUPS} withFilter size="sm" />
-      </ShowcaseShell>
-    </>
-  );
-}
 
 
