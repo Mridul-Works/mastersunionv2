@@ -965,17 +965,20 @@ export default function HomeShowcase() {
         <FacultyBlock />
       </ShowcaseShell>
       <ShowcaseShell section={CAREER_SECTION}>
+        <StatsBand stats={CAREER_RICH_STATS} tone="cream" />
         <AlumStories />
         <div className="mt-8">
           <CategorizedLogos groups={CAREER_GROUPS} withFilter size="sm" />
         </div>
       </ShowcaseShell>
       <ShowcaseShell section={VENTURES_SECTION}>
+        <StatsBand stats={VENTURES_RICH_STATS} tone="light" />
         <FounderFilmstrip />
         <div className="mt-5">
           <VenturesSplit />
         </div>
       </ShowcaseShell>
+
 
 
       <ShowcaseShell section={PARTNERS_SECTION}>
