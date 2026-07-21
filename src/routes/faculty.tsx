@@ -278,16 +278,29 @@ function EditorialGrid({
           </div>
           <p className="mt-6 max-w-[38ch] text-[1rem] leading-[1.6] text-black/75">{tagline}</p>
         </div>
-        <div className="md:col-span-7">
-          <div className="grid h-full grid-cols-2 divide-x divide-y divide-black/10 border border-black/10">
+        <div className="md:col-span-7 md:pl-10 md:border-l md:border-black/10">
+          <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
+            By the numbers
+          </div>
+          <div className="mt-6 grid grid-cols-2 gap-x-10 gap-y-8">
             {stats.map((s) => (
-              <div key={s.l} className="p-6 md:p-7">
-                <div className="text-[clamp(1.6rem,3vw,2.4rem)] leading-none tracking-[-0.03em] text-black">
-                  {s.v}
+              <div key={s.l} className="group relative">
+                <div className="flex items-start gap-3">
+                  <span className="mt-3 h-1.5 w-1.5 rounded-full bg-[#7a8b6f]" aria-hidden />
+                  <div
+                    className="text-[clamp(2.6rem,5vw,4rem)] font-medium leading-[0.9] tracking-[-0.035em] text-black"
+                    style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                  >
+                    {s.v}
+                  </div>
                 </div>
-                <div className="mt-3 text-[10px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>
+                <div
+                  className="mt-3 pl-[18px] text-[11px] font-medium uppercase leading-[1.5] tracking-[0.18em] text-black/65"
+                  style={{ fontFamily: MONO }}
+                >
                   {s.l}
                 </div>
+                <div className="mt-4 ml-[18px] h-px w-10 bg-black/25 transition-all duration-500 group-hover:w-20 group-hover:bg-[#7a8b6f]" aria-hidden />
               </div>
             ))}
           </div>
