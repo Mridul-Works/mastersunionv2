@@ -1078,6 +1078,9 @@ export default function HomeShowcase() {
           <CategorizedLogos groups={CAREER_GROUPS} withFilter size="sm" />
         </div>
       </ShowcaseShell>
+
+      <FounderQuote />
+
       <ShowcaseShell section={VENTURES_SECTION}>
         <StatsBand stats={VENTURES_RICH_STATS} tone="light" />
         <FounderFilmstrip />
@@ -1085,6 +1088,7 @@ export default function HomeShowcase() {
           <VenturesSplit />
         </div>
       </ShowcaseShell>
+
 
 
 
