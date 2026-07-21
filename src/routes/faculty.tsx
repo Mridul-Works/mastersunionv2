@@ -374,24 +374,39 @@ function FacultyPage() {
           500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered by Ivy League academics and global business leaders — from Harvard to McKinsey, from Wharton to Google. They don&apos;t just teach the playbook. They wrote it.
         </p>
 
-        <div className="mt-16 grid grid-cols-2 gap-px border border-black/10 bg-black/10 md:grid-cols-4">
-          {[
-            { v: "500+", l: "Masters on the roster" },
-            { v: "50%", l: "Active industry practitioners" },
-            { v: "9", l: "Ivy & top global schools" },
-            { v: "25", l: "Full-time PhD faculty" },
-          ].map((s) => (
-            <div key={s.l} className="group bg-white px-4 py-10 text-center transition-colors hover:bg-neutral-50">
-              <div
-                className="text-[clamp(1.6rem,2.4vw,2.25rem)] font-semibold leading-none tracking-tight text-black"
-                style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-              >
-                {s.v}
+        <div className="mt-16 border-t border-black/15 pt-10">
+          <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
+            By the numbers
+          </div>
+          <div className="mt-8 flex flex-wrap items-end gap-x-14 gap-y-10 md:gap-x-20">
+            {[
+              { v: "500+", l: "Masters on the roster" },
+              { v: "50%", l: "Active industry practitioners" },
+              { v: "9", l: "Ivy & top global schools" },
+              { v: "25", l: "Full-time PhD faculty" },
+            ].map((s) => (
+              <div key={s.l} className="group flex items-end gap-4">
+                <span className="mb-3 h-1.5 w-1.5 rounded-full bg-[#7a8b6f]" aria-hidden />
+                <div>
+                  <div
+                    className="text-[clamp(3rem,6vw,5rem)] font-medium leading-[0.85] tracking-[-0.04em] text-black"
+                    style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                  >
+                    {s.v}
+                  </div>
+                  <div
+                    className="mt-3 max-w-[22ch] text-[11px] font-medium uppercase leading-[1.5] tracking-[0.18em] text-black/65"
+                    style={{ fontFamily: MONO }}
+                  >
+                    {s.l}
+                  </div>
+                  <div className="mt-4 h-px w-10 bg-black/25 transition-all duration-500 group-hover:w-24 group-hover:bg-[#7a8b6f]" aria-hidden />
+                </div>
               </div>
-              <div className="mt-3 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black/60">{s.l}</div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+
 
 
         <div className="mt-8 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-5 md:grid-cols-9">
