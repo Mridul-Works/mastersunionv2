@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type SyntheticEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowUpRight,
@@ -84,6 +84,38 @@ const CAREER_LOGOS: { name: string; url: string; className?: string }[] = [
   { name: "Kapture", url: kaptureAsset.url },
   { name: "Good Capital", url: goodCapitalAsset.url },
 ];
+
+// Uniform logo — scales each image so visually normalized across a grid.
+// Sized slightly smaller than the homepage's NormalizedLogo.
+function NormalizedLogo({ src, alt }: { src: string; alt: string }) {
+  const boost = /meta|microsoft/i.test(alt)
+    ? 1.5
+    : /amul|infosys|nse|bse|zepto|youtube|servicenow|flipkart|google|physics.?wallah|mamaearth|antler|stride|inflection|webengage/i.test(alt)
+    ? 0.65
+    : 1;
+  const initial = 32 * boost;
+  const [logoH, setLogoH] = useState<number>(initial);
+  const onLoad = (e: SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget;
+    const ratio = img.naturalWidth / Math.max(1, img.naturalHeight);
+    const targetWidth = 96 * boost;
+    const raw = targetWidth / Math.max(0.4, ratio);
+    const [min, max] = [22 * boost, 52 * boost];
+    setLogoH(Math.max(min, Math.min(max, raw)));
+  };
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      onLoad={onLoad}
+      style={{ height: `${logoH}px` }}
+      className="w-auto max-w-full object-contain opacity-90 transition duration-300 hover:opacity-100"
+    />
+  );
+}
+
+
 
 
 const PGP_NAV: SectionNavItem[] = [
@@ -1851,23 +1883,18 @@ function PgpTbm() {
                     {/* Partner logos — matches OutClass term-by-term arc grid */}
                     <div className="mt-6">
                       <div className="text-xs font-semibold uppercase tracking-[0.18em] text-black/50">{logosLabel}</div>
-                      <div className="mt-3 grid gap-px bg-black/10 grid-cols-5">
+                      <div className="mt-3 grid grid-cols-5 gap-x-4 gap-y-5">
                         {logos.map((l) => (
                           <div
                             key={l.name}
                             title={l.name}
-                            className="flex h-12 items-center justify-center bg-white p-2 opacity-70 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+                            className="flex h-14 items-center justify-center opacity-80 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
                           >
-                            <img
-                              src={l.src}
-                              alt={l.name}
-                              className="h-7 w-auto max-w-full object-contain"
-                              loading="lazy"
-                            />
-
+                            <NormalizedLogo src={l.src} alt={l.name} />
                           </div>
                         ))}
                       </div>
+
                     </div>
                   </article>
                 );
@@ -1966,22 +1993,18 @@ function PgpTbm() {
               {/* Logos */}
               <div className="mt-8 border-t border-black/10 pt-6">
                 <div className="text-xs font-semibold uppercase tracking-[0.2em] text-black/55">Where alumni got hired</div>
-                <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4">
+                <div className="mt-4 grid grid-cols-3 gap-x-4 gap-y-5 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4">
                   {CAREER_LOGOS.map((logo) => (
                     <div
                       key={logo.name}
-                      className="flex h-16 items-center justify-center border border-border bg-white p-2 transition hover:border-emerald-200 hover:bg-emerald-50/40"
+                      className="flex h-14 items-center justify-center"
                       title={logo.name}
                     >
-                      <img
-                        src={logo.url}
-                        alt={`${logo.name} logo`}
-                        className="h-7 w-auto max-w-full object-contain opacity-70 transition group-hover:opacity-90 hover:!opacity-100"
-                        loading="lazy"
-                      />
+                      <NormalizedLogo src={logo.url} alt={logo.name} />
                     </div>
                   ))}
                 </div>
+
                 <div className="mt-3 text-right text-xs font-medium italic text-black/50">and many more…</div>
               </div>
             </div>
@@ -2042,22 +2065,18 @@ function PgpTbm() {
               {/* Startup logos */}
               <div className="mt-8 border-t border-emerald-900/10 pt-6">
                 <div className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-900/60">Ventures built on campus</div>
-                <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4">
+                <div className="mt-4 grid grid-cols-3 gap-x-4 gap-y-5 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-4">
                   {STARTUP_LOGOS.map((logo) => (
                     <div
                       key={logo.name}
-                      className="flex h-16 items-center justify-center border border-emerald-900/5 bg-white/80 p-2 transition hover:border-emerald-300 hover:bg-emerald-50/60"
+                      className="flex h-14 items-center justify-center"
                       title={logo.name}
                     >
-                      <img
-                        src={logo.url}
-                        alt={`${logo.name} logo`}
-                        className="h-7 w-auto max-w-full object-contain opacity-75 transition hover:opacity-100"
-                        loading="lazy"
-                      />
+                      <NormalizedLogo src={logo.url} alt={logo.name} />
                     </div>
                   ))}
                 </div>
+
                 <div className="mt-3 text-right text-xs font-medium italic text-emerald-900/50">and many more…</div>
               </div>
             </div>
