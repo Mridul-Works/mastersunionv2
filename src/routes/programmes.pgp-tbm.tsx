@@ -1274,10 +1274,16 @@ function AlumniShowcase() {
                     {/* Top: swatch (photo placeholder) + meta */}
                     <div className="flex items-start justify-between gap-4">
                       <div
-                        aria-hidden
-                        className="h-24 w-28 shrink-0 rounded-none"
+                        className="h-24 w-28 shrink-0 overflow-hidden rounded-none"
                         style={{ background: c.swatch }}
-                      />
+                      >
+                        <img
+                          src={a.image}
+                          alt={a.name}
+                          loading="lazy"
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
                       <span
                         className="font-mono text-[10px] uppercase tracking-[0.24em]"
                         style={{ color: `${c.fg}B3` }}
