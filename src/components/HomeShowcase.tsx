@@ -688,44 +688,49 @@ const ALUM_STORIES = [
 ];
 
 function AlumStories() {
-  const items = ALUM_STORIES;
-
   return (
-    <div className="py-6">
-      <div className="-mx-6 md:-mx-10 overflow-x-auto no-scrollbar">
-        <div className="flex gap-4 px-6 md:px-10 min-w-max">
-          {items.map((alum, i) => (
-            <figure
-              key={`${alum.name}-${i}`}
-              className="flex w-[180px] md:w-[200px] shrink-0 flex-col"
-            >
-              <div className="relative w-full aspect-[3/4] overflow-hidden bg-neutral-200">
-                <img
-                  src={alum.photo}
-                  alt={alum.name}
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover object-top grayscale contrast-[1.05]"
-                />
+    <div>
+      <div className="mb-3 flex items-center gap-3">
+        <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
+          Alum stories
+        </span>
+        <span className="h-px flex-1 bg-black/10" />
+        <span className="font-mono text-[10px] text-black/40">{ALUM_STORIES.length}</span>
+      </div>
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {ALUM_STORIES.map((a) => (
+          <figure
+            key={a.name}
+            className="group relative aspect-[4/5] overflow-hidden border border-black/10 bg-black"
+          >
+            <img
+              src={a.photo}
+              alt={a.name}
+              loading="lazy"
+              width={800}
+              height={1000}
+              className="absolute inset-0 h-full w-full object-cover object-top grayscale transition duration-700 group-hover:grayscale-0 group-hover:scale-[1.03]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+            <span className="absolute right-3 top-3 font-mono text-[9px] uppercase tracking-[0.22em] text-white/80">
+              {a.cohort}
+            </span>
+            <figcaption className="absolute inset-x-0 bottom-0 p-4 text-white">
+              <blockquote
+                className="mb-3 text-[13px] leading-snug"
+                style={{ fontFamily: "'Fraunces', Georgia, serif", fontStyle: "italic" }}
+              >
+                &ldquo;{a.quote}&rdquo;
+              </blockquote>
+              <div className="border-t border-white/25 pt-2">
+                <p className="text-[12px] font-semibold leading-tight">{a.name}</p>
+                <p className="text-[10px] leading-tight text-white/70">
+                  {a.role} · {a.company}
+                </p>
               </div>
-              <figcaption className="mt-3 pr-1">
-                <div className="flex items-baseline justify-between gap-2">
-                  <p className="text-[12px] font-semibold text-black leading-tight">
-                    {alum.name}.
-                  </p>
-                  <p className="text-[9px] uppercase tracking-wider text-neutral-400 shrink-0">
-                    {alum.cohort}
-                  </p>
-                </div>
-                <p className="mt-2 text-[11px] leading-[1.5] text-neutral-700 italic line-clamp-3">
-                  &ldquo;{alum.quote}&rdquo;
-                </p>
-                <p className="mt-2 text-[9.5px] uppercase tracking-wider text-neutral-500 not-italic">
-                  {alum.role}, {alum.company}
-                </p>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+            </figcaption>
+          </figure>
+        ))}
       </div>
     </div>
   );
