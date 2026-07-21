@@ -390,35 +390,11 @@ function FacultyPage() {
           Professors who teach here because they believe in what Masters&apos; Union is building.
         </h2>
 
-        <div className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-4">
-          {VISITING.map((v) => (
-            <article key={v.name} className="group">
-              <div className="aspect-square w-full overflow-hidden bg-[#ececec]">
-                {v.img ? (
-                  <img
-                    src={v.img}
-                    alt={v.name}
-                    className="h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0"
-                  />
-                ) : (
-                  <Initials name={v.name} />
-                )}
-              </div>
-              <h3 className="mt-4 text-[0.95rem] font-medium leading-tight text-black">
-                {v.name}
-              </h3>
-              <div
-                className="mt-1 text-[11px] leading-snug text-black/55"
-                style={{ fontFamily: MONO }}
-              >
-                {v.role}
-              </div>
-              <div className="mt-0.5 text-[11px] leading-snug text-black/45" style={{ fontFamily: MONO }}>
-                {v.school}
-              </div>
-            </article>
-          ))}
-        </div>
+        <EditorialGrid
+          sectionLabel="Visiting Faculty"
+          items={VISITING.map((v) => ({ name: v.name, role: v.role, sub: v.school, img: v.img }))}
+        />
+
 
 
         <div className="mt-14 border-l-2 border-black/80 bg-neutral-50 p-8 md:p-10">
