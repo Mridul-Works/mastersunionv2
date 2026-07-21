@@ -676,17 +676,20 @@ function FacultyPager({ items }: { items: typeof FACULTY_ALL }) {
 
 
 const ALUM_STORIES = [
-  { name: "Aarav Mehta", role: "Business Analyst", company: "McKinsey & Company", logo: rMckinsey.url, photo: aaravImg.url, quote: "Live case work in Year 2 got me an offer before final placements." },
-  { name: "Isha Rao", role: "Associate Consultant", company: "Bain & Company", logo: rBain.url, photo: ishaImg.url, quote: "MU's practitioner faculty rewired how I break down a problem." },
-  { name: "Kabir Shah", role: "APM", company: "Meta", logo: rMeta.url, photo: kabirImg.url, quote: "Building at MU Ventures made the PM interview feel like a normal Tuesday." },
-  { name: "Rohan Verma", role: "Founder & CEO", company: "Bullspree", logo: rMeta.url, photo: bullspreeImg.url, quote: "Started Bullspree in Year 2 at MU — the campus was our first pitch room, first hiring pool, and first cheque." },
-  { name: "Ananya Gupta", role: "Investor", company: "Good Capital", logo: rGoodCapital.url, photo: ananyaImg.url, quote: "Pitched a portfolio company on campus, joined the fund that heard the pitch." },
+  { name: "Daniel Nath", role: "Strategy Lead", company: "Google", cohort: "Cohort '21", photo: danielNathImg.url, quote: "Live case work with practitioners set the bar for how I break down strategy problems today." },
+  { name: "Jeneesha Singh", role: "Consultant", company: "Bain & Co.", cohort: "Cohort '21", photo: jeneeshaImg.url, quote: "MU's practitioner faculty rewired how I frame ambiguity in a consulting room." },
+  { name: "Dharmil Bavishi", role: "Co-founder", company: "Bullspree", cohort: "Cohort '22", photo: dharmilImg.url, quote: "Started Bullspree on campus — MU was our first pitch room, first hires, first cheque." },
+  { name: "Deepankar Mathur", role: "Founder's Office", company: "Zerodha", cohort: "Cohort '22", photo: deepankerImg.url, quote: "The kind of ownership MU expected in Year 1 is what a founder's office runs on every day." },
+  { name: "Vibhor Agarwal", role: "Founder's Office", company: "Hike", cohort: "Cohort '23", photo: vibhorImg.url, quote: "Every immersion pushed me closer to the operator I wanted to become." },
+  { name: "Mehul Soni", role: "Quantitative Trader", company: "Avirom Capital", cohort: "Cohort '24", photo: mehulImg.url, quote: "The quant electives at MU were the reason I could talk shop in my very first interview." },
+  { name: "Kakaraparthi Badarinadh", role: "Senior Specialist", company: "Talabat", cohort: "Cohort '24", photo: kakaraparthiImg.url, quote: "MU's global exposure made moving to Dubai for my first role feel like a natural next step." },
+  { name: "Prabhu Dayal Guliani", role: "Head of Growth", company: "AMPM", cohort: "Cohort '23", photo: prabhuImg.url, quote: "I built and shipped real growth experiments at MU before I ever owned a P&L." },
+  { name: "Anurag Bansal", role: "Founder's Office", company: "Zerodha", cohort: "Cohort '23", photo: anuragImg.url, quote: "The proximity to operators on campus is what makes a founder's office role feel obvious." },
 ];
 
 function AlumStories() {
-  const items = ALUM_STORIES.length >= 6
-    ? ALUM_STORIES.slice(0, 6)
-    : ALUM_STORIES.concat(ALUM_STORIES).slice(0, 6);
+  const items = ALUM_STORIES;
+
 
   return (
     <div className="py-6">
