@@ -350,19 +350,6 @@ function FacultyPage() {
             Most business schools have one kind of faculty. Masters&apos; Union has three — deliberately structured so that students get industry depth, academic rigour, and global perspective inside the same programme, often in the same week.
           </p>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {[
-              { pct: "50%", tag: "Industry Practitioners", body: "Leaders and entrepreneurs sharing insights from what they are doing right now. Not a decade ago. The thing they are working on today — brought into your classroom this afternoon." },
-              { pct: "30%", tag: "Full-Time Faculty", body: "Dedicated educators with PhDs from India's and the world's top institutions. They shape the core curriculum, publish in FT50 and A* journals, and build the intellectual foundation that makes everything stick." },
-              { pct: "20%", tag: "Visiting Faculty", body: "Professors from Harvard, Stanford, Wharton, Kellogg, Columbia, NYU, Cornell, BYU, USC, Imperial College London, and Seattle University — bringing global rigour and international perspective to Gurugram." },
-            ].map((b) => (
-              <div key={b.tag} className="border border-black/10 bg-white p-8">
-                <div className="text-[clamp(2.4rem,5vw,3.6rem)] leading-none tracking-[-0.03em]">{b.pct}</div>
-                <div className="mt-3 text-[11px] uppercase tracking-[0.24em] text-black/60" style={{ fontFamily: MONO }}>{b.tag}</div>
-                <p className="mt-5 text-[0.98rem] leading-[1.6] text-black/75">{b.body}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
