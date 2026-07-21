@@ -153,6 +153,12 @@ import anuragImg from "@/assets/alumni/anurag-bansal.png.asset.json";
 
 // Founder portraits + Shark Tank stage
 import sharkTankStage from "@/assets/founders/sharktank-stage.jpg.asset.json";
+import stHiveschool from "@/assets/sharktank/HiveSchool.png.asset.json";
+import stMetaFashion from "@/assets/sharktank/MetaFashion.png.asset.json";
+import stHookD from "@/assets/sharktank/HookD.png.asset.json";
+import stNexera from "@/assets/sharktank/NexeraHealth.png.asset.json";
+import stMemoTag from "@/assets/sharktank/MemoTag.png.asset.json";
+import stBullspree from "@/assets/sharktank/Bullspree.png.asset.json";
 import vfBullspree from "@/assets/founders/ventures/bullspree.jpg.asset.json";
 import vfEight from "@/assets/founders/ventures/eight.jpg.asset.json";
 import vfHiveschool from "@/assets/founders/ventures/hiveschool.jpg.asset.json";
@@ -864,6 +870,7 @@ const SHARK_TANK_PITCHES: Array<{
     cohort: "CEO Challenge",
     season: "S4",
     pitch: "Redefining workplace wellness for India's fastest-growing companies.",
+    logo: stNexera,
     cardImg: "https://images.mastersunion.link/uploads/15042026/v1/Frame16188739811.webp",
   },
   {
@@ -872,6 +879,7 @@ const SHARK_TANK_PITCHES: Array<{
     cohort: "PGP TBM '23",
     season: "S5",
     pitch: "India's first ready-to-eat non-vegetarian snacking brand.",
+    logo: stHookD,
     cardImg: "https://images.mastersunion.link/uploads/15042026/v1/Frame1618873983.webp",
   },
   {
@@ -880,6 +888,7 @@ const SHARK_TANK_PITCHES: Array<{
     cohort: "UG TBM '28",
     season: "S5",
     pitch: "Phygital commerce — connecting in-game discovery with real-world fashion.",
+    logo: stMetaFashion,
     cardImg: "https://images.mastersunion.link/uploads/15042026/v1/SharkTankCard.webp",
   },
   {
@@ -888,7 +897,7 @@ const SHARK_TANK_PITCHES: Array<{
     cohort: "PGP TBM '21",
     season: "S2",
     pitch: "India's favourite stock market playground for learning and investing.",
-    logo: vBullspree,
+    logo: stBullspree,
     cardImg: "https://images.mastersunion.link/uploads/15042026/v1/Frame1618873979.webp",
   },
   {
@@ -897,7 +906,7 @@ const SHARK_TANK_PITCHES: Array<{
     cohort: "PGP TBM '24",
     season: "S4",
     pitch: "India's first Sales School — training the next generation of GTM operators.",
-    logo: vHiveschool,
+    logo: stHiveschool,
     cardImg: "https://images.mastersunion.link/uploads/15042026/v1/Frame1618873982.webp",
   },
   {
@@ -906,50 +915,51 @@ const SHARK_TANK_PITCHES: Array<{
     cohort: "UG TBM '28",
     season: "S4",
     pitch: "AI-driven wearable purpose-built for dementia care.",
+    logo: stMemoTag,
     cardImg: "https://images.mastersunion.link/uploads/25032026/v1/SharkTankCard16.webp",
   },
 ];
 
 function SharkTankCompact() {
   return (
-    <div className="relative flex h-full flex-col overflow-hidden rounded-xl border border-black/10 bg-white text-black shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
-      {/* Header with colorful gradient (Shark Tank stage palette) */}
+    <div className="relative flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-[#0B0B0C] text-white shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
+      {/* Header with dramatic dark stage gradient */}
       <div className="relative h-[172px] w-full overflow-hidden">
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(115deg, #F5C24B 0%, #EF6A2A 22%, #D62828 44%, #8E1E5A 64%, #3A2A7A 82%, #0E1A46 100%)",
+              "linear-gradient(115deg, #1a0f08 0%, #3a1a10 22%, #5c1a1a 44%, #2a0f2a 64%, #0f1030 82%, #05060f 100%)",
           }}
           aria-hidden
         />
         <div
-          className="absolute inset-0 opacity-70 mix-blend-screen"
+          className="absolute inset-0 opacity-80 mix-blend-screen"
           style={{
             background:
-              "radial-gradient(120% 80% at 12% 20%, rgba(255,214,120,0.55) 0%, rgba(255,214,120,0) 55%), radial-gradient(90% 70% at 85% 30%, rgba(255,90,120,0.45) 0%, rgba(255,90,120,0) 60%), radial-gradient(80% 60% at 60% 110%, rgba(80,60,200,0.55) 0%, rgba(80,60,200,0) 65%)",
+              "radial-gradient(120% 80% at 12% 20%, rgba(245,194,75,0.35) 0%, rgba(245,194,75,0) 55%), radial-gradient(90% 70% at 85% 30%, rgba(214,40,40,0.35) 0%, rgba(214,40,40,0) 60%), radial-gradient(80% 60% at 60% 110%, rgba(80,60,200,0.4) 0%, rgba(80,60,200,0) 65%)",
           }}
           aria-hidden
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-white/92 via-white/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
         <div className="absolute inset-0 flex flex-col justify-between p-6">
-          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-black/55">
+          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-white/55">
             Featured on
           </p>
           <div>
             <h4
-              className="text-[clamp(1.75rem,3.4vw,2.5rem)] font-semibold leading-[0.98] tracking-[-0.02em] text-black"
+              className="text-[clamp(1.75rem,3.4vw,2.5rem)] font-semibold leading-[0.98] tracking-[-0.02em] text-white"
               style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
             >
               Shark Tank{" "}
               <span
-                className="italic font-light"
+                className="italic font-light text-white/85"
                 style={{ fontFamily: "'Fraunces', Georgia, serif" }}
               >
                 India.
               </span>
             </h4>
-            <p className="mt-2 max-w-[38ch] text-[11.5px] leading-relaxed text-black/65">
+            <p className="mt-2 max-w-[38ch] text-[11.5px] leading-relaxed text-white/60">
               Six student-founded ventures have pitched on India's biggest startup stage.
             </p>
           </div>
@@ -957,35 +967,35 @@ function SharkTankCompact() {
       </div>
 
       {/* Stats strip */}
-      <div className="grid grid-cols-3 divide-x divide-black/[0.08] border-y border-black/[0.08] bg-[#FAF9F6]">
+      <div className="grid grid-cols-3 divide-x divide-white/[0.08] border-y border-white/[0.08] bg-[#0F0F11]">
         {[
           { v: "6", l: "Ventures" },
           { v: "4", l: "Seasons" },
           { v: "5", l: "Deals closed" },
         ].map((s) => (
           <div key={s.l} className="px-5 py-3">
-            <p className="text-[18px] font-semibold leading-none text-black" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
+            <p className="text-[18px] font-semibold leading-none text-white" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
               {s.v}
             </p>
-            <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-black/45">{s.l}</p>
+            <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/45">{s.l}</p>
           </div>
         ))}
       </div>
-      <ul className="flex-1 divide-y divide-black/[0.06]">
+      <ul className="flex-1 divide-y divide-white/[0.06]">
         {SHARK_TANK_PITCHES.map((p, i) => (
           <li key={p.company} className="flex items-center gap-3 px-5 py-2.5">
-            <span className="w-5 shrink-0 font-mono text-[10px] text-black/35">0{i + 1}</span>
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-md border border-black/[0.08] bg-white">
+            <span className="w-5 shrink-0 font-mono text-[10px] text-white/35">0{i + 1}</span>
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-md border border-white/[0.1] bg-white/[0.04]">
               {p.logo ? (
                 <img
                   src={p.logo.url}
                   alt={p.company}
                   loading="lazy"
-                  className="max-h-6 max-w-[80%] object-contain"
+                  className="max-h-6 max-w-[80%] object-contain [filter:brightness(0)_invert(1)]"
                 />
               ) : (
                 <span
-                  className="text-[10px] font-semibold text-black/50"
+                  className="text-[10px] font-semibold text-white/60"
                   style={{ fontFamily: "'Fraunces', Georgia, serif" }}
                 >
                   {p.company.slice(0, 1)}
@@ -993,12 +1003,12 @@ function SharkTankCompact() {
               )}
             </div>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-[12.5px] font-semibold text-black">{p.company}</p>
-              <p className="truncate text-[10.5px] text-black/55">
+              <p className="truncate text-[12.5px] font-semibold text-white">{p.company}</p>
+              <p className="truncate text-[10.5px] text-white/55">
                 {p.founder} · {p.cohort}
               </p>
             </div>
-            <span className="shrink-0 rounded-full bg-black/[0.05] px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.14em] text-black/55">
+            <span className="shrink-0 rounded-full bg-white/[0.08] px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.14em] text-white/65">
               {p.season}
             </span>
           </li>
