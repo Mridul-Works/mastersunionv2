@@ -548,7 +548,7 @@ function FacultyPage() {
       <section className="border-y border-black/10 bg-black text-white">
         <div className="mx-auto max-w-5xl px-5 py-24 text-center md:px-10 md:py-32">
           <div className="text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO }}>The number that matters</div>
-          <div className="mt-8 text-[clamp(4rem,12vw,10rem)] leading-[0.85] tracking-[-0.04em]">500+</div>
+          <div className="mt-8 text-[clamp(4rem,12vw,10rem)] font-normal leading-[0.85] tracking-[-0.04em]" style={{ fontFamily: SERIF }}>500+</div>
           <p className="mx-auto mt-8 max-w-[52ch] text-[1.1rem] leading-[1.55] text-white/80">
             Masters on the roster. 50% of them active industry practitioners who were in a meeting this morning before they came to teach you this afternoon.
           </p>
