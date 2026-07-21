@@ -356,6 +356,14 @@ function FacultyPage() {
 
         <EditorialGrid
           sectionLabel="Industry Practitioners"
+          pct="50%"
+          tagline="Half of the faculty are active operators — CEOs, MDs, founders and investors bringing this week's decisions into the classroom."
+          stats={[
+            { v: "250+", l: "Active practitioners on roster" },
+            { v: "40+", l: "CXOs & Managing Directors" },
+            { v: "18", l: "Unicorn founders & operators" },
+            { v: "12", l: "Shark Tank India investors" },
+          ]}
           items={PRACTITIONERS.map((p) => ({
             name: p.name,
             role: p.role,
