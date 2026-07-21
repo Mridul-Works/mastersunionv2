@@ -929,42 +929,44 @@ function SharkTankCompact() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(115deg, #1a0f08 0%, #3a1a10 22%, #5c1a1a 44%, #2a0f2a 64%, #0f1030 82%, #05060f 100%)",
+              "linear-gradient(135deg, #05122E 0%, #0A1E4C 40%, #0D2A66 70%, #061436 100%)",
           }}
           aria-hidden
         />
         <div
-          className="absolute inset-0 opacity-80 mix-blend-screen"
+          className="absolute inset-0 opacity-90 mix-blend-screen"
           style={{
             background:
-              "radial-gradient(120% 80% at 12% 20%, rgba(245,194,75,0.35) 0%, rgba(245,194,75,0) 55%), radial-gradient(90% 70% at 85% 30%, rgba(214,40,40,0.35) 0%, rgba(214,40,40,0) 60%), radial-gradient(80% 60% at 60% 110%, rgba(80,60,200,0.4) 0%, rgba(80,60,200,0) 65%)",
+              "radial-gradient(80% 65% at 15% 25%, rgba(30,144,255,0.55) 0%, rgba(30,144,255,0) 60%), radial-gradient(70% 60% at 88% 20%, rgba(242,194,48,0.45) 0%, rgba(242,194,48,0) 65%), radial-gradient(75% 65% at 70% 115%, rgba(220,38,38,0.5) 0%, rgba(220,38,38,0) 65%), radial-gradient(60% 50% at 40% 105%, rgba(147,51,234,0.35) 0%, rgba(147,51,234,0) 70%)",
           }}
           aria-hidden
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#05122E]/70 via-transparent to-[#05122E]/40" />
         <div className="absolute inset-0 flex flex-col justify-between p-6">
-          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-white/55">
+          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-white/70">
             Featured on
           </p>
           <div>
             <h4
-              className="text-[clamp(1.75rem,3.4vw,2.5rem)] font-semibold leading-[0.98] tracking-[-0.02em] text-white"
+              className="text-[clamp(1.75rem,3.4vw,2.5rem)] font-semibold leading-[0.98] tracking-[-0.02em]"
               style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
             >
-              Shark Tank{" "}
+              <span style={{ color: "#2E8BE6" }}>Shark</span>{" "}
+              <span style={{ color: "#DC2626" }}>Tank</span>{" "}
               <span
-                className="italic font-light text-white/85"
-                style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                className="italic font-light"
+                style={{ fontFamily: "'Fraunces', Georgia, serif", color: "#F2C230" }}
               >
                 India.
               </span>
             </h4>
-            <p className="mt-2 max-w-[38ch] text-[11.5px] leading-relaxed text-white/60">
+            <p className="mt-2 max-w-[38ch] text-[11.5px] leading-relaxed text-white/70">
               Six student-founded ventures have pitched on India's biggest startup stage.
             </p>
           </div>
         </div>
       </div>
+
 
       {/* Stats strip */}
       <div className="grid grid-cols-3 divide-x divide-white/[0.08] border-y border-white/[0.08] bg-[#0F0F11]">
