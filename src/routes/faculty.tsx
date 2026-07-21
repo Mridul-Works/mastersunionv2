@@ -344,13 +344,19 @@ function FacultyPage() {
 
       {/* HERO */}
       <section id="top" className="mx-auto max-w-6xl px-5 pb-16 pt-16 md:px-10 md:pt-24">
-        <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
-          Faculty at Masters&apos; Union
+        <div className="flex items-center gap-4">
+          <span className="h-px w-10 bg-black/30" aria-hidden />
+          <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
+            Faculty at Masters&apos; Union
+          </div>
         </div>
-        <h1 className="mt-6 max-w-[22ch] text-balance text-[clamp(2.4rem,7vw,6rem)] font-medium leading-[0.95] tracking-[-0.02em]">
-          At most B-schools, faculty study companies. Here, they ran them — and most still do.
+        <h1
+          className="mt-8 max-w-[22ch] text-balance text-[clamp(2.6rem,7.4vw,6.4rem)] font-normal leading-[0.98] tracking-[-0.02em]"
+          style={{ fontFamily: SERIF }}
+        >
+          At most B-schools, faculty <em className="italic text-black/80">study</em> companies. Here, they <em className="italic text-black/80">ran</em> them — and most still do.
         </h1>
-        <p className="mt-10 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-black/70">
+        <p className="mt-10 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55] text-black/70">
           500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered by Ivy League academics and global business leaders — from Harvard to McKinsey, from Wharton to Google. They don&apos;t just teach the playbook. They wrote it.
         </p>
 
@@ -361,8 +367,13 @@ function FacultyPage() {
             { v: "9", l: "Ivy & top global schools" },
             { v: "25", l: "Full-time PhD faculty" },
           ].map((s) => (
-            <div key={s.l} className="bg-white px-4 py-10 text-center">
-              <div className="text-[clamp(1.6rem,3vw,2.6rem)] leading-none tracking-[-0.03em]">{s.v}</div>
+            <div key={s.l} className="group bg-white px-4 py-10 text-center transition-colors hover:bg-neutral-50">
+              <div
+                className="text-[clamp(1.8rem,3.4vw,3rem)] font-normal leading-none tracking-[-0.03em]"
+                style={{ fontFamily: SERIF }}
+              >
+                {s.v}
+              </div>
               <div className="mt-3 text-[10px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>{s.l}</div>
             </div>
           ))}
@@ -382,17 +393,16 @@ function FacultyPage() {
           ].map((c) => (
             <div
               key={c}
-              className="flex h-16 items-center justify-center bg-white px-3 text-center text-[0.95rem] tracking-[0.02em] text-black/85"
-              style={{ fontFamily: "'Fraunces', 'Cormorant Garamond', ui-serif, Georgia, serif" }}
+              className="flex h-16 items-center justify-center bg-white px-3 text-center text-[1rem] italic tracking-[0.01em] text-black/85 transition-colors hover:bg-neutral-50"
+              style={{ fontFamily: SERIF }}
               title={c}
             >
               {c}
             </div>
           ))}
         </div>
-
-
       </section>
+
 
       {/* INDUSTRY PRACTITIONERS */}
       <section id="practitioners" className="border-y border-black/10 bg-neutral-50">
