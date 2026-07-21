@@ -765,14 +765,6 @@ const FOUNDER_STORIES = [
     tag: "AI · Pre-seed",
   },
   {
-    name: "The Kneighted team",
-    role: "Co-founders",
-    company: "Eight Network",
-    photo: vfEight.url,
-    quote: "Reimagining trust and identity for creators. MU mentors helped us close our first enterprise design partner in month three.",
-    tag: "SaaS · Pre-seed",
-  },
-  {
     name: "Ansh Somani",
     role: "Founder",
     company: "Woody's Pizzeria",
@@ -826,7 +818,7 @@ function FounderFilmstrip() {
           <figure
             key={`${f.company}-${i}`}
             data-card
-            className="group relative flex shrink-0 snap-start basis-[46%] flex-col md:basis-[23%]"
+            className="group relative flex shrink-0 snap-start basis-[80%] flex-col sm:basis-[52%] md:basis-[34%]"
           >
             <div className="relative w-full aspect-[4/5] overflow-hidden bg-neutral-200">
               <img
