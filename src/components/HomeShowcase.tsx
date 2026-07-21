@@ -279,12 +279,28 @@ const CAREER_SECTION: Section = {
   lede: "Students graduate into consulting, product, finance and venture roles at the firms shaping the next decade — from McKinsey and Bain to Meta, Flipkart and Bloomberg. Every batch is supported by a dedicated placements team, live recruiter access and year-round industry projects.",
   bg: "bg-[#F5F3EE]",
   cta: { label: "Placement report", to: "/placements" },
-  stats: [
-    { value: "96%", label: "Placement rate" },
-    { value: "₹32.4L", label: "Median CTC" },
-    { value: "400+", label: "Recruiters" },
-  ],
+  stats: [],
 };
+
+type RichStat = { value: string; label: string; note?: string; delta?: string };
+
+const CAREER_RICH_STATS: RichStat[] = [
+  { value: "96%", label: "Placement rate", note: "Across last 3 cohorts", delta: "▲ 2%" },
+  { value: "₹32.4L", label: "Median CTC", note: "Full-time offers", delta: "▲ 11%" },
+  { value: "₹1.1Cr", label: "Highest CTC", note: "International offer" },
+  { value: "400+", label: "Recruiters", note: "Hiring on campus" },
+  { value: "60+", label: "Roles / batch", note: "Product · Consulting · Finance" },
+  { value: "18", label: "Countries", note: "Where alumni work today" },
+];
+
+const VENTURES_RICH_STATS: RichStat[] = [
+  { value: "120+", label: "Student startups", note: "Launched during programme", delta: "▲ 24 YoY" },
+  { value: "₹85 Cr+", label: "Raised by alumni", note: "Seed & pre-seed rounds" },
+  { value: "$1M", label: "In-house fund", note: "Deployed via MU Ventures" },
+  { value: "40+", label: "Founder mentors", note: "Unicorn & YC operators" },
+  { value: "9", label: "Shark Tank features", note: "On-air deals & offers" },
+  { value: "3", label: "Founder studios", note: "D2C · Creator · Tech" },
+];
 
 const VENTURES_SECTION: Section = {
   id: "entrepreneurship",
@@ -294,12 +310,52 @@ const VENTURES_SECTION: Section = {
   lede: "Entrepreneurship at Masters' Union isn't a club — it's an operating system. Students access pre-seed capital, in-house founder studios and GTM labs, and launch real companies while they study, backed by mentors who have built and scaled ventures themselves.",
   bg: "bg-white",
   cta: { label: "MU Ventures", to: "/mu-ventures" },
-  stats: [
-    { value: "120+", label: "Student startups" },
-    { value: "₹85 Cr+", label: "Raised by alumni" },
-    { value: "$1M", label: "In-house fund" },
-  ],
+  stats: [],
 };
+
+function StatsBand({ stats, tone = "light" }: { stats: RichStat[]; tone?: "light" | "cream" }) {
+  const border = tone === "cream" ? "border-black/10" : "border-black/10";
+  const bg = tone === "cream" ? "bg-white" : "bg-[#F5F3EE]";
+  return (
+    <div className={`mb-8 overflow-hidden rounded-2xl border ${border} ${bg}`}>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+        {stats.map((s, i) => (
+          <div
+            key={s.label}
+            className={`relative px-5 py-5 md:px-6 md:py-6 ${
+              i % 2 === 1 ? "border-l border-black/10" : ""
+            } ${i >= 2 ? "border-t border-black/10 md:border-t-0" : ""} ${
+              i % 3 !== 0 ? "md:border-l md:border-black/10" : ""
+            } ${i >= 3 ? "md:border-t md:border-black/10 lg:border-t-0" : ""} ${
+              i % 6 !== 0 ? "lg:border-l lg:border-black/10" : ""
+            }`}
+          >
+            <div className="flex items-baseline gap-2">
+              <div
+                className="text-[clamp(1.6rem,2.4vw,2.25rem)] font-semibold leading-none tracking-tight text-black"
+                style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+              >
+                {s.value}
+              </div>
+              {s.delta && (
+                <span className="rounded-full bg-[#DDE7D6] px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.14em] text-[#3F5B33]">
+                  {s.delta}
+                </span>
+              )}
+            </div>
+            <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/70">
+              {s.label}
+            </div>
+            {s.note && (
+              <div className="mt-1 text-[11px] leading-snug text-black/50">{s.note}</div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 
 const PARTNERS_SECTION: Section = {
   id: "partnerships",
