@@ -973,7 +973,7 @@ function SharkTankCompact() {
       </div>
       <ul className="flex-1 divide-y divide-black/[0.06]">
         {SHARK_TANK_PITCHES.map((p, i) => (
-          <li key={p.company} className="flex items-center gap-3 px-5 py-2.5">
+          <li key={p.company} className="flex items-center gap-3 px-6 py-3.5">
             <span className="w-5 shrink-0 font-mono text-[10px] text-black/35">0{i + 1}</span>
             <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-md border border-black/[0.08] bg-white">
               {p.logo ? (
