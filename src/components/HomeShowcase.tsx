@@ -693,10 +693,10 @@ function AlumStories() {
 
   return (
     <div className="py-6">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-3 gap-y-8">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-10">
         {items.map((alum, i) => (
           <figure key={`${alum.name}-${i}`} className="flex flex-col">
-            <div className="relative w-full aspect-[2/5] overflow-hidden bg-neutral-200">
+            <div className="relative w-full aspect-[4/5] overflow-hidden bg-neutral-200">
               <img
                 src={alum.photo}
                 alt={alum.name}
@@ -704,9 +704,14 @@ function AlumStories() {
               />
             </div>
             <figcaption className="mt-3 pr-1">
-              <p className="text-[13px] font-semibold text-black leading-tight">
-                {alum.name}.
-              </p>
+              <div className="flex items-baseline justify-between gap-2">
+                <p className="text-[13px] font-semibold text-black leading-tight">
+                  {alum.name}.
+                </p>
+                <p className="text-[9.5px] uppercase tracking-wider text-neutral-400 shrink-0">
+                  {alum.cohort}
+                </p>
+              </div>
               <p className="mt-2 text-[11px] leading-[1.5] text-neutral-700 italic">
                 &ldquo;{alum.quote}&rdquo;
               </p>
@@ -714,6 +719,7 @@ function AlumStories() {
                 {alum.role}, {alum.company}
               </p>
             </figcaption>
+
           </figure>
         ))}
       </div>
