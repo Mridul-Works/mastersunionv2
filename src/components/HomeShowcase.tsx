@@ -921,143 +921,97 @@ const SHARK_TANK_PITCHES: Array<{
   },
 ];
 
-function SharkTankCompact() {
+function SharkTankLogoBar() {
   return (
-    <div className="relative flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-[#0B0B0C] text-white shadow-[0_1px_2px_rgba(0,0,0,0.5)]">
-      {/* Header with dramatic dark stage gradient */}
-      <div className="relative h-[172px] w-full overflow-hidden">
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(135deg, #05122E 0%, #0A1E4C 40%, #0D2A66 70%, #061436 100%)",
-          }}
-          aria-hidden
-        />
-        <div
-          className="absolute inset-0 opacity-90 mix-blend-screen"
-          style={{
-            background:
-              "radial-gradient(80% 65% at 15% 25%, rgba(30,144,255,0.55) 0%, rgba(30,144,255,0) 60%), radial-gradient(70% 60% at 88% 20%, rgba(242,194,48,0.45) 0%, rgba(242,194,48,0) 65%), radial-gradient(75% 65% at 70% 115%, rgba(220,38,38,0.5) 0%, rgba(220,38,38,0) 65%), radial-gradient(60% 50% at 40% 105%, rgba(147,51,234,0.35) 0%, rgba(147,51,234,0) 70%)",
-          }}
-          aria-hidden
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#05122E]/70 via-transparent to-[#05122E]/40" />
-        <div className="absolute inset-0 flex flex-col justify-between p-6">
+    <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[#0B0B0C] text-white">
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(135deg, #05122E 0%, #0A1E4C 40%, #0D2A66 70%, #061436 100%)",
+        }}
+        aria-hidden
+      />
+      <div
+        className="absolute inset-0 opacity-90 mix-blend-screen"
+        style={{
+          background:
+            "radial-gradient(70% 120% at 10% 30%, rgba(30,144,255,0.5) 0%, rgba(30,144,255,0) 60%), radial-gradient(60% 120% at 92% 25%, rgba(242,194,48,0.4) 0%, rgba(242,194,48,0) 65%), radial-gradient(60% 120% at 70% 110%, rgba(220,38,38,0.45) 0%, rgba(220,38,38,0) 65%)",
+        }}
+        aria-hidden
+      />
+
+      <div className="relative flex flex-col gap-6 p-6 md:flex-row md:items-center md:gap-10 md:p-8">
+        <div className="shrink-0 md:max-w-[280px]">
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-white/70">
             Featured on
           </p>
-          <div>
-            <h4
-              className="text-[clamp(1.75rem,3.4vw,2.5rem)] font-semibold leading-[0.98] tracking-[-0.02em]"
-              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+          <h4
+            className="mt-2 text-[clamp(1.6rem,3vw,2.25rem)] font-semibold leading-[0.98] tracking-[-0.02em]"
+            style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+          >
+            <span style={{ color: "#2E8BE6" }}>Shark</span>{" "}
+            <span style={{ color: "#2E8BE6" }}>Tank</span>{" "}
+            <span
+              className="italic font-light"
+              style={{ fontFamily: "'Fraunces', Georgia, serif", color: "#F2C230" }}
             >
-              <span style={{ color: "#2E8BE6" }}>Shark</span>{" "}
-              <span style={{ color: "#2E8BE6" }}>Tank</span>{" "}
-              <span
-                className="italic font-light"
-                style={{ fontFamily: "'Fraunces', Georgia, serif", color: "#F2C230" }}
-              >
-                India.
-              </span>
-            </h4>
-            <p className="mt-2 max-w-[38ch] text-[11.5px] leading-relaxed text-white/70">
-              Six student-founded ventures have pitched on India's biggest startup stage.
-            </p>
-          </div>
+              India.
+            </span>
+          </h4>
+          <p className="mt-2 text-[11.5px] leading-relaxed text-white/65">
+            Six student-founded ventures on India's biggest startup stage.
+          </p>
         </div>
-      </div>
 
-
-      {/* Stats strip */}
-      <div className="grid grid-cols-3 divide-x divide-white/[0.08] border-y border-white/[0.08] bg-[#0F0F11]">
-        {[
-          { v: "6", l: "Ventures" },
-          { v: "4", l: "Seasons" },
-          { v: "5", l: "Deals closed" },
-        ].map((s) => (
-          <div key={s.l} className="px-5 py-3">
-            <p className="text-[18px] font-semibold leading-none text-white" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
-              {s.v}
-            </p>
-            <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-white/45">{s.l}</p>
-          </div>
-        ))}
-      </div>
-      <ul className="flex-1 divide-y divide-white/[0.06]">
-        {SHARK_TANK_PITCHES.map((p, i) => (
-          <li key={p.company} className="flex items-center gap-3 px-5 py-2.5">
-            <span className="w-5 shrink-0 font-mono text-[10px] text-white/35">0{i + 1}</span>
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-md border border-white/[0.1] bg-white/[0.04]">
+        <div className="grid flex-1 grid-cols-3 gap-x-4 gap-y-5 sm:grid-cols-6">
+          {SHARK_TANK_PITCHES.map((p) => (
+            <div
+              key={p.company}
+              className="flex h-12 items-center justify-center"
+              title={p.company}
+            >
               {p.logo ? (
                 <img
                   src={p.logo.url}
                   alt={p.company}
                   loading="lazy"
-                  className="max-h-6 max-w-[80%] object-contain [filter:brightness(0)_invert(1)]"
+                  className="max-h-9 max-w-full object-contain opacity-90 transition hover:opacity-100 [filter:brightness(0)_invert(1)]"
                 />
               ) : (
-                <span
-                  className="text-[10px] font-semibold text-white/60"
-                  style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-                >
-                  {p.company.slice(0, 1)}
-                </span>
+                <span className="text-[11px] font-semibold text-white/70">{p.company}</span>
               )}
             </div>
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-[12.5px] font-semibold text-white">{p.company}</p>
-              <p className="truncate text-[10.5px] text-white/55">
-                {p.founder} · {p.cohort}
-              </p>
-            </div>
-            <span className="shrink-0 rounded-full bg-white/[0.08] px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.14em] text-white/65">
-              {p.season}
-            </span>
-          </li>
-        ))}
-      </ul>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
 
 
 function UniformLogoList({ groups }: { groups: LogoGroup[] }) {
-  const logos = groups.flatMap((g) => g.logos);
+  const logos = groups.flatMap((g) => g.logos).slice(0, 16);
   return (
-    <div className="grid grid-cols-3 gap-x-5 gap-y-7 sm:grid-cols-4">
-      {logos.map((l, i) => {
+    <div className="grid grid-cols-4 gap-x-6 gap-y-8 sm:grid-cols-6 md:grid-cols-8">
+      {logos.map((l) => {
         const name = l.original_filename.replace(/\.png$/i, "");
-        const boost = i === 4;
         return (
-          <div key={l.url} className="flex h-12 items-center justify-center">
+          <div key={l.url} className="flex h-14 items-center justify-center">
             <img
               src={l.url}
               alt={name}
               title={name}
               loading="lazy"
-              className={`w-auto object-contain opacity-95 transition duration-300 hover:opacity-100 ${
-                boost ? "max-h-[72px] max-w-full" : "max-h-9 max-w-[80%]"
-              }`}
+              className="max-h-10 w-auto max-w-[85%] object-contain opacity-95 transition duration-300 hover:opacity-100"
             />
           </div>
         );
       })}
     </div>
-
   );
 }
 
-function VenturesSplit() {
-  return (
-    <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1fr]">
-      <div>
-        <UniformLogoList groups={VENTURE_GROUPS} />
-      </div>
-      <SharkTankCompact />
-    </div>
-  );
-}
 
 
 
@@ -1085,8 +1039,12 @@ export default function HomeShowcase() {
         <StatsBand stats={VENTURES_RICH_STATS} tone="light" />
         <FounderFilmstrip />
         <div className="mt-5">
-          <VenturesSplit />
+          <UniformLogoList groups={VENTURE_GROUPS} />
         </div>
+        <div className="mt-8">
+          <SharkTankLogoBar />
+        </div>
+
       </ShowcaseShell>
 
       <ShowcaseShell section={PARTNERS_SECTION}>
