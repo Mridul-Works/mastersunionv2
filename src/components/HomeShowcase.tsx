@@ -964,11 +964,11 @@ function SharkTankLogoBar() {
           </p>
         </div>
 
-        <div className="grid flex-1 grid-cols-3 gap-x-4 gap-y-5 sm:grid-cols-6">
+        <div className="grid flex-1 grid-cols-3 items-center gap-x-2 gap-y-5 sm:grid-cols-6 sm:gap-x-4">
           {SHARK_TANK_PITCHES.map((p) => (
             <div
               key={p.company}
-              className="flex h-12 items-center justify-center"
+              className="flex h-12 w-full items-center justify-center"
               title={p.company}
             >
               {p.logo ? (
@@ -984,6 +984,7 @@ function SharkTankLogoBar() {
             </div>
           ))}
         </div>
+
       </div>
     </div>
   );
