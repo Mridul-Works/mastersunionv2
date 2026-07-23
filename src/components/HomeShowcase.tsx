@@ -947,18 +947,14 @@ function SharkTankLogoBar() {
             Featured on
           </p>
           <h4
-            className="mt-2 text-[clamp(1.6rem,3vw,2.25rem)] font-semibold leading-[0.98] tracking-[-0.02em]"
-            style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+            className="mt-2 text-[clamp(1.6rem,3vw,2.25rem)] font-bold uppercase leading-[0.98] tracking-[-0.01em]"
+            style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
           >
-            <span style={{ color: "#2E8BE6" }}>Shark</span>{" "}
-            <span style={{ color: "#2E8BE6" }}>Tank</span>{" "}
-            <span
-              className="italic font-light"
-              style={{ fontFamily: "'Fraunces', Georgia, serif", color: "#F2C230" }}
-            >
-              India.
-            </span>
+            <span style={{ color: "#2E8BE6" }}>SHARK</span>{" "}
+            <span style={{ color: "#2E8BE6" }}>TANK</span>{" "}
+            <span style={{ color: "#F2C230" }}>INDIA.</span>
           </h4>
+
           <p className="mt-2 text-[11.5px] leading-relaxed text-white/65">
             Six student-founded ventures on India's biggest startup stage.
           </p>
