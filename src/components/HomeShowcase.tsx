@@ -7,11 +7,7 @@ import founderPhoto from "@/assets/founder-pratham-cutout.webp";
 import bhupesh from "@/assets/faculty/bhupesh.png.asset.json";
 import nandini from "@/assets/faculty/nandini.png.asset.json";
 import garima from "@/assets/faculty/garima.png.asset.json";
-import zal from "@/assets/faculty/zal.png.asset.json";
-import daniel from "@/assets/faculty/daniel.png.asset.json";
-import lanma from "@/assets/faculty/lanma.png.asset.json";
 import manoj from "@/assets/faculty/manoj.png.asset.json";
-import faverie from "@/assets/faculty/faverie.png.asset.json";
 import havish from "@/assets/faculty/havish-madhvapaty.png.asset.json";
 import ekhlaque from "@/assets/faculty/ekhlaque-bari.png.asset.json";
 import sumit from "@/assets/faculty/sumit-shukla.png.asset.json";
@@ -21,19 +17,34 @@ import parikshit from "@/assets/faculty/parikshit-khanna.png.asset.json";
 import karmanya from "@/assets/faculty/karmanya-suri.png.asset.json";
 import gauravA from "@/assets/faculty/gaurav-arora.png.asset.json";
 import daveLewis from "@/assets/faculty/dave-lewis.png.asset.json";
-import umberto from "@/assets/faculty/umberto.png.asset.json";
-import carolina from "@/assets/faculty/carolina.png.asset.json";
-import federico from "@/assets/faculty/federico-biasutti.png.asset.json";
-import paola from "@/assets/faculty/paola-santoro.png.asset.json";
-import rosario from "@/assets/faculty/rosario.png.asset.json";
-import timothy from "@/assets/faculty/timothy-oconnell.png.asset.json";
-import frank from "@/assets/faculty/frank-barry.png.asset.json";
-import mairead from "@/assets/faculty/mairead-braddy.png.asset.json";
-import enno from "@/assets/faculty/enno-masurel.png.asset.json";
-import orestis from "@/assets/faculty/orestis.png.asset.json";
-import annalisa from "@/assets/faculty/annalisa.png.asset.json";
-import evangelos from "@/assets/faculty/evangelos.png.asset.json";
-import xiaoyu from "@/assets/faculty/xiaoyu.png.asset.json";
+// Visiting faculty portraits
+import vfKaushal from "@/assets/faculty/visiting/kaushal-bhagat.png.asset.json";
+import vfUtkarsh from "@/assets/faculty/visiting/utkarsh-majmudar.png.asset.json";
+import vfAkash from "@/assets/faculty/visiting/akash-krishnan.png.asset.json";
+import vfThomas from "@/assets/faculty/visiting/thomas-joseph.png.asset.json";
+import vfSouvik from "@/assets/faculty/visiting/souvik-dutta.png.asset.json";
+import vfRadhika from "@/assets/faculty/visiting/radhika-narayanan.png.asset.json";
+import vfPratap from "@/assets/faculty/visiting/pratap-giri.png.asset.json";
+import vfPradeep from "@/assets/faculty/visiting/pradeep-hota.png.asset.json";
+import vfHarshali from "@/assets/faculty/visiting/harshali-damle.png.asset.json";
+import vfAmit from "@/assets/faculty/visiting/amit-shrivastava.png.asset.json";
+import vfMihir from "@/assets/faculty/visiting/mihir-mankad.png.asset.json";
+import vfShruti from "@/assets/faculty/visiting/shruti-mantri.png.asset.json";
+import vfAlireza from "@/assets/faculty/visiting/alireza-kabirian.png.asset.json";
+import vfSundar from "@/assets/faculty/visiting/sundar-venkatesh.png.asset.json";
+import vfDaniel from "@/assets/faculty/visiting/daniel-vandervliet.png.asset.json";
+import vfKrishanu from "@/assets/faculty/visiting/krishanu-rakshit.png.asset.json";
+import vfLanMa from "@/assets/faculty/visiting/lan-ma.png.asset.json";
+import vfRajat from "@/assets/faculty/visiting/rajat-baijal.png.asset.json";
+import vfBenjamin from "@/assets/faculty/visiting/benjamin-dunford.png.asset.json";
+import vfMeenakshi from "@/assets/faculty/visiting/meenakshi-rishi.png.asset.json";
+import vfVijaya from "@/assets/faculty/visiting/vijaya-marisetty.png.asset.json";
+import vfShad from "@/assets/faculty/visiting/shad-morris.png.asset.json";
+import vfZal from "@/assets/faculty/visiting/zal-phiroz.png.asset.json";
+import vfGarrick from "@/assets/faculty/visiting/garrick-hileman.png.asset.json";
+import vfJyotsna from "@/assets/faculty/visiting/jyotsna-bhatnagar.png.asset.json";
+import vfVishnu from "@/assets/faculty/visiting/vishnuprasad-n.png.asset.json";
+import vfRajesh from "@/assets/faculty/visiting/rajesh-bhargave.png.asset.json";
 
 // Career logos
 import rMckinsey from "@/assets/recruiter-logos/McKinsey.png.asset.json";
@@ -217,29 +228,33 @@ const FACULTY_ALL: { name: string; role: string; company: string; img?: string; 
   { name: "Dr Vipin Sreekumar", role: "PhD · Operations", company: "Masters' Union", category: "Full-Time" },
 
   // Visiting Faculty
-  { name: "Dr Zal Phiroz", role: "Adjunct Professor, Supply Chain", company: "Harvard University", img: zal.url, category: "Visiting" },
-  { name: "Daniel G. Van Der Vliet", role: "Executive Director, Family Business", company: "Cornell University", img: daniel.url, category: "Visiting" },
-  { name: "Dr Lan Ma", role: "Adjunct Professor of Business", company: "NYU Stern", img: lanma.url, category: "Visiting" },
-  { name: "Emmanuel Faverie", role: "Visiting Faculty", company: "ESCP Business School", img: faverie.url, category: "Visiting" },
-  { name: "Enno Masurel", role: "Professor of Entrepreneurship", company: "VU Amsterdam", img: enno.url, category: "Visiting" },
-  { name: "Frank Barry", role: "Professor of International Business", company: "Trinity College Dublin", img: frank.url, category: "Visiting" },
-  { name: "Timothy O'Connell", role: "Visiting Faculty", company: "Global Partner Universities", img: timothy.url, category: "Visiting" },
-  { name: "Mairead Braddy", role: "Visiting Faculty", company: "Global Partner Universities", img: mairead.url, category: "Visiting" },
-  { name: "Umberto", role: "Visiting Faculty", company: "SDA Bocconi", img: umberto.url, category: "Visiting" },
-  { name: "Carolina", role: "Visiting Faculty", company: "SDA Bocconi", img: carolina.url, category: "Visiting" },
-  { name: "Federico Biasutti", role: "Visiting Faculty", company: "SDA Bocconi", img: federico.url, category: "Visiting" },
-  { name: "Paola Santoro", role: "Visiting Faculty", company: "SDA Bocconi", img: paola.url, category: "Visiting" },
-  { name: "Rosario", role: "Visiting Faculty", company: "SDA Bocconi", img: rosario.url, category: "Visiting" },
-  { name: "Orestis", role: "Visiting Faculty", company: "Global Partner Universities", img: orestis.url, category: "Visiting" },
-  { name: "Annalisa", role: "Visiting Faculty", company: "Global Partner Universities", img: annalisa.url, category: "Visiting" },
-  { name: "Evangelos", role: "Visiting Faculty", company: "Global Partner Universities", img: evangelos.url, category: "Visiting" },
-  { name: "Xiaoyu", role: "Visiting Faculty", company: "CUHK Business School", img: xiaoyu.url, category: "Visiting" },
-  { name: "Rajat Baijal", role: "Adjunct Professor, Enterprise Risk", company: "Columbia University", category: "Visiting" },
-  { name: "Dr Shad Morris", role: "Executive Director", company: "Brigham Young University", category: "Visiting" },
-  { name: "Dr Rajesh Bhargave", role: "Associate Professor of Marketing", company: "Imperial College London", category: "Visiting" },
-  { name: "Meenakshi Rishi", role: "Professor of Economics", company: "Seattle University", category: "Visiting" },
-  { name: "Dr Alireza Kabirian", role: "Professor of Data Sciences", company: "USC", category: "Visiting" },
-  { name: "Dr Kenwyn K. Smith", role: "Professor", company: "Wharton, UPenn", category: "Visiting" },
+  { name: "Dr Zal Phiroz", role: "Adjunct Professor, Supply Chain", company: "Harvard University", img: vfZal.url, category: "Visiting" },
+  { name: "Daniel G. Van Der Vliet", role: "Executive Director, Family Business", company: "Cornell University", img: vfDaniel.url, category: "Visiting" },
+  { name: "Dr Lan Ma", role: "Adjunct Professor of Business", company: "NYU Stern", img: vfLanMa.url, category: "Visiting" },
+  { name: "Mihir Mankad", role: "Senior Lecturer", company: "Harvard Kennedy School", img: vfMihir.url, category: "Visiting" },
+  { name: "Dr Rajesh Bhargave", role: "Associate Professor of Marketing", company: "Imperial College London", img: vfRajesh.url, category: "Visiting" },
+  { name: "Rajat Baijal", role: "Adjunct Professor, Enterprise Risk", company: "Columbia University", img: vfRajat.url, category: "Visiting" },
+  { name: "Dr Shad Morris", role: "Professor of Global Strategy", company: "Brigham Young University", img: vfShad.url, category: "Visiting" },
+  { name: "Meenakshi Rishi", role: "Professor of Economics", company: "Seattle University", img: vfMeenakshi.url, category: "Visiting" },
+  { name: "Dr Alireza Kabirian", role: "Professor of Data Sciences", company: "USC", img: vfAlireza.url, category: "Visiting" },
+  { name: "Benjamin Dunford", role: "Professor of Management", company: "Purdue University", img: vfBenjamin.url, category: "Visiting" },
+  { name: "Dr Garrick Hileman", role: "Visiting Fellow", company: "London School of Economics", img: vfGarrick.url, category: "Visiting" },
+  { name: "Shruti Mantri", role: "Associate Director", company: "ISB", img: vfShruti.url, category: "Visiting" },
+  { name: "Dr Krishanu Rakshit", role: "Professor of Marketing", company: "IIM Calcutta", img: vfKrishanu.url, category: "Visiting" },
+  { name: "Dr Jyotsna Bhatnagar", role: "Professor of OB & HRM", company: "MDI Gurgaon", img: vfJyotsna.url, category: "Visiting" },
+  { name: "Vijaya Bhaskar Marisetty", role: "Professor of Finance", company: "University of Hyderabad", img: vfVijaya.url, category: "Visiting" },
+  { name: "Dr Sundar Venkatesh", role: "Visiting Faculty", company: "Asian Institute of Technology", img: vfSundar.url, category: "Visiting" },
+  { name: "Utkarsh Majmudar", role: "Visiting Faculty · Finance", company: "IIM Bangalore", img: vfUtkarsh.url, category: "Visiting" },
+  { name: "Kaushal Kumar Bhagat", role: "Visiting Faculty", company: "IIT Kharagpur", img: vfKaushal.url, category: "Visiting" },
+  { name: "Dr Thomas Joseph", role: "Visiting Faculty", company: "Masters' Union", img: vfThomas.url, category: "Visiting" },
+  { name: "Dr Pratap Giri", role: "Visiting Faculty", company: "Masters' Union", img: vfPratap.url, category: "Visiting" },
+  { name: "Dr Harshali Damle", role: "Visiting Faculty", company: "Masters' Union", img: vfHarshali.url, category: "Visiting" },
+  { name: "Souvik Dutta", role: "Visiting Faculty", company: "Masters' Union", img: vfSouvik.url, category: "Visiting" },
+  { name: "Radhika Narayanan", role: "Visiting Faculty", company: "Masters' Union", img: vfRadhika.url, category: "Visiting" },
+  { name: "Akash Krishnan", role: "Visiting Faculty", company: "Masters' Union", img: vfAkash.url, category: "Visiting" },
+  { name: "Pradeep Hota", role: "Visiting Faculty", company: "Masters' Union", img: vfPradeep.url, category: "Visiting" },
+  { name: "Amit Shrivastava", role: "Visiting Faculty", company: "Masters' Union", img: vfAmit.url, category: "Visiting" },
+  { name: "Dr Vishnuprasad N.", role: "Visiting Faculty", company: "Masters' Union", img: vfVishnu.url, category: "Visiting" },
 ];
 
 

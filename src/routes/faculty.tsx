@@ -6,10 +6,9 @@ import manojAsset from "@/assets/faculty/manoj.png.asset.json";
 import bhupeshAsset from "@/assets/faculty/bhupesh.png.asset.json";
 import nandiniAsset from "@/assets/faculty/nandini.png.asset.json";
 import garimaAsset from "@/assets/faculty/garima.png.asset.json";
-import zalAsset from "@/assets/faculty/zal.png.asset.json";
-import danielAsset from "@/assets/faculty/daniel.png.asset.json";
-import lanmaAsset from "@/assets/faculty/lanma.png.asset.json";
-import faverieAsset from "@/assets/faculty/faverie.png.asset.json";
+import daveLewisAsset from "@/assets/faculty/dave-lewis.png.asset.json";
+import raghuAsset from "@/assets/faculty/raghu-raman.png.asset.json";
+import nitinAsset from "@/assets/faculty/nitin-gaur.png.asset.json";
 import havishAsset from "@/assets/faculty/havish-madhvapaty.png.asset.json";
 import ekhlaqueAsset from "@/assets/faculty/ekhlaque-bari.png.asset.json";
 import sumitAsset from "@/assets/faculty/sumit-shukla.png.asset.json";
@@ -18,31 +17,39 @@ import divijAsset from "@/assets/faculty/divij-bajaj.png.asset.json";
 import parikshitAsset from "@/assets/faculty/parikshit-khanna.png.asset.json";
 import karmanyaAsset from "@/assets/faculty/karmanya-suri.png.asset.json";
 import gauravAAsset from "@/assets/faculty/gaurav-arora.png.asset.json";
-import daveLewisAsset from "@/assets/faculty/dave-lewis.png.asset.json";
-import umbertoAsset from "@/assets/faculty/umberto.png.asset.json";
-import carolinaAsset from "@/assets/faculty/carolina.png.asset.json";
-import federicoAsset from "@/assets/faculty/federico-biasutti.png.asset.json";
-import paolaAsset from "@/assets/faculty/paola-santoro.png.asset.json";
-import rosarioAsset from "@/assets/faculty/rosario.png.asset.json";
-import timothyAsset from "@/assets/faculty/timothy-oconnell.png.asset.json";
-import frankAsset from "@/assets/faculty/frank-barry.png.asset.json";
-import maireadAsset from "@/assets/faculty/mairead-braddy.png.asset.json";
-import ennoAsset from "@/assets/faculty/enno-masurel.png.asset.json";
-import orestisAsset from "@/assets/faculty/orestis.png.asset.json";
-import annalisaAsset from "@/assets/faculty/annalisa.png.asset.json";
-import evangelosAsset from "@/assets/faculty/evangelos.png.asset.json";
-import xiaoyuAsset from "@/assets/faculty/xiaoyu.png.asset.json";
-import raghuAsset from "@/assets/faculty/raghu-raman.png.asset.json";
-import nitinAsset from "@/assets/faculty/nitin-gaur.png.asset.json";
+// Visiting faculty portraits (new set)
+import vfKaushal from "@/assets/faculty/visiting/kaushal-bhagat.png.asset.json";
+import vfUtkarsh from "@/assets/faculty/visiting/utkarsh-majmudar.png.asset.json";
+import vfAkash from "@/assets/faculty/visiting/akash-krishnan.png.asset.json";
+import vfThomas from "@/assets/faculty/visiting/thomas-joseph.png.asset.json";
+import vfSouvik from "@/assets/faculty/visiting/souvik-dutta.png.asset.json";
+import vfRadhika from "@/assets/faculty/visiting/radhika-narayanan.png.asset.json";
+import vfPratap from "@/assets/faculty/visiting/pratap-giri.png.asset.json";
+import vfPradeep from "@/assets/faculty/visiting/pradeep-hota.png.asset.json";
+import vfHarshali from "@/assets/faculty/visiting/harshali-damle.png.asset.json";
+import vfAmit from "@/assets/faculty/visiting/amit-shrivastava.png.asset.json";
+import vfMihir from "@/assets/faculty/visiting/mihir-mankad.png.asset.json";
+import vfShruti from "@/assets/faculty/visiting/shruti-mantri.png.asset.json";
+import vfAlireza from "@/assets/faculty/visiting/alireza-kabirian.png.asset.json";
+import vfSundar from "@/assets/faculty/visiting/sundar-venkatesh.png.asset.json";
+import vfDaniel from "@/assets/faculty/visiting/daniel-vandervliet.png.asset.json";
+import vfKrishanu from "@/assets/faculty/visiting/krishanu-rakshit.png.asset.json";
+import vfLanMa from "@/assets/faculty/visiting/lan-ma.png.asset.json";
+import vfRajat from "@/assets/faculty/visiting/rajat-baijal.png.asset.json";
+import vfBenjamin from "@/assets/faculty/visiting/benjamin-dunford.png.asset.json";
+import vfMeenakshi from "@/assets/faculty/visiting/meenakshi-rishi.png.asset.json";
+import vfVijaya from "@/assets/faculty/visiting/vijaya-marisetty.png.asset.json";
+import vfShad from "@/assets/faculty/visiting/shad-morris.png.asset.json";
+import vfZal from "@/assets/faculty/visiting/zal-phiroz.png.asset.json";
+import vfGarrick from "@/assets/faculty/visiting/garrick-hileman.png.asset.json";
+import vfJyotsna from "@/assets/faculty/visiting/jyotsna-bhatnagar.png.asset.json";
+import vfVishnu from "@/assets/faculty/visiting/vishnuprasad-n.png.asset.json";
+import vfRajesh from "@/assets/faculty/visiting/rajesh-bhargave.png.asset.json";
 
 const manojImg = manojAsset.url;
 const bhupeshImg = bhupeshAsset.url;
 const nandiniImg = nandiniAsset.url;
 const garimaImg = garimaAsset.url;
-const zalImg = zalAsset.url;
-const danielImg = danielAsset.url;
-const lanmaImg = lanmaAsset.url;
-const faverieImg = faverieAsset.url;
 
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
@@ -160,29 +167,33 @@ const FULLTIME: FullTimer[] = [
 
 type Visiting = { name: string; role: string; school: string; img?: string };
 const VISITING: Visiting[] = [
-  { name: "Dr Zal Phiroz", role: "Adjunct Professor, Supply Chain & Operations", school: "Harvard University", img: zalImg },
-  { name: "Daniel G. Van Der Vliet", role: "Executive Director", school: "Cornell University", img: danielImg },
-  { name: "Dr Lan Ma", role: "Adjunct Professor of Business", school: "NYU Stern", img: lanmaImg },
-  { name: "Emmanuel Faverie", role: "Visiting Faculty", school: "ESCP Business School", img: faverieImg },
-  { name: "Enno Masurel", role: "Professor of Entrepreneurship", school: "VU Amsterdam", img: ennoAsset.url },
-  { name: "Frank Barry", role: "Professor of International Business", school: "Trinity College Dublin", img: frankAsset.url },
-  { name: "Timothy O'Connell", role: "Visiting Faculty", school: "Global Partner Universities", img: timothyAsset.url },
-  { name: "Mairead Braddy", role: "Visiting Faculty", school: "Global Partner Universities", img: maireadAsset.url },
-  { name: "Umberto", role: "Visiting Faculty", school: "SDA Bocconi", img: umbertoAsset.url },
-  { name: "Carolina", role: "Visiting Faculty", school: "SDA Bocconi", img: carolinaAsset.url },
-  { name: "Federico Biasutti", role: "Visiting Faculty", school: "SDA Bocconi", img: federicoAsset.url },
-  { name: "Paola Santoro", role: "Visiting Faculty", school: "SDA Bocconi", img: paolaAsset.url },
-  { name: "Rosario", role: "Visiting Faculty", school: "SDA Bocconi", img: rosarioAsset.url },
-  { name: "Orestis", role: "Visiting Faculty", school: "Global Partner Universities", img: orestisAsset.url },
-  { name: "Annalisa", role: "Visiting Faculty", school: "Global Partner Universities", img: annalisaAsset.url },
-  { name: "Evangelos", role: "Visiting Faculty", school: "Global Partner Universities", img: evangelosAsset.url },
-  { name: "Xiaoyu", role: "Visiting Faculty", school: "CUHK Business School", img: xiaoyuAsset.url },
-  { name: "Rajat Baijal", role: "Adjunct Professor, Enterprise Risk Management", school: "Columbia University" },
-  { name: "Dr Shad Morris", role: "Executive Director", school: "BYU (Brigham Young University)" },
-  { name: "Dr Rajesh Bhargave", role: "Associate Professor of Marketing", school: "Imperial College London" },
-  { name: "Meenakshi Rishi", role: "Professor of Economics", school: "Seattle University" },
-  { name: "Dr Alireza Kabirian", role: "Professor of Data Sciences", school: "USC" },
-  { name: "Dr Kenwyn K. Smith", role: "Professor", school: "Wharton School, University of Pennsylvania" },
+  { name: "Dr Zal Phiroz", role: "Adjunct Professor, Supply Chain & Operations", school: "Harvard University", img: vfZal.url },
+  { name: "Daniel G. Van Der Vliet", role: "Executive Director, Family Business", school: "Cornell University", img: vfDaniel.url },
+  { name: "Dr Lan Ma", role: "Adjunct Professor of Business", school: "NYU Stern", img: vfLanMa.url },
+  { name: "Mihir Mankad", role: "Senior Lecturer", school: "Harvard Kennedy School", img: vfMihir.url },
+  { name: "Dr Rajesh Bhargave", role: "Associate Professor of Marketing", school: "Imperial College London", img: vfRajesh.url },
+  { name: "Rajat Baijal", role: "Adjunct Professor, Enterprise Risk Management", school: "Columbia University", img: vfRajat.url },
+  { name: "Dr Shad Morris", role: "Professor of Global Strategy", school: "Brigham Young University", img: vfShad.url },
+  { name: "Meenakshi Rishi", role: "Professor of Economics", school: "Seattle University", img: vfMeenakshi.url },
+  { name: "Dr Alireza Kabirian", role: "Professor of Data Sciences", school: "USC", img: vfAlireza.url },
+  { name: "Benjamin Dunford", role: "Professor of Management", school: "Purdue University", img: vfBenjamin.url },
+  { name: "Dr Garrick Hileman", role: "Visiting Fellow", school: "London School of Economics", img: vfGarrick.url },
+  { name: "Shruti Mantri", role: "Associate Director", school: "Indian School of Business", img: vfShruti.url },
+  { name: "Dr Krishanu Rakshit", role: "Professor of Marketing", school: "IIM Calcutta", img: vfKrishanu.url },
+  { name: "Dr Jyotsna Bhatnagar", role: "Professor of OB & HRM", school: "MDI Gurgaon", img: vfJyotsna.url },
+  { name: "Vijaya Bhaskar Marisetty", role: "Professor of Finance", school: "University of Hyderabad", img: vfVijaya.url },
+  { name: "Dr Sundar Venkatesh", role: "Visiting Faculty", school: "Asian Institute of Technology", img: vfSundar.url },
+  { name: "Utkarsh Majmudar", role: "Visiting Faculty, Finance", school: "IIM Bangalore", img: vfUtkarsh.url },
+  { name: "Kaushal Kumar Bhagat", role: "Visiting Faculty", school: "IIT Kharagpur", img: vfKaushal.url },
+  { name: "Dr Thomas Joseph", role: "Visiting Faculty", school: "Masters' Union", img: vfThomas.url },
+  { name: "Dr Pratap Giri", role: "Visiting Faculty", school: "Masters' Union", img: vfPratap.url },
+  { name: "Dr Harshali Damle", role: "Visiting Faculty", school: "Masters' Union", img: vfHarshali.url },
+  { name: "Souvik Dutta", role: "Visiting Faculty", school: "Masters' Union", img: vfSouvik.url },
+  { name: "Radhika Narayanan", role: "Visiting Faculty", school: "Masters' Union", img: vfRadhika.url },
+  { name: "Akash Krishnan", role: "Visiting Faculty", school: "Masters' Union", img: vfAkash.url },
+  { name: "Pradeep Hota", role: "Visiting Faculty", school: "Masters' Union", img: vfPradeep.url },
+  { name: "Amit Shrivastava", role: "Visiting Faculty", school: "Masters' Union", img: vfAmit.url },
+  { name: "Dr Vishnuprasad N.", role: "Visiting Faculty", school: "Masters' Union", img: vfVishnu.url },
 ];
 
 const TESTIMONIALS = [
