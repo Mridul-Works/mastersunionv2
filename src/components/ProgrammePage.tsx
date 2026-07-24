@@ -1,6 +1,18 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, Plus, Minus, MapPin, Clock } from "lucide-react";
+import {
+  ArrowUpRight,
+  Plus,
+  Minus,
+  Clock,
+  MapPin,
+  GraduationCap,
+  Star,
+} from "lucide-react";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
+import SectionDivider from "@/components/SectionDivider";
+import logoWhite from "@/assets/logo-4.png.asset.json";
 
 export type Term = {
   n: number;
@@ -34,114 +46,233 @@ export type ProgrammeData = {
   jobRoles?: string[];
 };
 
+const NAV: SectionNavItem[] = [
+  { id: "top", label: "Overview" },
+  { id: "why", label: "Why Now" },
+  { id: "edge", label: "The Edge" },
+  { id: "curriculum", label: "Curriculum" },
+  { id: "faculty", label: "Faculty" },
+  { id: "outcomes", label: "Outcomes" },
+  { id: "faq", label: "FAQ" },
+];
+
 export default function ProgrammePage({ data }: { data: ProgrammeData }) {
   return (
-    <div className="min-h-screen bg-[#faf8f3] text-neutral-900">
-      <TopBar />
+    <main
+      className="min-h-screen bg-gradient-to-b from-background via-muted/50 to-background text-[color:var(--ink)] pb-28 md:pb-32"
+      style={
+        {
+          "--pastel-start": "oklch(0.99 0.014 220 / 0.4)",
+          "--pastel-mid": "oklch(0.985 0.020 210 / 0.4)",
+        } as React.CSSProperties
+      }
+    >
+      <SectionNav items={NAV} applyHref="#apply" />
+
       <Hero data={data} />
+      <SectionDivider />
       <WhyNow data={data} />
+      <SectionDivider />
       <EdgeSection data={data} />
-      <Curriculum terms={data.terms} />
-      {data.ventures && data.ventures.length > 0 && <VenturesSection ventures={data.ventures} />}
-      {data.immersions && data.immersions.length > 0 && <Immersions items={data.immersions} />}
+      <SectionDivider />
+      <Curriculum terms={data.terms} shortName={data.shortName} />
+      <SectionDivider />
+      {data.ventures && data.ventures.length > 0 && (
+        <>
+          <VenturesSection ventures={data.ventures} />
+          <SectionDivider />
+        </>
+      )}
+      {data.immersions && data.immersions.length > 0 && (
+        <>
+          <Immersions items={data.immersions} />
+          <SectionDivider />
+        </>
+      )}
       <Faculty roster={data.faculty} />
-      {data.testimonials && data.testimonials.length > 0 && <Testimonials list={data.testimonials} />}
-      {data.jobRoles && data.jobRoles.length > 0 && <JobRoles roles={data.jobRoles} />}
-      <CTA name={data.name} />
-    </div>
+      <SectionDivider />
+      {data.testimonials && data.testimonials.length > 0 && (
+        <>
+          <Testimonials list={data.testimonials} />
+          <SectionDivider />
+        </>
+      )}
+      {data.jobRoles && data.jobRoles.length > 0 && (
+        <>
+          <JobRoles roles={data.jobRoles} />
+          <SectionDivider />
+        </>
+      )}
+      <FAQSection data={data} />
+      <Footer name={data.name} />
+    </main>
   );
 }
 
-function TopBar() {
-  return (
-    <div className="border-b border-neutral-200 bg-white/80 backdrop-blur sticky top-0 z-40">
-      <div className="max-w-7xl mx-auto px-10 py-4 flex items-center justify-between">
-        <Link to="/" className="text-sm font-medium tracking-widest uppercase">
-          Masters&apos; Union
-        </Link>
-        <Link
-          to="/applications_center"
-          className="inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-widest border border-neutral-900 px-4 py-2 hover:bg-neutral-900 hover:text-white transition"
-        >
-          Apply <ArrowUpRight className="w-3.5 h-3.5" />
-        </Link>
-      </div>
-    </div>
-  );
-}
+/* ─────────────────────────── HERO ─────────────────────────── */
 
 function Hero({ data }: { data: ProgrammeData }) {
   return (
-    <section className="px-10 pt-16 pb-20 border-b border-neutral-200">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-6">
-          Post-Graduate Programme
+    <section id="top" className="relative overflow-hidden pt-28 sm:pt-32">
+      <div className="mx-auto max-w-[1180px] px-4 pb-16 sm:px-6 sm:pb-24">
+        {/* Eyebrow row */}
+        <div className="mb-10 flex flex-col gap-4 border-b border-foreground/10 pb-6 sm:mb-14 md:flex-row md:items-end md:justify-between">
+          <div className="flex flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground/55">
+            <span className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-card/80 px-3 py-1">
+              <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              Applications open · {data.commencement}
+            </span>
+            <span className="inline-flex items-center gap-1 rounded-full border border-foreground/15 bg-card/80 px-3 py-1">
+              <Star className="size-3 fill-current" /> Accredited by EFMD & AACSB
+            </span>
+          </div>
+          <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground/45">
+            PGP · {data.shortName}
+          </div>
         </div>
-        <h1 className="font-[Fraunces] font-light text-5xl md:text-7xl leading-[1.05] tracking-tight max-w-5xl">
-          {data.name}
-        </h1>
-        <p className="mt-6 text-lg md:text-xl text-neutral-600 max-w-3xl leading-relaxed">
-          {data.tagline}
-        </p>
-        <div className="mt-10 flex flex-wrap gap-6 text-sm">
-          <Meta icon={<Clock className="w-4 h-4" />} label={data.duration} />
-          <Meta icon={<MapPin className="w-4 h-4" />} label={data.mode} />
-          <Meta icon={null} label={`Commences ${data.commencement}`} />
+
+        <div className="grid gap-12 lg:grid-cols-[1.35fr_0.65fr] lg:gap-16">
+          {/* Left: headline + copy */}
+          <div className="flex flex-col justify-between gap-10">
+            <div>
+              <h1 className="font-display text-[clamp(1.875rem,3.5vw,2.75rem)] font-semibold leading-[1.05] tracking-[-0.03em]">
+                {data.name}
+              </h1>
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-foreground/65">
+                {data.tagline}
+              </p>
+
+              <div className="mt-10 flex flex-wrap items-center gap-3">
+                <a
+                  href="#apply"
+                  className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-primary-foreground transition-transform hover:scale-[1.02]"
+                >
+                  Start application <ArrowUpRight className="size-4" />
+                </a>
+                <a
+                  href="#curriculum"
+                  className="inline-flex items-center gap-2 rounded-full border border-foreground/20 px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-foreground hover:bg-foreground/5"
+                >
+                  See the curriculum ↓
+                </a>
+              </div>
+            </div>
+
+            {/* Meta strip */}
+            <div className="grid grid-cols-3 gap-0 border-t border-foreground/10 pt-6">
+              {[
+                { icon: Clock, k: data.duration.split(" ")[0], v: data.duration.split(" ").slice(1).join(" ") || "Full-Time" },
+                { icon: MapPin, k: data.mode.split(",")[0], v: data.mode.split(",").slice(1).join(",").trim() || "Campus" },
+                { icon: GraduationCap, k: data.commencement, v: "Cohort" },
+              ].map((s) => {
+                const Icon = s.icon;
+                return (
+                  <div
+                    key={s.v}
+                    className="border-l border-foreground/10 px-4 first:border-l-0 first:pl-0"
+                  >
+                    <Icon className="mb-2 size-4 text-foreground/50" />
+                    <div className="font-display text-xl font-semibold leading-none tracking-tight text-foreground sm:text-2xl">
+                      {s.k}
+                    </div>
+                    <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-foreground/50">
+                      {s.v}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Right: image card */}
+          <div className="relative">
+            <div className="relative aspect-[4/5] overflow-hidden border border-foreground/10 bg-primary">
+              <ImagePlaceholder label="Programme hero" className="h-full w-full" aspect="4/5" />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/80 via-primary/30 to-transparent p-5 text-primary-foreground">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary-foreground/70">
+                  The Campus
+                </div>
+                <div className="mt-1 font-display text-sm leading-tight">
+                  DLF Cyber Park, Gurugram
+                </div>
+                <div className="mt-1 text-xs text-primary-foreground/60">
+                  85% of Fortune 500 within a 2 km walk
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function Meta({ icon, label }: { icon: React.ReactNode; label: string }) {
-  return (
-    <div className="flex items-center gap-2 text-neutral-700">
-      {icon}
-      <span className="uppercase tracking-widest text-xs font-medium">{label}</span>
-    </div>
-  );
-}
+/* ─────────────────────── WHY NOW ─────────────────────── */
 
 function WhyNow({ data }: { data: ProgrammeData }) {
   return (
-    <section className="px-10 py-20 border-b border-neutral-200">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-12 gap-10">
-        <div className="md:col-span-4">
-          <div className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-4">
-            About the programme
+    <section id="why" className="relative overflow-hidden">
+      <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
+        <div className="grid gap-10 md:grid-cols-[0.6fr_1fr] lg:gap-16">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              WHY {data.shortName.toUpperCase()}, WHY NOW
+            </div>
+            <h2 className="mt-3 font-display text-3xl leading-[1.05] tracking-[-0.02em]">
+              Built for the <em className="italic text-black/60">next decade.</em>
+            </h2>
           </div>
-          <h2 className="font-[Fraunces] text-3xl md:text-4xl font-light leading-tight">
-            Why {data.shortName}, why now?
-          </h2>
-        </div>
-        <div className="md:col-span-8 space-y-6 text-[15px] leading-relaxed text-neutral-700">
-          <p className="text-lg text-neutral-900">{data.intro}</p>
-          {data.whyNow.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
+          <div className="space-y-6 text-[15px] leading-relaxed text-foreground/80">
+            <p className="text-lg text-foreground">{data.intro}</p>
+            {data.whyNow.map((p, i) => (
+              <p key={i} className="text-foreground/70">
+                {p}
+              </p>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 }
+
+/* ─────────────────────── EDGE ─────────────────────── */
 
 function EdgeSection({ data }: { data: ProgrammeData }) {
   return (
-    <section className="px-10 py-20 border-b border-neutral-200 bg-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-4">
-          The Masters&apos; Union edge
+    <section id="edge" className="relative overflow-hidden">
+      <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
+        <div className="mb-12 max-w-3xl">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
+            <span className="h-1.5 w-1.5 rounded-full bg-teal" />
+            THE EDGE
+          </div>
+          <h2 className="mt-3 font-display text-3xl leading-[1.03] tracking-[-0.02em]">
+            What makes this programme{" "}
+            <em className="italic text-black/60">different.</em>
+          </h2>
         </div>
-        <h2 className="font-[Fraunces] text-3xl md:text-4xl font-light leading-tight max-w-2xl mb-12">
-          What makes this programme different
-        </h2>
-        <div className="grid md:grid-cols-2 gap-x-14 gap-y-10">
+
+        <div className="grid gap-px bg-black/10 md:grid-cols-2">
           {data.edge.map((e, i) => (
-            <div key={i} className="border-t border-neutral-900 pt-5">
-              <div className="text-xs font-mono text-neutral-500 mb-2">0{i + 1}</div>
-              <h3 className="font-[Fraunces] text-xl md:text-2xl leading-snug mb-3">{e.title}</h3>
-              <p className="text-sm text-neutral-600 leading-relaxed">{e.body}</p>
-            </div>
+            <article
+              key={i}
+              className="group relative flex flex-col gap-4 bg-white p-8 transition-colors hover:bg-white/95"
+            >
+              <div className="flex items-baseline justify-between">
+                <span className="font-display text-3xl leading-none tracking-tight text-black/25">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/40">
+                  Edge
+                </span>
+              </div>
+              <h3 className="font-display text-xl leading-snug tracking-tight text-foreground">
+                {e.title}
+              </h3>
+              <p className="text-sm leading-relaxed text-foreground/65">{e.body}</p>
+            </article>
           ))}
         </div>
       </div>
@@ -149,71 +280,93 @@ function EdgeSection({ data }: { data: ProgrammeData }) {
   );
 }
 
-function Curriculum({ terms }: { terms: Term[] }) {
+/* ─────────────────────── CURRICULUM ─────────────────────── */
+
+function Curriculum({ terms, shortName }: { terms: Term[]; shortName: string }) {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section className="px-10 py-20 border-b border-neutral-200">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-4">Curriculum</div>
-        <h2 className="font-[Fraunces] text-3xl md:text-4xl font-light leading-tight max-w-3xl mb-10">
-          {terms.length} terms of in-class rigour and out-class execution
-        </h2>
-        <div className="border-t border-neutral-900">
+    <section id="curriculum" className="relative overflow-hidden">
+      <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
+        <div className="mb-12 max-w-3xl">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            CURRICULUM
+          </div>
+          <h2 className="mt-3 font-display text-3xl leading-[1.03] tracking-[-0.02em]">
+            {terms.length} terms of in-class rigour.{" "}
+            <em className="italic text-black/60">Every one shipped in the wild.</em>
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-foreground/65">
+            The {shortName} curriculum runs on two engines every term — foundational
+            in-class courses and a live out-class challenge that produces a real
+            deliverable. Tap any term to expand.
+          </p>
+        </div>
+
+        <div className="border-t border-black/15">
           {terms.map((t, i) => {
             const isOpen = open === i;
             return (
-              <div key={i} className="border-b border-neutral-300">
+              <div key={i} className="border-b border-black/15">
                 <button
+                  type="button"
                   onClick={() => setOpen(isOpen ? null : i)}
-                  className="w-full text-left py-6 flex items-start gap-6 hover:bg-neutral-50 transition px-2"
+                  className="flex w-full items-start gap-6 px-2 py-6 text-left transition-colors hover:bg-black/[0.02]"
                 >
-                  <div className="text-xs font-mono uppercase tracking-widest text-neutral-500 mt-1 w-16 shrink-0">
-                    Term {t.n}
+                  <div className="mt-1 w-20 shrink-0 font-mono text-xs uppercase tracking-[0.2em] text-black/50">
+                    Term {String(t.n).padStart(2, "0")}
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-[Fraunces] text-xl md:text-2xl leading-snug">{t.title}</h3>
-                    <p className="mt-1 text-sm text-neutral-600">{t.summary}</p>
+                    <h3 className="font-display text-xl leading-snug tracking-tight text-foreground md:text-2xl">
+                      {t.title}
+                    </h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-foreground/60">
+                      {t.summary}
+                    </p>
                   </div>
-                  <div className="pt-2">
-                    {isOpen ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
-                  </div>
+                  <span className="mt-1 flex size-8 shrink-0 items-center justify-center border border-black/15 text-foreground/70">
+                    {isOpen ? <Minus className="size-4" /> : <Plus className="size-4" />}
+                  </span>
                 </button>
+
                 {isOpen && (
-                  <div className="pb-10 pl-24 pr-8 grid md:grid-cols-2 gap-10">
+                  <div className="grid gap-8 pb-10 pl-2 pr-2 sm:pl-24 md:grid-cols-2 md:gap-12">
                     <div>
-                      <div className="text-[10px] uppercase tracking-[0.2em] text-neutral-500 mb-3">
+                      <div className="mb-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-black/50">
                         Outcomes
                       </div>
-                      <div className="flex flex-wrap gap-2 mb-6">
+                      <div className="mb-6 flex flex-wrap gap-2">
                         {t.outcomes.map((o) => (
                           <span
                             key={o}
-                            className="text-[11px] uppercase tracking-widest border border-neutral-300 px-2.5 py-1 bg-white"
+                            className="border border-black/20 bg-white px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-black/70"
                           >
                             {o}
                           </span>
                         ))}
                       </div>
-                      <div className="text-[10px] uppercase tracking-[0.2em] text-neutral-500 mb-3">
-                        In-class core courses
+                      <div className="mb-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-black/50">
+                        In-class core
                       </div>
-                      <ul className="space-y-2 text-sm text-neutral-700">
+                      <ul className="space-y-2 text-sm text-foreground/80">
                         {t.courses.map((c, ci) => (
                           <li key={ci} className="flex gap-2">
-                            <span className="text-neutral-400">→</span>
+                            <span className="text-black/35">→</span>
                             <span>{c}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
-                    <div className="bg-neutral-900 text-white p-6">
-                      <div className="text-[10px] uppercase tracking-[0.2em] text-neutral-400 mb-3">
-                        Out-class challenge
+
+                    <div className="relative overflow-hidden border border-emerald-900/15 bg-gradient-to-br from-emerald-950 via-emerald-900 to-black p-7 text-white">
+                      <div className="absolute left-0 top-0 h-1.5 w-full bg-gradient-to-r from-emerald-400 to-emerald-500" />
+                      <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-300">
+                        Out-class challenge · Term {t.n}
                       </div>
-                      <h4 className="font-[Fraunces] text-xl leading-snug mb-3">
+                      <h4 className="mt-3 font-display text-2xl leading-snug tracking-tight">
                         {t.challenge.name}
                       </h4>
-                      <p className="text-sm leading-relaxed text-neutral-300">
+                      <p className="mt-3 text-sm leading-relaxed text-white/75">
                         {t.challenge.description}
                       </p>
                     </div>
@@ -228,48 +381,71 @@ function Curriculum({ terms }: { terms: Term[] }) {
   );
 }
 
+/* ─────────────────────── VENTURES ─────────────────────── */
+
 function VenturesSection({ ventures }: { ventures: Venture[] }) {
   return (
-    <section className="px-10 py-20 border-b border-neutral-200 bg-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-4">
-          Student ventures
+    <section className="relative overflow-hidden">
+      <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
+        <div className="mb-12 max-w-3xl">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            STUDENT VENTURES
+          </div>
+          <h2 className="mt-3 font-display text-3xl leading-[1.03] tracking-[-0.02em]">
+            Companies built{" "}
+            <em className="italic text-black/60">on campus.</em>
+          </h2>
         </div>
-        <h2 className="font-[Fraunces] text-3xl md:text-4xl font-light leading-tight max-w-3xl mb-10">
-          Companies built by students in this programme
-        </h2>
-        <div className="grid md:grid-cols-3 gap-6">
+
+        <div className="grid gap-px bg-black/10 md:grid-cols-3">
           {ventures.map((v, i) => (
-            <div key={i} className="border border-neutral-200 p-6 bg-[#faf8f3]">
-              <div className="text-xs uppercase tracking-widest text-neutral-500 mb-2">
-                {v.founder}
+            <article key={i} className="bg-white p-7">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/40">
+                {String(i + 1).padStart(2, "0")} · {v.founder}
               </div>
-              <h3 className="font-[Fraunces] text-xl mb-2">{v.startup}</h3>
-              <p className="text-sm text-neutral-600 leading-relaxed">{v.description}</p>
-            </div>
+              <h3 className="mt-3 font-display text-xl leading-snug tracking-tight text-foreground">
+                {v.startup}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-foreground/65">
+                {v.description}
+              </p>
+            </article>
           ))}
         </div>
       </div>
     </section>
   );
 }
+
+/* ─────────────────────── IMMERSIONS ─────────────────────── */
 
 function Immersions({ items }: { items: string[] }) {
   return (
-    <section className="px-10 py-20 border-b border-neutral-200">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-4">
-          Global immersions
+    <section className="relative overflow-hidden">
+      <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
+        <div className="mb-12 max-w-3xl">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
+            <span className="h-1.5 w-1.5 rounded-full bg-teal" />
+            IMMERSIONS
+          </div>
+          <h2 className="mt-3 font-display text-3xl leading-[1.03] tracking-[-0.02em]">
+            Study where the world&apos;s best{" "}
+            <em className="italic text-black/60">do the work.</em>
+          </h2>
         </div>
-        <h2 className="font-[Fraunces] text-3xl md:text-4xl font-light leading-tight max-w-3xl mb-10">
-          Study where the world&apos;s best do the work
-        </h2>
-        <div className="grid md:grid-cols-2 gap-6">
+
+        <div className="grid gap-px bg-black/10 md:grid-cols-2">
           {items.map((it, i) => (
-            <div key={i} className="border-t border-neutral-900 pt-5">
-              <div className="text-xs font-mono text-neutral-500 mb-2">{String(i + 1).padStart(2, "0")}</div>
-              <p className="text-sm text-neutral-700 leading-relaxed">{it}</p>
-            </div>
+            <article
+              key={i}
+              className="flex gap-5 bg-white p-7"
+            >
+              <span className="font-display text-3xl leading-none tracking-tight text-black/25">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <p className="text-sm leading-relaxed text-foreground/75">{it}</p>
+            </article>
           ))}
         </div>
       </div>
@@ -277,19 +453,39 @@ function Immersions({ items }: { items: string[] }) {
   );
 }
 
+/* ─────────────────────── FACULTY ─────────────────────── */
+
 function Faculty({ roster }: { roster: FacultyMember[] }) {
   return (
-    <section className="px-10 py-20 border-b border-neutral-200 bg-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-4">Faculty</div>
-        <h2 className="font-[Fraunces] text-3xl md:text-4xl font-light leading-tight max-w-3xl mb-10">
-          Learn from practitioners, not just professors
-        </h2>
-        <div className="grid md:grid-cols-3 gap-x-8 gap-y-6">
+    <section id="faculty" className="relative overflow-hidden">
+      <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
+        <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              FACULTY
+            </div>
+            <h2 className="mt-3 font-display text-3xl leading-[1.03] tracking-[-0.02em]">
+              Learn from practitioners,{" "}
+              <em className="italic text-black/60">not just professors.</em>
+            </h2>
+          </div>
+          <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
+            The 30·30·40 faculty model — Ivy academics, research faculty and sitting
+            operators on one bench.
+          </p>
+        </div>
+
+        <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
           {roster.map((f, i) => (
-            <div key={i} className="border-t border-neutral-200 pt-3">
-              <div className="font-medium text-sm">{f.name}</div>
-              <div className="text-xs text-neutral-500 mt-0.5">
+            <div key={i} className="bg-white p-5">
+              <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-black/40">
+                {String(i + 1).padStart(2, "0")}
+              </div>
+              <div className="mt-2 font-display text-base leading-tight text-foreground">
+                {f.name}
+              </div>
+              <div className="mt-1 text-xs leading-snug text-foreground/60">
                 {f.role} · {f.org}
               </div>
             </div>
@@ -300,20 +496,29 @@ function Faculty({ roster }: { roster: FacultyMember[] }) {
   );
 }
 
+/* ─────────────────────── TESTIMONIALS ─────────────────────── */
+
 function Testimonials({ list }: { list: Testimonial[] }) {
   return (
-    <section className="px-10 py-20 border-b border-neutral-200">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-4">
-          Placement stories
+    <section id="outcomes" className="relative overflow-hidden">
+      <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
+        <div className="mb-12 max-w-3xl">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            OUTCOMES
+          </div>
+          <h2 className="mt-3 font-display text-3xl leading-[1.03] tracking-[-0.02em]">
+            In their <em className="italic text-black/60">own words.</em>
+          </h2>
         </div>
-        <div className="grid md:grid-cols-2 gap-10">
+
+        <div className="grid gap-px bg-black/10 md:grid-cols-2">
           {list.map((t, i) => (
-            <figure key={i} className="border-t border-neutral-900 pt-5">
-              <blockquote className="font-[Fraunces] text-xl leading-snug text-neutral-900">
+            <figure key={i} className="bg-white p-8">
+              <blockquote className="font-display text-xl leading-snug tracking-tight text-foreground">
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
-              <figcaption className="mt-4 text-xs uppercase tracking-widest text-neutral-500">
+              <figcaption className="mt-6 border-t border-black/10 pt-4 text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
                 {t.name} · {t.role}
               </figcaption>
             </figure>
@@ -324,19 +529,27 @@ function Testimonials({ list }: { list: Testimonial[] }) {
   );
 }
 
+/* ─────────────────────── JOB ROLES ─────────────────────── */
+
 function JobRoles({ roles }: { roles: string[] }) {
   return (
-    <section className="px-10 py-20 border-b border-neutral-200 bg-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-4">Career paths</div>
-        <h2 className="font-[Fraunces] text-3xl md:text-4xl font-light leading-tight max-w-3xl mb-10">
-          Roles graduates go on to
-        </h2>
+    <section className="relative overflow-hidden">
+      <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
+        <div className="mb-10 max-w-3xl">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
+            <span className="h-1.5 w-1.5 rounded-full bg-teal" />
+            CAREER PATHS
+          </div>
+          <h2 className="mt-3 font-display text-3xl leading-[1.03] tracking-[-0.02em]">
+            Roles graduates{" "}
+            <em className="italic text-black/60">go on to.</em>
+          </h2>
+        </div>
         <div className="flex flex-wrap gap-2">
           {roles.map((r) => (
             <span
               key={r}
-              className="text-xs uppercase tracking-widest border border-neutral-300 px-3 py-1.5 bg-[#faf8f3]"
+              className="border border-black/15 bg-white px-3.5 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-foreground/80"
             >
               {r}
             </span>
@@ -347,27 +560,114 @@ function JobRoles({ roles }: { roles: string[] }) {
   );
 }
 
-function CTA({ name }: { name: string }) {
+/* ─────────────────────── FAQ ─────────────────────── */
+
+function FAQSection({ data }: { data: ProgrammeData }) {
+  const faqs = [
+    {
+      q: `How is the ${data.shortName} programme structured?`,
+      a: `${data.duration.toLowerCase()} split across ${data.terms.length} terms. Each term pairs in-class fundamentals with an out-class challenge that produces a real deliverable — no rote exams.`,
+    },
+    {
+      q: "Who is this programme for?",
+      a: data.intro,
+    },
+    {
+      q: "Where is the programme held?",
+      a: `${data.mode}. Cohort commences ${data.commencement}.`,
+    },
+    {
+      q: "Do I need CAT or GMAT?",
+      a: "No. Admission is via our own aptitude assessment (MU-BAAT) and an operator-led interview, in rolling rounds until the cohort fills.",
+    },
+    {
+      q: "Is there placement support?",
+      a: "Yes. Every programme has a dedicated career team, on-campus recruiter drives, and access to Masters' Union's 1,400+ alumni network.",
+    },
+  ];
+
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
+
   return (
-    <section className="px-10 py-24 bg-neutral-900 text-white">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-12 gap-10 items-end">
-        <div className="md:col-span-8">
-          <div className="text-xs uppercase tracking-[0.2em] text-neutral-400 mb-4">
-            Applications open
+    <section id="faq" className="relative overflow-hidden">
+      <div className="relative mx-auto grid max-w-[1180px] gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.6fr_1fr] lg:gap-16">
+        <div>
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            FAQ
           </div>
-          <h2 className="font-[Fraunces] text-4xl md:text-5xl font-light leading-tight">
-            Ready to apply to the {name}?
+          <h2 className="mt-3 font-display text-3xl leading-[1.05] tracking-[-0.02em]">
+            Everything you were about to email us.
           </h2>
         </div>
-        <div className="md:col-span-4 flex md:justify-end">
-          <Link
-            to="/applications_center"
-            className="inline-flex items-center gap-2 bg-white text-neutral-900 px-6 py-4 text-xs uppercase tracking-widest font-medium hover:bg-neutral-200 transition"
-          >
-            Start your application <ArrowUpRight className="w-4 h-4" />
-          </Link>
+        <div className="border-t border-border bg-card/80 backdrop-blur-sm">
+          {faqs.map((f, i) => {
+            const open = openFaq === i;
+            return (
+              <div key={f.q} className="border-b border-border">
+                <button
+                  type="button"
+                  onClick={() => setOpenFaq(open ? null : i)}
+                  className="flex w-full items-center justify-between gap-6 px-5 py-5 text-left"
+                >
+                  <span className="font-display text-sm leading-tight text-foreground">
+                    {f.q}
+                  </span>
+                  <span className="flex size-8 items-center justify-center border border-border text-foreground/70">
+                    {open ? <Minus className="size-4" /> : <Plus className="size-4" />}
+                  </span>
+                </button>
+                {open && (
+                  <p className="pb-6 pl-5 pr-14 text-sm leading-relaxed text-muted-foreground">
+                    {f.a}
+                  </p>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
+  );
+}
+
+/* ─────────────────────── FOOTER ─────────────────────── */
+
+function Footer({ name }: { name: string }) {
+  return (
+    <footer id="apply" className="border-t border-black/10 bg-black text-white">
+      <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10">
+        <div className="grid gap-12 md:grid-cols-12 md:items-end">
+          <div className="md:col-span-7">
+            <img
+              src={logoWhite.url}
+              alt="Masters' Union"
+              className="h-10 w-auto brightness-0 invert md:h-12"
+            />
+            <h2 className="mt-8 font-display text-3xl font-light leading-tight md:text-4xl">
+              Ready to apply to the{" "}
+              <span className="italic">{name}</span>?
+            </h2>
+            <p className="mt-4 max-w-md text-[13px] leading-relaxed text-white/55">
+              Rolling admissions. Reviewed in full by an operator-led committee.
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 md:col-span-5 md:items-end">
+            <Link
+              to="/applications_center"
+              className="inline-flex items-center gap-2 bg-white px-6 py-4 text-xs font-semibold uppercase tracking-[0.14em] text-black hover:bg-white/85"
+            >
+              Start your application <ArrowUpRight className="size-4" />
+            </Link>
+            <a
+              href="mailto:admissions@mastersunion.org"
+              className="inline-flex items-center gap-2 border border-white/25 px-6 py-4 text-xs font-semibold uppercase tracking-[0.14em] text-white hover:bg-white/10"
+            >
+              Talk to admissions <ArrowUpRight className="size-4" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
   );
 }
