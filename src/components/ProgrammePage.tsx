@@ -457,17 +457,26 @@ function Immersions({ items }: { items: string[] }) {
         </div>
 
         <div className="grid gap-px bg-black/10 md:grid-cols-2">
-          {items.map((it, i) => (
-            <article
-              key={i}
-              className="flex gap-5 bg-white p-7"
-            >
-              <span className="font-display text-3xl leading-none tracking-tight text-black/25">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <p className="text-sm leading-relaxed text-foreground/75">{it}</p>
-            </article>
-          ))}
+          {items.map((it, i) => {
+            const logo = findImmersionLogo(it);
+            return (
+              <article key={i} className="flex gap-5 bg-white p-7">
+                {logo ? (
+                  <img
+                    src={logo}
+                    alt=""
+                    className="h-10 w-16 shrink-0 object-contain"
+                    loading="lazy"
+                  />
+                ) : (
+                  <span className="font-display text-3xl leading-none tracking-tight text-black/25">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                )}
+                <p className="text-sm leading-relaxed text-foreground/75">{it}</p>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
