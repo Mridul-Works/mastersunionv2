@@ -23,8 +23,12 @@ import { Route as CreatorChallengeRouteImport } from './routes/creator-challenge
 import { Route as CampusRouteImport } from './routes/campus'
 import { Route as Applications_centerRouteImport } from './routes/applications_center'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProgrammesUiUxAndAiProductDesignRouteImport } from './routes/programmes.ui-ux-and-ai-product-design'
+import { Route as ProgrammesSustainabilityAndBusinessManagementRouteImport } from './routes/programmes.sustainability-and-business-management'
+import { Route as ProgrammesSportsManagementAndGamingRouteImport } from './routes/programmes.sports-management-and-gaming'
 import { Route as ProgrammesPgpTbmRouteImport } from './routes/programmes.pgp-tbm'
 import { Route as ProgrammesHrAndOrganisationStrategyRouteImport } from './routes/programmes.hr-and-organisation-strategy'
+import { Route as ProgrammesAppliedAiAndAgenticSystemsRouteImport } from './routes/programmes.applied-ai-and-agentic-systems'
 
 const StartupsRoute = StartupsRouteImport.update({
   id: '/startups',
@@ -96,6 +100,24 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProgrammesUiUxAndAiProductDesignRoute =
+  ProgrammesUiUxAndAiProductDesignRouteImport.update({
+    id: '/programmes/ui-ux-and-ai-product-design',
+    path: '/programmes/ui-ux-and-ai-product-design',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ProgrammesSustainabilityAndBusinessManagementRoute =
+  ProgrammesSustainabilityAndBusinessManagementRouteImport.update({
+    id: '/programmes/sustainability-and-business-management',
+    path: '/programmes/sustainability-and-business-management',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ProgrammesSportsManagementAndGamingRoute =
+  ProgrammesSportsManagementAndGamingRouteImport.update({
+    id: '/programmes/sports-management-and-gaming',
+    path: '/programmes/sports-management-and-gaming',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ProgrammesPgpTbmRoute = ProgrammesPgpTbmRouteImport.update({
   id: '/programmes/pgp-tbm',
   path: '/programmes/pgp-tbm',
@@ -105,6 +127,12 @@ const ProgrammesHrAndOrganisationStrategyRoute =
   ProgrammesHrAndOrganisationStrategyRouteImport.update({
     id: '/programmes/hr-and-organisation-strategy',
     path: '/programmes/hr-and-organisation-strategy',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ProgrammesAppliedAiAndAgenticSystemsRoute =
+  ProgrammesAppliedAiAndAgenticSystemsRouteImport.update({
+    id: '/programmes/applied-ai-and-agentic-systems',
+    path: '/programmes/applied-ai-and-agentic-systems',
     getParentRoute: () => rootRouteImport,
   } as any)
 
@@ -123,8 +151,12 @@ export interface FileRoutesByFullPath {
   '/mu-ventures': typeof MuVenturesRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
+  '/programmes/applied-ai-and-agentic-systems': typeof ProgrammesAppliedAiAndAgenticSystemsRoute
   '/programmes/hr-and-organisation-strategy': typeof ProgrammesHrAndOrganisationStrategyRoute
   '/programmes/pgp-tbm': typeof ProgrammesPgpTbmRoute
+  '/programmes/sports-management-and-gaming': typeof ProgrammesSportsManagementAndGamingRoute
+  '/programmes/sustainability-and-business-management': typeof ProgrammesSustainabilityAndBusinessManagementRoute
+  '/programmes/ui-ux-and-ai-product-design': typeof ProgrammesUiUxAndAiProductDesignRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -141,8 +173,12 @@ export interface FileRoutesByTo {
   '/mu-ventures': typeof MuVenturesRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
+  '/programmes/applied-ai-and-agentic-systems': typeof ProgrammesAppliedAiAndAgenticSystemsRoute
   '/programmes/hr-and-organisation-strategy': typeof ProgrammesHrAndOrganisationStrategyRoute
   '/programmes/pgp-tbm': typeof ProgrammesPgpTbmRoute
+  '/programmes/sports-management-and-gaming': typeof ProgrammesSportsManagementAndGamingRoute
+  '/programmes/sustainability-and-business-management': typeof ProgrammesSustainabilityAndBusinessManagementRoute
+  '/programmes/ui-ux-and-ai-product-design': typeof ProgrammesUiUxAndAiProductDesignRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -160,8 +196,12 @@ export interface FileRoutesById {
   '/mu-ventures': typeof MuVenturesRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
+  '/programmes/applied-ai-and-agentic-systems': typeof ProgrammesAppliedAiAndAgenticSystemsRoute
   '/programmes/hr-and-organisation-strategy': typeof ProgrammesHrAndOrganisationStrategyRoute
   '/programmes/pgp-tbm': typeof ProgrammesPgpTbmRoute
+  '/programmes/sports-management-and-gaming': typeof ProgrammesSportsManagementAndGamingRoute
+  '/programmes/sustainability-and-business-management': typeof ProgrammesSustainabilityAndBusinessManagementRoute
+  '/programmes/ui-ux-and-ai-product-design': typeof ProgrammesUiUxAndAiProductDesignRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -180,8 +220,12 @@ export interface FileRouteTypes {
     | '/mu-ventures'
     | '/placements'
     | '/startups'
+    | '/programmes/applied-ai-and-agentic-systems'
     | '/programmes/hr-and-organisation-strategy'
     | '/programmes/pgp-tbm'
+    | '/programmes/sports-management-and-gaming'
+    | '/programmes/sustainability-and-business-management'
+    | '/programmes/ui-ux-and-ai-product-design'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -198,8 +242,12 @@ export interface FileRouteTypes {
     | '/mu-ventures'
     | '/placements'
     | '/startups'
+    | '/programmes/applied-ai-and-agentic-systems'
     | '/programmes/hr-and-organisation-strategy'
     | '/programmes/pgp-tbm'
+    | '/programmes/sports-management-and-gaming'
+    | '/programmes/sustainability-and-business-management'
+    | '/programmes/ui-ux-and-ai-product-design'
   id:
     | '__root__'
     | '/'
@@ -216,8 +264,12 @@ export interface FileRouteTypes {
     | '/mu-ventures'
     | '/placements'
     | '/startups'
+    | '/programmes/applied-ai-and-agentic-systems'
     | '/programmes/hr-and-organisation-strategy'
     | '/programmes/pgp-tbm'
+    | '/programmes/sports-management-and-gaming'
+    | '/programmes/sustainability-and-business-management'
+    | '/programmes/ui-ux-and-ai-product-design'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -235,8 +287,12 @@ export interface RootRouteChildren {
   MuVenturesRoute: typeof MuVenturesRoute
   PlacementsRoute: typeof PlacementsRoute
   StartupsRoute: typeof StartupsRoute
+  ProgrammesAppliedAiAndAgenticSystemsRoute: typeof ProgrammesAppliedAiAndAgenticSystemsRoute
   ProgrammesHrAndOrganisationStrategyRoute: typeof ProgrammesHrAndOrganisationStrategyRoute
   ProgrammesPgpTbmRoute: typeof ProgrammesPgpTbmRoute
+  ProgrammesSportsManagementAndGamingRoute: typeof ProgrammesSportsManagementAndGamingRoute
+  ProgrammesSustainabilityAndBusinessManagementRoute: typeof ProgrammesSustainabilityAndBusinessManagementRoute
+  ProgrammesUiUxAndAiProductDesignRoute: typeof ProgrammesUiUxAndAiProductDesignRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -339,6 +395,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/programmes/ui-ux-and-ai-product-design': {
+      id: '/programmes/ui-ux-and-ai-product-design'
+      path: '/programmes/ui-ux-and-ai-product-design'
+      fullPath: '/programmes/ui-ux-and-ai-product-design'
+      preLoaderRoute: typeof ProgrammesUiUxAndAiProductDesignRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/programmes/sustainability-and-business-management': {
+      id: '/programmes/sustainability-and-business-management'
+      path: '/programmes/sustainability-and-business-management'
+      fullPath: '/programmes/sustainability-and-business-management'
+      preLoaderRoute: typeof ProgrammesSustainabilityAndBusinessManagementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/programmes/sports-management-and-gaming': {
+      id: '/programmes/sports-management-and-gaming'
+      path: '/programmes/sports-management-and-gaming'
+      fullPath: '/programmes/sports-management-and-gaming'
+      preLoaderRoute: typeof ProgrammesSportsManagementAndGamingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/programmes/pgp-tbm': {
       id: '/programmes/pgp-tbm'
       path: '/programmes/pgp-tbm'
@@ -351,6 +428,13 @@ declare module '@tanstack/react-router' {
       path: '/programmes/hr-and-organisation-strategy'
       fullPath: '/programmes/hr-and-organisation-strategy'
       preLoaderRoute: typeof ProgrammesHrAndOrganisationStrategyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/programmes/applied-ai-and-agentic-systems': {
+      id: '/programmes/applied-ai-and-agentic-systems'
+      path: '/programmes/applied-ai-and-agentic-systems'
+      fullPath: '/programmes/applied-ai-and-agentic-systems'
+      preLoaderRoute: typeof ProgrammesAppliedAiAndAgenticSystemsRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -371,10 +455,27 @@ const rootRouteChildren: RootRouteChildren = {
   MuVenturesRoute: MuVenturesRoute,
   PlacementsRoute: PlacementsRoute,
   StartupsRoute: StartupsRoute,
+  ProgrammesAppliedAiAndAgenticSystemsRoute:
+    ProgrammesAppliedAiAndAgenticSystemsRoute,
   ProgrammesHrAndOrganisationStrategyRoute:
     ProgrammesHrAndOrganisationStrategyRoute,
   ProgrammesPgpTbmRoute: ProgrammesPgpTbmRoute,
+  ProgrammesSportsManagementAndGamingRoute:
+    ProgrammesSportsManagementAndGamingRoute,
+  ProgrammesSustainabilityAndBusinessManagementRoute:
+    ProgrammesSustainabilityAndBusinessManagementRoute,
+  ProgrammesUiUxAndAiProductDesignRoute: ProgrammesUiUxAndAiProductDesignRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
