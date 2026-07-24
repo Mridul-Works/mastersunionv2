@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowUpRight,
@@ -8,11 +8,19 @@ import {
   MapPin,
   GraduationCap,
   Star,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 import SectionDivider from "@/components/SectionDivider";
 import logoWhite from "@/assets/logo-4.png.asset.json";
+import {
+  findFacultyImage,
+  findImmersionLogo,
+  findVentureLogo,
+  FACULTY_POOL,
+} from "@/lib/programme-images";
 
 export type Term = {
   n: number;
@@ -399,19 +407,32 @@ function VenturesSection({ ventures }: { ventures: Venture[] }) {
         </div>
 
         <div className="grid gap-px bg-black/10 md:grid-cols-3">
-          {ventures.map((v, i) => (
-            <article key={i} className="bg-white p-7">
-              <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/40">
-                {String(i + 1).padStart(2, "0")} · {v.founder}
-              </div>
-              <h3 className="mt-3 font-display text-xl leading-snug tracking-tight text-foreground">
-                {v.startup}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-foreground/65">
-                {v.description}
-              </p>
-            </article>
-          ))}
+          {ventures.map((v, i) => {
+            const logo = findVentureLogo(v.startup);
+            return (
+              <article key={i} className="flex flex-col bg-white p-7">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/40">
+                  {String(i + 1).padStart(2, "0")} · {v.founder}
+                </div>
+                <div className="mt-4 flex items-center gap-3">
+                  {logo ? (
+                    <img
+                      src={logo}
+                      alt={v.startup}
+                      className="h-8 max-w-[120px] object-contain"
+                      loading="lazy"
+                    />
+                  ) : null}
+                  <h3 className="font-display text-xl leading-snug tracking-tight text-foreground">
+                    {v.startup}
+                  </h3>
+                </div>
+                <p className="mt-3 text-sm leading-relaxed text-foreground/65">
+                  {v.description}
+                </p>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -436,17 +457,26 @@ function Immersions({ items }: { items: string[] }) {
         </div>
 
         <div className="grid gap-px bg-black/10 md:grid-cols-2">
-          {items.map((it, i) => (
-            <article
-              key={i}
-              className="flex gap-5 bg-white p-7"
-            >
-              <span className="font-display text-3xl leading-none tracking-tight text-black/25">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <p className="text-sm leading-relaxed text-foreground/75">{it}</p>
-            </article>
-          ))}
+          {items.map((it, i) => {
+            const logo = findImmersionLogo(it);
+            return (
+              <article key={i} className="flex gap-5 bg-white p-7">
+                {logo ? (
+                  <img
+                    src={logo}
+                    alt=""
+                    className="h-10 w-16 shrink-0 object-contain"
+                    loading="lazy"
+                  />
+                ) : (
+                  <span className="font-display text-3xl leading-none tracking-tight text-black/25">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                )}
+                <p className="text-sm leading-relaxed text-foreground/75">{it}</p>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -456,10 +486,28 @@ function Immersions({ items }: { items: string[] }) {
 /* ─────────────────────── FACULTY ─────────────────────── */
 
 function Faculty({ roster }: { roster: FacultyMember[] }) {
+  const scrollerRef = useRef<HTMLDivElement | null>(null);
+
+  // Attach portraits to each faculty; fall back to the shared pool so the carousel
+  // always has visual density even when names don't match a filename directly.
+  const cards = roster.map((f, i) => {
+    const match = findFacultyImage(f.name);
+    const fallback = FACULTY_POOL[i % FACULTY_POOL.length] ?? null;
+    return { ...f, image: match ?? fallback, hasMatch: Boolean(match) };
+  });
+
+  const scrollBy = (dir: 1 | -1) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-faculty-card]");
+    const step = card ? card.getBoundingClientRect().width + 16 : 320;
+    el.scrollBy({ left: dir * step * 1.5, behavior: "smooth" });
+  };
+
   return (
     <section id="faculty" className="relative overflow-hidden">
       <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-        <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
@@ -470,25 +518,73 @@ function Faculty({ roster }: { roster: FacultyMember[] }) {
               <em className="italic text-black/60">not just professors.</em>
             </h2>
           </div>
-          <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
-            The 30·30·40 faculty model — Ivy academics, research faculty and sitting
-            operators on one bench.
-          </p>
+          <div className="flex items-end justify-between gap-6 md:flex-col md:items-end">
+            <p className="max-w-sm text-sm leading-relaxed text-muted-foreground">
+              The 30·30·40 faculty model — Ivy academics, research faculty and sitting
+              operators on one bench.
+            </p>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => scrollBy(-1)}
+                aria-label="Previous faculty"
+                className="grid h-10 w-10 place-items-center rounded-full border border-black/15 bg-white text-foreground transition hover:bg-black hover:text-white"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollBy(1)}
+                aria-label="Next faculty"
+                className="grid h-10 w-10 place-items-center rounded-full border border-black/15 bg-white text-foreground transition hover:bg-black hover:text-white"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div className="grid gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
-          {roster.map((f, i) => (
-            <div key={i} className="bg-white p-5">
-              <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-black/40">
-                {String(i + 1).padStart(2, "0")}
+        <div
+          ref={scrollerRef}
+          className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 sm:-mx-6 sm:px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {cards.map((f, i) => (
+            <article
+              key={i}
+              data-faculty-card
+              className="group relative shrink-0 basis-[240px] snap-start overflow-hidden bg-white sm:basis-[280px]"
+            >
+              <div className="relative aspect-[3/4] w-full overflow-hidden bg-neutral-100">
+                {f.image ? (
+                  <img
+                    src={f.image}
+                    alt={f.name}
+                    className="h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="grid h-full w-full place-items-center font-display text-4xl text-black/15">
+                    {f.name
+                      .split(" ")
+                      .map((p) => p[0])
+                      .filter(Boolean)
+                      .slice(0, 2)
+                      .join("")}
+                  </div>
+                )}
+                <div className="absolute left-3 top-3 text-[10px] font-mono uppercase tracking-[0.2em] text-white mix-blend-difference">
+                  {String(i + 1).padStart(2, "0")}
+                </div>
               </div>
-              <div className="mt-2 font-display text-base leading-tight text-foreground">
-                {f.name}
+              <div className="border-t border-black/10 p-4">
+                <div className="font-display text-base leading-tight text-foreground">
+                  {f.name}
+                </div>
+                <div className="mt-1 text-xs leading-snug text-foreground/60">
+                  {f.role} · {f.org}
+                </div>
               </div>
-              <div className="mt-1 text-xs leading-snug text-foreground/60">
-                {f.role} · {f.org}
-              </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>
