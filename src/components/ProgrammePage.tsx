@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowUpRight,
@@ -8,11 +8,19 @@ import {
   MapPin,
   GraduationCap,
   Star,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 import SectionDivider from "@/components/SectionDivider";
 import logoWhite from "@/assets/logo-4.png.asset.json";
+import {
+  findFacultyImage,
+  findImmersionLogo,
+  findVentureLogo,
+  FACULTY_POOL,
+} from "@/lib/programme-images";
 
 export type Term = {
   n: number;
