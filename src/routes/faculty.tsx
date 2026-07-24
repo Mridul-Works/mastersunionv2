@@ -9,6 +9,14 @@ import garimaAsset from "@/assets/faculty/garima.png.asset.json";
 import daveLewisAsset from "@/assets/faculty/dave-lewis.png.asset.json";
 import raghuAsset from "@/assets/faculty/raghu-raman.png.asset.json";
 import nitinAsset from "@/assets/faculty/nitin-gaur.png.asset.json";
+import havishAsset from "@/assets/faculty/havish-madhvapaty.png.asset.json";
+import ekhlaqueAsset from "@/assets/faculty/ekhlaque-bari.png.asset.json";
+import sumitAsset from "@/assets/faculty/sumit-shukla.png.asset.json";
+import adityaAsset from "@/assets/faculty/aditya-turalapati.png.asset.json";
+import divijAsset from "@/assets/faculty/divij-bajaj.png.asset.json";
+import parikshitAsset from "@/assets/faculty/parikshit-khanna.png.asset.json";
+import karmanyaAsset from "@/assets/faculty/karmanya-suri.png.asset.json";
+import gauravAAsset from "@/assets/faculty/gaurav-arora.png.asset.json";
 // Visiting faculty portraits (new set)
 import vfKaushal from "@/assets/faculty/visiting/kaushal-bhagat.png.asset.json";
 import vfUtkarsh from "@/assets/faculty/visiting/utkarsh-majmudar.png.asset.json";
