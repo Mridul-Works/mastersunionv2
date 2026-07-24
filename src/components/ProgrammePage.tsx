@@ -407,19 +407,32 @@ function VenturesSection({ ventures }: { ventures: Venture[] }) {
         </div>
 
         <div className="grid gap-px bg-black/10 md:grid-cols-3">
-          {ventures.map((v, i) => (
-            <article key={i} className="bg-white p-7">
-              <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/40">
-                {String(i + 1).padStart(2, "0")} · {v.founder}
-              </div>
-              <h3 className="mt-3 font-display text-xl leading-snug tracking-tight text-foreground">
-                {v.startup}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-foreground/65">
-                {v.description}
-              </p>
-            </article>
-          ))}
+          {ventures.map((v, i) => {
+            const logo = findVentureLogo(v.startup);
+            return (
+              <article key={i} className="flex flex-col bg-white p-7">
+                <div className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/40">
+                  {String(i + 1).padStart(2, "0")} · {v.founder}
+                </div>
+                <div className="mt-4 flex items-center gap-3">
+                  {logo ? (
+                    <img
+                      src={logo}
+                      alt={v.startup}
+                      className="h-8 max-w-[120px] object-contain"
+                      loading="lazy"
+                    />
+                  ) : null}
+                  <h3 className="font-display text-xl leading-snug tracking-tight text-foreground">
+                    {v.startup}
+                  </h3>
+                </div>
+                <p className="mt-3 text-sm leading-relaxed text-foreground/65">
+                  {v.description}
+                </p>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
