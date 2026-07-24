@@ -24,6 +24,7 @@ import { Route as CampusRouteImport } from './routes/campus'
 import { Route as Applications_centerRouteImport } from './routes/applications_center'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProgrammesPgpTbmRouteImport } from './routes/programmes.pgp-tbm'
+import { Route as ProgrammesHrAndOrganisationStrategyRouteImport } from './routes/programmes.hr-and-organisation-strategy'
 
 const StartupsRoute = StartupsRouteImport.update({
   id: '/startups',
@@ -100,6 +101,12 @@ const ProgrammesPgpTbmRoute = ProgrammesPgpTbmRouteImport.update({
   path: '/programmes/pgp-tbm',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProgrammesHrAndOrganisationStrategyRoute =
+  ProgrammesHrAndOrganisationStrategyRouteImport.update({
+    id: '/programmes/hr-and-organisation-strategy',
+    path: '/programmes/hr-and-organisation-strategy',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -116,6 +123,7 @@ export interface FileRoutesByFullPath {
   '/mu-ventures': typeof MuVenturesRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
+  '/programmes/hr-and-organisation-strategy': typeof ProgrammesHrAndOrganisationStrategyRoute
   '/programmes/pgp-tbm': typeof ProgrammesPgpTbmRoute
 }
 export interface FileRoutesByTo {
@@ -133,6 +141,7 @@ export interface FileRoutesByTo {
   '/mu-ventures': typeof MuVenturesRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
+  '/programmes/hr-and-organisation-strategy': typeof ProgrammesHrAndOrganisationStrategyRoute
   '/programmes/pgp-tbm': typeof ProgrammesPgpTbmRoute
 }
 export interface FileRoutesById {
@@ -151,6 +160,7 @@ export interface FileRoutesById {
   '/mu-ventures': typeof MuVenturesRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
+  '/programmes/hr-and-organisation-strategy': typeof ProgrammesHrAndOrganisationStrategyRoute
   '/programmes/pgp-tbm': typeof ProgrammesPgpTbmRoute
 }
 export interface FileRouteTypes {
@@ -170,6 +180,7 @@ export interface FileRouteTypes {
     | '/mu-ventures'
     | '/placements'
     | '/startups'
+    | '/programmes/hr-and-organisation-strategy'
     | '/programmes/pgp-tbm'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -187,6 +198,7 @@ export interface FileRouteTypes {
     | '/mu-ventures'
     | '/placements'
     | '/startups'
+    | '/programmes/hr-and-organisation-strategy'
     | '/programmes/pgp-tbm'
   id:
     | '__root__'
@@ -204,6 +216,7 @@ export interface FileRouteTypes {
     | '/mu-ventures'
     | '/placements'
     | '/startups'
+    | '/programmes/hr-and-organisation-strategy'
     | '/programmes/pgp-tbm'
   fileRoutesById: FileRoutesById
 }
@@ -222,6 +235,7 @@ export interface RootRouteChildren {
   MuVenturesRoute: typeof MuVenturesRoute
   PlacementsRoute: typeof PlacementsRoute
   StartupsRoute: typeof StartupsRoute
+  ProgrammesHrAndOrganisationStrategyRoute: typeof ProgrammesHrAndOrganisationStrategyRoute
   ProgrammesPgpTbmRoute: typeof ProgrammesPgpTbmRoute
 }
 
@@ -332,6 +346,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgrammesPgpTbmRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/programmes/hr-and-organisation-strategy': {
+      id: '/programmes/hr-and-organisation-strategy'
+      path: '/programmes/hr-and-organisation-strategy'
+      fullPath: '/programmes/hr-and-organisation-strategy'
+      preLoaderRoute: typeof ProgrammesHrAndOrganisationStrategyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -350,6 +371,8 @@ const rootRouteChildren: RootRouteChildren = {
   MuVenturesRoute: MuVenturesRoute,
   PlacementsRoute: PlacementsRoute,
   StartupsRoute: StartupsRoute,
+  ProgrammesHrAndOrganisationStrategyRoute:
+    ProgrammesHrAndOrganisationStrategyRoute,
   ProgrammesPgpTbmRoute: ProgrammesPgpTbmRoute,
 }
 export const routeTree = rootRouteImport
