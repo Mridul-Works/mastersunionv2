@@ -1205,7 +1205,7 @@ function AlumniShowcase() {
     const cards = Array.from(rail.querySelectorAll<HTMLElement>("[data-alum-card]"));
     let best = 0;
     let bestDist = Infinity;
-    cards.forEach((c, i) => {
+    cards.forEach((c: HTMLElement, i: number) => {
       const d = Math.abs(c.offsetLeft - rail.offsetLeft - rail.scrollLeft);
       if (d < bestDist) { bestDist = d; best = i; }
     });
