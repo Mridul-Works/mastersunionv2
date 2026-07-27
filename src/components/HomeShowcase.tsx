@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type SyntheticEvent } from "react";
 import { ArrowUpRight, Quote } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import founderPhoto from "@/assets/founder-pratham-cutout.webp";
+import waveFlowBg from "@/assets/wave-flow-bg.png.asset.json";
 
 // Faculty
 import bhupesh from "@/assets/faculty/bhupesh.png.asset.json";
@@ -938,8 +939,14 @@ const SHARK_TANK_PITCHES: Array<{
 
 function SharkTankLogoBar() {
   return (
-    <div className="relative overflow-hidden rounded-none border border-black/10 pastel-gradient-rich text-black">
+    <div className="relative overflow-hidden rounded-none border border-black/10 bg-white text-black">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${waveFlowBg.url})` }}
+      />
       <div className="relative flex flex-col gap-6 p-6 md:flex-row md:items-center md:gap-10 md:p-8">
+
         <div className="shrink-0 md:max-w-[280px]">
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-black/55">
             Featured on
