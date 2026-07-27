@@ -29,6 +29,9 @@ import { Route as ProgrammesPgSportsManagementAndGamingRouteImport } from './rou
 import { Route as ProgrammesPgPgpTbmRouteImport } from './routes/programmes.pg.pgp-tbm'
 import { Route as ProgrammesPgHrAndOrganisationStrategyRouteImport } from './routes/programmes.pg.hr-and-organisation-strategy'
 import { Route as ProgrammesPgAppliedAiAndAgenticSystemsRouteImport } from './routes/programmes.pg.applied-ai-and-agentic-systems'
+import { Route as ProgrammesImmersionsPgpTbmSummerSchoolRouteImport } from './routes/programmes.immersions.pgp-tbm-summer-school'
+import { Route as ProgrammesImmersionsPgpBharatRouteImport } from './routes/programmes.immersions.pgp-bharat'
+import { Route as ProgrammesImmersionsBharatSummerFellowshipRouteImport } from './routes/programmes.immersions.bharat-summer-fellowship'
 import { Route as ProgrammesExecutivePgpRiseGeneralManagementGlobalRouteImport } from './routes/programmes.executive.pgp-rise-general-management-global'
 import { Route as ProgrammesExecutivePgpRiseGeneralManagementRouteImport } from './routes/programmes.executive.pgp-rise-general-management'
 import { Route as ProgrammesExecutiveEntrepreneurshipAndBusinessAccelerationRouteImport } from './routes/programmes.executive.entrepreneurship-and-business-acceleration'
@@ -141,6 +144,24 @@ const ProgrammesPgAppliedAiAndAgenticSystemsRoute =
     path: '/programmes/pg/applied-ai-and-agentic-systems',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ProgrammesImmersionsPgpTbmSummerSchoolRoute =
+  ProgrammesImmersionsPgpTbmSummerSchoolRouteImport.update({
+    id: '/programmes/immersions/pgp-tbm-summer-school',
+    path: '/programmes/immersions/pgp-tbm-summer-school',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ProgrammesImmersionsPgpBharatRoute =
+  ProgrammesImmersionsPgpBharatRouteImport.update({
+    id: '/programmes/immersions/pgp-bharat',
+    path: '/programmes/immersions/pgp-bharat',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ProgrammesImmersionsBharatSummerFellowshipRoute =
+  ProgrammesImmersionsBharatSummerFellowshipRouteImport.update({
+    id: '/programmes/immersions/bharat-summer-fellowship',
+    path: '/programmes/immersions/bharat-summer-fellowship',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ProgrammesExecutivePgpRiseGeneralManagementGlobalRoute =
   ProgrammesExecutivePgpRiseGeneralManagementGlobalRouteImport.update({
     id: '/programmes/executive/pgp-rise-general-management-global',
@@ -199,6 +220,9 @@ export interface FileRoutesByFullPath {
   '/programmes/executive/entrepreneurship-and-business-acceleration': typeof ProgrammesExecutiveEntrepreneurshipAndBusinessAccelerationRoute
   '/programmes/executive/pgp-rise-general-management': typeof ProgrammesExecutivePgpRiseGeneralManagementRoute
   '/programmes/executive/pgp-rise-general-management-global': typeof ProgrammesExecutivePgpRiseGeneralManagementGlobalRoute
+  '/programmes/immersions/bharat-summer-fellowship': typeof ProgrammesImmersionsBharatSummerFellowshipRoute
+  '/programmes/immersions/pgp-bharat': typeof ProgrammesImmersionsPgpBharatRoute
+  '/programmes/immersions/pgp-tbm-summer-school': typeof ProgrammesImmersionsPgpTbmSummerSchoolRoute
   '/programmes/pg/applied-ai-and-agentic-systems': typeof ProgrammesPgAppliedAiAndAgenticSystemsRoute
   '/programmes/pg/hr-and-organisation-strategy': typeof ProgrammesPgHrAndOrganisationStrategyRoute
   '/programmes/pg/pgp-tbm': typeof ProgrammesPgPgpTbmRoute
@@ -227,6 +251,9 @@ export interface FileRoutesByTo {
   '/programmes/executive/entrepreneurship-and-business-acceleration': typeof ProgrammesExecutiveEntrepreneurshipAndBusinessAccelerationRoute
   '/programmes/executive/pgp-rise-general-management': typeof ProgrammesExecutivePgpRiseGeneralManagementRoute
   '/programmes/executive/pgp-rise-general-management-global': typeof ProgrammesExecutivePgpRiseGeneralManagementGlobalRoute
+  '/programmes/immersions/bharat-summer-fellowship': typeof ProgrammesImmersionsBharatSummerFellowshipRoute
+  '/programmes/immersions/pgp-bharat': typeof ProgrammesImmersionsPgpBharatRoute
+  '/programmes/immersions/pgp-tbm-summer-school': typeof ProgrammesImmersionsPgpTbmSummerSchoolRoute
   '/programmes/pg/applied-ai-and-agentic-systems': typeof ProgrammesPgAppliedAiAndAgenticSystemsRoute
   '/programmes/pg/hr-and-organisation-strategy': typeof ProgrammesPgHrAndOrganisationStrategyRoute
   '/programmes/pg/pgp-tbm': typeof ProgrammesPgPgpTbmRoute
@@ -256,6 +283,9 @@ export interface FileRoutesById {
   '/programmes/executive/entrepreneurship-and-business-acceleration': typeof ProgrammesExecutiveEntrepreneurshipAndBusinessAccelerationRoute
   '/programmes/executive/pgp-rise-general-management': typeof ProgrammesExecutivePgpRiseGeneralManagementRoute
   '/programmes/executive/pgp-rise-general-management-global': typeof ProgrammesExecutivePgpRiseGeneralManagementGlobalRoute
+  '/programmes/immersions/bharat-summer-fellowship': typeof ProgrammesImmersionsBharatSummerFellowshipRoute
+  '/programmes/immersions/pgp-bharat': typeof ProgrammesImmersionsPgpBharatRoute
+  '/programmes/immersions/pgp-tbm-summer-school': typeof ProgrammesImmersionsPgpTbmSummerSchoolRoute
   '/programmes/pg/applied-ai-and-agentic-systems': typeof ProgrammesPgAppliedAiAndAgenticSystemsRoute
   '/programmes/pg/hr-and-organisation-strategy': typeof ProgrammesPgHrAndOrganisationStrategyRoute
   '/programmes/pg/pgp-tbm': typeof ProgrammesPgPgpTbmRoute
@@ -286,6 +316,9 @@ export interface FileRouteTypes {
     | '/programmes/executive/entrepreneurship-and-business-acceleration'
     | '/programmes/executive/pgp-rise-general-management'
     | '/programmes/executive/pgp-rise-general-management-global'
+    | '/programmes/immersions/bharat-summer-fellowship'
+    | '/programmes/immersions/pgp-bharat'
+    | '/programmes/immersions/pgp-tbm-summer-school'
     | '/programmes/pg/applied-ai-and-agentic-systems'
     | '/programmes/pg/hr-and-organisation-strategy'
     | '/programmes/pg/pgp-tbm'
@@ -314,6 +347,9 @@ export interface FileRouteTypes {
     | '/programmes/executive/entrepreneurship-and-business-acceleration'
     | '/programmes/executive/pgp-rise-general-management'
     | '/programmes/executive/pgp-rise-general-management-global'
+    | '/programmes/immersions/bharat-summer-fellowship'
+    | '/programmes/immersions/pgp-bharat'
+    | '/programmes/immersions/pgp-tbm-summer-school'
     | '/programmes/pg/applied-ai-and-agentic-systems'
     | '/programmes/pg/hr-and-organisation-strategy'
     | '/programmes/pg/pgp-tbm'
@@ -342,6 +378,9 @@ export interface FileRouteTypes {
     | '/programmes/executive/entrepreneurship-and-business-acceleration'
     | '/programmes/executive/pgp-rise-general-management'
     | '/programmes/executive/pgp-rise-general-management-global'
+    | '/programmes/immersions/bharat-summer-fellowship'
+    | '/programmes/immersions/pgp-bharat'
+    | '/programmes/immersions/pgp-tbm-summer-school'
     | '/programmes/pg/applied-ai-and-agentic-systems'
     | '/programmes/pg/hr-and-organisation-strategy'
     | '/programmes/pg/pgp-tbm'
@@ -371,6 +410,9 @@ export interface RootRouteChildren {
   ProgrammesExecutiveEntrepreneurshipAndBusinessAccelerationRoute: typeof ProgrammesExecutiveEntrepreneurshipAndBusinessAccelerationRoute
   ProgrammesExecutivePgpRiseGeneralManagementRoute: typeof ProgrammesExecutivePgpRiseGeneralManagementRoute
   ProgrammesExecutivePgpRiseGeneralManagementGlobalRoute: typeof ProgrammesExecutivePgpRiseGeneralManagementGlobalRoute
+  ProgrammesImmersionsBharatSummerFellowshipRoute: typeof ProgrammesImmersionsBharatSummerFellowshipRoute
+  ProgrammesImmersionsPgpBharatRoute: typeof ProgrammesImmersionsPgpBharatRoute
+  ProgrammesImmersionsPgpTbmSummerSchoolRoute: typeof ProgrammesImmersionsPgpTbmSummerSchoolRoute
   ProgrammesPgAppliedAiAndAgenticSystemsRoute: typeof ProgrammesPgAppliedAiAndAgenticSystemsRoute
   ProgrammesPgHrAndOrganisationStrategyRoute: typeof ProgrammesPgHrAndOrganisationStrategyRoute
   ProgrammesPgPgpTbmRoute: typeof ProgrammesPgPgpTbmRoute
@@ -521,6 +563,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgrammesPgAppliedAiAndAgenticSystemsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/programmes/immersions/pgp-tbm-summer-school': {
+      id: '/programmes/immersions/pgp-tbm-summer-school'
+      path: '/programmes/immersions/pgp-tbm-summer-school'
+      fullPath: '/programmes/immersions/pgp-tbm-summer-school'
+      preLoaderRoute: typeof ProgrammesImmersionsPgpTbmSummerSchoolRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/programmes/immersions/pgp-bharat': {
+      id: '/programmes/immersions/pgp-bharat'
+      path: '/programmes/immersions/pgp-bharat'
+      fullPath: '/programmes/immersions/pgp-bharat'
+      preLoaderRoute: typeof ProgrammesImmersionsPgpBharatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/programmes/immersions/bharat-summer-fellowship': {
+      id: '/programmes/immersions/bharat-summer-fellowship'
+      path: '/programmes/immersions/bharat-summer-fellowship'
+      fullPath: '/programmes/immersions/bharat-summer-fellowship'
+      preLoaderRoute: typeof ProgrammesImmersionsBharatSummerFellowshipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/programmes/executive/pgp-rise-general-management-global': {
       id: '/programmes/executive/pgp-rise-general-management-global'
       path: '/programmes/executive/pgp-rise-general-management-global'
@@ -593,6 +656,11 @@ const rootRouteChildren: RootRouteChildren = {
     ProgrammesExecutivePgpRiseGeneralManagementRoute,
   ProgrammesExecutivePgpRiseGeneralManagementGlobalRoute:
     ProgrammesExecutivePgpRiseGeneralManagementGlobalRoute,
+  ProgrammesImmersionsBharatSummerFellowshipRoute:
+    ProgrammesImmersionsBharatSummerFellowshipRoute,
+  ProgrammesImmersionsPgpBharatRoute: ProgrammesImmersionsPgpBharatRoute,
+  ProgrammesImmersionsPgpTbmSummerSchoolRoute:
+    ProgrammesImmersionsPgpTbmSummerSchoolRoute,
   ProgrammesPgAppliedAiAndAgenticSystemsRoute:
     ProgrammesPgAppliedAiAndAgenticSystemsRoute,
   ProgrammesPgHrAndOrganisationStrategyRoute:
@@ -608,13 +676,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
