@@ -29,6 +29,12 @@ import { Route as ProgrammesPgSportsManagementAndGamingRouteImport } from './rou
 import { Route as ProgrammesPgPgpTbmRouteImport } from './routes/programmes.pg.pgp-tbm'
 import { Route as ProgrammesPgHrAndOrganisationStrategyRouteImport } from './routes/programmes.pg.hr-and-organisation-strategy'
 import { Route as ProgrammesPgAppliedAiAndAgenticSystemsRouteImport } from './routes/programmes.pg.applied-ai-and-agentic-systems'
+import { Route as ProgrammesExecutivePgpRiseGeneralManagementGlobalRouteImport } from './routes/programmes.executive.pgp-rise-general-management-global'
+import { Route as ProgrammesExecutivePgpRiseGeneralManagementRouteImport } from './routes/programmes.executive.pgp-rise-general-management'
+import { Route as ProgrammesExecutiveEntrepreneurshipAndBusinessAccelerationRouteImport } from './routes/programmes.executive.entrepreneurship-and-business-acceleration'
+import { Route as ProgrammesExecutiveCapitalMarketsAndTradingRouteImport } from './routes/programmes.executive.capital-markets-and-trading'
+import { Route as ProgrammesExecutiveBloombergEquityResearchRouteImport } from './routes/programmes.executive.bloomberg-equity-research'
+import { Route as ProgrammesExecutiveAiAndGccTransformationRouteImport } from './routes/programmes.executive.ai-and-gcc-transformation'
 
 const StartupsRoute = StartupsRouteImport.update({
   id: '/startups',
@@ -135,6 +141,42 @@ const ProgrammesPgAppliedAiAndAgenticSystemsRoute =
     path: '/programmes/pg/applied-ai-and-agentic-systems',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ProgrammesExecutivePgpRiseGeneralManagementGlobalRoute =
+  ProgrammesExecutivePgpRiseGeneralManagementGlobalRouteImport.update({
+    id: '/programmes/executive/pgp-rise-general-management-global',
+    path: '/programmes/executive/pgp-rise-general-management-global',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ProgrammesExecutivePgpRiseGeneralManagementRoute =
+  ProgrammesExecutivePgpRiseGeneralManagementRouteImport.update({
+    id: '/programmes/executive/pgp-rise-general-management',
+    path: '/programmes/executive/pgp-rise-general-management',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ProgrammesExecutiveEntrepreneurshipAndBusinessAccelerationRoute =
+  ProgrammesExecutiveEntrepreneurshipAndBusinessAccelerationRouteImport.update({
+    id: '/programmes/executive/entrepreneurship-and-business-acceleration',
+    path: '/programmes/executive/entrepreneurship-and-business-acceleration',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ProgrammesExecutiveCapitalMarketsAndTradingRoute =
+  ProgrammesExecutiveCapitalMarketsAndTradingRouteImport.update({
+    id: '/programmes/executive/capital-markets-and-trading',
+    path: '/programmes/executive/capital-markets-and-trading',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ProgrammesExecutiveBloombergEquityResearchRoute =
+  ProgrammesExecutiveBloombergEquityResearchRouteImport.update({
+    id: '/programmes/executive/bloomberg-equity-research',
+    path: '/programmes/executive/bloomberg-equity-research',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ProgrammesExecutiveAiAndGccTransformationRoute =
+  ProgrammesExecutiveAiAndGccTransformationRouteImport.update({
+    id: '/programmes/executive/ai-and-gcc-transformation',
+    path: '/programmes/executive/ai-and-gcc-transformation',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -151,6 +193,12 @@ export interface FileRoutesByFullPath {
   '/mu-ventures': typeof MuVenturesRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
+  '/programmes/executive/ai-and-gcc-transformation': typeof ProgrammesExecutiveAiAndGccTransformationRoute
+  '/programmes/executive/bloomberg-equity-research': typeof ProgrammesExecutiveBloombergEquityResearchRoute
+  '/programmes/executive/capital-markets-and-trading': typeof ProgrammesExecutiveCapitalMarketsAndTradingRoute
+  '/programmes/executive/entrepreneurship-and-business-acceleration': typeof ProgrammesExecutiveEntrepreneurshipAndBusinessAccelerationRoute
+  '/programmes/executive/pgp-rise-general-management': typeof ProgrammesExecutivePgpRiseGeneralManagementRoute
+  '/programmes/executive/pgp-rise-general-management-global': typeof ProgrammesExecutivePgpRiseGeneralManagementGlobalRoute
   '/programmes/pg/applied-ai-and-agentic-systems': typeof ProgrammesPgAppliedAiAndAgenticSystemsRoute
   '/programmes/pg/hr-and-organisation-strategy': typeof ProgrammesPgHrAndOrganisationStrategyRoute
   '/programmes/pg/pgp-tbm': typeof ProgrammesPgPgpTbmRoute
@@ -173,6 +221,12 @@ export interface FileRoutesByTo {
   '/mu-ventures': typeof MuVenturesRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
+  '/programmes/executive/ai-and-gcc-transformation': typeof ProgrammesExecutiveAiAndGccTransformationRoute
+  '/programmes/executive/bloomberg-equity-research': typeof ProgrammesExecutiveBloombergEquityResearchRoute
+  '/programmes/executive/capital-markets-and-trading': typeof ProgrammesExecutiveCapitalMarketsAndTradingRoute
+  '/programmes/executive/entrepreneurship-and-business-acceleration': typeof ProgrammesExecutiveEntrepreneurshipAndBusinessAccelerationRoute
+  '/programmes/executive/pgp-rise-general-management': typeof ProgrammesExecutivePgpRiseGeneralManagementRoute
+  '/programmes/executive/pgp-rise-general-management-global': typeof ProgrammesExecutivePgpRiseGeneralManagementGlobalRoute
   '/programmes/pg/applied-ai-and-agentic-systems': typeof ProgrammesPgAppliedAiAndAgenticSystemsRoute
   '/programmes/pg/hr-and-organisation-strategy': typeof ProgrammesPgHrAndOrganisationStrategyRoute
   '/programmes/pg/pgp-tbm': typeof ProgrammesPgPgpTbmRoute
@@ -196,6 +250,12 @@ export interface FileRoutesById {
   '/mu-ventures': typeof MuVenturesRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
+  '/programmes/executive/ai-and-gcc-transformation': typeof ProgrammesExecutiveAiAndGccTransformationRoute
+  '/programmes/executive/bloomberg-equity-research': typeof ProgrammesExecutiveBloombergEquityResearchRoute
+  '/programmes/executive/capital-markets-and-trading': typeof ProgrammesExecutiveCapitalMarketsAndTradingRoute
+  '/programmes/executive/entrepreneurship-and-business-acceleration': typeof ProgrammesExecutiveEntrepreneurshipAndBusinessAccelerationRoute
+  '/programmes/executive/pgp-rise-general-management': typeof ProgrammesExecutivePgpRiseGeneralManagementRoute
+  '/programmes/executive/pgp-rise-general-management-global': typeof ProgrammesExecutivePgpRiseGeneralManagementGlobalRoute
   '/programmes/pg/applied-ai-and-agentic-systems': typeof ProgrammesPgAppliedAiAndAgenticSystemsRoute
   '/programmes/pg/hr-and-organisation-strategy': typeof ProgrammesPgHrAndOrganisationStrategyRoute
   '/programmes/pg/pgp-tbm': typeof ProgrammesPgPgpTbmRoute
@@ -220,6 +280,12 @@ export interface FileRouteTypes {
     | '/mu-ventures'
     | '/placements'
     | '/startups'
+    | '/programmes/executive/ai-and-gcc-transformation'
+    | '/programmes/executive/bloomberg-equity-research'
+    | '/programmes/executive/capital-markets-and-trading'
+    | '/programmes/executive/entrepreneurship-and-business-acceleration'
+    | '/programmes/executive/pgp-rise-general-management'
+    | '/programmes/executive/pgp-rise-general-management-global'
     | '/programmes/pg/applied-ai-and-agentic-systems'
     | '/programmes/pg/hr-and-organisation-strategy'
     | '/programmes/pg/pgp-tbm'
@@ -242,6 +308,12 @@ export interface FileRouteTypes {
     | '/mu-ventures'
     | '/placements'
     | '/startups'
+    | '/programmes/executive/ai-and-gcc-transformation'
+    | '/programmes/executive/bloomberg-equity-research'
+    | '/programmes/executive/capital-markets-and-trading'
+    | '/programmes/executive/entrepreneurship-and-business-acceleration'
+    | '/programmes/executive/pgp-rise-general-management'
+    | '/programmes/executive/pgp-rise-general-management-global'
     | '/programmes/pg/applied-ai-and-agentic-systems'
     | '/programmes/pg/hr-and-organisation-strategy'
     | '/programmes/pg/pgp-tbm'
@@ -264,6 +336,12 @@ export interface FileRouteTypes {
     | '/mu-ventures'
     | '/placements'
     | '/startups'
+    | '/programmes/executive/ai-and-gcc-transformation'
+    | '/programmes/executive/bloomberg-equity-research'
+    | '/programmes/executive/capital-markets-and-trading'
+    | '/programmes/executive/entrepreneurship-and-business-acceleration'
+    | '/programmes/executive/pgp-rise-general-management'
+    | '/programmes/executive/pgp-rise-general-management-global'
     | '/programmes/pg/applied-ai-and-agentic-systems'
     | '/programmes/pg/hr-and-organisation-strategy'
     | '/programmes/pg/pgp-tbm'
@@ -287,6 +365,12 @@ export interface RootRouteChildren {
   MuVenturesRoute: typeof MuVenturesRoute
   PlacementsRoute: typeof PlacementsRoute
   StartupsRoute: typeof StartupsRoute
+  ProgrammesExecutiveAiAndGccTransformationRoute: typeof ProgrammesExecutiveAiAndGccTransformationRoute
+  ProgrammesExecutiveBloombergEquityResearchRoute: typeof ProgrammesExecutiveBloombergEquityResearchRoute
+  ProgrammesExecutiveCapitalMarketsAndTradingRoute: typeof ProgrammesExecutiveCapitalMarketsAndTradingRoute
+  ProgrammesExecutiveEntrepreneurshipAndBusinessAccelerationRoute: typeof ProgrammesExecutiveEntrepreneurshipAndBusinessAccelerationRoute
+  ProgrammesExecutivePgpRiseGeneralManagementRoute: typeof ProgrammesExecutivePgpRiseGeneralManagementRoute
+  ProgrammesExecutivePgpRiseGeneralManagementGlobalRoute: typeof ProgrammesExecutivePgpRiseGeneralManagementGlobalRoute
   ProgrammesPgAppliedAiAndAgenticSystemsRoute: typeof ProgrammesPgAppliedAiAndAgenticSystemsRoute
   ProgrammesPgHrAndOrganisationStrategyRoute: typeof ProgrammesPgHrAndOrganisationStrategyRoute
   ProgrammesPgPgpTbmRoute: typeof ProgrammesPgPgpTbmRoute
@@ -437,6 +521,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgrammesPgAppliedAiAndAgenticSystemsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/programmes/executive/pgp-rise-general-management-global': {
+      id: '/programmes/executive/pgp-rise-general-management-global'
+      path: '/programmes/executive/pgp-rise-general-management-global'
+      fullPath: '/programmes/executive/pgp-rise-general-management-global'
+      preLoaderRoute: typeof ProgrammesExecutivePgpRiseGeneralManagementGlobalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/programmes/executive/pgp-rise-general-management': {
+      id: '/programmes/executive/pgp-rise-general-management'
+      path: '/programmes/executive/pgp-rise-general-management'
+      fullPath: '/programmes/executive/pgp-rise-general-management'
+      preLoaderRoute: typeof ProgrammesExecutivePgpRiseGeneralManagementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/programmes/executive/entrepreneurship-and-business-acceleration': {
+      id: '/programmes/executive/entrepreneurship-and-business-acceleration'
+      path: '/programmes/executive/entrepreneurship-and-business-acceleration'
+      fullPath: '/programmes/executive/entrepreneurship-and-business-acceleration'
+      preLoaderRoute: typeof ProgrammesExecutiveEntrepreneurshipAndBusinessAccelerationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/programmes/executive/capital-markets-and-trading': {
+      id: '/programmes/executive/capital-markets-and-trading'
+      path: '/programmes/executive/capital-markets-and-trading'
+      fullPath: '/programmes/executive/capital-markets-and-trading'
+      preLoaderRoute: typeof ProgrammesExecutiveCapitalMarketsAndTradingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/programmes/executive/bloomberg-equity-research': {
+      id: '/programmes/executive/bloomberg-equity-research'
+      path: '/programmes/executive/bloomberg-equity-research'
+      fullPath: '/programmes/executive/bloomberg-equity-research'
+      preLoaderRoute: typeof ProgrammesExecutiveBloombergEquityResearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/programmes/executive/ai-and-gcc-transformation': {
+      id: '/programmes/executive/ai-and-gcc-transformation'
+      path: '/programmes/executive/ai-and-gcc-transformation'
+      fullPath: '/programmes/executive/ai-and-gcc-transformation'
+      preLoaderRoute: typeof ProgrammesExecutiveAiAndGccTransformationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -455,6 +581,18 @@ const rootRouteChildren: RootRouteChildren = {
   MuVenturesRoute: MuVenturesRoute,
   PlacementsRoute: PlacementsRoute,
   StartupsRoute: StartupsRoute,
+  ProgrammesExecutiveAiAndGccTransformationRoute:
+    ProgrammesExecutiveAiAndGccTransformationRoute,
+  ProgrammesExecutiveBloombergEquityResearchRoute:
+    ProgrammesExecutiveBloombergEquityResearchRoute,
+  ProgrammesExecutiveCapitalMarketsAndTradingRoute:
+    ProgrammesExecutiveCapitalMarketsAndTradingRoute,
+  ProgrammesExecutiveEntrepreneurshipAndBusinessAccelerationRoute:
+    ProgrammesExecutiveEntrepreneurshipAndBusinessAccelerationRoute,
+  ProgrammesExecutivePgpRiseGeneralManagementRoute:
+    ProgrammesExecutivePgpRiseGeneralManagementRoute,
+  ProgrammesExecutivePgpRiseGeneralManagementGlobalRoute:
+    ProgrammesExecutivePgpRiseGeneralManagementGlobalRoute,
   ProgrammesPgAppliedAiAndAgenticSystemsRoute:
     ProgrammesPgAppliedAiAndAgenticSystemsRoute,
   ProgrammesPgHrAndOrganisationStrategyRoute:
