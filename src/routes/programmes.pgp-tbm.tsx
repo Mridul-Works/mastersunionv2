@@ -1188,6 +1188,31 @@ function AlumniShowcase() {
   const go = (dir: 1 | -1) => setIdx((i) => total === 0 ? 0 : (safeIdx + dir + total) % total);
   const handleIndustry = (v: string) => { setIndustry(v); setIdx(0); };
 
+  const railRef = useRef<HTMLDivElement | null>(null);
+  const scrollTo = (i: number) => {
+    if (total === 0) return;
+    const target = (i + total) % total;
+    const rail = railRef.current;
+    const card = rail?.querySelectorAll<HTMLElement>("[data-alum-card]")[target];
+    if (rail && card) {
+      rail.scrollTo({ left: card.offsetLeft - rail.offsetLeft, behavior: "smooth" });
+    }
+    setIdx(target);
+  };
+  const onRailScroll = () => {
+    const rail = railRef.current;
+    if (!rail) return;
+    const cards = Array.from(rail.querySelectorAll<HTMLElement>("[data-alum-card]"));
+    let best = 0;
+    let bestDist = Infinity;
+    cards.forEach((c, i) => {
+      const d = Math.abs(c.offsetLeft - rail.offsetLeft - rail.scrollLeft);
+      if (d < bestDist) { bestDist = d; best = i; }
+    });
+    setIdx(best);
+  };
+
+
 
   const secondary = filtered[nextIdx];
   const tertiaryIdx = total > 0 ? (safeIdx + 2) % total : 0;
