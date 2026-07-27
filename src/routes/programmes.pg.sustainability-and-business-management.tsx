@@ -262,7 +262,7 @@ const data: ProgrammeData = {
   ],
 };
 
-export const Route = createFileRoute("/programmes/sustainability-and-business-management")({
+export const Route = createFileRoute("/programmes/pg/sustainability-and-business-management")({
   head: () => ({
     meta: [
       { title: "PGP in Sustainability & Business Management — Masters' Union" },

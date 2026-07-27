@@ -374,7 +374,7 @@ function AdmissionPathwaysSection() {
 }
 
 
-export const Route = createFileRoute("/programmes/pgp-tbm")({
+export const Route = createFileRoute("/programmes/pg/pgp-tbm")({
   head: () => ({
     meta: [
       { title: "PGP in Technology & Business Management — Masters' Union" },

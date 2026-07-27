@@ -213,7 +213,7 @@ const data: ProgrammeData = {
   ],
 };
 
-export const Route = createFileRoute("/programmes/hr-and-organisation-strategy")({
+export const Route = createFileRoute("/programmes/pg/hr-and-organisation-strategy")({
   head: () => ({
     meta: [
       { title: "PGP in Human Resources & Organisation Strategy — Masters' Union" },
