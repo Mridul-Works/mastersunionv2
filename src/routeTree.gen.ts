@@ -29,6 +29,7 @@ import { Route as ProgrammesPgSportsManagementAndGamingRouteImport } from './rou
 import { Route as ProgrammesPgPgpTbmRouteImport } from './routes/programmes.pg.pgp-tbm'
 import { Route as ProgrammesPgHrAndOrganisationStrategyRouteImport } from './routes/programmes.pg.hr-and-organisation-strategy'
 import { Route as ProgrammesPgAppliedAiAndAgenticSystemsRouteImport } from './routes/programmes.pg.applied-ai-and-agentic-systems'
+import { Route as ProgrammesExecutivePgpRiseGeneralManagementRouteImport } from './routes/programmes.executive.pgp-rise-general-management'
 
 const StartupsRoute = StartupsRouteImport.update({
   id: '/startups',
@@ -135,6 +136,12 @@ const ProgrammesPgAppliedAiAndAgenticSystemsRoute =
     path: '/programmes/pg/applied-ai-and-agentic-systems',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ProgrammesExecutivePgpRiseGeneralManagementRoute =
+  ProgrammesExecutivePgpRiseGeneralManagementRouteImport.update({
+    id: '/programmes/executive/pgp-rise-general-management',
+    path: '/programmes/executive/pgp-rise-general-management',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -151,6 +158,7 @@ export interface FileRoutesByFullPath {
   '/mu-ventures': typeof MuVenturesRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
+  '/programmes/executive/pgp-rise-general-management': typeof ProgrammesExecutivePgpRiseGeneralManagementRoute
   '/programmes/pg/applied-ai-and-agentic-systems': typeof ProgrammesPgAppliedAiAndAgenticSystemsRoute
   '/programmes/pg/hr-and-organisation-strategy': typeof ProgrammesPgHrAndOrganisationStrategyRoute
   '/programmes/pg/pgp-tbm': typeof ProgrammesPgPgpTbmRoute
@@ -173,6 +181,7 @@ export interface FileRoutesByTo {
   '/mu-ventures': typeof MuVenturesRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
+  '/programmes/executive/pgp-rise-general-management': typeof ProgrammesExecutivePgpRiseGeneralManagementRoute
   '/programmes/pg/applied-ai-and-agentic-systems': typeof ProgrammesPgAppliedAiAndAgenticSystemsRoute
   '/programmes/pg/hr-and-organisation-strategy': typeof ProgrammesPgHrAndOrganisationStrategyRoute
   '/programmes/pg/pgp-tbm': typeof ProgrammesPgPgpTbmRoute
@@ -196,6 +205,7 @@ export interface FileRoutesById {
   '/mu-ventures': typeof MuVenturesRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
+  '/programmes/executive/pgp-rise-general-management': typeof ProgrammesExecutivePgpRiseGeneralManagementRoute
   '/programmes/pg/applied-ai-and-agentic-systems': typeof ProgrammesPgAppliedAiAndAgenticSystemsRoute
   '/programmes/pg/hr-and-organisation-strategy': typeof ProgrammesPgHrAndOrganisationStrategyRoute
   '/programmes/pg/pgp-tbm': typeof ProgrammesPgPgpTbmRoute
@@ -220,6 +230,7 @@ export interface FileRouteTypes {
     | '/mu-ventures'
     | '/placements'
     | '/startups'
+    | '/programmes/executive/pgp-rise-general-management'
     | '/programmes/pg/applied-ai-and-agentic-systems'
     | '/programmes/pg/hr-and-organisation-strategy'
     | '/programmes/pg/pgp-tbm'
@@ -242,6 +253,7 @@ export interface FileRouteTypes {
     | '/mu-ventures'
     | '/placements'
     | '/startups'
+    | '/programmes/executive/pgp-rise-general-management'
     | '/programmes/pg/applied-ai-and-agentic-systems'
     | '/programmes/pg/hr-and-organisation-strategy'
     | '/programmes/pg/pgp-tbm'
@@ -264,6 +276,7 @@ export interface FileRouteTypes {
     | '/mu-ventures'
     | '/placements'
     | '/startups'
+    | '/programmes/executive/pgp-rise-general-management'
     | '/programmes/pg/applied-ai-and-agentic-systems'
     | '/programmes/pg/hr-and-organisation-strategy'
     | '/programmes/pg/pgp-tbm'
@@ -287,6 +300,7 @@ export interface RootRouteChildren {
   MuVenturesRoute: typeof MuVenturesRoute
   PlacementsRoute: typeof PlacementsRoute
   StartupsRoute: typeof StartupsRoute
+  ProgrammesExecutivePgpRiseGeneralManagementRoute: typeof ProgrammesExecutivePgpRiseGeneralManagementRoute
   ProgrammesPgAppliedAiAndAgenticSystemsRoute: typeof ProgrammesPgAppliedAiAndAgenticSystemsRoute
   ProgrammesPgHrAndOrganisationStrategyRoute: typeof ProgrammesPgHrAndOrganisationStrategyRoute
   ProgrammesPgPgpTbmRoute: typeof ProgrammesPgPgpTbmRoute
@@ -437,6 +451,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgrammesPgAppliedAiAndAgenticSystemsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/programmes/executive/pgp-rise-general-management': {
+      id: '/programmes/executive/pgp-rise-general-management'
+      path: '/programmes/executive/pgp-rise-general-management'
+      fullPath: '/programmes/executive/pgp-rise-general-management'
+      preLoaderRoute: typeof ProgrammesExecutivePgpRiseGeneralManagementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -455,6 +476,8 @@ const rootRouteChildren: RootRouteChildren = {
   MuVenturesRoute: MuVenturesRoute,
   PlacementsRoute: PlacementsRoute,
   StartupsRoute: StartupsRoute,
+  ProgrammesExecutivePgpRiseGeneralManagementRoute:
+    ProgrammesExecutivePgpRiseGeneralManagementRoute,
   ProgrammesPgAppliedAiAndAgenticSystemsRoute:
     ProgrammesPgAppliedAiAndAgenticSystemsRoute,
   ProgrammesPgHrAndOrganisationStrategyRoute:
@@ -470,13 +493,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
