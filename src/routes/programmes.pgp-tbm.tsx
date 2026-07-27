@@ -1,4 +1,4 @@
-import { useEffect, useState, type SyntheticEvent } from "react";
+import { useEffect, useRef, useState, type SyntheticEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowUpRight,
