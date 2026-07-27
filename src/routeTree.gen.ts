@@ -23,12 +23,12 @@ import { Route as CreatorChallengeRouteImport } from './routes/creator-challenge
 import { Route as CampusRouteImport } from './routes/campus'
 import { Route as Applications_centerRouteImport } from './routes/applications_center'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ProgrammesUiUxAndAiProductDesignRouteImport } from './routes/programmes.ui-ux-and-ai-product-design'
-import { Route as ProgrammesSustainabilityAndBusinessManagementRouteImport } from './routes/programmes.sustainability-and-business-management'
-import { Route as ProgrammesSportsManagementAndGamingRouteImport } from './routes/programmes.sports-management-and-gaming'
-import { Route as ProgrammesPgpTbmRouteImport } from './routes/programmes.pgp-tbm'
-import { Route as ProgrammesHrAndOrganisationStrategyRouteImport } from './routes/programmes.hr-and-organisation-strategy'
-import { Route as ProgrammesAppliedAiAndAgenticSystemsRouteImport } from './routes/programmes.applied-ai-and-agentic-systems'
+import { Route as ProgrammesPgUiUxAndAiProductDesignRouteImport } from './routes/programmes.pg.ui-ux-and-ai-product-design'
+import { Route as ProgrammesPgSustainabilityAndBusinessManagementRouteImport } from './routes/programmes.pg.sustainability-and-business-management'
+import { Route as ProgrammesPgSportsManagementAndGamingRouteImport } from './routes/programmes.pg.sports-management-and-gaming'
+import { Route as ProgrammesPgPgpTbmRouteImport } from './routes/programmes.pg.pgp-tbm'
+import { Route as ProgrammesPgHrAndOrganisationStrategyRouteImport } from './routes/programmes.pg.hr-and-organisation-strategy'
+import { Route as ProgrammesPgAppliedAiAndAgenticSystemsRouteImport } from './routes/programmes.pg.applied-ai-and-agentic-systems'
 
 const StartupsRoute = StartupsRouteImport.update({
   id: '/startups',
@@ -100,39 +100,39 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProgrammesUiUxAndAiProductDesignRoute =
-  ProgrammesUiUxAndAiProductDesignRouteImport.update({
-    id: '/programmes/ui-ux-and-ai-product-design',
-    path: '/programmes/ui-ux-and-ai-product-design',
+const ProgrammesPgUiUxAndAiProductDesignRoute =
+  ProgrammesPgUiUxAndAiProductDesignRouteImport.update({
+    id: '/programmes/pg/ui-ux-and-ai-product-design',
+    path: '/programmes/pg/ui-ux-and-ai-product-design',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ProgrammesSustainabilityAndBusinessManagementRoute =
-  ProgrammesSustainabilityAndBusinessManagementRouteImport.update({
-    id: '/programmes/sustainability-and-business-management',
-    path: '/programmes/sustainability-and-business-management',
+const ProgrammesPgSustainabilityAndBusinessManagementRoute =
+  ProgrammesPgSustainabilityAndBusinessManagementRouteImport.update({
+    id: '/programmes/pg/sustainability-and-business-management',
+    path: '/programmes/pg/sustainability-and-business-management',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ProgrammesSportsManagementAndGamingRoute =
-  ProgrammesSportsManagementAndGamingRouteImport.update({
-    id: '/programmes/sports-management-and-gaming',
-    path: '/programmes/sports-management-and-gaming',
+const ProgrammesPgSportsManagementAndGamingRoute =
+  ProgrammesPgSportsManagementAndGamingRouteImport.update({
+    id: '/programmes/pg/sports-management-and-gaming',
+    path: '/programmes/pg/sports-management-and-gaming',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ProgrammesPgpTbmRoute = ProgrammesPgpTbmRouteImport.update({
-  id: '/programmes/pgp-tbm',
-  path: '/programmes/pgp-tbm',
+const ProgrammesPgPgpTbmRoute = ProgrammesPgPgpTbmRouteImport.update({
+  id: '/programmes/pg/pgp-tbm',
+  path: '/programmes/pg/pgp-tbm',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProgrammesHrAndOrganisationStrategyRoute =
-  ProgrammesHrAndOrganisationStrategyRouteImport.update({
-    id: '/programmes/hr-and-organisation-strategy',
-    path: '/programmes/hr-and-organisation-strategy',
+const ProgrammesPgHrAndOrganisationStrategyRoute =
+  ProgrammesPgHrAndOrganisationStrategyRouteImport.update({
+    id: '/programmes/pg/hr-and-organisation-strategy',
+    path: '/programmes/pg/hr-and-organisation-strategy',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ProgrammesAppliedAiAndAgenticSystemsRoute =
-  ProgrammesAppliedAiAndAgenticSystemsRouteImport.update({
-    id: '/programmes/applied-ai-and-agentic-systems',
-    path: '/programmes/applied-ai-and-agentic-systems',
+const ProgrammesPgAppliedAiAndAgenticSystemsRoute =
+  ProgrammesPgAppliedAiAndAgenticSystemsRouteImport.update({
+    id: '/programmes/pg/applied-ai-and-agentic-systems',
+    path: '/programmes/pg/applied-ai-and-agentic-systems',
     getParentRoute: () => rootRouteImport,
   } as any)
 
@@ -151,12 +151,12 @@ export interface FileRoutesByFullPath {
   '/mu-ventures': typeof MuVenturesRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
-  '/programmes/applied-ai-and-agentic-systems': typeof ProgrammesAppliedAiAndAgenticSystemsRoute
-  '/programmes/hr-and-organisation-strategy': typeof ProgrammesHrAndOrganisationStrategyRoute
-  '/programmes/pgp-tbm': typeof ProgrammesPgpTbmRoute
-  '/programmes/sports-management-and-gaming': typeof ProgrammesSportsManagementAndGamingRoute
-  '/programmes/sustainability-and-business-management': typeof ProgrammesSustainabilityAndBusinessManagementRoute
-  '/programmes/ui-ux-and-ai-product-design': typeof ProgrammesUiUxAndAiProductDesignRoute
+  '/programmes/pg/applied-ai-and-agentic-systems': typeof ProgrammesPgAppliedAiAndAgenticSystemsRoute
+  '/programmes/pg/hr-and-organisation-strategy': typeof ProgrammesPgHrAndOrganisationStrategyRoute
+  '/programmes/pg/pgp-tbm': typeof ProgrammesPgPgpTbmRoute
+  '/programmes/pg/sports-management-and-gaming': typeof ProgrammesPgSportsManagementAndGamingRoute
+  '/programmes/pg/sustainability-and-business-management': typeof ProgrammesPgSustainabilityAndBusinessManagementRoute
+  '/programmes/pg/ui-ux-and-ai-product-design': typeof ProgrammesPgUiUxAndAiProductDesignRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -173,12 +173,12 @@ export interface FileRoutesByTo {
   '/mu-ventures': typeof MuVenturesRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
-  '/programmes/applied-ai-and-agentic-systems': typeof ProgrammesAppliedAiAndAgenticSystemsRoute
-  '/programmes/hr-and-organisation-strategy': typeof ProgrammesHrAndOrganisationStrategyRoute
-  '/programmes/pgp-tbm': typeof ProgrammesPgpTbmRoute
-  '/programmes/sports-management-and-gaming': typeof ProgrammesSportsManagementAndGamingRoute
-  '/programmes/sustainability-and-business-management': typeof ProgrammesSustainabilityAndBusinessManagementRoute
-  '/programmes/ui-ux-and-ai-product-design': typeof ProgrammesUiUxAndAiProductDesignRoute
+  '/programmes/pg/applied-ai-and-agentic-systems': typeof ProgrammesPgAppliedAiAndAgenticSystemsRoute
+  '/programmes/pg/hr-and-organisation-strategy': typeof ProgrammesPgHrAndOrganisationStrategyRoute
+  '/programmes/pg/pgp-tbm': typeof ProgrammesPgPgpTbmRoute
+  '/programmes/pg/sports-management-and-gaming': typeof ProgrammesPgSportsManagementAndGamingRoute
+  '/programmes/pg/sustainability-and-business-management': typeof ProgrammesPgSustainabilityAndBusinessManagementRoute
+  '/programmes/pg/ui-ux-and-ai-product-design': typeof ProgrammesPgUiUxAndAiProductDesignRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -196,12 +196,12 @@ export interface FileRoutesById {
   '/mu-ventures': typeof MuVenturesRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
-  '/programmes/applied-ai-and-agentic-systems': typeof ProgrammesAppliedAiAndAgenticSystemsRoute
-  '/programmes/hr-and-organisation-strategy': typeof ProgrammesHrAndOrganisationStrategyRoute
-  '/programmes/pgp-tbm': typeof ProgrammesPgpTbmRoute
-  '/programmes/sports-management-and-gaming': typeof ProgrammesSportsManagementAndGamingRoute
-  '/programmes/sustainability-and-business-management': typeof ProgrammesSustainabilityAndBusinessManagementRoute
-  '/programmes/ui-ux-and-ai-product-design': typeof ProgrammesUiUxAndAiProductDesignRoute
+  '/programmes/pg/applied-ai-and-agentic-systems': typeof ProgrammesPgAppliedAiAndAgenticSystemsRoute
+  '/programmes/pg/hr-and-organisation-strategy': typeof ProgrammesPgHrAndOrganisationStrategyRoute
+  '/programmes/pg/pgp-tbm': typeof ProgrammesPgPgpTbmRoute
+  '/programmes/pg/sports-management-and-gaming': typeof ProgrammesPgSportsManagementAndGamingRoute
+  '/programmes/pg/sustainability-and-business-management': typeof ProgrammesPgSustainabilityAndBusinessManagementRoute
+  '/programmes/pg/ui-ux-and-ai-product-design': typeof ProgrammesPgUiUxAndAiProductDesignRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -220,12 +220,12 @@ export interface FileRouteTypes {
     | '/mu-ventures'
     | '/placements'
     | '/startups'
-    | '/programmes/applied-ai-and-agentic-systems'
-    | '/programmes/hr-and-organisation-strategy'
-    | '/programmes/pgp-tbm'
-    | '/programmes/sports-management-and-gaming'
-    | '/programmes/sustainability-and-business-management'
-    | '/programmes/ui-ux-and-ai-product-design'
+    | '/programmes/pg/applied-ai-and-agentic-systems'
+    | '/programmes/pg/hr-and-organisation-strategy'
+    | '/programmes/pg/pgp-tbm'
+    | '/programmes/pg/sports-management-and-gaming'
+    | '/programmes/pg/sustainability-and-business-management'
+    | '/programmes/pg/ui-ux-and-ai-product-design'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -242,12 +242,12 @@ export interface FileRouteTypes {
     | '/mu-ventures'
     | '/placements'
     | '/startups'
-    | '/programmes/applied-ai-and-agentic-systems'
-    | '/programmes/hr-and-organisation-strategy'
-    | '/programmes/pgp-tbm'
-    | '/programmes/sports-management-and-gaming'
-    | '/programmes/sustainability-and-business-management'
-    | '/programmes/ui-ux-and-ai-product-design'
+    | '/programmes/pg/applied-ai-and-agentic-systems'
+    | '/programmes/pg/hr-and-organisation-strategy'
+    | '/programmes/pg/pgp-tbm'
+    | '/programmes/pg/sports-management-and-gaming'
+    | '/programmes/pg/sustainability-and-business-management'
+    | '/programmes/pg/ui-ux-and-ai-product-design'
   id:
     | '__root__'
     | '/'
@@ -264,12 +264,12 @@ export interface FileRouteTypes {
     | '/mu-ventures'
     | '/placements'
     | '/startups'
-    | '/programmes/applied-ai-and-agentic-systems'
-    | '/programmes/hr-and-organisation-strategy'
-    | '/programmes/pgp-tbm'
-    | '/programmes/sports-management-and-gaming'
-    | '/programmes/sustainability-and-business-management'
-    | '/programmes/ui-ux-and-ai-product-design'
+    | '/programmes/pg/applied-ai-and-agentic-systems'
+    | '/programmes/pg/hr-and-organisation-strategy'
+    | '/programmes/pg/pgp-tbm'
+    | '/programmes/pg/sports-management-and-gaming'
+    | '/programmes/pg/sustainability-and-business-management'
+    | '/programmes/pg/ui-ux-and-ai-product-design'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -287,12 +287,12 @@ export interface RootRouteChildren {
   MuVenturesRoute: typeof MuVenturesRoute
   PlacementsRoute: typeof PlacementsRoute
   StartupsRoute: typeof StartupsRoute
-  ProgrammesAppliedAiAndAgenticSystemsRoute: typeof ProgrammesAppliedAiAndAgenticSystemsRoute
-  ProgrammesHrAndOrganisationStrategyRoute: typeof ProgrammesHrAndOrganisationStrategyRoute
-  ProgrammesPgpTbmRoute: typeof ProgrammesPgpTbmRoute
-  ProgrammesSportsManagementAndGamingRoute: typeof ProgrammesSportsManagementAndGamingRoute
-  ProgrammesSustainabilityAndBusinessManagementRoute: typeof ProgrammesSustainabilityAndBusinessManagementRoute
-  ProgrammesUiUxAndAiProductDesignRoute: typeof ProgrammesUiUxAndAiProductDesignRoute
+  ProgrammesPgAppliedAiAndAgenticSystemsRoute: typeof ProgrammesPgAppliedAiAndAgenticSystemsRoute
+  ProgrammesPgHrAndOrganisationStrategyRoute: typeof ProgrammesPgHrAndOrganisationStrategyRoute
+  ProgrammesPgPgpTbmRoute: typeof ProgrammesPgPgpTbmRoute
+  ProgrammesPgSportsManagementAndGamingRoute: typeof ProgrammesPgSportsManagementAndGamingRoute
+  ProgrammesPgSustainabilityAndBusinessManagementRoute: typeof ProgrammesPgSustainabilityAndBusinessManagementRoute
+  ProgrammesPgUiUxAndAiProductDesignRoute: typeof ProgrammesPgUiUxAndAiProductDesignRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -395,46 +395,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/programmes/ui-ux-and-ai-product-design': {
-      id: '/programmes/ui-ux-and-ai-product-design'
-      path: '/programmes/ui-ux-and-ai-product-design'
-      fullPath: '/programmes/ui-ux-and-ai-product-design'
-      preLoaderRoute: typeof ProgrammesUiUxAndAiProductDesignRouteImport
+    '/programmes/pg/ui-ux-and-ai-product-design': {
+      id: '/programmes/pg/ui-ux-and-ai-product-design'
+      path: '/programmes/pg/ui-ux-and-ai-product-design'
+      fullPath: '/programmes/pg/ui-ux-and-ai-product-design'
+      preLoaderRoute: typeof ProgrammesPgUiUxAndAiProductDesignRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/programmes/sustainability-and-business-management': {
-      id: '/programmes/sustainability-and-business-management'
-      path: '/programmes/sustainability-and-business-management'
-      fullPath: '/programmes/sustainability-and-business-management'
-      preLoaderRoute: typeof ProgrammesSustainabilityAndBusinessManagementRouteImport
+    '/programmes/pg/sustainability-and-business-management': {
+      id: '/programmes/pg/sustainability-and-business-management'
+      path: '/programmes/pg/sustainability-and-business-management'
+      fullPath: '/programmes/pg/sustainability-and-business-management'
+      preLoaderRoute: typeof ProgrammesPgSustainabilityAndBusinessManagementRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/programmes/sports-management-and-gaming': {
-      id: '/programmes/sports-management-and-gaming'
-      path: '/programmes/sports-management-and-gaming'
-      fullPath: '/programmes/sports-management-and-gaming'
-      preLoaderRoute: typeof ProgrammesSportsManagementAndGamingRouteImport
+    '/programmes/pg/sports-management-and-gaming': {
+      id: '/programmes/pg/sports-management-and-gaming'
+      path: '/programmes/pg/sports-management-and-gaming'
+      fullPath: '/programmes/pg/sports-management-and-gaming'
+      preLoaderRoute: typeof ProgrammesPgSportsManagementAndGamingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/programmes/pgp-tbm': {
-      id: '/programmes/pgp-tbm'
-      path: '/programmes/pgp-tbm'
-      fullPath: '/programmes/pgp-tbm'
-      preLoaderRoute: typeof ProgrammesPgpTbmRouteImport
+    '/programmes/pg/pgp-tbm': {
+      id: '/programmes/pg/pgp-tbm'
+      path: '/programmes/pg/pgp-tbm'
+      fullPath: '/programmes/pg/pgp-tbm'
+      preLoaderRoute: typeof ProgrammesPgPgpTbmRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/programmes/hr-and-organisation-strategy': {
-      id: '/programmes/hr-and-organisation-strategy'
-      path: '/programmes/hr-and-organisation-strategy'
-      fullPath: '/programmes/hr-and-organisation-strategy'
-      preLoaderRoute: typeof ProgrammesHrAndOrganisationStrategyRouteImport
+    '/programmes/pg/hr-and-organisation-strategy': {
+      id: '/programmes/pg/hr-and-organisation-strategy'
+      path: '/programmes/pg/hr-and-organisation-strategy'
+      fullPath: '/programmes/pg/hr-and-organisation-strategy'
+      preLoaderRoute: typeof ProgrammesPgHrAndOrganisationStrategyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/programmes/applied-ai-and-agentic-systems': {
-      id: '/programmes/applied-ai-and-agentic-systems'
-      path: '/programmes/applied-ai-and-agentic-systems'
-      fullPath: '/programmes/applied-ai-and-agentic-systems'
-      preLoaderRoute: typeof ProgrammesAppliedAiAndAgenticSystemsRouteImport
+    '/programmes/pg/applied-ai-and-agentic-systems': {
+      id: '/programmes/pg/applied-ai-and-agentic-systems'
+      path: '/programmes/pg/applied-ai-and-agentic-systems'
+      fullPath: '/programmes/pg/applied-ai-and-agentic-systems'
+      preLoaderRoute: typeof ProgrammesPgAppliedAiAndAgenticSystemsRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -455,17 +455,28 @@ const rootRouteChildren: RootRouteChildren = {
   MuVenturesRoute: MuVenturesRoute,
   PlacementsRoute: PlacementsRoute,
   StartupsRoute: StartupsRoute,
-  ProgrammesAppliedAiAndAgenticSystemsRoute:
-    ProgrammesAppliedAiAndAgenticSystemsRoute,
-  ProgrammesHrAndOrganisationStrategyRoute:
-    ProgrammesHrAndOrganisationStrategyRoute,
-  ProgrammesPgpTbmRoute: ProgrammesPgpTbmRoute,
-  ProgrammesSportsManagementAndGamingRoute:
-    ProgrammesSportsManagementAndGamingRoute,
-  ProgrammesSustainabilityAndBusinessManagementRoute:
-    ProgrammesSustainabilityAndBusinessManagementRoute,
-  ProgrammesUiUxAndAiProductDesignRoute: ProgrammesUiUxAndAiProductDesignRoute,
+  ProgrammesPgAppliedAiAndAgenticSystemsRoute:
+    ProgrammesPgAppliedAiAndAgenticSystemsRoute,
+  ProgrammesPgHrAndOrganisationStrategyRoute:
+    ProgrammesPgHrAndOrganisationStrategyRoute,
+  ProgrammesPgPgpTbmRoute: ProgrammesPgPgpTbmRoute,
+  ProgrammesPgSportsManagementAndGamingRoute:
+    ProgrammesPgSportsManagementAndGamingRoute,
+  ProgrammesPgSustainabilityAndBusinessManagementRoute:
+    ProgrammesPgSustainabilityAndBusinessManagementRoute,
+  ProgrammesPgUiUxAndAiProductDesignRoute:
+    ProgrammesPgUiUxAndAiProductDesignRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
