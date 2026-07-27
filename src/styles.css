@@ -127,14 +127,15 @@
   background: linear-gradient(135deg, var(--pastel-start) 0%, var(--pastel-mid) 40%, var(--pastel-end) 100%);
 }
 
-/* Alternate palette — warm cream, soft sage and muted gold blooms */
+/* Soft pink → violet-blue blur gradient on white */
 @utility pastel-gradient-rich {
   background:
-    radial-gradient(70% 130% at 10% 15%, oklch(0.94 0.055 145 / 0.75) 0%, oklch(0.94 0.055 145 / 0) 60%),
-    radial-gradient(70% 135% at 95% 25%, oklch(0.93 0.065 95 / 0.8) 0%, oklch(0.93 0.065 95 / 0) 65%),
-    radial-gradient(85% 140% at 50% 115%, oklch(0.92 0.05 30 / 0.5) 0%, oklch(0.92 0.05 30 / 0) 66%),
-    linear-gradient(135deg, oklch(0.97 0.025 110) 0%, oklch(0.955 0.04 140) 50%, oklch(0.945 0.05 90) 100%);
+    radial-gradient(55% 120% at 12% 8%, oklch(0.86 0.13 330 / 0.85) 0%, oklch(0.86 0.13 330 / 0) 62%),
+    radial-gradient(60% 120% at 92% 78%, oklch(0.66 0.19 285 / 0.8) 0%, oklch(0.66 0.19 285 / 0) 64%),
+    radial-gradient(70% 130% at 62% 100%, oklch(0.72 0.16 288 / 0.55) 0%, oklch(0.72 0.16 288 / 0) 66%),
+    linear-gradient(120deg, oklch(0.99 0.006 330) 0%, oklch(1 0 0) 45%, oklch(0.98 0.01 290) 100%);
 }
+
 
 
 
