@@ -225,8 +225,10 @@ const PATHWAYS: Pathway[] = [
       { title: "PGP in Human Resources & Organisation Strategy", duration: "16 Mo", format: "On Campus", href: "/programmes/pg/hr-and-organisation-strategy" },
       { title: "PGP in Sports Management & Gaming", duration: "16 Mo", format: "On Campus", href: "/programmes/pg/sports-management-and-gaming" },
       { title: "PGP in Sustainability & Business Management", duration: "16 Mo", format: "On Campus", href: "/programmes/pg/sustainability-and-business-management" },
-      { title: "PGP Bharat", duration: "24 Wks", format: "Travel + Hybrid" },
-      { title: "PGP TBM Summer School", duration: "Summer Intensive", format: "On Campus" },
+      { title: "PGP Bharat", duration: "28 Wks", format: "Travel + Hybrid", href: "/programmes/immersions/pgp-bharat" },
+      { title: "PGP TBM Summer School", duration: "8 Weekends", format: "Offline Weekends", href: "/programmes/immersions/pgp-tbm-summer-school" },
+      { title: "Bharat Summer Fellowship", duration: "6 Wks", format: "Travel Based", href: "/programmes/immersions/bharat-summer-fellowship" },
+
     ],
   },
   {
