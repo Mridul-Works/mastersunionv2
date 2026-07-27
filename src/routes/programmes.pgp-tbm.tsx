@@ -1293,13 +1293,15 @@ function AlumniShowcase() {
                   style={{ width: "min(82vw, 320px)" }}
                 >
                   {/* Portrait */}
-                  <div className="relative aspect-[4/5] w-full overflow-hidden">
+                  <div className="relative aspect-[3/4] w-full overflow-hidden bg-[#EDEAE4]">
                     <img
                       src={a.image}
                       alt={a.name}
                       loading="lazy"
-                      className="h-full w-full object-cover grayscale transition-all duration-700 ease-out group-hover:scale-[1.03] group-hover:grayscale-0"
+                      className="h-full w-full object-cover object-top grayscale transition-all duration-700 ease-out group-hover:scale-[1.03] group-hover:grayscale-0"
                     />
+
+
                     <span className="absolute left-0 top-0 bg-black px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.24em] text-white">
                       {String(i + 1).padStart(2, "0")}
                     </span>
