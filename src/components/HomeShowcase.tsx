@@ -947,23 +947,33 @@ function SharkTankLogoBar() {
       />
       <div className="relative flex flex-col gap-6 p-6 md:flex-row md:items-center md:gap-10 md:p-8">
 
-        <div className="shrink-0 md:max-w-[280px]">
-          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-black/55">
-            Featured on
-          </p>
-          <h4
-            className="mt-2 text-[clamp(1.6rem,3vw,2.25rem)] font-bold uppercase leading-[0.98] tracking-[-0.01em]"
-            style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
-          >
-            <span style={{ color: "#2E8BE6" }}>SHARK</span>{" "}
-            <span style={{ color: "#2E8BE6" }}>TANK</span>{" "}
-            <span style={{ color: "#F2C230" }}>INDIA.</span>
-          </h4>
+        <div className="relative shrink-0 md:max-w-[300px]">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -inset-x-4 -inset-y-3 rounded-lg bg-white/75 backdrop-blur-[2px]"
+          />
+          <div className="relative">
+            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.32em] text-black/75">
+              Featured on
+            </p>
+            <h4
+              className="mt-2 text-[clamp(1.75rem,3.2vw,2.5rem)] font-bold uppercase leading-[0.98] tracking-[-0.01em]"
+              style={{
+                fontFamily: "Arial, Helvetica, sans-serif",
+                textShadow: "0 1px 0 rgba(255,255,255,0.9)",
+              }}
+            >
+              <span style={{ color: "#2E8BE6" }}>SHARK</span>{" "}
+              <span style={{ color: "#2E8BE6" }}>TANK</span>{" "}
+              <span style={{ color: "#F2C230" }}>INDIA.</span>
+            </h4>
 
-          <p className="mt-2 text-[11.5px] leading-relaxed text-black/65">
-            Six student-founded ventures on India's biggest startup stage.
-          </p>
+            <p className="mt-2 text-[12.5px] font-medium leading-relaxed text-black/80">
+              Six student-founded ventures on India's biggest startup stage.
+            </p>
+          </div>
         </div>
+
 
         <div className="grid flex-1 grid-cols-3 items-center gap-x-2 gap-y-5 sm:grid-cols-6 sm:gap-x-4">
           {SHARK_TANK_PITCHES.map((p) => {
