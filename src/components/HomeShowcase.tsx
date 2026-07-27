@@ -965,9 +965,10 @@ function SharkTankLogoBar() {
             className="mt-2 text-[clamp(1.6rem,3vw,2.25rem)] font-bold uppercase leading-[0.98] tracking-[-0.01em]"
             style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
           >
-            <span style={{ color: "#E8F1EC" }}>SHARK</span>{" "}
-            <span style={{ color: "#E8F1EC" }}>TANK</span>{" "}
-            <span style={{ color: "#C9A84C" }}>INDIA.</span>
+            <span style={{ color: "#C9A84C" }}>SHARK</span>{" "}
+            <span style={{ color: "#C9A84C" }}>TANK</span>{" "}
+            <span style={{ color: "#9BC2A9" }}>INDIA.</span>
+
           </h4>
 
 
