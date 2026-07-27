@@ -213,7 +213,7 @@ const data: ProgrammeData = {
   ],
 };
 
-export const Route = createFileRoute("/programmes/sports-management-and-gaming")({
+export const Route = createFileRoute("/programmes/pg/sports-management-and-gaming")({
   head: () => ({
     meta: [
       { title: "PGP in Sports Management & Gaming — Masters' Union" },

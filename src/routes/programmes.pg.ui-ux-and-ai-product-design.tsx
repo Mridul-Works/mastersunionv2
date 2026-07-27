@@ -177,7 +177,7 @@ const data: ProgrammeData = {
   ],
 };
 
-export const Route = createFileRoute("/programmes/ui-ux-and-ai-product-design")({
+export const Route = createFileRoute("/programmes/pg/ui-ux-and-ai-product-design")({
   head: () => ({
     meta: [
       { title: "PGP in UI/UX & AI Product Design — Masters' Union" },

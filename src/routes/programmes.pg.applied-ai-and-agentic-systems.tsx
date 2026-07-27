@@ -207,7 +207,7 @@ const data: ProgrammeData = {
   ],
 };
 
-export const Route = createFileRoute("/programmes/applied-ai-and-agentic-systems")({
+export const Route = createFileRoute("/programmes/pg/applied-ai-and-agentic-systems")({
   head: () => ({
     meta: [
       { title: "PGP in Applied AI & Agentic Systems — Masters' Union" },
