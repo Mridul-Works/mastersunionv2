@@ -30,6 +30,7 @@ import { Route as ProgrammesPgPgpTbmRouteImport } from './routes/programmes.pg.p
 import { Route as ProgrammesPgHrAndOrganisationStrategyRouteImport } from './routes/programmes.pg.hr-and-organisation-strategy'
 import { Route as ProgrammesPgAppliedAiAndAgenticSystemsRouteImport } from './routes/programmes.pg.applied-ai-and-agentic-systems'
 import { Route as ProgrammesExecutivePgpRiseGeneralManagementRouteImport } from './routes/programmes.executive.pgp-rise-general-management'
+import { Route as ProgrammesExecutiveCapitalMarketsAndTradingRouteImport } from './routes/programmes.executive.capital-markets-and-trading'
 
 const StartupsRoute = StartupsRouteImport.update({
   id: '/startups',
@@ -142,6 +143,12 @@ const ProgrammesExecutivePgpRiseGeneralManagementRoute =
     path: '/programmes/executive/pgp-rise-general-management',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ProgrammesExecutiveCapitalMarketsAndTradingRoute =
+  ProgrammesExecutiveCapitalMarketsAndTradingRouteImport.update({
+    id: '/programmes/executive/capital-markets-and-trading',
+    path: '/programmes/executive/capital-markets-and-trading',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -158,6 +165,7 @@ export interface FileRoutesByFullPath {
   '/mu-ventures': typeof MuVenturesRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
+  '/programmes/executive/capital-markets-and-trading': typeof ProgrammesExecutiveCapitalMarketsAndTradingRoute
   '/programmes/executive/pgp-rise-general-management': typeof ProgrammesExecutivePgpRiseGeneralManagementRoute
   '/programmes/pg/applied-ai-and-agentic-systems': typeof ProgrammesPgAppliedAiAndAgenticSystemsRoute
   '/programmes/pg/hr-and-organisation-strategy': typeof ProgrammesPgHrAndOrganisationStrategyRoute
@@ -181,6 +189,7 @@ export interface FileRoutesByTo {
   '/mu-ventures': typeof MuVenturesRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
+  '/programmes/executive/capital-markets-and-trading': typeof ProgrammesExecutiveCapitalMarketsAndTradingRoute
   '/programmes/executive/pgp-rise-general-management': typeof ProgrammesExecutivePgpRiseGeneralManagementRoute
   '/programmes/pg/applied-ai-and-agentic-systems': typeof ProgrammesPgAppliedAiAndAgenticSystemsRoute
   '/programmes/pg/hr-and-organisation-strategy': typeof ProgrammesPgHrAndOrganisationStrategyRoute
@@ -205,6 +214,7 @@ export interface FileRoutesById {
   '/mu-ventures': typeof MuVenturesRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
+  '/programmes/executive/capital-markets-and-trading': typeof ProgrammesExecutiveCapitalMarketsAndTradingRoute
   '/programmes/executive/pgp-rise-general-management': typeof ProgrammesExecutivePgpRiseGeneralManagementRoute
   '/programmes/pg/applied-ai-and-agentic-systems': typeof ProgrammesPgAppliedAiAndAgenticSystemsRoute
   '/programmes/pg/hr-and-organisation-strategy': typeof ProgrammesPgHrAndOrganisationStrategyRoute
@@ -230,6 +240,7 @@ export interface FileRouteTypes {
     | '/mu-ventures'
     | '/placements'
     | '/startups'
+    | '/programmes/executive/capital-markets-and-trading'
     | '/programmes/executive/pgp-rise-general-management'
     | '/programmes/pg/applied-ai-and-agentic-systems'
     | '/programmes/pg/hr-and-organisation-strategy'
@@ -253,6 +264,7 @@ export interface FileRouteTypes {
     | '/mu-ventures'
     | '/placements'
     | '/startups'
+    | '/programmes/executive/capital-markets-and-trading'
     | '/programmes/executive/pgp-rise-general-management'
     | '/programmes/pg/applied-ai-and-agentic-systems'
     | '/programmes/pg/hr-and-organisation-strategy'
@@ -276,6 +288,7 @@ export interface FileRouteTypes {
     | '/mu-ventures'
     | '/placements'
     | '/startups'
+    | '/programmes/executive/capital-markets-and-trading'
     | '/programmes/executive/pgp-rise-general-management'
     | '/programmes/pg/applied-ai-and-agentic-systems'
     | '/programmes/pg/hr-and-organisation-strategy'
@@ -300,6 +313,7 @@ export interface RootRouteChildren {
   MuVenturesRoute: typeof MuVenturesRoute
   PlacementsRoute: typeof PlacementsRoute
   StartupsRoute: typeof StartupsRoute
+  ProgrammesExecutiveCapitalMarketsAndTradingRoute: typeof ProgrammesExecutiveCapitalMarketsAndTradingRoute
   ProgrammesExecutivePgpRiseGeneralManagementRoute: typeof ProgrammesExecutivePgpRiseGeneralManagementRoute
   ProgrammesPgAppliedAiAndAgenticSystemsRoute: typeof ProgrammesPgAppliedAiAndAgenticSystemsRoute
   ProgrammesPgHrAndOrganisationStrategyRoute: typeof ProgrammesPgHrAndOrganisationStrategyRoute
@@ -458,6 +472,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgrammesExecutivePgpRiseGeneralManagementRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/programmes/executive/capital-markets-and-trading': {
+      id: '/programmes/executive/capital-markets-and-trading'
+      path: '/programmes/executive/capital-markets-and-trading'
+      fullPath: '/programmes/executive/capital-markets-and-trading'
+      preLoaderRoute: typeof ProgrammesExecutiveCapitalMarketsAndTradingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -476,6 +497,8 @@ const rootRouteChildren: RootRouteChildren = {
   MuVenturesRoute: MuVenturesRoute,
   PlacementsRoute: PlacementsRoute,
   StartupsRoute: StartupsRoute,
+  ProgrammesExecutiveCapitalMarketsAndTradingRoute:
+    ProgrammesExecutiveCapitalMarketsAndTradingRoute,
   ProgrammesExecutivePgpRiseGeneralManagementRoute:
     ProgrammesExecutivePgpRiseGeneralManagementRoute,
   ProgrammesPgAppliedAiAndAgenticSystemsRoute:
