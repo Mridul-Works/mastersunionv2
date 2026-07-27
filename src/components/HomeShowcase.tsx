@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type SyntheticEvent } from "react";
 import { ArrowUpRight, Quote } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import founderPhoto from "@/assets/founder-pratham-cutout.webp";
+import waveFlowBg from "@/assets/wave-flow-bg.png.asset.json";
 
 // Faculty
 import bhupesh from "@/assets/faculty/bhupesh.png.asset.json";
