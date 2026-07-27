@@ -965,9 +965,10 @@ function SharkTankLogoBar() {
             className="mt-2 text-[clamp(1.6rem,3vw,2.25rem)] font-bold uppercase leading-[0.98] tracking-[-0.01em]"
             style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
           >
-            <span style={{ color: "#E8F1EC" }}>SHARK</span>{" "}
-            <span style={{ color: "#E8F1EC" }}>TANK</span>{" "}
-            <span style={{ color: "#C9A84C" }}>INDIA.</span>
+            <span style={{ color: "#C9A84C" }}>SHARK</span>{" "}
+            <span style={{ color: "#C9A84C" }}>TANK</span>{" "}
+            <span style={{ color: "#9BC2A9" }}>INDIA.</span>
+
           </h4>
 
 
@@ -977,24 +978,29 @@ function SharkTankLogoBar() {
         </div>
 
         <div className="grid flex-1 grid-cols-3 items-center gap-x-2 gap-y-5 sm:grid-cols-6 sm:gap-x-4">
-          {SHARK_TANK_PITCHES.map((p) => (
-            <div
-              key={p.company}
-              className="flex h-12 w-full items-center justify-center"
-              title={p.company}
-            >
-              {p.logo ? (
-                <img
-                  src={p.logo.url}
-                  alt={p.company}
-                  loading="lazy"
-                  className="max-h-9 max-w-full object-contain opacity-90 transition hover:opacity-100 [filter:brightness(0)_invert(1)]"
-                />
-              ) : (
-                <span className="text-[11px] font-semibold text-white/70">{p.company}</span>
-              )}
-            </div>
-          ))}
+          {SHARK_TANK_PITCHES.map((p) => {
+            const isMeta = /meta\s*fashion/i.test(p.company);
+            return (
+              <div
+                key={p.company}
+                className="flex h-12 w-full items-center justify-center"
+                title={p.company}
+              >
+                {p.logo ? (
+                  <img
+                    src={p.logo.url}
+                    alt={p.company}
+                    loading="lazy"
+                    style={{ transform: isMeta ? "scale(0.82)" : undefined }}
+                    className="h-8 w-full object-contain opacity-90 transition hover:opacity-100 [filter:brightness(0)_invert(1)]"
+                  />
+                ) : (
+                  <span className="text-[11px] font-semibold text-white/70">{p.company}</span>
+                )}
+              </div>
+            );
+          })}
+
         </div>
 
       </div>
