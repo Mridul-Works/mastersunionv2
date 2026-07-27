@@ -1252,96 +1252,77 @@ function AlumniShowcase() {
         </div>
       ) : (
         <>
-          {/* Horizontal scrolling card rail */}
+          {/* Editorial filmstrip rail */}
           <div className="relative mt-10 -mx-5 md:-mx-10">
             <div
-              className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-6 md:gap-6 md:px-10"
-              style={{ scrollbarWidth: "thin" }}
+              ref={railRef}
+              onScroll={onRailScroll}
+              className="flex snap-x snap-mandatory gap-px overflow-x-auto border-y border-black/10 bg-black/10 px-5 md:px-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             >
-              {filtered.map((a, i) => {
-                const c = CARD_COLORS[i % CARD_COLORS.length];
-                return (
-                  <article
-                    key={a.name}
-                    className="group relative flex snap-start shrink-0 flex-col justify-between overflow-hidden rounded-none p-7 transition-transform duration-500 hover:-translate-y-1 md:p-9"
-                    style={{
-                      background: c.bg,
-                      color: c.fg,
-                      width: "min(88vw, 380px)",
-                      minHeight: "440px",
-                    }}
-                  >
-                    {/* Top: swatch (photo placeholder) + meta */}
-                    <div className="flex items-start justify-between gap-4">
-                      <div
-                        className="h-24 w-28 shrink-0 overflow-hidden rounded-none"
-                        style={{ background: c.swatch }}
-                      >
-                        <img
-                          src={a.image}
-                          alt={a.name}
-                          loading="lazy"
-                          className="h-full w-full object-cover"
-                        />
-                      </div>
-                      <span
-                        className="font-mono text-[10px] uppercase tracking-[0.24em]"
-                        style={{ color: `${c.fg}B3` }}
-                      >
-                        {a.domain} · {a.batch}
-                      </span>
-                    </div>
+              {filtered.map((a, i) => (
+                <article
+                  key={a.name}
+                  data-alum-card
+                  onMouseEnter={() => setIdx(i)}
+                  className="group relative flex shrink-0 snap-start flex-col bg-[#F7F5F0] transition-colors duration-500 hover:bg-white"
+                  style={{ width: "min(82vw, 320px)" }}
+                >
+                  {/* Portrait */}
+                  <div className="relative aspect-[4/5] w-full overflow-hidden">
+                    <img
+                      src={a.image}
+                      alt={a.name}
+                      loading="lazy"
+                      className="h-full w-full object-cover grayscale transition-all duration-700 ease-out group-hover:scale-[1.03] group-hover:grayscale-0"
+                    />
+                    <span className="absolute left-0 top-0 bg-black px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.24em] text-white">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="absolute bottom-0 right-0 bg-white/90 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-black/70">
+                      {a.domain}
+                    </span>
+                  </div>
 
-                    {/* Middle: big title */}
-                    <div className="mt-6">
-                      <h4
-                        className="font-display text-[28px] font-semibold leading-[1.05] tracking-tight md:text-[32px]"
-                        style={{ color: c.fg }}
-                      >
-                        {a.name}
-                      </h4>
-                      <p
-                        className="mt-2 font-mono text-[11px] uppercase tracking-[0.22em]"
-                        style={{ color: `${c.fg}CC` }}
-                      >
-                        {a.role} · {a.company}
-                      </p>
+                  {/* Details */}
+                  <div className="flex flex-1 flex-col p-5">
+                    <h4 className="font-display text-[21px] font-semibold leading-[1.1] tracking-tight text-black">
+                      {a.name}
+                    </h4>
+                    <p className="mt-1.5 font-mono text-[10.5px] uppercase tracking-[0.2em] text-black/50">
+                      {a.role} · {a.company}
+                    </p>
+                    <div className="my-4 h-px w-full bg-black/10" />
+                    <p className="text-[13px] leading-[1.6] text-black/70">
+                      &ldquo;{a.quote}&rdquo;
+                    </p>
 
-                      <p
-                        className="mt-5 text-[13.5px] leading-[1.55]"
-                        style={{ color: `${c.fg}D9` }}
-                      >
-                        &ldquo;{a.quote}&rdquo;
-                      </p>
-                    </div>
-
-                    {/* Bottom: CTA + icon */}
-                    <div className="mt-6 flex items-end justify-between gap-4">
+                    <div className="mt-auto flex items-center justify-between gap-3 pt-6">
                       <a
                         href={a.linkedin}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-2 border-b pb-1 font-mono text-[12px] font-semibold uppercase tracking-[0.22em] transition-transform hover:-translate-y-0.5"
-                        style={{ color: c.fg, borderColor: `${c.fg}80` }}
+                        className="inline-flex items-center gap-1.5 border-b border-black/25 pb-0.5 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-black transition-colors hover:border-black"
                       >
-                        Connect on LinkedIn
+                        LinkedIn
                       </a>
                       {a.calendly && (
                         <a
                           href={a.calendly}
                           target="_blank"
                           rel="noreferrer"
-                          aria-label="Book a chat"
-                          className="flex size-9 items-center justify-center rounded-none border transition-colors"
-                          style={{ borderColor: `${c.fg}66`, color: c.fg }}
+                          aria-label={`Book a chat with ${a.name}`}
+                          className="flex size-8 items-center justify-center rounded-none border border-black/15 text-black/70 transition-colors hover:border-black hover:bg-black hover:text-white"
                         >
-                          <Calendar className="size-4" />
+                          <Calendar className="size-3.5" />
                         </a>
                       )}
                     </div>
-                  </article>
-                );
-              })}
+                    <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.2em] text-black/35">
+                      {a.batch}
+                    </p>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
 
@@ -1360,7 +1341,7 @@ function AlumniShowcase() {
                 <button
                   key={i}
                   type="button"
-                  onClick={() => setIdx(i)}
+                  onClick={() => scrollTo(i)}
                   aria-label={`Go to alumni ${i + 1}`}
                   className="transition-all duration-500 ease-out"
                   style={{
@@ -1374,7 +1355,7 @@ function AlumniShowcase() {
             <div className="flex gap-2">
               <button
                 type="button"
-                onClick={() => go(-1)}
+                onClick={() => scrollTo(safeIdx - 1)}
                 aria-label="Previous alumni"
                 className="flex h-10 w-10 items-center justify-center rounded-none border border-black/15 text-black transition hover:bg-black hover:text-white"
               >
@@ -1382,7 +1363,7 @@ function AlumniShowcase() {
               </button>
               <button
                 type="button"
-                onClick={() => go(1)}
+                onClick={() => scrollTo(safeIdx + 1)}
                 aria-label="Next alumni"
                 className="flex h-10 w-10 items-center justify-center rounded-none border border-black/15 text-black transition hover:bg-black hover:text-white"
               >
@@ -1392,6 +1373,7 @@ function AlumniShowcase() {
           </div>
         </>
       )}
+
     </div>
   );
 }
