@@ -6,7 +6,7 @@ import mu05 from "@/assets/mu-05.webp";
 import mu06 from "@/assets/mu-06.webp";
 import mu07 from "@/assets/mu-07.webp";
 import mu08 from "@/assets/mu-08.webp";
-import mu09 from "@/assets/mu-09.webp";
+
 import mu10 from "@/assets/mu-10.webp";
 
 export type Chapter = {
@@ -126,7 +126,7 @@ const SECTIONS: Record<string, { pullQuote: string; sections: { heading: string;
     closing: "A normal day here would be a quarter's worth of memories anywhere else.",
   },
   "/placements": {
-    pullQuote: "Not just what you earn on day one. What you earn every year after.",
+    pullQuote: "The offer is the start. The compounding is the story.",
     sections: [
       { heading: "The numbers", body: "₹28.52L average CTC (Co'24). ₹61.98L highest CTC. 3.03× average salary jump from pre-MBA. 148 total recruiters. 28% placed in Founder's Office or Chief of Staff roles. 10 international offers. 37% of offers with early joining bonuses." },
       { heading: "Salary growth, cohort by cohort", body: "Co'21: ₹29.12L → ₹37.18L → ₹39.61L → ₹41.67L. Co'22: ₹33.1L → ₹37.27L → ₹43.29L. Co'23: ₹34.07L → ₹38.23L. Co'24: ₹28.52L. That's 10–20% annual salary growth — among the highest for any MBA in India." },
