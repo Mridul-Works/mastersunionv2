@@ -25,6 +25,7 @@ import { Route as Applications_centerRouteImport } from './routes/applications_c
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProgrammesUndergraduateTechnologyAndBusinessManagementRouteImport } from './routes/programmes.undergraduate.technology-and-business-management'
 import { Route as ProgrammesUndergraduatePsychologyAndMarketingRouteImport } from './routes/programmes.undergraduate.psychology-and-marketing'
+import { Route as ProgrammesUndergraduateFinanceAndEconomicsRouteImport } from './routes/programmes.undergraduate.finance-and-economics'
 import { Route as ProgrammesUndergraduateDataScienceAndArtificialIntelligenceRouteImport } from './routes/programmes.undergraduate.data-science-and-artificial-intelligence'
 import { Route as ProgrammesPgUiUxAndAiProductDesignRouteImport } from './routes/programmes.pg.ui-ux-and-ai-product-design'
 import { Route as ProgrammesPgSustainabilityAndBusinessManagementRouteImport } from './routes/programmes.pg.sustainability-and-business-management'
@@ -122,6 +123,12 @@ const ProgrammesUndergraduatePsychologyAndMarketingRoute =
   ProgrammesUndergraduatePsychologyAndMarketingRouteImport.update({
     id: '/programmes/undergraduate/psychology-and-marketing',
     path: '/programmes/undergraduate/psychology-and-marketing',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ProgrammesUndergraduateFinanceAndEconomicsRoute =
+  ProgrammesUndergraduateFinanceAndEconomicsRouteImport.update({
+    id: '/programmes/undergraduate/finance-and-economics',
+    path: '/programmes/undergraduate/finance-and-economics',
     getParentRoute: () => rootRouteImport,
   } as any)
 const ProgrammesUndergraduateDataScienceAndArtificialIntelligenceRoute =
@@ -253,6 +260,7 @@ export interface FileRoutesByFullPath {
   '/programmes/pg/sustainability-and-business-management': typeof ProgrammesPgSustainabilityAndBusinessManagementRoute
   '/programmes/pg/ui-ux-and-ai-product-design': typeof ProgrammesPgUiUxAndAiProductDesignRoute
   '/programmes/undergraduate/data-science-and-artificial-intelligence': typeof ProgrammesUndergraduateDataScienceAndArtificialIntelligenceRoute
+  '/programmes/undergraduate/finance-and-economics': typeof ProgrammesUndergraduateFinanceAndEconomicsRoute
   '/programmes/undergraduate/psychology-and-marketing': typeof ProgrammesUndergraduatePsychologyAndMarketingRoute
   '/programmes/undergraduate/technology-and-business-management': typeof ProgrammesUndergraduateTechnologyAndBusinessManagementRoute
 }
@@ -287,6 +295,7 @@ export interface FileRoutesByTo {
   '/programmes/pg/sustainability-and-business-management': typeof ProgrammesPgSustainabilityAndBusinessManagementRoute
   '/programmes/pg/ui-ux-and-ai-product-design': typeof ProgrammesPgUiUxAndAiProductDesignRoute
   '/programmes/undergraduate/data-science-and-artificial-intelligence': typeof ProgrammesUndergraduateDataScienceAndArtificialIntelligenceRoute
+  '/programmes/undergraduate/finance-and-economics': typeof ProgrammesUndergraduateFinanceAndEconomicsRoute
   '/programmes/undergraduate/psychology-and-marketing': typeof ProgrammesUndergraduatePsychologyAndMarketingRoute
   '/programmes/undergraduate/technology-and-business-management': typeof ProgrammesUndergraduateTechnologyAndBusinessManagementRoute
 }
@@ -322,6 +331,7 @@ export interface FileRoutesById {
   '/programmes/pg/sustainability-and-business-management': typeof ProgrammesPgSustainabilityAndBusinessManagementRoute
   '/programmes/pg/ui-ux-and-ai-product-design': typeof ProgrammesPgUiUxAndAiProductDesignRoute
   '/programmes/undergraduate/data-science-and-artificial-intelligence': typeof ProgrammesUndergraduateDataScienceAndArtificialIntelligenceRoute
+  '/programmes/undergraduate/finance-and-economics': typeof ProgrammesUndergraduateFinanceAndEconomicsRoute
   '/programmes/undergraduate/psychology-and-marketing': typeof ProgrammesUndergraduatePsychologyAndMarketingRoute
   '/programmes/undergraduate/technology-and-business-management': typeof ProgrammesUndergraduateTechnologyAndBusinessManagementRoute
 }
@@ -358,6 +368,7 @@ export interface FileRouteTypes {
     | '/programmes/pg/sustainability-and-business-management'
     | '/programmes/pg/ui-ux-and-ai-product-design'
     | '/programmes/undergraduate/data-science-and-artificial-intelligence'
+    | '/programmes/undergraduate/finance-and-economics'
     | '/programmes/undergraduate/psychology-and-marketing'
     | '/programmes/undergraduate/technology-and-business-management'
   fileRoutesByTo: FileRoutesByTo
@@ -392,6 +403,7 @@ export interface FileRouteTypes {
     | '/programmes/pg/sustainability-and-business-management'
     | '/programmes/pg/ui-ux-and-ai-product-design'
     | '/programmes/undergraduate/data-science-and-artificial-intelligence'
+    | '/programmes/undergraduate/finance-and-economics'
     | '/programmes/undergraduate/psychology-and-marketing'
     | '/programmes/undergraduate/technology-and-business-management'
   id:
@@ -426,6 +438,7 @@ export interface FileRouteTypes {
     | '/programmes/pg/sustainability-and-business-management'
     | '/programmes/pg/ui-ux-and-ai-product-design'
     | '/programmes/undergraduate/data-science-and-artificial-intelligence'
+    | '/programmes/undergraduate/finance-and-economics'
     | '/programmes/undergraduate/psychology-and-marketing'
     | '/programmes/undergraduate/technology-and-business-management'
   fileRoutesById: FileRoutesById
@@ -461,6 +474,7 @@ export interface RootRouteChildren {
   ProgrammesPgSustainabilityAndBusinessManagementRoute: typeof ProgrammesPgSustainabilityAndBusinessManagementRoute
   ProgrammesPgUiUxAndAiProductDesignRoute: typeof ProgrammesPgUiUxAndAiProductDesignRoute
   ProgrammesUndergraduateDataScienceAndArtificialIntelligenceRoute: typeof ProgrammesUndergraduateDataScienceAndArtificialIntelligenceRoute
+  ProgrammesUndergraduateFinanceAndEconomicsRoute: typeof ProgrammesUndergraduateFinanceAndEconomicsRoute
   ProgrammesUndergraduatePsychologyAndMarketingRoute: typeof ProgrammesUndergraduatePsychologyAndMarketingRoute
   ProgrammesUndergraduateTechnologyAndBusinessManagementRoute: typeof ProgrammesUndergraduateTechnologyAndBusinessManagementRoute
 }
@@ -577,6 +591,13 @@ declare module '@tanstack/react-router' {
       path: '/programmes/undergraduate/psychology-and-marketing'
       fullPath: '/programmes/undergraduate/psychology-and-marketing'
       preLoaderRoute: typeof ProgrammesUndergraduatePsychologyAndMarketingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/programmes/undergraduate/finance-and-economics': {
+      id: '/programmes/undergraduate/finance-and-economics'
+      path: '/programmes/undergraduate/finance-and-economics'
+      fullPath: '/programmes/undergraduate/finance-and-economics'
+      preLoaderRoute: typeof ProgrammesUndergraduateFinanceAndEconomicsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/programmes/undergraduate/data-science-and-artificial-intelligence': {
@@ -739,6 +760,8 @@ const rootRouteChildren: RootRouteChildren = {
     ProgrammesPgUiUxAndAiProductDesignRoute,
   ProgrammesUndergraduateDataScienceAndArtificialIntelligenceRoute:
     ProgrammesUndergraduateDataScienceAndArtificialIntelligenceRoute,
+  ProgrammesUndergraduateFinanceAndEconomicsRoute:
+    ProgrammesUndergraduateFinanceAndEconomicsRoute,
   ProgrammesUndergraduatePsychologyAndMarketingRoute:
     ProgrammesUndergraduatePsychologyAndMarketingRoute,
   ProgrammesUndergraduateTechnologyAndBusinessManagementRoute:
