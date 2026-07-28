@@ -200,10 +200,11 @@ const PATHWAYS: Pathway[] = [
     theme: "linear-gradient(135deg, #e8f0f5 0%, #d6e6e8 35%, #f0e6d8 70%, #e6d5c5 100%)",
     image: pathwaySchool,
     programmes: [
-      { title: "UG in Technology & Business Management", duration: "4 Yrs", format: "On Campus", round: "Round 3", deadline: "2026-10-31T23:59:59", status: "Applications Open", applyHref: "/applications_center" },
-      { title: "UG in Psychology & Marketing", duration: "4 Yrs", format: "On Campus", round: "Round 4", deadline: "2026-11-15T23:59:59", status: "Applications Open", applyHref: "/applications_center" },
-      { title: "UG in Data Science & Artificial Intelligence", duration: "4 Yrs", format: "On Campus", round: "Round 5", deadline: "2026-12-01T23:59:59", status: "Applications Open", applyHref: "/applications_center" },
-      { title: "UG in Finance & Economics (CA/CFA Pathway)", duration: "4 Yrs", format: "On Campus" },
+      { title: "UG in Technology & Business Management", duration: "4 Yrs", format: "On Campus", round: "Round 3", deadline: "2026-10-31T23:59:59", status: "Applications Open", applyHref: "/applications_center", href: "/programmes/undergraduate/technology-and-business-management" },
+      { title: "UG in Psychology & Marketing", duration: "4 Yrs", format: "On Campus", round: "Round 4", deadline: "2026-11-15T23:59:59", status: "Applications Open", applyHref: "/applications_center", href: "/programmes/undergraduate/psychology-and-marketing" },
+      { title: "UG in Data Science & Artificial Intelligence", duration: "4 Yrs", format: "On Campus", round: "Round 5", deadline: "2026-12-01T23:59:59", status: "Applications Open", applyHref: "/applications_center", href: "/programmes/undergraduate/data-science-and-artificial-intelligence" },
+      { title: "UG in Finance & Economics (CA/CFA Pathway)", duration: "4 Yrs", format: "On Campus", href: "/programmes/undergraduate/finance-and-economics" },
+
       { title: "UG Programme in Design (MUDS)", duration: "4 Yrs", format: "On Campus" },
       { title: "UG Global Track — Illinois Tech, US", duration: "3+1 Yrs", format: "Dual Campus" },
       { title: "UG Global Track — Griffith University, Australia", duration: "2+2 Yrs", format: "Dual Campus" },
