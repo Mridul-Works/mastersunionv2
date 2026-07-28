@@ -23,6 +23,7 @@ import { Route as CreatorChallengeRouteImport } from './routes/creator-challenge
 import { Route as CampusRouteImport } from './routes/campus'
 import { Route as Applications_centerRouteImport } from './routes/applications_center'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProgrammesUndergraduateTechnologyAndBusinessManagementRouteImport } from './routes/programmes.undergraduate.technology-and-business-management'
 import { Route as ProgrammesPgUiUxAndAiProductDesignRouteImport } from './routes/programmes.pg.ui-ux-and-ai-product-design'
 import { Route as ProgrammesPgSustainabilityAndBusinessManagementRouteImport } from './routes/programmes.pg.sustainability-and-business-management'
 import { Route as ProgrammesPgSportsManagementAndGamingRouteImport } from './routes/programmes.pg.sports-management-and-gaming'
@@ -109,6 +110,12 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProgrammesUndergraduateTechnologyAndBusinessManagementRoute =
+  ProgrammesUndergraduateTechnologyAndBusinessManagementRouteImport.update({
+    id: '/programmes/undergraduate/technology-and-business-management',
+    path: '/programmes/undergraduate/technology-and-business-management',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ProgrammesPgUiUxAndAiProductDesignRoute =
   ProgrammesPgUiUxAndAiProductDesignRouteImport.update({
     id: '/programmes/pg/ui-ux-and-ai-product-design',
@@ -229,6 +236,7 @@ export interface FileRoutesByFullPath {
   '/programmes/pg/sports-management-and-gaming': typeof ProgrammesPgSportsManagementAndGamingRoute
   '/programmes/pg/sustainability-and-business-management': typeof ProgrammesPgSustainabilityAndBusinessManagementRoute
   '/programmes/pg/ui-ux-and-ai-product-design': typeof ProgrammesPgUiUxAndAiProductDesignRoute
+  '/programmes/undergraduate/technology-and-business-management': typeof ProgrammesUndergraduateTechnologyAndBusinessManagementRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -260,6 +268,7 @@ export interface FileRoutesByTo {
   '/programmes/pg/sports-management-and-gaming': typeof ProgrammesPgSportsManagementAndGamingRoute
   '/programmes/pg/sustainability-and-business-management': typeof ProgrammesPgSustainabilityAndBusinessManagementRoute
   '/programmes/pg/ui-ux-and-ai-product-design': typeof ProgrammesPgUiUxAndAiProductDesignRoute
+  '/programmes/undergraduate/technology-and-business-management': typeof ProgrammesUndergraduateTechnologyAndBusinessManagementRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -292,6 +301,7 @@ export interface FileRoutesById {
   '/programmes/pg/sports-management-and-gaming': typeof ProgrammesPgSportsManagementAndGamingRoute
   '/programmes/pg/sustainability-and-business-management': typeof ProgrammesPgSustainabilityAndBusinessManagementRoute
   '/programmes/pg/ui-ux-and-ai-product-design': typeof ProgrammesPgUiUxAndAiProductDesignRoute
+  '/programmes/undergraduate/technology-and-business-management': typeof ProgrammesUndergraduateTechnologyAndBusinessManagementRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -325,6 +335,7 @@ export interface FileRouteTypes {
     | '/programmes/pg/sports-management-and-gaming'
     | '/programmes/pg/sustainability-and-business-management'
     | '/programmes/pg/ui-ux-and-ai-product-design'
+    | '/programmes/undergraduate/technology-and-business-management'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -356,6 +367,7 @@ export interface FileRouteTypes {
     | '/programmes/pg/sports-management-and-gaming'
     | '/programmes/pg/sustainability-and-business-management'
     | '/programmes/pg/ui-ux-and-ai-product-design'
+    | '/programmes/undergraduate/technology-and-business-management'
   id:
     | '__root__'
     | '/'
@@ -387,6 +399,7 @@ export interface FileRouteTypes {
     | '/programmes/pg/sports-management-and-gaming'
     | '/programmes/pg/sustainability-and-business-management'
     | '/programmes/pg/ui-ux-and-ai-product-design'
+    | '/programmes/undergraduate/technology-and-business-management'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -419,6 +432,7 @@ export interface RootRouteChildren {
   ProgrammesPgSportsManagementAndGamingRoute: typeof ProgrammesPgSportsManagementAndGamingRoute
   ProgrammesPgSustainabilityAndBusinessManagementRoute: typeof ProgrammesPgSustainabilityAndBusinessManagementRoute
   ProgrammesPgUiUxAndAiProductDesignRoute: typeof ProgrammesPgUiUxAndAiProductDesignRoute
+  ProgrammesUndergraduateTechnologyAndBusinessManagementRoute: typeof ProgrammesUndergraduateTechnologyAndBusinessManagementRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -519,6 +533,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/programmes/undergraduate/technology-and-business-management': {
+      id: '/programmes/undergraduate/technology-and-business-management'
+      path: '/programmes/undergraduate/technology-and-business-management'
+      fullPath: '/programmes/undergraduate/technology-and-business-management'
+      preLoaderRoute: typeof ProgrammesUndergraduateTechnologyAndBusinessManagementRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/programmes/pg/ui-ux-and-ai-product-design': {
@@ -672,17 +693,9 @@ const rootRouteChildren: RootRouteChildren = {
     ProgrammesPgSustainabilityAndBusinessManagementRoute,
   ProgrammesPgUiUxAndAiProductDesignRoute:
     ProgrammesPgUiUxAndAiProductDesignRoute,
+  ProgrammesUndergraduateTechnologyAndBusinessManagementRoute:
+    ProgrammesUndergraduateTechnologyAndBusinessManagementRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
