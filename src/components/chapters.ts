@@ -241,7 +241,7 @@ const RAW_CHAPTERS = [
   },
   {
     n: "09", tag: "Careers",
-    headline: "Not just what you earn on day one. What you earn every year after.",
+    headline: "The offer is the start. The compounding is the story.",
     body: "₹61.98L highest CTC. 3.03× average salary jump. 28% of grads join as Founder's Office or Chief of Staff. 148 recruiters — Bain, BCG, McKinsey, Google, Zerodha. And if you'd rather build: ₹50,000/month for a year, no equity taken.",
     stat: "₹61.98L", label: "Highest CTC, Co'24",
     stats: [{ value: "₹28.52L", label: "Average CTC, Co'24" }, { value: "₹61.98L", label: "Highest CTC" }, { value: "3.03×", label: "Pre-MBA salary jump" }, { value: "148", label: "Total recruiters" }],
@@ -256,15 +256,6 @@ const RAW_CHAPTERS = [
     stats: [{ value: "₹3.38 Cr", label: "Cohort revenue" }, { value: "50", label: "Competing teams" }, { value: "₹4L+", label: "Avg per team" }, { value: "0", label: "Simulations" }],
     chips: ["Shopify", "Meta Ads", "Stripe", "Razorpay", "Live stores", "Real P&L"],
     cta: "See the scoreboard", route: "/d2c-challenge", bg: "#0F3D2E", ink: "#F1E7D2", image: mu01,
-  },
-  {
-    n: "11", tag: "Life at MU",
-    headline: "A normal day here would be a quarter's worth of memories anywhere else.",
-    body: "9 AM strategy with a sitting CEO. 2 PM shoot in the content studio. 9 PM, three teams plating a new menu in the Food Lab. 1 AM whiteboard wars where the real decisions get made.",
-    stat: "24/7", label: "Campus, kitchen, studio, fund — always on",
-    stats: [{ value: "24/7", label: "Campus access" }, { value: "20+", label: "Student clubs" }, { value: "Daily", label: "Mentor calls" }],
-    chips: ["Content studio", "Food Lab", "Investment lab", "Cohort Slack", "Hostels"],
-    cta: "See campus life", route: "/life-at-mu", bg: "#2A1B3D", ink: "#F1E3CE", image: mu09,
   },
 ];
 
