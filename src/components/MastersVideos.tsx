@@ -82,6 +82,7 @@ export const MASTER_VIDEOS: MasterVideo[] = [
   },
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function PlayGlyph({ size = 44 }: { size?: number }) {
   return (
     <span
