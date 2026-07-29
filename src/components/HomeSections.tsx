@@ -1208,10 +1208,10 @@ function PedagogySelector() {
 
         {/* ---------- Panel 2 — hero slab ---------- */}
         <div
-          className="relative flex min-h-[360px] flex-1 flex-col justify-between border-t border-black/10 lg:min-h-0 lg:w-[36%] lg:border-l lg:border-t-0"
+          className="relative flex min-h-[360px] flex-1 flex-col justify-between overflow-hidden border-t border-black/10 transition-[background] duration-700 ease-out lg:min-h-0 lg:w-[36%] lg:border-l lg:border-t-0"
           style={{ background: p.bg }}
         >
-          <div className="flex items-start justify-between p-8 md:p-10">
+          <div key={`slab-${active}`} className="flex items-start justify-between p-8 md:p-10 animate-fade-in">
             <div className="flex items-baseline gap-1 leading-none text-black">
               <span
                 className="text-[clamp(2.6rem,5vw,4rem)] font-semibold tabular-nums tracking-[-0.04em]"
@@ -1223,7 +1223,7 @@ function PedagogySelector() {
                 /{String(PEDAGOGY.length).padStart(2, "0")}
               </span>
             </div>
-            <div className="flex size-11 items-center justify-center border border-black/15 bg-white/40 text-black/75 backdrop-blur-sm">
+            <div className="flex size-11 items-center justify-center border border-black/15 bg-white/40 text-black/75 backdrop-blur-sm animate-scale-in">
               <Icon className="size-5" />
             </div>
           </div>
