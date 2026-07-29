@@ -1176,9 +1176,13 @@ function PedagogySelector() {
           </div>
 
           {/* Stat columns, reference-style */}
-          <div className="grid grid-cols-3 gap-6">
-            {p.stats.map((s) => (
-              <div key={s.label} className="flex flex-col">
+          <div key={`stats-${active}`} className="grid grid-cols-3 gap-6">
+            {p.stats.map((s, si) => (
+              <div
+                key={s.label}
+                className="flex flex-col animate-fade-in"
+                style={{ animationDelay: `${80 + si * 70}ms`, animationFillMode: "both" }}
+              >
                 <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-black/45">
                   {s.label}
                 </span>
