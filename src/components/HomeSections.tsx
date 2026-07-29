@@ -1254,11 +1254,12 @@ function PedagogySelector() {
             <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.26em] text-black/45">
               Next up
             </span>
-            <NextIcon className="size-4 text-black/45" />
+            <NextIcon key={`ni-${nextIndex}`} className="size-4 text-black/45 animate-scale-in" />
           </div>
 
           <h4
-            className="mt-5 px-6 text-[19px] font-semibold uppercase leading-[1.1] tracking-tight text-black"
+            key={`nt-${nextIndex}`}
+            className="mt-5 px-6 text-[19px] font-semibold uppercase leading-[1.1] tracking-tight text-black animate-fade-in"
             style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
           >
             {next.tag}
@@ -1267,12 +1268,13 @@ function PedagogySelector() {
           <button
             type="button"
             onClick={() => setActive(nextIndex)}
-            className="group relative mt-6 flex-1 overflow-hidden border-t border-black/10 text-left"
+            className="group relative mt-6 flex-1 overflow-hidden border-t border-black/10 text-left transition-[background] duration-700 ease-out"
             style={{ background: next.bg }}
             aria-label={`Show ${next.tag}`}
           >
             <span
-              className="absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[9px] font-semibold uppercase tracking-[0.3em] text-black/70"
+              key={`nc-${nextIndex}`}
+              className="absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[9px] font-semibold uppercase tracking-[0.3em] text-black/70 animate-fade-in"
               style={{ writingMode: "vertical-rl" }}
             >
               {next.cta}
