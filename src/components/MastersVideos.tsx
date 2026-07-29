@@ -208,17 +208,18 @@ export default function MastersVideos({
               key={v.src}
               type="button"
               onClick={() => setOpen(v)}
-              className="group relative w-[220px] shrink-0 snap-start overflow-hidden border border-black/10 bg-black text-left md:w-[260px]"
+              className="group relative w-[220px] shrink-0 snap-start overflow-hidden rounded-[14px] border border-black/10 bg-black text-left shadow-[0_10px_30px_-18px_rgba(0,0,0,0.55)] transition duration-500 hover:-translate-y-1 hover:border-black/25 hover:shadow-[0_22px_44px_-20px_rgba(0,0,0,0.6)] md:w-[260px]"
             >
               <div className="aspect-[9/16] w-full overflow-hidden">
                 <img
                   src={v.thumb}
                   alt={v.title}
                   loading="lazy"
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                  className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.06]"
                 />
               </div>
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+              <div className="pointer-events-none absolute inset-0 rounded-[14px] ring-1 ring-inset ring-white/10" />
               <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4">
                 <div className="min-w-0">
                   <div className="truncate text-[13px] font-semibold text-white">{v.title}</div>
