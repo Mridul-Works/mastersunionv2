@@ -585,14 +585,15 @@ function AdmissionsConnect() {
                 {/* date block punched into bottom-left */}
                 <div className="absolute bottom-0 left-0 bg-[#EDEDED] px-4 pb-3 pt-3 pr-6">
                   <p
-                    className="font-mono text-[30px] font-bold leading-none tracking-[0.06em] text-black"
+                    className="text-[30px] font-black leading-none tracking-[-0.02em] text-black"
+                    style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                   >
                     {day}
                   </p>
-                  <p className="mt-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-black/80">
+                  <p className="mt-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-black/80">
                     {month}
                   </p>
-                  <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.18em] text-black/45">
+                  <p className="mt-0.5 text-[10px] uppercase tracking-[0.18em] text-black/45">
                     {year}
                   </p>
                 </div>
@@ -601,16 +602,20 @@ function AdmissionsConnect() {
                 </span>
               </div>
 
-              <p className="mt-5 font-mono text-[14px] font-bold uppercase leading-[1.5] tracking-[0.02em] text-black">
+              <p
+                className="mt-5 text-[15px] font-bold uppercase leading-[1.35] tracking-[-0.01em] text-black"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+              >
                 {s.title}.
                 <br />
-                <span className="font-normal normal-case tracking-normal text-black/70">{s.tagline}</span>
+                <span className="text-[13.5px] font-medium normal-case tracking-normal text-black/65">{s.tagline}</span>
               </p>
 
               <p className="mt-3 flex items-center gap-2 font-mono text-[9.5px] uppercase tracking-[0.2em] text-black/45">
                 {s.nextTime} {s.timezone} · {s.duration}
                 <ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </p>
+
             </button>
           );
         })}
