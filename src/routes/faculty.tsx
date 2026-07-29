@@ -3,6 +3,7 @@ import { ArrowUpRight, Quote } from "lucide-react";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 
 import { FULL_TIME_FACULTY } from "@/lib/full-time-faculty";
+import { INDUSTRY_PRACTITIONERS, INDUSTRY_PHOTOS } from "@/lib/industry-practitioners";
 import manojAsset from "@/assets/faculty/manoj.png.asset.json";
 import bhupeshAsset from "@/assets/faculty/bhupesh.png.asset.json";
 import nandiniAsset from "@/assets/faculty/nandini.png.asset.json";
@@ -114,20 +115,19 @@ const NAV: SectionNavItem[] = [
 type Practitioner = { name: string; role: string; blurb: string };
 
 const PRACTITIONERS: Practitioner[] = [
+  ...INDUSTRY_PRACTITIONERS.map((p) => ({
+    name: p.name,
+    role: `${p.role}, ${p.company}`,
+    blurb: p.blurb,
+  })),
   { name: "Rajat Mathur", role: "Former Managing Director, Morgan Stanley", blurb: "Teaches people management through interactive debates, games, and live case studies. Rated among the most popular faculty at Masters' Union. Was in a board meeting before your class started." },
-  { name: "Naveen Munjal", role: "Managing Director, Hero Electric", blurb: "Teaches strategy and business building in the EV sector. One of the most consequential executives in India's electric vehicle transition — teaching the next generation who will operate in it." },
   { name: "Rohit Kapoor", role: "CEO, Food Marketplace, Swiggy", blurb: "Teaches growth, marketplace dynamics, and P&L management from the front seat of one of India's most complex consumer businesses." },
   { name: "Manoj Kohli", role: "Former CEO & MD, SoftBank India · Former CEO, Airtel International", blurb: "Teaches global business strategy and leadership from a career spanning the world's largest telecoms and technology investors." },
   { name: "Captain Raghu Raman", role: "Former President, Reliance Industries · Former CEO, NATGRID", blurb: "Teaches leadership, national security strategy, and high-stakes organisational decision-making. There is no textbook for what he teaches." },
-  { name: "Arjun Vaidya", role: "Founder, Dr. Vaidya's", blurb: "Teaches brand building, D2C strategy, and consumer psychology. Built a company and sold it to a Fortune 500 group — in his early thirties." },
-  { name: "Monica Jasuja", role: "Former Head, Mastercard", blurb: "Teaches payments, fintech, and digital financial infrastructure from inside one of the world's most consequential payment networks." },
-  { name: "Nitin Gaur", role: "Former Director, IBM", blurb: "Teaches blockchain, digital assets, and technology strategy from the team that built IBM's blockchain and digital currency research division." },
   { name: "Malthi Satish", role: "Former Director of Product Management, PayPal", blurb: "Teaches product management and digital platform strategy from inside one of the world's first and most influential fintech companies." },
   { name: "Dr Arvind Mayaram", role: "Former Finance Secretary of India", blurb: "Teaches macroeconomics, fiscal policy, and public finance from the office that once managed India's economy. Literally." },
   { name: "Saurabh Sengupta", role: "Former VP, Zomato", blurb: "Teaches growth, product strategy, and consumer marketplaces from one of India's most scrutinised public companies." },
-  { name: "Barkha Dutt", role: "Former Editor, NDTV", blurb: "Teaches communication, public narrative, and media strategy. One of India's most recognised journalists — now teaching the next generation how to tell stories that matter." },
   { name: "Rachel Konrad", role: "Former Director of Communications, Tesla", blurb: "Teaches communications, brand narrative, and launch strategy. Her last major project was helping introduce the Model S to the world. Before that, Amazon." },
-  { name: "Dr Edward W. Rogers", role: "Former Chief Knowledge Officer, NASA", blurb: "Teaches knowledge management, innovation systems, and organisational learning. His previous employer sent people to space." },
   { name: "Vivek Gambhir", role: "Former CEO, boAt", blurb: "Teaches brand building and consumer electronics — the mechanics of building a ₹3,000 Cr consumer brand from near-zero in under a decade." },
   { name: "Sanjiv Bhasin", role: "Former Director, IIFL", blurb: "Teaches equity markets, capital markets strategy, and investment analysis from decades on India's trading floors." },
   { name: "Dave Lewis", role: "Former Group CEO, Tesco", blurb: "Teaches large-scale organisational transformation and consumer strategy from the turnaround of one of the world's largest retailers." },
@@ -142,6 +142,7 @@ const PRACTITIONERS: Practitioner[] = [
 ];
 
 const PRACTITIONER_PHOTOS: Record<string, string> = {
+  ...INDUSTRY_PHOTOS,
   "Manoj Kohli": manojImg,
   "Dave Lewis": daveLewisAsset.url,
   "Havish Madhvapaty": havishAsset.url,
@@ -155,6 +156,7 @@ const PRACTITIONER_PHOTOS: Record<string, string> = {
   "Captain Raghu Raman": raghuAsset.url,
   "Nitin Gaur": nitinAsset.url,
 };
+
 
 type FullTimer = { name: string; note: string; img?: string };
 const FULLTIME: FullTimer[] = FULL_TIME_FACULTY.map((f) => ({

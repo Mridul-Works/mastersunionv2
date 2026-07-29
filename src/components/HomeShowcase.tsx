@@ -4,6 +4,7 @@ import { Link } from "@tanstack/react-router";
 import founderPhoto from "@/assets/founder-pratham-cutout.webp";
 import waveFlowBg from "@/assets/wave-flow-bg.png.asset.json";
 import { FULL_TIME_FACULTY } from "@/lib/full-time-faculty";
+import { INDUSTRY_PRACTITIONERS } from "@/lib/industry-practitioners";
 
 // Faculty
 import bhupesh from "@/assets/faculty/bhupesh.png.asset.json";
@@ -194,21 +195,22 @@ type Section = {
 };
 
 const FACULTY_ALL: { name: string; role: string; company: string; img?: string; category: "Industry" | "Full-Time" | "Visiting" }[] = [
-  // Industry Practitioners
+  // Industry Practitioners — verified roles + portraits
+  ...INDUSTRY_PRACTITIONERS.map((p) => ({
+    name: p.name,
+    role: p.role,
+    company: p.company,
+    img: p.img,
+    category: "Industry" as const,
+  })),
   { name: "Manoj Kohli", role: "Former CEO & MD", company: "SoftBank India", img: manoj.url, category: "Industry" },
-  { name: "Rajat Mathur", role: "Former Managing Director", company: "Morgan Stanley", category: "Industry" },
-  { name: "Naveen Munjal", role: "Managing Director", company: "Hero Electric", category: "Industry" },
-  { name: "Rohit Kapoor", role: "CEO, Food Marketplace", company: "Swiggy", category: "Industry" },
   { name: "Captain Raghu Raman", role: "Former President", company: "Reliance Industries", category: "Industry" },
-  { name: "Arjun Vaidya", role: "Founder", company: "Dr. Vaidya's", category: "Industry" },
-  { name: "Monica Jasuja", role: "Former Head", company: "Mastercard", category: "Industry" },
-  { name: "Nitin Gaur", role: "Former Director", company: "IBM", category: "Industry" },
+  { name: "Rajat Mathur", role: "Former Managing Director", company: "Morgan Stanley", category: "Industry" },
+  { name: "Rohit Kapoor", role: "CEO, Food Marketplace", company: "Swiggy", category: "Industry" },
   { name: "Malthi Satish", role: "Former Director, Product", company: "PayPal", category: "Industry" },
   { name: "Dr Arvind Mayaram", role: "Former Finance Secretary", company: "Government of India", category: "Industry" },
   { name: "Saurabh Sengupta", role: "Former VP", company: "Zomato", category: "Industry" },
-  { name: "Barkha Dutt", role: "Former Editor", company: "NDTV", category: "Industry" },
   { name: "Rachel Konrad", role: "Former Director of Communications", company: "Tesla", category: "Industry" },
-  { name: "Dr Edward W. Rogers", role: "Former Chief Knowledge Officer", company: "NASA", category: "Industry" },
   { name: "Vivek Gambhir", role: "Former CEO", company: "boAt", category: "Industry" },
   { name: "Sanjiv Bhasin", role: "Former Director", company: "IIFL", category: "Industry" },
   { name: "Dave Lewis", role: "Former Group CEO", company: "Tesco", img: daveLewis.url, category: "Industry" },
@@ -220,6 +222,7 @@ const FACULTY_ALL: { name: string; role: string; company: string; img?: string; 
   { name: "Parikshit Khanna", role: "Industry Practitioner", company: "Masters' Union", img: parikshit.url, category: "Industry" },
   { name: "Karmanya Suri", role: "Industry Practitioner", company: "Masters' Union", img: karmanya.url, category: "Industry" },
   { name: "Gaurav Arora", role: "Industry Practitioner", company: "Masters' Union", img: gauravA.url, category: "Industry" },
+
 
   // Full-Time Faculty (Masters-in-Residence)
   ...FULL_TIME_FACULTY.map((f) => ({
