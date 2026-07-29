@@ -115,7 +115,7 @@ function VideoModal({ video, onClose }: { video: MasterVideo; onClose: () => voi
       aria-label={video.title}
     >
       <div
-        className="relative w-full max-w-[980px] overflow-hidden bg-black shadow-2xl"
+        className="relative w-full max-w-[980px] overflow-hidden rounded-2xl bg-black shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <button
