@@ -4,6 +4,7 @@ import { Link } from "@tanstack/react-router";
 import founderPhoto from "@/assets/founder-pratham-cutout.webp";
 import waveFlowBg from "@/assets/wave-flow-bg.png.asset.json";
 import { FULL_TIME_FACULTY } from "@/lib/full-time-faculty";
+import MastersVideos from "@/components/MastersVideos";
 import { INDUSTRY_PRACTITIONERS } from "@/lib/industry-practitioners";
 
 // Faculty
@@ -1086,7 +1087,9 @@ export default function HomeShowcase() {
       <ShowcaseShell section={FACULTY_SECTION}>
         <FacultyBlock />
       </ShowcaseShell>
+      <MastersVideos bg="bg-white" />
       <ShowcaseShell section={CAREER_SECTION}>
+
         <StatsBand stats={CAREER_RICH_STATS} tone="cream" />
         <AlumStories />
         <div className="mt-8">

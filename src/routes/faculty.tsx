@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Quote } from "lucide-react";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
+import MastersVideos from "@/components/MastersVideos";
 
 import { FULL_TIME_FACULTY } from "@/lib/full-time-faculty";
 import { INDUSTRY_PRACTITIONERS, INDUSTRY_PHOTOS } from "@/lib/industry-practitioners";
@@ -106,6 +107,7 @@ function SectionHeader({
 
 const NAV: SectionNavItem[] = [
   { id: "top", label: "Overview" },
+  { id: "masters", label: "Masters" },
   { id: "practitioners", label: "Industry" },
   { id: "full-time", label: "Full-time" },
   { id: "visiting", label: "Visiting" },
@@ -443,6 +445,9 @@ function FacultyPage() {
           ))}
         </div>
       </section>
+
+      {/* 500+ MASTERS */}
+      <MastersVideos bg="bg-white" />
 
 
       {/* INDUSTRY PRACTITIONERS */}
