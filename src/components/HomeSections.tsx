@@ -1238,7 +1238,7 @@ function PedagogySelector() {
               onClick={() => setActive(nextIndex)}
               className="flex items-center gap-2 bg-white px-5 py-4 font-mono text-[9px] font-bold uppercase tracking-[0.26em] text-black transition-colors hover:bg-black hover:text-white"
             >
-              Next system
+              Next
               <ChevronRight className="size-3.5" />
             </button>
           </div>
