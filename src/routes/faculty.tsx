@@ -446,6 +446,9 @@ function FacultyPage() {
         </div>
       </section>
 
+      {/* 500+ MASTERS */}
+      <MastersVideos bg="bg-white" />
+
 
       {/* INDUSTRY PRACTITIONERS */}
       <section id="practitioners" className="border-y border-black/10 bg-neutral-50">
