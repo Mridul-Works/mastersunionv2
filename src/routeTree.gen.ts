@@ -22,6 +22,7 @@ import { Route as D2cChallengeRouteImport } from './routes/d2c-challenge'
 import { Route as CreatorChallengeRouteImport } from './routes/creator-challenge'
 import { Route as CampusRouteImport } from './routes/campus'
 import { Route as Applications_centerRouteImport } from './routes/applications_center'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProgrammesUndergraduateTechnologyAndBusinessManagementRouteImport } from './routes/programmes.undergraduate.technology-and-business-management'
 import { Route as ProgrammesUndergraduatePsychologyAndMarketingRouteImport } from './routes/programmes.undergraduate.psychology-and-marketing'
@@ -106,6 +107,11 @@ const CampusRoute = CampusRouteImport.update({
 const Applications_centerRoute = Applications_centerRouteImport.update({
   id: '/applications_center',
   path: '/applications_center',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -231,6 +237,7 @@ const ProgrammesExecutiveAiAndGccTransformationRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/applications_center': typeof Applications_centerRoute
   '/campus': typeof CampusRoute
   '/creator-challenge': typeof CreatorChallengeRoute
@@ -266,6 +273,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/applications_center': typeof Applications_centerRoute
   '/campus': typeof CampusRoute
   '/creator-challenge': typeof CreatorChallengeRoute
@@ -302,6 +310,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/applications_center': typeof Applications_centerRoute
   '/campus': typeof CampusRoute
   '/creator-challenge': typeof CreatorChallengeRoute
@@ -339,6 +348,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/applications_center'
     | '/campus'
     | '/creator-challenge'
@@ -374,6 +384,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/applications_center'
     | '/campus'
     | '/creator-challenge'
@@ -409,6 +420,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/applications_center'
     | '/campus'
     | '/creator-challenge'
@@ -445,6 +457,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   Applications_centerRoute: typeof Applications_centerRoute
   CampusRoute: typeof CampusRoute
   CreatorChallengeRoute: typeof CreatorChallengeRoute
@@ -570,6 +583,13 @@ declare module '@tanstack/react-router' {
       path: '/applications_center'
       fullPath: '/applications_center'
       preLoaderRoute: typeof Applications_centerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -717,6 +737,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   Applications_centerRoute: Applications_centerRoute,
   CampusRoute: CampusRoute,
   CreatorChallengeRoute: CreatorChallengeRoute,
@@ -770,13 +791,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

@@ -287,7 +287,14 @@ function Index() {
                 {item.label}
               </a>
             ))}
+            <Link
+              to="/about"
+              className="rounded-none px-3 py-1.5 text-[12px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
+            >
+              About
+            </Link>
           </nav>
+
           <div className="flex items-center gap-1">
             <button
               type="button"
