@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Quote } from "lucide-react";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 
+import { FULL_TIME_FACULTY } from "@/lib/full-time-faculty";
 import manojAsset from "@/assets/faculty/manoj.png.asset.json";
 import bhupeshAsset from "@/assets/faculty/bhupesh.png.asset.json";
 import nandiniAsset from "@/assets/faculty/nandini.png.asset.json";
@@ -156,14 +157,11 @@ const PRACTITIONER_PHOTOS: Record<string, string> = {
 };
 
 type FullTimer = { name: string; note: string; img?: string };
-const FULLTIME: FullTimer[] = [
-  { name: "Dr Bhupesh Manoharan", note: "PhD · Strategy & Organisation", img: bhupeshImg },
-  { name: "Dr Nandini Seth", note: "PhD · Marketing", img: nandiniImg },
-  { name: "Dr Manu Prasad", note: "PhD · Finance" },
-  { name: "Dr Kashika Sud", note: "PhD · Organisational Behaviour" },
-  { name: "Dr Vipin Sreekumar", note: "PhD · Operations" },
-  { name: "Dr Garima Chaklader", note: "PhD · Economics", img: garimaImg },
-];
+const FULLTIME: FullTimer[] = FULL_TIME_FACULTY.map((f) => ({
+  name: f.name,
+  note: `${f.credential} · ${f.role}`,
+  img: f.img,
+}));
 
 type Visiting = { name: string; role: string; school: string; img?: string };
 const VISITING: Visiting[] = [
