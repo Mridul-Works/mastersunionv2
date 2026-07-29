@@ -82,6 +82,7 @@ export const MASTER_VIDEOS: MasterVideo[] = [
   },
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function PlayGlyph({ size = 44 }: { size?: number }) {
   return (
     <span
@@ -160,75 +161,86 @@ export default function MastersVideos({
 
   return (
     <section id="masters" className={`border-t border-black/10 ${bg}`}>
-      <div className="mx-auto max-w-[1280px] px-5 py-10 md:px-10 md:py-14">
-        <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-[62ch]">
-            <p className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-black/50">
-              500+ Masters
-            </p>
-            <h2
-              className="text-[clamp(1.5rem,3vw,2.25rem)] font-semibold leading-[1.1] tracking-tight text-black"
-              style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-            >
-              Built by Scholars, <em className="italic">Led by Industry Practitioners</em>
-            </h2>
-            <p className="mt-3 text-[13px] leading-relaxed text-black/60 md:text-[14px]">
-              At Masters' Union, your classroom is powered by Ivy League academics and global
-              business leaders, from Harvard to McKinsey, from Wharton to Google. Our Masters don't
-              just teach the playbook. They wrote it.
-            </p>
-          </div>
+      <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-10 px-5 py-12 md:px-10 md:py-16 lg:grid-cols-12 lg:items-start lg:gap-16">
+        {/* Left: sticky editorial column */}
+        <div className="lg:col-span-4 lg:sticky lg:top-24">
+          <p className="mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]">
+            500+ Masters
+          </p>
+          <h2
+            className="text-[clamp(1.75rem,3.2vw,2.75rem)] font-medium italic leading-[1.1] tracking-tight text-black"
+            style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+          >
+            Built by Scholars, Led by Industry Practitioners
+          </h2>
+          <p className="mt-6 max-w-sm text-[14px] leading-relaxed text-black/60">
+            At Masters' Union, your classroom is powered by Ivy League academics and global business
+            leaders, from Harvard to McKinsey, from Wharton to Google. Our Masters don't just teach
+            the playbook. They wrote it.
+          </p>
 
-          <div className="flex shrink-0 items-center gap-2">
+          <div className="mt-10 flex items-center gap-3">
             <button
               type="button"
               onClick={() => scrollBy(-1)}
               aria-label="Previous videos"
-              className="grid h-9 w-9 place-items-center rounded-full border border-black/15 text-black/70 transition hover:border-black/40 hover:text-black"
+              className="group grid h-12 w-12 place-items-center rounded-full border border-black/10 text-black transition hover:border-black"
             >
-              ←
+              <span className="transition-transform group-hover:-translate-x-0.5">←</span>
             </button>
             <button
               type="button"
               onClick={() => scrollBy(1)}
               aria-label="Next videos"
-              className="grid h-9 w-9 place-items-center rounded-full border border-black/15 text-black/70 transition hover:border-black/40 hover:text-black"
+              className="group grid h-12 w-12 place-items-center rounded-full bg-black text-white transition hover:bg-black/85"
             >
-              →
+              <span className="transition-transform group-hover:translate-x-0.5">→</span>
             </button>
           </div>
         </div>
 
+        {/* Right: portrait rail */}
         <div
           ref={scroller}
-          className="mt-7 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-6 [scrollbar-width:none] lg:col-span-8 [&::-webkit-scrollbar]:hidden"
         >
-          {MASTER_VIDEOS.map((v) => (
+          {MASTER_VIDEOS.map((v, i) => (
             <button
               key={v.src}
               type="button"
               onClick={() => setOpen(v)}
-              className="group relative w-[220px] shrink-0 snap-start overflow-hidden rounded-[14px] border border-black/10 bg-black text-left shadow-[0_10px_30px_-18px_rgba(0,0,0,0.55)] transition duration-500 hover:-translate-y-1 hover:border-black/25 hover:shadow-[0_22px_44px_-20px_rgba(0,0,0,0.6)] md:w-[260px]"
+              className={`group w-[230px] shrink-0 snap-start text-left md:w-[270px] ${
+                i % 2 === 1 ? "lg:mt-12" : ""
+              }`}
             >
-              <div className="aspect-[9/16] w-full overflow-hidden">
-                <img
-                  src={v.thumb}
-                  alt={v.title}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.06]"
-                />
-              </div>
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-              <div className="pointer-events-none absolute inset-0 rounded-[14px] ring-1 ring-inset ring-white/10" />
-              <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4">
-                <div className="min-w-0">
-                  <div className="truncate text-[13px] font-semibold text-white">{v.title}</div>
-                  <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/60">
-                    {v.meta}
+              <div className="relative overflow-hidden rounded-[12px] bg-black shadow-[0_12px_34px_-20px_rgba(0,0,0,0.55)] transition duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_24px_46px_-22px_rgba(0,0,0,0.6)]">
+                <div className="aspect-[9/16] w-full overflow-hidden">
+                  <img
+                    src={v.thumb}
+                    alt={v.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]"
+                  />
+                </div>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div className="pointer-events-none absolute inset-0 rounded-[12px] border border-transparent transition-colors duration-500 group-hover:border-[#B89146]/40" />
+                <div className="absolute bottom-5 left-5">
+                  <div className="grid h-10 w-10 place-items-center rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-md transition group-hover:bg-white/20">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
                   </div>
                 </div>
-                <PlayGlyph />
               </div>
+              <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.2em] text-[#B89146]">
+                {v.meta}
+              </p>
+              <h3
+                className="mt-1 text-[17px] leading-snug text-black"
+                style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+              >
+                {v.title}
+              </h3>
             </button>
           ))}
         </div>
