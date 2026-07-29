@@ -115,7 +115,7 @@ function VideoModal({ video, onClose }: { video: MasterVideo; onClose: () => voi
       aria-label={video.title}
     >
       <div
-        className="relative w-full max-w-[980px] overflow-hidden rounded-xl bg-black shadow-2xl"
+        className="relative w-full max-w-[980px] overflow-hidden bg-black shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -208,7 +208,7 @@ export default function MastersVideos({
               key={v.src}
               type="button"
               onClick={() => setOpen(v)}
-              className="group relative w-[220px] shrink-0 snap-start overflow-hidden rounded-xl border border-black/10 bg-black text-left md:w-[260px]"
+              className="group relative w-[220px] shrink-0 snap-start overflow-hidden border border-black/10 bg-black text-left md:w-[260px]"
             >
               <div className="aspect-[9/16] w-full overflow-hidden">
                 <img
