@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Menu, X, ArrowUp, Pause, Play } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -266,7 +266,15 @@ function Index() {
                   {item.label}
                 </a>
               ))}
+              <Link
+                to="/about"
+                onClick={() => setMenuOpen(false)}
+                className="rounded-none px-4 py-3 text-[14px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
+              >
+                About
+              </Link>
             </nav>
+
           </div>
         )}
         <div className="mx-auto flex max-w-[1180px] items-center justify-between rounded-none border border-black/10 bg-white/80 px-2 py-1.5 shadow-[0_6px_24px_-12px_rgba(0,0,0,0.15)] backdrop-blur-xl">
@@ -287,7 +295,14 @@ function Index() {
                 {item.label}
               </a>
             ))}
+            <Link
+              to="/about"
+              className="rounded-none px-3 py-1.5 text-[12px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
+            >
+              About
+            </Link>
           </nav>
+
           <div className="flex items-center gap-1">
             <button
               type="button"
