@@ -208,9 +208,9 @@ export default function MastersVideos({
               key={v.src}
               type="button"
               onClick={() => setOpen(v)}
-              className="group relative w-[260px] shrink-0 snap-start overflow-hidden rounded-xl border border-black/10 bg-black text-left md:w-[300px]"
+              className="group relative w-[220px] shrink-0 snap-start overflow-hidden rounded-xl border border-black/10 bg-black text-left md:w-[260px]"
             >
-              <div className="aspect-[4/5] w-full overflow-hidden">
+              <div className="aspect-[9/16] w-full overflow-hidden">
                 <img
                   src={v.thumb}
                   alt={v.title}
