@@ -3,6 +3,7 @@ import { ArrowUpRight, Quote } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import founderPhoto from "@/assets/founder-pratham-cutout.webp";
 import waveFlowBg from "@/assets/wave-flow-bg.png.asset.json";
+import { FULL_TIME_FACULTY } from "@/lib/full-time-faculty";
 
 // Faculty
 import bhupesh from "@/assets/faculty/bhupesh.png.asset.json";
@@ -220,13 +221,15 @@ const FACULTY_ALL: { name: string; role: string; company: string; img?: string; 
   { name: "Karmanya Suri", role: "Industry Practitioner", company: "Masters' Union", img: karmanya.url, category: "Industry" },
   { name: "Gaurav Arora", role: "Industry Practitioner", company: "Masters' Union", img: gauravA.url, category: "Industry" },
 
-  // Full-Time Faculty
-  { name: "Dr Bhupesh Manoharan", role: "PhD · Strategy & Organisation", company: "Masters' Union", img: bhupesh.url, category: "Full-Time" },
-  { name: "Dr Nandini Seth", role: "PhD · Marketing", company: "Masters' Union", img: nandini.url, category: "Full-Time" },
-  { name: "Dr Garima Chaklader", role: "PhD · Economics", company: "Masters' Union", img: garima.url, category: "Full-Time" },
-  { name: "Dr Manu Prasad", role: "PhD · Finance", company: "Masters' Union", category: "Full-Time" },
-  { name: "Dr Kashika Sud", role: "PhD · Organisational Behaviour", company: "Masters' Union", category: "Full-Time" },
-  { name: "Dr Vipin Sreekumar", role: "PhD · Operations", company: "Masters' Union", category: "Full-Time" },
+  // Full-Time Faculty (Masters-in-Residence)
+  ...FULL_TIME_FACULTY.map((f) => ({
+    name: f.name,
+    role: f.role,
+    company: f.credential,
+    img: f.img,
+    category: "Full-Time" as const,
+  })),
+
 
   // Visiting Faculty
   { name: "Dr Zal Phiroz", role: "Adjunct Professor, Supply Chain", company: "Harvard University", img: vfZal.url, category: "Visiting" },

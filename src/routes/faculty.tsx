@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Quote } from "lucide-react";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 
+import { FULL_TIME_FACULTY } from "@/lib/full-time-faculty";
 import manojAsset from "@/assets/faculty/manoj.png.asset.json";
 import bhupeshAsset from "@/assets/faculty/bhupesh.png.asset.json";
 import nandiniAsset from "@/assets/faculty/nandini.png.asset.json";
@@ -156,14 +157,11 @@ const PRACTITIONER_PHOTOS: Record<string, string> = {
 };
 
 type FullTimer = { name: string; note: string; img?: string };
-const FULLTIME: FullTimer[] = [
-  { name: "Dr Bhupesh Manoharan", note: "PhD · Strategy & Organisation", img: bhupeshImg },
-  { name: "Dr Nandini Seth", note: "PhD · Marketing", img: nandiniImg },
-  { name: "Dr Manu Prasad", note: "PhD · Finance" },
-  { name: "Dr Kashika Sud", note: "PhD · Organisational Behaviour" },
-  { name: "Dr Vipin Sreekumar", note: "PhD · Operations" },
-  { name: "Dr Garima Chaklader", note: "PhD · Economics", img: garimaImg },
-];
+const FULLTIME: FullTimer[] = FULL_TIME_FACULTY.map((f) => ({
+  name: f.name,
+  note: `${f.credential} · ${f.role}`,
+  img: f.img,
+}));
 
 type Visiting = { name: string; role: string; school: string; img?: string };
 const VISITING: Visiting[] = [
@@ -485,7 +483,7 @@ function FacultyPage() {
           <SectionHeader
             index="02"
             eyebrow="Full-time Faculty"
-            title={<>25 PhD faculty. Active researchers. Published where the best B-schools read.</>}
+            title={<>{FULLTIME.length} PhD faculty. Active researchers. Published where the best B-schools read.</>}
             intro="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing in FT50 and A* journals."
           />
 
@@ -494,14 +492,14 @@ function FacultyPage() {
             pct="30%"
             tagline="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing where the best B-schools read."
             stats={[
-              { v: "25", l: "Full-time PhD faculty" },
+              { v: String(FULLTIME.length), l: "Full-time faculty" },
               { v: "50+", l: "FT50 / A* publications" },
             ]}
             items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
           />
 
           <p className="mt-10 max-w-[62ch] text-[1rem] leading-[1.6] text-black/70">
-            And 19 more across finance, marketing, operations, organisational behaviour, economics, data science, and strategy.
+            Doctorates from IIM Ahmedabad, Bangalore, Calcutta, Kozhikode and Tiruchirappalli, IIT Bombay and Kanpur, Delhi University, Shiv Nadar, Christ University, TERI and the University of Bath — across finance, marketing, operations, organisational behaviour, economics, decision sciences and strategy.
           </p>
 
         </div>
