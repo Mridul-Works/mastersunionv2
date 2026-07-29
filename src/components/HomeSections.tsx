@@ -529,161 +529,95 @@ function AdmissionsConnect() {
   };
 
   const sessions = ADMISSIONS_CONNECT_SESSIONS;
-  const hero = sessions[0];
-  const rest = sessions.slice(1);
 
   return (
-    <div className="col-span-12 mt-14 pt-12 relative">
-      <div
-        aria-hidden
-        className="absolute top-0 left-0 right-0 h-px"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent, #39B5D7, #F7D544, #E38330, transparent)",
-        }}
-      />
-
-      {/* ── Editorial masthead: type slab left, collage right ── */}
-      <div className="grid grid-cols-12 items-stretch gap-0 border border-black/10 bg-[#F7F5EF]">
-        <div className="col-span-12 flex flex-col justify-between px-6 py-10 md:col-span-5 md:px-10 md:py-14">
-          <div>
-            <p className="mb-6 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-black/50">
-              Admissions Connect
-            </p>
-            <h2
-              className="text-[clamp(2.4rem,5.2vw,4.4rem)] font-extrabold uppercase leading-[0.86] tracking-[-0.03em] text-black"
-              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-            >
-              Don’t
-              <br />
-              believe AI?
-              <br />
-              Talk to
-              <br />
-              humans.
-            </h2>
-            <p className="mt-7 max-w-sm text-[13.5px] leading-[1.6] text-black/65">
-              Live, small-group sessions with alumni, parents, faculty and current students.
-              Ask the questions search engines can’t answer.
-            </p>
-          </div>
-
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <button
-              type="button"
-              onClick={() => openFor(hero.id)}
-              className="inline-flex items-center gap-2 rounded-full bg-black px-5 py-2.5 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-white transition-transform hover:-translate-y-0.5"
-            >
-              Book a session <ArrowRight className="size-3.5" />
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setSelectedSessionId(undefined);
-                setDialogOpen(true);
-              }}
-              className="inline-flex items-center gap-2 border-b border-black/30 pb-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black/70 transition-colors hover:text-black"
-            >
-              View all sessions <ArrowUpRight className="size-3.5" />
-            </button>
-          </div>
-
-          {/* stat strip */}
-          <div className="mt-10 grid grid-cols-3 border-t border-black/10 pt-5">
-            {[
-              { k: "6", v: "Formats" },
-              { k: "1:1", v: "Or small group" },
-              { k: "Free", v: "Always" },
-            ].map((s) => (
-              <div key={s.v} className="pr-3">
-                <p
-                  className="text-[22px] font-semibold leading-none tracking-tight text-black"
-                  style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-                >
-                  {s.k}
-                </p>
-                <p className="mt-1.5 font-mono text-[9px] uppercase tracking-[0.18em] text-black/45">{s.v}</p>
-              </div>
-            ))}
-          </div>
+    <div className="col-span-12 mt-14 border-t border-black/10 pt-12">
+      {/* header row */}
+      <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
+        <div className="max-w-xl">
+          <p className="mb-4 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-black/45">
+            Admissions Connect
+          </p>
+          <h2
+            className="text-[clamp(1.9rem,3.6vw,2.9rem)] font-extrabold uppercase leading-[0.92] tracking-[-0.03em] text-black"
+            style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+          >
+            Don’t believe AI?
+            <br />
+            Talk to humans.
+          </h2>
+          <p className="mt-4 text-[13.5px] leading-[1.6] text-black/60">
+            Live, small-group sessions with alumni, parents, faculty and current students.
+          </p>
         </div>
-
-        <div className="col-span-12 relative min-h-[300px] overflow-hidden border-t border-black/10 md:col-span-7 md:border-l md:border-t-0">
-          <img src={hero.image} alt={hero.title} className="absolute inset-0 h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-6 p-6 md:p-8">
-            <div>
-              <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-white/70">Next up</p>
-              <h3
-                className="mt-2 text-[26px] font-extrabold uppercase leading-[0.95] tracking-tight text-white md:text-[34px]"
-                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-              >
-                {hero.title}
-              </h3>
-              <p className="mt-2 max-w-md text-[12.5px] leading-snug text-white/75">{hero.tagline}</p>
-            </div>
-            <span className="shrink-0 rounded-sm bg-white/90 px-2.5 py-1.5 text-right font-mono text-[9px] uppercase leading-tight tracking-[0.2em] text-black/70 backdrop-blur">
-              {formatSessionDate(hero.nextDate)}
-              <br />
-              {hero.nextTime}
-            </span>
-          </div>
-        </div>
+        <button
+          type="button"
+          onClick={() => {
+            setSelectedSessionId(undefined);
+            setDialogOpen(true);
+          }}
+          className="inline-flex items-center gap-2 border-b border-black/40 pb-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black transition-transform hover:-translate-y-0.5"
+        >
+          View all sessions <ArrowUpRight className="size-3.5" />
+        </button>
       </div>
 
-      {/* ── Numbered editorial cards ── */}
-      <div className="grid grid-cols-1 border-x border-b border-black/10 sm:grid-cols-2 lg:grid-cols-3">
-        {rest.map((s, i) => (
-          <article
-            key={s.id}
-            className="group relative flex flex-col justify-between border-t border-black/10 bg-white p-6 transition-colors duration-300 hover:bg-[#F7F5EF] sm:border-l sm:first:border-l-0 lg:p-7"
-          >
-            <div>
-              <div className="flex items-center justify-between">
-                <p className="font-mono text-[9px] font-bold uppercase tracking-[0.24em] text-black/45">
-                  {String(i + 2).padStart(2, "0")} — {s.format}
-                </p>
-                <s.icon className="size-4 text-black/35" />
-              </div>
+      {/* poster strip */}
+      <div className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+        {sessions.map((s) => {
+          const d = new Date(s.nextDate);
+          const day = String(d.getDate()).padStart(2, "0");
+          const month = d.toLocaleString("en-US", { month: "short" }).toUpperCase();
+          const year = d.getFullYear();
 
-              <h3
-                className="mt-6 text-[19px] font-extrabold uppercase leading-[1.02] tracking-tight text-black lg:text-[21px]"
-                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-              >
-                {s.title}
-              </h3>
-
-              <div className="relative mt-5 overflow-hidden">
+          return (
+            <button
+              key={s.id}
+              type="button"
+              onClick={() => openFor(s.id)}
+              className="group text-left"
+            >
+              <div className="relative aspect-[3/4] w-full overflow-hidden bg-black/5">
                 <img
                   src={s.image}
                   alt={s.title}
-                  className="h-36 w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-[1.03]"
+                  className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
                 />
-              </div>
-
-              <p className="mt-5 text-[12.5px] leading-[1.6] text-black/65">{s.description}</p>
-            </div>
-
-            <div className="mt-6 border-t border-black/10 pt-4">
-              <div className="mb-4 flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.2em] text-black/45">
-                <span>
-                  {formatSessionDate(s.nextDate)} · {s.nextTime}
+                {/* date block punched into bottom-left */}
+                <div className="absolute bottom-0 left-0 bg-[#EDEDED] px-4 pb-3 pt-3 pr-6">
+                  <p
+                    className="font-mono text-[30px] font-bold leading-none tracking-[0.06em] text-black"
+                  >
+                    {day}
+                  </p>
+                  <p className="mt-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-black/80">
+                    {month}
+                  </p>
+                  <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.18em] text-black/45">
+                    {year}
+                  </p>
+                </div>
+                <span className="absolute right-0 top-0 bg-[#EDEDED] px-3 py-1.5 font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-black/60">
+                  {s.format}
                 </span>
-                <span>{s.duration}</span>
               </div>
-              <button
-                type="button"
-                onClick={() => openFor(s.id)}
-                className="inline-flex items-center gap-2 border-b border-black/40 pb-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black transition-transform group-hover:-translate-y-0.5"
-              >
-                Register <ArrowUpRight className="size-3.5" />
-              </button>
-            </div>
-          </article>
-        ))}
+
+              <p className="mt-5 font-mono text-[14px] font-bold uppercase leading-[1.5] tracking-[0.02em] text-black">
+                {s.title}.
+                <br />
+                <span className="font-normal normal-case tracking-normal text-black/70">{s.tagline}</span>
+              </p>
+
+              <p className="mt-3 flex items-center gap-2 font-mono text-[9.5px] uppercase tracking-[0.2em] text-black/45">
+                {s.nextTime} {s.timezone} · {s.duration}
+                <ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </p>
+            </button>
+          );
+        })}
       </div>
 
-      <p className="mt-8 text-center text-[12px] leading-relaxed text-black/50">
+      <p className="mt-12 text-center text-[12px] leading-relaxed text-black/50">
         Can’t find a slot? Drop a note to{" "}
         <a
           href="mailto:admissions@mastersunion.org"
@@ -698,6 +632,7 @@ function AdmissionsConnect() {
     </div>
   );
 }
+
 
 
 function Programs() {
