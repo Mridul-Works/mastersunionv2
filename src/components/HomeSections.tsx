@@ -1165,7 +1165,7 @@ function PedagogySelector() {
             </span>
           </div>
 
-          <div key={`copy-${active}`} className="my-10 animate-fade-in">
+          <div key={`copy-${active}`} className="my-10 mu-anim-up">
             <h3
               className="max-w-[16ch] text-[clamp(1.8rem,3.4vw,2.9rem)] font-semibold uppercase leading-[1.02] tracking-[-0.02em] text-black"
               style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
@@ -1180,7 +1180,7 @@ function PedagogySelector() {
             {p.stats.map((s, si) => (
               <div
                 key={s.label}
-                className="flex flex-col animate-fade-in"
+                className="flex flex-col mu-anim-up"
                 style={{ animationDelay: `${80 + si * 70}ms`, animationFillMode: "both" }}
               >
                 <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-black/45">
@@ -1211,7 +1211,7 @@ function PedagogySelector() {
           className="relative flex min-h-[360px] flex-1 flex-col justify-between overflow-hidden border-t border-black/10 transition-[background] duration-700 ease-out lg:min-h-0 lg:w-[36%] lg:border-l lg:border-t-0"
           style={{ background: p.bg }}
         >
-          <div key={`slab-${active}`} className="flex items-start justify-between p-8 md:p-10 animate-fade-in">
+          <div key={`slab-${active}`} className="flex items-start justify-between p-8 md:p-10 mu-anim-left">
             <div className="flex items-baseline gap-1 leading-none text-black">
               <span
                 className="text-[clamp(2.6rem,5vw,4rem)] font-semibold tabular-nums tracking-[-0.04em]"
@@ -1223,7 +1223,7 @@ function PedagogySelector() {
                 /{String(PEDAGOGY.length).padStart(2, "0")}
               </span>
             </div>
-            <div className="flex size-11 items-center justify-center border border-black/15 bg-white/40 text-black/75 backdrop-blur-sm animate-scale-in">
+            <div className="flex size-11 items-center justify-center border border-black/15 bg-white/40 text-black/75 backdrop-blur-sm mu-anim-pop">
               <Icon className="size-5" />
             </div>
           </div>
@@ -1254,12 +1254,12 @@ function PedagogySelector() {
             <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.26em] text-black/45">
               Next up
             </span>
-            <NextIcon key={`ni-${nextIndex}`} className="size-4 text-black/45 animate-scale-in" />
+            <NextIcon key={`ni-${nextIndex}`} className="size-4 text-black/45 mu-anim-pop" />
           </div>
 
           <h4
             key={`nt-${nextIndex}`}
-            className="mt-5 px-6 text-[19px] font-semibold uppercase leading-[1.1] tracking-tight text-black animate-fade-in"
+            className="mt-5 px-6 text-[19px] font-semibold uppercase leading-[1.1] tracking-tight text-black mu-anim-up"
             style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
           >
             {next.tag}
@@ -1274,7 +1274,7 @@ function PedagogySelector() {
           >
             <span
               key={`nc-${nextIndex}`}
-              className="absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[9px] font-semibold uppercase tracking-[0.3em] text-black/70 animate-fade-in"
+              className="absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[9px] font-semibold uppercase tracking-[0.3em] text-black/70 mu-anim-up"
               style={{ writingMode: "vertical-rl" }}
             >
               {next.cta}
