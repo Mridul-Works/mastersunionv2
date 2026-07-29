@@ -577,12 +577,11 @@ function AdmissionsConnect() {
               onClick={() => openFor(s.id)}
               className="group text-left"
             >
-              <div className="relative aspect-[3/4] w-full overflow-hidden bg-black/5">
-                <img
-                  src={s.image}
-                  alt={s.title}
-                  className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
-                />
+              <div className="relative aspect-[3/4] w-full overflow-hidden border border-black/10 bg-gradient-to-br from-neutral-100 via-neutral-200 to-neutral-300">
+                <span className="absolute inset-0 flex items-center justify-center font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-black/35">
+                  Image
+                </span>
+
                 {/* date block punched into bottom-left */}
                 <div className="absolute bottom-0 left-0 bg-[#EDEDED] px-4 pb-3 pt-3 pr-6">
                   <p
