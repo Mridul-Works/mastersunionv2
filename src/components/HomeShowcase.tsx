@@ -560,46 +560,96 @@ function FacultyBlock() {
   return (
     <div className="grid gap-6 md:grid-cols-2 md:gap-8">
       {/* Left: vertical mix (clickable filters) */}
-      <div className="flex flex-col gap-3">
-        {FACULTY_MIX.map((m) => {
-          const isActive = active === m.key;
-          return (
+      <div className="flex flex-col">
+        <div className="flex items-baseline justify-between border-b border-black/10 pb-2">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/40">
+            The 50 / 30 / 20 mix
+          </span>
+          {active !== "All" && (
             <button
-              key={m.title}
               type="button"
-              onClick={() => setActive(isActive ? "All" : m.key)}
-              aria-pressed={isActive}
-              className={`flex items-start gap-4 border p-4 text-left transition ${
-                isActive
-                  ? "border-black bg-black text-white"
-                  : "border-black/10 bg-white text-black hover:border-black/30 hover:bg-black/[0.02]"
-              }`}
+              onClick={() => setActive("All")}
+              className="text-[10px] font-semibold uppercase tracking-[0.18em] text-black/45 transition hover:text-black"
             >
-              <span
-                className="text-3xl font-semibold leading-none tracking-tight"
-                style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-              >
-                {m.pct}
-              </span>
-              <div>
-                <h3 className="text-[13px] font-semibold tracking-tight">{m.title}</h3>
-                <p className={`mt-1 text-[12px] leading-snug ${isActive ? "text-white/70" : "text-black/60"}`}>
-                  {m.body}
-                </p>
-              </div>
+              Show all
             </button>
-          );
-        })}
-        {active !== "All" && (
-          <button
-            type="button"
-            onClick={() => setActive("All")}
-            className="self-start text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50 hover:text-black"
-          >
-            ← Show all faculty
-          </button>
-        )}
+          )}
+        </div>
+
+        <div className="divide-y divide-black/10 border-b border-black/10">
+          {FACULTY_MIX.map((m) => {
+            const isActive = active === m.key;
+            const count = FACULTY_ALL.filter((f) => f.category === m.key).length;
+            return (
+              <button
+                key={m.title}
+                type="button"
+                onClick={() => setActive(isActive ? "All" : m.key)}
+                aria-pressed={isActive}
+                className={`group relative w-full overflow-hidden px-4 py-5 text-left transition-colors duration-300 md:px-5 ${
+                  isActive ? "bg-[#111]" : "bg-transparent hover:bg-black/[0.03]"
+                }`}
+              >
+                <span
+                  aria-hidden
+                  className={`absolute inset-y-0 left-0 w-[3px] transition-all duration-300 ${
+                    isActive ? "bg-[#C9A84C]" : "bg-transparent group-hover:bg-black/15"
+                  }`}
+                />
+                <div className="flex items-start gap-5">
+                  <span
+                    className={`min-w-[74px] text-[34px] font-semibold leading-none tracking-tight transition-colors md:text-[40px] ${
+                      isActive ? "text-white" : "text-black"
+                    }`}
+                    style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                  >
+                    {m.pct}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center justify-between gap-3">
+                      <h3
+                        className={`text-[13px] font-semibold tracking-tight ${
+                          isActive ? "text-white" : "text-black"
+                        }`}
+                      >
+                        {m.title}
+                      </h3>
+                      <span
+                        className={`shrink-0 font-mono text-[10px] tabular-nums ${
+                          isActive ? "text-white/45" : "text-black/35"
+                        }`}
+                      >
+                        {count} profiles
+                      </span>
+                    </div>
+                    <p
+                      className={`mt-1.5 text-[12px] leading-snug ${
+                        isActive ? "text-white/65" : "text-black/55"
+                      }`}
+                    >
+                      {m.body}
+                    </p>
+                    {/* proportion bar */}
+                    <div
+                      className={`mt-3 h-[3px] w-full overflow-hidden ${
+                        isActive ? "bg-white/15" : "bg-black/[0.07]"
+                      }`}
+                    >
+                      <span
+                        className={`block h-full transition-all duration-500 ${
+                          isActive ? "bg-[#C9A84C]" : "bg-black/30 group-hover:bg-black/50"
+                        }`}
+                        style={{ width: m.pct }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </button>
+            );
+          })}
+        </div>
       </div>
+
 
       {/* Right: faculty images with designations */}
       <FacultyPager key={active} items={visible} />
