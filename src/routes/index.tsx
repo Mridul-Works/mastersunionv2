@@ -252,6 +252,13 @@ function Index() {
         {menuOpen && (
           <div className="mb-3 rounded-none border border-black/10 bg-white/95 p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.12)] backdrop-blur-xl md:hidden">
             <nav className="flex flex-col gap-1">
+              <Link
+                to="/about"
+                onClick={() => setMenuOpen(false)}
+                className="rounded-none px-4 py-3 text-[14px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
+              >
+                About
+              </Link>
               {NAV.map((item) => (
                 <a
                   key={item.id}
@@ -266,14 +273,8 @@ function Index() {
                   {item.label}
                 </a>
               ))}
-              <Link
-                to="/about"
-                onClick={() => setMenuOpen(false)}
-                className="rounded-none px-4 py-3 text-[14px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
-              >
-                About
-              </Link>
             </nav>
+
 
           </div>
         )}
@@ -282,6 +283,12 @@ function Index() {
             <img src={logoAsset.url} alt="Masters' Union" className="h-5 w-auto" />
           </a>
           <nav className="hidden items-center gap-0.5 md:flex">
+            <Link
+              to="/about"
+              className="rounded-none px-3 py-1.5 text-[12px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
+            >
+              About
+            </Link>
             {NAV.map((item) => (
               <a
                 key={item.id}
@@ -295,13 +302,8 @@ function Index() {
                 {item.label}
               </a>
             ))}
-            <Link
-              to="/about"
-              className="rounded-none px-3 py-1.5 text-[12px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
-            >
-              About
-            </Link>
           </nav>
+
 
           <div className="flex items-center gap-1">
             <button
