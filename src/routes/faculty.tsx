@@ -499,8 +499,7 @@ function FacultyPage() {
           />
 
           <p className="mt-10 max-w-[62ch] text-[1rem] leading-[1.6] text-black/70">
-
-            And 19 more across finance, marketing, operations, organisational behaviour, economics, data science, and strategy.
+            Doctorates from IIM Ahmedabad, Bangalore, Calcutta, Kozhikode and Tiruchirappalli, IIT Bombay and Kanpur, Delhi University, Shiv Nadar, Christ University, TERI and the University of Bath — across finance, marketing, operations, organisational behaviour, economics, decision sciences and strategy.
           </p>
 
         </div>
