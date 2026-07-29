@@ -106,6 +106,7 @@ function SectionHeader({
 
 const NAV: SectionNavItem[] = [
   { id: "top", label: "Overview" },
+  { id: "masters", label: "Masters" },
   { id: "practitioners", label: "Industry" },
   { id: "full-time", label: "Full-time" },
   { id: "visiting", label: "Visiting" },
