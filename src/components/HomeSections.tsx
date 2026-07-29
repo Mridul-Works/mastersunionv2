@@ -1165,7 +1165,7 @@ function PedagogySelector() {
             </span>
           </div>
 
-          <div className="my-10">
+          <div key={`copy-${active}`} className="my-10 animate-fade-in">
             <h3
               className="max-w-[16ch] text-[clamp(1.8rem,3.4vw,2.9rem)] font-semibold uppercase leading-[1.02] tracking-[-0.02em] text-black"
               style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
