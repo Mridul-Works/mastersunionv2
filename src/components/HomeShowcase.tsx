@@ -1086,7 +1086,9 @@ export default function HomeShowcase() {
       <ShowcaseShell section={FACULTY_SECTION}>
         <FacultyBlock />
       </ShowcaseShell>
+      <MastersVideos bg="bg-white" />
       <ShowcaseShell section={CAREER_SECTION}>
+
         <StatsBand stats={CAREER_RICH_STATS} tone="cream" />
         <AlumStories />
         <div className="mt-8">
