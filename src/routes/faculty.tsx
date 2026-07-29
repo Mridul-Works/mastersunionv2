@@ -483,7 +483,7 @@ function FacultyPage() {
           <SectionHeader
             index="02"
             eyebrow="Full-time Faculty"
-            title={<>25 PhD faculty. Active researchers. Published where the best B-schools read.</>}
+            title={<>{FULLTIME.length} PhD faculty. Active researchers. Published where the best B-schools read.</>}
             intro="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing in FT50 and A* journals."
           />
 
@@ -492,13 +492,14 @@ function FacultyPage() {
             pct="30%"
             tagline="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing where the best B-schools read."
             stats={[
-              { v: "25", l: "Full-time PhD faculty" },
+              { v: String(FULLTIME.length), l: "Full-time faculty" },
               { v: "50+", l: "FT50 / A* publications" },
             ]}
             items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
           />
 
           <p className="mt-10 max-w-[62ch] text-[1rem] leading-[1.6] text-black/70">
+
             And 19 more across finance, marketing, operations, organisational behaviour, economics, data science, and strategy.
           </p>
 
