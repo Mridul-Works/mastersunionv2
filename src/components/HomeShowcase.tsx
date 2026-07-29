@@ -629,19 +629,6 @@ function FacultyBlock() {
                     >
                       {m.body}
                     </p>
-                    {/* proportion bar */}
-                    <div
-                      className={`mt-3 h-[3px] w-full overflow-hidden ${
-                        isActive ? "bg-white/15" : "bg-black/[0.07]"
-                      }`}
-                    >
-                      <span
-                        className={`block h-full transition-all duration-500 ${
-                          isActive ? "bg-[#C9A84C]" : "bg-black/30 group-hover:bg-black/50"
-                        }`}
-                        style={{ width: m.pct }}
-                      />
-                    </div>
                   </div>
                 </div>
               </button>
