@@ -1146,163 +1146,158 @@ function PedagogyPinnedScroll() {
 function PedagogySelector() {
   const [active, setActive] = useState(0);
   const p = PEDAGOGY[active];
+  const nextIndex = (active + 1) % PEDAGOGY.length;
+  const next = PEDAGOGY[nextIndex];
   const Icon = p.icon;
+  const NextIcon = next.icon;
+
   return (
     <div className="mx-auto max-w-[1280px] px-5 pb-20 md:px-10 md:pb-28">
-      <div className="grid gap-6 md:grid-cols-12 md:gap-8">
-        {/* Left: list of 8 options */}
-        <div className="md:col-span-5 lg:col-span-4">
-          <p className="mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-black/45">
-            Explore · {PEDAGOGY.length} systems
-          </p>
-          <ul className="flex flex-col border-t border-black/15">
-            {PEDAGOGY.map((item, i) => {
+      <div className="flex flex-col overflow-hidden border border-black/10 bg-white lg:h-[560px] lg:flex-row">
+        {/* ---------- Panel 1 — editorial text ---------- */}
+        <div className="flex flex-1 flex-col justify-between p-8 md:p-10 lg:w-[44%]">
+          <div className="flex items-start justify-between">
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-black/45">
+              {p.tag}
+            </span>
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-black/35">
+              {String(active + 1).padStart(2, "0")} / {String(PEDAGOGY.length).padStart(2, "0")}
+            </span>
+          </div>
 
-              const isActive = i === active;
-              return (
-                <li key={item.tag} className="border-b border-black/15">
-                  <button
-                    type="button"
-                    onClick={() => setActive(i)}
-                    onMouseEnter={() => setActive(i)}
-                    className={cn(
-                      "group flex w-full items-center justify-between gap-4 py-4 text-left transition-colors",
-                      isActive ? "text-black" : "text-black/60 hover:text-black"
-                    )}
-                  >
-                    <div className="flex items-center gap-4 min-w-0">
-                      <span className="font-mono text-[11px] font-semibold tabular-nums text-black/40 w-6">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <span
-                        className={cn(
-                          "truncate text-[17px] md:text-[19px] tracking-tight transition-all",
-                          isActive ? "font-semibold" : "font-medium"
-                        )}
-                        style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                      >
-                        {item.tag}
-                      </span>
-                    </div>
-                    <ArrowUpRight
-                      className={cn(
-                        "size-4 shrink-0 transition-transform",
-                        isActive ? "text-black translate-x-0.5 -translate-y-0.5" : "text-black/35 group-hover:text-black/70"
-                      )}
-                    />
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+          <div className="my-10">
+            <h3
+              className="max-w-[16ch] text-[clamp(1.8rem,3.4vw,2.9rem)] font-semibold uppercase leading-[1.02] tracking-[-0.02em] text-black"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+            >
+              {p.title}
+            </h3>
+            <p className="mt-5 max-w-[46ch] text-[13.5px] leading-[1.6] text-black/60">{p.body}</p>
+          </div>
 
-        {/* Right: active widget */}
-        <div className="md:col-span-7 lg:col-span-8">
-          <Link
-            key={p.tag}
-            to={p.route}
-            className="group relative flex h-[720px] overflow-hidden bg-white md:h-[840px]"
-            style={{ background: p.bg }}
-          >
-            {/* Main content area */}
-            <div className="relative flex flex-1 flex-col justify-between p-7 md:p-10">
-              {/* Top row */}
-              <div className="flex items-start justify-between">
-                <div className="flex items-center gap-3">
-                  <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-black/60">
-                    {p.tag}
-                  </span>
-                </div>
-                <div className="flex size-11 items-center justify-center border border-black/15 bg-white/40 text-black/75 backdrop-blur-sm">
-                  <Icon className="size-5" />
-                </div>
-              </div>
-
-              {/* Middle: big title */}
-              <div className="my-8 max-w-[22ch]">
-                <h3
-                  className="text-[clamp(1.9rem,3.6vw,3.1rem)] font-semibold leading-[1.02] tracking-[-0.01em] text-black"
+          {/* Stat columns, reference-style */}
+          <div className="grid grid-cols-3 gap-6">
+            {p.stats.map((s) => (
+              <div key={s.label} className="flex flex-col">
+                <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-black/45">
+                  {s.label}
+                </span>
+                <span className="mt-2 h-px w-8 bg-black/70" />
+                <span
+                  className="mt-3 text-[17px] font-semibold leading-tight tracking-tight text-black"
                   style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
                 >
-                  {p.title}
-                </h3>
-                <p className="mt-5 max-w-[52ch] text-[13.5px] leading-[1.6] text-black/70 md:text-[14.5px]">
-                  {p.body}
-                </p>
-              </div>
-
-              {/* Bottom: stats + arrow CTA */}
-              <div className="flex flex-col gap-6">
-                <div className="grid grid-cols-3 border-t border-black/20">
-                  {p.stats.map((s, idx) => (
-                    <div
-                      key={idx}
-                      className={cn(
-                        "flex flex-col gap-1 py-4 pr-3",
-                        idx > 0 && "border-l border-black/20 pl-4"
-                      )}
-                    >
-                      <span
-                        className="text-[1.6rem] font-semibold leading-none tracking-tight text-black md:text-[2rem]"
-                        style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                      >
-                        {s.value}
-                      </span>
-                      <span className="text-[11px] leading-snug text-black/60">
-                        {s.label}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex items-center">
-                  <div className="flex size-12 items-center justify-center bg-black text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-                    <ArrowUpRight className="size-5" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right rail — vertical index & CTA (reference-style) */}
-            <div className="relative hidden w-[92px] shrink-0 border-l border-black/10 md:flex md:flex-col md:items-center md:justify-between md:py-10 lg:w-[110px]">
-              {/* Big vertical index number */}
-              <div
-                className="flex flex-col items-center leading-[0.85] tracking-[-0.04em] text-black"
-                style={{ fontFamily: "'Inter', system-ui, sans-serif", writingMode: "vertical-rl" }}
-              >
-                <span className="rotate-180 text-[clamp(3rem,5vw,4.5rem)] font-semibold tabular-nums">
-                  {String(active + 1).padStart(3, "0")}
+                  {s.value}
                 </span>
               </div>
+            ))}
+          </div>
 
-              {/* Dot pagination */}
-              <div className="flex flex-col items-center gap-2">
-                {PEDAGOGY.map((_, i) => (
-                  <span
-                    key={i}
-                    className={cn(
-                      "block size-1.5 rounded-full transition-all",
-                      i === active ? "bg-black scale-125" : "bg-black/25"
-                    )}
-                  />
-                ))}
-              </div>
-
-              {/* Vertical CTA label */}
-              <span
-                className="font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-black/70"
-                style={{ writingMode: "vertical-rl" }}
-              >
-                {p.cta}
-              </span>
-            </div>
+          <Link
+            to={p.route}
+            className="group mt-8 inline-flex items-center gap-2 self-start font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-black"
+          >
+            {p.cta}
+            <ArrowUpRight className="size-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </Link>
         </div>
 
+        {/* ---------- Panel 2 — hero slab ---------- */}
+        <div
+          className="relative flex min-h-[360px] flex-1 flex-col justify-between border-t border-black/10 lg:min-h-0 lg:w-[36%] lg:border-l lg:border-t-0"
+          style={{ background: p.bg }}
+        >
+          <div className="flex items-start justify-between p-8 md:p-10">
+            <div className="flex items-baseline gap-1 leading-none text-black">
+              <span
+                className="text-[clamp(2.6rem,5vw,4rem)] font-semibold tabular-nums tracking-[-0.04em]"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+              >
+                {String(active + 1).padStart(2, "0")}
+              </span>
+              <span className="text-[clamp(1.1rem,2vw,1.5rem)] font-light text-black/50">
+                /{String(PEDAGOGY.length).padStart(2, "0")}
+              </span>
+            </div>
+            <div className="flex size-11 items-center justify-center border border-black/15 bg-white/40 text-black/75 backdrop-blur-sm">
+              <Icon className="size-5" />
+            </div>
+          </div>
+
+          {/* Dark bottom bar */}
+          <div className="flex items-stretch">
+            <Link
+              to={p.route}
+              className="flex flex-1 items-center gap-2 bg-neutral-900 px-5 py-4 font-mono text-[9px] font-bold uppercase tracking-[0.26em] text-white/90 transition-colors hover:bg-black"
+            >
+              <span className="size-1.5 rounded-full bg-white/80" />
+              {p.tag}
+            </Link>
+            <button
+              type="button"
+              onClick={() => setActive(nextIndex)}
+              className="flex items-center gap-2 bg-white px-5 py-4 font-mono text-[9px] font-bold uppercase tracking-[0.26em] text-black transition-colors hover:bg-black hover:text-white"
+            >
+              Next system
+              <ChevronRight className="size-3.5" />
+            </button>
+          </div>
+        </div>
+
+        {/* ---------- Panel 3 — next-up rail ---------- */}
+        <div className="relative hidden border-l border-black/10 lg:flex lg:w-[20%] lg:flex-col">
+          <div className="flex items-center justify-between px-6 pt-8">
+            <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.26em] text-black/45">
+              Next up
+            </span>
+            <NextIcon className="size-4 text-black/45" />
+          </div>
+
+          <h4
+            className="mt-5 px-6 text-[19px] font-semibold uppercase leading-[1.1] tracking-tight text-black"
+            style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+          >
+            {next.tag}
+          </h4>
+
+          <button
+            type="button"
+            onClick={() => setActive(nextIndex)}
+            className="group relative mt-6 flex-1 overflow-hidden border-t border-black/10 text-left"
+            style={{ background: next.bg }}
+            aria-label={`Show ${next.tag}`}
+          >
+            <span
+              className="absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[9px] font-semibold uppercase tracking-[0.3em] text-black/70"
+              style={{ writingMode: "vertical-rl" }}
+            >
+              {next.cta}
+            </span>
+            <span className="absolute right-4 top-4 flex size-9 items-center justify-center bg-white/70 text-black transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+              <ArrowUpRight className="size-4" />
+            </span>
+          </button>
+
+          <div className="flex items-center justify-center gap-2 py-5">
+            {PEDAGOGY.map((item, i) => (
+              <button
+                key={item.tag}
+                type="button"
+                onClick={() => setActive(i)}
+                aria-label={item.tag}
+                className={cn(
+                  "h-1 transition-all",
+                  i === active ? "w-6 bg-black" : "w-3 bg-black/25 hover:bg-black/50"
+                )}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
 }
+
 
 
 function SectionHead({ eyebrow, title, lede, icon: Icon, stack, compact }: { eyebrow: string; title: React.ReactNode; lede: string; icon?: React.ComponentType<{ className?: string }>; stack?: boolean; compact?: boolean }) {
