@@ -523,14 +523,14 @@ function AdmissionsConnect() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedSessionId, setSelectedSessionId] = useState<string | undefined>(undefined);
 
-
-
   const openFor = (sessionId: string) => {
     setSelectedSessionId(sessionId);
     setDialogOpen(true);
   };
 
-  const featured = ADMISSIONS_CONNECT_SESSIONS;
+  const sessions = ADMISSIONS_CONNECT_SESSIONS;
+  const hero = sessions[0];
+  const rest = sessions.slice(1);
 
   return (
     <div className="col-span-12 mt-14 pt-12 relative">
@@ -542,109 +542,145 @@ function AdmissionsConnect() {
             "linear-gradient(90deg, transparent, #39B5D7, #F7D544, #E38330, transparent)",
         }}
       />
-      <header className="mb-10 max-w-3xl">
-        <p className="mb-3 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-black/50">
-          Admissions Connect
-        </p>
-        <h2
-          className="text-[clamp(1.75rem,4vw,3.25rem)] font-semibold leading-[1.05] tracking-tight text-black"
-          style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-        >
-          Don’t believe AI?{" "}
-          <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
-            Talk to humans.
-          </span>
-        </h2>
-        <p className="mt-5 max-w-2xl text-[15px] font-medium leading-snug text-black/70">
-          Join live, small-group sessions with alumni, parents, faculty and current students.
-          Ask the questions search engines can’t answer and get honest answers from people who’ve been through it.
-        </p>
-      </header>
 
-      <div className="relative">
-        <div
-          className="scrollbar-hover-only flex snap-x snap-mandatory gap-5 overflow-x-auto pb-6 md:gap-6"
-        >
-          {featured.map((s) => (
-            <article
-              key={s.id}
-              className="group relative flex snap-start shrink-0 flex-col overflow-hidden rounded-none border border-black/10 bg-white text-black transition-[box-shadow,border-color] duration-300 ease-out hover:border-black/30 hover:shadow-[0_14px_40px_-20px_rgba(0,0,0,0.2)]"
-              style={{
-                width: "min(88vw, 420px)",
-                minHeight: "500px",
-              }}
+      {/* ── Editorial masthead: type slab left, collage right ── */}
+      <div className="grid grid-cols-12 items-stretch gap-0 border border-black/10 bg-[#F7F5EF]">
+        <div className="col-span-12 flex flex-col justify-between px-6 py-10 md:col-span-5 md:px-10 md:py-14">
+          <div>
+            <p className="mb-6 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-black/50">
+              Admissions Connect
+            </p>
+            <h2
+              className="text-[clamp(2.4rem,5.2vw,4.4rem)] font-extrabold uppercase leading-[0.86] tracking-[-0.03em] text-black"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
             >
-              {/* Top: full-width editorial portrait */}
-              <div className="relative w-full overflow-hidden">
-                <ImagePlaceholder
-                  aspect="4/3"
-                  className="h-48 w-full md:h-56"
-                />
+              Don’t
+              <br />
+              believe AI?
+              <br />
+              Talk to
+              <br />
+              humans.
+            </h2>
+            <p className="mt-7 max-w-sm text-[13.5px] leading-[1.6] text-black/65">
+              Live, small-group sessions with alumni, parents, faculty and current students.
+              Ask the questions search engines can’t answer.
+            </p>
+          </div>
 
-                <span className="absolute right-3 top-3 rounded-sm bg-white/90 px-2 py-1 text-right font-mono text-[9px] uppercase tracking-[0.22em] text-black/70 backdrop-blur">
-                  {formatSessionDate(s.nextDate)}<br />{s.nextTime}
-                </span>
-              </div>
+          <div className="mt-10 flex flex-wrap items-center gap-4">
+            <button
+              type="button"
+              onClick={() => openFor(hero.id)}
+              className="inline-flex items-center gap-2 rounded-full bg-black px-5 py-2.5 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-white transition-transform hover:-translate-y-0.5"
+            >
+              Book a session <ArrowRight className="size-3.5" />
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setSelectedSessionId(undefined);
+                setDialogOpen(true);
+              }}
+              className="inline-flex items-center gap-2 border-b border-black/30 pb-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black/70 transition-colors hover:text-black"
+            >
+              View all sessions <ArrowUpRight className="size-3.5" />
+            </button>
+          </div>
 
-              <div className="flex flex-1 flex-col justify-between p-5 md:p-6">
-
-              {/* Middle: big title */}
-              <div className="mt-4">
-                <h3
-                  className="text-[20px] font-semibold leading-[1.05] tracking-tight text-black md:text-[22px]"
-                  style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+          {/* stat strip */}
+          <div className="mt-10 grid grid-cols-3 border-t border-black/10 pt-5">
+            {[
+              { k: "6", v: "Formats" },
+              { k: "1:1", v: "Or small group" },
+              { k: "Free", v: "Always" },
+            ].map((s) => (
+              <div key={s.v} className="pr-3">
+                <p
+                  className="text-[22px] font-semibold leading-none tracking-tight text-black"
+                  style={{ fontFamily: "'Fraunces', Georgia, serif" }}
                 >
-
-                  {s.title}
-                </h3>
-
-                <p className="mt-3 text-[12.5px] leading-[1.55] text-black/70">
-                  {s.description}
+                  {s.k}
                 </p>
-                <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.22em] text-black/50">
-                  {s.spotsLeft} spots left
-                </p>
+                <p className="mt-1.5 font-mono text-[9px] uppercase tracking-[0.18em] text-black/45">{s.v}</p>
               </div>
+            ))}
+          </div>
+        </div>
 
-              {/* Bottom: CTA + arrow */}
-              <div className="mt-5 flex items-end justify-between gap-4">
-                <button
-                  type="button"
-                  onClick={() => openFor(s.id)}
-                  className="inline-flex items-center gap-2 border-b border-black/40 pb-1 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-black transition-transform hover:-translate-y-0.5"
-                >
-                  Register for session
-                </button>
-                <button
-                  type="button"
-                  onClick={() => openFor(s.id)}
-                  aria-label="Register"
-                  className="flex size-8 items-center justify-center rounded-none border border-black/20 text-black transition-colors hover:bg-black hover:text-white"
-                >
-                  <ArrowRight className="size-4" />
-                </button>
-              </div>
-
-              </div>
-            </article>
-          ))}
+        <div className="col-span-12 relative min-h-[300px] overflow-hidden border-t border-black/10 md:col-span-7 md:border-l md:border-t-0">
+          <img src={hero.image} alt={hero.title} className="absolute inset-0 h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-6 p-6 md:p-8">
+            <div>
+              <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-white/70">Next up</p>
+              <h3
+                className="mt-2 text-[26px] font-extrabold uppercase leading-[0.95] tracking-tight text-white md:text-[34px]"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+              >
+                {hero.title}
+              </h3>
+              <p className="mt-2 max-w-md text-[12.5px] leading-snug text-white/75">{hero.tagline}</p>
+            </div>
+            <span className="shrink-0 rounded-sm bg-white/90 px-2.5 py-1.5 text-right font-mono text-[9px] uppercase leading-tight tracking-[0.2em] text-black/70 backdrop-blur">
+              {formatSessionDate(hero.nextDate)}
+              <br />
+              {hero.nextTime}
+            </span>
+          </div>
         </div>
       </div>
 
+      {/* ── Numbered editorial cards ── */}
+      <div className="grid grid-cols-1 border-x border-b border-black/10 sm:grid-cols-2 lg:grid-cols-3">
+        {rest.map((s, i) => (
+          <article
+            key={s.id}
+            className="group relative flex flex-col justify-between border-t border-black/10 bg-white p-6 transition-colors duration-300 hover:bg-[#F7F5EF] sm:border-l sm:first:border-l-0 lg:p-7"
+          >
+            <div>
+              <div className="flex items-center justify-between">
+                <p className="font-mono text-[9px] font-bold uppercase tracking-[0.24em] text-black/45">
+                  {String(i + 2).padStart(2, "0")} — {s.format}
+                </p>
+                <s.icon className="size-4 text-black/35" />
+              </div>
 
+              <h3
+                className="mt-6 text-[19px] font-extrabold uppercase leading-[1.02] tracking-tight text-black lg:text-[21px]"
+                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+              >
+                {s.title}
+              </h3>
 
-      <div className="mt-10 text-center">
-        <button
-          type="button"
-          onClick={() => {
-            setSelectedSessionId(undefined);
-            setDialogOpen(true);
-          }}
-          className="inline-flex items-center border-b-2 border-black/20 pb-1 text-sm font-semibold text-black/60 transition-all hover:border-black hover:text-black"
-        >
-          View all sessions
-          <ArrowRight className="ml-2 h-4 w-4" />
-        </button>
+              <div className="relative mt-5 overflow-hidden">
+                <img
+                  src={s.image}
+                  alt={s.title}
+                  className="h-36 w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:scale-[1.03]"
+                />
+              </div>
+
+              <p className="mt-5 text-[12.5px] leading-[1.6] text-black/65">{s.description}</p>
+            </div>
+
+            <div className="mt-6 border-t border-black/10 pt-4">
+              <div className="mb-4 flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.2em] text-black/45">
+                <span>
+                  {formatSessionDate(s.nextDate)} · {s.nextTime}
+                </span>
+                <span>{s.duration}</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => openFor(s.id)}
+                className="inline-flex items-center gap-2 border-b border-black/40 pb-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black transition-transform group-hover:-translate-y-0.5"
+              >
+                Register <ArrowUpRight className="size-3.5" />
+              </button>
+            </div>
+          </article>
+        ))}
       </div>
 
       <p className="mt-8 text-center text-[12px] leading-relaxed text-black/50">
