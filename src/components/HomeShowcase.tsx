@@ -679,14 +679,15 @@ function FacultyPager({ items }: { items: typeof FACULTY_ALL }) {
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-4">
               {pageItems.map((f) => (
                 <figure key={f.name} title={f.name} className="group flex flex-col">
-                  <div className="relative aspect-square overflow-hidden bg-black/5">
+                  <div className="relative aspect-[3/4] overflow-hidden bg-black/5">
                     {f.img ? (
                       <img
                         src={f.img}
                         alt={f.name}
                         loading="lazy"
-                        className="absolute inset-0 h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.04]"
+                        className="absolute inset-0 h-full w-full object-cover object-top grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.04]"
                       />
+
                     ) : (
                       <div
                         className="absolute inset-0 flex items-center justify-center bg-neutral-100 text-2xl tracking-tight text-black/35"
