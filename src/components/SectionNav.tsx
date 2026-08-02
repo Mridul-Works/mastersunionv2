@@ -84,14 +84,8 @@ export function SectionNav({
 }) {
   const { scrolled, progress } = useScrollState();
   const active = useActiveSection(items.map((i) => i.id));
-  const [menuOpen, setMenuOpen] = useState(false);
 
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
 
   const activeLabel = items.find((l) => l.id === active)?.label ?? "Overview";
 
