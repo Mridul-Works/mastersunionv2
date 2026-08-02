@@ -76,13 +76,16 @@ function useActiveSection(ids: string[]) {
 export function SectionNav({
   items,
   applyHref = "#apply",
+  extraLinks = [],
 }: {
   items: SectionNavItem[];
   applyHref?: string;
+  extraLinks?: { href: string; label: string }[];
 }) {
   const { scrolled, progress } = useScrollState();
   const active = useActiveSection(items.map((i) => i.id));
   const [menuOpen, setMenuOpen] = useState(false);
+
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
