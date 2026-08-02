@@ -73,7 +73,30 @@ function useActiveSection(ids: string[]) {
   return active;
 }
 
+function useClock() {
+  const [now, setNow] = useState<Date | null>(null);
+
+  useEffect(() => {
+    setNow(new Date());
+    const t = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(t);
+  }, []);
+
+  if (!now) return "";
+  const date = now.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+  });
+  const time = now.toLocaleTimeString("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+  return `${date} · ${time}`;
+}
+
 export function SectionNav({
+
   items,
   applyHref = "#apply",
   extraLinks = [],
@@ -84,10 +107,10 @@ export function SectionNav({
 }) {
   const { scrolled, progress } = useScrollState();
   const active = useActiveSection(items.map((i) => i.id));
-
-
+  const clock = useClock();
 
   const activeLabel = items.find((l) => l.id === active)?.label ?? "Overview";
+
 
   const handleApply = (e: React.MouseEvent) => {
     if (applyHref.startsWith("#")) {
@@ -121,8 +144,9 @@ export function SectionNav({
           <img src={logoAsset.url} alt="Masters' Union" className="h-5 w-auto sm:h-6 lg:h-7" />
           <span className="hidden h-6 w-px bg-border md:block" />
           <span className="hidden font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground md:block">
-            Masters' Union
+            {clock}
           </span>
+
         </a>
 
         <nav aria-label="Sections" className="hidden min-w-0 items-center gap-0.5 lg:flex">
