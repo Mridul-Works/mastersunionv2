@@ -84,10 +84,10 @@ export function SectionNav({
 }) {
   const { scrolled, progress } = useScrollState();
   const active = useActiveSection(items.map((i) => i.id));
-
-
+  const clock = useClock();
 
   const activeLabel = items.find((l) => l.id === active)?.label ?? "Overview";
+
 
   const handleApply = (e: React.MouseEvent) => {
     if (applyHref.startsWith("#")) {
