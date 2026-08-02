@@ -207,19 +207,11 @@ export function SectionNav({
         </nav>
 
         <div className="flex shrink-0 items-center gap-2">
-          <button
-            type="button"
-            onClick={() => setMenuOpen((s) => !s)}
-            aria-expanded={menuOpen}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-2 text-[13px] font-medium text-foreground transition-colors hover:bg-foreground/[0.06] sm:px-4"
-          >
-            {menuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-            <span className="hidden sm:inline">Menu</span>
-            <span className="hidden font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground xl:inline">
-              {activeLabel}
-            </span>
-          </button>
+          <span className="hidden font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground xl:inline">
+            {activeLabel}
+          </span>
+
+
 
           <a
             href={applyHref}
