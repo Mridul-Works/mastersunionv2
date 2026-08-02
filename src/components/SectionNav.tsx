@@ -104,52 +104,8 @@ export function SectionNav({
 
   return (
     <header className="fixed inset-x-0 bottom-0 z-[100] hidden px-3 pb-3 sm:px-5 sm:pb-4 md:block">
-      {menuOpen && (
-        <div className="mx-auto mb-2 max-h-[calc(100dvh-8rem)] max-w-[1320px] overflow-y-auto overscroll-contain rounded-2xl border border-border bg-background/95 p-2 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)] backdrop-blur-xl">
-          <nav aria-label="Sections" className="grid gap-1 sm:grid-cols-2 lg:grid-cols-4">
-            {items.map((l, i) => (
-              <a
-                key={l.id}
-                href={`#${l.id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setMenuOpen(false);
-                  scrollToId(l.id);
-                }}
-                className={
-                  "flex items-center gap-3 rounded-[4px] px-4 py-3.5 text-[14px] font-medium transition-colors " +
-                  (active === l.id
-                    ? "bg-foreground/[0.07] text-foreground"
-                    : "text-foreground/85 hover:bg-foreground/[0.06]")
-                }
-              >
-                <span
-                  className={
-                    "font-mono text-[10px] tracking-[0.2em] " +
-                    (active === l.id ? "text-foreground" : "text-muted-foreground/60")
-                  }
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                {l.label}
-              </a>
-            ))}
-            {extraLinks.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setMenuOpen(false)}
-                className="flex items-center gap-3 rounded-[4px] px-4 py-3.5 text-[14px] font-medium text-foreground/85 transition-colors hover:bg-foreground/[0.06]"
-              >
-                <span className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground/60">
-                  →
-                </span>
-                {l.label}
-              </a>
-            ))}
-          </nav>
-        </div>
-      )}
+
+
 
 
       <div
