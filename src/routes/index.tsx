@@ -240,91 +240,22 @@ function Index() {
   return (
     <main className="min-h-screen bg-white">
       {/* NAV */}
-      <header
-        className={`fixed inset-x-0 bottom-0 z-[100] hidden px-4 pb-3 sm:px-6 sm:pb-4 transition-all duration-500 md:block ${
+      <div
+        className={`transition-all duration-500 ${
           navVisible
             ? navHidden
-              ? "opacity-0 translate-y-6 pointer-events-none"
-              : "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 translate-y-4 pointer-events-none"
+              ? "pointer-events-none opacity-0"
+              : "pointer-events-auto opacity-100"
+            : "pointer-events-none opacity-0"
         }`}
       >
-        {menuOpen && (
-          <div className="mb-3 rounded-none border border-black/10 bg-white/95 p-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.12)] backdrop-blur-xl md:hidden">
-            <nav className="flex flex-col gap-1">
-              <Link
-                to="/about"
-                onClick={() => setMenuOpen(false)}
-                className="rounded-none px-4 py-3 text-[14px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
-              >
-                About
-              </Link>
-              {NAV.map((item) => (
-                <a
-                  key={item.id}
-                  href={`#${item.id}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setMenuOpen(false);
-                    scrollToId(item.id);
-                  }}
-                  className="rounded-none px-4 py-3 text-[14px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </nav>
+        <SectionNav
+          items={NAV.map((n) => ({ id: n.id, label: n.label }))}
+          extraLinks={[{ href: "/about", label: "About" }]}
+          applyHref="#programs"
+        />
+      </div>
 
-
-          </div>
-        )}
-        <div className="mx-auto flex max-w-[1180px] items-center justify-between rounded-none border border-black/10 bg-white/80 px-2 py-1.5 shadow-[0_6px_24px_-12px_rgba(0,0,0,0.15)] backdrop-blur-xl">
-          <a href="/" className="flex items-center gap-2 rounded-none px-2.5 py-1">
-            <img src={logoAsset.url} alt="Masters' Union" className="h-5 w-auto" />
-          </a>
-          <nav className="hidden items-center gap-0.5 md:flex">
-            <Link
-              to="/about"
-              className="rounded-none px-3 py-1.5 text-[12px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
-            >
-              About
-            </Link>
-            {NAV.map((item) => (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToId(item.id);
-                }}
-                className="rounded-none px-3 py-1.5 text-[12px] font-medium text-black/60 transition-colors hover:bg-black/5 hover:text-black"
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
-
-
-          <div className="flex items-center gap-1">
-            <button
-              type="button"
-              className="rounded-none bg-black px-4 py-2 text-[11px] font-semibold uppercase tracking-wide text-white shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98] pastel-fill"
-            >
-              Apply
-            </button>
-
-            <button
-              type="button"
-              aria-label="Toggle menu"
-              aria-expanded={menuOpen}
-              onClick={() => setMenuOpen((s) => !s)}
-              className="flex size-8 items-center justify-center rounded-none text-black/60 transition-colors hover:bg-black/5 hover:text-black md:hidden"
-            >
-              {menuOpen ? <X className="size-4" /> : <Menu className="size-4" />}
-            </button>
-          </div>
-        </div>
-      </header>
 
       <div id="hero-curtain" className="relative">
         <section
