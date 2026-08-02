@@ -134,9 +134,23 @@ export function SectionNav({
                 {l.label}
               </a>
             ))}
+            {extraLinks.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center gap-3 rounded-[4px] px-4 py-3.5 text-[14px] font-medium text-foreground/85 transition-colors hover:bg-foreground/[0.06]"
+              >
+                <span className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground/60">
+                  →
+                </span>
+                {l.label}
+              </a>
+            ))}
           </nav>
         </div>
       )}
+
 
       <div
         className={
