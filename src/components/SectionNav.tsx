@@ -194,6 +194,16 @@ export function SectionNav({
               {item.label}
             </a>
           ))}
+          {extraLinks.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="rounded-full px-3 py-1.5 text-[12.5px] font-medium text-foreground/70 transition-colors hover:bg-foreground/[0.06] hover:text-foreground"
+            >
+              {l.label}
+            </a>
+          ))}
+
         </nav>
 
         <div className="flex shrink-0 items-center gap-2">
