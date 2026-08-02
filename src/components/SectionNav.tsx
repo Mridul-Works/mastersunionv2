@@ -127,7 +127,7 @@ export function SectionNav({
 
       <div
         className={
-          "relative mx-auto flex h-14 max-w-[1320px] items-center justify-between gap-2 overflow-hidden rounded-full border px-3 transition-all duration-300 sm:gap-4 sm:px-5 lg:h-16 " +
+          "relative mx-auto flex h-10 max-w-[1320px] items-center justify-between gap-2 overflow-hidden rounded-full border px-3 transition-all duration-300 sm:gap-4 sm:px-5 lg:h-11 " +
           (scrolled
             ? "border-border bg-background/85 shadow-[0_-18px_50px_-28px_rgba(0,0,0,0.28)] backdrop-blur-xl"
             : "border-border/60 bg-background/80 shadow-[0_-12px_40px_-30px_rgba(0,0,0,0.25)] backdrop-blur-md")
@@ -190,11 +190,11 @@ export function SectionNav({
           <a
             href={applyHref}
             onClick={handleApply}
-            className="group inline-flex items-center gap-2 rounded-full bg-primary py-1 pl-3.5 pr-1 text-[13px] font-semibold text-primary-foreground transition-transform hover:-translate-y-px sm:pl-4"
+            className="group inline-flex items-center gap-1.5 rounded-full bg-primary py-0.5 pl-3 pr-0.5 text-[12px] font-semibold text-primary-foreground transition-transform hover:-translate-y-px sm:pl-3.5"
           >
             Apply
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary-foreground text-primary transition-transform duration-300 group-hover:rotate-45">
-              <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2.25} />
+            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary-foreground text-primary transition-transform duration-300 group-hover:rotate-45">
+              <ArrowUpRight className="h-3 w-3" strokeWidth={2.25} />
             </span>
           </a>
         </div>
