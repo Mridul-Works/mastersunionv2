@@ -10,6 +10,8 @@ import heroBuilding from "@/assets/hero-building-light.webp";
 import TenThings from "@/components/TenThings";
 import HomeSections from "@/components/HomeSections";
 import WidgetCarousel from "@/components/WidgetCarousel";
+import SectionNav from "@/components/SectionNav";
+
 
 
 gsap.registerPlugin(ScrollTrigger);
