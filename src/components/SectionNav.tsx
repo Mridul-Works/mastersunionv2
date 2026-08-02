@@ -145,7 +145,7 @@ export function SectionNav({
         />
 
         <a href="/" className="flex min-w-0 shrink-0 items-center gap-3" aria-label="Masters' Union home">
-          <img src={logoAsset.url} alt="Masters' Union" className="h-5 w-auto sm:h-6 lg:h-7" />
+          <img src={logoAsset.url} alt="Masters' Union" className="h-3.5 w-auto sm:h-4 lg:h-[18px]" />
           <span className="hidden h-6 w-px bg-border md:block" />
           <span className="hidden font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground md:block">
             {clock}
