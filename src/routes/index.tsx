@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Menu, X, ArrowUp, Pause, Play } from "lucide-react";
+import { ArrowUp, Pause, Play } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import logoAsset from "@/assets/logo-2.png.asset.json";
@@ -50,7 +50,6 @@ const scrollToId = (id: string) => {
 };
 
 function Index() {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [navVisible, setNavVisible] = useState(false);
   const [navHidden, setNavHidden] = useState(false);
   const [showRewatch, setShowRewatch] = useState(false);
