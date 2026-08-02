@@ -528,7 +528,8 @@ function AdmissionsConnect() {
     setDialogOpen(true);
   };
 
-  const sessions = ADMISSIONS_CONNECT_SESSIONS;
+  // single row only — remaining sessions live in the "View all sessions" dialog
+  const sessions = ADMISSIONS_CONNECT_SESSIONS.slice(0, 3);
 
   return (
     <div className="col-span-12 mt-14 border-t border-black/10 pt-12">
