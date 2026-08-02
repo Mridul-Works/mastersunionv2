@@ -73,7 +73,30 @@ function useActiveSection(ids: string[]) {
   return active;
 }
 
+function useClock() {
+  const [now, setNow] = useState<Date | null>(null);
+
+  useEffect(() => {
+    setNow(new Date());
+    const t = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(t);
+  }, []);
+
+  if (!now) return "";
+  const date = now.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+  });
+  const time = now.toLocaleTimeString("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+  return `${date} · ${time}`;
+}
+
 export function SectionNav({
+
   items,
   applyHref = "#apply",
   extraLinks = [],
