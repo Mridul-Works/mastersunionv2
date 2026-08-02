@@ -136,8 +136,12 @@ export function SectionNav({
         {/* scroll progress rail */}
         <span
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-px origin-left bg-foreground/50 transition-transform duration-150"
-          style={{ transform: `scaleX(${progress})` }}
+          className="pointer-events-none absolute inset-x-0 top-0 h-[2px] origin-left transition-transform duration-150"
+          style={{
+            transform: `scaleX(${progress})`,
+            backgroundImage:
+              "linear-gradient(91deg, #39B5D7 -6.14%, #F7D544 47.02%, #E38330 99.71%)",
+          }}
         />
 
         <a href="/" className="flex min-w-0 shrink-0 items-center gap-3" aria-label="Masters' Union home">
