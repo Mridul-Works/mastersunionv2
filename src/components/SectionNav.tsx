@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import logoAsset from "@/assets/logo-2.png.asset.json";
 
 export type SectionNavItem = {
@@ -84,14 +84,8 @@ export function SectionNav({
 }) {
   const { scrolled, progress } = useScrollState();
   const active = useActiveSection(items.map((i) => i.id));
-  const [menuOpen, setMenuOpen] = useState(false);
 
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
 
   const activeLabel = items.find((l) => l.id === active)?.label ?? "Overview";
 
@@ -104,52 +98,8 @@ export function SectionNav({
 
   return (
     <header className="fixed inset-x-0 bottom-0 z-[100] hidden px-3 pb-3 sm:px-5 sm:pb-4 md:block">
-      {menuOpen && (
-        <div className="mx-auto mb-2 max-h-[calc(100dvh-8rem)] max-w-[1320px] overflow-y-auto overscroll-contain rounded-2xl border border-border bg-background/95 p-2 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)] backdrop-blur-xl">
-          <nav aria-label="Sections" className="grid gap-1 sm:grid-cols-2 lg:grid-cols-4">
-            {items.map((l, i) => (
-              <a
-                key={l.id}
-                href={`#${l.id}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setMenuOpen(false);
-                  scrollToId(l.id);
-                }}
-                className={
-                  "flex items-center gap-3 rounded-[4px] px-4 py-3.5 text-[14px] font-medium transition-colors " +
-                  (active === l.id
-                    ? "bg-foreground/[0.07] text-foreground"
-                    : "text-foreground/85 hover:bg-foreground/[0.06]")
-                }
-              >
-                <span
-                  className={
-                    "font-mono text-[10px] tracking-[0.2em] " +
-                    (active === l.id ? "text-foreground" : "text-muted-foreground/60")
-                  }
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                {l.label}
-              </a>
-            ))}
-            {extraLinks.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setMenuOpen(false)}
-                className="flex items-center gap-3 rounded-[4px] px-4 py-3.5 text-[14px] font-medium text-foreground/85 transition-colors hover:bg-foreground/[0.06]"
-              >
-                <span className="font-mono text-[10px] tracking-[0.2em] text-muted-foreground/60">
-                  →
-                </span>
-                {l.label}
-              </a>
-            ))}
-          </nav>
-        </div>
-      )}
+
+
 
 
       <div
@@ -207,19 +157,11 @@ export function SectionNav({
         </nav>
 
         <div className="flex shrink-0 items-center gap-2">
-          <button
-            type="button"
-            onClick={() => setMenuOpen((s) => !s)}
-            aria-expanded={menuOpen}
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-2 text-[13px] font-medium text-foreground transition-colors hover:bg-foreground/[0.06] sm:px-4"
-          >
-            {menuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-            <span className="hidden sm:inline">Menu</span>
-            <span className="hidden font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground xl:inline">
-              {activeLabel}
-            </span>
-          </button>
+          <span className="hidden font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground xl:inline">
+            {activeLabel}
+          </span>
+
+
 
           <a
             href={applyHref}
