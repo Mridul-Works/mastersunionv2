@@ -360,12 +360,12 @@ function StatsBand({ stats, tone = "light" }: { stats: RichStat[]; tone?: "light
   const border = tone === "cream" ? "border-black/10" : "border-black/10";
   const bg = tone === "cream" ? "bg-white" : "bg-[#F5F3EE]";
   return (
-    <div className={`mb-8 overflow-hidden rounded-2xl border ${border} ${bg}`}>
+    <div className={`mb-5 overflow-hidden rounded-2xl border ${border} ${bg}`}>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
         {stats.map((s, i) => (
           <div
             key={s.label}
-            className={`relative px-5 py-5 md:px-6 md:py-6 ${
+            className={`relative px-4 py-3 md:px-4 md:py-3.5 ${
               i % 2 === 1 ? "border-l border-black/10" : ""
             } ${i >= 2 ? "border-t border-black/10 md:border-t-0" : ""} ${
               i % 3 !== 0 ? "md:border-l md:border-black/10" : ""
@@ -373,25 +373,26 @@ function StatsBand({ stats, tone = "light" }: { stats: RichStat[]; tone?: "light
               i % 6 !== 0 ? "lg:border-l lg:border-black/10" : ""
             }`}
           >
-            <div className="flex items-baseline gap-2">
+            <div className="flex items-baseline gap-1.5">
               <div
-                className="text-[clamp(1.6rem,2.4vw,2.25rem)] font-semibold leading-none tracking-tight text-black"
+                className="text-[clamp(1.25rem,1.7vw,1.6rem)] font-semibold leading-none tracking-tight text-black"
                 style={{ fontFamily: "'Fraunces', Georgia, serif" }}
               >
                 {s.value}
               </div>
               {s.delta && (
-                <span className="rounded-full bg-[#DDE7D6] px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.14em] text-[#3F5B33]">
+                <span className="rounded-full bg-[#DDE7D6] px-1.5 py-0.5 text-[8px] font-semibold uppercase tracking-[0.12em] text-[#3F5B33]">
                   {s.delta}
                 </span>
               )}
             </div>
-            <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/70">
+            <div className="mt-1.5 text-[9px] font-semibold uppercase tracking-[0.16em] text-black/70">
               {s.label}
             </div>
             {s.note && (
-              <div className="mt-1 text-[11px] leading-snug text-black/50">{s.note}</div>
+              <div className="mt-0.5 text-[10px] leading-snug text-black/50">{s.note}</div>
             )}
+
           </div>
         ))}
       </div>
