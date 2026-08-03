@@ -41,6 +41,7 @@ import {
   MessageCircle,
   BookOpen,
   Globe,
+  Mic,
 } from "lucide-react";
 
 
