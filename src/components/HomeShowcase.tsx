@@ -1129,121 +1129,166 @@ function UniformLogoList({ groups }: { groups: LogoGroup[] }) {
 
 
 
-function CareerPodcast() {
-  const [playing, setPlaying] = useState(false);
-  const id = "uiNTwDixAts";
+function VideoLightbox({
+  onClose,
+  children,
+  label,
+}: {
+  onClose: () => void;
+  children: React.ReactNode;
+  label: string;
+}) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
 
   return (
-    <div className="mt-7 grid grid-cols-1 gap-6 border-t border-black/10 pt-8 lg:grid-cols-12 lg:gap-10">
-      <div className="lg:col-span-5">
-        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-black/50">
-          Podcast
-        </p>
-        <h3
-          className="mt-3 text-[clamp(1.25rem,2.2vw,1.75rem)] font-medium italic leading-[1.15] tracking-tight text-black"
-          style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+    <div
+      className="fixed inset-0 z-[130] grid place-items-center bg-black/85 p-4 backdrop-blur-sm"
+      role="dialog"
+      aria-modal="true"
+      aria-label={label}
+      onClick={onClose}
+    >
+      <div
+        className="relative w-full max-w-[980px] overflow-hidden rounded-2xl bg-black shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close video"
+          className="absolute right-3 top-3 z-10 grid h-9 w-9 place-items-center rounded-full bg-white/15 text-white transition hover:bg-white/30"
         >
-          How Masters' Union prepares students for top 1% placements
-        </h3>
-        <p className="mt-3 max-w-[46ch] text-[13px] leading-relaxed text-black/60">
-          A detailed conversation on the placement engine behind Masters' Union — how recruiter
-          access, live industry projects and year-round career coaching translate into offers at the
-          firms shaping the next decade.
-        </p>
-        <a
-          href={`https://www.youtube.com/watch?v=${id}`}
-          target="_blank"
-          rel="noreferrer"
-          className="group mt-5 inline-flex items-center gap-2 border-b border-black/25 pb-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-black transition hover:border-black"
-        >
-          Watch on YouTube
-          <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </a>
-      </div>
-
-      <div className="lg:col-span-7">
-        <div className="relative aspect-video w-[90%] max-w-full overflow-hidden rounded-[14px] bg-black shadow-[0_18px_44px_-26px_rgba(0,0,0,0.6)]">
-          {playing ? (
-            <iframe
-              className="h-full w-full"
-              src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`}
-              title="How Masters' Union prepares students for top 1% placements"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
-              allowFullScreen
-            />
-          ) : (
-            <button
-              type="button"
-              onClick={() => setPlaying(true)}
-              aria-label="Play placements podcast"
-              className="group absolute inset-0 h-full w-full"
-            >
-              <img
-                src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
-                alt="Masters' Union placements podcast"
-                loading="lazy"
-                className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
-              />
-              <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-              <span className="absolute bottom-5 left-5 flex items-center gap-3">
-                <span className="grid size-11 place-items-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md transition group-hover:bg-white/25">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/90">
-                  Play podcast
-                </span>
-              </span>
-            </button>
-          )}
-        </div>
+          ✕
+        </button>
+        <div className="aspect-video w-full">{children}</div>
       </div>
     </div>
   );
 }
 
-function VenturesFilm() {
-  const [playing, setPlaying] = useState(false);
-  const ref = useRef<HTMLVideoElement>(null);
-
-  const start = () => {
-    setPlaying(true);
-    void ref.current?.play();
-  };
-
+function WatchCTA({
+  eyebrow,
+  title,
+  blurb,
+  action,
+  onPlay,
+  href,
+}: {
+  eyebrow: string;
+  title: string;
+  blurb: string;
+  action: string;
+  onPlay: () => void;
+  href?: string;
+}) {
   return (
-    <div>
-      <div className="relative aspect-video w-full overflow-hidden rounded-[12px] bg-black shadow-[0_14px_34px_-24px_rgba(0,0,0,0.5)]">
-        <video
-          ref={ref}
-          src={venturesFilm.url}
-          className="h-full w-full object-cover"
-          controls={playing}
-          playsInline
-          preload="metadata"
-        />
-        {!playing && (
-          <button
-            type="button"
-            onClick={start}
-            aria-label="Play entrepreneurship film"
-            className="group absolute inset-0 grid place-items-center bg-gradient-to-t from-black/65 via-black/15 to-transparent"
+    <div className="mt-6 flex flex-col gap-5 border-y border-black/10 py-6 md:flex-row md:items-center md:justify-between md:gap-10">
+      <div className="max-w-[62ch]">
+        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]">
+          {eyebrow}
+        </p>
+        <h3
+          className="mt-2 text-[clamp(1.05rem,1.9vw,1.45rem)] font-medium italic leading-[1.2] tracking-tight text-black"
+          style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+        >
+          {title}
+        </h3>
+        <p className="mt-2 text-[13px] leading-relaxed text-black/55">{blurb}</p>
+      </div>
+
+      <div className="flex shrink-0 items-center gap-4">
+        <button
+          type="button"
+          onClick={onPlay}
+          className="group inline-flex items-center gap-3 rounded-full bg-black py-2.5 pl-3 pr-5 text-white transition hover:bg-black/85"
+        >
+          <span className="grid size-8 place-items-center rounded-full bg-white/15 transition group-hover:bg-white/25">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </span>
+          <span className="text-[11px] font-semibold uppercase tracking-[0.16em]">{action}</span>
+        </button>
+        {href && (
+          <a
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            className="group hidden items-center gap-1.5 border-b border-black/20 pb-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-black/60 transition hover:border-black hover:text-black sm:inline-flex"
           >
-            <span className="grid size-14 place-items-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md transition group-hover:scale-105 group-hover:bg-white/25">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </span>
-            <span className="absolute bottom-5 left-5 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/90">
-              Entrepreneurship at Masters' Union
-            </span>
-          </button>
+            YouTube
+            <ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
         )}
       </div>
     </div>
   );
 }
+
+function CareerPodcast() {
+  const [open, setOpen] = useState(false);
+  const id = "uiNTwDixAts";
+
+  return (
+    <>
+      <WatchCTA
+        eyebrow="Podcast"
+        title="How Masters' Union prepares students for top 1% placements"
+        blurb="Recruiter access, live industry projects and year-round career coaching — the placement engine, explained in full."
+        action="Play podcast"
+        href={`https://www.youtube.com/watch?v=${id}`}
+        onPlay={() => setOpen(true)}
+      />
+      {open && (
+        <VideoLightbox onClose={() => setOpen(false)} label="Placements podcast">
+          <iframe
+            className="h-full w-full"
+            src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`}
+            title="How Masters' Union prepares students for top 1% placements"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
+            allowFullScreen
+          />
+        </VideoLightbox>
+      )}
+    </>
+  );
+}
+
+function VenturesFilm() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <WatchCTA
+        eyebrow="Film"
+        title="Entrepreneurship at Masters' Union"
+        blurb="Inside the studios, funding lines and mentor rooms where student ventures get built and shipped."
+        action="Play film"
+        onPlay={() => setOpen(true)}
+      />
+      {open && (
+        <VideoLightbox onClose={() => setOpen(false)} label="Entrepreneurship film">
+          <video
+            src={venturesFilm.url}
+            className="h-full w-full"
+            controls
+            autoPlay
+            playsInline
+          />
+        </VideoLightbox>
+      )}
+    </>
+  );
+}
+
 
 
 export default function HomeShowcase() {
