@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import WidgetCarousel from "@/components/WidgetCarousel";
 import HomeShowcase from "@/components/HomeShowcase";
+import CampusRadio from "@/components/CampusRadio";
+
 
 import { createPortal } from "react-dom";
 import { useForm } from "react-hook-form";
@@ -1115,7 +1117,11 @@ function PedagogyPinnedScroll() {
 
       {/* Interactive selector: 8 options on the left, live widget on the right */}
       <PedagogySelector />
+
+      {/* Campus Radio: CXO podcasts recorded on campus */}
+      <CampusRadio />
     </section>
+
   );
 }
 
