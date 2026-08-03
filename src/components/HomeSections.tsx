@@ -944,10 +944,12 @@ const CAMPUS_RADIO_BASE = {
 
 /** Campus Radio only — each slide keeps the same first canvas and swaps the episode strip. */
 const PEDAGOGY = [
-  { ...CAMPUS_RADIO_BASE, id: "cr-1", rail: "Episodes 01 — 05", start: 0 },
-  { ...CAMPUS_RADIO_BASE, id: "cr-2", rail: "Episodes 06 — 10", start: 5 },
-  { ...CAMPUS_RADIO_BASE, id: "cr-3", rail: "Episodes 11 — 15", start: 10 },
-  { ...CAMPUS_RADIO_BASE, id: "cr-4", rail: "Episodes 16 — 20", start: 15 },
+  { ...CAMPUS_RADIO_BASE, id: "cr-1", rail: "Episodes 01 — 02", start: 0 },
+  { ...CAMPUS_RADIO_BASE, id: "cr-2", rail: "Episodes 03 — 04", start: 2 },
+  { ...CAMPUS_RADIO_BASE, id: "cr-3", rail: "Episodes 05 — 06", start: 4 },
+  { ...CAMPUS_RADIO_BASE, id: "cr-4", rail: "Episodes 07 — 08", start: 6 },
+  { ...CAMPUS_RADIO_BASE, id: "cr-5", rail: "Episodes 09 — 10", start: 8 },
+  { ...CAMPUS_RADIO_BASE, id: "cr-6", rail: "Episodes 11 — 12", start: 10 },
 ] as const;
 
 
@@ -1162,7 +1164,7 @@ function PedagogySelector() {
             </span>
           </div>
 
-          <div key={`copy-${active}`} className="my-7 mu-anim-up">
+          <div className="my-7">
             <p
               className="max-w-[26ch] whitespace-pre-line text-[clamp(1.4rem,2.4vw,2.1rem)] font-semibold uppercase leading-[1.05] tracking-[-0.02em] text-black"
               style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
@@ -1174,8 +1176,7 @@ function PedagogySelector() {
               {p.stats.map((s2, si) => (
                 <div
                   key={s2.label}
-                  className="flex flex-col mu-anim-up"
-                  style={{ animationDelay: `${80 + si * 70}ms`, animationFillMode: "both" }}
+                  className="flex flex-col"
                 >
                   <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-black/45">
                     {s2.label}
@@ -1224,7 +1225,7 @@ function PedagogySelector() {
           </div>
 
           <div key={`slab-body-${active}`} className="flex flex-1 flex-col justify-end px-8 pb-8 md:px-10 mu-anim-up">
-            <CampusRadioSlab start={p.start} />
+            <CampusRadioSlab start={p.start} count={2} />
           </div>
 
 
