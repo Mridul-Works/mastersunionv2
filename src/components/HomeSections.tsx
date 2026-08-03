@@ -1225,7 +1225,7 @@ function PedagogySelector() {
           </div>
 
           <div key={`slab-body-${active}`} className="flex flex-1 flex-col justify-end px-8 pb-8 md:px-10 mu-anim-up">
-            {p.tag === "Campus Radio" && <CampusRadioSlab />}
+            <CampusRadioSlab start={p.start} />
           </div>
 
 
@@ -1264,14 +1264,14 @@ function PedagogySelector() {
             className="mt-5 px-6 text-[19px] font-semibold uppercase leading-[1.1] tracking-tight text-black mu-anim-up"
             style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
           >
-            {next.tag}
+            {next.rail}
           </h4>
 
           <button
             type="button"
             onClick={() => setActive(nextIndex)}
             className="group relative mt-6 flex-1 overflow-hidden border-t border-black/10 bg-neutral-50 text-left"
-            aria-label={`Show ${next.tag}`}
+            aria-label={`Show ${next.rail}`}
           >
             <span
               key={`nc-${nextIndex}`}
@@ -1288,10 +1288,10 @@ function PedagogySelector() {
           <div className="flex items-center justify-center gap-2 py-5">
             {PEDAGOGY.map((item, i) => (
               <button
-                key={item.tag}
+                key={item.id}
                 type="button"
                 onClick={() => setActive(i)}
-                aria-label={item.tag}
+                aria-label={item.rail}
                 className={cn(
                   "h-1 transition-all",
                   i === active ? "w-6 bg-black" : "w-3 bg-black/25 hover:bg-black/50"
