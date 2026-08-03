@@ -111,7 +111,7 @@ export function CampusRadioCard({
   );
 }
 
-const SLAB_TINTS = ["#2F5DD1", "#7A4BD0", "#E2762B", "#E4548C", "#E7B417"];
+
 
 /**
  * Poster strip of CXO episodes: colour-blocked portrait tiles with name,
