@@ -1080,8 +1080,8 @@ export default function HomeSections() {
 
 function PedagogyPinnedScroll() {
   return (
-    <section id="pedagogy" className="relative border-t border-black/10 bg-neutral-50">
-      <div className="pt-10 md:pt-14" />
+    <section id="pedagogy" className="relative">
+
 
 
 
