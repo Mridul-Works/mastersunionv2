@@ -1245,7 +1245,10 @@ export default function HomeShowcase() {
         <CareerPodcast />
         <AlumStories />
         <div className="mt-8">
-          <CategorizedLogos groups={CAREER_GROUPS} withFilter size="sm" />
+          <CategorizedLogos
+            groups={[{ label: "Recruiters", logos: CAREER_GROUPS.flatMap((g) => g.logos.slice(0, 4)) }]}
+            size="sm"
+          />
         </div>
       </ShowcaseShell>
 
