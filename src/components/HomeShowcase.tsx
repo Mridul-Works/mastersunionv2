@@ -585,7 +585,7 @@ function FacultyBlock() {
         <div className="divide-y divide-black/10 border-b border-black/10">
           {FACULTY_MIX.map((m) => {
             const isActive = active === m.key;
-            const count = FACULTY_ALL.filter((f) => f.category === m.key).length;
+            const count = withPhotos.filter((f) => f.category === m.key).length;
             return (
               <button
                 key={m.title}
