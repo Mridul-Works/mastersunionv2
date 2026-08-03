@@ -501,7 +501,9 @@ type LogoGroup = { label: string; logos: Logo[] };
 function NormalizedLogo({ src, alt, size = "md" }: { src: string; alt: string; size?: "sm" | "md" | "lg" }) {
   const boost = /meta|microsoft/i.test(alt)
     ? 1.6
-    : /amul|infosys|zepto|nse|youtube|servicenow|flipkart|google|physics.?wallah|mamaearth|antler|stride|inflection|webengage/i.test(alt)
+    : /servicenow|ipv/i.test(alt)
+    ? 0.42
+    : /amul|infosys|zepto|nse|youtube|flipkart|google|physics.?wallah|mamaearth|antler|stride|inflection|webengage/i.test(alt)
     ? 0.6
     : 1;
   const initial = (size === "sm" ? 28 : size === "lg" ? 60 : 44) * boost;
