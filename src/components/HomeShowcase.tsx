@@ -1216,8 +1216,9 @@ function WatchCTA({
         </div>
 
         <div className="flex shrink-0 items-center gap-5">
-          <span className="relative grid size-[68px] place-items-center rounded-full bg-black text-white shadow-[0_8px_30px_-10px_rgba(0,0,0,0.45)] transition-transform duration-500 group-hover/cta:scale-[1.06] md:size-[84px]">
+          <span className="pastel-gradient relative grid size-[68px] place-items-center rounded-full border border-white/60 text-black shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)] transition-transform duration-500 group-hover/cta:scale-[1.06] md:size-[84px]">
             <span className="pointer-events-none absolute -inset-2 rounded-full border border-black/12 transition-opacity duration-500 group-hover/cta:opacity-0" />
+
             <span className="pointer-events-none absolute -inset-2 rounded-full border border-black/20 opacity-0 transition-all duration-700 group-hover/cta:scale-110 group-hover/cta:opacity-100" />
             <svg
               viewBox="0 0 24 24"
