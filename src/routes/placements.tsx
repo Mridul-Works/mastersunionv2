@@ -93,13 +93,14 @@ const SALARY_COMPONENTS = [
 ];
 
 const RECRUITER_GROUPS: { category: string; logos: string[] }[] = [
-  { category: "Consulting", logos: ["Bain", "BCG", "McKinsey", "Kearney", "Accenture", "Deloitte", "EY", "PWC", "OliverWyman"] },
-  { category: "BFSI", logos: ["CITI", "HSBC", "ICICI", "AmericanExpress"] },
-  { category: "Large Tech", logos: ["Google", "Microsoft", "Meta", "Servicenow", "Youtube"] },
-  { category: "Venture Capital", logos: ["Antler", "GoodCapital", "Waterbridge", "StrideVentures", "IPV"] },
-  { category: "Consumer Tech", logos: ["Flipkart", "Zomato", "Zepto", "Cred", "Razorpay", "PineLabs", "MamaEarth"] },
-  { category: "Emerging Tech", logos: ["Mindtickle", "Kapture", "Unacademy", "PhysicsWallah", "Webengage", "Zycus", "Twyn"] },
+  { category: "Consulting", logos: ["McKinsey", "Bain", "BCG", "Accenture", "Deloitte", "EY", "PWC", "Kearney", "OliverWyman"] },
+  { category: "Large Tech", logos: ["Google", "Meta", "Microsoft", "Youtube", "Servicenow"] },
+  { category: "Consumer Tech", logos: ["Flipkart", "Zomato", "Zepto", "Unacademy", "PhysicsWallah", "MamaEarth"] },
+  { category: "BFSI", logos: ["ICICI", "HSBC", "CITI", "AmericanExpress", "Razorpay", "PineLabs", "Cred"] },
+  { category: "Venture Capital", logos: ["GoodCapital", "Waterbridge", "Antler", "StrideVentures", "IPV"] },
+  { category: "Emerging Tech", logos: ["Kapture", "Twyn", "Webengage", "Zycus", "Mindtickle"] },
 ];
+
 
 const TRANSITIONS = [
   {
