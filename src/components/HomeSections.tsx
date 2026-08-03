@@ -1138,7 +1138,7 @@ function PedagogySelector() {
     <div className="mx-auto max-w-[1280px] px-5 pb-12 md:px-10 md:pb-16">
       <div className="flex flex-col overflow-hidden border border-black/10 bg-white lg:h-[560px] lg:flex-row">
         {/* ---------- Panel 1 — editorial text ---------- */}
-        <div className="flex flex-1 flex-col justify-between p-8 md:p-10 lg:w-[44%]">
+        <div className="flex flex-1 flex-col justify-between p-8 md:p-10 lg:w-[38%]">
           <div className="flex items-start justify-between">
             <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-black/45">
               {p.tag}
@@ -1191,7 +1191,7 @@ function PedagogySelector() {
 
         {/* ---------- Panel 2 — hero slab ---------- */}
         <div
-          className="relative flex min-h-[360px] flex-1 flex-col justify-between overflow-hidden border-t border-black/10 bg-neutral-50 lg:min-h-0 lg:w-[36%] lg:border-l lg:border-t-0"
+          className="relative flex min-h-[360px] flex-1 flex-col justify-between overflow-hidden border-t border-black/10 bg-neutral-50 lg:min-h-0 lg:w-[42%] lg:border-l lg:border-t-0"
         >
           <div key={`slab-${active}`} className="flex items-start justify-between p-8 md:p-10 mu-anim-left">
             <div className="flex items-baseline gap-1 leading-none text-black">
