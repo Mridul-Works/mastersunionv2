@@ -560,7 +560,9 @@ function CategorizedLogos({ groups, withFilter = false, size = "md" }: { groups:
 function FacultyBlock() {
   const [active, setActive] = useState<string>("Industry");
 
-  const visible = active === "All" ? FACULTY_ALL : FACULTY_ALL.filter((f) => f.category === active);
+  // Only show faculty with an actual portrait — avoids empty placeholder tiles.
+  const withPhotos = FACULTY_ALL.filter((f) => Boolean(f.img));
+  const visible = active === "All" ? withPhotos : withPhotos.filter((f) => f.category === active);
 
   return (
     <div className="grid gap-6 md:grid-cols-2 md:gap-8">
