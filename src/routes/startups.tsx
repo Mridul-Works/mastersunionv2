@@ -118,6 +118,13 @@ function StartupsPage() {
         </p>
       </section>
 
+      {/* FILM */}
+      <section className="mx-auto max-w-6xl px-5 pb-16 md:px-10">
+        <VenturesFilm />
+      </section>
+
+
+
       {/* STATS — 6-up grid */}
       <section id="stats" className="mx-auto max-w-6xl px-5 md:px-10">
         <div className="grid grid-cols-2 gap-px bg-black/10 md:grid-cols-3">
