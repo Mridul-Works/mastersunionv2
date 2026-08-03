@@ -931,7 +931,7 @@ function DaysRemaining({ target }: { target: string }) {
 const CAMPUS_RADIO_BASE = {
   icon: Mic,
   tag: "Campus Radio",
-  title: "Podcasts recorded on campus, with the people running India Inc.",
+  title: "WITH THE PEOPLE RUNNING INDIA INC.",
   body: "Founders, CXOs, policymakers and operators sit down with students for long-form, unedited conversations — the same week they teach or judge in class.",
 
   stats: [
