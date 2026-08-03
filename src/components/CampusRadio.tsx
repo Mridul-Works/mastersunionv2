@@ -212,7 +212,7 @@ export function CampusRadioSlab({ start = 0, count = 1 }: { start?: number; coun
 
 export default function CampusRadio() {
   const [open, setOpen] = useState<CampusRadioEpisode | null>(null);
-  const episodes = CAMPUS_RADIO_FEATURED.slice(0, 4);
+  const episodes = CAMPUS_RADIO_FEATURED.slice(0, 3);
 
   return (
     <section id="campus-radio" className="border-t border-black/10 bg-[#F5F3EE]">
