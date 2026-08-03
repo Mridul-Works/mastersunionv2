@@ -1209,7 +1209,10 @@ function PedagogySelector() {
             </div>
           </div>
 
-          <div key={`slab-body-${active}`} className="flex flex-1 flex-col justify-end px-8 pb-8 md:px-10 mu-anim-up" />
+          <div key={`slab-body-${active}`} className="flex flex-1 flex-col justify-end px-8 pb-8 md:px-10 mu-anim-up">
+            {p.tag === "Campus Radio" && <CampusRadioSlab />}
+          </div>
+
 
 
           {/* Dark bottom bar */}
