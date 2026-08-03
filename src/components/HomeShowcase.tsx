@@ -1190,61 +1190,49 @@ function WatchCTA({
   href?: string;
 }) {
   return (
-    <div className="group/cta relative mt-8 overflow-hidden bg-[#0E0E0E] text-white">
-      {/* hairline grid + warm glow, matches the editorial theme */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.16]"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.5) 1px, transparent 1px)",
-          backgroundSize: "56px 56px",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute -right-24 top-1/2 size-[420px] -translate-y-1/2 rounded-full blur-[90px]"
-        style={{ background: "radial-gradient(circle, rgba(184,145,70,0.35) 0%, rgba(184,145,70,0) 70%)" }}
-      />
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#B89146] to-transparent" />
-
+    <div className="group/cta relative mt-8 overflow-hidden rounded-none pastel-gradient">
       <button
         type="button"
         onClick={onPlay}
-        className="relative flex w-full cursor-pointer flex-col items-start gap-7 px-6 py-8 text-left md:flex-row md:items-center md:justify-between md:gap-12 md:px-10 md:py-10"
+        className="relative flex w-full cursor-pointer flex-col items-start gap-6 p-6 text-left md:flex-row md:items-center md:justify-between md:gap-12 md:p-8 lg:p-10"
       >
-        <div className="max-w-[58ch]">
-          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-[#D9B871]">
+        <div className="max-w-[46ch]">
+          <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
             {eyebrow}
           </p>
           <h3
-            className="mt-3 text-[clamp(1.3rem,2.5vw,2rem)] font-normal italic leading-[1.12] tracking-[-0.01em] text-white"
-            style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+            className="mt-3 text-2xl leading-[1.1] tracking-tight text-black md:text-3xl lg:text-[32px]"
+            style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
           >
             {title}
           </h3>
-          <p className="mt-3 text-[13.5px] leading-[1.7] text-white/55">{blurb}</p>
+          <p className="mt-3 text-[13.5px] leading-[1.7] text-black/60">{blurb}</p>
+          <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-black px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition group-hover/cta:bg-black/85">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+            {action}
+          </div>
         </div>
 
-        <div className="flex shrink-0 items-center gap-6">
-          <span className="relative grid size-16 place-items-center rounded-full border border-[#B89146]/50 bg-[#B89146]/10 text-[#E8CE92] transition duration-500 group-hover/cta:scale-105 group-hover/cta:bg-[#B89146] group-hover/cta:text-black md:size-20">
-            <span className="absolute inset-0 rounded-full border border-[#B89146]/30 mu-ping-gold" />
+        <div className="flex shrink-0 items-center gap-5">
+          <span className="relative grid size-16 place-items-center rounded-full border border-black/20 bg-white/50 text-black transition duration-500 group-hover/cta:scale-105 group-hover/cta:bg-black group-hover/cta:text-white md:size-20">
+            <span className="absolute inset-0 rounded-full border border-black/10" />
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <path d="M8 5v14l11-7z" />
             </svg>
-          </span>
-          <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/70">
-            {action}
           </span>
         </div>
       </button>
 
       {href && (
-        <div className="relative border-t border-white/10 px-6 py-3 md:px-10">
+        <div className="relative border-t border-black/10 px-6 py-3 md:px-8 lg:px-10">
           <a
             href={href}
             target="_blank"
             rel="noreferrer"
             onClick={(e) => e.stopPropagation()}
-            className="group inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/45 transition hover:text-white"
+            className="group inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50 transition hover:text-black"
           >
             Watch on YouTube
             <ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -1252,6 +1240,7 @@ function WatchCTA({
         </div>
       )}
     </div>
+
   );
 }
 
