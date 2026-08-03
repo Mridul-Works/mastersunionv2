@@ -1225,7 +1225,7 @@ function PedagogySelector() {
           </div>
 
           <div key={`slab-body-${active}`} className="flex flex-1 flex-col justify-end px-8 pb-8 md:px-10 mu-anim-up">
-            <CampusRadioSlab start={p.start} count={2} />
+            <CampusRadioSlab start={p.start} count={1} />
           </div>
 
 
