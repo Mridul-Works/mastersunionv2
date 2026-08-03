@@ -314,7 +314,8 @@ const CAREER_SECTION: Section = {
   titleItalic: "decisions are made.",
   lede: "Students graduate into consulting, product, finance and venture roles at the firms shaping the next decade — from McKinsey and Bain to Meta, Flipkart and Bloomberg. Every batch is supported by a dedicated placements team, live recruiter access and year-round industry projects.",
   bg: "bg-[#F5F3EE]",
-  cta: { label: "Placement report", to: "/placements" },
+  cta: { label: "Placements", to: "/placements" },
+  download: { label: "Download placement report", href: "/placement-report.pdf" },
   stats: [],
 };
 
