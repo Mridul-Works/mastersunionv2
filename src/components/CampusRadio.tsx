@@ -136,7 +136,7 @@ export function CampusRadioSlab({ start = 0, count = 1 }: { start?: number; coun
         className="grid gap-3"
         style={{ gridTemplateColumns: `repeat(${episodes.length}, minmax(0, 1fr))` }}
       >
-        {episodes.map((ep, i) => (
+        {episodes.map((ep) => (
           <button
             key={ep.id}
             type="button"
@@ -144,22 +144,13 @@ export function CampusRadioSlab({ start = 0, count = 1 }: { start?: number; coun
             aria-label={`Play ${ep.name} — ${ep.title}`}
             className="group text-left"
           >
-            <div
-              className="relative overflow-hidden rounded-[3px]"
-              style={{ backgroundColor: SLAB_TINTS[(start + i) % SLAB_TINTS.length] }}
-            >
-              
-              <div className={solo ? "aspect-[4/3] w-full" : large ? "aspect-[4/5] w-full" : "aspect-[3/4] w-full"}>
+            <div className="relative overflow-hidden rounded-[3px] bg-black">
+              <div className={solo ? "aspect-video w-full" : large ? "aspect-video w-full" : "aspect-video w-full"}>
                 <img
                   src={ytThumb(ep.id)}
-                  alt={ep.name}
+                  alt={`${ep.name} — ${ep.title}`}
                   loading="lazy"
-                  className={cn(
-                    "h-full w-full object-cover object-top opacity-90 mix-blend-luminosity transition duration-500",
-                    solo
-                      ? "scale-100 group-hover:scale-[1.04]"
-                      : "scale-[1.35] group-hover:scale-[1.42]"
-                  )}
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                 />
               </div>
               <span className="absolute inset-0 grid place-items-center">
@@ -171,6 +162,9 @@ export function CampusRadioSlab({ start = 0, count = 1 }: { start?: number; coun
                 >
                   ▶
                 </span>
+              </span>
+              <span className="absolute bottom-2 right-2 rounded-full bg-black/70 px-2 py-0.5 font-mono text-[10px] text-white">
+                {ep.duration}
               </span>
             </div>
 
@@ -190,17 +184,19 @@ export function CampusRadioSlab({ start = 0, count = 1 }: { start?: number; coun
             >
               {ep.designation}
             </p>
+            <p
+              className={cn(
+                "mt-2 leading-snug text-black",
+                large ? "text-[15px]" : "text-[12px]"
+              )}
+              style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+            >
+              {ep.title}
+            </p>
           </button>
         ))}
       </div>
 
-
-      <Link
-        to="/campus-radio"
-        className="mt-4 inline-flex w-fit items-center gap-2 border-b border-black/70 pb-0.5 text-[10.5px] font-semibold uppercase tracking-[0.18em] text-black transition hover:gap-3"
-      >
-        All episodes <span aria-hidden>→</span>
-      </Link>
 
       {open && <CampusRadioPlayer episode={open} onClose={() => setOpen(null)} />}
     </div>
