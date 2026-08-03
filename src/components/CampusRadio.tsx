@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { CAMPUS_RADIO_FEATURED, ytThumb, type CampusRadioEpisode } from "@/lib/campus-radio";
+import { CAMPUS_RADIO, CAMPUS_RADIO_FEATURED, ytThumb, type CampusRadioEpisode } from "@/lib/campus-radio";
 
 export function CampusRadioPlayer({
   episode,
@@ -116,8 +116,9 @@ const SLAB_TINTS = ["#2F5DD1", "#7A4BD0", "#E2762B", "#E4548C", "#E7B417"];
  * Poster strip of CXO episodes: colour-blocked portrait tiles with name,
  * designation and a play button that opens the lightbox.
  */
-export function CampusRadioSlab() {
+export function CampusRadioSlab({ start = 0, count = 5 }: { start?: number; count?: number }) {
   const [open, setOpen] = useState<CampusRadioEpisode | null>(null);
+  const episodes = CAMPUS_RADIO.slice(start, start + count);
 
   return (
     <div className="flex h-full flex-col justify-center">
@@ -128,7 +129,7 @@ export function CampusRadioSlab() {
       </p>
 
       <div className="grid grid-cols-5 gap-2">
-        {CAMPUS_RADIO_FEATURED.map((ep, i) => (
+        {episodes.map((ep, i) => (
           <button
             key={ep.id}
             type="button"

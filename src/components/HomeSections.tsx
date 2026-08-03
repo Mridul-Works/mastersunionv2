@@ -19,7 +19,6 @@ import {
   Briefcase,
   Users,
   Mic,
-  ChefHat,
   Building2,
   Instagram,
   Linkedin,
@@ -929,13 +928,28 @@ function DaysRemaining({ target }: { target: string }) {
 
 
 
+const CAMPUS_RADIO_BASE = {
+  icon: Mic,
+  tag: "Campus Radio",
+  title: "CXOs, on the record.",
+  body: "Our in-house podcast series: CXOs, founders and policymakers sit down with students the same week they teach or hire — long-form, unedited, recorded on campus.",
+  stats: [
+    { value: "24+", label: "Episodes" },
+    { value: "Unedited", label: "Long-form" },
+    { value: "On campus", label: "Recorded live" },
+  ],
+  cta: "Listen to episodes",
+  route: "/campus-radio",
+} as const;
+
+/** Campus Radio only — each slide keeps the same first canvas and swaps the episode strip. */
 const PEDAGOGY = [
-  
-  { icon: Mic, tag: "Campus Radio", title: "CXOs, on the record.", body: "Our in-house podcast series: CXOs, founders and policymakers sit down with students the same week they teach or hire — long-form, unedited, recorded on campus.", stats: [{ value: "24+", label: "Episodes" }, { value: "Unedited", label: "Long-form" }, { value: "On campus", label: "Recorded live" }], cta: "Listen to episodes", route: "/campus-radio", bg: "radial-gradient(130% 100% at 30% 25%, #F3E4C6 0%, #DCC188 50%, #B89146 100%)" },
-  { icon: Users, tag: "Mentor Union", title: "500 operators. One text away.", body: "Founders mid-build, investors mid-cheque, CMOs mid-quarter. No office hours, no waiting lists — just answers when you need them.", stats: [{ value: "500+", label: "Mentors" }, { value: "<1 hr", label: "Median response" }, { value: "On demand", label: "Always on" }], cta: "Browse mentors", route: "/mentors", bg: "radial-gradient(130% 100% at 75% 25%, #D4E6FF 0%, #8FB8F5 50%, #4F86DE 100%)" },
-  { icon: ChefHat, tag: "Food Lab", title: "THE ONLY\u00a0\nB-SCHOOL WITH AN FSSAI LICENCE.", body: "Lexi's went from a classroom concept to Gurgaon's highest-rated sandwich brand. FSSAI-certified production line, 4.5★ on Zomato, ₹1 Cr+ ARR.", stats: [{ value: "4.5★", label: "Zomato rating" }, { value: "₹1 Cr+", label: "Student brand ARR" }, { value: "FSSAI", label: "Certified" }], cta: "Tour the lab", route: "/food-lab", bg: "radial-gradient(130% 100% at 30% 30%, #BFF3D9 0%, #7AD9A8 45%, #33B876 100%)" },
-  { icon: Building2, tag: "MU Ventures", title: "We cut the first cheque before you graduate.", body: "An in-house venture arm that writes pre-seed cheques into student companies — and opens the door to a 200+ investor network for the next round.", stats: [{ value: "200+", label: "Investor network" }, { value: "Pre-seed", label: "Cheques written" }, { value: "On campus", label: "Venture arm" }], cta: "Pitch the fund", route: "/startups", bg: "radial-gradient(130% 100% at 75% 30%, #CDDCFF 0%, #8FA8F0 50%, #5170D3 100%)" },
+  { ...CAMPUS_RADIO_BASE, id: "cr-1", rail: "Episodes 01 — 05", start: 0 },
+  { ...CAMPUS_RADIO_BASE, id: "cr-2", rail: "Episodes 06 — 10", start: 5 },
+  { ...CAMPUS_RADIO_BASE, id: "cr-3", rail: "Episodes 11 — 15", start: 10 },
+  { ...CAMPUS_RADIO_BASE, id: "cr-4", rail: "Episodes 16 — 20", start: 15 },
 ] as const;
+
 
 export default function HomeSections() {
   return (
@@ -1210,7 +1224,7 @@ function PedagogySelector() {
           </div>
 
           <div key={`slab-body-${active}`} className="flex flex-1 flex-col justify-end px-8 pb-8 md:px-10 mu-anim-up">
-            {p.tag === "Campus Radio" && <CampusRadioSlab />}
+            <CampusRadioSlab start={p.start} />
           </div>
 
 
@@ -1249,14 +1263,14 @@ function PedagogySelector() {
             className="mt-5 px-6 text-[19px] font-semibold uppercase leading-[1.1] tracking-tight text-black mu-anim-up"
             style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
           >
-            {next.tag}
+            {next.rail}
           </h4>
 
           <button
             type="button"
             onClick={() => setActive(nextIndex)}
             className="group relative mt-6 flex-1 overflow-hidden border-t border-black/10 bg-neutral-50 text-left"
-            aria-label={`Show ${next.tag}`}
+            aria-label={`Show ${next.rail}`}
           >
             <span
               key={`nc-${nextIndex}`}
@@ -1273,10 +1287,10 @@ function PedagogySelector() {
           <div className="flex items-center justify-center gap-2 py-5">
             {PEDAGOGY.map((item, i) => (
               <button
-                key={item.tag}
+                key={item.id}
                 type="button"
                 onClick={() => setActive(i)}
-                aria-label={item.tag}
+                aria-label={item.rail}
                 className={cn(
                   "h-1 transition-all",
                   i === active ? "w-6 bg-black" : "w-3 bg-black/25 hover:bg-black/50"
