@@ -1110,11 +1110,13 @@ export default function HomeShowcase() {
       <ShowcaseShell section={CAREER_SECTION}>
 
         <StatsBand stats={CAREER_RICH_STATS} tone="cream" />
+        <CareerPodcast />
         <AlumStories />
         <div className="mt-8">
           <CategorizedLogos groups={CAREER_GROUPS} withFilter size="sm" />
         </div>
       </ShowcaseShell>
+
 
       <FounderQuote />
 
