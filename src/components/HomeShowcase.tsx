@@ -338,7 +338,7 @@ const VENTURES_RICH_STATS: RichStat[] = [
   { value: "$10M", label: "In-house fund", note: "Deployed via MU Ventures" },
   { value: "40+", label: "Founder mentors", note: "Unicorn & YC operators" },
   { value: "6", label: "Shark Tank features", note: "On-air deals & offers" },
-  { value: "3", label: "Founder studios", note: "D2C · Creator · Tech" },
+  
 ];
 
 const VENTURES_SECTION: Section = {
