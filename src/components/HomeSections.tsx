@@ -1184,8 +1184,7 @@ function PedagogySelector() {
 
         {/* ---------- Panel 2 — hero slab ---------- */}
         <div
-          className="relative flex min-h-[360px] flex-1 flex-col justify-between overflow-hidden border-t border-black/10 transition-[background] duration-700 ease-out lg:min-h-0 lg:w-[36%] lg:border-l lg:border-t-0"
-          style={{ background: p.bg }}
+          className="relative flex min-h-[360px] flex-1 flex-col justify-between overflow-hidden border-t border-black/10 bg-neutral-50 lg:min-h-0 lg:w-[36%] lg:border-l lg:border-t-0"
         >
           <div key={`slab-${active}`} className="flex items-start justify-between p-8 md:p-10 mu-anim-left">
             <div className="flex items-baseline gap-1 leading-none text-black">
