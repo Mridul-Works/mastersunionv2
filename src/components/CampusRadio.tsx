@@ -148,7 +148,7 @@ export function CampusRadioSlab({ start = 0, count = 1 }: { start?: number; coun
               className="relative overflow-hidden rounded-[3px]"
               style={{ backgroundColor: SLAB_TINTS[(start + i) % SLAB_TINTS.length] }}
             >
-              <div className={large ? "aspect-[4/5] w-full" : "aspect-[3/4] w-full"}>
+              
               <div className={solo ? "aspect-[4/3] w-full" : large ? "aspect-[4/5] w-full" : "aspect-[3/4] w-full"}>
                 <img
                   src={ytThumb(ep.id)}
