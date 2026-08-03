@@ -415,11 +415,20 @@ const PARTNERS_SECTION: Section = {
   ],
 };
 
-function ShowcaseShell({ section, children }: { section: Section; children: React.ReactNode }) {
+function ShowcaseShell({
+  section,
+  children,
+  aside,
+}: {
+  section: Section;
+  children: React.ReactNode;
+  aside?: React.ReactNode;
+}) {
   return (
     <section id={section.id} className={`border-t border-black/10 ${section.bg}`}>
       <div className="mx-auto max-w-[1280px] px-5 py-10 md:px-10 md:py-14">
         <div className="mb-6 flex flex-col gap-5 md:mb-8 md:flex-row md:items-end md:justify-between">
+
           <div className="max-w-[52ch]">
             <p className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-black/50">
               {section.eyebrow}
