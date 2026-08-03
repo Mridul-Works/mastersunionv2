@@ -922,6 +922,8 @@ function Countdown({ target }: { target: string }) {
 function DaysRemaining({ target }: { target: string }) {
   const { days } = useCountdown(target);
   return <span className="tabular-nums">{days}</span>;
+}
+
 
 
 export default function HomeSections() {
