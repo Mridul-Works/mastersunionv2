@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type SyntheticEvent } from "react";
-import { ArrowUpRight, Quote } from "lucide-react";
+import { ArrowUpRight, Download, Quote } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import founderPhoto from "@/assets/founder-pratham-cutout.webp";
 import waveFlowBg from "@/assets/wave-flow-bg.png.asset.json";
@@ -192,6 +192,7 @@ type Section = {
   lede: string;
   bg: string;
   cta: { label: string; to: string };
+  download?: { label: string; href: string };
   stats: Stat[];
 };
 
@@ -345,6 +346,10 @@ const VENTURES_SECTION: Section = {
   lede: "Entrepreneurship at Masters' Union isn't a club — it's an operating system. Students access pre-seed capital, in-house founder studios and GTM labs, and launch real companies while they study, backed by mentors who have built and scaled ventures themselves.",
   bg: "bg-white",
   cta: { label: "MU Ventures", to: "/mu-ventures" },
+  download: {
+    label: "Download entrepreneurship report",
+    href: "/entrepreneurship-report.pdf",
+  },
   stats: [],
 };
 
@@ -443,13 +448,25 @@ function ShowcaseShell({ section, children }: { section: Section; children: Reac
                 </div>
               ))}
             </dl>
-            <Link
-              to={section.cta.to}
-              className="group inline-flex items-center gap-2 rounded-full bg-black px-3.5 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-black/85"
-            >
-              {section.cta.label}
-              <ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
+            <div className="flex flex-wrap items-center gap-2">
+              <Link
+                to={section.cta.to}
+                className="group inline-flex items-center gap-2 rounded-full bg-black px-3.5 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-black/85"
+              >
+                {section.cta.label}
+                <ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+              {section.download && (
+                <a
+                  href={section.download.href}
+                  download
+                  className="group inline-flex items-center gap-2 rounded-full border border-black/20 bg-transparent px-3.5 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-black transition hover:border-black/40 hover:bg-black/5"
+                >
+                  {section.download.label}
+                  <Download className="size-3 transition-transform group-hover:translate-y-0.5" />
+                </a>
+              )}
+            </div>
           </div>
         </div>
         {children}
