@@ -19,7 +19,6 @@ import {
   Briefcase,
   Users,
   Mic,
-  ChefHat,
   Building2,
   Instagram,
   Linkedin,
