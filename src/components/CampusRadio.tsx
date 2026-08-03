@@ -110,6 +110,69 @@ export function CampusRadioCard({
   );
 }
 
+const SLAB_TINTS = ["#2F5DD1", "#7A4BD0", "#E2762B", "#E4548C", "#E7B417"];
+
+/**
+ * Poster strip of CXO episodes: colour-blocked portrait tiles with name,
+ * designation and a play button that opens the lightbox.
+ */
+export function CampusRadioSlab() {
+  const [open, setOpen] = useState<CampusRadioEpisode | null>(null);
+
+  return (
+    <div className="flex h-full flex-col justify-center">
+      <p className="mb-3 flex justify-between font-mono text-[10px] font-semibold uppercase tracking-[0.5em] text-black/45">
+        {"PODCAST".split("").map((c, i) => (
+          <span key={i}>{c}</span>
+        ))}
+      </p>
+
+      <div className="grid grid-cols-5 gap-2">
+        {CAMPUS_RADIO_FEATURED.map((ep, i) => (
+          <button
+            key={ep.id}
+            type="button"
+            onClick={() => setOpen(ep)}
+            aria-label={`Play ${ep.name} — ${ep.title}`}
+            className="group text-left"
+          >
+            <div
+              className="relative overflow-hidden rounded-[3px]"
+              style={{ backgroundColor: SLAB_TINTS[i % SLAB_TINTS.length] }}
+            >
+              <div className="aspect-[3/4] w-full">
+                <img
+                  src={ytThumb(ep.id)}
+                  alt={ep.name}
+                  loading="lazy"
+                  className="h-full w-full scale-[1.35] object-cover object-top opacity-90 mix-blend-luminosity transition duration-500 group-hover:scale-[1.42]"
+                />
+              </div>
+              <span className="absolute inset-0 grid place-items-center">
+                <span className="grid h-8 w-8 place-items-center rounded-full bg-white/90 text-[9px] text-black shadow-md transition group-hover:scale-110">
+                  ▶
+                </span>
+              </span>
+            </div>
+            <p className="mt-2 text-[11px] font-semibold leading-tight text-black">{ep.name}</p>
+            <p className="mt-0.5 text-[9.5px] leading-tight text-black/50">{ep.designation}</p>
+          </button>
+        ))}
+      </div>
+
+      <Link
+        to="/campus-radio"
+        className="mt-4 inline-flex w-fit items-center gap-2 border-b border-black/70 pb-0.5 text-[10.5px] font-semibold uppercase tracking-[0.18em] text-black transition hover:gap-3"
+      >
+        All episodes <span aria-hidden>→</span>
+      </Link>
+
+      {open && <CampusRadioPlayer episode={open} onClose={() => setOpen(null)} />}
+    </div>
+  );
+}
+
+
 export default function CampusRadio() {
   const [open, setOpen] = useState<CampusRadioEpisode | null>(null);
   const [lead, ...rest] = CAMPUS_RADIO_FEATURED;
