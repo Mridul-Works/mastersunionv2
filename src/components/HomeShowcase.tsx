@@ -1133,7 +1133,7 @@ function CareerPodcast() {
   const id = "uiNTwDixAts";
 
   return (
-    <div className="mt-7 grid grid-cols-1 gap-6 border-t border-black/10 pt-8 lg:grid-cols-12 lg:gap-10">
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-10">
       <div className="lg:col-span-5">
         <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-black/50">
           Podcast
