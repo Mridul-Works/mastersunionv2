@@ -1240,6 +1240,20 @@ function PedagogySelector() {
               <span className="size-1.5 rounded-full bg-white/80" />
               {p.tag}
             </Link>
+            <div className="flex items-center gap-2 bg-white px-5">
+              {PEDAGOGY.map((item, i) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => setActive(i)}
+                  aria-label={item.rail}
+                  className={cn(
+                    "h-1 transition-all",
+                    i === active ? "w-6 bg-black" : "w-3 bg-black/25 hover:bg-black/50"
+                  )}
+                />
+              ))}
+            </div>
             <button
               type="button"
               onClick={() => setActive(nextIndex)}
@@ -1250,9 +1264,7 @@ function PedagogySelector() {
             </button>
           </div>
         </div>
-
-        {/* Panel 3 removed — panel 2 now spans the remaining width */}
-
+      </div>
     </div>
   );
 }
