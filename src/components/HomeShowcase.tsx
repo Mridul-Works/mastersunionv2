@@ -3,6 +3,8 @@ import { ArrowUpRight, Download, Quote } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import founderPhoto from "@/assets/founder-pratham-cutout.webp";
 import waveFlowBg from "@/assets/wave-flow-bg.png.asset.json";
+import venturesFilm from "@/assets/ventures-film.mp4.asset.json";
+
 import { FULL_TIME_FACULTY } from "@/lib/full-time-faculty";
 import MastersVideos from "@/components/MastersVideos";
 import { INDUSTRY_PRACTITIONERS } from "@/lib/industry-practitioners";
