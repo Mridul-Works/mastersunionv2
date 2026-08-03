@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type SyntheticEvent } from "react";
 import { ArrowUpRight, Download, Quote } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import founderPhoto from "@/assets/founder-pratham-cutout.webp";
-import waveFlowBg from "@/assets/wave-flow-bg.png.asset.json";
+
 import venturesFilm from "@/assets/ventures-film.mp4.asset.json";
 
 import { FULL_TIME_FACULTY } from "@/lib/full-time-faculty";
@@ -1022,19 +1022,30 @@ const SHARK_TANK_PITCHES: Array<{
 
 function SharkTankLogoBar() {
   return (
-    <div className="relative overflow-hidden rounded-none border border-black/10 bg-white text-black">
+    <div className="relative overflow-hidden rounded-none border border-black/10 bg-[#F6F2E9] text-black">
+      {/* warm editorial wash */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${waveFlowBg.url})` }}
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(120% 90% at 8% 0%, rgba(46,139,230,0.10) 0%, rgba(46,139,230,0) 55%), radial-gradient(90% 80% at 100% 100%, rgba(242,194,48,0.16) 0%, rgba(242,194,48,0) 60%)",
+        }}
+      />
+      {/* hairline grid */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.35]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.06) 1px, transparent 1px)",
+          backgroundSize: "56px 56px",
+        }}
       />
       <div className="relative flex flex-col gap-6 p-6 md:flex-row md:items-center md:gap-10 md:p-8">
 
         <div className="relative shrink-0 md:max-w-[300px]">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -inset-x-4 -inset-y-3 rounded-lg bg-white/75 backdrop-blur-[2px]"
-          />
+
           <div className="relative">
             <p className="font-mono text-[10px] font-bold uppercase tracking-[0.32em] text-black/75">
               Featured on
