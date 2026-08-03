@@ -1109,29 +1109,8 @@ export default function HomeSections() {
 function PedagogyPinnedScroll() {
   return (
     <section id="pedagogy" className="relative border-t border-black/10 bg-neutral-50">
-      <div className="mx-auto max-w-[1280px] px-5 pt-10 pb-6 md:px-10 md:pt-14">
-        {/* Editorial hero */}
-        <div className="flex flex-col items-start text-left gap-6">
-          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-black/55">
-            — The Masters' Union experience
-          </p>
-          <h2
-            className="text-[clamp(1.75rem,4vw,3.25rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-black"
-            style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-          >
-            Real stakes.{" "}
-            <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
-              Real portfolios.
-            </span>
-            <br />
-            The learning experience built at MU.
-          </h2>
-          <p className="max-w-[52ch] text-[14px] leading-[1.55] text-black/65 md:text-[15px]">
-            Nine systems that turn every class into a live brief, every project into proof, and every student into someone worth hiring — or funding.
-          </p>
-        </div>
+      <div className="pt-10 md:pt-14" />
 
-      </div>
 
       {/* Interactive selector: 8 options on the left, live widget on the right */}
       <PedagogySelector />
