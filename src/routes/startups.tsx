@@ -1,6 +1,49 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useRef, useState } from "react";
 import { ArrowUpRight, Home, Quote, BarChart3, Building2, Trophy } from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
+import venturesFilm from "@/assets/ventures-film.mp4.asset.json";
+
+function VenturesFilm() {
+  const [playing, setPlaying] = useState(false);
+  const ref = useRef<HTMLVideoElement>(null);
+
+  const start = () => {
+    setPlaying(true);
+    void ref.current?.play();
+  };
+
+  return (
+    <div className="relative aspect-video w-full max-w-[620px] overflow-hidden rounded-[12px] bg-black shadow-[0_14px_34px_-24px_rgba(0,0,0,0.5)]">
+      <video
+        ref={ref}
+        src={venturesFilm.url}
+        className="h-full w-full object-cover"
+        controls={playing}
+        playsInline
+        preload="metadata"
+      />
+      {!playing && (
+        <button
+          type="button"
+          onClick={start}
+          aria-label="Play entrepreneurship film"
+          className="group absolute inset-0 grid place-items-center bg-gradient-to-t from-black/65 via-black/15 to-transparent"
+        >
+          <span className="grid size-14 place-items-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md transition group-hover:scale-105 group-hover:bg-white/25">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </span>
+          <span className="absolute bottom-5 left-5 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/90">
+            Entrepreneurship at Masters&apos; Union
+          </span>
+        </button>
+      )}
+    </div>
+  );
+}
+
 
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
@@ -117,6 +160,13 @@ function StartupsPage() {
           starts on day one.
         </p>
       </section>
+
+      {/* FILM */}
+      <section className="mx-auto max-w-6xl px-5 pb-16 md:px-10">
+        <VenturesFilm />
+      </section>
+
+
 
       {/* STATS — 6-up grid */}
       <section id="stats" className="mx-auto max-w-6xl px-5 md:px-10">
