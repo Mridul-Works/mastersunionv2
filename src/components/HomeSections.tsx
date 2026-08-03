@@ -922,36 +922,6 @@ function Countdown({ target }: { target: string }) {
 function DaysRemaining({ target }: { target: string }) {
   const { days } = useCountdown(target);
   return <span className="tabular-nums">{days}</span>;
-}
-
-
-
-
-
-const CAMPUS_RADIO_BASE = {
-  icon: Mic,
-  tag: "Campus Radio",
-  title: "WITH THE PEOPLE RUNNING INDIA INC.",
-  body: "Founders, CXOs, policymakers and operators sit down with students for long-form, unedited conversations — the same week they teach or judge in class.",
-
-  stats: [
-    { value: "24+", label: "Episodes" },
-    { value: "Unedited", label: "Long-form" },
-    { value: "On campus", label: "Recorded live" },
-  ],
-  cta: "Listen to episodes",
-  route: "/campus-radio",
-} as const;
-
-/** Campus Radio only — each slide keeps the same first canvas and swaps the episode strip. */
-const PEDAGOGY = [
-  { ...CAMPUS_RADIO_BASE, id: "cr-1", rail: "Episodes 01 — 02", start: 0 },
-  { ...CAMPUS_RADIO_BASE, id: "cr-2", rail: "Episodes 03 — 04", start: 2 },
-  { ...CAMPUS_RADIO_BASE, id: "cr-3", rail: "Episodes 05 — 06", start: 4 },
-  { ...CAMPUS_RADIO_BASE, id: "cr-4", rail: "Episodes 07 — 08", start: 6 },
-  { ...CAMPUS_RADIO_BASE, id: "cr-5", rail: "Episodes 09 — 10", start: 8 },
-  { ...CAMPUS_RADIO_BASE, id: "cr-6", rail: "Episodes 11 — 12", start: 10 },
-] as const;
 
 
 export default function HomeSections() {
