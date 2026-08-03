@@ -72,39 +72,37 @@ export function CampusRadioCard({
   compact?: boolean;
 }) {
   return (
-    <button
-      type="button"
-      onClick={onPlay}
-      className="group block w-full text-left transition-colors hover:bg-[#F6F2E9]"
-    >
-      <div className="relative overflow-hidden border border-black/10 bg-black">
-        <div className="aspect-video w-full overflow-hidden">
+    <button type="button" onClick={onPlay} className="group block w-full text-left">
+      <div className="relative overflow-hidden bg-[#E8E4DD]">
+        <div className="aspect-[4/3] w-full overflow-hidden">
           <img
             src={ytThumb(ep.id)}
             alt={`${ep.name} — ${ep.title}`}
             loading="lazy"
-            className="h-full w-full object-cover grayscale-[0.15] transition duration-700 group-hover:scale-[1.03] group-hover:grayscale-0"
+            className="h-full w-full object-cover grayscale transition duration-[900ms] ease-out group-hover:scale-[1.03] group-hover:grayscale-0"
           />
         </div>
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-        <div className="absolute bottom-0 left-0 grid h-9 w-9 place-items-center bg-[#B89146] text-black transition group-hover:w-12">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+        <span className="absolute left-0 top-0 grid h-8 w-8 place-items-center bg-black text-white transition-colors group-hover:bg-[#B89146] group-hover:text-black">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
             <path d="M8 5v14l11-7z" />
           </svg>
-        </div>
-        <span className="absolute bottom-0 right-0 bg-black px-2 py-1 font-mono text-[10px] tracking-[0.12em] text-white">
+        </span>
+        <span className="absolute bottom-0 right-0 bg-[#F5F3EE] px-2 py-1 font-mono text-[10px] tracking-[0.14em] text-black/60">
           {ep.duration}
         </span>
       </div>
-      <div className="border-x border-b border-black/10 px-3 pb-3 pt-2.5">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#B89146]">
-          {ep.name}
-        </p>
-        <p className="mt-0.5 text-[10.5px] uppercase tracking-[0.08em] text-black/45">
+
+      <div className="mt-3 border-t border-black/15 pt-2.5">
+        <div className="flex items-baseline justify-between gap-3">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-black">
+            {ep.name}
+          </p>
+        </div>
+        <p className="mt-1 text-[10.5px] uppercase tracking-[0.1em] text-black/45">
           {ep.designation}
         </p>
         <h3
-          className="mt-1.5 text-[15px] leading-snug text-black"
+          className="mt-2 text-[15px] italic leading-snug text-black"
           style={{ fontFamily: "'Fraunces', Georgia, serif" }}
         >
           {ep.title}
@@ -116,6 +114,7 @@ export function CampusRadioCard({
     </button>
   );
 }
+
 
 
 
