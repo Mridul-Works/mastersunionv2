@@ -930,7 +930,7 @@ function DaysRemaining({ target }: { target: string }) {
 const PEDAGOGY = [
   
   { icon: Users, tag: "Mentor Union", title: "500 operators. One text away.", body: "Founders mid-build, investors mid-cheque, CMOs mid-quarter. No office hours, no waiting lists — just answers when you need them.", stats: [{ value: "500+", label: "Mentors" }, { value: "<1 hr", label: "Median response" }, { value: "On demand", label: "Always on" }], cta: "Browse mentors", route: "/mentors", bg: "radial-gradient(130% 100% at 75% 25%, #D4E6FF 0%, #8FB8F5 50%, #4F86DE 100%)" },
-  { icon: ChefHat, tag: "Food Lab", title: "The only B-school with an FSSAI licence.", body: "Lexi's went from a classroom concept to Gurgaon's highest-rated sandwich brand. FSSAI-certified production line, 4.5★ on Zomato, ₹1 Cr+ ARR.", stats: [{ value: "4.5★", label: "Zomato rating" }, { value: "₹1 Cr+", label: "Student brand ARR" }, { value: "FSSAI", label: "Certified" }], cta: "Tour the lab", route: "/food-lab", bg: "radial-gradient(130% 100% at 30% 30%, #BFF3D9 0%, #7AD9A8 45%, #33B876 100%)" },
+  { icon: ChefHat, tag: "Food Lab", title: "THE ONLY\u00a0\nB-SCHOOL WITH AN FSSAI LICENCE.", body: "Lexi's went from a classroom concept to Gurgaon's highest-rated sandwich brand. FSSAI-certified production line, 4.5★ on Zomato, ₹1 Cr+ ARR.", stats: [{ value: "4.5★", label: "Zomato rating" }, { value: "₹1 Cr+", label: "Student brand ARR" }, { value: "FSSAI", label: "Certified" }], cta: "Tour the lab", route: "/food-lab", bg: "radial-gradient(130% 100% at 30% 30%, #BFF3D9 0%, #7AD9A8 45%, #33B876 100%)" },
   { icon: Building2, tag: "MU Ventures", title: "We cut the first cheque before you graduate.", body: "An in-house venture arm that writes pre-seed cheques into student companies — and opens the door to a 200+ investor network for the next round.", stats: [{ value: "200+", label: "Investor network" }, { value: "Pre-seed", label: "Cheques written" }, { value: "On campus", label: "Venture arm" }], cta: "Pitch the fund", route: "/startups", bg: "radial-gradient(130% 100% at 75% 30%, #CDDCFF 0%, #8FA8F0 50%, #5170D3 100%)" },
 ] as const;
 
@@ -1143,7 +1143,7 @@ function PedagogySelector() {
 
           <div key={`copy-${active}`} className="my-10 mu-anim-up">
             <h3
-              className="max-w-[16ch] text-[clamp(1.8rem,3.4vw,2.9rem)] font-semibold uppercase leading-[1.02] tracking-[-0.02em] text-black"
+              className="max-w-[16ch] whitespace-pre-line text-[clamp(1.8rem,3.4vw,2.9rem)] font-semibold uppercase leading-[1.02] tracking-[-0.02em] text-black"
               style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
             >
               {p.title}
