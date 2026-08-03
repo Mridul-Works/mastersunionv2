@@ -454,7 +454,9 @@ function ShowcaseShell({
               </a>
             )}
           </div>
-          <div className="flex flex-col items-start gap-4 md:items-end">
+          <div className="flex w-full flex-col items-start gap-4 md:w-auto md:items-end">
+            {aside && <div className="w-full md:w-[380px] lg:w-[420px]">{aside}</div>}
+
             <dl className="flex gap-6">
               {section.stats.map((s) => (
                 <div key={s.label}>
