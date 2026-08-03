@@ -12,11 +12,11 @@ import bhupesh from "@/assets/faculty/bhupesh.png.asset.json";
 import nandini from "@/assets/faculty/nandini.png.asset.json";
 import garima from "@/assets/faculty/garima.png.asset.json";
 import manoj from "@/assets/faculty/manoj.png.asset.json";
+import raghuRaman from "@/assets/faculty/raghu-raman.png.asset.json";
 import havish from "@/assets/faculty/havish-madhvapaty.png.asset.json";
 import ekhlaque from "@/assets/faculty/ekhlaque-bari.png.asset.json";
 import sumit from "@/assets/faculty/sumit-shukla.png.asset.json";
 import aditya from "@/assets/faculty/aditya-turalapati.png.asset.json";
-import divij from "@/assets/faculty/divij-bajaj.png.asset.json";
 import parikshit from "@/assets/faculty/parikshit-khanna.png.asset.json";
 import karmanya from "@/assets/faculty/karmanya-suri.png.asset.json";
 import gauravA from "@/assets/faculty/gaurav-arora.png.asset.json";
@@ -205,7 +205,7 @@ const FACULTY_ALL: { name: string; role: string; company: string; img?: string; 
     category: "Industry" as const,
   })),
   { name: "Manoj Kohli", role: "Former CEO & MD", company: "SoftBank India", img: manoj.url, category: "Industry" },
-  { name: "Captain Raghu Raman", role: "Former President", company: "Reliance Industries", category: "Industry" },
+  { name: "Captain Raghu Raman", role: "Former President", company: "Reliance Industries", img: raghuRaman.url, category: "Industry" },
   { name: "Rajat Mathur", role: "Former Managing Director", company: "Morgan Stanley", category: "Industry" },
   { name: "Rohit Kapoor", role: "CEO, Food Marketplace", company: "Swiggy", category: "Industry" },
   { name: "Malthi Satish", role: "Former Director, Product", company: "PayPal", category: "Industry" },
@@ -219,7 +219,6 @@ const FACULTY_ALL: { name: string; role: string; company: string; img?: string; 
   { name: "Ekhlaque Bari", role: "Industry Practitioner", company: "Masters' Union", img: ekhlaque.url, category: "Industry" },
   { name: "Sumit Shukla", role: "Industry Practitioner", company: "Masters' Union", img: sumit.url, category: "Industry" },
   { name: "Aditya Turalapati", role: "Industry Practitioner", company: "Masters' Union", img: aditya.url, category: "Industry" },
-  { name: "Divij Bajaj", role: "Industry Practitioner", company: "Masters' Union", img: divij.url, category: "Industry" },
   { name: "Parikshit Khanna", role: "Industry Practitioner", company: "Masters' Union", img: parikshit.url, category: "Industry" },
   { name: "Karmanya Suri", role: "Industry Practitioner", company: "Masters' Union", img: karmanya.url, category: "Industry" },
   { name: "Gaurav Arora", role: "Industry Practitioner", company: "Masters' Union", img: gauravA.url, category: "Industry" },
