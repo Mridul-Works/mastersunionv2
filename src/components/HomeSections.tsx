@@ -1138,7 +1138,7 @@ function PedagogySelector() {
     <div className="mx-auto max-w-[1280px] px-5 pb-12 md:px-10 md:pb-16">
       <div className="flex flex-col overflow-hidden border border-black/10 bg-white lg:h-[560px] lg:flex-row">
         {/* ---------- Panel 1 — editorial text ---------- */}
-        <div className="flex flex-1 flex-col justify-between p-8 md:p-10 lg:w-[38%]">
+        <div className="flex flex-1 flex-col justify-between p-8 md:p-10 lg:flex-none lg:w-[34%]">
           <div className="flex items-start justify-between">
             <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-black/45">
               {p.tag}
@@ -1149,36 +1149,9 @@ function PedagogySelector() {
           </div>
 
           <div key={`copy-${active}`} className="my-7 mu-anim-up">
-            <h3
-              className="max-w-[16ch] whitespace-pre-line text-[clamp(1.8rem,3.4vw,2.9rem)] font-semibold uppercase leading-[1.02] tracking-[-0.02em] text-black"
-              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-            >
-              {p.title}
-            </h3>
-            <p className="mt-5 max-w-[46ch] text-[13.5px] leading-[1.6] text-black/60">{p.body}</p>
+            <p className="max-w-[38ch] text-[14px] leading-[1.65] text-black/65">{p.body}</p>
           </div>
 
-          {/* Stat columns, reference-style */}
-          <div key={`stats-${active}`} className="grid grid-cols-3 gap-6">
-            {p.stats.map((s, si) => (
-              <div
-                key={s.label}
-                className="flex flex-col mu-anim-up"
-                style={{ animationDelay: `${80 + si * 70}ms`, animationFillMode: "both" }}
-              >
-                <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-black/45">
-                  {s.label}
-                </span>
-                <span className="mt-2 h-px w-8 bg-black/70" />
-                <span
-                  className="mt-3 text-[17px] font-semibold leading-tight tracking-tight text-black"
-                  style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                >
-                  {s.value}
-                </span>
-              </div>
-            ))}
-          </div>
 
           <Link
             to={p.route}
@@ -1191,7 +1164,7 @@ function PedagogySelector() {
 
         {/* ---------- Panel 2 — hero slab ---------- */}
         <div
-          className="relative flex min-h-[360px] flex-1 flex-col justify-between overflow-hidden border-t border-black/10 bg-neutral-50 lg:min-h-0 lg:w-[42%] lg:border-l lg:border-t-0"
+          className="relative flex min-h-[360px] flex-1 flex-col justify-between overflow-hidden border-t border-black/10 bg-neutral-50 lg:min-h-0 lg:flex-1 lg:border-l lg:border-t-0"
         >
           <div key={`slab-${active}`} className="flex items-start justify-between p-8 md:p-10 mu-anim-left">
             <div className="flex items-baseline gap-1 leading-none text-black">
@@ -1207,6 +1180,35 @@ function PedagogySelector() {
             </div>
             <div className="flex size-11 items-center justify-center border border-black/15 bg-white/40 text-black/75 backdrop-blur-sm mu-anim-pop">
               <Icon className="size-5" />
+            </div>
+          </div>
+
+          {/* Body content — richer canvas */}
+          <div key={`slab-body-${active}`} className="flex flex-1 flex-col justify-end gap-6 px-8 pb-8 md:px-10 mu-anim-up">
+            <p
+              className="max-w-[24ch] whitespace-pre-line text-[clamp(1.4rem,2.4vw,2.1rem)] font-semibold uppercase leading-[1.05] tracking-[-0.02em] text-black/85"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+            >
+              {p.title}
+            </p>
+            <div className="grid grid-cols-3 gap-4 border-t border-black/10 pt-5">
+              {p.stats.map((s2, si) => (
+                <div
+                  key={s2.label}
+                  className="flex flex-col mu-anim-up"
+                  style={{ animationDelay: `${80 + si * 70}ms`, animationFillMode: "both" }}
+                >
+                  <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-black/45">
+                    {s2.label}
+                  </span>
+                  <span
+                    className="mt-2 text-[clamp(1rem,1.6vw,1.35rem)] font-semibold leading-tight tracking-tight text-black"
+                    style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                  >
+                    {s2.value}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -1231,7 +1233,7 @@ function PedagogySelector() {
         </div>
 
         {/* ---------- Panel 3 — next-up rail ---------- */}
-        <div className="relative hidden border-l border-black/10 lg:flex lg:w-[20%] lg:flex-col">
+        <div className="relative hidden border-l border-black/10 lg:flex lg:flex-none lg:w-[18%] lg:flex-col">
           <div className="flex items-center justify-between px-6 pt-8">
             <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.26em] text-black/45">
               Next up
