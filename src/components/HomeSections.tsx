@@ -1112,8 +1112,6 @@ function PedagogyPinnedScroll() {
       <div className="pt-10 md:pt-14" />
 
 
-      {/* Interactive selector: 8 options on the left, live widget on the right */}
-      <PedagogySelector />
 
       {/* Campus Radio: CXO podcasts recorded on campus */}
       <CampusRadio />
