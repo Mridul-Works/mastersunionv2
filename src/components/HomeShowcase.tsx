@@ -431,6 +431,16 @@ function ShowcaseShell({ section, children }: { section: Section; children: Reac
               </span>
             </h2>
             <p className="mt-3 text-[13px] leading-relaxed text-black/60">{section.lede}</p>
+            {section.download && (
+              <a
+                href={section.download.href}
+                download
+                className="group mt-4 inline-flex items-center gap-2 border-b border-black/25 pb-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-black transition hover:border-black"
+              >
+                <Download className="size-3.5 transition-transform group-hover:translate-y-0.5" />
+                {section.download.label}
+              </a>
+            )}
           </div>
           <div className="flex flex-col items-start gap-4 md:items-end">
             <dl className="flex gap-6">
@@ -448,25 +458,13 @@ function ShowcaseShell({ section, children }: { section: Section; children: Reac
                 </div>
               ))}
             </dl>
-            <div className="flex flex-wrap items-center gap-2">
-              <Link
-                to={section.cta.to}
-                className="group inline-flex items-center gap-2 rounded-full bg-black px-3.5 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-black/85"
-              >
-                {section.cta.label}
-                <ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-              {section.download && (
-                <a
-                  href={section.download.href}
-                  download
-                  className="group inline-flex items-center gap-2 rounded-full border border-black/20 bg-transparent px-3.5 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-black transition hover:border-black/40 hover:bg-black/5"
-                >
-                  {section.download.label}
-                  <Download className="size-3 transition-transform group-hover:translate-y-0.5" />
-                </a>
-              )}
-            </div>
+            <Link
+              to={section.cta.to}
+              className="group inline-flex items-center gap-2 rounded-full bg-black px-3.5 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-black/85"
+            >
+              {section.cta.label}
+              <ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
           </div>
         </div>
         {children}
