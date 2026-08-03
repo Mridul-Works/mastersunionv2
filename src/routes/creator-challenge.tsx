@@ -59,7 +59,7 @@ const QUOTES = [
 
 function Page() {
   return (
-    <main className="min-h-screen bg-white pb-28 text-black md:pb-32" style={{ fontFamily: INTER }}>
+    <main className="min-h-screen bg-white pb-16 text-black md:pb-18" style={{ fontFamily: INTER }}>
       <BottomNav items={NAV} applyHref="#closing" />
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">
         <Link to="/" className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-black/70 hover:text-black" style={{ fontFamily: MONO }}>
@@ -68,12 +68,12 @@ function Page() {
         <div className="text-[11px] uppercase tracking-[0.25em] text-black/55" style={{ fontFamily: MONO }}>The Creator Challenge at Masters&apos; Union</div>
       </div>
 
-      <section id="top" className="mx-auto max-w-6xl px-5 pb-16 pt-16 md:px-10 md:pt-24">
+      <section id="top" className="mx-auto max-w-6xl px-5 pb-10 pt-10 md:px-10 md:pt-14">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Creator Challenge</div>
         <h1 className="mt-6 max-w-[24ch] text-balance text-[clamp(2.4rem,7vw,6rem)] font-medium leading-[0.95] tracking-[-0.02em]">
           A student founded a socks brand, closed 7 brand deals in one month, and hit 5M+ views. While enrolled.
         </h1>
-        <p className="mt-10 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-black/70">
+        <p className="mt-7 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-black/70">
           150+ students build real audiences, close real brand deals, and generate real revenue across Instagram, YouTube, and LinkedIn. 100+ channels. 5 Mn+ cumulative followers. 46M+ aggregate reach. The assignment: grow a real audience. Some got very, very good at it.
         </p>
       </section>
@@ -81,7 +81,7 @@ function Page() {
       <section id="stats" className="mx-auto max-w-6xl px-5 md:px-10">
         <div className="grid grid-cols-2 gap-px bg-black/10 md:grid-cols-4">
           {STATS.map((s) => (
-            <div key={s.label} className="bg-white px-5 py-10">
+            <div key={s.label} className="bg-white px-5 py-7">
               <div className="text-[clamp(1.5rem,2.6vw,2.2rem)] leading-none tracking-[-0.03em]">{s.value}</div>
               <div className="mt-4 text-[10px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>{s.label}</div>
             </div>
@@ -89,7 +89,7 @@ function Page() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-5 pt-24 md:px-10 md:pt-32">
+      <section className="mx-auto max-w-5xl px-5 pt-14 md:px-10 md:pt-18">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Why This Exists</div>
         <div className="mt-8 space-y-5 text-[1.05rem] leading-[1.7] text-black/75">
           <p>The creator economy is not a side hustle. It is a ₹2,200 Cr industry in India, growing at 25% annually. Every business, every brand, every founder today needs to understand how to build an audience, how to communicate in the language of platforms, and how to turn distribution into revenue.</p>
@@ -97,9 +97,9 @@ function Page() {
         </div>
       </section>
 
-      <section id="phases" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
+      <section id="phases" className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Three Phases</div>
-        <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-3">
+        <div className="mt-7 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-3">
           {PHASES.map((p) => (
             <article key={p.name} className="bg-white p-8 md:p-10">
               <h3 className="text-[clamp(1.2rem,1.9vw,1.5rem)] font-medium leading-tight">{p.name}</h3>
@@ -109,8 +109,8 @@ function Page() {
         </div>
       </section>
 
-      <section className="mt-24 border-t border-black/10 bg-neutral-50 md:mt-32">
-        <div className="mx-auto max-w-5xl px-5 py-20 md:px-10 md:py-24">
+      <section className="mt-14 border-t border-black/10 bg-neutral-50 md:mt-18">
+        <div className="mx-auto max-w-5xl px-5 py-12 md:px-10 md:py-14">
           <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>The Brand Hackathon — PGP Edition</div>
           <div className="mt-8 space-y-5 text-[1.05rem] leading-[1.7] text-black/75">
             <p>A high-pressure environment built to mirror doomscrolling. Content has to stop the scroll of real founders — in real time, in a randomised rapid-fire sequence.</p>
@@ -121,9 +121,9 @@ function Page() {
         </div>
       </section>
 
-      <section id="winners" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
+      <section id="winners" className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>UG Winners — Class of 2028</div>
-        <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-7 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-3">
           {WINNERS.map((w) => (
             <article key={w.name} className="bg-white p-7">
               <div className="text-[10px] uppercase tracking-[0.22em] text-black/60" style={{ fontFamily: MONO }}>{w.place}</div>
@@ -134,7 +134,7 @@ function Page() {
           ))}
         </div>
 
-        <div className="mt-16 text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Other Finalists Worth Noting</div>
+        <div className="mt-10 text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Other Finalists Worth Noting</div>
         <div className="mt-6 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-4">
           {FINALISTS.map((f) => (
             <div key={f.name} className="bg-white p-6">
@@ -146,10 +146,10 @@ function Page() {
         </div>
       </section>
 
-      <section id="mentors" className="mt-24 border-t border-black/10 bg-neutral-50 md:mt-32">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-24">
+      <section id="mentors" className="mt-14 border-t border-black/10 bg-neutral-50 md:mt-18">
+        <div className="mx-auto max-w-6xl px-5 py-12 md:px-10 md:py-14">
           <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Mentors</div>
-          <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2">
+          <div className="mt-7 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2">
             {MENTORS.map((m) => (
               <article key={m.name} className="bg-white p-8">
                 <h3 className="text-[1.15rem] font-medium leading-tight">{m.name}</h3>
@@ -162,9 +162,9 @@ function Page() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
+      <section className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>What Students Say</div>
-        <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-3">
+        <div className="mt-7 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-3">
           {QUOTES.map((q) => (
             <figure key={q.who} className="bg-white p-8">
               <blockquote className="text-[1.05rem] italic leading-[1.5] text-black/85">&ldquo;{q.quote}&rdquo;</blockquote>
@@ -174,9 +174,9 @@ function Page() {
         </div>
       </section>
 
-      <section id="closing" className="mx-auto max-w-5xl px-5 py-24 text-center md:px-10 md:py-32">
+      <section id="closing" className="mx-auto max-w-5xl px-5 py-14 text-center md:px-10 md:py-18">
         <p className="text-balance text-[clamp(1.4rem,3vw,2.4rem)] italic leading-[1.2] text-black/90">Stop consuming. Start dominating.</p>
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Link to="/" className="inline-flex items-center gap-2 bg-black px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-white hover:opacity-80" style={{ fontFamily: MONO }}>
             Apply to Masters&apos; Union <ArrowUpRight className="size-3.5" />
           </Link>

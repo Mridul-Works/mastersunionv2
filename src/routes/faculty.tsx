@@ -271,9 +271,9 @@ function EditorialGrid({
   stats: FacultyStat[];
 }) {
   return (
-    <div className="mt-12 border-t border-black/15">
+    <div className="mt-8 border-t border-black/15">
       {/* STATS HERO — replaces featured faculty */}
-      <div className="grid gap-x-8 gap-y-10 border-b border-black/15 py-10 md:grid-cols-12 md:py-14">
+      <div className="grid gap-x-8 gap-y-7 border-b border-black/15 py-7 md:grid-cols-12 md:py-9">
         <div className="md:col-span-5">
           <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
             The Mix · {sectionLabel}
@@ -345,7 +345,7 @@ export const Route = createFileRoute("/faculty")({
 
 function FacultyPage() {
   return (
-    <main className="min-h-screen bg-white pb-28 text-black md:pb-32" style={{ fontFamily: INTER }}>
+    <main className="min-h-screen bg-white pb-16 text-black md:pb-18" style={{ fontFamily: INTER }}>
       <SectionNav items={NAV} applyHref="#cta" />
 
       {/* Chapter marker */}
@@ -359,7 +359,7 @@ function FacultyPage() {
       </div>
 
       {/* HERO */}
-      <section id="top" className="mx-auto max-w-6xl px-5 pb-16 pt-16 md:px-10 md:pt-24">
+      <section id="top" className="mx-auto max-w-6xl px-5 pb-10 pt-10 md:px-10 md:pt-14">
         <div className="flex items-center gap-4">
           <span className="h-px w-10 bg-black/30" aria-hidden />
           <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
@@ -380,15 +380,15 @@ function FacultyPage() {
           </span>{" "}
           them — and most still do.
         </h1>
-        <p className="mt-10 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55] text-black/70">
+        <p className="mt-7 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55] text-black/70">
           500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered by Ivy League academics and global business leaders — from Harvard to McKinsey, from Wharton to Google. They don&apos;t just teach the playbook. They wrote it.
         </p>
 
-        <div className="mt-16 border-t border-black/15 pt-10">
+        <div className="mt-10 border-t border-black/15 pt-7">
           <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
             By the numbers
           </div>
-          <div className="mt-8 flex flex-wrap items-end gap-x-14 gap-y-10 md:gap-x-20">
+          <div className="mt-8 flex flex-wrap items-end gap-x-14 gap-y-7 md:gap-x-20">
             {[
               { v: "500+", l: "Masters on the roster" },
               { v: "50%", l: "Active industry practitioners" },
@@ -449,7 +449,7 @@ function FacultyPage() {
 
       {/* INDUSTRY PRACTITIONERS */}
       <section id="practitioners" className="border-y border-black/10 bg-neutral-50">
-        <div className="mx-auto max-w-6xl px-5 py-24 md:px-10 md:py-32">
+        <div className="mx-auto max-w-6xl px-5 py-14 md:px-10 md:py-18">
           <SectionHeader
             index="01"
             eyebrow="Industry Practitioners"
@@ -483,7 +483,7 @@ function FacultyPage() {
 
       {/* FULL-TIME FACULTY */}
       <section id="full-time" className="border-y border-black/10 bg-white">
-        <div className="mx-auto max-w-6xl px-5 py-24 md:px-10 md:py-32">
+        <div className="mx-auto max-w-6xl px-5 py-14 md:px-10 md:py-18">
           <SectionHeader
             index="02"
             eyebrow="Full-time Faculty"
@@ -502,7 +502,7 @@ function FacultyPage() {
             items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
           />
 
-          <p className="mt-10 max-w-[62ch] text-[1rem] leading-[1.6] text-black/70">
+          <p className="mt-7 max-w-[62ch] text-[1rem] leading-[1.6] text-black/70">
             Doctorates from IIM Ahmedabad, Bangalore, Calcutta, Kozhikode and Tiruchirappalli, IIT Bombay and Kanpur, Delhi University, Shiv Nadar, Christ University, TERI and the University of Bath — across finance, marketing, operations, organisational behaviour, economics, decision sciences and strategy.
           </p>
 
@@ -511,7 +511,7 @@ function FacultyPage() {
 
       {/* VISITING */}
       <section id="visiting" className="bg-neutral-50">
-        <div className="mx-auto max-w-6xl px-5 py-24 md:px-10 md:py-32">
+        <div className="mx-auto max-w-6xl px-5 py-14 md:px-10 md:py-18">
           <SectionHeader
             index="03"
             eyebrow="Visiting Faculty"
@@ -534,7 +534,7 @@ function FacultyPage() {
 
 
 
-        <div className="mt-14 border-l-2 border-black/80 bg-neutral-50 p-8 md:p-10">
+        <div className="mt-9 border-l-2 border-black/80 bg-neutral-50 p-8 md:p-10">
           <p className="max-w-[70ch] text-[1.05rem] leading-[1.65] text-black/80">
             <span className="font-medium text-black">Kellogg School of Management</span> — led by Professor Mohanbir Sawhney, one of the world&apos;s foremost authorities on technology strategy and marketing innovation — has brought students to Masters&apos; Union for two consecutive years. <span className="font-medium text-black">Harvard Business School India</span> immersion students have visited campus. When schools like these come here to learn, something is working.
           </p>
@@ -545,13 +545,13 @@ function FacultyPage() {
 
       {/* TESTIMONIALS */}
       <section className="border-y border-black/10 bg-neutral-50">
-        <div className="mx-auto max-w-6xl px-5 py-24 md:px-10 md:py-28">
+        <div className="mx-auto max-w-6xl px-5 py-14 md:px-10 md:py-16">
           <SectionHeader
             index="04"
             eyebrow="What students say"
             title={<>Learning from operators, in their own words.</>}
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
 
             {TESTIMONIALS.map((t) => (
               <figure key={t.a} className="border border-black/10 bg-white p-8">
@@ -568,7 +568,7 @@ function FacultyPage() {
       </section>
 
       {/* BECOME A MASTER */}
-      <section className="mx-auto max-w-6xl px-5 py-24 md:px-10 md:py-32">
+      <section className="mx-auto max-w-6xl px-5 py-14 md:px-10 md:py-18">
         <div className="grid gap-10 md:grid-cols-12 md:items-end">
           <div className="md:col-span-7">
             <SectionHeader
@@ -589,7 +589,7 @@ function FacultyPage() {
 
       {/* THE NUMBER */}
       <section className="border-y border-black/10 bg-black text-white">
-        <div className="mx-auto max-w-5xl px-5 py-24 text-center md:px-10 md:py-32">
+        <div className="mx-auto max-w-5xl px-5 py-14 text-center md:px-10 md:py-18">
           <div className="text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO }}>The number that matters</div>
           <div className="mt-8 text-[clamp(4rem,12vw,10rem)] font-semibold leading-[0.85] tracking-tight" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>500+</div>
           <p className="mx-auto mt-8 max-w-[52ch] text-[1.1rem] leading-[1.55] text-white/80">
@@ -602,11 +602,11 @@ function FacultyPage() {
       </section>
 
       {/* CTA */}
-      <section id="cta" className="mx-auto max-w-5xl px-5 py-24 text-center md:px-10 md:py-32">
+      <section id="cta" className="mx-auto max-w-5xl px-5 py-14 text-center md:px-10 md:py-18">
         <p className="text-balance text-[clamp(1.4rem,3vw,2.4rem)] italic leading-[1.2] text-black/90">
           Learn from the people doing it — not just studying it.
         </p>
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Link to="/applications_center" className="inline-flex items-center gap-2 bg-black px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-white transition-opacity hover:opacity-80" style={{ fontFamily: MONO }}>
             Apply to Masters&apos; Union <ArrowUpRight className="size-3.5" />
           </Link>

@@ -81,7 +81,7 @@ export default function TenThings() {
     <section className="relative bg-[#F1EFE7] text-[#1A211A]" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       <div ref={pinRef} className="relative w-full overflow-hidden md:h-screen">
       {/* Intro headline — stacked on mobile, absolute hero on desktop */}
-      <div ref={introRef} className="relative z-0 flex flex-col justify-center overflow-hidden bg-[#F1EFE7] px-5 py-16 text-[#1A211A] md:absolute md:inset-0 md:px-10 md:py-20 md:will-change-transform">
+      <div ref={introRef} className="relative z-0 flex flex-col justify-center overflow-hidden bg-[#F1EFE7] px-5 py-10 text-[#1A211A] md:absolute md:inset-0 md:px-10 md:py-12 md:will-change-transform">
 
 
         <div className="pointer-events-none absolute -left-40 top-1/4 h-[30vh] w-[30vh] -translate-y-1/2 rounded-full bg-[#1A211A]/[0.04] blur-[80px]" />
@@ -212,7 +212,7 @@ export default function TenThings() {
           </AnimatePresence>
 
           {/* Bottom nav: progress / arrows */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-30 flex flex-col gap-3 px-5 pb-6 md:flex-row md:items-end md:justify-between md:px-10 md:pb-10">
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-30 flex flex-col gap-3 px-5 pb-6 md:flex-row md:items-end md:justify-between md:px-10 md:pb-7">
             {/* Spacer for left-aligned label inside the slide */}
             <div className="hidden md:block md:w-[120px]" />
 

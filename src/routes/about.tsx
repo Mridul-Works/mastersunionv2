@@ -270,7 +270,7 @@ const Eyebrow = ({ children }: { children: React.ReactNode }) => (
 
 function AboutPage() {
   return (
-    <main className="min-h-screen bg-white pb-28 text-black md:pb-32" style={{ fontFamily: INTER }}>
+    <main className="min-h-screen bg-white pb-16 text-black md:pb-18" style={{ fontFamily: INTER }}>
       <BottomNav items={NAV} applyHref="#contact" />
 
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">
@@ -287,12 +287,12 @@ function AboutPage() {
       </div>
 
       {/* HERO */}
-      <section id="top" className="mx-auto max-w-6xl px-5 pb-16 pt-16 md:px-10 md:pt-24">
+      <section id="top" className="mx-auto max-w-6xl px-5 pb-10 pt-10 md:px-10 md:pt-14">
         <Eyebrow>Our Story</Eyebrow>
         <h1 className="mt-6 max-w-[22ch] text-balance text-[clamp(2.4rem,7vw,6rem)] font-medium leading-[0.95] tracking-[-0.02em]">
           Reimagining business education.
         </h1>
-        <p className="mt-10 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-black/70">
+        <p className="mt-7 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-black/70">
           At Masters&apos; Union we teach business by doing business. Students build ventures, run funds and ship
           products alongside industry mentors — because leadership is learned when you launch, not when you listen.
         </p>
@@ -300,13 +300,13 @@ function AboutPage() {
 
       {/* TIMELINE */}
       <section id="story" className="border-t border-black/10 bg-[#FAF8F4]">
-        <div className="mx-auto max-w-6xl px-5 py-16 md:px-10 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 py-10 md:px-10 md:py-14">
           <Eyebrow>Year by year</Eyebrow>
           <h2 className="mt-5 max-w-[18ch] text-[clamp(1.8rem,4vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.02em]">
             From 72 early adopters to 2,000 students.
           </h2>
 
-          <div className="mt-12 grid gap-px overflow-hidden rounded-sm bg-black/10 md:grid-cols-2">
+          <div className="mt-8 grid gap-px overflow-hidden rounded-sm bg-black/10 md:grid-cols-2">
             {TIMELINE.map((t) => (
               <article key={t.year} className="bg-[#FAF8F4] p-6 md:p-8">
                 <div className="flex items-baseline gap-4">
@@ -331,14 +331,14 @@ function AboutPage() {
 
       {/* VISION & MISSION */}
       <section id="vision" className="border-t border-black/10">
-        <div className="mx-auto max-w-6xl px-5 py-16 md:px-10 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 py-10 md:px-10 md:py-14">
           <Eyebrow>Vision &amp; Mission</Eyebrow>
           <p className="mt-6 max-w-[52ch] text-[clamp(1.3rem,2.6vw,2rem)] font-medium leading-[1.2] tracking-[-0.02em]">
             Our aim is to become a global top 10 B-school, setting new benchmarks through innovation, industry connect
             and impact.
           </p>
 
-          <div className="mt-12 grid gap-px overflow-hidden rounded-sm bg-black/10 md:grid-cols-2">
+          <div className="mt-8 grid gap-px overflow-hidden rounded-sm bg-black/10 md:grid-cols-2">
             <div className="bg-white p-7 md:p-9">
               <Eyebrow>Our Vision</Eyebrow>
               <p className="mt-4 text-[18px] leading-[1.5] text-black/80">
@@ -354,7 +354,7 @@ function AboutPage() {
             </div>
           </div>
 
-          <blockquote className="mt-12 max-w-[60ch] border-l-2 border-black/20 pl-6 text-[clamp(1.1rem,2vw,1.5rem)] italic leading-[1.4] text-black/75">
+          <blockquote className="mt-8 max-w-[60ch] border-l-2 border-black/20 pl-6 text-[clamp(1.1rem,2vw,1.5rem)] italic leading-[1.4] text-black/75">
             “A future of education is not just a means to an end, but a transformative journey that shapes leaders and
             innovators.”
             <footer className="mt-4 text-[12px] not-italic uppercase tracking-[0.2em] text-black/50" style={{ fontFamily: MONO }}>
@@ -366,13 +366,13 @@ function AboutPage() {
 
       {/* PEOPLE */}
       <section id="people" className="border-t border-black/10 bg-[#FAF8F4]">
-        <div className="mx-auto max-w-6xl px-5 py-16 md:px-10 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 py-10 md:px-10 md:py-14">
           <Eyebrow>A community of change-makers</Eyebrow>
           <h2 className="mt-5 text-[clamp(1.8rem,4vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.02em]">
             Board, leadership and faculty.
           </h2>
 
-          <div className="mt-12">
+          <div className="mt-8">
             <Eyebrow>Board of Governors</Eyebrow>
             <div className="mt-5 grid gap-px overflow-hidden rounded-sm bg-black/10 sm:grid-cols-3">
               {BOARD.map((p) => (
@@ -384,7 +384,7 @@ function AboutPage() {
             </div>
           </div>
 
-          <div className="mt-14">
+          <div className="mt-9">
             <Eyebrow>Executive Leadership</Eyebrow>
             <div className="mt-5 grid gap-px overflow-hidden rounded-sm bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
               {LEADERS.map((p) => (
@@ -396,7 +396,7 @@ function AboutPage() {
             </div>
           </div>
 
-          <div className="mt-14">
+          <div className="mt-9">
             <Eyebrow>Masters in Residence — full-time faculty</Eyebrow>
             <div className="mt-5 grid gap-px overflow-hidden rounded-sm bg-black/10 sm:grid-cols-2 lg:grid-cols-4">
               {RESIDENT_FACULTY.map((p) => (
@@ -408,7 +408,7 @@ function AboutPage() {
             </div>
           </div>
 
-          <div className="mt-14">
+          <div className="mt-9">
             <Eyebrow>Diversity &amp; Inclusion</Eyebrow>
             <p className="mt-4 max-w-[62ch] text-[15px] leading-[1.6] text-black/70">
               We celebrate diversity with strong representation from all communities across our students and employees,
@@ -430,12 +430,12 @@ function AboutPage() {
 
       {/* UNION WAY */}
       <section id="union" className="border-t border-black/10">
-        <div className="mx-auto max-w-6xl px-5 py-16 md:px-10 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 py-10 md:px-10 md:py-14">
           <Eyebrow>The Masters&apos; Union way</Eyebrow>
           <h2 className="mt-5 text-[clamp(1.8rem,4vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.02em]">
             U.N.I.O.N.
           </h2>
-          <div className="mt-10 grid gap-px overflow-hidden rounded-sm bg-black/10 md:grid-cols-2">
+          <div className="mt-7 grid gap-px overflow-hidden rounded-sm bg-black/10 md:grid-cols-2">
             {UNION.map((u, i) => (
               <article key={u.title} className={`bg-white p-7 md:p-9 ${i === UNION.length - 1 ? "md:col-span-2" : ""}`}>
                 <div className="flex items-start gap-5">
@@ -451,7 +451,7 @@ function AboutPage() {
             ))}
           </div>
 
-          <div className="mt-14">
+          <div className="mt-9">
             <Eyebrow>Affiliations &amp; collaborations</Eyebrow>
             <div className="mt-5 flex flex-wrap gap-2">
               {AFFILIATION_CATEGORIES.map((c) => (
@@ -470,7 +470,7 @@ function AboutPage() {
 
       {/* AWARDS & RECOGNITION */}
       <section id="awards" className="border-t border-black/10 bg-[#0F140F] text-white">
-        <div className="mx-auto max-w-6xl px-5 py-16 md:px-10 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 py-10 md:px-10 md:py-14">
           <div className="text-[11px] uppercase tracking-[0.3em] text-white/55" style={{ fontFamily: MONO }}>
             Awards &amp; Recognition
           </div>
@@ -479,7 +479,7 @@ function AboutPage() {
           </h2>
 
           {/* Rankings */}
-          <div className="mt-12">
+          <div className="mt-8">
             <div className="text-[11px] uppercase tracking-[0.24em] text-white/50" style={{ fontFamily: MONO }}>
               Rankings
             </div>
@@ -499,7 +499,7 @@ function AboutPage() {
           </div>
 
           {/* Awards */}
-          <div className="mt-14">
+          <div className="mt-9">
             <div className="text-[11px] uppercase tracking-[0.24em] text-white/50" style={{ fontFamily: MONO }}>
               Awards
             </div>
@@ -517,7 +517,7 @@ function AboutPage() {
           </div>
 
           {/* Accreditations */}
-          <div className="mt-14">
+          <div className="mt-9">
             <div className="text-[11px] uppercase tracking-[0.24em] text-white/50" style={{ fontFamily: MONO }}>
               Accreditations &amp; memberships
             </div>
@@ -538,12 +538,12 @@ function AboutPage() {
 
       {/* IN THE NEWS */}
       <section id="news" className="border-t border-black/10">
-        <div className="mx-auto max-w-6xl px-5 py-16 md:px-10 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 py-10 md:px-10 md:py-14">
           <Eyebrow>In the news</Eyebrow>
           <h2 className="mt-5 text-[clamp(1.8rem,4vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.02em]">
             Coverage across national and global media.
           </h2>
-          <ul className="mt-10 divide-y divide-black/10 border-y border-black/10">
+          <ul className="mt-7 divide-y divide-black/10 border-y border-black/10">
             {NEWS.map((n) => (
               <li key={n.title} className="flex flex-col gap-1 py-5 md:flex-row md:items-baseline md:justify-between md:gap-8">
                 <span className="max-w-[70ch] text-[15.5px] leading-[1.5] text-black/80">{n.title}</span>
@@ -558,7 +558,7 @@ function AboutPage() {
 
       {/* CONTACT */}
       <section id="contact" className="border-t border-black/10 bg-[#FAF8F4]">
-        <div className="mx-auto max-w-6xl px-5 py-16 md:px-10 md:py-20">
+        <div className="mx-auto max-w-6xl px-5 py-10 md:px-10 md:py-12">
           <Eyebrow>Contact</Eyebrow>
           <div className="mt-6 grid gap-8 md:grid-cols-2">
             <p className="max-w-[42ch] text-[15px] leading-[1.65] text-black/70">

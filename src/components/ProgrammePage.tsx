@@ -67,7 +67,7 @@ const NAV: SectionNavItem[] = [
 export default function ProgrammePage({ data }: { data: ProgrammeData }) {
   return (
     <main
-      className="min-h-screen bg-gradient-to-b from-background via-muted/50 to-background text-[color:var(--ink)] pb-28 md:pb-32"
+      className="min-h-screen bg-gradient-to-b from-background via-muted/50 to-background text-[color:var(--ink)] pb-16 md:pb-18"
       style={
         {
           "--pastel-start": "oklch(0.99 0.014 220 / 0.4)",
@@ -121,10 +121,10 @@ export default function ProgrammePage({ data }: { data: ProgrammeData }) {
 
 function Hero({ data }: { data: ProgrammeData }) {
   return (
-    <section id="top" className="relative overflow-hidden pt-28 sm:pt-32">
-      <div className="mx-auto max-w-[1180px] px-4 pb-16 sm:px-6 sm:pb-24">
+    <section id="top" className="relative overflow-hidden pt-16 sm:pt-18">
+      <div className="mx-auto max-w-[1180px] px-4 pb-10 sm:px-6 sm:pb-14">
         {/* Eyebrow row */}
-        <div className="mb-10 flex flex-col gap-4 border-b border-foreground/10 pb-6 sm:mb-14 md:flex-row md:items-end md:justify-between">
+        <div className="mb-7 flex flex-col gap-4 border-b border-foreground/10 pb-6 sm:mb-9 md:flex-row md:items-end md:justify-between">
           <div className="flex flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground/55">
             <span className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-card/80 px-3 py-1">
               <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -150,7 +150,7 @@ function Hero({ data }: { data: ProgrammeData }) {
                 {data.tagline}
               </p>
 
-              <div className="mt-10 flex flex-wrap items-center gap-3">
+              <div className="mt-7 flex flex-wrap items-center gap-3">
                 <a
                   href="#apply"
                   className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-primary-foreground transition-transform hover:scale-[1.02]"
@@ -220,7 +220,7 @@ function Hero({ data }: { data: ProgrammeData }) {
 function WhyNow({ data }: { data: ProgrammeData }) {
   return (
     <section id="why" className="relative overflow-hidden">
-      <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
+      <div className="mx-auto max-w-[1180px] px-4 py-12 sm:px-6">
         <div className="grid gap-10 md:grid-cols-[0.6fr_1fr] lg:gap-16">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
@@ -250,8 +250,8 @@ function WhyNow({ data }: { data: ProgrammeData }) {
 function EdgeSection({ data }: { data: ProgrammeData }) {
   return (
     <section id="edge" className="relative overflow-hidden">
-      <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-        <div className="mb-12 max-w-3xl">
+      <div className="mx-auto max-w-[1180px] px-4 py-12 sm:px-6">
+        <div className="mb-8 max-w-3xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-teal" />
             THE EDGE
@@ -294,8 +294,8 @@ function Curriculum({ terms, shortName }: { terms: Term[]; shortName: string }) 
   const [open, setOpen] = useState<number | null>(0);
   return (
     <section id="curriculum" className="relative overflow-hidden">
-      <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-        <div className="mb-12 max-w-3xl">
+      <div className="mx-auto max-w-[1180px] px-4 py-12 sm:px-6">
+        <div className="mb-8 max-w-3xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
             CURRICULUM
@@ -338,7 +338,7 @@ function Curriculum({ terms, shortName }: { terms: Term[]; shortName: string }) 
                 </button>
 
                 {isOpen && (
-                  <div className="grid gap-8 pb-10 pl-2 pr-2 sm:pl-24 md:grid-cols-2 md:gap-12">
+                  <div className="grid gap-8 pb-7 pl-2 pr-2 sm:pl-24 md:grid-cols-2 md:gap-12">
                     <div>
                       <div className="mb-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-black/50">
                         Outcomes
@@ -394,8 +394,8 @@ function Curriculum({ terms, shortName }: { terms: Term[]; shortName: string }) 
 function VenturesSection({ ventures }: { ventures: Venture[] }) {
   return (
     <section className="relative overflow-hidden">
-      <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-        <div className="mb-12 max-w-3xl">
+      <div className="mx-auto max-w-[1180px] px-4 py-12 sm:px-6">
+        <div className="mb-8 max-w-3xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
             STUDENT VENTURES
@@ -444,8 +444,8 @@ function VenturesSection({ ventures }: { ventures: Venture[] }) {
 function Immersions({ items }: { items: string[] }) {
   return (
     <section className="relative overflow-hidden">
-      <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-        <div className="mb-12 max-w-3xl">
+      <div className="mx-auto max-w-[1180px] px-4 py-12 sm:px-6">
+        <div className="mb-8 max-w-3xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-teal" />
             IMMERSIONS
@@ -506,8 +506,8 @@ function Faculty({ roster }: { roster: FacultyMember[] }) {
 
   return (
     <section id="faculty" className="relative overflow-hidden">
-      <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+      <div className="mx-auto max-w-[1180px] px-4 py-12 sm:px-6">
+        <div className="mb-7 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
@@ -597,8 +597,8 @@ function Faculty({ roster }: { roster: FacultyMember[] }) {
 function Testimonials({ list }: { list: Testimonial[] }) {
   return (
     <section id="outcomes" className="relative overflow-hidden">
-      <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-        <div className="mb-12 max-w-3xl">
+      <div className="mx-auto max-w-[1180px] px-4 py-12 sm:px-6">
+        <div className="mb-8 max-w-3xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
             OUTCOMES
@@ -630,8 +630,8 @@ function Testimonials({ list }: { list: Testimonial[] }) {
 function JobRoles({ roles }: { roles: string[] }) {
   return (
     <section className="relative overflow-hidden">
-      <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-        <div className="mb-10 max-w-3xl">
+      <div className="mx-auto max-w-[1180px] px-4 py-12 sm:px-6">
+        <div className="mb-7 max-w-3xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-teal" />
             CAREER PATHS
@@ -686,7 +686,7 @@ function FAQSection({ data }: { data: ProgrammeData }) {
 
   return (
     <section id="faq" className="relative overflow-hidden">
-      <div className="relative mx-auto grid max-w-[1180px] gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.6fr_1fr] lg:gap-16">
+      <div className="relative mx-auto grid max-w-[1180px] gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[0.6fr_1fr] lg:gap-16">
         <div>
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
@@ -732,7 +732,7 @@ function FAQSection({ data }: { data: ProgrammeData }) {
 function Footer({ name }: { name: string }) {
   return (
     <footer id="apply" className="border-t border-black/10 bg-black text-white">
-      <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10">
+      <div className="mx-auto max-w-[1280px] px-6 py-12 md:px-10">
         <div className="grid gap-12 md:grid-cols-12 md:items-end">
           <div className="md:col-span-7">
             <img

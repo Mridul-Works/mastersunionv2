@@ -128,7 +128,7 @@ const PORTFOLIO = [
 
 function StartupsPage() {
   return (
-    <main className="min-h-screen bg-white pb-28 text-black md:pb-32" style={{ fontFamily: INTER }}>
+    <main className="min-h-screen bg-white pb-16 text-black md:pb-18" style={{ fontFamily: INTER }}>
       <BottomNav items={NAV} applyHref="#closing" />
 
       {/* Chapter marker */}
@@ -146,14 +146,14 @@ function StartupsPage() {
       </div>
 
       {/* HERO */}
-      <section id="top" className="mx-auto max-w-6xl px-5 pb-16 pt-16 md:px-10 md:pt-24">
+      <section id="top" className="mx-auto max-w-6xl px-5 pb-10 pt-10 md:px-10 md:pt-14">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
           Entrepreneurship
         </div>
         <h1 className="mt-6 max-w-[22ch] text-balance text-[clamp(2.4rem,7vw,6rem)] font-medium leading-[0.95] tracking-[-0.02em] text-black">
           A school that incubates startups is still just a school. We are building a portfolio.
         </h1>
-        <p className="mt-10 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-black/70">
+        <p className="mt-7 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-black/70">
           30+ student startups. ₹593 Cr in total valuation. Six appearances on Shark Tank India —
           including one by a first-year undergraduate who hadn&apos;t finished his first semester.
           We don&apos;t wait for students to graduate before calling them founders. The portfolio
@@ -162,7 +162,7 @@ function StartupsPage() {
       </section>
 
       {/* FILM */}
-      <section className="mx-auto max-w-6xl px-5 pb-16 md:px-10">
+      <section className="mx-auto max-w-6xl px-5 pb-10 md:px-10">
         <VenturesFilm />
       </section>
 
@@ -172,7 +172,7 @@ function StartupsPage() {
       <section id="stats" className="mx-auto max-w-6xl px-5 md:px-10">
         <div className="grid grid-cols-2 gap-px bg-black/10 md:grid-cols-3">
           {STATS.map((s) => (
-            <div key={s.label} className="bg-white px-5 py-10">
+            <div key={s.label} className="bg-white px-5 py-7">
               <div className="text-[clamp(1.8rem,3.2vw,2.8rem)] leading-none tracking-[-0.03em] text-black">
                 {s.value}
               </div>
@@ -188,7 +188,7 @@ function StartupsPage() {
       </section>
 
       {/* THE INFRASTRUCTURE */}
-      <section id="infra" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
+      <section id="infra" className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
           The Infrastructure
         </div>
@@ -203,7 +203,7 @@ function StartupsPage() {
           Venture Initiation Programme, you are not preparing to be a founder. You already are one.
         </p>
 
-        <div className="mt-14 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2">
+        <div className="mt-9 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2">
           {INFRA.map((i) => (
             <article key={i.name} className="flex flex-col bg-white p-8 md:p-10">
               <div
@@ -224,9 +224,9 @@ function StartupsPage() {
       {/* THE PORTFOLIO */}
       <section
         id="portfolio"
-        className="mt-24 border-t border-black/10 bg-neutral-50 md:mt-32"
+        className="mt-14 border-t border-black/10 bg-neutral-50 md:mt-18"
       >
-        <div className="mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-28">
+        <div className="mx-auto max-w-6xl px-5 py-12 md:px-10 md:py-16">
           <div
             className="text-[11px] uppercase tracking-[0.3em] text-black/55"
             style={{ fontFamily: MONO }}
@@ -241,7 +241,7 @@ function StartupsPage() {
             while enrolled — and the market noticed.
           </p>
 
-          <div className="mt-12 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-3">
             {PORTFOLIO.map((p) => (
               <article key={p.name} className="flex flex-col bg-white p-7">
                 <h3 className="text-[1.15rem] font-medium leading-tight text-black">{p.name}</h3>
@@ -259,12 +259,12 @@ function StartupsPage() {
       </section>
 
       {/* PULL QUOTE + CLOSING */}
-      <section id="closing" className="mx-auto max-w-5xl px-5 py-24 md:px-10 md:py-32">
+      <section id="closing" className="mx-auto max-w-5xl px-5 py-14 md:px-10 md:py-18">
         <blockquote className="text-balance text-[clamp(1.6rem,3.6vw,3rem)] italic leading-[1.15] tracking-[-0.01em] text-black">
           &ldquo;A school that incubates startups is still just a school. We are building a
           portfolio.&rdquo;
         </blockquote>
-        <div className="mt-10 space-y-5 text-[1.05rem] leading-[1.7] text-black/75">
+        <div className="mt-7 space-y-5 text-[1.05rem] leading-[1.7] text-black/75">
           <p>
             Most institutions add entrepreneurship as a feature. An incubation cell here. A pitch
             night there. A certificate if you show up. We built Masters&apos; Union around the
@@ -280,7 +280,7 @@ function StartupsPage() {
           </p>
         </div>
 
-        <div className="mt-12 flex flex-wrap items-center gap-4">
+        <div className="mt-8 flex flex-wrap items-center gap-4">
           <Link
             to="/"
             className="inline-flex items-center gap-2 rounded-none bg-black px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-white transition-opacity hover:opacity-80"

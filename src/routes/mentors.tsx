@@ -48,7 +48,7 @@ const QUOTES = [
 
 function Page() {
   return (
-    <main className="min-h-screen bg-white pb-28 text-black md:pb-32" style={{ fontFamily: INTER }}>
+    <main className="min-h-screen bg-white pb-16 text-black md:pb-18" style={{ fontFamily: INTER }}>
       <BottomNav items={NAV} applyHref="#closing" />
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">
         <Link to="/" className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-black/70 hover:text-black" style={{ fontFamily: MONO }}>
@@ -57,12 +57,12 @@ function Page() {
         <div className="text-[11px] uppercase tracking-[0.25em] text-black/55" style={{ fontFamily: MONO }}>Mentor Union at Masters&apos; Union</div>
       </div>
 
-      <section id="top" className="mx-auto max-w-6xl px-5 pb-16 pt-16 md:px-10 md:pt-24">
+      <section id="top" className="mx-auto max-w-6xl px-5 pb-10 pt-10 md:px-10 md:pt-14">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Mentor Union</div>
         <h1 className="mt-6 max-w-[22ch] text-balance text-[clamp(2.4rem,7vw,6rem)] font-medium leading-[0.95] tracking-[-0.02em]">
           500+ mentors. One hour or less. Not a guest lecture. An actual hotline.
         </h1>
-        <p className="mt-10 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-black/70">
+        <p className="mt-7 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-black/70">
           Need a term sheet reviewed? A growth strategy challenged? A pitch fixed before tomorrow morning? Mentors from Bain, Sequoia, Zomato, and 500+ companies pick up. Students have closed internships, fixed failing ventures, and prepped for BCG interviews — all through a single session booked on demand.
         </p>
       </section>
@@ -70,7 +70,7 @@ function Page() {
       <section id="stats" className="mx-auto max-w-6xl px-5 md:px-10">
         <div className="grid grid-cols-2 gap-px bg-black/10 md:grid-cols-4">
           {STATS.map((s) => (
-            <div key={s.label} className="bg-white px-5 py-10">
+            <div key={s.label} className="bg-white px-5 py-7">
               <div className="text-[clamp(1.6rem,2.8vw,2.4rem)] leading-none tracking-[-0.03em]">{s.value}</div>
               <div className="mt-4 text-[10px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>{s.label}</div>
             </div>
@@ -78,7 +78,7 @@ function Page() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-5 pt-24 md:px-10 md:pt-32">
+      <section className="mx-auto max-w-5xl px-5 pt-14 md:px-10 md:pt-18">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>What It Is</div>
         <div className="mt-8 space-y-5 text-[1.05rem] leading-[1.7] text-black/75">
           <p>Most business schools give you access to a mentor network. A list of alumni with LinkedIn profiles and good intentions. You email them. Some reply. Most don&apos;t. The meeting, if it happens, is scheduled three weeks out and lasts thirty minutes of pleasantries followed by five minutes of advice.</p>
@@ -87,9 +87,9 @@ function Page() {
         </div>
       </section>
 
-      <section id="network" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
+      <section id="network" className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Who Is in the Network</div>
-        <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2">
+        <div className="mt-7 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2">
           {NETWORK.map((n) => (
             <article key={n.name} className="bg-white p-8 md:p-10">
               <h3 className="text-[clamp(1.2rem,1.9vw,1.5rem)] font-medium">{n.name}</h3>
@@ -99,8 +99,8 @@ function Page() {
         </div>
       </section>
 
-      <section id="uses" className="mt-24 border-t border-black/10 bg-neutral-50 md:mt-32">
-        <div className="mx-auto max-w-5xl px-5 py-20 md:px-10 md:py-24">
+      <section id="uses" className="mt-14 border-t border-black/10 bg-neutral-50 md:mt-18">
+        <div className="mx-auto max-w-5xl px-5 py-12 md:px-10 md:py-14">
           <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>What Students Use It For</div>
           <ul className="mt-8 space-y-4">
             {USES.map((u) => (
@@ -113,9 +113,9 @@ function Page() {
         </div>
       </section>
 
-      <section id="voices" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
+      <section id="voices" className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>What Students Say</div>
-        <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2">
+        <div className="mt-7 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2">
           {QUOTES.map((q) => (
             <figure key={q.who} className="bg-white p-8 md:p-10">
               <blockquote className="text-[clamp(1.05rem,1.5vw,1.25rem)] italic leading-[1.5] text-black/85">&ldquo;{q.quote}&rdquo;</blockquote>
@@ -125,11 +125,11 @@ function Page() {
         </div>
       </section>
 
-      <section id="closing" className="mx-auto max-w-5xl px-5 py-24 text-center md:px-10 md:py-32">
+      <section id="closing" className="mx-auto max-w-5xl px-5 py-14 text-center md:px-10 md:py-18">
         <p className="text-balance text-[clamp(1.4rem,3vw,2.4rem)] italic leading-[1.2] text-black/90">
           The answer you need is probably one booking away.
         </p>
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Link to="/" className="inline-flex items-center gap-2 bg-black px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-white hover:opacity-80" style={{ fontFamily: MONO }}>
             Apply to Masters&apos; Union <ArrowUpRight className="size-3.5" />
           </Link>

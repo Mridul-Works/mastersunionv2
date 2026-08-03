@@ -304,7 +304,7 @@ function Index() {
           <div
             className={`absolute inset-0 transition-opacity duration-500 ${playing ? "opacity-0 pointer-events-none" : "opacity-100"}`}
           >
-            <div className="relative mx-auto flex h-full w-full max-w-[1280px] flex-col justify-between px-5 py-10 md:px-10 md:py-12">
+            <div className="relative mx-auto flex h-full w-full max-w-[1280px] flex-col justify-between px-5 py-7 md:px-10 md:py-8">
               {/* Top branding */}
               <div className="flex items-start justify-between">
                 <div className="flex flex-col">
@@ -323,7 +323,7 @@ function Index() {
               </div>
 
               {/* Hero row */}
-              <div className="mb-12 grid grid-cols-12 items-end gap-8 md:mb-20">
+              <div className="mb-8 grid grid-cols-12 items-end gap-8 md:mb-12">
                 <div className="col-span-12 flex flex-col gap-10 md:col-span-10 lg:col-span-9">
                   <h1
                     className="ml-[0.05em] text-7xl italic leading-[0.8] tracking-tighter text-white md:text-[110px] lg:text-[130px]"

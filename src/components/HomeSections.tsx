@@ -532,9 +532,9 @@ function AdmissionsConnect() {
   const sessions = ADMISSIONS_CONNECT_SESSIONS.slice(0, 3);
 
   return (
-    <div className="col-span-12 mt-14 border-t border-black/10 pt-12">
+    <div className="col-span-12 mt-9 border-t border-black/10 pt-8">
       {/* header row */}
-      <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
+      <div className="mb-7 flex flex-wrap items-end justify-between gap-6">
         <div className="max-w-xl">
           <p className="mb-4 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-black/45">
             Admissions Connect
@@ -564,7 +564,7 @@ function AdmissionsConnect() {
       </div>
 
       {/* poster strip */}
-      <div className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
         {sessions.map((s) => {
           const d = new Date(s.nextDate);
           const day = String(d.getDate()).padStart(2, "0");
@@ -622,7 +622,7 @@ function AdmissionsConnect() {
         })}
       </div>
 
-      <p className="mt-12 text-center text-[12px] leading-relaxed text-black/50">
+      <p className="mt-8 text-center text-[12px] leading-relaxed text-black/50">
         Can’t find a slot? Drop a note to{" "}
         <a
           href="mailto:admissions@mastersunion.org"
@@ -648,7 +648,7 @@ function Programs() {
   return (
     <section id="programs" className="border-t border-black/10 bg-[#F5F3EE]">
 
-      <div className="mx-auto grid max-w-[1280px] grid-cols-12 gap-6 px-5 py-14 md:px-10 md:py-28">
+      <div className="mx-auto grid max-w-[1280px] grid-cols-12 gap-6 px-5 py-9 md:px-10 md:py-16">
         {/* Editorial intro */}
         <div className="col-span-12 lg:col-span-4">
           <h2 className="mb-8 inline-block border-b border-black pb-2 font-mono text-[10px] font-bold uppercase tracking-[0.32em]">
@@ -668,7 +668,7 @@ function Programs() {
           </p>
 
           {/* Persona switcher (small) */}
-          <div className="mt-10 flex flex-wrap gap-2">
+          <div className="mt-7 flex flex-wrap gap-2">
             {PATHWAYS.map((p, i) => {
               const isActive = p.key === activeKey;
               return (
@@ -827,7 +827,7 @@ function Programs() {
         </div>
 
         {/* Admissions Connect */}
-        <div className="col-span-12 mt-20 border-t border-black/10 pt-14">
+        <div className="col-span-12 mt-12 border-t border-black/10 pt-9">
           <AdmissionsConnect />
         </div>
 
@@ -939,8 +939,8 @@ export default function HomeSections() {
     <div className="bg-white text-black" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
       {/* NEWS */}
       <section id="news" className="border-t border-black/10 bg-white">
-        <div className="mx-auto max-w-[1280px] px-5 py-14 md:px-10 md:py-28">
-          <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div className="mx-auto max-w-[1280px] px-5 py-9 md:px-10 md:py-16">
+          <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="mb-2 font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-black/50">
                 The Dispatch · Newsroom
@@ -1014,7 +1014,7 @@ export default function HomeSections() {
             </div>
           </div>
 
-          <div className="mt-10 flex justify-center">
+          <div className="mt-7 flex justify-center">
             <a
               href="#"
               className="font-sans border-b-2 border-black pb-1 text-xs font-semibold uppercase tracking-[0.3em] text-black transition-colors hover:border-black/50 hover:text-black/60"
@@ -1045,7 +1045,7 @@ export default function HomeSections() {
 
       {/* FOOTER */}
       <footer className="border-t border-black/10 bg-black text-white">
-        <div className="mx-auto max-w-[1280px] px-5 py-20 md:px-10">
+        <div className="mx-auto max-w-[1280px] px-5 py-12 md:px-10">
           <div className="grid gap-12 md:grid-cols-12">
             <div className="md:col-span-5">
               <img
@@ -1072,7 +1072,7 @@ export default function HomeSections() {
             <FooterCol title="Connect" links={["Admissions", "Press & Media", "Careers at MU", "Brochure (PDF)"]} />
           </div>
 
-          <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-[11px] uppercase tracking-[0.22em] text-white/40 md:flex-row md:items-center">
+          <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-[11px] uppercase tracking-[0.22em] text-white/40 md:flex-row md:items-center">
             <span>© 2026 Masters' Union Education Pvt. Ltd.</span>
             <div className="flex flex-wrap gap-6">
               <a href="#" className="hover:text-white/80">Privacy</a>
@@ -1089,7 +1089,7 @@ export default function HomeSections() {
 function PedagogyPinnedScroll() {
   return (
     <section id="pedagogy" className="relative border-t border-black/10 bg-neutral-50">
-      <div className="mx-auto max-w-[1280px] px-5 pt-16 pb-6 md:px-10 md:pt-24">
+      <div className="mx-auto max-w-[1280px] px-5 pt-10 pb-6 md:px-10 md:pt-14">
         {/* Editorial hero */}
         <div className="flex flex-col items-start text-left gap-6">
           <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-black/55">
@@ -1128,7 +1128,7 @@ function PedagogySelector() {
   const NextIcon = next.icon;
 
   return (
-    <div className="mx-auto max-w-[1280px] px-5 pb-20 md:px-10 md:pb-28">
+    <div className="mx-auto max-w-[1280px] px-5 pb-12 md:px-10 md:pb-16">
       <div className="flex flex-col overflow-hidden border border-black/10 bg-white lg:h-[560px] lg:flex-row">
         {/* ---------- Panel 1 — editorial text ---------- */}
         <div className="flex flex-1 flex-col justify-between p-8 md:p-10 lg:w-[44%]">
@@ -1141,7 +1141,7 @@ function PedagogySelector() {
             </span>
           </div>
 
-          <div key={`copy-${active}`} className="my-10 mu-anim-up">
+          <div key={`copy-${active}`} className="my-7 mu-anim-up">
             <h3
               className="max-w-[16ch] whitespace-pre-line text-[clamp(1.8rem,3.4vw,2.9rem)] font-semibold uppercase leading-[1.02] tracking-[-0.02em] text-black"
               style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
