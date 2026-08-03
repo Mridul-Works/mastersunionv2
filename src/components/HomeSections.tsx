@@ -1243,8 +1243,7 @@ function PedagogySelector() {
           <button
             type="button"
             onClick={() => setActive(nextIndex)}
-            className="group relative mt-6 flex-1 overflow-hidden border-t border-black/10 text-left transition-[background] duration-700 ease-out"
-            style={{ background: next.bg }}
+            className="group relative mt-6 flex-1 overflow-hidden border-t border-black/10 bg-neutral-50 text-left"
             aria-label={`Show ${next.tag}`}
           >
             <span
