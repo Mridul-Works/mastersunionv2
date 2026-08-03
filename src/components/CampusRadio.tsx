@@ -149,24 +149,31 @@ export function CampusRadioSlab({ start = 0, count = 1 }: { start?: number; coun
               style={{ backgroundColor: SLAB_TINTS[(start + i) % SLAB_TINTS.length] }}
             >
               <div className={large ? "aspect-[4/5] w-full" : "aspect-[3/4] w-full"}>
+              <div className={solo ? "aspect-[4/3] w-full" : large ? "aspect-[4/5] w-full" : "aspect-[3/4] w-full"}>
                 <img
                   src={ytThumb(ep.id)}
                   alt={ep.name}
                   loading="lazy"
-                  className="h-full w-full scale-[1.35] object-cover object-top opacity-90 mix-blend-luminosity transition duration-500 group-hover:scale-[1.42]"
+                  className={cn(
+                    "h-full w-full object-cover object-top opacity-90 mix-blend-luminosity transition duration-500",
+                    solo
+                      ? "scale-100 group-hover:scale-[1.04]"
+                      : "scale-[1.35] group-hover:scale-[1.42]"
+                  )}
                 />
               </div>
               <span className="absolute inset-0 grid place-items-center">
                 <span
                   className={cn(
                     "grid place-items-center rounded-full bg-white/90 text-black shadow-md transition group-hover:scale-110",
-                    large ? "h-11 w-11 text-[12px]" : "h-8 w-8 text-[9px]"
+                    solo ? "h-14 w-14 text-[15px]" : large ? "h-11 w-11 text-[12px]" : "h-8 w-8 text-[9px]"
                   )}
                 >
                   ▶
                 </span>
               </span>
             </div>
+
             <p
               className={cn(
                 "mt-2.5 font-semibold leading-tight text-black",
