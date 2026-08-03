@@ -212,10 +212,10 @@ export function CampusRadioSlab({ start = 0, count = 1 }: { start?: number; coun
 
 export default function CampusRadio() {
   const [open, setOpen] = useState<CampusRadioEpisode | null>(null);
-  const [lead, ...rest] = CAMPUS_RADIO_FEATURED;
+  const episodes = CAMPUS_RADIO_FEATURED.slice(0, 4);
 
   return (
-    <section id="campus-radio" className="border-t border-black/10 bg-white">
+    <section id="campus-radio" className="border-t border-black/10 bg-[#F5F3EE]">
       <div className="mx-auto max-w-[1280px] px-5 py-10 md:px-10 md:py-12">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
@@ -241,17 +241,23 @@ export default function CampusRadio() {
           </Link>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 gap-7 lg:grid-cols-12">
-          <div className="lg:col-span-6">
-            <CampusRadioCard ep={lead} onPlay={() => setOpen(lead)} />
-          </div>
-          <div className="grid grid-cols-2 gap-6 lg:col-span-6">
-            {rest.map((ep) => (
-              <CampusRadioCard key={ep.id} ep={ep} onPlay={() => setOpen(ep)} compact />
-            ))}
-          </div>
+        <div className="mt-8 grid grid-cols-2 border-t border-black/15 lg:grid-cols-4">
+          {episodes.map((ep, i) => (
+            <div
+              key={ep.id}
+              className={cn(
+                "border-b border-black/15 px-0 py-5 sm:px-5",
+                i % 2 === 1 && "border-l border-black/15",
+                "lg:border-b-0 lg:border-l lg:first:border-l-0",
+                i % 2 === 0 && "lg:border-l"
+              )}
+            >
+              <CampusRadioCard ep={ep} onPlay={() => setOpen(ep)} compact />
+            </div>
+          ))}
         </div>
       </div>
+
 
       {open && <CampusRadioPlayer episode={open} onClose={() => setOpen(null)} />}
     </section>
