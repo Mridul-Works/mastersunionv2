@@ -192,6 +192,7 @@ type Section = {
   lede: string;
   bg: string;
   cta: { label: string; to: string };
+  download?: { label: string; href: string };
   stats: Stat[];
 };
 
