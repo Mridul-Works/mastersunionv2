@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import WidgetCarousel from "@/components/WidgetCarousel";
 import HomeShowcase from "@/components/HomeShowcase";
-import CampusRadio, { CampusRadioSlab } from "@/components/CampusRadio";
+import CampusRadio from "@/components/CampusRadio";
 
 
 import { createPortal } from "react-dom";
@@ -926,34 +926,6 @@ function DaysRemaining({ target }: { target: string }) {
 
 
 
-
-
-const CAMPUS_RADIO_BASE = {
-  icon: Mic,
-  tag: "Campus Radio",
-  title: "WITH THE PEOPLE RUNNING INDIA INC.",
-  body: "Founders, CXOs, policymakers and operators sit down with students for long-form, unedited conversations — the same week they teach or judge in class.",
-
-  stats: [
-    { value: "24+", label: "Episodes" },
-    { value: "Unedited", label: "Long-form" },
-    { value: "On campus", label: "Recorded live" },
-  ],
-  cta: "Listen to episodes",
-  route: "/campus-radio",
-} as const;
-
-/** Campus Radio only — each slide keeps the same first canvas and swaps the episode strip. */
-const PEDAGOGY = [
-  { ...CAMPUS_RADIO_BASE, id: "cr-1", rail: "Episodes 01 — 02", start: 0 },
-  { ...CAMPUS_RADIO_BASE, id: "cr-2", rail: "Episodes 03 — 04", start: 2 },
-  { ...CAMPUS_RADIO_BASE, id: "cr-3", rail: "Episodes 05 — 06", start: 4 },
-  { ...CAMPUS_RADIO_BASE, id: "cr-4", rail: "Episodes 07 — 08", start: 6 },
-  { ...CAMPUS_RADIO_BASE, id: "cr-5", rail: "Episodes 09 — 10", start: 8 },
-  { ...CAMPUS_RADIO_BASE, id: "cr-6", rail: "Episodes 11 — 12", start: 10 },
-] as const;
-
-
 export default function HomeSections() {
   return (
     <div className="bg-white text-black" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
@@ -1112,8 +1084,6 @@ function PedagogyPinnedScroll() {
       <div className="pt-10 md:pt-14" />
 
 
-      {/* Interactive selector: 8 options on the left, live widget on the right */}
-      <PedagogySelector />
 
       {/* Campus Radio: CXO podcasts recorded on campus */}
       <CampusRadio />
@@ -1121,134 +1091,6 @@ function PedagogyPinnedScroll() {
 
   );
 }
-
-function PedagogySelector() {
-  const [active, setActive] = useState(0);
-  const p = PEDAGOGY[active];
-  const nextIndex = (active + 1) % PEDAGOGY.length;
-  const next = PEDAGOGY[nextIndex];
-  const Icon = p.icon;
-  const NextIcon = next.icon;
-
-  return (
-    <div className="mx-auto max-w-[1280px] px-5 pb-12 md:px-10 md:pb-16">
-      <div className="flex flex-col overflow-hidden border border-black/10 bg-white lg:h-[560px] lg:flex-row">
-        {/* ---------- Panel 1 — editorial text ---------- */}
-        <div className="flex flex-1 flex-col justify-between p-8 md:p-10 lg:flex-none lg:w-[46%]">
-          <div className="flex items-start justify-between">
-            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-black/45">
-              {p.tag}
-            </span>
-            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-black/35">
-              {String(active + 1).padStart(2, "0")} / {String(PEDAGOGY.length).padStart(2, "0")}
-            </span>
-          </div>
-
-          <div className="my-7">
-            <p
-              className="max-w-[26ch] whitespace-pre-line text-[clamp(1.4rem,2.4vw,2.1rem)] font-semibold uppercase leading-[1.05] tracking-[-0.02em] text-black"
-              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-            >
-              {p.title}
-            </p>
-            <p className="mt-5 max-w-[42ch] text-[14px] leading-[1.65] text-black/65">{p.body}</p>
-            <div className="mt-7 grid grid-cols-3 gap-4 border-t border-black/10 pt-5">
-              {p.stats.map((s2, si) => (
-                <div
-                  key={s2.label}
-                  className="flex flex-col"
-                >
-                  <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-black/45">
-                    {s2.label}
-                  </span>
-                  <span
-                    className="mt-2 text-[clamp(1rem,1.6vw,1.35rem)] font-semibold leading-tight tracking-tight text-black"
-                    style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                  >
-                    {s2.value}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-
-          <Link
-            to={p.route}
-            className="group mt-8 inline-flex items-center gap-2 self-start font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-black"
-          >
-            {p.cta}
-            <ArrowUpRight className="size-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-          </Link>
-        </div>
-
-
-        {/* ---------- Panel 2 — hero slab ---------- */}
-        <div
-          className="relative flex min-h-[360px] flex-1 flex-col justify-between overflow-hidden border-t border-black/10 bg-neutral-50 lg:min-h-0 lg:flex-1 lg:border-l lg:border-t-0"
-        >
-          <div key={`slab-${active}`} className="flex items-start justify-between p-8 md:p-10 mu-anim-left">
-            <div className="flex items-baseline gap-1 leading-none text-black">
-              <span
-                className="text-[clamp(2.6rem,5vw,4rem)] font-semibold tabular-nums tracking-[-0.04em]"
-                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-              >
-                {String(active + 1).padStart(2, "0")}
-              </span>
-              <span className="text-[clamp(1.1rem,2vw,1.5rem)] font-light text-black/50">
-                /{String(PEDAGOGY.length).padStart(2, "0")}
-              </span>
-            </div>
-            <div className="flex size-11 items-center justify-center border border-black/15 bg-white/40 text-black/75 backdrop-blur-sm mu-anim-pop">
-              <Icon className="size-5" />
-            </div>
-          </div>
-
-          <div key={`slab-body-${active}`} className="flex flex-1 flex-col justify-end px-8 pb-8 md:px-10 mu-anim-up">
-            <CampusRadioSlab start={p.start} count={1} />
-          </div>
-
-
-
-          {/* Dark bottom bar */}
-          <div className="flex items-stretch">
-            <Link
-              to={p.route}
-              className="flex flex-1 items-center gap-2 bg-neutral-900 px-5 py-4 font-mono text-[9px] font-bold uppercase tracking-[0.26em] text-white/90 transition-colors hover:bg-black"
-            >
-              <span className="size-1.5 rounded-full bg-white/80" />
-              {p.tag}
-            </Link>
-            <div className="flex items-center gap-2 bg-white px-5">
-              {PEDAGOGY.map((item, i) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => setActive(i)}
-                  aria-label={item.rail}
-                  className={cn(
-                    "h-1 transition-all",
-                    i === active ? "w-6 bg-black" : "w-3 bg-black/25 hover:bg-black/50"
-                  )}
-                />
-              ))}
-            </div>
-            <button
-              type="button"
-              onClick={() => setActive(nextIndex)}
-              className="flex items-center gap-2 bg-white px-5 py-4 font-mono text-[9px] font-bold uppercase tracking-[0.26em] text-black transition-colors hover:bg-black hover:text-white"
-            >
-              Next
-              <ChevronRight className="size-3.5" />
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-
 
 function SectionHead({ eyebrow, title, lede, icon: Icon, stack, compact }: { eyebrow: string; title: React.ReactNode; lede: string; icon?: React.ComponentType<{ className?: string }>; stack?: boolean; compact?: boolean }) {
   return (
