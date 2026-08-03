@@ -931,8 +931,9 @@ function DaysRemaining({ target }: { target: string }) {
 const CAMPUS_RADIO_BASE = {
   icon: Mic,
   tag: "Campus Radio",
-  title: "CXOs, on the record.",
-  body: "Our in-house podcast series: CXOs, founders and policymakers sit down with students the same week they teach or hire — long-form, unedited, recorded on campus.",
+  title: "Podcasts recorded on campus, with the people running India Inc.",
+  body: "Founders, CXOs, policymakers and operators sit down with students for long-form, unedited conversations — the same week they teach or judge in class.",
+
   stats: [
     { value: "24+", label: "Episodes" },
     { value: "Unedited", label: "Long-form" },
