@@ -1149,14 +1149,9 @@ function PedagogySelector() {
           </div>
 
           <div key={`copy-${active}`} className="my-7 mu-anim-up">
-            <h3
-              className="max-w-[16ch] whitespace-pre-line text-[clamp(1.8rem,3.4vw,2.9rem)] font-semibold uppercase leading-[1.02] tracking-[-0.02em] text-black"
-              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-            >
-              {p.title}
-            </h3>
-            <p className="mt-5 max-w-[46ch] text-[13.5px] leading-[1.6] text-black/60">{p.body}</p>
+            <p className="max-w-[38ch] text-[14px] leading-[1.65] text-black/65">{p.body}</p>
           </div>
+
 
           <Link
             to={p.route}
