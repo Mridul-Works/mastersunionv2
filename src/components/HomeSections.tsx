@@ -1209,34 +1209,8 @@ function PedagogySelector() {
             </div>
           </div>
 
-          {/* Body content — richer canvas */}
-          <div key={`slab-body-${active}`} className="flex flex-1 flex-col justify-end gap-6 px-8 pb-8 md:px-10 mu-anim-up">
-            <p
-              className="max-w-[24ch] whitespace-pre-line text-[clamp(1.4rem,2.4vw,2.1rem)] font-semibold uppercase leading-[1.05] tracking-[-0.02em] text-black/85"
-              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-            >
-              {p.title}
-            </p>
-            <div className="grid grid-cols-3 gap-4 border-t border-black/10 pt-5">
-              {p.stats.map((s2, si) => (
-                <div
-                  key={s2.label}
-                  className="flex flex-col mu-anim-up"
-                  style={{ animationDelay: `${80 + si * 70}ms`, animationFillMode: "both" }}
-                >
-                  <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-black/45">
-                    {s2.label}
-                  </span>
-                  <span
-                    className="mt-2 text-[clamp(1rem,1.6vw,1.35rem)] font-semibold leading-tight tracking-tight text-black"
-                    style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                  >
-                    {s2.value}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
+          <div key={`slab-body-${active}`} className="flex flex-1 flex-col justify-end px-8 pb-8 md:px-10 mu-anim-up" />
+
 
           {/* Dark bottom bar */}
           <div className="flex items-stretch">
