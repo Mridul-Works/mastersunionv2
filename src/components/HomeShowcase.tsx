@@ -1322,8 +1322,9 @@ export default function HomeShowcase() {
 
       <FounderQuote />
 
-      <ShowcaseShell section={VENTURES_SECTION} aside={<VenturesFilm />}>
+      <ShowcaseShell section={VENTURES_SECTION}>
         <StatsBand stats={VENTURES_RICH_STATS} tone="light" />
+        <VenturesFilm />
         <FounderFilmstrip />
 
 
