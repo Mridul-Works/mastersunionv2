@@ -227,7 +227,7 @@ export default function CampusRadio() {
               className="mt-3 text-[clamp(1.5rem,2.8vw,2.25rem)] font-medium italic leading-[1.1] tracking-tight text-black"
               style={{ fontFamily: "'Fraunces', Georgia, serif" }}
             >
-              Podcasts recorded on campus, with the people running India Inc.
+              The CXOs who visit our campus, on the record.
             </h2>
             <p className="mt-3 max-w-[58ch] text-[13.5px] leading-relaxed text-black/60">
               Founders, CXOs, policymakers and operators sit down with students for long-form,
