@@ -117,10 +117,12 @@ const SLAB_TINTS = ["#2F5DD1", "#7A4BD0", "#E2762B", "#E4548C", "#E7B417"];
  * Poster strip of CXO episodes: colour-blocked portrait tiles with name,
  * designation and a play button that opens the lightbox.
  */
-export function CampusRadioSlab({ start = 0, count = 2 }: { start?: number; count?: number }) {
+export function CampusRadioSlab({ start = 0, count = 1 }: { start?: number; count?: number }) {
   const [open, setOpen] = useState<CampusRadioEpisode | null>(null);
   const episodes = CAMPUS_RADIO.slice(start, start + count);
   const large = episodes.length <= 2;
+  const solo = episodes.length === 1;
+
 
   return (
     <div className="flex h-full flex-col justify-center">
