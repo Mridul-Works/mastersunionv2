@@ -72,44 +72,51 @@ export function CampusRadioCard({
   compact?: boolean;
 }) {
   return (
-    <button type="button" onClick={onPlay} className="group text-left">
-      <div className="relative overflow-hidden rounded-[10px] bg-black shadow-[0_12px_30px_-22px_rgba(0,0,0,0.6)]">
+    <button
+      type="button"
+      onClick={onPlay}
+      className="group block w-full text-left transition-colors hover:bg-[#F6F2E9]"
+    >
+      <div className="relative overflow-hidden border border-black/10 bg-black">
         <div className="aspect-video w-full overflow-hidden">
           <img
             src={ytThumb(ep.id)}
             alt={`${ep.name} — ${ep.title}`}
             loading="lazy"
-            className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.04]"
+            className="h-full w-full object-cover grayscale-[0.15] transition duration-700 group-hover:scale-[1.03] group-hover:grayscale-0"
           />
         </div>
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
-        <div className="absolute bottom-3 left-3 grid h-8 w-8 place-items-center rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-md transition group-hover:bg-white/25">
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+        <div className="absolute bottom-0 left-0 grid h-9 w-9 place-items-center bg-[#B89146] text-black transition group-hover:w-12">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
             <path d="M8 5v14l11-7z" />
           </svg>
         </div>
-        <span className="absolute bottom-3 right-3 rounded-full bg-black/65 px-2 py-0.5 font-mono text-[10px] text-white">
+        <span className="absolute bottom-0 right-0 bg-black px-2 py-1 font-mono text-[10px] tracking-[0.12em] text-white">
           {ep.duration}
         </span>
       </div>
-      <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#B89146]">
-        {ep.name}
-      </p>
-      <p className="mt-0.5 text-[11px] uppercase tracking-[0.08em] text-black/45">
-        {ep.designation}
-      </p>
-      <h3
-        className="mt-1.5 text-[15px] leading-snug text-black"
-        style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-      >
-        {ep.title}
-      </h3>
-      {!compact && (
-        <p className="mt-1.5 text-[12.5px] leading-relaxed text-black/60">{ep.description}</p>
-      )}
+      <div className="border-x border-b border-black/10 px-3 pb-3 pt-2.5">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#B89146]">
+          {ep.name}
+        </p>
+        <p className="mt-0.5 text-[10.5px] uppercase tracking-[0.08em] text-black/45">
+          {ep.designation}
+        </p>
+        <h3
+          className="mt-1.5 text-[15px] leading-snug text-black"
+          style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+        >
+          {ep.title}
+        </h3>
+        {!compact && (
+          <p className="mt-1.5 text-[12.5px] leading-relaxed text-black/60">{ep.description}</p>
+        )}
+      </div>
     </button>
   );
 }
+
 
 
 
@@ -220,7 +227,7 @@ export default function CampusRadio() {
               className="mt-3 text-[clamp(1.5rem,2.8vw,2.25rem)] font-medium italic leading-[1.1] tracking-tight text-black"
               style={{ fontFamily: "'Fraunces', Georgia, serif" }}
             >
-              Podcasts recorded on campus, with the people running India Inc.
+              The CXOs who visit our campus, on the record.
             </h2>
             <p className="mt-3 max-w-[58ch] text-[13.5px] leading-relaxed text-black/60">
               Founders, CXOs, policymakers and operators sit down with students for long-form,
