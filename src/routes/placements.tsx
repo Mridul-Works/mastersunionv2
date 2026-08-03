@@ -415,7 +415,7 @@ function Page() {
   const active = RECRUITER_GROUPS.find((g) => g.category === recruiterTab)!;
 
   return (
-    <main className="min-h-screen bg-white pb-28 text-black md:pb-32" style={{ fontFamily: INTER }}>
+    <main className="min-h-screen bg-white pb-16 text-black md:pb-18" style={{ fontFamily: INTER }}>
       <BottomNav items={NAV} applyHref="#contact" />
 
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">
@@ -426,7 +426,7 @@ function Page() {
       </div>
 
       {/* HERO */}
-      <section id="top" className="mx-auto max-w-6xl px-5 pb-14 pt-16 md:px-10 md:pt-24">
+      <section id="top" className="mx-auto max-w-6xl px-5 pb-9 pt-10 md:px-10 md:pt-14">
         <Eyebrow>Careers</Eyebrow>
         <h1 className="mt-6 max-w-[20ch] text-balance text-[clamp(2.4rem,7vw,6rem)] font-medium leading-[0.95] tracking-[-0.02em]">
           Accelerate your career growth.
@@ -434,7 +434,7 @@ function Page() {
         <p className="mt-8 max-w-[58ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55] text-black/70">
           Benefit from an exceptional track record of our graduates&apos; success — audited, published, and repeated across five cohorts.
         </p>
-        <div className="mt-10 flex flex-wrap gap-3">
+        <div className="mt-7 flex flex-wrap gap-3">
           <a href="#outcomes" className="inline-flex items-center gap-2 bg-black px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-white hover:opacity-80" style={{ fontFamily: MONO }}>
             <Download className="size-3.5" /> Placement report
           </a>
@@ -447,7 +447,7 @@ function Page() {
       <section className="mx-auto max-w-6xl px-5 md:px-10">
         <div className="grid grid-cols-2 gap-px bg-black/10 md:grid-cols-4">
           {HERO_STATS.map((s) => (
-            <div key={s.label} className="bg-white px-5 py-10">
+            <div key={s.label} className="bg-white px-5 py-7">
               <div className="text-[clamp(1.7rem,3vw,2.6rem)] leading-none tracking-[-0.03em]">{s.value}</div>
               <div className="mt-4 text-[10px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>{s.label}</div>
             </div>
@@ -456,14 +456,14 @@ function Page() {
       </section>
 
       {/* PODCAST */}
-      <section className="mx-auto max-w-6xl px-5 pt-20 md:px-10 md:pt-24">
+      <section className="mx-auto max-w-6xl px-5 pt-12 md:px-10 md:pt-14">
         <CareerPodcast />
       </section>
 
 
 
       {/* AUDITED OUTCOMES */}
-      <section id="outcomes" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
+      <section id="outcomes" className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
         <Eyebrow>Five years of audited placements</Eyebrow>
         <h2 className="mt-5 max-w-[26ch] text-[clamp(1.8rem,3.6vw,3rem)] font-medium leading-[1.05] tracking-[-0.015em]">
           Proven outcomes, verified line by line.
@@ -471,7 +471,7 @@ function Page() {
         <p className="mt-6 max-w-[68ch] text-[1.05rem] leading-[1.65] text-black/70">
           Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and follow the IPRS Revision 2.2 framework for transparent, consistent compensation data.
         </p>
-        <div className="mt-12 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-3">
           {AUDIT_STATS.map((s) => (
             <div key={s.suffix} className="bg-white p-8">
               <div className="text-[clamp(2rem,4vw,3.2rem)] leading-none tracking-[-0.03em]">{s.value}</div>
@@ -480,7 +480,7 @@ function Page() {
             </div>
           ))}
         </div>
-        <div className="mt-10 flex flex-wrap items-center gap-3">
+        <div className="mt-7 flex flex-wrap items-center gap-3">
           <span className="text-[11px] uppercase tracking-[0.2em] text-black/55" style={{ fontFamily: MONO }}>Reports</span>
           {REPORT_YEARS.map((y) => (
             <span key={y} className="inline-flex items-center gap-2 border border-black/15 px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-black/75" style={{ fontFamily: MONO }}>
@@ -491,8 +491,8 @@ function Page() {
       </section>
 
       {/* FOUNDER QUOTE */}
-      <section className="mt-24 border-y border-black/10 bg-neutral-50 md:mt-32">
-        <div className="mx-auto max-w-6xl px-5 py-16 md:px-10 md:py-20">
+      <section className="mt-14 border-y border-black/10 bg-neutral-50 md:mt-18">
+        <div className="mx-auto max-w-6xl px-5 py-10 md:px-10 md:py-12">
           <blockquote className="max-w-[52ch] text-[clamp(1.3rem,2.6vw,2.1rem)] font-medium leading-[1.25] tracking-[-0.015em]">
             “We don&apos;t approach placements the way most B-schools do. At Masters&apos; Union, placements are run by a 50+ member, full-time team spanning company outreach, career preparation, and role-specific coaching.”
           </blockquote>
@@ -503,12 +503,12 @@ function Page() {
       </section>
 
       {/* COHORT CHARTS */}
-      <section id="cohorts" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
+      <section id="cohorts" className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
         <Eyebrow>Cohort average CTC</Eyebrow>
         <h2 className="mt-5 max-w-[30ch] text-[clamp(1.8rem,3.6vw,3rem)] font-medium leading-[1.05] tracking-[-0.015em]">
           ₹29.12L, ₹33.10L and ₹34.07L — cohort averages that surpassed top B-schools.
         </h2>
-        <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-2">
+        <div className="mt-8 grid grid-cols-1 gap-12 lg:grid-cols-2">
           <div className="border border-black/10 p-6 md:p-8">
             <div className="flex items-baseline justify-between">
               <div className="text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>PGP TBM — average CTC</div>
@@ -530,12 +530,12 @@ function Page() {
       </section>
 
       {/* DISTRIBUTION TABLE */}
-      <section className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
+      <section className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
         <Eyebrow>Placement statistics — PGP TBM</Eyebrow>
         <h2 className="mt-5 max-w-[30ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
           The full distribution, not just the headline number.
         </h2>
-        <div className="mt-10 space-y-6">
+        <div className="mt-7 space-y-6">
           {TBM_TABLE.map((r) => (
             <div key={r.cohort} className="grid grid-cols-1 gap-4 border-b border-black/10 pb-6 md:grid-cols-12 md:items-center md:gap-6">
               <div className="text-[11px] uppercase tracking-[0.22em] text-black/60 md:col-span-1" style={{ fontFamily: MONO }}>Co{r.cohort}</div>
@@ -563,7 +563,7 @@ function Page() {
           <span className="inline-flex items-center gap-2"><span className="h-4 w-[2px] bg-black/40" /> Median</span>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-12 border-t border-black/10 pt-12 lg:grid-cols-2">
+        <div className="mt-10 grid grid-cols-1 gap-12 border-t border-black/10 pt-8 lg:grid-cols-2">
           <div>
             <Eyebrow>Salary components — Cohort &apos;24</Eyebrow>
             <p className="mt-5 max-w-[46ch] text-[1rem] leading-[1.7] text-black/70">
@@ -575,13 +575,13 @@ function Page() {
       </section>
 
       {/* RECRUITERS */}
-      <section id="recruiters" className="mt-24 border-y border-black/10 bg-neutral-50 md:mt-32">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-24">
+      <section id="recruiters" className="mt-14 border-y border-black/10 bg-neutral-50 md:mt-18">
+        <div className="mx-auto max-w-6xl px-5 py-12 md:px-10 md:py-14">
           <Eyebrow>Our recruiters</Eyebrow>
           <h2 className="mt-5 max-w-[26ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
             Six categories. One hiring calendar.
           </h2>
-          <div className="mt-10 flex flex-wrap gap-2">
+          <div className="mt-7 flex flex-wrap gap-2">
             {RECRUITER_GROUPS.map((g) => (
               <button
                 key={g.category}
@@ -595,19 +595,19 @@ function Page() {
               </button>
             ))}
           </div>
-          <div className="mt-10 min-h-[120px] bg-white p-8">
+          <div className="mt-7 min-h-[120px] bg-white p-8">
             <LogoRow names={active.logos} />
           </div>
         </div>
       </section>
 
       {/* TRANSITIONS */}
-      <section className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
+      <section className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
         <Eyebrow>Career transitions</Eyebrow>
         <h2 className="mt-5 max-w-[28ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
           Where students come from, and where they go.
         </h2>
-        <div className="mt-12 space-y-14">
+        <div className="mt-8 space-y-14">
           {TRANSITIONS.map((t) => (
             <div key={t.title}>
               <h3 className="text-[1.2rem] font-medium">{t.title}</h3>
@@ -627,9 +627,9 @@ function Page() {
       </section>
 
       {/* ALUMNI STORIES */}
-      <section id="stories" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
+      <section id="stories" className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
         <Eyebrow>Hear straight from our alumni</Eyebrow>
-        <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-7 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-3">
           {ALUMNI.map((a) => (
             <div key={a.name} className="bg-white p-7">
               <p className="text-[0.98rem] leading-[1.65] text-black/80">“{a.quote}”</p>
@@ -639,7 +639,7 @@ function Page() {
           ))}
         </div>
 
-        <div className="mt-16">
+        <div className="mt-10">
           <Eyebrow>Student placement experience — 39 stories, selected</Eyebrow>
           <div className="mt-8 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-3">
             {TESTIMONIALS.map((t) => (
@@ -654,10 +654,10 @@ function Page() {
       </section>
 
       {/* VENTURES + COMPETITIONS + LIVE PROJECTS */}
-      <section className="mt-24 border-y border-black/10 bg-neutral-50 md:mt-32">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-24">
+      <section className="mt-14 border-y border-black/10 bg-neutral-50 md:mt-18">
+        <div className="mx-auto max-w-6xl px-5 py-12 md:px-10 md:py-14">
           <Eyebrow>Startups founded by MU students</Eyebrow>
-          <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-7 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-3">
             {VENTURES.map((v) => (
               <div key={v.name} className="bg-white p-6">
                 <div className="text-[1rem] font-medium leading-tight">{v.name}</div>
@@ -667,7 +667,7 @@ function Page() {
             ))}
           </div>
 
-          <div className="mt-16 grid grid-cols-1 gap-12 lg:grid-cols-2">
+          <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-2">
             <div>
               <Eyebrow>Case competition wins</Eyebrow>
               <div className="mt-6 divide-y divide-black/10 border-y border-black/10">
@@ -690,7 +690,7 @@ function Page() {
                   </div>
                 ))}
               </div>
-              <div className="mt-10">
+              <div className="mt-7">
                 <Eyebrow>Student content creators</Eyebrow>
                 <div className="mt-6 flex flex-wrap gap-2">
                   {CREATORS.map((c) => (
@@ -706,12 +706,12 @@ function Page() {
       </section>
 
       {/* PATHWAY */}
-      <section id="pathway" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
+      <section id="pathway" className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
         <Eyebrow>A tailored career pathway</Eyebrow>
         <h2 className="mt-5 max-w-[28ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
           Eight terms. One continuous career roadmap.
         </h2>
-        <div className="mt-12 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-4">
           {TERMS.map((t) => (
             <div key={t.term} className="bg-white p-6">
               <div className="text-[10px] uppercase tracking-[0.22em] text-black/50" style={{ fontFamily: MONO }}>{t.term}</div>
@@ -727,12 +727,12 @@ function Page() {
       </section>
 
       {/* COACHES */}
-      <section className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
+      <section className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
         <Eyebrow>Dedicated career coaches</Eyebrow>
         <h2 className="mt-5 max-w-[24ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
           Making you industry ready.
         </h2>
-        <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-3">
+        <div className="mt-7 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-3">
           {COACH_TRACKS.map((c) => (
             <div key={c.title} className="bg-white p-7">
               <div className="text-[1.05rem] font-medium leading-tight">{c.title}</div>
@@ -740,7 +740,7 @@ function Page() {
             </div>
           ))}
         </div>
-        <div className="mt-10 divide-y divide-black/10 border-y border-black/10">
+        <div className="mt-7 divide-y divide-black/10 border-y border-black/10">
           {COACHES.map((c) => (
             <div key={c.name} className="grid grid-cols-1 gap-1 py-4 md:grid-cols-12 md:items-baseline md:gap-6">
               <div className="text-[1rem] font-medium md:col-span-3">{c.name}</div>
@@ -752,12 +752,12 @@ function Page() {
       </section>
 
       {/* LEADERS */}
-      <section className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
+      <section className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
         <Eyebrow>Your future recruiters on campus</Eyebrow>
         <p className="mt-5 max-w-[62ch] text-[1.02rem] leading-[1.7] text-black/70">
           CEOs and MDs, CHROs, unicorn founders and senior executives teach, mentor and recruit on campus.
         </p>
-        <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-3 lg:grid-cols-4">
+        <div className="mt-7 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-3 lg:grid-cols-4">
           {LEADERS.map((l) => (
             <div key={l.name} className="bg-white p-6">
               <div className="text-[0.98rem] font-medium leading-tight">{l.name}</div>
@@ -768,7 +768,7 @@ function Page() {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
+      <section id="contact" className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
         <div className="border border-black/10 p-8 md:p-12">
           <Eyebrow>Careers team</Eyebrow>
           <h2 className="mt-5 max-w-[24ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">

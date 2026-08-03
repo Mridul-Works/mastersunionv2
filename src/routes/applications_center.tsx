@@ -76,7 +76,7 @@ function ApplicationsCenter() {
       </header>
 
       {/* Hero */}
-      <section className="mx-auto max-w-[1400px] px-6 pt-14 pb-10">
+      <section className="mx-auto max-w-[1400px] px-6 pt-9 pb-7">
         <p className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-black/50">
           Applications Center
         </p>
@@ -96,7 +96,7 @@ function ApplicationsCenter() {
       </section>
 
       {/* Split view */}
-      <section className="mx-auto max-w-[1400px] px-6 pb-24">
+      <section className="mx-auto max-w-[1400px] px-6 pb-14">
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
           {/* LEFT — programme list */}
           <div className="flex flex-col gap-3">

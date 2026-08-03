@@ -31,7 +31,7 @@ const BRANDS = [
 
 function Page() {
   return (
-    <main className="min-h-screen bg-white pb-28 text-black md:pb-32" style={{ fontFamily: INTER }}>
+    <main className="min-h-screen bg-white pb-16 text-black md:pb-18" style={{ fontFamily: INTER }}>
       <BottomNav items={NAV} applyHref="#closing" />
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">
         <Link to="/" className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-black/70 hover:text-black" style={{ fontFamily: MONO }}>
@@ -40,12 +40,12 @@ function Page() {
         <div className="text-[11px] uppercase tracking-[0.25em] text-black/55" style={{ fontFamily: MONO }}>The D2C Challenge at Masters&apos; Union</div>
       </div>
 
-      <section id="top" className="mx-auto max-w-6xl px-5 pb-16 pt-16 md:px-10 md:pt-24">
+      <section id="top" className="mx-auto max-w-6xl px-5 pb-10 pt-10 md:px-10 md:pt-14">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>D2C Challenge</div>
         <h1 className="mt-6 max-w-[22ch] text-balance text-[clamp(2.4rem,7vw,6rem)] font-medium leading-[0.95] tracking-[-0.02em]">
           Your exam is a Stripe dashboard. Your grade is your revenue.
         </h1>
-        <p className="mt-10 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-black/70">
+        <p className="mt-7 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-black/70">
           Welcome to Term 1. Every student sources a product, builds a store, runs ads, handles orders, and manages returns. No simulation. No sample dataset. Real suppliers. Real customers. Real money changing hands. The Dropshipping Fair generated ₹3.38 Cr across 50 teams in a single semester.
         </p>
       </section>
@@ -53,7 +53,7 @@ function Page() {
       <section id="stats" className="mx-auto max-w-6xl px-5 md:px-10">
         <div className="grid grid-cols-1 gap-px bg-black/10 md:grid-cols-3">
           {STATS.map((s) => (
-            <div key={s.label} className="bg-white px-5 py-10">
+            <div key={s.label} className="bg-white px-5 py-7">
               <div className="text-[clamp(2rem,3.6vw,3rem)] leading-none tracking-[-0.03em]">{s.value}</div>
               <div className="mt-4 text-[10px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>{s.label}</div>
             </div>
@@ -61,9 +61,9 @@ function Page() {
         </div>
       </section>
 
-      <section id="how" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
+      <section id="how" className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>How It Works</div>
-        <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-3">
+        <div className="mt-7 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-3">
           {PHASES.map((p, i) => (
             <article key={p.name} className="bg-white p-8 md:p-10">
               <div className="text-[11px] uppercase tracking-[0.24em] text-black/55" style={{ fontFamily: MONO }}>{String(i + 1).padStart(2, "0")}</div>
@@ -74,8 +74,8 @@ function Page() {
         </div>
       </section>
 
-      <section className="mt-24 border-t border-black/10 bg-neutral-50 md:mt-32">
-        <div className="mx-auto max-w-5xl px-5 py-20 md:px-10 md:py-24">
+      <section className="mt-14 border-t border-black/10 bg-neutral-50 md:mt-18">
+        <div className="mx-auto max-w-5xl px-5 py-12 md:px-10 md:py-14">
           <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>This Is Not a Simulation</div>
           <div className="mt-8 space-y-5 text-[1.05rem] leading-[1.7] text-black/75">
             <p>Most MBA programmes give you a case study about someone else&apos;s supply chain problem. You read it, discuss it, write a recommendation, and receive a grade based on how well you argued. You never know if your recommendation would have worked. You never have to find out.</p>
@@ -85,9 +85,9 @@ function Page() {
         </div>
       </section>
 
-      <section id="brands" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
+      <section id="brands" className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Brands Born Here</div>
-        <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2">
+        <div className="mt-7 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2">
           {BRANDS.map((b) => (
             <article key={b.name} className="bg-white p-8 md:p-10">
               <h3 className="text-[1.25rem] font-medium leading-tight">{b.name}</h3>
@@ -98,9 +98,9 @@ function Page() {
         </div>
       </section>
 
-      <section id="closing" className="mx-auto max-w-5xl px-5 py-24 text-center md:px-10 md:py-32">
+      <section id="closing" className="mx-auto max-w-5xl px-5 py-14 text-center md:px-10 md:py-18">
         <p className="text-balance text-[clamp(1.4rem,3vw,2.4rem)] italic leading-[1.2] text-black/90">Start your business before your first semester ends.</p>
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Link to="/" className="inline-flex items-center gap-2 bg-black px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-white hover:opacity-80" style={{ fontFamily: MONO }}>
             Apply to Masters&apos; Union <ArrowUpRight className="size-3.5" />
           </Link>

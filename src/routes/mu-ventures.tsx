@@ -61,7 +61,7 @@ const VC_MENTORS = "Archit Bhargava (Avaana Capital) · Sahil Kumrah (growX Vent
 
 function Page() {
   return (
-    <main className="min-h-screen bg-white pb-28 text-black md:pb-32" style={{ fontFamily: INTER }}>
+    <main className="min-h-screen bg-white pb-16 text-black md:pb-18" style={{ fontFamily: INTER }}>
       <BottomNav items={NAV} applyHref="#closing" />
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">
         <Link to="/" className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-black/70 hover:text-black" style={{ fontFamily: MONO }}>
@@ -70,12 +70,12 @@ function Page() {
         <div className="text-[11px] uppercase tracking-[0.25em] text-black/55" style={{ fontFamily: MONO }}>MU Ventures</div>
       </div>
 
-      <section id="top" className="mx-auto max-w-6xl px-5 pb-16 pt-16 md:px-10 md:pt-24">
+      <section id="top" className="mx-auto max-w-6xl px-5 pb-10 pt-10 md:px-10 md:pt-14">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>MU Ventures</div>
         <h1 className="mt-6 max-w-[24ch] text-balance text-[clamp(2.4rem,7vw,6rem)] font-medium leading-[0.95] tracking-[-0.02em]">
           Most funds want traction. We write the cheque before any of that exists.
         </h1>
-        <p className="mt-10 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-black/70">
+        <p className="mt-7 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-black/70">
           We back founders at the -1 stage — before day zero. When all you have is an idea, an insight, and the courage to start. Sector-agnostic. Open to all builders under 25. Most funding decisions in under 10 days. When traditional investors call it &ldquo;too early,&rdquo; we lean in.
         </p>
       </section>
@@ -83,7 +83,7 @@ function Page() {
       <section id="stats" className="mx-auto max-w-6xl px-5 md:px-10">
         <div className="grid grid-cols-2 gap-px bg-black/10 md:grid-cols-4">
           {STATS.map((s) => (
-            <div key={s.label} className="bg-white px-5 py-10">
+            <div key={s.label} className="bg-white px-5 py-7">
               <div className="text-[clamp(1.6rem,2.8vw,2.4rem)] leading-none tracking-[-0.03em]">{s.value}</div>
               <div className="mt-4 text-[10px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>{s.label}</div>
             </div>
@@ -91,7 +91,7 @@ function Page() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-5 pt-24 md:px-10 md:pt-32">
+      <section className="mx-auto max-w-5xl px-5 pt-14 md:px-10 md:pt-18">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>The Thesis</div>
         <div className="mt-8 space-y-5 text-[1.05rem] leading-[1.7] text-black/75">
           <p>Every great company starts as an idea on a napkin. Most early-stage funds want to see the napkin turned into a deck, the deck turned into a prototype, and the prototype turned into traction before they will take a meeting. By then, someone else has already built it.</p>
@@ -100,9 +100,9 @@ function Page() {
         </div>
       </section>
 
-      <section id="funds" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
+      <section id="funds" className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Three Funds</div>
-        <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-3">
+        <div className="mt-7 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-3">
           {FUNDS.map((f) => (
             <article key={f.name} className="bg-white p-8 md:p-10">
               <div className="text-[10px] uppercase tracking-[0.24em] text-black/60" style={{ fontFamily: MONO }}>{f.status}</div>
@@ -113,11 +113,11 @@ function Page() {
         </div>
       </section>
 
-      <section id="beyond" className="mt-24 border-t border-black/10 bg-neutral-50 md:mt-32">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-24">
+      <section id="beyond" className="mt-14 border-t border-black/10 bg-neutral-50 md:mt-18">
+        <div className="mx-auto max-w-6xl px-5 py-12 md:px-10 md:py-14">
           <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>What You Get Beyond Capital</div>
           <p className="mt-6 max-w-[64ch] text-[1.05rem] leading-[1.65] text-black/75">Capital is the beginning. Six pillars built around every founder in the portfolio.</p>
-          <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-7 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-3">
             {PILLARS.map((p) => (
               <article key={p.name} className="bg-white p-7">
                 <h3 className="text-[1.05rem] font-medium leading-tight">{p.name}</h3>
@@ -128,9 +128,9 @@ function Page() {
         </div>
       </section>
 
-      <section id="portfolio" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
+      <section id="portfolio" className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Portfolio</div>
-        <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2">
+        <div className="mt-7 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2">
           {PORTFOLIO.map((p) => (
             <article key={p.name} className="bg-white p-8">
               <h3 className="text-[1.2rem] font-medium leading-tight">{p.name}</h3>
@@ -141,9 +141,9 @@ function Page() {
         </div>
       </section>
 
-      <section id="team" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
+      <section id="team" className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>The Team</div>
-        <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2">
+        <div className="mt-7 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2">
           {TEAM.map((t) => (
             <article key={t.name} className="bg-white p-8">
               <h3 className="text-[1.15rem] font-medium leading-tight">{t.name}</h3>
@@ -153,7 +153,7 @@ function Page() {
           ))}
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-10 md:grid-cols-2">
+        <div className="mt-10 grid grid-cols-1 gap-10 md:grid-cols-2">
           <div>
             <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>Advisory Council</div>
             <ul className="mt-6 space-y-4">
@@ -172,14 +172,14 @@ function Page() {
         </div>
       </section>
 
-      <section id="closing" className="mx-auto max-w-5xl px-5 py-24 md:px-10 md:py-32">
+      <section id="closing" className="mx-auto max-w-5xl px-5 py-14 md:px-10 md:py-18">
         <blockquote className="text-balance text-[clamp(1.4rem,3vw,2.4rem)] italic leading-[1.2] text-black/90">
           &ldquo;When traditional investors call it too early, we lean in.&rdquo;
         </blockquote>
         <p className="mt-8 max-w-[68ch] text-[1.05rem] leading-[1.7] text-black/75">
           The best time to back a founder is before they need you. Before the deck is polished. Before the metrics are clean. Before anyone else has validated the idea. That is when the real conviction is required — and that is when MU Ventures shows up.
         </p>
-        <div className="mt-12 flex flex-wrap items-center gap-4">
+        <div className="mt-8 flex flex-wrap items-center gap-4">
           <a href="https://ventures.mastersunion.org" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-black px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-white hover:opacity-80" style={{ fontFamily: MONO }}>
             Most people apply for jobs. A few apply to build the future <ArrowUpRight className="size-3.5" />
           </a>

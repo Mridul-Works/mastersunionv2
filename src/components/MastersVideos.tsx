@@ -162,7 +162,7 @@ export default function MastersVideos({
 
   return (
     <section id="masters" className={`border-t border-black/10 ${bg}`}>
-      <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-10 px-5 py-12 md:px-10 md:py-16 lg:grid-cols-12 lg:items-start lg:gap-16">
+      <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-10 px-5 py-8 md:px-10 md:py-10 lg:grid-cols-12 lg:items-start lg:gap-16">
         {/* Left: sticky editorial column */}
         <div className="lg:col-span-4 lg:sticky lg:top-24">
           <p className="mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]">
@@ -180,7 +180,7 @@ export default function MastersVideos({
             the playbook. They wrote it.
           </p>
 
-          <div className="mt-10 flex items-center gap-3">
+          <div className="mt-7 flex items-center gap-3">
             <button
               type="button"
               onClick={() => scrollBy(-1)}
@@ -211,7 +211,7 @@ export default function MastersVideos({
               type="button"
               onClick={() => setOpen(v)}
               className={`group w-[230px] shrink-0 snap-start text-left md:w-[270px] ${
-                i % 2 === 1 ? "lg:mt-12" : ""
+                i % 2 === 1 ? "lg:mt-8" : ""
               }`}
             >
               <div className="relative overflow-hidden rounded-[12px] bg-black shadow-[0_12px_34px_-20px_rgba(0,0,0,0.55)] transition duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_24px_46px_-22px_rgba(0,0,0,0.6)]">

@@ -246,7 +246,7 @@ function Slide({
       </div>
 
       {/* Text rail */}
-      <div className="relative z-10 flex items-end px-6 pb-32 md:items-center md:px-12 md:pb-0">
+      <div className="relative z-10 flex items-end px-6 pb-18 md:items-center md:px-12 md:pb-0">
         <div className="max-w-[420px]">
           <StaggeredText delay={0.15} key={`meta-${index}`}>
             <p className="text-[11px] uppercase tracking-[0.2em] text-white/60">

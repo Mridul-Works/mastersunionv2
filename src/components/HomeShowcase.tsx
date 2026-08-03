@@ -426,7 +426,7 @@ function ShowcaseShell({
 }) {
   return (
     <section id={section.id} className={`border-t border-black/10 ${section.bg}`}>
-      <div className="mx-auto max-w-[1280px] px-5 py-10 md:px-10 md:py-14">
+      <div className="mx-auto max-w-[1280px] px-5 py-7 md:px-10 md:py-9">
         <div className="mb-6 flex flex-col gap-5 md:mb-8 md:flex-row md:items-end md:justify-between">
 
           <div className="max-w-[52ch]">
@@ -1120,7 +1120,7 @@ function CareerPodcast() {
   const id = "uiNTwDixAts";
 
   return (
-    <div className="mt-10 grid grid-cols-1 gap-6 border-t border-black/10 pt-8 lg:grid-cols-12 lg:gap-10">
+    <div className="mt-7 grid grid-cols-1 gap-6 border-t border-black/10 pt-8 lg:grid-cols-12 lg:gap-10">
       <div className="lg:col-span-5">
         <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-black/50">
           Podcast

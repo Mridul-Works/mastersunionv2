@@ -202,9 +202,9 @@ function AdmissionPathwaysSection() {
 
   return (
     <section id="pathways" className="relative overflow-hidden text-black">
-      <div className="mx-auto max-w-[1180px] px-4 py-16 sm:px-6 sm:py-20">
+      <div className="mx-auto max-w-[1180px] px-4 py-10 sm:px-6 sm:py-12">
         {/* Header */}
-        <div className="mb-8 flex flex-col gap-4 sm:mb-12 md:flex-row md:items-end md:justify-between">
+        <div className="mb-8 flex flex-col gap-4 sm:mb-8 md:flex-row md:items-end md:justify-between">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
@@ -895,7 +895,7 @@ function TermsGantt({ embedded = false }: { embedded?: boolean } = {}) {
         id: "terms",
         className: "bg-white",
       };
-  const innerClass = embedded ? "" : "mx-auto max-w-[1180px] px-4 py-20 sm:px-6";
+  const innerClass = embedded ? "" : "mx-auto max-w-[1180px] px-4 py-12 sm:px-6";
 
   return (
     <Wrapper {...wrapperProps}>
@@ -1230,7 +1230,7 @@ function AlumniShowcase() {
   ];
 
   return (
-    <div className="mt-16">
+    <div className="mt-10">
       {/* Header */}
       <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div>
@@ -1272,13 +1272,13 @@ function AlumniShowcase() {
       </div>
 
       {total === 0 ? (
-        <div className="mt-12 rounded-none border border-black/10 bg-white/60 p-10 text-center font-mono text-xs uppercase tracking-[0.24em] text-black/50">
+        <div className="mt-8 rounded-none border border-black/10 bg-white/60 p-10 text-center font-mono text-xs uppercase tracking-[0.24em] text-black/50">
           No alumni in this industry yet.
         </div>
       ) : (
         <>
           {/* Editorial filmstrip rail */}
-          <div className="relative mt-10 -mx-5 md:-mx-10">
+          <div className="relative mt-7 -mx-5 md:-mx-10">
             <div
               ref={railRef}
               onScroll={onRailScroll}
@@ -1416,7 +1416,7 @@ function FacultyShowcase() {
   const go = (dir: 1 | -1) => setIdx((i) => (i + dir + total) % total);
 
   return (
-    <div className="mt-16 grid gap-10 lg:gap-14 lg:[grid-template-columns:minmax(0,1fr)_minmax(0,0.34fr)]">
+    <div className="mt-10 grid gap-10 lg:gap-14 lg:[grid-template-columns:minmax(0,1fr)_minmax(0,0.34fr)]">
       {/* Featured */}
       <article className="relative lg:min-h-[620px]">
         <div className="grid gap-8 lg:gap-14 items-start grid-cols-1 sm:[grid-template-columns:minmax(0,0.6fr)_minmax(0,1fr)]">
@@ -1505,7 +1505,7 @@ function FacultyShowcase() {
             ))}
 
             {/* Controls */}
-            <div className="mt-10 flex items-center gap-5 border-t border-border pt-6">
+            <div className="mt-7 flex items-center gap-5 border-t border-border pt-6">
               <div className="flex gap-1.5">
                 {FACULTY.map((_, i) => (
                   <button
@@ -1609,7 +1609,7 @@ function PgpTbm() {
 
   return (
     <main
-      className="min-h-screen bg-gradient-to-b from-background via-muted/50 to-background text-[color:var(--ink)] pb-28 md:pb-32"
+      className="min-h-screen bg-gradient-to-b from-background via-muted/50 to-background text-[color:var(--ink)] pb-16 md:pb-18"
       style={{
         "--pastel-start": "oklch(0.99 0.014 220 / 0.4)",
         "--pastel-mid": "oklch(0.985 0.020 210 / 0.4)",
@@ -1618,10 +1618,10 @@ function PgpTbm() {
       <SectionNav items={PGP_NAV} applyHref="#apply" />
 
       {/* HERO */}
-      <section className="relative overflow-hidden pt-28 sm:pt-32">
-        <div className="mx-auto max-w-[1180px] px-4 pb-16 sm:px-6 sm:pb-24">
+      <section className="relative overflow-hidden pt-16 sm:pt-18">
+        <div className="mx-auto max-w-[1180px] px-4 pb-10 sm:px-6 sm:pb-14">
           {/* Top eyebrow row */}
-          <div className="mb-10 flex flex-col gap-4 border-b border-foreground/10 pb-6 sm:mb-14 md:flex-row md:items-end md:justify-between">
+          <div className="mb-7 flex flex-col gap-4 border-b border-foreground/10 pb-6 sm:mb-9 md:flex-row md:items-end md:justify-between">
             <div className="flex flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground/55">
               <span className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-card/80 px-3 py-1">
                 <span className="size-1.5 rounded-full bg-smoke-400 animate-pulse" />
@@ -1653,7 +1653,7 @@ function PgpTbm() {
                   Graded on outcomes measured in the open market.
                 </p>
 
-                <div className="mt-10 flex flex-wrap items-center gap-3">
+                <div className="mt-7 flex flex-wrap items-center gap-3">
                   <a
                     href="#apply"
                     className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-primary-foreground transition-transform hover:scale-[1.02]"
@@ -1713,8 +1713,8 @@ function PgpTbm() {
 
       {/* THE MODEL — three engines */}
       <section id="model" className="relative overflow-hidden">
-        <div className="mx-auto max-w-[1180px] px-4 py-20 sm:px-6">
-          <div className="mb-12 max-w-3xl">
+        <div className="mx-auto max-w-[1180px] px-4 py-12 sm:px-6">
+          <div className="mb-8 max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full bg-teal" />
               THE MODEL
@@ -1741,7 +1741,7 @@ function PgpTbm() {
 
 
           {/* ENGINE 01 — InClass */}
-          <div className="grid gap-8 border-t border-black/10 py-12 md:grid-cols-[300px_1fr] md:gap-16">
+          <div className="grid gap-8 border-t border-black/10 py-8 md:grid-cols-[300px_1fr] md:gap-16">
             <div>
               <div className="font-display text-3xl leading-none text-black/25">01</div>
               <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-black/55">InClass · The learning core</div>
@@ -1788,7 +1788,7 @@ function PgpTbm() {
           </div>
 
           {/* ENGINE 02 — OutClass */}
-          <div className="grid gap-8 border-t border-black/10 py-12 md:grid-cols-[300px_1fr] md:gap-16">
+          <div className="grid gap-8 border-t border-black/10 py-8 md:grid-cols-[300px_1fr] md:gap-16">
             <div>
               <div className="font-display text-3xl leading-none text-black/25">02</div>
               <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-smoke-400">OutClass · Live ventures across terms</div>
@@ -1873,7 +1873,7 @@ function PgpTbm() {
           </div>
 
           {/* ENGINE 03 — Immersions */}
-          <div className="grid gap-8 border-t border-black/10 py-12 md:grid-cols-[300px_1fr] md:gap-16">
+          <div className="grid gap-8 border-t border-black/10 py-8 md:grid-cols-[300px_1fr] md:gap-16">
             <div>
               <div className="font-display text-3xl leading-none text-black/25">03</div>
               <div className="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-teal">Immersions · On the ground</div>
@@ -1960,9 +1960,9 @@ function PgpTbm() {
       <section id="outcomes" className="relative overflow-hidden">
         {/* soft ambient glows */}
 
-        <div className="relative mx-auto max-w-[1180px] px-4 py-24 sm:px-6">
+        <div className="relative mx-auto max-w-[1180px] px-4 py-14 sm:px-6">
           {/* Header */}
-          <div className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="mb-9 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
               <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
@@ -2127,7 +2127,7 @@ function PgpTbm() {
 
 
 
-          <div className="mt-16">
+          <div className="mt-10">
             <AlumniShowcase />
           </div>
 
@@ -2137,7 +2137,7 @@ function PgpTbm() {
       <SectionDivider />
 
       {/* FACULTY */}
-      <section id="faculty" className="relative overflow-hidden py-12 md:py-16">
+      <section id="faculty" className="relative overflow-hidden py-8 md:py-10">
         <div className="relative mx-auto max-w-7xl px-5 md:px-6">
           <Eyebrow num="04" label="Faculty" />
           <div className="mt-6 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
@@ -2160,8 +2160,8 @@ function PgpTbm() {
       <section id="admissions" className="relative overflow-hidden">
         {/* soft ambient glows */}
 
-        <div className="relative mx-auto max-w-[1180px] px-4 py-24 sm:px-6">
-          <div className="mb-14 max-w-3xl">
+        <div className="relative mx-auto max-w-[1180px] px-4 py-14 sm:px-6">
+          <div className="mb-9 max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
               ADMISSIONS
@@ -2201,7 +2201,7 @@ function PgpTbm() {
             ))}
           </ol>
 
-          <div className="mt-12 grid gap-3 sm:grid-cols-3">
+          <div className="mt-8 grid gap-3 sm:grid-cols-3">
             <a
               href="#"
               className="inline-flex items-center justify-between gap-3 bg-foreground px-6 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-background transition-transform hover:scale-[1.01]"
@@ -2230,7 +2230,7 @@ function PgpTbm() {
 
       {/* FAQ */}
       <section id="faq" className="relative overflow-hidden">
-        <div className="relative mx-auto grid max-w-[1180px] gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.6fr_1fr] lg:gap-16">
+        <div className="relative mx-auto grid max-w-[1180px] gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[0.6fr_1fr] lg:gap-16">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground backdrop-blur">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
@@ -2260,7 +2260,7 @@ function PgpTbm() {
       </section>
 
       <footer className="border-t border-black/10 bg-black text-white">
-        <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-10">
+        <div className="mx-auto max-w-[1280px] px-6 py-12 md:px-10">
           <div className="grid gap-12 md:grid-cols-12">
             <div className="md:col-span-5">
               <img
@@ -2287,7 +2287,7 @@ function PgpTbm() {
             <FooterCol title="Connect" links={["Admissions", "Press & Media", "Careers at MU", "Brochure (PDF)"]} />
           </div>
 
-          <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-[11px] uppercase tracking-[0.22em] text-white/40 md:flex-row md:items-center">
+          <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-[11px] uppercase tracking-[0.22em] text-white/40 md:flex-row md:items-center">
             <span>© {new Date().getFullYear()} Masters' Union Education Pvt. Ltd.</span>
             <div className="flex flex-wrap gap-6">
               <a href="#" className="hover:text-white/80">Privacy</a>

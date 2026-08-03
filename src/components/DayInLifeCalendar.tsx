@@ -103,7 +103,7 @@ function TimelineItem({ entry, index }: { entry: Entry; index: number }) {
       </div>
 
       {/* Rail + dot */}
-      <div className="relative pb-14 md:pb-20">
+      <div className="relative pb-9 md:pb-12">
         <div className="absolute -left-6 md:-left-12 top-0 bottom-0 w-px bg-border" />
         <div className="absolute -left-[27px] md:-left-[51px] top-2 h-3 w-3 rounded-full bg-[var(--teal)] ring-4 ring-background" />
 
@@ -128,7 +128,7 @@ export default function DayInLifeCalendar() {
     <main className="min-h-screen bg-background text-foreground">
       {/* Header */}
       <section className="border-b border-border">
-        <div className="mx-auto max-w-6xl px-6 md:px-10 pt-24 pb-16 md:pt-32 md:pb-24">
+        <div className="mx-auto max-w-6xl px-6 md:px-10 pt-14 pb-10 md:pt-18 md:pb-14">
           <div className="text-[11px] uppercase tracking-[0.35em] text-[var(--teal)]">
             Life at Masters' Union
           </div>
@@ -143,7 +143,7 @@ export default function DayInLifeCalendar() {
       </section>
 
       {/* Timeline */}
-      <section className="mx-auto max-w-6xl px-6 md:px-10 py-20 md:py-28">
+      <section className="mx-auto max-w-6xl px-6 md:px-10 py-12 md:py-16">
         <div className="pl-8 md:pl-16">
           {ENTRIES.map((e, i) => (
             <TimelineItem key={i} entry={e} index={i} />
@@ -153,14 +153,14 @@ export default function DayInLifeCalendar() {
 
       {/* Footer */}
       <section className="border-t border-border bg-cream/40">
-        <div className="mx-auto max-w-6xl px-6 md:px-10 py-20 md:py-28">
+        <div className="mx-auto max-w-6xl px-6 md:px-10 py-12 md:py-16">
           <p className="font-serif text-3xl md:text-5xl leading-[1.15] tracking-tight text-ink max-w-3xl">
             Wednesday has a pitch.<br />
             Thursday has a corporate one-day challenge.<br />
             Friday is for recovering. <span className="font-serif-italic">Slightly.</span>
           </p>
 
-          <div className="mt-12">
+          <div className="mt-8">
             <a
               href="https://mastersunion.org/apply"
               className="group inline-flex items-center gap-4 rounded-full bg-ink px-8 py-4 text-sm md:text-base uppercase tracking-[0.2em] text-background transition-all hover:bg-[var(--teal)]"

@@ -16,7 +16,7 @@ const CHAPTER_NAV: BottomNavItem[] = [
 
 export function ChapterPage({ chapter }: { chapter: Chapter }) {
   return (
-    <main className="min-h-screen bg-white pb-28 text-black md:pb-32" style={{ fontFamily: INTER }}>
+    <main className="min-h-screen bg-white pb-16 text-black md:pb-18" style={{ fontFamily: INTER }}>
       <BottomNav items={CHAPTER_NAV} applyHref="#closing" />
       {/* Chapter marker */}
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">
@@ -34,18 +34,18 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
 
 
       {/* HERO */}
-      <section className="mx-auto max-w-6xl px-5 pb-16 pt-16 md:px-10 md:pt-24">
+      <section className="mx-auto max-w-6xl px-5 pb-10 pt-10 md:px-10 md:pt-14">
         <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
           Chapter {chapter.n} — {chapter.tag}
         </div>
         <h1 className="mt-6 max-w-[22ch] text-balance text-[clamp(2.4rem,7vw,6rem)] font-medium leading-[0.95] tracking-[-0.02em] text-black">
           {chapter.headline}
         </h1>
-        <p className="mt-10 max-w-[58ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-black/70">
+        <p className="mt-7 max-w-[58ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-black/70">
           {chapter.body}
         </p>
 
-        <div className="mt-16 grid grid-cols-1 items-end gap-10 md:grid-cols-12">
+        <div className="mt-10 grid grid-cols-1 items-end gap-10 md:grid-cols-12">
           <div className="md:col-span-7">
             <div className="text-[clamp(5rem,14vw,12rem)] leading-[0.8] tracking-[-0.04em] text-black">
               {chapter.stat}
@@ -64,7 +64,7 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
 
       {/* PULL QUOTE */}
       <section id="point" className="border-y border-black/10 bg-neutral-50">
-        <div className="mx-auto max-w-5xl px-5 py-20 md:px-10 md:py-28">
+        <div className="mx-auto max-w-5xl px-5 py-12 md:px-10 md:py-16">
           <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
             The point
           </div>
@@ -75,10 +75,10 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
       </section>
 
       {/* STATS STRIP */}
-      <section id="stats" className="mx-auto max-w-6xl px-5 pt-20 md:px-10">
+      <section id="stats" className="mx-auto max-w-6xl px-5 pt-12 md:px-10">
         <div className="grid grid-cols-2 gap-px bg-black/10 md:grid-cols-4">
           {chapter.stats.map((s, i) => (
-            <div key={i} className="bg-white px-4 py-10 text-center">
+            <div key={i} className="bg-white px-4 py-7 text-center">
               <div className="text-[clamp(1.6rem,3vw,2.6rem)] leading-none tracking-[-0.03em] text-black">
                 {s.value}
               </div>
@@ -91,10 +91,10 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
       </section>
 
       {/* NARRATIVE SECTIONS */}
-      <section id="story" className="mx-auto max-w-5xl px-5 py-20 md:px-10 md:py-28">
+      <section id="story" className="mx-auto max-w-5xl px-5 py-12 md:px-10 md:py-16">
         <div className="space-y-16">
           {chapter.sections.map((sec, i) => (
-            <article key={i} className="grid grid-cols-1 gap-6 border-t border-black/10 pt-10 md:grid-cols-12 md:gap-10">
+            <article key={i} className="grid grid-cols-1 gap-6 border-t border-black/10 pt-7 md:grid-cols-12 md:gap-10">
               <div className="md:col-span-3">
                 <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
                   {String(i + 1).padStart(2, "0")}
@@ -115,7 +115,7 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
 
       {/* PROOF + IN THE ROOM */}
       <section id="proof" className="border-t border-black/10 bg-neutral-50">
-        <div className="mx-auto max-w-6xl px-5 py-20 md:grid md:grid-cols-2 md:gap-16 md:px-10 md:py-24">
+        <div className="mx-auto max-w-6xl px-5 py-12 md:grid md:grid-cols-2 md:gap-16 md:px-10 md:py-14">
           <div>
             <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
               Proof
@@ -129,7 +129,7 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
               ))}
             </ul>
           </div>
-          <div className="mt-12 md:mt-0">
+          <div className="mt-8 md:mt-0">
             <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
               In the room
             </div>
@@ -149,11 +149,11 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
       </section>
 
       {/* CLOSING */}
-      <section id="closing" className="mx-auto max-w-5xl px-5 py-24 text-center md:px-10 md:py-32">
+      <section id="closing" className="mx-auto max-w-5xl px-5 py-14 text-center md:px-10 md:py-18">
         <p className="text-balance text-[clamp(1.4rem,3vw,2.4rem)] italic leading-[1.2] text-black/90">
           {chapter.closing}
         </p>
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
           <Link
             to="/"
             className="inline-flex items-center gap-2 rounded-none bg-black px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-white transition-opacity hover:opacity-80"

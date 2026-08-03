@@ -162,7 +162,7 @@ function HowWeTeachPage() {
   return (
     <main
       id="top"
-      className="min-h-screen bg-white pb-28 text-black md:pb-32"
+      className="min-h-screen bg-white pb-16 text-black md:pb-18"
       style={{ fontFamily: INTER }}
     >
       {showNav && <SectionNav items={PAGE_NAV} applyHref="#apply" />}
@@ -208,7 +208,7 @@ function HowWeTeachPage() {
           }}
         />
 
-        <div className="relative mx-auto max-w-6xl px-5 py-24 md:px-10 md:py-32">
+        <div className="relative mx-auto max-w-6xl px-5 py-14 md:px-10 md:py-18">
           {/* Masthead */}
           <div className="flex items-baseline justify-between border-b border-white/20 pb-6">
             <div
@@ -225,7 +225,7 @@ function HowWeTeachPage() {
             </div>
           </div>
 
-          <div className="mt-10 grid gap-10 md:grid-cols-12">
+          <div className="mt-7 grid gap-10 md:grid-cols-12">
             <div className="md:col-span-5">
               <h2 className="text-balance text-[clamp(2rem,4.6vw,3.4rem)] font-medium leading-[1.02] tracking-[-0.02em]">
                 Your report card,<br />
@@ -236,7 +236,7 @@ function HowWeTeachPage() {
               </p>
 
               <div
-                className="mt-10 inline-flex items-center gap-3 border border-white/25 px-4 py-2 text-[10px] uppercase tracking-[0.3em] text-white/80"
+                className="mt-7 inline-flex items-center gap-3 border border-white/25 px-4 py-2 text-[10px] uppercase tracking-[0.3em] text-white/80"
                 style={{ fontFamily: MONO }}
               >
                 <span className="size-1.5 rounded-full bg-emerald-400" />
@@ -294,7 +294,7 @@ function HowWeTeachPage() {
           </div>
 
           {/* Footer stamp */}
-          <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-white/20 pt-6">
+          <div className="mt-9 flex flex-wrap items-center justify-between gap-4 border-t border-white/20 pt-6">
             <div
               className="text-[10px] uppercase tracking-[0.35em] text-white/50"
               style={{ fontFamily: MONO }}
@@ -313,14 +313,14 @@ function HowWeTeachPage() {
 
 
       {/* CTA */}
-      <section id="apply" className="mx-auto max-w-5xl px-5 py-24 text-center md:px-10 md:py-32">
+      <section id="apply" className="mx-auto max-w-5xl px-5 py-14 text-center md:px-10 md:py-18">
         <h2 className="text-balance text-[clamp(2rem,5vw,3.6rem)] font-medium leading-[1.05] tracking-[-0.02em]">
           Stop studying businesses. Build one.
         </h2>
         <p className="mt-6 text-[11px] uppercase tracking-[0.3em] text-black/60" style={{ fontFamily: MONO }}>
           Applications open for the next cohort
         </p>
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <div className="mt-7 flex flex-wrap items-center justify-center gap-4">
           <Link
             to="/applications_center"
             className="inline-flex items-center gap-2 rounded-none bg-black px-6 py-3.5 text-[11px] uppercase tracking-[0.22em] text-white transition-opacity hover:opacity-80"
@@ -490,7 +490,7 @@ function PhilosophyStage() {
         you on whether you became one.&rdquo;
       </blockquote>
 
-      <div className="mt-12 grid w-full grid-cols-1 gap-4 text-left md:grid-cols-3 md:gap-6">
+      <div className="mt-8 grid w-full grid-cols-1 gap-4 text-left md:grid-cols-3 md:gap-6">
         {PILLARS.map((p) => (
           <div
             key={p.title}
@@ -505,7 +505,7 @@ function PhilosophyStage() {
       </div>
 
       <div
-        className="mt-12 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.35em] text-black/50"
+        className="mt-8 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.35em] text-black/50"
         style={{ fontFamily: MONO }}
       >
         <span>↓</span> Scroll to zoom into each semester
@@ -531,7 +531,7 @@ function SemesterStage({ sem, index }: { sem: Semester; index: number }) {
         0{index}
       </div>
 
-      <div className="relative mx-auto flex h-full max-w-6xl flex-col justify-center px-6 py-16 md:px-10">
+      <div className="relative mx-auto flex h-full max-w-6xl flex-col justify-center px-6 py-10 md:px-10">
         <div
           className="inline-flex w-fit items-center gap-2 rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em]"
           style={{
@@ -559,7 +559,7 @@ function SemesterStage({ sem, index }: { sem: Semester; index: number }) {
           {sem.tagline}
         </p>
 
-        <div className="mt-8 grid grid-cols-1 gap-6 md:mt-10 md:grid-cols-2 md:gap-10">
+        <div className="mt-8 grid grid-cols-1 gap-6 md:mt-7 md:grid-cols-2 md:gap-10">
           <div
             className="border-t pt-4"
             style={{ borderColor: dark ? "rgba(255,255,255,0.25)" : "rgba(0,0,0,0.2)" }}
@@ -672,10 +672,10 @@ function FounderQuote() {
       />
 
       <div className="sticky top-0 flex min-h-screen items-center overflow-hidden">
-        <div className="relative mx-auto w-full max-w-[1240px] px-6 py-16 md:px-12 md:py-20">
+        <div className="relative mx-auto w-full max-w-[1240px] px-6 py-10 md:px-12 md:py-12">
           {/* Top editorial rail */}
           <div
-            className="mb-10 flex items-center justify-between border-b border-black/15 pb-4 text-[10px] uppercase tracking-[0.32em] text-neutral-500 md:mb-14"
+            className="mb-7 flex items-center justify-between border-b border-black/15 pb-4 text-[10px] uppercase tracking-[0.32em] text-neutral-500 md:mb-9"
             style={{ fontFamily: MONO }}
           >
             <span className="flex items-center gap-3">
@@ -770,7 +770,7 @@ function FounderQuote() {
                 </div>
 
                 {/* Signature block */}
-                <div className="mt-12 flex flex-wrap items-end justify-between gap-6 border-t border-black/15 pt-6">
+                <div className="mt-8 flex flex-wrap items-end justify-between gap-6 border-t border-black/15 pt-6">
                   <div>
                     <div
                       className="text-[26px] tracking-tight text-neutral-900"

@@ -138,7 +138,7 @@ export default function WidgetCarousel() {
       style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
     >
       {/* ============ Pre-slider intro ============ */}
-      <div className="mx-auto max-w-[1280px] px-5 pt-16 md:px-10 md:pt-24">
+      <div className="mx-auto max-w-[1280px] px-5 pt-10 md:px-10 md:pt-14">
         <div className="grid grid-cols-1 items-end gap-10 md:grid-cols-[1.05fr_0.95fr]">
           <div>
             <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-white/50">
@@ -181,7 +181,7 @@ export default function WidgetCarousel() {
       {/* ============ Slider ============ */}
       <div
         ref={containerRef}
-        className="relative mt-12 h-[640px] w-full overflow-hidden md:h-[720px]"
+        className="relative mt-8 h-[640px] w-full overflow-hidden md:h-[720px]"
       >
         {/* Counter */}
         <div className="pointer-events-none absolute left-5 top-6 z-30 font-mono text-[12px] tracking-[0.18em] text-white/55 md:left-10">
@@ -315,7 +315,7 @@ function Slide({
       </div>
 
       {/* Text rail */}
-      <div className="relative z-10 flex items-end px-6 pb-24 md:items-center md:px-12 md:pb-0">
+      <div className="relative z-10 flex items-end px-6 pb-14 md:items-center md:px-12 md:pb-0">
         <div className="max-w-[560px]">
           <StaggeredText delay={0.15} k={`meta-${index}`}>
             <p className="text-[11px] uppercase tracking-[0.22em] text-white/55">

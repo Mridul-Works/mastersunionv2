@@ -391,7 +391,7 @@ export const Route = createFileRoute("/immersions")({
 function ImmersionsPage() {
   return (
     <main
-      className="min-h-screen bg-white pb-28 text-black md:pb-32"
+      className="min-h-screen bg-white pb-16 text-black md:pb-18"
       style={{ fontFamily: INTER }}
     >
       <SectionNav items={IMMERSIONS_NAV} applyHref="#apply" />
@@ -410,7 +410,7 @@ function ImmersionsPage() {
       </div>
 
       {/* HERO */}
-      <section id="top" className="mx-auto max-w-6xl px-5 pt-16 md:px-10 md:pt-24">
+      <section id="top" className="mx-auto max-w-6xl px-5 pt-10 md:px-10 md:pt-14">
         <div className="text-xs font-semibold uppercase tracking-[0.28em] text-teal">
           — Immersions at Masters&apos; Union
         </div>
@@ -435,7 +435,7 @@ function ImmersionsPage() {
         </div>
 
         {/* Hero stats */}
-        <div className="mt-12 grid grid-cols-2 border-y border-black/10 md:grid-cols-4">
+        <div className="mt-8 grid grid-cols-2 border-y border-black/10 md:grid-cols-4">
           {HERO_STATS.map((s, i) => (
             <div
               key={s.v}
@@ -455,7 +455,7 @@ function ImmersionsPage() {
       </section>
 
       {/* FIVE FORMATS */}
-      <section id="formats" className="mx-auto max-w-6xl px-5 pt-20 md:px-10 md:pt-28">
+      <section id="formats" className="mx-auto max-w-6xl px-5 pt-12 md:px-10 md:pt-16">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
             <p className="inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.28em] text-black/50">
@@ -479,12 +479,12 @@ function ImmersionsPage() {
           </div>
         </div>
 
-        <ol className="mt-14 divide-y divide-black/10 border-y border-black/10">
+        <ol className="mt-9 divide-y divide-black/10 border-y border-black/10">
           {FORMATS.map((f) => {
             const Icon = f.icon;
             return (
               <li key={f.n} className="group relative">
-                <article className="relative grid grid-cols-[auto_1fr] gap-x-6 gap-y-4 py-10 md:grid-cols-[6rem_11rem_1fr] md:gap-x-10 md:py-14">
+                <article className="relative grid grid-cols-[auto_1fr] gap-x-6 gap-y-4 py-7 md:grid-cols-[6rem_11rem_1fr] md:gap-x-10 md:py-9">
 
                   {/* Numeral */}
                   <div className="col-span-1 md:col-span-1">
@@ -546,7 +546,7 @@ function ImmersionsPage() {
 
 
       {/* DID YOU KNOW — standalone programmes */}
-      <section id="standalone" className="mx-auto max-w-6xl px-5 pt-20 md:px-10 md:pt-28">
+      <section id="standalone" className="mx-auto max-w-6xl px-5 pt-12 md:px-10 md:pt-16">
         <div className="border border-black/10 bg-neutral-50 p-6 md:p-10">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
@@ -590,8 +590,8 @@ function ImmersionsPage() {
       </section>
 
       {/* WHY CREDITS */}
-      <section id="credits" className="mx-auto max-w-6xl px-5 pt-20 md:px-10 md:pt-28">
-        <div className="grid gap-8 border-t border-black/10 pt-12 md:grid-cols-[280px_1fr] md:gap-16">
+      <section id="credits" className="mx-auto max-w-6xl px-5 pt-12 md:px-10 md:pt-16">
+        <div className="grid gap-8 border-t border-black/10 pt-8 md:grid-cols-[280px_1fr] md:gap-16">
           <div>
             <div className="text-xs font-semibold uppercase tracking-[0.24em] text-teal">
               Why immersions carry academic credits
@@ -617,7 +617,7 @@ function ImmersionsPage() {
       </section>
 
       {/* CTA */}
-      <section id="apply" className="mx-auto max-w-6xl px-5 pt-20 md:px-10 md:pt-28">
+      <section id="apply" className="mx-auto max-w-6xl px-5 pt-12 md:px-10 md:pt-16">
         <div className="relative overflow-hidden border border-black bg-black p-8 text-white md:p-14">
           <div className="grid gap-6 md:grid-cols-[1.4fr_1fr] md:items-end md:gap-10">
             <h2 className="text-[clamp(1.8rem,4vw,3rem)] font-semibold leading-[1.05] tracking-tight">
