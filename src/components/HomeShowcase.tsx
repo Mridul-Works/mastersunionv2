@@ -653,7 +653,7 @@ function FacultyBlock() {
 function FacultyPager({ items }: { items: typeof FACULTY_ALL }) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [page, setPage] = useState(0);
-  const PER_PAGE = 16; // 4 cols x 4 rows
+  const PER_PAGE = 12; // 4 cols x 3 rows
   const pages: typeof FACULTY_ALL[] = [];
   for (let i = 0; i < items.length; i += PER_PAGE) pages.push(items.slice(i, i + PER_PAGE));
   const totalPages = Math.max(1, pages.length);
