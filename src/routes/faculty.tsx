@@ -16,7 +16,6 @@ import havishAsset from "@/assets/faculty/havish-madhvapaty.png.asset.json";
 import ekhlaqueAsset from "@/assets/faculty/ekhlaque-bari.png.asset.json";
 import sumitAsset from "@/assets/faculty/sumit-shukla.png.asset.json";
 import adityaAsset from "@/assets/faculty/aditya-turalapati.png.asset.json";
-import divijAsset from "@/assets/faculty/divij-bajaj.png.asset.json";
 import parikshitAsset from "@/assets/faculty/parikshit-khanna.png.asset.json";
 import karmanyaAsset from "@/assets/faculty/karmanya-suri.png.asset.json";
 import gauravAAsset from "@/assets/faculty/gaurav-arora.png.asset.json";
@@ -137,7 +136,6 @@ const PRACTITIONERS: Practitioner[] = [
   { name: "Ekhlaque Bari", role: "Industry Practitioner, Masters' Union", blurb: "Teaches technology strategy and enterprise transformation from a career leading large digital programmes." },
   { name: "Sumit Shukla", role: "Industry Practitioner, Masters' Union", blurb: "Teaches business strategy and operations from years spent building and scaling category-defining businesses." },
   { name: "Aditya Turalapati", role: "Industry Practitioner, Masters' Union", blurb: "Teaches finance and analytics with a practitioner-first, case-driven approach." },
-  { name: "Divij Bajaj", role: "Industry Practitioner, Masters' Union", blurb: "Teaches product, growth and go-to-market strategy from the front lines of consumer businesses." },
   { name: "Parikshit Khanna", role: "Industry Practitioner, Masters' Union", blurb: "Teaches technology, product and platform strategy from an operator's vantage point." },
   { name: "Karmanya Suri", role: "Industry Practitioner, Masters' Union", blurb: "Teaches strategy and general management, blending consulting rigour with startup pace." },
   { name: "Gaurav Arora", role: "Industry Practitioner, Masters' Union", blurb: "Teaches finance and corporate strategy from a career across capital markets and industry." },
@@ -151,7 +149,6 @@ const PRACTITIONER_PHOTOS: Record<string, string> = {
   "Ekhlaque Bari": ekhlaqueAsset.url,
   "Sumit Shukla": sumitAsset.url,
   "Aditya Turalapati": adityaAsset.url,
-  "Divij Bajaj": divijAsset.url,
   "Parikshit Khanna": parikshitAsset.url,
   "Karmanya Suri": karmanyaAsset.url,
   "Gaurav Arora": gauravAAsset.url,
