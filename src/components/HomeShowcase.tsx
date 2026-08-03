@@ -443,23 +443,34 @@ function ShowcaseShell({
               </span>
             </h2>
             <p className="mt-3 text-[13px] leading-relaxed text-black/60">{section.lede}</p>
-            {section.download && (
-              <a
-                href={section.download.href}
-                download
-                className="group mt-4 inline-flex items-center gap-2 border-b border-black/25 pb-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-black transition hover:border-black"
+
+            <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <Link
+                to={section.cta.to}
+                className="group inline-flex items-center gap-2 rounded-full bg-black px-4 py-2.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-black/85"
               >
-                <Download className="size-3.5 transition-transform group-hover:translate-y-0.5" />
-                {section.download.label}
-              </a>
-            )}
+                {section.cta.label}
+                <ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+              {section.download && (
+                <a
+                  href={section.download.href}
+                  download
+                  className="group inline-flex items-center gap-2 border-b border-black/25 pb-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-black transition hover:border-black"
+                >
+                  <Download className="size-3.5 transition-transform group-hover:translate-y-0.5" />
+                  {section.download.label}
+                </a>
+              )}
+            </div>
           </div>
-          <div className="flex w-full flex-col items-start gap-4 md:w-auto md:items-end">
+
+          <div className="flex w-full flex-col items-start gap-5 md:w-auto md:items-end">
             {aside && <div className="w-full md:w-[380px] lg:w-[420px]">{aside}</div>}
 
-            <dl className="flex gap-6">
+            <dl className="grid grid-cols-2 gap-x-8 gap-y-4 sm:flex sm:gap-8 md:text-right">
               {section.stats.map((s) => (
-                <div key={s.label}>
+                <div key={s.label} className="min-w-0">
                   <dd
                     className="text-xl font-semibold tracking-tight text-black md:text-2xl"
                     style={{ fontFamily: "'Fraunces', Georgia, serif" }}
@@ -472,14 +483,8 @@ function ShowcaseShell({
                 </div>
               ))}
             </dl>
-            <Link
-              to={section.cta.to}
-              className="group inline-flex items-center gap-2 rounded-full bg-black px-3.5 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-black/85"
-            >
-              {section.cta.label}
-              <ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
           </div>
+
         </div>
         {children}
       </div>
