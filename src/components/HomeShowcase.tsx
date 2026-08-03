@@ -1190,48 +1190,71 @@ function WatchCTA({
   href?: string;
 }) {
   return (
-    <div className="mt-6 flex flex-col gap-5 border-y border-black/10 py-6 md:flex-row md:items-center md:justify-between md:gap-10">
-      <div className="max-w-[62ch]">
-        <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]">
-          {eyebrow}
-        </p>
-        <h3
-          className="mt-2 text-[clamp(1.05rem,1.9vw,1.45rem)] font-medium italic leading-[1.2] tracking-tight text-black"
-          style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-        >
-          {title}
-        </h3>
-        <p className="mt-2 text-[13px] leading-relaxed text-black/55">{blurb}</p>
-      </div>
+    <div className="group/cta relative mt-8 overflow-hidden bg-[#0E0E0E] text-white">
+      {/* hairline grid + warm glow, matches the editorial theme */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.16]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.5) 1px, transparent 1px)",
+          backgroundSize: "56px 56px",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute -right-24 top-1/2 size-[420px] -translate-y-1/2 rounded-full blur-[90px]"
+        style={{ background: "radial-gradient(circle, rgba(184,145,70,0.35) 0%, rgba(184,145,70,0) 70%)" }}
+      />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#B89146] to-transparent" />
 
-      <div className="flex shrink-0 items-center gap-4">
-        <button
-          type="button"
-          onClick={onPlay}
-          className="group inline-flex items-center gap-3 rounded-full bg-black py-2.5 pl-3 pr-5 text-white transition hover:bg-black/85"
-        >
-          <span className="grid size-8 place-items-center rounded-full bg-white/15 transition group-hover:bg-white/25">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+      <button
+        type="button"
+        onClick={onPlay}
+        className="relative flex w-full cursor-pointer flex-col items-start gap-7 px-6 py-8 text-left md:flex-row md:items-center md:justify-between md:gap-12 md:px-10 md:py-10"
+      >
+        <div className="max-w-[58ch]">
+          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-[#D9B871]">
+            {eyebrow}
+          </p>
+          <h3
+            className="mt-3 text-[clamp(1.3rem,2.5vw,2rem)] font-normal italic leading-[1.12] tracking-[-0.01em] text-white"
+            style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+          >
+            {title}
+          </h3>
+          <p className="mt-3 text-[13.5px] leading-[1.7] text-white/55">{blurb}</p>
+        </div>
+
+        <div className="flex shrink-0 items-center gap-6">
+          <span className="relative grid size-16 place-items-center rounded-full border border-[#B89146]/50 bg-[#B89146]/10 text-[#E8CE92] transition duration-500 group-hover/cta:scale-105 group-hover/cta:bg-[#B89146] group-hover/cta:text-black md:size-20">
+            <span className="absolute inset-0 rounded-full border border-[#B89146]/30 mu-ping-gold" />
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <path d="M8 5v14l11-7z" />
             </svg>
           </span>
-          <span className="text-[11px] font-semibold uppercase tracking-[0.16em]">{action}</span>
-        </button>
-        {href && (
+          <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/70">
+            {action}
+          </span>
+        </div>
+      </button>
+
+      {href && (
+        <div className="relative border-t border-white/10 px-6 py-3 md:px-10">
           <a
             href={href}
             target="_blank"
             rel="noreferrer"
-            className="group hidden items-center gap-1.5 border-b border-black/20 pb-0.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-black/60 transition hover:border-black hover:text-black sm:inline-flex"
+            onClick={(e) => e.stopPropagation()}
+            className="group inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/45 transition hover:text-white"
           >
-            YouTube
+            Watch on YouTube
             <ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
+
 
 function CareerPodcast() {
   const [open, setOpen] = useState(false);
