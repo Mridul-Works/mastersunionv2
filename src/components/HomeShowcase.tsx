@@ -1249,10 +1249,10 @@ export default function HomeShowcase() {
 
       <FounderQuote />
 
-      <ShowcaseShell section={VENTURES_SECTION}>
+      <ShowcaseShell section={VENTURES_SECTION} aside={<VenturesFilm />}>
         <StatsBand stats={VENTURES_RICH_STATS} tone="light" />
-        <VenturesFilm />
         <FounderFilmstrip />
+
 
         <div className="mt-5">
           <UniformLogoList groups={VENTURE_GROUPS} />
