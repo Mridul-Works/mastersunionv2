@@ -384,6 +384,13 @@ function Page() {
         </div>
       </section>
 
+      {/* PODCAST */}
+      <section className="mx-auto max-w-6xl px-5 pt-20 md:px-10 md:pt-24">
+        <CareerPodcast />
+      </section>
+
+
+
       {/* AUDITED OUTCOMES */}
       <section id="outcomes" className="mx-auto max-w-6xl px-5 pt-24 md:px-10 md:pt-32">
         <Eyebrow>Five years of audited placements</Eyebrow>
