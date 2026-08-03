@@ -607,7 +607,7 @@ function Page() {
         <h2 className="mt-5 max-w-[28ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
           Where students come from, and where they go.
         </h2>
-        <div className="mt-8 space-y-14">
+        <div className="mt-8 space-y-9">
           {TRANSITIONS.map((t) => (
             <div key={t.title}>
               <h3 className="text-[1.2rem] font-medium">{t.title}</h3>

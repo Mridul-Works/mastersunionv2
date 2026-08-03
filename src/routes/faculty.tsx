@@ -273,7 +273,7 @@ function EditorialGrid({
   return (
     <div className="mt-8 border-t border-black/15">
       {/* STATS HERO — replaces featured faculty */}
-      <div className="grid gap-x-8 gap-y-10 border-b border-black/15 py-7 md:grid-cols-12 md:py-9">
+      <div className="grid gap-x-8 gap-y-7 border-b border-black/15 py-7 md:grid-cols-12 md:py-9">
         <div className="md:col-span-5">
           <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
             The Mix · {sectionLabel}
@@ -388,7 +388,7 @@ function FacultyPage() {
           <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
             By the numbers
           </div>
-          <div className="mt-8 flex flex-wrap items-end gap-x-14 gap-y-10 md:gap-x-20">
+          <div className="mt-8 flex flex-wrap items-end gap-x-14 gap-y-7 md:gap-x-20">
             {[
               { v: "500+", l: "Masters on the roster" },
               { v: "50%", l: "Active industry practitioners" },

@@ -92,7 +92,7 @@ export function ChapterPage({ chapter }: { chapter: Chapter }) {
 
       {/* NARRATIVE SECTIONS */}
       <section id="story" className="mx-auto max-w-5xl px-5 py-12 md:px-10 md:py-16">
-        <div className="space-y-16">
+        <div className="space-y-10">
           {chapter.sections.map((sec, i) => (
             <article key={i} className="grid grid-cols-1 gap-6 border-t border-black/10 pt-7 md:grid-cols-12 md:gap-10">
               <div className="md:col-span-3">

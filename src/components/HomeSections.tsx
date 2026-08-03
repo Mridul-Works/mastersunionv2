@@ -564,7 +564,7 @@ function AdmissionsConnect() {
       </div>
 
       {/* poster strip */}
-      <div className="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
         {sessions.map((s) => {
           const d = new Date(s.nextDate);
           const day = String(d.getDate()).padStart(2, "0");
