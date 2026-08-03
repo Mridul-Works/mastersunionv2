@@ -1161,7 +1161,7 @@ function CareerPodcast() {
       </div>
 
       <div className="lg:col-span-7">
-        <div className="relative aspect-video w-full overflow-hidden rounded-[14px] bg-black shadow-[0_18px_44px_-26px_rgba(0,0,0,0.6)]">
+        <div className="relative aspect-video w-[90%] max-w-full overflow-hidden rounded-[14px] bg-black shadow-[0_18px_44px_-26px_rgba(0,0,0,0.6)]">
           {playing ? (
             <iframe
               className="h-full w-full"
