@@ -1217,23 +1217,22 @@ function WatchCTA({
 
         <div className="flex shrink-0 items-center gap-5">
           <span
-            className="relative grid size-[68px] place-items-center rounded-full p-[3px] shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)] transition-transform duration-500 group-hover/cta:scale-[1.06] md:size-[84px]"
+            className="relative grid size-[68px] place-items-center rounded-full border border-white/60 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)] transition-transform duration-500 group-hover/cta:scale-[1.06] md:size-[84px]"
             style={{
               background: "linear-gradient(135deg, #39B5D7, #F7D544, #E38330)",
             }}
           >
             <span className="pointer-events-none absolute -inset-2 rounded-full border border-black/12 transition-opacity duration-500 group-hover/cta:opacity-0" />
             <span className="pointer-events-none absolute -inset-2 rounded-full border border-black/20 opacity-0 transition-all duration-700 group-hover/cta:scale-110 group-hover/cta:opacity-100" />
-            <span className="grid size-full place-items-center rounded-full bg-white/95 text-black">
-              <svg
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="ml-[3px] size-[22px] md:size-[26px]"
-              >
-                <path d="M8.5 5.6a1 1 0 0 1 1.52-.85l7.2 4.4a1.7 1.7 0 0 1 0 2.9l-7.2 4.4a1 1 0 0 1-1.52-.85V5.6Z" />
-              </svg>
-            </span>
+            <svg
+              viewBox="0 0 24 24"
+              fill="#0E0E0E"
+              className="ml-[3px] size-[22px] md:size-[26px]"
+            >
+              <path d="M8.5 5.6a1 1 0 0 1 1.52-.85l7.2 4.4a1.7 1.7 0 0 1 0 2.9l-7.2 4.4a1 1 0 0 1-1.52-.85V5.6Z" />
+            </svg>
           </span>
+
 
         </div>
 
