@@ -1138,7 +1138,7 @@ function PedagogySelector() {
     <div className="mx-auto max-w-[1280px] px-5 pb-12 md:px-10 md:pb-16">
       <div className="flex flex-col overflow-hidden border border-black/10 bg-white lg:h-[560px] lg:flex-row">
         {/* ---------- Panel 1 — editorial text ---------- */}
-        <div className="flex flex-1 flex-col justify-between p-8 md:p-10 lg:flex-none lg:w-[34%]">
+        <div className="flex flex-1 flex-col justify-between p-8 md:p-10 lg:flex-none lg:w-[46%]">
           <div className="flex items-start justify-between">
             <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-black/45">
               {p.tag}
@@ -1149,7 +1149,32 @@ function PedagogySelector() {
           </div>
 
           <div key={`copy-${active}`} className="my-7 mu-anim-up">
-            <p className="max-w-[38ch] text-[14px] leading-[1.65] text-black/65">{p.body}</p>
+            <p
+              className="max-w-[26ch] whitespace-pre-line text-[clamp(1.4rem,2.4vw,2.1rem)] font-semibold uppercase leading-[1.05] tracking-[-0.02em] text-black"
+              style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+            >
+              {p.title}
+            </p>
+            <p className="mt-5 max-w-[42ch] text-[14px] leading-[1.65] text-black/65">{p.body}</p>
+            <div className="mt-7 grid grid-cols-3 gap-4 border-t border-black/10 pt-5">
+              {p.stats.map((s2, si) => (
+                <div
+                  key={s2.label}
+                  className="flex flex-col mu-anim-up"
+                  style={{ animationDelay: `${80 + si * 70}ms`, animationFillMode: "both" }}
+                >
+                  <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-black/45">
+                    {s2.label}
+                  </span>
+                  <span
+                    className="mt-2 text-[clamp(1rem,1.6vw,1.35rem)] font-semibold leading-tight tracking-tight text-black"
+                    style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+                  >
+                    {s2.value}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
 
 
@@ -1161,6 +1186,7 @@ function PedagogySelector() {
             <ArrowUpRight className="size-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </Link>
         </div>
+
 
         {/* ---------- Panel 2 — hero slab ---------- */}
         <div
