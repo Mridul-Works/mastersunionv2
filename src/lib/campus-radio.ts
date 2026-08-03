@@ -229,4 +229,8 @@ export const CAMPUS_RADIO: CampusRadioEpisode[] = [
 
 export const CAMPUS_RADIO_FEATURED = CAMPUS_RADIO.slice(0, 5);
 
-export const ytThumb = (id: string) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+/** 16:9 widescreen thumbnail — no letterbox bars (unlike hqdefault's 4:3). */
+export const ytThumb = (id: string) => `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+
+/** Fallback if maxres isn't published for an episode. */
+export const ytThumbFallback = (id: string) => `https://i.ytimg.com/vi/${id}/mqdefault.jpg`;

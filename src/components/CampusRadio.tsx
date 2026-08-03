@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
-import { CAMPUS_RADIO, CAMPUS_RADIO_FEATURED, ytThumb, type CampusRadioEpisode } from "@/lib/campus-radio";
+import { CAMPUS_RADIO, CAMPUS_RADIO_FEATURED, ytThumb, ytThumbFallback, type CampusRadioEpisode } from "@/lib/campus-radio";
 
 export function CampusRadioPlayer({
   episode,
@@ -74,12 +74,19 @@ export function CampusRadioCard({
   return (
     <button type="button" onClick={onPlay} className="group block w-full text-left">
       <div className="relative overflow-hidden bg-[#E8E4DD]">
-        <div className="aspect-[4/3] w-full overflow-hidden">
+        <div className="aspect-video w-full overflow-hidden">
           <img
             src={ytThumb(ep.id)}
+            onError={(e) => {
+              const img = e.currentTarget;
+              if (!img.dataset.fallback) {
+                img.dataset.fallback = "1";
+                img.src = ytThumbFallback(ep.id);
+              }
+            }}
             alt={`${ep.name} — ${ep.title}`}
             loading="lazy"
-            className="h-full w-full object-cover grayscale transition duration-[900ms] ease-out group-hover:scale-[1.03] group-hover:grayscale-0"
+            className="h-full w-full object-cover transition duration-[900ms] ease-out group-hover:scale-[1.03]"
           />
         </div>
         <span className="absolute left-0 top-0 grid h-8 w-8 place-items-center bg-black text-white transition-colors group-hover:bg-[#B89146] group-hover:text-black">
@@ -91,6 +98,7 @@ export function CampusRadioCard({
           {ep.duration}
         </span>
       </div>
+
 
       <div className="mt-3 border-t border-black/15 pt-2.5">
         <div className="flex items-baseline justify-between gap-3">
