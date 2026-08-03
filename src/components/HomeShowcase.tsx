@@ -415,11 +415,20 @@ const PARTNERS_SECTION: Section = {
   ],
 };
 
-function ShowcaseShell({ section, children }: { section: Section; children: React.ReactNode }) {
+function ShowcaseShell({
+  section,
+  children,
+  aside,
+}: {
+  section: Section;
+  children: React.ReactNode;
+  aside?: React.ReactNode;
+}) {
   return (
     <section id={section.id} className={`border-t border-black/10 ${section.bg}`}>
       <div className="mx-auto max-w-[1280px] px-5 py-10 md:px-10 md:py-14">
         <div className="mb-6 flex flex-col gap-5 md:mb-8 md:flex-row md:items-end md:justify-between">
+
           <div className="max-w-[52ch]">
             <p className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-black/50">
               {section.eyebrow}
@@ -445,7 +454,9 @@ function ShowcaseShell({ section, children }: { section: Section; children: Reac
               </a>
             )}
           </div>
-          <div className="flex flex-col items-start gap-4 md:items-end">
+          <div className="flex w-full flex-col items-start gap-4 md:w-auto md:items-end">
+            {aside && <div className="w-full md:w-[380px] lg:w-[420px]">{aside}</div>}
+
             <dl className="flex gap-6">
               {section.stats.map((s) => (
                 <div key={s.label}>
@@ -1183,8 +1194,8 @@ function VenturesFilm() {
   };
 
   return (
-    <div className="mt-8 border-t border-black/10 pt-6">
-      <div className="relative aspect-video w-full max-w-[620px] overflow-hidden rounded-[12px] bg-black shadow-[0_14px_34px_-24px_rgba(0,0,0,0.5)]">
+    <div>
+      <div className="relative aspect-video w-full overflow-hidden rounded-[12px] bg-black shadow-[0_14px_34px_-24px_rgba(0,0,0,0.5)]">
         <video
           ref={ref}
           src={venturesFilm.url}
@@ -1238,10 +1249,10 @@ export default function HomeShowcase() {
 
       <FounderQuote />
 
-      <ShowcaseShell section={VENTURES_SECTION}>
+      <ShowcaseShell section={VENTURES_SECTION} aside={<VenturesFilm />}>
         <StatsBand stats={VENTURES_RICH_STATS} tone="light" />
-        <VenturesFilm />
         <FounderFilmstrip />
+
 
         <div className="mt-5">
           <UniformLogoList groups={VENTURE_GROUPS} />
