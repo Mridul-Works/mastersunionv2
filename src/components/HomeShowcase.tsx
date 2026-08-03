@@ -3,6 +3,8 @@ import { ArrowUpRight, Download, Quote } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import founderPhoto from "@/assets/founder-pratham-cutout.webp";
 import waveFlowBg from "@/assets/wave-flow-bg.png.asset.json";
+import venturesFilm from "@/assets/ventures-film.mp4.asset.json";
+
 import { FULL_TIME_FACULTY } from "@/lib/full-time-faculty";
 import MastersVideos from "@/components/MastersVideos";
 import { INDUSTRY_PRACTITIONERS } from "@/lib/industry-practitioners";
@@ -1171,6 +1173,48 @@ function CareerPodcast() {
   );
 }
 
+function VenturesFilm() {
+  const [playing, setPlaying] = useState(false);
+  const ref = useRef<HTMLVideoElement>(null);
+
+  const start = () => {
+    setPlaying(true);
+    void ref.current?.play();
+  };
+
+  return (
+    <div className="mt-10 border-t border-black/10 pt-8">
+      <div className="relative aspect-video w-full overflow-hidden rounded-[14px] bg-black shadow-[0_18px_44px_-26px_rgba(0,0,0,0.55)]">
+        <video
+          ref={ref}
+          src={venturesFilm.url}
+          className="h-full w-full object-cover"
+          controls={playing}
+          playsInline
+          preload="metadata"
+        />
+        {!playing && (
+          <button
+            type="button"
+            onClick={start}
+            aria-label="Play entrepreneurship film"
+            className="group absolute inset-0 grid place-items-center bg-gradient-to-t from-black/65 via-black/15 to-transparent"
+          >
+            <span className="grid size-14 place-items-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md transition group-hover:scale-105 group-hover:bg-white/25">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </span>
+            <span className="absolute bottom-5 left-5 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/90">
+              Entrepreneurship at Masters' Union
+            </span>
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
 
 export default function HomeShowcase() {
   return (
@@ -1190,11 +1234,15 @@ export default function HomeShowcase() {
       </ShowcaseShell>
 
 
+
+
       <FounderQuote />
 
       <ShowcaseShell section={VENTURES_SECTION}>
         <StatsBand stats={VENTURES_RICH_STATS} tone="light" />
+        <VenturesFilm />
         <FounderFilmstrip />
+
         <div className="mt-5">
           <UniformLogoList groups={VENTURE_GROUPS} />
         </div>
