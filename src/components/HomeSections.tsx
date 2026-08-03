@@ -1240,6 +1240,20 @@ function PedagogySelector() {
               <span className="size-1.5 rounded-full bg-white/80" />
               {p.tag}
             </Link>
+            <div className="flex items-center gap-2 bg-white px-5">
+              {PEDAGOGY.map((item, i) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => setActive(i)}
+                  aria-label={item.rail}
+                  className={cn(
+                    "h-1 transition-all",
+                    i === active ? "w-6 bg-black" : "w-3 bg-black/25 hover:bg-black/50"
+                  )}
+                />
+              ))}
+            </div>
             <button
               type="button"
               onClick={() => setActive(nextIndex)}
@@ -1248,57 +1262,6 @@ function PedagogySelector() {
               Next
               <ChevronRight className="size-3.5" />
             </button>
-          </div>
-        </div>
-
-        {/* ---------- Panel 3 — next-up rail ---------- */}
-        <div className="relative hidden border-l border-black/10 lg:flex lg:flex-none lg:w-[18%] lg:flex-col">
-          <div className="flex items-center justify-between px-6 pt-8">
-            <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.26em] text-black/45">
-              Next up
-            </span>
-            <NextIcon key={`ni-${nextIndex}`} className="size-4 text-black/45 mu-anim-pop" />
-          </div>
-
-          <h4
-            key={`nt-${nextIndex}`}
-            className="mt-5 px-6 text-[19px] font-semibold uppercase leading-[1.1] tracking-tight text-black mu-anim-up"
-            style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-          >
-            {next.rail}
-          </h4>
-
-          <button
-            type="button"
-            onClick={() => setActive(nextIndex)}
-            className="group relative mt-6 flex-1 overflow-hidden border-t border-black/10 bg-neutral-50 text-left"
-            aria-label={`Show ${next.rail}`}
-          >
-            <span
-              key={`nc-${nextIndex}`}
-              className="absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[9px] font-semibold uppercase tracking-[0.3em] text-black/70 mu-anim-up"
-              style={{ writingMode: "vertical-rl" }}
-            >
-              {next.cta}
-            </span>
-            <span className="absolute right-4 top-4 flex size-9 items-center justify-center bg-white/70 text-black transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-              <ArrowUpRight className="size-4" />
-            </span>
-          </button>
-
-          <div className="flex items-center justify-center gap-2 py-5">
-            {PEDAGOGY.map((item, i) => (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => setActive(i)}
-                aria-label={item.rail}
-                className={cn(
-                  "h-1 transition-all",
-                  i === active ? "w-6 bg-black" : "w-3 bg-black/25 hover:bg-black/50"
-                )}
-              />
-            ))}
           </div>
         </div>
       </div>
