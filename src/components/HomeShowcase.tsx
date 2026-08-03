@@ -1194,8 +1194,8 @@ function VenturesFilm() {
   };
 
   return (
-    <div className="mt-8 border-t border-black/10 pt-6">
-      <div className="relative aspect-video w-full max-w-[620px] overflow-hidden rounded-[12px] bg-black shadow-[0_14px_34px_-24px_rgba(0,0,0,0.5)]">
+    <div>
+      <div className="relative aspect-video w-full overflow-hidden rounded-[12px] bg-black shadow-[0_14px_34px_-24px_rgba(0,0,0,0.5)]">
         <video
           ref={ref}
           src={venturesFilm.url}
