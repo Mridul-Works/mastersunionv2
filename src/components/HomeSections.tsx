@@ -1115,7 +1115,11 @@ function PedagogyPinnedScroll() {
 
       {/* Interactive selector: 8 options on the left, live widget on the right */}
       <PedagogySelector />
+
+      {/* Campus Radio: CXO podcasts recorded on campus */}
+      <CampusRadio />
     </section>
+
   );
 }
 
