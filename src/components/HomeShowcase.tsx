@@ -1216,13 +1216,19 @@ function WatchCTA({
         </div>
 
         <div className="flex shrink-0 items-center gap-5">
-          <span className="relative grid size-16 place-items-center rounded-full border border-black/20 bg-white/50 text-black transition duration-500 group-hover/cta:scale-105 group-hover/cta:bg-black group-hover/cta:text-white md:size-20">
-            <span className="absolute inset-0 rounded-full border border-black/10" />
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z" />
+          <span className="relative grid size-[68px] place-items-center rounded-full bg-black text-white shadow-[0_8px_30px_-10px_rgba(0,0,0,0.45)] transition-transform duration-500 group-hover/cta:scale-[1.06] md:size-[84px]">
+            <span className="pointer-events-none absolute -inset-2 rounded-full border border-black/12 transition-opacity duration-500 group-hover/cta:opacity-0" />
+            <span className="pointer-events-none absolute -inset-2 rounded-full border border-black/20 opacity-0 transition-all duration-700 group-hover/cta:scale-110 group-hover/cta:opacity-100" />
+            <svg
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="ml-[3px] size-[22px] md:size-[26px]"
+            >
+              <path d="M8.5 5.6a1 1 0 0 1 1.52-.85l7.2 4.4a1.7 1.7 0 0 1 0 2.9l-7.2 4.4a1 1 0 0 1-1.52-.85V5.6Z" />
             </svg>
           </span>
         </div>
+
       </button>
 
       {href && (
