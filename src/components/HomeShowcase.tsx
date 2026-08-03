@@ -448,13 +448,25 @@ function ShowcaseShell({ section, children }: { section: Section; children: Reac
                 </div>
               ))}
             </dl>
-            <Link
-              to={section.cta.to}
-              className="group inline-flex items-center gap-2 rounded-full bg-black px-3.5 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-black/85"
-            >
-              {section.cta.label}
-              <ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
+            <div className="flex flex-wrap items-center gap-2">
+              <Link
+                to={section.cta.to}
+                className="group inline-flex items-center gap-2 rounded-full bg-black px-3.5 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-black/85"
+              >
+                {section.cta.label}
+                <ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+              {section.download && (
+                <a
+                  href={section.download.href}
+                  download
+                  className="group inline-flex items-center gap-2 rounded-full border border-black/20 bg-transparent px-3.5 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-black transition hover:border-black/40 hover:bg-black/5"
+                >
+                  {section.download.label}
+                  <Download className="size-3 transition-transform group-hover:translate-y-0.5" />
+                </a>
+              )}
+            </div>
           </div>
         </div>
         {children}
