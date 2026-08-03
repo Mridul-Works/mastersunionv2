@@ -116,9 +116,10 @@ const SLAB_TINTS = ["#2F5DD1", "#7A4BD0", "#E2762B", "#E4548C", "#E7B417"];
  * Poster strip of CXO episodes: colour-blocked portrait tiles with name,
  * designation and a play button that opens the lightbox.
  */
-export function CampusRadioSlab({ start = 0, count = 5 }: { start?: number; count?: number }) {
+export function CampusRadioSlab({ start = 0, count = 2 }: { start?: number; count?: number }) {
   const [open, setOpen] = useState<CampusRadioEpisode | null>(null);
   const episodes = CAMPUS_RADIO.slice(start, start + count);
+  const large = episodes.length <= 2;
 
   return (
     <div className="flex h-full flex-col justify-center">
@@ -128,7 +129,10 @@ export function CampusRadioSlab({ start = 0, count = 5 }: { start?: number; coun
         ))}
       </p>
 
-      <div className="grid grid-cols-5 gap-2">
+      <div
+        className="grid gap-3"
+        style={{ gridTemplateColumns: `repeat(${episodes.length}, minmax(0, 1fr))` }}
+      >
         {episodes.map((ep, i) => (
           <button
             key={ep.id}
@@ -139,9 +143,9 @@ export function CampusRadioSlab({ start = 0, count = 5 }: { start?: number; coun
           >
             <div
               className="relative overflow-hidden rounded-[3px]"
-              style={{ backgroundColor: SLAB_TINTS[i % SLAB_TINTS.length] }}
+              style={{ backgroundColor: SLAB_TINTS[(start + i) % SLAB_TINTS.length] }}
             >
-              <div className="aspect-[3/4] w-full">
+              <div className={large ? "aspect-[4/5] w-full" : "aspect-[3/4] w-full"}>
                 <img
                   src={ytThumb(ep.id)}
                   alt={ep.name}
@@ -150,16 +154,36 @@ export function CampusRadioSlab({ start = 0, count = 5 }: { start?: number; coun
                 />
               </div>
               <span className="absolute inset-0 grid place-items-center">
-                <span className="grid h-8 w-8 place-items-center rounded-full bg-white/90 text-[9px] text-black shadow-md transition group-hover:scale-110">
+                <span
+                  className={cn(
+                    "grid place-items-center rounded-full bg-white/90 text-black shadow-md transition group-hover:scale-110",
+                    large ? "h-11 w-11 text-[12px]" : "h-8 w-8 text-[9px]"
+                  )}
+                >
                   ▶
                 </span>
               </span>
             </div>
-            <p className="mt-2 text-[11px] font-semibold leading-tight text-black">{ep.name}</p>
-            <p className="mt-0.5 text-[9.5px] leading-tight text-black/50">{ep.designation}</p>
+            <p
+              className={cn(
+                "mt-2.5 font-semibold leading-tight text-black",
+                large ? "text-[14px]" : "text-[11px]"
+              )}
+            >
+              {ep.name}
+            </p>
+            <p
+              className={cn(
+                "mt-1 leading-tight text-black/50",
+                large ? "text-[11px]" : "text-[9.5px]"
+              )}
+            >
+              {ep.designation}
+            </p>
           </button>
         ))}
       </div>
+
 
       <Link
         to="/campus-radio"
