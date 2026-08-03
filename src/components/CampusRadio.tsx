@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
+import { cn } from "@/lib/utils";
 import { CAMPUS_RADIO, CAMPUS_RADIO_FEATURED, ytThumb, type CampusRadioEpisode } from "@/lib/campus-radio";
 
 export function CampusRadioPlayer({
