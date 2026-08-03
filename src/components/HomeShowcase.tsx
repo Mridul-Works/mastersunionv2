@@ -1246,7 +1246,13 @@ export default function HomeShowcase() {
         <AlumStories />
         <div className="mt-8">
           <CategorizedLogos
-            groups={[{ label: "Recruiters", logos: CAREER_GROUPS.flatMap((g) => g.logos.slice(0, 4)) }]}
+            groups={[{
+              label: "Recruiters",
+              logos: [
+                ...CAREER_GROUPS.flatMap((g) => g.logos.slice(0, 4)),
+                rPwc, rServicenow, rPhysicsWallah, rIpv,
+              ],
+            }]}
             size="sm"
           />
         </div>
