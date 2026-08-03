@@ -212,7 +212,7 @@ export function CampusRadioSlab({ start = 0, count = 1 }: { start?: number; coun
 
 export default function CampusRadio() {
   const [open, setOpen] = useState<CampusRadioEpisode | null>(null);
-  const episodes = CAMPUS_RADIO_FEATURED.slice(0, 4);
+  const episodes = CAMPUS_RADIO_FEATURED.slice(0, 3);
 
   return (
     <section id="campus-radio" className="border-t border-black/10 bg-[#F5F3EE]">
@@ -241,21 +241,20 @@ export default function CampusRadio() {
           </Link>
         </div>
 
-        <div className="mt-8 grid grid-cols-2 border-t border-black/15 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 border-t border-black/15 sm:grid-cols-3">
           {episodes.map((ep, i) => (
             <div
               key={ep.id}
               className={cn(
-                "border-b border-black/15 px-0 py-5 sm:px-5",
-                i % 2 === 1 && "border-l border-black/15",
-                "lg:border-b-0 lg:border-l lg:first:border-l-0",
-                i % 2 === 0 && "lg:border-l"
+                "border-b border-black/15 py-5 sm:border-b-0 sm:px-5",
+                i > 0 && "sm:border-l sm:border-black/15"
               )}
             >
               <CampusRadioCard ep={ep} onPlay={() => setOpen(ep)} compact />
             </div>
           ))}
         </div>
+
       </div>
 
 
