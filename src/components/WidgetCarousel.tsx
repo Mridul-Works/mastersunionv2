@@ -134,6 +134,7 @@ export default function WidgetCarousel() {
 
   return (
     <section
+      id="student-life"
       className="relative w-full bg-[#0A0A0A] text-white"
       style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
     >
