@@ -662,23 +662,17 @@ function useEdgeHoverScroll(railRef: React.RefObject<HTMLDivElement | null>) {
     setEdge(0);
   };
 
-  // native wheel listener so preventDefault works (React's is passive)
+  // native wheel listener: block wheel-driven horizontal scrolling entirely
   useEffect(() => {
     const el = railRef.current;
     if (!el) return;
     const handler = (e: WheelEvent) => {
-      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
-      const max = el.scrollWidth - el.clientWidth;
-      if (max <= 0) return;
-      const atStart = el.scrollLeft <= 0;
-      const atEnd = el.scrollLeft >= max - 1;
-      if ((e.deltaY < 0 && atStart) || (e.deltaY > 0 && atEnd)) return;
-      e.preventDefault();
-      el.scrollLeft += e.deltaY;
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) e.preventDefault();
     };
     el.addEventListener("wheel", handler, { passive: false });
     return () => el.removeEventListener("wheel", handler);
   }, [railRef]);
+
 
   return { edge, onMouseMove, onMouseLeave };
 
