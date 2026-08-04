@@ -567,28 +567,28 @@ function SessionFeedCard({
         />
 
 
-        <div className="absolute left-0 top-0 flex items-center gap-1.5 bg-white px-2.5 py-1.5">
-          <Icon className="size-3 text-black" strokeWidth={2} />
-          <span className="font-mono text-[8.5px] font-bold uppercase tracking-[0.18em] text-black">
+        <div className="absolute left-0 top-0 flex items-center gap-1.5 bg-black px-2.5 py-1.5">
+          <Icon className="size-3 text-white" strokeWidth={2} />
+          <span className="font-mono text-[8.5px] font-bold uppercase tracking-[0.18em] text-white">
             {s.format}
           </span>
         </div>
 
         <div className="absolute inset-x-0 bottom-0 p-4">
           <p
-            className="text-[clamp(1.5rem,3.4vw,2.05rem)] font-black uppercase leading-[0.92] tracking-[-0.03em] text-white"
+            className="text-[clamp(1.5rem,3.4vw,2.05rem)] font-black uppercase leading-[0.92] tracking-[-0.03em] text-black"
             style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
           >
             {s.title}
           </p>
           <div className="mt-3 flex items-center justify-between gap-3">
-            <span className="font-mono text-[8.5px] font-bold uppercase tracking-[0.18em] text-white/70">
+            <span className="font-mono text-[8.5px] font-bold uppercase tracking-[0.18em] text-black/55">
               {s.duration} · {s.audience}
             </span>
             <button
               type="button"
               onClick={onRegister}
-              className="shrink-0 rounded-full bg-white px-3 py-1.5 font-mono text-[8.5px] font-bold uppercase tracking-[0.16em] text-black transition-transform hover:-translate-y-0.5"
+              className="shrink-0 rounded-full bg-black px-3 py-1.5 font-mono text-[8.5px] font-bold uppercase tracking-[0.16em] text-white transition-transform hover:-translate-y-0.5"
             >
               Register
             </button>
