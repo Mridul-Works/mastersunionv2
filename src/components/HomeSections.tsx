@@ -575,13 +575,8 @@ function SessionFeedCard({
         </div>
 
         <div className="absolute inset-x-0 bottom-0 p-4">
-          <p
-            className="text-[clamp(1.5rem,3.4vw,2.05rem)] font-black uppercase leading-[0.92] tracking-[-0.03em] text-black"
-            style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-          >
-            {s.title}
-          </p>
-          <div className="mt-3 flex items-center justify-between gap-3">
+          <div className="flex items-center justify-between gap-3">
+
             <span className="font-mono text-[8.5px] font-bold uppercase tracking-[0.18em] text-black/55">
               {s.duration} · {s.audience}
             </span>
