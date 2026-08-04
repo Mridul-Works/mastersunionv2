@@ -664,20 +664,26 @@ function useEdgeHoverScroll(railRef: React.RefObject<HTMLDivElement | null>) {
     setEdge(0);
   };
 
-  const onWheel = (e: React.WheelEvent) => {
+  // native wheel listener so preventDefault works (React's is passive)
+  useEffect(() => {
     const el = railRef.current;
     if (!el) return;
-    if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
-    const max = el.scrollWidth - el.clientWidth;
-    if (max <= 0) return;
-    const atStart = el.scrollLeft <= 0;
-    const atEnd = el.scrollLeft >= max - 1;
-    if ((e.deltaY < 0 && atStart) || (e.deltaY > 0 && atEnd)) return;
-    e.preventDefault();
-    el.scrollLeft += e.deltaY;
-  };
+    const handler = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+      const max = el.scrollWidth - el.clientWidth;
+      if (max <= 0) return;
+      const atStart = el.scrollLeft <= 0;
+      const atEnd = el.scrollLeft >= max - 1;
+      if ((e.deltaY < 0 && atStart) || (e.deltaY > 0 && atEnd)) return;
+      e.preventDefault();
+      el.scrollLeft += e.deltaY;
+    };
+    el.addEventListener("wheel", handler, { passive: false });
+    return () => el.removeEventListener("wheel", handler);
+  }, [railRef]);
 
-  return { edge, onMouseMove, onMouseLeave, onWheel };
+  return { edge, onMouseMove, onMouseLeave };
+
 }
 
 function EdgeHint({ side, active }: { side: "left" | "right"; active: boolean }) {
