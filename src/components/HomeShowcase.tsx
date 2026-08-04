@@ -1185,24 +1185,24 @@ function WatchCTA({
   return (
     <div className="group/cta relative mt-8 grid grid-cols-1 overflow-hidden border border-black/10 bg-[#F5F3EE] md:grid-cols-12">
       {/* content column */}
-      <div className="relative md:col-span-8 border-b border-black/10 p-7 md:border-b-0 md:border-r md:p-12 lg:p-14">
-        <span className="mb-5 block h-[2px] w-14" style={{ background: "linear-gradient(90deg, #39B5D7, #F7D544, #E38330)" }} />
+      <div className="relative md:col-span-8 border-b border-black/10 p-6 md:border-b-0 md:border-r md:p-8 lg:p-10">
+        <span className="mb-3.5 block h-[2px] w-14" style={{ background: "linear-gradient(90deg, #39B5D7, #F7D544, #E38330)" }} />
         <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.28em] text-black/50">
           {eyebrow}
         </p>
         <h3
-          className="mt-4 max-w-[26ch] text-balance text-[1.7rem] font-normal leading-[1.1] tracking-tight text-black md:text-[2.15rem] lg:text-[2.5rem]"
+          className="mt-3 max-w-[30ch] text-balance text-[1.45rem] font-normal leading-[1.12] tracking-tight text-black md:text-[1.75rem] lg:text-[1.95rem]"
           style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
         >
           {title}
         </h3>
-        <p className="mt-4 max-w-[46ch] text-pretty text-[13.5px] font-light leading-[1.75] text-black/60">
+        <p className="mt-3 max-w-[52ch] text-pretty text-[13px] font-light leading-[1.65] text-black/60">
           {blurb}
         </p>
         <button
           type="button"
           onClick={onPlay}
-          className="mt-7 inline-flex cursor-pointer items-center gap-2 rounded-full bg-black px-7 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition hover:gap-3 hover:bg-black/85"
+          className="mt-5 inline-flex cursor-pointer items-center gap-2 rounded-full bg-black px-6 py-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition hover:gap-3 hover:bg-black/85"
         >
           <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
             <path d="M8 5v14l11-7z" />
@@ -1212,7 +1212,7 @@ function WatchCTA({
       </div>
 
       {/* play column */}
-      <div className="relative flex min-h-[220px] items-center justify-center bg-white/40 p-10 md:col-span-4">
+      <div className="relative flex min-h-[150px] items-center justify-center bg-white/40 p-6 md:col-span-4">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 opacity-[0.05]"
@@ -1225,7 +1225,7 @@ function WatchCTA({
           type="button"
           onClick={onPlay}
           aria-label={action}
-          className="relative grid size-[86px] shrink-0 cursor-pointer place-items-center rounded-full shadow-[0_18px_40px_-18px_rgba(0,0,0,0.45)] transition-transform duration-500 hover:scale-[1.06] md:size-[96px]"
+          className="relative grid size-[64px] shrink-0 cursor-pointer place-items-center rounded-full shadow-[0_14px_30px_-14px_rgba(0,0,0,0.45)] transition-transform duration-500 hover:scale-[1.06] md:size-[72px]"
           style={{
             background: "linear-gradient(135deg, #39B5D7, #F7D544, #E38330)",
           }}
