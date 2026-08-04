@@ -712,6 +712,8 @@ function AdmissionsConnect() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedSessionId, setSelectedSessionId] = useState<string | undefined>(undefined);
   const railRef = useRef<HTMLDivElement>(null);
+  const edgeScroll = useEdgeHoverScroll(railRef);
+
 
   const openFor = (sessionId: string) => {
     setSelectedSessionId(sessionId);
