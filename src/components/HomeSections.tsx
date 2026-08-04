@@ -556,21 +556,15 @@ function SessionFeedCard({
       <p className="mt-2 text-[12px] leading-[1.55] text-black/50">{s.description}</p>
 
       {/* poster placeholder */}
-      <div className="relative mt-4 aspect-[4/5] w-full overflow-hidden bg-black">
+      <div className="relative mt-4 aspect-[4/5] w-full overflow-hidden bg-[#EFEBE2]">
         <div
-          className="absolute inset-0 bg-[#1a1a1a]"
+          className="absolute inset-0 bg-gradient-to-br from-[#F6F2E9] via-[#EAE5DA] to-[#DFD9CC]"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
+              "linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)",
             backgroundSize: "28px 28px",
           }}
         />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="font-mono text-[9px] font-bold uppercase tracking-[0.3em] text-white/25">
-            Image
-          </span>
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/45" />
 
 
         <div className="absolute left-0 top-0 flex items-center gap-1.5 bg-white px-2.5 py-1.5">
