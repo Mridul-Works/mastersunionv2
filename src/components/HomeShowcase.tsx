@@ -1194,8 +1194,8 @@ function WatchCTA({
 }) {
   return (
     <div className="group/cta relative mt-8 overflow-hidden pastel-gradient ring-1 ring-black/10 shadow-[0_18px_50px_-30px_rgba(0,0,0,0.45)]">
-      {/* decorative hairlines + glow */}
-      <div className="pointer-events-none absolute inset-0 opacity-[0.16] [background-image:linear-gradient(to_right,rgba(0,0,0,0.35)_1px,transparent_1px)] [background-size:56px_100%]" />
+      {/* soft glow */}
+
       <div className="pointer-events-none absolute -right-24 -top-24 size-[280px] rounded-full bg-white/50 blur-3xl" />
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-[3px]"
