@@ -691,16 +691,33 @@ function AdmissionsConnect() {
         </div>
       </div>
 
-      {/* horizontal feed carousel */}
-      <div
-        ref={railRef}
-        data-lenis-prevent
-        className="flex snap-x snap-mandatory gap-6 overflow-x-auto overscroll-x-contain pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {sessions.map((s) => (
-          <SessionFeedCard key={s.id} session={s} onRegister={() => openFor(s.id)} />
-        ))}
+      {/* horizontal feed carousel — hover edges to glide, wheel to scroll */}
+      <div className="group/rail relative">
+        <div
+          ref={railRef}
+          data-lenis-prevent
+          onWheel={(e) => {
+            const el = railRef.current;
+            if (!el) return;
+            if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+            const max = el.scrollWidth - el.clientWidth;
+            if (max <= 0) return;
+            const next = el.scrollLeft + e.deltaY;
+            if ((e.deltaY < 0 && el.scrollLeft <= 0) || (e.deltaY > 0 && el.scrollLeft >= max - 1)) return;
+            e.preventDefault();
+            el.scrollLeft = next;
+          }}
+          className="flex snap-x snap-mandatory gap-6 overflow-x-auto overscroll-x-contain pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {sessions.map((s) => (
+            <SessionFeedCard key={s.id} session={s} onRegister={() => openFor(s.id)} />
+          ))}
+        </div>
+
+        <HoverScrollZone railRef={railRef} side="left" />
+        <HoverScrollZone railRef={railRef} side="right" />
       </div>
+
 
       <p className="mt-8 text-center text-[12px] leading-relaxed text-black/50">
         Can’t find a slot? Drop a note to{" "}
