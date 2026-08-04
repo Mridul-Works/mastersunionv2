@@ -779,7 +779,7 @@ function AdmissionsConnect() {
         </div>
       </div>
 
-      {/* horizontal feed carousel — hover edges to glide, wheel to scroll */}
+      {/* horizontal feed carousel — hover the edges to glide left/right */}
       <div className="relative" onMouseMove={edgeScroll.onMouseMove} onMouseLeave={edgeScroll.onMouseLeave}>
         <div
           ref={railRef}
