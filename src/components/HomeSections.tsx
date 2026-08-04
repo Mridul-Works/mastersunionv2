@@ -603,10 +603,8 @@ function SessionFeedCard({
       </div>
 
       {/* footer meta row */}
-      <div className="mt-3 flex items-center justify-between border-t border-black/10 pt-2.5">
-        <span className="font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-black/45">
-          {s.spotsLeft} spots left
-        </span>
+      <div className="mt-3 flex items-center justify-end border-t border-black/10 pt-2.5">
+
         <button
           type="button"
           onClick={onRegister}
@@ -664,23 +662,17 @@ function useEdgeHoverScroll(railRef: React.RefObject<HTMLDivElement | null>) {
     setEdge(0);
   };
 
-  // native wheel listener so preventDefault works (React's is passive)
+  // native wheel listener: block wheel-driven horizontal scrolling entirely
   useEffect(() => {
     const el = railRef.current;
     if (!el) return;
     const handler = (e: WheelEvent) => {
-      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
-      const max = el.scrollWidth - el.clientWidth;
-      if (max <= 0) return;
-      const atStart = el.scrollLeft <= 0;
-      const atEnd = el.scrollLeft >= max - 1;
-      if ((e.deltaY < 0 && atStart) || (e.deltaY > 0 && atEnd)) return;
-      e.preventDefault();
-      el.scrollLeft += e.deltaY;
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) e.preventDefault();
     };
     el.addEventListener("wheel", handler, { passive: false });
     return () => el.removeEventListener("wheel", handler);
   }, [railRef]);
+
 
   return { edge, onMouseMove, onMouseLeave };
 
@@ -787,7 +779,7 @@ function AdmissionsConnect() {
         </div>
       </div>
 
-      {/* horizontal feed carousel — hover edges to glide, wheel to scroll */}
+      {/* horizontal feed carousel — hover the edges to glide left/right */}
       <div className="relative" onMouseMove={edgeScroll.onMouseMove} onMouseLeave={edgeScroll.onMouseLeave}>
         <div
           ref={railRef}
