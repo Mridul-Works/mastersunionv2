@@ -1238,20 +1238,6 @@ function WatchCTA({
 
       </button>
 
-      {href && (
-        <div className="relative border-t border-black/10 px-6 py-3 md:px-8 lg:px-10">
-          <a
-            href={href}
-            target="_blank"
-            rel="noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="group inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-black/50 transition hover:text-black"
-          >
-            Watch on YouTube
-            <ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
-        </div>
-      )}
     </div>
 
   );
