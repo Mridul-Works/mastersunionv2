@@ -620,61 +620,92 @@ function SessionFeedCard({
   );
 }
 
-function HoverScrollZone({
-  railRef,
-  side,
-}: {
-  railRef: React.RefObject<HTMLDivElement | null>;
-  side: "left" | "right";
-}) {
+/** Edge-hover auto-scroll + wheel-to-horizontal for a horizontal rail. */
+function useEdgeHoverScroll(railRef: React.RefObject<HTMLDivElement | null>) {
+  const speedRef = useRef(0);
   const rafRef = useRef<number | null>(null);
+  const [edge, setEdge] = useState<0 | -1 | 1>(0);
 
-  const stop = () => {
-    if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
-    rafRef.current = null;
-  };
-
-  const start = () => {
-    stop();
-    const step = () => {
+  useEffect(() => {
+    const loop = () => {
       const el = railRef.current;
-      if (!el) return;
-      el.scrollLeft += side === "left" ? -7 : 7;
-      rafRef.current = requestAnimationFrame(step);
+      if (el && speedRef.current !== 0) el.scrollLeft += speedRef.current;
+      rafRef.current = requestAnimationFrame(loop);
     };
-    rafRef.current = requestAnimationFrame(step);
+    rafRef.current = requestAnimationFrame(loop);
+    return () => {
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    };
+  }, [railRef]);
+
+  const onMouseMove = (e: React.MouseEvent) => {
+    const el = railRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const zone = Math.min(160, r.width * 0.22);
+    const fromLeft = e.clientX - r.left;
+    const fromRight = r.right - e.clientX;
+    const MAX = 14;
+    if (fromLeft < zone) {
+      speedRef.current = -MAX * (1 - fromLeft / zone);
+      setEdge(-1);
+    } else if (fromRight < zone) {
+      speedRef.current = MAX * (1 - fromRight / zone);
+      setEdge(1);
+    } else {
+      speedRef.current = 0;
+      setEdge(0);
+    }
   };
 
-  useEffect(() => stop, []);
+  const onMouseLeave = () => {
+    speedRef.current = 0;
+    setEdge(0);
+  };
 
+  const onWheel = (e: React.WheelEvent) => {
+    const el = railRef.current;
+    if (!el) return;
+    if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+    const max = el.scrollWidth - el.clientWidth;
+    if (max <= 0) return;
+    const atStart = el.scrollLeft <= 0;
+    const atEnd = el.scrollLeft >= max - 1;
+    if ((e.deltaY < 0 && atStart) || (e.deltaY > 0 && atEnd)) return;
+    e.preventDefault();
+    el.scrollLeft += e.deltaY;
+  };
+
+  return { edge, onMouseMove, onMouseLeave, onWheel };
+}
+
+function EdgeHint({ side, active }: { side: "left" | "right"; active: boolean }) {
   return (
     <div
       aria-hidden
-      onMouseEnter={start}
-      onMouseLeave={stop}
-      className={`absolute top-0 bottom-2 z-20 hidden w-16 md:block ${
+      className={`pointer-events-none absolute top-0 bottom-2 z-20 hidden w-20 items-center justify-center transition-opacity duration-200 md:flex ${
         side === "left" ? "left-0" : "right-0"
-      }`}
+      } ${active ? "opacity-100" : "opacity-0"}`}
     >
       <div
-        className={`pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover/rail:opacity-100 ${
+        className={`absolute inset-0 ${
           side === "left"
             ? "bg-gradient-to-r from-[#F5F3EE] via-[#F5F3EE]/70 to-transparent"
             : "bg-gradient-to-l from-[#F5F3EE] via-[#F5F3EE]/70 to-transparent"
         }`}
       />
-      <div className="pointer-events-none absolute inset-y-0 flex items-center opacity-0 transition-opacity duration-300 group-hover/rail:opacity-100 left-0 right-0 justify-center">
-        <span className="grid size-8 place-items-center rounded-full border border-black/15 bg-white shadow-[0_6px_18px_-10px_rgba(0,0,0,0.4)]">
-          {side === "left" ? (
-            <ChevronLeft className="size-4 text-black/70" />
-          ) : (
-            <ChevronRight className="size-4 text-black/70" />
-          )}
-        </span>
-      </div>
+      <span className="relative grid size-9 place-items-center rounded-full border border-black/15 bg-white shadow-[0_6px_18px_-10px_rgba(0,0,0,0.45)]">
+        {side === "left" ? (
+          <ChevronLeft className="size-4 text-black/70" />
+        ) : (
+          <ChevronRight className="size-4 text-black/70" />
+        )}
+      </span>
     </div>
   );
 }
+
 
 function AdmissionsConnect() {
 
