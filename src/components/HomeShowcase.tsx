@@ -1193,12 +1193,16 @@ function WatchCTA({
   onPlay: () => void;
 }) {
   return (
-    <div className="group/cta relative mt-8 overflow-hidden rounded-none pastel-gradient">
-      <button
-        type="button"
-        onClick={onPlay}
-        className="relative flex w-full cursor-pointer flex-col items-start gap-6 p-6 text-left md:flex-row md:items-center md:justify-between md:gap-12 md:p-8 lg:p-10"
-      >
+    <div className="group/cta relative mt-8 overflow-hidden pastel-gradient ring-1 ring-black/10 shadow-[0_18px_50px_-30px_rgba(0,0,0,0.45)]">
+      {/* decorative hairlines + glow */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.16] [background-image:linear-gradient(to_right,rgba(0,0,0,0.35)_1px,transparent_1px)] [background-size:56px_100%]" />
+      <div className="pointer-events-none absolute -right-24 -top-24 size-[280px] rounded-full bg-white/50 blur-3xl" />
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-[3px]"
+        style={{ background: "linear-gradient(90deg, #39B5D7, #F7D544, #E38330)" }}
+      />
+
+      <div className="relative flex flex-col items-start gap-7 p-6 md:flex-row md:items-center md:justify-between md:gap-12 md:p-8 lg:p-10">
         <div className="max-w-[46ch]">
           <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
             {eyebrow}
@@ -1210,41 +1214,41 @@ function WatchCTA({
             {title}
           </h3>
           <p className="mt-3 text-[13.5px] leading-[1.7] text-black/60">{blurb}</p>
-          <div className="mt-5 inline-flex items-center gap-2 rounded-full bg-black px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition group-hover/cta:bg-black/85">
+          <button
+            type="button"
+            onClick={onPlay}
+            className="mt-5 inline-flex cursor-pointer items-center gap-2 rounded-full bg-black px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-black/85 hover:gap-3"
+          >
             <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
               <path d="M8 5v14l11-7z" />
             </svg>
             {action}
-          </div>
+          </button>
         </div>
 
-        <div className="flex shrink-0 items-center gap-5">
-          <span
-            className="relative grid size-[68px] place-items-center rounded-full border border-white/60 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)] transition-transform duration-500 group-hover/cta:scale-[1.06] md:size-[84px]"
-            style={{
-              background: "linear-gradient(135deg, #39B5D7, #F7D544, #E38330)",
-            }}
+        <button
+          type="button"
+          onClick={onPlay}
+          aria-label={action}
+          className="relative grid size-[68px] shrink-0 cursor-pointer place-items-center rounded-full border border-white/60 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)] transition-transform duration-500 hover:scale-[1.06] md:size-[84px]"
+          style={{
+            background: "linear-gradient(135deg, #39B5D7, #F7D544, #E38330)",
+          }}
+        >
+          <span className="pointer-events-none absolute -inset-2 rounded-full border border-black/10" />
+          <svg
+            viewBox="0 0 24 24"
+            fill="#0E0E0E"
+            className="ml-[3px] size-[22px] md:size-[26px]"
           >
-            <span className="pointer-events-none absolute -inset-2 rounded-full border border-black/12 transition-opacity duration-500 group-hover/cta:opacity-0" />
-            <span className="pointer-events-none absolute -inset-2 rounded-full border border-black/20 opacity-0 transition-all duration-700 group-hover/cta:scale-110 group-hover/cta:opacity-100" />
-            <svg
-              viewBox="0 0 24 24"
-              fill="#0E0E0E"
-              className="ml-[3px] size-[22px] md:size-[26px]"
-            >
-              <path d="M8.5 5.6a1 1 0 0 1 1.52-.85l7.2 4.4a1.7 1.7 0 0 1 0 2.9l-7.2 4.4a1 1 0 0 1-1.52-.85V5.6Z" />
-            </svg>
-          </span>
-
-
-        </div>
-
-      </button>
-
+            <path d="M8.5 5.6a1 1 0 0 1 1.52-.85l7.2 4.4a1.7 1.7 0 0 1 0 2.9l-7.2 4.4a1 1 0 0 1-1.52-.85V5.6Z" />
+          </svg>
+        </button>
+      </div>
     </div>
-
   );
 }
+
 
 
 function CareerPodcast() {
