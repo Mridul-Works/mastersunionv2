@@ -520,17 +520,114 @@ function RegistrationDialog({
   );
 }
 
+function SessionFeedCard({
+  session: s,
+  onRegister,
+}: {
+  session: Session;
+  onRegister: () => void;
+}) {
+  const d = new Date(s.nextDate);
+  const day = String(d.getDate()).padStart(2, "0");
+  const month = d.toLocaleString("en-US", { month: "short" }).toUpperCase();
+  const Icon = s.icon;
+
+  return (
+    <article className="w-[300px] shrink-0 snap-start sm:w-[330px]">
+      {/* top rule + category */}
+      <div className="border-t-2 border-black pt-2">
+        <p className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-black">
+          {s.format === "In-person" ? "Campus session" : "Live session"}
+        </p>
+        <p className="mt-1.5 font-sans text-[11px] text-black/45">
+          {month} {day} · {s.nextTime} {s.timezone}
+        </p>
+      </div>
+
+      {/* headline + body */}
+      <h3
+        className="mt-3 text-[15px] font-bold leading-[1.3] tracking-[-0.01em] text-black"
+        style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+      >
+        {s.title}
+      </h3>
+      <p className="mt-1 text-[12.5px] font-medium leading-[1.45] text-black/70">{s.tagline}</p>
+      <p className="mt-2 text-[12px] leading-[1.55] text-black/50">{s.description}</p>
+
+      {/* poster */}
+      <div className="relative mt-4 aspect-square w-full overflow-hidden bg-black">
+        <img
+          src={s.image.url}
+          alt={s.title}
+          loading="lazy"
+          className="absolute inset-0 size-full object-cover opacity-60 grayscale transition duration-500 hover:opacity-70"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/45" />
+
+        <div className="absolute left-0 top-0 flex items-center gap-1.5 bg-white px-2.5 py-1.5">
+          <Icon className="size-3 text-black" strokeWidth={2} />
+          <span className="font-mono text-[8.5px] font-bold uppercase tracking-[0.18em] text-black">
+            {s.format}
+          </span>
+        </div>
+
+        <div className="absolute inset-x-0 bottom-0 p-4">
+          <p
+            className="text-[clamp(1.5rem,3.4vw,2.05rem)] font-black uppercase leading-[0.92] tracking-[-0.03em] text-white"
+            style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+          >
+            {s.title}
+          </p>
+          <div className="mt-3 flex items-center justify-between gap-3">
+            <span className="font-mono text-[8.5px] font-bold uppercase tracking-[0.18em] text-white/70">
+              {s.duration} · {s.audience}
+            </span>
+            <button
+              type="button"
+              onClick={onRegister}
+              className="shrink-0 rounded-full bg-white px-3 py-1.5 font-mono text-[8.5px] font-bold uppercase tracking-[0.16em] text-black transition-transform hover:-translate-y-0.5"
+            >
+              Register
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* footer meta row */}
+      <div className="mt-3 flex items-center justify-between border-t border-black/10 pt-2.5">
+        <span className="font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-black/45">
+          {s.spotsLeft} spots left
+        </span>
+        <button
+          type="button"
+          onClick={onRegister}
+          aria-label={`Register for ${s.title}`}
+          className="text-black/35 transition-colors hover:text-black"
+        >
+          <Bookmark className="size-4" strokeWidth={1.6} />
+        </button>
+      </div>
+    </article>
+  );
+}
+
 function AdmissionsConnect() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedSessionId, setSelectedSessionId] = useState<string | undefined>(undefined);
+  const railRef = useRef<HTMLDivElement>(null);
 
   const openFor = (sessionId: string) => {
     setSelectedSessionId(sessionId);
     setDialogOpen(true);
   };
 
-  // single row only — remaining sessions live in the "View all sessions" dialog
-  const sessions = ADMISSIONS_CONNECT_SESSIONS.slice(0, 3);
+  const nudge = (dir: -1 | 1) => {
+    const el = railRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * (el.clientWidth * 0.8), behavior: "smooth" });
+  };
+
+  const sessions = ADMISSIONS_CONNECT_SESSIONS;
 
   return (
     <div className="col-span-12 mt-9 border-t border-black/10 pt-8">
@@ -552,75 +649,48 @@ function AdmissionsConnect() {
             Live, small-group sessions with alumni, parents, faculty and current students.
           </p>
         </div>
-        <button
-          type="button"
-          onClick={() => {
-            setSelectedSessionId(undefined);
-            setDialogOpen(true);
-          }}
-          className="inline-flex items-center gap-2 border-b border-black/40 pb-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black transition-transform hover:-translate-y-0.5"
-        >
-          View all sessions <ArrowUpRight className="size-3.5" />
-        </button>
+
+        <div className="flex items-center gap-4">
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => nudge(-1)}
+              aria-label="Previous sessions"
+              className="border border-black/15 p-2 transition-colors hover:bg-black/5"
+            >
+              <ChevronLeft className="size-4 text-black/60" />
+            </button>
+            <button
+              type="button"
+              onClick={() => nudge(1)}
+              aria-label="More sessions"
+              className="border border-black/15 p-2 transition-colors hover:bg-black/5"
+            >
+              <ChevronRight className="size-4 text-black/60" />
+            </button>
+          </div>
+          <button
+            type="button"
+            onClick={() => {
+              setSelectedSessionId(undefined);
+              setDialogOpen(true);
+            }}
+            className="inline-flex items-center gap-2 border-b border-black/40 pb-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black transition-transform hover:-translate-y-0.5"
+          >
+            View all sessions <ArrowUpRight className="size-3.5" />
+          </button>
+        </div>
       </div>
 
-      {/* poster strip */}
-      <div className="grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
-        {sessions.map((s) => {
-          const d = new Date(s.nextDate);
-          const day = String(d.getDate()).padStart(2, "0");
-          const month = d.toLocaleString("en-US", { month: "short" }).toUpperCase();
-          const year = d.getFullYear();
-
-          return (
-            <button
-              key={s.id}
-              type="button"
-              onClick={() => openFor(s.id)}
-              className="group text-left"
-            >
-              <div className="relative aspect-[3/4] w-full overflow-hidden border border-black/10 bg-gradient-to-br from-neutral-100 via-neutral-200 to-neutral-300">
-                <span className="absolute inset-0 flex items-center justify-center font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-black/35">
-                  Image
-                </span>
-
-                {/* date block punched into bottom-left */}
-                <div className="absolute bottom-0 left-0 bg-[#EDEDED] px-4 pb-3 pt-3 pr-6">
-                  <p
-                    className="text-[30px] font-black leading-none tracking-[-0.02em] text-black"
-                    style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-                  >
-                    {day}
-                  </p>
-                  <p className="mt-1.5 text-[11px] font-bold uppercase tracking-[0.18em] text-black/80">
-                    {month}
-                  </p>
-                  <p className="mt-0.5 text-[10px] uppercase tracking-[0.18em] text-black/45">
-                    {year}
-                  </p>
-                </div>
-                <span className="absolute right-0 top-0 bg-[#EDEDED] px-3 py-1.5 font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-black/60">
-                  {s.format}
-                </span>
-              </div>
-
-              <p
-                className="mt-5 text-[15px] font-bold uppercase leading-[1.35] tracking-[-0.01em] text-black"
-                style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-              >
-                {s.title}.
-                <br />
-                <span className="text-[13.5px] font-medium normal-case tracking-normal text-black/65">{s.tagline}</span>
-              </p>
-
-              <p className="mt-3 flex items-center gap-2 font-mono text-[9.5px] uppercase tracking-[0.2em] text-black/45">
-                {s.nextTime} {s.timezone} · {s.duration}
-                <ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </p>
-
-            </button>
-          );
-        })}
+      {/* horizontal feed carousel */}
+      <div
+        ref={railRef}
+        data-lenis-prevent
+        className="flex snap-x snap-mandatory gap-6 overflow-x-auto overscroll-x-contain pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {sessions.map((s) => (
+          <SessionFeedCard key={s.id} session={s} onRegister={() => openFor(s.id)} />
+        ))}
       </div>
 
       <p className="mt-8 text-center text-[12px] leading-relaxed text-black/50">
@@ -638,6 +708,7 @@ function AdmissionsConnect() {
     </div>
   );
 }
+
 
 
 
