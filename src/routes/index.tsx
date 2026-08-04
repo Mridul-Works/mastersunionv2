@@ -30,8 +30,10 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+// Ordered to match the homepage section flow, top to bottom.
 const NAV: { label: string; id: string; href?: string }[] = [
   { label: "About", id: "about", href: "/about" },
+  { label: "News", id: "news" },
   { label: "Programmes", id: "programs" },
   { label: "Faculty", id: "faculty" },
   { label: "Careers", id: "career" },
@@ -39,7 +41,6 @@ const NAV: { label: string; id: string; href?: string }[] = [
   { label: "Partners", id: "partnerships" },
   { label: "Campus Radio", id: "pedagogy" },
   { label: "Student Life", id: "student-life" },
-  { label: "News", id: "news" },
 ];
 
 
