@@ -38,6 +38,7 @@ import {
   MapPin,
   Clock,
   MessageCircle,
+  Bookmark,
   BookOpen,
   Globe,
 } from "lucide-react";
@@ -557,7 +558,7 @@ function SessionFeedCard({
       {/* poster */}
       <div className="relative mt-4 aspect-square w-full overflow-hidden bg-black">
         <img
-          src={s.image.url}
+          src={s.image}
           alt={s.title}
           loading="lazy"
           className="absolute inset-0 size-full object-cover opacity-60 grayscale transition duration-500 hover:opacity-70"
