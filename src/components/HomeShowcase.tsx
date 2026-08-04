@@ -359,9 +359,13 @@ const VENTURES_SECTION: Section = {
 function StatsBand({ stats, tone = "light" }: { stats: RichStat[]; tone?: "light" | "cream" }) {
   const border = tone === "cream" ? "border-black/10" : "border-black/10";
   const bg = tone === "cream" ? "bg-white" : "bg-[#F5F3EE]";
+  const n = stats.length;
   return (
     <div className={`mb-5 overflow-hidden rounded-2xl border ${border} ${bg}`}>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+      <div
+        className="grid grid-cols-2 md:grid-cols-3 lg:[grid-template-columns:var(--stat-cols)]"
+        style={{ ["--stat-cols" as string]: `repeat(${n}, minmax(0, 1fr))` }}
+      >
         {stats.map((s, i) => (
           <div
             key={s.label}
@@ -370,9 +374,10 @@ function StatsBand({ stats, tone = "light" }: { stats: RichStat[]; tone?: "light
             } ${i >= 2 ? "border-t border-black/10 md:border-t-0" : ""} ${
               i % 3 !== 0 ? "md:border-l md:border-black/10" : ""
             } ${i >= 3 ? "md:border-t md:border-black/10 lg:border-t-0" : ""} ${
-              i % 6 !== 0 ? "lg:border-l lg:border-black/10" : ""
+              i !== 0 ? "lg:border-l lg:border-black/10" : "lg:border-l-0"
             }`}
           >
+
             <div className="flex items-baseline gap-1.5">
               <div
                 className="text-[clamp(1.25rem,1.7vw,1.6rem)] font-semibold leading-none tracking-tight text-black"
