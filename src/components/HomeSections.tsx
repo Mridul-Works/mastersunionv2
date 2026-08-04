@@ -620,7 +620,64 @@ function SessionFeedCard({
   );
 }
 
+function HoverScrollZone({
+  railRef,
+  side,
+}: {
+  railRef: React.RefObject<HTMLDivElement | null>;
+  side: "left" | "right";
+}) {
+  const rafRef = useRef<number | null>(null);
+
+  const stop = () => {
+    if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    rafRef.current = null;
+  };
+
+  const start = () => {
+    stop();
+    const step = () => {
+      const el = railRef.current;
+      if (!el) return;
+      el.scrollLeft += side === "left" ? -7 : 7;
+      rafRef.current = requestAnimationFrame(step);
+    };
+    rafRef.current = requestAnimationFrame(step);
+  };
+
+  useEffect(() => stop, []);
+
+  return (
+    <div
+      aria-hidden
+      onMouseEnter={start}
+      onMouseLeave={stop}
+      className={`absolute top-0 bottom-2 z-20 hidden w-16 md:block ${
+        side === "left" ? "left-0" : "right-0"
+      }`}
+    >
+      <div
+        className={`pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover/rail:opacity-100 ${
+          side === "left"
+            ? "bg-gradient-to-r from-[#F5F3EE] via-[#F5F3EE]/70 to-transparent"
+            : "bg-gradient-to-l from-[#F5F3EE] via-[#F5F3EE]/70 to-transparent"
+        }`}
+      />
+      <div className="pointer-events-none absolute inset-y-0 flex items-center opacity-0 transition-opacity duration-300 group-hover/rail:opacity-100 left-0 right-0 justify-center">
+        <span className="grid size-8 place-items-center rounded-full border border-black/15 bg-white shadow-[0_6px_18px_-10px_rgba(0,0,0,0.4)]">
+          {side === "left" ? (
+            <ChevronLeft className="size-4 text-black/70" />
+          ) : (
+            <ChevronRight className="size-4 text-black/70" />
+          )}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 function AdmissionsConnect() {
+
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedSessionId, setSelectedSessionId] = useState<string | undefined>(undefined);
   const railRef = useRef<HTMLDivElement>(null);
@@ -691,16 +748,33 @@ function AdmissionsConnect() {
         </div>
       </div>
 
-      {/* horizontal feed carousel */}
-      <div
-        ref={railRef}
-        data-lenis-prevent
-        className="flex snap-x snap-mandatory gap-6 overflow-x-auto overscroll-x-contain pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {sessions.map((s) => (
-          <SessionFeedCard key={s.id} session={s} onRegister={() => openFor(s.id)} />
-        ))}
+      {/* horizontal feed carousel — hover edges to glide, wheel to scroll */}
+      <div className="group/rail relative">
+        <div
+          ref={railRef}
+          data-lenis-prevent
+          onWheel={(e) => {
+            const el = railRef.current;
+            if (!el) return;
+            if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+            const max = el.scrollWidth - el.clientWidth;
+            if (max <= 0) return;
+            const next = el.scrollLeft + e.deltaY;
+            if ((e.deltaY < 0 && el.scrollLeft <= 0) || (e.deltaY > 0 && el.scrollLeft >= max - 1)) return;
+            e.preventDefault();
+            el.scrollLeft = next;
+          }}
+          className="flex snap-x snap-mandatory gap-6 overflow-x-auto overscroll-x-contain pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {sessions.map((s) => (
+            <SessionFeedCard key={s.id} session={s} onRegister={() => openFor(s.id)} />
+          ))}
+        </div>
+
+        <HoverScrollZone railRef={railRef} side="left" />
+        <HoverScrollZone railRef={railRef} side="right" />
       </div>
+
 
       <p className="mt-8 text-center text-[12px] leading-relaxed text-black/50">
         Can’t find a slot? Drop a note to{" "}
