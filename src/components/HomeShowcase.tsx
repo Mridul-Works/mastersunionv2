@@ -1028,16 +1028,23 @@ const SHARK_TANK_PITCHES: Array<{
 
 function SharkTankLogoBar() {
   return (
-    <div className="relative overflow-hidden rounded-none border border-white/10 bg-[#0E120F] text-white">
-      {/* cool editorial wash */}
+    <div
+      className="relative overflow-hidden rounded-none border border-white/10 text-white"
+      style={{
+        background:
+          "linear-gradient(120deg, #0A2A3D 0%, #0E4257 42%, #123B4E 68%, #0B2233 100%)",
+      }}
+    >
+      {/* Shark Tank set wash — teal depth, red + gold spotlights */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(120% 90% at 8% 0%, rgba(46,139,230,0.22) 0%, rgba(46,139,230,0) 55%), radial-gradient(90% 80% at 100% 100%, rgba(242,194,48,0.16) 0%, rgba(242,194,48,0) 60%)",
+            "radial-gradient(90% 80% at 6% 0%, rgba(31,151,183,0.35) 0%, rgba(31,151,183,0) 60%), radial-gradient(70% 70% at 30% 110%, rgba(196,30,50,0.28) 0%, rgba(196,30,50,0) 62%), radial-gradient(80% 80% at 100% 95%, rgba(245,206,75,0.22) 0%, rgba(245,206,75,0) 62%)",
         }}
       />
+
       <div className="relative flex flex-col gap-6 p-6 md:flex-row md:items-center md:gap-10 md:p-8">
 
         <div className="relative shrink-0 md:max-w-[300px]">
