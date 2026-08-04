@@ -1028,14 +1028,14 @@ const SHARK_TANK_PITCHES: Array<{
 
 function SharkTankLogoBar() {
   return (
-    <div className="relative overflow-hidden rounded-none border border-black/10 bg-[#F6F2E9] text-black">
-      {/* warm editorial wash */}
+    <div className="relative overflow-hidden rounded-none border border-white/10 bg-[#0E120F] text-white">
+      {/* cool editorial wash */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(120% 90% at 8% 0%, rgba(46,139,230,0.10) 0%, rgba(46,139,230,0) 55%), radial-gradient(90% 80% at 100% 100%, rgba(242,194,48,0.16) 0%, rgba(242,194,48,0) 60%)",
+            "radial-gradient(120% 90% at 8% 0%, rgba(46,139,230,0.22) 0%, rgba(46,139,230,0) 55%), radial-gradient(90% 80% at 100% 100%, rgba(242,194,48,0.16) 0%, rgba(242,194,48,0) 60%)",
         }}
       />
       <div className="relative flex flex-col gap-6 p-6 md:flex-row md:items-center md:gap-10 md:p-8">
@@ -1043,22 +1043,22 @@ function SharkTankLogoBar() {
         <div className="relative shrink-0 md:max-w-[300px]">
 
           <div className="relative">
-            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.32em] text-black/75">
+            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.32em] text-white/60">
               Featured on
             </p>
             <h4
               className="mt-2 text-[clamp(1.75rem,3.2vw,2.5rem)] font-bold uppercase leading-[0.98] tracking-[-0.01em]"
               style={{
                 fontFamily: "Arial, Helvetica, sans-serif",
-                textShadow: "0 1px 0 rgba(255,255,255,0.9)",
+                textShadow: "0 1px 0 rgba(0,0,0,0.6)",
               }}
             >
-              <span style={{ color: "#2E8BE6" }}>SHARK</span>{" "}
-              <span style={{ color: "#2E8BE6" }}>TANK</span>{" "}
-              <span style={{ color: "#F2C230" }}>INDIA.</span>
+              <span style={{ color: "#4FA3F0" }}>SHARK</span>{" "}
+              <span style={{ color: "#4FA3F0" }}>TANK</span>{" "}
+              <span style={{ color: "#F5CE4B" }}>INDIA.</span>
             </h4>
 
-            <p className="mt-2 text-[12.5px] font-medium leading-relaxed text-black/80">
+            <p className="mt-2 text-[12.5px] font-medium leading-relaxed text-white/70">
               Six student-founded ventures on India's biggest startup stage.
             </p>
           </div>
@@ -1080,11 +1080,12 @@ function SharkTankLogoBar() {
                     alt={p.company}
                     loading="lazy"
                     style={{ transform: isMeta ? "scale(0.82)" : undefined }}
-                    className="h-8 w-full object-contain opacity-80 transition hover:opacity-100 [filter:brightness(0)]"
+                    className="h-8 w-full object-contain opacity-70 transition hover:opacity-100 [filter:brightness(0)_invert(1)]"
                   />
                 ) : (
-                  <span className="text-[11px] font-semibold text-black/70">{p.company}</span>
+                  <span className="text-[11px] font-semibold text-white/70">{p.company}</span>
                 )}
+
 
               </div>
             );
