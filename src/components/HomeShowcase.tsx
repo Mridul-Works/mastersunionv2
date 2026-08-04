@@ -1203,17 +1203,17 @@ function WatchCTA({
       />
 
       <div className="relative flex flex-col items-start gap-7 p-6 md:flex-row md:items-center md:justify-between md:gap-12 md:p-8 lg:p-10">
-        <div className="max-w-[46ch]">
+        <div className="max-w-[42ch]">
           <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
             {eyebrow}
           </p>
           <h3
-            className="mt-3 text-2xl leading-[1.1] tracking-tight text-black md:text-3xl lg:text-[32px]"
+            className="mt-3 text-balance text-2xl leading-[1.12] tracking-tight text-black md:text-3xl lg:text-[32px]"
             style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
           >
             {title}
           </h3>
-          <p className="mt-3 text-[13.5px] leading-[1.7] text-black/60">{blurb}</p>
+          <p className="mt-3 max-w-[38ch] text-pretty text-[13.5px] leading-[1.7] text-black/60">{blurb}</p>
           <button
             type="button"
             onClick={onPlay}
@@ -1286,8 +1286,8 @@ function VenturesFilm() {
     <>
       <WatchCTA
         eyebrow="Film"
-        title="Entrepreneurship at Masters' Union"
-        blurb="Inside the studios, funding lines and mentor rooms where student ventures get built and shipped."
+        title="How students build real companies here"
+        blurb="A look inside the studios, capital and mentor rooms that take a student idea from first pitch to paying customers."
         action="Play film"
         onPlay={() => setOpen(true)}
       />
