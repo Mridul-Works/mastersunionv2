@@ -6,6 +6,8 @@ export type SectionNavItem = {
   /** Section id on the current page (without the `#`). Use "top" to scroll to top. */
   id: string;
   label: string;
+  /** When set, the item navigates to this route instead of scrolling to a section. */
+  href?: string;
 };
 
 function scrollToId(id: string) {
