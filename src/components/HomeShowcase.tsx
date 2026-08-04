@@ -1038,16 +1038,6 @@ function SharkTankLogoBar() {
             "radial-gradient(120% 90% at 8% 0%, rgba(46,139,230,0.10) 0%, rgba(46,139,230,0) 55%), radial-gradient(90% 80% at 100% 100%, rgba(242,194,48,0.16) 0%, rgba(242,194,48,0) 60%)",
         }}
       />
-      {/* hairline grid */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.35]"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(0,0,0,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.06) 1px, transparent 1px)",
-          backgroundSize: "56px 56px",
-        }}
-      />
       <div className="relative flex flex-col gap-6 p-6 md:flex-row md:items-center md:gap-10 md:p-8">
 
         <div className="relative shrink-0 md:max-w-[300px]">
