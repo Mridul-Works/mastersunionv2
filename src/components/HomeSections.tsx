@@ -792,7 +792,7 @@ function AdmissionsConnect() {
         <div
           ref={railRef}
           data-lenis-prevent
-          onWheel={edgeScroll.onWheel}
+          data-lenis-prevent
           className="flex gap-6 overflow-x-auto overscroll-x-contain pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {sessions.map((s) => (
