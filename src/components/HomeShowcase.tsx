@@ -1183,61 +1183,64 @@ function WatchCTA({
   onPlay: () => void;
 }) {
   return (
-    <div className="group/cta relative mt-8 overflow-hidden pastel-gradient ring-1 ring-black/10 shadow-[0_18px_50px_-30px_rgba(0,0,0,0.45)]">
-      {/* soft glow */}
+    <div className="group/cta relative mt-8 grid grid-cols-1 overflow-hidden border border-black/10 bg-[#F5F3EE] md:grid-cols-12">
+      {/* content column */}
+      <div className="relative md:col-span-8 border-b border-black/10 p-7 md:border-b-0 md:border-r md:p-12 lg:p-14">
+        <span className="mb-5 block h-[2px] w-14" style={{ background: "linear-gradient(90deg, #39B5D7, #F7D544, #E38330)" }} />
+        <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.28em] text-black/50">
+          {eyebrow}
+        </p>
+        <h3
+          className="mt-4 max-w-[26ch] text-balance text-[1.7rem] font-normal leading-[1.1] tracking-tight text-black md:text-[2.15rem] lg:text-[2.5rem]"
+          style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+        >
+          {title}
+        </h3>
+        <p className="mt-4 max-w-[46ch] text-pretty text-[13.5px] font-light leading-[1.75] text-black/60">
+          {blurb}
+        </p>
+        <button
+          type="button"
+          onClick={onPlay}
+          className="mt-7 inline-flex cursor-pointer items-center gap-2 rounded-full bg-black px-7 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition hover:gap-3 hover:bg-black/85"
+        >
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+          {action}
+        </button>
+      </div>
 
-      <div className="pointer-events-none absolute -right-24 -top-24 size-[280px] rounded-full bg-white/50 blur-3xl" />
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-[3px]"
-        style={{ background: "linear-gradient(90deg, #39B5D7, #F7D544, #E38330)" }}
-      />
-
-      <div className="relative flex flex-col items-start gap-7 p-6 md:flex-row md:items-center md:justify-between md:gap-12 md:p-8 lg:p-10">
-        <div className="max-w-[42ch]">
-          <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
-            {eyebrow}
-          </p>
-          <h3
-            className="mt-3 text-balance text-2xl leading-[1.12] tracking-tight text-black md:text-3xl lg:text-[32px]"
-            style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-          >
-            {title}
-          </h3>
-          <p className="mt-3 max-w-[38ch] text-pretty text-[13.5px] leading-[1.7] text-black/60">{blurb}</p>
-          <button
-            type="button"
-            onClick={onPlay}
-            className="mt-5 inline-flex cursor-pointer items-center gap-2 rounded-full bg-black px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition hover:bg-black/85 hover:gap-3"
-          >
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-            {action}
-          </button>
-        </div>
-
+      {/* play column */}
+      <div className="relative flex min-h-[220px] items-center justify-center bg-white/40 p-10 md:col-span-4">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage: "radial-gradient(#000 0.5px, transparent 0.5px)",
+            backgroundSize: "20px 20px",
+          }}
+        />
         <button
           type="button"
           onClick={onPlay}
           aria-label={action}
-          className="relative grid size-[68px] shrink-0 cursor-pointer place-items-center rounded-full border border-white/60 shadow-[0_10px_30px_-12px_rgba(0,0,0,0.35)] transition-transform duration-500 hover:scale-[1.06] md:size-[84px]"
+          className="relative grid size-[86px] shrink-0 cursor-pointer place-items-center rounded-full shadow-[0_18px_40px_-18px_rgba(0,0,0,0.45)] transition-transform duration-500 hover:scale-[1.06] md:size-[96px]"
           style={{
             background: "linear-gradient(135deg, #39B5D7, #F7D544, #E38330)",
           }}
         >
-          <span className="pointer-events-none absolute -inset-2 rounded-full border border-black/10" />
-          <svg
-            viewBox="0 0 24 24"
-            fill="#0E0E0E"
-            className="ml-[3px] size-[22px] md:size-[26px]"
-          >
+          <span className="pointer-events-none absolute -inset-3 rounded-full border border-black/10" />
+          <svg viewBox="0 0 24 24" fill="#0E0E0E" className="ml-[3px] size-[26px] md:size-[30px]">
             <path d="M8.5 5.6a1 1 0 0 1 1.52-.85l7.2 4.4a1.7 1.7 0 0 1 0 2.9l-7.2 4.4a1 1 0 0 1-1.52-.85V5.6Z" />
           </svg>
         </button>
+        <div className="pointer-events-none absolute bottom-4 right-4 size-8 border-b border-r border-black/10" />
       </div>
     </div>
   );
 }
+
 
 
 
