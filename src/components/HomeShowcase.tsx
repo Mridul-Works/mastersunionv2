@@ -1286,8 +1286,8 @@ function VenturesFilm() {
     <>
       <WatchCTA
         eyebrow="Film"
-        title="Entrepreneurship at Masters' Union"
-        blurb="Inside the studios, funding lines and mentor rooms where student ventures get built and shipped."
+        title="How students build real companies here"
+        blurb="A look inside the studios, capital and mentor rooms that take a student idea from first pitch to paying customers."
         action="Play film"
         onPlay={() => setOpen(true)}
       />
