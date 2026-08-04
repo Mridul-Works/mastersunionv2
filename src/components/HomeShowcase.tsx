@@ -1180,14 +1180,12 @@ function WatchCTA({
   blurb,
   action,
   onPlay,
-  href,
 }: {
   eyebrow: string;
   title: string;
   blurb: string;
   action: string;
   onPlay: () => void;
-  href?: string;
 }) {
   return (
     <div className="group/cta relative mt-8 overflow-hidden rounded-none pastel-gradient">
@@ -1254,8 +1252,7 @@ function CareerPodcast() {
         eyebrow="Podcast"
         title="How Masters' Union prepares students for top 1% placements"
         blurb="Recruiter access, live industry projects and year-round career coaching — the placement engine, explained in full."
-        action="Play podcast"
-        href={`https://www.youtube.com/watch?v=${id}`}
+        action="Watch podcast"
         onPlay={() => setOpen(true)}
       />
       {open && (
