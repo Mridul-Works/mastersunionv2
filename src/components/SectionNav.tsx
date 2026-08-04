@@ -159,14 +159,15 @@ export function SectionNav({
           {items.map((item) => (
             <a
               key={item.id}
-              href={`#${item.id}`}
+              href={item.href ?? `#${item.id}`}
               onClick={(e) => {
+                if (item.href) return;
                 e.preventDefault();
                 scrollToId(item.id);
               }}
               className={
-                "rounded-full px-3 py-1.5 text-[12.5px] font-medium transition-colors " +
-                (active === item.id
+                "whitespace-nowrap rounded-full px-2.5 py-1.5 text-[12px] font-medium transition-colors " +
+                (!item.href && active === item.id
                   ? "bg-foreground/[0.07] text-foreground"
                   : "text-foreground/70 hover:bg-foreground/[0.06] hover:text-foreground")
               }
@@ -174,6 +175,7 @@ export function SectionNav({
               {item.label}
             </a>
           ))}
+
           {extraLinks.map((l) => (
             <a
               key={l.href}
