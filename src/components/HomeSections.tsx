@@ -556,7 +556,7 @@ function SessionFeedCard({
       <p className="mt-2 text-[12px] leading-[1.55] text-black/50">{s.description}</p>
 
       {/* poster placeholder */}
-      <div className="relative mt-4 aspect-square w-full overflow-hidden bg-black">
+      <div className="relative mt-4 aspect-[4/5] w-full overflow-hidden bg-black">
         <div
           className="absolute inset-0 bg-[#1a1a1a]"
           style={{
