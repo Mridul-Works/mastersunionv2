@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StartupsRouteImport } from './routes/startups'
 import { Route as PlacementsRouteImport } from './routes/placements'
+import { Route as PathwaysRouteImport } from './routes/pathways'
 import { Route as MuVenturesRouteImport } from './routes/mu-ventures'
 import { Route as MentorsRouteImport } from './routes/mentors'
 import { Route as LifeAtMuRouteImport } from './routes/life-at-mu'
@@ -53,6 +54,11 @@ const StartupsRoute = StartupsRouteImport.update({
 const PlacementsRoute = PlacementsRouteImport.update({
   id: '/placements',
   path: '/placements',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PathwaysRoute = PathwaysRouteImport.update({
+  id: '/pathways',
+  path: '/pathways',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MuVenturesRoute = MuVenturesRouteImport.update({
@@ -256,6 +262,7 @@ export interface FileRoutesByFullPath {
   '/life-at-mu': typeof LifeAtMuRoute
   '/mentors': typeof MentorsRoute
   '/mu-ventures': typeof MuVenturesRoute
+  '/pathways': typeof PathwaysRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
   '/programmes/executive/ai-and-gcc-transformation': typeof ProgrammesExecutiveAiAndGccTransformationRoute
@@ -293,6 +300,7 @@ export interface FileRoutesByTo {
   '/life-at-mu': typeof LifeAtMuRoute
   '/mentors': typeof MentorsRoute
   '/mu-ventures': typeof MuVenturesRoute
+  '/pathways': typeof PathwaysRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
   '/programmes/executive/ai-and-gcc-transformation': typeof ProgrammesExecutiveAiAndGccTransformationRoute
@@ -331,6 +339,7 @@ export interface FileRoutesById {
   '/life-at-mu': typeof LifeAtMuRoute
   '/mentors': typeof MentorsRoute
   '/mu-ventures': typeof MuVenturesRoute
+  '/pathways': typeof PathwaysRoute
   '/placements': typeof PlacementsRoute
   '/startups': typeof StartupsRoute
   '/programmes/executive/ai-and-gcc-transformation': typeof ProgrammesExecutiveAiAndGccTransformationRoute
@@ -370,6 +379,7 @@ export interface FileRouteTypes {
     | '/life-at-mu'
     | '/mentors'
     | '/mu-ventures'
+    | '/pathways'
     | '/placements'
     | '/startups'
     | '/programmes/executive/ai-and-gcc-transformation'
@@ -407,6 +417,7 @@ export interface FileRouteTypes {
     | '/life-at-mu'
     | '/mentors'
     | '/mu-ventures'
+    | '/pathways'
     | '/placements'
     | '/startups'
     | '/programmes/executive/ai-and-gcc-transformation'
@@ -444,6 +455,7 @@ export interface FileRouteTypes {
     | '/life-at-mu'
     | '/mentors'
     | '/mu-ventures'
+    | '/pathways'
     | '/placements'
     | '/startups'
     | '/programmes/executive/ai-and-gcc-transformation'
@@ -482,6 +494,7 @@ export interface RootRouteChildren {
   LifeAtMuRoute: typeof LifeAtMuRoute
   MentorsRoute: typeof MentorsRoute
   MuVenturesRoute: typeof MuVenturesRoute
+  PathwaysRoute: typeof PathwaysRoute
   PlacementsRoute: typeof PlacementsRoute
   StartupsRoute: typeof StartupsRoute
   ProgrammesExecutiveAiAndGccTransformationRoute: typeof ProgrammesExecutiveAiAndGccTransformationRoute
@@ -519,6 +532,13 @@ declare module '@tanstack/react-router' {
       path: '/placements'
       fullPath: '/placements'
       preLoaderRoute: typeof PlacementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pathways': {
+      id: '/pathways'
+      path: '/pathways'
+      fullPath: '/pathways'
+      preLoaderRoute: typeof PathwaysRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mu-ventures': {
@@ -770,6 +790,7 @@ const rootRouteChildren: RootRouteChildren = {
   LifeAtMuRoute: LifeAtMuRoute,
   MentorsRoute: MentorsRoute,
   MuVenturesRoute: MuVenturesRoute,
+  PathwaysRoute: PathwaysRoute,
   PlacementsRoute: PlacementsRoute,
   StartupsRoute: StartupsRoute,
   ProgrammesExecutiveAiAndGccTransformationRoute:
