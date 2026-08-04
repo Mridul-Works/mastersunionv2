@@ -96,10 +96,10 @@ function Index() {
       heroLockedRef.current = true;
       lockYRef.current = getLockY();
       pauseIntroVideo();
-      setNavVisible(true);
       setNavHidden(false);
       setShowRewatch(true);
     };
+
 
     // IntersectionObserver — fires reliably even if scroll/wheel events are
     // captured by the playing <video controls>. As soon as the hero curtain
@@ -189,6 +189,32 @@ function Index() {
       }
     };
 
+    // Nav only appears once the reader reaches the Dispatch · Newsroom section.
+    let newsIo: IntersectionObserver | null = null;
+    const watchNews = () => {
+      const news = document.getElementById("news");
+      if (!news) return false;
+      newsIo = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            // Visible from the moment the newsroom enters view, and stays on
+            // for everything below it.
+            setNavVisible(e.isIntersecting || e.boundingClientRect.top < 0);
+          }
+
+        },
+        { rootMargin: "0px 0px -25% 0px", threshold: 0 },
+      );
+      newsIo.observe(news);
+      return true;
+    };
+    let newsTimer: ReturnType<typeof setInterval> | null = null;
+    if (!watchNews()) {
+      newsTimer = setInterval(() => {
+        if (watchNews() && newsTimer) clearInterval(newsTimer);
+      }, 300);
+    }
+
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("touchstart", onTouchStart, { passive: true });
@@ -198,6 +224,8 @@ function Index() {
 
     return () => {
       io.disconnect();
+      newsIo?.disconnect();
+      if (newsTimer) clearInterval(newsTimer);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("touchstart", onTouchStart);
@@ -207,6 +235,7 @@ function Index() {
       window.removeEventListener("resize", onResize);
     };
   }, []);
+
 
   const rewatchVideo = () => {
     unlockingRef.current = true;

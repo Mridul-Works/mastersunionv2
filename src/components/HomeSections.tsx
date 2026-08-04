@@ -749,7 +749,7 @@ function Programs() {
               </span>
             </div>
 
-            <ul className="flex-1 min-h-0 space-y-0 overflow-y-auto pr-4 -mr-2 [scrollbar-gutter:stable] [scrollbar-width:thin] [scrollbar-color:transparent_transparent] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-transparent [&::-webkit-scrollbar-track]:bg-transparent hover:[scrollbar-color:rgba(0,0,0,0.25)_transparent] hover:[&::-webkit-scrollbar-thumb]:bg-black/25">
+            <ul data-lenis-prevent className="flex-1 min-h-0 space-y-0 overflow-y-auto overscroll-contain pr-4 -mr-2 [scrollbar-gutter:stable] [scrollbar-width:thin] [scrollbar-color:rgba(0,0,0,0.18)_transparent] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black/20 [&::-webkit-scrollbar-track]:bg-transparent hover:[scrollbar-color:rgba(0,0,0,0.35)_transparent] hover:[&::-webkit-scrollbar-thumb]:bg-black/35">
               {active.programmes.map((pg, i) => {
                 const detailHref = pg.href ?? active.viewAllHref;
                 const isInternal = detailHref.startsWith("/");

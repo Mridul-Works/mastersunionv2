@@ -898,7 +898,7 @@ function FounderFilmstrip() {
   };
 
   return (
-    <div className="pt-1 pb-2">
+    <div className="pt-9 pb-2 md:pt-11">
       <div className="mb-3 flex items-end justify-between gap-4">
         <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-black/50">
           Founders in the making
@@ -1183,26 +1183,26 @@ function WatchCTA({
   onPlay: () => void;
 }) {
   return (
-    <div className="group/cta relative mt-8 grid grid-cols-1 overflow-hidden border border-black/10 bg-[#F5F3EE] md:grid-cols-12">
+    <div className="group/cta relative mt-8 grid grid-cols-1 items-stretch overflow-hidden border border-black/10 bg-[#F5F3EE] md:grid-cols-12">
       {/* content column */}
-      <div className="relative md:col-span-8 border-b border-black/10 p-6 md:border-b-0 md:border-r md:p-8 lg:p-10">
+      <div className="relative flex flex-col justify-center md:col-span-8 border-b border-black/10 px-6 py-7 md:border-b-0 md:border-r md:px-8 md:py-8">
         <span className="mb-3.5 block h-[2px] w-14" style={{ background: "linear-gradient(90deg, #39B5D7, #F7D544, #E38330)" }} />
         <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.28em] text-black/50">
           {eyebrow}
         </p>
         <h3
-          className="mt-3 max-w-[30ch] text-balance text-[1.45rem] font-normal leading-[1.12] tracking-tight text-black md:text-[1.75rem] lg:text-[1.95rem]"
+          className="mt-2.5 max-w-[30ch] text-balance text-[1.35rem] font-normal leading-[1.14] tracking-tight text-black md:text-[1.6rem] lg:text-[1.75rem]"
           style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
         >
           {title}
         </h3>
-        <p className="mt-3 max-w-[52ch] text-pretty text-[13px] font-light leading-[1.65] text-black/60">
+        <p className="mt-2.5 max-w-[52ch] text-pretty text-[13px] font-light leading-[1.6] text-black/60">
           {blurb}
         </p>
         <button
           type="button"
           onClick={onPlay}
-          className="mt-5 inline-flex cursor-pointer items-center gap-2 rounded-full bg-black px-6 py-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition hover:gap-3 hover:bg-black/85"
+          className="mt-5 inline-flex w-fit cursor-pointer items-center gap-2 rounded-full bg-black px-6 py-2.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white transition hover:gap-3 hover:bg-black/85"
         >
           <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
             <path d="M8 5v14l11-7z" />
@@ -1212,7 +1212,8 @@ function WatchCTA({
       </div>
 
       {/* play column */}
-      <div className="relative flex min-h-[150px] items-center justify-center bg-white/40 p-6 md:col-span-4">
+      <div className="relative flex min-h-[130px] items-center justify-center bg-white/40 px-6 py-7 md:col-span-4 md:py-0">
+
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 opacity-[0.05]"
@@ -1338,7 +1339,8 @@ export default function HomeShowcase() {
         <FounderFilmstrip />
 
 
-        <div className="mt-5">
+        <div className="mt-8">
+
           <UniformLogoList groups={VENTURE_GROUPS} />
         </div>
         <div className="mt-8">
