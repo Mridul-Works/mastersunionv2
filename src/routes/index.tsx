@@ -30,12 +30,18 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const NAV: { label: string; id: string }[] = [
-  { label: "Programs", id: "programs" },
-  { label: "Pedagogy", id: "pedagogy" },
-  { label: "Founders", id: "founders" },
+const NAV: { label: string; id: string; href?: string }[] = [
+  { label: "About", id: "about", href: "/about" },
+  { label: "Programmes", id: "programs" },
+  { label: "Faculty", id: "faculty" },
+  { label: "Careers", id: "career" },
+  { label: "Ventures", id: "entrepreneurship" },
+  { label: "Partners", id: "partnerships" },
+  { label: "Campus Radio", id: "pedagogy" },
+  { label: "Student Life", id: "student-life" },
   { label: "News", id: "news" },
 ];
+
 
 const scrollToId = (id: string) => {
   const el = document.getElementById(id);
