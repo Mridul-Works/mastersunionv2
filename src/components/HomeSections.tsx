@@ -603,10 +603,8 @@ function SessionFeedCard({
       </div>
 
       {/* footer meta row */}
-      <div className="mt-3 flex items-center justify-between border-t border-black/10 pt-2.5">
-        <span className="font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-black/45">
-          {s.spotsLeft} spots left
-        </span>
+      <div className="mt-3 flex items-center justify-end border-t border-black/10 pt-2.5">
+
         <button
           type="button"
           onClick={onRegister}
