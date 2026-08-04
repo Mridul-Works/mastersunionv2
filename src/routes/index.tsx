@@ -286,10 +286,10 @@ function Index() {
         }`}
       >
         <SectionNav
-          items={NAV.map((n) => ({ id: n.id, label: n.label }))}
-          extraLinks={[{ href: "/about", label: "About" }]}
+          items={NAV.map((n) => ({ id: n.id, label: n.label, href: n.href }))}
           applyHref="#programs"
         />
+
       </div>
 
 
