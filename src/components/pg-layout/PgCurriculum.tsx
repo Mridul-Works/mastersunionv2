@@ -1,193 +1,173 @@
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { Reveal } from "@/components/pg-layout/Reveal";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
+import { pgpCurriculum as curriculum } from "@/lib/pgp-tbm-content";
 
-/**
- * Curriculum content sourced from the PGP-TBM page (IN_CLASS, TERM_MATRIX,
- * TERM_META, IN_CLASS_TRACKS in src/routes/programmes.pg.pgp-tbm.tsx).
- * Term tabs map to TERM_MATRIX rows; each shows its InClass focus, the
- * live OutClass tracks running that term, and the InClass pillar mix.
- */
-const IN_CLASS_PILLARS = [
-  { name: "Finance & Fintech", eg: "Read financial statements · Value a business · Raise capital" },
-  { name: "Sales & Marketing", eg: "GTM funnels · CRO · Brand psychology · D2C" },
-  { name: "Management & Strategy", eg: "Analyse markets · KPIs · Game theory" },
-  { name: "Product & Tech", eg: "Code · No-code apps · UI/UX · Dashboards" },
-  { name: "AI & ML", eg: "Prompt engineering · LLMs · AI-powered products" },
-  { name: "Communication", eg: "Persuasive writing · Speaking · Storytelling" },
-  { name: "Liberal Arts", eg: "Geopolitics · Economies · Philosophy" },
-];
-
-const IN_CLASS_STATS = [
-  { k: "150+", v: "Courses across 7 modules" },
-  { k: "40%", v: "Faculty are sitting operators" },
-  { k: "0", v: "Rote exams" },
-];
-
-type EngineCell = { label: string; kind: "in" | "d2c" | "creator" | "imm" };
-type TermRow = { term: string; inClass: string; outClass: EngineCell[] };
-
-const TERM_MATRIX: TermRow[] = [
-  { term: "T1", inClass: "Fundamentals · Finance · Sales", outClass: [{ label: "D2C · Dropshipping launch", kind: "d2c" }] },
-  { term: "T2", inClass: "GTM · Product mindset · LLMs", outClass: [{ label: "D2C · Marketing hackathon", kind: "d2c" }, { label: "Creator · Kickoff", kind: "creator" }] },
-  { term: "T3", inClass: "Storytelling · Banking · No-code", outClass: [{ label: "D2C · In-the-wild consulting", kind: "d2c" }, { label: "Creator · Brand", kind: "creator" }] },
-  { term: "T4", inClass: "Valuation · UI/UX · Crisis mgmt", outClass: [{ label: "D2C · MVP debut", kind: "d2c" }, { label: "Creator · Community", kind: "creator" }, { label: "Global Immersion", kind: "imm" }] },
-  { term: "T5", inClass: "Models · Analytics · B2B", outClass: [{ label: "D2C · GTM challenge", kind: "d2c" }, { label: "Creator · Distribution", kind: "creator" }, { label: "Bharat Immersion", kind: "imm" }] },
-  { term: "T6", inClass: "Pricing · PE/VC · Copy", outClass: [{ label: "D2C · Product-Market Fit", kind: "d2c" }, { label: "Creator · Monetise", kind: "creator" }] },
-  { term: "T7", inClass: "IPOs · IP law · ML", outClass: [{ label: "Raise a Seed Fund", kind: "d2c" }] },
-  { term: "T8", inClass: "DeFi · Risk · Compliance", outClass: [{ label: "One-Day Profit challenge", kind: "d2c" }] },
-];
-
-const TERM_META = [
-  { months: "Months 1–2", window: "Aug – Sep '26" },
-  { months: "Months 3–4", window: "Oct – Nov '26" },
-  { months: "Months 5–6", window: "Dec '26 – Jan '27" },
-  { months: "Months 7–8", window: "Feb – Mar '27" },
-  { months: "Months 9–10", window: "Apr – May '27" },
-  { months: "Months 11–12", window: "Jun – Jul '27" },
-  { months: "Months 13–14", window: "Aug – Sep '27" },
-  { months: "Months 15–16", window: "Oct – Nov '27" },
-];
-
-const IN_CLASS_TRACKS = [
-  "Finance · Sales",
-  "Strategy · Product",
-  "Marketing · Comms",
-  "AI/ML · Product",
-  "Finance · Strategy",
-  "Sales · AI/ML",
-  "Product · Liberal Arts",
-  "Finance · Comms",
-];
-
-const ENGINE_TONE: Record<EngineCell["kind"], string> = {
-  in: "bg-secondary/60 text-foreground",
-  d2c: "bg-teal/10 text-teal border border-teal/30",
-  creator: "bg-bottle/10 text-bottle border border-bottle/30",
-  imm: "bg-foreground/10 text-foreground border border-foreground/20",
-};
+const years = curriculum.years;
+const VISIBLE_TERMS = 4;
 
 export function PgCurriculum() {
-  const [active, setActive] = useState(0);
-  const row = TERM_MATRIX[active];
-  const meta = TERM_META[active];
-  const subjects = row.inClass.split("·").map((s) => s.trim());
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [expanded, setExpanded] = useState(false);
+  const year = years[activeIndex] ?? years[0];
+
+  const handleToggle = () => {
+    setExpanded((prev) => {
+      const next = !prev;
+      if (!next && activeIndex >= VISIBLE_TERMS) {
+        setActiveIndex(VISIBLE_TERMS - 1);
+      }
+      return next;
+    });
+  };
 
   return (
-    <section id="curriculum" className="section-edge relative overflow-hidden py-20 sm:py-28">
-      <div className="page-grid absolute inset-0 -z-10 opacity-40" />
-      <div className="mx-auto max-w-6xl px-6">
-        <Reveal>
-          <span className="eyebrow text-teal">Curriculum</span>
-          <h2 className="mt-4 max-w-2xl text-[clamp(2rem,4vw,3rem)] font-medium leading-[1.05] tracking-[-0.02em] text-foreground">
-            Seven pillars, <span className="text-gradient-brand">eight terms.</span>
+    <section id="curriculum" className="relative scroll-mt-24 section-edge py-9 sm:py-11 lg:py-14">
+      <div className="relative mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-10">
+        <Reveal className="max-w-4xl">
+          <span className="eyebrow text-teal">{curriculum.eyebrow}</span>
+          <div aria-hidden className="rule-gradient mt-3 w-32" />
+          <h2 className="mt-3 font-display text-[clamp(1.45rem,3vw,2.2rem)] font-semibold leading-[1.04]">
+            {curriculum.title[0]}
+            <span className="text-gradient-brand"> {curriculum.title[1]}</span>
           </h2>
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground">
-            InClass builds fundamentals across seven pillars while OutClass ventures and Immersions run alongside —
-            term by term, for all 16 months.
+          <p className="mt-3 max-w-2xl text-[13px] leading-relaxed text-muted-foreground">
+            {curriculum.body}
           </p>
         </Reveal>
 
-        {/* Seven InClass pillars */}
-        <Reveal delay={80}>
-          <div className="mt-12 grid gap-px overflow-hidden rounded-[4px] border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
-            {IN_CLASS_PILLARS.map((p) => (
-              <div key={p.name} className="bg-card p-5">
-                <div className="text-sm font-medium leading-tight text-foreground">{p.name}</div>
-                <div className="mt-2 text-xs leading-snug text-muted-foreground">{p.eg}</div>
-              </div>
-            ))}
-          </div>
-        </Reveal>
+        <Reveal className="mt-7 sm:mt-9">
+          <div className="grid gap-4 lg:grid-cols-[minmax(0,230px)_minmax(0,1fr)] lg:gap-6">
+            {/* Left vertical term menu */}
+            <nav className="flex flex-col gap-1.5" aria-label="Curriculum terms">
+              {years.map((y, i) => {
+                if (!expanded && i >= VISIBLE_TERMS) return null;
+                const active = i === activeIndex;
+                return (
+                  <button
+                    key={y.id}
+                    type="button"
+                    onClick={() => setActiveIndex(i)}
+                    className={cn(
+                      "group relative flex items-start gap-2.5 rounded-lg border p-2.5 text-left transition-all sm:p-3",
+                      active
+                        ? "border-primary bg-primary text-primary-foreground"
+                        : "border-border bg-card/60 hover:border-primary/30 hover:bg-card",
+                    )}
+                  >
+                    <span
+                      className={cn(
+                        "font-display text-[1.35rem] font-semibold leading-none transition-colors sm:text-[1.5rem]",
+                        active
+                          ? "text-primary-foreground/90"
+                          : "text-foreground/20 group-hover:text-foreground/40",
+                      )}
+                    >
+                      {y.label}
+                    </span>
+                    <div className="min-w-0 pt-0.5">
+                      <p
+                        className={cn(
+                          "font-display text-[13px] font-semibold leading-tight sm:text-[13.5px]",
+                          active ? "text-primary-foreground" : "text-foreground",
+                        )}
+                      >
+                        {y.theme}
+                      </p>
+                      <p
+                        className={cn(
+                          "mt-0.5 font-tech text-[9px] uppercase tracking-[0.14em]",
+                          active ? "text-primary-foreground/70" : "text-muted-foreground",
+                        )}
+                      >
+                        {y.subjects.length} modules
+                      </p>
+                    </div>
+                    {active && (
+                      <span className="absolute right-3 top-1/2 hidden h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-accent lg:block" />
+                    )}
+                  </button>
+                );
+              })}
 
-        <Reveal delay={120}>
-          <div className="mt-4 grid gap-3 sm:grid-cols-3">
-            {IN_CLASS_STATS.map((s) => (
-              <div key={s.v} className="relative overflow-hidden rounded-[4px] border border-border bg-secondary/30 p-5">
-                <div className="rule-gradient absolute inset-x-0 top-0" />
-                <div className="text-3xl font-medium leading-none tracking-[-0.01em] text-foreground">{s.k}</div>
-                <div className="mt-1.5 text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground">
-                  {s.v}
-                </div>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-
-        {/* Term-by-term tabs */}
-        <Reveal delay={160}>
-          <div className="mt-16">
-            <div className="font-tech text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Term-by-term
-            </div>
-
-            <div className="no-scrollbar mt-4 flex gap-2 overflow-x-auto pb-1">
-              {TERM_MATRIX.map((t, i) => (
-                <button
-                  key={t.term}
-                  type="button"
-                  onClick={() => setActive(i)}
+              <button
+                type="button"
+                onClick={handleToggle}
+                className="mt-1 flex items-center justify-center gap-1.5 rounded-lg border border-dashed border-border bg-card/40 py-2.5 text-[12px] font-medium text-muted-foreground transition-colors hover:bg-card hover:text-foreground"
+              >
+                <span>
+                  {expanded ? "Show fewer terms" : `Show terms ${VISIBLE_TERMS + 1}–${years.length}`}
+                </span>
+                <ChevronDown
                   className={cn(
-                    "shrink-0 rounded-full border px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] transition",
-                    i === active
-                      ? "border-foreground bg-foreground text-background"
-                      : "border-border bg-card text-muted-foreground hover:border-foreground/40 hover:text-foreground",
+                    "h-3.5 w-3.5 transition-transform duration-300",
+                    expanded && "rotate-180",
                   )}
-                >
-                  {t.term}
-                </button>
-              ))}
-            </div>
+                />
+              </button>
+            </nav>
 
-            <div className="card-elevated relative mt-6 overflow-hidden border border-border bg-card p-6 sm:p-8">
-              <div className="rule-gradient absolute inset-x-0 top-0" />
-              <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h3 className="text-lg font-medium tracking-[-0.01em] text-foreground">{row.term} · InClass focus</h3>
-                <span className="font-tech text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                  {meta.months} · {meta.window}
+            {/* Right content panel */}
+            <div className="rounded-2xl border border-border bg-card/70 p-4 backdrop-blur-sm sm:p-5 lg:p-6">
+              <div className="flex items-start justify-between gap-4 border-b border-border/60 pb-3.5">
+                <div>
+                  <span className="font-tech text-[11px] uppercase tracking-[0.24em] text-bottle">
+                    {year.id} · {year.window}
+                  </span>
+                  <h3 className="mt-1.5 font-display text-[clamp(1.1rem,1.9vw,1.4rem)] font-semibold leading-tight">
+                    {year.theme}
+                  </h3>
+                </div>
+                <span
+                  aria-hidden
+                  className="font-display text-[2.25rem] font-semibold leading-none text-foreground/[0.06] sm:text-[2.75rem]"
+                >
+                  {year.label}
                 </span>
               </div>
 
-              <div className="mt-4 flex flex-wrap gap-2">
-                {subjects.map((s) => (
-                  <span
-                    key={s}
-                    className="rounded-full border border-border bg-secondary/40 px-3 py-1 text-xs font-medium text-foreground"
+              <Accordion type="multiple" className="mt-1 flex flex-col">
+                {year.subjects.map((subject) => (
+                  <AccordionItem
+                    key={subject.title}
+                    value={`${year.id}-${subject.title}`}
+                    className="border-b border-border/60"
                   >
-                    {s}
-                  </span>
+                    <AccordionTrigger className="py-2.5 text-left hover:no-underline">
+                      <span className="flex min-w-0 flex-col gap-1 pr-3">
+                        <span className="text-[13px] font-medium leading-snug text-foreground">
+                          {subject.title}
+                        </span>
+                        <span className="text-[12.5px] leading-relaxed text-muted-foreground">
+                          {subject.question}
+                        </span>
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <ul className="grid gap-x-8 gap-y-1.5 pb-3 pl-0 sm:grid-cols-2">
+                        {subject.lessons.map((lesson, i) => (
+                          <li
+                            key={lesson}
+                            className="flex items-baseline gap-3 text-[12.5px] leading-relaxed text-muted-foreground"
+                          >
+                            <span className="font-tech text-[10px] tracking-[0.2em] text-bottle">
+                              {String(i + 1).padStart(2, "0")}
+                            </span>
+                            <span>{lesson}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </AccordionContent>
+                  </AccordionItem>
                 ))}
-              </div>
-
-              <div className="mt-6">
-                <div className="font-tech text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                  OutClass running this term
-                </div>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {row.outClass.map((c) => (
-                    <span
-                      key={c.label}
-                      className={cn("rounded-full px-3 py-1 text-xs font-medium", ENGINE_TONE[c.kind])}
-                    >
-                      {c.label}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-6 flex flex-wrap gap-1.5 border-t border-border pt-5">
-                {IN_CLASS_TRACKS.map((track, i) => (
-                  <span
-                    key={`${track}-${i}`}
-                    className={cn(
-                      "rounded-[3px] px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.08em] transition",
-                      i === active ? "bg-foreground text-background" : "bg-secondary/40 text-muted-foreground",
-                    )}
-                  >
-                    T{i + 1} · {track}
-                  </span>
-                ))}
-              </div>
+              </Accordion>
             </div>
           </div>
         </Reveal>
@@ -195,5 +175,3 @@ export function PgCurriculum() {
     </section>
   );
 }
-
-export default PgCurriculum;

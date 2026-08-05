@@ -1,132 +1,116 @@
 import { ArrowUpRight, Star } from "lucide-react";
-import { Reveal } from "@/components/pg-layout/Reveal";
-import { Cta } from "@/components/pg-layout/Cta";
+import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { pgpHero as hero } from "@/lib/pgp-tbm-content";
 
 /**
- * Hero content sourced from the PGP-TBM page's hero section
- * (src/routes/programmes.pg.pgp-tbm.tsx, function PgpTbm, first <section>).
+ * Cinematic full-bleed hero: one dark image canvas with the headline, body and
+ * CTAs anchored to the bottom-left and the programme snapshot band beneath.
  */
-const BADGES = [
-  { label: "Round 4 admissions open", dot: true },
-  { label: "Accredited by EFMD & AACSB", icon: true },
-];
-
-const PROGRAMME_LABEL = "PGP · Technology & Business Management";
-
-const SNAPSHOT = [
-  { k: "Duration", v: "16 months" },
-  { k: "Format", v: "Full-time · DLF Cyber Park, Gurugram" },
-  { k: "Intake", v: "Round 4 admissions open" },
-  { k: "Accreditation", v: "EFMD & AACSB" },
-];
-
-const STATS = [
-  { k: "16", v: "Months" },
-  { k: "₹34.6L", v: "Median CTC" },
-  { k: "200+", v: "Startups founded" },
-  { k: "145+", v: "Recruiters" },
-];
-
 export function PgHero() {
   return (
-    <section className="section-edge relative overflow-hidden pt-28 pb-20 sm:pt-32 sm:pb-28">
-      <div className="page-grid absolute inset-0 -z-10 opacity-40" />
-      <div className="blueprint-grid pointer-events-none absolute inset-0 -z-10" />
-
-      <div className="mx-auto max-w-6xl px-6">
-        {/* Top eyebrow row */}
-        <Reveal>
-          <div className="mb-9 flex flex-col gap-4 border-b border-border pb-6 sm:flex-row sm:items-end sm:justify-between">
-            <div className="flex flex-wrap items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground">
-              {BADGES.map((b) => (
-                <span
-                  key={b.label}
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-3 py-1"
-                >
-                  {b.dot && <span className="size-1.5 rounded-full bg-teal animate-pulse" />}
-                  {b.icon && <Star className="size-3 fill-current" />}
-                  {b.label}
-                </span>
-              ))}
-            </div>
-            <div className="font-tech text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground/80">
-              {PROGRAMME_LABEL}
-            </div>
+    <section id="top" className="relative bg-background pt-4 sm:pt-6">
+      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-10">
+        <div className="relative overflow-hidden rounded-2xl bg-[#0b0d0c]">
+          {/* Image canvas */}
+          <div className="absolute inset-0">
+            <ImagePlaceholder label="Hero visual · campus" className="h-full w-full" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#0b0d0c] via-[#0b0d0c]/85 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#0b0d0c] to-transparent" />
           </div>
-        </Reveal>
 
-        <div className="grid gap-12 lg:grid-cols-[1.35fr_0.65fr] lg:gap-16">
-          {/* Left: headline + copy */}
-          <div className="flex flex-col justify-between gap-10">
-            <Reveal delay={80}>
-              <div>
-                <h1 className="text-[clamp(2.25rem,4.6vw,3.75rem)] font-medium leading-[1.05] tracking-[-0.03em] text-foreground">
-                  Learn business
+          {/* Content */}
+          <div className="relative flex min-h-[520px] flex-col justify-end p-6 sm:min-h-[620px] sm:p-10 lg:min-h-[680px] lg:p-14">
+            <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+              <div className="max-w-2xl">
+                <span className="inline-flex items-center gap-2 rounded-full bg-background/10 px-3 py-1.5 font-tech text-[10px] uppercase tracking-[0.2em] text-background/75 backdrop-blur">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--bottle)]" />
+                  {hero.badge}
+                </span>
+
+                <h1 className="mt-5 font-display text-[clamp(2.1rem,4.6vw,3.6rem)] font-semibold leading-[1.04] tracking-tight text-background">
+                  {hero.title[0]}
                   <br />
-                  <span className="font-normal text-muted-foreground">by running one.</span>
+                  <span className="italic font-normal text-background/85">{hero.title[1]}</span>
                 </h1>
-                <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
-                  16 months at Masters&rsquo; Union structured around three engines —{" "}
-                  <strong className="font-semibold text-foreground">InClass</strong> fundamentals,{" "}
-                  <strong className="font-semibold text-foreground">OutClass</strong> live ventures and{" "}
-                  <strong className="font-semibold text-foreground">Immersions</strong> on the ground. Graded on
-                  outcomes measured in the open market.
+
+                <p className="mt-4 max-w-md text-[13.5px] leading-relaxed text-background/60">
+                  {hero.body}
                 </p>
 
-                <div className="mt-8 flex flex-wrap items-center gap-4">
-                  <Cta href="#apply" label="Start application" />
+                <div className="mt-7 flex items-center gap-2">
                   <a
-                    href="#model"
-                    className="group inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-foreground"
+                    href={hero.primary.href}
+                    className="group inline-flex items-center rounded-full bg-[color:var(--bottle)] px-5 py-3 font-tech text-[11px] font-semibold uppercase tracking-[0.18em] text-background transition hover:opacity-90"
                   >
-                    See the model
-                    <ArrowUpRight
-                      className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      strokeWidth={2}
-                    />
+                    {hero.primary.label}
+                  </a>
+                  <a
+                    href={hero.secondary.href}
+                    aria-label={hero.secondary.label}
+                    className="group flex h-11 w-11 items-center justify-center rounded-full bg-[color:var(--bottle)] text-background transition hover:opacity-90"
+                  >
+                    <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </a>
                 </div>
               </div>
-            </Reveal>
 
-            {/* Inline stat strip */}
-            <Reveal delay={160}>
-              <div className="grid grid-cols-2 gap-0 border-t border-border pt-6 sm:grid-cols-4">
-                {STATS.map((s) => (
-                  <div key={s.v} className="border-l border-border px-4 first:border-l-0 first:pl-0">
-                    <div className="text-2xl font-medium leading-none tracking-[-0.01em] text-foreground sm:text-3xl">
-                      {s.k}
+              {/* Accreditation cluster */}
+              <div className="flex flex-col items-start gap-3 lg:items-end">
+                <span className="inline-flex items-center gap-2 rounded-full bg-background/10 px-5 py-2.5 font-tech text-[10px] uppercase tracking-[0.18em] text-background/85 backdrop-blur">
+                  <Star className="size-3.5 fill-current" strokeWidth={2} />
+                  {hero.accreditation}
+                </span>
+                <span className="font-tech text-[10px] uppercase tracking-[0.22em] text-background/45">
+                  {hero.kicker}
+                </span>
+              </div>
+            </div>
+
+            {/* Programme snapshot band */}
+            <div className="mt-10 border-t border-background/15 pt-6">
+              <p className="font-tech text-[10px] uppercase tracking-[0.22em] text-background/45">
+                {hero.panel.title}
+              </p>
+              <dl className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+                {hero.panel.rows.map((r) => (
+                  <div key={r.label} className="flex flex-col gap-1.5">
+                    <dt className="font-tech text-[9px] uppercase tracking-[0.2em] text-background/45">
+                      {r.label}
+                    </dt>
+                    <dd className="font-display text-[15px] leading-snug text-background">
+                      {r.value}
+                    </dd>
+                  </div>
+                ))}
+                <div className="flex flex-col gap-1.5">
+                  <dt className="font-tech text-[9px] uppercase tracking-[0.2em] text-background/45">
+                    Median CTC
+                  </dt>
+                  <dd className="font-display text-[15px] leading-snug text-background">
+                    ₹34.6 LPA · Class of 2025
+                  </dd>
+                </div>
+              </dl>
+
+              <div className="mt-6 grid grid-cols-2 gap-0 border-t border-background/15 pt-6 sm:grid-cols-4">
+                {hero.stats.map((s) => (
+                  <div
+                    key={s.label}
+                    className="border-l border-background/15 px-4 first:border-l-0 first:pl-0"
+                  >
+                    <div className="font-display text-2xl font-semibold leading-none tracking-tight text-background sm:text-3xl">
+                      {s.value}
                     </div>
-                    <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                      {s.v}
+                    <div className="mt-2 font-tech text-[9px] uppercase tracking-[0.2em] text-background/45">
+                      {s.label}
                     </div>
                   </div>
                 ))}
               </div>
-            </Reveal>
-          </div>
-
-          {/* Right: snapshot card */}
-          <Reveal delay={120}>
-            <div className="card-elevated relative overflow-hidden border border-border bg-card p-6">
-              <div className="rule-gradient absolute inset-x-0 top-0" />
-              <span className="font-tech text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-                Snapshot
-              </span>
-              <dl className="mt-5 space-y-4">
-                {SNAPSHOT.map((row) => (
-                  <div key={row.k} className="flex items-baseline justify-between gap-3 border-b border-border/70 pb-3 last:border-b-0 last:pb-0">
-                    <dt className="text-xs font-medium uppercase tracking-[0.1em] text-muted-foreground">{row.k}</dt>
-                    <dd className="text-right text-sm font-medium text-foreground">{row.v}</dd>
-                  </div>
-                ))}
-              </dl>
             </div>
-          </Reveal>
+          </div>
         </div>
       </div>
     </section>
   );
 }
-
-export default PgHero;
