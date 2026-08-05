@@ -1,5 +1,4 @@
-import { ArrowUpRight, Star } from "lucide-react";
-import { ImagePlaceholder } from "@/components/ImagePlaceholder";
+import { ArrowUpRight, ImageIcon, Star } from "lucide-react";
 import { pgpHero as hero } from "@/lib/pgp-tbm-content";
 
 /**
@@ -11,12 +10,18 @@ export function PgHero() {
     <section id="top" className="relative bg-background pt-4 sm:pt-6">
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-10">
         <div className="relative overflow-hidden rounded-2xl bg-[#0b0d0c]">
-          {/* Image canvas */}
+          {/* Image placeholder canvas */}
           <div className="absolute inset-0">
-            <ImagePlaceholder label="Hero visual · campus" className="h-full w-full" />
+            <div className="flex h-full w-full flex-col items-center justify-center gap-2 bg-[repeating-linear-gradient(135deg,rgba(255,255,255,0.045)_0px,rgba(255,255,255,0.045)_1px,transparent_1px,transparent_14px)]">
+              <ImageIcon className="h-7 w-7 text-background/25" strokeWidth={1.25} />
+              <span className="font-tech text-[10px] uppercase tracking-[0.22em] text-background/30">
+                Hero image · campus
+              </span>
+            </div>
             <div className="absolute inset-0 bg-gradient-to-tr from-[#0b0d0c] via-[#0b0d0c]/85 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#0b0d0c] to-transparent" />
           </div>
+
 
           {/* Content */}
           <div className="relative flex min-h-[520px] flex-col justify-end p-6 sm:min-h-[620px] sm:p-10 lg:min-h-[680px] lg:p-14">
