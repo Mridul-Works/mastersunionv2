@@ -125,8 +125,8 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
       track.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", measure);
     };
+  }, [measure, normalise, leftFor, loop, n]);
 
-  }, [measure, leftFor, loop, n]);
 
   // Pointer drag (desktop mouse / trackpad press-drag). Touch uses native scroll.
   const drag = useRef({ down: false, startX: 0, startLeft: 0 });
