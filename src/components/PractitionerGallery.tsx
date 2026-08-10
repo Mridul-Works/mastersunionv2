@@ -91,15 +91,28 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     drag.current.down = false;
   };
 
-  const scrollTo = (i: number) => {
-    const el = cardRefs.current[Math.max(0, Math.min(items.length - 1, i))];
-    const track = trackRef.current;
-    if (!el || !track) return;
-    track.scrollTo({
-      left: el.offsetLeft + el.offsetWidth / 2 - track.clientWidth / 2,
-      behavior: "smooth",
-    });
-  };
+  const scrollTo = useCallback(
+    (i: number) => {
+      const idx = Math.max(0, Math.min(items.length - 1, i));
+      const el = cardRefs.current[idx];
+      const track = trackRef.current;
+      if (!el || !track) return;
+      const left = Math.max(
+        0,
+        Math.min(
+          track.scrollWidth - track.clientWidth,
+          el.offsetLeft + el.offsetWidth / 2 - track.clientWidth / 2,
+        ),
+      );
+      setActive(idx);
+      if (typeof track.scrollTo === "function") {
+        track.scrollTo({ left, behavior: "smooth" });
+      } else {
+        track.scrollLeft = left;
+      }
+    },
+    [items.length],
+  );
 
   const activeImg = items[active]?.img;
 
@@ -164,22 +177,23 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
 
               {/* dark information panel with a large sweeping curved edge into the photo */}
               <div
-                className="absolute -left-[6%] top-[-8%] h-[116%] w-[62%] bg-[#131313]"
+                className="absolute -left-[6%] top-[-8%] h-[116%] w-[50%] bg-[#131313]"
                 style={{
-                  borderRadius: "0 42% 42% 0 / 0 50% 50% 0",
+                  borderRadius: "0 30% 30% 0 / 0 50% 50% 0",
                   boxShadow: "24px 0 60px -20px rgba(0,0,0,0.75)",
                 }}
                 aria-hidden
               />
               <div
-                className="absolute -left-[6%] top-[-8%] h-[116%] w-[62%]"
+                className="absolute -left-[6%] top-[-8%] h-[116%] w-[50%]"
                 style={{
-                  borderRadius: "0 42% 42% 0 / 0 50% 50% 0",
+                  borderRadius: "0 30% 30% 0 / 0 50% 50% 0",
                   background:
                     "radial-gradient(120% 90% at 10% 50%, rgba(255,255,255,0.05), transparent 62%)",
                 }}
                 aria-hidden
               />
+
 
               {/* information */}
               <div className="relative flex h-full w-[42%] flex-col justify-center p-6 sm:p-9 md:p-14">
@@ -221,7 +235,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
       </div>
 
       {/* minimal controls */}
-      <div className="relative flex items-center justify-center gap-5 pb-8 md:pb-12">
+      <div className="relative z-20 flex items-center justify-center gap-5 pb-8 md:pb-12">
         <button
           type="button"
           onClick={() => scrollTo(active - 1)}
