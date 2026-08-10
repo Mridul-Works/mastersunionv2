@@ -35,6 +35,36 @@ export function universitiesRepresented(visiting: { school: string }[]): string[
   return [...seen.values()].sort((a, b) => a.localeCompare(b));
 }
 
+export type UniversityGroup = {
+  school: string;
+  faculty: { name: string; role: string; img?: string }[];
+};
+
+/**
+ * Groups the visiting roster by university, live on every render — no API
+ * calls, no cached payloads. In-house entries are excluded so the list only
+ * reflects external partner universities.
+ */
+export function universityGroups(
+  visiting: { name: string; role: string; school: string; img?: string }[],
+): UniversityGroup[] {
+  const map = new Map<string, UniversityGroup>();
+  for (const v of visiting) {
+    const school = v.school.trim();
+    const key = school.toLowerCase();
+    if (!key || IN_HOUSE.has(key)) continue;
+    const group = map.get(key) ?? { school, faculty: [] };
+    group.faculty.push({ name: v.name, role: v.role, img: v.img });
+    map.set(key, group);
+  }
+  return [...map.values()]
+    .map((g) => ({
+      ...g,
+      faculty: [...g.faculty].sort((a, b) => a.name.localeCompare(b.name)),
+    }))
+    .sort((a, b) => b.faculty.length - a.faculty.length || a.school.localeCompare(b.school));
+}
+
 /** Rounds down to a marketing-safe floor, e.g. 528 → "500+". */
 function floorPlus(n: number): string {
   if (n < 20) return String(n);
