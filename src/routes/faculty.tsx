@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Quote } from "lucide-react";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 import MastersVideos from "@/components/MastersVideos";
+import FacultyHero from "@/components/FacultyHero";
+
 import PractitionerGallery from "@/components/PractitionerGallery";
 
 import { FULL_TIME_FACULTY } from "@/lib/full-time-faculty";
