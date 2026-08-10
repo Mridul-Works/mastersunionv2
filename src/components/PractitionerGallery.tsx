@@ -91,15 +91,28 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     drag.current.down = false;
   };
 
-  const scrollTo = (i: number) => {
-    const el = cardRefs.current[Math.max(0, Math.min(items.length - 1, i))];
-    const track = trackRef.current;
-    if (!el || !track) return;
-    track.scrollTo({
-      left: el.offsetLeft + el.offsetWidth / 2 - track.clientWidth / 2,
-      behavior: "smooth",
-    });
-  };
+  const scrollTo = useCallback(
+    (i: number) => {
+      const idx = Math.max(0, Math.min(items.length - 1, i));
+      const el = cardRefs.current[idx];
+      const track = trackRef.current;
+      if (!el || !track) return;
+      const left = Math.max(
+        0,
+        Math.min(
+          track.scrollWidth - track.clientWidth,
+          el.offsetLeft + el.offsetWidth / 2 - track.clientWidth / 2,
+        ),
+      );
+      setActive(idx);
+      if (typeof track.scrollTo === "function") {
+        track.scrollTo({ left, behavior: "smooth" });
+      } else {
+        track.scrollLeft = left;
+      }
+    },
+    [items.length],
+  );
 
   const activeImg = items[active]?.img;
 
