@@ -297,7 +297,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
       </div>
 
       {/* minimal controls */}
-      <div className="relative z-20 flex items-center justify-center gap-5 pb-8 md:pb-12">
+      <div className="relative z-20 flex items-center justify-center gap-5 pb-6 md:pb-8">
         <button
           type="button"
           onClick={() => scrollTo(active - 1)}
