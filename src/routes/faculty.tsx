@@ -198,6 +198,21 @@ const VISITING: Visiting[] = [
   { name: "Dr Vishnuprasad N.", role: "Visiting Faculty", school: "Masters' Union", img: vfVishnu.url },
 ];
 
+/**
+ * Live "By the numbers" figures, derived from the rosters above (practitioners,
+ * full-time PhD faculty, visiting faculty and their universities). Recomputed
+ * on every render, so preview/demo and production always show current data,
+ * with a month stamp that rolls over automatically.
+ */
+const HERO_STATS = buildFacultyStats({
+  practitioners: PRACTITIONERS,
+  fullTime: FULLTIME,
+  visiting: VISITING,
+  rosterTotal: 500,
+});
+
+
+
 const TESTIMONIALS = [
   { q: "I met and learned from 50+ CXOs and MDs on the Masters' Union campus. That gave me confidence and exposure that nothing else could have.", a: "Priyansh Sharma", r: "Manager Strategy, Talabat Dubai" },
   { q: "The faculty here are not teaching from textbooks. They are teaching from last quarter's decisions. That changes everything about how you absorb what they say.", a: "Abhishek Deb", r: "Senior Associate, BCG" },
