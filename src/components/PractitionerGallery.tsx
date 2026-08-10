@@ -187,7 +187,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
         onPointerUp={endDrag}
         onPointerLeave={endDrag}
         onDragStart={(e) => e.preventDefault()}
-        className="relative flex snap-x snap-mandatory items-center gap-5 overflow-x-auto overscroll-x-contain px-[max(1rem,calc((100vw-min(1320px,82vw))/2))] py-8 md:gap-8 md:py-14 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="relative flex snap-x snap-mandatory items-center gap-5 overflow-x-auto overscroll-x-contain px-[max(1rem,calc((100vw-min(1320px,82vw))/2))] py-6 md:gap-8 md:py-8 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         style={{ cursor: "grab", touchAction: "pan-y pinch-zoom" }}
       >
         {slides.map((item, i) => {
@@ -203,7 +203,10 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
               }`}
               style={{
                 width: "min(1320px, 82vw)",
-                height: "clamp(430px, 62vw, 720px)",
+                // screen-fit: never taller than the usable viewport once the
+                // track padding, controls and fixed bottom nav are subtracted
+                height:
+                  "min(clamp(430px, 62vw, 720px), max(400px, calc(100dvh - 260px)))",
                 transform: isActive ? "scale(1)" : "scale(0.94)",
               }}
             >
@@ -294,7 +297,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
       </div>
 
       {/* minimal controls */}
-      <div className="relative z-20 flex items-center justify-center gap-5 pb-8 md:pb-12">
+      <div className="relative z-20 flex items-center justify-center gap-5 pb-6 md:pb-8">
         <button
           type="button"
           onClick={() => scrollTo(active - 1)}
