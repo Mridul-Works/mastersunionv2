@@ -86,7 +86,7 @@ function SectionHeader({
         <span>{eyebrow}</span>
       </p>
       <h2
-        className={`text-[clamp(1.75rem,4vw,3.25rem)] font-semibold leading-[1.05] tracking-tight text-black ${
+        className={`text-[clamp(1.5rem,3.1vw,2.6rem)] font-semibold leading-[1.08] tracking-tight text-black ${
           isCenter ? "mx-auto max-w-[24ch]" : "max-w-[26ch]"
         }`}
         style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
@@ -95,7 +95,7 @@ function SectionHeader({
       </h2>
       {intro ? (
         <p
-          className={`mt-6 text-[1.05rem] leading-[1.6] text-black/70 ${
+          className={`mt-5 text-[clamp(0.94rem,1vw,1.05rem)] leading-[1.6] text-black/70 ${
             isCenter ? "mx-auto max-w-[62ch]" : "max-w-[62ch]"
           }`}
         >
@@ -284,14 +284,14 @@ function EditorialGrid({
             The Mix · {sectionLabel}
           </div>
           <div className="mt-4 flex items-baseline gap-3">
-            <div className="text-[clamp(4rem,10vw,8rem)] font-medium leading-[0.85] tracking-[-0.04em] text-black">
+            <div className="text-[clamp(2.75rem,6vw,4.5rem)] font-medium leading-[0.88] tracking-[-0.04em] text-black">
               {pct}
             </div>
             <div className="text-[11px] uppercase tracking-[0.2em] text-black/55" style={{ fontFamily: MONO }}>
               of faculty
             </div>
           </div>
-          <p className="mt-6 max-w-[38ch] text-[1rem] leading-[1.6] text-black/75">{tagline}</p>
+          <p className="mt-5 max-w-[38ch] text-[0.95rem] leading-[1.6] text-black/75">{tagline}</p>
         </div>
         <div className="md:col-span-7 md:pl-10 md:border-l md:border-black/10">
           <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
@@ -303,7 +303,7 @@ function EditorialGrid({
                 <div className="flex items-start gap-3">
                   <span className="mt-3 h-1.5 w-1.5 rounded-full bg-[#7a8b6f]" aria-hidden />
                   <div
-                    className="text-[clamp(2.6rem,5vw,4rem)] font-medium leading-[0.9] tracking-[-0.035em] text-black"
+                    className="text-[clamp(1.9rem,3.4vw,3rem)] font-medium leading-[0.92] tracking-[-0.035em] text-black"
                     style={{ fontFamily: "'Fraunces', Georgia, serif" }}
                   >
                     {s.v}
@@ -391,7 +391,7 @@ function FacultyPage() {
           ].map((c) => (
             <div
               key={c}
-              className="flex h-16 items-center justify-center bg-white px-3 text-center text-[1rem] italic tracking-[0.01em] text-black/85 transition-colors hover:bg-neutral-50"
+              className="flex h-16 items-center justify-center bg-white px-3 text-center text-[0.9rem] italic tracking-[0.01em] text-black/85 transition-colors hover:bg-neutral-50"
               style={{ fontFamily: SERIF }}
               title={c}
             >
