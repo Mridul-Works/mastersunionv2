@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 import academicAsset from "@/assets/faculty/faculty-academic.jpg.asset.json";
+import type { FacultyStat } from "@/lib/faculty-stats";
+
 
 const MONO = "'JetBrains Mono', ui-monospace, monospace";
 const SANS = "'Inter', system-ui, sans-serif";
