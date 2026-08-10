@@ -214,10 +214,10 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                     src={item.img}
                     alt={item.name}
                     draggable={false}
-                    style={{ objectPosition: "72% top" }}
-                    className={`h-full w-full select-none object-cover transition duration-700 ${
+                    className={`h-full w-full select-none object-cover object-[42%_top] transition duration-700 sm:object-[38%_top] md:object-[32%_top] ${
                       isActive ? "grayscale-[0.35]" : "grayscale"
                     }`}
+
                   />
                 ) : (
                   <Initials name={item.name} />
