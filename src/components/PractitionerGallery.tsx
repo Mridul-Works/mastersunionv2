@@ -207,22 +207,36 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                 transform: isActive ? "scale(1)" : "scale(0.94)",
               }}
             >
-              {/* portrait — full bleed beneath the curved information shape */}
-              <div className="absolute inset-0">
+              {/* portrait — sharp subject confined to the right image region so the
+                  face never sits behind the curved information panel */}
+              <div className="absolute inset-0 bg-[#131313]">
                 {item.img ? (
-                  <img
-                    src={item.img}
-                    alt={item.name}
-                    draggable={false}
-                    className={`h-full w-full select-none object-cover object-[42%_top] transition duration-700 sm:object-[38%_top] md:object-[32%_top] ${
-                      isActive ? "grayscale-[0.35]" : "grayscale"
-                    }`}
-
-                  />
+                  <>
+                    {/* soft full-bleed backdrop so no raw edges show around the curve */}
+                    <img
+                      src={item.img}
+                      alt=""
+                      draggable={false}
+                      aria-hidden
+                      className="absolute inset-0 h-full w-full select-none object-cover object-center opacity-30 blur-2xl grayscale"
+                    />
+                    {/* the actual subject frame: starts to the right of the curve */}
+                    <div className="absolute inset-y-0 right-0 left-[44%] overflow-hidden sm:left-[46%] md:left-[48%]">
+                      <img
+                        src={item.img}
+                        alt={item.name}
+                        draggable={false}
+                        className={`h-full w-full select-none object-cover object-[62%_top] transition duration-700 sm:object-[64%_top] md:object-[66%_top] ${
+                          isActive ? "grayscale-[0.35]" : "grayscale"
+                        }`}
+                      />
+                    </div>
+                  </>
                 ) : (
                   <Initials name={item.name} />
                 )}
               </div>
+
 
               {/* dark information panel — the curve is the only boundary */}
               <div
