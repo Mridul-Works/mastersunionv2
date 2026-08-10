@@ -24,10 +24,10 @@ const LINES = [
   <>— and most still do.</>,
 ];
 
-const STATS = [
+const FALLBACK_STATS: FacultyStat[] = [
   { v: "500+", l: "Masters on the roster" },
   { v: "50%", l: "Active industry practitioners" },
-  { v: "9", l: "Ivy & top global schools" },
+  { v: "9", l: "Universities represented" },
   { v: "25", l: "Full-time PhD faculty" },
 ];
 
@@ -36,8 +36,17 @@ const STATS = [
  * a small art-directed academic photograph → "By the numbers" stats.
  * No parallax; the only scroll interaction is a few pixels of physical drift
  * and ~1deg of rotation on the photograph. Respects prefers-reduced-motion.
+ * `stats` are derived from the live faculty rosters by the route.
  */
-export default function FacultyHero() {
+export default function FacultyHero({
+  stats,
+  refreshed,
+}: {
+  stats?: FacultyStat[];
+  refreshed?: string;
+}) {
+  const STATS = stats?.length ? stats : FALLBACK_STATS;
+
   const sectionRef = useRef<HTMLElement | null>(null);
   const figureRef = useRef<HTMLDivElement | null>(null);
 
