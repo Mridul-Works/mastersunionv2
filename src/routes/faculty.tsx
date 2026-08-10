@@ -372,40 +372,8 @@ function FacultyPage() {
       {/* HERO */}
       <FacultyHero />
 
-      <section className="mx-auto max-w-6xl px-5 pb-10 md:px-10">
-        <div className="mt-4 border-t border-black/15 pt-7">
+      <section className="mx-auto max-w-6xl px-5 pb-8 md:px-10">
 
-          <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
-            By the numbers
-          </div>
-          <div className="mt-8 flex flex-wrap items-end gap-x-14 gap-y-7 md:gap-x-20">
-            {[
-              { v: "500+", l: "Masters on the roster" },
-              { v: "50%", l: "Active industry practitioners" },
-              { v: "9", l: "Ivy & top global schools" },
-              { v: "25", l: "Full-time PhD faculty" },
-            ].map((s) => (
-              <div key={s.l} className="group flex items-end gap-4">
-                <span className="mb-3 h-1.5 w-1.5 rounded-full bg-[#7a8b6f]" aria-hidden />
-                <div>
-                  <div
-                    className="text-[clamp(3rem,6vw,5rem)] font-medium leading-[0.85] tracking-[-0.04em] text-black"
-                    style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-                  >
-                    {s.v}
-                  </div>
-                  <div
-                    className="mt-3 max-w-[22ch] text-[11px] font-medium uppercase leading-[1.5] tracking-[0.18em] text-black/65"
-                    style={{ fontFamily: MONO }}
-                  >
-                    {s.l}
-                  </div>
-                  <div className="mt-4 h-px w-10 bg-black/25 transition-all duration-500 group-hover:w-24 group-hover:bg-[#7a8b6f]" aria-hidden />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
 
 
 
