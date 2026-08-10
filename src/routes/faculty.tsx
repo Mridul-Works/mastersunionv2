@@ -263,12 +263,14 @@ function EditorialGrid({
   pct,
   tagline,
   stats,
+  gallery = false,
 }: {
   items: EditorialItem[];
   sectionLabel: string;
   pct: string;
   tagline: string;
   stats: FacultyStat[];
+  gallery?: boolean;
 }) {
   return (
     <div className="mt-8 border-t border-black/15">
