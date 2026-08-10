@@ -36,7 +36,24 @@ function Initials({ name }: { name: string }) {
 export default function PractitionerGallery({ items }: { items: GalleryItem[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLElement | null)[]>([]);
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(0); // index within the tripled list
+  const n = items.length;
+  const loop = n > 1;
+  const slides = loop ? [...items, ...items, ...items] : items;
+  const didInit = useRef(false);
+
+  const leftFor = useCallback((idx: number) => {
+    const el = cardRefs.current[idx];
+    const track = trackRef.current;
+    if (!el || !track) return null;
+    return Math.max(
+      0,
+      Math.min(
+        track.scrollWidth - track.clientWidth,
+        el.offsetLeft + el.offsetWidth / 2 - track.clientWidth / 2,
+      ),
+    );
+  }, []);
 
   const measure = useCallback(() => {
     const track = trackRef.current;
@@ -54,11 +71,28 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
       }
     });
     setActive(best);
-  }, []);
+    // seamless correction: keep the viewer inside the middle copy
+    if (loop) {
+      if (best < n || best >= 2 * n) {
+        const target = (best % n) + n;
+        const left = leftFor(target);
+        if (left != null && Math.abs(left - track.scrollLeft) > 1) {
+          track.scrollLeft = left + (track.scrollLeft - (leftFor(best) ?? track.scrollLeft));
+          setActive(target);
+        }
+      }
+    }
+  }, [leftFor, loop, n]);
 
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
+    if (loop && !didInit.current) {
+      const left = leftFor(n);
+      if (left != null) track.scrollLeft = left;
+      didInit.current = true;
+      setActive(n);
+    }
     measure();
     let raf = 0;
     const onScroll = () => {
@@ -72,7 +106,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
       track.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", measure);
     };
-  }, [measure]);
+  }, [measure, leftFor, loop, n]);
 
   // Pointer drag (desktop mouse / trackpad press-drag). Touch uses native scroll.
   const drag = useRef({ down: false, startX: 0, startLeft: 0 });
@@ -93,17 +127,11 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
 
   const scrollTo = useCallback(
     (i: number) => {
-      const idx = Math.max(0, Math.min(items.length - 1, i));
-      const el = cardRefs.current[idx];
       const track = trackRef.current;
-      if (!el || !track) return;
-      const left = Math.max(
-        0,
-        Math.min(
-          track.scrollWidth - track.clientWidth,
-          el.offsetLeft + el.offsetWidth / 2 - track.clientWidth / 2,
-        ),
-      );
+      if (!track) return;
+      const idx = loop ? i : Math.max(0, Math.min(slides.length - 1, i));
+      const left = leftFor(idx);
+      if (left == null) return;
       setActive(idx);
       if (typeof track.scrollTo === "function") {
         track.scrollTo({ left, behavior: "smooth" });
@@ -111,10 +139,11 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
         track.scrollLeft = left;
       }
     },
-    [items.length],
+    [leftFor, loop, slides.length],
   );
 
-  const activeImg = items[active]?.img;
+  const realIndex = loop ? ((active % n) + n) % n : active;
+  const activeImg = slides[active]?.img;
 
   return (
     <div className="relative left-1/2 w-screen -translate-x-1/2">
@@ -141,15 +170,15 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
         className="relative flex snap-x snap-mandatory items-center gap-5 overflow-x-auto overscroll-x-contain px-[max(1rem,calc((100vw-min(1320px,82vw))/2))] py-8 md:gap-8 md:py-14 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         style={{ cursor: "grab", touchAction: "pan-y pinch-zoom" }}
       >
-        {items.map((item, i) => {
+        {slides.map((item, i) => {
           const isActive = i === active;
           return (
             <article
-              key={item.name}
+              key={`${item.name}-${i}`}
               ref={(el) => {
                 cardRefs.current[i] = el;
               }}
-              className={`relative shrink-0 snap-center overflow-hidden rounded-[24px] bg-[#131313] transition-all duration-500 ease-out md:rounded-[32px] ${
+              className={`relative shrink-0 snap-center overflow-hidden rounded-[24px] transition-all duration-500 ease-out md:rounded-[32px] ${
                 isActive ? "opacity-100 shadow-[0_40px_90px_-40px_rgba(0,0,0,0.9)]" : "opacity-45"
               }`}
               style={{
@@ -158,24 +187,24 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                 transform: isActive ? "scale(1)" : "scale(0.94)",
               }}
             >
-              {/* portrait — right side, full bleed */}
-              <div className="absolute inset-y-0 right-0 w-[60%]">
+              {/* portrait — full bleed beneath the curved information shape */}
+              <div className="absolute inset-0">
                 {item.img ? (
                   <img
                     src={item.img}
                     alt={item.name}
                     draggable={false}
-                    className={`h-full w-full select-none object-cover object-top transition duration-700 ${
+                    style={{ objectPosition: "72% top" }}
+                    className={`h-full w-full select-none object-cover transition duration-700 ${
                       isActive ? "grayscale-[0.35]" : "grayscale"
                     }`}
                   />
                 ) : (
                   <Initials name={item.name} />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#131313]/60 via-transparent to-[#131313]/25" />
               </div>
 
-              {/* dark information panel with a large sweeping curved edge into the photo */}
+              {/* dark information panel — the curve is the only boundary */}
               <div
                 className="absolute -left-[6%] top-[-8%] h-[116%] w-[50%] bg-[#131313]"
                 style={{
@@ -193,7 +222,6 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                 }}
                 aria-hidden
               />
-
 
               {/* information */}
               <div className="relative flex h-full w-[42%] flex-col justify-center p-6 sm:p-9 md:p-14">
@@ -239,7 +267,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
         <button
           type="button"
           onClick={() => scrollTo(active - 1)}
-          disabled={active === 0}
+          disabled={!loop && active === 0}
           aria-label="Previous practitioner"
           className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[12px] text-white/70 transition-colors hover:border-white/50 hover:text-white disabled:opacity-25"
         >
@@ -249,12 +277,12 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
           className="text-[10px] uppercase tracking-[0.22em] text-white/45"
           style={{ fontFamily: MONO }}
         >
-          {String(active + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
+          {String(realIndex + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}
         </div>
         <button
           type="button"
           onClick={() => scrollTo(active + 1)}
-          disabled={active === items.length - 1}
+          disabled={!loop && active === slides.length - 1}
           aria-label="Next practitioner"
           className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[12px] text-white/70 transition-colors hover:border-white/50 hover:text-white disabled:opacity-25"
         >
@@ -264,3 +292,4 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     </div>
   );
 }
+
