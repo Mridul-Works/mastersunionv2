@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Quote } from "lucide-react";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 import MastersVideos from "@/components/MastersVideos";
+import PractitionerGallery from "@/components/PractitionerGallery";
 
 import { FULL_TIME_FACULTY } from "@/lib/full-time-faculty";
 import { INDUSTRY_PRACTITIONERS, INDUSTRY_PHOTOS } from "@/lib/industry-practitioners";
@@ -263,12 +264,14 @@ function EditorialGrid({
   pct,
   tagline,
   stats,
+  gallery = false,
 }: {
   items: EditorialItem[];
   sectionLabel: string;
   pct: string;
   tagline: string;
   stats: FacultyStat[];
+  gallery?: boolean;
 }) {
   return (
     <div className="mt-8 border-t border-black/15">
@@ -317,14 +320,20 @@ function EditorialGrid({
         </div>
       </div>
 
-      <div className="grid grid-cols-2 divide-x divide-y divide-black/10 border-b border-black/15 sm:grid-cols-3 md:grid-cols-4">
-        {items.map((item) => (
-          <article key={item.name} className="p-5 md:p-6">
-            <Portrait item={item} />
-            <EditorialCaption item={item} />
-          </article>
-        ))}
-      </div>
+      {gallery ? (
+        <div className="border-b border-black/15 py-9 md:py-12">
+          <PractitionerGallery items={items} />
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 divide-x divide-y divide-black/10 border-b border-black/15 sm:grid-cols-3 md:grid-cols-4">
+          {items.map((item) => (
+            <article key={item.name} className="p-5 md:p-6">
+              <Portrait item={item} />
+              <EditorialCaption item={item} />
+            </article>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -460,6 +469,7 @@ function FacultyPage() {
 
 
         <EditorialGrid
+          gallery
           sectionLabel="Industry Practitioners"
           pct="50%"
           tagline="Half of the faculty are active operators — CEOs, MDs, founders and investors bringing this week's decisions into the classroom."
