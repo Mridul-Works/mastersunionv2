@@ -71,17 +71,32 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
       }
     });
     setActive(best);
-    // seamless correction: keep the viewer inside the middle copy
-    if (loop) {
-      if (best < n || best >= 2 * n) {
-        const target = (best % n) + n;
-        const left = leftFor(target);
-        if (left != null && Math.abs(left - track.scrollLeft) > 1) {
-          track.scrollLeft = left + (track.scrollLeft - (leftFor(best) ?? track.scrollLeft));
-          setActive(target);
-        }
+  }, []);
+
+  // Once scrolling settles, silently teleport back into the middle copy so the
+  // gallery never reaches an end.
+  const normalise = useCallback(() => {
+    const track = trackRef.current;
+    if (!track || !loop) return;
+    const centre = track.scrollLeft + track.clientWidth / 2;
+    let best = 0;
+    let bestDist = Infinity;
+    cardRefs.current.forEach((el, i) => {
+      if (!el) return;
+      const mid = el.offsetLeft + el.offsetWidth / 2;
+      const d = Math.abs(mid - centre);
+      if (d < bestDist) {
+        bestDist = d;
+        best = i;
       }
-    }
+    });
+    if (best >= n && best < 2 * n) return;
+    const target = (best % n) + n;
+    const from = leftFor(best);
+    const to = leftFor(target);
+    if (from == null || to == null) return;
+    track.scrollLeft = track.scrollLeft + (to - from);
+    setActive(target);
   }, [leftFor, loop, n]);
 
   useEffect(() => {
@@ -95,17 +110,22 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     }
     measure();
     let raf = 0;
+    let settle: ReturnType<typeof setTimeout>;
     const onScroll = () => {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(measure);
+      clearTimeout(settle);
+      settle = setTimeout(normalise, 180);
     };
     track.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", measure);
     return () => {
       cancelAnimationFrame(raf);
+      clearTimeout(settle);
       track.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", measure);
     };
+
   }, [measure, leftFor, loop, n]);
 
   // Pointer drag (desktop mouse / trackpad press-drag). Touch uses native scroll.
