@@ -228,16 +228,45 @@
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
 }
+/* restrained line reveal: ~10px lift instead of a full-height wipe */
+@keyframes hero-line-soft {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* editorial plate reveal: uncovered upward from a clipped mask */
+@keyframes hero-plate-reveal {
+  0%   { clip-path: inset(100% 0 0 0); opacity: 0; }
+  30%  { opacity: 1; }
+  100% { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+@keyframes hero-caption-line {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
 .hero-line-in {
   animation: hero-line-in 0.78s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hero-line-soft {
+  animation: hero-line-soft 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .hero-fade-up {
   animation: hero-fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+.hero-plate-reveal {
+  animation: hero-plate-reveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hero-caption-line {
+  transform-origin: top;
+  animation: hero-caption-line 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
 @media (prefers-reduced-motion: reduce) {
-  .hero-line-in { animation: hero-fade-up 0.4s ease both; }
+  .hero-line-in,
+  .hero-line-soft,
+  .hero-plate-reveal,
+  .hero-caption-line,
   .hero-fade-up { animation: hero-fade-up 0.4s ease both; }
 }
+
 
 
 
