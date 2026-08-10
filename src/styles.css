@@ -219,6 +219,28 @@
   animation: mu-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
+/* Faculty hero — editorial typographic reveal */
+@keyframes hero-line-in {
+  from { transform: translateY(105%); }
+  to { transform: translateY(0); }
+}
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-line-in {
+  animation: hero-line-in 0.78s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hero-fade-up {
+  animation: hero-fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-line-in { animation: hero-fade-up 0.4s ease both; }
+  .hero-fade-up { animation: hero-fade-up 0.4s ease both; }
+}
+
+
+
 .scrollbar-hover-only { scrollbar-width: none; -ms-overflow-style: none; }
 .scrollbar-hover-only::-webkit-scrollbar { height: 0; background: transparent; }
 .scrollbar-hover-only:hover { scrollbar-width: thin; }
