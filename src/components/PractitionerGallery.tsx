@@ -212,14 +212,24 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
               <div className="absolute inset-0 bg-[#131313]">
                 {item.img ? (
                   <>
-                    {/* soft full-bleed backdrop so no raw edges show around the curve */}
+                    {/* soft full-bleed backdrop: heavily blurred, glass-morphic */}
                     <img
                       src={item.img}
                       alt=""
                       draggable={false}
                       aria-hidden
-                      className="absolute inset-0 h-full w-full select-none object-cover object-center opacity-30 blur-2xl grayscale"
+                      className="absolute -inset-[12%] h-[124%] w-[124%] scale-110 select-none object-cover object-center opacity-40 saturate-150 blur-[80px]"
                     />
+                    {/* frosted glass sheet over the backdrop */}
+                    <div
+                      className="absolute inset-0 backdrop-blur-3xl backdrop-saturate-150"
+                      style={{
+                        background:
+                          "linear-gradient(120deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02) 45%, rgba(0,0,0,0.35))",
+                      }}
+                      aria-hidden
+                    />
+
                     {/* the actual subject frame: starts to the right of the curve */}
                     <div className="absolute inset-y-0 right-0 left-[44%] overflow-hidden sm:left-[46%] md:left-[48%]">
                       <img
