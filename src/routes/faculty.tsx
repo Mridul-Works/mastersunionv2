@@ -387,7 +387,7 @@ function FacultyPage() {
       </div>
 
       {/* HERO */}
-      <FacultyHero />
+      <FacultyHero stats={HERO_STATS} refreshed={statsRefreshedLabel()} />
 
       <section className="mx-auto max-w-6xl px-5 pb-8 md:px-10">
 
