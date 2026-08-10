@@ -125,7 +125,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
         onPointerUp={endDrag}
         onPointerLeave={endDrag}
         onDragStart={(e) => e.preventDefault()}
-        className="relative flex snap-x snap-mandatory items-center gap-5 overflow-x-auto overscroll-x-contain px-[max(1rem,calc((100vw-min(1400px,88vw))/2))] py-8 md:gap-8 md:py-14 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="relative flex snap-x snap-mandatory items-center gap-5 overflow-x-auto overscroll-x-contain px-[max(1rem,calc((100vw-min(1320px,82vw))/2))] py-8 md:gap-8 md:py-14 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         style={{ cursor: "grab", touchAction: "pan-y pinch-zoom" }}
       >
         {items.map((item, i) => {
@@ -140,7 +140,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                 isActive ? "opacity-100 shadow-[0_40px_90px_-40px_rgba(0,0,0,0.9)]" : "opacity-45"
               }`}
               style={{
-                width: "min(1400px, 88vw)",
+                width: "min(1320px, 82vw)",
                 height: "clamp(430px, 62vw, 720px)",
                 transform: isActive ? "scale(1)" : "scale(0.94)",
               }}
