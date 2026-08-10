@@ -550,7 +550,7 @@ function FacultyPage() {
       <section className="border-y border-black/10 bg-black text-white">
         <div className="mx-auto max-w-5xl px-5 py-14 text-center md:px-10 md:py-18">
           <div className="text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO }}>The number that matters</div>
-          <div className="mt-8 text-[clamp(4rem,12vw,10rem)] font-semibold leading-[0.85] tracking-tight" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>500+</div>
+          <div className="mt-8 text-[clamp(3rem,7vw,6rem)] font-semibold leading-[0.88] tracking-tight" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>500+</div>
           <p className="mx-auto mt-8 max-w-[52ch] text-[1.1rem] leading-[1.55] text-white/80">
             Masters on the roster. 50% of them active industry practitioners who were in a meeting this morning before they came to teach you this afternoon.
           </p>
@@ -562,7 +562,7 @@ function FacultyPage() {
 
       {/* CTA */}
       <section id="cta" className="mx-auto max-w-5xl px-5 py-14 text-center md:px-10 md:py-18">
-        <p className="text-balance text-[clamp(1.4rem,3vw,2.4rem)] italic leading-[1.2] text-black/90">
+        <p className="text-balance text-[clamp(1.2rem,2.2vw,1.9rem)] italic leading-[1.25] text-black/90">
           Learn from the people doing it — not just studying it.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
