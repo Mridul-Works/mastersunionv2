@@ -3,7 +3,6 @@ import { ArrowUpRight, Quote } from "lucide-react";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 import MastersVideos from "@/components/MastersVideos";
 import FacultyHero from "@/components/FacultyHero";
-import UniversityRoster from "@/components/UniversityRoster";
 import { buildFacultyStats, statsRefreshedLabel } from "@/lib/faculty-stats";
 
 
@@ -391,9 +390,33 @@ function FacultyPage() {
       <FacultyHero stats={HERO_STATS} refreshed={statsRefreshedLabel()} />
 
       <section className="mx-auto max-w-6xl px-5 pb-8 md:px-10">
-        <UniversityRoster visiting={VISITING} />
-      </section>
 
+
+
+
+        <div className="mt-8 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-5 md:grid-cols-9">
+          {[
+            "Harvard",
+            "Wharton",
+            "Stanford",
+            "Kellogg",
+            "Cornell",
+            "NYU",
+            "Columbia",
+            "USC",
+            "Imperial",
+          ].map((c) => (
+            <div
+              key={c}
+              className="flex h-16 items-center justify-center bg-white px-3 text-center text-[0.9rem] italic tracking-[0.01em] text-black/85 transition-colors hover:bg-neutral-50"
+              style={{ fontFamily: SERIF }}
+              title={c}
+            >
+              {c}
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* 500+ MASTERS */}
       <MastersVideos bg="bg-white" />
