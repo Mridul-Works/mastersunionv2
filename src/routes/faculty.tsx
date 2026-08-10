@@ -469,6 +469,7 @@ function FacultyPage() {
 
 
         <EditorialGrid
+          gallery
           sectionLabel="Industry Practitioners"
           pct="50%"
           tagline="Half of the faculty are active operators — CEOs, MDs, founders and investors bringing this week's decisions into the classroom."
