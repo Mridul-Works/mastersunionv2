@@ -177,22 +177,23 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
 
               {/* dark information panel with a large sweeping curved edge into the photo */}
               <div
-                className="absolute -left-[6%] top-[-8%] h-[116%] w-[62%] bg-[#131313]"
+                className="absolute -left-[6%] top-[-8%] h-[116%] w-[50%] bg-[#131313]"
                 style={{
-                  borderRadius: "0 42% 42% 0 / 0 50% 50% 0",
+                  borderRadius: "0 30% 30% 0 / 0 50% 50% 0",
                   boxShadow: "24px 0 60px -20px rgba(0,0,0,0.75)",
                 }}
                 aria-hidden
               />
               <div
-                className="absolute -left-[6%] top-[-8%] h-[116%] w-[62%]"
+                className="absolute -left-[6%] top-[-8%] h-[116%] w-[50%]"
                 style={{
-                  borderRadius: "0 42% 42% 0 / 0 50% 50% 0",
+                  borderRadius: "0 30% 30% 0 / 0 50% 50% 0",
                   background:
                     "radial-gradient(120% 90% at 10% 50%, rgba(255,255,255,0.05), transparent 62%)",
                 }}
                 aria-hidden
               />
+
 
               {/* information */}
               <div className="relative flex h-full w-[42%] flex-col justify-center p-6 sm:p-9 md:p-14">
