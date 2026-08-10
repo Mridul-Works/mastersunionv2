@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
+const SERIF = "'Fraunces', Georgia, serif";
 
 export type GalleryItem = {
   name: string;
@@ -19,7 +20,7 @@ function Initials({ name }: { name: string }) {
     .join("");
   return (
     <div
-      className="flex h-full w-full items-center justify-center bg-neutral-100 text-[clamp(2rem,3vw,2.75rem)] tracking-[-0.02em] text-black/35"
+      className="flex h-full w-full items-center justify-center bg-neutral-800 text-[clamp(3rem,6vw,5rem)] tracking-[-0.02em] text-white/25"
       style={{ fontFamily: MONO }}
     >
       {initials}
@@ -28,8 +29,9 @@ function Initials({ name }: { name: string }) {
 }
 
 /**
- * Horizontal editorial gallery: one dominant centred card, neighbours peeking
- * on both edges. Scroll-snap + pointer drag + touch swipe.
+ * Immersive editorial practitioner gallery.
+ * Each panel: LEFT information on dark charcoal, RIGHT large portrait, joined by a
+ * large sweeping curved cutout. Horizontal scroll-snap + drag + swipe, neighbours peek.
  */
 export default function PractitionerGallery({ items }: { items: GalleryItem[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -73,19 +75,17 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
   }, [measure]);
 
   // Pointer drag (desktop mouse / trackpad press-drag). Touch uses native scroll.
-  const drag = useRef({ down: false, startX: 0, startLeft: 0, moved: false });
+  const drag = useRef({ down: false, startX: 0, startLeft: 0 });
   const onPointerDown = (e: React.PointerEvent) => {
     if (e.pointerType === "touch") return;
     const track = trackRef.current;
     if (!track) return;
-    drag.current = { down: true, startX: e.clientX, startLeft: track.scrollLeft, moved: false };
+    drag.current = { down: true, startX: e.clientX, startLeft: track.scrollLeft };
   };
   const onPointerMove = (e: React.PointerEvent) => {
     const track = trackRef.current;
     if (!track || !drag.current.down) return;
-    const dx = e.clientX - drag.current.startX;
-    if (Math.abs(dx) > 4) drag.current.moved = true;
-    track.scrollLeft = drag.current.startLeft - dx;
+    track.scrollLeft = drag.current.startLeft - (e.clientX - drag.current.startX);
   };
   const endDrag = () => {
     drag.current.down = false;
@@ -101,8 +101,23 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     });
   };
 
+  const activeImg = items[active]?.img;
+
   return (
-    <div className="relative">
+    <div className="relative left-1/2 w-screen -translate-x-1/2">
+      {/* ambient dark atmosphere behind the active card */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+        <div className="absolute inset-0 bg-[#0b0b0b]" />
+        {activeImg ? (
+          <img
+            src={activeImg}
+            alt=""
+            className="absolute inset-0 h-full w-full scale-110 object-cover opacity-[0.12] grayscale blur-3xl transition-opacity duration-700"
+          />
+        ) : null}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0b0b0b] via-transparent to-[#0b0b0b]" />
+      </div>
+
       <div
         ref={trackRef}
         onPointerDown={onPointerDown}
@@ -110,7 +125,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
         onPointerUp={endDrag}
         onPointerLeave={endDrag}
         onDragStart={(e) => e.preventDefault()}
-        className="flex snap-x snap-mandatory gap-8 overflow-x-auto overscroll-x-contain px-[max(1.25rem,calc((100%-min(640px,72vw))/2))] py-2 md:gap-14 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="relative flex snap-x snap-mandatory items-center gap-5 overflow-x-auto overscroll-x-contain px-[max(1rem,calc((100vw-min(1320px,82vw))/2))] py-8 md:gap-8 md:py-14 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         style={{ cursor: "grab", touchAction: "pan-y pinch-zoom" }}
       >
         {items.map((item, i) => {
@@ -121,83 +136,116 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
               ref={(el) => {
                 cardRefs.current[i] = el;
               }}
-              className={`shrink-0 snap-center transition-all duration-500 ease-out ${
-                isActive ? "opacity-100" : "opacity-60"
+              className={`relative shrink-0 snap-center overflow-hidden rounded-[24px] bg-[#131313] transition-all duration-500 ease-out md:rounded-[32px] ${
+                isActive ? "opacity-100 shadow-[0_40px_90px_-40px_rgba(0,0,0,0.9)]" : "opacity-45"
               }`}
               style={{
-                width: "min(640px, 78vw)",
-                transform: isActive ? "scale(1)" : "scale(0.93)",
-                transformOrigin: "center bottom",
+                width: "min(1320px, 82vw)",
+                height: "clamp(430px, 62vw, 720px)",
+                transform: isActive ? "scale(1)" : "scale(0.94)",
               }}
             >
-              <div className="w-full overflow-hidden bg-[#ececec]" style={{ aspectRatio: "4 / 5" }}>
+              {/* portrait — right side, full bleed */}
+              <div className="absolute inset-y-0 right-0 w-[60%]">
                 {item.img ? (
                   <img
                     src={item.img}
                     alt={item.name}
                     draggable={false}
-                    className={`h-full w-full select-none object-cover transition duration-700 ${
-                      isActive ? "grayscale-0" : "grayscale"
+                    className={`h-full w-full select-none object-cover object-top transition duration-700 ${
+                      isActive ? "grayscale-[0.35]" : "grayscale"
                     }`}
                   />
                 ) : (
                   <Initials name={item.name} />
                 )}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#131313]/60 via-transparent to-[#131313]/25" />
               </div>
 
-              <h3 className="mt-6 text-[clamp(1.25rem,2vw,1.6rem)] font-medium leading-[1.15] tracking-[-0.01em] text-black">
-                {item.name}
-              </h3>
+              {/* dark information panel with a large sweeping curved edge into the photo */}
               <div
-                className="mt-2 text-[11px] uppercase leading-snug tracking-[0.16em] text-black/55"
-                style={{ fontFamily: MONO }}
-              >
-                {item.role}
-              </div>
-              {item.sub ? (
+                className="absolute -left-[6%] top-[-8%] h-[116%] w-[62%] bg-[#131313]"
+                style={{
+                  borderRadius: "0 42% 42% 0 / 0 50% 50% 0",
+                  boxShadow: "24px 0 60px -20px rgba(0,0,0,0.75)",
+                }}
+                aria-hidden
+              />
+              <div
+                className="absolute -left-[6%] top-[-8%] h-[116%] w-[62%]"
+                style={{
+                  borderRadius: "0 42% 42% 0 / 0 50% 50% 0",
+                  background:
+                    "radial-gradient(120% 90% at 10% 50%, rgba(255,255,255,0.05), transparent 62%)",
+                }}
+                aria-hidden
+              />
+
+              {/* information */}
+              <div className="relative flex h-full w-[42%] flex-col justify-center p-6 sm:p-9 md:p-14">
                 <div
-                  className="mt-1 text-[11px] uppercase leading-snug tracking-[0.16em] text-black/40"
+                  className="text-[9.5px] uppercase tracking-[0.24em] text-white/45 md:text-[10.5px]"
                   style={{ fontFamily: MONO }}
                 >
-                  {item.sub}
+                  Industry Practitioner
                 </div>
-              ) : null}
-              {item.blurb ? (
-                <p className="mt-4 max-w-[58ch] text-[15px] leading-[1.6] text-black/70">{item.blurb}</p>
-              ) : null}
+                <h3
+                  className="mt-4 text-[clamp(1.35rem,2.6vw,2.9rem)] font-medium leading-[1.05] tracking-[-0.03em] text-white md:mt-6"
+                  style={{ fontFamily: SERIF }}
+                >
+                  {item.name}
+                </h3>
+                <div
+                  className="mt-3 text-[9.5px] uppercase leading-[1.6] tracking-[0.16em] text-white/60 md:mt-5 md:text-[11px]"
+                  style={{ fontFamily: MONO }}
+                >
+                  {item.role}
+                </div>
+                {item.blurb ? (
+                  <p className="mt-4 max-w-[42ch] text-[12.5px] leading-[1.7] text-white/70 md:mt-7 md:text-[15px]">
+                    {item.blurb}
+                  </p>
+                ) : null}
+                {item.sub ? (
+                  <div
+                    className="mt-5 border-t border-white/12 pt-4 text-[9.5px] uppercase leading-[1.6] tracking-[0.16em] text-white/45 md:mt-8 md:text-[10.5px]"
+                    style={{ fontFamily: MONO }}
+                  >
+                    {item.sub}
+                  </div>
+                ) : null}
+              </div>
             </article>
           );
         })}
       </div>
 
-      {/* Minimal navigation */}
-      <div className="mt-6 flex items-center gap-6 px-5 md:px-10">
+      {/* minimal controls */}
+      <div className="relative flex items-center justify-center gap-5 pb-8 md:pb-12">
         <button
           type="button"
           onClick={() => scrollTo(active - 1)}
           disabled={active === 0}
-          aria-label="Previous"
-          className="text-[13px] text-black/60 transition-colors hover:text-black disabled:opacity-25"
-          style={{ fontFamily: MONO }}
+          aria-label="Previous practitioner"
+          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[12px] text-white/70 transition-colors hover:border-white/50 hover:text-white disabled:opacity-25"
         >
           ←
         </button>
-        <button
-          type="button"
-          onClick={() => scrollTo(active + 1)}
-          disabled={active === items.length - 1}
-          aria-label="Next"
-          className="text-[13px] text-black/60 transition-colors hover:text-black disabled:opacity-25"
-          style={{ fontFamily: MONO }}
-        >
-          →
-        </button>
         <div
-          className="text-[10.5px] uppercase tracking-[0.22em] text-black/45"
+          className="text-[10px] uppercase tracking-[0.22em] text-white/45"
           style={{ fontFamily: MONO }}
         >
           {String(active + 1).padStart(2, "0")} / {String(items.length).padStart(2, "0")}
         </div>
+        <button
+          type="button"
+          onClick={() => scrollTo(active + 1)}
+          disabled={active === items.length - 1}
+          aria-label="Next practitioner"
+          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[12px] text-white/70 transition-colors hover:border-white/50 hover:text-white disabled:opacity-25"
+        >
+          →
+        </button>
       </div>
     </div>
   );
