@@ -319,14 +319,20 @@ function EditorialGrid({
         </div>
       </div>
 
-      <div className="grid grid-cols-2 divide-x divide-y divide-black/10 border-b border-black/15 sm:grid-cols-3 md:grid-cols-4">
-        {items.map((item) => (
-          <article key={item.name} className="p-5 md:p-6">
-            <Portrait item={item} />
-            <EditorialCaption item={item} />
-          </article>
-        ))}
-      </div>
+      {gallery ? (
+        <div className="border-b border-black/15 py-9 md:py-12">
+          <PractitionerGallery items={items} />
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 divide-x divide-y divide-black/10 border-b border-black/15 sm:grid-cols-3 md:grid-cols-4">
+          {items.map((item) => (
+            <article key={item.name} className="p-5 md:p-6">
+              <Portrait item={item} />
+              <EditorialCaption item={item} />
+            </article>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
