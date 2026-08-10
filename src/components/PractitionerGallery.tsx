@@ -203,7 +203,10 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
               }`}
               style={{
                 width: "min(1320px, 82vw)",
-                height: "clamp(430px, 62vw, 720px)",
+                // screen-fit: never taller than the usable viewport once the
+                // track padding, controls and fixed bottom nav are subtracted
+                height:
+                  "min(clamp(430px, 62vw, 720px), max(400px, calc(100dvh - 260px)))",
                 transform: isActive ? "scale(1)" : "scale(0.94)",
               }}
             >
