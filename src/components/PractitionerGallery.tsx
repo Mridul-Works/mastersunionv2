@@ -164,21 +164,19 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
 
               {/* dark information panel with a large sweeping curved edge into the photo */}
               <div
-                className="absolute inset-y-0 left-0 w-[62%] bg-[#131313]"
+                className="absolute -left-[6%] top-[-8%] h-[116%] w-[62%] bg-[#131313]"
                 style={{
-                  clipPath:
-                    "path('M 0 0 L 62% 0 C 40% 25%, 40% 75%, 62% 100% L 0 100% Z')",
-                  WebkitMaskImage: "none",
+                  borderRadius: "0 42% 42% 0 / 0 50% 50% 0",
+                  boxShadow: "24px 0 60px -20px rgba(0,0,0,0.75)",
                 }}
                 aria-hidden
               />
               <div
-                className="absolute inset-y-0 left-0 w-[62%]"
+                className="absolute -left-[6%] top-[-8%] h-[116%] w-[62%]"
                 style={{
+                  borderRadius: "0 42% 42% 0 / 0 50% 50% 0",
                   background:
-                    "radial-gradient(120% 90% at 0% 50%, rgba(255,255,255,0.05), transparent 60%)",
-                  clipPath:
-                    "path('M 0 0 L 62% 0 C 40% 25%, 40% 75%, 62% 100% L 0 100% Z')",
+                    "radial-gradient(120% 90% at 10% 50%, rgba(255,255,255,0.05), transparent 62%)",
                 }}
                 aria-hidden
               />
