@@ -86,7 +86,7 @@ function SectionHeader({
         <span>{eyebrow}</span>
       </p>
       <h2
-        className={`text-[clamp(1.75rem,4vw,3.25rem)] font-semibold leading-[1.05] tracking-tight text-black ${
+        className={`text-[clamp(1.5rem,3.1vw,2.6rem)] font-semibold leading-[1.08] tracking-tight text-black ${
           isCenter ? "mx-auto max-w-[24ch]" : "max-w-[26ch]"
         }`}
         style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
@@ -95,7 +95,7 @@ function SectionHeader({
       </h2>
       {intro ? (
         <p
-          className={`mt-6 text-[1.05rem] leading-[1.6] text-black/70 ${
+          className={`mt-5 text-[clamp(0.94rem,1vw,1.05rem)] leading-[1.6] text-black/70 ${
             isCenter ? "mx-auto max-w-[62ch]" : "max-w-[62ch]"
           }`}
         >
@@ -284,14 +284,14 @@ function EditorialGrid({
             The Mix · {sectionLabel}
           </div>
           <div className="mt-4 flex items-baseline gap-3">
-            <div className="text-[clamp(4rem,10vw,8rem)] font-medium leading-[0.85] tracking-[-0.04em] text-black">
+            <div className="text-[clamp(2.75rem,6vw,4.5rem)] font-medium leading-[0.88] tracking-[-0.04em] text-black">
               {pct}
             </div>
             <div className="text-[11px] uppercase tracking-[0.2em] text-black/55" style={{ fontFamily: MONO }}>
               of faculty
             </div>
           </div>
-          <p className="mt-6 max-w-[38ch] text-[1rem] leading-[1.6] text-black/75">{tagline}</p>
+          <p className="mt-5 max-w-[38ch] text-[0.95rem] leading-[1.6] text-black/75">{tagline}</p>
         </div>
         <div className="md:col-span-7 md:pl-10 md:border-l md:border-black/10">
           <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
@@ -303,7 +303,7 @@ function EditorialGrid({
                 <div className="flex items-start gap-3">
                   <span className="mt-3 h-1.5 w-1.5 rounded-full bg-[#7a8b6f]" aria-hidden />
                   <div
-                    className="text-[clamp(2.6rem,5vw,4rem)] font-medium leading-[0.9] tracking-[-0.035em] text-black"
+                    className="text-[clamp(1.9rem,3.4vw,3rem)] font-medium leading-[0.92] tracking-[-0.035em] text-black"
                     style={{ fontFamily: "'Fraunces', Georgia, serif" }}
                   >
                     {s.v}
@@ -360,7 +360,7 @@ function FacultyPage() {
       <SectionNav items={NAV} applyHref="#cta" />
 
       {/* Chapter marker */}
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-5 md:px-10 md:pt-6">
         <Link to="/" className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-black/70 transition-colors hover:text-black" style={{ fontFamily: MONO }}>
           <span aria-hidden>←</span> Masters&apos; Union
         </Link>
@@ -372,40 +372,8 @@ function FacultyPage() {
       {/* HERO */}
       <FacultyHero />
 
-      <section className="mx-auto max-w-6xl px-5 pb-10 md:px-10">
-        <div className="mt-4 border-t border-black/15 pt-7">
+      <section className="mx-auto max-w-6xl px-5 pb-8 md:px-10">
 
-          <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
-            By the numbers
-          </div>
-          <div className="mt-8 flex flex-wrap items-end gap-x-14 gap-y-7 md:gap-x-20">
-            {[
-              { v: "500+", l: "Masters on the roster" },
-              { v: "50%", l: "Active industry practitioners" },
-              { v: "9", l: "Ivy & top global schools" },
-              { v: "25", l: "Full-time PhD faculty" },
-            ].map((s) => (
-              <div key={s.l} className="group flex items-end gap-4">
-                <span className="mb-3 h-1.5 w-1.5 rounded-full bg-[#7a8b6f]" aria-hidden />
-                <div>
-                  <div
-                    className="text-[clamp(3rem,6vw,5rem)] font-medium leading-[0.85] tracking-[-0.04em] text-black"
-                    style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-                  >
-                    {s.v}
-                  </div>
-                  <div
-                    className="mt-3 max-w-[22ch] text-[11px] font-medium uppercase leading-[1.5] tracking-[0.18em] text-black/65"
-                    style={{ fontFamily: MONO }}
-                  >
-                    {s.l}
-                  </div>
-                  <div className="mt-4 h-px w-10 bg-black/25 transition-all duration-500 group-hover:w-24 group-hover:bg-[#7a8b6f]" aria-hidden />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
 
 
 
@@ -423,7 +391,7 @@ function FacultyPage() {
           ].map((c) => (
             <div
               key={c}
-              className="flex h-16 items-center justify-center bg-white px-3 text-center text-[1rem] italic tracking-[0.01em] text-black/85 transition-colors hover:bg-neutral-50"
+              className="flex h-16 items-center justify-center bg-white px-3 text-center text-[0.9rem] italic tracking-[0.01em] text-black/85 transition-colors hover:bg-neutral-50"
               style={{ fontFamily: SERIF }}
               title={c}
             >
@@ -582,7 +550,7 @@ function FacultyPage() {
       <section className="border-y border-black/10 bg-black text-white">
         <div className="mx-auto max-w-5xl px-5 py-14 text-center md:px-10 md:py-18">
           <div className="text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO }}>The number that matters</div>
-          <div className="mt-8 text-[clamp(4rem,12vw,10rem)] font-semibold leading-[0.85] tracking-tight" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>500+</div>
+          <div className="mt-8 text-[clamp(3rem,7vw,6rem)] font-semibold leading-[0.88] tracking-tight" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>500+</div>
           <p className="mx-auto mt-8 max-w-[52ch] text-[1.1rem] leading-[1.55] text-white/80">
             Masters on the roster. 50% of them active industry practitioners who were in a meeting this morning before they came to teach you this afternoon.
           </p>
@@ -594,7 +562,7 @@ function FacultyPage() {
 
       {/* CTA */}
       <section id="cta" className="mx-auto max-w-5xl px-5 py-14 text-center md:px-10 md:py-18">
-        <p className="text-balance text-[clamp(1.4rem,3vw,2.4rem)] italic leading-[1.2] text-black/90">
+        <p className="text-balance text-[clamp(1.2rem,2.2vw,1.9rem)] italic leading-[1.25] text-black/90">
           Learn from the people doing it — not just studying it.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
