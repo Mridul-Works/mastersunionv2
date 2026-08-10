@@ -209,7 +209,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
             >
               {/* portrait — sharp subject confined to the right image region so the
                   face never sits behind the curved information panel */}
-              <div className="absolute inset-0 bg-[#131313]">
+              <div className="absolute inset-0 bg-[#131313]/60">
                 {item.img ? (
                   <>
                     {/* soft full-bleed backdrop: heavily blurred, glass-morphic */}
@@ -218,17 +218,18 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                       alt=""
                       draggable={false}
                       aria-hidden
-                      className="absolute -inset-[12%] h-[124%] w-[124%] scale-110 select-none object-cover object-center opacity-40 saturate-150 blur-[80px]"
+                      className="absolute -inset-[12%] h-[124%] w-[124%] scale-110 select-none object-cover object-center opacity-20 saturate-150 blur-[80px]"
                     />
                     {/* frosted glass sheet over the backdrop */}
                     <div
                       className="absolute inset-0 backdrop-blur-3xl backdrop-saturate-150"
                       style={{
                         background:
-                          "linear-gradient(120deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02) 45%, rgba(0,0,0,0.35))",
+                          "linear-gradient(120deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01) 45%, rgba(0,0,0,0.14))",
                       }}
                       aria-hidden
                     />
+
 
                     {/* the actual subject frame: starts to the right of the curve */}
                     <div className="absolute inset-y-0 right-0 left-[44%] overflow-hidden sm:left-[46%] md:left-[48%]">
