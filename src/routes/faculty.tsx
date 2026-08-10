@@ -368,32 +368,11 @@ function FacultyPage() {
       </div>
 
       {/* HERO */}
-      <section id="top" className="mx-auto max-w-6xl px-5 pb-10 pt-10 md:px-10 md:pt-14">
-        <div className="flex items-center gap-4">
-          <span className="h-px w-10 bg-black/30" aria-hidden />
-          <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
-            Faculty at Masters&apos; Union
-          </div>
-        </div>
-        <h1
-          className="mt-8 max-w-[22ch] text-balance text-[clamp(2.4rem,6.4vw,5.5rem)] font-semibold leading-[1.02] tracking-tight text-black"
-          style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
-        >
-          At most B-schools, faculty{" "}
-          <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
-            study
-          </span>{" "}
-          companies. Here, they{" "}
-          <span className="italic font-light" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>
-            ran
-          </span>{" "}
-          them — and most still do.
-        </h1>
-        <p className="mt-7 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55] text-black/70">
-          500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered by Ivy League academics and global business leaders — from Harvard to McKinsey, from Wharton to Google. They don&apos;t just teach the playbook. They wrote it.
-        </p>
+      <FacultyHero />
 
-        <div className="mt-10 border-t border-black/15 pt-7">
+      <section className="mx-auto max-w-6xl px-5 pb-10 md:px-10">
+        <div className="mt-4 border-t border-black/15 pt-7">
+
           <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
             By the numbers
           </div>
