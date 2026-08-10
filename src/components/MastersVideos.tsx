@@ -146,25 +146,50 @@ function VideoModal({ video, onClose }: { video: MasterVideo; onClose: () => voi
   );
 }
 
+function usePerView() {
+  const [perView, setPerView] = useState(1);
+  useEffect(() => {
+    const compute = () => {
+      const w = window.innerWidth;
+      setPerView(w >= 1024 ? 3 : w >= 640 ? 2 : 1);
+    };
+    compute();
+    window.addEventListener("resize", compute);
+    return () => window.removeEventListener("resize", compute);
+  }, []);
+  return perView;
+}
+
 export default function MastersVideos({
   bg = "bg-[#F5F3EE]",
 }: {
   bg?: string;
 }) {
   const [open, setOpen] = useState<MasterVideo | null>(null);
-  const scroller = useRef<HTMLDivElement>(null);
+  const perView = usePerView();
+  const [page, setPage] = useState(0);
 
-  const scrollBy = (dir: 1 | -1) => {
-    const el = scroller.current;
-    if (!el) return;
-    el.scrollBy({ left: dir * Math.min(el.clientWidth * 0.8, 720), behavior: "smooth" });
+  const pages = Math.max(1, Math.ceil(MASTER_VIDEOS.length / perView));
+  const safePage = Math.min(page, pages - 1);
+
+  useEffect(() => {
+    setPage(0);
+  }, [perView]);
+
+  const go = (dir: 1 | -1) => {
+    setPage((p) => {
+      const next = Math.min(pages - 1, Math.max(0, p + dir));
+      return next;
+    });
   };
 
+  const gap = 24; // matches gap-6
+
   return (
-    <section id="masters" className={`border-t border-black/10 ${bg}`}>
-      <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-10 px-5 py-8 md:px-10 md:py-10 lg:grid-cols-12 lg:items-start lg:gap-16">
+    <section id="masters" className={`w-full overflow-x-hidden border-t border-black/10 ${bg}`}>
+      <div className="mx-auto grid w-full max-w-[1280px] grid-cols-1 gap-10 px-5 py-8 md:px-10 md:py-10 lg:grid-cols-12 lg:items-start lg:gap-16">
         {/* Left: sticky editorial column */}
-        <div className="lg:col-span-4 lg:sticky lg:top-24">
+        <div className="min-w-0 lg:col-span-4 lg:sticky lg:top-24">
           <p className="mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]">
             500+ Masters
           </p>
@@ -183,67 +208,73 @@ export default function MastersVideos({
           <div className="mt-7 flex items-center gap-3">
             <button
               type="button"
-              onClick={() => scrollBy(-1)}
+              onClick={() => go(-1)}
+              disabled={safePage === 0}
               aria-label="Previous videos"
-              className="group grid h-12 w-12 place-items-center rounded-full border border-black/10 text-black transition hover:border-black"
+              className="group grid h-12 w-12 shrink-0 place-items-center rounded-full border border-black/10 text-black transition hover:border-black disabled:opacity-30"
             >
               <span className="transition-transform group-hover:-translate-x-0.5">←</span>
             </button>
             <button
               type="button"
-              onClick={() => scrollBy(1)}
+              onClick={() => go(1)}
+              disabled={safePage >= pages - 1}
               aria-label="Next videos"
-              className="group grid h-12 w-12 place-items-center rounded-full bg-black text-white transition hover:bg-black/85"
+              className="group grid h-12 w-12 shrink-0 place-items-center rounded-full bg-black text-white transition hover:bg-black/85 disabled:opacity-30"
             >
               <span className="transition-transform group-hover:translate-x-0.5">→</span>
             </button>
+            <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-black/45">
+              {String(safePage + 1).padStart(2, "0")} / {String(pages).padStart(2, "0")}
+            </span>
           </div>
         </div>
 
-        {/* Right: portrait rail */}
-        <div
-          ref={scroller}
-          className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-6 [scrollbar-width:none] lg:col-span-8 [&::-webkit-scrollbar]:hidden"
-        >
-          {MASTER_VIDEOS.map((v, i) => (
-            <button
-              key={v.src}
-              type="button"
-              onClick={() => setOpen(v)}
-              className={`group w-[230px] shrink-0 snap-start text-left md:w-[270px] ${
-                i % 2 === 1 ? "lg:mt-8" : ""
-              }`}
-            >
-              <div className="relative overflow-hidden rounded-[12px] bg-black shadow-[0_12px_34px_-20px_rgba(0,0,0,0.55)] transition duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_24px_46px_-22px_rgba(0,0,0,0.6)]">
-                <div className="aspect-[9/16] w-full overflow-hidden">
-                  <img
-                    src={v.thumb}
-                    alt={v.title}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]"
-                  />
-                </div>
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <div className="pointer-events-none absolute inset-0 rounded-[12px] border border-transparent transition-colors duration-500 group-hover:border-[#B89146]/40" />
-                <div className="absolute bottom-5 left-5">
-                  <div className="grid h-10 w-10 place-items-center rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-md transition group-hover:bg-white/20">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
+        {/* Right: paged rail — fits the screen, never scrolls sideways */}
+        <div className="min-w-0 overflow-hidden lg:col-span-8">
+          <div
+            className="flex gap-6 transition-transform duration-500 ease-out"
+            style={{ transform: `translateX(calc(-${safePage * 100}% - ${safePage * gap}px))` }}
+          >
+            {MASTER_VIDEOS.map((v) => (
+              <button
+                key={v.src}
+                type="button"
+                onClick={() => setOpen(v)}
+                className="group shrink-0 text-left"
+                style={{ width: `calc((100% - ${(perView - 1) * gap}px) / ${perView})` }}
+              >
+                <div className="relative overflow-hidden rounded-[12px] bg-black shadow-[0_12px_34px_-20px_rgba(0,0,0,0.55)] transition duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_24px_46px_-22px_rgba(0,0,0,0.6)]">
+                  <div className="aspect-[9/16] w-full overflow-hidden">
+                    <img
+                      src={v.thumb}
+                      alt={v.title}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]"
+                    />
+                  </div>
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="pointer-events-none absolute inset-0 rounded-[12px] border border-transparent transition-colors duration-500 group-hover:border-[#B89146]/40" />
+                  <div className="absolute bottom-5 left-5">
+                    <div className="grid h-10 w-10 place-items-center rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-md transition group-hover:bg-white/20">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.2em] text-[#B89146]">
-                {v.meta}
-              </p>
-              <h3
-                className="mt-1 text-[17px] leading-snug text-black"
-                style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-              >
-                {v.title}
-              </h3>
-            </button>
-          ))}
+                <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.2em] text-[#B89146]">
+                  {v.meta}
+                </p>
+                <h3
+                  className="mt-1 truncate text-[17px] leading-snug text-black"
+                  style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                >
+                  {v.title}
+                </h3>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -251,3 +282,4 @@ export default function MastersVideos({
     </section>
   );
 }
+
