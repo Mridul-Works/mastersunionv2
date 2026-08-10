@@ -360,7 +360,7 @@ function FacultyPage() {
       <SectionNav items={NAV} applyHref="#cta" />
 
       {/* Chapter marker */}
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-5 md:px-10 md:pt-6">
         <Link to="/" className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-black/70 transition-colors hover:text-black" style={{ fontFamily: MONO }}>
           <span aria-hidden>←</span> Masters&apos; Union
         </Link>

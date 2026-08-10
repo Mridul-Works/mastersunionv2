@@ -76,9 +76,9 @@ export default function FacultyHero() {
     <section
       ref={sectionRef}
       id="top"
-      className="mx-auto max-w-6xl px-5 pb-6 md:px-10"
+      className="mx-auto max-w-6xl px-5 pb-4 md:px-10"
     >
-      <div className="grid items-start gap-x-10 gap-y-8 lg:grid-cols-12">
+      <div className="grid items-start gap-x-10 gap-y-6 lg:grid-cols-12">
         {/* Typography column */}
         <div className="lg:col-span-8">
           <div
@@ -95,7 +95,7 @@ export default function FacultyHero() {
           </div>
 
           <h1
-            className="mt-[clamp(0.9rem,2.4vh,1.5rem)] max-w-[24ch] text-[clamp(2.375rem,5vw,4.75rem)] font-semibold leading-[1.06] tracking-[-0.02em] text-black"
+            className="mt-[clamp(0.9rem,2.4vh,1.5rem)] max-w-[24ch] text-[clamp(2.25rem,4.1vw,3.9rem)] font-semibold leading-[1.08] tracking-[-0.02em] text-black"
             style={{ fontFamily: SANS }}
           >
             {LINES.map((line, i) => (
@@ -111,7 +111,7 @@ export default function FacultyHero() {
           </h1>
 
           <p
-            className="hero-fade-up mt-[clamp(0.9rem,2.2vh,1.4rem)] max-w-[58ch] text-[clamp(0.95rem,1.05vw,1.1rem)] leading-[1.6] text-black/70"
+            className="hero-fade-up mt-[clamp(0.8rem,1.8vh,1.2rem)] max-w-[58ch] text-[clamp(0.95rem,1.05vw,1.1rem)] leading-[1.6] text-black/70"
             style={{ animationDelay: "620ms" }}
           >
             500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered
@@ -155,14 +155,14 @@ export default function FacultyHero() {
       </div>
 
       {/* BY THE NUMBERS — same opening composition */}
-      <div className="mt-[clamp(1.4rem,3.4vh,2.4rem)] border-t border-black/15 pt-5">
+      <div className="mt-[clamp(1.1rem,2.6vh,1.8rem)] border-t border-black/15 pt-5">
         <div
           className="hero-fade-up text-[10px] uppercase tracking-[0.24em] text-black/50"
           style={{ fontFamily: MONO, animationDelay: "780ms" }}
         >
           By the numbers
         </div>
-        <div className="mt-5 grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-4 md:gap-x-10">
+        <div className="mt-4 grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-4 md:gap-x-10">
           {STATS.map((s, i) => (
             <div
               key={s.l}
@@ -172,7 +172,7 @@ export default function FacultyHero() {
               <span className="mt-[0.9em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#7a8b6f]" aria-hidden />
               <div className="min-w-0">
                 <div
-                  className="text-[clamp(2rem,3.4vw,3.25rem)] font-medium leading-[0.9] tracking-[-0.035em] text-black"
+                  className="text-[clamp(1.75rem,2.8vw,2.6rem)] font-medium leading-[0.9] tracking-[-0.035em] text-black"
                   style={{ fontFamily: SERIF_IT }}
                 >
                   {s.v}
