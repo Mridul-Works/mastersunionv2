@@ -168,11 +168,13 @@ export default function FacultyHero({
       {/* BY THE NUMBERS — same opening composition */}
       <div className="mt-[clamp(1.1rem,2.6vh,1.8rem)] border-t border-black/15 pt-5">
         <div
-          className="hero-fade-up text-[10px] uppercase tracking-[0.24em] text-black/50"
+          className="hero-fade-up flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 text-[10px] uppercase tracking-[0.24em] text-black/50"
           style={{ fontFamily: MONO, animationDelay: "780ms" }}
         >
-          By the numbers
+          <span>By the numbers</span>
+          {refreshed ? <span className="text-black/35">{refreshed}</span> : null}
         </div>
+
         <div className="mt-4 grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-4 md:gap-x-10">
           {STATS.map((s, i) => (
             <div
