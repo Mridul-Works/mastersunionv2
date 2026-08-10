@@ -212,23 +212,36 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
               <div className="absolute inset-0 bg-[#131313]/60">
                 {item.img ? (
                   <>
-                    {/* soft full-bleed backdrop: heavily blurred, glass-morphic */}
+                    {/* soft backdrop glow — strongest at the curve, fading out
+                        before the face region so portraits stay clean */}
                     <img
                       src={item.img}
                       alt=""
                       draggable={false}
                       aria-hidden
-                      className="absolute -inset-[12%] h-[124%] w-[124%] scale-110 select-none object-cover object-center opacity-20 saturate-150 blur-[80px]"
+                      className="absolute -inset-[12%] h-[124%] w-[124%] scale-110 select-none object-cover object-center opacity-25 saturate-150 blur-[90px]"
+                      style={{
+                        maskImage:
+                          "radial-gradient(120% 90% at 22% 45%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.7) 38%, rgba(0,0,0,0.18) 62%, rgba(0,0,0,0) 80%)",
+                        WebkitMaskImage:
+                          "radial-gradient(120% 90% at 22% 45%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.7) 38%, rgba(0,0,0,0.18) 62%, rgba(0,0,0,0) 80%)",
+                      }}
                     />
-                    {/* frosted glass sheet over the backdrop */}
+                    {/* frosted glass sheet — masked to the left/center so haze
+                        never sits behind the subject */}
                     <div
                       className="absolute inset-0 backdrop-blur-3xl backdrop-saturate-150"
                       style={{
                         background:
-                          "linear-gradient(120deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01) 45%, rgba(0,0,0,0.14))",
+                          "linear-gradient(120deg, rgba(255,255,255,0.06), rgba(255,255,255,0.015) 45%, rgba(0,0,0,0.10))",
+                        maskImage:
+                          "linear-gradient(100deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 32%, rgba(0,0,0,0.3) 52%, rgba(0,0,0,0) 68%)",
+                        WebkitMaskImage:
+                          "linear-gradient(100deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 32%, rgba(0,0,0,0.3) 52%, rgba(0,0,0,0) 68%)",
                       }}
                       aria-hidden
                     />
+
 
 
                     {/* the actual subject frame: starts to the right of the curve */}
