@@ -208,12 +208,12 @@ export default function FacultyHero({
       <div
         className="pointer-events-none absolute inset-y-0 right-0 z-0 w-full md:w-[62%] lg:w-[56%]"
         style={{
-          opacity: 1 - recede * 0.55,
-          transform: `translate3d(0, ${recede * -18}px, 0)`,
-          transition: "opacity 120ms linear",
+          opacity: "clamp(0.45, calc(1 - var(--recede) * 0.55), 1)",
+          transform: "translate3d(0, calc(var(--recede) * -18px), 0)",
         }}
         aria-hidden
       >
+
         <div
           ref={photoRef}
           className="hero-photo-emerge absolute inset-0"
