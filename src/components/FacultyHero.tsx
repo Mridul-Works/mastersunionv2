@@ -399,7 +399,7 @@ export default function FacultyHero({
                 </>
               ) : null}
             </div>
-            <div className="mt-[clamp(0.55rem,1.2vh,0.85rem)] overflow-hidden" aria-hidden>
+            <div className="mt-[clamp(0.9rem,2vh,1.25rem)] overflow-hidden" aria-hidden>
               <div className="mu-pulse-center-out h-[2px] w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" />
             </div>
 
