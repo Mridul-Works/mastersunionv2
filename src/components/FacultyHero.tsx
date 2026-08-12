@@ -201,7 +201,9 @@ export default function FacultyHero({
       ref={sectionRef}
       id="top"
       className="relative w-full overflow-hidden bg-[#0a0a0a] text-white"
+      style={{ ["--recede" as string]: "0" }}
     >
+
       {/* Photograph emerging from the darkness — masked, frameless */}
       <div
         className="pointer-events-none absolute inset-y-0 right-0 z-0 w-full md:w-[62%] lg:w-[56%]"
