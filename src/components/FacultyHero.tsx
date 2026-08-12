@@ -268,7 +268,7 @@ export default function FacultyHero({
         <div className="flex-1" style={{ opacity: "clamp(0.6, calc(1 - var(--recede) * 0.4), 1)" }}>
 
 
-          <div className="max-w-[46rem] md:max-w-[34rem] lg:max-w-[40rem]">
+          <div className="max-w-[28rem] md:max-w-[20rem] lg:max-w-[26rem] xl:max-w-[32rem]">
             <div
               className="flex items-center gap-3 sm:gap-4"
               style={entrance(-50, "x", 650, 0)}
@@ -284,7 +284,7 @@ export default function FacultyHero({
           </div>
 
           {/* Headline: locally revealed upward from beneath the eyebrow */}
-          <div className="w-full md:max-w-[44rem] lg:max-w-[52rem] xl:max-w-[54rem] overflow-hidden">
+          <div className="w-full max-w-[28rem] md:max-w-[20rem] lg:max-w-[26rem] xl:max-w-[32rem] overflow-hidden">
             <h1
               className="mt-[clamp(0.85rem,2.2vh,1.5rem)] text-[clamp(1.65rem,4.6vw,3.3rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-white"
               style={{
@@ -304,9 +304,9 @@ export default function FacultyHero({
             </h1>
           </div>
 
-          <div className="w-full max-w-[46rem] md:max-w-[34rem] lg:max-w-[40rem]">
+          <div className="w-full max-w-[28rem] md:max-w-[20rem] lg:max-w-[26rem] xl:max-w-[32rem]">
             <p
-              className="mt-[clamp(0.9rem,2.4vh,1.7rem)] max-w-[52ch] text-[clamp(0.9rem,2.6vw,1.1rem)] leading-[1.58] text-white/70"
+              className="mt-[clamp(0.9rem,2.4vh,1.7rem)] max-w-[42ch] text-[clamp(0.9rem,2.6vw,1.1rem)] leading-[1.58] text-white/70"
               style={entrance(50, "y", 750, 340)}
             >
               500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered
