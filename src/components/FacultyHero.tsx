@@ -417,7 +417,7 @@ export default function FacultyHero({
                     {refreshed ? (
                       <div
                         className="flex items-start justify-center pt-4"
-                        style={{ gridColumnStart: universities.length, gridRowStart: 2 }}
+                        style={{ gridColumnStart: 1, gridRowStart: 2 }}
                       >
                         <span className="inline-flex items-center whitespace-nowrap rounded-[999px] border border-[#CBE4DE]/[0.25] bg-[#CBE4DE]/[0.18] px-3 py-1.5 text-[10px] uppercase tracking-[0.24em] text-white/35 backdrop-blur-[8px]">
                           {refreshed}
