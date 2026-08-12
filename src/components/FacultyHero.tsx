@@ -223,10 +223,10 @@ export default function FacultyHero({
               </div>
             </div>
 
-            {/* Headline: larger, using the full black space */}
-            <div className="mt-[clamp(0.85rem,2.2vh,1.5rem)] max-w-[44rem] overflow-hidden lg:max-w-none">
+            {/* Headline: fills the left column, never the photo zone */}
+            <div className="mt-[clamp(0.85rem,2.2vh,1.5rem)] w-full max-w-[850px]">
               <h1
-                className="text-[clamp(2.1rem,6.2vw,4.25rem)] font-semibold leading-[0.95] tracking-[-0.03em] text-white"
+                className="text-[clamp(2rem,4.2vw,4rem)] font-semibold leading-[1.02] tracking-[-0.025em] text-white [text-wrap:balance]"
                 style={{
                   fontFamily: SANS,
                   opacity: animateIn ? 1 : 0,
@@ -236,13 +236,10 @@ export default function FacultyHero({
                   transitionDelay: "150ms",
                 }}
               >
-                {LINES.map((line, i) => (
-                  <span key={i} className="block pb-[0.1em]">
-                    {line}
-                  </span>
-                ))}
+                {HEADLINE}
               </h1>
             </div>
+
 
             {/* Paragraph with architectural left border */}
             <div
