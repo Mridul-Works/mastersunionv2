@@ -9,7 +9,7 @@ const HERO_IMAGE = "https://images.mastersunion.link/uploads/03032026/v1/Frame20
 
 // Shared geometry for both photo layers so colour + monochrome stay pixel-aligned.
 const PHOTO_CLASS =
-  "h-full w-full origin-center object-cover object-[50%_18%] contrast-[1.05] md:object-[54%_32%] md:scale-[1.05] lg:object-[41%_50%] lg:scale-[1.02] scale-[1.10] will-change-transform";
+  "h-full w-full origin-center object-cover object-[50%_18%] contrast-[1.05] md:object-[56%_34%] md:scale-[1.04] lg:object-[47%_52%] lg:scale-[1.0] scale-[1.08] will-change-transform";
 
 const HEADLINE = (
   <>
@@ -301,9 +301,13 @@ export default function FacultyHero({
               className="hero-photo-emerge absolute inset-0"
               style={{
                 WebkitMaskImage:
-                  "radial-gradient(78% 92% at 68% 52%, #000 0%, rgba(0,0,0,0.96) 46%, rgba(0,0,0,0.7) 66%, rgba(0,0,0,0.32) 84%, rgba(0,0,0,0) 100%)",
+                  "radial-gradient(92% 108% at 74% 50%, #000 0%, rgba(0,0,0,0.98) 52%, rgba(0,0,0,0.82) 70%, rgba(0,0,0,0.4) 88%, rgba(0,0,0,0) 100%)",
                 maskImage:
-                  "radial-gradient(78% 92% at 68% 52%, #000 0%, rgba(0,0,0,0.96) 46%, rgba(0,0,0,0.7) 66%, rgba(0,0,0,0.32) 84%, rgba(0,0,0,0) 100%)",
+                  "radial-gradient(92% 108% at 74% 50%, #000 0%, rgba(0,0,0,0.98) 52%, rgba(0,0,0,0.82) 70%, rgba(0,0,0,0.4) 88%, rgba(0,0,0,0) 100%)",
+                WebkitMaskComposite: "source-in",
+                maskComposite: "intersect",
+                WebkitMaskRepeat: "no-repeat",
+                maskRepeat: "no-repeat",
               }}
             >
               <img
