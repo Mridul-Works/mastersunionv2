@@ -280,24 +280,7 @@ export default function FacultyHero({
             </div>
           </div>
 
-          {/* Scroll cue — centered under the text column */}
-          <div
-            className="hero-fade-up mt-4 flex justify-center"
-            style={{ animationDelay: "1900ms", opacity: "clamp(0, calc(1 - var(--recede) * 2), 1)" }}
-          >
-            <div className="flex flex-col items-center gap-2 text-white/45">
-              <span className="hero-scroll-arrow text-[13px] leading-none" aria-hidden>
-                ↓
-              </span>
-              <span
-                className="text-[9px] uppercase tracking-[0.28em]"
-                style={{ fontFamily: MONO }}
-              >
-                Scroll
-              </span>
-            </div>
-          </div>
-        </div>
+          {/* Scroll cue now sits at the bottom of the entire hero section */}
 
         {/* Right portrait column */}
         <div className="relative h-[min(420px,55vh)] bg-[#0a0a0a] lg:col-span-5 lg:h-auto">
