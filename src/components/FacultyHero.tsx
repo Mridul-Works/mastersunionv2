@@ -106,11 +106,11 @@ export default function FacultyHero({
           </div>
 
           <h1
-            className="mt-[clamp(0.9rem,2.4vh,1.5rem)] max-w-[24ch] text-[clamp(2.25rem,4.1vw,3.9rem)] font-semibold leading-[1.08] tracking-[-0.02em] text-black"
+            className="mt-[clamp(1.35rem,3.2vh,2.1rem)] max-w-[24ch] text-[clamp(2.25rem,4.1vw,3.9rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-black"
             style={{ fontFamily: SANS }}
           >
             {LINES.map((line, i) => (
-              <span key={i} className="block overflow-hidden pb-[0.1em]">
+              <span key={i} className="block overflow-hidden pb-[0.14em]">
                 <span
                   className="hero-line-soft block"
                   style={{ animationDelay: `${180 + i * 90}ms` }}
