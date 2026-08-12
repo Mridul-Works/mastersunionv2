@@ -325,8 +325,9 @@ export default function FacultyHero({
         {/* Scroll cue — centered, minimal */}
         <div
           className="hero-fade-up mt-3 flex justify-center"
-          style={{ animationDelay: "1250ms", opacity: 1 - recede * 2 }}
+          style={{ animationDelay: "1250ms", opacity: "clamp(0, calc(1 - var(--recede) * 2), 1)" }}
         >
+
           <div className="flex flex-col items-center gap-2 text-white/45">
             <span className="hero-scroll-arrow text-[13px] leading-none" aria-hidden>
               ↓
