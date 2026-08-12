@@ -9,7 +9,7 @@ const HERO_IMAGE = "https://images.mastersunion.link/uploads/03032026/v1/Frame20
 
 // Shared geometry for both photo layers so colour + monochrome stay pixel-aligned.
 const PHOTO_CLASS =
-  "h-full w-full origin-center object-cover object-[50%_18%] contrast-[1.05] md:object-[54%_32%] md:scale-[1.05] lg:object-[41%_50%] lg:scale-[1.02] scale-[1.10] will-change-transform";
+  "h-full w-full origin-center object-cover object-[50%_18%] contrast-[1.05] md:object-[56%_34%] md:scale-[1.04] lg:object-[38%_52%] lg:scale-[1.0] scale-[1.08] will-change-transform";
 
 const HEADLINE = (
   <>
@@ -289,8 +289,9 @@ export default function FacultyHero({
         {/* Right portrait column */}
         <div className="relative h-[min(420px,55vh)] lg:col-span-5 lg:h-auto">
           <div
-            className="pointer-events-none absolute inset-y-0 left-0 right-0 z-0 lg:left-[-95%]"
+            className="pointer-events-none absolute inset-y-0 left-0 right-0 z-0 lg:left-[-62%]"
             style={{
+              right: "calc(-1 * (clamp(20px, 4vw, 64px) + max(0px, (100vw - 1440px) / 2)))",
               opacity: "clamp(0.45, calc(1 - var(--recede) * 0.55), 1)",
               transform: "translate3d(0, calc(var(--recede) * -18px), 0)",
             }}
@@ -301,9 +302,11 @@ export default function FacultyHero({
               className="hero-photo-emerge absolute inset-0"
               style={{
                 WebkitMaskImage:
-                  "radial-gradient(78% 92% at 68% 52%, #000 0%, rgba(0,0,0,0.96) 46%, rgba(0,0,0,0.7) 66%, rgba(0,0,0,0.32) 84%, rgba(0,0,0,0) 100%)",
+                  "radial-gradient(70% 108% at 82% 50%, #000 0%, rgba(0,0,0,0.98) 44%, rgba(0,0,0,0.72) 64%, rgba(0,0,0,0.3) 84%, rgba(0,0,0,0) 100%)",
                 maskImage:
-                  "radial-gradient(78% 92% at 68% 52%, #000 0%, rgba(0,0,0,0.96) 46%, rgba(0,0,0,0.7) 66%, rgba(0,0,0,0.32) 84%, rgba(0,0,0,0) 100%)",
+                  "radial-gradient(70% 108% at 82% 50%, #000 0%, rgba(0,0,0,0.98) 44%, rgba(0,0,0,0.72) 64%, rgba(0,0,0,0.3) 84%, rgba(0,0,0,0) 100%)",
+                WebkitMaskRepeat: "no-repeat",
+                maskRepeat: "no-repeat",
               }}
             >
               <img
@@ -343,22 +346,22 @@ export default function FacultyHero({
               className="absolute inset-0 hidden lg:block"
               style={{
                 backgroundImage:
-                  "linear-gradient(to right, #0a0a0a 0%, rgba(10,10,10,0.95) 18%, rgba(10,10,10,0.74) 30%, rgba(10,10,10,0.45) 41%, rgba(10,10,10,0.2) 52%, rgba(10,10,10,0.06) 64%, rgba(10,10,10,0) 76%)",
+                  "linear-gradient(to right, #0a0a0a 0%, #0a0a0a 26%, rgba(10,10,10,0.9) 40%, rgba(10,10,10,0.6) 52%, rgba(10,10,10,0.28) 64%, rgba(10,10,10,0.08) 76%, rgba(10,10,10,0) 88%)",
               }}
             />
             <div
-              className="absolute inset-y-0 right-0 hidden w-[10%] lg:block"
+              className="absolute inset-y-0 right-0 hidden w-[6%] lg:block"
               style={{
                 backgroundImage:
-                  "linear-gradient(to left, #0a0a0a 0%, rgba(10,10,10,0.55) 45%, rgba(10,10,10,0) 100%)",
+                  "linear-gradient(to left, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.2) 50%, rgba(10,10,10,0) 100%)",
               }}
             />
             <div className="absolute inset-x-0 top-0 h-[18%] bg-gradient-to-b from-[#0a0a0a] to-transparent" />
             <div
-              className="absolute inset-x-0 bottom-0 h-[20%]"
+              className="absolute inset-x-0 bottom-0 h-[42%]"
               style={{
                 backgroundImage:
-                  "linear-gradient(to top, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.42) 48%, rgba(10,10,10,0) 100%)",
+                  "linear-gradient(to top, #0a0a0a 0%, #0a0a0a 14%, rgba(10,10,10,0.9) 32%, rgba(10,10,10,0.6) 52%, rgba(10,10,10,0.28) 74%, rgba(10,10,10,0) 100%)",
               }}
             />
           </div>
