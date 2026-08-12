@@ -187,8 +187,8 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
         onPointerUp={endDrag}
         onPointerLeave={endDrag}
         onDragStart={(e) => e.preventDefault()}
-        className="relative flex snap-x snap-mandatory items-center gap-4 overflow-x-auto overscroll-x-contain px-[max(0.75rem,calc((100vw-min(1320px,var(--card-w)))/2))] py-5 sm:gap-5 sm:py-6 md:gap-8 md:py-8 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-        style={{ cursor: "grab", touchAction: "pan-y pinch-zoom", ["--card-w" as string]: "clamp(88vw, 88vw, 88vw)" }}
+        className="relative flex snap-x snap-mandatory items-center gap-4 overflow-x-auto overscroll-x-contain px-[6vw] py-5 sm:gap-5 sm:px-[max(1rem,calc((100vw-min(1320px,82vw))/2))] sm:py-6 md:gap-8 md:py-8 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        style={{ cursor: "grab", touchAction: "pan-y pinch-zoom" }}
       >
         {slides.map((item, i) => {
           const isActive = i === active;
