@@ -280,7 +280,7 @@ export default function FacultyHero({
             </div>
           </div>
 
-          {/* Scroll cue now sits at the bottom of the entire hero section */}
+        </div>
 
         {/* Right portrait column */}
         <div className="relative h-[min(420px,55vh)] bg-[#0a0a0a] lg:col-span-5 lg:h-auto">
