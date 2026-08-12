@@ -287,7 +287,7 @@ export default function FacultyHero({
         </div>
 
         {/* Right portrait column */}
-        <div className="relative h-[min(420px,55vh)] lg:col-span-5 lg:h-auto">
+        <div className="relative h-[min(420px,55vh)] lg:col-span-5 lg:h-auto lg:-ml-16">
           <div
             className="pointer-events-none absolute inset-0 z-0"
             style={{
