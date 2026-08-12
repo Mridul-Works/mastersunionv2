@@ -338,20 +338,21 @@ export default function FacultyHero({
 
             {/* Left-edge falloff so the split stays clean — identical at every width */}
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 z-10"
               style={{
                 backgroundImage:
                   "linear-gradient(to right, #0a0a0a 0%, rgba(10,10,10,0.85) 12%, rgba(10,10,10,0.5) 26%, rgba(10,10,10,0.18) 40%, rgba(10,10,10,0) 56%)",
               }}
             />
-            <div className="absolute inset-x-0 top-0 h-[18%] bg-gradient-to-b from-[#0a0a0a] to-transparent" />
+            <div className="absolute inset-x-0 top-0 z-10 h-[18%] bg-gradient-to-b from-[#0a0a0a] to-transparent" />
             <div
-              className="absolute inset-x-0 -bottom-1 h-[45%]"
+              className="absolute inset-x-0 -bottom-1 z-10 h-[45%]"
               style={{
                 backgroundImage:
                   "linear-gradient(to top, #0a0a0a 0%, #0a0a0a 30%, rgba(10,10,10,0.80) 58%, rgba(10,10,10,0.35) 85%, rgba(10,10,10,0) 100%)",
               }}
             />
+
           </div>
         </div>
       </div>
