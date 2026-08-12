@@ -363,11 +363,13 @@ export default function FacultyHero({
               ) : null}
             </div>
 
-            <div className="mt-[clamp(0.9rem,2vh,1.25rem)] grid w-full grid-cols-2 gap-x-3 gap-y-6 lg:grid-cols-4 lg:gap-x-4 lg:gap-y-8">
+            <div className="mt-[clamp(0.9rem,2vh,1.25rem)] grid w-full grid-cols-2 gap-y-6 lg:grid-cols-4 lg:gap-y-0">
               {STATS.map((s, i) => (
                 <div
                   key={s.l}
-                  className="hero-fade-up group pointer-events-auto flex min-w-0 flex-col items-center text-center"
+                  className={`hero-fade-up group pointer-events-auto flex min-w-0 flex-col items-center px-2 text-center sm:px-4 ${
+                    i % 2 === 1 ? "border-l border-white/[0.12]" : ""
+                  } ${i > 0 ? "lg:border-l lg:border-white/[0.12]" : "lg:border-l-0"}`}
                   style={{ animationDelay: `${860 + i * 70}ms` }}
                 >
                   <div
@@ -377,19 +379,15 @@ export default function FacultyHero({
                     {s.v}
                   </div>
                   <div
-                    className="mt-2 max-w-full text-[clamp(9px,1.9vw,10px)] font-medium uppercase leading-[1.5] tracking-[0.14em] text-white/60 sm:mt-2.5 sm:tracking-[0.16em] lg:whitespace-nowrap"
+                    className="mt-2 max-w-full text-[clamp(9px,1.9vw,10px)] font-medium uppercase leading-[1.5] tracking-[0.14em] text-white/60 transition-colors group-hover:text-white/85 sm:mt-2.5 sm:tracking-[0.16em] lg:whitespace-nowrap"
                     style={{ fontFamily: MONO }}
                   >
                     {s.l}
                   </div>
-                  <div
-                    className="mx-auto mt-3 h-px w-8 origin-center animate-pulse bg-white/25 transition-all duration-500 group-hover:w-24 group-hover:bg-[#CBE4DE]"
-                    style={{ animationDelay: `${1 + i * 0.12}s` }}
-                    aria-hidden
-                  />
                 </div>
               ))}
             </div>
+
 
             {/* University names — quiet editorial footer inside the glass panel */}
             {universities?.length ? (
