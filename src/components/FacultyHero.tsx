@@ -343,10 +343,9 @@ export default function FacultyHero({
             {STATS.map((s, i) => (
               <div
                 key={s.l}
-                className="hero-fade-up group flex items-start gap-3"
+                className="hero-fade-up group flex flex-col items-center text-center"
                 style={{ animationDelay: `${860 + i * 70}ms` }}
               >
-                <span className="mt-[0.9em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#CBE4DE]" aria-hidden />
                 <div className="min-w-0">
                   <div
                     className="text-[clamp(1.75rem,2.8vw,2.6rem)] font-medium leading-[0.9] tracking-[-0.035em]"
@@ -355,13 +354,13 @@ export default function FacultyHero({
                     {s.v}
                   </div>
                   <div
-                    className="mt-2.5 max-w-[20ch] text-[10px] font-medium uppercase leading-[1.5] tracking-[0.16em] text-white/60"
+                    className="mt-2.5 max-w-[24ch] text-[10px] font-medium uppercase leading-[1.5] tracking-[0.16em] text-white/60 md:whitespace-nowrap"
                     style={{ fontFamily: MONO }}
                   >
                     {s.l}
                   </div>
                   <div
-                    className="mt-3 h-px w-8 bg-white/25 transition-all duration-500 group-hover:w-16 group-hover:bg-[#CBE4DE]"
+                    className="mx-auto mt-3 h-px w-8 bg-white/25 transition-all duration-500 group-hover:w-16 group-hover:bg-[#CBE4DE]"
                     aria-hidden
                   />
                 </div>
