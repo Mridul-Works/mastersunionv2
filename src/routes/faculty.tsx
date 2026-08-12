@@ -295,7 +295,7 @@ function EditorialGrid({
   return (
     <div className="mt-8 border-t border-black/15">
       {/* STATS HERO — replaces featured faculty */}
-      <div className="grid gap-x-8 gap-y-7 border-b border-black/15 py-7 md:grid-cols-12 md:py-9">
+      <div className="grid gap-x-8 gap-y-6 border-b border-black/15 py-[clamp(1.5rem,3vw,2.25rem)] md:grid-cols-12">
         <div className="md:col-span-5">
           <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
             The Mix · {sectionLabel}
@@ -314,7 +314,7 @@ function EditorialGrid({
           <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
             By the numbers
           </div>
-          <div className="mt-6 grid grid-cols-2 gap-x-10 gap-y-8">
+          <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-8 sm:gap-x-10">
             {stats.map((s) => (
               <div key={s.l} className="group relative">
                 <div className="flex items-start gap-3">
@@ -373,7 +373,7 @@ export const Route = createFileRoute("/faculty")({
 
 function FacultyPage() {
   return (
-    <main className="min-h-screen overflow-x-clip bg-white pb-[clamp(3rem,7vw,4.5rem)] text-black" style={{ fontFamily: INTER }}>
+    <main className="min-h-screen overflow-x-clip bg-white pb-24 text-black sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
       <SectionNav items={NAV} applyHref="#cta" />
 
       {/* Chapter marker */}
