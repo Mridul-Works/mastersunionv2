@@ -132,7 +132,7 @@ export default function FacultyHero({
         </div>
 
         {/* Small editorial photograph in the right-hand whitespace */}
-        <div className="lg:col-span-4 lg:pt-10">
+        <div className="lg:col-span-4 lg:pt-[clamp(4rem,9.5vh,6.75rem)]">
           <figure className="ml-auto w-[150px] sm:w-[176px] lg:w-[190px]">
             <div
               className="hero-caption-line mb-2 h-8 w-px bg-black/25"
