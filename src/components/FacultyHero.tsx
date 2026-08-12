@@ -289,7 +289,7 @@ export default function FacultyHero({
         {/* Right portrait column */}
         <div className="relative h-[min(420px,55vh)] lg:col-span-5 lg:h-auto">
           <div
-            className="pointer-events-none absolute inset-y-0 left-0 right-0 z-0 lg:left-[-95%]"
+            className="pointer-events-none absolute inset-y-0 left-0 right-0 z-0 lg:left-[-62%]"
             style={{
               opacity: "clamp(0.45, calc(1 - var(--recede) * 0.55), 1)",
               transform: "translate3d(0, calc(var(--recede) * -18px), 0)",
@@ -301,11 +301,9 @@ export default function FacultyHero({
               className="hero-photo-emerge absolute inset-0"
               style={{
                 WebkitMaskImage:
-                  "radial-gradient(92% 108% at 74% 50%, #000 0%, rgba(0,0,0,0.98) 52%, rgba(0,0,0,0.82) 70%, rgba(0,0,0,0.4) 88%, rgba(0,0,0,0) 100%)",
+                  "radial-gradient(70% 108% at 82% 50%, #000 0%, rgba(0,0,0,0.98) 44%, rgba(0,0,0,0.72) 64%, rgba(0,0,0,0.3) 84%, rgba(0,0,0,0) 100%)",
                 maskImage:
-                  "radial-gradient(92% 108% at 74% 50%, #000 0%, rgba(0,0,0,0.98) 52%, rgba(0,0,0,0.82) 70%, rgba(0,0,0,0.4) 88%, rgba(0,0,0,0) 100%)",
-                WebkitMaskComposite: "source-in",
-                maskComposite: "intersect",
+                  "radial-gradient(70% 108% at 82% 50%, #000 0%, rgba(0,0,0,0.98) 44%, rgba(0,0,0,0.72) 64%, rgba(0,0,0,0.3) 84%, rgba(0,0,0,0) 100%)",
                 WebkitMaskRepeat: "no-repeat",
                 maskRepeat: "no-repeat",
               }}
