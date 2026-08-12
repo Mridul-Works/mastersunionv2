@@ -35,9 +35,8 @@ const FALLBACK_STATS: FacultyStat[] = [
 
 /**
  * One-screen editorial opening for /faculty: eyebrow → headline → paragraph →
- * a small art-directed academic photograph → "By the numbers" stats.
- * No parallax; the only scroll interaction is a few pixels of physical drift
- * and ~1deg of rotation on the photograph. Respects prefers-reduced-motion.
+ * "By the numbers" stats.
+ * Respects prefers-reduced-motion.
  * `stats` are derived from the live faculty rosters by the route.
  */
 export default function FacultyHero({
