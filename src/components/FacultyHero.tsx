@@ -457,7 +457,7 @@ export default function FacultyHero({
 
       {/* Scroll cue — centered at the bottom of the hero section */}
       <div
-        className="hero-fade-up absolute inset-x-0 bottom-[clamp(0.75rem,2vh,1.5rem)] z-20 flex justify-center"
+        className="hero-fade-up absolute inset-x-0 bottom-[clamp(0.75rem,2vh,1.5rem)] z-[110] flex justify-center"
         style={{ animationDelay: "1900ms", opacity: "clamp(0, calc(1 - var(--recede) * 2), 1)" }}
       >
         <div className="flex flex-col items-center gap-2 text-white/45">
