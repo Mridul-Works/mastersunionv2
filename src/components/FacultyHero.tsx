@@ -1,6 +1,6 @@
-import { useEffect, useRef } from "react";
-import academicAsset from "@/assets/faculty/faculty-academic.jpg.asset.json";
+import { useRef } from "react";
 import type { FacultyStat } from "@/lib/faculty-stats";
+
 
 
 const MONO = "'JetBrains Mono', ui-monospace, monospace";
@@ -35,9 +35,8 @@ const FALLBACK_STATS: FacultyStat[] = [
 
 /**
  * One-screen editorial opening for /faculty: eyebrow → headline → paragraph →
- * a small art-directed academic photograph → "By the numbers" stats.
- * No parallax; the only scroll interaction is a few pixels of physical drift
- * and ~1deg of rotation on the photograph. Respects prefers-reduced-motion.
+ * "By the numbers" stats.
+ * Respects prefers-reduced-motion.
  * `stats` are derived from the live faculty rosters by the route.
  */
 export default function FacultyHero({
@@ -50,38 +49,7 @@ export default function FacultyHero({
   const STATS = stats?.length ? stats : FALLBACK_STATS;
 
   const sectionRef = useRef<HTMLElement | null>(null);
-  const figureRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    let frame = 0;
-
-    const apply = () => {
-      frame = 0;
-      const el = sectionRef.current;
-      const fig = figureRef.current;
-      if (!el || !fig) return;
-      const rect = el.getBoundingClientRect();
-      const p = Math.min(Math.max(-rect.top / Math.max(rect.height, 1), 0), 1);
-      // deliberately tiny: a photograph resting on a page, not an animation
-      fig.style.transform = `translate3d(0,${-10 * p}px,0) rotate(${-1.4 + 1.4 * p}deg)`;
-      fig.style.boxShadow = `0 ${10 + 14 * (1 - p)}px ${26 + 18 * (1 - p)}px -18px rgba(0,0,0,${0.18 + 0.1 * (1 - p)})`;
-    };
-
-    const onScroll = () => {
-      if (frame) return;
-      frame = requestAnimationFrame(apply);
-    };
-
-    apply();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      if (frame) cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
 
   return (
     <section
@@ -130,39 +98,6 @@ export default function FacultyHero({
               by Ivy League academics and global business leaders — from Harvard to McKinsey, from
               Wharton to Google. They don&apos;t just teach the playbook. They wrote it.
             </p>
-          </div>
-
-          {/* Small editorial photograph in the right-hand whitespace */}
-          <div className="lg:col-span-4 lg:pt-[clamp(4rem,9.5vh,6.75rem)]">
-            <figure className="ml-auto w-[150px] sm:w-[176px] lg:w-[190px]">
-              <div
-                className="hero-caption-line mb-2 h-8 w-px bg-white/25"
-                style={{ animationDelay: "700ms" }}
-                aria-hidden
-              />
-              <div className="hero-plate-reveal" style={{ animationDelay: "760ms" }}>
-                <div
-                  ref={figureRef}
-                  className="overflow-hidden rounded-[3px] border border-white/12 bg-neutral-900 will-change-transform"
-                  style={{ transform: "rotate(-1.4deg)" }}
-                >
-                  <img
-                    src={academicAsset.url}
-                    alt="A professor in discussion with graduate students beside a chalkboard"
-                    width={912}
-                    height={1120}
-                    loading="lazy"
-                    className="block aspect-[4/5] w-full object-cover grayscale"
-                  />
-                </div>
-              </div>
-              <figcaption
-                className="hero-fade-up mt-2.5 text-[9.5px] uppercase leading-[1.5] tracking-[0.16em] text-white/45"
-                style={{ fontFamily: MONO, animationDelay: "1000ms" }}
-              >
-                Fig. 01 — Seminar room, faculty in discussion
-              </figcaption>
-            </figure>
           </div>
         </div>
 
