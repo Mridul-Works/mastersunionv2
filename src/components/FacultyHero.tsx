@@ -15,13 +15,19 @@ const PHOTO_CLASS =
 const LINES = [
   <>
     At most B-schools, faculty{" "}
-    <span className="font-light italic" style={{ fontFamily: SERIF_IT }}>
+    <span
+      className="font-light italic"
+      style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}
+    >
       study
     </span>
   </>,
   <>
     companies. Here, they{" "}
-    <span className="font-light italic" style={{ fontFamily: SERIF_IT }}>
+    <span
+      className="font-light italic"
+      style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}
+    >
       ran
     </span>{" "}
     them —
@@ -333,11 +339,11 @@ export default function FacultyHero({
                 className="hero-fade-up group flex items-start gap-3"
                 style={{ animationDelay: `${860 + i * 70}ms` }}
               >
-                <span className="mt-[0.9em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#7a8b6f]" aria-hidden />
+                <span className="mt-[0.9em] h-1.5 w-1.5 shrink-0 rounded-full bg-[#CBE4DE]" aria-hidden />
                 <div className="min-w-0">
                   <div
-                    className="text-[clamp(1.75rem,2.8vw,2.6rem)] font-medium leading-[0.9] tracking-[-0.035em] text-white"
-                    style={{ fontFamily: SERIF_IT }}
+                    className="text-[clamp(1.75rem,2.8vw,2.6rem)] font-medium leading-[0.9] tracking-[-0.035em]"
+                    style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}
                   >
                     {s.v}
                   </div>
@@ -348,7 +354,7 @@ export default function FacultyHero({
                     {s.l}
                   </div>
                   <div
-                    className="mt-3 h-px w-8 bg-white/25 transition-all duration-500 group-hover:w-16 group-hover:bg-[#7a8b6f]"
+                    className="mt-3 h-px w-8 bg-white/25 transition-all duration-500 group-hover:w-16 group-hover:bg-[#CBE4DE]"
                     aria-hidden
                   />
                 </div>
