@@ -9,7 +9,7 @@ const HERO_IMAGE = "https://images.mastersunion.link/uploads/03032026/v1/Frame20
 
 // Shared geometry for both photo layers so colour + monochrome stay pixel-aligned.
 const PHOTO_CLASS =
-  "h-full w-full origin-center object-cover object-[46%_15%] opacity-[0.7] contrast-[1.05] md:object-[52%_22%] md:scale-[1.22] lg:object-[56%_28%] lg:scale-[1.28] scale-[1.18] will-change-transform";
+  "h-full w-full origin-center object-cover object-[46%_15%] contrast-[1.05] md:object-[52%_22%] md:scale-[1.22] lg:object-[56%_28%] lg:scale-[1.28] scale-[1.18] will-change-transform";
 
 
 const LINES = [
@@ -180,7 +180,7 @@ export default function FacultyHero({
             alt="Faculty at Masters' Union"
             loading="eager"
             decoding="async"
-            className={`${PHOTO_CLASS} absolute inset-0 saturate-[1.02]`}
+            className={`${PHOTO_CLASS} absolute inset-0`}
           />
           {/* Monochrome layer (top) — cursor punches a soft hole to develop colour */}
           <img
@@ -189,7 +189,7 @@ export default function FacultyHero({
             aria-hidden
             loading="eager"
             decoding="async"
-            className={`${PHOTO_CLASS} relative saturate-[0.25]`}
+            className={`${PHOTO_CLASS} relative saturate-0`}
             style={
               reveal.s > 0.002
                 ? {
