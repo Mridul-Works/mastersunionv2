@@ -227,26 +227,28 @@ export default function FacultyHero({
                 Faculty at Masters&apos; Union
               </div>
             </div>
+          </div>
 
-            {/* Headline: wider column so it wraps to three balanced lines on desktop */}
-            <div className="md:max-w-[44rem] lg:max-w-[52rem] xl:max-w-[58rem]">
-              <h1
-                className="mt-[clamp(1rem,2.2vh,1.5rem)] text-[clamp(2.25rem,4.1vw,3.9rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-white"
-                style={{ fontFamily: SANS }}
-              >
-                {LINES.map((line, i) => (
-                  <span key={i} className="block overflow-hidden pb-[0.14em]">
-                    <span
-                      className="hero-line-soft block"
-                      style={{ animationDelay: `${180 + i * 90}ms` }}
-                    >
-                      {line}
-                    </span>
+          {/* Headline: wider column so it wraps to three balanced lines on desktop */}
+          <div className="md:max-w-[44rem] lg:max-w-[52rem] xl:max-w-[58rem]">
+            <h1
+              className="mt-[clamp(1rem,2.2vh,1.5rem)] text-[clamp(2.25rem,4.1vw,3.9rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-white"
+              style={{ fontFamily: SANS }}
+            >
+              {LINES.map((line, i) => (
+                <span key={i} className="block overflow-hidden pb-[0.14em]">
+                  <span
+                    className="hero-line-soft block"
+                    style={{ animationDelay: `${180 + i * 90}ms` }}
+                  >
+                    {line}
                   </span>
-                ))}
-              </h1>
-            </div>
+                </span>
+              ))}
+            </h1>
+          </div>
 
+          <div className="max-w-[46rem] md:max-w-[34rem] lg:max-w-[40rem]">
             <p
               className="hero-fade-up mt-[clamp(1.1rem,2.4vh,1.7rem)] max-w-[52ch] text-[clamp(0.95rem,1.05vw,1.1rem)] leading-[1.58] text-white/70"
               style={{ animationDelay: "620ms" }}
