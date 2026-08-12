@@ -52,6 +52,27 @@ export default function FacultyHero({
   const STATS = stats?.length ? stats : FALLBACK_STATS;
   const sectionRef = useRef<HTMLElement | null>(null);
   const [recede, setRecede] = useState(0);
+  const [animateIn, setAnimateIn] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  const entrance = (
+    from: number,
+    axis: "x" | "y",
+    duration: number,
+    delay: number
+  ) => {
+    if (reducedMotion) return { opacity: 1, transform: "none", transition: "none" };
+    const transform =
+      axis === "x"
+        ? `translateX(${animateIn ? 0 : from}px)`
+        : `translateY(${animateIn ? 0 : from}px)`;
+    return {
+      opacity: animateIn ? 1 : 0,
+      transform,
+      transition: `opacity ${duration}ms cubic-bezier(0.22, 1, 0.36, 1), transform ${duration}ms cubic-bezier(0.22, 1, 0.36, 1)`,
+      transitionDelay: `${delay}ms`,
+    };
+  };
 
   // ---- Cursor "develop the photograph" colour reveal (desktop / fine pointer) ----
   const photoRef = useRef<HTMLDivElement | null>(null);
@@ -120,6 +141,19 @@ export default function FacultyHero({
       window.removeEventListener("pointerleave", onLeave);
       if (frame) cancelAnimationFrame(frame);
     };
+  }, []);
+
+  // Directional entrance animations for the three text elements.
+  // Trigger once on mount; disabled when reduced motion is preferred.
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setReducedMotion(reduced);
+    if (reduced) {
+      setAnimateIn(true);
+      return;
+    }
+    const id = requestAnimationFrame(() => setAnimateIn(true));
+    return () => cancelAnimationFrame(id);
   }, []);
 
 
@@ -216,8 +250,8 @@ export default function FacultyHero({
         <div className="flex-1">
           <div className="max-w-[46rem] md:max-w-[34rem] lg:max-w-[40rem]">
             <div
-              className="hero-fade-up flex items-center gap-4"
-              style={{ animationDelay: "60ms" }}
+              className="flex items-center gap-4"
+              style={entrance(-50, "x", 650, 0)}
             >
               <span className="h-px w-8 bg-white/30" aria-hidden />
               <div
@@ -230,19 +264,17 @@ export default function FacultyHero({
           </div>
 
           {/* Headline: wider column so it wraps to three balanced lines on desktop */}
-          <div className="md:max-w-[44rem] lg:max-w-[52rem] xl:max-w-[54rem]">
+          <div
+            className="md:max-w-[44rem] lg:max-w-[52rem] xl:max-w-[54rem]"
+            style={entrance(-60, "y", 850, 150)}
+          >
             <h1
               className="mt-[clamp(1rem,2.2vh,1.5rem)] text-[clamp(2.25rem,3.4vw,3.3rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-white"
               style={{ fontFamily: SANS }}
             >
               {LINES.map((line, i) => (
-                <span key={i} className="block overflow-hidden pb-[0.14em]">
-                  <span
-                    className="hero-line-soft block"
-                    style={{ animationDelay: `${180 + i * 90}ms` }}
-                  >
-                    {line}
-                  </span>
+                <span key={i} className="block pb-[0.14em]">
+                  {line}
                 </span>
               ))}
             </h1>
@@ -250,8 +282,8 @@ export default function FacultyHero({
 
           <div className="max-w-[46rem] md:max-w-[34rem] lg:max-w-[40rem]">
             <p
-              className="hero-fade-up mt-[clamp(1.1rem,2.4vh,1.7rem)] max-w-[52ch] text-[clamp(0.95rem,1.05vw,1.1rem)] leading-[1.58] text-white/70"
-              style={{ animationDelay: "620ms" }}
+              className="mt-[clamp(1.1rem,2.4vh,1.7rem)] max-w-[52ch] text-[clamp(0.95rem,1.05vw,1.1rem)] leading-[1.58] text-white/70"
+              style={entrance(50, "y", 750, 340)}
             >
               500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered
               by Ivy League academics and global business leaders — from Harvard to McKinsey, from
