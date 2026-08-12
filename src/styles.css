@@ -244,20 +244,20 @@
   to { transform: scaleY(1); }
 }
 .hero-line-in {
-  animation: hero-line-in 0.78s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: hero-line-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .hero-line-soft {
-  animation: hero-line-soft 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: hero-line-soft 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .hero-fade-up {
-  animation: hero-fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: hero-fade-up 1.0s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .hero-plate-reveal {
-  animation: hero-plate-reveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: hero-plate-reveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .hero-caption-line {
   transform-origin: top;
-  animation: hero-caption-line 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: hero-caption-line 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 /* photograph developing out of darkness */
 @keyframes hero-photo-emerge {
@@ -265,21 +265,21 @@
   to { opacity: 1; transform: scale(1.02); }
 }
 .hero-photo-emerge {
-  animation: hero-photo-emerge 1050ms cubic-bezier(0.16, 1, 0.3, 1) 120ms both;
+  animation: hero-photo-emerge 1600ms cubic-bezier(0.16, 1, 0.3, 1) 180ms both;
 }
 @keyframes hero-scroll-arrow {
   0%, 100% { transform: translateY(0); opacity: 0.55; }
   50% { transform: translateY(5px); opacity: 1; }
 }
 .hero-scroll-arrow {
-  animation: hero-scroll-arrow 2.6s ease-in-out infinite;
+  animation: hero-scroll-arrow 4s ease-in-out infinite;
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-line-in,
   .hero-line-soft,
   .hero-plate-reveal,
   .hero-caption-line,
-  .hero-fade-up { animation: hero-fade-up 0.4s ease both; }
+  .hero-fade-up { animation: hero-fade-up 0.6s ease both; }
   .hero-photo-emerge,
   .hero-scroll-arrow { animation: none; }
 }

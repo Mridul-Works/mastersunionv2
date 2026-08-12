@@ -194,7 +194,7 @@ export default function FacultyHero({
         : "translateX(18%) scale(1.02)",
     transition: reducedMotion
       ? "none"
-      : "opacity 1050ms cubic-bezier(0.16, 1, 0.3, 1) 120ms, transform 1050ms cubic-bezier(0.16, 1, 0.3, 1) 120ms",
+      : "opacity 1600ms cubic-bezier(0.16, 1, 0.3, 1) 180ms, transform 1600ms cubic-bezier(0.16, 1, 0.3, 1) 180ms",
   };
 
   return (
@@ -215,7 +215,7 @@ export default function FacultyHero({
             className="relative z-10"
             style={{ opacity: "clamp(0.6, calc(1 - var(--recede) * 0.4), 1)" }}
           >
-            <div style={entrance(-50, "x", 650, 0)}>
+            <div style={entrance(-50, "x", 1000, 0)}>
               <div className="flex items-center gap-3 sm:gap-4">
                 <span className="h-px w-6 shrink-0 bg-white/30 sm:w-8" aria-hidden />
                 <div
@@ -251,8 +251,8 @@ export default function FacultyHero({
                     opacity: animateIn ? 1 : 0,
                     transform: animateIn ? "translateY(0)" : "translateY(60px)",
                     transition:
-                      "opacity 850ms cubic-bezier(0.22, 1, 0.36, 1), transform 850ms cubic-bezier(0.22, 1, 0.36, 1)",
-                    transitionDelay: "150ms",
+                      "opacity 1300ms cubic-bezier(0.22, 1, 0.36, 1), transform 1300ms cubic-bezier(0.22, 1, 0.36, 1)",
+                    transitionDelay: "230ms",
                   }}
                 >
                   {HEADLINE}
@@ -262,7 +262,7 @@ export default function FacultyHero({
               {/* Paragraph with architectural left border */}
               <div
                 className="relative z-10 mt-[clamp(0.9rem,2.4vh,1.7rem)] max-w-[44rem] border-l border-white/15 pl-5 lg:max-w-[40rem]"
-                style={entrance(50, "y", 750, 340)}
+                style={entrance(50, "y", 1150, 520)}
               >
                 <p className="max-w-[48ch] text-[clamp(0.9rem,2.2vw,1.15rem)] leading-[1.55] text-white/70">
                   500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered
@@ -283,7 +283,7 @@ export default function FacultyHero({
           {/* Scroll cue — centered under the text column */}
           <div
             className="hero-fade-up mt-4 flex justify-center"
-            style={{ animationDelay: "1250ms", opacity: "clamp(0, calc(1 - var(--recede) * 2), 1)" }}
+            style={{ animationDelay: "1900ms", opacity: "clamp(0, calc(1 - var(--recede) * 2), 1)" }}
           >
             <div className="flex flex-col items-center gap-2 text-white/45">
               <span className="hero-scroll-arrow text-[13px] leading-none" aria-hidden>
@@ -377,7 +377,7 @@ export default function FacultyHero({
           <div
             className="hero-fade-up pointer-events-none w-full rounded-[clamp(16px,2.2vw,24px)] border border-t-0 border-white/10 bg-white/[0.02] shadow-[0_20px_60px_rgba(0,0,0,0.20)] backdrop-blur-[18px]"
             style={{
-              animationDelay: "780ms",
+              animationDelay: "1200ms",
               ["--card-pad" as string]: "clamp(1rem, 2.4vw, 2.25rem)",
               paddingInline: "var(--card-pad)",
               paddingBlock: "clamp(1rem, 2.2vh, 1.85rem)",
@@ -405,7 +405,7 @@ export default function FacultyHero({
                 <div
                   key={s.l}
                   className="hero-fade-up group pointer-events-auto flex min-w-0 flex-col items-center text-center"
-                  style={{ animationDelay: `${860 + i * 70}ms` }}
+                  style={{ animationDelay: `${1300 + i * 110}ms` }}
                 >
                   <div
                     className="text-[clamp(1.5rem,4.6vw,2.6rem)] font-medium leading-[0.9] tracking-[-0.035em]"
@@ -421,7 +421,7 @@ export default function FacultyHero({
                   </div>
                   <div
                     className="mx-auto mt-3 h-px w-8 origin-center animate-pulse bg-white/25 transition-all duration-500 group-hover:w-24 group-hover:bg-[#CBE4DE]"
-                    style={{ animationDelay: `${1 + i * 0.12}s` }}
+                    style={{ animationDelay: `${1.5 + i * 0.18}s` }}
                     aria-hidden
                   />
                 </div>
@@ -432,7 +432,7 @@ export default function FacultyHero({
             {universities?.length ? (
               <div
                 className="hero-fade-up mt-[clamp(1rem,2.2vh,1.85rem)] border-t border-white/[0.08] pt-[clamp(1rem,2.2vh,1.85rem)]"
-                style={{ animationDelay: "1100ms" }}
+                style={{ animationDelay: "1700ms" }}
               >
                 <div
                   className="pointer-events-auto overflow-x-auto [scrollbar-width:none] md:overflow-visible [&::-webkit-scrollbar]:hidden"
