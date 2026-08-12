@@ -298,8 +298,15 @@ export default function FacultyHero({
               style={entrance(50, "y", 750, 340)}
             >
               500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered
-              by Ivy League academics and global business leaders — from Harvard to McKinsey, from
-              Wharton to Google. They don&apos;t just teach the playbook. They wrote it.
+              by{" "}
+              <span
+                className="font-light italic"
+                style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}
+              >
+                Ivy League academics and global business leaders
+              </span>{" "}
+              — from Harvard to McKinsey, from Wharton to Google. They don&apos;t just teach the
+              playbook. They wrote it.
             </p>
           </div>
         </div>
