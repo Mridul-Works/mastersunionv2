@@ -413,11 +413,9 @@ export default function FacultyHero({
                         >
                           {name}
                         </span>
-                        {i < universities.length - 1 ? (
-                          <span className="ml-2 text-white/20 md:ml-3" aria-hidden>
-                            |
-                          </span>
-                        ) : null}
+                        <span className="ml-2 text-white/20 md:ml-3" aria-hidden>
+                          |
+                        </span>
                       </div>
                     ))}
 
