@@ -9,7 +9,7 @@ const HERO_IMAGE = "https://images.mastersunion.link/uploads/03032026/v1/Frame20
 
 // Shared geometry for both photo layers so colour + monochrome stay pixel-aligned.
 const PHOTO_CLASS =
-  "h-full w-full origin-center object-cover object-[50%_18%] contrast-[1.05] md:object-[56%_34%] md:scale-[1.04] lg:object-[47%_52%] lg:scale-[1.0] scale-[1.08] will-change-transform";
+  "h-full w-full origin-center object-cover object-[50%_18%] contrast-[1.05] md:object-[56%_34%] md:scale-[1.04] lg:object-[38%_52%] lg:scale-[1.0] scale-[1.08] will-change-transform";
 
 const HEADLINE = (
   <>
