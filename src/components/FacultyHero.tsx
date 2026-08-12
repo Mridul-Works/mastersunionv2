@@ -359,7 +359,7 @@ export default function FacultyHero({
       <div className="page-gutter relative z-10 mx-auto w-full max-w-[1440px] pb-[clamp(3.5rem,8vh,6.25rem)]">
         <div className="mt-[clamp(0.85rem,1.9vh,1.3rem)]">
           <div
-            className="hero-fade-up pointer-events-none w-full rounded-[clamp(16px,2.2vw,24px)] border border-white/10 bg-white/[0.02] shadow-[0_20px_60px_rgba(0,0,0,0.20)] backdrop-blur-[18px]"
+            className="hero-fade-up pointer-events-none w-full rounded-[clamp(16px,2.2vw,24px)] border border-t-0 border-white/10 bg-white/[0.02] shadow-[0_20px_60px_rgba(0,0,0,0.20)] backdrop-blur-[18px]"
             style={{
               animationDelay: "780ms",
               ["--card-pad" as string]: "clamp(1rem, 2.4vw, 2.25rem)",
