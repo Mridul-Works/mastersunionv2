@@ -106,7 +106,7 @@ export default function FacultyHero({
           </div>
 
           <h1
-            className="mt-[clamp(1.35rem,3.2vh,2.1rem)] max-w-[24ch] text-[clamp(2.25rem,4.1vw,3.9rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-black"
+            className="mt-[clamp(1.35rem,3.2vh,2.1rem)] max-w-[24ch] text-[clamp(2.25rem,4.1vw,3.9rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-white"
             style={{ fontFamily: SANS }}
           >
             {LINES.map((line, i) => (
@@ -122,7 +122,7 @@ export default function FacultyHero({
           </h1>
 
           <p
-            className="hero-fade-up mt-[clamp(1.5rem,3.2vh,2.35rem)] max-w-[58ch] text-[clamp(0.95rem,1.05vw,1.1rem)] leading-[1.58] text-black/70"
+            className="hero-fade-up mt-[clamp(1.5rem,3.2vh,2.35rem)] max-w-[58ch] text-[clamp(0.95rem,1.05vw,1.1rem)] leading-[1.58] text-white/70"
             style={{ animationDelay: "620ms" }}
           >
             500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered
