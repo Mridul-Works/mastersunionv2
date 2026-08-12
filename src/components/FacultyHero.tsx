@@ -359,6 +359,13 @@ export default function FacultyHero({
               }}
             />
             <div className="absolute inset-x-0 top-0 z-10 h-[18%] bg-gradient-to-b from-[#0a0a0a] to-transparent" />
+            <div
+              className="absolute inset-x-0 -bottom-1 z-10 h-[10%]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to top, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.2) 55%, rgba(10,10,10,0) 100%)",
+              }}
+            />
 
           </div>
         </div>
