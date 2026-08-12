@@ -252,10 +252,10 @@ export default function FacultyHero({
 
       <div
         className="relative z-10 flex min-h-[calc(100dvh-190px)] w-full max-w-none flex-col px-5 pb-[clamp(5.5rem,9vh,6.25rem)] pt-[clamp(1.5rem,3.2vh,2.25rem)] md:px-[clamp(3.25rem,4vw,4.5rem)]"
-        style={{ opacity: 1 - recede * 0.4 }}
       >
         {/* Typography */}
-        <div className="flex-1">
+        <div className="flex-1" style={{ opacity: 1 - recede * 0.4 }}>
+
           <div className="max-w-[46rem] md:max-w-[34rem] lg:max-w-[40rem]">
             <div
               className="flex items-center gap-4"
