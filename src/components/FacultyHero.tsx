@@ -9,7 +9,7 @@ const HERO_IMAGE = "https://images.mastersunion.link/uploads/03032026/v1/Frame20
 
 // Shared geometry for both photo layers so colour + monochrome stay pixel-aligned.
 const PHOTO_CLASS =
-  "h-full w-full origin-center object-cover object-[50%_18%] contrast-[1.05] md:object-[54%_32%] md:scale-[1.05] lg:object-[52%_50%] lg:scale-[1.02] scale-[1.10] will-change-transform";
+  "h-full w-full origin-center object-cover object-[50%_18%] contrast-[1.05] md:object-[54%_32%] md:scale-[1.05] lg:object-[47%_50%] lg:scale-[1.02] scale-[1.10] will-change-transform";
 
 const HEADLINE = (
   <>
@@ -348,10 +348,10 @@ export default function FacultyHero({
             />
             <div className="absolute inset-x-0 top-0 h-[18%] bg-gradient-to-b from-[#0a0a0a] to-transparent" />
             <div
-              className="absolute inset-x-0 bottom-0 h-[26%]"
+              className="absolute inset-x-0 bottom-0 h-[20%]"
               style={{
                 backgroundImage:
-                  "linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.55) 45%, rgba(10,10,10,0) 100%)",
+                  "linear-gradient(to top, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.42) 48%, rgba(10,10,10,0) 100%)",
               }}
             />
           </div>
