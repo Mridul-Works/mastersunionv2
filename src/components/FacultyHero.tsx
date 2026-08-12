@@ -11,7 +11,6 @@ const HERO_IMAGE = "https://images.mastersunion.link/uploads/03032026/v1/Frame20
 const PHOTO_CLASS =
   "h-full w-full origin-center object-cover object-[46%_15%] contrast-[1.05] md:object-[52%_22%] md:scale-[1.22] lg:object-[56%_28%] lg:scale-[1.28] scale-[1.18] will-change-transform";
 
-
 const LINES = [
   <>
     At most B-schools, faculty{" "}
@@ -60,7 +59,6 @@ export default function FacultyHero({
   const sectionRef = useRef<HTMLElement | null>(null);
   const [animateIn, setAnimateIn] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
-
 
   const entrance = (
     from: number,
@@ -150,7 +148,7 @@ export default function FacultyHero({
     };
   }, []);
 
-  // Directional entrance animations for the three text elements.
+  // Directional entrance animations for the text elements.
   // Trigger once on mount; disabled when reduced motion is preferred.
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -162,7 +160,6 @@ export default function FacultyHero({
     const id = requestAnimationFrame(() => setAnimateIn(true));
     return () => cancelAnimationFrame(id);
   }, []);
-
 
   // Very subtle recede as the hero scrolls away (no sticky trap, no big parallax).
   // Driven by a CSS custom property to avoid React re-renders and boundary flicker.
@@ -194,7 +191,6 @@ export default function FacultyHero({
     };
   }, []);
 
-
   return (
     <section
       ref={sectionRef}
@@ -202,148 +198,156 @@ export default function FacultyHero({
       className="relative w-full overflow-hidden bg-[#0a0a0a] text-white"
       style={{ ["--recede" as string]: "0" }}
     >
-
-      {/* Photograph emerging from the darkness — masked, frameless */}
       <div
-        className="pointer-events-none absolute inset-y-0 right-0 z-0 w-full md:w-[62%] lg:w-[56%]"
-        style={{
-          opacity: "clamp(0.45, calc(1 - var(--recede) * 0.55), 1)",
-          transform: "translate3d(0, calc(var(--recede) * -18px), 0)",
-        }}
-        aria-hidden
-      >
-
-        <div
-          ref={photoRef}
-          className="hero-photo-emerge absolute inset-0"
-          style={{
-            WebkitMaskImage:
-              "radial-gradient(62% 68% at 66% 46%, #000 0%, rgba(0,0,0,0.92) 42%, rgba(0,0,0,0.5) 66%, rgba(0,0,0,0) 88%)",
-            maskImage:
-              "radial-gradient(62% 68% at 66% 46%, #000 0%, rgba(0,0,0,0.92) 42%, rgba(0,0,0,0.5) 66%, rgba(0,0,0,0) 88%)",
-          }}
-        >
-          {/* Colour layer (bottom) */}
-          <img
-            src={HERO_IMAGE}
-            alt="Faculty at Masters' Union"
-            loading="eager"
-            decoding="async"
-            className={`${PHOTO_CLASS} absolute inset-0`}
-          />
-          {/* Monochrome layer (top) — cursor punches a soft hole to develop colour */}
-          <img
-            src={HERO_IMAGE}
-            alt=""
-            aria-hidden
-            loading="eager"
-            decoding="async"
-            className={`${PHOTO_CLASS} relative saturate-0`}
-            style={
-              reveal.s > 0.002
-                ? {
-                    WebkitMaskImage: `radial-gradient(circle ${380 * reveal.s}px at ${reveal.x}px ${reveal.y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.9) 88%, #000 100%)`,
-                    maskImage: `radial-gradient(circle ${380 * reveal.s}px at ${reveal.x}px ${reveal.y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.9) 88%, #000 100%)`,
-                  }
-                : undefined
-            }
-          />
-        </div>
-
-        {/* Left-edge falloff so typography stays clean */}
-        <div
-          className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/55 to-transparent md:via-[#0a0a0a]/35"
-          style={{ backgroundSize: "100% 100%" }}
-        />
-        <div className="absolute inset-x-0 top-0 h-[22%] bg-gradient-to-b from-[#0a0a0a] to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-[#0a0a0a] to-transparent" />
-      </div>
-
-      <div
-        className="page-gutter relative z-10 mx-auto flex w-full max-w-[1440px] flex-col pb-[clamp(3.5rem,8vh,6.25rem)] pt-[clamp(1.25rem,3.2vh,2.25rem)]"
+        className="page-gutter relative z-10 mx-auto grid w-full max-w-[1440px] grid-cols-1 items-stretch gap-0 lg:grid-cols-12"
         style={{ minHeight: "clamp(560px, calc(100svh - 150px), 1000px)" }}
       >
+        {/* Left content column: architectural black space */}
+        <div className="relative flex flex-col justify-center py-[clamp(1.25rem,3.2vh,2.25rem)] lg:col-span-7 lg:pr-10">
+          {/* Oversized background glyph */}
+          <div
+            className="pointer-events-none absolute -left-4 top-1/2 z-0 -translate-y-1/2 select-none text-[clamp(7rem,19vw,17rem)] font-black uppercase leading-none text-white/[0.035]"
+            style={{ fontFamily: SANS }}
+            aria-hidden
+          >
+            MU
+          </div>
 
-        {/* Typography */}
-        <div className="flex-1" style={{ opacity: "clamp(0.6, calc(1 - var(--recede) * 0.4), 1)" }}>
-
-
-          <div className="max-w-[28rem] md:max-w-[20rem] lg:max-w-[26rem] xl:max-w-[32rem]">
-            <div
-              className="flex items-center gap-3 sm:gap-4"
-              style={entrance(-50, "x", 650, 0)}
-            >
-              <span className="h-px w-6 shrink-0 bg-white/30 sm:w-8" aria-hidden />
-              <div
-                className="min-w-0 text-[clamp(9px,2vw,10px)] uppercase tracking-[0.28em] text-white/55 sm:tracking-[0.3em]"
-                style={{ fontFamily: MONO }}
-              >
-                Faculty at Masters&apos; Union
+          {/* Typography */}
+          <div
+            className="relative z-10"
+            style={{ opacity: "clamp(0.6, calc(1 - var(--recede) * 0.4), 1)" }}
+          >
+            <div style={entrance(-50, "x", 650, 0)}>
+              <div className="flex items-center gap-3 sm:gap-4">
+                <span className="h-px w-6 shrink-0 bg-white/30 sm:w-8" aria-hidden />
+                <div
+                  className="min-w-0 text-[clamp(9px,2vw,10px)] uppercase tracking-[0.28em] text-white/55 sm:tracking-[0.3em]"
+                  style={{ fontFamily: MONO }}
+                >
+                  Faculty at Masters&apos; Union
+                </div>
               </div>
+            </div>
+
+            {/* Headline: larger, using the full black space */}
+            <div className="mt-[clamp(0.85rem,2.2vh,1.5rem)] max-w-[44rem] overflow-hidden lg:max-w-none">
+              <h1
+                className="text-[clamp(2.1rem,6.2vw,4.25rem)] font-semibold leading-[0.95] tracking-[-0.03em] text-white"
+                style={{
+                  fontFamily: SANS,
+                  opacity: animateIn ? 1 : 0,
+                  transform: animateIn ? "translateY(0)" : "translateY(60px)",
+                  transition:
+                    "opacity 850ms cubic-bezier(0.22, 1, 0.36, 1), transform 850ms cubic-bezier(0.22, 1, 0.36, 1)",
+                  transitionDelay: "150ms",
+                }}
+              >
+                {LINES.map((line, i) => (
+                  <span key={i} className="block pb-[0.1em]">
+                    {line}
+                  </span>
+                ))}
+              </h1>
+            </div>
+
+            {/* Paragraph with architectural left border */}
+            <div
+              className="mt-[clamp(0.9rem,2.4vh,1.7rem)] max-w-[44rem] border-l border-white/15 pl-5 lg:max-w-[40rem]"
+              style={entrance(50, "y", 750, 340)}
+            >
+              <p className="max-w-[48ch] text-[clamp(0.9rem,2.2vw,1.15rem)] leading-[1.55] text-white/70">
+                500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered
+                by{" "}
+                <span
+                  className="font-light italic"
+                  style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}
+                >
+                  Ivy League academics and global business leaders
+                </span>{" "}
+                — from Harvard to McKinsey, from Wharton to Google. They don&apos;t just teach the
+                playbook. They wrote it.
+              </p>
             </div>
           </div>
 
-          {/* Headline: locally revealed upward from beneath the eyebrow */}
-          <div className="w-full max-w-[28rem] md:max-w-[20rem] lg:max-w-[26rem] xl:max-w-[32rem] overflow-hidden">
-            <h1
-              className="mt-[clamp(0.85rem,2.2vh,1.5rem)] text-[clamp(1.65rem,4.6vw,3.3rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-white"
+          {/* Scroll cue — centered under the text column */}
+          <div
+            className="hero-fade-up mt-4 flex justify-start lg:justify-center"
+            style={{ animationDelay: "1250ms", opacity: "clamp(0, calc(1 - var(--recede) * 2), 1)" }}
+          >
+            <div className="flex flex-col items-center gap-2 text-white/45">
+              <span className="hero-scroll-arrow text-[13px] leading-none" aria-hidden>
+                ↓
+              </span>
+              <span
+                className="text-[9px] uppercase tracking-[0.28em]"
+                style={{ fontFamily: MONO }}
+              >
+                Scroll
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Right portrait column */}
+        <div className="relative h-[min(420px,55vh)] lg:col-span-5 lg:h-auto">
+          <div
+            className="pointer-events-none absolute inset-0 z-0"
+            style={{
+              opacity: "clamp(0.45, calc(1 - var(--recede) * 0.55), 1)",
+              transform: "translate3d(0, calc(var(--recede) * -18px), 0)",
+            }}
+            aria-hidden
+          >
+            <div
+              ref={photoRef}
+              className="hero-photo-emerge absolute inset-0"
               style={{
-                fontFamily: SANS,
-                opacity: animateIn ? 1 : 0,
-                transform: animateIn ? "translateY(0)" : "translateY(60px)",
-                transition:
-                  "opacity 850ms cubic-bezier(0.22, 1, 0.36, 1), transform 850ms cubic-bezier(0.22, 1, 0.36, 1)",
-                transitionDelay: "150ms",
+                WebkitMaskImage:
+                  "radial-gradient(64% 70% at 62% 48%, #000 0%, rgba(0,0,0,0.92) 40%, rgba(0,0,0,0.5) 64%, rgba(0,0,0,0) 86%)",
+                maskImage:
+                  "radial-gradient(64% 70% at 62% 48%, #000 0%, rgba(0,0,0,0.92) 40%, rgba(0,0,0,0.5) 64%, rgba(0,0,0,0) 86%)",
               }}
             >
-              {LINES.map((line, i) => (
-                <span key={i} className="block pb-[0.14em]">
-                  {line}
-                </span>
-              ))}
-            </h1>
-          </div>
+              <img
+                src={HERO_IMAGE}
+                alt="Faculty at Masters' Union"
+                loading="eager"
+                decoding="async"
+                className={`${PHOTO_CLASS} absolute inset-0`}
+              />
+              <img
+                src={HERO_IMAGE}
+                alt=""
+                aria-hidden
+                loading="eager"
+                decoding="async"
+                className={`${PHOTO_CLASS} relative saturate-0`}
+                style={
+                  reveal.s > 0.002
+                    ? {
+                        WebkitMaskImage: `radial-gradient(circle ${380 * reveal.s}px at ${reveal.x}px ${reveal.y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.9) 88%, #000 100%)`,
+                        maskImage: `radial-gradient(circle ${380 * reveal.s}px at ${reveal.x}px ${reveal.y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.9) 88%, #000 100%)`,
+                      }
+                    : undefined
+                }
+              />
+            </div>
 
-          <div className="w-full max-w-[28rem] md:max-w-[20rem] lg:max-w-[26rem] xl:max-w-[32rem]">
-            <p
-              className="mt-[clamp(0.9rem,2.4vh,1.7rem)] max-w-[42ch] text-[clamp(0.9rem,2.6vw,1.1rem)] leading-[1.58] text-white/70"
-              style={entrance(50, "y", 750, 340)}
-            >
-              500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered
-              by{" "}
-              <span
-                className="font-light italic"
-                style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}
-              >
-                Ivy League academics and global business leaders
-              </span>{" "}
-              — from Harvard to McKinsey, from Wharton to Google. They don&apos;t just teach the
-              playbook. They wrote it.
-            </p>
-          </div>
-        </div>
-
-
-        {/* Scroll cue — centered, minimal */}
-        <div
-          className="hero-fade-up mt-3 flex justify-center"
-          style={{ animationDelay: "1250ms", opacity: "clamp(0, calc(1 - var(--recede) * 2), 1)" }}
-        >
-
-          <div className="flex flex-col items-center gap-2 text-white/45">
-            <span className="hero-scroll-arrow text-[13px] leading-none" aria-hidden>
-              ↓
-            </span>
-            <span
-              className="text-[9px] uppercase tracking-[0.28em]"
-              style={{ fontFamily: MONO }}
-            >
-              Scroll
-            </span>
+            {/* Left-edge falloff so the split stays clean */}
+            <div
+              className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/55 to-transparent lg:via-[#0a0a0a]/35"
+              style={{ backgroundSize: "100% 100%" }}
+            />
+            <div className="absolute inset-x-0 top-0 h-[22%] bg-gradient-to-b from-[#0a0a0a] to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-[#0a0a0a] to-transparent" />
           </div>
         </div>
+      </div>
 
-        {/* BY THE NUMBERS — unified glassmorphic panel */}
+      {/* BY THE NUMBERS — unified glassmorphic panel (full width below the split) */}
+      <div className="page-gutter relative z-10 mx-auto w-full max-w-[1440px] pb-[clamp(3.5rem,8vh,6.25rem)]">
         <div className="mt-[clamp(0.85rem,1.9vh,1.3rem)]">
           <div
             className="hero-fade-up pointer-events-none w-full rounded-[clamp(16px,2.2vw,24px)] border border-white/10 bg-white/[0.02] shadow-[0_20px_60px_rgba(0,0,0,0.20)] backdrop-blur-[18px]"
@@ -438,8 +442,6 @@ export default function FacultyHero({
             ) : null}
           </div>
         </div>
-
-
       </div>
     </section>
   );
