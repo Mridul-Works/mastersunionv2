@@ -271,12 +271,12 @@ export default function FacultyHero({
 
           <div className="max-w-[46rem] md:max-w-[34rem] lg:max-w-[40rem]">
             <div
-              className="flex items-center gap-4"
+              className="flex items-center gap-3 sm:gap-4"
               style={entrance(-50, "x", 650, 0)}
             >
-              <span className="h-px w-8 bg-white/30" aria-hidden />
+              <span className="h-px w-6 shrink-0 bg-white/30 sm:w-8" aria-hidden />
               <div
-                className="text-[10px] uppercase tracking-[0.3em] text-white/55"
+                className="min-w-0 text-[clamp(9px,2vw,10px)] uppercase tracking-[0.28em] text-white/55 sm:tracking-[0.3em]"
                 style={{ fontFamily: MONO }}
               >
                 Faculty at Masters&apos; Union
@@ -285,9 +285,9 @@ export default function FacultyHero({
           </div>
 
           {/* Headline: locally revealed upward from beneath the eyebrow */}
-          <div className="md:max-w-[44rem] lg:max-w-[52rem] xl:max-w-[54rem] overflow-hidden">
+          <div className="w-full md:max-w-[44rem] lg:max-w-[52rem] xl:max-w-[54rem] overflow-hidden">
             <h1
-              className="mt-[clamp(1rem,2.2vh,1.5rem)] text-[clamp(2.25rem,3.4vw,3.3rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-white"
+              className="mt-[clamp(0.85rem,2.2vh,1.5rem)] text-[clamp(1.65rem,4.6vw,3.3rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-white"
               style={{
                 fontFamily: SANS,
                 opacity: animateIn ? 1 : 0,
@@ -305,9 +305,9 @@ export default function FacultyHero({
             </h1>
           </div>
 
-          <div className="max-w-[46rem] md:max-w-[34rem] lg:max-w-[40rem]">
+          <div className="w-full max-w-[46rem] md:max-w-[34rem] lg:max-w-[40rem]">
             <p
-              className="mt-[clamp(1.1rem,2.4vh,1.7rem)] max-w-[52ch] text-[clamp(0.95rem,1.05vw,1.1rem)] leading-[1.58] text-white/70"
+              className="mt-[clamp(0.9rem,2.4vh,1.7rem)] max-w-[52ch] text-[clamp(0.9rem,2.6vw,1.1rem)] leading-[1.58] text-white/70"
               style={entrance(50, "y", 750, 340)}
             >
               500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered
@@ -323,6 +323,7 @@ export default function FacultyHero({
             </p>
           </div>
         </div>
+
 
         {/* Scroll cue — centered, minimal */}
         <div
