@@ -354,11 +354,6 @@ export default function FacultyHero({
               <span className="inline-flex items-center rounded-[999px] border border-[#CBE4DE]/[0.25] bg-[#CBE4DE]/[0.18] px-3 py-1.5 backdrop-blur-[8px]">
                 By the numbers
               </span>
-              {refreshed ? (
-                <span className="inline-flex items-center rounded-[999px] border border-[#CBE4DE]/[0.25] bg-[#CBE4DE]/[0.18] px-3 py-1.5 text-white/35 backdrop-blur-[8px]">
-                  {refreshed}
-                </span>
-              ) : null}
             </div>
 
             <div className="mt-4 grid w-full grid-cols-2 gap-x-0 gap-y-6 md:grid-cols-4 md:gap-y-8">
@@ -395,23 +390,40 @@ export default function FacultyHero({
                 style={{ animationDelay: "1100ms" }}
               >
                 <div className="-mx-5 overflow-x-auto md:mx-0 md:overflow-visible">
-                  <div className="flex min-w-max items-center justify-start gap-x-1 px-5 md:min-w-0 md:justify-between md:px-0">
+                  <div
+                    className="grid min-w-max px-5 md:min-w-0 md:px-0"
+                    style={{
+                      gridTemplateColumns: `repeat(${universities.length}, minmax(min-content, 1fr))`,
+                    }}
+                  >
                     {universities.map((name, i) => (
-                      <div key={name} className="flex shrink-0 items-center">
+                      <div key={name} className="flex items-center justify-center">
                         <span
-                          className="text-[clamp(0.8rem,1.05vw,0.95rem)] italic tracking-[0.01em] text-white/75 transition-colors hover:text-white"
+                          className="whitespace-nowrap text-center text-[clamp(0.8rem,1.05vw,0.95rem)] italic tracking-[0.01em] text-white/75 transition-colors hover:text-white"
                           style={{ fontFamily: SERIF_IT }}
                           title={name}
                         >
                           {name}
                         </span>
                         {i < universities.length - 1 ? (
-                          <span className="mx-2 text-white/20 md:mx-3" aria-hidden>
+                          <span className="ml-2 text-white/20 md:ml-3" aria-hidden>
                             |
                           </span>
                         ) : null}
                       </div>
                     ))}
+
+                    {/* Refreshed capsule — centered under Imperial */}
+                    {refreshed ? (
+                      <div
+                        className="flex items-start justify-center pt-4"
+                        style={{ gridColumnStart: universities.length, gridRowStart: 2 }}
+                      >
+                        <span className="inline-flex items-center rounded-[999px] border border-[#CBE4DE]/[0.25] bg-[#CBE4DE]/[0.18] px-3 py-1.5 text-[10px] uppercase tracking-[0.24em] text-white/35 backdrop-blur-[8px]">
+                          {refreshed}
+                        </span>
+                      </div>
+                    ) : null}
                   </div>
                 </div>
               </div>
