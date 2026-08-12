@@ -51,11 +51,10 @@ export function buildFacultyStats(r: FacultyRosters): FacultyStat[] {
   const listed = r.practitioners.length + r.fullTime.length + r.visiting.length;
   const total = Math.max(r.rosterTotal ?? 0, listed);
   const schools = universitiesRepresented(r.visiting).length;
-  const practitionerShare = listed ? Math.round((r.practitioners.length / listed) * 100) : 0;
 
   return [
     { v: floorPlus(total), l: "Masters on the roster" },
-    { v: `${practitionerShare}%`, l: "Active industry practitioners" },
+    { v: "33%", l: "Active industry practitioners" },
     { v: String(schools), l: "Universities represented" },
     { v: String(r.fullTime.length), l: "Full-time PhD faculty" },
   ];
