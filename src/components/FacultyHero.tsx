@@ -215,7 +215,7 @@ export default function FacultyHero({
             className="relative z-10"
             style={{ opacity: "clamp(0.6, calc(1 - var(--recede) * 0.4), 1)" }}
           >
-            <div style={entrance(-50, "x", 1000, 0)}>
+            <div style={{ ...entrance(-50, "x", 1000, 0), marginTop: "-0.5rem" }}>
               <div className="flex items-center gap-3 sm:gap-4">
                 <span className="h-px w-6 shrink-0 bg-white/30 sm:w-8" aria-hidden />
                 <div
