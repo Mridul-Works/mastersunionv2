@@ -355,9 +355,12 @@ export default function FacultyHero({
                 By the numbers
               </span>
               {refreshed ? (
-                <span className="inline-flex items-center whitespace-nowrap rounded-[999px] border border-[#CBE4DE]/[0.25] bg-[#CBE4DE]/[0.18] px-3 py-1.5 text-[10px] uppercase tracking-[0.24em] text-white/35 backdrop-blur-[8px]">
-                  {refreshed}
-                </span>
+                <>
+                  <span className="h-3 w-px bg-white/25" aria-hidden />
+                  <span className="inline-flex items-center whitespace-nowrap rounded-[999px] border border-[#CBE4DE]/[0.25] bg-[#CBE4DE]/[0.18] px-3 py-1.5 text-[10px] uppercase tracking-[0.24em] text-white/35 backdrop-blur-[8px]">
+                    {refreshed}
+                  </span>
+                </>
               ) : null}
             </div>
 
