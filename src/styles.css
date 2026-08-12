@@ -479,3 +479,24 @@ body::-webkit-scrollbar {
 @utility animate-marquee {
   animation: marquee-x 32s linear infinite;
 }
+
+/* ============================================================
+   Fluid responsive layout primitives (shared editorial grid)
+   ============================================================ */
+@utility page-gutter {
+  padding-inline: clamp(20px, 4vw, 64px);
+}
+@utility page-shell {
+  width: min(100%, 1232px);
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4vw, 64px);
+}
+@utility page-shell-narrow {
+  width: min(100%, 1024px);
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4vw, 64px);
+}
+/* vertical rhythm for page sections */
+@utility section-y {
+  padding-block: clamp(2.5rem, 6vw, 4.5rem);
+}
