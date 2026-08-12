@@ -347,11 +347,16 @@ export default function FacultyHero({
         {/* BY THE NUMBERS — unified glassmorphic panel */}
         <div className="mt-[clamp(0.85rem,1.9vh,1.3rem)]">
           <div
-            className="hero-fade-up pointer-events-none rounded-[24px] border border-white/10 bg-white/[0.02] px-[clamp(1.25rem,2.2vw,2.25rem)] py-[clamp(1.25rem,2.2vh,1.85rem)] shadow-[0_20px_60px_rgba(0,0,0,0.20)] backdrop-blur-[18px] md:px-[clamp(1.75rem,2.8vw,2.25rem)]"
-            style={{ animationDelay: "780ms" }}
+            className="hero-fade-up pointer-events-none w-full rounded-[clamp(16px,2.2vw,24px)] border border-white/10 bg-white/[0.02] shadow-[0_20px_60px_rgba(0,0,0,0.20)] backdrop-blur-[18px]"
+            style={{
+              animationDelay: "780ms",
+              ["--card-pad" as string]: "clamp(1rem, 2.4vw, 2.25rem)",
+              paddingInline: "var(--card-pad)",
+              paddingBlock: "clamp(1rem, 2.2vh, 1.85rem)",
+            }}
           >
             <div
-              className="flex flex-wrap items-center justify-start gap-3 text-[10px] uppercase tracking-[0.24em] text-white/50"
+              className="flex flex-wrap items-center justify-start gap-2 text-[clamp(9px,1.9vw,10px)] uppercase tracking-[0.22em] text-white/50 sm:gap-3 sm:tracking-[0.24em]"
               style={{ fontFamily: MONO }}
             >
               <span className="inline-flex items-center justify-center whitespace-nowrap rounded-[999px] border border-[#CBE4DE]/[0.25] bg-[#CBE4DE]/[0.18] px-[7px] py-1 text-center text-white backdrop-blur-[8px]">
@@ -359,29 +364,29 @@ export default function FacultyHero({
               </span>
               {refreshed ? (
                 <>
-                  <span className="h-3 w-px bg-white/25" aria-hidden />
-                  <span className="inline-flex items-center justify-center whitespace-nowrap rounded-[999px] border border-[#CBE4DE]/[0.25] bg-[#CBE4DE]/[0.18] px-[7px] py-1 text-center text-[10px] uppercase tracking-[0.24em] text-white backdrop-blur-[8px]">
+                  <span className="hidden h-3 w-px bg-white/25 sm:block" aria-hidden />
+                  <span className="inline-flex items-center justify-center whitespace-nowrap rounded-[999px] border border-[#CBE4DE]/[0.25] bg-[#CBE4DE]/[0.18] px-[7px] py-1 text-center uppercase tracking-[inherit] text-white backdrop-blur-[8px]">
                     {refreshed}
                   </span>
                 </>
               ) : null}
             </div>
 
-            <div className="mt-4 grid w-full grid-cols-2 gap-x-0 gap-y-6 md:grid-cols-4 md:gap-y-8">
+            <div className="mt-[clamp(0.9rem,2vh,1.25rem)] grid w-full grid-cols-2 gap-x-3 gap-y-6 lg:grid-cols-4 lg:gap-x-4 lg:gap-y-8">
               {STATS.map((s, i) => (
                 <div
                   key={s.l}
-                  className="hero-fade-up group pointer-events-auto flex min-w-0 flex-col items-center px-1 text-center md:px-2"
+                  className="hero-fade-up group pointer-events-auto flex min-w-0 flex-col items-center text-center"
                   style={{ animationDelay: `${860 + i * 70}ms` }}
                 >
                   <div
-                    className="text-[clamp(1.75rem,2.8vw,2.6rem)] font-medium leading-[0.9] tracking-[-0.035em]"
+                    className="text-[clamp(1.5rem,4.6vw,2.6rem)] font-medium leading-[0.9] tracking-[-0.035em]"
                     style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}
                   >
                     {s.v}
                   </div>
                   <div
-                    className="mt-2.5 text-[10px] font-medium uppercase leading-[1.5] tracking-[0.16em] text-white/60 md:whitespace-nowrap"
+                    className="mt-2 max-w-full text-[clamp(9px,1.9vw,10px)] font-medium uppercase leading-[1.5] tracking-[0.14em] text-white/60 sm:mt-2.5 sm:tracking-[0.16em] lg:whitespace-nowrap"
                     style={{ fontFamily: MONO }}
                   >
                     {s.l}
@@ -398,38 +403,43 @@ export default function FacultyHero({
             {/* University names — quiet editorial footer inside the glass panel */}
             {universities?.length ? (
               <div
-                className="hero-fade-up mt-[clamp(1.25rem,2.2vh,1.85rem)] border-t border-white/[0.08] pt-[clamp(1.25rem,2.2vh,1.85rem)]"
+                className="hero-fade-up mt-[clamp(1rem,2.2vh,1.85rem)] border-t border-white/[0.08] pt-[clamp(1rem,2.2vh,1.85rem)]"
                 style={{ animationDelay: "1100ms" }}
               >
-                <div className="-mx-5 overflow-x-auto md:mx-0 md:overflow-visible">
+                <div
+                  className="pointer-events-auto overflow-x-auto [scrollbar-width:none] md:overflow-visible [&::-webkit-scrollbar]:hidden"
+                  style={{
+                    marginInline: "calc(var(--card-pad) * -1)",
+                    paddingInline: "var(--card-pad)",
+                  }}
+                >
                   <div
-                    className="grid min-w-max px-5 md:min-w-0 md:px-0"
+                    className="flex min-w-max items-center md:grid md:min-w-0"
                     style={{
                       gridTemplateColumns: `repeat(${universities.length}, minmax(min-content, 1fr))`,
                     }}
                   >
-                    {universities.map((name, i) => (
+                    {universities.map((name) => (
                       <div key={name} className="flex items-center justify-center">
                         <span
-                          className="whitespace-nowrap text-center text-[clamp(0.8rem,1.05vw,0.95rem)] italic tracking-[0.01em] text-white/75 transition-colors hover:text-white"
+                          className="whitespace-nowrap text-center text-[clamp(0.78rem,2.1vw,0.95rem)] italic tracking-[0.01em] text-white/75 transition-colors hover:text-white"
                           style={{ fontFamily: SERIF_IT }}
                           title={name}
                         >
                           {name}
                         </span>
-                        <span className="ml-2 text-white/20 md:ml-3" aria-hidden>
+                        <span className="mx-2 text-white/20 md:ml-3 md:mr-0" aria-hidden>
                           |
                         </span>
                       </div>
                     ))}
-
-                    {/* Refreshed capsule moved beside the By the numbers label */}
                   </div>
                 </div>
               </div>
             ) : null}
           </div>
         </div>
+
 
       </div>
     </section>
