@@ -349,7 +349,24 @@ export default function FacultyHero({
                   "linear-gradient(to top, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.2) 55%, rgba(10,10,10,0) 100%)",
               }}
             />
+          </div>
+        </div>
 
+        {/* Scroll cue — centered at the bottom of the hero grid, above the fixed nav */}
+        <div
+          className="hero-fade-up pointer-events-none absolute inset-x-0 bottom-[clamp(4.5rem,7vh,6rem)] z-20 flex justify-center"
+          style={{ animationDelay: "1900ms", opacity: "clamp(0, calc(1 - var(--recede) * 2), 1)" }}
+        >
+          <div className="flex flex-col items-center gap-2 text-white/45">
+            <span className="hero-scroll-arrow text-[13px] leading-none" aria-hidden>
+              ↓
+            </span>
+            <span
+              className="text-[9px] uppercase tracking-[0.28em]"
+              style={{ fontFamily: MONO }}
+            >
+              Scroll
+            </span>
           </div>
         </div>
       </div>
