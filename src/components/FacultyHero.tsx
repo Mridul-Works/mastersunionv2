@@ -15,13 +15,19 @@ const PHOTO_CLASS =
 const LINES = [
   <>
     At most B-schools, faculty{" "}
-    <span className="font-light italic" style={{ fontFamily: SERIF_IT }}>
+    <span
+      className="font-light italic"
+      style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}
+    >
       study
     </span>
   </>,
   <>
     companies. Here, they{" "}
-    <span className="font-light italic" style={{ fontFamily: SERIF_IT }}>
+    <span
+      className="font-light italic"
+      style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}
+    >
       ran
     </span>{" "}
     them —
