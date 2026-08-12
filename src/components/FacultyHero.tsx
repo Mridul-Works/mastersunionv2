@@ -13,22 +13,20 @@ const PHOTO_CLASS =
 
 
 const LINES = [
-  <>At most B-schools,</>,
   <>
-    faculty{" "}
+    At most B-schools, faculty{" "}
     <span className="font-light italic" style={{ fontFamily: SERIF_IT }}>
       study
-    </span>{" "}
-    companies.
+    </span>
   </>,
   <>
-    Here, they{" "}
+    companies. Here, they{" "}
     <span className="font-light italic" style={{ fontFamily: SERIF_IT }}>
       ran
     </span>{" "}
-    them
+    them —
   </>,
-  <>— and most still do.</>,
+  <>and most still do.</>,
 ];
 
 const FALLBACK_STATS: FacultyStat[] = [
