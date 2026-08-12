@@ -9,7 +9,7 @@ const HERO_IMAGE = "https://images.mastersunion.link/uploads/03032026/v1/Frame20
 
 // Shared geometry for both photo layers so colour + monochrome stay pixel-aligned.
 const PHOTO_CLASS =
-  "h-full w-full origin-center object-cover object-[46%_15%] contrast-[1.05] md:object-[52%_22%] md:scale-[1.22] lg:object-[56%_28%] lg:scale-[1.28] scale-[1.18] will-change-transform";
+  "h-full w-full origin-center object-cover object-[50%_18%] contrast-[1.05] md:object-[42%_40%] md:scale-[1.14] lg:object-[36%_50%] lg:scale-[1.10] scale-[1.16] will-change-transform";
 
 const HEADLINE = (
   <>
@@ -301,9 +301,9 @@ export default function FacultyHero({
               className="hero-photo-emerge absolute inset-0"
               style={{
                 WebkitMaskImage:
-                  "radial-gradient(64% 70% at 62% 48%, #000 0%, rgba(0,0,0,0.92) 40%, rgba(0,0,0,0.5) 64%, rgba(0,0,0,0) 86%)",
+                  "radial-gradient(82% 82% at 56% 50%, #000 0%, rgba(0,0,0,0.96) 48%, rgba(0,0,0,0.72) 68%, rgba(0,0,0,0.34) 84%, rgba(0,0,0,0) 100%)",
                 maskImage:
-                  "radial-gradient(64% 70% at 62% 48%, #000 0%, rgba(0,0,0,0.92) 40%, rgba(0,0,0,0.5) 64%, rgba(0,0,0,0) 86%)",
+                  "radial-gradient(82% 82% at 56% 50%, #000 0%, rgba(0,0,0,0.96) 48%, rgba(0,0,0,0.72) 68%, rgba(0,0,0,0.34) 84%, rgba(0,0,0,0) 100%)",
               }}
             >
               <img
@@ -333,11 +333,20 @@ export default function FacultyHero({
 
             {/* Left-edge falloff so the split stays clean */}
             <div
-              className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/55 to-transparent lg:via-[#0a0a0a]/35"
-              style={{ backgroundSize: "100% 100%" }}
+              className="absolute inset-0"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right, #0a0a0a 0%, rgba(10,10,10,0.85) 12%, rgba(10,10,10,0.5) 26%, rgba(10,10,10,0.18) 40%, rgba(10,10,10,0) 56%)",
+              }}
             />
-            <div className="absolute inset-x-0 top-0 h-[22%] bg-gradient-to-b from-[#0a0a0a] to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-[#0a0a0a] to-transparent" />
+            <div className="absolute inset-x-0 top-0 h-[18%] bg-gradient-to-b from-[#0a0a0a] to-transparent" />
+            <div
+              className="absolute inset-x-0 bottom-0 h-[26%]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.55) 45%, rgba(10,10,10,0) 100%)",
+              }}
+            />
           </div>
         </div>
       </div>
