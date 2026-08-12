@@ -50,36 +50,6 @@ export default function FacultyHero({
 
   const sectionRef = useRef<HTMLElement | null>(null);
 
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    let frame = 0;
-
-    const apply = () => {
-      frame = 0;
-      const el = sectionRef.current;
-      const fig = figureRef.current;
-      if (!el || !fig) return;
-      const rect = el.getBoundingClientRect();
-      const p = Math.min(Math.max(-rect.top / Math.max(rect.height, 1), 0), 1);
-      // deliberately tiny: a photograph resting on a page, not an animation
-      fig.style.transform = `translate3d(0,${-10 * p}px,0) rotate(${-1.4 + 1.4 * p}deg)`;
-      fig.style.boxShadow = `0 ${10 + 14 * (1 - p)}px ${26 + 18 * (1 - p)}px -18px rgba(0,0,0,${0.18 + 0.1 * (1 - p)})`;
-    };
-
-    const onScroll = () => {
-      if (frame) return;
-      frame = requestAnimationFrame(apply);
-    };
-
-    apply();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      if (frame) cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
 
   return (
     <section
