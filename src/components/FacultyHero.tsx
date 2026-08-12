@@ -399,7 +399,9 @@ export default function FacultyHero({
                 </>
               ) : null}
             </div>
-            <div className="mt-[clamp(0.55rem,1.2vh,0.85rem)] h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" aria-hidden />
+            <div className="mt-[clamp(0.55rem,1.2vh,0.85rem)] overflow-hidden" aria-hidden>
+              <div className="mu-pulse-center-out h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+            </div>
 
             <div className="mt-[clamp(0.9rem,2vh,1.25rem)] grid w-full grid-cols-2 gap-x-3 gap-y-6 lg:grid-cols-4 lg:gap-x-4 lg:gap-y-8">
               {STATS.map((s, i) => (

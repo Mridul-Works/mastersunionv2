@@ -184,6 +184,16 @@
   animation: mu-spin-slow 14s linear infinite;
 }
 
+@keyframes mu-pulse-center-out {
+  0% { transform: scaleX(0.35); opacity: 0.35; }
+  50% { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(0.35); opacity: 0.35; }
+}
+.mu-pulse-center-out {
+  transform-origin: center;
+  animation: mu-pulse-center-out 2.8s ease-in-out infinite;
+}
+
 @keyframes mu-shimmer {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
