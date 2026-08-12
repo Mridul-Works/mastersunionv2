@@ -288,9 +288,9 @@ export default function FacultyHero({
         </div>
 
         {/* Right portrait column */}
-        <div className="relative h-[min(420px,55vh)] lg:col-span-5 lg:h-auto">
+        <div className="relative h-[min(420px,55vh)] bg-[#0a0a0a] lg:col-span-5 lg:h-auto">
           <div
-            className="pointer-events-none absolute inset-y-0 left-0 right-0 z-0"
+            className="pointer-events-none absolute inset-y-0 left-0 right-0 z-0 bg-[#0a0a0a]"
             style={{
               right: "calc(-1 * (clamp(20px, 4vw, 64px) + max(0px, (100vw - 1440px) / 2)))",
               opacity: "clamp(0.45, calc(1 - var(--recede) * 0.55), 1)",
@@ -300,7 +300,8 @@ export default function FacultyHero({
           >
             <div
               ref={photoRef}
-              className="hero-photo-emerge absolute inset-0"
+              className="absolute inset-0 z-0"
+
               style={{
                 WebkitMaskImage:
                   "radial-gradient(70% 108% at 82% 50%, #000 0%, rgba(0,0,0,0.98) 44%, rgba(0,0,0,0.72) 64%, rgba(0,0,0,0.3) 84%, rgba(0,0,0,0) 100%)",
@@ -337,20 +338,21 @@ export default function FacultyHero({
 
             {/* Left-edge falloff so the split stays clean — identical at every width */}
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 z-10"
               style={{
                 backgroundImage:
                   "linear-gradient(to right, #0a0a0a 0%, rgba(10,10,10,0.85) 12%, rgba(10,10,10,0.5) 26%, rgba(10,10,10,0.18) 40%, rgba(10,10,10,0) 56%)",
               }}
             />
-            <div className="absolute inset-x-0 top-0 h-[18%] bg-gradient-to-b from-[#0a0a0a] to-transparent" />
+            <div className="absolute inset-x-0 top-0 z-10 h-[18%] bg-gradient-to-b from-[#0a0a0a] to-transparent" />
             <div
-              className="absolute inset-x-0 -bottom-1 h-[45%]"
+              className="absolute inset-x-0 -bottom-1 z-10 h-[45%]"
               style={{
                 backgroundImage:
                   "linear-gradient(to top, #0a0a0a 0%, #0a0a0a 30%, rgba(10,10,10,0.80) 58%, rgba(10,10,10,0.35) 85%, rgba(10,10,10,0) 100%)",
               }}
             />
+
           </div>
         </div>
       </div>
