@@ -197,15 +197,6 @@ export default function FacultyHero({
       >
         {/* Left content column: architectural black space */}
         <div className="relative flex flex-col justify-center py-[clamp(1.25rem,3.2vh,2.25rem)] lg:col-span-7 lg:pr-10">
-          {/* Oversized background glyph */}
-          <div
-            className="pointer-events-none absolute -left-4 top-1/2 z-0 -translate-y-1/2 select-none text-[clamp(7rem,19vw,17rem)] font-black uppercase leading-none text-white/[0.035]"
-            style={{ fontFamily: SANS }}
-            aria-hidden
-          >
-            MU
-          </div>
-
           {/* Typography */}
           <div
             className="relative z-10"
@@ -224,9 +215,20 @@ export default function FacultyHero({
             </div>
 
             {/* Headline: fills the left column, never the photo zone */}
-            <div className="mt-[clamp(0.85rem,2.2vh,1.5rem)] w-full max-w-[850px]">
+            <div
+              className="relative mt-[clamp(0.85rem,2.2vh,1.5rem)] w-full max-w-[850px]"
+              style={{ fontSize: "clamp(1.95rem, 3.5vw, 3.4rem)" }}
+            >
+              {/* MU watermark — same visual height as the headline block */}
+              <div
+                className="pointer-events-none absolute left-0 top-1/2 z-0 -translate-y-1/2 select-none font-black uppercase leading-none text-white/[0.035]"
+                style={{ fontFamily: SANS, fontSize: "3em" }}
+                aria-hidden
+              >
+                MU
+              </div>
               <h1
-                className="text-[clamp(1.95rem,3.5vw,3.4rem)] font-semibold leading-[1.02] tracking-[-0.025em] text-white [text-wrap:balance]"
+                className="text-[1em] font-semibold leading-[1.02] tracking-[-0.025em] text-white [text-wrap:balance]"
                 style={{
                   fontFamily: SANS,
                   opacity: animateIn ? 1 : 0,
