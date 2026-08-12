@@ -87,7 +87,7 @@ export default function FacultyHero({
     <section
       ref={sectionRef}
       id="top"
-      className="mx-auto max-w-6xl px-5 pb-5 pt-[clamp(2.75rem,6.5vh,4.5rem)] md:px-10 md:pb-7"
+      className="mx-auto max-w-6xl bg-[#0a0a0a] px-5 pb-5 pt-[clamp(2.75rem,6.5vh,4.5rem)] text-white md:px-10 md:pb-7"
     >
       <div className="grid items-start gap-x-10 gap-y-5 lg:grid-cols-12">
         {/* Typography column */}
