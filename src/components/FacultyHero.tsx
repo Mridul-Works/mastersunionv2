@@ -290,7 +290,7 @@ export default function FacultyHero({
         {/* Right portrait column */}
         <div className="relative h-[min(420px,55vh)] lg:col-span-5 lg:h-auto">
           <div
-            className="pointer-events-none absolute inset-y-0 left-0 right-0 z-0 lg:left-[-62%]"
+            className="pointer-events-none absolute inset-y-0 left-0 right-0 z-0"
             style={{
               right: "calc(-1 * (clamp(20px, 4vw, 64px) + max(0px, (100vw - 1440px) / 2)))",
               opacity: "clamp(0.45, calc(1 - var(--recede) * 0.55), 1)",
@@ -335,26 +335,12 @@ export default function FacultyHero({
               />
             </div>
 
-            {/* Left-edge falloff so the split stays clean */}
+            {/* Left-edge falloff so the split stays clean — identical at every width */}
             <div
-              className="absolute inset-0 lg:hidden"
+              className="absolute inset-0"
               style={{
                 backgroundImage:
                   "linear-gradient(to right, #0a0a0a 0%, rgba(10,10,10,0.85) 12%, rgba(10,10,10,0.5) 26%, rgba(10,10,10,0.18) 40%, rgba(10,10,10,0) 56%)",
-              }}
-            />
-            <div
-              className="absolute inset-0 hidden lg:block"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to right, #0a0a0a 0%, #0a0a0a 26%, rgba(10,10,10,0.9) 40%, rgba(10,10,10,0.6) 52%, rgba(10,10,10,0.28) 64%, rgba(10,10,10,0.08) 76%, rgba(10,10,10,0) 88%)",
-              }}
-            />
-            <div
-              className="absolute inset-y-0 right-0 hidden w-[6%] lg:block"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to left, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.2) 50%, rgba(10,10,10,0) 100%)",
               }}
             />
             <div className="absolute inset-x-0 top-0 h-[18%] bg-gradient-to-b from-[#0a0a0a] to-transparent" />
