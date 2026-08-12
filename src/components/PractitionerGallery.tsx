@@ -214,7 +214,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
 
 
                     {/* the actual subject frame: starts to the right of the curve */}
-                    <div className="absolute inset-x-0 top-0 h-[50%] overflow-hidden sm:inset-y-0 sm:left-[46%] sm:right-0 sm:h-auto md:left-[48%]">
+                    <div className="absolute inset-x-0 top-0 h-[62%] overflow-hidden sm:inset-y-0 sm:left-[46%] sm:right-0 sm:h-auto md:left-[48%]">
                       <img
                         src={item.img}
                         alt={item.name}
@@ -234,7 +234,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
               {/* dark information panel — the curve is the only boundary */}
               {/* mobile: information sheet rises from the bottom under the portrait */}
               <div
-                className="absolute inset-x-0 bottom-0 top-[44%] rounded-t-[32px] bg-[#131313] shadow-[0_-24px_60px_-20px_rgba(0,0,0,0.75)] sm:hidden"
+                className="absolute inset-x-0 bottom-0 top-[56%] rounded-t-[28px] bg-[#131313] shadow-[0_-24px_60px_-20px_rgba(0,0,0,0.75)] sm:hidden"
                 aria-hidden
               />
               <div
