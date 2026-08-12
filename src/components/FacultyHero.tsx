@@ -52,6 +52,27 @@ export default function FacultyHero({
   const STATS = stats?.length ? stats : FALLBACK_STATS;
   const sectionRef = useRef<HTMLElement | null>(null);
   const [recede, setRecede] = useState(0);
+  const [animateIn, setAnimateIn] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  const entrance = (
+    from: number,
+    axis: "x" | "y",
+    duration: number,
+    delay: number
+  ) => {
+    if (reducedMotion) return { opacity: 1, transform: "none", transition: "none" };
+    const transform =
+      axis === "x"
+        ? `translateX(${animateIn ? 0 : from}px)`
+        : `translateY(${animateIn ? 0 : from}px)`;
+    return {
+      opacity: animateIn ? 1 : 0,
+      transform,
+      transition: `opacity ${duration}ms cubic-bezier(0.22, 1, 0.36, 1), transform ${duration}ms cubic-bezier(0.22, 1, 0.36, 1)`,
+      transitionDelay: `${delay}ms`,
+    };
+  };
 
   // ---- Cursor "develop the photograph" colour reveal (desktop / fine pointer) ----
   const photoRef = useRef<HTMLDivElement | null>(null);
