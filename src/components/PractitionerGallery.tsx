@@ -214,7 +214,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
 
 
                     {/* the actual subject frame: starts to the right of the curve */}
-                    <div className="absolute inset-x-0 top-0 h-[52%] overflow-hidden sm:inset-y-0 sm:left-[46%] sm:right-0 sm:h-auto md:left-[48%]">
+                    <div className="absolute inset-x-0 top-0 h-[50%] overflow-hidden sm:inset-y-0 sm:left-[46%] sm:right-0 sm:h-auto md:left-[48%]">
                       <img
                         src={item.img}
                         alt={item.name}
@@ -234,7 +234,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
               {/* dark information panel — the curve is the only boundary */}
               {/* mobile: information sheet rises from the bottom under the portrait */}
               <div
-                className="absolute inset-x-0 bottom-0 top-[46%] rounded-t-[32px] bg-[#131313] shadow-[0_-24px_60px_-20px_rgba(0,0,0,0.75)] sm:hidden"
+                className="absolute inset-x-0 bottom-0 top-[44%] rounded-t-[32px] bg-[#131313] shadow-[0_-24px_60px_-20px_rgba(0,0,0,0.75)] sm:hidden"
                 aria-hidden
               />
               <div
@@ -256,7 +256,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
               />
 
               {/* information */}
-              <div className="relative flex h-full w-full flex-col justify-end overflow-hidden px-5 pb-6 pt-[48%] sm:w-[42%] sm:justify-center sm:px-0 sm:p-9 md:p-14">
+              <div className="relative flex h-full w-full flex-col justify-start overflow-hidden px-5 pb-6 pt-[calc(50%+1.75rem)] sm:w-[42%] sm:justify-center sm:pt-0 sm:px-0 sm:p-9 md:p-14">
                 <div
                   className="text-[9px] uppercase tracking-[0.22em] text-white/45 sm:text-[9.5px] sm:tracking-[0.24em] md:text-[10.5px]"
                   style={{ fontFamily: MONO }}
