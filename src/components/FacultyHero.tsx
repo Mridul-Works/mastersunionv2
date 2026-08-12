@@ -215,51 +215,55 @@ export default function FacultyHero({
             </div>
 
             {/* Headline: fills the left column, never the photo zone */}
-            <div
-              className="relative mt-[clamp(0.85rem,2.2vh,1.5rem)] w-full max-w-[850px]"
-              style={{ fontSize: "clamp(1.95rem, 3.5vw, 3.4rem)" }}
-            >
-              {/* MU watermark — same visual height as the headline block */}
+            {/* Headline + paragraph: shared background watermark */}
+            <div className="relative mt-[clamp(0.85rem,2.2vh,1.5rem)] w-full max-w-[850px]">
+              {/* MU watermark — spans the combined height of headline + paragraph */}
               <div
-                className="pointer-events-none absolute left-0 top-1/2 z-0 -translate-y-1/2 select-none font-black uppercase leading-none text-white/[0.035]"
-                style={{ fontFamily: SANS, fontSize: "3em" }}
+                className="pointer-events-none absolute left-0 top-0 z-0 flex h-full items-center select-none font-black uppercase leading-none text-white/[0.035]"
+                style={{ fontFamily: SANS, fontSize: "clamp(12rem, 22vw, 28rem)" }}
                 aria-hidden
               >
                 MU
               </div>
-              <h1
-                className="text-[1em] font-semibold leading-[1.02] tracking-[-0.025em] text-white [text-wrap:balance]"
-                style={{
-                  fontFamily: SANS,
-                  opacity: animateIn ? 1 : 0,
-                  transform: animateIn ? "translateY(0)" : "translateY(60px)",
-                  transition:
-                    "opacity 850ms cubic-bezier(0.22, 1, 0.36, 1), transform 850ms cubic-bezier(0.22, 1, 0.36, 1)",
-                  transitionDelay: "150ms",
-                }}
+
+              {/* Headline: fills the left column, never the photo zone */}
+              <div
+                className="relative z-10 w-full"
+                style={{ fontSize: "clamp(1.95rem, 3.5vw, 3.4rem)" }}
               >
-                {HEADLINE}
-              </h1>
-            </div>
-
-
-            {/* Paragraph with architectural left border */}
-            <div
-              className="mt-[clamp(0.9rem,2.4vh,1.7rem)] max-w-[44rem] border-l border-white/15 pl-5 lg:max-w-[40rem]"
-              style={entrance(50, "y", 750, 340)}
-            >
-              <p className="max-w-[48ch] text-[clamp(0.9rem,2.2vw,1.15rem)] leading-[1.55] text-white/70">
-                500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered
-                by{" "}
-                <span
-                  className="font-light italic"
-                  style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}
+                <h1
+                  className="text-[1em] font-semibold leading-[1.02] tracking-[-0.025em] text-white [text-wrap:balance]"
+                  style={{
+                    fontFamily: SANS,
+                    opacity: animateIn ? 1 : 0,
+                    transform: animateIn ? "translateY(0)" : "translateY(60px)",
+                    transition:
+                      "opacity 850ms cubic-bezier(0.22, 1, 0.36, 1), transform 850ms cubic-bezier(0.22, 1, 0.36, 1)",
+                    transitionDelay: "150ms",
+                  }}
                 >
-                  Ivy League academics and global business leaders
-                </span>{" "}
-                — from Harvard to McKinsey, from Wharton to Google. They don&apos;t just teach the
-                playbook. They wrote it.
-              </p>
+                  {HEADLINE}
+                </h1>
+              </div>
+
+              {/* Paragraph with architectural left border */}
+              <div
+                className="relative z-10 mt-[clamp(0.9rem,2.4vh,1.7rem)] max-w-[44rem] border-l border-white/15 pl-5 lg:max-w-[40rem]"
+                style={entrance(50, "y", 750, 340)}
+              >
+                <p className="max-w-[48ch] text-[clamp(0.9rem,2.2vw,1.15rem)] leading-[1.55] text-white/70">
+                  500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered
+                  by{" "}
+                  <span
+                    className="font-light italic"
+                    style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}
+                  >
+                    Ivy League academics and global business leaders
+                  </span>{" "}
+                  — from Harvard to McKinsey, from Wharton to Google. They don&apos;t just teach the
+                  playbook. They wrote it.
+                </p>
+              </div>
             </div>
           </div>
 
