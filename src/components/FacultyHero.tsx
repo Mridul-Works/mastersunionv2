@@ -329,73 +329,78 @@ export default function FacultyHero({
           </div>
         </div>
 
-        {/* BY THE NUMBERS — same opening section */}
-        <div className="mt-[clamp(0.85rem,1.9vh,1.3rem)] border-t border-white/15 pt-4">
+        {/* BY THE NUMBERS — unified glassmorphic panel */}
+        <div className="mt-[clamp(0.85rem,1.9vh,1.3rem)]">
           <div
-            className="hero-fade-up flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 text-[10px] uppercase tracking-[0.24em] text-white/50"
-            style={{ fontFamily: MONO, animationDelay: "780ms" }}
+            className="hero-fade-up pointer-events-none rounded-[24px] border border-white/10 bg-white/[0.035] px-[clamp(1.25rem,2.2vw,2.25rem)] py-[clamp(1.25rem,2.2vh,1.85rem)] shadow-[0_20px_60px_rgba(0,0,0,0.20)] backdrop-blur-[18px] md:px-[clamp(1.75rem,2.8vw,2.25rem)]"
+            style={{ animationDelay: "780ms" }}
           >
-            <span>By the numbers</span>
-            {refreshed ? <span className="text-white/35">{refreshed}</span> : null}
-          </div>
-
-          <div className="mt-4 grid w-full grid-cols-2 gap-x-0 gap-y-6 md:grid-cols-4 md:gap-y-8">
-
-            {STATS.map((s, i) => (
-              <div
-                key={s.l}
-                className="hero-fade-up group flex min-w-0 flex-col items-center px-1 text-center md:px-2"
-                style={{ animationDelay: `${860 + i * 70}ms` }}
-              >
-                <div
-                  className="text-[clamp(1.75rem,2.8vw,2.6rem)] font-medium leading-[0.9] tracking-[-0.035em]"
-                  style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}
-                >
-                  {s.v}
-                </div>
-                <div
-                  className="mt-2.5 text-[10px] font-medium uppercase leading-[1.5] tracking-[0.16em] text-white/60 md:whitespace-nowrap"
-                  style={{ fontFamily: MONO }}
-                >
-                  {s.l}
-                </div>
-                <div
-                  className="mx-auto mt-3 h-px w-8 bg-white/25 transition-all duration-500 group-hover:w-16 group-hover:bg-[#CBE4DE]"
-                  aria-hidden
-                />
-              </div>
-            ))}
-          </div>
-
-          {/* University names — quiet editorial footer to the statistics */}
-          {universities?.length ? (
             <div
-              className="hero-fade-up mt-6 md:mt-8"
-              style={{ animationDelay: "1100ms" }}
+              className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 text-[10px] uppercase tracking-[0.24em] text-white/50"
+              style={{ fontFamily: MONO }}
             >
-              <div className="-mx-5 overflow-x-auto md:mx-0 md:overflow-visible">
-                <div className="flex min-w-max items-center justify-start gap-x-1 px-5 md:min-w-0 md:justify-between md:px-0">
-                  {universities.map((name, i) => (
-                    <div key={name} className="flex shrink-0 items-center">
-                      <span
-                        className="text-[clamp(0.8rem,1.05vw,0.95rem)] italic tracking-[0.01em] text-white/75 transition-colors hover:text-white"
-                        style={{ fontFamily: SERIF_IT }}
-                        title={name}
-                      >
-                        {name}
-                      </span>
-                      {i < universities.length - 1 ? (
-                        <span className="mx-2 text-white/20 md:mx-3" aria-hidden>
-                          |
+              <span>By the numbers</span>
+              {refreshed ? <span className="text-white/35">{refreshed}</span> : null}
+            </div>
+
+            <div className="mt-4 grid w-full grid-cols-2 gap-x-0 gap-y-6 md:grid-cols-4 md:gap-y-8">
+              {STATS.map((s, i) => (
+                <div
+                  key={s.l}
+                  className="hero-fade-up group flex min-w-0 flex-col items-center px-1 text-center md:px-2"
+                  style={{ animationDelay: `${860 + i * 70}ms` }}
+                >
+                  <div
+                    className="text-[clamp(1.75rem,2.8vw,2.6rem)] font-medium leading-[0.9] tracking-[-0.035em]"
+                    style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}
+                  >
+                    {s.v}
+                  </div>
+                  <div
+                    className="mt-2.5 text-[10px] font-medium uppercase leading-[1.5] tracking-[0.16em] text-white/60 md:whitespace-nowrap"
+                    style={{ fontFamily: MONO }}
+                  >
+                    {s.l}
+                  </div>
+                  <div
+                    className="mx-auto mt-3 h-px w-8 bg-white/25 transition-all duration-500 group-hover:w-16 group-hover:bg-[#CBE4DE]"
+                    aria-hidden
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* University names — quiet editorial footer inside the glass panel */}
+            {universities?.length ? (
+              <div
+                className="hero-fade-up mt-[clamp(1.25rem,2.2vh,1.85rem)] border-t border-white/[0.08] pt-[clamp(1.25rem,2.2vh,1.85rem)]"
+                style={{ animationDelay: "1100ms" }}
+              >
+                <div className="-mx-5 overflow-x-auto md:mx-0 md:overflow-visible">
+                  <div className="flex min-w-max items-center justify-start gap-x-1 px-5 md:min-w-0 md:justify-between md:px-0">
+                    {universities.map((name, i) => (
+                      <div key={name} className="flex shrink-0 items-center">
+                        <span
+                          className="text-[clamp(0.8rem,1.05vw,0.95rem)] italic tracking-[0.01em] text-white/75 transition-colors hover:text-white"
+                          style={{ fontFamily: SERIF_IT }}
+                          title={name}
+                        >
+                          {name}
                         </span>
-                      ) : null}
-                    </div>
-                  ))}
+                        {i < universities.length - 1 ? (
+                          <span className="mx-2 text-white/20 md:mx-3" aria-hidden>
+                            |
+                          </span>
+                        ) : null}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          ) : null}
+            ) : null}
+          </div>
         </div>
+
       </div>
     </section>
   );
