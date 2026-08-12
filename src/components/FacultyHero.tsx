@@ -122,7 +122,7 @@ export default function FacultyHero({
           </h1>
 
           <p
-            className="hero-fade-up mt-[clamp(0.8rem,1.8vh,1.2rem)] max-w-[58ch] text-[clamp(0.95rem,1.05vw,1.1rem)] leading-[1.6] text-black/70"
+            className="hero-fade-up mt-[clamp(1.5rem,3.2vh,2.35rem)] max-w-[58ch] text-[clamp(0.95rem,1.05vw,1.1rem)] leading-[1.58] text-black/70"
             style={{ animationDelay: "620ms" }}
           >
             500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered
