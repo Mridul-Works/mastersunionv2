@@ -122,14 +122,14 @@ export function SectionNav({
   };
 
   return (
-    <header className="fixed inset-x-0 bottom-0 z-[100] hidden px-3 pb-3 sm:px-5 sm:pb-4 md:block">
+    <header className="fixed inset-x-0 bottom-0 z-[100] block px-2.5 pb-2.5 sm:px-5 sm:pb-4">
 
 
 
 
       <div
         className={
-          "relative mx-auto flex h-10 max-w-[1320px] items-center justify-between gap-2 overflow-hidden rounded-full border px-3 transition-all duration-300 sm:gap-4 sm:px-5 lg:h-11 " +
+          "relative mx-auto flex h-10 w-full max-w-[1320px] items-center justify-between gap-2 overflow-hidden rounded-full border px-2.5 transition-all duration-300 sm:gap-4 sm:px-5 lg:h-11 " +
           (scrolled
             ? "border-border bg-background/85 shadow-[0_-18px_50px_-28px_rgba(0,0,0,0.28)] backdrop-blur-xl"
             : "border-border/60 bg-background/80 shadow-[0_-12px_40px_-30px_rgba(0,0,0,0.25)] backdrop-blur-md")
@@ -146,7 +146,7 @@ export function SectionNav({
           }}
         />
 
-        <a href="/" className="flex min-w-0 shrink-0 items-center gap-3" aria-label="Masters' Union home">
+        <a href="/" className="flex min-w-0 shrink-0 items-center gap-2 sm:gap-3" aria-label="Masters' Union home">
           <img src={logoAsset.url} alt="Masters' Union" className="h-4 w-auto sm:h-5 lg:h-6" />
           <span className="hidden h-6 w-px bg-border md:block" />
           <span className="hidden font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground md:block">
@@ -155,7 +155,10 @@ export function SectionNav({
 
         </a>
 
-        <nav aria-label="Sections" className="hidden min-w-0 items-center gap-0.5 lg:flex">
+        <nav
+          aria-label="Sections"
+          className="flex min-w-0 flex-1 items-center gap-0.5 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:flex-none lg:justify-center lg:overflow-visible"
+        >
           {items.map((item) => (
             <a
               key={item.id}
@@ -166,7 +169,7 @@ export function SectionNav({
                 scrollToId(item.id);
               }}
               className={
-                "whitespace-nowrap rounded-full px-2.5 py-1.5 text-[12px] font-medium transition-colors " +
+                "whitespace-nowrap rounded-full px-2 py-1.5 text-[11.5px] font-medium transition-colors sm:px-2.5 sm:text-[12px] " +
                 (!item.href && active === item.id
                   ? "bg-foreground/[0.07] text-foreground"
                   : "text-foreground/70 hover:bg-foreground/[0.06] hover:text-foreground")
@@ -180,7 +183,7 @@ export function SectionNav({
             <a
               key={l.href}
               href={l.href}
-              className="rounded-full px-3 py-1.5 text-[12.5px] font-medium text-foreground/70 transition-colors hover:bg-foreground/[0.06] hover:text-foreground"
+              className="whitespace-nowrap rounded-full px-2 py-1.5 text-[11.5px] font-medium text-foreground/70 transition-colors hover:bg-foreground/[0.06] hover:text-foreground sm:px-3 sm:text-[12.5px]"
             >
               {l.label}
             </a>
@@ -198,7 +201,7 @@ export function SectionNav({
           <a
             href={applyHref}
             onClick={handleApply}
-            className="group inline-flex items-center gap-1.5 rounded-full bg-primary py-0.5 pl-3 pr-0.5 text-[12px] font-semibold text-primary-foreground transition-transform hover:-translate-y-px sm:pl-3.5"
+            className="group inline-flex shrink-0 items-center gap-1.5 rounded-full bg-primary py-0.5 pl-2.5 pr-0.5 text-[11.5px] font-semibold text-primary-foreground transition-transform hover:-translate-y-px sm:pl-3.5 sm:text-[12px]"
           >
             Apply
             <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary-foreground text-primary transition-transform duration-300 group-hover:rotate-45">
