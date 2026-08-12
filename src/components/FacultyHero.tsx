@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { FacultyStat } from "@/lib/faculty-stats";
 
-const MONO = "'JetBRains Mono', ui-monospace, monospace";
+const MONO = "'JetBrains Mono', ui-monospace, monospace";
 const SANS = "'Inter', system-ui, sans-serif";
 const SERIF_IT = "'Fraunces', Georgia, serif";
 
