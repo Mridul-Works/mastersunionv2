@@ -11,27 +11,20 @@ const HERO_IMAGE = "https://images.mastersunion.link/uploads/03032026/v1/Frame20
 const PHOTO_CLASS =
   "h-full w-full origin-center object-cover object-[46%_15%] contrast-[1.05] md:object-[52%_22%] md:scale-[1.22] lg:object-[56%_28%] lg:scale-[1.28] scale-[1.18] will-change-transform";
 
-const LINES = [
+const HEADLINE = (
   <>
     At most B-schools, faculty{" "}
-    <span
-      className="font-light italic"
-      style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}
-    >
+    <span className="font-light italic" style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}>
       study
-    </span>
-  </>,
-  <>
+    </span>{" "}
     companies. Here, they{" "}
-    <span
-      className="font-light italic"
-      style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}
-    >
+    <span className="font-light italic" style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}>
       ran
     </span>{" "}
     them and most still do.
-  </>,
-];
+  </>
+);
+
 
 const FALLBACK_STATS: FacultyStat[] = [
   { v: "500+", l: "Masters on the roster" },
