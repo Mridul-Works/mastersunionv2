@@ -324,7 +324,8 @@ export default function FacultyHero({
                 alt="Faculty at Masters' Union"
                 loading="eager"
                 decoding="async"
-                className={`${PHOTO_CLASS} hero-photo-emerge absolute inset-0`}
+                className={`${PHOTO_CLASS} absolute inset-0`}
+                style={imageEntranceStyle}
               />
               <img
                 src={HERO_IMAGE}
@@ -332,15 +333,15 @@ export default function FacultyHero({
                 aria-hidden
                 loading="eager"
                 decoding="async"
-                className={`${PHOTO_CLASS} hero-photo-emerge relative saturate-0`}
-
+                className={`${PHOTO_CLASS} relative saturate-0`}
                 style={
                   reveal.s > 0.002
                     ? {
+                        ...imageEntranceStyle,
                         WebkitMaskImage: `radial-gradient(circle ${380 * reveal.s}px at ${reveal.x}px ${reveal.y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.9) 88%, #000 100%)`,
                         maskImage: `radial-gradient(circle ${380 * reveal.s}px at ${reveal.x}px ${reveal.y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.9) 88%, #000 100%)`,
                       }
-                    : undefined
+                    : imageEntranceStyle
                 }
               />
             </div>
