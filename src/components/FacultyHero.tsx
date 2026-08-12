@@ -229,7 +229,7 @@ export default function FacultyHero({
             </div>
 
             {/* Headline: wider column so it wraps to three balanced lines on desktop */}
-            <div className="md:max-w-[40rem] lg:max-w-[50rem] xl:max-w-[54rem]">
+            <div className="md:max-w-[44rem] lg:max-w-[52rem] xl:max-w-[58rem]">
               <h1
                 className="mt-[clamp(1rem,2.2vh,1.5rem)] text-[clamp(2.25rem,4.1vw,3.9rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-white"
                 style={{ fontFamily: SANS }}
