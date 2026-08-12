@@ -215,7 +215,7 @@ export default function FacultyHero({
             </div>
 
             {/* Headline + paragraph: tight left editorial column, clear of the photo */}
-            <div className="relative mt-[clamp(0.85rem,2.2vh,1.5rem)] w-full max-w-[19ch] sm:max-w-[22ch] lg:max-w-[24ch]">
+            <div className="relative mt-[clamp(0.85rem,2.2vh,1.5rem)] w-full max-w-[560px] lg:max-w-[600px]">
               {/* Headline */}
               <div
                 className="relative z-10 w-full"
@@ -260,7 +260,7 @@ export default function FacultyHero({
 
           {/* Scroll cue — centered under the text column */}
           <div
-            className="hero-fade-up mt-4 flex w-full max-w-[19ch] justify-center sm:max-w-[22ch] lg:max-w-[24ch]"
+            className="hero-fade-up mt-4 flex w-full max-w-[560px] justify-center lg:max-w-[600px]"
             style={{ animationDelay: "1250ms", opacity: "clamp(0, calc(1 - var(--recede) * 2), 1)" }}
           >
 
