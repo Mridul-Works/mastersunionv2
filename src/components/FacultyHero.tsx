@@ -8,8 +8,9 @@ const SERIF_IT = "'Fraunces', Georgia, serif";
 const HERO_IMAGE = "https://images.mastersunion.link/uploads/03032026/v1/Frame2043683361.webp";
 
 // Shared geometry for both photo layers so colour + monochrome stay pixel-aligned.
+// One single composition across every breakpoint: same object-position, same scale.
 const PHOTO_CLASS =
-  "h-full w-full origin-center object-cover object-[50%_18%] contrast-[1.05] md:object-[56%_34%] md:scale-[1.04] lg:object-[38%_52%] lg:scale-[1.0] scale-[1.08] will-change-transform";
+  "h-full w-full origin-center object-cover object-[50%_18%] contrast-[1.05] scale-[1.08] will-change-transform";
 
 const HEADLINE = (
   <>
@@ -289,7 +290,7 @@ export default function FacultyHero({
         {/* Right portrait column */}
         <div className="relative h-[min(420px,55vh)] lg:col-span-5 lg:h-auto">
           <div
-            className="pointer-events-none absolute inset-y-0 left-0 right-0 z-0 lg:left-[-62%]"
+            className="pointer-events-none absolute inset-y-0 left-0 right-0 z-0"
             style={{
               right: "calc(-1 * (clamp(20px, 4vw, 64px) + max(0px, (100vw - 1440px) / 2)))",
               opacity: "clamp(0.45, calc(1 - var(--recede) * 0.55), 1)",
@@ -334,34 +335,20 @@ export default function FacultyHero({
               />
             </div>
 
-            {/* Left-edge falloff so the split stays clean */}
+            {/* Left-edge falloff so the split stays clean — identical at every width */}
             <div
-              className="absolute inset-0 lg:hidden"
+              className="absolute inset-0"
               style={{
                 backgroundImage:
                   "linear-gradient(to right, #0a0a0a 0%, rgba(10,10,10,0.85) 12%, rgba(10,10,10,0.5) 26%, rgba(10,10,10,0.18) 40%, rgba(10,10,10,0) 56%)",
               }}
             />
-            <div
-              className="absolute inset-0 hidden lg:block"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to right, #0a0a0a 0%, #0a0a0a 26%, rgba(10,10,10,0.9) 40%, rgba(10,10,10,0.6) 52%, rgba(10,10,10,0.28) 64%, rgba(10,10,10,0.08) 76%, rgba(10,10,10,0) 88%)",
-              }}
-            />
-            <div
-              className="absolute inset-y-0 right-0 hidden w-[6%] lg:block"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to left, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.2) 50%, rgba(10,10,10,0) 100%)",
-              }}
-            />
             <div className="absolute inset-x-0 top-0 h-[18%] bg-gradient-to-b from-[#0a0a0a] to-transparent" />
             <div
-              className="absolute inset-x-0 bottom-0 h-[42%]"
+              className="absolute inset-x-0 bottom-0 h-[30%]"
               style={{
                 backgroundImage:
-                  "linear-gradient(to top, #0a0a0a 0%, #0a0a0a 14%, rgba(10,10,10,0.9) 32%, rgba(10,10,10,0.6) 52%, rgba(10,10,10,0.28) 74%, rgba(10,10,10,0) 100%)",
+                  "linear-gradient(to top, #0a0a0a 0%, rgba(10,10,10,0.9) 22%, rgba(10,10,10,0.6) 48%, rgba(10,10,10,0.25) 74%, rgba(10,10,10,0) 100%)",
               }}
             />
           </div>
