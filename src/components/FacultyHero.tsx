@@ -332,7 +332,7 @@ export default function FacultyHero({
         {/* BY THE NUMBERS — unified glassmorphic panel */}
         <div className="mt-[clamp(0.85rem,1.9vh,1.3rem)]">
           <div
-            className="hero-fade-up pointer-events-none rounded-[24px] border border-white/10 bg-white/[0.035] px-[clamp(1.25rem,2.2vw,2.25rem)] py-[clamp(1.25rem,2.2vh,1.85rem)] shadow-[0_20px_60px_rgba(0,0,0,0.20)] backdrop-blur-[18px] md:px-[clamp(1.75rem,2.8vw,2.25rem)]"
+            className="hero-fade-up pointer-events-none rounded-[24px] border border-white/10 bg-white/[0.02] px-[clamp(1.25rem,2.2vw,2.25rem)] py-[clamp(1.25rem,2.2vh,1.85rem)] shadow-[0_20px_60px_rgba(0,0,0,0.20)] backdrop-blur-[18px] md:px-[clamp(1.75rem,2.8vw,2.25rem)]"
             style={{ animationDelay: "780ms" }}
           >
             <div
