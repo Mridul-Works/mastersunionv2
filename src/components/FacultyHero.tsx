@@ -116,7 +116,7 @@ export default function FacultyHero({
       </div>
 
       <div
-        className="relative z-10 mx-auto flex min-h-[calc(100dvh-190px)] max-w-6xl flex-col px-5 pb-[clamp(6.5rem,12vh,8rem)] pt-[clamp(2rem,4.5vh,3.25rem)] md:px-10"
+        className="relative z-10 mx-auto flex min-h-[calc(100dvh-190px)] max-w-6xl flex-col px-5 pb-[clamp(6.5rem,11vh,7rem)] pt-[clamp(1.5rem,3.2vh,2.25rem)] md:px-10"
         style={{ opacity: 1 - recede * 0.4 }}
       >
         {/* Typography */}
@@ -136,7 +136,7 @@ export default function FacultyHero({
             </div>
 
             <h1
-              className="mt-[clamp(1.35rem,3.2vh,2.1rem)] max-w-[24ch] text-[clamp(2.25rem,4.1vw,3.9rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-white"
+              className="mt-[clamp(1rem,2.2vh,1.5rem)] max-w-[24ch] text-[clamp(2.25rem,4.1vw,3.9rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-white"
               style={{ fontFamily: SANS }}
             >
               {LINES.map((line, i) => (
@@ -152,7 +152,7 @@ export default function FacultyHero({
             </h1>
 
             <p
-              className="hero-fade-up mt-[clamp(1.5rem,3.2vh,2.35rem)] max-w-[52ch] text-[clamp(0.95rem,1.05vw,1.1rem)] leading-[1.58] text-white/70"
+              className="hero-fade-up mt-[clamp(1.1rem,2.4vh,1.7rem)] max-w-[52ch] text-[clamp(0.95rem,1.05vw,1.1rem)] leading-[1.58] text-white/70"
               style={{ animationDelay: "620ms" }}
             >
               500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered
@@ -164,7 +164,7 @@ export default function FacultyHero({
 
         {/* Scroll cue — bottom right, minimal */}
         <div
-          className="hero-fade-up mt-8 flex justify-end"
+          className="hero-fade-up mt-3 flex justify-end"
           style={{ animationDelay: "1250ms", opacity: 1 - recede * 2 }}
         >
           <div className="flex flex-col items-center gap-2 text-white/45">
