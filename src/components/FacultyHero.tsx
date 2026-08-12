@@ -291,6 +291,7 @@ export default function FacultyHero({
           <div
             className="pointer-events-none absolute inset-y-0 left-0 right-0 z-0 lg:left-[-62%]"
             style={{
+              right: "calc(-1 * (clamp(20px, 4vw, 64px) + max(0px, (100vw - 1440px) / 2)))",
               opacity: "clamp(0.45, calc(1 - var(--recede) * 0.55), 1)",
               transform: "translate3d(0, calc(var(--recede) * -18px), 0)",
             }}
