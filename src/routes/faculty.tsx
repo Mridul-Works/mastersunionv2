@@ -387,36 +387,21 @@ function FacultyPage() {
       </div>
 
       {/* HERO */}
-      <FacultyHero stats={HERO_STATS} refreshed={statsRefreshedLabel()} />
-
-      <section className="mx-auto max-w-6xl px-5 pb-8 md:px-10">
-
-
-
-
-        <div className="mt-8 grid grid-cols-3 gap-px bg-black/10 sm:grid-cols-5 md:grid-cols-9">
-          {[
-            "Harvard",
-            "Wharton",
-            "Stanford",
-            "Kellogg",
-            "Cornell",
-            "NYU",
-            "Columbia",
-            "USC",
-            "Imperial",
-          ].map((c) => (
-            <div
-              key={c}
-              className="flex h-16 items-center justify-center bg-white px-3 text-center text-[0.9rem] italic tracking-[0.01em] text-black/85 transition-colors hover:bg-neutral-50"
-              style={{ fontFamily: SERIF }}
-              title={c}
-            >
-              {c}
-            </div>
-          ))}
-        </div>
-      </section>
+      <FacultyHero
+        stats={HERO_STATS}
+        refreshed={statsRefreshedLabel()}
+        universities={[
+          "Harvard",
+          "Wharton",
+          "Stanford",
+          "Kellogg",
+          "Cornell",
+          "NYU",
+          "Columbia",
+          "USC",
+          "Imperial",
+        ]}
+      />
 
       {/* 500+ MASTERS */}
       <MastersVideos bg="bg-white" />
