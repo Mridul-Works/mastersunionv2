@@ -103,7 +103,7 @@ export default function FacultyHero({
             alt="Faculty at Masters' Union"
             loading="eager"
             decoding="async"
-            className="h-full w-full object-cover object-[72%_28%] opacity-[0.78] contrast-[1.05] saturate-[0.25] md:object-[68%_26%]"
+            className="h-full w-full object-cover object-[68%_12%] opacity-[0.7] contrast-[1.05] saturate-[0.25] md:object-[68%_26%]"
           />
         </div>
         {/* Left-edge falloff so typography stays clean */}
