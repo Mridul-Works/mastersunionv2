@@ -343,7 +343,7 @@ export default function FacultyHero({
               className="absolute inset-0 hidden lg:block"
               style={{
                 backgroundImage:
-                  "linear-gradient(to right, #0a0a0a 0%, rgba(10,10,10,0.97) 22%, rgba(10,10,10,0.82) 34%, rgba(10,10,10,0.55) 45%, rgba(10,10,10,0.26) 55%, rgba(10,10,10,0.08) 66%, rgba(10,10,10,0) 78%)",
+                  "linear-gradient(to right, #0a0a0a 0%, rgba(10,10,10,0.95) 18%, rgba(10,10,10,0.74) 30%, rgba(10,10,10,0.45) 41%, rgba(10,10,10,0.2) 52%, rgba(10,10,10,0.06) 64%, rgba(10,10,10,0) 76%)",
               }}
             />
             <div
