@@ -135,14 +135,14 @@ export default function FacultyHero({
         <div className="lg:col-span-4 lg:pt-[clamp(4rem,9.5vh,6.75rem)]">
           <figure className="ml-auto w-[150px] sm:w-[176px] lg:w-[190px]">
             <div
-              className="hero-caption-line mb-2 h-8 w-px bg-black/25"
+              className="hero-caption-line mb-2 h-8 w-px bg-white/25"
               style={{ animationDelay: "700ms" }}
               aria-hidden
             />
             <div className="hero-plate-reveal" style={{ animationDelay: "760ms" }}>
               <div
                 ref={figureRef}
-                className="overflow-hidden rounded-[3px] border border-black/12 bg-neutral-100 will-change-transform"
+                className="overflow-hidden rounded-[3px] border border-white/12 bg-neutral-900 will-change-transform"
                 style={{ transform: "rotate(-1.4deg)" }}
               >
                 <img
@@ -156,7 +156,7 @@ export default function FacultyHero({
               </div>
             </div>
             <figcaption
-              className="hero-fade-up mt-2.5 text-[9.5px] uppercase leading-[1.5] tracking-[0.16em] text-black/45"
+              className="hero-fade-up mt-2.5 text-[9.5px] uppercase leading-[1.5] tracking-[0.16em] text-white/45"
               style={{ fontFamily: MONO, animationDelay: "1000ms" }}
             >
               Fig. 01 — Seminar room, faculty in discussion
