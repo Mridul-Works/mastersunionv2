@@ -10,7 +10,7 @@ const HERO_IMAGE = "https://images.mastersunion.link/uploads/03032026/v1/Frame20
 // Shared geometry for both photo layers so colour + monochrome stay pixel-aligned.
 // One single composition across every breakpoint: same object-position, same scale.
 const PHOTO_CLASS =
-  "h-full w-full origin-center object-cover object-[50%_34%] contrast-[1.05] scale-[1.02] will-change-transform";
+  "h-full w-full origin-center object-cover object-[50%_34%] contrast-[1.05] will-change-transform";
 
 const HEADLINE = (
   <>
@@ -185,6 +185,14 @@ export default function FacultyHero({
     };
   }, []);
 
+  const imageEntranceStyle = {
+    opacity: reducedMotion ? 1 : animateIn ? 1 : 0,
+    transform: reducedMotion ? "scale(1)" : animateIn ? "scale(1)" : "scale(1.02)",
+    transition: reducedMotion
+      ? "none"
+      : "opacity 1050ms cubic-bezier(0.16, 1, 0.3, 1) 120ms, transform 1050ms cubic-bezier(0.16, 1, 0.3, 1) 120ms",
+  };
+
   return (
     <section
       ref={sectionRef}
@@ -316,7 +324,8 @@ export default function FacultyHero({
                 alt="Faculty at Masters' Union"
                 loading="eager"
                 decoding="async"
-                className={`${PHOTO_CLASS} hero-photo-emerge absolute inset-0`}
+                className={`${PHOTO_CLASS} absolute inset-0`}
+                style={imageEntranceStyle}
               />
               <img
                 src={HERO_IMAGE}
@@ -324,15 +333,15 @@ export default function FacultyHero({
                 aria-hidden
                 loading="eager"
                 decoding="async"
-                className={`${PHOTO_CLASS} hero-photo-emerge relative saturate-0`}
-
+                className={`${PHOTO_CLASS} relative saturate-0`}
                 style={
                   reveal.s > 0.002
                     ? {
+                        ...imageEntranceStyle,
                         WebkitMaskImage: `radial-gradient(circle ${380 * reveal.s}px at ${reveal.x}px ${reveal.y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.9) 88%, #000 100%)`,
                         maskImage: `radial-gradient(circle ${380 * reveal.s}px at ${reveal.x}px ${reveal.y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.9) 88%, #000 100%)`,
                       }
-                    : undefined
+                    : imageEntranceStyle
                 }
               />
             </div>
