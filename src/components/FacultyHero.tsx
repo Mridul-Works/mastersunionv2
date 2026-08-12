@@ -49,7 +49,6 @@ export default function FacultyHero({
   const STATS = stats?.length ? stats : FALLBACK_STATS;
 
   const sectionRef = useRef<HTMLElement | null>(null);
-  const figureRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
