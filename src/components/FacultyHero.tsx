@@ -59,9 +59,9 @@ export default function FacultyHero({
 }) {
   const STATS = stats?.length ? stats : FALLBACK_STATS;
   const sectionRef = useRef<HTMLElement | null>(null);
-  const [recede, setRecede] = useState(0);
   const [animateIn, setAnimateIn] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+
 
   const entrance = (
     from: number,
@@ -166,6 +166,7 @@ export default function FacultyHero({
 
 
   // Very subtle recede as the hero scrolls away (no sticky trap, no big parallax).
+  // Driven by a CSS custom property to avoid React re-renders and boundary flicker.
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let frame = 0;
@@ -176,8 +177,14 @@ export default function FacultyHero({
         const el = sectionRef.current;
         if (!el) return;
         const h = el.offsetHeight || 1;
-        const p = Math.min(1, Math.max(0, window.scrollY / h));
-        setRecede(p);
+        const raw = window.scrollY / h;
+        // Clamp scroll progress to [0, 1] and ignore overscroll / rubber-band values.
+        const p = Math.min(1, Math.max(0, raw));
+        const current = parseFloat(el.style.getPropertyValue("--recede") || "0");
+        // Only update the custom property when the value actually changes.
+        if (Math.abs(p - current) > 0.001) {
+          el.style.setProperty("--recede", String(p));
+        }
       });
     };
     onScroll();
@@ -188,22 +195,25 @@ export default function FacultyHero({
     };
   }, []);
 
+
   return (
     <section
       ref={sectionRef}
       id="top"
       className="relative w-full overflow-hidden bg-[#0a0a0a] text-white"
+      style={{ ["--recede" as string]: "0" }}
     >
+
       {/* Photograph emerging from the darkness — masked, frameless */}
       <div
         className="pointer-events-none absolute inset-y-0 right-0 z-0 w-full md:w-[62%] lg:w-[56%]"
         style={{
-          opacity: 1 - recede * 0.55,
-          transform: `translate3d(0, ${recede * -18}px, 0)`,
-          transition: "opacity 120ms linear",
+          opacity: "clamp(0.45, calc(1 - var(--recede) * 0.55), 1)",
+          transform: "translate3d(0, calc(var(--recede) * -18px), 0)",
         }}
         aria-hidden
       >
+
         <div
           ref={photoRef}
           className="hero-photo-emerge absolute inset-0"
@@ -254,7 +264,8 @@ export default function FacultyHero({
         className="relative z-10 flex min-h-[calc(100dvh-190px)] w-full max-w-none flex-col px-5 pb-[clamp(5.5rem,9vh,6.25rem)] pt-[clamp(1.5rem,3.2vh,2.25rem)] md:px-[clamp(3.25rem,4vw,4.5rem)]"
       >
         {/* Typography */}
-        <div className="flex-1" style={{ opacity: 1 - recede * 0.4 }}>
+        <div className="flex-1" style={{ opacity: "clamp(0.6, calc(1 - var(--recede) * 0.4), 1)" }}>
+
 
           <div className="max-w-[46rem] md:max-w-[34rem] lg:max-w-[40rem]">
             <div
@@ -314,8 +325,9 @@ export default function FacultyHero({
         {/* Scroll cue — centered, minimal */}
         <div
           className="hero-fade-up mt-3 flex justify-center"
-          style={{ animationDelay: "1250ms", opacity: 1 - recede * 2 }}
+          style={{ animationDelay: "1250ms", opacity: "clamp(0, calc(1 - var(--recede) * 2), 1)" }}
         >
+
           <div className="flex flex-col items-center gap-2 text-white/45">
             <span className="hero-scroll-arrow text-[13px] leading-none" aria-hidden>
               ↓
