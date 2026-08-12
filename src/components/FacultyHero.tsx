@@ -263,14 +263,18 @@ export default function FacultyHero({
             </div>
           </div>
 
-          {/* Headline: wider column so it wraps to three balanced lines on desktop */}
-          <div
-            className="md:max-w-[44rem] lg:max-w-[52rem] xl:max-w-[54rem]"
-            style={entrance(-60, "y", 850, 150)}
-          >
+          {/* Headline: locally revealed upward from beneath the eyebrow */}
+          <div className="md:max-w-[44rem] lg:max-w-[52rem] xl:max-w-[54rem] overflow-hidden">
             <h1
               className="mt-[clamp(1rem,2.2vh,1.5rem)] text-[clamp(2.25rem,3.4vw,3.3rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-white"
-              style={{ fontFamily: SANS }}
+              style={{
+                fontFamily: SANS,
+                opacity: animateIn ? 1 : 0,
+                transform: animateIn ? "translateY(0)" : "translateY(60px)",
+                transition:
+                  "opacity 850ms cubic-bezier(0.22, 1, 0.36, 1), transform 850ms cubic-bezier(0.22, 1, 0.36, 1)",
+                transitionDelay: "150ms",
+              }}
             >
               {LINES.map((line, i) => (
                 <span key={i} className="block pb-[0.14em]">
