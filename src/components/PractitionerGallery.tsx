@@ -198,7 +198,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
               ref={(el) => {
                 cardRefs.current[i] = el;
               }}
-              className={`relative h-[min(600px,max(440px,calc(100svh-190px)))] w-[min(1320px,88vw)] shrink-0 snap-center overflow-hidden rounded-[20px] transition-all duration-500 ease-out sm:h-[min(clamp(430px,62vw,720px),max(400px,calc(100svh-240px)))] sm:w-[min(1320px,82vw)] sm:rounded-[24px] md:rounded-[32px] ${
+              className={`relative h-[min(500px,max(420px,calc(100svh-260px)))] w-[min(1320px,88vw)] shrink-0 snap-center overflow-hidden rounded-[20px] transition-all duration-500 ease-out sm:h-[min(clamp(430px,62vw,720px),max(400px,calc(100svh-240px)))] sm:w-[min(1320px,82vw)] sm:rounded-[24px] md:rounded-[32px] ${
                 isActive ? "opacity-100 shadow-[0_40px_90px_-40px_rgba(0,0,0,0.9)]" : "opacity-45"
               }`}
               style={{ transform: isActive ? "scale(1)" : "scale(0.94)" }}
@@ -256,7 +256,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
               />
 
               {/* information */}
-              <div className="relative flex h-full w-full flex-col justify-start overflow-hidden px-5 pb-6 pt-[calc(50%+1.75rem)] sm:w-[42%] sm:justify-center sm:pt-0 sm:px-0 sm:p-9 md:p-14">
+              <div className="relative flex h-full w-full flex-col justify-end overflow-hidden px-5 pb-5 sm:w-[42%] sm:justify-center sm:pb-9 sm:px-0 sm:p-9 md:p-14">
                 <div
                   className="text-[9px] uppercase tracking-[0.22em] text-white/45 sm:text-[9.5px] sm:tracking-[0.24em] md:text-[10.5px]"
                   style={{ fontFamily: MONO }}
