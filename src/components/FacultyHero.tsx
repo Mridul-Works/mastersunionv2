@@ -339,11 +339,15 @@ export default function FacultyHero({
             {refreshed ? <span className="text-white/35">{refreshed}</span> : null}
           </div>
 
-          <div className="mt-4 grid w-full grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-4 md:gap-x-6 md:gap-y-8">
+          <div
+            className="mt-4 grid w-full gap-y-6 md:gap-y-8"
+            style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}
+          >
+            <style>{`@media (min-width:768px){.faculty-stats-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}}`}</style>
             {STATS.map((s, i) => (
               <div
                 key={s.l}
-                className="hero-fade-up group flex flex-col items-center text-center"
+                className="hero-fade-up group flex min-w-0 flex-col items-center px-1 text-center md:px-2"
                 style={{ animationDelay: `${860 + i * 70}ms` }}
               >
                 <div
