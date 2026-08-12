@@ -7,6 +7,11 @@ const SERIF_IT = "'Fraunces', Georgia, serif";
 
 const HERO_IMAGE = "https://images.mastersunion.link/uploads/03032026/v1/Frame2043683361.webp";
 
+// Shared geometry for both photo layers so colour + monochrome stay pixel-aligned.
+const PHOTO_CLASS =
+  "h-full w-full origin-center object-cover object-[46%_15%] opacity-[0.7] contrast-[1.05] md:object-[52%_22%] md:scale-[1.22] lg:object-[56%_28%] lg:scale-[1.28] scale-[1.18] will-change-transform";
+
+
 const LINES = [
   <>At most B-schools,</>,
   <>
@@ -50,6 +55,76 @@ export default function FacultyHero({
   const sectionRef = useRef<HTMLElement | null>(null);
   const [recede, setRecede] = useState(0);
 
+  // ---- Cursor "develop the photograph" colour reveal (desktop / fine pointer) ----
+  const photoRef = useRef<HTMLDivElement | null>(null);
+  const target = useRef({ x: 0, y: 0, s: 0 });
+  const current = useRef({ x: 0, y: 0, s: 0 });
+  const [reveal, setReveal] = useState({ x: 0, y: 0, s: 0 });
+
+  useEffect(() => {
+    if (!window.matchMedia("(pointer: fine)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let frame = 0;
+    let running = false;
+
+    const tick = () => {
+      const c = current.current;
+      const t = target.current;
+      c.x += (t.x - c.x) * 0.16;
+      c.y += (t.y - c.y) * 0.16;
+      c.s += (t.s - c.s) * 0.07;
+      setReveal({ x: c.x, y: c.y, s: c.s });
+      const settled =
+        Math.abs(t.x - c.x) < 0.4 && Math.abs(t.y - c.y) < 0.4 && Math.abs(t.s - c.s) < 0.002;
+      if (settled && t.s === 0) {
+        c.s = 0;
+        setReveal({ x: c.x, y: c.y, s: 0 });
+        running = false;
+        frame = 0;
+        return;
+      }
+      frame = requestAnimationFrame(tick);
+    };
+    const start = () => {
+      if (running) return;
+      running = true;
+      frame = requestAnimationFrame(tick);
+    };
+
+    const onMove = (e: PointerEvent) => {
+      const el = photoRef.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const x = e.clientX - r.left;
+      const y = e.clientY - r.top;
+      const inside = x >= 0 && y >= 0 && x <= r.width && y <= r.height;
+      if (inside && target.current.s === 0) {
+        current.current.x = x;
+        current.current.y = y;
+      }
+      if (inside) {
+        target.current.x = x;
+        target.current.y = y;
+      }
+      target.current.s = inside ? 1 : 0;
+      start();
+    };
+    const onLeave = () => {
+      target.current.s = 0;
+      start();
+    };
+
+    window.addEventListener("pointermove", onMove, { passive: true });
+    window.addEventListener("pointerleave", onLeave);
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerleave", onLeave);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, []);
+
+
   // Very subtle recede as the hero scrolls away (no sticky trap, no big parallax).
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -90,6 +165,7 @@ export default function FacultyHero({
         aria-hidden
       >
         <div
+          ref={photoRef}
           className="hero-photo-emerge absolute inset-0"
           style={{
             WebkitMaskImage:
@@ -98,14 +174,33 @@ export default function FacultyHero({
               "radial-gradient(62% 68% at 66% 46%, #000 0%, rgba(0,0,0,0.92) 42%, rgba(0,0,0,0.5) 66%, rgba(0,0,0,0) 88%)",
           }}
         >
+          {/* Colour layer (bottom) */}
           <img
             src={HERO_IMAGE}
             alt="Faculty at Masters' Union"
             loading="eager"
             decoding="async"
-            className="h-full w-full origin-center object-cover object-[46%_15%] opacity-[0.7] contrast-[1.05] saturate-[0.25] md:object-[52%_22%] md:scale-[1.22] lg:object-[56%_28%] lg:scale-[1.28] scale-[1.18] will-change-transform"
+            className={`${PHOTO_CLASS} absolute inset-0 saturate-[1.02]`}
+          />
+          {/* Monochrome layer (top) — cursor punches a soft hole to develop colour */}
+          <img
+            src={HERO_IMAGE}
+            alt=""
+            aria-hidden
+            loading="eager"
+            decoding="async"
+            className={`${PHOTO_CLASS} relative saturate-[0.25]`}
+            style={
+              reveal.s > 0.002
+                ? {
+                    WebkitMaskImage: `radial-gradient(circle ${230 * reveal.s}px at ${reveal.x}px ${reveal.y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.18) 38%, rgba(0,0,0,0.62) 68%, #000 100%)`,
+                    maskImage: `radial-gradient(circle ${230 * reveal.s}px at ${reveal.x}px ${reveal.y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.18) 38%, rgba(0,0,0,0.62) 68%, #000 100%)`,
+                  }
+                : undefined
+            }
           />
         </div>
+
         {/* Left-edge falloff so typography stays clean */}
         <div
           className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/55 to-transparent md:via-[#0a0a0a]/35"
