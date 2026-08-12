@@ -316,7 +316,7 @@ export default function FacultyHero({
                 alt="Faculty at Masters' Union"
                 loading="eager"
                 decoding="async"
-                className={`${PHOTO_CLASS} absolute inset-0`}
+                className={`${PHOTO_CLASS} hero-photo-emerge absolute inset-0`}
               />
               <img
                 src={HERO_IMAGE}
@@ -324,7 +324,8 @@ export default function FacultyHero({
                 aria-hidden
                 loading="eager"
                 decoding="async"
-                className={`${PHOTO_CLASS} relative saturate-0`}
+                className={`${PHOTO_CLASS} hero-photo-emerge relative saturate-0`}
+
                 style={
                   reveal.s > 0.002
                     ? {
