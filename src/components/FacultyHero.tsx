@@ -232,8 +232,8 @@ export default function FacultyHero({
             <div className="relative mt-[clamp(0.85rem,2.2vh,1.5rem)] w-full max-w-[850px]">
               {/* MU watermark — spans the combined height of headline + paragraph */}
               <div
-                className="pointer-events-none absolute left-0 top-0 z-0 flex h-full items-center select-none font-black uppercase leading-none text-white/[0.035]"
-                style={{ fontFamily: SANS, fontSize: "clamp(12rem, 22vw, 28rem)" }}
+                className="pointer-events-none absolute -left-[4%] -top-[12%] z-0 flex h-[140%] items-center select-none font-black uppercase leading-none text-white/[0.09]"
+                style={{ fontFamily: SANS, fontSize: "clamp(15rem, 28vw, 34rem)" }}
                 aria-hidden
               >
                 MU
