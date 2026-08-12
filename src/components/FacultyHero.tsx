@@ -418,17 +418,7 @@ export default function FacultyHero({
                       </div>
                     ))}
 
-                    {/* Refreshed capsule — centered under Imperial */}
-                    {refreshed ? (
-                      <div
-                        className="flex items-start justify-center pt-4"
-                        style={{ gridColumnStart: 1, gridRowStart: 2 }}
-                      >
-                        <span className="inline-flex items-center whitespace-nowrap rounded-[999px] border border-[#CBE4DE]/[0.25] bg-[#CBE4DE]/[0.18] px-3 py-1.5 text-[10px] uppercase tracking-[0.24em] text-white/35 backdrop-blur-[8px]">
-                          {refreshed}
-                        </span>
-                      </div>
-                    ) : null}
+                    {/* Refreshed capsule moved beside the By the numbers label */}
                   </div>
                 </div>
               </div>
