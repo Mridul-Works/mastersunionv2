@@ -180,7 +180,7 @@ export default function FacultyHero({
             alt="Faculty at Masters' Union"
             loading="eager"
             decoding="async"
-            className={`${PHOTO_CLASS} absolute inset-0 saturate-[1.02]`}
+            className={`${PHOTO_CLASS} absolute inset-0`}
           />
           {/* Monochrome layer (top) — cursor punches a soft hole to develop colour */}
           <img
@@ -189,7 +189,7 @@ export default function FacultyHero({
             aria-hidden
             loading="eager"
             decoding="async"
-            className={`${PHOTO_CLASS} relative saturate-[0.25]`}
+            className={`${PHOTO_CLASS} relative saturate-0`}
             style={
               reveal.s > 0.002
                 ? {
