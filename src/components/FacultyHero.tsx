@@ -96,9 +96,9 @@ export default function FacultyHero({
             className="hero-fade-up flex items-center gap-4"
             style={{ animationDelay: "60ms" }}
           >
-            <span className="h-px w-8 bg-black/30" aria-hidden />
+            <span className="h-px w-8 bg-white/30" aria-hidden />
             <div
-              className="text-[10px] uppercase tracking-[0.3em] text-black/55"
+              className="text-[10px] uppercase tracking-[0.3em] text-white/55"
               style={{ fontFamily: MONO }}
             >
               Faculty at Masters&apos; Union
