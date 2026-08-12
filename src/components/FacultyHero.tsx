@@ -59,9 +59,9 @@ export default function FacultyHero({
 }) {
   const STATS = stats?.length ? stats : FALLBACK_STATS;
   const sectionRef = useRef<HTMLElement | null>(null);
-  const [recede, setRecede] = useState(0);
   const [animateIn, setAnimateIn] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+
 
   const entrance = (
     from: number,
