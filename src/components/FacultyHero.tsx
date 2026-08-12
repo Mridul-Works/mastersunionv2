@@ -354,11 +354,6 @@ export default function FacultyHero({
               <span className="inline-flex items-center rounded-[999px] border border-[#CBE4DE]/[0.25] bg-[#CBE4DE]/[0.18] px-3 py-1.5 backdrop-blur-[8px]">
                 By the numbers
               </span>
-              {refreshed ? (
-                <span className="inline-flex items-center rounded-[999px] border border-[#CBE4DE]/[0.25] bg-[#CBE4DE]/[0.18] px-3 py-1.5 text-white/35 backdrop-blur-[8px]">
-                  {refreshed}
-                </span>
-              ) : null}
             </div>
 
             <div className="mt-4 grid w-full grid-cols-2 gap-x-0 gap-y-6 md:grid-cols-4 md:gap-y-8">
