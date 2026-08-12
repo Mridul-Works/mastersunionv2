@@ -268,7 +268,7 @@ export default function FacultyHero({
         <div className="flex-1" style={{ opacity: "clamp(0.6, calc(1 - var(--recede) * 0.4), 1)" }}>
 
 
-          <div className="max-w-[46rem] md:max-w-[34rem] lg:max-w-[40rem]">
+          <div className="max-w-[28rem] md:max-w-[20rem] lg:max-w-[26rem] xl:max-w-[32rem]">
             <div
               className="flex items-center gap-3 sm:gap-4"
               style={entrance(-50, "x", 650, 0)}
