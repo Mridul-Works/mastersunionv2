@@ -351,18 +351,18 @@ export default function FacultyHero({
               }}
             />
             <div
-              className="absolute inset-y-0 right-0 hidden w-[10%] lg:block"
+              className="absolute inset-y-0 right-0 hidden w-[6%] lg:block"
               style={{
                 backgroundImage:
-                  "linear-gradient(to left, #0a0a0a 0%, rgba(10,10,10,0.55) 45%, rgba(10,10,10,0) 100%)",
+                  "linear-gradient(to left, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.2) 50%, rgba(10,10,10,0) 100%)",
               }}
             />
             <div className="absolute inset-x-0 top-0 h-[18%] bg-gradient-to-b from-[#0a0a0a] to-transparent" />
             <div
-              className="absolute inset-x-0 bottom-0 h-[20%]"
+              className="absolute inset-x-0 bottom-0 h-[26%]"
               style={{
                 backgroundImage:
-                  "linear-gradient(to top, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.42) 48%, rgba(10,10,10,0) 100%)",
+                  "linear-gradient(to top, #0a0a0a 0%, rgba(10,10,10,0.75) 35%, rgba(10,10,10,0.35) 65%, rgba(10,10,10,0) 100%)",
               }}
             />
           </div>
