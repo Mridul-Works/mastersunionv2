@@ -434,7 +434,7 @@ export default function FacultyHero({
             {/* University names — quiet editorial footer inside the glass panel */}
             {universities?.length ? (
               <div
-                className="hero-fade-up mt-[clamp(1rem,2.2vh,1.85rem)] pt-[clamp(1rem,2.2vh,1.85rem)]"
+                className="hero-fade-up mt-[clamp(0.9rem,2vh,1.25rem)] pt-[clamp(0.9rem,2vh,1.25rem)]"
                 style={{ animationDelay: "1700ms" }}
               >
                 <div
