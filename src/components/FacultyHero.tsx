@@ -284,7 +284,7 @@ export default function FacultyHero({
           </div>
 
           {/* Headline: locally revealed upward from beneath the eyebrow */}
-          <div className="w-full md:max-w-[44rem] lg:max-w-[52rem] xl:max-w-[54rem] overflow-hidden">
+          <div className="w-full max-w-[28rem] md:max-w-[20rem] lg:max-w-[26rem] xl:max-w-[32rem] overflow-hidden">
             <h1
               className="mt-[clamp(0.85rem,2.2vh,1.5rem)] text-[clamp(1.65rem,4.6vw,3.3rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-white"
               style={{
