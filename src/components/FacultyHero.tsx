@@ -45,9 +45,11 @@ const FALLBACK_STATS: FacultyStat[] = [
 export default function FacultyHero({
   stats,
   refreshed,
+  universities,
 }: {
   stats?: FacultyStat[];
   refreshed?: string;
+  universities?: string[];
 }) {
   const STATS = stats?.length ? stats : FALLBACK_STATS;
   const sectionRef = useRef<HTMLElement | null>(null);
