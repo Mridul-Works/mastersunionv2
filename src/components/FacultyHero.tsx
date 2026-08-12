@@ -30,9 +30,8 @@ const LINES = [
     >
       ran
     </span>{" "}
-    them —
+    them and most still do.
   </>,
-  <>and most still do.</>,
 ];
 
 const FALLBACK_STATS: FacultyStat[] = [
