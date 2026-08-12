@@ -58,7 +58,7 @@ export default function FacultyHero({
       className="w-full bg-[#0a0a0a] text-white"
     >
       <div className="mx-auto max-w-6xl px-5 pb-5 pt-[clamp(2.75rem,6.5vh,4.5rem)] md:px-10 md:pb-7">
-        <div className="grid items-start gap-x-10 gap-y-5 lg:grid-cols-12">
+        <div className="grid items-start gap-x-8 gap-y-8 lg:grid-cols-12">
           {/* Typography column */}
           <div className="lg:col-span-8">
             <div
@@ -98,6 +98,20 @@ export default function FacultyHero({
               by Ivy League academics and global business leaders — from Harvard to McKinsey, from
               Wharton to Google. They don&apos;t just teach the playbook. They wrote it.
             </p>
+          </div>
+
+          {/* Hero image column */}
+          <div className="hero-fade-up lg:col-span-4" style={{ animationDelay: "420ms" }}>
+            <figure className="relative overflow-hidden rounded-sm border border-white/10 bg-white/5">
+              <img
+                src="https://images.mastersunion.link/uploads/03032026/v1/Frame2043683361.webp"
+                alt="Faculty at Masters' Union"
+                loading="eager"
+                decoding="async"
+                className="aspect-[4/5] w-full object-cover"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/40 via-transparent to-transparent" aria-hidden />
+            </figure>
           </div>
         </div>
 
