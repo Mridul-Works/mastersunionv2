@@ -187,7 +187,11 @@ export default function FacultyHero({
 
   const imageEntranceStyle = {
     opacity: reducedMotion ? 1 : animateIn ? 1 : 0,
-    transform: reducedMotion ? "scale(1)" : animateIn ? "scale(1)" : "scale(1.02)",
+    transform: reducedMotion
+      ? "translateX(0) scale(1)"
+      : animateIn
+        ? "translateX(0) scale(1)"
+        : "translateX(18%) scale(1.02)",
     transition: reducedMotion
       ? "none"
       : "opacity 1050ms cubic-bezier(0.16, 1, 0.3, 1) 120ms, transform 1050ms cubic-bezier(0.16, 1, 0.3, 1) 120ms",
