@@ -226,7 +226,7 @@ export default function FacultyHero({
             {/* Headline: fills the left column, never the photo zone */}
             <div className="mt-[clamp(0.85rem,2.2vh,1.5rem)] w-full max-w-[850px]">
               <h1
-                className="text-[clamp(2rem,4.2vw,4rem)] font-semibold leading-[1.02] tracking-[-0.025em] text-white [text-wrap:balance]"
+                className="text-[clamp(1.95rem,3.5vw,3.4rem)] font-semibold leading-[1.02] tracking-[-0.025em] text-white [text-wrap:balance]"
                 style={{
                   fontFamily: SANS,
                   opacity: animateIn ? 1 : 0,
