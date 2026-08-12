@@ -304,9 +304,9 @@ export default function FacultyHero({
             </h1>
           </div>
 
-          <div className="w-full max-w-[46rem] md:max-w-[34rem] lg:max-w-[40rem]">
+          <div className="w-full max-w-[28rem] md:max-w-[20rem] lg:max-w-[26rem] xl:max-w-[32rem]">
             <p
-              className="mt-[clamp(0.9rem,2.4vh,1.7rem)] max-w-[52ch] text-[clamp(0.9rem,2.6vw,1.1rem)] leading-[1.58] text-white/70"
+              className="mt-[clamp(0.9rem,2.4vh,1.7rem)] max-w-[42ch] text-[clamp(0.9rem,2.6vw,1.1rem)] leading-[1.58] text-white/70"
               style={entrance(50, "y", 750, 340)}
             >
               500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered
