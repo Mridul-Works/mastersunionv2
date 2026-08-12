@@ -256,7 +256,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
               />
 
               {/* information */}
-              <div className="relative flex h-full w-full flex-col justify-end overflow-hidden px-5 pb-5 sm:w-[42%] sm:justify-center sm:pb-9 sm:px-0 sm:p-9 md:p-14">
+              <div className="relative flex h-full w-full flex-col justify-end overflow-hidden px-5 pb-5 sm:w-[42%] sm:justify-center sm:p-9 md:p-14">
                 <div
                   className="text-[9px] uppercase tracking-[0.22em] text-white/45 sm:text-[9.5px] sm:tracking-[0.24em] md:text-[10.5px]"
                   style={{ fontFamily: MONO }}
