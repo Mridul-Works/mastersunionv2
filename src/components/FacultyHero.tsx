@@ -345,10 +345,10 @@ export default function FacultyHero({
             />
             <div className="absolute inset-x-0 top-0 h-[18%] bg-gradient-to-b from-[#0a0a0a] to-transparent" />
             <div
-              className="absolute inset-x-0 bottom-0 h-[14%]"
+              className="absolute inset-x-0 bottom-0 h-[30%]"
               style={{
                 backgroundImage:
-                  "linear-gradient(to top, #0a0a0a 0%, rgba(10,10,10,0.7) 30%, rgba(10,10,10,0.35) 62%, rgba(10,10,10,0) 100%)",
+                  "linear-gradient(to top, #0a0a0a 0%, rgba(10,10,10,0.92) 18%, rgba(10,10,10,0.75) 38%, rgba(10,10,10,0.50) 58%, rgba(10,10,10,0.25) 78%, rgba(10,10,10,0) 100%)",
               }}
             />
           </div>
