@@ -348,12 +348,17 @@ export default function FacultyHero({
             style={{ animationDelay: "780ms" }}
           >
             <div
-              className="flex flex-wrap items-center justify-between gap-x-6 gap-y-1 text-[10px] uppercase tracking-[0.24em] text-white/50"
+              className="flex flex-wrap items-center justify-start gap-3 text-[10px] uppercase tracking-[0.24em] text-white/50"
               style={{ fontFamily: MONO }}
             >
-              <span className="inline-flex items-center rounded-[999px] border border-[#CBE4DE]/[0.25] bg-[#CBE4DE]/[0.18] px-3 py-1.5 backdrop-blur-[8px]">
+              <span className="inline-flex items-center whitespace-nowrap rounded-[999px] border border-[#CBE4DE]/[0.25] bg-[#CBE4DE]/[0.18] px-3 py-1.5 backdrop-blur-[8px]">
                 By the numbers
               </span>
+              {refreshed ? (
+                <span className="inline-flex items-center whitespace-nowrap rounded-[999px] border border-[#CBE4DE]/[0.25] bg-[#CBE4DE]/[0.18] px-3 py-1.5 text-[10px] uppercase tracking-[0.24em] text-white/35 backdrop-blur-[8px]">
+                  {refreshed}
+                </span>
+              ) : null}
             </div>
 
             <div className="mt-4 grid w-full grid-cols-2 gap-x-0 gap-y-6 md:grid-cols-4 md:gap-y-8">
@@ -413,17 +418,7 @@ export default function FacultyHero({
                       </div>
                     ))}
 
-                    {/* Refreshed capsule — centered under Imperial */}
-                    {refreshed ? (
-                      <div
-                        className="flex items-start justify-center pt-4"
-                        style={{ gridColumnStart: 1, gridRowStart: 2 }}
-                      >
-                        <span className="inline-flex items-center whitespace-nowrap rounded-[999px] border border-[#CBE4DE]/[0.25] bg-[#CBE4DE]/[0.18] px-3 py-1.5 text-[10px] uppercase tracking-[0.24em] text-white/35 backdrop-blur-[8px]">
-                          {refreshed}
-                        </span>
-                      </div>
-                    ) : null}
+                    {/* Refreshed capsule moved beside the By the numbers label */}
                   </div>
                 </div>
               </div>
