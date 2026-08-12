@@ -429,12 +429,10 @@ export default function FacultyHero({
               ))}
             </div>
 
-            <div className="mt-[clamp(0.55rem,1.2vh,0.85rem)] h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" aria-hidden />
-
             {/* University names — quiet editorial footer inside the glass panel */}
             {universities?.length ? (
               <div
-                className="hero-fade-up mt-[clamp(1rem,2.2vh,1.85rem)] border-t border-white/[0.08] pt-[clamp(1rem,2.2vh,1.85rem)]"
+                className="hero-fade-up mt-[clamp(1rem,2.2vh,1.85rem)] pt-[clamp(1rem,2.2vh,1.85rem)]"
                 style={{ animationDelay: "1700ms" }}
               >
                 <div
