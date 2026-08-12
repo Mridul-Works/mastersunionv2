@@ -166,6 +166,7 @@ export default function FacultyHero({
 
 
   // Very subtle recede as the hero scrolls away (no sticky trap, no big parallax).
+  // Driven by a CSS custom property to avoid React re-renders and boundary flicker.
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let frame = 0;
@@ -176,8 +177,14 @@ export default function FacultyHero({
         const el = sectionRef.current;
         if (!el) return;
         const h = el.offsetHeight || 1;
-        const p = Math.min(1, Math.max(0, window.scrollY / h));
-        setRecede(p);
+        const raw = window.scrollY / h;
+        // Clamp scroll progress to [0, 1] and ignore overscroll / rubber-band values.
+        const p = Math.min(1, Math.max(0, raw));
+        const current = parseFloat(el.style.getPropertyValue("--recede") || "0");
+        // Only update the custom property when the value actually changes.
+        if (Math.abs(p - current) > 0.001) {
+          el.style.setProperty("--recede", String(p));
+        }
       });
     };
     onScroll();
@@ -187,6 +194,7 @@ export default function FacultyHero({
       if (frame) cancelAnimationFrame(frame);
     };
   }, []);
+
 
   return (
     <section
