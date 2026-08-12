@@ -357,7 +357,7 @@ export default function FacultyHero({
               {refreshed ? (
                 <>
                   <span className="h-3 w-px bg-white/25" aria-hidden />
-                  <span className="inline-flex items-center whitespace-nowrap rounded-[999px] border border-[#CBE4DE]/[0.25] bg-[#CBE4DE]/[0.18] p-3 text-[10px] uppercase tracking-[0.24em] text-white/35 backdrop-blur-[8px]">
+                  <span className="inline-flex items-center whitespace-nowrap rounded-[999px] border border-[#CBE4DE]/[0.25] bg-[#CBE4DE]/[0.18] p-[7px] text-[10px] uppercase tracking-[0.24em] text-white/35 backdrop-blur-[8px]">
                     {refreshed}
                   </span>
                 </>
