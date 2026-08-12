@@ -1,11 +1,11 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { FacultyStat } from "@/lib/faculty-stats";
-
-
 
 const MONO = "'JetBrains Mono', ui-monospace, monospace";
 const SANS = "'Inter', system-ui, sans-serif";
 const SERIF_IT = "'Fraunces', Georgia, serif";
+
+const HERO_IMAGE = "https://images.mastersunion.link/uploads/03032026/v1/Frame2043683361.webp";
 
 const LINES = [
   <>At most B-schools,</>,
@@ -34,10 +34,10 @@ const FALLBACK_STATS: FacultyStat[] = [
 ];
 
 /**
- * One-screen editorial opening for /faculty: eyebrow → headline → paragraph →
- * "By the numbers" stats.
+ * Full-bleed obsidian editorial opening for /faculty.
+ * The existing academic photograph emerges from the darkness via a soft
+ * radial/linear mask instead of sitting inside a rectangular frame.
  * Respects prefers-reduced-motion.
- * `stats` are derived from the live faculty rosters by the route.
  */
 export default function FacultyHero({
   stats,
@@ -47,20 +47,81 @@ export default function FacultyHero({
   refreshed?: string;
 }) {
   const STATS = stats?.length ? stats : FALLBACK_STATS;
-
   const sectionRef = useRef<HTMLElement | null>(null);
+  const [recede, setRecede] = useState(0);
 
+  // Very subtle recede as the hero scrolls away (no sticky trap, no big parallax).
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let frame = 0;
+    const onScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        const el = sectionRef.current;
+        if (!el) return;
+        const h = el.offsetHeight || 1;
+        const p = Math.min(1, Math.max(0, window.scrollY / h));
+        setRecede(p);
+      });
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, []);
 
   return (
     <section
       ref={sectionRef}
       id="top"
-      className="w-full bg-[#0a0a0a] text-white"
+      className="relative w-full overflow-hidden bg-[#0a0a0a] text-white"
     >
-      <div className="mx-auto max-w-6xl px-5 pb-5 pt-[clamp(2.75rem,6.5vh,4.5rem)] md:px-10 md:pb-7">
-        <div className="grid items-start gap-x-8 gap-y-8 lg:grid-cols-12">
-          {/* Typography column */}
-          <div className="lg:col-span-8">
+      {/* Photograph emerging from the darkness — masked, frameless */}
+      <div
+        className="pointer-events-none absolute inset-y-0 right-0 z-0 w-full md:w-[62%] lg:w-[56%]"
+        style={{
+          opacity: 1 - recede * 0.55,
+          transform: `translate3d(0, ${recede * -18}px, 0)`,
+          transition: "opacity 120ms linear",
+        }}
+        aria-hidden
+      >
+        <div
+          className="hero-photo-emerge absolute inset-0"
+          style={{
+            WebkitMaskImage:
+              "radial-gradient(62% 68% at 66% 46%, #000 0%, rgba(0,0,0,0.92) 42%, rgba(0,0,0,0.5) 66%, rgba(0,0,0,0) 88%)",
+            maskImage:
+              "radial-gradient(62% 68% at 66% 46%, #000 0%, rgba(0,0,0,0.92) 42%, rgba(0,0,0,0.5) 66%, rgba(0,0,0,0) 88%)",
+          }}
+        >
+          <img
+            src={HERO_IMAGE}
+            alt="Faculty at Masters' Union"
+            loading="eager"
+            decoding="async"
+            className="h-full w-full object-cover object-[68%_12%] opacity-[0.7] contrast-[1.05] saturate-[0.25] md:object-[68%_26%]"
+          />
+        </div>
+        {/* Left-edge falloff so typography stays clean */}
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/55 to-transparent md:via-[#0a0a0a]/35"
+          style={{ backgroundSize: "100% 100%" }}
+        />
+        <div className="absolute inset-x-0 top-0 h-[22%] bg-gradient-to-b from-[#0a0a0a] to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-[#0a0a0a] to-transparent" />
+      </div>
+
+      <div
+        className="relative z-10 mx-auto flex min-h-[calc(100dvh-190px)] max-w-6xl flex-col px-5 pb-[clamp(5.5rem,9vh,6.25rem)] pt-[clamp(1.5rem,3.2vh,2.25rem)] md:px-10"
+        style={{ opacity: 1 - recede * 0.4 }}
+      >
+        {/* Typography */}
+        <div className="flex-1">
+          <div className="max-w-[46rem] md:max-w-[34rem] lg:max-w-[40rem]">
             <div
               className="hero-fade-up flex items-center gap-4"
               style={{ animationDelay: "60ms" }}
@@ -75,7 +136,7 @@ export default function FacultyHero({
             </div>
 
             <h1
-              className="mt-[clamp(1.35rem,3.2vh,2.1rem)] max-w-[24ch] text-[clamp(2.25rem,4.1vw,3.9rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-white"
+              className="mt-[clamp(1rem,2.2vh,1.5rem)] max-w-[24ch] text-[clamp(2.25rem,4.1vw,3.9rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-white"
               style={{ fontFamily: SANS }}
             >
               {LINES.map((line, i) => (
@@ -91,7 +152,7 @@ export default function FacultyHero({
             </h1>
 
             <p
-              className="hero-fade-up mt-[clamp(1.5rem,3.2vh,2.35rem)] max-w-[58ch] text-[clamp(0.95rem,1.05vw,1.1rem)] leading-[1.58] text-white/70"
+              className="hero-fade-up mt-[clamp(1.1rem,2.4vh,1.7rem)] max-w-[52ch] text-[clamp(0.95rem,1.05vw,1.1rem)] leading-[1.58] text-white/70"
               style={{ animationDelay: "620ms" }}
             >
               500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered
@@ -99,23 +160,27 @@ export default function FacultyHero({
               Wharton to Google. They don&apos;t just teach the playbook. They wrote it.
             </p>
           </div>
+        </div>
 
-          {/* Hero image column */}
-          <div className="hero-fade-up lg:col-span-4" style={{ animationDelay: "420ms" }}>
-            <figure className="relative overflow-hidden rounded-sm border border-white/10 bg-white/5">
-              <img
-                src="https://images.mastersunion.link/uploads/03032026/v1/Frame2043683361.webp"
-                alt="Faculty at Masters' Union"
-                loading="eager"
-                decoding="async"
-                className="aspect-[4/5] w-full object-cover"
-              />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/40 via-transparent to-transparent" aria-hidden />
-            </figure>
+        {/* Scroll cue — bottom right, minimal */}
+        <div
+          className="hero-fade-up mt-3 flex justify-end"
+          style={{ animationDelay: "1250ms", opacity: 1 - recede * 2 }}
+        >
+          <div className="flex flex-col items-center gap-2 text-white/45">
+            <span className="hero-scroll-arrow text-[13px] leading-none" aria-hidden>
+              ↓
+            </span>
+            <span
+              className="text-[9px] uppercase tracking-[0.28em]"
+              style={{ fontFamily: MONO }}
+            >
+              Scroll
+            </span>
           </div>
         </div>
 
-        {/* BY THE NUMBERS — same opening composition */}
+        {/* BY THE NUMBERS — same opening section */}
         <div className="mt-[clamp(0.85rem,1.9vh,1.3rem)] border-t border-white/15 pt-4">
           <div
             className="hero-fade-up flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 text-[10px] uppercase tracking-[0.24em] text-white/50"
