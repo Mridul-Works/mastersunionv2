@@ -355,6 +355,35 @@ export default function FacultyHero({
               </div>
             ))}
           </div>
+
+          {/* University names — quiet editorial footer to the statistics */}
+          {universities?.length ? (
+            <div
+              className="hero-fade-up mt-6 md:mt-8"
+              style={{ animationDelay: "1100ms" }}
+            >
+              <div className="-mx-5 overflow-x-auto md:mx-0 md:overflow-visible">
+                <div className="flex min-w-max items-center justify-start gap-x-1 px-5 md:min-w-0 md:justify-between md:px-0">
+                  {universities.map((name, i) => (
+                    <div key={name} className="flex shrink-0 items-center">
+                      <span
+                        className="text-[clamp(0.8rem,1.05vw,0.95rem)] italic tracking-[0.01em] text-white/75 transition-colors hover:text-white"
+                        style={{ fontFamily: SERIF_IT }}
+                        title={name}
+                      >
+                        {name}
+                      </span>
+                      {i < universities.length - 1 ? (
+                        <span className="mx-2 text-white/20 md:mx-3" aria-hidden>
+                          |
+                        </span>
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : null}
         </div>
       </div>
     </section>
