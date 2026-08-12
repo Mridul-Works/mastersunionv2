@@ -160,6 +160,7 @@ export default function FacultyHero({
         aria-hidden
       >
         <div
+          ref={photoRef}
           className="hero-photo-emerge absolute inset-0"
           style={{
             WebkitMaskImage:
@@ -168,14 +169,33 @@ export default function FacultyHero({
               "radial-gradient(62% 68% at 66% 46%, #000 0%, rgba(0,0,0,0.92) 42%, rgba(0,0,0,0.5) 66%, rgba(0,0,0,0) 88%)",
           }}
         >
+          {/* Colour layer (bottom) */}
           <img
             src={HERO_IMAGE}
             alt="Faculty at Masters' Union"
             loading="eager"
             decoding="async"
-            className="h-full w-full origin-center object-cover object-[46%_15%] opacity-[0.7] contrast-[1.05] saturate-[0.25] md:object-[52%_22%] md:scale-[1.22] lg:object-[56%_28%] lg:scale-[1.28] scale-[1.18] will-change-transform"
+            className={`${PHOTO_CLASS} absolute inset-0 saturate-[1.02]`}
+          />
+          {/* Monochrome layer (top) — cursor punches a soft hole to develop colour */}
+          <img
+            src={HERO_IMAGE}
+            alt=""
+            aria-hidden
+            loading="eager"
+            decoding="async"
+            className={`${PHOTO_CLASS} relative saturate-[0.25]`}
+            style={
+              reveal.s > 0.002
+                ? {
+                    WebkitMaskImage: `radial-gradient(circle ${230 * reveal.s}px at ${reveal.x}px ${reveal.y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.18) 38%, rgba(0,0,0,0.62) 68%, #000 100%)`,
+                    maskImage: `radial-gradient(circle ${230 * reveal.s}px at ${reveal.x}px ${reveal.y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.18) 38%, rgba(0,0,0,0.62) 68%, #000 100%)`,
+                  }
+                : undefined
+            }
           />
         </div>
+
         {/* Left-edge falloff so typography stays clean */}
         <div
           className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/55 to-transparent md:via-[#0a0a0a]/35"
