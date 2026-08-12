@@ -384,7 +384,7 @@ export default function FacultyHero({
                     {s.l}
                   </div>
                   <div
-                    className="mx-auto mt-3 h-px w-8 origin-center animate-pulse bg-white/25 transition-all duration-500 group-hover:w-16 group-hover:bg-[#CBE4DE]"
+                    className="mx-auto mt-3 h-px w-8 origin-center animate-pulse bg-white/25 transition-all duration-500 group-hover:w-24 group-hover:bg-[#CBE4DE]"
                     style={{ animationDelay: `${1 + i * 0.12}s` }}
                     aria-hidden
                   />
