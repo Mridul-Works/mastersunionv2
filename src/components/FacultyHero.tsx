@@ -414,11 +414,7 @@ export default function FacultyHero({
                         >
                           {name}
                         </span>
-                        <span
-                          className="ml-2 animate-pulse text-white/20 md:ml-3"
-                          style={{ animationDelay: `${i * 0.1}s` }}
-                          aria-hidden
-                        >
+                        <span className="ml-2 text-white/20 md:ml-3" aria-hidden>
                           |
                         </span>
                       </div>
