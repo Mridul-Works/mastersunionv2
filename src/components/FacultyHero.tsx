@@ -13,22 +13,20 @@ const PHOTO_CLASS =
 
 
 const LINES = [
-  <>At most B-schools,</>,
   <>
-    faculty{" "}
+    At most B-schools, faculty{" "}
     <span className="font-light italic" style={{ fontFamily: SERIF_IT }}>
       study
-    </span>{" "}
-    companies.
+    </span>
   </>,
   <>
-    Here, they{" "}
+    companies. Here, they{" "}
     <span className="font-light italic" style={{ fontFamily: SERIF_IT }}>
       ran
     </span>{" "}
-    them
+    them —
   </>,
-  <>— and most still do.</>,
+  <>and most still do.</>,
 ];
 
 const FALLBACK_STATS: FacultyStat[] = [
@@ -229,9 +227,12 @@ export default function FacultyHero({
                 Faculty at Masters&apos; Union
               </div>
             </div>
+          </div>
 
+          {/* Headline: wider column so it wraps to three balanced lines on desktop */}
+          <div className="md:max-w-[44rem] lg:max-w-[52rem] xl:max-w-[54rem]">
             <h1
-              className="mt-[clamp(1rem,2.2vh,1.5rem)] max-w-[24ch] text-[clamp(2.25rem,4.1vw,3.9rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-white"
+              className="mt-[clamp(1rem,2.2vh,1.5rem)] text-[clamp(2.25rem,3.4vw,3.3rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-white"
               style={{ fontFamily: SANS }}
             >
               {LINES.map((line, i) => (
@@ -245,7 +246,9 @@ export default function FacultyHero({
                 </span>
               ))}
             </h1>
+          </div>
 
+          <div className="max-w-[46rem] md:max-w-[34rem] lg:max-w-[40rem]">
             <p
               className="hero-fade-up mt-[clamp(1.1rem,2.4vh,1.7rem)] max-w-[52ch] text-[clamp(0.95rem,1.05vw,1.1rem)] leading-[1.58] text-white/70"
               style={{ animationDelay: "620ms" }}
