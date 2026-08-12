@@ -37,9 +37,9 @@ const LINES = [
 
 const FALLBACK_STATS: FacultyStat[] = [
   { v: "500+", l: "Masters on the roster" },
-  { v: "50%", l: "Active industry practitioners" },
-  { v: "9", l: "Universities represented" },
-  { v: "25", l: "Full-time PhD faculty" },
+  { v: "33%", l: "Active industry practitioners" },
+  { v: "18", l: "Universities represented" },
+  { v: "37", l: "Full-time PhD faculty" },
 ];
 
 /**
@@ -339,31 +339,29 @@ export default function FacultyHero({
             {refreshed ? <span className="text-white/35">{refreshed}</span> : null}
           </div>
 
-          <div className="mt-3 grid grid-cols-2 gap-x-8 gap-y-5 md:grid-cols-4 md:gap-x-10">
+          <div className="mt-4 grid w-full grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-4 md:gap-x-6 md:gap-y-8">
             {STATS.map((s, i) => (
               <div
                 key={s.l}
                 className="hero-fade-up group flex flex-col items-center text-center"
                 style={{ animationDelay: `${860 + i * 70}ms` }}
               >
-                <div className="min-w-0">
-                  <div
-                    className="text-[clamp(1.75rem,2.8vw,2.6rem)] font-medium leading-[0.9] tracking-[-0.035em]"
-                    style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}
-                  >
-                    {s.v}
-                  </div>
-                  <div
-                    className="mt-2.5 max-w-[24ch] text-[10px] font-medium uppercase leading-[1.5] tracking-[0.16em] text-white/60 md:whitespace-nowrap"
-                    style={{ fontFamily: MONO }}
-                  >
-                    {s.l}
-                  </div>
-                  <div
-                    className="mx-auto mt-3 h-px w-8 bg-white/25 transition-all duration-500 group-hover:w-16 group-hover:bg-[#CBE4DE]"
-                    aria-hidden
-                  />
+                <div
+                  className="text-[clamp(1.75rem,2.8vw,2.6rem)] font-medium leading-[0.9] tracking-[-0.035em]"
+                  style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}
+                >
+                  {s.v}
                 </div>
+                <div
+                  className="mt-2.5 text-[10px] font-medium uppercase leading-[1.5] tracking-[0.16em] text-white/60 md:whitespace-nowrap"
+                  style={{ fontFamily: MONO }}
+                >
+                  {s.l}
+                </div>
+                <div
+                  className="mx-auto mt-3 h-px w-8 bg-white/25 transition-all duration-500 group-hover:w-16 group-hover:bg-[#CBE4DE]"
+                  aria-hidden
+                />
               </div>
             ))}
           </div>
