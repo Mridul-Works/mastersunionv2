@@ -87,9 +87,9 @@ export default function FacultyHero({
     <section
       ref={sectionRef}
       id="top"
-      className="mx-auto max-w-6xl px-5 pb-6 pt-[clamp(1.75rem,4.5vh,3.25rem)] md:px-10 md:pb-8"
+      className="mx-auto max-w-6xl px-5 pb-5 pt-[clamp(2.75rem,6.5vh,4.5rem)] md:px-10 md:pb-7"
     >
-      <div className="grid items-start gap-x-10 gap-y-6 lg:grid-cols-12">
+      <div className="grid items-start gap-x-10 gap-y-5 lg:grid-cols-12">
         {/* Typography column */}
         <div className="lg:col-span-8">
           <div
@@ -106,11 +106,11 @@ export default function FacultyHero({
           </div>
 
           <h1
-            className="mt-[clamp(0.9rem,2.4vh,1.5rem)] max-w-[24ch] text-[clamp(2.25rem,4.1vw,3.9rem)] font-semibold leading-[1.08] tracking-[-0.02em] text-black"
+            className="mt-[clamp(1.35rem,3.2vh,2.1rem)] max-w-[24ch] text-[clamp(2.25rem,4.1vw,3.9rem)] font-semibold leading-[1.12] tracking-[-0.02em] text-black"
             style={{ fontFamily: SANS }}
           >
             {LINES.map((line, i) => (
-              <span key={i} className="block overflow-hidden pb-[0.1em]">
+              <span key={i} className="block overflow-hidden pb-[0.14em]">
                 <span
                   className="hero-line-soft block"
                   style={{ animationDelay: `${180 + i * 90}ms` }}
@@ -122,7 +122,7 @@ export default function FacultyHero({
           </h1>
 
           <p
-            className="hero-fade-up mt-[clamp(0.8rem,1.8vh,1.2rem)] max-w-[58ch] text-[clamp(0.95rem,1.05vw,1.1rem)] leading-[1.6] text-black/70"
+            className="hero-fade-up mt-[clamp(1.5rem,3.2vh,2.35rem)] max-w-[58ch] text-[clamp(0.95rem,1.05vw,1.1rem)] leading-[1.58] text-black/70"
             style={{ animationDelay: "620ms" }}
           >
             500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered
@@ -132,7 +132,7 @@ export default function FacultyHero({
         </div>
 
         {/* Small editorial photograph in the right-hand whitespace */}
-        <div className="lg:col-span-4 lg:pt-10">
+        <div className="lg:col-span-4 lg:pt-[clamp(4rem,9.5vh,6.75rem)]">
           <figure className="ml-auto w-[150px] sm:w-[176px] lg:w-[190px]">
             <div
               className="hero-caption-line mb-2 h-8 w-px bg-black/25"
@@ -166,7 +166,7 @@ export default function FacultyHero({
       </div>
 
       {/* BY THE NUMBERS — same opening composition */}
-      <div className="mt-[clamp(1.1rem,2.6vh,1.8rem)] border-t border-black/15 pt-5">
+      <div className="mt-[clamp(0.85rem,1.9vh,1.3rem)] border-t border-black/15 pt-4">
         <div
           className="hero-fade-up flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 text-[10px] uppercase tracking-[0.24em] text-black/50"
           style={{ fontFamily: MONO, animationDelay: "780ms" }}
@@ -175,7 +175,7 @@ export default function FacultyHero({
           {refreshed ? <span className="text-black/35">{refreshed}</span> : null}
         </div>
 
-        <div className="mt-4 grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-4 md:gap-x-10">
+        <div className="mt-3 grid grid-cols-2 gap-x-8 gap-y-5 md:grid-cols-4 md:gap-x-10">
           {STATS.map((s, i) => (
             <div
               key={s.l}
