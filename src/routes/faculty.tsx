@@ -295,7 +295,7 @@ function EditorialGrid({
   return (
     <div className="mt-8 border-t border-black/15">
       {/* STATS HERO — replaces featured faculty */}
-      <div className="grid gap-x-8 gap-y-7 border-b border-black/15 py-7 md:grid-cols-12 md:py-9">
+      <div className="grid gap-x-8 gap-y-6 border-b border-black/15 py-[clamp(1.5rem,3vw,2.25rem)] md:grid-cols-12">
         <div className="md:col-span-5">
           <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
             The Mix · {sectionLabel}
@@ -314,7 +314,7 @@ function EditorialGrid({
           <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
             By the numbers
           </div>
-          <div className="mt-6 grid grid-cols-2 gap-x-10 gap-y-8">
+          <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-8 sm:gap-x-10">
             {stats.map((s) => (
               <div key={s.l} className="group relative">
                 <div className="flex items-start gap-3">
@@ -373,11 +373,11 @@ export const Route = createFileRoute("/faculty")({
 
 function FacultyPage() {
   return (
-    <main className="min-h-screen bg-white pb-16 text-black md:pb-18" style={{ fontFamily: INTER }}>
+    <main className="min-h-screen overflow-x-clip bg-white pb-24 text-black sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
       <SectionNav items={NAV} applyHref="#cta" />
 
       {/* Chapter marker */}
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 border-b border-black/10 px-5 pb-4 pt-7 md:px-10 md:pb-5 md:pt-9">
+      <div className="page-shell flex items-center justify-between gap-4 border-b border-black/10 pb-[clamp(0.85rem,1.6vw,1.25rem)] pt-[clamp(1.25rem,3vw,2.25rem)] sm:gap-6">
         <Link to="/" className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-black/70 transition-colors hover:text-black" style={{ fontFamily: MONO }}>
           <span aria-hidden>←</span> Masters&apos; Union
         </Link>
@@ -409,7 +409,7 @@ function FacultyPage() {
 
       {/* INDUSTRY PRACTITIONERS */}
       <section id="practitioners" className="border-y border-black/10 bg-neutral-50">
-        <div className="mx-auto max-w-6xl px-5 py-14 md:px-10 md:py-18">
+        <div className="page-shell section-y">
           <SectionHeader
             index="01"
             eyebrow="Industry Practitioners"
@@ -444,7 +444,7 @@ function FacultyPage() {
 
       {/* FULL-TIME FACULTY */}
       <section id="full-time" className="border-y border-black/10 bg-white">
-        <div className="mx-auto max-w-6xl px-5 py-14 md:px-10 md:py-18">
+        <div className="page-shell section-y">
           <SectionHeader
             index="02"
             eyebrow="Full-time Faculty"
@@ -472,7 +472,7 @@ function FacultyPage() {
 
       {/* VISITING */}
       <section id="visiting" className="bg-neutral-50">
-        <div className="mx-auto max-w-6xl px-5 py-14 md:px-10 md:py-18">
+        <div className="page-shell section-y">
           <SectionHeader
             index="03"
             eyebrow="Visiting Faculty"
@@ -506,7 +506,7 @@ function FacultyPage() {
 
       {/* TESTIMONIALS */}
       <section className="border-y border-black/10 bg-neutral-50">
-        <div className="mx-auto max-w-6xl px-5 py-14 md:px-10 md:py-16">
+        <div className="page-shell section-y">
           <SectionHeader
             index="04"
             eyebrow="What students say"
@@ -529,7 +529,7 @@ function FacultyPage() {
       </section>
 
       {/* BECOME A MASTER */}
-      <section className="mx-auto max-w-6xl px-5 py-14 md:px-10 md:py-18">
+      <section className="page-shell section-y">
         <div className="grid gap-10 md:grid-cols-12 md:items-end">
           <div className="md:col-span-7">
             <SectionHeader
@@ -550,7 +550,7 @@ function FacultyPage() {
 
       {/* THE NUMBER */}
       <section className="border-y border-black/10 bg-black text-white">
-        <div className="mx-auto max-w-5xl px-5 py-14 text-center md:px-10 md:py-18">
+        <div className="page-shell-narrow section-y text-center">
           <div className="text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO }}>The number that matters</div>
           <div className="mt-8 text-[clamp(3rem,7vw,6rem)] font-semibold leading-[0.88] tracking-tight" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>500+</div>
           <p className="mx-auto mt-8 max-w-[52ch] text-[1.1rem] leading-[1.55] text-white/80">
@@ -563,7 +563,7 @@ function FacultyPage() {
       </section>
 
       {/* CTA */}
-      <section id="cta" className="mx-auto max-w-5xl px-5 py-14 text-center md:px-10 md:py-18">
+      <section id="cta" className="page-shell-narrow section-y text-center">
         <p className="text-balance text-[clamp(1.2rem,2.2vw,1.9rem)] italic leading-[1.25] text-black/90">
           Learn from the people doing it — not just studying it.
         </p>
