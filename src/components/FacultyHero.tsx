@@ -116,7 +116,7 @@ export default function FacultyHero({
       </div>
 
       <div
-        className="relative z-10 mx-auto flex min-h-[calc(100dvh-190px)] max-w-[1450px] flex-col px-5 pb-[clamp(5.5rem,9vh,6.25rem)] pt-[clamp(1.5rem,3.2vh,2.25rem)] md:px-[4.5vw] lg:px-[5.5vw]"
+        className="relative z-10 flex min-h-[calc(100dvh-190px)] w-full max-w-none flex-col px-5 pb-[clamp(5.5rem,9vh,6.25rem)] pt-[clamp(1.5rem,3.2vh,2.25rem)] md:px-[clamp(3.25rem,4vw,4.5rem)]"
         style={{ opacity: 1 - recede * 0.4 }}
       >
         {/* Typography */}
