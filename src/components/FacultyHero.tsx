@@ -351,7 +351,7 @@ export default function FacultyHero({
               className="flex flex-wrap items-center justify-start gap-3 text-[10px] uppercase tracking-[0.24em] text-white/50"
               style={{ fontFamily: MONO }}
             >
-              <span className="inline-flex items-center whitespace-nowrap rounded-[999px] border border-[#CBE4DE]/[0.25] bg-[#CBE4DE]/[0.18] px-3 py-1.5 backdrop-blur-[8px]">
+              <span className="inline-flex items-center whitespace-nowrap rounded-[999px] border border-[#CBE4DE]/[0.25] bg-[#CBE4DE]/[0.18] p-3 backdrop-blur-[8px]">
                 By the numbers
               </span>
               {refreshed ? (
