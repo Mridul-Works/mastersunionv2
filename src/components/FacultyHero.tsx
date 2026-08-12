@@ -368,7 +368,7 @@ export default function FacultyHero({
               {STATS.map((s, i) => (
                 <div
                   key={s.l}
-                  className="hero-fade-up group flex min-w-0 flex-col items-center px-1 text-center md:px-2"
+                  className="hero-fade-up group pointer-events-auto flex min-w-0 flex-col items-center px-1 text-center md:px-2"
                   style={{ animationDelay: `${860 + i * 70}ms` }}
                 >
                   <div
