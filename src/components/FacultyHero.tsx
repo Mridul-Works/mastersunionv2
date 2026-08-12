@@ -143,6 +143,19 @@ export default function FacultyHero({
     };
   }, []);
 
+  // Directional entrance animations for the three text elements.
+  // Trigger once on mount; disabled when reduced motion is preferred.
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setReducedMotion(reduced);
+    if (reduced) {
+      setAnimateIn(true);
+      return;
+    }
+    const id = requestAnimationFrame(() => setAnimateIn(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
 
   // Very subtle recede as the hero scrolls away (no sticky trap, no big parallax).
   useEffect(() => {
