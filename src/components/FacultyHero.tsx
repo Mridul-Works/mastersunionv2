@@ -10,7 +10,7 @@ const HERO_IMAGE = "https://images.mastersunion.link/uploads/03032026/v1/Frame20
 // Shared geometry for both photo layers so colour + monochrome stay pixel-aligned.
 // One single composition across every breakpoint: same object-position, same scale.
 const PHOTO_CLASS =
-  "h-full w-full origin-center object-cover object-[50%_18%] contrast-[1.05] scale-[1.08] will-change-transform";
+  "h-full w-full origin-center object-cover object-[50%_34%] contrast-[1.05] scale-[1.02] will-change-transform";
 
 const HEADLINE = (
   <>
@@ -345,10 +345,10 @@ export default function FacultyHero({
             />
             <div className="absolute inset-x-0 top-0 h-[18%] bg-gradient-to-b from-[#0a0a0a] to-transparent" />
             <div
-              className="absolute inset-x-0 bottom-0 h-[30%]"
+              className="absolute inset-x-0 bottom-0 h-[14%]"
               style={{
                 backgroundImage:
-                  "linear-gradient(to top, #0a0a0a 0%, rgba(10,10,10,0.9) 22%, rgba(10,10,10,0.6) 48%, rgba(10,10,10,0.25) 74%, rgba(10,10,10,0) 100%)",
+                  "linear-gradient(to top, #0a0a0a 0%, rgba(10,10,10,0.7) 30%, rgba(10,10,10,0.35) 62%, rgba(10,10,10,0) 100%)",
               }}
             />
           </div>
