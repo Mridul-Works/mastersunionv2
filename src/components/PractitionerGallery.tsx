@@ -404,14 +404,13 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                 </div>
               </div>
 
-              {/* depth shading for receding cards */}
-              {!isActive && !hidden ? (
-                <div
-                  className="pointer-events-none absolute inset-0"
-                  style={{ background: `rgba(6,6,6,${Math.min(0.55, abs * 0.2)})` }}
-                  aria-hidden
-                />
-              ) : null}
+              {/* depth shading — always mounted, alpha follows the wheel angle */}
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{ background: `rgba(6,6,6,${shade})` }}
+                aria-hidden
+              />
+
 
             </article>
           );
