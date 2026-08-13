@@ -492,6 +492,7 @@ function FacultyPage() {
           />
 
           <EditorialGrid
+            gallery
             cardStats
             sectionLabel="Full-time Faculty"
             pct="30%"
@@ -522,6 +523,7 @@ function FacultyPage() {
 
 
         <EditorialGrid
+          gallery
           cardStats
           sectionLabel="Visiting Faculty"
           pct="20%"
