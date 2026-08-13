@@ -110,7 +110,9 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
       }
 
       setPos(posRef.current);
-      setFrontIdx(mod(Math.round(posRef.current)));
+      const nf = mod(Math.round(posRef.current));
+      setFrontIdx((p) => (p === nf ? p : nf));
+
       rafRef.current = requestAnimationFrame(tick);
     },
     [mod, n, takeControl],
