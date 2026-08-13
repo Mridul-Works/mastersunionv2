@@ -15,11 +15,11 @@ const PHOTO_CLASS =
 const HEADLINE = (
   <>
     At most B-schools, faculty{" "}
-    <span className="font-light italic" style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}>
+    <span className="font-light italic text-white" style={{ fontFamily: SERIF_IT }}>
       study
     </span>{" "}
     companies. Here, they{" "}
-    <span className="font-light italic" style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}>
+    <span className="font-light italic text-white" style={{ fontFamily: SERIF_IT }}>
       ran
     </span>{" "}
     them and most still do.
@@ -282,7 +282,7 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
                   by{" "}
                   <span
                     className="font-light italic"
-                    style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}
+                    style={{ fontFamily: SERIF_IT, color: "#ffffff" }}
                   >
                     Ivy League academics and global business leaders
                   </span>{" "}
