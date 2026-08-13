@@ -212,25 +212,25 @@ export default function MastersVideos({
       ref={sectionRef}
       className={`mv-section ${revealed ? "is-revealed" : ""} relative flex w-full min-h-[100svh] flex-col justify-center overflow-x-hidden border-t border-black/10 ${bg}`}
       style={{
-        paddingTop: "clamp(1.25rem,3.5vh,3rem)",
-        paddingBottom: "clamp(4.5rem,9vh,6.5rem)",
+        paddingTop: "clamp(1rem,2.5vh,2.25rem)",
+        paddingBottom: "clamp(3.5rem,7vh,5.5rem)",
       }}
     >
       {statsSlot ? (
-        <div className="mx-auto w-full max-w-[1280px] px-5 md:px-10">{statsSlot}</div>
+        <div className="mx-auto w-full max-w-[1520px] px-5 md:px-10">{statsSlot}</div>
       ) : null}
 
       <div
-        className="mx-auto grid w-full max-w-[1280px] grid-cols-1 px-5 md:px-10 lg:grid-cols-12 lg:items-start"
+        className="mx-auto grid w-full max-w-[1520px] grid-cols-1 px-5 md:px-10 lg:grid-cols-[minmax(0,39fr)_minmax(0,61fr)] lg:items-center"
         style={{
-          gap: "clamp(1.5rem,3.5vh,2.5rem)",
-          columnGap: "clamp(1.5rem,3vw,4rem)",
-          paddingTop: "clamp(1.5rem,4vh,3rem)",
+          gap: "clamp(1.25rem,2.4vh,1.75rem)",
+          columnGap: "clamp(1.5rem,3vw,3.5rem)",
+          paddingTop: "clamp(0.9rem,2vh,1.5rem)",
         }}
       >
 
-        {/* Left: sticky editorial column */}
-        <div className="min-w-0 lg:col-span-4 lg:sticky lg:top-24">
+        {/* Left: editorial column, vertically centered against the cards */}
+        <div className="min-w-0">
           <p className="mv-reveal mb-[clamp(0.5rem,1.4vh,1rem)] font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]">
             500+ Masters
           </p>
@@ -279,7 +279,7 @@ export default function MastersVideos({
         </div>
 
         {/* Right: paged rail — fits the screen, never scrolls sideways */}
-        <div className="min-w-0 overflow-hidden lg:col-span-8">
+        <div className="min-w-0 overflow-hidden">
           <div
             className="flex gap-6 transition-transform duration-500 ease-out"
             style={{ transform: `translateX(calc(-${safePage * 100}% - ${safePage * gap}px))` }}
@@ -296,7 +296,7 @@ export default function MastersVideos({
                 }}
               >
                 <div className="relative overflow-hidden rounded-[12px] bg-black shadow-[0_12px_34px_-20px_rgba(0,0,0,0.55)] transition duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_24px_46px_-22px_rgba(0,0,0,0.6)]">
-                  <div className="h-[clamp(210px,34vh,420px)] w-full overflow-hidden">
+                  <div className="h-[clamp(250px,41vh,500px)] w-full overflow-hidden">
                     <img
                       src={v.thumb}
                       alt={v.title}
