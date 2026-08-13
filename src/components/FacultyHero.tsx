@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useMotionMode } from "@/lib/motion-mode";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 
 const MONO = "'JetBrains Mono', ui-monospace, monospace";
@@ -59,6 +60,7 @@ const itemFromBelow: Variants = {
  */
 export default function FacultyHero() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const { isLite } = useMotionMode();
   const [animateIn, setAnimateIn] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [muClass, setMuClass] = useState("mu-watermark mu-watermark-dark");
@@ -93,6 +95,8 @@ export default function FacultyHero() {
 
 
   useEffect(() => {
+    // Lite mode: the per-frame mask painting is the most expensive effect here.
+    if (isLite) return;
     if (!window.matchMedia("(pointer: fine)").matches) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -169,7 +173,7 @@ export default function FacultyHero() {
       window.removeEventListener("pointerleave", onLeave);
       if (frame) cancelAnimationFrame(frame);
     };
-  }, []);
+  }, [isLite]);
 
   // Directional entrance animations for the text elements.
   // Trigger once on mount; disabled when reduced motion is preferred.
@@ -198,6 +202,7 @@ export default function FacultyHero() {
   // Very subtle recede as the hero scrolls away (no sticky trap, no big parallax).
   // Driven by a CSS custom property to avoid React re-renders and boundary flicker.
   useEffect(() => {
+    if (isLite) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let frame = 0;
     const onScroll = () => {
@@ -223,7 +228,7 @@ export default function FacultyHero() {
       window.removeEventListener("scroll", onScroll);
       if (frame) cancelAnimationFrame(frame);
     };
-  }, []);
+  }, [isLite]);
 
   // The photograph entrance is now handled by the clip-path reveal on its wrapper,
   // so the image layers themselves stay in their final composition (no transform).
