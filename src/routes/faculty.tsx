@@ -387,28 +387,24 @@ function FacultyPage() {
       </div>
 
       {/* HERO */}
-      <HeroDissolve>
-        <FacultyHero
-          stats={HERO_STATS}
-          refreshed={statsRefreshedLabel()}
-          universities={[
-            "Harvard",
-            "Wharton",
-            "Stanford",
-            "Kellogg",
-            "Cornell",
-            "NYU",
-            "Columbia",
-            "USC",
-            "Imperial",
-          ]}
-        />
-      </HeroDissolve>
+      <FacultyHero
+        stats={HERO_STATS}
+        refreshed={statsRefreshedLabel()}
+        universities={[
+          "Harvard",
+          "Wharton",
+          "Stanford",
+          "Kellogg",
+          "Cornell",
+          "NYU",
+          "Columbia",
+          "USC",
+          "Imperial",
+        ]}
+      />
 
       {/* 500+ MASTERS */}
-      <RiseReveal>
-        <MastersVideos bg="bg-white" />
-      </RiseReveal>
+      <MastersVideos bg="bg-white" />
 
 
 
