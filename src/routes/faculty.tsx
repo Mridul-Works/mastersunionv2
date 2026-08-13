@@ -512,19 +512,22 @@ function FacultyPage() {
       </section>
 
       {/* VISITING */}
-      <section id="visiting" className="screen-section bg-neutral-50">
+      <section id="visiting" className="screen-section border-y border-white/10 bg-black">
         <div className="page-shell screen-y">
           <SectionHeader
             index="03"
             eyebrow="Visiting Faculty"
             title={<>Professors who teach here because they believe in what Masters&apos; Union is building.</>}
             intro="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
+            dark
+            serif
           />
 
 
         <EditorialGrid
           gallery
           cardStats
+          dark
           sectionLabel="Visiting Faculty"
           pct="20%"
           tagline="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
@@ -538,9 +541,9 @@ function FacultyPage() {
 
 
 
-        <div className="mt-[clamp(0.65rem,1.6vh,1.25rem)] border-l-2 border-black/80 bg-neutral-50 p-[clamp(0.85rem,2vh,1.5rem)]">
-          <p className="max-w-[70ch] text-[clamp(0.8rem,1.6vh,0.95rem)] leading-[1.5] text-black/80">
-            <span className="font-medium text-black">Kellogg School of Management</span> — led by Professor Mohanbir Sawhney, one of the world&apos;s foremost authorities on technology strategy and marketing innovation — has brought students to Masters&apos; Union for two consecutive years. <span className="font-medium text-black">Harvard Business School India</span> immersion students have visited campus. When schools like these come here to learn, something is working.
+        <div className="mt-[clamp(0.65rem,1.6vh,1.25rem)] border-l-2 border-white/80 bg-white/[0.04] p-[clamp(0.85rem,2vh,1.5rem)]">
+          <p className="max-w-[70ch] text-[clamp(0.8rem,1.6vh,0.95rem)] leading-[1.5] text-white/75">
+            <span className="font-medium text-white">Kellogg School of Management</span> — led by Professor Mohanbir Sawhney, one of the world&apos;s foremost authorities on technology strategy and marketing innovation — has brought students to Masters&apos; Union for two consecutive years. <span className="font-medium text-white">Harvard Business School India</span> immersion students have visited campus. When schools like these come here to learn, something is working.
           </p>
         </div>
         </div>
@@ -548,7 +551,7 @@ function FacultyPage() {
 
 
       {/* TESTIMONIALS */}
-      <section className="screen-section border-y border-black/10 bg-neutral-50">
+      <section className="screen-section border-y border-black/10 bg-white">
         <div className="page-shell screen-y">
           <SectionHeader
             index="04"
@@ -558,7 +561,7 @@ function FacultyPage() {
           <div className="mt-[clamp(1.25rem,3vh,2rem)] grid gap-[clamp(1rem,2.4vh,1.5rem)] md:grid-cols-3">
 
             {TESTIMONIALS.map((t) => (
-              <figure key={t.a} className="border border-black/10 bg-white p-[clamp(1.25rem,3vh,2rem)]">
+              <figure key={t.a} className="border border-black/10 bg-neutral-50 p-[clamp(1.25rem,3vh,2rem)]">
                 <Quote className="size-5 text-black/40" />
                 <blockquote className="mt-4 text-[0.98rem] leading-[1.6] text-black/80">&ldquo;{t.q}&rdquo;</blockquote>
                 <figcaption className="mt-6 border-t border-black/10 pt-4">
@@ -572,19 +575,21 @@ function FacultyPage() {
       </section>
 
       {/* BECOME A MASTER */}
-      <section className="screen-section page-shell">
-        <div className="grid gap-10 md:grid-cols-12 md:items-end">
+      <section className="screen-section border-y border-white/10 bg-black">
+        <div className="page-shell grid gap-10 md:grid-cols-12 md:items-end">
           <div className="md:col-span-7">
             <SectionHeader
               index="05"
               eyebrow="Become a Master"
               title={<>We&apos;re always looking for practitioners who want to teach what they know.</>}
               intro="If you have built something, led something, invested in something, or shaped something — and you believe the best way to teach business is to have done it — we want to hear from you."
+              dark
+              serif
             />
           </div>
 
           <div className="md:col-span-5 md:text-right">
-            <a href="https://mastersunion.org/become-a-master" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-black px-6 py-4 text-[11px] uppercase tracking-[0.22em] text-white transition-opacity hover:opacity-80" style={{ fontFamily: MONO }}>
+            <a href="https://mastersunion.org/become-a-master" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-white px-6 py-4 text-[11px] uppercase tracking-[0.22em] text-black transition-opacity hover:opacity-80" style={{ fontFamily: MONO }}>
               Apply to teach <ArrowUpRight className="size-3.5" />
             </a>
           </div>
@@ -592,31 +597,33 @@ function FacultyPage() {
       </section>
 
       {/* THE NUMBER */}
-      <section className="screen-section border-y border-black/10 bg-black text-white">
+      <section className="screen-section border-y border-black/10 bg-white text-black">
         <div className="page-shell-narrow text-center">
-          <div className="text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO }}>The number that matters</div>
+          <div className="text-[11px] uppercase tracking-[0.3em] text-black/50" style={{ fontFamily: MONO }}>The number that matters</div>
           <div className="mt-[clamp(1.25rem,3.5vh,2rem)] text-[clamp(3rem,7vw,6rem)] font-semibold leading-[0.88] tracking-tight" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>500+</div>
-          <p className="mx-auto mt-[clamp(1.25rem,3.5vh,2rem)] max-w-[52ch] text-[1.05rem] leading-[1.55] text-white/80">
+          <p className="mx-auto mt-[clamp(1.25rem,3.5vh,2rem)] max-w-[52ch] text-[1.05rem] leading-[1.55] text-black/75">
             Masters on the roster. 50% of them active industry practitioners who were in a meeting this morning before they came to teach you this afternoon.
           </p>
-          <p className="mx-auto mt-6 max-w-[52ch] text-[0.95rem] italic text-white/60">
+          <p className="mx-auto mt-6 max-w-[52ch] text-[0.95rem] italic text-black/55">
             That is not a teaching philosophy. It is a hiring policy.
           </p>
         </div>
       </section>
 
       {/* CTA */}
-      <section id="cta" className="screen-section page-shell-narrow text-center">
-        <p className="text-balance text-[clamp(1.2rem,2.2vw,1.9rem)] italic leading-[1.25] text-black/90">
-          Learn from the people doing it — not just studying it.
-        </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <Link to="/applications_center" className="inline-flex items-center gap-2 bg-black px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-white transition-opacity hover:opacity-80" style={{ fontFamily: MONO }}>
-            Apply to Masters&apos; Union <ArrowUpRight className="size-3.5" />
-          </Link>
-          <a href="https://mastersunion.org/become-a-master" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-black/15 px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-black transition-colors hover:bg-black/[0.04]" style={{ fontFamily: MONO }}>
-            Or join them <ArrowUpRight className="size-3.5" />
-          </a>
+      <section id="cta" className="screen-section bg-black text-white">
+        <div className="page-shell-narrow text-center">
+          <p className="text-balance text-[clamp(1.2rem,2.2vw,1.9rem)] italic leading-[1.25] text-white/90">
+            Learn from the people doing it — not just studying it.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <Link to="/applications_center" className="inline-flex items-center gap-2 bg-white px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-black transition-opacity hover:opacity-80" style={{ fontFamily: MONO }}>
+              Apply to Masters&apos; Union <ArrowUpRight className="size-3.5" />
+            </Link>
+            <a href="https://mastersunion.org/become-a-master" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-white/25 px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-white transition-colors hover:bg-white/10" style={{ fontFamily: MONO }}>
+              Or join them <ArrowUpRight className="size-3.5" />
+            </a>
+          </div>
         </div>
       </section>
     </main>
