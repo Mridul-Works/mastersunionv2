@@ -435,6 +435,7 @@ function FacultyPage() {
             title={<>The people who teach here are not between jobs. They are active.</>}
             intro="Half of the faculty are CEOs, MDs, founders and investors — bringing this week's decisions into the classroom, not last decade's case studies."
             dark
+            serif
           />
 
 
