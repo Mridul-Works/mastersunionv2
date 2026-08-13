@@ -160,7 +160,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                 setFlipped((f) => (f === i ? null : i));
               }}
               aria-hidden={hidden}
-              className={`absolute left-1/2 top-1/2 h-[min(500px,max(420px,calc(100svh-260px)))] w-[min(1320px,88vw)] overflow-hidden rounded-[20px] sm:h-[min(clamp(430px,62vw,720px),max(400px,calc(100svh-240px)))] sm:w-[min(1100px,74vw)] sm:rounded-[24px] md:rounded-[32px] ${
+              className={`absolute left-1/2 top-1/2 h-[min(460px,max(380px,calc(100svh-280px)))] w-[min(320px,72vw)] overflow-hidden rounded-[20px] sm:h-[min(clamp(420px,52vw,600px),max(380px,calc(100svh-240px)))] sm:w-[min(420px,34vw)] sm:rounded-[24px] md:rounded-[28px] ${
                 isActive ? "shadow-[0_40px_90px_-40px_rgba(0,0,0,0.95)]" : ""
               }`}
               style={{
