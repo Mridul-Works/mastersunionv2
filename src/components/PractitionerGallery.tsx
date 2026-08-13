@@ -36,7 +36,7 @@ function computeGeometry(stageW: number, viewportH: number): Geometry {
   const ch = Math.max(300, Math.min(viewportH * 0.6, 660));
   const cw = Math.min(ch * 0.76, stageW * 0.46);
   const visible = stageW < 640 ? 1 : stageW < 1024 ? 2 : 3;
-  return { cw, ch, visible, spread: cw * 0.62, depth: cw * 0.66 };
+  return { cw, ch, visible, spread: cw * 0.86, depth: cw * 0.7 };
 }
 
 
