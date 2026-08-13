@@ -194,22 +194,6 @@
   animation: mu-pulse-center-out 2.8s ease-in-out infinite;
 }
 
-@keyframes mu-pulse-rgb {
-  0% { transform: scaleX(0.35); opacity: 0.35; background-position: 0% 50%; }
-  50% { transform: scaleX(1); opacity: 1; background-position: 100% 50%; }
-  100% { transform: scaleX(0.35); opacity: 0.35; background-position: 0% 50%; }
-}
-.mu-pulse-rgb {
-  transform-origin: center;
-  background: linear-gradient(90deg, #ff4d4d, #00e676, #2979ff, #ff4d4d);
-  background-size: 300% 100%;
-  animation: mu-pulse-rgb 3.5s ease-in-out infinite;
-}
-.mu-pulse-rgb-light {
-  background: linear-gradient(90deg, rgba(255,77,77,0.55), rgba(0,230,118,0.55), rgba(41,121,255,0.55), rgba(255,77,77,0.55));
-  background-size: 300% 100%;
-}
-
 @keyframes mu-shimmer {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
