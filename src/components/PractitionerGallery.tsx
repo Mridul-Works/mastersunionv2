@@ -52,6 +52,10 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
   const n = items.length;
   const [flipped, setFlipped] = useState<number | null>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [hasEntered, setHasEntered] = useState(false);
+  const [hasFlipped, setHasFlipped] = useState(false);
+  const [activeHovered, setActiveHovered] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
 
   /**
    * ONE physical 3D wheel. `pos` is a CONTINUOUS rotational position measured in
