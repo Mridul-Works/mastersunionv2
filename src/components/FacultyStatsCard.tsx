@@ -44,7 +44,9 @@ export default function FacultyStatsCard({
       </div>
 
       <div className="mt-3 overflow-hidden lg:mt-1.5" aria-hidden>
-        <div className={`h-[2px] w-full bg-gradient-to-r from-transparent to-transparent ${dark ? "via-white/15" : "via-black/10"}`} />
+        <div
+          className={`h-[2px] w-full origin-center bg-gradient-to-r from-transparent to-transparent mu-pulse-center-out ${dark ? "via-white/30" : "via-black/15"}`}
+        />
       </div>
 
       <div
