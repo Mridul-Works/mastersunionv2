@@ -222,11 +222,10 @@ export default function MastersVideos({
 
       <div className="flex flex-1 items-center">
         <div
-          className="mx-auto grid w-full max-w-[1520px] grid-cols-1 px-5 md:px-10 lg:grid-cols-[minmax(0,39fr)_minmax(0,61fr)] lg:items-center"
+          className="mx-auto grid w-full max-w-[1520px] grid-cols-1 px-5 pt-[clamp(0.6rem,1.4vh,1rem)] md:px-10 lg:grid-cols-[minmax(0,39fr)_minmax(0,61fr)] lg:items-center lg:pt-[clamp(40px,4vh,60px)]"
           style={{
             gap: "clamp(1rem,2vh,1.5rem)",
             columnGap: "clamp(1.5rem,3vw,3.5rem)",
-            paddingTop: "clamp(0.6rem,1.4vh,1rem)",
           }}
         >
 
