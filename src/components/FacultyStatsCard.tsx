@@ -51,25 +51,18 @@ export default function FacultyStatsCard({
             background: `radial-gradient(ellipse 35% 100% at center, ${dark ? "rgba(255,255,255,0.18)" : "rgba(0,0,0,0.12)"} 0%, transparent 70%)`,
           }}
         />
-        {/* Left pulse traveling to center */}
+        {/* Left pulse traveling from center to left edge */}
         <div
-          className="mu-pulse-left-to-center absolute left-0 top-0 h-full w-1/2"
+          className="mu-pulse-center-to-left absolute left-0 top-0 h-full w-1/2"
           style={{
-            background: `linear-gradient(90deg, transparent 0%, ${dark ? "rgba(0,220,150,0.85)" : "rgba(0,220,150,0.55)"} 60%, ${dark ? "rgba(0,120,255,0.85)" : "rgba(0,120,255,0.55)"} 100%)`,
+            background: `linear-gradient(90deg, ${dark ? "rgba(0,220,150,0.85)" : "rgba(0,220,150,0.55)"} 0%, transparent 100%)`,
           }}
         />
-        {/* Right pulse traveling to center */}
+        {/* Right pulse traveling from center to right edge */}
         <div
-          className="mu-pulse-right-to-center absolute right-0 top-0 h-full w-1/2"
+          className="mu-pulse-center-to-right absolute right-0 top-0 h-full w-1/2"
           style={{
-            background: `linear-gradient(270deg, transparent 0%, ${dark ? "rgba(0,220,150,0.85)" : "rgba(0,220,150,0.55)"} 60%, ${dark ? "rgba(0,120,255,0.85)" : "rgba(0,120,255,0.55)"} 100%)`,
-          }}
-        />
-        {/* Center burst when pulses meet */}
-        <div
-          className="mu-pulse-center-burst absolute left-1/2 top-0 h-full w-[40%]"
-          style={{
-            background: `radial-gradient(ellipse 70% 100% at center, ${dark ? "rgba(255,77,77,0.9)" : "rgba(255,77,77,0.55)"} 0%, ${dark ? "rgba(0,230,118,0.9)" : "rgba(0,230,118,0.55)"} 40%, ${dark ? "rgba(41,121,255,0.9)" : "rgba(41,121,255,0.55)"} 70%, transparent 100%)`,
+            background: `linear-gradient(90deg, transparent 0%, ${dark ? "rgba(0,120,255,0.85)" : "rgba(0,120,255,0.55)"} 100%)`,
           }}
         />
       </div>
