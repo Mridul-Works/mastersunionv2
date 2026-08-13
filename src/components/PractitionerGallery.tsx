@@ -404,7 +404,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                         src={item.img}
                         alt={item.name}
                         draggable={false}
-                        className="h-full w-full select-none object-cover object-[50%_top]"
+                        className="h-full w-full select-none object-cover object-[50%_22%]"
                         style={{ filter: `grayscale(${grayscale})` }}
                       />
                     ) : (
