@@ -287,6 +287,12 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
           const rotY = -off * 26;
           const scale = Math.max(0.6, 1 - abs * 0.12);
           const opacity = hidden ? 0 : Math.max(0.18, 1 - abs * 0.28);
+          // continuous 0..1 "frontness" — drives every look-and-feel value so
+          // nothing switches state as a card passes through the centre
+          const front = Math.max(0, 1 - abs);
+          const grayscale = 1 - 0.65 * front;
+          const shade = Math.min(0.55, abs * 0.2);
+          const shadow = front > 0 ? `0 40px 90px -40px rgba(0,0,0,${0.95 * front})` : "none";
 
           return (
             <article
@@ -300,19 +306,19 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                 setFlipped((f) => (f === i ? null : i));
               }}
               aria-hidden={hidden}
-              className={`absolute left-1/2 top-1/2 h-[min(460px,max(380px,calc(100svh-280px)))] w-[min(320px,72vw)] overflow-hidden rounded-[20px] sm:h-[min(clamp(420px,52vw,600px),max(380px,calc(100svh-240px)))] sm:w-[min(420px,34vw)] sm:rounded-[24px] md:rounded-[28px] ${
-                isFront ? "shadow-[0_40px_90px_-40px_rgba(0,0,0,0.95)]" : ""
-              }`}
+              className="absolute left-1/2 top-1/2 h-[min(460px,max(380px,calc(100svh-280px)))] w-[min(320px,72vw)] overflow-hidden rounded-[20px] sm:h-[min(clamp(420px,52vw,600px),max(380px,calc(100svh-240px)))] sm:w-[min(420px,34vw)] sm:rounded-[24px] md:rounded-[28px]"
               style={{
                 zIndex: 100 - Math.round(abs * 10),
                 opacity,
+                boxShadow: shadow,
                 pointerEvents: hidden ? "none" : "auto",
                 backgroundColor: "#0f0f0f",
                 transform: `perspective(1600px) translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale})`,
                 willChange: "transform, opacity",
-
+                backfaceVisibility: "hidden",
               }}
             >
+
               {/* flip card: front = image only, back = details */}
               <div className="absolute inset-0 bg-[#0f0f0f]" style={{ perspective: "1400px" }}>
                 <div
