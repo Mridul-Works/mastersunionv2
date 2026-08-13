@@ -50,8 +50,8 @@ export default function FacultyStatsCard({
         {stats.map((s) => (
           <div key={s.l} className="group flex min-w-0 flex-col items-center text-center">
             <div
-              className="text-[clamp(1.5rem,4.6vw,2.6rem)] font-medium leading-[0.9] tracking-[-0.035em]"
-              style={{ fontFamily: SERIF_IT, color: "var(--teal)" }}
+              className="text-[clamp(1.5rem,4.6vw,2.6rem)] font-medium leading-[0.9] tracking-[-0.035em] text-black"
+              style={{ fontFamily: SERIF_IT }}
             >
               {s.v}
             </div>
