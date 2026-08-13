@@ -18,11 +18,10 @@ export default function FacultyStatsCard({
 }) {
   return (
     <div
-      className="mv-reveal w-full rounded-[clamp(16px,2.2vw,24px)] border border-black/[0.07] bg-white/60 shadow-[0_18px_50px_-30px_rgba(0,0,0,0.22)] backdrop-blur-[14px]"
+      className="mv-reveal w-full rounded-[clamp(16px,2.2vw,24px)] border border-black/[0.07] bg-white/60 py-[clamp(0.55rem,1vh,0.75rem)] shadow-[0_18px_50px_-30px_rgba(0,0,0,0.22)] backdrop-blur-[14px] lg:py-2"
       style={{
         ["--card-pad" as string]: "clamp(1rem, 2.4vw, 2.25rem)",
         paddingInline: "var(--card-pad)",
-        paddingBlock: "clamp(0.55rem, 1vh, 0.75rem)",
       }}
     >
       <div
@@ -42,11 +41,11 @@ export default function FacultyStatsCard({
         ) : null}
       </div>
 
-      <div className="mt-3 overflow-hidden" aria-hidden>
+      <div className="mt-3 overflow-hidden lg:mt-1.5" aria-hidden>
         <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-black/10 to-transparent" />
       </div>
 
-      <div className="mt-3 grid w-full grid-cols-2 gap-x-3 gap-y-3 lg:grid-cols-4 lg:gap-x-4 lg:gap-y-3">
+      <div className="mt-3 grid w-full grid-cols-2 gap-x-3 gap-y-3 lg:mt-1.5 lg:grid-cols-4 lg:gap-x-4 lg:gap-y-0">
         {stats.map((s) => (
           <div key={s.l} className="group flex min-w-0 flex-col items-center text-center">
             <div
@@ -62,7 +61,7 @@ export default function FacultyStatsCard({
               {s.l}
             </div>
             <div
-              className="mx-auto mt-2 h-px w-8 origin-center bg-black/15 transition-all duration-500 group-hover:w-24 group-hover:bg-[#0a0a0a]"
+              className="mx-auto mt-2 h-px w-8 origin-center bg-black/15 transition-all duration-500 group-hover:w-24 group-hover:bg-[#0a0a0a] lg:mt-1"
               aria-hidden
             />
           </div>
@@ -70,7 +69,7 @@ export default function FacultyStatsCard({
       </div>
 
       {universities?.length ? (
-        <div className="mt-3 pt-3">
+        <div className="mt-3 pt-3 lg:mt-1.5 lg:pt-1.5">
           <div
             className="overflow-x-auto [scrollbar-width:none] md:overflow-visible [&::-webkit-scrollbar]:hidden"
             style={{

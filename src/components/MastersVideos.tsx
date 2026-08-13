@@ -228,6 +228,7 @@ export default function MastersVideos({
             columnGap: "clamp(1.5rem,3vw,3.5rem)",
             paddingTop: "clamp(0.6rem,1.4vh,1rem)",
           }}
+          data-desktop-gap="40-60px"
         >
 
         {/* Left: editorial column, vertically centered against the cards */}
