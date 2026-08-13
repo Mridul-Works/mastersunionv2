@@ -128,7 +128,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
   useEffect(() => {
     hoverRef.current = isHovered;
     if (isHovered) resumeAtRef.current = Number.POSITIVE_INFINITY;
-    else resumeAtRef.current = performance.now() + RESUME_DELAY_MS;
+    else resumeAtRef.current = 0; // resume autoplay immediately on leave
   }, [isHovered]);
 
   /** Controlled wheel rotation used by the arrows and keyboard. */
