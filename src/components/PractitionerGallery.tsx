@@ -52,6 +52,8 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
   const n = items.length;
   const [flipped, setFlipped] = useState<number | null>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [hasEntered, setHasEntered] = useState(false);
+  const [hasFlipped, setHasFlipped] = useState(false);
 
   /**
    * ONE physical 3D wheel. `pos` is a CONTINUOUS rotational position measured in
@@ -173,6 +175,11 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
 
   const active = frontIdx;
 
+  const handleFlip = useCallback((i: number) => {
+    setFlipped((f) => (f === i ? null : i));
+    setHasFlipped(true);
+  }, []);
+
 
   // signed offset from the continuous wheel position, wrapped so the arc loops
   const offsetOf = useCallback(
@@ -227,6 +234,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
    * gesture; there is no one-card-per-gesture snap.
    */
   const stageRef = useRef<HTMLDivElement | null>(null);
+  const galleryRef = useRef<HTMLDivElement | null>(null);
 
   const handleWheel = useCallback(
     (e: WheelEvent) => {
@@ -261,6 +269,22 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     return () => window.removeEventListener("keydown", onKey);
   }, [go]);
 
+  useEffect(() => {
+    const el = galleryRef.current;
+    if (!el || hasEntered) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setHasEntered(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.25 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [hasEntered]);
+
 
   const activeImg = items[active]?.img;
 
@@ -286,6 +310,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
 
   return (
     <div
+      ref={galleryRef}
       className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -344,6 +369,8 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
           const grayscale = 1 - 0.65 * front;
           const shade = Math.min(0.55, abs * 0.22);
           const shadow = front > 0 ? `0 60px 130px -50px rgba(0,0,0,${0.95 * front})` : "none";
+          const isLifted = isHovered && isFront && !isFlipped;
+          const liftScale = isLifted ? 1.02 : 1;
 
           return (
             <article
@@ -354,10 +381,10 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                   focusCard(i);
                   return;
                 }
-                setFlipped((f) => (f === i ? null : i));
+                handleFlip(i);
               }}
               aria-hidden={hidden}
-              className="absolute left-1/2 top-1/2 overflow-hidden rounded-[20px] sm:rounded-[26px] md:rounded-[30px]"
+              className="group absolute left-1/2 top-1/2 overflow-hidden rounded-[20px] sm:rounded-[26px] md:rounded-[30px]"
               style={{
                 width: geo.cw,
                 height: geo.ch,
@@ -366,7 +393,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                 boxShadow: shadow,
                 pointerEvents: hidden ? "none" : "auto",
                 backgroundColor: "#0f0f0f",
-                transform: `perspective(1900px) translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale})`,
+                transform: `perspective(1900px) translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale * liftScale})`,
                 willChange: "transform, opacity",
                 backfaceVisibility: "hidden",
               }}
@@ -384,7 +411,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                     if (!isActive) return;
                     if (e.key === "Enter" || e.key === " ") {
                       e.preventDefault();
-                      setFlipped((f) => (f === i ? null : i));
+                      handleFlip(i);
                     }
                   }}
                   className="relative h-full w-full cursor-pointer outline-none"
@@ -410,6 +437,17 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                     ) : (
 
                       <Initials name={item.name} />
+                    )}
+
+                    {/* front-card flip hint */}
+                    {isFront && !isFlipped && (
+                      <div
+                        className={`pointer-events-none absolute bottom-3 right-3 z-20 flex items-center gap-1.5 rounded-full border border-white/10 bg-black/30 px-2.5 py-1 text-[9px] uppercase tracking-[0.18em] text-white opacity-50 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-75 md:bottom-4 md:right-4 md:text-[10px] md:tracking-[0.2em] ${hasEntered && !hasFlipped ? "mu-hint-enter" : ""}`}
+                        style={{ fontFamily: MONO }}
+                      >
+                        <span>CLICK TO FLIP</span>
+                        <span className="text-[1.1em]">↻</span>
+                      </div>
                     )}
                   </div>
 
@@ -460,7 +498,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
 
               {/* depth shading — always mounted, alpha follows the wheel angle */}
               <div
-                className="pointer-events-none absolute inset-0"
+                className="pointer-events-none absolute inset-0 z-10"
                 style={{ background: `rgba(6,6,6,${shade})` }}
                 aria-hidden
               />
