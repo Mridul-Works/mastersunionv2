@@ -140,6 +140,8 @@ export function RiseReveal({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [settled, setSettled] = useState(false);
+  useElementReveal(ref);
+
   useScrollProgress(
     ref,
     (rect, vh) => {
