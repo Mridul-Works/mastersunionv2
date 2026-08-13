@@ -279,7 +279,7 @@ export default function MastersVideos({
         </div>
 
         {/* Right: paged rail — fits the screen, never scrolls sideways */}
-        <div className="min-w-0 overflow-hidden lg:col-span-8">
+        <div className="min-w-0 overflow-hidden">
           <div
             className="flex gap-6 transition-transform duration-500 ease-out"
             style={{ transform: `translateX(calc(-${safePage * 100}% - ${safePage * gap}px))` }}
