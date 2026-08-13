@@ -70,38 +70,40 @@ function SectionHeader({
   title,
   intro,
   align = "left",
+  dark = false,
 }: {
   index: string;
   eyebrow: string;
   title: React.ReactNode;
   intro?: React.ReactNode;
   align?: "left" | "center";
+  dark?: boolean;
 }) {
   const isCenter = align === "center";
   return (
     <header className={isCenter ? "text-center" : ""}>
       <p
-        className={`mb-[clamp(0.4rem,1.2vh,0.75rem)] font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-black/50 ${
-          isCenter ? "flex justify-center gap-3" : "flex gap-3"
-        }`}
+        className={`mb-[clamp(0.4rem,1.2vh,0.75rem)] font-mono text-[10px] font-bold uppercase tracking-[0.28em] ${
+          dark ? "text-white/50" : "text-black/50"
+        } ${isCenter ? "flex justify-center gap-3" : "flex gap-3"}`}
       >
         <span>{index}</span>
-        <span aria-hidden className="text-black/25">/</span>
+        <span aria-hidden className={dark ? "text-white/25" : "text-black/25"}>/</span>
         <span>{eyebrow}</span>
       </p>
       <h2
-        className={`text-[clamp(1.2rem,min(2.6vw,3.4vh),2.1rem)] font-semibold leading-[1.08] tracking-tight text-black ${
-          isCenter ? "mx-auto max-w-[24ch]" : "max-w-[26ch]"
-        }`}
+        className={`text-[clamp(1.2rem,min(2.6vw,3.4vh),2.1rem)] font-semibold leading-[1.08] tracking-tight ${
+          dark ? "text-white" : "text-black"
+        } ${isCenter ? "mx-auto max-w-[24ch]" : "max-w-[26ch]"}`}
         style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
       >
         {title}
       </h2>
       {intro ? (
         <p
-          className={`mt-[clamp(0.5rem,1.5vh,1rem)] text-[clamp(0.82rem,min(1vw,1.6vh),0.98rem)] leading-[1.6] text-black/70 ${
-            isCenter ? "mx-auto max-w-[62ch]" : "max-w-[62ch]"
-          }`}
+          className={`mt-[clamp(0.5rem,1.5vh,1rem)] text-[clamp(0.82rem,min(1vw,1.6vh),0.98rem)] leading-[1.6] ${
+            dark ? "text-white/70" : "text-black/70"
+          } ${isCenter ? "mx-auto max-w-[62ch]" : "max-w-[62ch]"}`}
         >
           {intro}
         </p>
@@ -223,10 +225,10 @@ const TESTIMONIALS = [
   { q: "You ask a question and the person answering it was the one who actually made the decision. Not someone who read about it. The actual person.", a: "Omkar Hundekari", r: "Bain & Co." },
 ];
 
-function Initials({ name }: { name: string }) {
+function Initials({ name, dark = false }: { name: string; dark?: boolean }) {
   const initials = name.replace(/^Dr\s+|^Captain\s+/i, "").split(/\s+/).map((w) => w[0]).slice(0, 2).join("");
   return (
-    <div className="flex h-full w-full items-center justify-center bg-neutral-100 text-[clamp(1.6rem,2.4vw,2rem)] tracking-[-0.02em] text-black/40" style={{ fontFamily: MONO }}>
+    <div className={`flex h-full w-full items-center justify-center text-[clamp(1.6rem,2.4vw,2rem)] tracking-[-0.02em] ${dark ? "bg-neutral-800 text-white/40" : "bg-neutral-100 text-black/40"}`} style={{ fontFamily: MONO }}>
       {initials}
     </div>
   );
@@ -240,9 +242,9 @@ type EditorialItem = {
   img?: string;
 };
 
-function Portrait({ item, aspect = "aspect-[4/5]" }: { item: EditorialItem; aspect?: string }) {
+function Portrait({ item, aspect = "aspect-[4/5]", dark = false }: { item: EditorialItem; aspect?: string; dark?: boolean }) {
   return (
-    <div className={`w-full overflow-hidden bg-[#ececec] ${aspect}`}>
+    <div className={`w-full overflow-hidden ${dark ? "bg-[#1a1a1a]" : "bg-[#ececec]"} ${aspect}`}>
       {item.img ? (
         <img
           src={item.img}
@@ -250,28 +252,28 @@ function Portrait({ item, aspect = "aspect-[4/5]" }: { item: EditorialItem; aspe
           className="h-full w-full object-cover grayscale transition duration-500 hover:grayscale-0"
         />
       ) : (
-        <Initials name={item.name} />
+        <Initials name={item.name} dark={dark} />
       )}
     </div>
   );
 }
 
-function EditorialCaption({ item }: { item: EditorialItem }) {
+function EditorialCaption({ item, dark = false }: { item: EditorialItem; dark?: boolean }) {
   return (
     <>
-      <h3 className="mt-4 text-[1rem] font-medium leading-[1.2] tracking-[-0.005em] text-black">
+      <h3 className={`mt-4 text-[1rem] font-medium leading-[1.2] tracking-[-0.005em] ${dark ? "text-white" : "text-black"}`}>
         {item.name}
       </h3>
-      <div className="mt-1.5 text-[10.5px] uppercase leading-snug tracking-[0.14em] text-black/55" style={{ fontFamily: MONO }}>
+      <div className={`mt-1.5 text-[10.5px] uppercase leading-snug tracking-[0.14em] ${dark ? "text-white/55" : "text-black/55"}`} style={{ fontFamily: MONO }}>
         {item.role}
       </div>
       {item.sub ? (
-        <div className="mt-0.5 text-[10.5px] uppercase leading-snug tracking-[0.14em] text-black/40" style={{ fontFamily: MONO }}>
+        <div className={`mt-0.5 text-[10.5px] uppercase leading-snug tracking-[0.14em] ${dark ? "text-white/40" : "text-black/40"}`} style={{ fontFamily: MONO }}>
           {item.sub}
         </div>
       ) : null}
       {item.blurb ? (
-        <p className="mt-3 text-[13px] leading-[1.55] text-black/70">{item.blurb}</p>
+        <p className={`mt-3 text-[13px] leading-[1.55] ${dark ? "text-white/70" : "text-black/70"}`}>{item.blurb}</p>
       ) : null}
     </>
   );
@@ -286,6 +288,7 @@ function EditorialGrid({
   tagline,
   stats,
   gallery = false,
+  dark = false,
 }: {
   items: EditorialItem[];
   sectionLabel: string;
@@ -293,27 +296,28 @@ function EditorialGrid({
   tagline: string;
   stats: FacultyStat[];
   gallery?: boolean;
+  dark?: boolean;
 }) {
   return (
-    <div className="mt-[clamp(1rem,2.5vh,2rem)] border-t border-black/15">
+    <div className={`mt-[clamp(1rem,2.5vh,2rem)] border-t ${dark ? "border-white/15" : "border-black/15"}`}>
       {/* STATS HERO — replaces featured faculty */}
-      <div className="grid gap-x-8 gap-y-[clamp(0.75rem,1.8vh,1.25rem)] border-b border-black/15 py-[clamp(0.85rem,2vh,1.5rem)] md:grid-cols-12">
+      <div className={`grid gap-x-8 gap-y-[clamp(0.75rem,1.8vh,1.25rem)] border-b py-[clamp(0.85rem,2vh,1.5rem)] md:grid-cols-12 ${dark ? "border-white/15" : "border-black/15"}`}>
         <div className="md:col-span-5">
-          <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
+          <div className={`text-[10.5px] uppercase tracking-[0.24em] ${dark ? "text-white/50" : "text-black/50"}`} style={{ fontFamily: MONO }}>
             The Mix · {sectionLabel}
           </div>
           <div className="mt-[clamp(0.5rem,1.5vh,1rem)] flex items-baseline gap-3">
-            <div className="text-[clamp(1.9rem,min(4.2vw,5.5vh),3.25rem)] font-medium leading-[0.88] tracking-[-0.04em] text-black">
+            <div className={`text-[clamp(1.9rem,min(4.2vw,5.5vh),3.25rem)] font-medium leading-[0.88] tracking-[-0.04em] ${dark ? "text-white" : "text-black"}`}>
               {pct}
             </div>
-            <div className="text-[11px] uppercase tracking-[0.2em] text-black/55" style={{ fontFamily: MONO }}>
+            <div className={`text-[11px] uppercase tracking-[0.2em] ${dark ? "text-white/55" : "text-black/55"}`} style={{ fontFamily: MONO }}>
               of faculty
             </div>
           </div>
-          <p className="mt-[clamp(0.5rem,1.5vh,1rem)] max-w-[38ch] text-[clamp(0.8rem,min(0.95vw,1.55vh),0.92rem)] leading-[1.6] text-black/75">{tagline}</p>
+          <p className={`mt-[clamp(0.5rem,1.5vh,1rem)] max-w-[38ch] text-[clamp(0.8rem,min(0.95vw,1.55vh),0.92rem)] leading-[1.6] ${dark ? "text-white/75" : "text-black/75"}`}>{tagline}</p>
         </div>
-        <div className="md:col-span-7 md:pl-10 md:border-l md:border-black/10">
-          <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
+        <div className={`md:col-span-7 md:pl-10 md:border-l ${dark ? "md:border-white/10" : "md:border-black/10"}`}>
+          <div className={`text-[10.5px] uppercase tracking-[0.24em] ${dark ? "text-white/50" : "text-black/50"}`} style={{ fontFamily: MONO }}>
             By the numbers
           </div>
           <div className="mt-[clamp(1rem,2.4vh,1.5rem)] grid grid-cols-2 gap-x-6 gap-y-[clamp(1rem,2.6vh,2rem)] sm:gap-x-10">
@@ -322,19 +326,19 @@ function EditorialGrid({
                 <div className="flex items-start gap-3">
                   <span className="mt-3 h-1.5 w-1.5 rounded-full bg-[#7a8b6f]" aria-hidden />
                   <div
-                    className="text-[clamp(1.35rem,min(2.6vw,3.4vh),2.2rem)] font-medium leading-[0.92] tracking-[-0.035em] text-black"
+                    className={`text-[clamp(1.35rem,min(2.6vw,3.4vh),2.2rem)] font-medium leading-[0.92] tracking-[-0.035em] ${dark ? "text-white" : "text-black"}`}
                     style={{ fontFamily: "'Fraunces', Georgia, serif" }}
                   >
                     {s.v}
                   </div>
                 </div>
                 <div
-                  className="mt-3 pl-[18px] text-[11px] font-medium uppercase leading-[1.5] tracking-[0.18em] text-black/65"
+                  className={`mt-3 pl-[18px] text-[11px] font-medium uppercase leading-[1.5] tracking-[0.18em] ${dark ? "text-white/65" : "text-black/65"}`}
                   style={{ fontFamily: MONO }}
                 >
                   {s.l}
                 </div>
-                <div className="mt-4 ml-[18px] h-px w-10 bg-black/25 transition-all duration-500 group-hover:w-20 group-hover:bg-[#7a8b6f]" aria-hidden />
+                <div className={`mt-4 ml-[18px] h-px w-10 transition-all duration-500 group-hover:w-20 ${dark ? "bg-white/25 group-hover:bg-[#7a8b6f]" : "bg-black/25 group-hover:bg-[#7a8b6f]"}`} aria-hidden />
               </div>
             ))}
           </div>
@@ -342,16 +346,16 @@ function EditorialGrid({
       </div>
 
       {gallery ? (
-        <div className="border-b border-black/15 pb-[clamp(3rem,7vh,5.5rem)] pt-[clamp(1.5rem,4vh,3rem)]">
+        <div className={`border-b py-[clamp(1.5rem,4vh,3rem)] ${dark ? "border-white/15" : "border-black/15"}`}>
           <PractitionerGallery items={items} />
         </div>
       ) : (
 
-        <div className="scene-scroll grid grid-cols-2 divide-x divide-y divide-black/10 border-b border-black/15 sm:grid-cols-3 md:grid-cols-4">
+        <div className={`scene-scroll grid grid-cols-2 divide-x divide-y border-b sm:grid-cols-3 md:grid-cols-4 ${dark ? "divide-white/10 border-white/15" : "divide-black/10 border-black/15"}`}>
           {items.map((item) => (
             <article key={item.name} className="p-5 md:p-6">
-              <Portrait item={item} />
-              <EditorialCaption item={item} />
+              <Portrait item={item} dark={dark} />
+              <EditorialCaption item={item} dark={dark} />
             </article>
           ))}
         </div>
@@ -421,19 +425,21 @@ function FacultyPage() {
 
 
       {/* INDUSTRY PRACTITIONERS */}
-      <section id="practitioners" className="screen-section border-y border-black/10 bg-neutral-50">
+      <section id="practitioners" className="screen-section border-y border-white/10 bg-black">
         <div className="page-shell screen-y">
           <SectionHeader
             index="01"
             eyebrow="Industry Practitioners"
             title={<>The people who teach here are not between jobs. They are active.</>}
             intro="Half of the faculty are CEOs, MDs, founders and investors — bringing this week's decisions into the classroom, not last decade's case studies."
+            dark
           />
 
 
 
         <EditorialGrid
           gallery
+          dark
           sectionLabel="Industry Practitioners"
           pct="50%"
           tagline="Half of the faculty are active operators — CEOs, MDs, founders and investors bringing this week's decisions into the classroom."
