@@ -231,17 +231,17 @@ export default function MastersVideos({
 
         {/* Left: sticky editorial column */}
         <div className="min-w-0 lg:col-span-4 lg:sticky lg:top-24">
-          <p className="mv-reveal mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]">
+          <p className="mv-reveal mb-[clamp(0.5rem,1.4vh,1rem)] font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]">
             500+ Masters
           </p>
           <h2
-            className="mv-reveal text-[clamp(1.75rem,3.2vw,2.75rem)] font-medium italic leading-[1.1] tracking-tight text-black"
+            className="mv-reveal text-[clamp(1.5rem,2.9vw,2.5rem)] font-medium italic leading-[1.1] tracking-tight text-black"
             style={{ fontFamily: "'Fraunces', Georgia, serif", transitionDelay: "260ms" }}
           >
             Built by Scholars, Led by Industry Practitioners
           </h2>
           <p
-            className="mv-reveal mt-6 max-w-sm text-[14px] leading-relaxed text-black/60"
+            className="mv-reveal mt-[clamp(0.75rem,2.2vh,1.5rem)] max-w-sm text-[clamp(12.5px,1.6vh,14px)] leading-relaxed text-black/60"
             style={{ transitionDelay: "420ms" }}
           >
             At Masters' Union, your classroom is powered by Ivy League academics and global business
@@ -249,7 +249,11 @@ export default function MastersVideos({
             the playbook. They wrote it.
           </p>
 
-          <div className="mv-reveal mt-7 flex items-center gap-3" style={{ transitionDelay: "540ms" }}>
+          <div
+            className="mv-reveal mt-[clamp(1rem,2.6vh,1.75rem)] flex items-center gap-3"
+            style={{ transitionDelay: "540ms" }}
+          >
+
             <button
               type="button"
               onClick={() => go(-1)}
