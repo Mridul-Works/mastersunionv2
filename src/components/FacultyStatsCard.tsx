@@ -22,7 +22,7 @@ export default function FacultyStatsCard({
       style={{
         ["--card-pad" as string]: "clamp(1rem, 2.4vw, 2.25rem)",
         paddingInline: "var(--card-pad)",
-        paddingBlock: "clamp(1rem, 2.2vh, 1.85rem)",
+        paddingBlock: "clamp(0.7rem, 1.5vh, 1.2rem)",
       }}
     >
       <div
