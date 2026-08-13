@@ -210,24 +210,25 @@ export default function MastersVideos({
     <section
       id="masters"
       ref={sectionRef}
-      className={`mv-section ${revealed ? "is-revealed" : ""} relative flex w-full min-h-[100svh] flex-col justify-center overflow-x-hidden border-t border-black/10 ${bg}`}
+      className={`mv-section ${revealed ? "is-revealed" : ""} relative flex w-full min-h-[100svh] flex-col overflow-x-hidden border-t border-black/10 ${bg}`}
       style={{
         paddingTop: "clamp(0.75rem,1.5vh,1.25rem)",
-        paddingBottom: "clamp(3rem,6vh,4.5rem)",
+        paddingBottom: "clamp(2rem,4vh,3rem)",
       }}
     >
       {statsSlot ? (
         <div className="mx-auto w-full max-w-[1520px] px-5 md:px-10">{statsSlot}</div>
       ) : null}
 
-      <div
-        className="mx-auto grid w-full max-w-[1520px] grid-cols-1 px-5 md:px-10 lg:grid-cols-[minmax(0,39fr)_minmax(0,61fr)] lg:items-center"
-        style={{
-          gap: "clamp(1rem,2vh,1.5rem)",
-          columnGap: "clamp(1.5rem,3vw,3.5rem)",
-          paddingTop: "clamp(0.6rem,1.4vh,1rem)",
-        }}
-      >
+      <div className="flex flex-1 items-center">
+        <div
+          className="mx-auto grid w-full max-w-[1520px] grid-cols-1 px-5 md:px-10 lg:grid-cols-[minmax(0,39fr)_minmax(0,61fr)] lg:items-center"
+          style={{
+            gap: "clamp(1rem,2vh,1.5rem)",
+            columnGap: "clamp(1.5rem,3vw,3.5rem)",
+            paddingTop: "clamp(0.6rem,1.4vh,1rem)",
+          }}
+        >
 
         {/* Left: editorial column, vertically centered against the cards */}
         <div className="min-w-0">
