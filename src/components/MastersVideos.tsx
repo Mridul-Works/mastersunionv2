@@ -341,19 +341,20 @@ export default function MastersVideos({
                       onClick={() => goTo(i)}
                       aria-label={v.title}
                       aria-current={i === active}
-                      className={`relative h-[clamp(58px,8vh,84px)] w-[clamp(44px,6vw,64px)] shrink-0 overflow-hidden rounded-[10px] border bg-black transition duration-300 ${
+                      className={`relative h-[clamp(58px,8vh,84px)] shrink-0 overflow-hidden rounded-[10px] border bg-black transition duration-300 ${
                         i === active
                           ? dark
                             ? "border-white/70 opacity-100"
                             : "border-black/70 opacity-100"
                           : `${line} opacity-55 hover:opacity-90`
                       }`}
+                      style={{ aspectRatio: "223/398" }}
                     >
                       <img
                         src={v.thumb}
                         alt=""
                         loading="lazy"
-                        className="h-full w-full object-contain"
+                        className="h-full w-full object-cover"
                       />
                     </button>
                   ))}
