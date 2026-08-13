@@ -353,11 +353,22 @@ export default function FacultyHero({
         </div>
 
         {/* Scroll cue — vertical line with a dot that travels down as the hero scrolls away */}
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-[clamp(4.5rem,7vh,6rem)] z-20 flex justify-center"
+        <button
+          type="button"
+          aria-label="Scroll to next section"
+          onClick={() => {
+            const lenis = (window as any).__lenis;
+            const target = window.innerHeight * 0.85;
+            if (lenis?.scrollTo) {
+              lenis.scrollTo(target, { duration: 1.2 });
+            } else {
+              window.scrollTo({ top: target, behavior: "smooth" });
+            }
+          }}
+          className="group absolute inset-x-0 bottom-[clamp(4.5rem,7vh,6rem)] z-20 flex cursor-pointer justify-center rounded-sm border border-transparent p-3 text-white/45 transition-colors hover:text-white/70 focus-visible:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
           style={{ opacity: "clamp(0, calc(1 - var(--recede) * 2), 1)" }}
         >
-          <div className="flex flex-col items-center gap-2 text-white/45">
+          <div className="flex flex-col items-center gap-2">
             <span
               className="text-[9px] uppercase tracking-[0.28em]"
               style={{ fontFamily: MONO }}
@@ -368,12 +379,12 @@ export default function FacultyHero({
               <div className="absolute inset-0 w-px bg-gradient-to-b from-white/40 to-white/10" />
               <div
                 data-scroll-dot
-                className="absolute left-1/2 top-0 h-[5px] w-[5px] -translate-x-1/2 rounded-full bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.35)] transition-none"
+                className="absolute left-1/2 top-0 h-[5px] w-[5px] -translate-x-1/2 rounded-full bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.35)] transition-none group-hover:bg-white group-hover:shadow-[0_0_10px_rgba(255,255,255,0.55)]"
                 style={{ transform: `translateY(calc(var(--recede) * 32px)) translateX(-50%)` }}
               />
             </div>
           </div>
-        </div>
+        </button>
       </div>
 
       {/* BY THE NUMBERS — unified glassmorphic panel (full width below the split) */}
