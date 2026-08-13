@@ -90,7 +90,7 @@ function SectionHeader({
         <span>{eyebrow}</span>
       </p>
       <h2
-        className={`text-[clamp(1.35rem,2.7vw,2.2rem)] font-semibold leading-[1.08] tracking-tight text-black ${
+        className={`text-[clamp(1.2rem,min(2.6vw,3.4vh),2.1rem)] font-semibold leading-[1.08] tracking-tight text-black ${
           isCenter ? "mx-auto max-w-[24ch]" : "max-w-[26ch]"
         }`}
         style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
@@ -99,7 +99,7 @@ function SectionHeader({
       </h2>
       {intro ? (
         <p
-          className={`mt-[clamp(0.6rem,1.8vh,1.25rem)] text-[clamp(0.9rem,1vw,1rem)] leading-[1.6] text-black/70 ${
+          className={`mt-[clamp(0.5rem,1.5vh,1rem)] text-[clamp(0.82rem,min(1vw,1.6vh),0.98rem)] leading-[1.6] text-black/70 ${
             isCenter ? "mx-auto max-w-[62ch]" : "max-w-[62ch]"
           }`}
         >
@@ -303,14 +303,14 @@ function EditorialGrid({
             The Mix · {sectionLabel}
           </div>
           <div className="mt-[clamp(0.5rem,1.5vh,1rem)] flex items-baseline gap-3">
-            <div className="text-[clamp(2.25rem,4.6vw,3.5rem)] font-medium leading-[0.88] tracking-[-0.04em] text-black">
+            <div className="text-[clamp(1.9rem,min(4.2vw,5.5vh),3.25rem)] font-medium leading-[0.88] tracking-[-0.04em] text-black">
               {pct}
             </div>
             <div className="text-[11px] uppercase tracking-[0.2em] text-black/55" style={{ fontFamily: MONO }}>
               of faculty
             </div>
           </div>
-          <p className="mt-[clamp(0.6rem,1.8vh,1.25rem)] max-w-[38ch] text-[0.92rem] leading-[1.6] text-black/75">{tagline}</p>
+          <p className="mt-[clamp(0.5rem,1.5vh,1rem)] max-w-[38ch] text-[clamp(0.8rem,min(0.95vw,1.55vh),0.92rem)] leading-[1.6] text-black/75">{tagline}</p>
         </div>
         <div className="md:col-span-7 md:pl-10 md:border-l md:border-black/10">
           <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
@@ -322,7 +322,7 @@ function EditorialGrid({
                 <div className="flex items-start gap-3">
                   <span className="mt-3 h-1.5 w-1.5 rounded-full bg-[#7a8b6f]" aria-hidden />
                   <div
-                    className="text-[clamp(1.6rem,2.8vw,2.4rem)] font-medium leading-[0.92] tracking-[-0.035em] text-black"
+                    className="text-[clamp(1.35rem,min(2.6vw,3.4vh),2.2rem)] font-medium leading-[0.92] tracking-[-0.035em] text-black"
                     style={{ fontFamily: "'Fraunces', Georgia, serif" }}
                   >
                     {s.v}
