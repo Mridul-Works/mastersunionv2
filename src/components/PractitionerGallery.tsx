@@ -350,11 +350,11 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                         src={item.img}
                         alt={item.name}
                         draggable={false}
-                        className={`h-full w-full select-none object-cover object-[50%_top] transition duration-700 ${
-                          isActive ? "grayscale-[0.35]" : "grayscale"
-                        }`}
+                        className="h-full w-full select-none object-cover object-[50%_top]"
+                        style={{ filter: `grayscale(${grayscale})` }}
                       />
                     ) : (
+
                       <Initials name={item.name} />
                     )}
                   </div>
