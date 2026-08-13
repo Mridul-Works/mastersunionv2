@@ -212,7 +212,7 @@ export default function MastersVideos({
       ref={sectionRef}
       className={`mv-section ${revealed ? "is-revealed" : ""} relative flex w-full min-h-[100svh] flex-col overflow-x-hidden border-t border-black/10 ${bg}`}
       style={{
-        paddingTop: "clamp(0.75rem,1.5vh,1.25rem)",
+        paddingTop: "clamp(0.75rem, 2vh, 1.75rem)",
         paddingBottom: "clamp(2rem,4vh,3rem)",
       }}
     >
