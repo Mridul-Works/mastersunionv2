@@ -277,7 +277,7 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
                 variants={itemFromBelow}
                 className="relative z-10 mt-[clamp(0.9rem,2.4vh,1.7rem)] max-w-[44rem] border-l border-white/15 pl-5 lg:max-w-[40rem]"
               >
-                <p className="max-w-[48ch] text-[clamp(0.9rem,2.2vw,1.15rem)] leading-[1.55] text-white/70">
+                <p className="max-w-[48ch] text-[0.98rem] leading-[1.55] text-white/70">
                   500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered
                   by{" "}
                   <span
