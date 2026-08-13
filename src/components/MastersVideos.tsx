@@ -320,7 +320,7 @@ export default function MastersVideos({
                   {v.meta}
                 </p>
                 <h3
-                  className="mt-1 truncate text-[clamp(14px,1.9vh,17px)] leading-snug text-black"
+                  className={`mt-1 truncate text-[clamp(14px,1.9vh,17px)] leading-snug ${dark ? "text-white" : "text-black"}`}
                   style={{ fontFamily: "'Fraunces', Georgia, serif" }}
                 >
                   {v.title}
