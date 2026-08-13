@@ -53,7 +53,7 @@ export default function FacultyHero({
   const sectionRef = useRef<HTMLElement | null>(null);
   const [animateIn, setAnimateIn] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
-  const [muClass, setMuClass] = useState("mu-watermark");
+  const [muClass, setMuClass] = useState("mu-watermark mu-watermark-dark");
 
   const entrance = (
     from: number,
