@@ -217,18 +217,21 @@ export default function MastersVideos({
             500+ Masters
           </p>
           <h2
-            className="text-[clamp(1.75rem,3.2vw,2.75rem)] font-medium italic leading-[1.1] tracking-tight text-black"
-            style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+            className="mv-reveal text-[clamp(1.75rem,3.2vw,2.75rem)] font-medium italic leading-[1.1] tracking-tight text-black"
+            style={{ fontFamily: "'Fraunces', Georgia, serif", transitionDelay: "90ms" }}
           >
             Built by Scholars, Led by Industry Practitioners
           </h2>
-          <p className="mt-6 max-w-sm text-[14px] leading-relaxed text-black/60">
+          <p
+            className="mv-reveal mt-6 max-w-sm text-[14px] leading-relaxed text-black/60"
+            style={{ transitionDelay: "200ms" }}
+          >
             At Masters' Union, your classroom is powered by Ivy League academics and global business
             leaders, from Harvard to McKinsey, from Wharton to Google. Our Masters don't just teach
             the playbook. They wrote it.
           </p>
 
-          <div className="mt-7 flex items-center gap-3">
+          <div className="mv-reveal mt-7 flex items-center gap-3" style={{ transitionDelay: "300ms" }}>
             <button
               type="button"
               onClick={() => go(-1)}
