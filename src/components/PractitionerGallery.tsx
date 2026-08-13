@@ -43,84 +43,106 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
   const n = items.length;
   const [flipped, setFlipped] = useState<number | null>(null);
   const [isHovered, setIsHovered] = useState(false);
-  const wasHoveredRef = useRef(false);
 
   /**
-   * The gallery is one physical 3D wheel: `pos` is a CONTINUOUS rotational
-   * position measured in cards. Gestures push it directly, inertia carries it,
-   * and it only settles onto an integer (the new active card) once motion dies.
+   * ONE physical 3D wheel. `pos` is a CONTINUOUS rotational position measured in
+   * cards. Autoplay, drag/swipe, trackpad and the arrows all write into the same
+   * rotational state — there is no second animation system anywhere.
    */
   const posRef = useRef(0);
-  const velRef = useRef(0);
-  const targetRef = useRef<number | null>(0);
+  const velRef = useRef(0); // cards per frame-equivalent (16ms)
+  const targetRef = useRef<number | null>(null);
   const [pos, setPos] = useState(0);
   const rafRef = useRef<number | null>(null);
   const draggingRef = useRef(false);
-  const [settledIdx, setSettledIdx] = useState(0);
+  const hoverRef = useRef(false);
+  const resumeAtRef = useRef(0); // timestamp when autoplay may take over again
+  const lastTsRef = useRef(0);
+  const [frontIdx, setFrontIdx] = useState(0);
 
   /** px of horizontal travel that equals one card of wheel rotation. */
   const STEP_PX = 260;
-  const FRICTION = 0.938;
-  const SPRING = 0.1;
-  const DAMP = 0.76;
+  /** Heavy-wheel autoplay: ~one card position every 5s. */
+  const AUTO_VEL = 16 / 5000; // cards per 16ms
+  const RESUME_DELAY_MS = 4500;
+  const FRICTION = 0.94;
+  const SPRING = 0.085;
+  const DAMP = 0.78;
   const MAX_VEL = 0.55;
+  const BLEND = 0.035; // how gently free motion eases into the autoplay drift
 
   const mod = useCallback((v: number) => ((v % n) + n) % n, [n]);
 
-  const tick = useCallback(() => {
-    rafRef.current = null;
-    if (!draggingRef.current) {
-      const t = targetRef.current;
-      if (t !== null) {
-        velRef.current += (t - posRef.current) * SPRING;
-        velRef.current *= DAMP;
-      } else {
-        velRef.current *= FRICTION;
-        if (Math.abs(velRef.current) < 0.004) {
-          targetRef.current = Math.round(posRef.current);
+  /** Any manual input pauses the drift and re-arms the resume delay. */
+  const takeControl = useCallback(() => {
+    resumeAtRef.current = performance.now() + RESUME_DELAY_MS;
+  }, []);
+
+  const tick = useCallback(
+    (now: number) => {
+      const prev = lastTsRef.current || now;
+      const dt = Math.min(64, Math.max(4, now - prev)) / 16; // frame-equivalents
+      lastTsRef.current = now;
+
+      if (!draggingRef.current) {
+        const autoOn = !hoverRef.current && n > 1 && now >= resumeAtRef.current;
+        const t = targetRef.current;
+        if (t !== null) {
+          // controlled rotation (arrows / keys): spring the wheel to the target
+          velRef.current += (t - posRef.current) * SPRING * dt;
+          velRef.current *= Math.pow(DAMP, dt);
+          if (Math.abs(t - posRef.current) < 0.002 && Math.abs(velRef.current) < 0.004) {
+            posRef.current = t;
+            velRef.current = 0;
+            targetRef.current = null;
+            takeControl();
+          }
+        } else if (autoOn) {
+          // continuous heavy-wheel drift — gesture momentum eases into it
+          velRef.current += (AUTO_VEL - velRef.current) * BLEND * dt;
+        } else {
+          // paused (hover) or waiting to resume: let inertia decay to a stop
+          velRef.current *= Math.pow(FRICTION, dt);
+          if (Math.abs(velRef.current) < 0.0004) velRef.current = 0;
         }
+        velRef.current = Math.max(-MAX_VEL, Math.min(MAX_VEL, velRef.current));
+        posRef.current += velRef.current * dt;
       }
-      velRef.current = Math.max(-MAX_VEL, Math.min(MAX_VEL, velRef.current));
-      posRef.current += velRef.current;
 
-      const t2 = targetRef.current;
-      const settled =
-        t2 !== null && Math.abs(t2 - posRef.current) < 0.0015 && Math.abs(velRef.current) < 0.0015;
-      if (settled) {
-        posRef.current = t2 as number;
-        velRef.current = 0;
-        setPos(posRef.current);
-        setSettledIdx(mod(Math.round(posRef.current)));
-        return; // wheel at rest — stop the loop
-      }
-    }
-    setPos(posRef.current);
-    rafRef.current = requestAnimationFrame(tick);
-  }, [mod]);
-
-  const kick = useCallback(() => {
-    if (rafRef.current === null) rafRef.current = requestAnimationFrame(tick);
-  }, [tick]);
-
-  useEffect(
-    () => () => {
-      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+      setPos(posRef.current);
+      setFrontIdx(mod(Math.round(posRef.current)));
+      rafRef.current = requestAnimationFrame(tick);
     },
-    [],
+    [mod, n, takeControl],
   );
 
-  /** Controlled wheel rotation used by arrows, keys and autoplay. */
+  useEffect(() => {
+    lastTsRef.current = 0;
+    rafRef.current = requestAnimationFrame(tick);
+    return () => {
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    };
+  }, [tick]);
+
+  useEffect(() => {
+    hoverRef.current = isHovered;
+    if (isHovered) resumeAtRef.current = Number.POSITIVE_INFINITY;
+    else resumeAtRef.current = performance.now() + RESUME_DELAY_MS;
+  }, [isHovered]);
+
+  /** Controlled wheel rotation used by the arrows and keyboard. */
   const go = useCallback(
     (dir: number) => {
       setFlipped(null);
+      takeControl();
       const base = targetRef.current !== null ? targetRef.current : Math.round(posRef.current);
       targetRef.current = base + Math.sign(dir);
-      kick();
     },
-    [kick],
+    [takeControl],
   );
 
-  const active = settledIdx;
+  const active = frontIdx;
 
   // signed offset from the continuous wheel position, wrapped so the arc loops
   const offsetOf = useCallback(
@@ -139,6 +161,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     draggingRef.current = true;
     targetRef.current = null;
     velRef.current = 0;
+    takeControl();
     drag.current = {
       down: true,
       startX: e.clientX,
@@ -147,14 +170,12 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
       lastX: e.clientX,
       lastTs: e.timeStamp || performance.now(),
     };
-    kick();
   };
   const onPointerMove = (e: React.PointerEvent) => {
     if (!drag.current.down) return;
     const dx = e.clientX - drag.current.startX;
     drag.current.moved = Math.abs(dx);
     posRef.current = drag.current.startPos - dx / STEP_PX;
-    setPos(posRef.current);
 
     const now = e.timeStamp || performance.now();
     const dt = Math.max(8, now - drag.current.lastTs);
@@ -166,14 +187,14 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     if (!drag.current.down) return;
     drag.current.down = false;
     draggingRef.current = false;
-    targetRef.current = null; // free spin, friction settles it
-    kick();
+    targetRef.current = null; // free spin: inertia then back into the drift
+    takeControl();
   };
 
   /**
-   * Wheel / trackpad. Horizontal delta feeds the wheel's rotational velocity
-   * continuously — a stronger flick spins further, several cards can pass the
-   * centre in a single gesture, and there is no one-card-per-gesture snap.
+   * Wheel / trackpad. Horizontal delta feeds the same rotational velocity —
+   * a stronger flick spins further and several cards pass the centre in one
+   * gesture; there is no one-card-per-gesture snap.
    */
   const stageRef = useRef<HTMLDivElement | null>(null);
 
@@ -183,11 +204,11 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
       if (!dx) return;
       e.preventDefault();
       targetRef.current = null;
+      takeControl();
       velRef.current += (dx / STEP_PX) * 0.5;
       velRef.current = Math.max(-MAX_VEL, Math.min(MAX_VEL, velRef.current));
-      kick();
     },
-    [kick],
+    [takeControl],
   );
 
   const handleWheelRef = useRef(handleWheel);
@@ -210,27 +231,6 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     return () => window.removeEventListener("keydown", onKey);
   }, [go]);
 
-  /**
-   * Slow automatic wheel rotation. Paused while the cursor is inside the
-   * gallery, resuming 1s after it leaves. The timer is keyed on the settled
-   * card, so any manual interaction naturally resets it.
-   */
-  const AUTOPLAY_MS = 4500;
-  const RESUME_DELAY_MS = 1000;
-  useEffect(() => {
-    if (n < 2) return;
-    if (isHovered) {
-      wasHoveredRef.current = true;
-      return;
-    }
-    if (wasHoveredRef.current) {
-      wasHoveredRef.current = false;
-      const t = setTimeout(() => go(1), RESUME_DELAY_MS);
-      return () => clearTimeout(t);
-    }
-    const t = setTimeout(() => go(1), AUTOPLAY_MS);
-    return () => clearTimeout(t);
-  }, [settledIdx, go, n, isHovered]);
 
   const activeImg = items[active]?.img;
 
