@@ -313,8 +313,9 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
         onPointerLeave={endDrag}
 
         onDragStart={(e) => e.preventDefault()}
-        className="relative h-[min(340px,max(210px,calc(100svh-620px)))] w-full sm:h-[min(clamp(280px,30vw,420px),max(210px,calc(100svh-650px)))]"
+        className="relative w-full"
         style={{
+          height: geo.ch + 80,
           perspectiveOrigin: "50% 50%",
           cursor: "grab",
           touchAction: "pan-y pinch-zoom",
@@ -329,17 +330,20 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
           const isFlipped = flipped === i;
 
           // elliptical arc: sideways travel eases off while depth keeps growing
-          const x = Math.sign(off) * (1 - Math.cos((Math.min(abs, VISIBLE) * Math.PI) / 9)) * 120 + off * 210;
-          const z = -abs * 240;
-          const rotY = -off * 26;
-          const scale = Math.max(0.6, 1 - abs * 0.12);
-          const opacity = hidden ? 0 : Math.max(0.18, 1 - abs * 0.28);
+          const x =
+            Math.sign(off) * (1 - Math.cos((Math.min(abs, VISIBLE) * Math.PI) / 9)) * (geo.cw * 0.35) +
+            off * geo.spread;
+          const z = -abs * geo.depth;
+          const rotY = -off * 30;
+          // active card reads distinctly larger than every neighbour
+          const scale = Math.max(0.52, 1 - abs * 0.2);
+          const opacity = hidden ? 0 : Math.max(0.16, 1 - abs * 0.3);
           // continuous 0..1 "frontness" — drives every look-and-feel value so
           // nothing switches state as a card passes through the centre
           const front = Math.max(0, 1 - abs);
           const grayscale = 1 - 0.65 * front;
-          const shade = Math.min(0.55, abs * 0.2);
-          const shadow = front > 0 ? `0 40px 90px -40px rgba(0,0,0,${0.95 * front})` : "none";
+          const shade = Math.min(0.55, abs * 0.22);
+          const shadow = front > 0 ? `0 60px 130px -50px rgba(0,0,0,${0.95 * front})` : "none";
 
           return (
             <article
@@ -353,18 +357,21 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                 setFlipped((f) => (f === i ? null : i));
               }}
               aria-hidden={hidden}
-              className="absolute left-1/2 top-1/2 h-[min(340px,max(210px,calc(100svh-620px)))] w-[min(320px,72vw)] overflow-hidden rounded-[20px] sm:h-[min(clamp(280px,30vw,420px),max(210px,calc(100svh-650px)))] sm:w-[min(420px,34vw)] sm:rounded-[24px] md:rounded-[28px]"
+              className="absolute left-1/2 top-1/2 overflow-hidden rounded-[20px] sm:rounded-[26px] md:rounded-[30px]"
               style={{
+                width: geo.cw,
+                height: geo.ch,
                 zIndex: 100 - Math.round(abs * 10),
                 opacity,
                 boxShadow: shadow,
                 pointerEvents: hidden ? "none" : "auto",
                 backgroundColor: "#0f0f0f",
-                transform: `perspective(1600px) translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale})`,
+                transform: `perspective(1900px) translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale})`,
                 willChange: "transform, opacity",
                 backfaceVisibility: "hidden",
               }}
             >
+
 
               {/* flip card: front = image only, back = details */}
               <div className="absolute inset-0 bg-[#0f0f0f]" style={{ perspective: "1400px" }}>
