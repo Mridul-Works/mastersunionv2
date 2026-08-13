@@ -492,6 +492,7 @@ function FacultyPage() {
           />
 
           <EditorialGrid
+            cardStats
             sectionLabel="Full-time Faculty"
             pct="30%"
             tagline="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing where the best B-schools read."
@@ -521,6 +522,7 @@ function FacultyPage() {
 
 
         <EditorialGrid
+          cardStats
           sectionLabel="Visiting Faculty"
           pct="20%"
           tagline="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
