@@ -221,17 +221,13 @@ export default function FacultyHero({
     };
   }, []);
 
-  const imageEntranceStyle = {
-    opacity: reducedMotion ? 1 : animateIn ? 1 : 0,
-    transform: reducedMotion
-      ? "translateX(0) scale(1)"
-      : animateIn
-        ? "translateX(0) scale(1)"
-        : "translateX(18%) scale(1.02)",
-    transition: reducedMotion
-      ? "none"
-      : "opacity 1600ms cubic-bezier(0.16, 1, 0.3, 1) 180ms, transform 1600ms cubic-bezier(0.16, 1, 0.3, 1) 180ms",
-  };
+  // The photograph entrance is now handled by the clip-path reveal on its wrapper,
+  // so the image layers themselves stay in their final composition (no transform).
+  const imageEntranceStyle = { opacity: 1, transform: "none" } as const;
+
+  const CLIP_HIDDEN = "polygon(100% 0, 100% 0, 100% 100%, 100% 100%)";
+  const CLIP_MID = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
+  const CLIP_FULL = "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)";
 
   return (
     <section
