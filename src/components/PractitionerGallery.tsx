@@ -184,11 +184,12 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
 
       {/* 3D stage */}
       <div
+        ref={stageRef}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={endDrag}
         onPointerLeave={endDrag}
-        onWheel={onWheel}
+
         onDragStart={(e) => e.preventDefault()}
         className="relative h-[min(460px,max(380px,calc(100svh-280px)))] w-full sm:h-[min(clamp(420px,52vw,600px),max(380px,calc(100svh-240px)))]"
         style={{
