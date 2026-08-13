@@ -264,6 +264,25 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
 
   const activeImg = items[active]?.img;
 
+  /** Live geometry — measured so the arc and card scale with the viewport. */
+  const [geo, setGeo] = useState<Geometry>(() => computeGeometry(1280, 900));
+  useEffect(() => {
+    const el = stageRef.current;
+    if (!el) return;
+    const measure = () =>
+      setGeo(computeGeometry(el.clientWidth || window.innerWidth, window.innerHeight));
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
+  const VISIBLE = geo.visible;
+
+
 
   return (
     <div
