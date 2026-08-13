@@ -387,27 +387,27 @@ function FacultyPage() {
         </div>
       </div>
 
-      {/* HERO — headline + image + By the Numbers card */}
-      <HeroToMastersTransition
-        hero={
-          <FacultyHero
-            stats={HERO_STATS}
-            refreshed={statsRefreshedLabel()}
-            universities={[
-              "Harvard",
-              "Wharton",
-              "Stanford",
-              "Kellogg",
-              "Cornell",
-              "NYU",
-              "Columbia",
-              "USC",
-              "Imperial",
-            ]}
-          />
-        }
-        next={<MastersVideos bg="bg-white" />}
-      />
+      {/* SECTION 1 — HERO: label, headline, description, image, scroll cue, stats card */}
+      <HeroFadeOut>
+        <FacultyHero
+          stats={HERO_STATS}
+          refreshed={statsRefreshedLabel()}
+          universities={[
+            "Harvard",
+            "Wharton",
+            "Stanford",
+            "Kellogg",
+            "Cornell",
+            "NYU",
+            "Columbia",
+            "USC",
+            "Imperial",
+          ]}
+        />
+      </HeroFadeOut>
+
+      {/* SECTION 2 — MASTERS: Built by Scholars, Led by Industry Practitioners */}
+      <MastersVideos bg="bg-white" />
 
 
 
