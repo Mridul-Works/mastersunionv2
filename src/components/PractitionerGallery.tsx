@@ -319,7 +319,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
               onClick={() => {
                 if (drag.current.moved > 6) return;
                 if (!isFront) {
-                  go(off > 0 ? 1 : -1);
+                  focusCard(i);
                   return;
                 }
                 setFlipped((f) => (f === i ? null : i));
