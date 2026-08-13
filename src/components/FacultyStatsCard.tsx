@@ -26,16 +26,16 @@ export default function FacultyStatsCard({
       }}
     >
       <div
-        className="flex flex-wrap items-center justify-start gap-2 text-[clamp(9px,1.9vw,10px)] uppercase tracking-[0.22em] text-black/50 sm:gap-3 sm:tracking-[0.24em]"
+        className="flex flex-wrap items-center justify-start gap-2 text-[clamp(9px,1.9vw,10px)] uppercase tracking-[0.22em] text-white/60 sm:gap-3 sm:tracking-[0.24em]"
         style={{ fontFamily: MONO }}
       >
-        <span className="inline-flex items-center justify-center whitespace-nowrap rounded-[999px] border border-black/10 bg-[#CBE4DE] px-[7px] py-1 text-center text-black/70">
+        <span className="inline-flex items-center justify-center whitespace-nowrap rounded-[999px] border border-white/15 bg-white/10 px-[7px] py-1 text-center text-white/85">
           By the numbers
         </span>
         {refreshed ? (
           <>
-            <span className="hidden h-3 w-px bg-black/15 sm:block" aria-hidden />
-            <span className="inline-flex items-center justify-center whitespace-nowrap rounded-[999px] border border-black/10 bg-[#CBE4DE] px-[7px] py-1 text-center uppercase tracking-[inherit] text-black/70">
+            <span className="hidden h-3 w-px bg-white/20 sm:block" aria-hidden />
+            <span className="inline-flex items-center justify-center whitespace-nowrap rounded-[999px] border border-white/15 bg-white/10 px-[7px] py-1 text-center uppercase tracking-[inherit] text-white/85">
               {refreshed}
             </span>
           </>
@@ -43,26 +43,26 @@ export default function FacultyStatsCard({
       </div>
 
       <div className="mt-[clamp(0.9rem,2vh,1.25rem)] overflow-hidden" aria-hidden>
-        <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-black/10 to-transparent" />
+        <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" />
       </div>
 
       <div className="mt-[clamp(0.9rem,2vh,1.25rem)] grid w-full grid-cols-2 gap-x-3 gap-y-6 lg:grid-cols-4 lg:gap-x-4 lg:gap-y-8">
         {stats.map((s) => (
           <div key={s.l} className="group flex min-w-0 flex-col items-center text-center">
             <div
-              className="text-[clamp(1.5rem,4.6vw,2.6rem)] font-medium leading-[0.9] tracking-[-0.035em] text-black"
+              className="text-[clamp(1.5rem,4.6vw,2.6rem)] font-medium leading-[0.9] tracking-[-0.035em] text-white"
               style={{ fontFamily: SERIF_IT }}
             >
               {s.v}
             </div>
             <div
-              className="mt-2 max-w-full text-[clamp(9px,1.9vw,10px)] font-medium uppercase leading-[1.5] tracking-[0.14em] text-black/90 sm:mt-2.5 sm:tracking-[0.16em] lg:whitespace-nowrap"
+              className="mt-2 max-w-full text-[clamp(9px,1.9vw,10px)] font-medium uppercase leading-[1.5] tracking-[0.14em] text-white/90 sm:mt-2.5 sm:tracking-[0.16em] lg:whitespace-nowrap"
               style={{ fontFamily: MONO }}
             >
               {s.l}
             </div>
             <div
-              className="mx-auto mt-3 h-px w-8 origin-center bg-black/15 transition-all duration-500 group-hover:w-24 group-hover:bg-[#CBE4DE]"
+              className="mx-auto mt-3 h-px w-8 origin-center bg-white/20 transition-all duration-500 group-hover:w-24 group-hover:bg-white/50"
               aria-hidden
             />
           </div>
