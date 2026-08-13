@@ -185,12 +185,35 @@ export default function MastersVideos({
 
   const gap = 24; // matches gap-6
 
+  // own scroll reveal — heading, paragraph, then the cards
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [revealed, setRevealed] = useState(false);
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setRevealed(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.12 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <section id="masters" className={`w-full overflow-x-hidden border-t border-black/10 ${bg}`}>
-      <div className="mx-auto grid w-full max-w-[1280px] grid-cols-1 gap-10 px-5 py-8 md:px-10 md:py-10 lg:grid-cols-12 lg:items-start lg:gap-16">
+    <section
+      id="masters"
+      ref={sectionRef}
+      className={`mv-section ${revealed ? "is-revealed" : ""} relative w-full overflow-x-hidden border-t border-black/10 ${bg}`}
+    >
+      <div className="mx-auto grid w-full max-w-[1280px] grid-cols-1 gap-10 px-5 py-[clamp(3rem,7vw,5.5rem)] md:px-10 lg:grid-cols-12 lg:items-start lg:gap-16">
         {/* Left: sticky editorial column */}
         <div className="min-w-0 lg:col-span-4 lg:sticky lg:top-24">
-          <p className="mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]">
+          <p className="mv-reveal mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]">
             500+ Masters
           </p>
           <h2
