@@ -285,7 +285,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
         onPointerLeave={endDrag}
 
         onDragStart={(e) => e.preventDefault()}
-        className="relative h-[min(340px,max(230px,calc(100svh-600px)))] w-full sm:h-[min(clamp(280px,30vw,420px),max(230px,calc(100svh-620px)))]"
+        className="relative h-[min(340px,max(210px,calc(100svh-620px)))] w-full sm:h-[min(clamp(280px,30vw,420px),max(210px,calc(100svh-650px)))]"
         style={{
           perspectiveOrigin: "50% 50%",
           cursor: "grab",
@@ -325,7 +325,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                 setFlipped((f) => (f === i ? null : i));
               }}
               aria-hidden={hidden}
-              className="absolute left-1/2 top-1/2 h-[min(340px,max(230px,calc(100svh-600px)))] w-[min(320px,72vw)] overflow-hidden rounded-[20px] sm:h-[min(clamp(280px,30vw,420px),max(230px,calc(100svh-620px)))] sm:w-[min(420px,34vw)] sm:rounded-[24px] md:rounded-[28px]"
+              className="absolute left-1/2 top-1/2 h-[min(340px,max(210px,calc(100svh-620px)))] w-[min(320px,72vw)] overflow-hidden rounded-[20px] sm:h-[min(clamp(280px,30vw,420px),max(210px,calc(100svh-650px)))] sm:w-[min(420px,34vw)] sm:rounded-[24px] md:rounded-[28px]"
               style={{
                 zIndex: 100 - Math.round(abs * 10),
                 opacity,

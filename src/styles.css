@@ -567,7 +567,7 @@ body::-webkit-scrollbar {
 }
 /* Long rosters stay inside their scene instead of stretching the page */
 @utility scene-scroll {
-  max-height: clamp(170px, 21svh, 340px);
+  max-height: clamp(160px, 18svh, 330px);
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: thin;
