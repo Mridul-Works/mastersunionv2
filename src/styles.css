@@ -531,3 +531,67 @@ body::-webkit-scrollbar {
 @utility section-y {
   padding-block: clamp(2.5rem, 6vw, 4.5rem);
 }
+
+/* ── Faculty hero → next section cinematic transition ───────────────────── */
+
+/* Hero dissolve: opacity only, scroll-linked. */
+.scene-hero {
+  position: relative;
+  opacity: clamp(0, calc(1 - var(--exit, 0)), 1);
+  will-change: opacity;
+}
+
+/* Subtle intensity reduction as the hero dissolves. */
+.scene-hero-dim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: #0a0a0a;
+  opacity: calc(var(--exit, 0) * 0.32);
+}
+
+/* Next section rise + reveal. */
+.scene-next {
+  --rise: 40px;
+  opacity: clamp(0, calc(var(--p, 0) * 1.15), 1);
+  transform: translate3d(0, calc((1 - clamp(0, var(--p, 0), 1)) * var(--rise)), 0);
+  will-change: transform, opacity;
+}
+
+/* Staggered upward reveal of the section's own content blocks. */
+.scene-next > section > div > div > * {
+  --d: 0;
+  --child-rise: 26px;
+  --cp: clamp(0, calc((var(--p, 0) - var(--d)) * 2.4), 1);
+  opacity: calc(0.15 + var(--cp) * 0.85);
+  transform: translate3d(0, calc((1 - var(--cp)) * var(--child-rise)), 0);
+}
+.scene-next > section > div > div > *:nth-child(2) { --d: 0.09; }
+.scene-next > section > div > div > *:nth-child(3) { --d: 0.18; }
+.scene-next > section > div > div > *:nth-child(4) { --d: 0.27; }
+.scene-next > section > div > div > *:nth-child(5) { --d: 0.36; }
+.scene-next > section > div > div > *:nth-child(6) { --d: 0.45; }
+
+/* Once revealed, drop all compositing so fixed/portal children behave normally. */
+.scene-next-settled,
+.scene-next-settled > section > div > div > * {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+@media (max-width: 640px) {
+  .scene-next { --rise: 22px; }
+  .scene-next > section > div > div > * { --child-rise: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-hero { opacity: clamp(0.35, calc(1 - var(--exit, 0) * 0.65), 1); }
+  .scene-hero-dim { opacity: 0; }
+  .scene-next,
+  .scene-next > section > div > div > * {
+    transform: none;
+    opacity: 1;
+    will-change: auto;
+  }
+}
