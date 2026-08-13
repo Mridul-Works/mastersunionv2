@@ -129,21 +129,29 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
 
 
   // Pointer drag (desktop mouse / trackpad press-drag). Touch uses native scroll.
-  const drag = useRef({ down: false, startX: 0, startLeft: 0 });
+  const drag = useRef({ down: false, startX: 0, startLeft: 0, moved: 0 });
+  const [flipped, setFlipped] = useState<number | null>(null);
+  const maybeToggleFlip = (i: number) => {
+    if (drag.current.moved > 6) return;
+    setFlipped((f) => (f === i ? null : i));
+  };
   const onPointerDown = (e: React.PointerEvent) => {
+    drag.current.moved = 0;
     if (e.pointerType === "touch") return;
     const track = trackRef.current;
     if (!track) return;
-    drag.current = { down: true, startX: e.clientX, startLeft: track.scrollLeft };
+    drag.current = { down: true, startX: e.clientX, startLeft: track.scrollLeft, moved: 0 };
   };
   const onPointerMove = (e: React.PointerEvent) => {
     const track = trackRef.current;
     if (!track || !drag.current.down) return;
+    drag.current.moved = Math.abs(e.clientX - drag.current.startX);
     track.scrollLeft = drag.current.startLeft - (e.clientX - drag.current.startX);
   };
   const endDrag = () => {
     drag.current.down = false;
   };
+
 
   const scrollTo = useCallback(
     (i: number) => {
