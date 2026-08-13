@@ -74,14 +74,7 @@ export function HeroDissolve({ children }: { children: ReactNode }) {
  * children stagger upward subtly. Styles are dropped once fully revealed so
  * portals/fixed children inside are never trapped in a composited layer.
  */
-export function RiseReveal({
-  children,
-  depth = 3,
-}: {
-  children: ReactNode;
-  /** DOM depth of the staggered content blocks inside the wrapped <section>. */
-  depth?: 1 | 2 | 3;
-}) {
+export function RiseReveal({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const [settled, setSettled] = useState(false);
   useScrollProgress(
@@ -91,11 +84,7 @@ export function RiseReveal({
       // the section settles into the middle of the viewport.
       const start = vh * 0.96;
       const end = vh * 0.42;
-      const base = (start - rect.top) / (start - end);
-      // Sections that can never reach the middle of the viewport (page end)
-      // settle once their bottom edge is in view.
-      const tail = rect.bottom <= vh ? 1 : 0;
-      return Math.max(base, tail);
+      return (start - rect.top) / (start - end);
     },
     (el, p) => {
       el.style.setProperty("--p", String(p));
@@ -107,7 +96,7 @@ export function RiseReveal({
   return (
     <div
       ref={ref}
-      className={`scene-next scene-d${depth}${settled ? " scene-next-settled" : ""}`}
+      className={settled ? "scene-next scene-next-settled" : "scene-next"}
       style={{ ["--p" as string]: "0" }}
     >
       {children}

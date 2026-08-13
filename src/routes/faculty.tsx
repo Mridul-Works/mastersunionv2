@@ -415,188 +415,174 @@ function FacultyPage() {
 
 
       {/* INDUSTRY PRACTITIONERS */}
-      <RiseReveal depth={2}>
-        <section id="practitioners" className="border-y border-black/10 bg-neutral-50">
-          <div className="page-shell section-y">
-            <SectionHeader
-              index="01"
-              eyebrow="Industry Practitioners"
-              title={<>The people who teach here are not between jobs. They are active.</>}
-              intro="Half of the faculty are CEOs, MDs, founders and investors — bringing this week's decisions into the classroom, not last decade's case studies."
-            />
-
-
-
-          <EditorialGrid
-            gallery
-            sectionLabel="Industry Practitioners"
-            pct="50%"
-            tagline="Half of the faculty are active operators — CEOs, MDs, founders and investors bringing this week's decisions into the classroom."
-            stats={[
-              { v: "250+", l: "Active practitioners on roster" },
-              { v: "40+", l: "CXOs & Managing Directors" },
-            ]}
-
-            items={PRACTITIONERS.map((p) => ({
-              name: p.name,
-              role: p.role,
-              blurb: p.blurb,
-              img: PRACTITIONER_PHOTOS[p.name],
-            }))}
+      <section id="practitioners" className="border-y border-black/10 bg-neutral-50">
+        <div className="page-shell section-y">
+          <SectionHeader
+            index="01"
+            eyebrow="Industry Practitioners"
+            title={<>The people who teach here are not between jobs. They are active.</>}
+            intro="Half of the faculty are CEOs, MDs, founders and investors — bringing this week's decisions into the classroom, not last decade's case studies."
           />
 
 
-          </div>
-        </section>
-      </RiseReveal>
+
+        <EditorialGrid
+          gallery
+          sectionLabel="Industry Practitioners"
+          pct="50%"
+          tagline="Half of the faculty are active operators — CEOs, MDs, founders and investors bringing this week's decisions into the classroom."
+          stats={[
+            { v: "250+", l: "Active practitioners on roster" },
+            { v: "40+", l: "CXOs & Managing Directors" },
+          ]}
+
+          items={PRACTITIONERS.map((p) => ({
+            name: p.name,
+            role: p.role,
+            blurb: p.blurb,
+            img: PRACTITIONER_PHOTOS[p.name],
+          }))}
+        />
+
+
+        </div>
+      </section>
 
 
       {/* FULL-TIME FACULTY */}
-      <RiseReveal depth={2}>
-        <section id="full-time" className="border-y border-black/10 bg-white">
-          <div className="page-shell section-y">
-            <SectionHeader
-              index="02"
-              eyebrow="Full-time Faculty"
-              title={<>{FULLTIME.length} PhD faculty. Active researchers. Published where the best B-schools read.</>}
-              intro="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing in FT50 and A* journals."
-            />
-
-            <EditorialGrid
-              sectionLabel="Full-time Faculty"
-              pct="30%"
-              tagline="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing where the best B-schools read."
-              stats={[
-                { v: String(FULLTIME.length), l: "Full-time faculty" },
-                { v: "50+", l: "FT50 / A* publications" },
-              ]}
-              items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
-            />
-
-            <p className="mt-7 max-w-[62ch] text-[1rem] leading-[1.6] text-black/70">
-              Doctorates from IIM Ahmedabad, Bangalore, Calcutta, Kozhikode and Tiruchirappalli, IIT Bombay and Kanpur, Delhi University, Shiv Nadar, Christ University, TERI and the University of Bath — across finance, marketing, operations, organisational behaviour, economics, decision sciences and strategy.
-            </p>
-
-          </div>
-        </section>
-      </RiseReveal>
-
-      {/* VISITING */}
-      <RiseReveal depth={2}>
-        <section id="visiting" className="bg-neutral-50">
-          <div className="page-shell section-y">
-            <SectionHeader
-              index="03"
-              eyebrow="Visiting Faculty"
-              title={<>Professors who teach here because they believe in what Masters&apos; Union is building.</>}
-              intro="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
-            />
-
+      <section id="full-time" className="border-y border-black/10 bg-white">
+        <div className="page-shell section-y">
+          <SectionHeader
+            index="02"
+            eyebrow="Full-time Faculty"
+            title={<>{FULLTIME.length} PhD faculty. Active researchers. Published where the best B-schools read.</>}
+            intro="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing in FT50 and A* journals."
+          />
 
           <EditorialGrid
-            sectionLabel="Visiting Faculty"
-            pct="20%"
-            tagline="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
+            sectionLabel="Full-time Faculty"
+            pct="30%"
+            tagline="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing where the best B-schools read."
             stats={[
-              { v: "40+", l: "Visiting professors annually" },
-              { v: "12", l: "Countries represented" },
+              { v: String(FULLTIME.length), l: "Full-time faculty" },
+              { v: "50+", l: "FT50 / A* publications" },
             ]}
+            items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
+          />
 
-            items={VISITING.map((v) => ({ name: v.name, role: v.role, sub: v.school, img: v.img }))}
+          <p className="mt-7 max-w-[62ch] text-[1rem] leading-[1.6] text-black/70">
+            Doctorates from IIM Ahmedabad, Bangalore, Calcutta, Kozhikode and Tiruchirappalli, IIT Bombay and Kanpur, Delhi University, Shiv Nadar, Christ University, TERI and the University of Bath — across finance, marketing, operations, organisational behaviour, economics, decision sciences and strategy.
+          </p>
+
+        </div>
+      </section>
+
+      {/* VISITING */}
+      <section id="visiting" className="bg-neutral-50">
+        <div className="page-shell section-y">
+          <SectionHeader
+            index="03"
+            eyebrow="Visiting Faculty"
+            title={<>Professors who teach here because they believe in what Masters&apos; Union is building.</>}
+            intro="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
           />
 
 
+        <EditorialGrid
+          sectionLabel="Visiting Faculty"
+          pct="20%"
+          tagline="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
+          stats={[
+            { v: "40+", l: "Visiting professors annually" },
+            { v: "12", l: "Countries represented" },
+          ]}
 
-          <div className="mt-9 border-l-2 border-black/80 bg-neutral-50 p-8 md:p-10">
-            <p className="max-w-[70ch] text-[1.05rem] leading-[1.65] text-black/80">
-              <span className="font-medium text-black">Kellogg School of Management</span> — led by Professor Mohanbir Sawhney, one of the world&apos;s foremost authorities on technology strategy and marketing innovation — has brought students to Masters&apos; Union for two consecutive years. <span className="font-medium text-black">Harvard Business School India</span> immersion students have visited campus. When schools like these come here to learn, something is working.
-            </p>
-          </div>
-          </div>
-        </section>
-      </RiseReveal>
+          items={VISITING.map((v) => ({ name: v.name, role: v.role, sub: v.school, img: v.img }))}
+        />
+
+
+
+        <div className="mt-9 border-l-2 border-black/80 bg-neutral-50 p-8 md:p-10">
+          <p className="max-w-[70ch] text-[1.05rem] leading-[1.65] text-black/80">
+            <span className="font-medium text-black">Kellogg School of Management</span> — led by Professor Mohanbir Sawhney, one of the world&apos;s foremost authorities on technology strategy and marketing innovation — has brought students to Masters&apos; Union for two consecutive years. <span className="font-medium text-black">Harvard Business School India</span> immersion students have visited campus. When schools like these come here to learn, something is working.
+          </p>
+        </div>
+        </div>
+      </section>
 
 
       {/* TESTIMONIALS */}
-      <RiseReveal depth={2}>
-        <section className="border-y border-black/10 bg-neutral-50">
-          <div className="page-shell section-y">
-            <SectionHeader
-              index="04"
-              eyebrow="What students say"
-              title={<>Learning from operators, in their own words.</>}
-            />
-            <div className="mt-8 grid gap-6 md:grid-cols-3">
+      <section className="border-y border-black/10 bg-neutral-50">
+        <div className="page-shell section-y">
+          <SectionHeader
+            index="04"
+            eyebrow="What students say"
+            title={<>Learning from operators, in their own words.</>}
+          />
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
 
-              {TESTIMONIALS.map((t) => (
-                <figure key={t.a} className="border border-black/10 bg-white p-8">
-                  <Quote className="size-5 text-black/40" />
-                  <blockquote className="mt-4 text-[0.98rem] leading-[1.6] text-black/80">&ldquo;{t.q}&rdquo;</blockquote>
-                  <figcaption className="mt-6 border-t border-black/10 pt-4">
-                    <div className="text-[0.95rem] text-black">{t.a}</div>
-                    <div className="text-[11px] uppercase tracking-[0.18em] text-black/55" style={{ fontFamily: MONO }}>{t.r}</div>
-                  </figcaption>
-                </figure>
-              ))}
-            </div>
+            {TESTIMONIALS.map((t) => (
+              <figure key={t.a} className="border border-black/10 bg-white p-8">
+                <Quote className="size-5 text-black/40" />
+                <blockquote className="mt-4 text-[0.98rem] leading-[1.6] text-black/80">&ldquo;{t.q}&rdquo;</blockquote>
+                <figcaption className="mt-6 border-t border-black/10 pt-4">
+                  <div className="text-[0.95rem] text-black">{t.a}</div>
+                  <div className="text-[11px] uppercase tracking-[0.18em] text-black/55" style={{ fontFamily: MONO }}>{t.r}</div>
+                </figcaption>
+              </figure>
+            ))}
           </div>
-        </section>
-      </RiseReveal>
+        </div>
+      </section>
 
       {/* BECOME A MASTER */}
-      <RiseReveal depth={2}>
-        <section className="page-shell section-y">
-          <div className="grid gap-10 md:grid-cols-12 md:items-end">
-            <div className="md:col-span-7">
-              <SectionHeader
-                index="05"
-                eyebrow="Become a Master"
-                title={<>We&apos;re always looking for practitioners who want to teach what they know.</>}
-                intro="If you have built something, led something, invested in something, or shaped something — and you believe the best way to teach business is to have done it — we want to hear from you."
-              />
-            </div>
-
-            <div className="md:col-span-5 md:text-right">
-              <a href="https://mastersunion.org/become-a-master" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-black px-6 py-4 text-[11px] uppercase tracking-[0.22em] text-white transition-opacity hover:opacity-80" style={{ fontFamily: MONO }}>
-                Apply to teach <ArrowUpRight className="size-3.5" />
-              </a>
-            </div>
+      <section className="page-shell section-y">
+        <div className="grid gap-10 md:grid-cols-12 md:items-end">
+          <div className="md:col-span-7">
+            <SectionHeader
+              index="05"
+              eyebrow="Become a Master"
+              title={<>We&apos;re always looking for practitioners who want to teach what they know.</>}
+              intro="If you have built something, led something, invested in something, or shaped something — and you believe the best way to teach business is to have done it — we want to hear from you."
+            />
           </div>
-        </section>
-      </RiseReveal>
 
-      {/* THE NUMBER */}
-      <RiseReveal depth={2}>
-        <section className="border-y border-black/10 bg-black text-white">
-          <div className="page-shell-narrow section-y text-center">
-            <div className="text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO }}>The number that matters</div>
-            <div className="mt-8 text-[clamp(3rem,7vw,6rem)] font-semibold leading-[0.88] tracking-tight" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>500+</div>
-            <p className="mx-auto mt-8 max-w-[52ch] text-[1.1rem] leading-[1.55] text-white/80">
-              Masters on the roster. 50% of them active industry practitioners who were in a meeting this morning before they came to teach you this afternoon.
-            </p>
-            <p className="mx-auto mt-6 max-w-[52ch] text-[0.95rem] italic text-white/60">
-              That is not a teaching philosophy. It is a hiring policy.
-            </p>
-          </div>
-        </section>
-      </RiseReveal>
-
-      {/* CTA */}
-      <RiseReveal depth={1}>
-        <section id="cta" className="page-shell-narrow section-y text-center">
-          <p className="text-balance text-[clamp(1.2rem,2.2vw,1.9rem)] italic leading-[1.25] text-black/90">
-            Learn from the people doing it — not just studying it.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Link to="/applications_center" className="inline-flex items-center gap-2 bg-black px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-white transition-opacity hover:opacity-80" style={{ fontFamily: MONO }}>
-              Apply to Masters&apos; Union <ArrowUpRight className="size-3.5" />
-            </Link>
-            <a href="https://mastersunion.org/become-a-master" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-black/15 px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-black transition-colors hover:bg-black/[0.04]" style={{ fontFamily: MONO }}>
-              Or join them <ArrowUpRight className="size-3.5" />
+          <div className="md:col-span-5 md:text-right">
+            <a href="https://mastersunion.org/become-a-master" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-black px-6 py-4 text-[11px] uppercase tracking-[0.22em] text-white transition-opacity hover:opacity-80" style={{ fontFamily: MONO }}>
+              Apply to teach <ArrowUpRight className="size-3.5" />
             </a>
           </div>
-        </section>
-      </RiseReveal>
+        </div>
+      </section>
+
+      {/* THE NUMBER */}
+      <section className="border-y border-black/10 bg-black text-white">
+        <div className="page-shell-narrow section-y text-center">
+          <div className="text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO }}>The number that matters</div>
+          <div className="mt-8 text-[clamp(3rem,7vw,6rem)] font-semibold leading-[0.88] tracking-tight" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>500+</div>
+          <p className="mx-auto mt-8 max-w-[52ch] text-[1.1rem] leading-[1.55] text-white/80">
+            Masters on the roster. 50% of them active industry practitioners who were in a meeting this morning before they came to teach you this afternoon.
+          </p>
+          <p className="mx-auto mt-6 max-w-[52ch] text-[0.95rem] italic text-white/60">
+            That is not a teaching philosophy. It is a hiring policy.
+          </p>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section id="cta" className="page-shell-narrow section-y text-center">
+        <p className="text-balance text-[clamp(1.2rem,2.2vw,1.9rem)] italic leading-[1.25] text-black/90">
+          Learn from the people doing it — not just studying it.
+        </p>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <Link to="/applications_center" className="inline-flex items-center gap-2 bg-black px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-white transition-opacity hover:opacity-80" style={{ fontFamily: MONO }}>
+            Apply to Masters&apos; Union <ArrowUpRight className="size-3.5" />
+          </Link>
+          <a href="https://mastersunion.org/become-a-master" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-black/15 px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-black transition-colors hover:bg-black/[0.04]" style={{ fontFamily: MONO }}>
+            Or join them <ArrowUpRight className="size-3.5" />
+          </a>
+        </div>
+      </section>
     </main>
   );
 }
