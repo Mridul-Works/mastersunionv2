@@ -195,7 +195,12 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
   const activeImg = items[active]?.img;
 
   return (
-    <div className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden">
+    <div
+      className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+
       {/* ambient dark atmosphere behind the active card */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
         <div className="absolute inset-0 bg-[#0b0b0b]" />
