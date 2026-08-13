@@ -346,22 +346,16 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
                 style={imageEntranceStyle}
               />
               <img
+                ref={maskRef}
                 src={HERO_IMAGE}
                 alt=""
                 aria-hidden
                 loading="eager"
                 decoding="async"
                 className={`${PHOTO_CLASS} relative saturate-0`}
-                style={
-                  reveal.s > 0.002
-                    ? {
-                        ...imageEntranceStyle,
-                        WebkitMaskImage: `radial-gradient(circle ${380 * reveal.s}px at ${reveal.x}px ${reveal.y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.9) 88%, #000 100%)`,
-                        maskImage: `radial-gradient(circle ${380 * reveal.s}px at ${reveal.x}px ${reveal.y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.9) 88%, #000 100%)`,
-                      }
-                    : imageEntranceStyle
-                }
+                style={imageEntranceStyle}
               />
+
             </motion.div>
 
             {/* Very narrow, subtle left-edge falloff so the text column and image panel read as one scene */}
