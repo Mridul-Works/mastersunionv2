@@ -352,21 +352,22 @@ export default function FacultyHero({
           </div>
         </div>
 
-        {/* Scroll cue — centered at the bottom of the hero grid, above the fixed nav */}
+        {/* Scroll cue — vertical line with a dot, centered at the bottom of the hero grid, above the fixed nav */}
         <div
           className="hero-fade-up pointer-events-none absolute inset-x-0 bottom-[clamp(4.5rem,7vh,6rem)] z-20 flex justify-center"
           style={{ animationDelay: "1900ms", opacity: "clamp(0, calc(1 - var(--recede) * 2), 1)" }}
         >
           <div className="flex flex-col items-center gap-2 text-white/45">
-            <span className="hero-scroll-arrow text-[13px] leading-none" aria-hidden>
-              ↓
-            </span>
             <span
               className="text-[9px] uppercase tracking-[0.28em]"
               style={{ fontFamily: MONO }}
             >
               Scroll
             </span>
+            <div className="relative flex h-10 flex-col items-center" aria-hidden>
+              <div className="h-8 w-px bg-gradient-to-b from-white/40 to-white/10" />
+              <div className="mt-[-2px] h-[5px] w-[5px] rounded-full bg-white/45" />
+            </div>
           </div>
         </div>
       </div>
