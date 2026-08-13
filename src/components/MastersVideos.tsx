@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export type MasterVideo = {
   thumb: string;
@@ -185,27 +185,53 @@ export default function MastersVideos({
 
   const gap = 24; // matches gap-6
 
+  // own scroll reveal — heading, paragraph, then the cards
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [revealed, setRevealed] = useState(false);
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setRevealed(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.12 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
-    <section id="masters" className={`w-full overflow-x-hidden border-t border-black/10 ${bg}`}>
-      <div className="mx-auto grid w-full max-w-[1280px] grid-cols-1 gap-10 px-5 py-8 md:px-10 md:py-10 lg:grid-cols-12 lg:items-start lg:gap-16">
+    <section
+      id="masters"
+      ref={sectionRef}
+      className={`mv-section ${revealed ? "is-revealed" : ""} relative w-full overflow-x-hidden border-t border-black/10 ${bg}`}
+    >
+      <div className="mx-auto grid w-full max-w-[1280px] grid-cols-1 gap-10 px-5 py-[clamp(3rem,7vw,5.5rem)] md:px-10 lg:grid-cols-12 lg:items-start lg:gap-16">
         {/* Left: sticky editorial column */}
         <div className="min-w-0 lg:col-span-4 lg:sticky lg:top-24">
-          <p className="mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]">
+          <p className="mv-reveal mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]">
             500+ Masters
           </p>
           <h2
-            className="text-[clamp(1.75rem,3.2vw,2.75rem)] font-medium italic leading-[1.1] tracking-tight text-black"
-            style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+            className="mv-reveal text-[clamp(1.75rem,3.2vw,2.75rem)] font-medium italic leading-[1.1] tracking-tight text-black"
+            style={{ fontFamily: "'Fraunces', Georgia, serif", transitionDelay: "90ms" }}
           >
             Built by Scholars, Led by Industry Practitioners
           </h2>
-          <p className="mt-6 max-w-sm text-[14px] leading-relaxed text-black/60">
+          <p
+            className="mv-reveal mt-6 max-w-sm text-[14px] leading-relaxed text-black/60"
+            style={{ transitionDelay: "200ms" }}
+          >
             At Masters' Union, your classroom is powered by Ivy League academics and global business
             leaders, from Harvard to McKinsey, from Wharton to Google. Our Masters don't just teach
             the playbook. They wrote it.
           </p>
 
-          <div className="mt-7 flex items-center gap-3">
+          <div className="mv-reveal mt-7 flex items-center gap-3" style={{ transitionDelay: "300ms" }}>
             <button
               type="button"
               onClick={() => go(-1)}
@@ -231,7 +257,7 @@ export default function MastersVideos({
         </div>
 
         {/* Right: paged rail — fits the screen, never scrolls sideways */}
-        <div className="min-w-0 overflow-hidden lg:col-span-8">
+        <div className="mv-reveal min-w-0 overflow-hidden lg:col-span-8" style={{ transitionDelay: "380ms" }}>
           <div
             className="flex gap-6 transition-transform duration-500 ease-out"
             style={{ transform: `translateX(calc(-${safePage * 100}% - ${safePage * gap}px))` }}
