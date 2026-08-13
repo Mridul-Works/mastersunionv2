@@ -342,7 +342,7 @@ function EditorialGrid({
       </div>
 
       {gallery ? (
-        <div className="border-b border-black/15 py-[clamp(1rem,3vh,2.5rem)]">
+        <div className="border-b border-black/15 py-[clamp(0.75rem,2vh,1.5rem)]">
           <PractitionerGallery items={items} />
         </div>
       ) : (
