@@ -78,6 +78,8 @@ export default function FacultyHero({
   const [animateIn, setAnimateIn] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [muClass, setMuClass] = useState("mu-watermark mu-watermark-dark");
+  const prefersReduced = useReducedMotion();
+  const noMotion = prefersReduced === true || reducedMotion;
 
   const entrance = (
     from: number,
