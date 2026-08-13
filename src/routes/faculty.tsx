@@ -289,6 +289,7 @@ function EditorialGrid({
   pct,
   tagline,
   stats,
+  cardStats = false,
   gallery = false,
   dark = false,
 }: {
@@ -297,12 +298,25 @@ function EditorialGrid({
   pct: string;
   tagline: string;
   stats: FacultyStat[];
+  cardStats?: boolean;
   gallery?: boolean;
   dark?: boolean;
 }) {
   return (
     <div className={`mt-[clamp(1rem,2.5vh,2rem)] border-t ${dark ? "border-white/15" : "border-black/15"}`}>
-      {/* STATS HERO — replaces featured faculty */}
+      {/* STATS HERO — card style (matches Section 2) */}
+      {cardStats ? (
+        <div className={`border-b py-[clamp(0.85rem,2vh,1.5rem)] ${dark ? "border-white/15" : "border-black/15"}`}>
+          <FacultyStatsCard
+            dark={dark}
+            refreshed={sectionLabel}
+            stats={[{ v: pct, l: "of faculty" }, ...stats]}
+          />
+          <p className={`mx-auto mt-[clamp(0.6rem,1.6vh,1rem)] max-w-[68ch] text-center text-[clamp(0.8rem,min(0.95vw,1.55vh),0.92rem)] leading-[1.6] ${dark ? "text-white/70" : "text-black/70"}`}>
+            {tagline}
+          </p>
+        </div>
+      ) : (
       <div className={`grid gap-x-8 gap-y-[clamp(0.75rem,1.8vh,1.25rem)] border-b py-[clamp(0.85rem,2vh,1.5rem)] md:grid-cols-12 ${dark ? "border-white/15" : "border-black/15"}`}>
         <div className="md:col-span-5">
           <div className={`text-[10.5px] uppercase tracking-[0.24em] ${dark ? "text-white/50" : "text-black/50"}`} style={{ fontFamily: MONO }}>
@@ -346,6 +360,8 @@ function EditorialGrid({
           </div>
         </div>
       </div>
+
+      )}
 
       {gallery ? (
         <div className={`border-b py-[clamp(1.5rem,4vh,3rem)] ${dark ? "border-white/15" : "border-black/15"}`}>
@@ -442,6 +458,7 @@ function FacultyPage() {
 
         <EditorialGrid
           gallery
+          cardStats
           dark
           sectionLabel="Industry Practitioners"
           pct="50%"
