@@ -79,7 +79,9 @@ function SectionHeader({
   const isCenter = align === "center";
   return (
     <header className={isCenter ? "text-center" : ""}>
-      <p
+      <ScrollTextReveal
+        as="p"
+        sweep={false}
         className={`mb-3 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-black/50 ${
           isCenter ? "flex justify-center gap-3" : "flex gap-3"
         }`}
@@ -87,23 +89,24 @@ function SectionHeader({
         <span>{index}</span>
         <span aria-hidden className="text-black/25">/</span>
         <span>{eyebrow}</span>
-      </p>
-      <h2
+      </ScrollTextReveal>
+      <ScrollTextReveal
+        as="h2"
         className={`text-[clamp(1.5rem,3.1vw,2.6rem)] font-semibold leading-[1.08] tracking-tight text-black ${
           isCenter ? "mx-auto max-w-[24ch]" : "max-w-[26ch]"
         }`}
-        style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
       >
-        {title}
-      </h2>
+        <span style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>{title}</span>
+      </ScrollTextReveal>
       {intro ? (
-        <p
+        <ScrollTextReveal
+          as="p"
           className={`mt-5 text-[clamp(0.94rem,1vw,1.05rem)] leading-[1.6] text-black/70 ${
             isCenter ? "mx-auto max-w-[62ch]" : "max-w-[62ch]"
           }`}
         >
           {intro}
-        </p>
+        </ScrollTextReveal>
       ) : null}
     </header>
 
