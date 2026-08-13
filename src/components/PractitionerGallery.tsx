@@ -146,6 +146,23 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     else resumeAtRef.current = 0; // resume autoplay immediately on leave
   }, [isHovered]);
 
+  /** One-time viewport entrance for the flip-hint attention animation. */
+  useEffect(() => {
+    const el = wrapperRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasEntered(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.25 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   /** Controlled wheel rotation used by the arrows and keyboard. */
   const go = useCallback(
     (dir: number) => {
