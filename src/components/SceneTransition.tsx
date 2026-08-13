@@ -91,7 +91,11 @@ export function RiseReveal({
       // the section settles into the middle of the viewport.
       const start = vh * 0.96;
       const end = vh * 0.42;
-      return (start - rect.top) / (start - end);
+      const base = (start - rect.top) / (start - end);
+      // Sections that can never reach the middle of the viewport (page end)
+      // settle once their bottom edge is in view.
+      const tail = rect.bottom <= vh ? 1 : 0;
+      return Math.max(base, tail);
     },
     (el, p) => {
       el.style.setProperty("--p", String(p));
