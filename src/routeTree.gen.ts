@@ -21,6 +21,7 @@ import { Route as FoodLabRouteImport } from './routes/food-lab'
 import { Route as FacultyRouteImport } from './routes/faculty'
 import { Route as D2cChallengeRouteImport } from './routes/d2c-challenge'
 import { Route as CreatorChallengeRouteImport } from './routes/creator-challenge'
+import { Route as CardGridRouteImport } from './routes/card-grid'
 import { Route as CampusRadioRouteImport } from './routes/campus-radio'
 import { Route as CampusRouteImport } from './routes/campus'
 import { Route as Applications_centerRouteImport } from './routes/applications_center'
@@ -104,6 +105,11 @@ const D2cChallengeRoute = D2cChallengeRouteImport.update({
 const CreatorChallengeRoute = CreatorChallengeRouteImport.update({
   id: '/creator-challenge',
   path: '/creator-challenge',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CardGridRoute = CardGridRouteImport.update({
+  id: '/card-grid',
+  path: '/card-grid',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CampusRadioRoute = CampusRadioRouteImport.update({
@@ -253,6 +259,7 @@ export interface FileRoutesByFullPath {
   '/applications_center': typeof Applications_centerRoute
   '/campus': typeof CampusRoute
   '/campus-radio': typeof CampusRadioRoute
+  '/card-grid': typeof CardGridRoute
   '/creator-challenge': typeof CreatorChallengeRoute
   '/d2c-challenge': typeof D2cChallengeRoute
   '/faculty': typeof FacultyRoute
@@ -291,6 +298,7 @@ export interface FileRoutesByTo {
   '/applications_center': typeof Applications_centerRoute
   '/campus': typeof CampusRoute
   '/campus-radio': typeof CampusRadioRoute
+  '/card-grid': typeof CardGridRoute
   '/creator-challenge': typeof CreatorChallengeRoute
   '/d2c-challenge': typeof D2cChallengeRoute
   '/faculty': typeof FacultyRoute
@@ -330,6 +338,7 @@ export interface FileRoutesById {
   '/applications_center': typeof Applications_centerRoute
   '/campus': typeof CampusRoute
   '/campus-radio': typeof CampusRadioRoute
+  '/card-grid': typeof CardGridRoute
   '/creator-challenge': typeof CreatorChallengeRoute
   '/d2c-challenge': typeof D2cChallengeRoute
   '/faculty': typeof FacultyRoute
@@ -370,6 +379,7 @@ export interface FileRouteTypes {
     | '/applications_center'
     | '/campus'
     | '/campus-radio'
+    | '/card-grid'
     | '/creator-challenge'
     | '/d2c-challenge'
     | '/faculty'
@@ -408,6 +418,7 @@ export interface FileRouteTypes {
     | '/applications_center'
     | '/campus'
     | '/campus-radio'
+    | '/card-grid'
     | '/creator-challenge'
     | '/d2c-challenge'
     | '/faculty'
@@ -446,6 +457,7 @@ export interface FileRouteTypes {
     | '/applications_center'
     | '/campus'
     | '/campus-radio'
+    | '/card-grid'
     | '/creator-challenge'
     | '/d2c-challenge'
     | '/faculty'
@@ -485,6 +497,7 @@ export interface RootRouteChildren {
   Applications_centerRoute: typeof Applications_centerRoute
   CampusRoute: typeof CampusRoute
   CampusRadioRoute: typeof CampusRadioRoute
+  CardGridRoute: typeof CardGridRoute
   CreatorChallengeRoute: typeof CreatorChallengeRoute
   D2cChallengeRoute: typeof D2cChallengeRoute
   FacultyRoute: typeof FacultyRoute
@@ -602,6 +615,13 @@ declare module '@tanstack/react-router' {
       path: '/creator-challenge'
       fullPath: '/creator-challenge'
       preLoaderRoute: typeof CreatorChallengeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/card-grid': {
+      id: '/card-grid'
+      path: '/card-grid'
+      fullPath: '/card-grid'
+      preLoaderRoute: typeof CardGridRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/campus-radio': {
@@ -781,6 +801,7 @@ const rootRouteChildren: RootRouteChildren = {
   Applications_centerRoute: Applications_centerRoute,
   CampusRoute: CampusRoute,
   CampusRadioRoute: CampusRadioRoute,
+  CardGridRoute: CardGridRoute,
   CreatorChallengeRoute: CreatorChallengeRoute,
   D2cChallengeRoute: D2cChallengeRoute,
   FacultyRoute: FacultyRoute,
