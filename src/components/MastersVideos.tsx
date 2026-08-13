@@ -163,9 +163,11 @@ function usePerView() {
 export default function MastersVideos({
   bg = "bg-[#F5F3EE]",
   statsSlot,
+  dark = false,
 }: {
   bg?: string;
   statsSlot?: React.ReactNode;
+  dark?: boolean;
 }) {
   const [open, setOpen] = useState<MasterVideo | null>(null);
   const perView = usePerView();
