@@ -244,8 +244,8 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                 pointerEvents: hidden ? "none" : "auto",
                 backgroundColor: "#0f0f0f",
                 transform: `perspective(1600px) translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale})`,
-                transition:
-                  "transform 600ms cubic-bezier(0.16, 1, 0.3, 1), opacity 600ms cubic-bezier(0.16, 1, 0.3, 1)",
+                 transition:
+                   "transform 1400ms cubic-bezier(0.65, 0, 0.35, 1), opacity 1400ms cubic-bezier(0.65, 0, 0.35, 1)",
               }}
             >
               {/* flip card: front = image only, back = details */}
