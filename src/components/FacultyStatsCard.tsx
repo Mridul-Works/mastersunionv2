@@ -22,31 +22,31 @@ export default function FacultyStatsCard({
       style={{
         ["--card-pad" as string]: "clamp(1rem, 2.4vw, 2.25rem)",
         paddingInline: "var(--card-pad)",
-        paddingBlock: "clamp(0.7rem, 1.5vh, 1.2rem)",
+        paddingBlock: "clamp(0.55rem, 1vh, 0.75rem)",
       }}
     >
       <div
         className="flex flex-wrap items-center justify-start gap-2 text-[clamp(9px,1.9vw,10px)] uppercase tracking-[0.22em] text-black/50 sm:gap-3 sm:tracking-[0.24em]"
         style={{ fontFamily: MONO }}
       >
-        <span className="inline-flex items-center justify-center whitespace-nowrap rounded-[999px] border border-black/10 bg-[#0a0a0a] px-[7px] py-1 text-center text-white/70">
+        <span className="inline-flex items-center justify-center whitespace-nowrap rounded-[999px] border border-black/10 bg-[#0a0a0a] px-[7px] py-0.5 text-center text-white/70">
           By the numbers
         </span>
         {refreshed ? (
           <>
             <span className="hidden h-3 w-px bg-black/15 sm:block" aria-hidden />
-            <span className="inline-flex items-center justify-center whitespace-nowrap rounded-[999px] border border-black/10 bg-[#0a0a0a] px-[7px] py-1 text-center uppercase tracking-[inherit] text-white/70">
+            <span className="inline-flex items-center justify-center whitespace-nowrap rounded-[999px] border border-black/10 bg-[#0a0a0a] px-[7px] py-0.5 text-center uppercase tracking-[inherit] text-white/70">
               {refreshed}
             </span>
           </>
         ) : null}
       </div>
 
-      <div className="mt-[clamp(0.9rem,2vh,1.25rem)] overflow-hidden" aria-hidden>
+      <div className="mt-3 overflow-hidden" aria-hidden>
         <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-black/10 to-transparent" />
       </div>
 
-      <div className="mt-[clamp(0.9rem,2vh,1.25rem)] grid w-full grid-cols-2 gap-x-3 gap-y-6 lg:grid-cols-4 lg:gap-x-4 lg:gap-y-8">
+      <div className="mt-3 grid w-full grid-cols-2 gap-x-3 gap-y-3 lg:grid-cols-4 lg:gap-x-4 lg:gap-y-3">
         {stats.map((s) => (
           <div key={s.l} className="group flex min-w-0 flex-col items-center text-center">
             <div
@@ -56,13 +56,13 @@ export default function FacultyStatsCard({
               {s.v}
             </div>
             <div
-              className="mt-2 max-w-full text-[clamp(9px,1.9vw,10px)] font-medium uppercase leading-[1.5] tracking-[0.14em] text-black/90 sm:mt-2.5 sm:tracking-[0.16em] lg:whitespace-nowrap"
+              className="mt-1 max-w-full text-[clamp(9px,1.9vw,10px)] font-medium uppercase leading-[1.5] tracking-[0.14em] text-black/90 sm:tracking-[0.16em] lg:whitespace-nowrap"
               style={{ fontFamily: MONO }}
             >
               {s.l}
             </div>
             <div
-              className="mx-auto mt-3 h-px w-8 origin-center bg-black/15 transition-all duration-500 group-hover:w-24 group-hover:bg-[#0a0a0a]"
+              className="mx-auto mt-2 h-px w-8 origin-center bg-black/15 transition-all duration-500 group-hover:w-24 group-hover:bg-[#0a0a0a]"
               aria-hidden
             />
           </div>
@@ -70,7 +70,7 @@ export default function FacultyStatsCard({
       </div>
 
       {universities?.length ? (
-        <div className="mt-[clamp(0.9rem,2vh,1.25rem)] pt-[clamp(0.9rem,2vh,1.25rem)]">
+        <div className="mt-3 pt-3">
           <div
             className="overflow-x-auto [scrollbar-width:none] md:overflow-visible [&::-webkit-scrollbar]:hidden"
             style={{
