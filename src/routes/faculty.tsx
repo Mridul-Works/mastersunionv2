@@ -4,6 +4,7 @@ import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 import MastersVideos from "@/components/MastersVideos";
 import FacultyHero from "@/components/FacultyHero";
 import { HeroDissolve, RiseReveal } from "@/components/SceneTransition";
+import ScrollTextReveal from "@/components/ScrollTextReveal";
 import { buildFacultyStats, statsRefreshedLabel } from "@/lib/faculty-stats";
 
 
