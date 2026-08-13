@@ -271,17 +271,17 @@ export default function MastersVideos({
 
               {/* editorial information panel */}
               <div className="order-2 flex min-w-0 flex-col justify-center">
-                <p className="mv-reveal font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]">
+                <p className="mv-reveal font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-[#B89146]">
                   500+ Masters · Masterclass
                 </p>
                 <h2
-                  className={`mv-reveal mt-[clamp(0.5rem,1.2vh,0.9rem)] text-[clamp(1.4rem,2.6vw,2.35rem)] font-medium italic leading-[1.1] tracking-tight ${heading}`}
+                  className={`mv-reveal mt-[clamp(0.65rem,1.5vh,1.05rem)] text-[clamp(1.7rem,3.2vw,3rem)] font-medium italic leading-[1.08] tracking-tight ${heading}`}
                   style={{ fontFamily: SERIF_IT, transitionDelay: "200ms" }}
                 >
                   Built by Scholars, Led by Industry Practitioners
                 </h2>
                 <p
-                  className={`mv-reveal mt-[clamp(0.6rem,1.6vh,1.1rem)] max-w-xl text-[clamp(12.5px,1.6vh,14px)] leading-relaxed ${muted}`}
+                  className={`mv-reveal mt-[clamp(0.75rem,1.9vh,1.35rem)] max-w-[620px] text-[clamp(14px,1.85vh,16px)] leading-relaxed ${muted}`}
                   style={{ transitionDelay: "320ms" }}
                 >
                   At Masters' Union, your classroom is powered by Ivy League academics and global
@@ -289,12 +289,12 @@ export default function MastersVideos({
                   don't just teach the playbook. They wrote it.
                 </p>
 
-                <div className={`mv-reveal mt-[clamp(0.9rem,2vh,1.4rem)] border-t pt-[clamp(0.75rem,1.8vh,1.1rem)] ${line}`} style={{ transitionDelay: "400ms" }}>
-                  <p className={`font-mono text-[10px] uppercase tracking-[0.24em] ${faint}`}>
+                <div className={`mv-reveal mt-[clamp(1.1rem,2.5vh,1.9rem)] border-t pt-[clamp(0.9rem,2.2vh,1.4rem)] ${line}`} style={{ transitionDelay: "400ms" }}>
+                  <p className={`font-mono text-[11px] uppercase tracking-[0.24em] ${faint}`}>
                     {current.meta}
                   </p>
                   <h3
-                    className={`mt-1.5 text-[clamp(1.05rem,1.9vw,1.5rem)] leading-snug ${heading}`}
+                    className={`mt-2 text-[clamp(1.3rem,2.4vw,2rem)] leading-snug ${heading}`}
                     style={{ fontFamily: SERIF_IT }}
                   >
                     {current.title}
@@ -302,15 +302,15 @@ export default function MastersVideos({
                 </div>
 
                 <div
-                  className="mv-reveal mt-[clamp(0.9rem,2vh,1.4rem)] flex items-center gap-3"
+                  className="mv-reveal mt-[clamp(1.2rem,2.6vh,2.1rem)] flex items-center gap-4"
                   style={{ transitionDelay: "480ms" }}
                 >
                   <button
                     type="button"
                     onClick={() => setOpen(current)}
-                    className={`inline-flex items-center gap-2 rounded-full px-4 py-2 font-mono text-[10px] uppercase tracking-[0.22em] transition ${dark ? "bg-white text-black hover:bg-white/85" : "bg-[#0a0a0a] text-white hover:bg-black/85"}`}
+                    className={`inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.22em] transition ${dark ? "bg-white text-black hover:bg-white/85" : "bg-[#0a0a0a] text-white hover:bg-black/85"}`}
                   >
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
                       <path d="M8 5v14l11-7z" />
                     </svg>
                     Play
@@ -319,7 +319,7 @@ export default function MastersVideos({
                     type="button"
                     onClick={() => goTo(active - 1)}
                     aria-label="Previous masterclass"
-                    className={`group grid h-10 w-10 shrink-0 place-items-center rounded-full border transition ${dark ? "border-white/25 text-white hover:border-white" : "border-black/15 text-black hover:border-black"}`}
+                    className={`group grid h-12 w-12 shrink-0 place-items-center rounded-full border transition ${dark ? "border-white/25 text-white hover:border-white" : "border-black/15 text-black hover:border-black"}`}
                   >
                     <span className="transition-transform group-hover:-translate-x-0.5">←</span>
                   </button>
@@ -327,19 +327,19 @@ export default function MastersVideos({
                     type="button"
                     onClick={() => goTo(active + 1)}
                     aria-label="Next masterclass"
-                    className={`group grid h-10 w-10 shrink-0 place-items-center rounded-full border transition ${dark ? "border-white/25 text-white hover:border-white" : "border-black/15 text-black hover:border-black"}`}
+                    className={`group grid h-12 w-12 shrink-0 place-items-center rounded-full border transition ${dark ? "border-white/25 text-white hover:border-white" : "border-black/15 text-black hover:border-black"}`}
                   >
                     <span className="transition-transform group-hover:translate-x-0.5">→</span>
                   </button>
-                  <span className={`font-mono text-[10px] uppercase tracking-[0.24em] ${faint}`}>
+                  <span className={`font-mono text-[11px] uppercase tracking-[0.24em] ${faint}`}>
                     {String(active + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
                   </span>
                 </div>
 
-                {/* thumbnail strip */}
+                {/* thumbnail filmstrip */}
                 <div
                   ref={stripRef}
-                  className="mv-reveal mt-[clamp(0.9rem,2vh,1.4rem)] flex gap-3 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                  className="mv-reveal mt-[clamp(1.2rem,2.6vh,2.1rem)] flex gap-4 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
                   style={{ transitionDelay: "560ms" }}
                 >
                   {MASTER_VIDEOS.map((v, i) => (
@@ -350,7 +350,7 @@ export default function MastersVideos({
                       onClick={() => goTo(i)}
                       aria-label={v.title}
                       aria-current={i === active}
-                      className={`relative h-[clamp(58px,8vh,84px)] shrink-0 overflow-hidden rounded-[10px] border bg-black transition duration-300 ${
+                      className={`relative h-[clamp(96px,14vh,148px)] shrink-0 overflow-hidden rounded-[14px] border bg-black transition duration-300 ${
                         i === active
                           ? dark
                             ? "border-white/70 opacity-100"
