@@ -425,19 +425,21 @@ function FacultyPage() {
 
 
       {/* INDUSTRY PRACTITIONERS */}
-      <section id="practitioners" className="screen-section border-y border-black/10 bg-neutral-50">
+      <section id="practitioners" className="screen-section border-y border-white/10 bg-black">
         <div className="page-shell screen-y">
           <SectionHeader
             index="01"
             eyebrow="Industry Practitioners"
             title={<>The people who teach here are not between jobs. They are active.</>}
             intro="Half of the faculty are CEOs, MDs, founders and investors — bringing this week's decisions into the classroom, not last decade's case studies."
+            dark
           />
 
 
 
         <EditorialGrid
           gallery
+          dark
           sectionLabel="Industry Practitioners"
           pct="50%"
           tagline="Half of the faculty are active operators — CEOs, MDs, founders and investors bringing this week's decisions into the classroom."
