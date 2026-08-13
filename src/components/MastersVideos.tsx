@@ -210,28 +210,38 @@ export default function MastersVideos({
     <section
       id="masters"
       ref={sectionRef}
-      className={`mv-section ${revealed ? "is-revealed" : ""} relative w-full overflow-x-hidden border-t border-black/10 ${bg}`}
+      className={`mv-section ${revealed ? "is-revealed" : ""} relative flex w-full min-h-[100svh] flex-col justify-center overflow-x-hidden border-t border-black/10 ${bg}`}
+      style={{
+        paddingTop: "clamp(1.25rem,3.5vh,3rem)",
+        paddingBottom: "clamp(4.5rem,9vh,6.5rem)",
+      }}
     >
       {statsSlot ? (
-        <div className="mx-auto w-full max-w-[1280px] px-5 pt-[clamp(3rem,7vw,5.5rem)] md:px-10">
-          {statsSlot}
-        </div>
+        <div className="mx-auto w-full max-w-[1280px] px-5 md:px-10">{statsSlot}</div>
       ) : null}
 
-      <div className="mx-auto grid w-full max-w-[1280px] grid-cols-1 gap-10 px-5 py-[clamp(3rem,7vw,5.5rem)] md:px-10 lg:grid-cols-12 lg:items-start lg:gap-16">
+      <div
+        className="mx-auto grid w-full max-w-[1280px] grid-cols-1 px-5 md:px-10 lg:grid-cols-12 lg:items-start"
+        style={{
+          gap: "clamp(1.5rem,3.5vh,2.5rem)",
+          columnGap: "clamp(1.5rem,3vw,4rem)",
+          paddingTop: "clamp(1.5rem,4vh,3rem)",
+        }}
+      >
+
         {/* Left: sticky editorial column */}
         <div className="min-w-0 lg:col-span-4 lg:sticky lg:top-24">
-          <p className="mv-reveal mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]">
+          <p className="mv-reveal mb-[clamp(0.5rem,1.4vh,1rem)] font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]">
             500+ Masters
           </p>
           <h2
-            className="mv-reveal text-[clamp(1.75rem,3.2vw,2.75rem)] font-medium italic leading-[1.1] tracking-tight text-black"
+            className="mv-reveal text-[clamp(1.5rem,2.9vw,2.5rem)] font-medium italic leading-[1.1] tracking-tight text-black"
             style={{ fontFamily: "'Fraunces', Georgia, serif", transitionDelay: "260ms" }}
           >
             Built by Scholars, Led by Industry Practitioners
           </h2>
           <p
-            className="mv-reveal mt-6 max-w-sm text-[14px] leading-relaxed text-black/60"
+            className="mv-reveal mt-[clamp(0.75rem,2.2vh,1.5rem)] max-w-sm text-[clamp(12.5px,1.6vh,14px)] leading-relaxed text-black/60"
             style={{ transitionDelay: "420ms" }}
           >
             At Masters' Union, your classroom is powered by Ivy League academics and global business
@@ -239,13 +249,17 @@ export default function MastersVideos({
             the playbook. They wrote it.
           </p>
 
-          <div className="mv-reveal mt-7 flex items-center gap-3" style={{ transitionDelay: "540ms" }}>
+          <div
+            className="mv-reveal mt-[clamp(1rem,2.6vh,1.75rem)] flex items-center gap-3"
+            style={{ transitionDelay: "540ms" }}
+          >
+
             <button
               type="button"
               onClick={() => go(-1)}
               disabled={safePage === 0}
               aria-label="Previous videos"
-              className="group grid h-12 w-12 shrink-0 place-items-center rounded-full border border-black/10 text-black transition hover:border-black disabled:opacity-30"
+              className="group grid h-[clamp(2.4rem,4.5vh,3rem)] w-[clamp(2.4rem,4.5vh,3rem)] shrink-0 place-items-center rounded-full border border-black/10 text-black transition hover:border-black disabled:opacity-30"
             >
               <span className="transition-transform group-hover:-translate-x-0.5">←</span>
             </button>
@@ -254,7 +268,7 @@ export default function MastersVideos({
               onClick={() => go(1)}
               disabled={safePage >= pages - 1}
               aria-label="Next videos"
-              className="group grid h-12 w-12 shrink-0 place-items-center rounded-full bg-black text-white transition hover:bg-black/85 disabled:opacity-30"
+              className="group grid h-[clamp(2.4rem,4.5vh,3rem)] w-[clamp(2.4rem,4.5vh,3rem)] shrink-0 place-items-center rounded-full bg-black text-white transition hover:bg-black/85 disabled:opacity-30"
             >
               <span className="transition-transform group-hover:translate-x-0.5">→</span>
             </button>
@@ -282,7 +296,7 @@ export default function MastersVideos({
                 }}
               >
                 <div className="relative overflow-hidden rounded-[12px] bg-black shadow-[0_12px_34px_-20px_rgba(0,0,0,0.55)] transition duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_24px_46px_-22px_rgba(0,0,0,0.6)]">
-                  <div className="aspect-[9/16] w-full overflow-hidden">
+                  <div className="h-[clamp(210px,34vh,420px)] w-full overflow-hidden">
                     <img
                       src={v.thumb}
                       alt={v.title}
@@ -300,11 +314,11 @@ export default function MastersVideos({
                     </div>
                   </div>
                 </div>
-                <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.2em] text-[#B89146]">
+                <p className="mt-[clamp(0.6rem,1.8vh,1.25rem)] text-[10px] font-bold uppercase tracking-[0.2em] text-[#B89146]">
                   {v.meta}
                 </p>
                 <h3
-                  className="mt-1 truncate text-[17px] leading-snug text-black"
+                  className="mt-1 truncate text-[clamp(14px,1.9vh,17px)] leading-snug text-black"
                   style={{ fontFamily: "'Fraunces', Georgia, serif" }}
                 >
                   {v.title}
