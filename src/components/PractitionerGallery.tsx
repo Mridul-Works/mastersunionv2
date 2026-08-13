@@ -129,9 +129,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
         onDragStart={(e) => e.preventDefault()}
         className="relative h-[min(500px,max(420px,calc(100svh-260px)))] w-full sm:h-[min(clamp(430px,62vw,720px),max(400px,calc(100svh-240px)))]"
         style={{
-          perspective: "1600px",
           perspectiveOrigin: "50% 50%",
-          transformStyle: "preserve-3d",
           cursor: "grab",
           touchAction: "pan-y pinch-zoom",
         }}
@@ -169,9 +167,8 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                 zIndex: 100 - abs,
                 opacity,
                 pointerEvents: hidden ? "none" : "auto",
-                transformStyle: "preserve-3d",
                 backgroundColor: "#0f0f0f",
-                transform: `translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale})`,
+                transform: `perspective(1600px) translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale})`,
                 transition:
                   "transform 850ms cubic-bezier(0.16, 1, 0.3, 1), opacity 850ms cubic-bezier(0.16, 1, 0.3, 1)",
               }}
