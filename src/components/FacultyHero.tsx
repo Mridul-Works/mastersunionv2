@@ -367,6 +367,7 @@ export default function FacultyHero({
             <div className="relative h-10 w-px" aria-hidden>
               <div className="absolute inset-0 w-px bg-gradient-to-b from-white/40 to-white/10" />
               <div
+                data-scroll-dot
                 className="absolute left-1/2 top-0 h-[5px] w-[5px] -translate-x-1/2 rounded-full bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.35)] transition-none"
                 style={{ transform: `translateY(calc(var(--recede) * 32px)) translateX(-50%)` }}
               />
