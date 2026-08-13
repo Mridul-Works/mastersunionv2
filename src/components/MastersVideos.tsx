@@ -226,20 +226,20 @@ export default function MastersVideos({
           </p>
           <h2
             className="mv-reveal text-[clamp(1.75rem,3.2vw,2.75rem)] font-medium italic leading-[1.1] tracking-tight text-black"
-            style={{ fontFamily: "'Fraunces', Georgia, serif", transitionDelay: "90ms" }}
+            style={{ fontFamily: "'Fraunces', Georgia, serif", transitionDelay: "260ms" }}
           >
             Built by Scholars, Led by Industry Practitioners
           </h2>
           <p
             className="mv-reveal mt-6 max-w-sm text-[14px] leading-relaxed text-black/60"
-            style={{ transitionDelay: "200ms" }}
+            style={{ transitionDelay: "420ms" }}
           >
             At Masters' Union, your classroom is powered by Ivy League academics and global business
             leaders, from Harvard to McKinsey, from Wharton to Google. Our Masters don't just teach
             the playbook. They wrote it.
           </p>
 
-          <div className="mv-reveal mt-7 flex items-center gap-3" style={{ transitionDelay: "300ms" }}>
+          <div className="mv-reveal mt-7 flex items-center gap-3" style={{ transitionDelay: "540ms" }}>
             <button
               type="button"
               onClick={() => go(-1)}
@@ -265,18 +265,21 @@ export default function MastersVideos({
         </div>
 
         {/* Right: paged rail — fits the screen, never scrolls sideways */}
-        <div className="mv-reveal min-w-0 overflow-hidden lg:col-span-8" style={{ transitionDelay: "380ms" }}>
+        <div className="min-w-0 overflow-hidden lg:col-span-8">
           <div
             className="flex gap-6 transition-transform duration-500 ease-out"
             style={{ transform: `translateX(calc(-${safePage * 100}% - ${safePage * gap}px))` }}
           >
-            {MASTER_VIDEOS.map((v) => (
+            {MASTER_VIDEOS.map((v, i) => (
               <button
                 key={v.src}
                 type="button"
                 onClick={() => setOpen(v)}
-                className="group shrink-0 text-left"
-                style={{ width: `calc((100% - ${(perView - 1) * gap}px) / ${perView})` }}
+                className="mv-reveal group shrink-0 text-left"
+                style={{
+                  width: `calc((100% - ${(perView - 1) * gap}px) / ${perView})`,
+                  transitionDelay: `${640 + Math.min(i, perView + 1) * 110}ms`,
+                }}
               >
                 <div className="relative overflow-hidden rounded-[12px] bg-black shadow-[0_12px_34px_-20px_rgba(0,0,0,0.55)] transition duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_24px_46px_-22px_rgba(0,0,0,0.6)]">
                   <div className="aspect-[9/16] w-full overflow-hidden">
