@@ -327,8 +327,9 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
         <button
           type="button"
           onClick={() => go(1)}
+          disabled={isAnimating}
           aria-label="Next practitioner"
-          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[12px] text-white/70 transition-colors hover:border-white/50 hover:text-white"
+          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[12px] text-white/70 transition-colors hover:border-white/50 hover:text-white disabled:cursor-default disabled:opacity-40 disabled:hover:border-white/20 disabled:hover:text-white/70"
         >
           →
         </button>
