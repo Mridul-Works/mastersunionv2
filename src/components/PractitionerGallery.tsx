@@ -442,7 +442,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                       {item.role}
                     </div>
                     {item.blurb ? (
-                      <p className="mt-3 max-w-[42ch] text-[12.5px] leading-[1.65] text-white/70 md:mt-5 md:text-[15px]">
+                      <p className="mt-3 max-w-[42ch] text-[0.98rem] leading-[1.65] text-white/70 md:mt-5">
                         {item.blurb}
                       </p>
                     ) : null}

@@ -102,7 +102,7 @@ function SectionHeader({
       </h2>
       {intro ? (
         <p
-          className={`mt-[clamp(0.75rem,2.2vh,1.5rem)] max-w-sm text-[clamp(12.5px,1.6vh,14px)] leading-relaxed ${
+          className={`mt-[clamp(0.75rem,2.2vh,1.5rem)] max-w-sm text-[0.98rem] leading-relaxed ${
             dark ? "text-white/60" : "text-black/60"
           } ${isCenter ? "mx-auto" : ""}`}
         >
@@ -306,7 +306,7 @@ function EditorialGrid({
             refreshed={sectionLabel}
             stats={[{ v: pct, l: "of faculty" }, ...stats]}
           />
-          <p className={`mx-auto mt-[clamp(0.6rem,1.6vh,1rem)] max-w-[68ch] text-center text-[clamp(0.8rem,min(0.95vw,1.55vh),0.92rem)] leading-[1.6] ${dark ? "text-white/70" : "text-black/70"}`}>
+          <p className={`mx-auto mt-[clamp(0.6rem,1.6vh,1rem)] max-w-[68ch] text-center text-[0.98rem] leading-[1.6] ${dark ? "text-white/70" : "text-black/70"}`}>
             {tagline}
           </p>
         </div>
@@ -324,7 +324,7 @@ function EditorialGrid({
                 of faculty
               </div>
             </div>
-            <p className={`mt-[clamp(0.5rem,1.5vh,1rem)] max-w-[38ch] text-[clamp(0.8rem,min(0.95vw,1.55vh),0.92rem)] leading-[1.6] ${dark ? "text-white/75" : "text-black/75"}`}>{tagline}</p>
+            <p className={`mt-[clamp(0.5rem,1.5vh,1rem)] max-w-[38ch] text-[0.98rem] leading-[1.6] ${dark ? "text-white/75" : "text-black/75"}`}>{tagline}</p>
           </div>
           <div className={`md:col-span-7 md:pl-10 md:border-l ${dark ? "md:border-white/10" : "md:border-black/10"}`}>
             <div className={`text-[10.5px] uppercase tracking-[0.24em] ${dark ? "text-white/50" : "text-black/50"}`} style={{ fontFamily: MONO }}>
@@ -488,7 +488,7 @@ function FacultyPage() {
             ]}
             items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
           />
-          <p className="mt-[clamp(0.75rem,1.8vh,1.25rem)] max-w-[62ch] text-[0.88rem] leading-[1.55] text-white/70">
+          <p className="mt-[clamp(0.75rem,1.8vh,1.25rem)] max-w-[62ch] text-[0.98rem] leading-[1.55] text-white/70">
             Doctorates from IIM Ahmedabad, Bangalore, Calcutta, Kozhikode and Tiruchirappalli, IIT Bombay and Kanpur, Delhi University, Shiv Nadar, Christ University, TERI and the University of Bath — across finance, marketing, operations, organisational behaviour, economics, decision sciences and strategy.
           </p>
         </div>
@@ -519,7 +519,7 @@ function FacultyPage() {
             items={VISITING.map((v) => ({ name: v.name, role: v.role, sub: v.school, img: v.img }))}
           />
           <div className="mt-[clamp(0.65rem,1.6vh,1.25rem)] border-l-2 border-white/80 bg-white/[0.04] p-[clamp(0.85rem,2vh,1.5rem)]">
-            <p className="max-w-[70ch] text-[clamp(0.8rem,1.6vh,0.95rem)] leading-[1.5] text-white/75">
+            <p className="max-w-[70ch] text-[0.98rem] leading-[1.5] text-white/75">
               <span className="font-medium text-white">Kellogg School of Management</span> — led by Professor Mohanbir Sawhney, one of the world&apos;s foremost authorities on technology strategy and marketing innovation — has brought students to Masters&apos; Union for two consecutive years. <span className="font-medium text-white">Harvard Business School India</span> immersion students have visited campus. When schools like these come here to learn, something is working.
             </p>
           </div>
@@ -577,10 +577,10 @@ function FacultyPage() {
         <div className="page-shell-narrow text-center">
           <div className="text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO }}>The number that matters</div>
           <div className="mt-[clamp(1.25rem,3.5vh,2rem)] text-[clamp(3rem,7vw,6rem)] font-semibold leading-[0.88] tracking-tight" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>500+</div>
-          <p className="mx-auto mt-[clamp(1.25rem,3.5vh,2rem)] max-w-[52ch] text-[1.05rem] leading-[1.55] text-white/75">
+          <p className="mx-auto mt-[clamp(1.25rem,3.5vh,2rem)] max-w-[52ch] text-[0.98rem] leading-[1.55] text-white/75">
             Masters on the roster. 50% of them active industry practitioners who were in a meeting this morning before they came to teach you this afternoon.
           </p>
-          <p className="mx-auto mt-6 max-w-[52ch] text-[0.95rem] italic text-white/55">
+          <p className="mx-auto mt-6 max-w-[52ch] text-[0.98rem] italic text-white/55">
             That is not a teaching philosophy. It is a hiring policy.
           </p>
         </div>
@@ -589,7 +589,7 @@ function FacultyPage() {
       {/* CTA */}
       <section id="cta" className="screen-section bg-[#0a0a0a] text-white">
         <div className="page-shell-narrow text-center">
-          <p className="text-balance text-[clamp(1.2rem,2.2vw,1.9rem)] italic leading-[1.25] text-white/90">
+          <p className="text-balance text-[0.98rem] italic leading-[1.25] text-white/90">
             Learn from the people doing it — not just studying it.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
