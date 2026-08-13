@@ -43,13 +43,34 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
   const n = items.length;
   const [active, setActive] = useState(0);
   const [flipped, setFlipped] = useState<number | null>(null);
+  const [isAnimating, setIsAnimating] = useState(false);
 
+  const TRANSITION_MS = 850;
+  const lock = useRef(false);
+  const unlockTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  /** Advance exactly one card, then lock every input until the arc settles. */
   const go = useCallback(
     (dir: number) => {
+      if (lock.current) return;
+      lock.current = true;
+      setIsAnimating(true);
       setFlipped(null);
-      setActive((a) => ((a + dir) % n + n) % n);
+      setActive((a) => ((a + Math.sign(dir)) % n + n) % n);
+      if (unlockTimer.current) clearTimeout(unlockTimer.current);
+      unlockTimer.current = setTimeout(() => {
+        lock.current = false;
+        setIsAnimating(false);
+      }, TRANSITION_MS);
     },
     [n],
+  );
+
+  useEffect(
+    () => () => {
+      if (unlockTimer.current) clearTimeout(unlockTimer.current);
+    },
+    [],
   );
 
   // signed offset from the active card, wrapped so the arc is continuous
@@ -63,17 +84,17 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     [active, n],
   );
 
-  // drag / swipe
+  // drag / swipe — one completed gesture advances exactly one card
   const drag = useRef({ down: false, startX: 0, moved: 0, fired: false });
   const onPointerDown = (e: React.PointerEvent) => {
     drag.current = { down: true, startX: e.clientX, moved: 0, fired: false };
   };
   const onPointerMove = (e: React.PointerEvent) => {
-    if (!drag.current.down) return;
+    if (!drag.current.down || drag.current.fired) return;
     const dx = e.clientX - drag.current.startX;
     drag.current.moved = Math.abs(dx);
-    if (!drag.current.fired && drag.current.moved > 60) {
-      drag.current.fired = true;
+    if (drag.current.moved > 60) {
+      drag.current.fired = true; // no further movement in this gesture can advance again
       go(dx < 0 ? 1 : -1);
     }
   };
@@ -81,17 +102,46 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     drag.current.down = false;
   };
 
-  // wheel / trackpad rotation, throttled so one gesture moves one card
-  const wheelLock = useRef(0);
+  /**
+   * Wheel / trackpad: treat a continuous burst of events as ONE gesture.
+   * The first event past the threshold advances a single card; everything else
+   * until the gesture goes idle (and the animation completes) is ignored.
+   */
+  const gesture = useRef({ active: false });
+  const idleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const clearGestureWhenIdle = useCallback(() => {
+    if (idleTimer.current) clearTimeout(idleTimer.current);
+    idleTimer.current = setTimeout(() => {
+      // only end the gesture once the arc has settled, so a long burst of wheel
+      // events can never queue up a second advance
+      if (lock.current) {
+        clearGestureWhenIdle();
+        return;
+      }
+      gesture.current.active = false;
+    }, 200);
+  }, []);
+
   const onWheel = (e: React.WheelEvent) => {
-    const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : 0;
-    if (!d) return;
+    const dx = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : 0;
+    if (!dx) return;
     e.preventDefault();
-    const now = Date.now();
-    if (now - wheelLock.current < 420) return;
-    wheelLock.current = now;
-    go(d > 0 ? 1 : -1);
+
+    clearGestureWhenIdle(); // any wheel activity keeps the current gesture alive
+    if (gesture.current.active || lock.current) return; // same gesture, or animating
+    if (Math.abs(dx) < 8) return; // ignore tiny accidental trackpad drift
+
+    gesture.current.active = true;
+    go(dx > 0 ? 1 : -1);
   };
+
+  useEffect(
+    () => () => {
+      if (idleTimer.current) clearTimeout(idleTimer.current);
+    },
+    [],
+  );
+
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -101,6 +151,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [go]);
+
 
   const activeImg = items[active]?.img;
 
@@ -277,8 +328,9 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
         <button
           type="button"
           onClick={() => go(-1)}
+          disabled={isAnimating}
           aria-label="Previous practitioner"
-          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[12px] text-white/70 transition-colors hover:border-white/50 hover:text-white"
+          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[12px] text-white/70 transition-colors hover:border-white/50 hover:text-white disabled:cursor-default disabled:opacity-40 disabled:hover:border-white/20 disabled:hover:text-white/70"
         >
           ←
         </button>
@@ -291,8 +343,9 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
         <button
           type="button"
           onClick={() => go(1)}
+          disabled={isAnimating}
           aria-label="Next practitioner"
-          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[12px] text-white/70 transition-colors hover:border-white/50 hover:text-white"
+          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[12px] text-white/70 transition-colors hover:border-white/50 hover:text-white disabled:cursor-default disabled:opacity-40 disabled:hover:border-white/20 disabled:hover:text-white/70"
         >
           →
         </button>
