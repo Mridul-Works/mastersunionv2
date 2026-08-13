@@ -7,7 +7,6 @@ import HeroFadeOut from "@/components/HeroFadeOut";
 import FacultyStatsCard from "@/components/FacultyStatsCard";
 import { buildFacultyStats, statsRefreshedLabel } from "@/lib/faculty-stats";
 
-
 import PractitionerGallery from "@/components/PractitionerGallery";
 
 import { FULL_TIME_FACULTY } from "@/lib/full-time-faculty";
@@ -111,7 +110,6 @@ function SectionHeader({
         </p>
       ) : null}
     </header>
-
   );
 }
 
@@ -122,7 +120,6 @@ const NAV: SectionNavItem[] = [
   { id: "full-time", label: "Full-time" },
   { id: "visiting", label: "Visiting" },
 ];
-
 
 type Practitioner = { name: string; role: string; blurb: string };
 
@@ -166,7 +163,6 @@ const PRACTITIONER_PHOTOS: Record<string, string> = {
   "Captain Raghu Raman": raghuAsset.url,
   "Nitin Gaur": nitinAsset.url,
 };
-
 
 type FullTimer = { name: string; note: string; img?: string };
 const FULLTIME: FullTimer[] = FULL_TIME_FACULTY.map((f) => ({
@@ -218,8 +214,6 @@ const HERO_STATS = buildFacultyStats({
   visiting: VISITING,
   rosterTotal: 500,
 });
-
-
 
 const TESTIMONIALS = [
   { q: "I met and learned from 50+ CXOs and MDs on the Masters' Union campus. That gave me confidence and exposure that nothing else could have.", a: "Priyansh Sharma", r: "Manager Strategy, Talabat Dubai" },
@@ -317,50 +311,49 @@ function EditorialGrid({
           </p>
         </div>
       ) : (
-      <div className={`grid gap-x-8 gap-y-[clamp(0.75rem,1.8vh,1.25rem)] border-b py-[clamp(0.85rem,2vh,1.5rem)] md:grid-cols-12 ${dark ? "border-white/15" : "border-black/15"}`}>
-        <div className="md:col-span-5">
-          <div className={`text-[10.5px] uppercase tracking-[0.24em] ${dark ? "text-white/50" : "text-black/50"}`} style={{ fontFamily: MONO }}>
-            The Mix · {sectionLabel}
-          </div>
-          <div className="mt-[clamp(0.5rem,1.5vh,1rem)] flex items-baseline gap-3">
-            <div className={`text-[clamp(1.9rem,min(4.2vw,5.5vh),3.25rem)] font-medium leading-[0.88] tracking-[-0.04em] ${dark ? "text-white" : "text-black"}`}>
-              {pct}
+        <div className={`grid gap-x-8 gap-y-[clamp(0.75rem,1.8vh,1.25rem)] border-b py-[clamp(0.85rem,2vh,1.5rem)] md:grid-cols-12 ${dark ? "border-white/15" : "border-black/15"}`}>
+          <div className="md:col-span-5">
+            <div className={`text-[10.5px] uppercase tracking-[0.24em] ${dark ? "text-white/50" : "text-black/50"}`} style={{ fontFamily: MONO }}>
+              The Mix · {sectionLabel}
             </div>
-            <div className={`text-[11px] uppercase tracking-[0.2em] ${dark ? "text-white/55" : "text-black/55"}`} style={{ fontFamily: MONO }}>
-              of faculty
-            </div>
-          </div>
-          <p className={`mt-[clamp(0.5rem,1.5vh,1rem)] max-w-[38ch] text-[clamp(0.8rem,min(0.95vw,1.55vh),0.92rem)] leading-[1.6] ${dark ? "text-white/75" : "text-black/75"}`}>{tagline}</p>
-        </div>
-        <div className={`md:col-span-7 md:pl-10 md:border-l ${dark ? "md:border-white/10" : "md:border-black/10"}`}>
-          <div className={`text-[10.5px] uppercase tracking-[0.24em] ${dark ? "text-white/50" : "text-black/50"}`} style={{ fontFamily: MONO }}>
-            By the numbers
-          </div>
-          <div className="mt-[clamp(1rem,2.4vh,1.5rem)] grid grid-cols-2 gap-x-6 gap-y-[clamp(1rem,2.6vh,2rem)] sm:gap-x-10">
-            {stats.map((s) => (
-              <div key={s.l} className="group relative">
-                <div className="flex items-start gap-3">
-                  <span className="mt-3 h-1.5 w-1.5 rounded-full bg-[#7a8b6f]" aria-hidden />
-                  <div
-                    className={`text-[clamp(1.35rem,min(2.6vw,3.4vh),2.2rem)] font-medium leading-[0.92] tracking-[-0.035em] ${dark ? "text-white" : "text-black"}`}
-                    style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-                  >
-                    {s.v}
-                  </div>
-                </div>
-                <div
-                  className={`mt-3 pl-[18px] text-[11px] font-medium uppercase leading-[1.5] tracking-[0.18em] ${dark ? "text-white/65" : "text-black/65"}`}
-                  style={{ fontFamily: MONO }}
-                >
-                  {s.l}
-                </div>
-                <div className={`mt-4 ml-[18px] h-px w-10 transition-all duration-500 group-hover:w-20 ${dark ? "bg-white/25 group-hover:bg-[#7a8b6f]" : "bg-black/25 group-hover:bg-[#7a8b6f]"}`} aria-hidden />
+            <div className="mt-[clamp(0.5rem,1.5vh,1rem)] flex items-baseline gap-3">
+              <div className={`text-[clamp(1.9rem,min(4.2vw,5.5vh),3.25rem)] font-medium leading-[0.88] tracking-[-0.04em] ${dark ? "text-white" : "text-black"}`}>
+                {pct}
               </div>
-            ))}
+              <div className={`text-[11px] uppercase tracking-[0.2em] ${dark ? "text-white/55" : "text-black/55"}`} style={{ fontFamily: MONO }}>
+                of faculty
+              </div>
+            </div>
+            <p className={`mt-[clamp(0.5rem,1.5vh,1rem)] max-w-[38ch] text-[clamp(0.8rem,min(0.95vw,1.55vh),0.92rem)] leading-[1.6] ${dark ? "text-white/75" : "text-black/75"}`}>{tagline}</p>
+          </div>
+          <div className={`md:col-span-7 md:pl-10 md:border-l ${dark ? "md:border-white/10" : "md:border-black/10"}`}>
+            <div className={`text-[10.5px] uppercase tracking-[0.24em] ${dark ? "text-white/50" : "text-black/50"}`} style={{ fontFamily: MONO }}>
+              By the numbers
+            </div>
+            <div className="mt-[clamp(1rem,2.4vh,1.5rem)] grid grid-cols-2 gap-x-6 gap-y-[clamp(1rem,2.6vh,2rem)] sm:gap-x-10">
+              {stats.map((s) => (
+                <div key={s.l} className="group relative">
+                  <div className="flex items-start gap-3">
+                    <span className="mt-3 h-1.5 w-1.5 rounded-full bg-[#7a8b6f]" aria-hidden />
+                    <div
+                      className={`text-[clamp(1.35rem,min(2.6vw,3.4vh),2.2rem)] font-medium leading-[0.92] tracking-[-0.035em] ${dark ? "text-white" : "text-black"}`}
+                      style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                    >
+                      {s.v}
+                    </div>
+                  </div>
+                  <div
+                    className={`mt-3 pl-[18px] text-[11px] font-medium uppercase leading-[1.5] tracking-[0.18em] ${dark ? "text-white/65" : "text-black/65"}`}
+                    style={{ fontFamily: MONO }}
+                  >
+                    {s.l}
+                  </div>
+                  <div className={`mt-4 ml-[18px] h-px w-10 transition-all duration-500 group-hover:w-20 ${dark ? "bg-white/25 group-hover:bg-[#7a8b6f]" : "bg-black/25 group-hover:bg-[#7a8b6f]"}`} aria-hidden />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-
       )}
 
       {gallery ? (
@@ -368,7 +361,6 @@ function EditorialGrid({
           <PractitionerGallery items={items} />
         </div>
       ) : (
-
         <div className={`scene-scroll grid grid-cols-2 divide-x divide-y border-b sm:grid-cols-3 md:grid-cols-4 ${dark ? "divide-white/10 border-white/15" : "divide-black/10 border-black/15"}`}>
           {items.map((item) => (
             <article key={item.name} className="p-5 md:p-6">
@@ -398,15 +390,15 @@ export const Route = createFileRoute("/faculty")({
 
 function FacultyPage() {
   return (
-    <main className="min-h-screen overflow-x-clip bg-white pb-24 text-black sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
+    <main className="min-h-screen overflow-x-clip bg-[#0a0a0a] pb-24 text-white sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
       <SectionNav items={NAV} applyHref="#cta" />
 
       {/* Chapter marker */}
-      <div className="page-shell flex items-center justify-between gap-4 border-b border-black/10 pb-[clamp(0.85rem,1.6vw,1.25rem)] pt-[clamp(1.25rem,3vw,2.25rem)] sm:gap-6">
-        <Link to="/" className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-black/70 transition-colors hover:text-black" style={{ fontFamily: MONO }}>
+      <div className="page-shell flex items-center justify-between gap-4 border-b border-white/10 pb-[clamp(0.85rem,1.6vw,1.25rem)] pt-[clamp(1.25rem,3vw,2.25rem)] sm:gap-6">
+        <Link to="/" className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-white/70 transition-colors hover:text-white" style={{ fontFamily: MONO }}>
           <span aria-hidden>←</span> Masters&apos; Union
         </Link>
-        <div className="text-[11px] uppercase tracking-[0.25em] text-black/55" style={{ fontFamily: MONO }}>
+        <div className="text-[11px] uppercase tracking-[0.25em] text-white/55" style={{ fontFamily: MONO }}>
           Faculty
         </div>
       </div>
@@ -418,9 +410,11 @@ function FacultyPage() {
 
       {/* SECTION 2 — MASTERS: Built by Scholars, Led by Industry Practitioners */}
       <MastersVideos
-        bg="bg-white"
+        dark
+        bg="bg-[#0a0a0a]"
         statsSlot={
           <FacultyStatsCard
+            dark
             stats={HERO_STATS}
             refreshed={statsRefreshedLabel()}
             universities={[
@@ -438,12 +432,8 @@ function FacultyPage() {
         }
       />
 
-
-
-
-
       {/* INDUSTRY PRACTITIONERS */}
-      <section id="practitioners" className="screen-section border-y border-white/10 bg-black">
+      <section id="practitioners" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
           <SectionHeader
             index="01"
@@ -453,47 +443,42 @@ function FacultyPage() {
             dark
             serif
           />
-
-
-
-        <EditorialGrid
-          gallery
-          cardStats
-          dark
-          sectionLabel="Industry Practitioners"
-          pct="50%"
-          tagline="Half of the faculty are active operators — CEOs, MDs, founders and investors bringing this week's decisions into the classroom."
-          stats={[
-            { v: "250+", l: "Active practitioners on roster" },
-            { v: "40+", l: "CXOs & Managing Directors" },
-          ]}
-
-          items={PRACTITIONERS.map((p) => ({
-            name: p.name,
-            role: p.role,
-            blurb: p.blurb,
-            img: PRACTITIONER_PHOTOS[p.name],
-          }))}
-        />
-
-
+          <EditorialGrid
+            gallery
+            cardStats
+            dark
+            sectionLabel="Industry Practitioners"
+            pct="50%"
+            tagline="Half of the faculty are active operators — CEOs, MDs, founders and investors bringing this week's decisions into the classroom."
+            stats={[
+              { v: "250+", l: "Active practitioners on roster" },
+              { v: "40+", l: "CXOs & Managing Directors" },
+            ]}
+            items={PRACTITIONERS.map((p) => ({
+              name: p.name,
+              role: p.role,
+              blurb: p.blurb,
+              img: PRACTITIONER_PHOTOS[p.name],
+            }))}
+          />
         </div>
       </section>
 
-
       {/* FULL-TIME FACULTY */}
-      <section id="full-time" className="screen-section border-y border-black/10 bg-white">
+      <section id="full-time" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
           <SectionHeader
             index="02"
             eyebrow="Full-time Faculty"
             title={<>{FULLTIME.length} PhD faculty. Active researchers. Published where the best B-schools read.</>}
             intro="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing in FT50 and A* journals."
+            dark
+            serif
           />
-
           <EditorialGrid
             gallery
             cardStats
+            dark
             sectionLabel="Full-time Faculty"
             pct="30%"
             tagline="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing where the best B-schools read."
@@ -503,16 +488,14 @@ function FacultyPage() {
             ]}
             items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
           />
-
-          <p className="mt-[clamp(0.75rem,1.8vh,1.25rem)] max-w-[62ch] text-[0.88rem] leading-[1.55] text-black/70">
+          <p className="mt-[clamp(0.75rem,1.8vh,1.25rem)] max-w-[62ch] text-[0.88rem] leading-[1.55] text-white/70">
             Doctorates from IIM Ahmedabad, Bangalore, Calcutta, Kozhikode and Tiruchirappalli, IIT Bombay and Kanpur, Delhi University, Shiv Nadar, Christ University, TERI and the University of Bath — across finance, marketing, operations, organisational behaviour, economics, decision sciences and strategy.
           </p>
-
         </div>
       </section>
 
       {/* VISITING */}
-      <section id="visiting" className="screen-section border-y border-white/10 bg-black">
+      <section id="visiting" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
           <SectionHeader
             index="03"
@@ -522,51 +505,45 @@ function FacultyPage() {
             dark
             serif
           />
-
-
-        <EditorialGrid
-          gallery
-          cardStats
-          dark
-          sectionLabel="Visiting Faculty"
-          pct="20%"
-          tagline="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
-          stats={[
-            { v: "40+", l: "Visiting professors annually" },
-            { v: "12", l: "Countries represented" },
-          ]}
-
-          items={VISITING.map((v) => ({ name: v.name, role: v.role, sub: v.school, img: v.img }))}
-        />
-
-
-
-        <div className="mt-[clamp(0.65rem,1.6vh,1.25rem)] border-l-2 border-white/80 bg-white/[0.04] p-[clamp(0.85rem,2vh,1.5rem)]">
-          <p className="max-w-[70ch] text-[clamp(0.8rem,1.6vh,0.95rem)] leading-[1.5] text-white/75">
-            <span className="font-medium text-white">Kellogg School of Management</span> — led by Professor Mohanbir Sawhney, one of the world&apos;s foremost authorities on technology strategy and marketing innovation — has brought students to Masters&apos; Union for two consecutive years. <span className="font-medium text-white">Harvard Business School India</span> immersion students have visited campus. When schools like these come here to learn, something is working.
-          </p>
-        </div>
+          <EditorialGrid
+            gallery
+            cardStats
+            dark
+            sectionLabel="Visiting Faculty"
+            pct="20%"
+            tagline="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
+            stats={[
+              { v: "40+", l: "Visiting professors annually" },
+              { v: "12", l: "Countries represented" },
+            ]}
+            items={VISITING.map((v) => ({ name: v.name, role: v.role, sub: v.school, img: v.img }))}
+          />
+          <div className="mt-[clamp(0.65rem,1.6vh,1.25rem)] border-l-2 border-white/80 bg-white/[0.04] p-[clamp(0.85rem,2vh,1.5rem)]">
+            <p className="max-w-[70ch] text-[clamp(0.8rem,1.6vh,0.95rem)] leading-[1.5] text-white/75">
+              <span className="font-medium text-white">Kellogg School of Management</span> — led by Professor Mohanbir Sawhney, one of the world&apos;s foremost authorities on technology strategy and marketing innovation — has brought students to Masters&apos; Union for two consecutive years. <span className="font-medium text-white">Harvard Business School India</span> immersion students have visited campus. When schools like these come here to learn, something is working.
+            </p>
+          </div>
         </div>
       </section>
 
-
       {/* TESTIMONIALS */}
-      <section className="screen-section border-y border-black/10 bg-white">
+      <section className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
           <SectionHeader
             index="04"
             eyebrow="What students say"
             title={<>Learning from operators, in their own words.</>}
+            dark
+            serif
           />
           <div className="mt-[clamp(1.25rem,3vh,2rem)] grid gap-[clamp(1rem,2.4vh,1.5rem)] md:grid-cols-3">
-
             {TESTIMONIALS.map((t) => (
-              <figure key={t.a} className="border border-black/10 bg-neutral-50 p-[clamp(1.25rem,3vh,2rem)]">
-                <Quote className="size-5 text-black/40" />
-                <blockquote className="mt-4 text-[0.98rem] leading-[1.6] text-black/80">&ldquo;{t.q}&rdquo;</blockquote>
-                <figcaption className="mt-6 border-t border-black/10 pt-4">
-                  <div className="text-[0.95rem] text-black">{t.a}</div>
-                  <div className="text-[11px] uppercase tracking-[0.18em] text-black/55" style={{ fontFamily: MONO }}>{t.r}</div>
+              <figure key={t.a} className="border border-white/10 bg-white/[0.04] p-[clamp(1.25rem,3vh,2rem)]">
+                <Quote className="size-5 text-white/40" />
+                <blockquote className="mt-4 text-[0.98rem] leading-[1.6] text-white/80">&ldquo;{t.q}&rdquo;</blockquote>
+                <figcaption className="mt-6 border-t border-white/10 pt-4">
+                  <div className="text-[0.95rem] text-white">{t.a}</div>
+                  <div className="text-[11px] uppercase tracking-[0.18em] text-white/55" style={{ fontFamily: MONO }}>{t.r}</div>
                 </figcaption>
               </figure>
             ))}
@@ -575,7 +552,7 @@ function FacultyPage() {
       </section>
 
       {/* BECOME A MASTER */}
-      <section className="screen-section border-y border-white/10 bg-black">
+      <section className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell grid gap-10 md:grid-cols-12 md:items-end">
           <div className="md:col-span-7">
             <SectionHeader
@@ -587,7 +564,6 @@ function FacultyPage() {
               serif
             />
           </div>
-
           <div className="md:col-span-5 md:text-right">
             <a href="https://mastersunion.org/become-a-master" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-white px-6 py-4 text-[11px] uppercase tracking-[0.22em] text-black transition-opacity hover:opacity-80" style={{ fontFamily: MONO }}>
               Apply to teach <ArrowUpRight className="size-3.5" />
@@ -597,21 +573,21 @@ function FacultyPage() {
       </section>
 
       {/* THE NUMBER */}
-      <section className="screen-section border-y border-black/10 bg-white text-black">
+      <section className="screen-section border-y border-white/10 bg-[#0a0a0a] text-white">
         <div className="page-shell-narrow text-center">
-          <div className="text-[11px] uppercase tracking-[0.3em] text-black/50" style={{ fontFamily: MONO }}>The number that matters</div>
+          <div className="text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO }}>The number that matters</div>
           <div className="mt-[clamp(1.25rem,3.5vh,2rem)] text-[clamp(3rem,7vw,6rem)] font-semibold leading-[0.88] tracking-tight" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>500+</div>
-          <p className="mx-auto mt-[clamp(1.25rem,3.5vh,2rem)] max-w-[52ch] text-[1.05rem] leading-[1.55] text-black/75">
+          <p className="mx-auto mt-[clamp(1.25rem,3.5vh,2rem)] max-w-[52ch] text-[1.05rem] leading-[1.55] text-white/75">
             Masters on the roster. 50% of them active industry practitioners who were in a meeting this morning before they came to teach you this afternoon.
           </p>
-          <p className="mx-auto mt-6 max-w-[52ch] text-[0.95rem] italic text-black/55">
+          <p className="mx-auto mt-6 max-w-[52ch] text-[0.95rem] italic text-white/55">
             That is not a teaching philosophy. It is a hiring policy.
           </p>
         </div>
       </section>
 
       {/* CTA */}
-      <section id="cta" className="screen-section bg-black text-white">
+      <section id="cta" className="screen-section bg-[#0a0a0a] text-white">
         <div className="page-shell-narrow text-center">
           <p className="text-balance text-[clamp(1.2rem,2.2vw,1.9rem)] italic leading-[1.25] text-white/90">
             Learn from the people doing it — not just studying it.
