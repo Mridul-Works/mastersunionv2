@@ -375,12 +375,12 @@ export default function FacultyHero({
             >
               Scroll
             </span>
-            <div className="relative h-10 w-px" aria-hidden>
-              <div className="absolute inset-0 w-px bg-gradient-to-b from-white/40 to-white/10" />
+            <div className="relative h-10 w-3" aria-hidden>
+              <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-gradient-to-b from-white/40 to-white/10" />
               <div
                 data-scroll-dot
-                className="absolute left-1/2 top-0 h-[5px] w-[5px] -translate-x-1/2 rounded-full bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.35)] transition-none group-hover:bg-white group-hover:shadow-[0_0_10px_rgba(255,255,255,0.55)]"
-                style={{ transform: `translateY(calc(var(--recede) * 32px)) translateX(-50%)` }}
+                className="absolute inset-x-0 top-0 mx-auto h-[5px] w-[5px] rounded-full bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.35)] transition-none group-hover:bg-white group-hover:shadow-[0_0_10px_rgba(255,255,255,0.55)]"
+                style={{ marginTop: "calc(var(--recede) * 32px)" }}
               />
             </div>
           </div>
