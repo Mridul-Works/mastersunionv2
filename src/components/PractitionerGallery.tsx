@@ -142,10 +142,10 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
           const isFlipped = flipped === i;
 
           // elliptical arc: sideways travel eases off while depth keeps growing
-          const x = Math.sign(off) * (1 - Math.cos((Math.min(abs, VISIBLE) * Math.PI) / 9)) * 220 + off * 300;
+          const x = Math.sign(off) * (1 - Math.cos((Math.min(abs, VISIBLE) * Math.PI) / 9)) * 120 + off * 210;
           const z = -abs * 240;
           const rotY = -off * 26;
-          const scale = Math.max(0.6, 1 - abs * 0.1);
+          const scale = Math.max(0.6, 1 - abs * 0.12);
           const opacity = hidden ? 0 : Math.max(0.18, 1 - abs * 0.28);
 
           return (
