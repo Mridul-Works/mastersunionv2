@@ -81,7 +81,7 @@ function SectionHeader({
   return (
     <header className={isCenter ? "text-center" : ""}>
       <p
-        className={`mb-3 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-black/50 ${
+        className={`mb-[clamp(0.4rem,1.2vh,0.75rem)] font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-black/50 ${
           isCenter ? "flex justify-center gap-3" : "flex gap-3"
         }`}
       >
@@ -90,7 +90,7 @@ function SectionHeader({
         <span>{eyebrow}</span>
       </p>
       <h2
-        className={`text-[clamp(1.5rem,3.1vw,2.6rem)] font-semibold leading-[1.08] tracking-tight text-black ${
+        className={`text-[clamp(1.2rem,min(2.6vw,3.4vh),2.1rem)] font-semibold leading-[1.08] tracking-tight text-black ${
           isCenter ? "mx-auto max-w-[24ch]" : "max-w-[26ch]"
         }`}
         style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
@@ -99,7 +99,7 @@ function SectionHeader({
       </h2>
       {intro ? (
         <p
-          className={`mt-5 text-[clamp(0.94rem,1vw,1.05rem)] leading-[1.6] text-black/70 ${
+          className={`mt-[clamp(0.5rem,1.5vh,1rem)] text-[clamp(0.82rem,min(1vw,1.6vh),0.98rem)] leading-[1.6] text-black/70 ${
             isCenter ? "mx-auto max-w-[62ch]" : "max-w-[62ch]"
           }`}
         >
@@ -295,34 +295,34 @@ function EditorialGrid({
   gallery?: boolean;
 }) {
   return (
-    <div className="mt-8 border-t border-black/15">
+    <div className="mt-[clamp(1rem,2.5vh,2rem)] border-t border-black/15">
       {/* STATS HERO — replaces featured faculty */}
-      <div className="grid gap-x-8 gap-y-6 border-b border-black/15 py-[clamp(1.5rem,3vw,2.25rem)] md:grid-cols-12">
+      <div className="grid gap-x-8 gap-y-[clamp(0.75rem,1.8vh,1.25rem)] border-b border-black/15 py-[clamp(0.85rem,2vh,1.5rem)] md:grid-cols-12">
         <div className="md:col-span-5">
           <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
             The Mix · {sectionLabel}
           </div>
-          <div className="mt-4 flex items-baseline gap-3">
-            <div className="text-[clamp(2.75rem,6vw,4.5rem)] font-medium leading-[0.88] tracking-[-0.04em] text-black">
+          <div className="mt-[clamp(0.5rem,1.5vh,1rem)] flex items-baseline gap-3">
+            <div className="text-[clamp(1.9rem,min(4.2vw,5.5vh),3.25rem)] font-medium leading-[0.88] tracking-[-0.04em] text-black">
               {pct}
             </div>
             <div className="text-[11px] uppercase tracking-[0.2em] text-black/55" style={{ fontFamily: MONO }}>
               of faculty
             </div>
           </div>
-          <p className="mt-5 max-w-[38ch] text-[0.95rem] leading-[1.6] text-black/75">{tagline}</p>
+          <p className="mt-[clamp(0.5rem,1.5vh,1rem)] max-w-[38ch] text-[clamp(0.8rem,min(0.95vw,1.55vh),0.92rem)] leading-[1.6] text-black/75">{tagline}</p>
         </div>
         <div className="md:col-span-7 md:pl-10 md:border-l md:border-black/10">
           <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
             By the numbers
           </div>
-          <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-8 sm:gap-x-10">
+          <div className="mt-[clamp(1rem,2.4vh,1.5rem)] grid grid-cols-2 gap-x-6 gap-y-[clamp(1rem,2.6vh,2rem)] sm:gap-x-10">
             {stats.map((s) => (
               <div key={s.l} className="group relative">
                 <div className="flex items-start gap-3">
                   <span className="mt-3 h-1.5 w-1.5 rounded-full bg-[#7a8b6f]" aria-hidden />
                   <div
-                    className="text-[clamp(1.9rem,3.4vw,3rem)] font-medium leading-[0.92] tracking-[-0.035em] text-black"
+                    className="text-[clamp(1.35rem,min(2.6vw,3.4vh),2.2rem)] font-medium leading-[0.92] tracking-[-0.035em] text-black"
                     style={{ fontFamily: "'Fraunces', Georgia, serif" }}
                   >
                     {s.v}
@@ -342,11 +342,11 @@ function EditorialGrid({
       </div>
 
       {gallery ? (
-        <div className="border-b border-black/15 py-9 md:py-12">
+        <div className="border-b border-black/15 py-[clamp(0.75rem,2vh,1.5rem)]">
           <PractitionerGallery items={items} />
         </div>
       ) : (
-        <div className="grid grid-cols-2 divide-x divide-y divide-black/10 border-b border-black/15 sm:grid-cols-3 md:grid-cols-4">
+        <div className="scene-scroll grid grid-cols-2 divide-x divide-y divide-black/10 border-b border-black/15 sm:grid-cols-3 md:grid-cols-4">
           {items.map((item) => (
             <article key={item.name} className="p-5 md:p-6">
               <Portrait item={item} />
@@ -420,8 +420,8 @@ function FacultyPage() {
 
 
       {/* INDUSTRY PRACTITIONERS */}
-      <section id="practitioners" className="border-y border-black/10 bg-neutral-50">
-        <div className="page-shell section-y">
+      <section id="practitioners" className="screen-section border-y border-black/10 bg-neutral-50">
+        <div className="page-shell screen-y">
           <SectionHeader
             index="01"
             eyebrow="Industry Practitioners"
@@ -455,8 +455,8 @@ function FacultyPage() {
 
 
       {/* FULL-TIME FACULTY */}
-      <section id="full-time" className="border-y border-black/10 bg-white">
-        <div className="page-shell section-y">
+      <section id="full-time" className="screen-section border-y border-black/10 bg-white">
+        <div className="page-shell screen-y">
           <SectionHeader
             index="02"
             eyebrow="Full-time Faculty"
@@ -475,7 +475,7 @@ function FacultyPage() {
             items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
           />
 
-          <p className="mt-7 max-w-[62ch] text-[1rem] leading-[1.6] text-black/70">
+          <p className="mt-[clamp(0.75rem,1.8vh,1.25rem)] max-w-[62ch] text-[0.88rem] leading-[1.55] text-black/70">
             Doctorates from IIM Ahmedabad, Bangalore, Calcutta, Kozhikode and Tiruchirappalli, IIT Bombay and Kanpur, Delhi University, Shiv Nadar, Christ University, TERI and the University of Bath — across finance, marketing, operations, organisational behaviour, economics, decision sciences and strategy.
           </p>
 
@@ -483,8 +483,8 @@ function FacultyPage() {
       </section>
 
       {/* VISITING */}
-      <section id="visiting" className="bg-neutral-50">
-        <div className="page-shell section-y">
+      <section id="visiting" className="screen-section bg-neutral-50">
+        <div className="page-shell screen-y">
           <SectionHeader
             index="03"
             eyebrow="Visiting Faculty"
@@ -507,8 +507,8 @@ function FacultyPage() {
 
 
 
-        <div className="mt-9 border-l-2 border-black/80 bg-neutral-50 p-8 md:p-10">
-          <p className="max-w-[70ch] text-[1.05rem] leading-[1.65] text-black/80">
+        <div className="mt-[clamp(0.65rem,1.6vh,1.25rem)] border-l-2 border-black/80 bg-neutral-50 p-[clamp(0.85rem,2vh,1.5rem)]">
+          <p className="max-w-[70ch] text-[clamp(0.8rem,1.6vh,0.95rem)] leading-[1.5] text-black/80">
             <span className="font-medium text-black">Kellogg School of Management</span> — led by Professor Mohanbir Sawhney, one of the world&apos;s foremost authorities on technology strategy and marketing innovation — has brought students to Masters&apos; Union for two consecutive years. <span className="font-medium text-black">Harvard Business School India</span> immersion students have visited campus. When schools like these come here to learn, something is working.
           </p>
         </div>
@@ -517,17 +517,17 @@ function FacultyPage() {
 
 
       {/* TESTIMONIALS */}
-      <section className="border-y border-black/10 bg-neutral-50">
-        <div className="page-shell section-y">
+      <section className="screen-section border-y border-black/10 bg-neutral-50">
+        <div className="page-shell screen-y">
           <SectionHeader
             index="04"
             eyebrow="What students say"
             title={<>Learning from operators, in their own words.</>}
           />
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
+          <div className="mt-[clamp(1.25rem,3vh,2rem)] grid gap-[clamp(1rem,2.4vh,1.5rem)] md:grid-cols-3">
 
             {TESTIMONIALS.map((t) => (
-              <figure key={t.a} className="border border-black/10 bg-white p-8">
+              <figure key={t.a} className="border border-black/10 bg-white p-[clamp(1.25rem,3vh,2rem)]">
                 <Quote className="size-5 text-black/40" />
                 <blockquote className="mt-4 text-[0.98rem] leading-[1.6] text-black/80">&ldquo;{t.q}&rdquo;</blockquote>
                 <figcaption className="mt-6 border-t border-black/10 pt-4">
@@ -541,7 +541,7 @@ function FacultyPage() {
       </section>
 
       {/* BECOME A MASTER */}
-      <section className="page-shell section-y">
+      <section className="screen-section page-shell">
         <div className="grid gap-10 md:grid-cols-12 md:items-end">
           <div className="md:col-span-7">
             <SectionHeader
@@ -561,11 +561,11 @@ function FacultyPage() {
       </section>
 
       {/* THE NUMBER */}
-      <section className="border-y border-black/10 bg-black text-white">
-        <div className="page-shell-narrow section-y text-center">
+      <section className="screen-section border-y border-black/10 bg-black text-white">
+        <div className="page-shell-narrow text-center">
           <div className="text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO }}>The number that matters</div>
-          <div className="mt-8 text-[clamp(3rem,7vw,6rem)] font-semibold leading-[0.88] tracking-tight" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>500+</div>
-          <p className="mx-auto mt-8 max-w-[52ch] text-[1.1rem] leading-[1.55] text-white/80">
+          <div className="mt-[clamp(1.25rem,3.5vh,2rem)] text-[clamp(3rem,7vw,6rem)] font-semibold leading-[0.88] tracking-tight" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>500+</div>
+          <p className="mx-auto mt-[clamp(1.25rem,3.5vh,2rem)] max-w-[52ch] text-[1.05rem] leading-[1.55] text-white/80">
             Masters on the roster. 50% of them active industry practitioners who were in a meeting this morning before they came to teach you this afternoon.
           </p>
           <p className="mx-auto mt-6 max-w-[52ch] text-[0.95rem] italic text-white/60">
@@ -575,7 +575,7 @@ function FacultyPage() {
       </section>
 
       {/* CTA */}
-      <section id="cta" className="page-shell-narrow section-y text-center">
+      <section id="cta" className="screen-section page-shell-narrow text-center">
         <p className="text-balance text-[clamp(1.2rem,2.2vw,1.9rem)] italic leading-[1.25] text-black/90">
           Learn from the people doing it — not just studying it.
         </p>

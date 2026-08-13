@@ -553,3 +553,22 @@ body::-webkit-scrollbar {
     transition: none;
   }
 }
+
+/* Full-screen scene sections (faculty page) — viewport-fit, bottom-nav aware */
+@utility screen-section {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: clamp(0.85rem, 2vh, 1.75rem) clamp(3.75rem, 6.5vh, 5.25rem);
+}
+@utility screen-y {
+  padding-block: clamp(0.75rem, 2vh, 1.75rem);
+}
+/* Long rosters stay inside their scene instead of stretching the page */
+@utility scene-scroll {
+  max-height: clamp(140px, 18svh, 330px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
