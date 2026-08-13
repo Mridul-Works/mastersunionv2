@@ -408,6 +408,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                     if (!isActive) return;
                     if (e.key === "Enter" || e.key === " ") {
                       e.preventDefault();
+                      setHasFlipped(true);
                       setFlipped((f) => (f === i ? null : i));
                     }
                   }}
