@@ -29,13 +29,13 @@ export default function FacultyStatsCard({
         className="flex flex-wrap items-center justify-start gap-2 text-[clamp(9px,1.9vw,10px)] uppercase tracking-[0.22em] text-black/50 sm:gap-3 sm:tracking-[0.24em]"
         style={{ fontFamily: MONO }}
       >
-        <span className="inline-flex items-center justify-center whitespace-nowrap rounded-[999px] border border-black/10 bg-[#CBE4DE] px-[7px] py-1 text-center text-black/70">
+        <span className="inline-flex items-center justify-center whitespace-nowrap rounded-[999px] border border-black/10 bg-[#0a0a0a] px-[7px] py-1 text-center text-white/70">
           By the numbers
         </span>
         {refreshed ? (
           <>
             <span className="hidden h-3 w-px bg-black/15 sm:block" aria-hidden />
-            <span className="inline-flex items-center justify-center whitespace-nowrap rounded-[999px] border border-black/10 bg-[#CBE4DE] px-[7px] py-1 text-center uppercase tracking-[inherit] text-black/70">
+            <span className="inline-flex items-center justify-center whitespace-nowrap rounded-[999px] border border-black/10 bg-[#0a0a0a] px-[7px] py-1 text-center uppercase tracking-[inherit] text-white/70">
               {refreshed}
             </span>
           </>
@@ -62,7 +62,7 @@ export default function FacultyStatsCard({
               {s.l}
             </div>
             <div
-              className="mx-auto mt-3 h-px w-8 origin-center bg-black/15 transition-all duration-500 group-hover:w-24 group-hover:bg-[#CBE4DE]"
+              className="mx-auto mt-3 h-px w-8 origin-center bg-black/15 transition-all duration-500 group-hover:w-24 group-hover:bg-[#0a0a0a]"
               aria-hidden
             />
           </div>
