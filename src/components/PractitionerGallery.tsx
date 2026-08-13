@@ -52,6 +52,10 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
   const n = items.length;
   const [flipped, setFlipped] = useState<number | null>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [hasEntered, setHasEntered] = useState(false);
+  const [hasFlipped, setHasFlipped] = useState(false);
+  const [activeHovered, setActiveHovered] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
 
   /**
    * ONE physical 3D wheel. `pos` is a CONTINUOUS rotational position measured in
@@ -141,6 +145,23 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     if (isHovered) resumeAtRef.current = Number.POSITIVE_INFINITY;
     else resumeAtRef.current = 0; // resume autoplay immediately on leave
   }, [isHovered]);
+
+  /** One-time viewport entrance for the flip-hint attention animation. */
+  useEffect(() => {
+    const el = wrapperRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasEntered(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.25 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   /** Controlled wheel rotation used by the arrows and keyboard. */
   const go = useCallback(
@@ -286,6 +307,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
 
   return (
     <div
+      ref={wrapperRef}
       className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -344,18 +366,22 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
           const grayscale = 1 - 0.65 * front;
           const shade = Math.min(0.55, abs * 0.22);
           const shadow = front > 0 ? `0 60px 130px -50px rgba(0,0,0,${0.95 * front})` : "none";
+          const activeScale = isActive && activeHovered ? 1.015 : 1;
 
           return (
             <article
               key={`${item.name}-${i}`}
               onClick={() => {
                 if (drag.current.moved > 6) return;
+                setHasFlipped(true);
                 if (!isFront) {
                   focusCard(i);
                   return;
                 }
                 setFlipped((f) => (f === i ? null : i));
               }}
+              onMouseEnter={() => { if (isActive) setActiveHovered(true); }}
+              onMouseLeave={() => setActiveHovered(false)}
               aria-hidden={hidden}
               className="absolute left-1/2 top-1/2 overflow-hidden rounded-[20px] sm:rounded-[26px] md:rounded-[30px]"
               style={{
@@ -366,7 +392,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                 boxShadow: shadow,
                 pointerEvents: hidden ? "none" : "auto",
                 backgroundColor: "#0f0f0f",
-                transform: `perspective(1900px) translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale})`,
+                transform: `perspective(1900px) translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale * activeScale})`,
                 willChange: "transform, opacity",
                 backfaceVisibility: "hidden",
               }}
@@ -384,6 +410,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                     if (!isActive) return;
                     if (e.key === "Enter" || e.key === " ") {
                       e.preventDefault();
+                      setHasFlipped(true);
                       setFlipped((f) => (f === i ? null : i));
                     }
                   }}
@@ -411,6 +438,16 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
 
                       <Initials name={item.name} />
                     )}
+                    {isActive && !isFlipped ? (
+                      <div
+                        className={`pointer-events-none absolute left-4 top-4 z-10 flex items-center gap-1.5 text-[9px] uppercase tracking-[0.22em] transition-all duration-300 md:left-5 md:top-5 md:text-[10px] ${hasEntered && !hasFlipped ? "animate-mu-flip-hint" : ""} ${activeHovered ? "text-white/85" : "text-white/55"}`}
+                        style={{ fontFamily: MONO }}
+                        aria-hidden
+                      >
+                        <span>Click to flip</span>
+                        <span aria-hidden>↻</span>
+                      </div>
+                    ) : null}
                   </div>
 
                   {/* BACK — practitioner details */}
