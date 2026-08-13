@@ -235,33 +235,38 @@ export default function MastersVideos({
                   type="button"
                   onClick={() => setOpen(current)}
                   aria-label={`Play ${current.title}`}
-                  className={`group relative flex w-full justify-center overflow-hidden rounded-[clamp(14px,1.6vw,22px)] border ${line} bg-black`}
+                  className="group relative flex w-full items-center justify-center"
                 >
-                  {/* frame is sized to the artwork's natural aspect ratio (223/398) */}
+                  {/* frame is sized by height so the full portrait poster stays intact */}
                   <div
-                    className="w-full overflow-hidden"
-                    style={{ aspectRatio: "223/398", maxHeight: "clamp(300px,54vh,620px)", maxWidth: "100%" }}
+                    className={`relative overflow-hidden rounded-[clamp(14px,1.6vw,22px)] border ${line} bg-black`}
+                    style={{
+                      aspectRatio: "223/398",
+                      height: "clamp(360px, 62vh, 720px)",
+                      width: "auto",
+                      maxWidth: "100%",
+                    }}
                   >
                     <img
                       key={current.thumb}
                       src={current.thumb}
                       alt={current.title}
-                      className="h-full w-full object-cover transition-all duration-500 ease-out group-hover:scale-[1.03]"
+                      className="h-full w-full object-contain transition-all duration-500 ease-out"
                       style={{
                         opacity: phase === "in" ? 1 : 0,
                         transform:
-                          phase === "in" ? "translateX(0) scale(1)" : "translateX(14px) scale(1.015)",
+                          phase === "in" ? "translateX(0) scale(1)" : "translateX(14px) scale(1.01)",
                         transitionDuration: "480ms",
                       }}
                     />
+                    <span className="absolute bottom-5 right-5 grid h-12 w-12 place-items-center rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-md transition group-hover:bg-white/25">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </span>
                   </div>
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
-                  <span className="absolute bottom-5 left-5 grid h-12 w-12 place-items-center rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-md transition group-hover:bg-white/25">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </span>
                 </button>
+
               </div>
 
               {/* editorial information panel */}
@@ -358,9 +363,10 @@ export default function MastersVideos({
                         src={v.thumb}
                         alt=""
                         loading="lazy"
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-contain"
                       />
                     </button>
+
                   ))}
                 </div>
               </div>
