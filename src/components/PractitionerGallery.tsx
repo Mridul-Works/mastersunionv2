@@ -107,25 +107,41 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
    * The first event past the threshold advances a single card; everything else
    * until the gesture goes idle (and the animation completes) is ignored.
    */
-  const gesture = useRef({ active: false, idle: 0 });
+  const gesture = useRef({ active: false });
   const idleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const clearGestureWhenIdle = useCallback(() => {
+    if (idleTimer.current) clearTimeout(idleTimer.current);
+    idleTimer.current = setTimeout(() => {
+      // only end the gesture once the arc has settled, so a long burst of wheel
+      // events can never queue up a second advance
+      if (lock.current) {
+        clearGestureWhenIdle();
+        return;
+      }
+      gesture.current.active = false;
+    }, 200);
+  }, []);
+
   const onWheel = (e: React.WheelEvent) => {
     const dx = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : 0;
     if (!dx) return;
     e.preventDefault();
 
-    // any wheel activity keeps the current gesture alive
-    if (idleTimer.current) clearTimeout(idleTimer.current);
-    idleTimer.current = setTimeout(() => {
-      gesture.current.active = false;
-    }, 160);
-
-    if (gesture.current.active || lock.current) return; // same gesture, or still animating
+    clearGestureWhenIdle(); // any wheel activity keeps the current gesture alive
+    if (gesture.current.active || lock.current) return; // same gesture, or animating
     if (Math.abs(dx) < 8) return; // ignore tiny accidental trackpad drift
 
     gesture.current.active = true;
     go(dx > 0 ? 1 : -1);
   };
+
+  useEffect(
+    () => () => {
+      if (idleTimer.current) clearTimeout(idleTimer.current);
+    },
+    [],
+  );
+
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
