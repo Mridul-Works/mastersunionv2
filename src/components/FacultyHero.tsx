@@ -227,9 +227,8 @@ export default function FacultyHero({
   // so the image layers themselves stay in their final composition (no transform).
   const imageEntranceStyle = { opacity: 1, transform: "none" } as const;
 
-  const CLIP_HIDDEN = "polygon(100% 0, 100% 0, 100% 100%, 100% 100%)";
-  const CLIP_MID = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
-  const CLIP_FULL = "polygon(0% 0, 100% 0, 100% 100%, 0% 100%)";
+const CLIP_HIDDEN = "polygon(100% 0, 100% 0, 100% 100%, 100% 100%)";
+const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
 
   return (
     <section
