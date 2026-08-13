@@ -47,9 +47,10 @@ export default function FacultyStatsCard({
         <div className={`h-[2px] w-full bg-gradient-to-r from-transparent to-transparent ${dark ? "via-white/15" : "via-black/10"}`} />
       </div>
 
-      <div className={`mt-3 grid w-full grid-cols-2 gap-x-3 gap-y-3 lg:mt-1.5 lg:gap-x-4 lg:gap-y-0`}
-        style={{ gridTemplateColumns: undefined }}
-        data-cols={stats.length}>
+      <div
+        className="mt-3 grid w-full grid-cols-2 gap-x-3 gap-y-3 lg:mt-1.5 lg:gap-x-4 lg:gap-y-0"
+        style={{ ["--lg-cols" as string]: stats.length }}
+      >
         {stats.map((s) => (
           <div key={s.l} className="group flex min-w-0 flex-col items-center text-center">
             <div
