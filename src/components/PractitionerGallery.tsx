@@ -41,108 +41,153 @@ const VISIBLE = 3;
  */
 export default function PractitionerGallery({ items }: { items: GalleryItem[] }) {
   const n = items.length;
-  const [active, setActive] = useState(0);
   const [flipped, setFlipped] = useState<number | null>(null);
-  const [isAnimating, setIsAnimating] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const wasHoveredRef = useRef(false);
 
+  /**
+   * The gallery is one physical 3D wheel: `pos` is a CONTINUOUS rotational
+   * position measured in cards. Gestures push it directly, inertia carries it,
+   * and it only settles onto an integer (the new active card) once motion dies.
+   */
+  const posRef = useRef(0);
+  const velRef = useRef(0);
+  const targetRef = useRef<number | null>(0);
+  const [pos, setPos] = useState(0);
+  const rafRef = useRef<number | null>(null);
+  const draggingRef = useRef(false);
+  const [settledIdx, setSettledIdx] = useState(0);
 
-  const TRANSITION_MS = 1400;
-  const lock = useRef(false);
-  const unlockTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /** px of horizontal travel that equals one card of wheel rotation. */
+  const STEP_PX = 260;
+  const FRICTION = 0.938;
+  const SPRING = 0.1;
+  const DAMP = 0.76;
+  const MAX_VEL = 0.55;
 
-  /** Advance exactly one card, then lock every input until the arc settles. */
-  const go = useCallback(
-    (dir: number) => {
-      if (lock.current) return;
-      lock.current = true;
-      setIsAnimating(true);
-      setFlipped(null);
-      setActive((a) => ((a + Math.sign(dir)) % n + n) % n);
-      if (unlockTimer.current) clearTimeout(unlockTimer.current);
-      unlockTimer.current = setTimeout(() => {
-        lock.current = false;
-        setIsAnimating(false);
-      }, TRANSITION_MS);
-    },
-    [n],
-  );
+  const mod = useCallback((v: number) => ((v % n) + n) % n, [n]);
+
+  const tick = useCallback(() => {
+    rafRef.current = null;
+    if (!draggingRef.current) {
+      const t = targetRef.current;
+      if (t !== null) {
+        velRef.current += (t - posRef.current) * SPRING;
+        velRef.current *= DAMP;
+      } else {
+        velRef.current *= FRICTION;
+        if (Math.abs(velRef.current) < 0.004) {
+          targetRef.current = Math.round(posRef.current);
+        }
+      }
+      velRef.current = Math.max(-MAX_VEL, Math.min(MAX_VEL, velRef.current));
+      posRef.current += velRef.current;
+
+      const t2 = targetRef.current;
+      const settled =
+        t2 !== null && Math.abs(t2 - posRef.current) < 0.0015 && Math.abs(velRef.current) < 0.0015;
+      if (settled) {
+        posRef.current = t2 as number;
+        velRef.current = 0;
+        setPos(posRef.current);
+        setSettledIdx(mod(Math.round(posRef.current)));
+        return; // wheel at rest — stop the loop
+      }
+    }
+    setPos(posRef.current);
+    rafRef.current = requestAnimationFrame(tick);
+  }, [mod]);
+
+  const kick = useCallback(() => {
+    if (rafRef.current === null) rafRef.current = requestAnimationFrame(tick);
+  }, [tick]);
 
   useEffect(
     () => () => {
-      if (unlockTimer.current) clearTimeout(unlockTimer.current);
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
     },
     [],
   );
 
-  // signed offset from the active card, wrapped so the arc is continuous
-  const offsetOf = useCallback(
-    (i: number) => {
-      let d = i - active;
-      if (d > n / 2) d -= n;
-      if (d < -n / 2) d += n;
-      return d;
+  /** Controlled wheel rotation used by arrows, keys and autoplay. */
+  const go = useCallback(
+    (dir: number) => {
+      setFlipped(null);
+      const base = targetRef.current !== null ? targetRef.current : Math.round(posRef.current);
+      targetRef.current = base + Math.sign(dir);
+      kick();
     },
-    [active, n],
+    [kick],
   );
 
-  /** Horizontal travel that counts as an intentional gesture. */
-  const THRESHOLD = 28;
+  const active = settledIdx;
 
-  // drag / swipe — fires the moment the threshold is crossed, once per gesture
-  const drag = useRef({ down: false, startX: 0, moved: 0, fired: false });
+  // signed offset from the continuous wheel position, wrapped so the arc loops
+  const offsetOf = useCallback(
+    (i: number) => {
+      let d = i - pos;
+      d = ((d % n) + n) % n;
+      if (d > n / 2) d -= n;
+      return d;
+    },
+    [pos, n],
+  );
+
+  // drag / swipe — the wheel follows the pointer 1:1, then keeps its momentum
+  const drag = useRef({ down: false, startX: 0, startPos: 0, moved: 0, lastX: 0, lastTs: 0 });
   const onPointerDown = (e: React.PointerEvent) => {
-    drag.current = { down: true, startX: e.clientX, moved: 0, fired: false };
+    draggingRef.current = true;
+    targetRef.current = null;
+    velRef.current = 0;
+    drag.current = {
+      down: true,
+      startX: e.clientX,
+      startPos: posRef.current,
+      moved: 0,
+      lastX: e.clientX,
+      lastTs: e.timeStamp || performance.now(),
+    };
+    kick();
   };
   const onPointerMove = (e: React.PointerEvent) => {
-    if (!drag.current.down || drag.current.fired) return;
+    if (!drag.current.down) return;
     const dx = e.clientX - drag.current.startX;
     drag.current.moved = Math.abs(dx);
-    if (drag.current.moved > THRESHOLD) {
-      drag.current.fired = true; // no further movement in this gesture can advance again
-      go(dx < 0 ? 1 : -1);
-    }
+    posRef.current = drag.current.startPos - dx / STEP_PX;
+    setPos(posRef.current);
+
+    const now = e.timeStamp || performance.now();
+    const dt = Math.max(8, now - drag.current.lastTs);
+    velRef.current = -((e.clientX - drag.current.lastX) / STEP_PX) * (16 / dt);
+    drag.current.lastX = e.clientX;
+    drag.current.lastTs = now;
   };
   const endDrag = () => {
+    if (!drag.current.down) return;
     drag.current.down = false;
+    draggingRef.current = false;
+    targetRef.current = null; // free spin, friction settles it
+    kick();
   };
 
   /**
-   * Wheel / trackpad. A physical gesture is delimited purely by TIME between
-   * wheel events — never by cursor movement — so the pointer can stay perfectly
-   * still and each new swipe is detected on its own.
+   * Wheel / trackpad. Horizontal delta feeds the wheel's rotational velocity
+   * continuously — a stronger flick spins further, several cards can pass the
+   * centre in a single gesture, and there is no one-card-per-gesture snap.
    */
-  const GESTURE_GAP_MS = 100;
   const stageRef = useRef<HTMLDivElement | null>(null);
-  const gesture = useRef({ fired: false, accum: 0, lastTs: 0 });
 
   const handleWheel = useCallback(
     (e: WheelEvent) => {
       const dx = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : 0;
       if (!dx) return;
       e.preventDefault();
-
-      const g = gesture.current;
-      const now = e.timeStamp || performance.now();
-
-      // a pause in the event stream = the previous physical gesture ended
-      if (now - g.lastTs > GESTURE_GAP_MS) {
-        g.fired = false;
-        g.accum = 0;
-      }
-      g.lastTs = now;
-
-      if (g.fired || lock.current) return; // same gesture, or arc still moving
-
-      if (Math.sign(dx) !== Math.sign(g.accum)) g.accum = 0; // direction reversal
-      g.accum += dx;
-      if (Math.abs(g.accum) < THRESHOLD) return; // accidental drift
-
-      g.fired = true;
-      go(g.accum > 0 ? 1 : -1);
+      targetRef.current = null;
+      velRef.current += (dx / STEP_PX) * 0.5;
+      velRef.current = Math.max(-MAX_VEL, Math.min(MAX_VEL, velRef.current));
+      kick();
     },
-    [go],
+    [kick],
   );
 
   const handleWheelRef = useRef(handleWheel);
@@ -156,8 +201,6 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     return () => el.removeEventListener("wheel", listener);
   }, []);
 
-
-
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "ArrowRight") go(1);
@@ -168,10 +211,9 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
   }, [go]);
 
   /**
-   * Slow automatic rotation. Paused immediately while the cursor is inside the
-   * gallery, then resumes 1s after the cursor leaves. Manual navigation while
-   * hovered resets the timer, so the gallery never auto-advances right after a
-   * user-controlled transition.
+   * Slow automatic wheel rotation. Paused while the cursor is inside the
+   * gallery, resuming 1s after it leaves. The timer is keyed on the settled
+   * card, so any manual interaction naturally resets it.
    */
   const AUTOPLAY_MS = 4500;
   const RESUME_DELAY_MS = 1000;
@@ -188,11 +230,10 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     }
     const t = setTimeout(() => go(1), AUTOPLAY_MS);
     return () => clearTimeout(t);
-  }, [active, go, n, isHovered]);
-
-
+  }, [settledIdx, go, n, isHovered]);
 
   const activeImg = items[active]?.img;
+
 
   return (
     <div
