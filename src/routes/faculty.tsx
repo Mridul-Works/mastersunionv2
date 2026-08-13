@@ -245,6 +245,8 @@ function Portrait({ item, aspect = "aspect-[4/5]", dark = false }: { item: Edito
         <img
           src={item.img}
           alt={item.name}
+          loading="lazy"
+          decoding="async"
           className="h-full w-full object-cover grayscale transition duration-500 hover:grayscale-0"
         />
       ) : (
@@ -390,7 +392,7 @@ export const Route = createFileRoute("/faculty")({
 
 function FacultyPage() {
   return (
-    <main className="min-h-screen overflow-x-clip bg-[#0a0a0a] pb-24 text-white sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
+    <main className="min-h-[100svh] overflow-x-hidden bg-[#0a0a0a] pb-24 text-white sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
       <SectionNav items={NAV} applyHref="#cta" />
 
       {/* Chapter marker */}
