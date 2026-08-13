@@ -3,6 +3,7 @@ import { ArrowUpRight, Quote } from "lucide-react";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 import MastersVideos from "@/components/MastersVideos";
 import FacultyHero from "@/components/FacultyHero";
+import HeroToMastersTransition from "@/components/HeroToMastersTransition";
 import { buildFacultyStats, statsRefreshedLabel } from "@/lib/faculty-stats";
 
 
@@ -386,25 +387,28 @@ function FacultyPage() {
         </div>
       </div>
 
-      {/* HERO */}
-      <FacultyHero
-        stats={HERO_STATS}
-        refreshed={statsRefreshedLabel()}
-        universities={[
-          "Harvard",
-          "Wharton",
-          "Stanford",
-          "Kellogg",
-          "Cornell",
-          "NYU",
-          "Columbia",
-          "USC",
-          "Imperial",
-        ]}
+      {/* HERO — headline + image + By the Numbers card */}
+      <HeroToMastersTransition
+        hero={
+          <FacultyHero
+            stats={HERO_STATS}
+            refreshed={statsRefreshedLabel()}
+            universities={[
+              "Harvard",
+              "Wharton",
+              "Stanford",
+              "Kellogg",
+              "Cornell",
+              "NYU",
+              "Columbia",
+              "USC",
+              "Imperial",
+            ]}
+          />
+        }
+        next={<MastersVideos bg="bg-white" />}
       />
 
-      {/* 500+ MASTERS */}
-      <MastersVideos bg="bg-white" />
 
 
 
