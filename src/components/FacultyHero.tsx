@@ -85,10 +85,12 @@ export default function FacultyHero() {
   };
 
   // ---- Cursor "develop the photograph" colour reveal (desktop / fine pointer) ----
+  // Driven by direct DOM style writes (no React state) so scrolling never re-renders the hero.
   const photoRef = useRef<HTMLDivElement | null>(null);
+  const maskRef = useRef<HTMLImageElement | null>(null);
   const target = useRef({ x: 0, y: 0, s: 0 });
   const current = useRef({ x: 0, y: 0, s: 0 });
-  const [reveal, setReveal] = useState({ x: 0, y: 0, s: 0 });
+
 
   useEffect(() => {
     if (!window.matchMedia("(pointer: fine)").matches) return;
