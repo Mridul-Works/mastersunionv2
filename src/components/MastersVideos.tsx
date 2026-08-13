@@ -212,25 +212,25 @@ export default function MastersVideos({
       ref={sectionRef}
       className={`mv-section ${revealed ? "is-revealed" : ""} relative flex w-full min-h-[100svh] flex-col justify-center overflow-x-hidden border-t border-black/10 ${bg}`}
       style={{
-        paddingTop: "clamp(1.25rem,3.5vh,3rem)",
-        paddingBottom: "clamp(4.5rem,9vh,6.5rem)",
+        paddingTop: "clamp(1rem,2.5vh,2.25rem)",
+        paddingBottom: "clamp(3.5rem,7vh,5.5rem)",
       }}
     >
       {statsSlot ? (
-        <div className="mx-auto w-full max-w-[1280px] px-5 md:px-10">{statsSlot}</div>
+        <div className="mx-auto w-full max-w-[1400px] px-5 md:px-10">{statsSlot}</div>
       ) : null}
 
       <div
-        className="mx-auto grid w-full max-w-[1280px] grid-cols-1 px-5 md:px-10 lg:grid-cols-12 lg:items-start"
+        className="mx-auto grid w-full max-w-[1400px] grid-cols-1 px-5 md:px-10 lg:grid-cols-[minmax(0,39fr)_minmax(0,61fr)] lg:items-center"
         style={{
-          gap: "clamp(1.5rem,3.5vh,2.5rem)",
-          columnGap: "clamp(1.5rem,3vw,4rem)",
-          paddingTop: "clamp(1.5rem,4vh,3rem)",
+          gap: "clamp(1.25rem,2.4vh,1.75rem)",
+          columnGap: "clamp(1.5rem,3vw,3.5rem)",
+          paddingTop: "clamp(0.9rem,2vh,1.5rem)",
         }}
       >
 
-        {/* Left: sticky editorial column */}
-        <div className="min-w-0 lg:col-span-4 lg:sticky lg:top-24">
+        {/* Left: editorial column, vertically centered against the cards */}
+        <div className="min-w-0">
           <p className="mv-reveal mb-[clamp(0.5rem,1.4vh,1rem)] font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]">
             500+ Masters
           </p>
