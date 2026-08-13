@@ -237,13 +237,13 @@ export default function MastersVideos({
             500+ Masters
           </p>
           <h2
-            className="mv-reveal text-[clamp(1.5rem,2.9vw,2.5rem)] font-medium italic leading-[1.1] tracking-tight text-black"
+            className={`mv-reveal text-[clamp(1.5rem,2.9vw,2.5rem)] font-medium italic leading-[1.1] tracking-tight ${dark ? "text-white" : "text-black"}`}
             style={{ fontFamily: "'Fraunces', Georgia, serif", transitionDelay: "260ms" }}
           >
             Built by Scholars, Led by Industry Practitioners
           </h2>
           <p
-            className="mv-reveal mt-[clamp(0.75rem,2.2vh,1.5rem)] max-w-sm text-[clamp(12.5px,1.6vh,14px)] leading-relaxed text-black/60"
+            className={`mv-reveal mt-[clamp(0.75rem,2.2vh,1.5rem)] max-w-sm text-[clamp(12.5px,1.6vh,14px)] leading-relaxed ${dark ? "text-white/60" : "text-black/60"}`}
             style={{ transitionDelay: "420ms" }}
           >
             At Masters' Union, your classroom is powered by Ivy League academics and global business
@@ -261,7 +261,7 @@ export default function MastersVideos({
               onClick={() => go(-1)}
               disabled={safePage === 0}
               aria-label="Previous videos"
-              className="group grid h-[clamp(2.4rem,4.5vh,3rem)] w-[clamp(2.4rem,4.5vh,3rem)] shrink-0 place-items-center rounded-full border border-black/10 text-black transition hover:border-black disabled:opacity-30"
+              className={`group grid h-[clamp(2.4rem,4.5vh,3rem)] w-[clamp(2.4rem,4.5vh,3rem)] shrink-0 place-items-center rounded-full border transition hover:border-black disabled:opacity-30 ${dark ? "border-white/30 text-white hover:border-white" : "border-black/10 text-black hover:border-black"}`}
             >
               <span className="transition-transform group-hover:-translate-x-0.5">←</span>
             </button>
@@ -270,11 +270,11 @@ export default function MastersVideos({
               onClick={() => go(1)}
               disabled={safePage >= pages - 1}
               aria-label="Next videos"
-              className="group grid h-[clamp(2.4rem,4.5vh,3rem)] w-[clamp(2.4rem,4.5vh,3rem)] shrink-0 place-items-center rounded-full bg-black text-white transition hover:bg-black/85 disabled:opacity-30"
+              className={`group grid h-[clamp(2.4rem,4.5vh,3rem)] w-[clamp(2.4rem,4.5vh,3rem)] shrink-0 place-items-center rounded-full transition hover:bg-black/85 disabled:opacity-30 ${dark ? "bg-white text-black" : "bg-black text-white"}`}
             >
               <span className="transition-transform group-hover:translate-x-0.5">→</span>
             </button>
-            <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-black/45">
+            <span className={`font-mono text-[10px] uppercase tracking-[0.24em] ${dark ? "text-white/45" : "text-black/45"}`}>
               {String(safePage + 1).padStart(2, "0")} / {String(pages).padStart(2, "0")}
             </span>
           </div>
