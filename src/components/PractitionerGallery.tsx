@@ -437,6 +437,16 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
 
                       <Initials name={item.name} />
                     )}
+                    {isActive && !isFlipped ? (
+                      <div
+                        className={`pointer-events-none absolute left-4 top-4 z-10 flex items-center gap-1.5 text-[9px] uppercase tracking-[0.22em] transition-all duration-300 md:left-5 md:top-5 md:text-[10px] ${hasEntered && !hasFlipped ? "animate-mu-flip-hint" : ""} ${activeHovered ? "text-white/85" : "text-white/55"}`}
+                        style={{ fontFamily: MONO }}
+                        aria-hidden
+                      >
+                        <span>Click to flip</span>
+                        <span aria-hidden>↻</span>
+                      </div>
+                    ) : null}
                   </div>
 
                   {/* BACK — practitioner details */}
