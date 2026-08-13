@@ -43,34 +43,9 @@ export default function FacultyStatsCard({
         ) : null}
       </div>
 
-      <div className="relative mt-3 h-[10px] w-full overflow-hidden lg:mt-1.5" aria-hidden>
-        {/* Base convex line: thicker at center, thinner at sides */}
+      <div className="mt-3 overflow-hidden lg:mt-1.5" aria-hidden>
         <div
-          className="absolute inset-0"
-          style={{
-            background: `radial-gradient(ellipse 35% 100% at center, ${dark ? "rgba(255,255,255,0.18)" : "rgba(0,0,0,0.12)"} 0%, transparent 70%)`,
-          }}
-        />
-        {/* Left pulse traveling to center */}
-        <div
-          className="mu-pulse-left-to-center absolute left-0 top-0 h-full w-1/2"
-          style={{
-            background: `linear-gradient(90deg, transparent 0%, ${dark ? "rgba(0,220,150,0.85)" : "rgba(0,220,150,0.55)"} 60%, ${dark ? "rgba(0,120,255,0.85)" : "rgba(0,120,255,0.55)"} 100%)`,
-          }}
-        />
-        {/* Right pulse traveling to center */}
-        <div
-          className="mu-pulse-right-to-center absolute right-0 top-0 h-full w-1/2"
-          style={{
-            background: `linear-gradient(270deg, transparent 0%, ${dark ? "rgba(0,220,150,0.85)" : "rgba(0,220,150,0.55)"} 60%, ${dark ? "rgba(0,120,255,0.85)" : "rgba(0,120,255,0.55)"} 100%)`,
-          }}
-        />
-        {/* Center burst when pulses meet */}
-        <div
-          className="mu-pulse-center-burst absolute left-1/2 top-0 h-full w-[40%]"
-          style={{
-            background: `radial-gradient(ellipse 70% 100% at center, ${dark ? "rgba(255,77,77,0.9)" : "rgba(255,77,77,0.55)"} 0%, ${dark ? "rgba(0,230,118,0.9)" : "rgba(0,230,118,0.55)"} 40%, ${dark ? "rgba(41,121,255,0.9)" : "rgba(41,121,255,0.55)"} 70%, transparent 100%)`,
-          }}
+          className={`h-[2px] w-full origin-center ${dark ? "mu-pulse-rgb" : "mu-pulse-rgb mu-pulse-rgb-light"}`}
         />
       </div>
 
