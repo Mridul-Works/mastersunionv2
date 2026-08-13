@@ -324,17 +324,25 @@ export default function FacultyHero({
             }}
             aria-hidden
           >
-            <div
+            <motion.div
               ref={photoRef}
               className="absolute inset-0 z-0"
-
+              initial={noMotion ? false : { clipPath: CLIP_HIDDEN }}
+              animate={noMotion ? { clipPath: CLIP_FULL } : { clipPath: [CLIP_HIDDEN, CLIP_MID, CLIP_FULL] }}
+              transition={
+                noMotion
+                  ? { duration: 0 }
+                  : { duration: 1.2, ease: "circOut", times: [0, 0.6, 1] }
+              }
               style={{
+                clipPath: CLIP_FULL,
                 WebkitMaskImage:
                   "radial-gradient(70% 150% at 82% 50%, #000 0%, rgba(0,0,0,0.98) 44%, rgba(0,0,0,0.72) 64%, rgba(0,0,0,0.3) 84%, rgba(0,0,0,0) 100%)",
                 maskImage:
                   "radial-gradient(70% 150% at 82% 50%, #000 0%, rgba(0,0,0,0.98) 44%, rgba(0,0,0,0.72) 64%, rgba(0,0,0,0.3) 84%, rgba(0,0,0,0) 100%)",
                 WebkitMaskRepeat: "no-repeat",
                 maskRepeat: "no-repeat",
+                willChange: "clip-path",
               }}
             >
               <img
