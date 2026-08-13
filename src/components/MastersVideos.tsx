@@ -162,8 +162,10 @@ function usePerView() {
 
 export default function MastersVideos({
   bg = "bg-[#F5F3EE]",
+  statsSlot,
 }: {
   bg?: string;
+  statsSlot?: React.ReactNode;
 }) {
   const [open, setOpen] = useState<MasterVideo | null>(null);
   const perView = usePerView();
@@ -210,6 +212,12 @@ export default function MastersVideos({
       ref={sectionRef}
       className={`mv-section ${revealed ? "is-revealed" : ""} relative w-full overflow-x-hidden border-t border-black/10 ${bg}`}
     >
+      {statsSlot ? (
+        <div className="mx-auto w-full max-w-[1280px] px-5 pt-[clamp(3rem,7vw,5.5rem)] md:px-10">
+          {statsSlot}
+        </div>
+      ) : null}
+
       <div className="mx-auto grid w-full max-w-[1280px] grid-cols-1 gap-10 px-5 py-[clamp(3rem,7vw,5.5rem)] md:px-10 lg:grid-cols-12 lg:items-start lg:gap-16">
         {/* Left: sticky editorial column */}
         <div className="min-w-0 lg:col-span-4 lg:sticky lg:top-24">

@@ -4,6 +4,7 @@ import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 import MastersVideos from "@/components/MastersVideos";
 import FacultyHero from "@/components/FacultyHero";
 import HeroFadeOut from "@/components/HeroFadeOut";
+import FacultyStatsCard from "@/components/FacultyStatsCard";
 import { buildFacultyStats, statsRefreshedLabel } from "@/lib/faculty-stats";
 
 
@@ -389,25 +390,30 @@ function FacultyPage() {
 
       {/* SECTION 1 — HERO: label, headline, description, image, scroll cue, stats card */}
       <HeroFadeOut>
-        <FacultyHero
-          stats={HERO_STATS}
-          refreshed={statsRefreshedLabel()}
-          universities={[
-            "Harvard",
-            "Wharton",
-            "Stanford",
-            "Kellogg",
-            "Cornell",
-            "NYU",
-            "Columbia",
-            "USC",
-            "Imperial",
-          ]}
-        />
+        <FacultyHero />
       </HeroFadeOut>
 
       {/* SECTION 2 — MASTERS: Built by Scholars, Led by Industry Practitioners */}
-      <MastersVideos bg="bg-white" />
+      <MastersVideos
+        bg="bg-white"
+        statsSlot={
+          <FacultyStatsCard
+            stats={HERO_STATS}
+            refreshed={statsRefreshedLabel()}
+            universities={[
+              "Harvard",
+              "Wharton",
+              "Stanford",
+              "Kellogg",
+              "Cornell",
+              "NYU",
+              "Columbia",
+              "USC",
+              "Imperial",
+            ]}
+          />
+        }
+      />
 
 
 

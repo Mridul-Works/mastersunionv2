@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import type { FacultyStat } from "@/lib/faculty-stats";
 
 const MONO = "'JetBrains Mono', ui-monospace, monospace";
 const SANS = "'Inter', system-ui, sans-serif";
@@ -28,12 +27,6 @@ const HEADLINE = (
 );
 
 
-const FALLBACK_STATS: FacultyStat[] = [
-  { v: "500+", l: "Masters on the roster" },
-  { v: "33%", l: "Active industry practitioners" },
-  { v: "18", l: "Universities represented" },
-  { v: "37", l: "Full-time PhD faculty" },
-];
 
 /** Demo's staggered entrance system: parent fades, children sequence at 0.15s. */
 const containerVariants: Variants = {
@@ -64,16 +57,7 @@ const itemFromBelow: Variants = {
  * radial/linear mask instead of sitting inside a rectangular frame.
  * Respects prefers-reduced-motion.
  */
-export default function FacultyHero({
-  stats,
-  refreshed,
-  universities,
-}: {
-  stats?: FacultyStat[];
-  refreshed?: string;
-  universities?: string[];
-}) {
-  const STATS = stats?.length ? stats : FALLBACK_STATS;
+export default function FacultyHero() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [animateIn, setAnimateIn] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
@@ -239,7 +223,7 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
     >
       <div
         className="page-gutter relative z-10 mx-auto grid w-full max-w-[1440px] grid-cols-1 items-stretch gap-0 lg:grid-cols-12"
-        style={{ minHeight: "clamp(560px, calc(100svh - 150px), 1000px)" }}
+        style={{ minHeight: "clamp(560px, calc(100svh - 150px), 1000px)", paddingBottom: "clamp(2rem,6vh,4.5rem)" }}
       >
         {/* Left content column: architectural black space */}
         <div className="relative flex flex-col justify-center py-[clamp(1.25rem,3.2vh,2.25rem)] lg:col-span-7 lg:pr-10">
@@ -411,106 +395,6 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
         </button>
       </div>
 
-      {/* BY THE NUMBERS — unified glassmorphic panel (full width below the split) */}
-      <div className="page-gutter relative z-10 mx-auto w-full max-w-[1440px] pb-[clamp(3.5rem,8vh,6.25rem)]">
-        <div className="mt-[clamp(0.85rem,1.9vh,1.3rem)]">
-          <div
-            className="hero-fade-up pointer-events-none w-full rounded-[clamp(16px,2.2vw,24px)] border border-t-0 border-white/10 bg-white/[0.02] shadow-[0_20px_60px_rgba(0,0,0,0.20)] backdrop-blur-[18px]"
-            style={{
-              animationDelay: "1200ms",
-              ["--card-pad" as string]: "clamp(1rem, 2.4vw, 2.25rem)",
-              paddingInline: "var(--card-pad)",
-              paddingBlock: "clamp(1rem, 2.2vh, 1.85rem)",
-            }}
-          >
-            <div
-              className="flex flex-wrap items-center justify-start gap-2 text-[clamp(9px,1.9vw,10px)] uppercase tracking-[0.22em] text-white/50 sm:gap-3 sm:tracking-[0.24em]"
-              style={{ fontFamily: MONO }}
-            >
-              <span className="inline-flex items-center justify-center whitespace-nowrap rounded-[999px] border border-[#CBE4DE]/[0.25] bg-[#CBE4DE]/[0.18] px-[7px] py-1 text-center text-white backdrop-blur-[8px]">
-                By the numbers
-              </span>
-              {refreshed ? (
-                <>
-                  <span className="hidden h-3 w-px bg-white/25 sm:block" aria-hidden />
-                  <span className="inline-flex items-center justify-center whitespace-nowrap rounded-[999px] border border-[#CBE4DE]/[0.25] bg-[#CBE4DE]/[0.18] px-[7px] py-1 text-center uppercase tracking-[inherit] text-white backdrop-blur-[8px]">
-                    {refreshed}
-                  </span>
-                </>
-              ) : null}
-            </div>
-            <div className="mt-[clamp(0.9rem,2vh,1.25rem)] overflow-hidden" aria-hidden>
-              <div className="mu-pulse-center-out h-[2px] w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-            </div>
-
-            <div className="mt-[clamp(0.9rem,2vh,1.25rem)] grid w-full grid-cols-2 gap-x-3 gap-y-6 lg:grid-cols-4 lg:gap-x-4 lg:gap-y-8">
-              {STATS.map((s, i) => (
-                <div
-                  key={s.l}
-                  className="hero-fade-up group pointer-events-auto flex min-w-0 flex-col items-center text-center"
-                  style={{ animationDelay: `${1300 + i * 110}ms` }}
-                >
-                  <div
-                    className="text-[clamp(1.5rem,4.6vw,2.6rem)] font-medium leading-[0.9] tracking-[-0.035em]"
-                    style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}
-                  >
-                    {s.v}
-                  </div>
-                  <div
-                    className="mt-2 max-w-full text-[clamp(9px,1.9vw,10px)] font-medium uppercase leading-[1.5] tracking-[0.14em] text-white/60 sm:mt-2.5 sm:tracking-[0.16em] lg:whitespace-nowrap"
-                    style={{ fontFamily: MONO }}
-                  >
-                    {s.l}
-                  </div>
-                  <div
-                    className="mx-auto mt-3 h-px w-8 origin-center animate-pulse bg-white/25 transition-all duration-500 group-hover:w-24 group-hover:bg-[#CBE4DE]"
-                    style={{ animationDelay: `${1.5 + i * 0.18}s` }}
-                    aria-hidden
-                  />
-                </div>
-              ))}
-            </div>
-
-            {/* University names — quiet editorial footer inside the glass panel */}
-            {universities?.length ? (
-              <div
-                className="hero-fade-up mt-[clamp(0.9rem,2vh,1.25rem)] pt-[clamp(0.9rem,2vh,1.25rem)]"
-                style={{ animationDelay: "1700ms" }}
-              >
-                <div
-                  className="pointer-events-auto overflow-x-auto [scrollbar-width:none] md:overflow-visible [&::-webkit-scrollbar]:hidden"
-                  style={{
-                    marginInline: "calc(var(--card-pad) * -1)",
-                    paddingInline: "var(--card-pad)",
-                  }}
-                >
-                  <div
-                    className="flex min-w-max items-center md:grid md:min-w-0"
-                    style={{
-                      gridTemplateColumns: `repeat(${universities.length}, minmax(min-content, 1fr))`,
-                    }}
-                  >
-                    {universities.map((name) => (
-                      <div key={name} className="flex items-center justify-center">
-                        <span
-                          className="whitespace-nowrap text-center text-[clamp(0.78rem,2.1vw,0.95rem)] italic tracking-[0.01em] text-white/75 transition-colors hover:text-white"
-                          style={{ fontFamily: SERIF_IT }}
-                          title={name}
-                        >
-                          {name}
-                        </span>
-                        <span className="mx-2 text-white/20 md:ml-3 md:mr-0" aria-hidden>
-                          |
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ) : null}
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
