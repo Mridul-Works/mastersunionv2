@@ -217,11 +217,11 @@ export default function MastersVideos({
       }}
     >
       {statsSlot ? (
-        <div className="mx-auto w-full max-w-[1400px] px-5 md:px-10">{statsSlot}</div>
+        <div className="mx-auto w-full max-w-[1520px] px-5 md:px-10">{statsSlot}</div>
       ) : null}
 
       <div
-        className="mx-auto grid w-full max-w-[1400px] grid-cols-1 px-5 md:px-10 lg:grid-cols-[minmax(0,39fr)_minmax(0,61fr)] lg:items-center"
+        className="mx-auto grid w-full max-w-[1520px] grid-cols-1 px-5 md:px-10 lg:grid-cols-[minmax(0,39fr)_minmax(0,61fr)] lg:items-center"
         style={{
           gap: "clamp(1.25rem,2.4vh,1.75rem)",
           columnGap: "clamp(1.5rem,3vw,3.5rem)",
