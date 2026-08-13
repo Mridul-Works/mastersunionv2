@@ -259,7 +259,7 @@ export default function MastersVideos({
               onClick={() => go(-1)}
               disabled={safePage === 0}
               aria-label="Previous videos"
-              className="group grid h-12 w-12 shrink-0 place-items-center rounded-full border border-black/10 text-black transition hover:border-black disabled:opacity-30"
+              className="group grid h-[clamp(2.4rem,4.5vh,3rem)] w-[clamp(2.4rem,4.5vh,3rem)] shrink-0 place-items-center rounded-full border border-black/10 text-black transition hover:border-black disabled:opacity-30"
             >
               <span className="transition-transform group-hover:-translate-x-0.5">←</span>
             </button>
@@ -268,7 +268,7 @@ export default function MastersVideos({
               onClick={() => go(1)}
               disabled={safePage >= pages - 1}
               aria-label="Next videos"
-              className="group grid h-12 w-12 shrink-0 place-items-center rounded-full bg-black text-white transition hover:bg-black/85 disabled:opacity-30"
+              className="group grid h-[clamp(2.4rem,4.5vh,3rem)] w-[clamp(2.4rem,4.5vh,3rem)] shrink-0 place-items-center rounded-full bg-black text-white transition hover:bg-black/85 disabled:opacity-30"
             >
               <span className="transition-transform group-hover:translate-x-0.5">→</span>
             </button>
@@ -296,7 +296,7 @@ export default function MastersVideos({
                 }}
               >
                 <div className="relative overflow-hidden rounded-[12px] bg-black shadow-[0_12px_34px_-20px_rgba(0,0,0,0.55)] transition duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_24px_46px_-22px_rgba(0,0,0,0.6)]">
-                  <div className="aspect-[9/16] w-full overflow-hidden">
+                  <div className="h-[clamp(210px,34vh,420px)] w-full overflow-hidden">
                     <img
                       src={v.thumb}
                       alt={v.title}
@@ -314,11 +314,11 @@ export default function MastersVideos({
                     </div>
                   </div>
                 </div>
-                <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.2em] text-[#B89146]">
+                <p className="mt-[clamp(0.6rem,1.8vh,1.25rem)] text-[10px] font-bold uppercase tracking-[0.2em] text-[#B89146]">
                   {v.meta}
                 </p>
                 <h3
-                  className="mt-1 truncate text-[17px] leading-snug text-black"
+                  className="mt-1 truncate text-[clamp(14px,1.9vh,17px)] leading-snug text-black"
                   style={{ fontFamily: "'Fraunces', Georgia, serif" }}
                 >
                   {v.title}
