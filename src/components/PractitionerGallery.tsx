@@ -475,7 +475,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
           type="button"
           onClick={() => go(-1)}
           aria-label="Previous practitioner"
-          style={{ left: `max(8px, calc(50% - ${geo.cw / 2 + 62}px))` }}
+          style={{ left: `max(8px, calc(50% - ${geo.cw / 2 + 96}px))` }}
           className="absolute top-1/2 z-[200] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/30 text-[14px] text-white/70 backdrop-blur-sm transition-colors hover:border-white/50 hover:text-white"
         >
           ←
@@ -484,7 +484,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
           type="button"
           onClick={() => go(1)}
           aria-label="Next practitioner"
-          style={{ right: `max(8px, calc(50% - ${geo.cw / 2 + 62}px))` }}
+          style={{ right: `max(8px, calc(50% - ${geo.cw / 2 + 96}px))` }}
           className="absolute top-1/2 z-[200] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/30 text-[14px] text-white/70 backdrop-blur-sm transition-colors hover:border-white/50 hover:text-white"
         >
           →
