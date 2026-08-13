@@ -297,7 +297,7 @@ function EditorialGrid({
   return (
     <div className="mt-[clamp(1rem,2.5vh,2rem)] border-t border-black/15">
       {/* STATS HERO — replaces featured faculty */}
-      <div className="grid gap-x-8 gap-y-[clamp(1rem,2.2vh,1.5rem)] border-b border-black/15 py-[clamp(1rem,2.6vh,2rem)] md:grid-cols-12">
+      <div className="grid gap-x-8 gap-y-[clamp(0.75rem,1.8vh,1.25rem)] border-b border-black/15 py-[clamp(0.85rem,2vh,1.5rem)] md:grid-cols-12">
         <div className="md:col-span-5">
           <div className="text-[10.5px] uppercase tracking-[0.24em] text-black/50" style={{ fontFamily: MONO }}>
             The Mix · {sectionLabel}
