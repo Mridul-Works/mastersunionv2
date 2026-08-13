@@ -28,8 +28,17 @@ function Initials({ name }: { name: string }) {
   );
 }
 
-/** Cards visible on either side of the active one along the elliptical arc. */
-const VISIBLE = 3;
+/** Card geometry measured from the stage so the arc scales with the viewport. */
+type Geometry = { cw: number; ch: number; visible: number; spread: number; depth: number };
+
+function computeGeometry(stageW: number, viewportH: number): Geometry {
+  // Active card: a generous portrait that comfortably shows the upper body.
+  const ch = Math.max(300, Math.min(viewportH * 0.6, 660));
+  const cw = Math.min(ch * 0.76, stageW * 0.46);
+  const visible = stageW < 640 ? 1 : stageW < 1024 ? 2 : 3;
+  return { cw, ch, visible, spread: cw * 0.62, depth: cw * 0.66 };
+}
+
 
 /**
  * Immersive editorial practitioner gallery arranged along an invisible 3D
