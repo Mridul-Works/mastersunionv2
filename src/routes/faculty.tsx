@@ -475,7 +475,7 @@ function FacultyPage() {
             items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
           />
 
-          <p className="mt-[clamp(1rem,2.4vh,1.75rem)] max-w-[62ch] text-[0.95rem] leading-[1.6] text-black/70">
+          <p className="mt-[clamp(0.75rem,1.8vh,1.25rem)] max-w-[62ch] text-[0.88rem] leading-[1.55] text-black/70">
             Doctorates from IIM Ahmedabad, Bangalore, Calcutta, Kozhikode and Tiruchirappalli, IIT Bombay and Kanpur, Delhi University, Shiv Nadar, Christ University, TERI and the University of Bath — across finance, marketing, operations, organisational behaviour, economics, decision sciences and strategy.
           </p>
 
