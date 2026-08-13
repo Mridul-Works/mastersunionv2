@@ -370,7 +370,7 @@ export default function FacultyHero({
                     : imageEntranceStyle
                 }
               />
-            </div>
+            </motion.div>
 
             {/* Left-edge falloff so the split stays clean — narrower, lighter, to keep the shoe visible */}
             <div
