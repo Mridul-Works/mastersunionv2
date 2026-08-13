@@ -44,6 +44,9 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
   const [active, setActive] = useState(0);
   const [flipped, setFlipped] = useState<number | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const wasHoveredRef = useRef(false);
+
 
   const TRANSITION_MS = 1400;
   const lock = useRef(false);
