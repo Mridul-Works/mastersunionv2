@@ -307,6 +307,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
 
   return (
     <div
+      ref={wrapperRef}
       className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
