@@ -51,12 +51,12 @@ export default function FacultyStatsCard({
           <div key={s.l} className="group flex min-w-0 flex-col items-center text-center">
             <div
               className="text-[clamp(1.5rem,4.6vw,2.6rem)] font-medium leading-[0.9] tracking-[-0.035em]"
-              style={{ fontFamily: SERIF_IT, color: "#CBE4DE" }}
+              style={{ fontFamily: SERIF_IT, color: "var(--teal)" }}
             >
               {s.v}
             </div>
             <div
-              className="mt-2 max-w-full text-[clamp(9px,1.9vw,10px)] font-medium uppercase leading-[1.5] tracking-[0.14em] text-black/55 sm:mt-2.5 sm:tracking-[0.16em] lg:whitespace-nowrap"
+              className="mt-2 max-w-full text-[clamp(9px,1.9vw,10px)] font-medium uppercase leading-[1.5] tracking-[0.14em] text-black/90 sm:mt-2.5 sm:tracking-[0.16em] lg:whitespace-nowrap"
               style={{ fontFamily: MONO }}
             >
               {s.l}
