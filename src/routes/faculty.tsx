@@ -242,9 +242,9 @@ type EditorialItem = {
   img?: string;
 };
 
-function Portrait({ item, aspect = "aspect-[4/5]" }: { item: EditorialItem; aspect?: string }) {
+function Portrait({ item, aspect = "aspect-[4/5]", dark = false }: { item: EditorialItem; aspect?: string; dark?: boolean }) {
   return (
-    <div className={`w-full overflow-hidden bg-[#ececec] ${aspect}`}>
+    <div className={`w-full overflow-hidden ${dark ? "bg-[#1a1a1a]" : "bg-[#ececec]"} ${aspect}`}>
       {item.img ? (
         <img
           src={item.img}
@@ -252,28 +252,28 @@ function Portrait({ item, aspect = "aspect-[4/5]" }: { item: EditorialItem; aspe
           className="h-full w-full object-cover grayscale transition duration-500 hover:grayscale-0"
         />
       ) : (
-        <Initials name={item.name} />
+        <Initials name={item.name} dark={dark} />
       )}
     </div>
   );
 }
 
-function EditorialCaption({ item }: { item: EditorialItem }) {
+function EditorialCaption({ item, dark = false }: { item: EditorialItem; dark?: boolean }) {
   return (
     <>
-      <h3 className="mt-4 text-[1rem] font-medium leading-[1.2] tracking-[-0.005em] text-black">
+      <h3 className={`mt-4 text-[1rem] font-medium leading-[1.2] tracking-[-0.005em] ${dark ? "text-white" : "text-black"}`}>
         {item.name}
       </h3>
-      <div className="mt-1.5 text-[10.5px] uppercase leading-snug tracking-[0.14em] text-black/55" style={{ fontFamily: MONO }}>
+      <div className={`mt-1.5 text-[10.5px] uppercase leading-snug tracking-[0.14em] ${dark ? "text-white/55" : "text-black/55"}`} style={{ fontFamily: MONO }}>
         {item.role}
       </div>
       {item.sub ? (
-        <div className="mt-0.5 text-[10.5px] uppercase leading-snug tracking-[0.14em] text-black/40" style={{ fontFamily: MONO }}>
+        <div className={`mt-0.5 text-[10.5px] uppercase leading-snug tracking-[0.14em] ${dark ? "text-white/40" : "text-black/40"}`} style={{ fontFamily: MONO }}>
           {item.sub}
         </div>
       ) : null}
       {item.blurb ? (
-        <p className="mt-3 text-[13px] leading-[1.55] text-black/70">{item.blurb}</p>
+        <p className={`mt-3 text-[13px] leading-[1.55] ${dark ? "text-white/70" : "text-black/70"}`}>{item.blurb}</p>
       ) : null}
     </>
   );
