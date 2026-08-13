@@ -127,7 +127,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
         onPointerLeave={endDrag}
         onWheel={onWheel}
         onDragStart={(e) => e.preventDefault()}
-        className="relative h-[min(500px,max(420px,calc(100svh-260px)))] w-full sm:h-[min(clamp(430px,62vw,720px),max(400px,calc(100svh-240px)))]"
+        className="relative h-[min(460px,max(380px,calc(100svh-280px)))] w-full sm:h-[min(clamp(420px,52vw,600px),max(380px,calc(100svh-240px)))]"
         style={{
           perspectiveOrigin: "50% 50%",
           cursor: "grab",
