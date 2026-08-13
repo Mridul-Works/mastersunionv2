@@ -336,12 +336,6 @@ export default function FacultyHero({
               }
               style={{
                 clipPath: CLIP_FULL,
-                WebkitMaskImage:
-                  "radial-gradient(70% 150% at 82% 50%, #000 0%, rgba(0,0,0,0.98) 44%, rgba(0,0,0,0.72) 64%, rgba(0,0,0,0.3) 84%, rgba(0,0,0,0) 100%)",
-                maskImage:
-                  "radial-gradient(70% 150% at 82% 50%, #000 0%, rgba(0,0,0,0.98) 44%, rgba(0,0,0,0.72) 64%, rgba(0,0,0,0.3) 84%, rgba(0,0,0,0) 100%)",
-                WebkitMaskRepeat: "no-repeat",
-                maskRepeat: "no-repeat",
                 willChange: "clip-path",
               }}
             >
@@ -372,20 +366,12 @@ export default function FacultyHero({
               />
             </motion.div>
 
-            {/* Left-edge falloff so the split stays clean — narrower, lighter, to keep the shoe visible */}
+            {/* Very narrow, subtle left-edge falloff so the text column and image panel read as one scene */}
             <div
               className="absolute inset-0 z-10"
               style={{
                 backgroundImage:
-                  "linear-gradient(to right, #0a0a0a 0%, rgba(10,10,10,0.85) 8%, rgba(10,10,10,0.25) 18%, rgba(10,10,10,0) 30%)",
-              }}
-            />
-            <div className="absolute inset-x-0 top-0 z-10 h-[18%] bg-gradient-to-b from-[#0a0a0a] to-transparent" />
-            <div
-              className="absolute inset-x-0 -bottom-1 z-10 h-[10%]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to top, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.2) 55%, rgba(10,10,10,0) 100%)",
+                  "linear-gradient(to right, #0a0a0a 0%, rgba(10,10,10,0.55) 4%, rgba(10,10,10,0.15) 10%, rgba(10,10,10,0) 16%)",
               }}
             />
           </div>
