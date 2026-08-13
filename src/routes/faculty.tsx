@@ -551,7 +551,7 @@ function FacultyPage() {
 
 
       {/* TESTIMONIALS */}
-      <section className="screen-section border-y border-black/10 bg-neutral-50">
+      <section className="screen-section border-y border-black/10 bg-white">
         <div className="page-shell screen-y">
           <SectionHeader
             index="04"
@@ -561,7 +561,7 @@ function FacultyPage() {
           <div className="mt-[clamp(1.25rem,3vh,2rem)] grid gap-[clamp(1rem,2.4vh,1.5rem)] md:grid-cols-3">
 
             {TESTIMONIALS.map((t) => (
-              <figure key={t.a} className="border border-black/10 bg-white p-[clamp(1.25rem,3vh,2rem)]">
+              <figure key={t.a} className="border border-black/10 bg-neutral-50 p-[clamp(1.25rem,3vh,2rem)]">
                 <Quote className="size-5 text-black/40" />
                 <blockquote className="mt-4 text-[0.98rem] leading-[1.6] text-black/80">&ldquo;{t.q}&rdquo;</blockquote>
                 <figcaption className="mt-6 border-t border-black/10 pt-4">
