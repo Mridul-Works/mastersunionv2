@@ -144,7 +144,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
           const isFlipped = flipped === i;
 
           // elliptical arc: sideways travel eases off while depth keeps growing
-          const x = Math.sign(off) * (1 - Math.cos((Math.min(abs, VISIBLE) * Math.PI) / 9)) * 190 + off * 46;
+          const x = Math.sign(off) * (1 - Math.cos((Math.min(abs, VISIBLE) * Math.PI) / 9)) * 220 + off * 300;
           const z = -abs * 240;
           const rotY = -off * 26;
           const scale = Math.max(0.6, 1 - abs * 0.1);
@@ -170,13 +170,14 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                 opacity,
                 pointerEvents: hidden ? "none" : "auto",
                 transformStyle: "preserve-3d",
+                backgroundColor: "#0f0f0f",
                 transform: `translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale})`,
                 transition:
                   "transform 850ms cubic-bezier(0.16, 1, 0.3, 1), opacity 850ms cubic-bezier(0.16, 1, 0.3, 1)",
               }}
             >
               {/* portrait — sharp subject confined to the right image region */}
-              <div className="absolute inset-0 bg-[#131313]/60">
+              <div className="absolute inset-0 bg-[#0f0f0f]">
                 {item.img ? (
                   <div
                     className="absolute inset-x-0 top-0 h-[62%] sm:inset-y-0 sm:left-[46%] sm:right-0 sm:h-auto md:left-[48%]"
