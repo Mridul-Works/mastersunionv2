@@ -365,6 +365,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
           const grayscale = 1 - 0.65 * front;
           const shade = Math.min(0.55, abs * 0.22);
           const shadow = front > 0 ? `0 60px 130px -50px rgba(0,0,0,${0.95 * front})` : "none";
+          const activeScale = isActive && activeHovered ? 1.015 : 1;
 
           return (
             <article
@@ -390,7 +391,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                 boxShadow: shadow,
                 pointerEvents: hidden ? "none" : "auto",
                 backgroundColor: "#0f0f0f",
-                transform: `perspective(1900px) translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale})`,
+                transform: `perspective(1900px) translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale * activeScale})`,
                 willChange: "transform, opacity",
                 backfaceVisibility: "hidden",
               }}
