@@ -327,14 +327,14 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
               ref={photoRef}
               className="absolute inset-0 z-0"
               initial={noMotion ? false : { clipPath: CLIP_HIDDEN }}
-              animate={noMotion ? { clipPath: CLIP_FULL } : { clipPath: [CLIP_HIDDEN, CLIP_MID, CLIP_FULL] }}
+              animate={noMotion ? { clipPath: CLIP_REVEAL } : { clipPath: [CLIP_HIDDEN, CLIP_REVEAL] }}
               transition={
                 noMotion
                   ? { duration: 0 }
-                  : { duration: 1.2, ease: "circOut", times: [0, 0.6, 1] }
+                  : { duration: 1.2, ease: "circOut", times: [0, 1] }
               }
               style={{
-                clipPath: CLIP_FULL,
+                clipPath: CLIP_REVEAL,
                 willChange: "clip-path",
               }}
             >
