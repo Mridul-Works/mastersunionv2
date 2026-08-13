@@ -595,37 +595,3 @@ body::-webkit-scrollbar {
     will-change: auto;
   }
 }
-
-/* ── Scroll-linked fade in / out ───────────────────────────────────────── */
-.scroll-fade {
-  opacity: var(--vis, 1);
-  transform: translate3d(0, calc((1 - var(--vis, 1)) * 16px), 0);
-  will-change: opacity, transform;
-}
-
-/* Gradient text reveal — background-clip:text sweep, no per-character markup,
-   no duplicated text nodes. */
-.text-sweep {
-  background-image: linear-gradient(
-    100deg,
-    currentColor 0%,
-    currentColor calc(var(--sweep, 1) * 100%),
-    color-mix(in srgb, currentColor 16%, transparent) calc(var(--sweep, 1) * 100% + 16%),
-    color-mix(in srgb, currentColor 16%, transparent) 100%
-  );
-  background-repeat: no-repeat;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .scroll-fade {
-    opacity: 1;
-    transform: none;
-  }
-  .text-sweep {
-    background-image: none;
-    -webkit-text-fill-color: currentColor;
-  }
-}
