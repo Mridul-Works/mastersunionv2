@@ -99,24 +99,40 @@ export default function FacultyHero() {
     let frame = 0;
     let running = false;
 
+    const paint = (x: number, y: number, s: number) => {
+      const el = maskRef.current;
+      if (!el) return;
+      if (s <= 0.002) {
+        el.style.removeProperty("mask-image");
+        el.style.removeProperty("-webkit-mask-image");
+        el.style.willChange = "auto";
+        return;
+      }
+      const g = `radial-gradient(circle ${380 * s}px at ${x}px ${y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.9) 88%, #000 100%)`;
+      el.style.willChange = "mask-image";
+      el.style.setProperty("mask-image", g);
+      el.style.setProperty("-webkit-mask-image", g);
+    };
+
     const tick = () => {
       const c = current.current;
       const t = target.current;
       c.x += (t.x - c.x) * 0.16;
       c.y += (t.y - c.y) * 0.16;
       c.s += (t.s - c.s) * 0.07;
-      setReveal({ x: c.x, y: c.y, s: c.s });
+      paint(c.x, c.y, c.s);
       const settled =
         Math.abs(t.x - c.x) < 0.4 && Math.abs(t.y - c.y) < 0.4 && Math.abs(t.s - c.s) < 0.002;
       if (settled && t.s === 0) {
         c.s = 0;
-        setReveal({ x: c.x, y: c.y, s: 0 });
+        paint(c.x, c.y, 0);
         running = false;
         frame = 0;
         return;
       }
       frame = requestAnimationFrame(tick);
     };
+
     const start = () => {
       if (running) return;
       running = true;
