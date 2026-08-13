@@ -45,7 +45,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
   const [flipped, setFlipped] = useState<number | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  const TRANSITION_MS = 620;
+  const TRANSITION_MS = 1400;
   const lock = useRef(false);
   const unlockTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -163,6 +163,17 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [go]);
+
+  /**
+   * Slow automatic rotation. The timer is keyed on `active`, so any user
+   * navigation (arrow, drag, swipe, wheel, key) restarts the 4.5s dwell.
+   */
+  const AUTOPLAY_MS = 4500;
+  useEffect(() => {
+    if (n < 2) return;
+    const t = setTimeout(() => go(1), AUTOPLAY_MS);
+    return () => clearTimeout(t);
+  }, [active, go, n]);
 
 
   const activeImg = items[active]?.img;
