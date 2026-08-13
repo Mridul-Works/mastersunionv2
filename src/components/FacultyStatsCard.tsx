@@ -18,7 +18,7 @@ export default function FacultyStatsCard({
 }) {
   return (
     <div
-      className="mv-reveal w-full rounded-[clamp(16px,2.2vw,24px)] border border-black/[0.07] bg-white/60 shadow-[0_18px_50px_-30px_rgba(0,0,0,0.22)] backdrop-blur-[14px]"
+      className="mv-reveal w-full rounded-[clamp(16px,2.2vw,24px)] border border-white/10 bg-[#0B0F0D]/72 shadow-[0_18px_55px_-20px_rgba(0,0,0,0.45)] backdrop-blur-[18px]"
       style={{
         ["--card-pad" as string]: "clamp(1rem, 2.4vw, 2.25rem)",
         paddingInline: "var(--card-pad)",
