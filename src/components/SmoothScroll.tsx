@@ -1,4 +1,5 @@
 import { useEffect, type ReactNode } from "react";
+import { useMotionMode } from "@/lib/motion-mode";
 
 /**
  * Lenis-based smooth scroll on the native window scroller.
@@ -6,8 +7,12 @@ import { useEffect, type ReactNode } from "react";
  * work without proxies. Exposes the instance on window.__lenis for other modules.
  */
 export default function SmoothScroll({ children }: { children: ReactNode }) {
+  const { isLite, ready } = useMotionMode();
+
   useEffect(() => {
     if (typeof window === "undefined") return;
+    // Lite mode keeps native scrolling: no rAF loop, no wheel interception.
+    if (!ready || isLite) return;
     let lenis: any = null;
     let raf = 0;
     let cancelled = false;
@@ -40,7 +45,7 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
       } catch {}
       (window as any).__lenis = null;
     };
-  }, []);
+  }, [isLite, ready]);
 
   return <>{children}</>;
 }

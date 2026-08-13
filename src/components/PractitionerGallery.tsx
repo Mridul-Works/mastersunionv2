@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useMotionMode } from "@/lib/motion-mode";
 
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
 const SERIF = "'Fraunces', Georgia, serif";
@@ -50,6 +51,9 @@ function computeGeometry(stageW: number, viewportH: number): Geometry {
  */
 export default function PractitionerGallery({ items }: { items: GalleryItem[] }) {
   const n = items.length;
+  const { isLite } = useMotionMode();
+  const liteRef = useRef(isLite);
+  liteRef.current = isLite;
   const [flipped, setFlipped] = useState<number | null>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [hasEntered, setHasEntered] = useState(false);
@@ -86,6 +90,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
   /** Any manual input pauses the drift and re-arms the resume delay. */
   const takeControl = useCallback(() => {
     resumeAtRef.current = performance.now() + RESUME_DELAY_MS;
+    wakeRef.current?.();
   }, []);
 
   /**
@@ -121,13 +126,22 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
         const scale = Math.max(0.52, 1 - abs * 0.2);
         const front = Math.max(0, 1 - abs);
         const lift = hoverStateRef.current && isFront && flippedRef.current !== i ? 1.02 : 1;
-        el.style.transform = `perspective(1900px) translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale * lift})`;
+        const lite = liteRef.current;
+        el.style.transform = lite
+          ? // Lite mode: flat 2D translate + scale only — no perspective, no rotateY,
+            // no depth layer, so the compositor has a single cheap transform to apply.
+            `translate3d(calc(-50% + ${x}px), -50%, 0) scale(${scale * lift})`
+          : `perspective(1900px) translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale * lift})`;
         el.style.opacity = String(hidden ? 0 : Math.max(0.16, 1 - abs * 0.3));
         el.style.zIndex = String(100 - Math.round(abs * 10));
-        el.style.boxShadow = front > 0 ? `0 60px 130px -50px rgba(0,0,0,${0.95 * front})` : "none";
+        el.style.boxShadow = lite
+          ? "none"
+          : front > 0
+            ? `0 60px 130px -50px rgba(0,0,0,${0.95 * front})`
+            : "none";
         el.style.pointerEvents = hidden ? "none" : "auto";
         const img = imgRefs.current[i];
-        if (img) img.style.filter = `grayscale(${1 - 0.65 * front})`;
+        if (img) img.style.filter = lite ? "none" : `grayscale(${1 - 0.65 * front})`;
         const shade = shadeRefs.current[i];
         if (shade) shade.style.background = `rgba(6,6,6,${Math.min(0.55, abs * 0.22)})`;
       }
@@ -144,7 +158,8 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
       lastTsRef.current = now;
 
       if (!draggingRef.current) {
-        const autoOn = !hoverRef.current && n > 1 && now >= resumeAtRef.current;
+        const autoOn =
+          !liteRef.current && !hoverRef.current && n > 1 && now >= resumeAtRef.current;
         const t = targetRef.current;
         if (t !== null) {
           // controlled rotation (arrows / keys): spring the wheel to the target
@@ -172,13 +187,36 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
       const nf = mod(Math.round(posRef.current));
       setFrontIdx((p) => (p === nf ? p : nf));
 
+      // Lite mode: park the loop entirely once motion has settled, so an idle
+      // gallery costs zero frames. Any input restarts it via `wake()`.
+      if (
+        liteRef.current &&
+        !draggingRef.current &&
+        targetRef.current === null &&
+        velRef.current === 0
+      ) {
+        rafRef.current = null;
+        return;
+      }
+
       rafRef.current = requestAnimationFrame(tick);
     },
     [mod, n, takeControl],
   );
 
+  /** Restart the physics loop if lite mode parked it. */
+  const wake = useCallback(() => {
+    if (rafRef.current === null) {
+      lastTsRef.current = 0;
+      rafRef.current = requestAnimationFrame(tick);
+    }
+  }, [tick]);
+  const wakeRef = useRef(wake);
+  wakeRef.current = wake;
+
   useEffect(() => {
     lastTsRef.current = 0;
+    if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
     rafRef.current = requestAnimationFrame(tick);
     return () => {
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
