@@ -144,7 +144,26 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     [takeControl],
   );
 
+  /**
+   * Click-to-focus: spin the ONE continuous wheel value along the shortest
+   * rotational path until the clicked card index sits at the front.
+   */
+  const focusCard = useCallback(
+    (i: number) => {
+      setFlipped(null);
+      takeControl();
+      const cur = posRef.current;
+      let d = i - cur;
+      d = ((d % n) + n) % n;
+      if (d > n / 2) d -= n;
+      velRef.current = 0;
+      targetRef.current = cur + d;
+    },
+    [n, takeControl],
+  );
+
   const active = frontIdx;
+
 
   // signed offset from the continuous wheel position, wrapped so the arc loops
   const offsetOf = useCallback(
@@ -300,7 +319,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
               onClick={() => {
                 if (drag.current.moved > 6) return;
                 if (!isFront) {
-                  go(off > 0 ? 1 : -1);
+                  focusCard(i);
                   return;
                 }
                 setFlipped((f) => (f === i ? null : i));
