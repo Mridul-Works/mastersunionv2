@@ -352,10 +352,10 @@ export default function FacultyHero({
           </div>
         </div>
 
-        {/* Scroll cue — vertical line with a dot, centered at the bottom of the hero grid, above the fixed nav */}
+        {/* Scroll cue — vertical line with a dot that travels down as the hero scrolls away */}
         <div
-          className="hero-fade-up pointer-events-none absolute inset-x-0 bottom-[clamp(4.5rem,7vh,6rem)] z-20 flex justify-center"
-          style={{ animationDelay: "1900ms", opacity: "clamp(0, calc(1 - var(--recede) * 2), 1)" }}
+          className="pointer-events-none absolute inset-x-0 bottom-[clamp(4.5rem,7vh,6rem)] z-20 flex justify-center"
+          style={{ opacity: "clamp(0, calc(1 - var(--recede) * 2), 1)" }}
         >
           <div className="flex flex-col items-center gap-2 text-white/45">
             <span
@@ -364,9 +364,12 @@ export default function FacultyHero({
             >
               Scroll
             </span>
-            <div className="relative flex h-10 flex-col items-center" aria-hidden>
-              <div className="h-8 w-px bg-gradient-to-b from-white/40 to-white/10" />
-              <div className="mt-[-2px] h-[5px] w-[5px] rounded-full bg-white/45" />
+            <div className="relative h-10 w-px" aria-hidden>
+              <div className="absolute inset-0 w-px bg-gradient-to-b from-white/40 to-white/10" />
+              <div
+                className="absolute left-1/2 top-0 h-[5px] w-[5px] -translate-x-1/2 rounded-full bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.35)] transition-none"
+                style={{ transform: `translateY(calc(var(--recede) * 32px)) translateX(-50%)` }}
+              />
             </div>
           </div>
         </div>
