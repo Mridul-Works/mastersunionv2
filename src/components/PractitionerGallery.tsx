@@ -274,8 +274,9 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
         {items.map((item, i) => {
           const off = offsetOf(i);
           const abs = Math.abs(off);
-          const hidden = abs > VISIBLE;
-          const isActive = off === 0;
+          const hidden = abs > VISIBLE + 0.5;
+          const isActive = i === active;
+          const isFront = abs < 0.5;
           const isFlipped = flipped === i;
 
           // elliptical arc: sideways travel eases off while depth keeps growing
@@ -290,7 +291,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
               key={`${item.name}-${i}`}
               onClick={() => {
                 if (drag.current.moved > 6) return;
-                if (!isActive) {
+                if (!isFront) {
                   go(off > 0 ? 1 : -1);
                   return;
                 }
@@ -298,16 +299,16 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
               }}
               aria-hidden={hidden}
               className={`absolute left-1/2 top-1/2 h-[min(460px,max(380px,calc(100svh-280px)))] w-[min(320px,72vw)] overflow-hidden rounded-[20px] sm:h-[min(clamp(420px,52vw,600px),max(380px,calc(100svh-240px)))] sm:w-[min(420px,34vw)] sm:rounded-[24px] md:rounded-[28px] ${
-                isActive ? "shadow-[0_40px_90px_-40px_rgba(0,0,0,0.95)]" : ""
+                isFront ? "shadow-[0_40px_90px_-40px_rgba(0,0,0,0.95)]" : ""
               }`}
               style={{
-                zIndex: 100 - abs,
+                zIndex: 100 - Math.round(abs * 10),
                 opacity,
                 pointerEvents: hidden ? "none" : "auto",
                 backgroundColor: "#0f0f0f",
                 transform: `perspective(1600px) translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale})`,
-                 transition:
-                   "transform 1400ms cubic-bezier(0.65, 0, 0.35, 1), opacity 1400ms cubic-bezier(0.65, 0, 0.35, 1)",
+                willChange: "transform, opacity",
+
               }}
             >
               {/* flip card: front = image only, back = details */}
