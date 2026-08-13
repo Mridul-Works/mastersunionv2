@@ -233,7 +233,13 @@ export default function FacultyHero({
               {/* MU watermark — spans the combined height of headline + paragraph */}
               <div
                 className="pointer-events-none absolute -left-[4%] -top-[12%] z-0 flex h-[140%] items-center select-none font-black uppercase leading-none text-white/[0.09]"
-                style={{ fontFamily: SANS, fontSize: "clamp(15rem, 28vw, 34rem)" }}
+                style={{
+                  fontFamily: SANS,
+                  fontSize: "clamp(15rem, 28vw, 34rem)",
+                  transform: reducedMotion ? "none" : "translate3d(0, calc(var(--recede) * 10px), 0)",
+                  opacity: reducedMotion ? undefined : "clamp(0.05, calc(0.09 - var(--recede) * 0.04), 0.09)",
+                  transition: reducedMotion ? "none" : "transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1)",
+                }}
                 aria-hidden
               >
                 MU
