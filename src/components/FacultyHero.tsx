@@ -242,12 +242,15 @@ export default function FacultyHero({
       >
         {/* Left content column: architectural black space */}
         <div className="relative flex flex-col justify-center py-[clamp(1.25rem,3.2vh,2.25rem)] lg:col-span-7 lg:pr-10">
-          {/* Typography */}
-          <div
+          {/* Typography — demo's staggered Framer Motion entrance system */}
+          <motion.div
             className="relative z-10"
             style={{ opacity: "clamp(0.6, calc(1 - var(--recede) * 0.4), 1)" }}
+            variants={containerVariants}
+            initial={noMotion ? "visible" : "hidden"}
+            animate="visible"
           >
-            <div style={{ ...entrance(-50, "x", 1000, 0), marginTop: "-1.75rem" }}>
+            <motion.div variants={itemFromLeft} style={{ marginTop: "-1.75rem" }}>
               <div className="flex items-center gap-3 sm:gap-4">
                 <span className="h-px w-6 shrink-0 bg-white/30 sm:w-8" aria-hidden />
                 <div
@@ -257,9 +260,8 @@ export default function FacultyHero({
                   Faculty at Masters&apos; Union
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Headline: fills the left column, never the photo zone */}
             {/* Headline + paragraph: shared background watermark */}
             <div className="relative mt-[clamp(0.85rem,2.2vh,1.5rem)] w-full max-w-[850px]">
               {/* MU watermark — spans the combined height of headline + paragraph */}
@@ -272,29 +274,23 @@ export default function FacultyHero({
               </div>
 
               {/* Headline: fills the left column, never the photo zone */}
-              <div
+              <motion.div
+                variants={itemFromBelow}
                 className="relative z-10 w-full"
                 style={{ fontSize: "clamp(1.95rem, 3.5vw, 3.4rem)" }}
               >
                 <h1
                   className="text-[1em] font-semibold leading-[1.02] tracking-[-0.025em] text-white [text-wrap:balance]"
-                  style={{
-                    fontFamily: SANS,
-                    opacity: animateIn ? 1 : 0,
-                    transform: animateIn ? "translateY(0)" : "translateY(60px)",
-                    transition:
-                      "opacity 1300ms cubic-bezier(0.22, 1, 0.36, 1), transform 1300ms cubic-bezier(0.22, 1, 0.36, 1)",
-                    transitionDelay: "230ms",
-                  }}
+                  style={{ fontFamily: SANS }}
                 >
                   {HEADLINE}
                 </h1>
-              </div>
+              </motion.div>
 
               {/* Paragraph with architectural left border */}
-              <div
+              <motion.div
+                variants={itemFromBelow}
                 className="relative z-10 mt-[clamp(0.9rem,2.4vh,1.7rem)] max-w-[44rem] border-l border-white/15 pl-5 lg:max-w-[40rem]"
-                style={entrance(50, "y", 1150, 520)}
               >
                 <p className="max-w-[48ch] text-[clamp(0.9rem,2.2vw,1.15rem)] leading-[1.55] text-white/70">
                   500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered
@@ -308,9 +304,10 @@ export default function FacultyHero({
                   — from Harvard to McKinsey, from Wharton to Google. They don&apos;t just teach the
                   playbook. They wrote it.
                 </p>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
+
 
         </div>
 
