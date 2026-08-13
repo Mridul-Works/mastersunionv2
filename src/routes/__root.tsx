@@ -12,7 +12,6 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import SmoothScroll from "../components/SmoothScroll";
-import MotionToggle from "../components/MotionToggle";
 import MobileBottomBar from "../components/MobileBottomBar";
 
 
@@ -134,7 +133,6 @@ function RootComponent() {
         <Outlet />
       </SmoothScroll>
       <MobileBottomBar />
-      <MotionToggle />
     </QueryClientProvider>
   );
 }

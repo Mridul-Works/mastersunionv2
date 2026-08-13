@@ -146,13 +146,7 @@
 
 @layer base {
   * { border-color: var(--color-border); }
-  html {
-    /* keep native smooth scrolling off — Lenis owns the scroller */
-    scroll-behavior: auto;
-    overflow-x: clip;
-  }
   body {
-    overflow-x: clip;
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
@@ -235,17 +229,6 @@
   animation: mu-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
-/* one-time viewport-enter pulse for the practitioner flip hint */
-@keyframes mu-hint-enter {
-  0% { opacity: 0; transform: scale(0.96) translateY(4px); }
-  40% { opacity: 0.8; transform: scale(1.02); }
-  60% { opacity: 0.45; transform: scale(1); }
-  100% { opacity: 0.5; transform: scale(1); }
-}
-.mu-hint-enter {
-  animation: mu-hint-enter 1.4s cubic-bezier(0.22, 1, 0.36, 1) backwards;
-}
-
 /* Faculty hero — editorial typographic reveal */
 @keyframes hero-line-in {
   from { transform: translateY(105%); }
@@ -299,11 +282,7 @@
 .mu-watermark {
   opacity: clamp(0.10, calc(0.15 - var(--recede) * 0.05), 0.15);
   transform: translate3d(0, calc(var(--recede) * 10px), 0);
-  /* scroll-linked: no transform transition, or the eased value chases the scroll
-     position every frame and visibly stutters. Opacity easing only. */
-  transition: opacity 0.4s linear;
-  will-change: transform;
-  backface-visibility: hidden;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Initial dark state — fades to scroll-linked opacity once the hero enters */
@@ -563,11 +542,9 @@ body::-webkit-scrollbar {
     transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
 }
-/* drop the compositor hint once revealed so it stops costing memory while scrolling */
 .mv-section.is-revealed .mv-reveal {
   opacity: 1;
   transform: none;
-  will-change: auto;
 }
 @media (prefers-reduced-motion: reduce) {
   .mv-section .mv-reveal {

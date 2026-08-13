@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { useMotionMode } from "@/lib/motion-mode";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 
 const MONO = "'JetBrains Mono', ui-monospace, monospace";
@@ -60,7 +59,6 @@ const itemFromBelow: Variants = {
  */
 export default function FacultyHero() {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const { isLite } = useMotionMode();
   const [animateIn, setAnimateIn] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [muClass, setMuClass] = useState("mu-watermark mu-watermark-dark");
@@ -87,36 +85,17 @@ export default function FacultyHero() {
   };
 
   // ---- Cursor "develop the photograph" colour reveal (desktop / fine pointer) ----
-  // Driven by direct DOM style writes (no React state) so scrolling never re-renders the hero.
   const photoRef = useRef<HTMLDivElement | null>(null);
-  const maskRef = useRef<HTMLImageElement | null>(null);
   const target = useRef({ x: 0, y: 0, s: 0 });
   const current = useRef({ x: 0, y: 0, s: 0 });
-
+  const [reveal, setReveal] = useState({ x: 0, y: 0, s: 0 });
 
   useEffect(() => {
-    // Lite mode: the per-frame mask painting is the most expensive effect here.
-    if (isLite) return;
     if (!window.matchMedia("(pointer: fine)").matches) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     let frame = 0;
     let running = false;
-
-    const paint = (x: number, y: number, s: number) => {
-      const el = maskRef.current;
-      if (!el) return;
-      if (s <= 0.002) {
-        el.style.removeProperty("mask-image");
-        el.style.removeProperty("-webkit-mask-image");
-        el.style.willChange = "auto";
-        return;
-      }
-      const g = `radial-gradient(circle ${380 * s}px at ${x}px ${y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.9) 88%, #000 100%)`;
-      el.style.willChange = "mask-image";
-      el.style.setProperty("mask-image", g);
-      el.style.setProperty("-webkit-mask-image", g);
-    };
 
     const tick = () => {
       const c = current.current;
@@ -124,19 +103,18 @@ export default function FacultyHero() {
       c.x += (t.x - c.x) * 0.16;
       c.y += (t.y - c.y) * 0.16;
       c.s += (t.s - c.s) * 0.07;
-      paint(c.x, c.y, c.s);
+      setReveal({ x: c.x, y: c.y, s: c.s });
       const settled =
         Math.abs(t.x - c.x) < 0.4 && Math.abs(t.y - c.y) < 0.4 && Math.abs(t.s - c.s) < 0.002;
       if (settled && t.s === 0) {
         c.s = 0;
-        paint(c.x, c.y, 0);
+        setReveal({ x: c.x, y: c.y, s: 0 });
         running = false;
         frame = 0;
         return;
       }
       frame = requestAnimationFrame(tick);
     };
-
     const start = () => {
       if (running) return;
       running = true;
@@ -173,7 +151,7 @@ export default function FacultyHero() {
       window.removeEventListener("pointerleave", onLeave);
       if (frame) cancelAnimationFrame(frame);
     };
-  }, [isLite]);
+  }, []);
 
   // Directional entrance animations for the text elements.
   // Trigger once on mount; disabled when reduced motion is preferred.
@@ -202,7 +180,6 @@ export default function FacultyHero() {
   // Very subtle recede as the hero scrolls away (no sticky trap, no big parallax).
   // Driven by a CSS custom property to avoid React re-renders and boundary flicker.
   useEffect(() => {
-    if (isLite) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let frame = 0;
     const onScroll = () => {
@@ -228,7 +205,7 @@ export default function FacultyHero() {
       window.removeEventListener("scroll", onScroll);
       if (frame) cancelAnimationFrame(frame);
     };
-  }, [isLite]);
+  }, []);
 
   // The photograph entrance is now handled by the clip-path reveal on its wrapper,
   // so the image layers themselves stay in their final composition (no transform).
@@ -351,16 +328,22 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
                 style={imageEntranceStyle}
               />
               <img
-                ref={maskRef}
                 src={HERO_IMAGE}
                 alt=""
                 aria-hidden
                 loading="eager"
                 decoding="async"
                 className={`${PHOTO_CLASS} relative saturate-0`}
-                style={imageEntranceStyle}
+                style={
+                  reveal.s > 0.002
+                    ? {
+                        ...imageEntranceStyle,
+                        WebkitMaskImage: `radial-gradient(circle ${380 * reveal.s}px at ${reveal.x}px ${reveal.y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.9) 88%, #000 100%)`,
+                        maskImage: `radial-gradient(circle ${380 * reveal.s}px at ${reveal.x}px ${reveal.y}px, rgba(0,0,0,0) 0%, rgba(0,0,0,0.12) 30%, rgba(0,0,0,0.55) 62%, rgba(0,0,0,0.9) 88%, #000 100%)`,
+                      }
+                    : imageEntranceStyle
+                }
               />
-
             </motion.div>
 
             {/* Very narrow, subtle left-edge falloff so the text column and image panel read as one scene */}

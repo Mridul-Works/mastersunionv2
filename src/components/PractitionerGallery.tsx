@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useMotionMode } from "@/lib/motion-mode";
 
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
 const SERIF = "'Fraunces', Georgia, serif";
@@ -51,13 +50,8 @@ function computeGeometry(stageW: number, viewportH: number): Geometry {
  */
 export default function PractitionerGallery({ items }: { items: GalleryItem[] }) {
   const n = items.length;
-  const { isLite } = useMotionMode();
-  const liteRef = useRef(isLite);
-  liteRef.current = isLite;
   const [flipped, setFlipped] = useState<number | null>(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [hasEntered, setHasEntered] = useState(false);
-  const [hasFlipped, setHasFlipped] = useState(false);
 
   /**
    * ONE physical 3D wheel. `pos` is a CONTINUOUS rotational position measured in
@@ -67,6 +61,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
   const posRef = useRef(0);
   const velRef = useRef(0); // cards per frame-equivalent (16ms)
   const targetRef = useRef<number | null>(null);
+  const [pos, setPos] = useState(0);
   const rafRef = useRef<number | null>(null);
   const draggingRef = useRef(false);
   const hoverRef = useRef(false);
@@ -90,66 +85,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
   /** Any manual input pauses the drift and re-arms the resume delay. */
   const takeControl = useCallback(() => {
     resumeAtRef.current = performance.now() + RESUME_DELAY_MS;
-    wakeRef.current?.();
   }, []);
-
-  /**
-   * Per-frame card geometry is written STRAIGHT TO THE DOM (transform / opacity
-   * only, never layout properties) so the rAF loop never triggers a React
-   * re-render of ~50 cards while the user is scrolling.
-   */
-  const cardRefs = useRef<(HTMLElement | null)[]>([]);
-  const imgRefs = useRef<(HTMLImageElement | null)[]>([]);
-  const shadeRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const geoRef = useRef<Geometry>(computeGeometry(1280, 900));
-  const hoverStateRef = useRef(false);
-  const flippedRef = useRef<number | null>(null);
-
-  const layout = useCallback(
-    (p: number) => {
-      const g = geoRef.current;
-      const V = g.visible;
-      for (let i = 0; i < n; i++) {
-        const el = cardRefs.current[i];
-        if (!el) continue;
-        let off = i - p;
-        off = ((off % n) + n) % n;
-        if (off > n / 2) off -= n;
-        const abs = Math.abs(off);
-        const hidden = abs > V + 0.5;
-        const isFront = abs < 0.5;
-        const x =
-          Math.sign(off) * (1 - Math.cos((Math.min(abs, V) * Math.PI) / 9)) * (g.cw * 0.35) +
-          off * g.spread;
-        const z = -abs * g.depth;
-        const rotY = -off * 30;
-        const scale = Math.max(0.52, 1 - abs * 0.2);
-        const front = Math.max(0, 1 - abs);
-        const lift = hoverStateRef.current && isFront && flippedRef.current !== i ? 1.02 : 1;
-        const lite = liteRef.current;
-        el.style.transform = lite
-          ? // Lite mode: flat 2D translate + scale only — no perspective, no rotateY,
-            // no depth layer, so the compositor has a single cheap transform to apply.
-            `translate3d(calc(-50% + ${x}px), -50%, 0) scale(${scale * lift})`
-          : `perspective(1900px) translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale * lift})`;
-        el.style.opacity = String(hidden ? 0 : Math.max(0.16, 1 - abs * 0.3));
-        el.style.zIndex = String(100 - Math.round(abs * 10));
-        el.style.boxShadow = lite
-          ? "none"
-          : front > 0
-            ? `0 60px 130px -50px rgba(0,0,0,${0.95 * front})`
-            : "none";
-        el.style.pointerEvents = hidden ? "none" : "auto";
-        const img = imgRefs.current[i];
-        if (img) img.style.filter = lite ? "none" : `grayscale(${1 - 0.65 * front})`;
-        const shade = shadeRefs.current[i];
-        if (shade) shade.style.background = `rgba(6,6,6,${Math.min(0.55, abs * 0.22)})`;
-      }
-    },
-    [n],
-  );
-  const layoutRef = useRef(layout);
-  layoutRef.current = layout;
 
   const tick = useCallback(
     (now: number) => {
@@ -158,8 +94,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
       lastTsRef.current = now;
 
       if (!draggingRef.current) {
-        const autoOn =
-          !liteRef.current && !hoverRef.current && n > 1 && now >= resumeAtRef.current;
+        const autoOn = !hoverRef.current && n > 1 && now >= resumeAtRef.current;
         const t = targetRef.current;
         if (t !== null) {
           // controlled rotation (arrows / keys): spring the wheel to the target
@@ -183,52 +118,23 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
         posRef.current += velRef.current * dt;
       }
 
-      layoutRef.current(posRef.current);
+      setPos(posRef.current);
       const nf = mod(Math.round(posRef.current));
       setFrontIdx((p) => (p === nf ? p : nf));
-
-      // Lite mode: park the loop entirely once motion has settled, so an idle
-      // gallery costs zero frames. Any input restarts it via `wake()`.
-      if (
-        liteRef.current &&
-        !draggingRef.current &&
-        targetRef.current === null &&
-        velRef.current === 0
-      ) {
-        rafRef.current = null;
-        return;
-      }
 
       rafRef.current = requestAnimationFrame(tick);
     },
     [mod, n, takeControl],
   );
 
-  /** Restart the physics loop if lite mode parked it. */
-  const wake = useCallback(() => {
-    if (rafRef.current === null) {
-      lastTsRef.current = 0;
-      rafRef.current = requestAnimationFrame(tick);
-    }
-  }, [tick]);
-  const wakeRef = useRef(wake);
-  wakeRef.current = wake;
-
   useEffect(() => {
     lastTsRef.current = 0;
-    if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
     rafRef.current = requestAnimationFrame(tick);
     return () => {
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
     };
   }, [tick]);
-
-  useEffect(() => {
-    hoverStateRef.current = isHovered;
-    flippedRef.current = flipped;
-    layoutRef.current(posRef.current);
-  }, [isHovered, flipped]);
 
   useEffect(() => {
     hoverRef.current = isHovered;
@@ -267,11 +173,17 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
 
   const active = frontIdx;
 
-  const handleFlip = useCallback((i: number) => {
-    setFlipped((f) => (f === i ? null : i));
-    setHasFlipped(true);
-  }, []);
 
+  // signed offset from the continuous wheel position, wrapped so the arc loops
+  const offsetOf = useCallback(
+    (i: number) => {
+      let d = i - pos;
+      d = ((d % n) + n) % n;
+      if (d > n / 2) d -= n;
+      return d;
+    },
+    [pos, n],
+  );
 
   // drag / swipe — the wheel follows the pointer 1:1, then keeps its momentum
   const drag = useRef({ down: false, startX: 0, startPos: 0, moved: 0, lastX: 0, lastTs: 0 });
@@ -315,7 +227,6 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
    * gesture; there is no one-card-per-gesture snap.
    */
   const stageRef = useRef<HTMLDivElement | null>(null);
-  const galleryRef = useRef<HTMLDivElement | null>(null);
 
   const handleWheel = useCallback(
     (e: WheelEvent) => {
@@ -350,31 +261,11 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     return () => window.removeEventListener("keydown", onKey);
   }, [go]);
 
-  useEffect(() => {
-    const el = galleryRef.current;
-    if (!el || hasEntered) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          setHasEntered(true);
-          io.disconnect();
-        }
-      },
-      { threshold: 0.25 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [hasEntered]);
-
 
   const activeImg = items[active]?.img;
 
   /** Live geometry — measured so the arc and card scale with the viewport. */
   const [geo, setGeo] = useState<Geometry>(() => computeGeometry(1280, 900));
-  useEffect(() => {
-    geoRef.current = geo;
-    layoutRef.current(posRef.current);
-  }, [geo]);
   useEffect(() => {
     const el = stageRef.current;
     if (!el) return;
@@ -389,12 +280,12 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
       window.removeEventListener("resize", measure);
     };
   }, []);
+  const VISIBLE = geo.visible;
 
 
 
   return (
     <div
-      ref={galleryRef}
       className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -431,31 +322,53 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
         }}
       >
         {items.map((item, i) => {
+          const off = offsetOf(i);
+          const abs = Math.abs(off);
+          const hidden = abs > VISIBLE + 0.5;
           const isActive = i === active;
-          const isFront = i === active;
+          const isFront = abs < 0.5;
           const isFlipped = flipped === i;
+
+          // elliptical arc: sideways travel eases off while depth keeps growing
+          const x =
+            Math.sign(off) * (1 - Math.cos((Math.min(abs, VISIBLE) * Math.PI) / 9)) * (geo.cw * 0.35) +
+            off * geo.spread;
+          const z = -abs * geo.depth;
+          const rotY = -off * 30;
+          // active card reads distinctly larger than every neighbour
+          const scale = Math.max(0.52, 1 - abs * 0.2);
+          const opacity = hidden ? 0 : Math.max(0.16, 1 - abs * 0.3);
+          // continuous 0..1 "frontness" — drives every look-and-feel value so
+          // nothing switches state as a card passes through the centre
+          const front = Math.max(0, 1 - abs);
+          const grayscale = 1 - 0.65 * front;
+          const shade = Math.min(0.55, abs * 0.22);
+          const shadow = front > 0 ? `0 60px 130px -50px rgba(0,0,0,${0.95 * front})` : "none";
 
           return (
             <article
               key={`${item.name}-${i}`}
-              ref={(el) => {
-                cardRefs.current[i] = el;
-              }}
               onClick={() => {
                 if (drag.current.moved > 6) return;
                 if (!isFront) {
                   focusCard(i);
                   return;
                 }
-                handleFlip(i);
+                setFlipped((f) => (f === i ? null : i));
               }}
-              className="group transform-gpu absolute left-1/2 top-1/2 overflow-hidden rounded-[20px] will-change-transform sm:rounded-[26px] md:rounded-[30px]"
+              aria-hidden={hidden}
+              className="absolute left-1/2 top-1/2 overflow-hidden rounded-[20px] sm:rounded-[26px] md:rounded-[30px]"
               style={{
                 width: geo.cw,
                 height: geo.ch,
+                zIndex: 100 - Math.round(abs * 10),
+                opacity,
+                boxShadow: shadow,
+                pointerEvents: hidden ? "none" : "auto",
                 backgroundColor: "#0f0f0f",
+                transform: `perspective(1900px) translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale})`,
+                willChange: "transform, opacity",
                 backfaceVisibility: "hidden",
-                contain: "layout paint",
               }}
             >
 
@@ -471,7 +384,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                     if (!isActive) return;
                     if (e.key === "Enter" || e.key === " ") {
                       e.preventDefault();
-                      handleFlip(i);
+                      setFlipped((f) => (f === i ? null : i));
                     }
                   }}
                   className="relative h-full w-full cursor-pointer outline-none"
@@ -490,28 +403,13 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                       <img
                         src={item.img}
                         alt={item.name}
-                        ref={(el) => {
-                          imgRefs.current[i] = el;
-                        }}
                         draggable={false}
-                        loading="lazy"
-                        decoding="async"
-                        className="h-full w-full select-none bg-[#141414] object-cover object-[50%_22%]"
+                        className="h-full w-full select-none object-cover object-[50%_22%]"
+                        style={{ filter: `grayscale(${grayscale})` }}
                       />
                     ) : (
 
                       <Initials name={item.name} />
-                    )}
-
-                    {/* front-card flip hint */}
-                    {isFront && !isFlipped && (
-                      <div
-                        className={`pointer-events-none absolute bottom-3 right-3 z-20 flex items-center gap-1.5 rounded-full border border-white/10 bg-black/30 px-2.5 py-1 text-[9px] uppercase tracking-[0.18em] text-white opacity-50 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-75 md:bottom-4 md:right-4 md:text-[10px] md:tracking-[0.2em] ${hasEntered && !hasFlipped ? "mu-hint-enter" : ""}`}
-                        style={{ fontFamily: MONO }}
-                      >
-                        <span>CLICK TO FLIP</span>
-                        <span className="text-[1.1em]">↻</span>
-                      </div>
                     )}
                   </div>
 
@@ -562,10 +460,8 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
 
               {/* depth shading — always mounted, alpha follows the wheel angle */}
               <div
-                ref={(el) => {
-                  shadeRefs.current[i] = el;
-                }}
-                className="pointer-events-none absolute inset-0 z-10"
+                className="pointer-events-none absolute inset-0"
+                style={{ background: `rgba(6,6,6,${shade})` }}
                 aria-hidden
               />
 
