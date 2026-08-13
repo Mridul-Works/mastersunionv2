@@ -351,7 +351,6 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
       window.removeEventListener("resize", measure);
     };
   }, []);
-  const VISIBLE = geo.visible;
 
 
 
