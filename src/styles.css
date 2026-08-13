@@ -194,34 +194,25 @@
   animation: mu-pulse-center-out 2.8s ease-in-out infinite;
 }
 
-@keyframes mu-pulse-left-to-center {
+@keyframes mu-pulse-center-to-left {
   0% { transform: scaleX(0); opacity: 0; }
-  45% { transform: scaleX(1); opacity: 1; }
+  15% { transform: scaleX(0); opacity: 1; }
   50% { transform: scaleX(1); opacity: 1; }
-  100% { transform: scaleX(0); opacity: 0; }
+  100% { transform: scaleX(1); opacity: 0; }
 }
-@keyframes mu-pulse-right-to-center {
+@keyframes mu-pulse-center-to-right {
   0% { transform: scaleX(0); opacity: 0; }
-  45% { transform: scaleX(1); opacity: 1; }
+  15% { transform: scaleX(0); opacity: 1; }
   50% { transform: scaleX(1); opacity: 1; }
-  100% { transform: scaleX(0); opacity: 0; }
+  100% { transform: scaleX(1); opacity: 0; }
 }
-@keyframes mu-pulse-center-burst {
-  0%, 44% { transform: translateX(-50%) scaleX(0); opacity: 0; }
-  50% { transform: translateX(-50%) scaleX(1.8); opacity: 1; }
-  56%, 100% { transform: translateX(-50%) scaleX(0); opacity: 0; }
-}
-.mu-pulse-left-to-center {
-  transform-origin: left center;
-  animation: mu-pulse-left-to-center 3s ease-in-out infinite;
-}
-.mu-pulse-right-to-center {
+.mu-pulse-center-to-left {
   transform-origin: right center;
-  animation: mu-pulse-right-to-center 3s ease-in-out infinite;
+  animation: mu-pulse-center-to-left 3s ease-in-out infinite;
 }
-.mu-pulse-center-burst {
-  transform-origin: center center;
-  animation: mu-pulse-center-burst 3s ease-in-out infinite;
+.mu-pulse-center-to-right {
+  transform-origin: left center;
+  animation: mu-pulse-center-to-right 3s ease-in-out infinite;
 }
 
 @keyframes mu-shimmer {
