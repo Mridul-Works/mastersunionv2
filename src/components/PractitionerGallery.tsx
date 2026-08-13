@@ -28,8 +28,17 @@ function Initials({ name }: { name: string }) {
   );
 }
 
-/** Cards visible on either side of the active one along the elliptical arc. */
-const VISIBLE = 3;
+/** Card geometry measured from the stage so the arc scales with the viewport. */
+type Geometry = { cw: number; ch: number; visible: number; spread: number; depth: number };
+
+function computeGeometry(stageW: number, viewportH: number): Geometry {
+  // Active card: a generous portrait that comfortably shows the upper body.
+  const ch = Math.max(300, Math.min(viewportH * 0.6, 660));
+  const cw = Math.min(ch * 0.76, stageW * 0.46);
+  const visible = stageW < 640 ? 1 : stageW < 1024 ? 2 : 3;
+  return { cw, ch, visible, spread: cw * 0.86, depth: cw * 0.7 };
+}
+
 
 /**
  * Immersive editorial practitioner gallery arranged along an invisible 3D
@@ -255,6 +264,25 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
 
   const activeImg = items[active]?.img;
 
+  /** Live geometry — measured so the arc and card scale with the viewport. */
+  const [geo, setGeo] = useState<Geometry>(() => computeGeometry(1280, 900));
+  useEffect(() => {
+    const el = stageRef.current;
+    if (!el) return;
+    const measure = () =>
+      setGeo(computeGeometry(el.clientWidth || window.innerWidth, window.innerHeight));
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
+  const VISIBLE = geo.visible;
+
+
 
   return (
     <div
@@ -285,8 +313,9 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
         onPointerLeave={endDrag}
 
         onDragStart={(e) => e.preventDefault()}
-        className="relative h-[min(340px,max(210px,calc(100svh-620px)))] w-full sm:h-[min(clamp(280px,30vw,420px),max(210px,calc(100svh-650px)))]"
+        className="relative w-full"
         style={{
+          height: geo.ch + 80,
           perspectiveOrigin: "50% 50%",
           cursor: "grab",
           touchAction: "pan-y pinch-zoom",
@@ -301,17 +330,20 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
           const isFlipped = flipped === i;
 
           // elliptical arc: sideways travel eases off while depth keeps growing
-          const x = Math.sign(off) * (1 - Math.cos((Math.min(abs, VISIBLE) * Math.PI) / 9)) * 120 + off * 210;
-          const z = -abs * 240;
-          const rotY = -off * 26;
-          const scale = Math.max(0.6, 1 - abs * 0.12);
-          const opacity = hidden ? 0 : Math.max(0.18, 1 - abs * 0.28);
+          const x =
+            Math.sign(off) * (1 - Math.cos((Math.min(abs, VISIBLE) * Math.PI) / 9)) * (geo.cw * 0.35) +
+            off * geo.spread;
+          const z = -abs * geo.depth;
+          const rotY = -off * 30;
+          // active card reads distinctly larger than every neighbour
+          const scale = Math.max(0.52, 1 - abs * 0.2);
+          const opacity = hidden ? 0 : Math.max(0.16, 1 - abs * 0.3);
           // continuous 0..1 "frontness" — drives every look-and-feel value so
           // nothing switches state as a card passes through the centre
           const front = Math.max(0, 1 - abs);
           const grayscale = 1 - 0.65 * front;
-          const shade = Math.min(0.55, abs * 0.2);
-          const shadow = front > 0 ? `0 40px 90px -40px rgba(0,0,0,${0.95 * front})` : "none";
+          const shade = Math.min(0.55, abs * 0.22);
+          const shadow = front > 0 ? `0 60px 130px -50px rgba(0,0,0,${0.95 * front})` : "none";
 
           return (
             <article
@@ -325,18 +357,21 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                 setFlipped((f) => (f === i ? null : i));
               }}
               aria-hidden={hidden}
-              className="absolute left-1/2 top-1/2 h-[min(340px,max(210px,calc(100svh-620px)))] w-[min(320px,72vw)] overflow-hidden rounded-[20px] sm:h-[min(clamp(280px,30vw,420px),max(210px,calc(100svh-650px)))] sm:w-[min(420px,34vw)] sm:rounded-[24px] md:rounded-[28px]"
+              className="absolute left-1/2 top-1/2 overflow-hidden rounded-[20px] sm:rounded-[26px] md:rounded-[30px]"
               style={{
+                width: geo.cw,
+                height: geo.ch,
                 zIndex: 100 - Math.round(abs * 10),
                 opacity,
                 boxShadow: shadow,
                 pointerEvents: hidden ? "none" : "auto",
                 backgroundColor: "#0f0f0f",
-                transform: `perspective(1600px) translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale})`,
+                transform: `perspective(1900px) translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale})`,
                 willChange: "transform, opacity",
                 backfaceVisibility: "hidden",
               }}
             >
+
 
               {/* flip card: front = image only, back = details */}
               <div className="absolute inset-0 bg-[#0f0f0f]" style={{ perspective: "1400px" }}>
@@ -369,7 +404,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                         src={item.img}
                         alt={item.name}
                         draggable={false}
-                        className="h-full w-full select-none object-cover object-[50%_top]"
+                        className="h-full w-full select-none object-cover object-[50%_22%]"
                         style={{ filter: `grayscale(${grayscale})` }}
                       />
                     ) : (
@@ -439,21 +474,22 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
         <button
           type="button"
           onClick={() => go(-1)}
-          
           aria-label="Previous practitioner"
-          className="absolute top-1/2 z-[200] flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/30 text-[13px] text-white/70 backdrop-blur-sm transition-colors hover:border-white/50 hover:text-white disabled:cursor-default disabled:opacity-40 disabled:hover:border-white/20 disabled:hover:text-white/70 left-[max(6px,calc(50%-min(320px,72vw)/2-30px))] sm:left-[max(10px,calc(50%-min(420px,34vw)/2-40px))]"
+          style={{ left: `max(8px, calc(50% - ${geo.cw / 2 + 96}px))` }}
+          className="absolute top-1/2 z-[200] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/30 text-[14px] text-white/70 backdrop-blur-sm transition-colors hover:border-white/50 hover:text-white"
         >
           ←
         </button>
         <button
           type="button"
           onClick={() => go(1)}
-          
           aria-label="Next practitioner"
-          className="absolute top-1/2 z-[200] flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/30 text-[13px] text-white/70 backdrop-blur-sm transition-colors hover:border-white/50 hover:text-white disabled:cursor-default disabled:opacity-40 disabled:hover:border-white/20 disabled:hover:text-white/70 right-[max(6px,calc(50%-min(320px,72vw)/2-30px))] sm:right-[max(10px,calc(50%-min(420px,34vw)/2-40px))]"
+          style={{ right: `max(8px, calc(50% - ${geo.cw / 2 + 96}px))` }}
+          className="absolute top-1/2 z-[200] flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/30 text-[14px] text-white/70 backdrop-blur-sm transition-colors hover:border-white/50 hover:text-white"
         >
           →
         </button>
+
       </div>
 
       {/* counter */}
