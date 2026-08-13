@@ -212,8 +212,8 @@ export default function MastersVideos({
       ref={sectionRef}
       className={`mv-section ${revealed ? "is-revealed" : ""} relative flex w-full min-h-[100svh] flex-col justify-center overflow-x-hidden border-t border-black/10 ${bg}`}
       style={{
-        paddingTop: "clamp(1rem,2.5vh,2.25rem)",
-        paddingBottom: "clamp(3.5rem,7vh,5.5rem)",
+        paddingTop: "clamp(0.75rem,1.5vh,1.25rem)",
+        paddingBottom: "clamp(3rem,6vh,4.5rem)",
       }}
     >
       {statsSlot ? (
@@ -223,9 +223,9 @@ export default function MastersVideos({
       <div
         className="mx-auto grid w-full max-w-[1520px] grid-cols-1 px-5 md:px-10 lg:grid-cols-[minmax(0,39fr)_minmax(0,61fr)] lg:items-center"
         style={{
-          gap: "clamp(1.25rem,2.4vh,1.75rem)",
+          gap: "clamp(1rem,2vh,1.5rem)",
           columnGap: "clamp(1.5rem,3vw,3.5rem)",
-          paddingTop: "clamp(0.9rem,2vh,1.5rem)",
+          paddingTop: "clamp(0.6rem,1.4vh,1rem)",
         }}
       >
 
