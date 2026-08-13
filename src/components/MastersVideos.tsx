@@ -235,14 +235,18 @@ export default function MastersVideos({
                   type="button"
                   onClick={() => setOpen(current)}
                   aria-label={`Play ${current.title}`}
-                  className={`group relative block w-full overflow-hidden rounded-[clamp(14px,1.6vw,22px)] border ${line} bg-black`}
+                  className={`group relative flex w-full justify-center overflow-hidden rounded-[clamp(14px,1.6vw,22px)] border ${line} bg-black`}
                 >
-                  <div className="h-[clamp(300px,54vh,620px)] w-full overflow-hidden lg:h-[clamp(340px,58vh,660px)]">
+                  {/* frame is sized to the artwork's natural aspect ratio (223/398) */}
+                  <div
+                    className="w-full overflow-hidden"
+                    style={{ aspectRatio: "223/398", maxHeight: "clamp(300px,54vh,620px)", maxWidth: "100%" }}
+                  >
                     <img
                       key={current.thumb}
                       src={current.thumb}
                       alt={current.title}
-                      className="h-full w-full object-contain transition-all duration-500 ease-out group-hover:scale-[1.03]"
+                      className="h-full w-full object-cover transition-all duration-500 ease-out group-hover:scale-[1.03]"
                       style={{
                         opacity: phase === "in" ? 1 : 0,
                         transform:
