@@ -285,23 +285,17 @@
   transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@keyframes mu-watermark-enter {
-  from { opacity: 0.05; }
-  to { opacity: 0.09; }
-}
-
-.mu-watermark-enter {
-  animation: mu-watermark-enter 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+/* Initial dark state — fades to scroll-linked opacity once the hero enters */
+.mu-watermark-dark {
+  opacity: 0.05;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mu-watermark {
+  .mu-watermark,
+  .mu-watermark-dark {
     opacity: 0.09;
     transform: none;
     transition: none;
-  }
-  .mu-watermark-enter {
-    animation: none;
   }
 }
 @keyframes hero-scroll-arrow {
