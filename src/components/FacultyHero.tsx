@@ -35,6 +35,29 @@ const FALLBACK_STATS: FacultyStat[] = [
   { v: "37", l: "Full-time PhD faculty" },
 ];
 
+/** Demo's staggered entrance system: parent fades, children sequence at 0.15s. */
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+  },
+};
+
+const itemTransition = { duration: 0.5, ease: "easeOut" as const };
+
+/** Existing Faculty direction preserved: eyebrow slides in from the LEFT. */
+const itemFromLeft: Variants = {
+  hidden: { x: -20, opacity: 0 },
+  visible: { x: 0, opacity: 1, transition: itemTransition },
+};
+
+/** Existing Faculty direction preserved: headline + paragraph rise from BELOW. */
+const itemFromBelow: Variants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: itemTransition },
+};
+
 /**
  * Full-bleed obsidian editorial opening for /faculty.
  * The existing academic photograph emerges from the darkness via a soft
