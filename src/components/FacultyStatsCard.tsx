@@ -48,7 +48,7 @@ export default function FacultyStatsCard({
       </div>
 
       <div
-        className="mt-3 grid w-full grid-cols-2 gap-x-3 gap-y-3 lg:mt-1.5 lg:gap-x-4 lg:gap-y-0"
+        className="mt-3 grid w-full grid-cols-2 gap-x-3 gap-y-3 lg:mt-1.5 lg:gap-x-4 lg:gap-y-0 lg:[grid-template-columns:repeat(var(--lg-cols),minmax(0,1fr))]"
         style={{ ["--lg-cols" as string]: stats.length }}
       >
         {stats.map((s) => (
