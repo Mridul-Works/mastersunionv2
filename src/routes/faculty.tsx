@@ -342,10 +342,11 @@ function EditorialGrid({
       </div>
 
       {gallery ? (
-        <div className="border-b border-black/15 py-[clamp(0.75rem,2vh,1.5rem)]">
+        <div className="border-b border-black/15 pb-[clamp(3rem,7vh,5.5rem)] pt-[clamp(1.5rem,4vh,3rem)]">
           <PractitionerGallery items={items} />
         </div>
       ) : (
+
         <div className="scene-scroll grid grid-cols-2 divide-x divide-y divide-black/10 border-b border-black/15 sm:grid-cols-3 md:grid-cols-4">
           {items.map((item) => (
             <article key={item.name} className="p-5 md:p-6">
