@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import type { FacultyStat } from "@/lib/faculty-stats";
 
 const MONO = "'JetBrains Mono', ui-monospace, monospace";
