@@ -242,7 +242,7 @@ export default function MastersVideos({
                       key={current.thumb}
                       src={current.thumb}
                       alt={current.title}
-                      className="h-full w-full object-cover transition-all duration-500 ease-out group-hover:scale-[1.03]"
+                      className="h-full w-full object-contain transition-all duration-500 ease-out group-hover:scale-[1.03]"
                       style={{
                         opacity: phase === "in" ? 1 : 0,
                         transform:
@@ -341,7 +341,7 @@ export default function MastersVideos({
                       onClick={() => goTo(i)}
                       aria-label={v.title}
                       aria-current={i === active}
-                      className={`relative h-[clamp(58px,8vh,84px)] w-[clamp(44px,6vw,64px)] shrink-0 overflow-hidden rounded-[10px] border transition duration-300 ${
+                      className={`relative h-[clamp(58px,8vh,84px)] w-[clamp(44px,6vw,64px)] shrink-0 overflow-hidden rounded-[10px] border bg-black transition duration-300 ${
                         i === active
                           ? dark
                             ? "border-white/70 opacity-100"
@@ -353,7 +353,7 @@ export default function MastersVideos({
                         src={v.thumb}
                         alt=""
                         loading="lazy"
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-contain"
                       />
                     </button>
                   ))}
