@@ -53,6 +53,7 @@ export default function FacultyHero({
   const sectionRef = useRef<HTMLElement | null>(null);
   const [animateIn, setAnimateIn] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [muClass, setMuClass] = useState("mu-watermark mu-watermark-dark");
 
   const entrance = (
     from: number,
@@ -155,6 +156,17 @@ export default function FacultyHero({
     return () => cancelAnimationFrame(id);
   }, []);
 
+  // MU watermark: start dark, then hand opacity over to the scroll-linked CSS class.
+  useEffect(() => {
+    if (reducedMotion) {
+      setMuClass("mu-watermark");
+      return;
+    }
+    if (animateIn) {
+      setMuClass("mu-watermark");
+    }
+  }, [animateIn, reducedMotion]);
+
   // Very subtle recede as the hero scrolls away (no sticky trap, no big parallax).
   // Driven by a CSS custom property to avoid React re-renders and boundary flicker.
   useEffect(() => {
@@ -232,14 +244,8 @@ export default function FacultyHero({
             <div className="relative mt-[clamp(0.85rem,2.2vh,1.5rem)] w-full max-w-[850px]">
               {/* MU watermark — spans the combined height of headline + paragraph */}
               <div
-                className="pointer-events-none absolute -left-[4%] -top-[12%] z-0 flex h-[140%] items-center select-none font-black uppercase leading-none text-white/[0.09]"
-                style={{
-                  fontFamily: SANS,
-                  fontSize: "clamp(15rem, 28vw, 34rem)",
-                  transform: reducedMotion ? "none" : "translate3d(0, calc(var(--recede) * 10px), 0)",
-                  opacity: reducedMotion ? undefined : "clamp(0.05, calc(0.09 - var(--recede) * 0.04), 0.09)",
-                  transition: reducedMotion ? "none" : "transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1)",
-                }}
+                className={`pointer-events-none absolute -left-[4%] -top-[12%] z-0 flex h-[140%] items-center select-none font-black uppercase leading-none text-white/[0.09] ${muClass}`}
+                style={{ fontFamily: SANS, fontSize: "clamp(15rem, 28vw, 34rem)" }}
                 aria-hidden
               >
                 MU
