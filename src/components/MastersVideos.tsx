@@ -296,7 +296,7 @@ export default function MastersVideos({
                 }}
               >
                 <div className="relative overflow-hidden rounded-[12px] bg-black shadow-[0_12px_34px_-20px_rgba(0,0,0,0.55)] transition duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_24px_46px_-22px_rgba(0,0,0,0.6)]">
-                  <div className="h-[clamp(210px,34vh,420px)] w-full overflow-hidden">
+                  <div className="aspect-[3/4] max-h-[clamp(260px,44vh,520px)] w-full overflow-hidden">
                     <img
                       src={v.thumb}
                       alt={v.title}
