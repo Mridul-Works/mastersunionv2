@@ -512,19 +512,22 @@ function FacultyPage() {
       </section>
 
       {/* VISITING */}
-      <section id="visiting" className="screen-section bg-neutral-50">
+      <section id="visiting" className="screen-section border-y border-white/10 bg-black">
         <div className="page-shell screen-y">
           <SectionHeader
             index="03"
             eyebrow="Visiting Faculty"
             title={<>Professors who teach here because they believe in what Masters&apos; Union is building.</>}
             intro="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
+            dark
+            serif
           />
 
 
         <EditorialGrid
           gallery
           cardStats
+          dark
           sectionLabel="Visiting Faculty"
           pct="20%"
           tagline="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
