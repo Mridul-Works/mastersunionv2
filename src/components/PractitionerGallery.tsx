@@ -168,15 +168,28 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
   }, [go]);
 
   /**
-   * Slow automatic rotation. The timer is keyed on `active`, so any user
-   * navigation (arrow, drag, swipe, wheel, key) restarts the 4.5s dwell.
+   * Slow automatic rotation. Paused immediately while the cursor is inside the
+   * gallery, then resumes 1s after the cursor leaves. Manual navigation while
+   * hovered resets the timer, so the gallery never auto-advances right after a
+   * user-controlled transition.
    */
   const AUTOPLAY_MS = 4500;
+  const RESUME_DELAY_MS = 1000;
   useEffect(() => {
     if (n < 2) return;
+    if (isHovered) {
+      wasHoveredRef.current = true;
+      return;
+    }
+    if (wasHoveredRef.current) {
+      wasHoveredRef.current = false;
+      const t = setTimeout(() => go(1), RESUME_DELAY_MS);
+      return () => clearTimeout(t);
+    }
     const t = setTimeout(() => go(1), AUTOPLAY_MS);
     return () => clearTimeout(t);
-  }, [active, go, n]);
+  }, [active, go, n, isHovered]);
+
 
 
   const activeImg = items[active]?.img;
