@@ -235,14 +235,18 @@ export default function MastersVideos({
                   type="button"
                   onClick={() => setOpen(current)}
                   aria-label={`Play ${current.title}`}
-                  className={`group relative block w-full overflow-hidden rounded-[clamp(14px,1.6vw,22px)] border ${line} bg-black`}
+                  className={`group relative flex w-full justify-center overflow-hidden rounded-[clamp(14px,1.6vw,22px)] border ${line} bg-black`}
                 >
-                  <div className="h-[clamp(300px,54vh,620px)] w-full overflow-hidden lg:h-[clamp(340px,58vh,660px)]">
+                  {/* frame is sized to the artwork's natural aspect ratio (223/398) */}
+                  <div
+                    className="w-full overflow-hidden"
+                    style={{ aspectRatio: "223/398", maxHeight: "clamp(300px,54vh,620px)", maxWidth: "100%" }}
+                  >
                     <img
                       key={current.thumb}
                       src={current.thumb}
                       alt={current.title}
-                      className="h-full w-full object-contain transition-all duration-500 ease-out group-hover:scale-[1.03]"
+                      className="h-full w-full object-cover transition-all duration-500 ease-out group-hover:scale-[1.03]"
                       style={{
                         opacity: phase === "in" ? 1 : 0,
                         transform:
@@ -341,19 +345,20 @@ export default function MastersVideos({
                       onClick={() => goTo(i)}
                       aria-label={v.title}
                       aria-current={i === active}
-                      className={`relative h-[clamp(58px,8vh,84px)] w-[clamp(44px,6vw,64px)] shrink-0 overflow-hidden rounded-[10px] border bg-black transition duration-300 ${
+                      className={`relative h-[clamp(58px,8vh,84px)] shrink-0 overflow-hidden rounded-[10px] border bg-black transition duration-300 ${
                         i === active
                           ? dark
                             ? "border-white/70 opacity-100"
                             : "border-black/70 opacity-100"
                           : `${line} opacity-55 hover:opacity-90`
                       }`}
+                      style={{ aspectRatio: "223/398" }}
                     >
                       <img
                         src={v.thumb}
                         alt=""
                         loading="lazy"
-                        className="h-full w-full object-contain"
+                        className="h-full w-full object-cover"
                       />
                     </button>
                   ))}
