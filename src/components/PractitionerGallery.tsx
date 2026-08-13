@@ -345,34 +345,34 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
             </article>
           );
         })}
-      </div>
 
-      {/* minimal controls */}
-      <div className="relative z-20 flex items-center justify-center gap-5 pb-6 pt-4 md:pb-8">
+        {/* side navigation — vertically centred on the active card */}
         <button
           type="button"
           onClick={() => go(-1)}
           disabled={isAnimating}
           aria-label="Previous practitioner"
-          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[12px] text-white/70 transition-colors hover:border-white/50 hover:text-white disabled:cursor-default disabled:opacity-40 disabled:hover:border-white/20 disabled:hover:text-white/70"
+          className="absolute top-1/2 z-[200] flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/30 text-[13px] text-white/70 backdrop-blur-sm transition-colors hover:border-white/50 hover:text-white disabled:cursor-default disabled:opacity-40 disabled:hover:border-white/20 disabled:hover:text-white/70 left-[max(6px,calc(50%-min(320px,72vw)/2-30px))] sm:left-[max(10px,calc(50%-min(420px,34vw)/2-40px))]"
         >
           ←
         </button>
-        <div
-          className="text-[10px] uppercase tracking-[0.22em] text-white/45"
-          style={{ fontFamily: MONO }}
-        >
-          {String(active + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}
-        </div>
         <button
           type="button"
           onClick={() => go(1)}
           disabled={isAnimating}
           aria-label="Next practitioner"
-          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[12px] text-white/70 transition-colors hover:border-white/50 hover:text-white disabled:cursor-default disabled:opacity-40 disabled:hover:border-white/20 disabled:hover:text-white/70"
+          className="absolute top-1/2 z-[200] flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/30 text-[13px] text-white/70 backdrop-blur-sm transition-colors hover:border-white/50 hover:text-white disabled:cursor-default disabled:opacity-40 disabled:hover:border-white/20 disabled:hover:text-white/70 right-[max(6px,calc(50%-min(320px,72vw)/2-30px))] sm:right-[max(10px,calc(50%-min(420px,34vw)/2-40px))]"
         >
           →
         </button>
+      </div>
+
+      {/* counter */}
+      <div
+        className="relative z-20 flex items-center justify-center pb-6 pt-4 text-[10px] uppercase tracking-[0.22em] text-white/45 md:pb-8"
+        style={{ fontFamily: MONO }}
+      >
+        {String(active + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}
       </div>
     </div>
   );
