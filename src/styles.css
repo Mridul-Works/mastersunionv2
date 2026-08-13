@@ -613,3 +613,34 @@ body::-webkit-scrollbar {
     will-change: auto;
   }
 }
+
+/* ── Element-level rise reveal (texts, images, cards) ───────────────────── */
+.mu-el-reveal {
+  opacity: 0;
+  transform: translate3d(0, var(--el-rise, 24px), 0);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 0.61, 0.36, 1) var(--el-delay, 0s),
+    transform 0.75s cubic-bezier(0.22, 0.61, 0.36, 1) var(--el-delay, 0s);
+  will-change: transform, opacity;
+}
+.mu-el-reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+.mu-el-reveal.is-done {
+  will-change: auto;
+  transition: none;
+}
+
+@media (max-width: 640px) {
+  .mu-el-reveal { --el-rise: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mu-el-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
+}

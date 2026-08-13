@@ -1,5 +1,61 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
+/** Content elements that get their own rise-reveal. */
+const REVEAL_SELECTOR = [
+  "h1", "h2", "h3", "h4", "h5", "h6",
+  "p", "img", "video", "figure", "blockquote", "li",
+  "button", "a[href]", "table", "hr",
+  "[data-reveal]",
+].join(",");
+
+/**
+ * Reveals every piece of content (text, images, cards, links) inside a subtree
+ * as it scrolls into view, with a small stagger between items on the same row.
+ * Skips elements nested inside an already-revealing element so opacity never
+ * compounds.
+ */
+function useElementReveal(ref: React.RefObject<HTMLElement | null>) {
+  useEffect(() => {
+    const root = ref.current;
+    if (!root) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const nodes = Array.from(root.querySelectorAll<HTMLElement>(REVEAL_SELECTOR)).filter(
+      (el) =>
+        !el.closest("[data-no-reveal]") &&
+        !(el.parentElement && el.parentElement.closest(".mu-el-reveal")),
+    );
+    if (!nodes.length) return;
+
+    // Stagger by visual row so grid items cascade left → right.
+    const rows = new Map<number, number>();
+    for (const el of nodes) {
+      const top = Math.round((el.getBoundingClientRect().top + window.scrollY) / 40);
+      const idx = rows.get(top) ?? 0;
+      rows.set(top, idx + 1);
+      el.style.setProperty("--el-delay", `${Math.min(idx, 6) * 0.07}s`);
+      el.classList.add("mu-el-reveal");
+    }
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const el = entry.target as HTMLElement;
+          el.classList.add("is-in");
+          io.unobserve(el);
+          window.setTimeout(() => el.classList.add("is-done"), 1400);
+        }
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.06 },
+    );
+    for (const el of nodes) io.observe(el);
+    return () => io.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+}
+
+
 /** Shared rAF-throttled scroll subscription. */
 function useScrollProgress(
   ref: React.RefObject<HTMLDivElement | null>,
@@ -84,6 +140,8 @@ export function RiseReveal({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [settled, setSettled] = useState(false);
+  useElementReveal(ref);
+
   useScrollProgress(
     ref,
     (rect, vh) => {
