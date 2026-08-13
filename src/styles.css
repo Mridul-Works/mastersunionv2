@@ -560,14 +560,14 @@ body::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-block: clamp(1rem, 2.5vh, 2rem) clamp(4rem, 7vh, 5.5rem);
+  padding-block: clamp(0.85rem, 2vh, 1.75rem) clamp(3.75rem, 6.5vh, 5.25rem);
 }
 @utility screen-y {
   padding-block: clamp(0.75rem, 2vh, 1.75rem);
 }
 /* Long rosters stay inside their scene instead of stretching the page */
 @utility scene-scroll {
-  max-height: clamp(180px, 24svh, 360px);
+  max-height: clamp(170px, 21svh, 340px);
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: thin;
