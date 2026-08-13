@@ -371,12 +371,15 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
               key={`${item.name}-${i}`}
               onClick={() => {
                 if (drag.current.moved > 6) return;
+                setHasFlipped(true);
                 if (!isFront) {
                   focusCard(i);
                   return;
                 }
                 setFlipped((f) => (f === i ? null : i));
               }}
+              onMouseEnter={() => { if (isActive) setActiveHovered(true); }}
+              onMouseLeave={() => setActiveHovered(false)}
               aria-hidden={hidden}
               className="absolute left-1/2 top-1/2 overflow-hidden rounded-[20px] sm:rounded-[26px] md:rounded-[30px]"
               style={{
