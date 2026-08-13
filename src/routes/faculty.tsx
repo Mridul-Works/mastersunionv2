@@ -71,6 +71,7 @@ function SectionHeader({
   intro,
   align = "left",
   dark = false,
+  serif = false,
 }: {
   index: string;
   eyebrow: string;
@@ -78,32 +79,33 @@ function SectionHeader({
   intro?: React.ReactNode;
   align?: "left" | "center";
   dark?: boolean;
+  serif?: boolean;
 }) {
   const isCenter = align === "center";
   return (
     <header className={isCenter ? "text-center" : ""}>
       <p
-        className={`mb-[clamp(0.4rem,1.2vh,0.75rem)] font-mono text-[10px] font-bold uppercase tracking-[0.28em] ${
-          dark ? "text-white/50" : "text-black/50"
+        className={`mb-[clamp(0.4rem,1.2vh,0.75rem)] font-mono text-[10px] font-semibold uppercase tracking-[0.28em] ${
+          serif ? "text-[#B89146]" : dark ? "text-white/50" : "text-black/50"
         } ${isCenter ? "flex justify-center gap-3" : "flex gap-3"}`}
       >
         <span>{index}</span>
-        <span aria-hidden className={dark ? "text-white/25" : "text-black/25"}>/</span>
+        <span aria-hidden className={serif ? "text-[#B89146]/50" : dark ? "text-white/25" : "text-black/25"}>/</span>
         <span>{eyebrow}</span>
       </p>
       <h2
-        className={`text-[clamp(1.2rem,min(2.6vw,3.4vh),2.1rem)] font-semibold leading-[1.08] tracking-tight ${
+        className={`text-[clamp(1.5rem,2.9vw,2.5rem)] font-medium italic leading-[1.1] tracking-tight ${
           dark ? "text-white" : "text-black"
         } ${isCenter ? "mx-auto max-w-[24ch]" : "max-w-[26ch]"}`}
-        style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
+        style={{ fontFamily: serif ? "'Fraunces', Georgia, serif" : "'Inter', system-ui, sans-serif" }}
       >
         {title}
       </h2>
       {intro ? (
         <p
-          className={`mt-[clamp(0.5rem,1.5vh,1rem)] text-[clamp(0.82rem,min(1vw,1.6vh),0.98rem)] leading-[1.6] ${
-            dark ? "text-white/70" : "text-black/70"
-          } ${isCenter ? "mx-auto max-w-[62ch]" : "max-w-[62ch]"}`}
+          className={`mt-[clamp(0.75rem,2.2vh,1.5rem)] max-w-sm text-[clamp(12.5px,1.6vh,14px)] leading-relaxed ${
+            dark ? "text-white/60" : "text-black/60"
+          } ${isCenter ? "mx-auto" : ""}`}
         >
           {intro}
         </p>
@@ -433,6 +435,7 @@ function FacultyPage() {
             title={<>The people who teach here are not between jobs. They are active.</>}
             intro="Half of the faculty are CEOs, MDs, founders and investors — bringing this week's decisions into the classroom, not last decade's case studies."
             dark
+            serif
           />
 
 
