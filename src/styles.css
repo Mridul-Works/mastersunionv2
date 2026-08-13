@@ -280,20 +280,20 @@
 
 /* Faculty hero MU watermark — scroll-linked opacity + vertical drift */
 .mu-watermark {
-  opacity: clamp(0.05, calc(0.09 - var(--recede) * 0.04), 0.09);
+  opacity: clamp(0.10, calc(0.15 - var(--recede) * 0.05), 0.15);
   transform: translate3d(0, calc(var(--recede) * 10px), 0);
   transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Initial dark state — fades to scroll-linked opacity once the hero enters */
 .mu-watermark-dark {
-  opacity: 0.05;
+  opacity: 0.10;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .mu-watermark,
   .mu-watermark-dark {
-    opacity: 0.09;
+    opacity: 0.15;
     transform: none;
     transition: none;
   }
