@@ -28,153 +28,84 @@ function Initials({ name }: { name: string }) {
   );
 }
 
+/** Cards visible on either side of the active one along the elliptical arc. */
+const VISIBLE = 3;
+
 /**
- * Immersive editorial practitioner gallery.
- * Each panel: LEFT information on dark charcoal, RIGHT large portrait, joined by a
- * large sweeping curved cutout. Horizontal scroll-snap + drag + swipe, neighbours peek.
+ * Immersive editorial practitioner gallery arranged along an invisible 3D
+ * elliptical arc: the active card sits closest to the viewer, neighbours recede
+ * in depth with progressively smaller scale, lower opacity and natural overlap.
+ * Each panel keeps its existing composition — LEFT information on dark charcoal,
+ * RIGHT portrait, joined by a large sweeping curved cutout — and the portrait can
+ * still be clicked to flip and reveal the practitioner's details.
  */
 export default function PractitionerGallery({ items }: { items: GalleryItem[] }) {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<(HTMLElement | null)[]>([]);
-  const [active, setActive] = useState(0); // index within the tripled list
   const n = items.length;
-  const loop = n > 1;
-  const slides = loop ? [...items, ...items, ...items] : items;
-  const didInit = useRef(false);
-
-  const leftFor = useCallback((idx: number) => {
-    const el = cardRefs.current[idx];
-    const track = trackRef.current;
-    if (!el || !track) return null;
-    return Math.max(
-      0,
-      Math.min(
-        track.scrollWidth - track.clientWidth,
-        el.offsetLeft + el.offsetWidth / 2 - track.clientWidth / 2,
-      ),
-    );
-  }, []);
-
-  const measure = useCallback(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    const centre = track.scrollLeft + track.clientWidth / 2;
-    let best = 0;
-    let bestDist = Infinity;
-    cardRefs.current.forEach((el, i) => {
-      if (!el) return;
-      const mid = el.offsetLeft + el.offsetWidth / 2;
-      const d = Math.abs(mid - centre);
-      if (d < bestDist) {
-        bestDist = d;
-        best = i;
-      }
-    });
-    setActive(best);
-  }, []);
-
-  // Once scrolling settles, silently teleport back into the middle copy so the
-  // gallery never reaches an end.
-  const normalise = useCallback(() => {
-    const track = trackRef.current;
-    if (!track || !loop) return;
-    const centre = track.scrollLeft + track.clientWidth / 2;
-    let best = 0;
-    let bestDist = Infinity;
-    cardRefs.current.forEach((el, i) => {
-      if (!el) return;
-      const mid = el.offsetLeft + el.offsetWidth / 2;
-      const d = Math.abs(mid - centre);
-      if (d < bestDist) {
-        bestDist = d;
-        best = i;
-      }
-    });
-    if (best >= n && best < 2 * n) return;
-    const target = (best % n) + n;
-    const from = leftFor(best);
-    const to = leftFor(target);
-    if (from == null || to == null) return;
-    track.scrollLeft = track.scrollLeft + (to - from);
-    setActive(target);
-  }, [leftFor, loop, n]);
-
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    if (loop && !didInit.current) {
-      const left = leftFor(n);
-      if (left != null) track.scrollLeft = left;
-      didInit.current = true;
-      setActive(n);
-    }
-    measure();
-    let raf = 0;
-    let settle: ReturnType<typeof setTimeout>;
-    const onScroll = () => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(measure);
-      clearTimeout(settle);
-      settle = setTimeout(normalise, 180);
-    };
-    track.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", measure);
-    return () => {
-      cancelAnimationFrame(raf);
-      clearTimeout(settle);
-      track.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", measure);
-    };
-  }, [measure, normalise, leftFor, loop, n]);
-
-
-  // Pointer drag (desktop mouse / trackpad press-drag). Touch uses native scroll.
-  const drag = useRef({ down: false, startX: 0, startLeft: 0, moved: 0 });
+  const [active, setActive] = useState(0);
   const [flipped, setFlipped] = useState<number | null>(null);
-  const maybeToggleFlip = (i: number) => {
-    if (drag.current.moved > 6) return;
-    setFlipped((f) => (f === i ? null : i));
-  };
+
+  const go = useCallback(
+    (dir: number) => {
+      setFlipped(null);
+      setActive((a) => ((a + dir) % n + n) % n);
+    },
+    [n],
+  );
+
+  // signed offset from the active card, wrapped so the arc is continuous
+  const offsetOf = useCallback(
+    (i: number) => {
+      let d = i - active;
+      if (d > n / 2) d -= n;
+      if (d < -n / 2) d += n;
+      return d;
+    },
+    [active, n],
+  );
+
+  // drag / swipe
+  const drag = useRef({ down: false, startX: 0, moved: 0, fired: false });
   const onPointerDown = (e: React.PointerEvent) => {
-    drag.current.moved = 0;
-    if (e.pointerType === "touch") return;
-    const track = trackRef.current;
-    if (!track) return;
-    drag.current = { down: true, startX: e.clientX, startLeft: track.scrollLeft, moved: 0 };
+    drag.current = { down: true, startX: e.clientX, moved: 0, fired: false };
   };
   const onPointerMove = (e: React.PointerEvent) => {
-    const track = trackRef.current;
-    if (!track || !drag.current.down) return;
-    drag.current.moved = Math.abs(e.clientX - drag.current.startX);
-    track.scrollLeft = drag.current.startLeft - (e.clientX - drag.current.startX);
+    if (!drag.current.down) return;
+    const dx = e.clientX - drag.current.startX;
+    drag.current.moved = Math.abs(dx);
+    if (!drag.current.fired && drag.current.moved > 60) {
+      drag.current.fired = true;
+      go(dx < 0 ? 1 : -1);
+    }
   };
   const endDrag = () => {
     drag.current.down = false;
   };
 
+  // wheel / trackpad rotation, throttled so one gesture moves one card
+  const wheelLock = useRef(0);
+  const onWheel = (e: React.WheelEvent) => {
+    const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : 0;
+    if (!d) return;
+    e.preventDefault();
+    const now = Date.now();
+    if (now - wheelLock.current < 420) return;
+    wheelLock.current = now;
+    go(d > 0 ? 1 : -1);
+  };
 
-  const scrollTo = useCallback(
-    (i: number) => {
-      const track = trackRef.current;
-      if (!track) return;
-      const idx = loop ? i : Math.max(0, Math.min(slides.length - 1, i));
-      const left = leftFor(idx);
-      if (left == null) return;
-      setActive(idx);
-      if (typeof track.scrollTo === "function") {
-        track.scrollTo({ left, behavior: "smooth" });
-      } else {
-        track.scrollLeft = left;
-      }
-    },
-    [leftFor, loop, slides.length],
-  );
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") go(1);
+      if (e.key === "ArrowLeft") go(-1);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [go]);
 
-  const realIndex = loop ? ((active % n) + n) % n : active;
-  const activeImg = slides[active]?.img;
+  const activeImg = items[active]?.img;
 
   return (
-    <div className="relative left-1/2 w-screen -translate-x-1/2">
+    <div className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden">
       {/* ambient dark atmosphere behind the active card */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
         <div className="absolute inset-0 bg-[#0b0b0b]" />
@@ -188,129 +119,149 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
         <div className="absolute inset-0 bg-gradient-to-r from-[#0b0b0b] via-transparent to-[#0b0b0b]" />
       </div>
 
+      {/* 3D stage */}
       <div
-        ref={trackRef}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={endDrag}
         onPointerLeave={endDrag}
+        onWheel={onWheel}
         onDragStart={(e) => e.preventDefault()}
-        className="relative flex snap-x snap-mandatory items-center gap-4 overflow-x-auto overscroll-x-contain px-[6vw] py-5 sm:gap-5 sm:px-[max(1rem,calc((100vw-min(1320px,82vw))/2))] sm:py-6 md:gap-8 md:py-8 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-        style={{ cursor: "grab", touchAction: "pan-y pinch-zoom" }}
+        className="relative h-[min(500px,max(420px,calc(100svh-260px)))] w-full sm:h-[min(clamp(430px,62vw,720px),max(400px,calc(100svh-240px)))]"
+        style={{
+          perspective: "1600px",
+          perspectiveOrigin: "50% 50%",
+          transformStyle: "preserve-3d",
+          cursor: "grab",
+          touchAction: "pan-y pinch-zoom",
+        }}
       >
-        {slides.map((item, i) => {
-          const isActive = i === active;
+        {items.map((item, i) => {
+          const off = offsetOf(i);
+          const abs = Math.abs(off);
+          const hidden = abs > VISIBLE;
+          const isActive = off === 0;
           const isFlipped = flipped === i;
+
+          // elliptical arc: sideways travel eases off while depth keeps growing
+          const x = Math.sign(off) * (1 - Math.cos((Math.min(abs, VISIBLE) * Math.PI) / 9)) * 190 + off * 46;
+          const z = -abs * 240;
+          const rotY = -off * 26;
+          const scale = Math.max(0.6, 1 - abs * 0.1);
+          const opacity = hidden ? 0 : Math.max(0.18, 1 - abs * 0.28);
+
           return (
             <article
               key={`${item.name}-${i}`}
-              ref={(el) => {
-                cardRefs.current[i] = el;
+              onClick={() => {
+                if (drag.current.moved > 6) return;
+                if (!isActive) {
+                  go(off > 0 ? 1 : -1);
+                  return;
+                }
+                setFlipped((f) => (f === i ? null : i));
               }}
-              onClick={() => maybeToggleFlip(i)}
-              className={`relative h-[min(500px,max(420px,calc(100svh-260px)))] w-[min(1320px,88vw)] shrink-0 snap-center overflow-hidden rounded-[20px] transition-all duration-500 ease-out sm:h-[min(clamp(430px,62vw,720px),max(400px,calc(100svh-240px)))] sm:w-[min(1320px,82vw)] sm:rounded-[24px] md:rounded-[32px] ${
-                isActive ? "opacity-100 shadow-[0_40px_90px_-40px_rgba(0,0,0,0.9)]" : "opacity-45"
+              aria-hidden={hidden}
+              className={`absolute left-1/2 top-1/2 h-[min(500px,max(420px,calc(100svh-260px)))] w-[min(1320px,88vw)] overflow-hidden rounded-[20px] sm:h-[min(clamp(430px,62vw,720px),max(400px,calc(100svh-240px)))] sm:w-[min(1100px,74vw)] sm:rounded-[24px] md:rounded-[32px] ${
+                isActive ? "shadow-[0_40px_90px_-40px_rgba(0,0,0,0.95)]" : ""
               }`}
-              style={{ transform: isActive ? "scale(1)" : "scale(0.94)" }}
+              style={{
+                zIndex: 100 - abs,
+                opacity,
+                pointerEvents: hidden ? "none" : "auto",
+                transformStyle: "preserve-3d",
+                transform: `translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale})`,
+                transition:
+                  "transform 850ms cubic-bezier(0.16, 1, 0.3, 1), opacity 850ms cubic-bezier(0.16, 1, 0.3, 1)",
+              }}
             >
-              {/* portrait — sharp subject confined to the right image region so the
-                  face never sits behind the curved information panel */}
+              {/* portrait — sharp subject confined to the right image region */}
               <div className="absolute inset-0 bg-[#131313]/60">
                 {item.img ? (
-                  <>
-                    {/* the actual subject frame: starts to the right of the curve */}
+                  <div
+                    className="absolute inset-x-0 top-0 h-[62%] sm:inset-y-0 sm:left-[46%] sm:right-0 sm:h-auto md:left-[48%]"
+                    style={{ perspective: "1400px" }}
+                  >
                     <div
-                      className="absolute inset-x-0 top-0 h-[62%] sm:inset-y-0 sm:left-[46%] sm:right-0 sm:h-auto md:left-[48%]"
-                      style={{ perspective: "1400px" }}
+                      role="button"
+                      tabIndex={isActive ? 0 : -1}
+                      aria-pressed={isFlipped}
+                      aria-label={`Show details for ${item.name}`}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          setFlipped((f) => (f === i ? null : i));
+                        }
+                      }}
+                      className="relative h-full w-full cursor-pointer outline-none"
+                      style={{
+                        transformStyle: "preserve-3d",
+                        transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+                        transition: "transform 800ms cubic-bezier(0.22, 1, 0.36, 1)",
+                      }}
                     >
                       <div
-                        role="button"
-                        tabIndex={0}
-                        aria-pressed={isFlipped}
-                        aria-label={`Show details for ${item.name}`}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          maybeToggleFlip(i);
-                        }}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter" || e.key === " ") {
-                            e.preventDefault();
-                            setFlipped((f) => (f === i ? null : i));
-                          }
-                        }}
-                        className="relative h-full w-full cursor-pointer outline-none"
+                        className="absolute inset-0 overflow-hidden"
+                        style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
+                      >
+                        <img
+                          src={item.img}
+                          alt={item.name}
+                          draggable={false}
+                          className={`h-full w-full select-none object-cover object-[58%_top] transition duration-700 sm:object-[64%_top] md:object-[66%_top] ${
+                            isActive ? "grayscale-[0.35]" : "grayscale"
+                          }`}
+                        />
+                      </div>
+                      <div
+                        className="absolute inset-0 flex flex-col justify-center overflow-hidden bg-[#131313] px-6 py-6 sm:px-10 md:px-12"
                         style={{
-                          transformStyle: "preserve-3d",
-                          transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
-                          transition: "transform 800ms cubic-bezier(0.22, 1, 0.36, 1)",
+                          backfaceVisibility: "hidden",
+                          WebkitBackfaceVisibility: "hidden",
+                          transform: "rotateY(180deg)",
                         }}
+                        aria-hidden={!isFlipped}
                       >
                         <div
-                          className="absolute inset-0 overflow-hidden"
-                          style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
+                          className="text-[9px] uppercase tracking-[0.22em] text-white/45 md:text-[10.5px]"
+                          style={{ fontFamily: MONO }}
                         >
-                          <img
-                            src={item.img}
-                            alt={item.name}
-                            draggable={false}
-                            className={`h-full w-full select-none object-cover object-[58%_top] transition duration-700 sm:object-[64%_top] md:object-[66%_top] ${
-                              isActive ? "grayscale-[0.35]" : "grayscale"
-                            }`}
-                          />
+                          Industry Practitioner
                         </div>
+                        <h4
+                          className="mt-3 text-[clamp(1.2rem,3.4vw,2.2rem)] font-medium leading-[1.05] tracking-[-0.03em] text-white"
+                          style={{ fontFamily: SERIF }}
+                        >
+                          {item.name}
+                        </h4>
                         <div
-                          className="absolute inset-0 flex flex-col justify-center overflow-hidden bg-[#131313] px-6 py-6 sm:px-10 md:px-12"
-                          style={{
-                            backfaceVisibility: "hidden",
-                            WebkitBackfaceVisibility: "hidden",
-                            transform: "rotateY(180deg)",
-                          }}
-                          aria-hidden={!isFlipped}
+                          className="mt-2.5 text-[9.5px] uppercase leading-[1.6] tracking-[0.16em] text-white/60 md:text-[11px]"
+                          style={{ fontFamily: MONO }}
                         >
-                          <div
-                            className="text-[9px] uppercase tracking-[0.22em] text-white/45 md:text-[10.5px]"
-                            style={{ fontFamily: MONO }}
-                          >
-                            Industry Practitioner
-                          </div>
-                          <h4
-                            className="mt-3 text-[clamp(1.2rem,3.4vw,2.2rem)] font-medium leading-[1.05] tracking-[-0.03em] text-white"
-                            style={{ fontFamily: SERIF }}
-                          >
-                            {item.name}
-                          </h4>
-                          <div
-                            className="mt-2.5 text-[9.5px] uppercase leading-[1.6] tracking-[0.16em] text-white/60 md:text-[11px]"
-                            style={{ fontFamily: MONO }}
-                          >
-                            {item.role}
-                          </div>
-                          {item.blurb ? (
-                            <p className="mt-3 max-w-[42ch] text-[12.5px] leading-[1.65] text-white/70 md:mt-5 md:text-[15px]">
-                              {item.blurb}
-                            </p>
-                          ) : null}
-                          {item.sub ? (
-                            <div
-                              className="mt-5 border-t border-white/12 pt-4 text-[9.5px] uppercase leading-[1.6] tracking-[0.16em] text-white/45 md:text-[10.5px]"
-                              style={{ fontFamily: MONO }}
-                            >
-                              {item.sub}
-                            </div>
-                          ) : null}
+                          {item.role}
                         </div>
+                        {item.blurb ? (
+                          <p className="mt-3 max-w-[42ch] text-[12.5px] leading-[1.65] text-white/70 md:mt-5 md:text-[15px]">
+                            {item.blurb}
+                          </p>
+                        ) : null}
+                        {item.sub ? (
+                          <div
+                            className="mt-5 border-t border-white/12 pt-4 text-[9.5px] uppercase leading-[1.6] tracking-[0.16em] text-white/45 md:text-[10.5px]"
+                            style={{ fontFamily: MONO }}
+                          >
+                            {item.sub}
+                          </div>
+                        ) : null}
                       </div>
                     </div>
-                  </>
+                  </div>
                 ) : (
                   <Initials name={item.name} />
                 )}
               </div>
 
-
-
               {/* dark information panel — the curve is the only boundary */}
-              {/* mobile: information sheet rises from the bottom under the portrait */}
               <div
                 className="absolute inset-x-0 bottom-0 top-[56%] rounded-t-[28px] bg-[#131313] shadow-[0_-24px_60px_-20px_rgba(0,0,0,0.75)] sm:hidden"
                 aria-hidden
@@ -367,19 +318,27 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                   </div>
                 ) : null}
               </div>
+
+              {/* depth shading for receding cards */}
+              {!isActive && !hidden ? (
+                <div
+                  className="pointer-events-none absolute inset-0"
+                  style={{ background: `rgba(6,6,6,${Math.min(0.55, abs * 0.2)})` }}
+                  aria-hidden
+                />
+              ) : null}
             </article>
           );
         })}
       </div>
 
       {/* minimal controls */}
-      <div className="relative z-20 flex items-center justify-center gap-5 pb-6 md:pb-8">
+      <div className="relative z-20 flex items-center justify-center gap-5 pb-6 pt-4 md:pb-8">
         <button
           type="button"
-          onClick={() => scrollTo(active - 1)}
-          disabled={!loop && active === 0}
+          onClick={() => go(-1)}
           aria-label="Previous practitioner"
-          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[12px] text-white/70 transition-colors hover:border-white/50 hover:text-white disabled:opacity-25"
+          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[12px] text-white/70 transition-colors hover:border-white/50 hover:text-white"
         >
           ←
         </button>
@@ -387,14 +346,13 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
           className="text-[10px] uppercase tracking-[0.22em] text-white/45"
           style={{ fontFamily: MONO }}
         >
-          {String(realIndex + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}
+          {String(active + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}
         </div>
         <button
           type="button"
-          onClick={() => scrollTo(active + 1)}
-          disabled={!loop && active === slides.length - 1}
+          onClick={() => go(1)}
           aria-label="Next practitioner"
-          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[12px] text-white/70 transition-colors hover:border-white/50 hover:text-white disabled:opacity-25"
+          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-[12px] text-white/70 transition-colors hover:border-white/50 hover:text-white"
         >
           →
         </button>
@@ -402,4 +360,3 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     </div>
   );
 }
-
