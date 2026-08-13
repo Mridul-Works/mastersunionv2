@@ -70,38 +70,40 @@ function SectionHeader({
   title,
   intro,
   align = "left",
+  dark = false,
 }: {
   index: string;
   eyebrow: string;
   title: React.ReactNode;
   intro?: React.ReactNode;
   align?: "left" | "center";
+  dark?: boolean;
 }) {
   const isCenter = align === "center";
   return (
     <header className={isCenter ? "text-center" : ""}>
       <p
-        className={`mb-[clamp(0.4rem,1.2vh,0.75rem)] font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-black/50 ${
-          isCenter ? "flex justify-center gap-3" : "flex gap-3"
-        }`}
+        className={`mb-[clamp(0.4rem,1.2vh,0.75rem)] font-mono text-[10px] font-bold uppercase tracking-[0.28em] ${
+          dark ? "text-white/50" : "text-black/50"
+        } ${isCenter ? "flex justify-center gap-3" : "flex gap-3"}`}
       >
         <span>{index}</span>
-        <span aria-hidden className="text-black/25">/</span>
+        <span aria-hidden className={dark ? "text-white/25" : "text-black/25"}>/</span>
         <span>{eyebrow}</span>
       </p>
       <h2
-        className={`text-[clamp(1.2rem,min(2.6vw,3.4vh),2.1rem)] font-semibold leading-[1.08] tracking-tight text-black ${
-          isCenter ? "mx-auto max-w-[24ch]" : "max-w-[26ch]"
-        }`}
+        className={`text-[clamp(1.2rem,min(2.6vw,3.4vh),2.1rem)] font-semibold leading-[1.08] tracking-tight ${
+          dark ? "text-white" : "text-black"
+        } ${isCenter ? "mx-auto max-w-[24ch]" : "max-w-[26ch]"}`}
         style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
       >
         {title}
       </h2>
       {intro ? (
         <p
-          className={`mt-[clamp(0.5rem,1.5vh,1rem)] text-[clamp(0.82rem,min(1vw,1.6vh),0.98rem)] leading-[1.6] text-black/70 ${
-            isCenter ? "mx-auto max-w-[62ch]" : "max-w-[62ch]"
-          }`}
+          className={`mt-[clamp(0.5rem,1.5vh,1rem)] text-[clamp(0.82rem,min(1vw,1.6vh),0.98rem)] leading-[1.6] ${
+            dark ? "text-white/70" : "text-black/70"
+          } ${isCenter ? "mx-auto max-w-[62ch]" : "max-w-[62ch]"}`}
         >
           {intro}
         </p>
