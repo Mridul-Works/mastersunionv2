@@ -11,7 +11,7 @@ export default function MotionToggle({ className = "" }: { className?: string })
 
   return (
     <div
-      className={`fixed bottom-4 left-4 z-[70] flex items-center gap-1 rounded-full border border-white/15 bg-black/70 p-1 text-[0.6rem] uppercase tracking-[0.18em] text-white/60 backdrop-blur-md ${className}`}
+      className={`fixed bottom-[6.75rem] left-4 z-[80] sm:bottom-[7.5rem] flex items-center gap-1 rounded-full border border-white/15 bg-black/70 p-1 text-[0.6rem] uppercase tracking-[0.18em] text-white/60 backdrop-blur-md ${className}`}
       role="group"
       aria-label="Motion quality"
     >
