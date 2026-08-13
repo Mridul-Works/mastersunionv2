@@ -106,51 +106,53 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
   };
 
   /**
-   * Wheel / trackpad: accumulate horizontal travel and fire the INSTANT it
-   * crosses the threshold — no waiting for the event stream to end. The rest of
-   * the same gesture is then ignored so exactly one card moves.
+   * Wheel / trackpad. A physical gesture is delimited purely by TIME between
+   * wheel events — never by cursor movement — so the pointer can stay perfectly
+   * still and each new swipe is detected on its own.
    */
-  const gesture = useRef({ fired: false, accum: 0 });
-  const idleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const armNextGesture = useCallback(() => {
-    if (idleTimer.current) clearTimeout(idleTimer.current);
-    idleTimer.current = setTimeout(() => {
-      // only re-arm once the arc has settled, so a long burst of wheel events
-      // can never queue up a second advance
-      if (lock.current) {
-        armNextGesture();
-        return;
+  const GESTURE_GAP_MS = 100;
+  const stageRef = useRef<HTMLDivElement | null>(null);
+  const gesture = useRef({ fired: false, accum: 0, lastTs: 0 });
+
+  const handleWheel = useCallback(
+    (e: WheelEvent) => {
+      const dx = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : 0;
+      if (!dx) return;
+      e.preventDefault();
+
+      const g = gesture.current;
+      const now = e.timeStamp || performance.now();
+
+      // a pause in the event stream = the previous physical gesture ended
+      if (now - g.lastTs > GESTURE_GAP_MS) {
+        g.fired = false;
+        g.accum = 0;
       }
-      gesture.current = { fired: false, accum: 0 };
-    }, 140);
+      g.lastTs = now;
+
+      if (g.fired || lock.current) return; // same gesture, or arc still moving
+
+      if (Math.sign(dx) !== Math.sign(g.accum)) g.accum = 0; // direction reversal
+      g.accum += dx;
+      if (Math.abs(g.accum) < THRESHOLD) return; // accidental drift
+
+      g.fired = true;
+      go(g.accum > 0 ? 1 : -1);
+    },
+    [go],
+  );
+
+  const handleWheelRef = useRef(handleWheel);
+  handleWheelRef.current = handleWheel;
+
+  useEffect(() => {
+    const el = stageRef.current;
+    if (!el) return;
+    const listener = (e: WheelEvent) => handleWheelRef.current(e);
+    el.addEventListener("wheel", listener, { passive: false });
+    return () => el.removeEventListener("wheel", listener);
   }, []);
 
-  const onWheel = (e: React.WheelEvent) => {
-    const dx = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : 0;
-    if (!dx) return;
-    e.preventDefault();
-
-    armNextGesture(); // any wheel activity keeps the current gesture alive
-
-    if (gesture.current.fired || lock.current) return; // same gesture, or animating
-
-    // reset accumulation if the user reverses direction mid-gesture
-    if (Math.sign(dx) !== Math.sign(gesture.current.accum)) gesture.current.accum = 0;
-    gesture.current.accum += dx;
-
-    if (Math.abs(gesture.current.accum) < THRESHOLD) return; // accidental drift
-
-    gesture.current.fired = true;
-    go(gesture.current.accum > 0 ? 1 : -1);
-  };
-
-
-  useEffect(
-    () => () => {
-      if (idleTimer.current) clearTimeout(idleTimer.current);
-    },
-    [],
-  );
 
 
   useEffect(() => {
