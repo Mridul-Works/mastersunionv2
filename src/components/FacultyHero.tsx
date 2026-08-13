@@ -156,6 +156,15 @@ export default function FacultyHero({
     return () => cancelAnimationFrame(id);
   }, []);
 
+  // MU watermark entrance: run once then hand scroll-linked opacity back to CSS.
+  useEffect(() => {
+    if (reducedMotion) return;
+    if (!animateIn) return;
+    setMuClass("mu-watermark mu-watermark-enter");
+    const t = setTimeout(() => setMuClass("mu-watermark"), 800);
+    return () => clearTimeout(t);
+  }, [animateIn, reducedMotion]);
+
   // Very subtle recede as the hero scrolls away (no sticky trap, no big parallax).
   // Driven by a CSS custom property to avoid React re-renders and boundary flicker.
   useEffect(() => {
