@@ -210,15 +210,25 @@ export default function MastersVideos({
     <section
       id="masters"
       ref={sectionRef}
-      className={`mv-section ${revealed ? "is-revealed" : ""} relative w-full overflow-x-hidden border-t border-black/10 ${bg}`}
+      className={`mv-section ${revealed ? "is-revealed" : ""} relative flex w-full min-h-[100svh] flex-col justify-center overflow-x-hidden border-t border-black/10 ${bg}`}
+      style={{
+        paddingTop: "clamp(1.25rem,3.5vh,3rem)",
+        paddingBottom: "clamp(4.5rem,9vh,6.5rem)",
+      }}
     >
       {statsSlot ? (
-        <div className="mx-auto w-full max-w-[1280px] px-5 pt-[clamp(3rem,7vw,5.5rem)] md:px-10">
-          {statsSlot}
-        </div>
+        <div className="mx-auto w-full max-w-[1280px] px-5 md:px-10">{statsSlot}</div>
       ) : null}
 
-      <div className="mx-auto grid w-full max-w-[1280px] grid-cols-1 gap-10 px-5 py-[clamp(3rem,7vw,5.5rem)] md:px-10 lg:grid-cols-12 lg:items-start lg:gap-16">
+      <div
+        className="mx-auto grid w-full max-w-[1280px] grid-cols-1 px-5 md:px-10 lg:grid-cols-12 lg:items-start"
+        style={{
+          gap: "clamp(1.5rem,3.5vh,2.5rem)",
+          columnGap: "clamp(1.5rem,3vw,4rem)",
+          paddingTop: "clamp(1.5rem,4vh,3rem)",
+        }}
+      >
+
         {/* Left: sticky editorial column */}
         <div className="min-w-0 lg:col-span-4 lg:sticky lg:top-24">
           <p className="mv-reveal mb-4 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]">
