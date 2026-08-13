@@ -225,10 +225,10 @@ const TESTIMONIALS = [
   { q: "You ask a question and the person answering it was the one who actually made the decision. Not someone who read about it. The actual person.", a: "Omkar Hundekari", r: "Bain & Co." },
 ];
 
-function Initials({ name }: { name: string }) {
+function Initials({ name, dark = false }: { name: string; dark?: boolean }) {
   const initials = name.replace(/^Dr\s+|^Captain\s+/i, "").split(/\s+/).map((w) => w[0]).slice(0, 2).join("");
   return (
-    <div className="flex h-full w-full items-center justify-center bg-neutral-100 text-[clamp(1.6rem,2.4vw,2rem)] tracking-[-0.02em] text-black/40" style={{ fontFamily: MONO }}>
+    <div className={`flex h-full w-full items-center justify-center text-[clamp(1.6rem,2.4vw,2rem)] tracking-[-0.02em] ${dark ? "bg-neutral-800 text-white/40" : "bg-neutral-100 text-black/40"}`} style={{ fontFamily: MONO }}>
       {initials}
     </div>
   );
