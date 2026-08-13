@@ -45,7 +45,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
   const [flipped, setFlipped] = useState<number | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  const TRANSITION_MS = 850;
+  const TRANSITION_MS = 620;
   const lock = useRef(false);
   const unlockTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -84,7 +84,10 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     [active, n],
   );
 
-  // drag / swipe — one completed gesture advances exactly one card
+  /** Horizontal travel that counts as an intentional gesture. */
+  const THRESHOLD = 28;
+
+  // drag / swipe — fires the moment the threshold is crossed, once per gesture
   const drag = useRef({ down: false, startX: 0, moved: 0, fired: false });
   const onPointerDown = (e: React.PointerEvent) => {
     drag.current = { down: true, startX: e.clientX, moved: 0, fired: false };
@@ -93,7 +96,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     if (!drag.current.down || drag.current.fired) return;
     const dx = e.clientX - drag.current.startX;
     drag.current.moved = Math.abs(dx);
-    if (drag.current.moved > 60) {
+    if (drag.current.moved > THRESHOLD) {
       drag.current.fired = true; // no further movement in this gesture can advance again
       go(dx < 0 ? 1 : -1);
     }
@@ -103,23 +106,23 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
   };
 
   /**
-   * Wheel / trackpad: treat a continuous burst of events as ONE gesture.
-   * The first event past the threshold advances a single card; everything else
-   * until the gesture goes idle (and the animation completes) is ignored.
+   * Wheel / trackpad: accumulate horizontal travel and fire the INSTANT it
+   * crosses the threshold — no waiting for the event stream to end. The rest of
+   * the same gesture is then ignored so exactly one card moves.
    */
-  const gesture = useRef({ active: false });
+  const gesture = useRef({ fired: false, accum: 0 });
   const idleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const clearGestureWhenIdle = useCallback(() => {
+  const armNextGesture = useCallback(() => {
     if (idleTimer.current) clearTimeout(idleTimer.current);
     idleTimer.current = setTimeout(() => {
-      // only end the gesture once the arc has settled, so a long burst of wheel
-      // events can never queue up a second advance
+      // only re-arm once the arc has settled, so a long burst of wheel events
+      // can never queue up a second advance
       if (lock.current) {
-        clearGestureWhenIdle();
+        armNextGesture();
         return;
       }
-      gesture.current.active = false;
-    }, 200);
+      gesture.current = { fired: false, accum: 0 };
+    }, 140);
   }, []);
 
   const onWheel = (e: React.WheelEvent) => {
@@ -127,13 +130,20 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     if (!dx) return;
     e.preventDefault();
 
-    clearGestureWhenIdle(); // any wheel activity keeps the current gesture alive
-    if (gesture.current.active || lock.current) return; // same gesture, or animating
-    if (Math.abs(dx) < 8) return; // ignore tiny accidental trackpad drift
+    armNextGesture(); // any wheel activity keeps the current gesture alive
 
-    gesture.current.active = true;
-    go(dx > 0 ? 1 : -1);
+    if (gesture.current.fired || lock.current) return; // same gesture, or animating
+
+    // reset accumulation if the user reverses direction mid-gesture
+    if (Math.sign(dx) !== Math.sign(gesture.current.accum)) gesture.current.accum = 0;
+    gesture.current.accum += dx;
+
+    if (Math.abs(gesture.current.accum) < THRESHOLD) return; // accidental drift
+
+    gesture.current.fired = true;
+    go(gesture.current.accum > 0 ? 1 : -1);
   };
+
 
   useEffect(
     () => () => {
@@ -221,7 +231,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                 backgroundColor: "#0f0f0f",
                 transform: `perspective(1600px) translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale})`,
                 transition:
-                  "transform 850ms cubic-bezier(0.16, 1, 0.3, 1), opacity 850ms cubic-bezier(0.16, 1, 0.3, 1)",
+                  "transform 600ms cubic-bezier(0.16, 1, 0.3, 1), opacity 600ms cubic-bezier(0.16, 1, 0.3, 1)",
               }}
             >
               {/* flip card: front = image only, back = details */}
