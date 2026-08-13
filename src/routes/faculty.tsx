@@ -3,7 +3,7 @@ import { ArrowUpRight, Quote } from "lucide-react";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 import MastersVideos from "@/components/MastersVideos";
 import FacultyHero from "@/components/FacultyHero";
-import HeroToMastersTransition from "@/components/HeroToMastersTransition";
+import HeroFadeOut from "@/components/HeroFadeOut";
 import { buildFacultyStats, statsRefreshedLabel } from "@/lib/faculty-stats";
 
 
