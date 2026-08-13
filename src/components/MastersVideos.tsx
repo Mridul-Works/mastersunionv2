@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export type MasterVideo = {
   thumb: string;
@@ -82,20 +82,7 @@ export const MASTER_VIDEOS: MasterVideo[] = [
   },
 ];
 
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-function PlayGlyph({ size = 44 }: { size?: number }) {
-  return (
-    <span
-      className="grid place-items-center rounded-full border border-white/70 bg-black/25 backdrop-blur-sm transition group-hover:scale-105 group-hover:bg-black/40"
-      style={{ width: size, height: size }}
-    >
-      <svg width="14" height="16" viewBox="0 0 14 16" fill="none" aria-hidden>
-        <path d="M13 8L0.999999 15.7942L1 0.205771L13 8Z" fill="white" />
-      </svg>
-    </span>
-  );
-}
+const SERIF_IT = "'Fraunces', Georgia, serif";
 
 function VideoModal({ video, onClose }: { video: MasterVideo; onClose: () => void }) {
   useEffect(() => {
@@ -146,20 +133,6 @@ function VideoModal({ video, onClose }: { video: MasterVideo; onClose: () => voi
   );
 }
 
-function usePerView() {
-  const [perView, setPerView] = useState(1);
-  useEffect(() => {
-    const compute = () => {
-      const w = window.innerWidth;
-      setPerView(w >= 1024 ? 3 : w >= 640 ? 2 : 1);
-    };
-    compute();
-    window.addEventListener("resize", compute);
-    return () => window.removeEventListener("resize", compute);
-  }, []);
-  return perView;
-}
-
 export default function MastersVideos({
   bg = "bg-[#F5F3EE]",
   statsSlot,
@@ -170,26 +143,43 @@ export default function MastersVideos({
   dark?: boolean;
 }) {
   const [open, setOpen] = useState<MasterVideo | null>(null);
-  const perView = usePerView();
-  const [page, setPage] = useState(0);
+  const [active, setActive] = useState(0);
+  const [phase, setPhase] = useState<"in" | "out">("in");
+  const pendingRef = useRef<number | null>(null);
+  const total = MASTER_VIDEOS.length;
+  const current = MASTER_VIDEOS[active];
 
-  const pages = Math.max(1, Math.ceil(MASTER_VIDEOS.length / perView));
-  const safePage = Math.min(page, pages - 1);
+  // crossfade + subtle slide when the featured item changes
+  const goTo = useCallback(
+    (next: number) => {
+      const idx = ((next % total) + total) % total;
+      if (idx === active) return;
+      const reduce =
+        typeof window !== "undefined" &&
+        window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+      if (reduce) {
+        setActive(idx);
+        return;
+      }
+      pendingRef.current = idx;
+      setPhase("out");
+      window.setTimeout(() => {
+        if (pendingRef.current !== null) setActive(pendingRef.current);
+        pendingRef.current = null;
+        setPhase("in");
+      }, 240);
+    },
+    [active, total],
+  );
 
+  // keep the active thumbnail in view
+  const stripRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
-    setPage(0);
-  }, [perView]);
+    const el = stripRef.current?.querySelector<HTMLElement>(`[data-idx="${active}"]`);
+    el?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+  }, [active]);
 
-  const go = (dir: 1 | -1) => {
-    setPage((p) => {
-      const next = Math.min(pages - 1, Math.max(0, p + dir));
-      return next;
-    });
-  };
-
-  const gap = 24; // matches gap-6
-
-  // own scroll reveal — heading, paragraph, then the cards
+  // own scroll reveal
   const sectionRef = useRef<HTMLElement | null>(null);
   const [revealed, setRevealed] = useState(false);
   useEffect(() => {
@@ -208,132 +198,173 @@ export default function MastersVideos({
     return () => io.disconnect();
   }, []);
 
+  const line = dark ? "border-white/10" : "border-black/10";
+  const shell = dark ? "bg-white/[0.03]" : "bg-white/70";
+  const heading = dark ? "text-white" : "text-black";
+  const muted = dark ? "text-white/60" : "text-black/60";
+  const faint = dark ? "text-white/45" : "text-black/45";
+
   return (
     <section
       id="masters"
       ref={sectionRef}
-      className={`mv-section ${revealed ? "is-revealed" : ""} relative flex w-full min-h-[100svh] flex-col overflow-x-hidden border-t ${dark ? "border-white/10" : "border-black/10"} ${bg}`}
+      className={`mv-section ${revealed ? "is-revealed" : ""} relative flex w-full min-h-[100svh] flex-col overflow-x-hidden border-t ${line} ${bg}`}
       style={{
         paddingTop: "clamp(0.75rem, 2vh, 1.75rem)",
         paddingBottom: "clamp(2rem,4vh,3rem)",
       }}
     >
+      {/* compact editorial stats strip — belongs to Section 2 */}
       {statsSlot ? (
         <div className="mx-auto w-full max-w-[1520px] px-5 md:px-10">{statsSlot}</div>
       ) : null}
 
       <div className="flex flex-1 items-center">
-        <div
-          className="mx-auto grid w-full max-w-[1520px] grid-cols-1 px-5 pt-[clamp(0.6rem,1.4vh,1rem)] md:px-10 lg:grid-cols-[minmax(0,39fr)_minmax(0,61fr)] lg:items-center lg:pt-[clamp(40px,4vh,60px)]"
-          style={{
-            gap: "clamp(1rem,2vh,1.5rem)",
-            columnGap: "clamp(1.5rem,3vw,3.5rem)",
-          }}
-        >
-
-        {/* Left: editorial column, vertically centered against the cards */}
-        <div className="min-w-0">
-          <p className="mv-reveal mb-[clamp(0.5rem,1.4vh,1rem)] font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]">
-            500+ Masters
-          </p>
-          <h2
-            className={`mv-reveal text-[clamp(1.5rem,2.9vw,2.5rem)] font-medium italic leading-[1.1] tracking-tight ${dark ? "text-white" : "text-black"}`}
-            style={{ fontFamily: "'Fraunces', Georgia, serif", transitionDelay: "260ms" }}
-          >
-            Built by Scholars, Led by Industry Practitioners
-          </h2>
-          <p
-            className={`mv-reveal mt-[clamp(0.75rem,2.2vh,1.5rem)] max-w-sm text-[clamp(12.5px,1.6vh,14px)] leading-relaxed ${dark ? "text-white/60" : "text-black/60"}`}
-            style={{ transitionDelay: "420ms" }}
-          >
-            At Masters' Union, your classroom is powered by Ivy League academics and global business
-            leaders, from Harvard to McKinsey, from Wharton to Google. Our Masters don't just teach
-            the playbook. They wrote it.
-          </p>
-
+        <div className="mx-auto w-full max-w-[1520px] px-5 pt-[clamp(0.75rem,2vh,1.25rem)] md:px-10 lg:pt-[clamp(28px,3.4vh,46px)]">
+          {/* one large rounded exhibition container */}
           <div
-            className="mv-reveal mt-[clamp(1rem,2.6vh,1.75rem)] flex items-center gap-3"
-            style={{ transitionDelay: "540ms" }}
+            className={`mv-reveal overflow-hidden rounded-[clamp(20px,2.6vw,34px)] border ${line} ${shell} backdrop-blur-[14px] shadow-[0_30px_80px_-60px_rgba(0,0,0,0.6)]`}
           >
-
-            <button
-              type="button"
-              onClick={() => go(-1)}
-              disabled={safePage === 0}
-              aria-label="Previous videos"
-              className={`group grid h-[clamp(2.4rem,4.5vh,3rem)] w-[clamp(2.4rem,4.5vh,3rem)] shrink-0 place-items-center rounded-full border transition hover:border-black disabled:opacity-30 ${dark ? "border-white/30 text-white hover:border-white" : "border-black/10 text-black hover:border-black"}`}
+            <div
+              className="grid grid-cols-1 items-stretch lg:grid-cols-[minmax(0,44fr)_minmax(0,56fr)]"
+              style={{ padding: "clamp(1rem,2.2vw,2rem)", gap: "clamp(1.25rem,2.6vw,3rem)" }}
             >
-              <span className="transition-transform group-hover:-translate-x-0.5">←</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => go(1)}
-              disabled={safePage >= pages - 1}
-              aria-label="Next videos"
-              className={`group grid h-[clamp(2.4rem,4.5vh,3rem)] w-[clamp(2.4rem,4.5vh,3rem)] shrink-0 place-items-center rounded-full transition hover:bg-black/85 disabled:opacity-30 ${dark ? "bg-white text-black" : "bg-black text-white"}`}
-            >
-              <span className="transition-transform group-hover:translate-x-0.5">→</span>
-            </button>
-            <span className={`font-mono text-[10px] uppercase tracking-[0.24em] ${dark ? "text-white/45" : "text-black/45"}`}>
-              {String(safePage + 1).padStart(2, "0")} / {String(pages).padStart(2, "0")}
-            </span>
-          </div>
-        </div>
-
-        {/* Right: paged rail — fits the screen, never scrolls sideways */}
-        <div className="min-w-0 overflow-hidden">
-          <div
-            className="flex gap-6 transition-transform duration-500 ease-out"
-            style={{ transform: `translateX(calc(-${safePage * 100}% - ${safePage * gap}px))` }}
-          >
-            {MASTER_VIDEOS.map((v, i) => (
-              <button
-                key={v.src}
-                type="button"
-                onClick={() => setOpen(v)}
-                className="mv-reveal group shrink-0 text-left"
-                style={{
-                  width: `calc((100% - ${(perView - 1) * gap}px) / ${perView})`,
-                  transitionDelay: `${640 + Math.min(i, perView + 1) * 110}ms`,
-                }}
-              >
-                <div className="relative overflow-hidden rounded-[12px] bg-black shadow-[0_12px_34px_-20px_rgba(0,0,0,0.55)] transition duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_24px_46px_-22px_rgba(0,0,0,0.6)]">
-                  <div className="h-[clamp(250px,41vh,500px)] w-full overflow-hidden">
+              {/* featured portrait artwork */}
+              <div className="order-1 min-w-0">
+                <button
+                  type="button"
+                  onClick={() => setOpen(current)}
+                  aria-label={`Play ${current.title}`}
+                  className={`group relative block w-full overflow-hidden rounded-[clamp(14px,1.6vw,22px)] border ${line} bg-black`}
+                >
+                  <div className="h-[clamp(300px,54vh,620px)] w-full overflow-hidden lg:h-[clamp(340px,58vh,660px)]">
                     <img
-                      src={v.thumb}
-                      alt={v.title}
-                      loading="lazy"
-                      className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.05]"
+                      key={current.thumb}
+                      src={current.thumb}
+                      alt={current.title}
+                      className="h-full w-full object-cover transition-all duration-500 ease-out group-hover:scale-[1.03]"
+                      style={{
+                        opacity: phase === "in" ? 1 : 0,
+                        transform:
+                          phase === "in" ? "translateX(0) scale(1)" : "translateX(14px) scale(1.015)",
+                        transitionDuration: "480ms",
+                      }}
                     />
                   </div>
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  <div className="pointer-events-none absolute inset-0 rounded-[12px] border border-transparent transition-colors duration-500 group-hover:border-[#B89146]/40" />
-                  <div className="absolute bottom-5 left-5">
-                    <div className="grid h-10 w-10 place-items-center rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-md transition group-hover:bg-white/20">
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-                <p className="mt-[clamp(0.6rem,1.8vh,1.25rem)] text-[10px] font-bold uppercase tracking-[0.2em] text-[#B89146]">
-                  {v.meta}
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+                  <span className="absolute bottom-5 left-5 grid h-12 w-12 place-items-center rounded-full border border-white/25 bg-white/10 text-white backdrop-blur-md transition group-hover:bg-white/25">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+
+              {/* editorial information panel */}
+              <div className="order-2 flex min-w-0 flex-col justify-center">
+                <p className="mv-reveal font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]">
+                  500+ Masters · Masterclass
                 </p>
-                <h3
-                  className={`mt-1 truncate text-[clamp(14px,1.9vh,17px)] leading-snug ${dark ? "text-white" : "text-black"}`}
-                  style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                <h2
+                  className={`mv-reveal mt-[clamp(0.5rem,1.2vh,0.9rem)] text-[clamp(1.4rem,2.6vw,2.35rem)] font-medium italic leading-[1.1] tracking-tight ${heading}`}
+                  style={{ fontFamily: SERIF_IT, transitionDelay: "200ms" }}
                 >
-                  {v.title}
-                </h3>
-              </button>
-            ))}
+                  Built by Scholars, Led by Industry Practitioners
+                </h2>
+                <p
+                  className={`mv-reveal mt-[clamp(0.6rem,1.6vh,1.1rem)] max-w-xl text-[clamp(12.5px,1.6vh,14px)] leading-relaxed ${muted}`}
+                  style={{ transitionDelay: "320ms" }}
+                >
+                  At Masters' Union, your classroom is powered by Ivy League academics and global
+                  business leaders, from Harvard to McKinsey, from Wharton to Google. Our Masters
+                  don't just teach the playbook. They wrote it.
+                </p>
+
+                <div className={`mv-reveal mt-[clamp(0.9rem,2vh,1.4rem)] border-t pt-[clamp(0.75rem,1.8vh,1.1rem)] ${line}`} style={{ transitionDelay: "400ms" }}>
+                  <p className={`font-mono text-[10px] uppercase tracking-[0.24em] ${faint}`}>
+                    {current.meta}
+                  </p>
+                  <h3
+                    className={`mt-1.5 text-[clamp(1.05rem,1.9vw,1.5rem)] leading-snug ${heading}`}
+                    style={{ fontFamily: SERIF_IT }}
+                  >
+                    {current.title}
+                  </h3>
+                </div>
+
+                <div
+                  className="mv-reveal mt-[clamp(0.9rem,2vh,1.4rem)] flex items-center gap-3"
+                  style={{ transitionDelay: "480ms" }}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setOpen(current)}
+                    className={`inline-flex items-center gap-2 rounded-full px-4 py-2 font-mono text-[10px] uppercase tracking-[0.22em] transition ${dark ? "bg-white text-black hover:bg-white/85" : "bg-[#0a0a0a] text-white hover:bg-black/85"}`}
+                  >
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                    Play
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => goTo(active - 1)}
+                    aria-label="Previous masterclass"
+                    className={`group grid h-10 w-10 shrink-0 place-items-center rounded-full border transition ${dark ? "border-white/25 text-white hover:border-white" : "border-black/15 text-black hover:border-black"}`}
+                  >
+                    <span className="transition-transform group-hover:-translate-x-0.5">←</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => goTo(active + 1)}
+                    aria-label="Next masterclass"
+                    className={`group grid h-10 w-10 shrink-0 place-items-center rounded-full border transition ${dark ? "border-white/25 text-white hover:border-white" : "border-black/15 text-black hover:border-black"}`}
+                  >
+                    <span className="transition-transform group-hover:translate-x-0.5">→</span>
+                  </button>
+                  <span className={`font-mono text-[10px] uppercase tracking-[0.24em] ${faint}`}>
+                    {String(active + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+                  </span>
+                </div>
+
+                {/* thumbnail strip */}
+                <div
+                  ref={stripRef}
+                  className="mv-reveal mt-[clamp(0.9rem,2vh,1.4rem)] flex gap-3 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                  style={{ transitionDelay: "560ms" }}
+                >
+                  {MASTER_VIDEOS.map((v, i) => (
+                    <button
+                      key={v.src}
+                      data-idx={i}
+                      type="button"
+                      onClick={() => goTo(i)}
+                      aria-label={v.title}
+                      aria-current={i === active}
+                      className={`relative h-[clamp(58px,8vh,84px)] w-[clamp(44px,6vw,64px)] shrink-0 overflow-hidden rounded-[10px] border transition duration-300 ${
+                        i === active
+                          ? dark
+                            ? "border-white/70 opacity-100"
+                            : "border-black/70 opacity-100"
+                          : `${line} opacity-55 hover:opacity-90`
+                      }`}
+                    >
+                      <img
+                        src={v.thumb}
+                        alt=""
+                        loading="lazy"
+                        className="h-full w-full object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
       </div>
 
       {open && <VideoModal video={open} onClose={() => setOpen(null)} />}
     </section>
   );
 }
-
