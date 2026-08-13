@@ -380,7 +380,7 @@ export default function FacultyHero({
               <div
                 data-scroll-dot
                 className="absolute left-1/2 top-0 h-[5px] w-[5px] -translate-x-1/2 rounded-full bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.35)] transition-none group-hover:bg-white group-hover:shadow-[0_0_10px_rgba(255,255,255,0.55)]"
-                style={{ transform: `translateY(calc(var(--recede) * 32px)) translateX(-50%)` }}
+                style={{ marginTop: "calc(var(--recede) * 32px)" }}
               />
             </div>
           </div>
