@@ -129,21 +129,29 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
 
 
   // Pointer drag (desktop mouse / trackpad press-drag). Touch uses native scroll.
-  const drag = useRef({ down: false, startX: 0, startLeft: 0 });
+  const drag = useRef({ down: false, startX: 0, startLeft: 0, moved: 0 });
+  const [flipped, setFlipped] = useState<number | null>(null);
+  const maybeToggleFlip = (i: number) => {
+    if (drag.current.moved > 6) return;
+    setFlipped((f) => (f === i ? null : i));
+  };
   const onPointerDown = (e: React.PointerEvent) => {
+    drag.current.moved = 0;
     if (e.pointerType === "touch") return;
     const track = trackRef.current;
     if (!track) return;
-    drag.current = { down: true, startX: e.clientX, startLeft: track.scrollLeft };
+    drag.current = { down: true, startX: e.clientX, startLeft: track.scrollLeft, moved: 0 };
   };
   const onPointerMove = (e: React.PointerEvent) => {
     const track = trackRef.current;
     if (!track || !drag.current.down) return;
+    drag.current.moved = Math.abs(e.clientX - drag.current.startX);
     track.scrollLeft = drag.current.startLeft - (e.clientX - drag.current.startX);
   };
   const endDrag = () => {
     drag.current.down = false;
   };
+
 
   const scrollTo = useCallback(
     (i: number) => {
@@ -192,12 +200,14 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
       >
         {slides.map((item, i) => {
           const isActive = i === active;
+          const isFlipped = flipped === i;
           return (
             <article
               key={`${item.name}-${i}`}
               ref={(el) => {
                 cardRefs.current[i] = el;
               }}
+              onClick={() => maybeToggleFlip(i)}
               className={`relative h-[min(500px,max(420px,calc(100svh-260px)))] w-[min(1320px,88vw)] shrink-0 snap-center overflow-hidden rounded-[20px] transition-all duration-500 ease-out sm:h-[min(clamp(430px,62vw,720px),max(400px,calc(100svh-240px)))] sm:w-[min(1320px,82vw)] sm:rounded-[24px] md:rounded-[32px] ${
                 isActive ? "opacity-100 shadow-[0_40px_90px_-40px_rgba(0,0,0,0.9)]" : "opacity-45"
               }`}
@@ -208,27 +218,95 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
               <div className="absolute inset-0 bg-[#131313]/60">
                 {item.img ? (
                   <>
-
-
-
-
-
                     {/* the actual subject frame: starts to the right of the curve */}
-                    <div className="absolute inset-x-0 top-0 h-[62%] overflow-hidden sm:inset-y-0 sm:left-[46%] sm:right-0 sm:h-auto md:left-[48%]">
-                      <img
-                        src={item.img}
-                        alt={item.name}
-                        draggable={false}
-                        className={`h-full w-full select-none object-cover object-[58%_top] transition duration-700 sm:object-[64%_top] md:object-[66%_top] ${
-                          isActive ? "grayscale-[0.35]" : "grayscale"
-                        }`}
-                      />
+                    <div
+                      className="absolute inset-x-0 top-0 h-[62%] sm:inset-y-0 sm:left-[46%] sm:right-0 sm:h-auto md:left-[48%]"
+                      style={{ perspective: "1400px" }}
+                    >
+                      <div
+                        role="button"
+                        tabIndex={0}
+                        aria-pressed={isFlipped}
+                        aria-label={`Show details for ${item.name}`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          maybeToggleFlip(i);
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            setFlipped((f) => (f === i ? null : i));
+                          }
+                        }}
+                        className="relative h-full w-full cursor-pointer outline-none"
+                        style={{
+                          transformStyle: "preserve-3d",
+                          transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+                          transition: "transform 800ms cubic-bezier(0.22, 1, 0.36, 1)",
+                        }}
+                      >
+                        <div
+                          className="absolute inset-0 overflow-hidden"
+                          style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
+                        >
+                          <img
+                            src={item.img}
+                            alt={item.name}
+                            draggable={false}
+                            className={`h-full w-full select-none object-cover object-[58%_top] transition duration-700 sm:object-[64%_top] md:object-[66%_top] ${
+                              isActive ? "grayscale-[0.35]" : "grayscale"
+                            }`}
+                          />
+                        </div>
+                        <div
+                          className="absolute inset-0 flex flex-col justify-center overflow-hidden bg-[#131313] px-6 py-6 sm:px-10 md:px-12"
+                          style={{
+                            backfaceVisibility: "hidden",
+                            WebkitBackfaceVisibility: "hidden",
+                            transform: "rotateY(180deg)",
+                          }}
+                          aria-hidden={!isFlipped}
+                        >
+                          <div
+                            className="text-[9px] uppercase tracking-[0.22em] text-white/45 md:text-[10.5px]"
+                            style={{ fontFamily: MONO }}
+                          >
+                            Industry Practitioner
+                          </div>
+                          <h4
+                            className="mt-3 text-[clamp(1.2rem,3.4vw,2.2rem)] font-medium leading-[1.05] tracking-[-0.03em] text-white"
+                            style={{ fontFamily: SERIF }}
+                          >
+                            {item.name}
+                          </h4>
+                          <div
+                            className="mt-2.5 text-[9.5px] uppercase leading-[1.6] tracking-[0.16em] text-white/60 md:text-[11px]"
+                            style={{ fontFamily: MONO }}
+                          >
+                            {item.role}
+                          </div>
+                          {item.blurb ? (
+                            <p className="mt-3 max-w-[42ch] text-[12.5px] leading-[1.65] text-white/70 md:mt-5 md:text-[15px]">
+                              {item.blurb}
+                            </p>
+                          ) : null}
+                          {item.sub ? (
+                            <div
+                              className="mt-5 border-t border-white/12 pt-4 text-[9.5px] uppercase leading-[1.6] tracking-[0.16em] text-white/45 md:text-[10.5px]"
+                              style={{ fontFamily: MONO }}
+                            >
+                              {item.sub}
+                            </div>
+                          ) : null}
+                        </div>
+                      </div>
                     </div>
                   </>
                 ) : (
                   <Initials name={item.name} />
                 )}
               </div>
+
 
 
               {/* dark information panel — the curve is the only boundary */}
