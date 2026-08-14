@@ -18,10 +18,12 @@ function Panel({
   children,
   index,
   bg,
+  isLast,
 }: {
   children: React.ReactNode;
   index: number;
   bg: string;
+  isLast: boolean;
 }) {
   const innerRef = React.useRef<HTMLDivElement>(null);
   const [contentH, setContentH] = React.useState(0);
@@ -55,7 +57,7 @@ function Panel({
         zIndex: index + 1,
         position: "relative",
         // content scroll range + one viewport of pinned "cover-up" range
-        height: measured ? contentH + vh : undefined,
+        height: measured ? (isLast ? contentH : contentH + vh) : undefined,
       }}
     >
       <div
@@ -83,7 +85,7 @@ export default function StackReveal({
   return (
     <div className={`relative ${className}`}>
       {panels.map((child, i) => (
-        <Panel key={i} index={i} bg={bg}>
+        <Panel key={i} index={i} bg={bg} isLast={i === panels.length - 1}>
           {child}
         </Panel>
       ))}
