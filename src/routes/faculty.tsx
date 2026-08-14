@@ -649,18 +649,8 @@ function FacultyPage() {
             dark
             serif
           />
-          <div className="mt-[clamp(1.25rem,3vh,2rem)] grid gap-[clamp(1rem,2.4vh,1.5rem)] md:grid-cols-3">
-            {TESTIMONIALS.map((t) => (
-              <figure key={t.a} className="border border-white/10 bg-white/[0.04] p-[clamp(1.25rem,3vh,2rem)]">
-                <Quote className="size-5 text-white/40" />
-                <blockquote className="mt-4 text-[0.98rem] leading-[1.6] text-white/80">&ldquo;{t.q}&rdquo;</blockquote>
-                <figcaption className="mt-6 border-t border-white/10 pt-4">
-                  <div className="text-[0.95rem] text-white">{t.a}</div>
-                  <div className="text-[11px] uppercase tracking-[0.18em] text-white/55" style={{ fontFamily: MONO }}>{t.r}</div>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
+          <StudentTestimonials items={TESTIMONIALS} />
+
         </div>
       </section>
 
