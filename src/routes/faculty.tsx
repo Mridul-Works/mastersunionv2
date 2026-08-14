@@ -496,7 +496,7 @@ function FacultyPage() {
 
             {/* Card 2 — Faculty from Leading Institutions */}
             <div className="flex flex-col rounded-[clamp(16px,2.2vw,24px)] border border-white/10 bg-white/[0.04] p-[clamp(1.25rem,2.8vw,2.5rem)]">
-              <h2 className="text-[clamp(1.35rem,2.5vw,2.25rem)] font-medium italic leading-[1.1] tracking-tight text-white" style={{ fontFamily: SERIF }}>
+              <h2 className="text-[clamp(1.15rem,2vw,1.75rem)] font-normal italic leading-[1.1] tracking-tight text-white/90" style={{ fontFamily: SERIF }}>
                 FACULTY FROM LEADING INSTITUTIONS
               </h2>
               <p className="mt-[clamp(0.75rem,2.2vh,1.5rem)] text-[0.98rem] leading-[1.55] text-white/70">
