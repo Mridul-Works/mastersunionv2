@@ -467,7 +467,10 @@ function FacultyPage() {
         <HeroFadeOut>
           <FacultyHero />
           {/* By the numbers — attached to the hero's bottom edge, moves with the hero */}
-          <div className="page-shell w-full bg-[#0a0a0a] pb-[clamp(1.25rem,3vh,2.25rem)]">
+          <div
+            className="page-shell w-full bg-[#0a0a0a] pb-[clamp(1.25rem,3vh,2.25rem)]"
+            style={{ marginTop: "calc(-1 * clamp(2rem, 6vh, 4.5rem) + clamp(1.25rem, 2.5vh, 1.75rem))" }}
+          >
             <FacultyStatsCard
               dark
               stats={HERO_STATS}
