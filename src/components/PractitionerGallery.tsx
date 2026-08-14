@@ -274,10 +274,18 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     return () => el.removeEventListener("wheel", listener);
   }, []);
 
+  const focusRef = useRef(false);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") go(1);
-      if (e.key === "ArrowLeft") go(-1);
+      if (!hoverRef.current && !focusRef.current) return;
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        go(1);
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        go(-1);
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
