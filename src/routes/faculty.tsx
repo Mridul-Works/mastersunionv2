@@ -312,16 +312,13 @@ function EditorialGrid({
   return (
     <div className={`mt-[clamp(1rem,2.5vh,2rem)] border-t ${dark ? "border-white/15" : "border-black/15"}`}>
       {/* STATS HERO — card style (matches Section 2) */}
-      {cardStats ? (
+    {cardStats ? (
         <div className={`border-b py-[clamp(0.85rem,2vh,1.5rem)] ${dark ? "border-white/15" : "border-black/15"}`}>
           <FacultyStatsCard
             dark={dark}
             refreshed={sectionLabel}
             stats={[{ v: pct, l: "of faculty" }, ...stats]}
           />
-          <p className={`mx-auto mt-[clamp(0.6rem,1.6vh,1rem)] max-w-[68ch] text-center text-[0.98rem] leading-[1.6] ${dark ? "text-white/70" : "text-black/70"}`}>
-            {tagline}
-          </p>
         </div>
       ) : (
         <div className={`grid gap-x-8 gap-y-[clamp(0.75rem,1.8vh,1.25rem)] border-b py-[clamp(0.85rem,2vh,1.5rem)] md:grid-cols-12 ${dark ? "border-white/15" : "border-black/15"}`}>
