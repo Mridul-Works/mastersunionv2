@@ -531,7 +531,7 @@ function FacultyPage() {
       </section>
 
       {/* FULL-TIME FACULTY */}
-      <section id="full-time" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
+      <section ref={fullTimeReveal.ref} id="full-time" className={fullTimeReveal.className}>
         <div className="page-shell screen-y">
           <SectionIntro
             className="mb-[clamp(2rem,5vh,3.25rem)]"
