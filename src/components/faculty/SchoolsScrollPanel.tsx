@@ -120,7 +120,7 @@ seeds.forEach((seed) => {
     NODES.push({
       bx: clampF(seed.x + Math.cos(ang) * len * 1.4, 0.02, MAX_X),
       by: clampF(seed.y + Math.sin(ang) * len * 1.5, 0.02, 0.98),
-      rx: between(0.008, 0.026),
+      rx: between(0.012, 0.038),
       ry: between(0.008, 0.026),
       sp: between(0.22, 0.75),
       ph: rand() * Math.PI * 2,
