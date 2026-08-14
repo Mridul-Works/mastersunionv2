@@ -190,10 +190,10 @@ export default function SchoolsScrollPanel() {
       });
 
       // one shared stage viewport: long slow crossfades, only one dominant state
-      const span = 1 / STAGES.length;
+      const stageSpan = 1 / STAGES.length;
       stageRef.current.forEach((node, i) => {
         if (!node) return;
-        const d = (p - (i + 0.5) * span) / span; // -inf..inf in stage units
+        const d = (p - (i + 0.5) * stageSpan) / stageSpan; // stage units
         const ad = Math.abs(d);
         const f = Math.min(1, Math.max(0, (ad - 0.28) / 0.42));
         const o = 1 - f * f * (3 - 2 * f);
