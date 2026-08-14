@@ -534,6 +534,7 @@ function FacultyPage() {
             introCenter
             dark
             serif
+            wide
           />
           <EditorialGrid
             gallery
