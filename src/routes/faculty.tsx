@@ -657,26 +657,62 @@ function FacultyPage() {
       </section>
 
       {/* BECOME A MASTER */}
-      <section className="screen-section border-y border-white/10 bg-[#0a0a0a]">
-        <div className="page-shell grid gap-10 md:grid-cols-12 md:items-end">
-          <div className="md:col-span-7">
-            <SectionHeader
-              index="05"
-              eyebrow="Become a Master"
-              title={<>We&apos;re always looking for practitioners who want to teach what they know.</>}
-              intro="If you have built something, led something, invested in something, or shaped something — and you believe the best way to teach business is to have done it — we want to hear from you."
-              dark
-              serif
-              wide
-            />
+      <section className="screen-section border-y border-white/10 bg-[#0a0a0a] text-white">
+        <div className="screen-y flex w-full flex-col items-center justify-center">
+          <div className="page-shell w-full text-center">
+            <p
+              className="flex justify-center gap-3 text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]"
+              style={{ fontFamily: MONO }}
+            >
+              <span>05</span>
+              <span aria-hidden className="text-[#B89146]/50">/</span>
+              <span>Become a Master</span>
+            </p>
+
+            <h2
+              className="mx-auto mt-[clamp(1.25rem,3.5vh,2.25rem)] max-w-[min(100%,26ch)] text-balance text-[clamp(1.75rem,4.4vw,3.4rem)] font-medium italic leading-[1.06] tracking-tight text-white"
+              style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+            >
+              We&apos;re always looking for practitioners who want to teach what they know.
+            </h2>
+
+            <p className="mx-auto mt-[clamp(1.1rem,3vh,1.75rem)] max-w-[58ch] text-[0.98rem] leading-[1.6] text-white/60">
+              If you have built something, led something, invested in something, or shaped something — and you
+              believe the best way to teach business is to have done it — we want to hear from you.
+            </p>
+
+            <div className="mt-[clamp(1.5rem,4vh,2.5rem)] flex justify-center">
+              <a
+                href="https://mastersunion.org/become-a-master"
+                target="_blank"
+                rel="noreferrer"
+                className="group inline-flex items-center gap-2.5 rounded-[2px] border border-[#f5f1e8] bg-[#f5f1e8] px-7 py-4 text-[11px] uppercase tracking-[0.22em] text-black transition-colors duration-300 hover:bg-transparent hover:text-[#f5f1e8]"
+                style={{ fontFamily: MONO }}
+              >
+                Apply to teach
+                <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
+            </div>
           </div>
-          <div className="md:col-span-5 md:text-right">
-            <a href="https://mastersunion.org/become-a-master" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-white px-6 py-4 text-[11px] uppercase tracking-[0.22em] text-black transition-opacity hover:opacity-80" style={{ fontFamily: MONO }}>
-              Apply to teach <ArrowUpRight className="size-3.5" />
-            </a>
+
+          {/* Editorial wordmark */}
+          <div className="mt-[clamp(2.5rem,7vh,5rem)] w-full border-t border-white/10 pt-[clamp(1.5rem,4vh,2.75rem)]">
+            <ul className="page-shell flex flex-wrap items-baseline justify-center gap-x-[clamp(0.9rem,3vw,2.75rem)] gap-y-[clamp(0.4rem,1.5vh,0.9rem)] sm:flex-nowrap">
+              {["Built", "Led", "Invested", "Shaped"].map((word, i) => (
+                <li key={word}>
+                  <span
+                    className="block cursor-default select-none text-[clamp(1.9rem,5.6vw,4.25rem)] font-semibold uppercase leading-[0.95] tracking-tight text-white/25 transition-all duration-500 hover:-translate-y-1 hover:text-[#f5f1e8]"
+                    style={{ opacity: 1 - i * 0.04 }}
+                  >
+                    {word}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
+
 
       {/* THE NUMBER */}
       <section className="screen-section border-y border-white/10 bg-[#0a0a0a] text-white">
