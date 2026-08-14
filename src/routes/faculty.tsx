@@ -96,18 +96,18 @@ function SectionHeader({
         <span>{eyebrow}</span>
       </p>
       <h2
-        className={`text-[clamp(1.5rem,2.9vw,2.5rem)] font-medium italic leading-[1.1] tracking-tight ${
+        className={`text-[clamp(1.55rem,3.2vw,2.75rem)] font-medium italic leading-[1.08] tracking-tight ${
           dark ? "text-white" : "text-black"
-        } ${isCenter ? "mx-auto max-w-[24ch]" : wide ? "max-w-[75%]" : "max-w-[26ch]"}`}
+        } ${isCenter ? "mx-auto max-w-[min(100%,28ch)]" : wide ? "max-w-[min(100%,40ch)]" : "max-w-[min(100%,34ch)]"}`}
         style={{ fontFamily: serif ? "'Fraunces', Georgia, serif" : "'Inter', system-ui, sans-serif" }}
       >
         {title}
       </h2>
       {intro ? (
         <p
-          className={`mt-[clamp(0.75rem,2.2vh,1.5rem)] text-[0.98rem] leading-relaxed ${
+          className={`mt-[clamp(0.75rem,2.2vh,1.5rem)] text-[clamp(0.92rem,1.1vw,0.98rem)] leading-[1.6] ${
             dark ? "text-white/60" : "text-black/60"
-          } ${isCenter ? "mx-auto" : wide ? "max-w-[70%]" : "max-w-sm"}`}
+          } ${isCenter ? "mx-auto max-w-[min(100%,70ch)]" : "max-w-[min(100%,72ch)]"}`}
         >
           {intro}
         </p>
