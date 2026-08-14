@@ -59,6 +59,8 @@ import vfGarrick from "@/assets/faculty/visiting/garrick-hileman.png.asset.json"
 import vfJyotsna from "@/assets/faculty/visiting/jyotsna-bhatnagar.png.asset.json";
 import vfVishnu from "@/assets/faculty/visiting/vishnuprasad-n.png.asset.json";
 import vfRajesh from "@/assets/faculty/visiting/rajesh-bhargave.png.asset.json";
+import SchoolsScrollPanel from "@/components/faculty/SchoolsScrollPanel";
+
 
 const manojImg = manojAsset.url;
 const bhupeshImg = bhupeshAsset.url;
