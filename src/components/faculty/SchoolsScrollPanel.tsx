@@ -74,17 +74,21 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
     const draw = (t: number) => {
       ctx.clearRect(0, 0, w, h);
       // density/brightness ramp saturates gently but geometry keeps moving
-      const glow = Math.min(1, Math.max(0, t));
+      const glow = Math.min(1, Math.max(0, t * 2.2));
+      // subtle rightward drift of the whole field (max ~5% of panel width)
+      const drift = t * 0.05;
 
       const pts = NODES.map((n) => {
-        const a = n.ph + t * n.sp * TAU;
+        // slow, bounded orbit — a drift through the panel, not a sweep
+        const a = n.ph + t * n.sp * 0.55 * TAU;
         return {
-          x: (n.bx + Math.cos(a) * n.rx) * w,
+          x: (n.bx + drift + Math.cos(a) * n.rx) * w,
           y: (n.by + Math.sin(a * 0.85 + 0.6) * n.ry) * h,
           r: n.r,
           s: n.s,
         };
       });
+
 
       const maxD = Math.min(w, h) * (0.3 + 0.12 * glow);
       ctx.lineWidth = 0.6;
@@ -169,6 +173,17 @@ export default function SchoolsScrollPanel() {
     if (!el) return;
     let raf = 0;
 
+    /** layout offset of the section in the document — unaffected by sticky/pinning */
+    const layoutTop = (node: HTMLElement) => {
+      let y = 0;
+      let n: HTMLElement | null = node;
+      while (n) {
+        y += n.offsetTop;
+        n = n.offsetParent as HTMLElement | null;
+      }
+      return y;
+    };
+
     const update = () => {
       raf = 0;
       const rect = el.getBoundingClientRect();
@@ -177,9 +192,15 @@ export default function SchoolsScrollPanel() {
       // viewport top and ends when its bottom does.
       const span = Math.max(1, rect.height - vh);
       const p = Math.min(1, Math.max(0, -rect.top / span));
-      progressRef.current = p * 3; // network gets a longer, still-reversible path
+
+      // The network runs on a pure, layout-derived scroll value so it keeps
+      // advancing (and exactly retraces on the way back) even once this
+      // section is pinned and covered by the next stacked panel.
+      const scrolled = (window.scrollY || window.pageYOffset || 0) - layoutTop(el);
+      progressRef.current = Math.max(0, scrolled / span);
 
       if (barRef.current) barRef.current.style.transform = `scaleY(${p.toFixed(3)})`;
+
 
       const ease = (t: number) => t * t * (3 - 2 * t);
       // HOLD 0-22 | FADE 22-40 | HOLD 40-60 | FADE 60-78 | HOLD 78-100
@@ -259,7 +280,7 @@ export default function SchoolsScrollPanel() {
           {/* RIGHT — scroll-revealed data panel: NETWORK | GAP | METER */}
           <div className="relative flex h-full overflow-hidden">
             {/* network area — 82% of the panel, network can never cross this box */}
-            <div className="relative flex min-w-0 flex-1 flex-col justify-center p-6 md:p-8 lg:p-10">
+            <div className="relative flex min-w-0 flex-1 flex-col justify-center overflow-hidden p-6 md:p-8 lg:p-10">
               <NetworkField progressRef={progressRef} />
 
               {/* single shared stage viewport — one active state at a time */}
