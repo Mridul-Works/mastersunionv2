@@ -327,7 +327,7 @@ export default function PanelConstellation({
           kind: n.kind,
           parent: n.parent,
           // left side is quieter — the typography must stay dominant
-          dim: 0.42 + Math.min(1, Math.max(0, nx)) * 0.58,
+          dim: 0.58 + Math.min(1, Math.max(0, nx)) * 0.42,
         };
       });
 
@@ -369,7 +369,7 @@ export default function PanelConstellation({
       ctx.shadowBlur = 3;
       ctx.shadowColor = "rgba(255,255,255,0.1)";
       for (const pt of pts) {
-        const base = pt.kind === 0 ? 0.2 : pt.kind === 1 ? 0.16 : pt.kind === 2 ? 0.11 : 0.08;
+        const base = pt.kind === 0 ? 0.26 : pt.kind === 1 ? 0.2 : pt.kind === 2 ? 0.14 : 0.1;
         const a = (base + pt.s * (0.05 + 0.1 * glow)) * pt.dim;
         ctx.fillStyle = `rgba(255,255,255,${a.toFixed(3)})`;
         ctx.beginPath();
