@@ -274,7 +274,7 @@ export default function MastersVideos({
                       key={current.thumb}
                       src={current.thumb}
                       alt={current.title}
-                      className="h-full w-full object-contain transition-all duration-500 ease-out"
+                      className="h-full w-full object-contain grayscale contrast-[0.95] saturate-[0.75] transition-all duration-[350ms] ease-out group-hover:grayscale-0 group-hover:contrast-100 group-hover:saturate-100"
                       style={{
                         opacity: phase === "in" ? 1 : 0,
                         transform:
