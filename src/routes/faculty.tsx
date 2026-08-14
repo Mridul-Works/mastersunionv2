@@ -619,20 +619,20 @@ function FacultyPage() {
             }
             right={
               <SupportingPanel title="Schools That Come Here">
-                <div className="border-t border-white/10 py-3 first:border-t-0 first:pt-0">
+                <InfoRow delay={0}>
                   <div className="text-[0.95rem] font-medium leading-[1.3] text-white">Kellogg</div>
-                  <div className="mt-0.5 text-[11px] uppercase tracking-[0.2em] text-white/70" style={{ fontFamily: MONO }}>School of Management</div>
-                </div>
-                <div className="border-t border-white/10 py-3">
+                  <div className="mt-0.5 break-words text-[11px] uppercase tracking-[0.2em] text-white/70" style={{ fontFamily: MONO }}>School of Management</div>
+                </InfoRow>
+                <InfoRow delay={800}>
                   <div className="text-[0.95rem] font-medium leading-[1.3] text-white">Harvard</div>
-                  <div className="mt-0.5 text-[11px] uppercase tracking-[0.2em] text-white/70" style={{ fontFamily: MONO }}>Business School India</div>
-                </div>
-                <div className="border-t border-white/10 pt-4">
-                  <div className="flex items-baseline gap-3">
+                  <div className="mt-0.5 break-words text-[11px] uppercase tracking-[0.2em] text-white/70" style={{ fontFamily: MONO }}>Business School India</div>
+                </InfoRow>
+                <InfoRow delay={1600}>
+                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                     <div className="text-[2rem] font-medium leading-[0.9] tracking-[-0.03em] text-white" style={{ fontFamily: SERIF }}>02</div>
                     <div className="text-[11px] uppercase tracking-[0.18em] text-white/60" style={{ fontFamily: MONO }}>consecutive years</div>
                   </div>
-                </div>
+                </InfoRow>
               </SupportingPanel>
             }
           />
