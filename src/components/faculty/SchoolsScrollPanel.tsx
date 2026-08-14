@@ -62,36 +62,42 @@ const MAX_X = 0.985;
 /** Inter-cluster relationships, each revealed at its own point in the scroll. */
 const BRIDGES: { a: number; b: number; at: number }[] = [];
 
-const anchorCount = 3 + Math.round(rand()); // 3–4 anchors
-const minorCount = 12 + Math.round(rand() * 4); // 12–16 minor hubs
+const anchorCount = 3 + Math.round(rand()); // 3–4 anchor constellations
+const minorCount = 6 + Math.round(rand() * 3); // 6–9 minor constellations
 
 type Seed = { x: number; y: number; anchor: boolean };
 const seeds: Seed[] = [];
 
-// Anchors sit on the right edge (meter) at distinct heights. Their satellites
-// fan out leftward, so each cluster extends deep into the panel rather than
-// hugging the meter spine.
+// Place anchors across a 2D region in the right half of the panel, so their
+// satellite clusters overlap and intermingle instead of lining up vertically.
 for (let i = 0; i < anchorCount; i++) {
   let attempts = 0;
   let x = 0;
   let y = 0;
   do {
-    x = clampF(between(0.78, 0.92), 0.65, MAX_X);
-    y = clampF(between(0.22, 0.78), 0.15, 0.85);
+    x = clampF(between(0.55, 0.90), 0.45, MAX_X);
+    y = clampF(between(0.18, 0.82), 0.12, 0.88);
     attempts++;
   } while (
-    attempts < 20 &&
-    seeds.some((s) => s.anchor && Math.hypot(s.x - x, s.y - y) < 0.14)
+    attempts < 30 &&
+    seeds.some((s) => s.anchor && Math.hypot(s.x - x, s.y - y) < 0.18)
   );
   seeds.push({ x, y, anchor: true });
 }
 for (let i = 0; i < minorCount; i++) {
-  // minor hubs are scattered across the full panel width, not clustered near the meter
-  seeds.push({
-    x: clampF(between(0.20, 0.82), 0.12, MAX_X),
-    y: clampF(rand(), 0.10, 0.90),
-    anchor: false,
-  });
+  // minor constellations drift in the left/middle field, never overlapping anchors
+  let attempts = 0;
+  let x = 0;
+  let y = 0;
+  do {
+    x = clampF(between(0.15, 0.55), 0.08, MAX_X);
+    y = clampF(rand(), 0.12, 0.88);
+    attempts++;
+  } while (
+    attempts < 30 &&
+    seeds.some((s) => Math.hypot(s.x - x, s.y - y) < 0.14)
+  );
+  seeds.push({ x, y, anchor: false });
 }
 
 seeds.forEach((seed) => {
