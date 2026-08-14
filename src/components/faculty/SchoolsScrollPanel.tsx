@@ -238,6 +238,9 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
     const draw = (t: number) => {
       const t0 = performance.now();
       ctx.clearRect(0, 0, w, h);
+      // DEBUG: fill the canvas with a subtle red so we can confirm it's rendering
+      ctx.fillStyle = "rgba(255,0,0,0.05)";
+      ctx.fillRect(0, 0, w, h);
       // density/brightness ramp saturates gently but geometry keeps moving
       const glow = Math.min(1, Math.max(0, t * 2.2));
       // primarily leftward drift toward the content column (≈15% of panel width — 2x)
