@@ -60,6 +60,7 @@ import vfJyotsna from "@/assets/faculty/visiting/jyotsna-bhatnagar.png.asset.jso
 import vfVishnu from "@/assets/faculty/visiting/vishnuprasad-n.png.asset.json";
 import vfRajesh from "@/assets/faculty/visiting/rajesh-bhargave.png.asset.json";
 import SchoolsScrollPanel from "@/components/faculty/SchoolsScrollPanel";
+import PedigreeScrollPanel from "@/components/faculty/PedigreeScrollPanel";
 
 
 const manojImg = manojAsset.url;
