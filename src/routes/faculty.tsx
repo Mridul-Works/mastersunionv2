@@ -72,6 +72,7 @@ function SectionHeader({
   align = "left",
   dark = false,
   serif = false,
+  wide = false,
 }: {
   index: string;
   eyebrow: string;
@@ -80,6 +81,7 @@ function SectionHeader({
   align?: "left" | "center";
   dark?: boolean;
   serif?: boolean;
+  wide?: boolean;
 }) {
   const isCenter = align === "center";
   return (
@@ -96,16 +98,16 @@ function SectionHeader({
       <h2
         className={`text-[clamp(1.5rem,2.9vw,2.5rem)] font-medium italic leading-[1.1] tracking-tight ${
           dark ? "text-white" : "text-black"
-        } ${isCenter ? "mx-auto max-w-[24ch]" : "max-w-[26ch]"}`}
+        } ${isCenter ? "mx-auto max-w-[24ch]" : wide ? "max-w-[75%]" : "max-w-[26ch]"}`}
         style={{ fontFamily: serif ? "'Fraunces', Georgia, serif" : "'Inter', system-ui, sans-serif" }}
       >
         {title}
       </h2>
       {intro ? (
         <p
-          className={`mt-[clamp(0.75rem,2.2vh,1.5rem)] max-w-sm text-[0.98rem] leading-relaxed ${
+          className={`mt-[clamp(0.75rem,2.2vh,1.5rem)] text-[0.98rem] leading-relaxed ${
             dark ? "text-white/60" : "text-black/60"
-          } ${isCenter ? "mx-auto" : ""}`}
+          } ${isCenter ? "mx-auto" : wide ? "max-w-[70%]" : "max-w-sm"}`}
         >
           {intro}
         </p>
@@ -113,6 +115,7 @@ function SectionHeader({
     </header>
   );
 }
+
 
 const NAV: SectionNavItem[] = [
   { id: "top", label: "Overview" },
@@ -452,6 +455,7 @@ function FacultyPage() {
             intro="Half of the faculty are CEOs, MDs, founders and investors — bringing this week's decisions into the classroom, not last decade's case studies."
             dark
             serif
+            wide
           />
           <EditorialGrid
             gallery
