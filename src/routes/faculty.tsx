@@ -409,14 +409,35 @@ function SupportingPanel({ title, children }: { title: string; children: React.R
   );
 }
 
-function PedigreeGroup({ label, items }: { label: string; items: string }) {
+function InfoRow({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
   return (
-    <div className="border-t border-white/10 py-3 first:border-t-0 first:pt-0">
-      <div className="text-[11px] uppercase tracking-[0.2em] text-white/70" style={{ fontFamily: MONO }}>{label}</div>
-      <div className="mt-1 text-[0.92rem] leading-[1.45] text-white/85">{items}</div>
+    <div
+      tabIndex={0}
+      className={`mu-info-row mt-2 min-w-0 px-3 py-2.5 first:mt-0 sm:px-3.5 sm:py-3 ${className}`}
+      style={{ ["--sweep-delay" as string]: `${delay}ms` }}
+    >
+      {children}
     </div>
   );
 }
+
+function PedigreeGroup({ label, items, delay = 0 }: { label: string; items: string; delay?: number }) {
+  return (
+    <InfoRow delay={delay}>
+      <div className="text-[11px] uppercase tracking-[0.2em] text-white/70" style={{ fontFamily: MONO }}>{label}</div>
+      <div className="mt-1 break-words text-[0.92rem] leading-[1.45] text-white/85">{items}</div>
+    </InfoRow>
+  );
+}
+
 
 
 export const Route = createFileRoute("/faculty")({
@@ -554,10 +575,10 @@ function FacultyPage() {
             }
             right={
               <SupportingPanel title="Faculty Pedigree">
-                <PedigreeGroup label="IIM" items="Ahmedabad · Bangalore · Calcutta" />
-                <PedigreeGroup label="IIT" items="Bombay · Kanpur" />
-                <PedigreeGroup label="Universities" items="Delhi University · Shiv Nadar · Christ University" />
-                <PedigreeGroup label="Global" items="TERI · University of Bath" />
+                <PedigreeGroup label="IIM" items="Ahmedabad · Bangalore · Calcutta" delay={0} />
+                <PedigreeGroup label="IIT" items="Bombay · Kanpur" delay={700} />
+                <PedigreeGroup label="Universities" items="Delhi University · Shiv Nadar · Christ University" delay={1400} />
+                <PedigreeGroup label="Global" items="TERI · University of Bath" delay={2100} />
               </SupportingPanel>
             }
           />
@@ -598,20 +619,20 @@ function FacultyPage() {
             }
             right={
               <SupportingPanel title="Schools That Come Here">
-                <div className="border-t border-white/10 py-3 first:border-t-0 first:pt-0">
+                <InfoRow delay={0}>
                   <div className="text-[0.95rem] font-medium leading-[1.3] text-white">Kellogg</div>
-                  <div className="mt-0.5 text-[11px] uppercase tracking-[0.2em] text-white/70" style={{ fontFamily: MONO }}>School of Management</div>
-                </div>
-                <div className="border-t border-white/10 py-3">
+                  <div className="mt-0.5 break-words text-[11px] uppercase tracking-[0.2em] text-white/70" style={{ fontFamily: MONO }}>School of Management</div>
+                </InfoRow>
+                <InfoRow delay={800}>
                   <div className="text-[0.95rem] font-medium leading-[1.3] text-white">Harvard</div>
-                  <div className="mt-0.5 text-[11px] uppercase tracking-[0.2em] text-white/70" style={{ fontFamily: MONO }}>Business School India</div>
-                </div>
-                <div className="border-t border-white/10 pt-4">
-                  <div className="flex items-baseline gap-3">
+                  <div className="mt-0.5 break-words text-[11px] uppercase tracking-[0.2em] text-white/70" style={{ fontFamily: MONO }}>Business School India</div>
+                </InfoRow>
+                <InfoRow delay={1600}>
+                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                     <div className="text-[2rem] font-medium leading-[0.9] tracking-[-0.03em] text-white" style={{ fontFamily: SERIF }}>02</div>
                     <div className="text-[11px] uppercase tracking-[0.18em] text-white/60" style={{ fontFamily: MONO }}>consecutive years</div>
                   </div>
-                </div>
+                </InfoRow>
               </SupportingPanel>
             }
           />

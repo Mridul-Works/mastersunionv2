@@ -250,6 +250,64 @@
   to { transform: rotate(360deg); }
 }
 
+/* Editorial "loading bar" sweep for faculty info rows */
+@keyframes mu-row-sweep {
+  0%   { transform: translateX(-115%); }
+  100% { transform: translateX(115%); }
+}
+.mu-info-row {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid rgb(255 255 255 / 0.09);
+  background: rgb(255 255 255 / 0.035);
+  border-radius: 10px;
+  transition: background-color 300ms ease, border-color 300ms ease;
+}
+.mu-info-row::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgb(240 228 202 / 0.055) 38%,
+    rgb(240 228 202 / 0.13) 50%,
+    rgb(240 228 202 / 0.055) 62%,
+    transparent 100%
+  );
+  animation: mu-row-sweep 5.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation-delay: var(--sweep-delay, 0s);
+}
+.mu-info-row > * {
+  position: relative;
+  z-index: 1;
+}
+.mu-info-row:hover,
+.mu-info-row:focus-visible {
+  background: rgb(255 255 255 / 0.06);
+  border-color: rgb(240 228 202 / 0.24);
+  outline: none;
+}
+.mu-info-row:hover::before,
+.mu-info-row:focus-visible::before {
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgb(240 228 202 / 0.1) 38%,
+    rgb(240 228 202 / 0.24) 50%,
+    rgb(240 228 202 / 0.1) 62%,
+    transparent 100%
+  );
+  animation-duration: 3.2s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mu-info-row::before { animation: none; }
+}
+
+
 /* Faculty hero — editorial typographic reveal */
 @keyframes hero-line-in {
   from { transform: translateY(105%); }
