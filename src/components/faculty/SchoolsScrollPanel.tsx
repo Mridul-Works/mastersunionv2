@@ -63,7 +63,7 @@ const MAX_X = 0.985;
 const BRIDGES: { a: number; b: number; at: number }[] = [];
 
 const anchorCount = 3 + Math.round(rand()); // 3–4 anchors
-const minorCount = 8 + Math.round(rand() * 3); // 8–11 minor hubs
+const minorCount = 10 + Math.round(rand() * 4); // 10–14 minor hubs
 
 type Seed = { x: number; y: number; anchor: boolean };
 const seeds: Seed[] = [];
@@ -76,20 +76,20 @@ for (let i = 0; i < anchorCount; i++) {
   let x = 0;
   let y = 0;
   do {
-    x = clampF(between(0.72, 0.88), 0.55, MAX_X);
-    y = clampF(between(0.35, 0.55), 0.20, 0.80);
+    x = clampF(between(0.76, 0.90), 0.60, MAX_X);
+    y = clampF(between(0.25, 0.75), 0.15, 0.85);
     attempts++;
   } while (
     attempts < 20 &&
-    seeds.some((s) => s.anchor && Math.hypot(s.x - x, s.y - y) < 0.08)
+    seeds.some((s) => s.anchor && Math.hypot(s.x - x, s.y - y) < 0.12)
   );
   seeds.push({ x, y, anchor: true });
 }
 for (let i = 0; i < minorCount; i++) {
   // minor hubs fill the upper, lower, and leftward areas around the anchor cluster
-  const bias = Math.pow(rand(), 0.8); // more mass toward the right/spine
+  const bias = Math.pow(rand(), 1.2); // slightly more spread toward the left
   seeds.push({
-    x: clampF(0.18 + bias * 0.65, 0.10, MAX_X),
+    x: clampF(0.22 + bias * 0.62, 0.12, MAX_X),
     y: clampF(rand(), 0.10, 0.90),
     anchor: false,
   });
