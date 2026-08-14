@@ -679,50 +679,52 @@ function FacultyPage() {
             <div className="px-[clamp(1rem,2.5vw,2.5rem)]">
               <h2 className="sr-only">Join the Union</h2>
               {/* Fluid full-width display type: SVG auto-fits the container at any width */}
-              <svg
-                aria-hidden
-                viewBox="0 0 1200 168"
-                className="hidden h-auto w-full sm:block"
-                preserveAspectRatio="xMidYMid meet"
-              >
-                <text
-                  x="600"
-                  y="132"
-                  textAnchor="middle"
-                  textLength="1188"
-                  lengthAdjust="spacingAndGlyphs"
-                  fill="#f5f1e8"
-                  fontSize="170"
-                  fontWeight="700"
-                  style={{ fontFamily: "Inter, system-ui, sans-serif", letterSpacing: "-0.04em" }}
+              <div className="text-white/[0.14] transition-colors duration-500 hover:text-[#f5f1e8]/85">
+                <svg
+                  aria-hidden
+                  viewBox="0 0 1200 168"
+                  className="hidden h-auto w-full sm:block"
+                  preserveAspectRatio="xMidYMid meet"
                 >
-                  JOIN THE UNION
-                </text>
-              </svg>
-              <div className="sm:hidden">
-                {["JOIN THE", "UNION"].map((line) => (
-                  <svg
-                    key={line}
-                    aria-hidden
-                    viewBox="0 0 600 120"
-                    className="h-auto w-full"
-                    preserveAspectRatio="xMidYMid meet"
+                  <text
+                    x="600"
+                    y="132"
+                    textAnchor="middle"
+                    textLength="1188"
+                    lengthAdjust="spacingAndGlyphs"
+                    fill="currentColor"
+                    fontSize="170"
+                    fontWeight="700"
+                    style={{ fontFamily: "Inter, system-ui, sans-serif", letterSpacing: "-0.04em" }}
                   >
-                    <text
-                      x="300"
-                      y="98"
-                      textAnchor="middle"
-                      textLength="592"
-                      lengthAdjust="spacingAndGlyphs"
-                      fill="#f5f1e8"
-                      fontSize="120"
-                      fontWeight="700"
-                      style={{ fontFamily: "Inter, system-ui, sans-serif", letterSpacing: "-0.04em" }}
+                    JOIN THE UNION
+                  </text>
+                </svg>
+                <div className="sm:hidden">
+                  {["JOIN THE", "UNION"].map((line) => (
+                    <svg
+                      key={line}
+                      aria-hidden
+                      viewBox="0 0 600 120"
+                      className="h-auto w-full"
+                      preserveAspectRatio="xMidYMid meet"
                     >
-                      {line}
-                    </text>
-                  </svg>
-                ))}
+                      <text
+                        x="300"
+                        y="98"
+                        textAnchor="middle"
+                        textLength="592"
+                        lengthAdjust="spacingAndGlyphs"
+                        fill="currentColor"
+                        fontSize="120"
+                        fontWeight="700"
+                        style={{ fontFamily: "Inter, system-ui, sans-serif", letterSpacing: "-0.04em" }}
+                      >
+                        {line}
+                      </text>
+                    </svg>
+                  ))}
+                </div>
               </div>
 
             </div>
