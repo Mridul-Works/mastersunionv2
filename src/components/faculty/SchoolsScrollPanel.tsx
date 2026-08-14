@@ -14,19 +14,38 @@ function rand(seed: number) {
   return x - Math.floor(x);
 }
 
-type Node = { bx: number; by: number; ax: number; ay: number; r: number; s: number };
+type Node = {
+  bx: number;
+  by: number;
+  /** orbit radii (fraction of panel) */
+  rx: number;
+  ry: number;
+  /** orbit speed + phase — deterministic per node */
+  sp: number;
+  ph: number;
+  r: number;
+  s: number;
+};
 
 const NODE_COUNT = 34;
 const NODES: Node[] = Array.from({ length: NODE_COUNT }, (_, i) => ({
-  bx: rand(i + 1),
-  by: rand(i + 21),
-  ax: (rand(i + 41) - 0.5) * 0.16,
-  ay: (rand(i + 61) - 0.5) * 0.2,
+  bx: 0.06 + rand(i + 1) * 0.88,
+  by: 0.05 + rand(i + 21) * 0.9,
+  rx: 0.03 + rand(i + 41) * 0.07,
+  ry: 0.03 + rand(i + 61) * 0.09,
+  sp: 0.25 + rand(i + 121) * 0.75,
+  ph: rand(i + 141) * Math.PI * 2,
   r: 0.7 + rand(i + 81) * 1.5,
   s: 0.35 + rand(i + 101) * 0.65,
 }));
 
-/** Subtle scroll-reactive node/edge network behind the data panel. */
+const TAU = Math.PI * 2;
+
+/**
+ * Network whose geometry is a pure deterministic function of scroll progress `t`
+ * (an unbounded, continuously advancing value). Same t => same frame, so the
+ * path retraces exactly in reverse and never freezes or resets.
+ */
 function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<number> }) {
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
 
@@ -38,14 +57,13 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
 
     let w = 0;
     let h = 0;
-    let dpr = 1;
-    let eased = progressRef.current;
     let raf = 0;
+    let last = Number.NaN;
     let alive = true;
 
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       w = Math.max(1, rect.width);
       h = Math.max(1, rect.height);
       canvas.width = Math.round(w * dpr);
@@ -53,19 +71,22 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
-    const draw = () => {
+    const draw = (t: number) => {
       ctx.clearRect(0, 0, w, h);
-      const p = eased;
+      // density/brightness ramp saturates gently but geometry keeps moving
+      const glow = Math.min(1, Math.max(0, t));
 
-      const pts = NODES.map((n) => ({
-        x: (n.bx + n.ax * p) * w,
-        y: (n.by + n.ay * p) * h,
-        r: n.r,
-        s: n.s,
-      }));
+      const pts = NODES.map((n) => {
+        const a = n.ph + t * n.sp * TAU;
+        return {
+          x: (n.bx + Math.cos(a) * n.rx) * w,
+          y: (n.by + Math.sin(a * 0.85 + 0.6) * n.ry) * h,
+          r: n.r,
+          s: n.s,
+        };
+      });
 
-      // edges: proximity graph, link distance grows with progress
-      const maxD = Math.min(w, h) * (0.28 + 0.14 * p);
+      const maxD = Math.min(w, h) * (0.3 + 0.12 * glow);
       ctx.lineWidth = 0.6;
       for (let i = 0; i < pts.length; i++) {
         for (let j = i + 1; j < pts.length; j++) {
@@ -73,7 +94,7 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
           const dy = pts[i].y - pts[j].y;
           const d = Math.hypot(dx, dy);
           if (d > maxD) continue;
-          const a = (1 - d / maxD) * (0.06 + 0.13 * p);
+          const a = (1 - d / maxD) * (0.06 + 0.11 * glow);
           ctx.strokeStyle = `rgba(255,255,255,${a.toFixed(3)})`;
           ctx.beginPath();
           ctx.moveTo(pts[i].x, pts[i].y);
@@ -83,10 +104,10 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
       }
 
       for (const pt of pts) {
-        const a = 0.1 + pt.s * (0.14 + 0.4 * p);
+        const a = 0.1 + pt.s * (0.14 + 0.32 * glow);
         ctx.fillStyle = `rgba(255,255,255,${a.toFixed(3)})`;
         ctx.beginPath();
-        ctx.arc(pt.x, pt.y, pt.r * (0.85 + 0.4 * p), 0, Math.PI * 2);
+        ctx.arc(pt.x, pt.y, pt.r * (0.85 + 0.35 * glow), 0, TAU);
         ctx.fill();
       }
     };
@@ -94,15 +115,10 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
     const tick = () => {
       raf = 0;
       if (!alive) return;
-      const target = progressRef.current;
-      const delta = target - eased;
-      if (Math.abs(delta) > 0.0015) {
-        eased += delta * 0.12;
-        draw();
-        raf = requestAnimationFrame(tick);
-      } else if (eased !== target) {
-        eased = target;
-        draw();
+      const t = progressRef.current;
+      if (t !== last) {
+        last = t;
+        draw(t);
       }
     };
 
@@ -111,20 +127,22 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
     };
 
     resize();
-    draw();
+    draw(progressRef.current);
 
     const ro = new ResizeObserver(() => {
       resize();
-      draw();
+      draw(progressRef.current);
     });
     ro.observe(canvas);
     window.addEventListener("scroll", kick, { passive: true });
+    window.addEventListener("resize", kick);
 
     return () => {
       alive = false;
       if (raf) cancelAnimationFrame(raf);
       ro.disconnect();
       window.removeEventListener("scroll", kick);
+      window.removeEventListener("resize", kick);
     };
   }, [progressRef]);
 
@@ -132,13 +150,15 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
     <canvas
       ref={canvasRef}
       aria-hidden
-      className="pointer-events-none absolute inset-0 h-full w-full"
+      className="pointer-events-none absolute inset-y-0 left-0 h-full"
+      style={{ width: "82%" }}
     />
   );
 }
 
 export default function SchoolsScrollPanel() {
   const sectionRef = React.useRef<HTMLDivElement>(null);
+  /** unbounded, continuous scroll timeline value */
   const progressRef = React.useRef(0);
   const blocksRef = React.useRef<Array<HTMLElement | null>>([]);
   const meterRef = React.useRef<Array<HTMLElement | null>>([]);
@@ -154,12 +174,15 @@ export default function SchoolsScrollPanel() {
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight || 1;
       const span = Math.max(1, rect.height - vh * 0.6);
-      const p = Math.min(1, Math.max(0, (vh * 0.75 - rect.top) / span));
-      progressRef.current = p;
 
+      // raw, unclamped timeline: keeps advancing after the section is covered
+      const raw = (vh * 0.75 - rect.top) / span;
+      progressRef.current = raw;
+
+      const p = Math.min(1, Math.max(0, raw));
       if (barRef.current) barRef.current.style.transform = `scaleY(${p.toFixed(3)})`;
 
-      const active = Math.min(STAGES.length - 1, Math.floor(p * STAGES.length));
+      const active = Math.min(STAGES.length - 1, Math.max(0, Math.floor(p * STAGES.length)));
       meterRef.current.forEach((node, i) => {
         if (!node) return;
         node.dataset["active"] = String(i === active);
@@ -239,57 +262,60 @@ export default function SchoolsScrollPanel() {
         </div>
       </div>
 
-      {/* RIGHT — sticky data panel */}
+      {/* RIGHT — sticky data panel: NETWORK | GAP | METER */}
       <div className="relative">
-        <div className="sticky top-0 flex min-h-[min(100vh,760px)] flex-col justify-center overflow-hidden p-6 md:p-8 lg:p-10">
-          <NetworkField progressRef={progressRef} />
+        <div className="sticky top-0 flex min-h-[min(100vh,760px)] overflow-hidden">
+          {/* network area — 82% of the panel, network can never cross this box */}
+          <div className="relative flex min-w-0 flex-1 flex-col justify-center p-6 md:p-8 lg:p-10">
+            <NetworkField progressRef={progressRef} />
 
-          <div className="relative z-10 pr-8">
-            <div
-              className="mb-6 text-[10px] uppercase tracking-[0.26em] text-white/50"
-              style={{ fontFamily: MONO }}
-            >
-              Schools That Come Here
-            </div>
-
-            <div className="border-t border-white/10 py-4">
-              <div className="text-[1.05rem] font-medium leading-[1.3] text-white">Kellogg</div>
+            <div className="relative z-10">
               <div
-                className="mt-1 break-words text-[10.5px] uppercase tracking-[0.2em] text-white/60"
+                className="mb-6 text-[10px] uppercase tracking-[0.26em] text-white/50"
                 style={{ fontFamily: MONO }}
               >
-                School of Management
+                Schools That Come Here
               </div>
-            </div>
 
-            <div className="border-t border-white/10 py-4">
-              <div className="text-[1.05rem] font-medium leading-[1.3] text-white">Harvard</div>
-              <div
-                className="mt-1 break-words text-[10.5px] uppercase tracking-[0.2em] text-white/60"
-                style={{ fontFamily: MONO }}
-              >
-                Business School India
-              </div>
-            </div>
-
-            <div className="border-y border-white/10 py-4">
-              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <div className="text-[2.4rem] font-bold leading-[0.9] tracking-[-0.04em] text-white">
-                  02
-                </div>
+              <div className="border-t border-white/10 py-4">
+                <div className="text-[1.05rem] font-medium leading-[1.3] text-white">Kellogg</div>
                 <div
-                  className="text-[10.5px] uppercase tracking-[0.18em] text-white/60"
+                  className="mt-1 break-words text-[10.5px] uppercase tracking-[0.2em] text-white/60"
                   style={{ fontFamily: MONO }}
                 >
-                  consecutive years
+                  School of Management
+                </div>
+              </div>
+
+              <div className="border-t border-white/10 py-4">
+                <div className="text-[1.05rem] font-medium leading-[1.3] text-white">Harvard</div>
+                <div
+                  className="mt-1 break-words text-[10.5px] uppercase tracking-[0.2em] text-white/60"
+                  style={{ fontFamily: MONO }}
+                >
+                  Business School India
+                </div>
+              </div>
+
+              <div className="border-y border-white/10 py-4">
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <div className="text-[2.4rem] font-bold leading-[0.9] tracking-[-0.04em] text-white">
+                    02
+                  </div>
+                  <div
+                    className="text-[10.5px] uppercase tracking-[0.18em] text-white/60"
+                    style={{ fontFamily: MONO }}
+                  >
+                    consecutive years
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* progress meter — far right edge */}
-          <div className="absolute bottom-8 right-3 top-8 z-10 flex w-5 flex-col justify-between md:right-4">
-            <div className="pointer-events-none absolute bottom-0 left-[9px] top-0 w-px bg-white/10">
+          {/* meter — dedicated protected column, never overlapped by the network */}
+          <div className="relative z-20 flex w-[54px] shrink-0 flex-col justify-between py-8 pl-2 pr-4 md:w-[60px] md:pr-5">
+            <div className="pointer-events-none absolute bottom-8 left-[8px] top-8 w-px bg-white/10">
               <div
                 ref={barRef}
                 className="h-full w-full origin-top bg-white/45"
@@ -303,15 +329,15 @@ export default function SchoolsScrollPanel() {
                   meterRef.current[i] = n;
                 }}
                 data-active="false"
-                className="group relative flex items-center gap-1.5 transition-opacity duration-500 data-[active=false]:opacity-35 data-[active=true]:opacity-100"
+                className="relative flex items-center gap-1.5 transition-opacity duration-500 data-[active=false]:opacity-35 data-[active=true]:opacity-100"
               >
+                <span className="h-px w-2 shrink-0 bg-white/60" aria-hidden />
                 <span
-                  className="text-[8.5px] tracking-[0.1em] text-white/80"
+                  className="whitespace-nowrap text-[9px] tracking-[0.1em] text-white/80"
                   style={{ fontFamily: MONO }}
                 >
                   {s.n}
                 </span>
-                <span className="h-px w-2 bg-white/60" aria-hidden />
               </div>
             ))}
           </div>
