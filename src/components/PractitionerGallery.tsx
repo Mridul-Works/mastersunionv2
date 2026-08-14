@@ -55,6 +55,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
   const [hasEntered, setHasEntered] = useState(false);
   const [hasFlipped, setHasFlipped] = useState(false);
   const [activeHovered, setActiveHovered] = useState(false);
+  const [spinFlipIcon, setSpinFlipIcon] = useState(false);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
   /**
@@ -380,8 +381,8 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                 }
                 setFlipped((f) => (f === i ? null : i));
               }}
-              onMouseEnter={() => { if (isActive) setActiveHovered(true); }}
-              onMouseLeave={() => setActiveHovered(false)}
+              onMouseEnter={() => { if (isActive) { setActiveHovered(true); setSpinFlipIcon(true); } }}
+              onMouseLeave={() => { setActiveHovered(false); setSpinFlipIcon(false); }}
               aria-hidden={hidden}
               className="absolute left-1/2 top-1/2 overflow-hidden rounded-[20px] sm:rounded-[26px] md:rounded-[30px]"
               style={{
@@ -440,12 +441,20 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                     )}
                     {isActive && !isFlipped ? (
                       <div
-                        className={`pointer-events-none absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-white/20 bg-black/75 px-3 py-1.5 text-[9px] uppercase tracking-[0.22em] text-white/90 shadow-[0_8px_24px_-6px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 md:bottom-5 md:px-3.5 md:py-2 md:text-[10px] ${hasEntered && !hasFlipped ? "animate-mu-flip-hint" : ""} ${activeHovered ? "border-white/35 text-white" : ""}`}
+                        className={`pointer-events-none absolute bottom-4 right-4 z-10 flex items-center gap-1.5 rounded-full border border-white/35 bg-black/80 px-3.5 py-2 text-[9px] uppercase tracking-[0.2em] text-white shadow-[0_8px_28px_-6px_rgba(0,0,0,0.6)] backdrop-blur-md transition-all duration-300 md:bottom-5 md:right-5 md:px-4 md:py-2.5 md:text-[10px] ${hasEntered && !hasFlipped ? "animate-mu-flip-hint" : ""} ${activeHovered ? "border-white/60 bg-black/90 shadow-[0_10px_32px_-4px_rgba(0,0,0,0.7)]" : ""}`}
                         style={{ fontFamily: MONO }}
                         aria-hidden
                       >
                         <span>Click to flip</span>
-                        <span aria-hidden>↻</span>
+                        <span
+                          aria-hidden
+                          className="inline-block"
+                          style={{
+                            animation: spinFlipIcon ? "mu-flip-spin-once 650ms ease-in-out 1" : "none",
+                          }}
+                        >
+                          ↻
+                        </span>
                       </div>
                     ) : null}
                   </div>
