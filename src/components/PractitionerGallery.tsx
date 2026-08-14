@@ -579,13 +579,13 @@ export default function PractitionerGallery({
                       {item.sub || brand ? (
                         <div className="w-full border-t border-white/12 pt-[clamp(0.55rem,1.8%,0.9rem)]">
                           <div
-                            className="text-[8.5px] uppercase tracking-[0.24em] text-white/35 md:text-[9.5px]"
+                            className="text-[7.5px] uppercase tracking-[0.2em] text-white/35 sm:text-[8.5px] sm:tracking-[0.24em] md:text-[9.5px]"
                             style={{ fontFamily: MONO }}
                           >
                             {item.sub ? "Expertise" : "Affiliation"}
                           </div>
                           <div
-                            className="mt-[0.4em] text-[9.5px] uppercase leading-[1.55] tracking-[0.14em] text-white/65 md:text-[10.5px]"
+                            className="mt-[0.4em] text-[8.5px] uppercase leading-[1.5] tracking-[0.1em] text-white/65 sm:text-[9.5px] sm:tracking-[0.14em] md:text-[10.5px]"
                             style={{ fontFamily: MONO }}
                           >
                             {item.sub ?? brand?.name}
