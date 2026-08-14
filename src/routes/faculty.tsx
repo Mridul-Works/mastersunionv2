@@ -599,7 +599,9 @@ function FacultyPage() {
             eyebrow="What students say"
             title={<>Learning from operators, <Accent>in their own words</Accent>.</>}
           />
-          <StudentTestimonials items={TESTIMONIALS} />
+          <div className="reveal-up" style={{ transitionDelay: "160ms" }}>
+            <StudentTestimonials items={TESTIMONIALS} />
+          </div>
 
         </div>
       </section>
