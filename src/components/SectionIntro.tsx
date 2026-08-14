@@ -1,7 +1,21 @@
 import type { ReactNode } from "react";
 
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
+const SANS = "'Inter', system-ui, sans-serif";
 const SERIF = "'Fraunces', Georgia, serif";
+
+/**
+ * Serif-italic editorial accent — use for a word or short phrase inside an
+ * otherwise upright sans-serif headline. Never wrap a whole heading in this.
+ */
+export function Accent({ children }: { children: ReactNode }) {
+  return (
+    <span className="font-light italic" style={{ fontFamily: SERIF }}>
+      {children}
+    </span>
+  );
+}
+
 
 /**
  * Shared editorial section intro.
