@@ -446,14 +446,15 @@ function FacultyPage() {
         </div>
       </div>
 
-      {/* HERO — standalone, NOT part of the sticky stack */}
-      <div className="relative z-0 min-h-screen">
+      <StackReveal>
+      {/* HERO — first pinned layer of the stack (exactly 100vh) */}
+      <div className="min-h-screen">
         <HeroFadeOut>
           <FacultyHero />
         </HeroFadeOut>
       </div>
 
-      <StackReveal>
+
 
 
       {/* SECTION 2 — MASTERS: Built by Scholars, Led by Industry Practitioners */}
