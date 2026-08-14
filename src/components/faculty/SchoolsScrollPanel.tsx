@@ -116,18 +116,18 @@ seeds.forEach((seed) => {
     kind: seed.anchor ? 0 : 1,
   });
 
-  // satellites: smaller stars orbiting the hub in organic clusters that fan leftward
-  const count = seed.anchor ? 14 + Math.round(rand() * 10) : 5 + Math.round(rand() * 4);
+  // satellites: smaller stars orbiting the hub in dense organic clusters
+  const count = seed.anchor ? 18 + Math.round(rand() * 12) : 7 + Math.round(rand() * 4);
   for (let k = 0; k < count; k++) {
     const ang = seed.anchor
-      ? Math.PI * 0.4 + rand() * Math.PI * 1.2 // leftward bias for anchors
+      ? Math.PI * 0.35 + rand() * Math.PI * 1.3 // strongly leftward bias for anchors
       : rand() * Math.PI * 2;
-    const len = (seed.anchor ? 0.08 : 0.04) * between(0.5, 1.3);
+    const len = (seed.anchor ? 0.09 : 0.05) * between(0.5, 1.3);
     NODES.push({
-      bx: clampF(seed.x + Math.cos(ang) * len * 1.6, 0.02, MAX_X),
+      bx: clampF(seed.x + Math.cos(ang) * len * 1.7, 0.02, MAX_X),
       by: clampF(seed.y + Math.sin(ang) * len * 1.4, 0.02, 0.98),
-      rx: between(0.012, 0.038),
-      ry: between(0.008, 0.026),
+      rx: between(0.012, 0.040),
+      ry: between(0.008, 0.028),
       sp: between(0.22, 0.75),
       ph: rand() * Math.PI * 2,
       r: between(1.4, 2.6),
