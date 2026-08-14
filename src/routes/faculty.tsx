@@ -591,7 +591,7 @@ function FacultyPage() {
       </section>
 
       {/* TESTIMONIALS */}
-        <section className="screen-section border-y border-white/10 bg-[#0a0a0a]">
+        <section ref={testimonialsReveal.ref} className={testimonialsReveal.className}>
         <div className="page-shell screen-y">
           <SectionIntro
             className="mb-[clamp(2rem,5vh,3.25rem)]"
