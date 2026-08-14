@@ -446,7 +446,7 @@ function FacultyPage() {
         </div>
       </div>
 
-      <StackReveal holds={{ 2: 1, 3: 1, 4: 1 }}>
+      <StackReveal>
       {/* SECTION 1 — HERO: label, headline, description, image, scroll cue, stats card */}
       <HeroFadeOut>
 
