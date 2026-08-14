@@ -287,8 +287,7 @@ function EditorialGrid({
                   <div className="flex items-start gap-3">
                     <span className="mt-3 h-1.5 w-1.5 rounded-full bg-[#7a8b6f]" aria-hidden />
                     <div
-                      className={`text-[clamp(1.35rem,min(2.6vw,3.4vh),2.2rem)] font-medium leading-[0.92] tracking-[-0.035em] ${dark ? "text-white" : "text-black"}`}
-                      style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                      className={`text-[clamp(1.35rem,min(2.6vw,3.4vh),2.2rem)] font-extrabold not-italic leading-[0.92] tracking-[-0.04em] ${dark ? "text-white" : "text-black"}`}
                     >
                       {s.v}
                     </div>
