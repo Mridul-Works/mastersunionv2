@@ -162,6 +162,7 @@ export default function SchoolsScrollPanel() {
   const progressRef = React.useRef(0);
   const blocksRef = React.useRef<Array<HTMLElement | null>>([]);
   const meterRef = React.useRef<Array<HTMLElement | null>>([]);
+  const stageRef = React.useRef<Array<HTMLElement | null>>([]);
   const barRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
