@@ -376,12 +376,12 @@ export default function MastersVideos({
                       onClick={() => goTo(i)}
                       aria-label={v.title}
                       aria-current={i === active}
-                      className={`relative h-[clamp(96px,14vh,148px)] shrink-0 overflow-hidden rounded-[14px] border bg-black transition duration-300 ${
+                      className={`group relative h-[clamp(96px,14vh,148px)] shrink-0 overflow-hidden rounded-[14px] border bg-black transition duration-300 ${
                         i === active
                           ? dark
-                            ? "border-white/70 opacity-100"
-                            : "border-black/70 opacity-100"
-                          : `${line} opacity-55 hover:opacity-90`
+                            ? "border-white/70"
+                            : "border-black/70"
+                          : line
                       }`}
                       style={{ aspectRatio: "223/398" }}
                     >
@@ -389,10 +389,9 @@ export default function MastersVideos({
                         src={v.thumb}
                         alt=""
                         loading="lazy"
-                        className="h-full w-full object-contain"
+                        className="h-full w-full object-contain grayscale contrast-[0.95] saturate-[0.75] transition-all duration-[350ms] ease-out group-hover:grayscale-0 group-hover:contrast-100 group-hover:saturate-100"
                       />
                     </button>
-
                   ))}
                 </div>
               </div>
