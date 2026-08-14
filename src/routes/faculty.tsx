@@ -575,10 +575,10 @@ function FacultyPage() {
             }
             right={
               <SupportingPanel title="Faculty Pedigree">
-                <PedigreeGroup label="IIM" items="Ahmedabad · Bangalore · Calcutta" />
-                <PedigreeGroup label="IIT" items="Bombay · Kanpur" />
-                <PedigreeGroup label="Universities" items="Delhi University · Shiv Nadar · Christ University" />
-                <PedigreeGroup label="Global" items="TERI · University of Bath" />
+                <PedigreeGroup label="IIM" items="Ahmedabad · Bangalore · Calcutta" delay={0} />
+                <PedigreeGroup label="IIT" items="Bombay · Kanpur" delay={700} />
+                <PedigreeGroup label="Universities" items="Delhi University · Shiv Nadar · Christ University" delay={1400} />
+                <PedigreeGroup label="Global" items="TERI · University of Bath" delay={2100} />
               </SupportingPanel>
             }
           />
