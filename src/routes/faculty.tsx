@@ -444,8 +444,10 @@ function FacultyPage() {
         </div>
       </div>
 
+      <StackReveal>
       {/* SECTION 1 — HERO: label, headline, description, image, scroll cue, stats card */}
       <HeroFadeOut>
+
         <FacultyHero />
       </HeroFadeOut>
 
