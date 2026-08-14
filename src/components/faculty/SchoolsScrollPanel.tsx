@@ -174,8 +174,8 @@ for (let i = 0; i < HUBS.length; i++) {
     const a = NODES[HUBS[i]];
     const b = NODES[HUBS[j]];
     const d = Math.hypot(a.bx - b.bx, a.by - b.by);
-    if (d > 0.32) continue; // prefer short and medium cluster bridges
-    if (rand() > 0.58) continue; // irregular, but slightly more connected
+    if (d > 0.22) continue; // short/medium bridges only — no long vertical chains
+    if (rand() > 0.60) continue; // irregular, but connected enough to form a field
     BRIDGES.push({ a: HUBS[i], b: HUBS[j], at: between(0.08, 0.84) });
   }
 }
