@@ -526,6 +526,7 @@ function FacultyPage() {
               img: PRACTITIONER_PHOTOS[p.name],
             }))}
           />
+          </div>
         </div>
       </section>
 
