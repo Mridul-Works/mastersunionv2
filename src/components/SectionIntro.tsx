@@ -10,7 +10,7 @@ const SERIF = "'Fraunces', Georgia, serif";
  */
 export function Accent({ children }: { children: ReactNode }) {
   return (
-    <span className="font-light italic" style={{ fontFamily: SERIF }}>
+    <span className="font-light italic text-white/[0.14]" style={{ fontFamily: SERIF }}>
       {children}
     </span>
   );
