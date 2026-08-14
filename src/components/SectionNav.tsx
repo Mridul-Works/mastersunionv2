@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import logoAsset from "@/assets/logo-2.png.asset.json";
 
@@ -28,12 +28,31 @@ function scrollToId(id: string) {
 function useScrollState() {
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [visible, setVisible] = useState(true);
+  const lastScrollY = useRef(0);
+  const directionStartY = useRef(0);
 
   useEffect(() => {
+    const THRESHOLD = 10;
     const onScroll = () => {
+      const current = window.scrollY;
+      const delta = current - lastScrollY.current;
       const max = document.documentElement.scrollHeight - window.innerHeight;
-      setScrolled(window.scrollY > 24);
-      setProgress(max > 0 ? Math.min(1, window.scrollY / max) : 0);
+
+      setScrolled(current > 24);
+      setProgress(max > 0 ? Math.min(1, current / max) : 0);
+
+      if (current < 24) {
+        setVisible(true);
+        directionStartY.current = current;
+      } else if (delta < 0) {
+        setVisible(true);
+        directionStartY.current = current;
+      } else if (delta > 0 && current > directionStartY.current + THRESHOLD) {
+        setVisible(false);
+      }
+
+      lastScrollY.current = current;
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -44,7 +63,7 @@ function useScrollState() {
     };
   }, []);
 
-  return { scrolled, progress };
+  return { scrolled, progress, visible };
 }
 
 function useActiveSection(ids: string[]) {
