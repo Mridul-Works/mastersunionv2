@@ -51,6 +51,7 @@ function computeGeometry(stageW: number, viewportH: number): Geometry {
 export default function PractitionerGallery({ items }: { items: GalleryItem[] }) {
   const n = items.length;
   const [inputMode, setInputMode] = useState<"touch" | "pointer">("pointer");
+  const [isTouchViewport, setIsTouchViewport] = useState(false);
   const [flipped, setFlipped] = useState<number | null>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [hasEntered, setHasEntered] = useState(false);
@@ -67,6 +68,12 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
   useEffect(() => {
     const hasTouch = navigator.maxTouchPoints > 0 || window.matchMedia("(any-pointer: coarse)").matches;
     setInputMode(hasTouch ? "touch" : "pointer");
+
+    const mql = window.matchMedia("(max-width: 1024px)");
+    const update = () => setIsTouchViewport(mql.matches);
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
   }, []);
 
   /**
@@ -474,7 +481,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                         style={{ fontFamily: MONO }}
                         aria-hidden
                       >
-                        <span>{inputMode === "touch" ? "Tap to flip" : "Click to flip"}</span>
+                        <span>{inputMode === "touch" || isTouchViewport ? "Tap to flip" : "Click to flip"}</span>
                         <span
                           aria-hidden
                           className="inline-block"
