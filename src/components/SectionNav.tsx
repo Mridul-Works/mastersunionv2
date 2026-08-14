@@ -126,7 +126,7 @@ export function SectionNav({
   applyHref?: string;
   extraLinks?: { href: string; label: string }[];
 }) {
-  const { scrolled, progress } = useScrollState();
+  const { scrolled, progress, visible } = useScrollState();
   const active = useActiveSection(items.map((i) => i.id));
   const clock = useClock();
 
@@ -141,7 +141,13 @@ export function SectionNav({
   };
 
   return (
-    <header className="fixed inset-x-0 bottom-0 z-[100] block px-2.5 pb-2.5 sm:px-5 sm:pb-4">
+    <header
+      className="fixed inset-x-0 bottom-0 z-[100] block px-2.5 pb-2.5 sm:px-5 sm:pb-4"
+      style={{
+        transform: visible ? "translateY(0)" : "translateY(calc(100% + 24px))",
+        transition: "transform 450ms cubic-bezier(0.22, 1, 0.36, 1)",
+      }}
+    >
 
 
 
