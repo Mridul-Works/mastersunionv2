@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Quote } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import StudentTestimonials from "@/components/StudentTestimonials";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 import MastersVideos from "@/components/MastersVideos";
 import FacultyHero from "@/components/FacultyHero";
