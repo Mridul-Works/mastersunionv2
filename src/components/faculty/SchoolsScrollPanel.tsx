@@ -300,19 +300,19 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
       }
 
       for (const pt of pts) {
-        const base = pt.kind === 0 ? 0.18 : pt.kind === 1 ? 0.14 : pt.kind === 2 ? 0.10 : 0.08;
-        const a = base + pt.s * (0.10 + 0.24 * glow);
+        const base = pt.kind === 0 ? 0.24 : pt.kind === 1 ? 0.18 : pt.kind === 2 ? 0.13 : 0.10;
+        const a = base + pt.s * (0.12 + 0.24 * glow);
 
         ctx.fillStyle = `rgba(255,255,255,${a.toFixed(3)})`;
         ctx.beginPath();
-        ctx.arc(pt.x, pt.y, pt.r * (0.9 + 0.3 * glow), 0, TAU);
+        ctx.arc(pt.x, pt.y, pt.r * (1.0 + 0.35 * glow), 0, TAU);
         ctx.fill();
         // anchors carry a faint halo — major institutions, still understated
         if (pt.kind === 0) {
-          ctx.strokeStyle = `rgba(255,255,255,${(0.08 + 0.10 * glow).toFixed(3)})`;
-          ctx.lineWidth = 0.6;
+          ctx.strokeStyle = `rgba(255,255,255,${(0.12 + 0.14 * glow).toFixed(3)})`;
+          ctx.lineWidth = 0.8;
           ctx.beginPath();
-          ctx.arc(pt.x, pt.y, pt.r * 2.8 + 2, 0, TAU);
+          ctx.arc(pt.x, pt.y, pt.r * 3.0 + 2, 0, TAU);
           ctx.stroke();
         }
       }
