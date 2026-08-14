@@ -456,7 +456,8 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                         style={{ fontFamily: MONO }}
                         aria-hidden
                       >
-                        <span>Click to flip</span>
+                        <span className="inline [@media(hover:none)]:hidden">Click to flip</span>
+                        <span className="hidden [@media(hover:none)]:inline">Tap to flip</span>
                         <span
                           aria-hidden
                           className="inline-block"
