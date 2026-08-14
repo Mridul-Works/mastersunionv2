@@ -153,12 +153,12 @@ for (let i = 0; i < HUBS.length; i++) {
 
 
 // isolated stars — gentle negative space between clusters
-const loneCount = 22 + Math.round(rand() * 10);
+const loneCount = 28 + Math.round(rand() * 12);
 for (let i = 0; i < loneCount; i++) {
   NODES.push({
     bx: clampF(between(0.03, MAX_X), 0.02, MAX_X),
     by: clampF(rand(), 0.03, 0.97),
-    rx: between(0.006, 0.024),
+    rx: between(0.008, 0.032),
     ry: between(0.008, 0.028),
     sp: between(0.18, 0.7),
     ph: rand() * Math.PI * 2,
