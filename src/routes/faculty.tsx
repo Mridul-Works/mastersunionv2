@@ -381,7 +381,7 @@ function EditorialGrid({
 function EditorialSplit({ left, right }: { left: React.ReactNode; right: React.ReactNode }) {
   return (
     <div className="mt-[clamp(0.75rem,1.8vh,1.25rem)] grid gap-0 border border-white/10 bg-white/[0.04] md:grid-cols-[minmax(0,1fr)_minmax(300px,35%)]">
-      <div className="border-b border-white/10 p-[clamp(1rem,2.2vh,1.5rem)] md:border-b-0 md:border-r md:border-white/10">
+      <div className="flex flex-col justify-center border-b border-white/10 p-[clamp(1rem,2.2vh,1.5rem)] md:border-b-0 md:border-r md:border-white/10">
         {left}
       </div>
       <div className="p-[clamp(1rem,2.2vh,1.5rem)]">
@@ -390,6 +390,7 @@ function EditorialSplit({ left, right }: { left: React.ReactNode; right: React.R
     </div>
   );
 }
+
 
 function SupportingPanel({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -538,7 +539,7 @@ function FacultyPage() {
           />
           <EditorialSplit
             left={
-              <p className="max-w-[70ch] text-[0.98rem] leading-[1.5] text-white/75">
+              <p className="max-w-[min(100%,74ch)] text-[clamp(1.02rem,1.3vw,1.18rem)] leading-[1.58] text-white/[0.85]">
                 Doctorates from IIM Ahmedabad, Bangalore, Calcutta, Kozhikode and Tiruchirappalli, IIT Bombay and Kanpur, Delhi University, Shiv Nadar, Christ University, TERI and the University of Bath — across finance, marketing, operations, organisational behaviour, economics, decision sciences and strategy.
               </p>
             }
@@ -580,7 +581,7 @@ function FacultyPage() {
           />
           <EditorialSplit
             left={
-              <p className="max-w-[70ch] text-[0.98rem] leading-[1.5] text-white/75">
+              <p className="max-w-[min(100%,74ch)] text-[clamp(1.02rem,1.3vw,1.18rem)] leading-[1.58] text-white/[0.85]">
                 <span className="font-medium text-white">Kellogg School of Management</span> — led by Professor Mohanbir Sawhney, one of the world&apos;s foremost authorities on technology strategy and marketing innovation — has brought students to Masters&apos; Union for two consecutive years. <span className="font-medium text-white">Harvard Business School India</span> immersion students have visited campus. When schools like these come here to learn, something is working.
               </p>
             }
