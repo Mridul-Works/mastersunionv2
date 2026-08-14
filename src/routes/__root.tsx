@@ -129,8 +129,11 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <SmoothScroll>
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <Outlet />
+        {/* Content offset for the full-height left navigation bar on desktop. */}
+        <div className="md:pl-[72px] lg:pl-[84px]">
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </div>
       </SmoothScroll>
       <MobileBottomBar />
     </QueryClientProvider>
