@@ -653,6 +653,33 @@ body::-webkit-scrollbar {
   }
 }
 
+/* Editorial scroll-triggered fade-up reveal.
+   Applied to any section with a `reveal-section` class. Children marked with
+   `reveal-up` animate once when the section enters the viewport, with a
+   subtle stagger controlled by inline transition-delay values.
+   Reduced-motion preference disables the movement entirely. */
+.reveal-section .reveal-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal-section.is-revealed .reveal-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-section .reveal-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+
 /* Full-screen scene sections (faculty page) — viewport-fit, bottom-nav aware */
 @utility screen-section {
   min-height: 100svh;
