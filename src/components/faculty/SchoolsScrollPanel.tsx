@@ -62,8 +62,8 @@ const MAX_X = 0.985;
 /** Inter-cluster relationships, each revealed at its own point in the scroll. */
 const BRIDGES: { a: number; b: number; at: number }[] = [];
 
-const anchorCount = 4 + Math.round(rand()); // 4–5 anchors
-const minorCount = 6 + Math.round(rand() * 3); // 6–9 minor hubs
+const anchorCount = 5 + Math.round(rand()); // 5–6 anchors
+const minorCount = 8 + Math.round(rand() * 3); // 8–11 minor hubs
 
 type Seed = { x: number; y: number; anchor: boolean };
 const seeds: Seed[] = [];
@@ -98,14 +98,14 @@ seeds.forEach((seed) => {
     ry: between(0.012, 0.032),
     sp: between(0.18, 0.52),
     ph: rand() * Math.PI * 2,
-    r: seed.anchor ? between(2.0, 3.0) : between(1.2, 1.8),
-    s: seed.anchor ? between(0.78, 0.92) : between(0.5, 0.7),
+    r: seed.anchor ? between(2.2, 3.2) : between(1.3, 1.9),
+    s: seed.anchor ? between(0.82, 0.96) : between(0.55, 0.75),
     parent: -1,
     kind: seed.anchor ? 0 : 1,
   });
 
   // satellites: smaller stars orbiting the hub in varied organic clusters
-  const count = seed.anchor ? 8 + Math.round(rand() * 6) : 3 + Math.round(rand() * 3);
+  const count = seed.anchor ? 10 + Math.round(rand() * 7) : 4 + Math.round(rand() * 4);
   for (let k = 0; k < count; k++) {
     // full-circle orbit, but biased slightly leftward so clusters drift toward content
     const ang = rand() * Math.PI * 2;
