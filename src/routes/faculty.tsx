@@ -713,7 +713,7 @@ function FacultyPage() {
           {/* Giant type + strip + utility row */}
           <div>
             <div className="px-[clamp(1rem,2.5vw,2.5rem)]">
-              <h2 className="text-center font-semibold uppercase leading-[0.82] tracking-[-0.04em] text-[#f5f1e8] text-[clamp(3.2rem,15.5vw,17rem)]">
+              <h2 className="text-center font-semibold uppercase leading-[0.82] tracking-[-0.045em] text-[#f5f1e8] text-[clamp(3rem,11.6vw,14.5rem)]">
                 <span className="block sm:hidden">
                   Join the
                   <br />
