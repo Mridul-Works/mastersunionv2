@@ -146,7 +146,7 @@ for (let i = 0; i < HUBS.length; i++) {
 
 
 // isolated stars — gentle negative space between clusters
-const loneCount = 12 + Math.round(rand() * 8);
+const loneCount = 22 + Math.round(rand() * 10);
 for (let i = 0; i < loneCount; i++) {
   NODES.push({
     bx: clampF(between(0.03, MAX_X), 0.02, MAX_X),
@@ -155,8 +155,8 @@ for (let i = 0; i < loneCount; i++) {
     ry: between(0.008, 0.028),
     sp: between(0.18, 0.7),
     ph: rand() * Math.PI * 2,
-    r: between(0.3, 0.75),
-    s: between(0.2, 0.5),
+    r: between(0.4, 0.9),
+    s: between(0.25, 0.55),
     parent: -1,
     kind: 3,
   });
@@ -262,11 +262,11 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
 
       if (tier < 2) {
         // 1. branches inside each institutional cluster — always present
-        ctx.lineWidth = 0.6;
+        ctx.lineWidth = 0.8;
         for (const pt of pts) {
           if (pt.parent < 0) continue;
           const p = pts[pt.parent];
-          const a = 0.055 + 0.10 * glow;
+          const a = 0.08 + 0.12 * glow;
           ctx.strokeStyle = `rgba(255,255,255,${a.toFixed(3)})`;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
@@ -277,13 +277,13 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
         // 2. bridges between clusters — revealed progressively, so separate
         //    ecosystems gradually become one network as the section advances.
         if (tier === 0) {
-          ctx.lineWidth = 0.75;
+          ctx.lineWidth = 0.9;
           for (const br of BRIDGES) {
             const reveal = smooth((t - br.at) / 0.3);
             if (reveal <= 0.001) continue;
             const a = pts[br.a];
             const b = pts[br.b];
-            const alpha = reveal * (0.08 + 0.12 * glow);
+            const alpha = reveal * (0.10 + 0.14 * glow);
             ctx.strokeStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
