@@ -68,20 +68,21 @@ const minorCount = 5 + Math.round(rand() * 3); // 5–8 minor hubs
 type Seed = { x: number; y: number; anchor: boolean };
 const seeds: Seed[] = [];
 
-// 3-4 anchor clusters arranged in a loose diagonal / scattered pattern, not a spine
-const ANCHOR_LAYOUT = [
-  { x: 0.75, y: 0.30 },
-  { x: 0.62, y: 0.52 },
-  { x: 0.85, y: 0.72 },
-  { x: 0.55, y: 0.45 },
-] as const;
+// 3-4 anchors scattered in 2D near the meter, with a leftward drift bias
+// so the constellation reads as distinct clusters rather than a vertical spine
 for (let i = 0; i < anchorCount; i++) {
-  const base = ANCHOR_LAYOUT[i % ANCHOR_LAYOUT.length];
-  seeds.push({
-    x: clampF(base.x + between(-0.08, 0.08), 0.35, MAX_X),
-    y: clampF(base.y + between(-0.06, 0.06), 0.15, 0.85),
-    anchor: true,
-  });
+  let attempts = 0;
+  let x = 0;
+  let y = 0;
+  do {
+    x = clampF(between(0.58, 0.88), 0.35, MAX_X);
+    y = clampF(between(0.22, 0.78), 0.15, 0.85);
+    attempts++;
+  } while (
+    attempts < 20 &&
+    seeds.some((s) => s.anchor && Math.hypot(s.x - x, s.y - y) < 0.22)
+  );
+  seeds.push({ x, y, anchor: true });
 }
 for (let i = 0; i < minorCount; i++) {
   // minor hubs orbit in the mid-ground, filling gaps between anchor clusters
