@@ -439,16 +439,6 @@ function FacultyPage() {
     <main className="min-h-screen bg-[#0a0a0a] pb-24 text-white sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
       <SectionNav items={NAV} applyHref="#cta" />
 
-      {/* Chapter marker */}
-      <div className="page-shell flex items-center justify-between gap-4 border-b border-white/10 pb-[clamp(0.85rem,1.6vw,1.25rem)] pt-[clamp(1.25rem,3vw,2.25rem)] sm:gap-6">
-        <Link to="/" className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-white/70 transition-colors hover:text-white" style={{ fontFamily: MONO }}>
-          <span aria-hidden>←</span> Masters&apos; Union
-        </Link>
-        <div className="text-[11px] uppercase tracking-[0.25em] text-white/55" style={{ fontFamily: MONO }}>
-          Faculty
-        </div>
-      </div>
-
       <StackReveal
         coverMultipliers={[
           1, // Hero — unchanged
