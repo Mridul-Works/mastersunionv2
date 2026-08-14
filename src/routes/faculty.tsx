@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight, Quote } from "lucide-react";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
