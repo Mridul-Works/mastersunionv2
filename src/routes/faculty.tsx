@@ -409,14 +409,35 @@ function SupportingPanel({ title, children }: { title: string; children: React.R
   );
 }
 
-function PedigreeGroup({ label, items }: { label: string; items: string }) {
+function InfoRow({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
   return (
-    <div className="border-t border-white/10 py-3 first:border-t-0 first:pt-0">
-      <div className="text-[11px] uppercase tracking-[0.2em] text-white/70" style={{ fontFamily: MONO }}>{label}</div>
-      <div className="mt-1 text-[0.92rem] leading-[1.45] text-white/85">{items}</div>
+    <div
+      tabIndex={0}
+      className={`mu-info-row mt-2 min-w-0 px-3 py-2.5 first:mt-0 sm:px-3.5 sm:py-3 ${className}`}
+      style={{ ["--sweep-delay" as string]: `${delay}ms` }}
+    >
+      {children}
     </div>
   );
 }
+
+function PedigreeGroup({ label, items, delay = 0 }: { label: string; items: string; delay?: number }) {
+  return (
+    <InfoRow delay={delay}>
+      <div className="text-[11px] uppercase tracking-[0.2em] text-white/70" style={{ fontFamily: MONO }}>{label}</div>
+      <div className="mt-1 break-words text-[0.92rem] leading-[1.45] text-white/85">{items}</div>
+    </InfoRow>
+  );
+}
+
 
 
 export const Route = createFileRoute("/faculty")({
