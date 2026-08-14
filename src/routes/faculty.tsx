@@ -7,6 +7,8 @@ import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 import MastersVideos from "@/components/MastersVideos";
 import FacultyHero from "@/components/FacultyHero";
 import HeroFadeOut from "@/components/HeroFadeOut";
+import StackReveal from "@/components/StackReveal";
+
 import FacultyStatsCard from "@/components/FacultyStatsCard";
 import { buildFacultyStats, statsRefreshedLabel } from "@/lib/faculty-stats";
 
@@ -431,7 +433,7 @@ function FacultyPage() {
   }, []);
 
   return (
-    <main className="min-h-screen overflow-x-clip bg-[#0a0a0a] pb-24 text-white sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
+    <main className="min-h-screen bg-[#0a0a0a] pb-24 text-white sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
       <SectionNav items={NAV} applyHref="#cta" />
 
       {/* Chapter marker */}
@@ -444,8 +446,10 @@ function FacultyPage() {
         </div>
       </div>
 
+      <StackReveal>
       {/* SECTION 1 — HERO: label, headline, description, image, scroll cue, stats card */}
       <HeroFadeOut>
+
         <FacultyHero />
       </HeroFadeOut>
 
@@ -770,7 +774,8 @@ function FacultyPage() {
           </div>
         </div>
       </footer>
-
+      </StackReveal>
     </main>
+
   );
 }
