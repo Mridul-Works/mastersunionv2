@@ -6,12 +6,12 @@ import * as React from "react";
  * The canvas spans BOTH columns of a split panel and is inset on the right by
  * the meter column width, so nothing (node, line or glow) can ever render over
  * the protected meter. Geometry originates near the right (meter) edge and
- * spreads horizontally leftward across the centre and into the left column,
- * thinning out as it travels.
+ * spreads horizontally leftward across the centre and into the left column.
  *
- * Everything is a pure deterministic function of a scroll-derived progress
- * value: the same progress always yields the same frame, so scrolling back up
- * retraces the exact same path in reverse and nothing is ever regenerated.
+ * Everything — node reveal, line drawing and horizontal drift — is a pure
+ * deterministic function of a scroll-derived progress value. The same progress
+ * always yields the same frame, so scrolling back up un-draws the lines along
+ * the exact same path and nothing is ever regenerated or timer-animated.
  */
 
 const TAU = Math.PI * 2;
@@ -41,205 +41,182 @@ type Node = {
   ph: number;
   r: number;
   s: number;
-  parent: number;
-  /** 0 = anchor, 1 = secondary hub, 2 = small star, 3 = lone dust */
-  kind: 0 | 1 | 2 | 3;
+  /** 0 = large anchor, 1 = medium, 2 = tiny star */
+  kind: 0 | 1 | 2;
+  /** scroll progress at which this point starts to appear */
+  at: number;
 };
 
-type Link = { a: number; b: number; at: number };
+/** A straight connection, drawn progressively from `a` toward `b`. */
+type Link = { a: number; b: number; at: number; span: number };
 
 type Field = { nodes: Node[]; links: Link[] };
 
 /**
- * Density profile: right side (near the meter) is a little more concentrated,
- * the left column is deliberately sparse with large gaps.
+ * Selective straight connections: each node may link to one or two of its
+ * nearest neighbours, and only if the pair passes a random gate — so plenty of
+ * points stay completely isolated and nothing becomes a dense web.
+ *
+ * Reveal order flows right → left (from beneath the meter outward), which is
+ * what makes the constellation appear to draw itself as the user scrolls.
+ */
+function connect(
+  nodes: Node[],
+  rand: () => number,
+  opts: { maxDist: number; gate: number; maxPerNode: number },
+): Link[] {
+  const links: Link[] = [];
+  const degree = new Array(nodes.length).fill(0);
+  const seen = new Set<string>();
+
+  const order = nodes
+    .map((n, i) => ({ i, x: n.bx }))
+    .sort((p, q) => q.x - p.x)
+    .map((p) => p.i);
+
+  for (const i of order) {
+    const a = nodes[i];
+    // candidate neighbours, nearest first
+    const cands = nodes
+      .map((n, j) => ({ j, d: Math.hypot(n.bx - a.bx, (n.by - a.by) * 0.6) }))
+      .filter((c) => c.j !== i && c.d < opts.maxDist)
+      .sort((p, q) => p.d - q.d)
+      .slice(0, 4);
+
+    for (const c of cands) {
+      if (degree[i] >= opts.maxPerNode) break;
+      if (degree[c.j] >= opts.maxPerNode) continue;
+      const key = i < c.j ? `${i}:${c.j}` : `${c.j}:${i}`;
+      if (seen.has(key)) continue;
+      // bias: bigger nodes and nearer pairs connect more readily
+      const bias = (a.kind === 0 ? 0.22 : a.kind === 1 ? 0.1 : 0) + (1 - c.d / opts.maxDist) * 0.2;
+      if (rand() > opts.gate + bias) continue;
+      seen.add(key);
+
+      const b = nodes[c.j];
+      // draw from whichever end is further right — lines grow leftward
+      const [from, to] = a.bx >= b.bx ? [i, c.j] : [c.j, i];
+      const rightX = Math.max(a.bx, b.bx);
+      // rightmost pairs draw first; the far left completes last
+      const at = clampF(0.1 + (1 - rightX) * 0.62 + (rand() - 0.5) * 0.08, 0.04, 0.9);
+      links.push({ a: from, b: to, at, span: 0.1 + rand() * 0.14 });
+      degree[i] += 1;
+      degree[c.j] += 1;
+    }
+  }
+
+  return links;
+}
+
+/** Node reveal: right → left, tiny stars slightly behind their bigger siblings. */
+const nodeAt = (bx: number, kind: number, rand: () => number) =>
+  clampF((1 - bx) * 0.34 + (kind === 2 ? 0.03 : 0) + rand() * 0.06, 0, 0.6);
+
+/**
+ * Topology A — a broad star field with loose concentrations, denser toward the
+ * meter edge and generously spaced on the left.
  */
 function buildOrbits(rand: () => number): Field {
   const between = (lo: number, hi: number) => lo + rand() * (hi - lo);
   const nodes: Node[] = [];
-  const links: Link[] = [];
 
-  // clusters distributed across the FULL width, denser toward the meter
-  const clusterCount = 7 + Math.round(rand() * 2);
-  const seeds: { x: number; y: number; anchor: boolean; density: number }[] = [];
-  for (let i = 0; i < clusterCount; i++) {
-    let x = 0;
-    let y = 0;
-    let attempts = 0;
-    do {
-      // pow > 1 biases toward 1 (the meter edge) but still reaches x ~ 0.05
-      x = clampF(Math.pow(rand(), 0.62), 0.04, 0.97);
-      y = clampF(between(0.08, 0.92), 0.06, 0.94);
-      attempts++;
-    } while (attempts < 40 && seeds.some((s) => Math.hypot(s.x - x, (s.y - y) * 0.55) < 0.19));
-    seeds.push({ x, y, anchor: x > 0.6 && rand() > 0.35, density: 0.35 + x * 0.65 });
-  }
-
-  seeds.forEach((seed) => {
-    const hub = nodes.length;
+  const push = (bx: number, by: number, kind: 0 | 1 | 2) => {
+    const r =
+      kind === 0 ? between(1.7, 2.3) : kind === 1 ? between(1.0, 1.45) : between(0.5, 0.95);
     nodes.push({
-      bx: seed.x,
-      by: seed.y,
-      rx: between(0.01, 0.026),
-      ry: between(0.006, 0.016),
-      sp: between(0.12, 0.32),
-      ph: rand() * TAU,
-      r: seed.anchor ? between(1.5, 2.0) : between(1.1, 1.5),
-      s: seed.anchor ? between(0.55, 0.75) : between(0.4, 0.58),
-      parent: -1,
-      kind: seed.anchor ? 0 : 1,
-    });
-
-    const count = Math.max(2, Math.round((seed.anchor ? 6 : 4) * seed.density + rand() * 2));
-    for (let k = 0; k < count; k++) {
-      const ang = rand() * TAU;
-      const len = between(0.03, 0.1) * (0.6 + seed.density * 0.8);
-      const idx = nodes.length;
-      nodes.push({
-        bx: clampF(seed.x + Math.cos(ang) * len * 1.4, 0.02, MAX_X),
-        by: clampF(seed.y + Math.sin(ang) * len * 0.85, 0.03, 0.97),
-        rx: between(0.008, 0.022),
-        ry: between(0.005, 0.014),
-        sp: between(0.16, 0.42),
-        ph: rand() * TAU,
-        r: between(0.5, 1.0),
-        s: between(0.2, 0.4),
-        parent: rand() > 0.42 ? hub : -1,
-        kind: 2,
-      });
-      if (rand() > 0.88) links.push({ a: hub, b: idx, at: between(0.05, 0.7) });
-    }
-  });
-
-  // a few long, elegant connections spanning the panel horizontally
-  const hubs = nodes.map((n, i) => (n.kind <= 1 ? i : -1)).filter((i) => i >= 0);
-  for (let i = 0; i < hubs.length - 1; i++) {
-    for (let j = i + 1; j < hubs.length; j++) {
-      const a = nodes[hubs[i]];
-      const b = nodes[hubs[j]];
-      const dx = Math.abs(a.bx - b.bx);
-      const dy = Math.abs(a.by - b.by);
-      if (dx > 0.16 && dx < 0.55 && dy < 0.3 && rand() > 0.66) {
-        links.push({ a: hubs[i], b: hubs[j], at: (0.05 + dx) % 0.7 });
-      }
-    }
-  }
-
-  // lone dust across the whole field, sparser on the left
-  const loneCount = 40 + Math.round(rand() * 14);
-  for (let i = 0; i < loneCount; i++) {
-    nodes.push({
-      bx: clampF(Math.pow(rand(), 0.7), 0.02, MAX_X),
-      by: clampF(rand(), 0.03, 0.97),
+      bx: clampF(bx, 0.015, MAX_X),
+      by: clampF(by, 0.025, 0.975),
       rx: between(0.006, 0.02),
-      ry: between(0.005, 0.016),
-      sp: between(0.14, 0.44),
+      ry: between(0.004, 0.014),
+      sp: between(0.12, 0.42),
       ph: rand() * TAU,
-      r: between(0.35, 0.8),
-      s: between(0.14, 0.3),
-      parent: -1,
-      kind: 3,
+      r,
+      s: kind === 0 ? between(0.55, 0.75) : kind === 1 ? between(0.3, 0.5) : between(0.12, 0.3),
+      kind,
+      at: nodeAt(bx, kind, rand),
     });
+  };
+
+  // a handful of large anchors, weighted to the right
+  for (let i = 0; i < 5; i++) {
+    push(clampF(Math.pow(rand(), 0.45), 0.06, 0.96), between(0.1, 0.9), 0);
+  }
+  // medium nodes
+  for (let i = 0; i < 16; i++) {
+    push(clampF(Math.pow(rand(), 0.6), 0.04, 0.97), between(0.06, 0.94), 1);
+  }
+  // the bulk: many tiny stars, irregular, denser near the meter
+  const tiny = 170 + Math.round(rand() * 40);
+  for (let i = 0; i < tiny; i++) {
+    // loose concentrations without hard clusters
+    const clumped = rand() > 0.55;
+    const bx = clumped
+      ? clampF(Math.pow(rand(), 0.65) + (rand() - 0.5) * 0.05, 0.02, MAX_X)
+      : clampF(Math.pow(rand(), 0.85), 0.02, MAX_X);
+    push(bx, rand(), 2);
   }
 
-  return { nodes, links };
+  return { nodes, links: connect(nodes, rand, { maxDist: 0.1, gate: 0.62, maxPerNode: 2 }) };
 }
 
 /**
- * Second topology: sweeping arc filaments emerging from behind the meter and
- * fanning across the whole panel into the left column. Structurally distinct
- * from the orbiting clusters above, same visual language.
+ * Topology B — filament-leaning field: stars arranged along long, sweeping
+ * paths from behind the meter into the left column, plus scattered dust. Same
+ * visual language, distinctly different structure from topology A.
  */
 function buildArcs(rand: () => number): Field {
   const between = (lo: number, hi: number) => lo + rand() * (hi - lo);
   const nodes: Node[] = [];
-  const links: Link[] = [];
+
+  const push = (bx: number, by: number, kind: 0 | 1 | 2) => {
+    const r =
+      kind === 0 ? between(1.6, 2.1) : kind === 1 ? between(0.95, 1.4) : between(0.45, 0.9);
+    nodes.push({
+      bx: clampF(bx, 0.015, MAX_X),
+      by: clampF(by, 0.025, 0.975),
+      rx: between(0.005, 0.018),
+      ry: between(0.004, 0.013),
+      sp: between(0.12, 0.44),
+      ph: rand() * TAU,
+      r,
+      s: kind === 0 ? between(0.55, 0.72) : kind === 1 ? between(0.28, 0.48) : between(0.12, 0.28),
+      kind,
+      at: nodeAt(bx, kind, rand),
+    });
+  };
 
   const armCount = 4 + Math.round(rand() * 2);
   for (let ai = 0; ai < armCount; ai++) {
-    const ay = clampF(0.1 + (ai + rand() * 0.6) / armCount * 0.85, 0.07, 0.93);
+    const ay = clampF(0.08 + ((ai + rand() * 0.7) / armCount) * 0.86, 0.06, 0.94);
     const ax = clampF(between(0.9, 0.995), 0.5, MAX_X);
-    const anchor = nodes.length;
-    nodes.push({
-      bx: ax,
-      by: ay,
-      rx: between(0.005, 0.014),
-      ry: between(0.004, 0.01),
-      sp: between(0.1, 0.26),
-      ph: rand() * TAU,
-      r: between(1.6, 2.2),
-      s: between(0.6, 0.8),
-      parent: -1,
-      kind: 0,
-    });
+    push(ax, ay, 0);
 
-    // long arc reaching deep into the left column
-    const steps = 12 + Math.round(rand() * 8);
+    const steps = 20 + Math.round(rand() * 12);
     const dir = rand() > 0.5 ? 1 : -1;
-    const curve = between(0.4, 1.1) * dir;
-    const reach = between(0.72, 0.95);
-    let prev = anchor;
+    const bend = between(0.35, 1.0) * dir;
+    const reach = between(0.78, 0.96);
     for (let k = 1; k <= steps; k++) {
       const u = k / steps;
-      const wobble = (rand() - 0.5) * 0.03;
-      const bx = clampF(ax - u * reach + wobble, 0.02, MAX_X);
-      const by = clampF(ay + Math.sin(u * Math.PI * 0.8) * curve * 0.2 + wobble * 1.5, 0.04, 0.96);
-      const idx = nodes.length;
-      nodes.push({
-        bx,
-        by,
-        rx: between(0.006, 0.02),
-        ry: between(0.004, 0.014),
-        sp: between(0.14, 0.42),
-        ph: rand() * TAU,
-        // stars thin out along the arc as it travels left
-        r: between(0.4, 1.3) * (1 - u * 0.35),
-        s: between(0.18, 0.45),
-        parent: -1,
-        kind: u < 0.35 ? 2 : 3,
-      });
-      // deliberate gaps — more toward the left so the field breathes
-      if (rand() > 0.2 + u * 0.4) links.push({ a: prev, b: idx, at: (ai * 0.06 + u * 0.6) % 0.72 });
-      prev = idx;
-
-      if (rand() > 0.8) {
+      const wobble = (rand() - 0.5) * 0.035;
+      const bx = ax - u * reach + wobble;
+      const by = ay + Math.sin(u * Math.PI * 0.8) * bend * 0.2 + wobble * 1.6;
+      push(bx, by, rand() > 0.86 ? 1 : 2);
+      // occasional companion beside a filament star
+      if (rand() > 0.72) {
         const ang = rand() * TAU;
-        const len = between(0.015, 0.05);
-        const cidx = nodes.length;
-        nodes.push({
-          bx: clampF(bx + Math.cos(ang) * len, 0.02, MAX_X),
-          by: clampF(by + Math.sin(ang) * len * 0.8, 0.03, 0.97),
-          rx: between(0.005, 0.016),
-          ry: between(0.004, 0.012),
-          sp: between(0.16, 0.48),
-          ph: rand() * TAU,
-          r: between(0.35, 0.9),
-          s: between(0.16, 0.35),
-          parent: rand() > 0.5 ? idx : -1,
-          kind: 3,
-        });
+        const len = between(0.012, 0.045);
+        push(bx + Math.cos(ang) * len, by + Math.sin(ang) * len * 0.8, 2);
       }
     }
   }
 
-  // isolated dust, generous negative space on the left
-  const dustCount = 38 + Math.round(rand() * 14);
-  for (let i = 0; i < dustCount; i++) {
-    nodes.push({
-      bx: clampF(Math.pow(rand(), 0.75), 0.02, MAX_X),
-      by: clampF(rand(), 0.03, 0.97),
-      rx: between(0.005, 0.018),
-      ry: between(0.004, 0.015),
-      sp: between(0.12, 0.46),
-      ph: rand() * TAU,
-      r: between(0.3, 0.75),
-      s: between(0.12, 0.28),
-      parent: -1,
-      kind: 3,
-    });
+  // scattered isolated dust, generous negative space on the left
+  const dust = 110 + Math.round(rand() * 40);
+  for (let i = 0; i < dust; i++) {
+    push(clampF(Math.pow(rand(), 0.8), 0.02, MAX_X), rand(), 2);
   }
 
-  return { nodes, links };
+  return { nodes, links: connect(nodes, rand, { maxDist: 0.095, gate: 0.55, maxPerNode: 2 }) };
 }
 
 /** Fresh seed per page load, distinct stream per variant. */
@@ -279,7 +256,7 @@ export default function PanelConstellation({
     let onScreen = true;
     let lastDrawAt = 0;
 
-    // tier 0 = branches + links + stars, 1 = branches only, 2 = stars only
+    // tier 0 = stars + all lines, 1 = stars + shorter lines, 2 = stars only
     let tier = reduced ? 2 : 0;
     let avgCost = 0;
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -311,8 +288,7 @@ export default function PanelConstellation({
       const t0 = performance.now();
       ctx.clearRect(0, 0, w, h);
 
-      // gradual reveal as the section pins, natural fade as it gets covered
-      const glow = smooth(t / 0.22);
+      const glow = smooth(t / 0.18);
       // continuous right → left drift across the entire panel
       const drift = -driftEase(t) * 0.3;
 
@@ -325,58 +301,44 @@ export default function PanelConstellation({
           r: n.r,
           s: n.s,
           kind: n.kind,
-          parent: n.parent,
+          // per-node scroll-driven appearance
+          on: smooth((t - n.at) / 0.14),
           // left side is quieter — the typography must stay dominant
           dim: 0.58 + Math.min(1, Math.max(0, nx)) * 0.42,
         };
       });
 
+      // ---- straight connections, each extending with scroll progress --------
       if (tier < 2) {
         ctx.lineWidth = 0.45;
-        for (const pt of pts) {
-          if (pt.parent < 0) continue;
-          const p = pts[pt.parent];
-          const a = (0.03 + 0.05 * glow) * pt.dim;
-          ctx.strokeStyle = `rgba(255,255,255,${a.toFixed(3)})`;
+        ctx.lineCap = "butt";
+        for (const link of LINKS) {
+          const grow = Math.min(1, Math.max(0, (t - link.at) / link.span));
+          if (grow <= 0.001) continue;
+          const a = pts[link.a];
+          const b = pts[link.b];
+          if (tier === 1 && Math.abs(b.x - a.x) > w * 0.06) continue;
+          const e = smooth(grow);
+          const alpha = (0.05 + 0.075 * glow) * ((a.dim + b.dim) / 2) * Math.min(1, grow * 1.6);
+          ctx.strokeStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
           ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(pt.x, pt.y);
+          ctx.moveTo(a.x, a.y);
+          // simple straight segment, extending from a toward b
+          ctx.lineTo(a.x + (b.x - a.x) * e, a.y + (b.y - a.y) * e);
           ctx.stroke();
         }
-
-        if (tier === 0) {
-          ctx.lineWidth = 0.5;
-          for (const br of LINKS) {
-            const reveal = smooth((t - br.at) / 0.3);
-            if (reveal <= 0.001) continue;
-            const a = pts[br.a];
-            const b = pts[br.b];
-            const alpha = reveal * (0.035 + 0.055 * glow) * ((a.dim + b.dim) / 2);
-            ctx.strokeStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.quadraticCurveTo(
-              (a.x + b.x) / 2 + (b.y - a.y) * 0.07,
-              (a.y + b.y) / 2 - (b.x - a.x) * 0.07,
-              b.x,
-              b.y,
-            );
-            ctx.stroke();
-          }
-        }
       }
 
-      ctx.shadowBlur = 3;
-      ctx.shadowColor = "rgba(255,255,255,0.1)";
+      // ---- stars ------------------------------------------------------------
       for (const pt of pts) {
-        const base = pt.kind === 0 ? 0.26 : pt.kind === 1 ? 0.2 : pt.kind === 2 ? 0.14 : 0.1;
-        const a = (base + pt.s * (0.05 + 0.1 * glow)) * pt.dim;
+        if (pt.on <= 0.005) continue;
+        const base = pt.kind === 0 ? 0.6 : pt.kind === 1 ? 0.44 : 0.28;
+        const a = (base + pt.s * (0.08 + 0.14 * glow)) * pt.dim * pt.on;
         ctx.fillStyle = `rgba(255,255,255,${a.toFixed(3)})`;
         ctx.beginPath();
-        ctx.arc(pt.x, pt.y, pt.r * (0.95 + 0.2 * glow), 0, TAU);
+        ctx.arc(pt.x, pt.y, pt.r * (0.9 + 0.2 * pt.on), 0, TAU);
         ctx.fill();
       }
-      ctx.shadowBlur = 0;
 
       const cost = performance.now() - t0;
       avgCost = avgCost ? avgCost * 0.8 + cost * 0.2 : cost;
