@@ -495,9 +495,9 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                     ) : null}
                   </div>
 
-                  {/* BACK — practitioner details */}
+                  {/* BACK — practitioner details, one vertically centred block */}
                   <div
-                    className="absolute inset-0 flex flex-col justify-center overflow-hidden rounded-[20px] bg-[#131313] px-6 py-6 sm:rounded-[24px] sm:px-10 md:rounded-[32px] md:px-12"
+                    className="absolute inset-0 overflow-hidden rounded-[20px] bg-[#131313] sm:rounded-[24px] md:rounded-[32px]"
                     style={{
                       backfaceVisibility: "hidden",
                       WebkitBackfaceVisibility: "hidden",
@@ -505,38 +505,44 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                     }}
                     aria-hidden={!(isFlipped && isActive)}
                   >
-                    <div
-                      className="text-[9px] uppercase tracking-[0.22em] text-white/45 md:text-[10.5px]"
-                      style={{ fontFamily: MONO }}
-                    >
-                      Industry Practitioner
-                    </div>
-                    <h4
-                      className="mt-3 text-[clamp(1.2rem,3.4vw,2.2rem)] font-medium leading-[1.05] tracking-[-0.03em] text-white"
-                      style={{ fontFamily: SERIF }}
-                    >
-                      {item.name}
-                    </h4>
-                    <div
-                      className="mt-2.5 text-[9.5px] uppercase leading-[1.6] tracking-[0.16em] text-white/60 md:text-[11px]"
-                      style={{ fontFamily: MONO }}
-                    >
-                      {item.role}
-                    </div>
-                    {item.blurb ? (
-                      <p className="mt-3 max-w-[42ch] text-[0.98rem] leading-[1.65] text-white/70 md:mt-5">
-                        {item.blurb}
-                      </p>
-                    ) : null}
-                    {item.sub ? (
-                      <div
-                        className="mt-5 border-t border-white/12 pt-4 text-[9.5px] uppercase leading-[1.6] tracking-[0.16em] text-white/45 md:text-[10.5px]"
-                        style={{ fontFamily: MONO }}
-                      >
-                        {item.sub}
+                    <div className="flex h-full w-full items-center justify-center overflow-y-auto px-[clamp(1.25rem,7%,2.75rem)] py-[clamp(1.25rem,5%,2.5rem)]">
+                      <div className="flex w-full max-w-[38ch] flex-col items-start gap-[clamp(0.6rem,1.6%,0.9rem)] text-left">
+                        <div
+                          className="text-[9px] uppercase tracking-[0.22em] text-white/45 md:text-[10.5px]"
+                          style={{ fontFamily: MONO }}
+                        >
+                          Industry Practitioner
+                        </div>
+                        <h4
+                          className="text-[clamp(1.25rem,3.2vw,2.05rem)] font-medium leading-[1.05] tracking-[-0.03em] text-white"
+                          style={{ fontFamily: SERIF }}
+                        >
+                          {item.name}
+                        </h4>
+                        <div
+                          className="text-[9.5px] uppercase leading-[1.6] tracking-[0.16em] text-white/60 md:text-[11px]"
+                          style={{ fontFamily: MONO }}
+                        >
+                          {item.role}
+                        </div>
+                        {brand ? <BrandLogo brand={brand} /> : null}
+                        {item.blurb ? (
+                          <p className="text-[0.95rem] leading-[1.7] text-white/70 md:text-[0.98rem]">
+                            {item.blurb}
+                          </p>
+                        ) : null}
+                        {item.sub ? (
+                          <div
+                            className="w-full border-t border-white/12 pt-[clamp(0.6rem,1.6%,0.9rem)] text-[9.5px] uppercase leading-[1.6] tracking-[0.16em] text-white/45 md:text-[10.5px]"
+                            style={{ fontFamily: MONO }}
+                          >
+                            {item.sub}
+                          </div>
+                        ) : null}
                       </div>
-                    ) : null}
+                    </div>
                   </div>
+
                 </div>
               </div>
 
