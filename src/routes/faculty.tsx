@@ -536,11 +536,21 @@ function FacultyPage() {
             ]}
             items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
           />
-          <div className="mt-[clamp(0.75rem,1.8vh,1.25rem)] border-l-2 border-white/80 bg-white/[0.04] p-[clamp(0.85rem,2vh,1.5rem)]">
-            <p className="max-w-[70ch] text-[0.98rem] leading-[1.5] text-white/75">
-              Doctorates from IIM Ahmedabad, Bangalore, Calcutta, Kozhikode and Tiruchirappalli, IIT Bombay and Kanpur, Delhi University, Shiv Nadar, Christ University, TERI and the University of Bath — across finance, marketing, operations, organisational behaviour, economics, decision sciences and strategy.
-            </p>
-          </div>
+          <EditorialSplit
+            left={
+              <p className="max-w-[70ch] text-[0.98rem] leading-[1.5] text-white/75">
+                Doctorates from IIM Ahmedabad, Bangalore, Calcutta, Kozhikode and Tiruchirappalli, IIT Bombay and Kanpur, Delhi University, Shiv Nadar, Christ University, TERI and the University of Bath — across finance, marketing, operations, organisational behaviour, economics, decision sciences and strategy.
+              </p>
+            }
+            right={
+              <SupportingPanel title="Faculty Pedigree">
+                <PedigreeGroup label="IIM" items="Ahmedabad · Bangalore · Calcutta" />
+                <PedigreeGroup label="IIT" items="Bombay · Kanpur" />
+                <PedigreeGroup label="Universities" items="Delhi University · Shiv Nadar · Christ University" />
+                <PedigreeGroup label="Global" items="TERI · University of Bath" />
+              </SupportingPanel>
+            }
+          />
         </div>
       </section>
 
