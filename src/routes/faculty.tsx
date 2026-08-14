@@ -656,7 +656,7 @@ function FacultyPage() {
             </div>
           </div>
 
-          <div className="mt-[clamp(2.5rem,6vh,4rem)] space-y-[clamp(1.25rem,3vh,1.75rem)]">
+          <div className="reveal-up mt-[clamp(2.5rem,6vh,4rem)] space-y-[clamp(1.25rem,3vh,1.75rem)]" style={{ transitionDelay: "120ms" }}>
             <p className="text-[clamp(0.875rem,1.8vw,1.125rem)] font-medium leading-[1.4] tracking-[-0.01em] text-white/90">
               Masters on the roster.
             </p>
