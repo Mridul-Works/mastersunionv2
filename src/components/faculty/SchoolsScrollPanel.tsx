@@ -296,18 +296,26 @@ export default function SchoolsScrollPanel() {
       <div className="relative">
         <div className="sticky top-0 flex min-h-[min(100vh,760px)] overflow-hidden">
           {/* network area — 82% of the panel, network can never cross this box */}
-          <div className="relative flex min-w-0 flex-1 flex-col justify-center p-6 md:p-8 lg:p-10">
+          <div className="relative flex min-w-0 flex-1 flex-col justify-center p-6 md:p-8 md:pl-10 md:pr-0 lg:pl-12">
             <NetworkField progressRef={progressRef} />
 
-            <div className="relative z-10">
+            {/* information sits close to the meter — right-aligned, compact column */}
+            <div className="relative z-10 ml-auto w-full max-w-[280px] md:max-w-[300px]">
               <div
-                className="mb-6 text-[10px] uppercase tracking-[0.26em] text-white/50"
-                style={{ fontFamily: MONO }}
+                ref={labelRef}
+                className="mb-5 text-[10px] uppercase tracking-[0.26em] text-white/50 will-change-transform"
+                style={{ fontFamily: MONO, opacity: 0 }}
               >
                 Schools That Come Here
               </div>
 
-              <div className="border-t border-white/10 py-4">
+              <div
+                ref={(n) => {
+                  stageRef.current[0] = n;
+                }}
+                className="border-t border-white/10 py-4 will-change-transform"
+                style={{ opacity: 0 }}
+              >
                 <div className="text-[1.05rem] font-medium leading-[1.3] text-white">Kellogg</div>
                 <div
                   className="mt-1 break-words text-[10.5px] uppercase tracking-[0.2em] text-white/60"
@@ -317,7 +325,13 @@ export default function SchoolsScrollPanel() {
                 </div>
               </div>
 
-              <div className="border-t border-white/10 py-4">
+              <div
+                ref={(n) => {
+                  stageRef.current[1] = n;
+                }}
+                className="border-t border-white/10 py-4 will-change-transform"
+                style={{ opacity: 0 }}
+              >
                 <div className="text-[1.05rem] font-medium leading-[1.3] text-white">Harvard</div>
                 <div
                   className="mt-1 break-words text-[10.5px] uppercase tracking-[0.2em] text-white/60"
@@ -327,7 +341,13 @@ export default function SchoolsScrollPanel() {
                 </div>
               </div>
 
-              <div className="border-y border-white/10 py-4">
+              <div
+                ref={(n) => {
+                  stageRef.current[2] = n;
+                }}
+                className="border-y border-white/10 py-4 will-change-transform"
+                style={{ opacity: 0 }}
+              >
                 <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                   <div className="text-[2.4rem] font-bold leading-[0.9] tracking-[-0.04em] text-white">
                     02
@@ -341,6 +361,8 @@ export default function SchoolsScrollPanel() {
                 </div>
               </div>
             </div>
+          </div>
+
           </div>
 
           {/* meter — dedicated protected column, never overlapped by the network */}
