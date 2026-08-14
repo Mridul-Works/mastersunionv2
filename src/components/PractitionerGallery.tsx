@@ -532,7 +532,7 @@ export default function PractitionerGallery({
                           <BrandLogo
                             brand={brand}
                             className="shrink-0"
-                            imgClassName="h-[26px] w-auto max-w-[92px] select-none object-contain opacity-95 grayscale contrast-125 sm:h-[34px] sm:max-w-[110px] md:h-[clamp(38px,4vw,52px)] md:max-w-[140px]"
+                            imgClassName="h-[26px] w-auto max-w-[92px] select-none object-contain opacity-100 sm:h-[34px] sm:max-w-[110px] md:h-[clamp(38px,4vw,52px)] md:max-w-[140px]"
                           />
                         ) : null}
                       </div>
@@ -546,7 +546,7 @@ export default function PractitionerGallery({
                                 src={item.img}
                                 alt=""
                                 draggable={false}
-                                className="h-full w-full select-none object-cover object-[50%_18%] grayscale"
+                                className="h-full w-full select-none object-cover object-[50%_18%]"
                               />
                             ) : (
                               <Initials name={item.name} />
