@@ -145,8 +145,8 @@ for (let i = 0; i < HUBS.length; i++) {
 }
 
 
-// a handful of isolated stars — negative space with a little life in it
-const loneCount = 8 + Math.round(rand() * 6);
+// isolated stars — gentle negative space between clusters
+const loneCount = 12 + Math.round(rand() * 8);
 for (let i = 0; i < loneCount; i++) {
   NODES.push({
     bx: clampF(between(0.03, MAX_X), 0.02, MAX_X),
@@ -155,7 +155,7 @@ for (let i = 0; i < loneCount; i++) {
     ry: between(0.008, 0.028),
     sp: between(0.18, 0.7),
     ph: rand() * Math.PI * 2,
-    r: between(0.3, 0.8),
+    r: between(0.3, 0.75),
     s: between(0.2, 0.5),
     parent: -1,
     kind: 3,
@@ -167,8 +167,8 @@ for (let i = 0; i < HUBS.length; i++) {
     const a = NODES[HUBS[i]];
     const b = NODES[HUBS[j]];
     const d = Math.hypot(a.bx - b.bx, a.by - b.by);
-    if (d > 0.44) continue; // only plausible neighbours connect
-    if (rand() > 0.72) continue; // irregular, never a spider web
+    if (d > 0.32) continue; // prefer short and medium cluster bridges
+    if (rand() > 0.58) continue; // irregular, but slightly more connected
     BRIDGES.push({ a: HUBS[i], b: HUBS[j], at: between(0.08, 0.84) });
   }
 }
