@@ -632,7 +632,9 @@ function FacultyPage() {
           </div>
 
           {/* Editorial marquee wordmark */}
+          <div className="reveal-up" style={{ transitionDelay: "160ms" }}>
           <WordMarquee />
+          </div>
 
         </div>
       </section>
