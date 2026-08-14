@@ -574,6 +574,8 @@ function FacultyPage() {
             index="03"
             eyebrow="Visiting Faculty"
             title={<>Professors who teach here because they believe in what Masters&apos; Union is building.</>}
+            intro="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
+            introCenter
             dark
             serif
             wide
