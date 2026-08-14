@@ -4,24 +4,22 @@ import * as React from "react";
  * Scroll-driven deep-space travel field for the split panels.
  *
  * The canvas spans BOTH columns of a split panel and is inset on the right by
- * the meter column width, so nothing (node, trail or glow) can ever render over
- * the protected meter. Geometry originates from a vanishing point set toward the
- * centre/right of the panel — i.e. from behind the meter — and travels outward
- * toward the viewer.
+ * the meter column width, so no star can ever render over the protected meter.
+ * The field's vanishing point sits toward the centre/right of the panel — stars
+ * appear to originate from behind the meter and travel outward to the viewer.
  *
  * MODEL
- * Nodes live in a 3D world (x, y, z). Groups of nodes share a base depth so
- * their connections stay coherent. Scroll progress moves a virtual camera
- * forward: depth is wrapped modulo Z_RANGE, so distant nodes are continuously
- * created as foreground ones pass the viewer — the field never runs out.
+ * Every star is an INDEPENDENT point in a 3D world (x, y, z). There are no
+ * node-to-node connections, constellations or trails of any kind. Scroll
+ * progress moves a virtual camera forward; depth wraps modulo Z_RANGE so tiny
+ * distant stars are continuously created as foreground ones pass the viewer.
  *
  * DETERMINISM
- * Every position, trail and glow is a pure function of the scroll-derived
- * progress and a per-load seed. No timers, no autoplay, no regeneration:
- * scrolling back retraces the identical path. The active range spans the whole
- * lifespan of the section (progress 0..LIFESPAN), so the journey keeps running
- * underneath the incoming stacked panel and only settles once that panel has
- * completely covered the section.
+ * Every position and flare is a pure function of the scroll-derived progress and
+ * a per-load seed. No timers, no autoplay, no regeneration: scrolling back
+ * retraces the identical path. The active range spans the whole lifespan of the
+ * section (progress 0..LIFESPAN), so the journey keeps running underneath the
+ * incoming stacked panel and settles only once it has fully covered the section.
  */
 
 const TAU = Math.PI * 2;
@@ -30,7 +28,7 @@ const TAU = Math.PI * 2;
 const LIFESPAN = 1.55;
 /** Depth units travelled across the whole lifespan. */
 const TRAVEL = 26;
-/** Wrap distance: nodes exist between z≈0 (viewer) and Z_RANGE (deep space). */
+/** Wrap distance: stars exist between z≈0 (viewer) and Z_RANGE (deep space). */
 const Z_RANGE = 9;
 /** Focal length for the perspective projection. */
 const FOCAL = 1.15;
@@ -55,99 +53,77 @@ const smooth = (x: number) => {
 export type Variant = "orbits" | "arcs";
 
 type Star = {
-  /** group index — shares a wrapped base depth */
-  g: number;
-  /** offsets in world space relative to the group */
+  /** world position; z is the base depth (wrapped against the camera) */
   x: number;
   y: number;
-  dz: number;
-  /** 0 = anchor, 1 = medium, 2 = tiny */
-  kind: 0 | 1 | 2;
+  z: number;
+  /** 0 = anchor, 1 = medium, 2 = small, 3 = tiny dust */
+  kind: 0 | 1 | 2 | 3;
   r: number;
   s: number;
   /** rare foreground star that flares as it passes the viewer */
   hit: boolean;
 };
 
-/** Straight connection between two stars of the same group. */
-type Edge = { a: number; b: number; w: number };
-
 type Field = {
-  /** base depth per group */
-  gz: number[];
   stars: Star[];
-  edges: Edge[];
   /** vanishing point in panel units */
   vp: { x: number; y: number };
-  /** how strongly trails stretch toward the viewer */
-  trail: number;
 };
 
 function build(rand: () => number, variant: Variant): Field {
   const between = (lo: number, hi: number) => lo + rand() * (hi - lo);
-
-  // Two distinct spatial characters. Same visual language, different topology.
   const arcs = variant === "arcs";
-  const groupCount = arcs ? 96 : 110;
+
   const vp = arcs
     ? { x: 0.6 + rand() * 0.06, y: 0.46 + rand() * 0.06 }
     : { x: 0.66 + rand() * 0.06, y: 0.5 + rand() * 0.05 };
 
-  const gz: number[] = [];
   const stars: Star[] = [];
-  const edges: Edge[] = [];
 
-  for (let g = 0; g < groupCount; g++) {
-    // even depth distribution → constant density as the camera moves
-    gz.push(((g + rand() * 0.9) / groupCount) * Z_RANGE);
-
-    // group centre, spread wide around the vanishing point
+  const push = (kind: 0 | 1 | 2 | 3, i: number, total: number) => {
+    // even depth distribution → constant density as the camera travels
+    const z = ((i + rand() * 0.95) / total) * Z_RANGE;
+    // wide angular spread so stars fill the whole panel, including the far edges
     const ang = rand() * TAU;
-    const rad = Math.pow(rand(), arcs ? 0.55 : 0.7) * (arcs ? 2.0 : 1.75);
-    const cx = Math.cos(ang) * rad * (arcs ? 1.25 : 1.1);
-    const cy = Math.sin(ang) * rad * 0.72;
+    const rad = Math.pow(rand(), arcs ? 0.5 : 0.58) * (arcs ? 2.6 : 2.35);
+    stars.push({
+      x: Math.cos(ang) * rad * (arcs ? 1.5 : 1.35),
+      y: Math.sin(ang) * rad * 0.82,
+      z,
+      kind,
+      r:
+        kind === 0
+          ? between(1.7, 2.4)
+          : kind === 1
+            ? between(1.05, 1.5)
+            : kind === 2
+              ? between(0.62, 1.0)
+              : between(0.32, 0.6),
+      s:
+        kind === 0
+          ? between(0.6, 0.85)
+          : kind === 1
+            ? between(0.34, 0.55)
+            : kind === 2
+              ? between(0.2, 0.36)
+              : between(0.1, 0.24),
+      hit: kind <= 1 && rand() > 0.78,
+    });
+  };
 
-    // most groups are a single tiny star; a few are small constellations
-    const roll = rand();
-    const size = roll > 0.9 ? 4 + Math.round(rand() * 2) : roll > 0.7 ? 2 + Math.round(rand() * 1) : 1;
-    const first = stars.length;
-
-    for (let k = 0; k < size; k++) {
-      const solo = size === 1;
-      const kindRoll = rand();
-      const kind: 0 | 1 | 2 =
-        k === 0 && !solo && kindRoll > 0.72 ? 0 : kindRoll > (solo ? 0.93 : 0.6) ? 1 : 2;
-      const spread = arcs ? 0.5 : 0.38;
-      stars.push({
-        g,
-        x: cx + (k === 0 ? 0 : between(-spread, spread)),
-        y: cy + (k === 0 ? 0 : between(-spread, spread) * 0.7),
-        dz: k === 0 ? 0 : between(-0.5, 0.5),
-        kind,
-        r: kind === 0 ? between(1.7, 2.4) : kind === 1 ? between(1.0, 1.5) : between(0.5, 0.95),
-        s: kind === 0 ? between(0.6, 0.85) : kind === 1 ? between(0.34, 0.55) : between(0.14, 0.32),
-        // a small number of stars flare as they pass the camera
-        hit: kind !== 2 && rand() > 0.82,
-      });
-    }
-
-    // selective straight links inside the group only — nearest pairs, some
-    // stars deliberately left isolated
-    if (size > 1) {
-      for (let i = first; i < stars.length; i++) {
-        for (let j = i + 1; j < stars.length; j++) {
-          const a = stars[i];
-          const b = stars[j];
-          const d = Math.hypot(a.x - b.x, a.y - b.y);
-          if (d > (arcs ? 0.75 : 0.6)) continue;
-          if (rand() > (arcs ? 0.5 : 0.42)) continue;
-          edges.push({ a: i, b: j, w: between(0.6, 1) });
-        }
-      }
-    }
+  // dense field: hundreds of tiny distant stars, progressively fewer big ones
+  const counts: Array<[0 | 1 | 2 | 3, number]> = [
+    [3, arcs ? 620 : 660],
+    [2, arcs ? 240 : 260],
+    [1, 60],
+    [0, 16],
+  ];
+  for (const [kind, n] of counts) {
+    for (let i = 0; i < n; i++) push(kind, i, n);
   }
 
-  return { gz, stars, edges, vp, trail: arcs ? 1.15 : 0.95 };
+  return { stars, vp };
 }
 
 /** Fresh seed per page load, distinct stream (and therefore field) per variant. */
@@ -176,8 +152,7 @@ export default function PanelConstellation({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const FIELD = FIELDS[variant];
-    const { gz: GZ, stars: STARS, edges: EDGES, vp: VP, trail: TRAIL } = FIELD;
+    const { stars: STARS, vp: VP } = FIELDS[variant];
     const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
 
     let w = 0;
@@ -188,7 +163,7 @@ export default function PanelConstellation({
     let onScreen = true;
     let lastDrawAt = 0;
 
-    // tier 0 = stars + trails + links, 1 = stars + trails, 2 = stars only
+    // tier 0 = full field + flares, 1 = full field, 2 = reduced field
     let tier = reduced ? 2 : 0;
     let avgCost = 0;
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -205,24 +180,11 @@ export default function PanelConstellation({
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
-    // near-linear camera travel: steady approach for the entire lifespan, with a
-    // gentle ease-in so the first frames don't jump
+    // near-linear camera travel: steady forward motion for the entire lifespan
     const travelAt = (t: number) => {
       const x = clampF(t / LIFESPAN, 0, 1);
       const quint = x * x * x * (x * (x * 6 - 15) + 10);
       return (quint * 0.18 + x * 0.82) * TRAVEL;
-    };
-
-    type P = {
-      x: number;
-      y: number;
-      z: number;
-      r: number;
-      a: number;
-      kind: number;
-      hit: boolean;
-      flare: number;
-      scale: number;
     };
 
     const draw = (t: number) => {
@@ -234,109 +196,40 @@ export default function PanelConstellation({
       const ox = VP.x * w;
       const oy = VP.y * h;
       const unit = Math.max(w, h) * 0.55;
+      // every third dust star is skipped on the cheapest tier
+      const step = tier === 2 ? 2 : 1;
 
-      // wrapped depth per group — foreground groups recycle into deep space
-      const zg = new Array<number>(GZ.length);
-      for (let g = 0; g < GZ.length; g++) {
-        let z = (GZ[g] - cam) % Z_RANGE;
-        if (z < 0) z += Z_RANGE;
-        zg[g] = z;
-      }
-
-      const pts = new Array<P | null>(STARS.length);
-      for (let i = 0; i < STARS.length; i++) {
+      for (let i = 0; i < STARS.length; i += 1) {
         const s = STARS[i];
-        const z = zg[s.g] + s.dz;
-        if (z <= 0.06 || z > Z_RANGE) {
-          pts[i] = null;
-          continue;
-        }
+        if (step === 2 && s.kind === 3 && (i & 1) === 1) continue;
+
+        let z = (s.z - cam) % Z_RANGE;
+        if (z < 0) z += Z_RANGE;
+        if (z <= 0.06) continue;
+
         const scale = FOCAL / z;
         const x = ox + s.x * scale * unit;
         const y = oy + s.y * scale * unit;
-        if (x < -160 || x > w + 160 || y < -160 || y > h + 160) {
-          pts[i] = null;
-          continue;
-        }
-        // depth fades: emerge from deep space, flare and vanish past the viewer
-        const far = smooth((Z_RANGE - z) / (Z_RANGE * 0.42));
-        const near = smooth((z - 0.1) / 0.45);
-        const flare = s.hit ? smooth((0.95 - z) / 0.7) : 0;
-        const base = s.kind === 0 ? 0.62 : s.kind === 1 ? 0.46 : 0.3;
-        const grow = clampF(scale * 0.62, 0.32, 3.1);
-        pts[i] = {
-          x,
-          y,
-          z,
-          r: s.r * grow,
-          a: (base + s.s * 0.22) * far * near * enter * (1 + flare * 0.5),
-          kind: s.kind,
-          hit: s.hit,
-          flare,
-          scale,
-        };
-      }
+        if (x < -40 || x > w + 40 || y < -40 || y > h + 40) continue;
 
-      // ---- perspective trails: straight streaks toward the viewer -----------
-      if (tier < 2) {
-        ctx.lineCap = "butt";
-        for (let i = 0; i < STARS.length; i++) {
-          const p = pts[i];
-          if (!p || p.a < 0.02) continue;
-          const s = STARS[i];
-          if (s.kind === 2 && p.z > Z_RANGE * 0.4) continue; // far dust stays clean
-          // the trail is where the star was slightly deeper in space, so it
-          // stretches longer as the star accelerates past the camera
-          const zBack = p.z + TRAIL * (0.16 + 1.5 / (p.z + 0.5));
-          const sb = FOCAL / zBack;
-          const bx = ox + s.x * sb * unit;
-          const by = oy + s.y * sb * unit;
-          const len = Math.hypot(p.x - bx, p.y - by);
-          if (len < 1.2) continue;
-          const alpha =
-            p.a * (0.28 + 0.34 * clampF(p.scale * 0.4, 0, 1)) * (s.kind === 2 ? 0.5 : 1);
-          if (alpha < 0.008) continue;
-          const grad = ctx.createLinearGradient(bx, by, p.x, p.y);
-          grad.addColorStop(0, "rgba(255,255,255,0)");
-          grad.addColorStop(1, `rgba(255,255,255,${alpha.toFixed(3)})`);
-          ctx.strokeStyle = grad;
-          ctx.lineWidth = clampF(0.35 + p.scale * 0.22, 0.35, 1.1);
-          ctx.beginPath();
-          ctx.moveTo(bx, by);
-          ctx.lineTo(p.x, p.y);
-          ctx.stroke();
-        }
-      }
+        // depth fades: emerge from deep space, brighten on approach, vanish past
+        const far = smooth((Z_RANGE - z) / (Z_RANGE * 0.45));
+        const near = smooth((z - 0.1) / 0.4);
+        const flare = s.hit && tier === 0 ? smooth((0.95 - z) / 0.7) : 0;
+        const base = s.kind === 0 ? 0.6 : s.kind === 1 ? 0.45 : s.kind === 2 ? 0.3 : 0.2;
+        const grow = clampF(scale * 0.62, 0.3, 3.2);
+        const a = (base + s.s * 0.22) * far * near * enter * (1 + flare * 0.5);
+        if (a <= 0.006) continue;
 
-      // ---- selective straight links inside constellations -------------------
-      if (tier === 0) {
-        ctx.lineWidth = 0.45;
-        for (const e of EDGES) {
-          const a = pts[e.a];
-          const b = pts[e.b];
-          if (!a || !b) continue;
-          const alpha = 0.1 * e.w * Math.min(a.a, b.a) * 2.2;
-          if (alpha < 0.006) continue;
-          ctx.strokeStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
-          ctx.beginPath();
-          ctx.moveTo(a.x, a.y);
-          ctx.lineTo(b.x, b.y);
-          ctx.stroke();
+        if (flare > 0.01) {
+          ctx.shadowColor = `rgba(255,255,255,${(0.16 * flare).toFixed(3)})`;
+          ctx.shadowBlur = 6 + 12 * flare;
         }
-      }
-
-      // ---- stars ------------------------------------------------------------
-      for (const p of pts) {
-        if (!p || p.a <= 0.006) continue;
-        if (p.flare > 0.01) {
-          ctx.shadowColor = `rgba(255,255,255,${(0.16 * p.flare).toFixed(3)})`;
-          ctx.shadowBlur = 6 + 12 * p.flare;
-        }
-        ctx.fillStyle = `rgba(255,255,255,${Math.min(0.9, p.a).toFixed(3)})`;
+        ctx.fillStyle = `rgba(255,255,255,${Math.min(0.9, a).toFixed(3)})`;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, TAU);
+        ctx.arc(x, y, s.r * grow, 0, TAU);
         ctx.fill();
-        if (p.flare > 0.01) {
+        if (flare > 0.01) {
           ctx.shadowBlur = 0;
           ctx.shadowColor = "transparent";
         }
