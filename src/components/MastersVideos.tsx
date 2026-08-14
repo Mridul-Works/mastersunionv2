@@ -370,7 +370,6 @@ export default function MastersVideos({
             </div>
           </div>
         </div>
-      </div>
 
       {open && <VideoModal video={open} onClose={() => setOpen(null)} />}
     </section>
