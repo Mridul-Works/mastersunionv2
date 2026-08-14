@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import StudentTestimonials from "@/components/StudentTestimonials";
-import { SectionIntro } from "@/components/SectionIntro";
+import { Accent, SectionIntro } from "@/components/SectionIntro";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 import MastersVideos from "@/components/MastersVideos";
 import FacultyHero from "@/components/FacultyHero";
@@ -287,8 +287,7 @@ function EditorialGrid({
                   <div className="flex items-start gap-3">
                     <span className="mt-3 h-1.5 w-1.5 rounded-full bg-[#7a8b6f]" aria-hidden />
                     <div
-                      className={`text-[clamp(1.35rem,min(2.6vw,3.4vh),2.2rem)] font-medium leading-[0.92] tracking-[-0.035em] ${dark ? "text-white" : "text-black"}`}
-                      style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                      className={`text-[clamp(1.35rem,min(2.6vw,3.4vh),2.2rem)] font-extrabold not-italic leading-[0.92] tracking-[-0.04em] ${dark ? "text-white" : "text-black"}`}
                     >
                       {s.v}
                     </div>
@@ -481,7 +480,7 @@ function FacultyPage() {
             className="mb-[clamp(2rem,5vh,3.25rem)]"
             index="01"
             eyebrow="Industry Practitioners"
-            title={<>The people who teach here are not between jobs. They are active.</>}
+            title={<>The people who teach here are not between jobs. They are <Accent>active</Accent>.</>}
             intro="Half of the faculty are CEOs, MDs, founders and investors — bringing this week's decisions into the classroom, not last decade's case studies."
           />
           <EditorialGrid
@@ -512,7 +511,7 @@ function FacultyPage() {
             className="mb-[clamp(2rem,5vh,3.25rem)]"
             index="02"
             eyebrow="Full-time Faculty"
-            title={<>{FULLTIME.length} PhD faculty. Active researchers. Published where the best B-schools read.</>}
+            title={<>{FULLTIME.length} PhD faculty. Active researchers. Published where the <Accent>best B-schools read</Accent>.</>}
             intro="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing in FT50 and A* journals."
           />
           <EditorialGrid
@@ -553,7 +552,7 @@ function FacultyPage() {
             className="mb-[clamp(2rem,5vh,3.25rem)]"
             index="03"
             eyebrow="Visiting Faculty"
-            title={<>Professors who teach here because they believe in what Masters&apos; Union is building.</>}
+            title={<>Professors who teach here because they <Accent>believe</Accent> in what Masters&apos; Union is building.</>}
             intro="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
           />
           <EditorialGrid
@@ -587,7 +586,7 @@ function FacultyPage() {
                 </InfoRow>
                 <InfoRow delay={1600}>
                   <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                    <div className="text-[2rem] font-medium leading-[0.9] tracking-[-0.03em] text-white" style={{ fontFamily: SERIF }}>02</div>
+                    <div className="text-[2rem] font-bold leading-[0.9] tracking-[-0.04em] text-white">02</div>
                     <div className="text-[11px] uppercase tracking-[0.18em] text-white/60" style={{ fontFamily: MONO }}>consecutive years</div>
                   </div>
                 </InfoRow>
@@ -604,7 +603,7 @@ function FacultyPage() {
             className="mb-[clamp(2rem,5vh,3.25rem)]"
             index="04"
             eyebrow="What students say"
-            title={<>Learning from operators, in their own words.</>}
+            title={<>Learning from operators, <Accent>in their own words</Accent>.</>}
           />
           <StudentTestimonials items={TESTIMONIALS} />
 
@@ -618,7 +617,7 @@ function FacultyPage() {
             <SectionIntro
               index="05"
               eyebrow="Become a Master"
-              title={<>We&apos;re always looking for practitioners who want to teach what they know.</>}
+              title={<>We&apos;re always looking for practitioners who want to <Accent>teach what they know</Accent>.</>}
               intro={<>If you have built something, led something, invested in something, or shaped something — and you believe the best way to teach business is to have done it — we want to hear from you.</>}
             />
 
@@ -647,11 +646,11 @@ function FacultyPage() {
       <section className="screen-section border-y border-white/10 bg-[#0a0a0a] text-white">
         <div className="page-shell-narrow text-center">
           <div className="text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO }}>The number that matters</div>
-          <div className="mt-[clamp(1.25rem,3.5vh,2rem)] text-[clamp(3rem,7vw,6rem)] font-semibold leading-[0.88] tracking-tight" style={{ fontFamily: "'Fraunces', Georgia, serif" }}>500+</div>
+          <div className="mt-[clamp(1.25rem,3.5vh,2rem)] text-[clamp(3rem,7vw,6rem)] font-extrabold leading-[0.88] tracking-[-0.04em]">500+</div>
           <p className="mx-auto mt-[clamp(1.25rem,3.5vh,2rem)] max-w-[52ch] text-[0.98rem] leading-[1.55] text-white/75">
             Masters on the roster. 50% of them active industry practitioners who were in a meeting this morning before they came to teach you this afternoon.
           </p>
-          <p className="mx-auto mt-6 max-w-[52ch] text-[0.98rem] italic text-white/55">
+          <p className="mx-auto mt-6 max-w-[52ch] text-[0.98rem] not-italic text-white/55">
             That is not a teaching philosophy. It is a hiring policy.
           </p>
         </div>
@@ -662,7 +661,7 @@ function FacultyPage() {
         <div className="flex min-h-[100svh] flex-col justify-between pt-[clamp(4rem,14vh,10rem)]">
           {/* Top CTA */}
           <div className="page-shell-narrow text-center">
-            <p className="text-balance text-[0.98rem] italic leading-[1.35] text-white/85">
+            <p className="text-balance text-[0.98rem] not-italic leading-[1.35] text-white/85">
               Learn from the people doing it — not just studying it.
             </p>
             <div className="mt-7 flex flex-wrap items-center justify-center gap-3">

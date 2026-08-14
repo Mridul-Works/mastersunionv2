@@ -3,7 +3,7 @@ import BrandLogo from "@/components/BrandLogo";
 import { findBrand } from "@/lib/brand-logos";
 
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
-const SERIF = "'Fraunces', Georgia, serif";
+const SANS_H = "'Inter', system-ui, sans-serif";
 
 export type GalleryItem = {
   name: string;
@@ -554,8 +554,8 @@ export default function PractitionerGallery({
                           </div>
                           <div className="min-w-0">
                             <h4
-                              className="text-[1.02rem] font-medium leading-[1.08] tracking-[-0.03em] text-white sm:text-[clamp(1.2rem,2.6vw,1.95rem)] sm:leading-[1.05]"
-                              style={{ fontFamily: SERIF }}
+                              className="text-[1.02rem] font-bold not-italic leading-[1.08] tracking-[-0.035em] text-white sm:text-[clamp(1.2rem,2.6vw,1.95rem)] sm:leading-[1.05]"
+                              style={{ fontFamily: SANS_H }}
                             >
                               {item.name}
                             </h4>

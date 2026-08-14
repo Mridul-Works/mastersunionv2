@@ -83,6 +83,7 @@ export const MASTER_VIDEOS: MasterVideo[] = [
 ];
 
 const SERIF_IT = "'Fraunces', Georgia, serif";
+const SANS_H = "'Inter', system-ui, sans-serif";
 
 function VideoModal({ video, onClose }: { video: MasterVideo; onClose: () => void }) {
   useEffect(() => {
@@ -297,10 +298,13 @@ export default function MastersVideos({
                   500+ Masters · Masterclass
                 </p>
                 <h2
-                  className={`mv-reveal mt-[clamp(0.65rem,1.5vh,1.05rem)] text-[clamp(1.7rem,3.2vw,3rem)] font-medium italic leading-[1.08] tracking-tight ${heading}`}
-                  style={{ fontFamily: SERIF_IT, transitionDelay: "200ms" }}
+                  className={`mv-reveal mt-[clamp(0.65rem,1.5vh,1.05rem)] text-[clamp(1.7rem,3.2vw,3rem)] font-bold not-italic leading-[1.08] tracking-[-0.025em] ${heading}`}
+                  style={{ fontFamily: SANS_H, transitionDelay: "200ms" }}
                 >
-                  Built by Scholars, Led by Industry Practitioners
+                  Built by Scholars, Led by{" "}
+                  <span className="font-light italic" style={{ fontFamily: SERIF_IT }}>
+                    Industry Practitioners
+                  </span>
                 </h2>
                 <p
                   className={`mv-reveal mt-[clamp(0.75rem,1.9vh,1.35rem)] max-w-[620px] text-[clamp(14px,1.85vh,16px)] leading-relaxed ${muted}`}
@@ -316,8 +320,8 @@ export default function MastersVideos({
                     {current.meta}
                   </p>
                   <h3
-                    className={`mt-2 text-[clamp(1.3rem,2.4vw,2rem)] leading-snug ${heading}`}
-                    style={{ fontFamily: SERIF_IT }}
+                    className={`mt-2 text-[clamp(1.3rem,2.4vw,2rem)] font-semibold not-italic leading-snug tracking-[-0.02em] ${heading}`}
+                    style={{ fontFamily: SANS_H }}
                   >
                     {current.title}
                   </h3>
