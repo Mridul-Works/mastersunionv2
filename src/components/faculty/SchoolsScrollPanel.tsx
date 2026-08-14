@@ -155,8 +155,8 @@ for (let i = 0; i < loneCount; i++) {
     ry: between(0.008, 0.028),
     sp: between(0.18, 0.7),
     ph: rand() * Math.PI * 2,
-    r: between(0.4, 0.9),
-    s: between(0.25, 0.55),
+    r: between(0.8, 1.7),
+    s: between(0.35, 0.62),
     parent: -1,
     kind: 3,
   });
