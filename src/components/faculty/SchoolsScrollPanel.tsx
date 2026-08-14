@@ -283,47 +283,68 @@ export default function SchoolsScrollPanel() {
           <div className="relative flex min-w-0 flex-1 flex-col justify-center p-6 md:p-8 lg:p-10">
             <NetworkField progressRef={progressRef} />
 
-            <div className="relative z-10">
-              <div
-                className="mb-6 text-[10px] uppercase tracking-[0.26em] text-white/50"
-                style={{ fontFamily: MONO }}
-              >
-                Schools That Come Here
-              </div>
-
-              <div className="border-t border-white/10 py-4">
-                <div className="text-[1.05rem] font-medium leading-[1.3] text-white">Kellogg</div>
+            {/* single shared stage viewport — one active state at a time */}
+            <div className="relative z-10 min-h-[190px]">
+              {[0, 1, 2].map((i) => (
                 <div
-                  className="mt-1 break-words text-[10.5px] uppercase tracking-[0.2em] text-white/60"
-                  style={{ fontFamily: MONO }}
+                  key={i}
+                  ref={(n) => {
+                    stageRef.current[i] = n;
+                  }}
+                  className="absolute inset-x-0 top-0 will-change-transform"
+                  style={{ opacity: 0, visibility: "hidden" }}
                 >
-                  School of Management
-                </div>
-              </div>
+                  {i === 0 && (
+                    <>
+                      <div
+                        className="mb-6 text-[10px] uppercase tracking-[0.26em] text-white/50"
+                        style={{ fontFamily: MONO }}
+                      >
+                        Schools That Come Here
+                      </div>
+                      <div className="border-y border-white/10 py-5">
+                        <div className="text-[clamp(1.5rem,2.4vw,2.1rem)] font-medium leading-[1.15] tracking-[-0.02em] text-white">
+                          Kellogg
+                        </div>
+                        <div
+                          className="mt-2 break-words text-[10.5px] uppercase tracking-[0.2em] text-white/60"
+                          style={{ fontFamily: MONO }}
+                        >
+                          School of Management
+                        </div>
+                      </div>
+                    </>
+                  )}
 
-              <div className="border-t border-white/10 py-4">
-                <div className="text-[1.05rem] font-medium leading-[1.3] text-white">Harvard</div>
-                <div
-                  className="mt-1 break-words text-[10.5px] uppercase tracking-[0.2em] text-white/60"
-                  style={{ fontFamily: MONO }}
-                >
-                  Business School India
-                </div>
-              </div>
+                  {i === 1 && (
+                    <div className="border-y border-white/10 py-5">
+                      <div className="text-[clamp(1.5rem,2.4vw,2.1rem)] font-medium leading-[1.15] tracking-[-0.02em] text-white">
+                        Harvard
+                      </div>
+                      <div
+                        className="mt-2 break-words text-[10.5px] uppercase tracking-[0.2em] text-white/60"
+                        style={{ fontFamily: MONO }}
+                      >
+                        Business School India
+                      </div>
+                    </div>
+                  )}
 
-              <div className="border-y border-white/10 py-4">
-                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <div className="text-[2.4rem] font-bold leading-[0.9] tracking-[-0.04em] text-white">
-                    02
-                  </div>
-                  <div
-                    className="text-[10.5px] uppercase tracking-[0.18em] text-white/60"
-                    style={{ fontFamily: MONO }}
-                  >
-                    consecutive years
-                  </div>
+                  {i === 2 && (
+                    <div className="border-y border-white/10 py-5">
+                      <div className="text-[clamp(2.6rem,4.4vw,3.6rem)] font-bold leading-[0.9] tracking-[-0.04em] text-white">
+                        02
+                      </div>
+                      <div
+                        className="mt-2 text-[10.5px] uppercase tracking-[0.18em] text-white/60"
+                        style={{ fontFamily: MONO }}
+                      >
+                        consecutive years
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </div>
+              ))}
             </div>
           </div>
 
