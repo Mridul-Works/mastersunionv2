@@ -376,7 +376,39 @@ function EditorialGrid({
       )}
     </div>
   );
+function EditorialSplit({ left, right }: { left: React.ReactNode; right: React.ReactNode }) {
+  return (
+    <div className="mt-[clamp(0.75rem,1.8vh,1.25rem)] grid gap-0 border border-white/10 bg-white/[0.04] md:grid-cols-[minmax(0,1fr)_minmax(300px,35%)]">
+      <div className="border-b border-white/10 p-[clamp(1rem,2.2vh,1.5rem)] md:border-b-0 md:border-r md:border-white/10">
+        {left}
+      </div>
+      <div className="p-[clamp(1rem,2.2vh,1.5rem)]">
+        {right}
+      </div>
+    </div>
+  );
 }
+
+function SupportingPanel({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <>
+      <div className="mb-4 text-[10px] uppercase tracking-[0.26em] text-white/50" style={{ fontFamily: MONO }}>
+        {title}
+      </div>
+      {children}
+    </>
+  );
+}
+
+function PedigreeGroup({ label, items }: { label: string; items: string }) {
+  return (
+    <div className="border-t border-white/10 py-3 first:border-t-0 first:pt-0">
+      <div className="text-[11px] uppercase tracking-[0.2em] text-white/70" style={{ fontFamily: MONO }}>{label}</div>
+      <div className="mt-1 text-[0.92rem] leading-[1.45] text-white/85">{items}</div>
+    </div>
+  );
+}
+
 
 export const Route = createFileRoute("/faculty")({
   head: () => ({
