@@ -60,6 +60,7 @@ import vfJyotsna from "@/assets/faculty/visiting/jyotsna-bhatnagar.png.asset.jso
 import vfVishnu from "@/assets/faculty/visiting/vishnuprasad-n.png.asset.json";
 import vfRajesh from "@/assets/faculty/visiting/rajesh-bhargave.png.asset.json";
 import SchoolsScrollPanel from "@/components/faculty/SchoolsScrollPanel";
+import PedigreeScrollPanel from "@/components/faculty/PedigreeScrollPanel";
 
 
 const manojImg = manojAsset.url;
@@ -549,21 +550,8 @@ function FacultyPage() {
             ]}
             items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
           />
-          <EditorialSplit
-            left={
-              <p className="max-w-[min(100%,62ch)] text-[clamp(1.4rem,2.2vw,1.85rem)] leading-[1.42] text-white/[0.96]">
-                Doctorates from IIM Ahmedabad, Bangalore, Calcutta, Kozhikode and Tiruchirappalli, IIT Bombay and Kanpur, Delhi University, Shiv Nadar, Christ University, TERI and the University of Bath — across finance, marketing, operations, organisational behaviour, economics, decision sciences and strategy.
-              </p>
-            }
-            right={
-              <SupportingPanel title="Faculty Pedigree">
-                <PedigreeGroup label="IIM" items="Ahmedabad · Bangalore · Calcutta" delay={0} />
-                <PedigreeGroup label="IIT" items="Bombay · Kanpur" delay={700} />
-                <PedigreeGroup label="Universities" items="Delhi University · Shiv Nadar · Christ University" delay={1400} />
-                <PedigreeGroup label="Global" items="TERI · University of Bath" delay={2100} />
-              </SupportingPanel>
-            }
-          />
+          <PedigreeScrollPanel />
+
         </div>
       </section>
 
