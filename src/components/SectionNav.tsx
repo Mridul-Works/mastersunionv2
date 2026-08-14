@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import logoAsset from "@/assets/logo-2.png.asset.json";
 
@@ -28,12 +28,31 @@ function scrollToId(id: string) {
 function useScrollState() {
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [visible, setVisible] = useState(true);
+  const lastScrollY = useRef(0);
+  const directionStartY = useRef(0);
 
   useEffect(() => {
+    const THRESHOLD = 10;
     const onScroll = () => {
+      const current = window.scrollY;
+      const delta = current - lastScrollY.current;
       const max = document.documentElement.scrollHeight - window.innerHeight;
-      setScrolled(window.scrollY > 24);
-      setProgress(max > 0 ? Math.min(1, window.scrollY / max) : 0);
+
+      setScrolled(current > 24);
+      setProgress(max > 0 ? Math.min(1, current / max) : 0);
+
+      if (current < 24) {
+        setVisible(true);
+        directionStartY.current = current;
+      } else if (delta < 0) {
+        setVisible(true);
+        directionStartY.current = current;
+      } else if (delta > 0 && current > directionStartY.current + THRESHOLD) {
+        setVisible(false);
+      }
+
+      lastScrollY.current = current;
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -44,7 +63,7 @@ function useScrollState() {
     };
   }, []);
 
-  return { scrolled, progress };
+  return { scrolled, progress, visible };
 }
 
 function useActiveSection(ids: string[]) {
@@ -107,7 +126,7 @@ export function SectionNav({
   applyHref?: string;
   extraLinks?: { href: string; label: string }[];
 }) {
-  const { scrolled, progress } = useScrollState();
+  const { scrolled, progress, visible } = useScrollState();
   const active = useActiveSection(items.map((i) => i.id));
   const clock = useClock();
 
@@ -122,7 +141,13 @@ export function SectionNav({
   };
 
   return (
-    <header className="fixed inset-x-0 bottom-0 z-[100] block px-2.5 pb-2.5 sm:px-5 sm:pb-4">
+    <header
+      className="fixed inset-x-0 bottom-0 z-[100] block px-2.5 pb-2.5 sm:px-5 sm:pb-4"
+      style={{
+        transform: visible ? "translateY(0)" : "translateY(calc(100% + 24px))",
+        transition: "transform 450ms cubic-bezier(0.22, 1, 0.36, 1)",
+      }}
+    >
 
 
 
