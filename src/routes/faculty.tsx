@@ -657,6 +657,7 @@ function FacultyPage() {
               intro="If you have built something, led something, invested in something, or shaped something — and you believe the best way to teach business is to have done it — we want to hear from you."
               dark
               serif
+              wide
             />
           </div>
           <div className="md:col-span-5 md:text-right">
