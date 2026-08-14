@@ -644,75 +644,34 @@ function FacultyPage() {
 
       {/* THE NUMBER */}
       <section className="group relative flex min-h-[110svh] flex-col items-center justify-center overflow-hidden border-y border-white/10 bg-[#0a0a0a] py-[clamp(4rem,10vh,8rem)] text-white">
-        {/* Background DOERS watermark */}
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
-          <div className="text-white/[0.14] transition-colors duration-500 group-hover:text-[#f5f1e8]/85">
-            <svg
-              aria-hidden
-              viewBox="0 0 1200 260"
-              className="hidden h-auto w-[110%] max-w-none sm:block"
-              preserveAspectRatio="xMidYMid meet"
-            >
-              <text
-                x="600"
-                y="205"
-                textAnchor="middle"
-                textLength="1160"
-                lengthAdjust="spacingAndGlyphs"
-                fill="currentColor"
-                fontSize="240"
-                fontWeight="700"
-                style={{ fontFamily: "Inter, system-ui, sans-serif", letterSpacing: "-0.04em" }}
-              >
-                DOERS
-              </text>
-            </svg>
-            <svg
-              aria-hidden
-              viewBox="0 0 600 170"
-              className="h-auto w-[110%] max-w-none sm:hidden"
-              preserveAspectRatio="xMidYMid meet"
-            >
-              <text
-                x="300"
-                y="135"
-                textAnchor="middle"
-                textLength="580"
-                lengthAdjust="spacingAndGlyphs"
-                fill="currentColor"
-                fontSize="160"
-                fontWeight="700"
-                style={{ fontFamily: "Inter, system-ui, sans-serif", letterSpacing: "-0.04em" }}
-              >
-                DOERS
-              </text>
-            </svg>
-          </div>
-        </div>
-
         <div className="page-shell-narrow relative z-10 text-center">
           <div className="text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO }}>
             The number that matters
           </div>
-          <div className="mt-[clamp(1.25rem,3.5vh,2rem)] text-[clamp(6rem,17vw,14rem)] font-extrabold leading-[0.85] tracking-[-0.04em]">
-            500+
+
+          <div className="mt-[clamp(1.25rem,3.5vh,2rem)]">
+            <div className="relative z-10 text-[clamp(6rem,17vw,14rem)] font-extrabold leading-[0.85] tracking-[-0.04em]">
+              500+
+            </div>
+            <div className="relative z-0 -mt-[clamp(2rem,5vh,3.5rem)] text-[clamp(4rem,11vw,9rem)] font-bold leading-[0.85] tracking-[-0.03em] text-white/[0.14] transition-colors duration-500 group-hover:text-[#f5f1e8]/85">
+              DOERS
+            </div>
           </div>
-          <div className="mt-[clamp(1.5rem,4vh,2.5rem)] space-y-[clamp(1rem,2.5vh,1.5rem)]">
-            <p className="mx-auto max-w-[48ch] text-[clamp(1.15rem,2.5vw,1.5rem)] font-medium leading-[1.35] tracking-[-0.02em] text-white/90">
+
+          <div className="mt-[clamp(2.5rem,6vh,4rem)] space-y-[clamp(1.25rem,3vh,1.75rem)]">
+            <p className="text-[clamp(0.875rem,1.8vw,1.125rem)] font-medium leading-[1.4] tracking-[-0.01em] text-white/90">
               Masters on the roster.
-            </p>
-            <p className="mx-auto max-w-[48ch] text-[clamp(2.25rem,6.5vw,4.5rem)] font-bold leading-[0.9] tracking-[-0.03em] text-white/[0.14] transition-colors duration-500 hover:text-[#f5f1e8]/85">
-              DOERS.
             </p>
             <p className="mx-auto max-w-[52ch] text-[0.98rem] leading-[1.6] text-white/70">
               50% of them active industry practitioners who were in a meeting this morning before they came to teach you this afternoon.
             </p>
-            <p className="mx-auto max-w-[52ch] text-[0.98rem] not-italic font-medium leading-[1.6] text-white/85">
+            <p className="mx-auto max-w-[52ch] text-[0.98rem] font-medium leading-[1.6] text-white/90">
               That is not a teaching philosophy. It is a hiring policy.
             </p>
           </div>
         </div>
       </section>
+
 
 
       {/* CTA / CLOSING FOOTER */}
