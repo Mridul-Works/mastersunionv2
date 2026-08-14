@@ -453,6 +453,10 @@ function FacultyPage() {
           1.75, // 01 Industry Practitioners — slower cover-up
           1.75, // 02 Full-time Faculty
           1.75, // 03 Visiting Faculty
+          1, // 04 What students say
+          1, // 05 Become a Master
+          1, // The Number · 500+ DOERS
+          1, // Footer (last panel — no cover-up)
         ]}
       >
       {/* HERO — first pinned layer of the stack (exactly 100vh) */}
@@ -612,10 +616,7 @@ function FacultyPage() {
         </div>
       </section>
 
-      </StackReveal>
-
-      <div className="relative z-50">
-        {/* TESTIMONIALS */}
+      {/* TESTIMONIALS */}
         <section className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
           <SectionIntro
@@ -789,7 +790,7 @@ function FacultyPage() {
           </div>
         </div>
       </footer>
-      </div>
+      </StackReveal>
     </main>
 
   );
