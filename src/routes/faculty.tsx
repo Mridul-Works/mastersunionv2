@@ -328,11 +328,11 @@ function EditorialGrid({
 
 function EditorialSplit({ left, right }: { left: React.ReactNode; right: React.ReactNode }) {
   return (
-    <div className="mt-[clamp(0.75rem,1.8vh,1.25rem)] grid gap-0 border border-white/10 bg-white/[0.04] md:grid-cols-[minmax(0,1fr)_minmax(300px,35%)]">
-      <div className="flex flex-col justify-center border-b border-white/10 p-[clamp(1rem,2.2vh,1.5rem)] md:border-b-0 md:border-r md:border-white/10">
+    <div className="mt-[clamp(0.75rem,1.8vh,1.25rem)] grid grid-cols-1 gap-0 border border-white/10 bg-white/[0.04] md:grid-cols-[minmax(0,68%)_minmax(0,32%)]">
+      <div className="border-b border-white/10 p-6 md:border-b-0 md:border-r md:border-white/10 md:p-8 lg:p-10">
         {left}
       </div>
-      <div className="p-[clamp(1rem,2.2vh,1.5rem)]">
+      <div className="p-6 md:p-8 lg:p-10">
         {right}
       </div>
     </div>
@@ -549,7 +549,7 @@ function FacultyPage() {
           />
           <EditorialSplit
             left={
-              <p className="max-w-[min(100%,74ch)] text-[clamp(1.02rem,1.3vw,1.18rem)] leading-[1.58] text-white/[0.85]">
+              <p className="max-w-[min(100%,62ch)] text-[clamp(1.4rem,2.2vw,1.85rem)] leading-[1.42] text-white/[0.96]">
                 Doctorates from IIM Ahmedabad, Bangalore, Calcutta, Kozhikode and Tiruchirappalli, IIT Bombay and Kanpur, Delhi University, Shiv Nadar, Christ University, TERI and the University of Bath — across finance, marketing, operations, organisational behaviour, economics, decision sciences and strategy.
               </p>
             }
@@ -590,7 +590,7 @@ function FacultyPage() {
           />
           <EditorialSplit
             left={
-              <p className="max-w-[min(100%,74ch)] text-[clamp(1.02rem,1.3vw,1.18rem)] leading-[1.58] text-white/[0.85]">
+              <p className="max-w-[min(100%,62ch)] text-[clamp(1.4rem,2.2vw,1.85rem)] leading-[1.42] text-white/[0.96]">
                 <span className="font-medium text-white">Kellogg School of Management</span> — led by Professor Mohanbir Sawhney, one of the world&apos;s foremost authorities on technology strategy and marketing innovation — has brought students to Masters&apos; Union for two consecutive years. <span className="font-medium text-white">Harvard Business School India</span> immersion students have visited campus. When schools like these come here to learn, something is working.
               </p>
             }
