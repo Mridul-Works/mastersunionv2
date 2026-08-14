@@ -186,7 +186,7 @@ export default function SchoolsScrollPanel() {
       if (!entered) startY = null;
       else if (startY === null) startY = scrollY;
 
-      const span = vh * 0.95;
+      const span = vh * 0.55;
       const raw = startY === null ? 0 : (scrollY - startY) / span;
       progressRef.current = raw;
 
