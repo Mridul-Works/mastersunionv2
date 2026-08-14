@@ -647,7 +647,7 @@ function FacultyPage() {
             The number that matters
           </div>
 
-          <div className="mt-[clamp(1.25rem,3.5vh,2rem)]">
+          <div className="reveal-up mt-[clamp(1.25rem,3.5vh,2rem)]" style={{ transitionDelay: "80ms" }}>
             <div className="relative z-10 text-[clamp(6rem,17vw,14rem)] font-extrabold leading-[0.85] tracking-[-0.04em]">
               500+
             </div>
