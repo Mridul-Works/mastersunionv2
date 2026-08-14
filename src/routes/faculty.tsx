@@ -378,6 +378,40 @@ function EditorialGrid({
   );
 }
 
+function EditorialSplit({ left, right }: { left: React.ReactNode; right: React.ReactNode }) {
+  return (
+    <div className="mt-[clamp(0.75rem,1.8vh,1.25rem)] grid gap-0 border border-white/10 bg-white/[0.04] md:grid-cols-[minmax(0,1fr)_minmax(300px,35%)]">
+      <div className="border-b border-white/10 p-[clamp(1rem,2.2vh,1.5rem)] md:border-b-0 md:border-r md:border-white/10">
+        {left}
+      </div>
+      <div className="p-[clamp(1rem,2.2vh,1.5rem)]">
+        {right}
+      </div>
+    </div>
+  );
+}
+
+function SupportingPanel({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <>
+      <div className="mb-4 text-[10px] uppercase tracking-[0.26em] text-white/50" style={{ fontFamily: MONO }}>
+        {title}
+      </div>
+      {children}
+    </>
+  );
+}
+
+function PedigreeGroup({ label, items }: { label: string; items: string }) {
+  return (
+    <div className="border-t border-white/10 py-3 first:border-t-0 first:pt-0">
+      <div className="text-[11px] uppercase tracking-[0.2em] text-white/70" style={{ fontFamily: MONO }}>{label}</div>
+      <div className="mt-1 text-[0.92rem] leading-[1.45] text-white/85">{items}</div>
+    </div>
+  );
+}
+
+
 export const Route = createFileRoute("/faculty")({
   head: () => ({
     meta: [
@@ -502,11 +536,21 @@ function FacultyPage() {
             ]}
             items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
           />
-          <div className="mt-[clamp(0.75rem,1.8vh,1.25rem)] border-l-2 border-white/80 bg-white/[0.04] p-[clamp(0.85rem,2vh,1.5rem)]">
-            <p className="max-w-[70ch] text-[0.98rem] leading-[1.5] text-white/75">
-              Doctorates from IIM Ahmedabad, Bangalore, Calcutta, Kozhikode and Tiruchirappalli, IIT Bombay and Kanpur, Delhi University, Shiv Nadar, Christ University, TERI and the University of Bath — across finance, marketing, operations, organisational behaviour, economics, decision sciences and strategy.
-            </p>
-          </div>
+          <EditorialSplit
+            left={
+              <p className="max-w-[70ch] text-[0.98rem] leading-[1.5] text-white/75">
+                Doctorates from IIM Ahmedabad, Bangalore, Calcutta, Kozhikode and Tiruchirappalli, IIT Bombay and Kanpur, Delhi University, Shiv Nadar, Christ University, TERI and the University of Bath — across finance, marketing, operations, organisational behaviour, economics, decision sciences and strategy.
+              </p>
+            }
+            right={
+              <SupportingPanel title="Faculty Pedigree">
+                <PedigreeGroup label="IIM" items="Ahmedabad · Bangalore · Calcutta" />
+                <PedigreeGroup label="IIT" items="Bombay · Kanpur" />
+                <PedigreeGroup label="Universities" items="Delhi University · Shiv Nadar · Christ University" />
+                <PedigreeGroup label="Global" items="TERI · University of Bath" />
+              </SupportingPanel>
+            }
+          />
         </div>
       </section>
 
@@ -534,11 +578,31 @@ function FacultyPage() {
             ]}
             items={VISITING.map((v) => ({ name: v.name, role: v.role, sub: v.school, img: v.img }))}
           />
-          <div className="mt-[clamp(0.65rem,1.6vh,1.25rem)] border-l-2 border-white/80 bg-white/[0.04] p-[clamp(0.85rem,2vh,1.5rem)]">
-            <p className="max-w-[70ch] text-[0.98rem] leading-[1.5] text-white/75">
-              <span className="font-medium text-white">Kellogg School of Management</span> — led by Professor Mohanbir Sawhney, one of the world&apos;s foremost authorities on technology strategy and marketing innovation — has brought students to Masters&apos; Union for two consecutive years. <span className="font-medium text-white">Harvard Business School India</span> immersion students have visited campus. When schools like these come here to learn, something is working.
-            </p>
-          </div>
+          <EditorialSplit
+            left={
+              <p className="max-w-[70ch] text-[0.98rem] leading-[1.5] text-white/75">
+                <span className="font-medium text-white">Kellogg School of Management</span> — led by Professor Mohanbir Sawhney, one of the world&apos;s foremost authorities on technology strategy and marketing innovation — has brought students to Masters&apos; Union for two consecutive years. <span className="font-medium text-white">Harvard Business School India</span> immersion students have visited campus. When schools like these come here to learn, something is working.
+              </p>
+            }
+            right={
+              <SupportingPanel title="Schools That Come Here">
+                <div className="border-t border-white/10 py-3 first:border-t-0 first:pt-0">
+                  <div className="text-[0.95rem] font-medium leading-[1.3] text-white">Kellogg</div>
+                  <div className="mt-0.5 text-[11px] uppercase tracking-[0.2em] text-white/70" style={{ fontFamily: MONO }}>School of Management</div>
+                </div>
+                <div className="border-t border-white/10 py-3">
+                  <div className="text-[0.95rem] font-medium leading-[1.3] text-white">Harvard</div>
+                  <div className="mt-0.5 text-[11px] uppercase tracking-[0.2em] text-white/70" style={{ fontFamily: MONO }}>Business School India</div>
+                </div>
+                <div className="border-t border-white/10 pt-4">
+                  <div className="flex items-baseline gap-3">
+                    <div className="text-[2rem] font-medium leading-[0.9] tracking-[-0.03em] text-white" style={{ fontFamily: SERIF }}>02</div>
+                    <div className="text-[11px] uppercase tracking-[0.18em] text-white/60" style={{ fontFamily: MONO }}>consecutive years</div>
+                  </div>
+                </div>
+              </SupportingPanel>
+            }
+          />
         </div>
       </section>
 
