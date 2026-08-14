@@ -83,13 +83,26 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
+    /**
+     * Horizontal easing for the drift. C1-continuous over the whole 0–100%
+     * range: a quintic ease-in-out (zero velocity AND zero acceleration at both
+     * ends) blended with a small linear term so the middle never plateaus and
+     * the slope never changes abruptly.
+     */
+    const driftEase = (t: number) => {
+      const x = Math.min(1, Math.max(0, t));
+      const quint = x * x * x * (x * (x * 6 - 15) + 10); // smootherstep
+      return quint * 0.82 + x * 0.18;
+    };
+
     const draw = (t: number) => {
       const t0 = performance.now();
       ctx.clearRect(0, 0, w, h);
       // density/brightness ramp saturates gently but geometry keeps moving
       const glow = Math.min(1, Math.max(0, t * 2.2));
       // primarily leftward drift toward the content column (≈7.5% of panel width)
-      const drift = -t * 0.075;
+      const drift = -driftEase(t) * 0.075;
+
 
       const pts = NODES.map((n) => {
         // slow, bounded orbit — a drift through the panel, not a sweep
