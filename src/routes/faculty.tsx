@@ -525,6 +525,7 @@ function FacultyPage() {
             eyebrow="Full-time Faculty"
             title={<>{FULLTIME.length} PhD faculty. Active researchers. Published where the best B-schools read.</>}
             intro="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing in FT50 and A* journals."
+            introCenter
             dark
             serif
           />
