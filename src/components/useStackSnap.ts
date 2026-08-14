@@ -71,8 +71,30 @@ export function useStackSnap(containerRef: React.RefObject<HTMLElement | null>) 
       if (Math.abs(dist) < 2) return;
       target = to;
       animating = true;
-      lenis()?.stop?.();
       const dur = Math.min(1100, Math.max(560, Math.abs(dist) * 0.55));
+      const done = () => {
+        animating = false;
+        // swallow trailing momentum from the same gesture
+        lockUntil = performance.now() + 260;
+      };
+
+      const l = lenis();
+      if (l?.scrollTo) {
+        l.stop?.();
+        l.scrollTo(to, {
+          duration: dur / 1000,
+          easing: easeInOut,
+          force: true,
+          lock: true,
+          immediate: false,
+          onComplete: done,
+        });
+        window.setTimeout(() => {
+          if (animating) done();
+        }, dur + 220);
+        return;
+      }
+
       const start = performance.now();
       const step = (now: number) => {
         const t = Math.min(1, (now - start) / dur);
@@ -81,9 +103,7 @@ export function useStackSnap(containerRef: React.RefObject<HTMLElement | null>) 
           raf = requestAnimationFrame(step);
         } else {
           raf = 0;
-          animating = false;
-          // swallow trailing momentum from the same gesture
-          lockUntil = performance.now() + 260;
+          done();
         }
       };
       cancelAnimationFrame(raf);
