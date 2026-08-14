@@ -175,16 +175,8 @@ for (let i = 0; i < loneCount; i++) {
   });
 }
 
-for (let i = 0; i < HUBS.length; i++) {
-  for (let j = i + 1; j < HUBS.length; j++) {
-    const a = NODES[HUBS[i]];
-    const b = NODES[HUBS[j]];
-    const d = Math.hypot(a.bx - b.bx, a.by - b.by);
-    if (d > 0.22) continue; // short/medium bridges only — no long vertical chains
-    if (rand() > 0.60) continue; // irregular, but connected enough to form a field
-    BRIDGES.push({ a: HUBS[i], b: HUBS[j], at: between(0.08, 0.84) });
-  }
-}
+// No inter-hub bridges: each anchor/minor cluster is a distinct constellation.
+// This prevents the long vertical chains that made the field read as a network.
 
 
 const TAU = Math.PI * 2;
