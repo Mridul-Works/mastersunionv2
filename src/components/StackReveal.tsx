@@ -3,12 +3,72 @@ import * as React from "react";
 /**
  * Stacked sticky section reveal.
  *
- * Each direct child becomes a panel that pins to the top of the viewport while
- * the next panel scrolls up over it. Incoming panels are opaque and carry a
- * higher z-index, so the previous panel is progressively concealed instead of
- * moving away. Pure CSS sticky — smooth native scrolling, no snapping, no
- * parallax transforms, identical behaviour on desktop and mobile.
+ * Each direct child becomes a panel. The panel scrolls normally until its FULL
+ * content (including tall galleries/carousels) has been revealed, then it pins
+ * while the next panel scrolls up over it on an opaque, higher z-index layer.
+ *
+ * The scroll range of every panel is derived from its measured content height:
+ *   wrapper height = contentHeight + viewportHeight
+ *   sticky top     = min(0, viewportHeight - contentHeight)
+ * so tall sections keep scrolling until their bottom edge meets the viewport
+ * bottom, and short sections behave exactly as before — no arbitrary heights,
+ * no dead space.
  */
+function Panel({
+  children,
+  index,
+  bg,
+}: {
+  children: React.ReactNode;
+  index: number;
+  bg: string;
+}) {
+  const innerRef = React.useRef<HTMLDivElement>(null);
+  const [contentH, setContentH] = React.useState(0);
+  const [vh, setVh] = React.useState(0);
+
+  React.useEffect(() => {
+    const el = innerRef.current;
+    if (!el) return;
+
+    const measure = () => {
+      setContentH(el.scrollHeight);
+      setVh(window.innerHeight);
+    };
+    measure();
+
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
+
+  const measured = contentH > 0 && vh > 0;
+  const overflow = measured ? Math.max(0, contentH - vh) : 0;
+
+  return (
+    <div
+      style={{
+        zIndex: index + 1,
+        position: "relative",
+        // content scroll range + one viewport of pinned "cover-up" range
+        height: measured ? contentH + vh : undefined,
+      }}
+    >
+      <div
+        ref={innerRef}
+        className={`sticky ${bg}`}
+        style={{ top: measured ? -overflow : 0 }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+
 export default function StackReveal({
   children,
   className = "",
@@ -23,13 +83,9 @@ export default function StackReveal({
   return (
     <div className={`relative ${className}`}>
       {panels.map((child, i) => (
-        <div
-          key={i}
-          className={`sticky top-0 min-h-[100svh] ${bg}`}
-          style={{ zIndex: i + 1 }}
-        >
+        <Panel key={i} index={i} bg={bg}>
           {child}
-        </div>
+        </Panel>
       ))}
     </div>
   );
