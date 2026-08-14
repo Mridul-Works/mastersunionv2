@@ -63,33 +63,33 @@ const MAX_X = 0.985;
 const BRIDGES: { a: number; b: number; at: number }[] = [];
 
 const anchorCount = 3 + Math.round(rand()); // 3–4 anchors
-const minorCount = 5 + Math.round(rand() * 3); // 5–8 minor hubs
+const minorCount = 8 + Math.round(rand() * 3); // 8–11 minor hubs
 
 type Seed = { x: number; y: number; anchor: boolean };
 const seeds: Seed[] = [];
 
-// 3-4 anchors scattered in 2D near the meter, with a leftward drift bias
-// so the constellation reads as distinct clusters rather than a vertical spine
+// Anchors form a compact diagonal / horizontal cluster near the meter, not a vertical spine.
+// Their satellites extend outward, filling the rest of the panel.
 for (let i = 0; i < anchorCount; i++) {
   let attempts = 0;
   let x = 0;
   let y = 0;
   do {
-    x = clampF(between(0.58, 0.88), 0.35, MAX_X);
-    y = clampF(between(0.22, 0.78), 0.15, 0.85);
+    x = clampF(between(0.62, 0.88), 0.45, MAX_X);
+    y = clampF(between(0.38, 0.62), 0.15, 0.85);
     attempts++;
   } while (
     attempts < 20 &&
-    seeds.some((s) => s.anchor && Math.hypot(s.x - x, s.y - y) < 0.22)
+    seeds.some((s) => s.anchor && Math.hypot(s.x - x, s.y - y) < 0.14)
   );
   seeds.push({ x, y, anchor: true });
 }
 for (let i = 0; i < minorCount; i++) {
-  // minor hubs orbit in the mid-ground, filling gaps between anchor clusters
-  const bias = Math.pow(rand(), 0.85); // more mass toward the right/spine
+  // minor hubs fill the upper, lower, and leftward areas around the anchor cluster
+  const bias = Math.pow(rand(), 0.8); // more mass toward the right/spine
   seeds.push({
-    x: clampF(0.25 + bias * 0.52, 0.15, MAX_X),
-    y: clampF(rand(), 0.15, 0.85),
+    x: clampF(0.18 + bias * 0.65, 0.10, MAX_X),
+    y: clampF(rand(), 0.10, 0.90),
     anchor: false,
   });
 }
