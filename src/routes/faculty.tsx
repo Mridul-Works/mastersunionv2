@@ -38,6 +38,7 @@ import vfPratap from "@/assets/faculty/visiting/pratap-giri.png.asset.json";
 import vfPradeep from "@/assets/faculty/visiting/pradeep-hota.png.asset.json";
 import vfHarshali from "@/assets/faculty/visiting/harshali-damle.png.asset.json";
 import vfAmit from "@/assets/faculty/visiting/amit-shrivastava.png.asset.json";
+import footerStripAsset from "@/assets/widget/widget-campus-life.jpg.asset.json";
 import vfMihir from "@/assets/faculty/visiting/mihir-mankad.png.asset.json";
 import vfShruti from "@/assets/faculty/visiting/shruti-mantri.png.asset.json";
 import vfAlireza from "@/assets/faculty/visiting/alireza-kabirian.png.asset.json";
