@@ -224,8 +224,10 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
       const pts = NODES.map((n) => {
         // slow, bounded orbit — a drift through the panel, not a sweep
         const a = n.ph + t * n.sp * 0.55 * TAU;
+        // hard geometric exclusion: nothing may pass MAX_X (the meter spine)
+        const nx = Math.min(MAX_X, n.bx + drift + Math.cos(a) * n.rx);
         return {
-          x: (n.bx + drift + Math.cos(a) * n.rx) * w,
+          x: nx * w,
           // vertical motion is a very subtle secondary component
           y: (n.by + Math.sin(a * 0.85 + 0.6) * n.ry * 0.2) * h,
           r: n.r,
@@ -234,6 +236,7 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
           parent: n.parent,
         };
       });
+
 
       if (tier < 2) {
         // 1. branches inside each institutional cluster — always present
