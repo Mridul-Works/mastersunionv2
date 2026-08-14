@@ -555,6 +555,7 @@ function FacultyPage() {
             items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
           />
           <PedigreeScrollPanel />
+          </div>
 
         </div>
       </section>
