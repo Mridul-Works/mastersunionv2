@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import useRevealSection from "@/hooks/useRevealSection";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import StudentTestimonials from "@/components/StudentTestimonials";
