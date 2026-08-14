@@ -388,8 +388,7 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
     <canvas
       ref={canvasRef}
       aria-hidden
-      className="pointer-events-none absolute inset-y-0 left-0 h-full"
-      style={{ width: "82%" }}
+      className="pointer-events-none absolute inset-0 h-full w-full"
     />
   );
 }

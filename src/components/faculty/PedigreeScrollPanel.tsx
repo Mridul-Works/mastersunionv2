@@ -51,7 +51,7 @@ type Node = {
 /** Thin links, generated as arcs along filaments rather than hub spokes. */
 type Link = { a: number; b: number; at: number };
 
-const MAX_X = 0.985;
+const MAX_X = 0.995;
 const clampF = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
 
 const NODES: Node[] = [];
@@ -72,7 +72,7 @@ for (let i = 0; i < armCount; i++) {
   let attempts = 0;
   do {
     // anchors hug the meter edge — the arcs appear to emerge from behind it
-    x = clampF(between(0.72, 0.96), 0.5, MAX_X);
+    x = clampF(between(0.86, 0.995), 0.5, MAX_X);
     y = clampF(between(0.1, 0.9), 0.08, 0.92);
     attempts++;
   } while (attempts < 30 && anchors.some((a) => Math.abs(a.y - y) < 0.16));
@@ -209,7 +209,7 @@ function ConstellationField({ progressRef }: { progressRef: React.MutableRefObje
       const t0 = performance.now();
       ctx.clearRect(0, 0, w, h);
       const glow = Math.min(1, Math.max(0, t * 2.2));
-      const drift = -driftEase(t) * 0.2;
+      const drift = -driftEase(t) * 0.28;
 
       const pts = NODES.map((n) => {
         const a = n.ph + t * n.sp * 0.5 * TAU;
@@ -353,8 +353,7 @@ function ConstellationField({ progressRef }: { progressRef: React.MutableRefObje
     <canvas
       ref={canvasRef}
       aria-hidden
-      className="pointer-events-none absolute inset-y-0 left-0 h-full"
-      style={{ width: "82%" }}
+      className="pointer-events-none absolute inset-0 h-full w-full"
     />
   );
 }
