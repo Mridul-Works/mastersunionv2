@@ -169,50 +169,56 @@ export default function SchoolsScrollPanel() {
     const el = sectionRef.current;
     if (!el) return;
     let raf = 0;
+    /** scroll position at which this section's own timeline starts */
+    let startY: number | null = null;
 
     const update = () => {
       raf = 0;
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight || 1;
-      // usable timeline even when the block is shorter than the viewport
-      const span = Math.max(vh * 0.85, rect.height - vh * 0.6);
-
-      // document-space timeline: keeps advancing even while the section is
-      // pinned inside the sticky stack (where rect.top can stay constant)
       const scrollY = window.scrollY || window.pageYOffset || 0;
-      let docTop = 0;
-      let node: HTMLElement | null = el;
-      while (node) {
-        docTop += node.offsetTop;
-        node = node.offsetParent as HTMLElement | null;
-      }
-      const raw = (scrollY + vh * 0.75 - docTop) / span;
+
+      // Section-local timeline: anchored to the scroll position at which the
+      // block has properly entered the viewport, so 0% = "just appeared" no
+      // matter how far the page was scrolled before, and it keeps advancing
+      // while the section is pinned inside the sticky stack.
+      const entered = rect.top <= vh * 0.55;
+      if (!entered) startY = null;
+      else if (startY === null) startY = scrollY;
+
+      const span = vh * 0.55;
+      const raw = startY === null ? 0 : (scrollY - startY) / span;
       progressRef.current = raw;
+
+
+
 
       const p = Math.min(1, Math.max(0, raw));
       if (barRef.current) barRef.current.style.transform = `scaleY(${p.toFixed(3)})`;
 
-      const active = Math.min(STAGES.length - 1, Math.max(0, Math.floor(p * STAGES.length)));
+      const ease = (t: number) => t * t * (3 - 2 * t);
+      // HOLD 0-20 | FADE 20-40 | HOLD 40-65 | FADE 65-85 | HOLD 85-100
+      const seg = (from: number, to: number) => ease(Math.min(1, Math.max(0, (p - from) / (to - from))));
+      const t1 = seg(0.2, 0.4);
+      const t2 = seg(0.65, 0.85);
+      const weights = [1 - t1, t1 * (1 - t2), t2];
+      const drifts = [-t1, 1 - t1 - t2, 1 - t2];
+
+      const active = weights.indexOf(Math.max(...weights));
       meterRef.current.forEach((node, i) => {
         if (!node) return;
         node.dataset["active"] = String(i === active);
       });
 
       // one shared stage viewport: long slow crossfades, only one dominant state
-      const stageSpan = 1 / STAGES.length;
       stageRef.current.forEach((node, i) => {
         if (!node) return;
-        let d = (p - (i + 0.5) * stageSpan) / stageSpan; // stage units
-        // first/last stage stay fully lit toward the section edges
-        if (i === 0 && d < 0) d = 0;
-        if (i === STAGES.length - 1 && d > 0) d = 0;
-        const ad = Math.abs(d);
-        const f = Math.min(1, Math.max(0, (ad - 0.28) / 0.42));
-        const o = 1 - f * f * (3 - 2 * f);
+        const o = Math.min(1, Math.max(0, weights[i]));
         node.style.opacity = o.toFixed(3);
         node.style.visibility = o < 0.01 ? "hidden" : "visible";
-        node.style.transform = `translate3d(0, ${(-Math.max(-1.4, Math.min(1.4, d)) * 14).toFixed(2)}px, 0)`;
+        node.style.transform = `translate3d(0, ${(drifts[i] * 14).toFixed(2)}px, 0)`;
       });
+
 
       // restrained reveal for left editorial blocks
       blocksRef.current.forEach((node) => {
