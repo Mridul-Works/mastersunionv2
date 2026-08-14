@@ -453,10 +453,6 @@ function FacultyPage() {
           1.75, // 01 Industry Practitioners — slower cover-up
           1.75, // 02 Full-time Faculty
           1.75, // 03 Visiting Faculty
-          1, // 04 What Students Say
-          1, // 05 Become a Master
-          1, // The Number That Matters
-          1, // Footer / closing
         ]}
       >
       {/* HERO — first pinned layer of the stack (exactly 100vh) */}
