@@ -2,6 +2,15 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import BrandLogo from "@/components/BrandLogo";
 import { findBrand } from "@/lib/brand-logos";
 
+/**
+ * Portraits ship as ~1000x1360 PNGs (up to 1.8 MB). Requesting a width-capped
+ * variant keeps the identical composition while cutting decode + rescale cost,
+ * which is what made the arc hitch as cards entered the viewport.
+ */
+function sized(url: string, w: number) {
+  return url.includes("?") ? url : `${url}?w=${w}`;
+}
+
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
 const SANS_H = "'Inter', system-ui, sans-serif";
 
@@ -92,13 +101,16 @@ export default function PractitionerGallery({
   const posRef = useRef(0);
   const velRef = useRef(0); // cards per frame-equivalent (16ms)
   const targetRef = useRef<number | null>(null);
-  const [pos, setPos] = useState(0);
   const rafRef = useRef<number | null>(null);
   const draggingRef = useRef(false);
   const hoverRef = useRef(false);
   const resumeAtRef = useRef(0); // timestamp when autoplay may take over again
   const lastTsRef = useRef(0);
   const [frontIdx, setFrontIdx] = useState(0);
+  /** Per-frame DOM writers registered by each card — no React state on scroll. */
+  const paintersRef = useRef<Array<(() => void) | null>>([]);
+  const inViewRef = useRef(true);
+
 
   /** px of horizontal travel that equals one card of wheel rotation. */
   const STEP_PX = 260;
@@ -149,7 +161,8 @@ export default function PractitionerGallery({
         posRef.current += velRef.current * dt;
       }
 
-      setPos(posRef.current);
+      // paint straight to the DOM — compositor-friendly, zero React work
+      for (const paint of paintersRef.current) paint?.();
       const nf = mod(Math.round(posRef.current));
       setFrontIdx((p) => (p === nf ? p : nf));
 
@@ -158,14 +171,78 @@ export default function PractitionerGallery({
     [mod, n, takeControl],
   );
 
-  useEffect(() => {
+  const startLoop = useCallback(() => {
+    if (rafRef.current !== null) return;
     lastTsRef.current = 0;
     rafRef.current = requestAnimationFrame(tick);
-    return () => {
-      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
-      rafRef.current = null;
-    };
   }, [tick]);
+
+  const stopLoop = useCallback(() => {
+    if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    rafRef.current = null;
+  }, []);
+
+  /**
+   * Only animate while the gallery is genuinely on screen AND actually visible.
+   * A cheap 400ms poll (not a scroll handler) checks the rendered opacity, so a
+   * gallery that has been visually covered stops burning frames.
+   */
+  useEffect(() => {
+    const el = wrapperRef.current;
+    if (!el) return;
+
+    let intersecting = false;
+    const evaluate = () => {
+      if (document.hidden || !intersecting) {
+        inViewRef.current = false;
+        if (stageRef.current) stageRef.current.style.visibility = "hidden";
+        stopLoop();
+        return;
+      }
+      let node: HTMLElement | null = el;
+      let alpha = 1;
+      while (node && alpha > 0.06) {
+        const o = Number.parseFloat(getComputedStyle(node).opacity || "1");
+        if (!Number.isNaN(o)) alpha *= o;
+        node = node.parentElement;
+      }
+      // occlusion: while another stacked section fully covers this gallery there
+      // is no reason to paint or animate it
+      let occluded = false;
+      if (alpha > 0.06) {
+        const r = el.getBoundingClientRect();
+        const cx = Math.min(Math.max(r.left + r.width / 2, 1), window.innerWidth - 1);
+        const cy = Math.min(Math.max(r.top + r.height / 2, 1), window.innerHeight - 1);
+        const hit = document.elementFromPoint(cx, cy);
+        occluded = !!hit && !el.contains(hit) && hit !== el;
+      }
+      inViewRef.current = alpha > 0.06 && !occluded;
+      // a fully faded-out gallery costs nothing to paint either
+      const stage = stageRef.current;
+      if (stage) stage.style.visibility = inViewRef.current ? "visible" : "hidden";
+      if (inViewRef.current) startLoop();
+      else stopLoop();
+    };
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        intersecting = entry.isIntersecting;
+        evaluate();
+      },
+      { rootMargin: "10% 0px" },
+    );
+    io.observe(el);
+    const poll = window.setInterval(evaluate, 400);
+    document.addEventListener("visibilitychange", evaluate);
+    return () => {
+      io.disconnect();
+      window.clearInterval(poll);
+      document.removeEventListener("visibilitychange", evaluate);
+      stopLoop();
+    };
+  }, [startLoop, stopLoop]);
+
+
 
   useEffect(() => {
     hoverRef.current = isHovered;
@@ -225,13 +302,14 @@ export default function PractitionerGallery({
   // signed offset from the continuous wheel position, wrapped so the arc loops
   const offsetOf = useCallback(
     (i: number) => {
-      let d = i - pos;
+      let d = i - posRef.current;
       d = ((d % n) + n) % n;
       if (d > n / 2) d -= n;
       return d;
     },
-    [pos, n],
+    [n],
   );
+
 
   // drag / swipe — the wheel follows the pointer 1:1, then keeps its momentum
   const drag = useRef({ down: false, startX: 0, startPos: 0, moved: 0, lastX: 0, lastTs: 0 });
@@ -326,8 +404,12 @@ export default function PractitionerGallery({
   useEffect(() => {
     const el = stageRef.current;
     if (!el) return;
-    const measure = () =>
-      setGeo(computeGeometry(el.clientWidth || window.innerWidth, window.innerHeight));
+    const measure = () => {
+      const next = computeGeometry(el.clientWidth || window.innerWidth, window.innerHeight);
+      setGeo((prev) =>
+        prev.cw === next.cw && prev.ch === next.ch && prev.visible === next.visible ? prev : next,
+      );
+    };
     measure();
     const ro = new ResizeObserver(measure);
     ro.observe(el);
@@ -338,6 +420,64 @@ export default function PractitionerGallery({
     };
   }, []);
   const VISIBLE = geo.visible;
+
+  const geoRef = useRef(geo);
+  geoRef.current = geo;
+  const activeHoveredRef = useRef(false);
+  activeHoveredRef.current = activeHovered;
+
+  /**
+   * Each card registers a painter: the rAF loop writes transform/opacity straight
+   * to the element so wheel rotation never triggers a React render or a reflow.
+   */
+  const registerCard = useCallback(
+    (i: number, el: HTMLElement | null) => {
+      if (!el) {
+        paintersRef.current[i] = null;
+        return;
+      }
+      const portrait = el.querySelector<HTMLElement>("[data-mu-portrait]");
+      const shade = el.querySelector<HTMLElement>("[data-mu-shade]");
+      paintersRef.current[i] = () => {
+        const g = geoRef.current;
+        const vis = g.visible;
+        let off = i - posRef.current;
+        off = ((off % n) + n) % n;
+        if (off > n / 2) off -= n;
+        const abs = Math.abs(off);
+        const hidden = abs > vis + 0.5;
+        const x =
+          Math.sign(off) * (1 - Math.cos((Math.min(abs, vis) * Math.PI) / 9)) * (g.cw * 0.35) +
+          off * g.spread;
+        const z = -abs * g.depth;
+        const rotY = -off * 30;
+        const front = Math.max(0, 1 - abs);
+        const hoverScale = abs < 0.5 && activeHoveredRef.current ? 1.015 : 1;
+        const scale = Math.max(0.52, 1 - abs * 0.2) * hoverScale;
+        const s = el.style;
+        s.opacity = hidden ? "0" : String(Math.max(0.16, 1 - abs * 0.3));
+        s.zIndex = String(100 - Math.round(abs * 10));
+        s.boxShadow = front > 0 ? `0 60px 130px -50px rgba(0,0,0,${0.95 * front})` : "none";
+        s.pointerEvents = hidden ? "none" : "auto";
+        s.willChange = hidden ? "auto" : "transform, opacity";
+        // off-arc cards are skipped by paint/composite entirely
+        s.visibility = hidden ? "hidden" : "visible";
+        s.contentVisibility = hidden ? "hidden" : "visible";
+        s.transform = `perspective(1900px) translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale})`;
+        if (portrait) portrait.style.filter = `grayscale(${1 - 0.65 * front})`;
+        if (shade) shade.style.background = `rgba(6,6,6,${Math.min(0.55, abs * 0.22)})`;
+      };
+      paintersRef.current[i]?.();
+    },
+    [n],
+  );
+
+  /** Repaint once after geometry changes so a resize lands even while paused. */
+  useEffect(() => {
+    for (const paint of paintersRef.current) paint?.();
+  }, [geo]);
+
+
 
 
 
@@ -357,7 +497,7 @@ export default function PractitionerGallery({
         <div className="absolute inset-0 bg-[#0b0b0b]" />
         {activeImg ? (
           <img
-            src={activeImg}
+            src={sized(activeImg, 480)}
             alt=""
             className="absolute inset-0 h-full w-full scale-110 object-cover opacity-[0.12] grayscale blur-3xl transition-opacity duration-700"
           />
@@ -387,7 +527,6 @@ export default function PractitionerGallery({
           const abs = Math.abs(off);
           const hidden = abs > VISIBLE + 0.5;
           const isActive = i === active;
-          const isFront = abs < 0.5;
           const isFlipped = flipped === i;
           const brand = findBrand(item.role, item.sub);
 
@@ -406,15 +545,15 @@ export default function PractitionerGallery({
           const grayscale = 1 - 0.65 * front;
           const shade = Math.min(0.55, abs * 0.22);
           const shadow = front > 0 ? `0 60px 130px -50px rgba(0,0,0,${0.95 * front})` : "none";
-          const activeScale = isActive && activeHovered ? 1.015 : 1;
 
           return (
             <article
               key={`${item.name}-${i}`}
+              ref={(el) => registerCard(i, el)}
               onClick={() => {
                 if (drag.current.moved > 6) return;
                 setHasFlipped(true);
-                if (!isFront) {
+                if (Math.abs(offsetOf(i)) >= 0.5) {
                   focusCard(i);
                   return;
                 }
@@ -428,7 +567,6 @@ export default function PractitionerGallery({
                 }
               }}
               onMouseLeave={() => { setActiveHovered(false); setSpinFlipIcon(false); }}
-              aria-hidden={hidden}
               className="absolute left-1/2 top-1/2 overflow-hidden rounded-[20px] sm:rounded-[26px] md:rounded-[30px]"
               style={{
                 width: geo.cw,
@@ -437,12 +575,15 @@ export default function PractitionerGallery({
                 opacity,
                 boxShadow: shadow,
                 pointerEvents: hidden ? "none" : "auto",
+                visibility: hidden ? "hidden" : "visible",
+                contentVisibility: hidden ? "hidden" : "visible",
                 backgroundColor: "#0f0f0f",
-                transform: `perspective(1900px) translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale * activeScale})`,
-                willChange: "transform, opacity",
+                transform: `perspective(1900px) translate3d(calc(-50% + ${x}px), -50%, ${z}px) rotateY(${rotY}deg) scale(${scale})`,
                 backfaceVisibility: "hidden",
+                contain: "paint",
               }}
             >
+
 
 
               {/* flip card: front = image only, back = details */}
@@ -474,13 +615,19 @@ export default function PractitionerGallery({
                   >
                     {item.img ? (
                       <img
-                        src={item.img}
+                        src={sized(item.img, 760)}
                         alt={item.name}
                         draggable={false}
+                        data-mu-portrait
+                        loading={i < VISIBLE + 2 ? "eager" : "lazy"}
+                        decoding="async"
+                        width={Math.round(geo.cw)}
+                        height={Math.round(geo.ch)}
                         className="h-full w-full select-none object-cover object-[50%_22%]"
                         style={{ filter: `grayscale(${grayscale})` }}
                       />
                     ) : (
+
 
                       <Initials name={item.name} />
                     )}
@@ -543,8 +690,10 @@ export default function PractitionerGallery({
                           <div className="h-[54px] w-[54px] shrink-0 overflow-hidden rounded-full border border-white/20 bg-neutral-900 shadow-[0_0_0_4px_rgba(255,255,255,0.03)] sm:h-[clamp(64px,9vw,104px)] sm:w-[clamp(64px,9vw,104px)] sm:shadow-[0_0_0_5px_rgba(255,255,255,0.03)]">
                             {item.img ? (
                               <img
-                                src={item.img}
+                                src={sized(item.img, 220)}
                                 alt=""
+                                loading="lazy"
+                                decoding="async"
                                 draggable={false}
                                 className="h-full w-full select-none object-cover object-[50%_18%]"
                               />
@@ -602,9 +751,11 @@ export default function PractitionerGallery({
               {/* depth shading — always mounted, alpha follows the wheel angle */}
               <div
                 className="pointer-events-none absolute inset-0"
+                data-mu-shade
                 style={{ background: `rgba(6,6,6,${shade})` }}
                 aria-hidden
               />
+
 
 
             </article>
