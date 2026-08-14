@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import useStackSnap from "./useStackSnap";
+
 /**
  * Stacked sticky section reveal.
  *
@@ -103,6 +105,10 @@ function Panel({
   return (
     <div
       ref={wrapRef}
+      data-stack-panel=""
+      data-overflow={overflow}
+      data-cover={coverVh}
+      data-last={isLast ? "true" : "false"}
       style={{
         zIndex: index + 1,
         position: "relative",
@@ -143,9 +149,11 @@ export default function StackReveal({
   coverMultipliers?: number[];
 }) {
   const panels = React.Children.toArray(children).filter(Boolean);
+  const rootRef = React.useRef<HTMLDivElement>(null);
+  useStackSnap(rootRef);
 
   return (
-    <div className={`relative ${className}`}>
+    <div ref={rootRef} className={`relative ${className}`}>
       {panels.map((child, i) => (
         <Panel
           key={i}
