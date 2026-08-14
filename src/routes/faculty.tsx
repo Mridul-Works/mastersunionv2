@@ -585,6 +585,7 @@ function FacultyPage() {
             items={VISITING.map((v) => ({ name: v.name, role: v.role, sub: v.school, img: v.img }))}
           />
           <SchoolsScrollPanel />
+          </div>
 
         </div>
       </section>
