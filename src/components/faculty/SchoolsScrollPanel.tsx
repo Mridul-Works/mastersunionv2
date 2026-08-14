@@ -162,6 +162,7 @@ export default function SchoolsScrollPanel() {
   const progressRef = React.useRef(0);
   const blocksRef = React.useRef<Array<HTMLElement | null>>([]);
   const meterRef = React.useRef<Array<HTMLElement | null>>([]);
+  const stageRef = React.useRef<Array<HTMLElement | null>>([]);
   const barRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -173,10 +174,19 @@ export default function SchoolsScrollPanel() {
       raf = 0;
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight || 1;
-      const span = Math.max(1, rect.height - vh * 0.6);
+      // usable timeline even when the block is shorter than the viewport
+      const span = Math.max(vh * 0.85, rect.height - vh * 0.6);
 
-      // raw, unclamped timeline: keeps advancing after the section is covered
-      const raw = (vh * 0.75 - rect.top) / span;
+      // document-space timeline: keeps advancing even while the section is
+      // pinned inside the sticky stack (where rect.top can stay constant)
+      const scrollY = window.scrollY || window.pageYOffset || 0;
+      let docTop = 0;
+      let node: HTMLElement | null = el;
+      while (node) {
+        docTop += node.offsetTop;
+        node = node.offsetParent as HTMLElement | null;
+      }
+      const raw = (scrollY + vh * 0.75 - docTop) / span;
       progressRef.current = raw;
 
       const p = Math.min(1, Math.max(0, raw));
@@ -186,6 +196,22 @@ export default function SchoolsScrollPanel() {
       meterRef.current.forEach((node, i) => {
         if (!node) return;
         node.dataset["active"] = String(i === active);
+      });
+
+      // one shared stage viewport: long slow crossfades, only one dominant state
+      const stageSpan = 1 / STAGES.length;
+      stageRef.current.forEach((node, i) => {
+        if (!node) return;
+        let d = (p - (i + 0.5) * stageSpan) / stageSpan; // stage units
+        // first/last stage stay fully lit toward the section edges
+        if (i === 0 && d < 0) d = 0;
+        if (i === STAGES.length - 1 && d > 0) d = 0;
+        const ad = Math.abs(d);
+        const f = Math.min(1, Math.max(0, (ad - 0.28) / 0.42));
+        const o = 1 - f * f * (3 - 2 * f);
+        node.style.opacity = o.toFixed(3);
+        node.style.visibility = o < 0.01 ? "hidden" : "visible";
+        node.style.transform = `translate3d(0, ${(-Math.max(-1.4, Math.min(1.4, d)) * 14).toFixed(2)}px, 0)`;
       });
 
       // restrained reveal for left editorial blocks
@@ -269,47 +295,68 @@ export default function SchoolsScrollPanel() {
           <div className="relative flex min-w-0 flex-1 flex-col justify-center p-6 md:p-8 lg:p-10">
             <NetworkField progressRef={progressRef} />
 
-            <div className="relative z-10">
-              <div
-                className="mb-6 text-[10px] uppercase tracking-[0.26em] text-white/50"
-                style={{ fontFamily: MONO }}
-              >
-                Schools That Come Here
-              </div>
-
-              <div className="border-t border-white/10 py-4">
-                <div className="text-[1.05rem] font-medium leading-[1.3] text-white">Kellogg</div>
+            {/* single shared stage viewport — one active state at a time */}
+            <div className="relative z-10 min-h-[190px]">
+              {[0, 1, 2].map((i) => (
                 <div
-                  className="mt-1 break-words text-[10.5px] uppercase tracking-[0.2em] text-white/60"
-                  style={{ fontFamily: MONO }}
+                  key={i}
+                  ref={(n) => {
+                    stageRef.current[i] = n;
+                  }}
+                  className="absolute inset-x-0 top-0 will-change-transform"
+                  style={{ opacity: 0, visibility: "hidden" }}
                 >
-                  School of Management
-                </div>
-              </div>
+                  {i === 0 && (
+                    <>
+                      <div
+                        className="mb-6 text-[10px] uppercase tracking-[0.26em] text-white/50"
+                        style={{ fontFamily: MONO }}
+                      >
+                        Schools That Come Here
+                      </div>
+                      <div className="border-y border-white/10 py-5">
+                        <div className="text-[clamp(1.5rem,2.4vw,2.1rem)] font-medium leading-[1.15] tracking-[-0.02em] text-white">
+                          Kellogg
+                        </div>
+                        <div
+                          className="mt-2 break-words text-[10.5px] uppercase tracking-[0.2em] text-white/60"
+                          style={{ fontFamily: MONO }}
+                        >
+                          School of Management
+                        </div>
+                      </div>
+                    </>
+                  )}
 
-              <div className="border-t border-white/10 py-4">
-                <div className="text-[1.05rem] font-medium leading-[1.3] text-white">Harvard</div>
-                <div
-                  className="mt-1 break-words text-[10.5px] uppercase tracking-[0.2em] text-white/60"
-                  style={{ fontFamily: MONO }}
-                >
-                  Business School India
-                </div>
-              </div>
+                  {i === 1 && (
+                    <div className="border-y border-white/10 py-5">
+                      <div className="text-[clamp(1.5rem,2.4vw,2.1rem)] font-medium leading-[1.15] tracking-[-0.02em] text-white">
+                        Harvard
+                      </div>
+                      <div
+                        className="mt-2 break-words text-[10.5px] uppercase tracking-[0.2em] text-white/60"
+                        style={{ fontFamily: MONO }}
+                      >
+                        Business School India
+                      </div>
+                    </div>
+                  )}
 
-              <div className="border-y border-white/10 py-4">
-                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <div className="text-[2.4rem] font-bold leading-[0.9] tracking-[-0.04em] text-white">
-                    02
-                  </div>
-                  <div
-                    className="text-[10.5px] uppercase tracking-[0.18em] text-white/60"
-                    style={{ fontFamily: MONO }}
-                  >
-                    consecutive years
-                  </div>
+                  {i === 2 && (
+                    <div className="border-y border-white/10 py-5">
+                      <div className="text-[clamp(2.6rem,4.4vw,3.6rem)] font-bold leading-[0.9] tracking-[-0.04em] text-white">
+                        02
+                      </div>
+                      <div
+                        className="mt-2 text-[10.5px] uppercase tracking-[0.18em] text-white/60"
+                        style={{ fontFamily: MONO }}
+                      >
+                        consecutive years
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </div>
+              ))}
             </div>
           </div>
 
