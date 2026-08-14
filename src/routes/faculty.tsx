@@ -570,7 +570,8 @@ function FacultyPage() {
             title={<>Professors who teach here because they <Accent>believe</Accent> in what Masters&apos; Union is building.</>}
             intro="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
           />
-          <EditorialGrid
+          <div className="reveal-up" style={{ transitionDelay: "160ms" }}>
+            <EditorialGrid
             gallery
             cardStats
             dark
