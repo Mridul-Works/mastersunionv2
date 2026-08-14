@@ -643,7 +643,7 @@ function FacultyPage() {
       {/* THE NUMBER */}
       <section ref={numberReveal.ref} className={numberReveal.className}>
         <div className="page-shell-narrow relative z-10 text-center">
-          <div className="text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO }}>
+          <div className="reveal-up text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO, transitionDelay: "0ms" }}>
             The number that matters
           </div>
 
