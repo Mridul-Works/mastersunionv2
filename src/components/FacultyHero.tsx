@@ -235,17 +235,6 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
             initial={noMotion ? "visible" : "hidden"}
             animate="visible"
           >
-            <motion.div variants={itemFromLeft} style={{ marginTop: "-1.75rem" }}>
-              <div className="flex items-center gap-3 sm:gap-4">
-                <span className="h-px w-6 shrink-0 bg-white/30 sm:w-8" aria-hidden />
-                <div
-                  className="min-w-0 text-[clamp(9px,2vw,10px)] uppercase tracking-[0.28em] text-white/55 sm:tracking-[0.3em]"
-                  style={{ fontFamily: MONO }}
-                >
-                  Faculty at Masters&apos; Union
-                </div>
-              </div>
-            </motion.div>
 
             {/* Headline + paragraph: shared background watermark */}
             <div className="relative mt-[clamp(0.85rem,2.2vh,1.5rem)] w-full max-w-[850px]">
