@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import BrandLogo from "@/components/BrandLogo";
+import { findBrand } from "@/lib/brand-logos";
 
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
 const SERIF = "'Fraunces', Georgia, serif";
@@ -381,6 +383,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
           const isActive = i === active;
           const isFront = abs < 0.5;
           const isFlipped = flipped === i;
+          const brand = findBrand(item.role, item.sub);
 
           // elliptical arc: sideways travel eases off while depth keeps growing
           const x =
