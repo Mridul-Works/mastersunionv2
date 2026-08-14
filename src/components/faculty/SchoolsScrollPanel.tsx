@@ -174,22 +174,13 @@ export default function SchoolsScrollPanel() {
       raf = 0;
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight || 1;
-      // usable timeline even when the block is shorter than the viewport
-      const span = Math.max(vh * 0.85, rect.height - vh * 0.6);
 
-      // document-space timeline: keeps advancing even while the section is
-      // pinned inside the sticky stack (where rect.top can stay constant)
-      const scrollY = window.scrollY || window.pageYOffset || 0;
-      let docTop = 0;
-      let node: HTMLElement | null = el;
-      while (node) {
-        docTop += node.offsetTop;
-        node = node.offsetParent as HTMLElement | null;
-      }
-      // p = 0 when the section has settled at the top of the viewport (not when
-      // it first peeks in), so the first stretch is a dead-stable Stage 01.
-      const raw = (scrollY + vh * 0.15 - docTop) / span;
+      // Section-local timeline: 0% the moment the block has properly entered the
+      // viewport, 100% as its bottom edge leaves the top. Never global scroll.
+      const span = Math.max(vh * 0.5, rect.height + vh * 0.6);
+      const raw = (vh * 0.6 - rect.top) / span;
       progressRef.current = raw;
+
 
       const p = Math.min(1, Math.max(0, raw));
       if (barRef.current) barRef.current.style.transform = `scaleY(${p.toFixed(3)})`;
