@@ -641,7 +641,7 @@ function FacultyPage() {
 
 
       {/* THE NUMBER */}
-      <section className="group relative flex min-h-[110svh] flex-col items-center justify-center overflow-hidden border-y border-white/10 bg-[#0a0a0a] py-[clamp(4rem,10vh,8rem)] text-white">
+      <section ref={numberReveal.ref} className={numberReveal.className}>
         <div className="page-shell-narrow relative z-10 text-center">
           <div className="text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO }}>
             The number that matters
