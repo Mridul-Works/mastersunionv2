@@ -440,6 +440,32 @@ function PedigreeGroup({ label, items, delay = 0 }: { label: string; items: stri
   );
 }
 
+const MARQUEE_WORDS = ["Built", "Led", "Invested", "Shaped"];
+
+function WordMarquee() {
+  return (
+    <div className="marquee-hover mt-[clamp(2.5rem,7vh,5rem)] w-full border-y border-white/10 py-[clamp(1.25rem,4vh,2.5rem)]">
+      <div className="w-full overflow-hidden">
+        <div className="animate-marquee-slow flex w-max items-baseline">
+          {[0, 1].map((copy) => (
+            <div key={copy} aria-hidden={copy === 1} className="flex items-baseline">
+              {MARQUEE_WORDS.map((word) => (
+                <span
+                  key={word}
+                  tabIndex={copy === 0 ? 0 : -1}
+                  className="block cursor-default select-none px-[clamp(1.25rem,3vw,3.5rem)] text-[clamp(4.5rem,13vw,15rem)] font-semibold uppercase leading-[0.86] tracking-[-0.02em] text-white/[0.14] outline-none transition-colors duration-500 hover:text-[#f5f1e8]/85 focus-visible:text-[#f5f1e8]/85"
+                >
+                  {word}
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 
 
 export const Route = createFileRoute("/faculty")({
@@ -695,21 +721,9 @@ function FacultyPage() {
             </div>
           </div>
 
-          {/* Editorial wordmark */}
-          <div className="mt-[clamp(2.5rem,7vh,5rem)] w-full border-t border-white/10 pt-[clamp(1.5rem,4vh,2.75rem)]">
-            <ul className="page-shell flex flex-wrap items-baseline justify-center gap-x-[clamp(0.9rem,3vw,2.75rem)] gap-y-[clamp(0.4rem,1.5vh,0.9rem)] sm:flex-nowrap">
-              {["Built", "Led", "Invested", "Shaped"].map((word, i) => (
-                <li key={word}>
-                  <span
-                    className="block cursor-default select-none text-[clamp(1.9rem,5.6vw,4.25rem)] font-semibold uppercase leading-[0.95] tracking-tight text-white/25 transition-all duration-500 hover:-translate-y-1 hover:text-[#f5f1e8]"
-                    style={{ opacity: 1 - i * 0.04 }}
-                  >
-                    {word}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Editorial marquee wordmark */}
+          <WordMarquee />
+
         </div>
       </section>
 
