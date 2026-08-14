@@ -230,6 +230,7 @@ export default function SchoolsScrollPanel() {
     const el = sectionRef.current;
     if (!el) return;
     let raf = 0;
+    let lastP = Number.NaN;
 
     /** layout offset of the section in the document — unaffected by sticky/pinning */
     const layoutTop = (node: HTMLElement) => {
@@ -242,20 +243,32 @@ export default function SchoolsScrollPanel() {
       return y;
     };
 
+    // Cached so the per-frame path never walks the offsetParent chain (each walk
+    // forces layout and is the main cost during fast scroll).
+    let cachedTop = layoutTop(el);
+    let cachedHeight = el.offsetHeight;
+    const measure = () => {
+      cachedTop = layoutTop(el);
+      cachedHeight = el.offsetHeight;
+    };
+
     const update = () => {
       raf = 0;
-      const rect = el.getBoundingClientRect();
       const vh = window.innerHeight || 1;
       // Internal timeline starts EXACTLY when the section top hits the
       // viewport top and ends when its bottom does.
-      const span = Math.max(1, rect.height - vh);
-      const p = Math.min(1, Math.max(0, -rect.top / span));
+      const span = Math.max(1, cachedHeight - vh);
+      const scrolled = (window.scrollY || window.pageYOffset || 0) - cachedTop;
+      const p = Math.min(1, Math.max(0, scrolled / span));
 
       // The network runs on a pure, layout-derived scroll value so it keeps
       // advancing (and exactly retraces on the way back) even once this
       // section is pinned and covered by the next stacked panel.
-      const scrolled = (window.scrollY || window.pageYOffset || 0) - layoutTop(el);
       progressRef.current = Math.max(0, scrolled / span);
+
+      // skip all DOM writes when the mapped progress hasn't changed
+      if (p === lastP) return;
+      lastP = p;
 
       if (barRef.current) barRef.current.style.transform = `scaleY(${p.toFixed(3)})`;
 
@@ -271,7 +284,8 @@ export default function SchoolsScrollPanel() {
       const active = weights.indexOf(Math.max(...weights));
       meterRef.current.forEach((node, i) => {
         if (!node) return;
-        node.dataset["active"] = String(i === active);
+        const val = String(i === active);
+        if (node.dataset["active"] !== val) node.dataset["active"] = val;
       });
 
       stageRef.current.forEach((node, i) => {
@@ -287,15 +301,27 @@ export default function SchoolsScrollPanel() {
       if (!raf) raf = requestAnimationFrame(update);
     };
 
+    const onResize = () => {
+      measure();
+      onScroll();
+    };
+
+    // Section height changes (stacked reveals, image loads, font swap) refresh
+    // the cached geometry instead of re-measuring every frame.
+    const ro = new ResizeObserver(onResize);
+    ro.observe(el);
+
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener("resize", onResize);
     return () => {
       if (raf) cancelAnimationFrame(raf);
+      ro.disconnect();
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("resize", onResize);
     };
   }, []);
+
 
   return (
     <div
