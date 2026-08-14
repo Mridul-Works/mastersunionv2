@@ -693,7 +693,7 @@ function FacultyPage() {
 
 
       {/* CTA / CLOSING FOOTER */}
-      <footer id="cta" className="relative min-h-[100svh] overflow-hidden bg-[#0a0a0a] text-white">
+      <footer id="cta" className="relative min-h-[100svh] overflow-x-hidden bg-[#0a0a0a] text-white">
         <div className="flex min-h-[100svh] flex-col justify-between pt-[clamp(4rem,14vh,10rem)]">
           {/* Top CTA */}
           <div className="page-shell-narrow text-center">
