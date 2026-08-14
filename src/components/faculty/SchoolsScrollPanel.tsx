@@ -25,36 +25,96 @@ type Node = {
   ph: number;
   r: number;
   s: number;
+  /** index of the node this one branches from (-1 for cluster centres) */
+  parent: number;
+  /** 0 = anchor institution, 1 = smaller institution hub, 2 = person/satellite */
+  kind: 0 | 1 | 2;
 };
 
 /**
- * Denser field built as small clusters rather than one scaled-up grid: ~2x the
- * node count of before, with smaller radii so the geometry reads as many little
- * networks filling the lower/outer areas instead of a few oversized points.
+ * A constellation of institutions rather than a particle field.
+ *
+ * 4 large "anchor" institutions plus 10 smaller institutional hubs, each with a
+ * handful of satellites (people / knowledge) branching off them. Intra-cluster
+ * links are always drawn faintly; inter-cluster links reveal progressively with
+ * scroll, so separate academic ecosystems gradually become one network.
  */
-const CLUSTER_COUNT = 14;
-const PER_CLUSTER = 5;
-const NODES: Node[] = Array.from({ length: CLUSTER_COUNT }, (_, c) => {
-  // cluster anchors spread over the full panel, including bottom + outer edges
-  const cx = 0.04 + rand(c + 3) * 0.92;
-  const cy = 0.04 + rand(c + 37) * 0.92;
-  const spread = 0.05 + rand(c + 71) * 0.1;
-  return Array.from({ length: PER_CLUSTER }, (_, k) => {
-    const i = c * PER_CLUSTER + k;
-    return {
-      bx: Math.min(0.97, Math.max(0.02, cx + (rand(i + 1) - 0.5) * spread * 2)),
-      by: Math.min(0.98, Math.max(0.02, cy + (rand(i + 21) - 0.5) * spread * 2.2)),
-      rx: 0.015 + rand(i + 41) * 0.055,
-      ry: 0.02 + rand(i + 61) * 0.07,
-      sp: 0.25 + rand(i + 121) * 0.75,
-      ph: rand(i + 141) * Math.PI * 2,
-      // varied but smaller dots so a denser field stays atmospheric
-      r: 0.45 + rand(i + 81) * 1.15,
-      s: 0.28 + rand(i + 101) * 0.6,
-    } as Node;
-  });
-}).flat();
+const ANCHOR_SEEDS = [
+  { x: 0.2, y: 0.22 },
+  { x: 0.62, y: 0.14 },
+  { x: 0.33, y: 0.68 },
+  { x: 0.78, y: 0.58 },
+];
+const MINOR_SEEDS = [
+  { x: 0.08, y: 0.46 },
+  { x: 0.45, y: 0.4 },
+  { x: 0.88, y: 0.28 },
+  { x: 0.14, y: 0.84 },
+  { x: 0.56, y: 0.88 },
+  { x: 0.9, y: 0.8 },
+  { x: 0.7, y: 0.36 },
+  { x: 0.26, y: 0.05 },
+  { x: 0.05, y: 0.66 },
+  { x: 0.95, y: 0.5 },
+];
 
+const NODES: Node[] = [];
+const HUBS: number[] = [];
+
+const clampF = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
+
+[...ANCHOR_SEEDS.map((s) => ({ ...s, anchor: true })), ...MINOR_SEEDS.map((s) => ({ ...s, anchor: false }))].forEach(
+  (seed, c) => {
+    const hubIndex = NODES.length;
+    HUBS.push(hubIndex);
+    const jitter = (rand(c + 7) - 0.5) * 0.03;
+    NODES.push({
+      bx: clampF(seed.x + jitter, 0.03, 0.97),
+      by: clampF(seed.y + jitter * 1.4, 0.03, 0.97),
+      rx: 0.012 + rand(c + 41) * 0.026,
+      ry: 0.014 + rand(c + 61) * 0.03,
+      sp: 0.22 + rand(c + 121) * 0.4,
+      ph: rand(c + 141) * Math.PI * 2,
+      r: seed.anchor ? 2 + rand(c + 81) * 0.9 : 1.2 + rand(c + 83) * 0.5,
+      s: seed.anchor ? 0.85 : 0.6,
+      parent: -1,
+      kind: seed.anchor ? 0 : 1,
+    });
+
+    // satellites: people and knowledge branching off the institution
+    const count = seed.anchor ? 6 + Math.round(rand(c + 11) * 2) : 3 + Math.round(rand(c + 13) * 2);
+    for (let k = 0; k < count; k++) {
+      const i = c * 31 + k;
+      const ang = rand(i + 201) * Math.PI * 2;
+      // varied branch lengths — no repeated ring geometry
+      const len = (seed.anchor ? 0.055 : 0.038) * (0.35 + rand(i + 211) * 1.25);
+      NODES.push({
+        bx: clampF(NODES[hubIndex].bx + Math.cos(ang) * len * 1.5, 0.02, 0.985),
+        by: clampF(NODES[hubIndex].by + Math.sin(ang) * len * 1.9, 0.02, 0.985),
+        rx: 0.008 + rand(i + 41) * 0.03,
+        ry: 0.01 + rand(i + 61) * 0.034,
+        sp: 0.25 + rand(i + 121) * 0.7,
+        ph: rand(i + 141) * Math.PI * 2,
+        r: 0.4 + rand(i + 81) * 0.75,
+        s: 0.3 + rand(i + 101) * 0.4,
+        parent: hubIndex,
+        kind: 2,
+      });
+    }
+  },
+);
+
+/** Inter-cluster relationships, each revealed at its own point in the scroll. */
+const BRIDGES: { a: number; b: number; at: number }[] = [];
+for (let i = 0; i < HUBS.length; i++) {
+  for (let j = i + 1; j < HUBS.length; j++) {
+    const a = NODES[HUBS[i]];
+    const b = NODES[HUBS[j]];
+    const d = Math.hypot(a.bx - b.bx, a.by - b.by);
+    if (d > 0.42) continue; // only plausible neighbours connect
+    BRIDGES.push({ a: HUBS[i], b: HUBS[j], at: 0.1 + rand(i * 17 + j + 5) * 0.72 });
+  }
+}
 
 const TAU = Math.PI * 2;
 
@@ -83,7 +143,7 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
     let lastDrawAt = 0;
 
     // ---- adaptive quality ("throttling safeguard") -------------------------
-    // tier 0 = full (links + nodes), 1 = fewer links, 2 = nodes only.
+    // tier 0 = full (branches + bridges + nodes), 1 = branches only, 2 = nodes only.
     let tier = reduced ? 2 : 0;
     let avgCost = 0; // EWMA of draw cost in ms
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -112,6 +172,11 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
       return quint * 0.82 + x * 0.18;
     };
 
+    const smooth = (x: number) => {
+      const v = Math.min(1, Math.max(0, x));
+      return v * v * (3 - 2 * v);
+    };
+
     const draw = (t: number) => {
       const t0 = performance.now();
       ctx.clearRect(0, 0, w, h);
@@ -120,46 +185,76 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
       // primarily leftward drift toward the content column (≈15% of panel width — 2x)
       const drift = -driftEase(t) * 0.15;
 
-
       const pts = NODES.map((n) => {
         // slow, bounded orbit — a drift through the panel, not a sweep
         const a = n.ph + t * n.sp * 0.55 * TAU;
         return {
           x: (n.bx + drift + Math.cos(a) * n.rx) * w,
-          // vertical motion is a very subtle secondary component (≈20% of original)
+          // vertical motion is a very subtle secondary component
           y: (n.by + Math.sin(a * 0.85 + 0.6) * n.ry * 0.2) * h,
           r: n.r,
           s: n.s,
+          kind: n.kind,
+          parent: n.parent,
         };
       });
 
       if (tier < 2) {
-        const step = tier === 0 ? 1 : 2; // tier 1 halves the link pass
-        const maxD = Math.min(w, h) * (0.17 + 0.07 * glow) * (tier === 0 ? 1 : 0.85);
-        ctx.lineWidth = 0.6;
-        for (let i = 0; i < pts.length; i++) {
-          for (let j = i + step; j < pts.length; j += step) {
-            const dx = pts[i].x - pts[j].x;
-            const dy = pts[i].y - pts[j].y;
-            const d = Math.hypot(dx, dy);
-            if (d > maxD) continue;
-            const a = (1 - d / maxD) * (0.05 + 0.09 * glow);
-            ctx.strokeStyle = `rgba(255,255,255,${a.toFixed(3)})`;
+        // 1. branches inside each institutional cluster — always present
+        ctx.lineWidth = 0.55;
+        for (const pt of pts) {
+          if (pt.parent < 0) continue;
+          const p = pts[pt.parent];
+          const a = 0.035 + 0.075 * glow;
+          ctx.strokeStyle = `rgba(255,255,255,${a.toFixed(3)})`;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(pt.x, pt.y);
+          ctx.stroke();
+        }
+
+        // 2. bridges between clusters — revealed progressively, so separate
+        //    ecosystems gradually become one network as the section advances.
+        if (tier === 0) {
+          ctx.lineWidth = 0.7;
+          for (const br of BRIDGES) {
+            const reveal = smooth((t - br.at) / 0.3);
+            if (reveal <= 0.001) continue;
+            const a = pts[br.a];
+            const b = pts[br.b];
+            const alpha = reveal * (0.05 + 0.07 * glow);
+            ctx.strokeStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
             ctx.beginPath();
-            ctx.moveTo(pts[i].x, pts[i].y);
-            ctx.lineTo(pts[j].x, pts[j].y);
+            ctx.moveTo(a.x, a.y);
+            // slight curve so nothing reads as rigid geometry
+            ctx.quadraticCurveTo(
+              (a.x + b.x) / 2 + (b.y - a.y) * 0.08,
+              (a.y + b.y) / 2 - (b.x - a.x) * 0.08,
+              b.x,
+              b.y,
+            );
             ctx.stroke();
           }
         }
       }
 
       for (const pt of pts) {
-        const a = 0.1 + pt.s * (0.14 + 0.32 * glow);
+        const base = pt.kind === 0 ? 0.16 : pt.kind === 1 ? 0.12 : 0.08;
+        const a = base + pt.s * (0.1 + 0.26 * glow);
         ctx.fillStyle = `rgba(255,255,255,${a.toFixed(3)})`;
         ctx.beginPath();
-        ctx.arc(pt.x, pt.y, pt.r * (0.85 + 0.35 * glow), 0, TAU);
+        ctx.arc(pt.x, pt.y, pt.r * (0.85 + 0.3 * glow), 0, TAU);
         ctx.fill();
+        // anchors carry a faint halo — major institutions, still understated
+        if (pt.kind === 0) {
+          ctx.strokeStyle = `rgba(255,255,255,${(0.05 + 0.07 * glow).toFixed(3)})`;
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          ctx.arc(pt.x, pt.y, pt.r * 2.6 + 2, 0, TAU);
+          ctx.stroke();
+        }
       }
+
 
       // profile + degrade/recover without ever stopping the scroll mapping
       const cost = performance.now() - t0;
