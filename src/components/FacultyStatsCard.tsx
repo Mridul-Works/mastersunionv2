@@ -94,7 +94,7 @@ export default function FacultyStatsCard({
               {universities.map((name) => (
                 <div key={name} className="flex items-center justify-center">
                   <span
-                    className={`whitespace-nowrap text-center text-[clamp(0.78rem,2.1vw,0.95rem)] italic tracking-[0.01em] transition-colors ${dark ? "text-white/65 hover:text-white" : "text-black/65 hover:text-black"}`}
+                    className={`whitespace-nowrap text-center text-[clamp(0.78rem,2.1vw,0.95rem)] italic tracking-[0.01em] transition-colors ${dark ? "text-white/[0.14] hover:text-white" : "text-black/[0.14] hover:text-black"}`}
                     style={{ fontFamily: SERIF_IT }}
                     title={name}
                   >

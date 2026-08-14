@@ -302,7 +302,7 @@ export default function MastersVideos({
                   style={{ fontFamily: SANS_H, transitionDelay: "200ms" }}
                 >
                   Built by Scholars, Led by{" "}
-                  <span className="font-light italic" style={{ fontFamily: SERIF_IT }}>
+                  <span className="font-light italic text-white/[0.14]" style={{ fontFamily: SERIF_IT }}>
                     Industry Practitioners
                   </span>
                 </h2>
