@@ -8,11 +8,26 @@ const STAGES = [
   { n: "03", label: "Signal" },
 ];
 
-/** Deterministic pseudo-random so the network pattern is stable across renders. */
-function rand(seed: number) {
-  const x = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
-  return x - Math.floor(x);
+/**
+ * Seeded PRNG. The seed is drawn ONCE per page load, so every refresh yields a
+ * genuinely different topology while the whole scroll animation stays a pure
+ * deterministic function of scroll progress (perfectly reversible).
+ */
+function makeRng(seed: number) {
+  let a = seed >>> 0;
+  return () => {
+    a = (a + 0x6d2b79f5) >>> 0;
+    let t = a;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
 }
+
+const SEED = Math.floor(Math.random() * 0xffffffff);
+const rng = makeRng(SEED);
+const rand = () => rng();
+const between = (lo: number, hi: number) => lo + rand() * (hi - lo);
 
 type Node = {
   bx: number;
@@ -20,89 +35,108 @@ type Node = {
   /** orbit radii (fraction of panel) */
   rx: number;
   ry: number;
-  /** orbit speed + phase — deterministic per node */
+  /** orbit speed + phase */
   sp: number;
   ph: number;
   r: number;
   s: number;
-  /** index of the node this one branches from (-1 for cluster centres) */
+  /** index of the node this one branches from (-1 for cluster centres / lone stars) */
   parent: number;
-  /** 0 = anchor institution, 1 = smaller institution hub, 2 = person/satellite */
-  kind: 0 | 1 | 2;
+  /** 0 = anchor institution, 1 = smaller institution hub, 2 = person/knowledge, 3 = lone star */
+  kind: 0 | 1 | 2 | 3;
 };
-
-/**
- * A constellation of institutions rather than a particle field.
- *
- * 4 large "anchor" institutions plus 10 smaller institutional hubs, each with a
- * handful of satellites (people / knowledge) branching off them. Intra-cluster
- * links are always drawn faintly; inter-cluster links reveal progressively with
- * scroll, so separate academic ecosystems gradually become one network.
- */
-const ANCHOR_SEEDS = [
-  { x: 0.2, y: 0.22 },
-  { x: 0.62, y: 0.14 },
-  { x: 0.33, y: 0.68 },
-  { x: 0.78, y: 0.58 },
-];
-const MINOR_SEEDS = [
-  { x: 0.08, y: 0.46 },
-  { x: 0.45, y: 0.4 },
-  { x: 0.88, y: 0.28 },
-  { x: 0.14, y: 0.84 },
-  { x: 0.56, y: 0.88 },
-  { x: 0.9, y: 0.8 },
-  { x: 0.7, y: 0.36 },
-  { x: 0.26, y: 0.05 },
-  { x: 0.05, y: 0.66 },
-  { x: 0.95, y: 0.5 },
-];
 
 const NODES: Node[] = [];
 const HUBS: number[] = [];
 
 const clampF = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
 
-[...ANCHOR_SEEDS.map((s) => ({ ...s, anchor: true })), ...MINOR_SEEDS.map((s) => ({ ...s, anchor: false }))].forEach(
-  (seed, c) => {
-    const hubIndex = NODES.length;
-    HUBS.push(hubIndex);
-    const jitter = (rand(c + 7) - 0.5) * 0.03;
-    NODES.push({
-      bx: clampF(seed.x + jitter, 0.03, 0.97),
-      by: clampF(seed.y + jitter * 1.4, 0.03, 0.97),
-      rx: 0.012 + rand(c + 41) * 0.026,
-      ry: 0.014 + rand(c + 61) * 0.03,
-      sp: 0.22 + rand(c + 121) * 0.4,
-      ph: rand(c + 141) * Math.PI * 2,
-      r: seed.anchor ? 2 + rand(c + 81) * 0.9 : 1.2 + rand(c + 83) * 0.5,
-      s: seed.anchor ? 0.85 : 0.6,
-      parent: -1,
-      kind: seed.anchor ? 0 : 1,
-    });
+/**
+ * A constellation of institutions that emerges from beneath the meter (the
+ * right edge of the pattern box) and branches outward to the left, toward the
+ * story column. Geometry is hard-constrained to x <= 0.985 of the pattern box,
+ * which ends before the protected meter column — nothing can ever cross it.
+ */
+const MAX_X = 0.985;
 
-    // satellites: people and knowledge branching off the institution
-    const count = seed.anchor ? 6 + Math.round(rand(c + 11) * 2) : 3 + Math.round(rand(c + 13) * 2);
-    for (let k = 0; k < count; k++) {
-      const i = c * 31 + k;
-      const ang = rand(i + 201) * Math.PI * 2;
-      // varied branch lengths — no repeated ring geometry
-      const len = (seed.anchor ? 0.055 : 0.038) * (0.35 + rand(i + 211) * 1.25);
-      NODES.push({
-        bx: clampF(NODES[hubIndex].bx + Math.cos(ang) * len * 1.5, 0.02, 0.985),
-        by: clampF(NODES[hubIndex].by + Math.sin(ang) * len * 1.9, 0.02, 0.985),
-        rx: 0.008 + rand(i + 41) * 0.03,
-        ry: 0.01 + rand(i + 61) * 0.034,
-        sp: 0.25 + rand(i + 121) * 0.7,
-        ph: rand(i + 141) * Math.PI * 2,
-        r: 0.4 + rand(i + 81) * 0.75,
-        s: 0.3 + rand(i + 101) * 0.4,
-        parent: hubIndex,
-        kind: 2,
-      });
-    }
-  },
-);
+const anchorCount = 3 + Math.round(rand()); // 3–4 anchors
+const minorCount = 8 + Math.round(rand() * 4); // 8–12 hubs
+
+type Seed = { x: number; y: number; anchor: boolean };
+const seeds: Seed[] = [];
+
+for (let i = 0; i < anchorCount; i++) {
+  // anchors sit closer to the meter spine — the origin of the network
+  const band = (i + 0.5) / anchorCount;
+  seeds.push({
+    x: clampF(between(0.5, 0.94) - rand() * 0.08, 0.1, MAX_X),
+    y: clampF(band + between(-0.13, 0.13), 0.06, 0.94),
+    anchor: true,
+  });
+}
+for (let i = 0; i < minorCount; i++) {
+  // hubs spread leftward, density decaying away from the spine
+  const bias = Math.pow(rand(), 0.65); // more mass toward the right/spine
+  seeds.push({
+    x: clampF(0.06 + bias * 0.9, 0.03, MAX_X),
+    y: clampF(rand(), 0.04, 0.96),
+    anchor: false,
+  });
+}
+
+seeds.forEach((seed) => {
+  const hubIndex = NODES.length;
+  HUBS.push(hubIndex);
+  NODES.push({
+    bx: seed.x,
+    by: seed.y,
+    rx: between(0.01, 0.036),
+    ry: between(0.012, 0.042),
+    sp: between(0.2, 0.62),
+    ph: rand() * Math.PI * 2,
+    r: seed.anchor ? between(1.9, 2.9) : between(1.1, 1.75),
+    s: seed.anchor ? between(0.78, 0.92) : between(0.5, 0.7),
+    parent: -1,
+    kind: seed.anchor ? 0 : 1,
+  });
+
+  // satellites: people and knowledge branching off the institution, biased to
+  // fan out leftward (away from the meter spine)
+  const count = seed.anchor ? 5 + Math.round(rand() * 4) : 2 + Math.round(rand() * 3);
+  for (let k = 0; k < count; k++) {
+    const ang = Math.PI * 0.45 + rand() * Math.PI * 1.1; // leftward fan
+    const len = (seed.anchor ? 0.06 : 0.042) * between(0.35, 1.6);
+    NODES.push({
+      bx: clampF(seed.x + Math.cos(ang) * len * 1.7, 0.015, MAX_X),
+      by: clampF(seed.y + Math.sin(ang) * len * 1.9, 0.015, 0.985),
+      rx: between(0.008, 0.036),
+      ry: between(0.01, 0.042),
+      sp: between(0.22, 0.95),
+      ph: rand() * Math.PI * 2,
+      r: between(0.35, 1.15),
+      s: between(0.28, 0.72),
+      parent: hubIndex,
+      kind: 2,
+    });
+  }
+});
+
+// a handful of isolated stars — negative space with a little life in it
+const loneCount = 8 + Math.round(rand() * 6);
+for (let i = 0; i < loneCount; i++) {
+  NODES.push({
+    bx: clampF(between(0.03, MAX_X), 0.02, MAX_X),
+    by: clampF(rand(), 0.03, 0.97),
+    rx: between(0.006, 0.024),
+    ry: between(0.008, 0.028),
+    sp: between(0.18, 0.7),
+    ph: rand() * Math.PI * 2,
+    r: between(0.3, 0.8),
+    s: between(0.2, 0.5),
+    parent: -1,
+    kind: 3,
+  });
+}
 
 /** Inter-cluster relationships, each revealed at its own point in the scroll. */
 const BRIDGES: { a: number; b: number; at: number }[] = [];
@@ -111,10 +145,12 @@ for (let i = 0; i < HUBS.length; i++) {
     const a = NODES[HUBS[i]];
     const b = NODES[HUBS[j]];
     const d = Math.hypot(a.bx - b.bx, a.by - b.by);
-    if (d > 0.42) continue; // only plausible neighbours connect
-    BRIDGES.push({ a: HUBS[i], b: HUBS[j], at: 0.1 + rand(i * 17 + j + 5) * 0.72 });
+    if (d > 0.44) continue; // only plausible neighbours connect
+    if (rand() > 0.72) continue; // irregular, never a spider web
+    BRIDGES.push({ a: HUBS[i], b: HUBS[j], at: between(0.08, 0.84) });
   }
 }
+
 
 const TAU = Math.PI * 2;
 
