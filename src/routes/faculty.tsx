@@ -612,6 +612,8 @@ function FacultyPage() {
         </div>
       </section>
 
+      </StackReveal>
+
       {/* TESTIMONIALS */}
       <section className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
