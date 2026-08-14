@@ -538,13 +538,16 @@ body::-webkit-scrollbar {
 @utility page-gutter {
   padding-inline: clamp(20px, 4vw, 64px);
 }
+/* MASTER EDITORIAL GRID — every section below the hero shares these edges.
+   Matches the hero container (max-w 1440px + clamp(20px,4vw,64px) gutter). */
 @utility page-shell {
-  width: min(100%, 1232px);
+  width: min(100%, 1440px);
   margin-inline: auto;
   padding-inline: clamp(20px, 4vw, 64px);
 }
+/* Narrow variant: same outer gutters, inner measure constrained for centred text */
 @utility page-shell-narrow {
-  width: min(100%, 1024px);
+  width: min(100%, 1440px);
   margin-inline: auto;
   padding-inline: clamp(20px, 4vw, 64px);
 }
