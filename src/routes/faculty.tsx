@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import useRevealSection from "@/hooks/useRevealSection";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import StudentTestimonials from "@/components/StudentTestimonials";
@@ -436,14 +435,6 @@ function FacultyPage() {
     }
   }, []);
 
-  const industryReveal = useRevealSection<HTMLElement>("screen-section border-y border-white/10 bg-[#0a0a0a]");
-  const fullTimeReveal = useRevealSection<HTMLElement>("screen-section border-y border-white/10 bg-[#0a0a0a]");
-  const visitingReveal = useRevealSection<HTMLElement>("screen-section border-y border-white/10 bg-[#0a0a0a]");
-  const testimonialsReveal = useRevealSection<HTMLElement>("screen-section border-y border-white/10 bg-[#0a0a0a]");
-  const becomeMasterReveal = useRevealSection<HTMLElement>("screen-section border-y border-white/10 bg-[#0a0a0a] text-white");
-  const numberReveal = useRevealSection<HTMLElement>("group relative flex min-h-[110svh] flex-col items-center justify-center overflow-hidden border-y border-white/10 bg-[#0a0a0a] py-[clamp(4rem,10vh,8rem)] text-white");
-  const footerReveal = useRevealSection<HTMLElement>("relative min-h-[100svh] overflow-x-hidden bg-[#0a0a0a] text-white");
-
   return (
     <main className="min-h-screen bg-[#0a0a0a] pb-24 text-white sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
       <SectionNav items={NAV} applyHref="#cta" />
@@ -498,7 +489,7 @@ function FacultyPage() {
 
 
       {/* INDUSTRY PRACTITIONERS */}
-      <section ref={industryReveal.ref} id="practitioners" className={industryReveal.className}>
+      <section id="practitioners" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
           <SectionIntro
             className="mb-[clamp(2rem,5vh,3.25rem)]"
@@ -507,8 +498,7 @@ function FacultyPage() {
             title={<>The people who teach here are not between jobs. They are <Accent>active</Accent>.</>}
             intro="Half of the faculty are CEOs, MDs, founders and investors — bringing this week's decisions into the classroom, not last decade's case studies."
           />
-          <div className="reveal-up" style={{ transitionDelay: "160ms" }}>
-            <EditorialGrid
+          <EditorialGrid
             gallery
             cardStats
             dark
@@ -526,12 +516,11 @@ function FacultyPage() {
               img: PRACTITIONER_PHOTOS[p.name],
             }))}
           />
-          </div>
         </div>
       </section>
 
       {/* FULL-TIME FACULTY */}
-      <section ref={fullTimeReveal.ref} id="full-time" className={fullTimeReveal.className}>
+      <section id="full-time" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
           <SectionIntro
             className="mb-[clamp(2rem,5vh,3.25rem)]"
@@ -540,8 +529,7 @@ function FacultyPage() {
             title={<>{FULLTIME.length} PhD faculty. Active researchers. Published where the <Accent>best B-schools read</Accent>.</>}
             intro="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing in FT50 and A* journals."
           />
-          <div className="reveal-up" style={{ transitionDelay: "160ms" }}>
-            <EditorialGrid
+          <EditorialGrid
             gallery
             cardStats
             dark
@@ -555,13 +543,12 @@ function FacultyPage() {
             items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
           />
           <PedigreeScrollPanel />
-          </div>
 
         </div>
       </section>
 
       {/* VISITING */}
-      <section ref={visitingReveal.ref} id="visiting" className={visitingReveal.className}>
+      <section id="visiting" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
           <SectionIntro
             className="mb-[clamp(2rem,5vh,3.25rem)]"
@@ -570,8 +557,7 @@ function FacultyPage() {
             title={<>Professors who teach here because they <Accent>believe</Accent> in what Masters&apos; Union is building.</>}
             intro="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
           />
-          <div className="reveal-up" style={{ transitionDelay: "160ms" }}>
-            <EditorialGrid
+          <EditorialGrid
             gallery
             cardStats
             dark
@@ -585,13 +571,12 @@ function FacultyPage() {
             items={VISITING.map((v) => ({ name: v.name, role: v.role, sub: v.school, img: v.img }))}
           />
           <SchoolsScrollPanel />
-          </div>
 
         </div>
       </section>
 
       {/* TESTIMONIALS */}
-        <section ref={testimonialsReveal.ref} className={testimonialsReveal.className}>
+        <section className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
           <SectionIntro
             className="mb-[clamp(2rem,5vh,3.25rem)]"
@@ -599,15 +584,13 @@ function FacultyPage() {
             eyebrow="What students say"
             title={<>Learning from operators, <Accent>in their own words</Accent>.</>}
           />
-          <div className="reveal-up" style={{ transitionDelay: "160ms" }}>
-            <StudentTestimonials items={TESTIMONIALS} />
-          </div>
+          <StudentTestimonials items={TESTIMONIALS} />
 
         </div>
       </section>
 
       {/* BECOME A MASTER */}
-      <section ref={becomeMasterReveal.ref} className={becomeMasterReveal.className}>
+      <section className="screen-section border-y border-white/10 bg-[#0a0a0a] text-white">
         <div className="screen-y flex w-full flex-col items-center justify-center">
           <div className="page-shell w-full">
             <SectionIntro
@@ -617,7 +600,7 @@ function FacultyPage() {
               intro={<>If you have built something, led something, invested in something, or shaped something — and you believe the best way to teach business is to have done it — we want to hear from you.</>}
             />
 
-            <div className="reveal-up mt-[clamp(1.5rem,4vh,2.5rem)] flex justify-center" style={{ transitionDelay: "160ms" }}>
+            <div className="mt-[clamp(1.5rem,4vh,2.5rem)] flex justify-center">
               <a
                 href="https://mastersunion.org/become-a-master"
                 target="_blank"
@@ -632,22 +615,20 @@ function FacultyPage() {
           </div>
 
           {/* Editorial marquee wordmark */}
-          <div className="reveal-up" style={{ transitionDelay: "160ms" }}>
           <WordMarquee />
-          </div>
 
         </div>
       </section>
 
 
       {/* THE NUMBER */}
-      <section ref={numberReveal.ref} className={numberReveal.className}>
+      <section className="group relative flex min-h-[110svh] flex-col items-center justify-center overflow-hidden border-y border-white/10 bg-[#0a0a0a] py-[clamp(4rem,10vh,8rem)] text-white">
         <div className="page-shell-narrow relative z-10 text-center">
-          <div className="reveal-up text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO, transitionDelay: "0ms" }}>
+          <div className="text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO }}>
             The number that matters
           </div>
 
-          <div className="reveal-up mt-[clamp(1.25rem,3.5vh,2rem)]" style={{ transitionDelay: "80ms" }}>
+          <div className="mt-[clamp(1.25rem,3.5vh,2rem)]">
             <div className="relative z-10 text-[clamp(6rem,17vw,14rem)] font-extrabold leading-[0.85] tracking-[-0.04em]">
               500+
             </div>
@@ -656,7 +637,7 @@ function FacultyPage() {
             </div>
           </div>
 
-          <div className="reveal-up mt-[clamp(2.5rem,6vh,4rem)] space-y-[clamp(1.25rem,3vh,1.75rem)]" style={{ transitionDelay: "120ms" }}>
+          <div className="mt-[clamp(2.5rem,6vh,4rem)] space-y-[clamp(1.25rem,3vh,1.75rem)]">
             <p className="text-[clamp(0.875rem,1.8vw,1.125rem)] font-medium leading-[1.4] tracking-[-0.01em] text-white/90">
               Masters on the roster.
             </p>
@@ -673,11 +654,10 @@ function FacultyPage() {
 
 
       {/* CTA / CLOSING FOOTER */}
-      <footer ref={footerReveal.ref} id="cta" className={footerReveal.className}>
+      <footer id="cta" className="relative min-h-[100svh] overflow-x-hidden bg-[#0a0a0a] text-white">
         <div className="flex min-h-[100svh] flex-col justify-between pt-[clamp(4rem,14vh,10rem)]">
           {/* Top CTA */}
-          <div className="reveal-up" style={{ transitionDelay: "0ms" }}>
-            <div className="page-shell-narrow text-center">
+          <div className="page-shell-narrow text-center">
             <p className="text-balance text-[0.98rem] not-italic leading-[1.35] text-white/85">
               Learn from the people doing it — not just studying it.
             </p>
@@ -690,10 +670,9 @@ function FacultyPage() {
               </a>
             </div>
           </div>
-          </div>
 
           {/* Giant type + strip + utility row */}
-          <div className="reveal-up mt-[clamp(40px,8vh,86px)]" style={{ transitionDelay: "120ms" }}>
+          <div className="mt-[clamp(40px,8vh,86px)]">
 
             <div className="px-[clamp(1rem,2.5vw,2.5rem)]">
               <h2 className="sr-only">Join the Union</h2>

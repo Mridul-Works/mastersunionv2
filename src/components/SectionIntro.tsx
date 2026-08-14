@@ -23,10 +23,6 @@ export function Accent({ children }: { children: ReactNode }) {
  * Section 05 / Become a Master on /faculty is the alignment source of truth:
  * centered label → centered headline (26ch) → centered paragraph (58ch),
  * with identical horizontal anchor and vertical rhythm at every breakpoint.
- *
- * Each element is marked with `reveal-up` so, when this component sits inside a
- * `.reveal-section` ancestor, it will stagger in on first viewport entry.
- * On pages without a reveal-section wrapper, the class has no effect.
  */
 export function SectionIntro({
   index,
@@ -46,8 +42,8 @@ export function SectionIntro({
   return (
     <header className={`mx-auto w-full text-center ${className}`}>
       <p
-        className="reveal-up flex justify-center gap-3 text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]"
-        style={{ fontFamily: MONO, transitionDelay: "0ms" }}
+        className="flex justify-center gap-3 text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]"
+        style={{ fontFamily: MONO }}
       >
         <span>{index}</span>
         <span aria-hidden className="text-[#B89146]/50">
@@ -57,27 +53,20 @@ export function SectionIntro({
       </p>
 
       <h2
-        className="reveal-up mx-auto mt-[clamp(1.25rem,3.5vh,2.25rem)] max-w-[min(100%,26ch)] text-balance text-[clamp(1.75rem,4.4vw,3.4rem)] font-bold not-italic leading-[1.06] tracking-[-0.025em] text-white"
-        style={{ fontFamily: SANS, transitionDelay: "80ms" }}
+        className="mx-auto mt-[clamp(1.25rem,3.5vh,2.25rem)] max-w-[min(100%,26ch)] text-balance text-[clamp(1.75rem,4.4vw,3.4rem)] font-bold not-italic leading-[1.06] tracking-[-0.025em] text-white"
+        style={{ fontFamily: SANS }}
       >
 
         {title}
       </h2>
 
       {intro ? (
-        <p
-          className="reveal-up mx-auto mt-[clamp(1.1rem,3vh,1.75rem)] max-w-[min(100%,58ch)] text-[0.98rem] leading-[1.6] text-white/60"
-          style={{ transitionDelay: "120ms" }}
-        >
+        <p className="mx-auto mt-[clamp(1.1rem,3vh,1.75rem)] max-w-[min(100%,58ch)] text-[0.98rem] leading-[1.6] text-white/60">
           {intro}
         </p>
       ) : null}
 
-      {children ? (
-        <div className="reveal-up" style={{ transitionDelay: "160ms" }}>
-          {children}
-        </div>
-      ) : null}
+      {children}
     </header>
   );
 }
