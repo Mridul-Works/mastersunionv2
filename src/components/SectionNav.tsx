@@ -140,7 +140,7 @@ export function SectionNav({
 
   return (
     <header
-      className="fixed left-3 bottom-3 z-[100] flex flex-col items-stretch gap-2 sm:left-4 sm:bottom-4"
+      className="fixed left-0 top-0 z-[100] hidden h-screen flex-col items-center justify-between py-5 md:flex"
       style={{
         transform: visible ? "translateX(0)" : "translateX(calc(-100% - 24px))",
         transition: "transform 450ms cubic-bezier(0.22, 1, 0.36, 1)",
@@ -148,7 +148,7 @@ export function SectionNav({
     >
       <div
         className={
-          "relative flex w-12 flex-col items-center gap-3 overflow-hidden rounded-full border py-3 transition-all duration-300 sm:w-14 sm:gap-3.5 sm:py-3.5 " +
+          "relative mx-3 flex h-[calc(100dvh-40px)] w-14 flex-col items-center justify-between overflow-hidden rounded-full border py-5 transition-all duration-300 sm:w-16 sm:py-6 " +
           (scrolled
             ? "border-border bg-background/85 shadow-[0_0_50px_-20px_rgba(0,0,0,0.28)] backdrop-blur-xl"
             : "border-border/60 bg-background/80 shadow-[0_0_40px_-25px_rgba(0,0,0,0.25)] backdrop-blur-md")
@@ -165,7 +165,7 @@ export function SectionNav({
           }}
         />
 
-        <a href="/" className="flex shrink-0 flex-col items-center gap-1" aria-label="Masters' Union home">
+        <a href="/" className="flex shrink-0 flex-col items-center gap-1.5" aria-label="Masters' Union home">
           <img src={logoAsset.url} alt="Masters' Union" className="h-5 w-auto sm:h-6" />
           <span className="hidden font-mono text-[8px] uppercase tracking-[0.16em] text-muted-foreground sm:block">
             {clock}
@@ -174,7 +174,7 @@ export function SectionNav({
 
         <nav
           aria-label="Sections"
-          className="flex w-full flex-1 flex-col items-center gap-0.5 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex w-full flex-1 flex-col items-center justify-center gap-2 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {items.map((item) => (
             <a
@@ -186,7 +186,7 @@ export function SectionNav({
                 scrollToId(item.id);
               }}
               className={
-                "flex h-7 w-7 items-center justify-center rounded-full text-[10px] font-medium transition-colors sm:h-8 sm:w-8 sm:text-[11px] " +
+                "flex h-8 w-8 items-center justify-center rounded-full text-[10px] font-medium transition-colors sm:h-9 sm:w-9 sm:text-[11px] " +
                 (!item.href && active === item.id
                   ? "bg-foreground/[0.07] text-foreground"
                   : "text-foreground/70 hover:bg-foreground/[0.06] hover:text-foreground")
@@ -201,7 +201,7 @@ export function SectionNav({
             <a
               key={l.href}
               href={l.href}
-              className="flex h-7 w-7 items-center justify-center rounded-full text-[10px] font-medium text-foreground/70 transition-colors hover:bg-foreground/[0.06] hover:text-foreground sm:h-8 sm:w-8"
+              className="flex h-8 w-8 items-center justify-center rounded-full text-[10px] font-medium text-foreground/70 transition-colors hover:bg-foreground/[0.06] hover:text-foreground sm:h-9 sm:w-9"
               title={l.label}
             >
               {l.label.slice(0, 2).toUpperCase()}
@@ -215,14 +215,14 @@ export function SectionNav({
           className="group inline-flex shrink-0 flex-col items-center justify-center gap-1"
           title="Apply"
         >
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform duration-300 group-hover:rotate-45 sm:h-9 sm:w-9">
-            <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2.25} />
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform duration-300 group-hover:rotate-45 sm:h-10 sm:w-10">
+            <ArrowUpRight className="h-4 w-4" strokeWidth={2.25} />
           </span>
         </a>
-      </div>
 
-      <div className="hidden rounded-full border border-border/60 bg-background/80 px-3 py-1.5 text-center text-[10px] font-medium text-foreground/70 shadow-[0_0_30px_-20px_rgba(0,0,0,0.25)] backdrop-blur-md sm:block">
-        {activeLabel}
+        <div className="rounded-full border border-border/60 bg-background/80 px-2.5 py-1 text-center text-[9px] font-medium text-foreground/70 shadow-[0_0_30px_-20px_rgba(0,0,0,0.25)] backdrop-blur-md">
+          {activeLabel}
+        </div>
       </div>
     </header>
   );
