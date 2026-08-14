@@ -50,6 +50,7 @@ function computeGeometry(stageW: number, viewportH: number): Geometry {
  */
 export default function PractitionerGallery({ items }: { items: GalleryItem[] }) {
   const n = items.length;
+  const [inputMode, setInputMode] = useState<"touch" | "pointer">("pointer");
   const [flipped, setFlipped] = useState<number | null>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [hasEntered, setHasEntered] = useState(false);
@@ -57,6 +58,16 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
   const [activeHovered, setActiveHovered] = useState(false);
   const [spinFlipIcon, setSpinFlipIcon] = useState(false);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
+
+  /**
+   * Hybrid devices can have both a fine pointer and a touchscreen, so viewport
+   * breakpoints are not a reliable input signal. Start with the device's actual
+   * capabilities, then follow the pointer type used for the latest interaction.
+   */
+  useEffect(() => {
+    const hasTouch = navigator.maxTouchPoints > 0 || window.matchMedia("(any-pointer: coarse)").matches;
+    setInputMode(hasTouch ? "touch" : "pointer");
+  }, []);
 
   /**
    * ONE physical 3D wheel. `pos` is a CONTINUOUS rotational position measured in
@@ -210,6 +221,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
   // drag / swipe — the wheel follows the pointer 1:1, then keeps its momentum
   const drag = useRef({ down: false, startX: 0, startPos: 0, moved: 0, lastX: 0, lastTs: 0 });
   const onPointerDown = (e: React.PointerEvent) => {
+    setInputMode(e.pointerType === "touch" ? "touch" : "pointer");
     draggingRef.current = true;
     targetRef.current = null;
     velRef.current = 0;
@@ -392,7 +404,13 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                 }
                 setFlipped((f) => (f === i ? null : i));
               }}
-              onMouseEnter={() => { if (isActive) { setActiveHovered(true); setSpinFlipIcon(true); } }}
+              onPointerEnter={(e) => {
+                if (e.pointerType !== "touch" && isActive) {
+                  setInputMode("pointer");
+                  setActiveHovered(true);
+                  setSpinFlipIcon(true);
+                }
+              }}
               onMouseLeave={() => { setActiveHovered(false); setSpinFlipIcon(false); }}
               aria-hidden={hidden}
               className="absolute left-1/2 top-1/2 overflow-hidden rounded-[20px] sm:rounded-[26px] md:rounded-[30px]"
@@ -456,8 +474,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                         style={{ fontFamily: MONO }}
                         aria-hidden
                       >
-                        <span className="hidden md:inline">Click to flip</span>
-                        <span className="inline md:hidden">Tap to flip</span>
+                        <span>{inputMode === "touch" ? "Tap to flip" : "Click to flip"}</span>
                         <span
                           aria-hidden
                           className="inline-block"
