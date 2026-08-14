@@ -98,8 +98,8 @@ seeds.forEach((seed) => {
     ry: between(0.012, 0.032),
     sp: between(0.18, 0.52),
     ph: rand() * Math.PI * 2,
-    r: seed.anchor ? between(2.2, 3.2) : between(1.3, 1.9),
-    s: seed.anchor ? between(0.82, 0.96) : between(0.55, 0.75),
+    r: seed.anchor ? between(4.0, 6.5) : between(2.8, 4.2),
+    s: seed.anchor ? between(0.85, 0.98) : between(0.6, 0.82),
     parent: -1,
     kind: seed.anchor ? 0 : 1,
   });
