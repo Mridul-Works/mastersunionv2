@@ -180,7 +180,12 @@ export default function SchoolsScrollPanel() {
       // document-space timeline: keeps advancing even while the section is
       // pinned inside the sticky stack (where rect.top can stay constant)
       const scrollY = window.scrollY || window.pageYOffset || 0;
-      const docTop = rect.top + scrollY;
+      let docTop = 0;
+      let node: HTMLElement | null = el;
+      while (node) {
+        docTop += node.offsetTop;
+        node = node.offsetParent as HTMLElement | null;
+      }
       const raw = (scrollY + vh * 0.75 - docTop) / span;
       progressRef.current = raw;
 
