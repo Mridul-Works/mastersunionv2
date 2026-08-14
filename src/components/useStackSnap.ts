@@ -181,6 +181,7 @@ export function useStackSnap(containerRef: React.RefObject<HTMLElement | null>) 
       }
     };
 
+    (window as any).__snap = { stops: () => stops, go };
     lenis()?.stop?.();
     window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("touchstart", onTouchStart, { passive: true });
