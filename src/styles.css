@@ -244,6 +244,12 @@
   }
 }
 
+/* Practitioner gallery — flip icon hover rotation */
+@keyframes mu-flip-spin-once {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 /* Faculty hero — editorial typographic reveal */
 @keyframes hero-line-in {
   from { transform: translateY(105%); }
