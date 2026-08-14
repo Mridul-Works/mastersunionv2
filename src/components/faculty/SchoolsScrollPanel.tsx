@@ -74,17 +74,21 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
     const draw = (t: number) => {
       ctx.clearRect(0, 0, w, h);
       // density/brightness ramp saturates gently but geometry keeps moving
-      const glow = Math.min(1, Math.max(0, t));
+      const glow = Math.min(1, Math.max(0, t * 2.2));
+      // subtle rightward drift of the whole field (max ~5% of panel width)
+      const drift = t * 0.05;
 
       const pts = NODES.map((n) => {
-        const a = n.ph + t * n.sp * TAU;
+        // slow, bounded orbit — a drift through the panel, not a sweep
+        const a = n.ph + t * n.sp * 0.55 * TAU;
         return {
-          x: (n.bx + Math.cos(a) * n.rx) * w,
+          x: (n.bx + drift + Math.cos(a) * n.rx) * w,
           y: (n.by + Math.sin(a * 0.85 + 0.6) * n.ry) * h,
           r: n.r,
           s: n.s,
         };
       });
+
 
       const maxD = Math.min(w, h) * (0.3 + 0.12 * glow);
       ctx.lineWidth = 0.6;
