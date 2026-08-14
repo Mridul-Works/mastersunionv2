@@ -713,7 +713,8 @@ function FacultyPage() {
           </div>
 
           {/* Giant type + strip + utility row */}
-          <div>
+          <div className="mt-[clamp(40px,8vh,86px)]">
+
             <div className="px-[clamp(1rem,2.5vw,2.5rem)]">
               <h2 className="sr-only">Join the Union</h2>
               {/* Fluid full-width display type: SVG auto-fits the container at any width */}
