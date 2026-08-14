@@ -7,6 +7,8 @@ import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 import MastersVideos from "@/components/MastersVideos";
 import FacultyHero from "@/components/FacultyHero";
 import HeroFadeOut from "@/components/HeroFadeOut";
+import StackReveal from "@/components/StackReveal";
+
 import FacultyStatsCard from "@/components/FacultyStatsCard";
 import { buildFacultyStats, statsRefreshedLabel } from "@/lib/faculty-stats";
 
