@@ -38,6 +38,7 @@ import vfPratap from "@/assets/faculty/visiting/pratap-giri.png.asset.json";
 import vfPradeep from "@/assets/faculty/visiting/pradeep-hota.png.asset.json";
 import vfHarshali from "@/assets/faculty/visiting/harshali-damle.png.asset.json";
 import vfAmit from "@/assets/faculty/visiting/amit-shrivastava.png.asset.json";
+import footerStripAsset from "@/assets/widget/widget-campus-life.jpg.asset.json";
 import vfMihir from "@/assets/faculty/visiting/mihir-mankad.png.asset.json";
 import vfShruti from "@/assets/faculty/visiting/shruti-mantri.png.asset.json";
 import vfAlireza from "@/assets/faculty/visiting/alireza-kabirian.png.asset.json";
@@ -691,22 +692,101 @@ function FacultyPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section id="cta" className="screen-section bg-[#0a0a0a] text-white">
-        <div className="page-shell-narrow text-center">
-          <p className="text-balance text-[0.98rem] italic leading-[1.25] text-white/90">
-            Learn from the people doing it — not just studying it.
-          </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <Link to="/applications_center" className="inline-flex items-center gap-2 bg-white px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-black transition-opacity hover:opacity-80" style={{ fontFamily: MONO }}>
-              Apply to Masters&apos; Union <ArrowUpRight className="size-3.5" />
-            </Link>
-            <a href="https://mastersunion.org/become-a-master" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-white/25 px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-white transition-colors hover:bg-white/10" style={{ fontFamily: MONO }}>
-              Or join them <ArrowUpRight className="size-3.5" />
-            </a>
+      {/* CTA / CLOSING FOOTER */}
+      <footer id="cta" className="relative min-h-[100svh] overflow-hidden bg-[#0a0a0a] text-white">
+        <div className="flex min-h-[100svh] flex-col justify-between pt-[clamp(4rem,14vh,10rem)]">
+          {/* Top CTA */}
+          <div className="page-shell-narrow text-center">
+            <p className="text-balance text-[0.98rem] italic leading-[1.35] text-white/85">
+              Learn from the people doing it — not just studying it.
+            </p>
+            <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+              <Link to="/applications_center" className="inline-flex items-center gap-2 bg-white px-4 py-2.5 text-[10px] uppercase tracking-[0.22em] text-black transition-opacity hover:opacity-80" style={{ fontFamily: MONO }}>
+                Apply to Masters&apos; Union <ArrowUpRight className="size-3" />
+              </Link>
+              <a href="https://mastersunion.org/become-a-master" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-white/20 px-4 py-2.5 text-[10px] uppercase tracking-[0.22em] text-white/85 transition-colors hover:bg-white/10" style={{ fontFamily: MONO }}>
+                Or join them <ArrowUpRight className="size-3" />
+              </a>
+            </div>
+          </div>
+
+          {/* Giant type + strip + utility row */}
+          <div>
+            <div className="px-[clamp(1rem,2.5vw,2.5rem)]">
+              <h2 className="sr-only">Join the Union</h2>
+              {/* Fluid full-width display type: SVG auto-fits the container at any width */}
+              <svg
+                aria-hidden
+                viewBox="0 0 1200 168"
+                className="hidden h-auto w-full sm:block"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                <text
+                  x="600"
+                  y="132"
+                  textAnchor="middle"
+                  textLength="1188"
+                  lengthAdjust="spacingAndGlyphs"
+                  fill="#f5f1e8"
+                  fontSize="170"
+                  fontWeight="700"
+                  style={{ fontFamily: "Inter, system-ui, sans-serif", letterSpacing: "-0.04em" }}
+                >
+                  JOIN THE UNION
+                </text>
+              </svg>
+              <div className="sm:hidden">
+                {["JOIN THE", "UNION"].map((line) => (
+                  <svg
+                    key={line}
+                    aria-hidden
+                    viewBox="0 0 600 120"
+                    className="h-auto w-full"
+                    preserveAspectRatio="xMidYMid meet"
+                  >
+                    <text
+                      x="300"
+                      y="98"
+                      textAnchor="middle"
+                      textLength="592"
+                      lengthAdjust="spacingAndGlyphs"
+                      fill="#f5f1e8"
+                      fontSize="120"
+                      fontWeight="700"
+                      style={{ fontFamily: "Inter, system-ui, sans-serif", letterSpacing: "-0.04em" }}
+                    >
+                      {line}
+                    </text>
+                  </svg>
+                ))}
+              </div>
+
+            </div>
+
+
+            <div className="relative mt-[clamp(1.5rem,4vh,3rem)] h-[clamp(80px,16vh,160px)] w-full">
+              <img
+                src={footerStripAsset.url}
+                alt="Masters' Union campus life"
+                loading="lazy"
+                className="h-full w-full object-cover opacity-45 grayscale-[0.35]"
+              />
+              <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-transparent to-[#0a0a0a]" />
+              <div aria-hidden className="absolute inset-0 bg-[#0a0a0a]/25" />
+            </div>
+
+            <div className="border-t border-white/10">
+              <div className="page-shell flex flex-wrap items-center justify-between gap-2 py-4 pb-[clamp(4.5rem,8vh,6rem)] text-[10px] uppercase tracking-[0.22em] text-white/40" style={{ fontFamily: MONO }}>
+                <span>© 2026 Masters&apos; Union</span>
+                <span className="text-white/30">
+                  Faculty · <span className="text-[#d8b45f]/70">Practitioners over professors</span>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+      </footer>
+
     </main>
   );
 }
