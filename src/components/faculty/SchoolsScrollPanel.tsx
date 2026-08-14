@@ -109,15 +109,15 @@ seeds.forEach((seed) => {
     kind: seed.anchor ? 0 : 1,
   });
 
-  // satellites: smaller stars orbiting the hub in varied organic clusters
-  const count = seed.anchor ? 10 + Math.round(rand() * 7) : 4 + Math.round(rand() * 4);
+  // satellites: smaller stars orbiting the hub in compact organic clusters
+  const count = seed.anchor ? 12 + Math.round(rand() * 8) : 5 + Math.round(rand() * 4);
   for (let k = 0; k < count; k++) {
     // full-circle orbit, but biased slightly leftward so clusters drift toward content
     const ang = rand() * Math.PI * 2;
-    const len = (seed.anchor ? 0.07 : 0.045) * between(0.4, 1.2);
+    const len = (seed.anchor ? 0.055 : 0.04) * between(0.4, 1.1);
     NODES.push({
-      bx: clampF(seed.x + Math.cos(ang) * len * 1.5, 0.02, MAX_X),
-      by: clampF(seed.y + Math.sin(ang) * len * 1.6, 0.02, 0.98),
+      bx: clampF(seed.x + Math.cos(ang) * len * 1.4, 0.02, MAX_X),
+      by: clampF(seed.y + Math.sin(ang) * len * 1.5, 0.02, 0.98),
       rx: between(0.008, 0.026),
       ry: between(0.008, 0.026),
       sp: between(0.22, 0.75),
