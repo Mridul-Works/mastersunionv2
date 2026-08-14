@@ -607,7 +607,7 @@ function FacultyPage() {
       </section>
 
       {/* BECOME A MASTER */}
-      <section className="screen-section border-y border-white/10 bg-[#0a0a0a] text-white">
+      <section ref={becomeMasterReveal.ref} className={becomeMasterReveal.className}>
         <div className="screen-y flex w-full flex-col items-center justify-center">
           <div className="page-shell w-full">
             <SectionIntro
