@@ -697,11 +697,11 @@ function FacultyPage() {
 
           {/* Editorial wordmark */}
           <div className="mt-[clamp(2.5rem,7vh,5rem)] w-full border-t border-white/10 pt-[clamp(1.5rem,4vh,2.75rem)]">
-            <ul className="page-shell flex flex-wrap items-baseline justify-center gap-x-[clamp(1rem,4vw,3.5rem)] gap-y-[clamp(0.5rem,2vh,1rem)]">
+            <ul className="page-shell flex flex-wrap items-baseline justify-center gap-x-[clamp(0.9rem,3vw,2.75rem)] gap-y-[clamp(0.4rem,1.5vh,0.9rem)] sm:flex-nowrap">
               {["Built", "Led", "Invested", "Shaped"].map((word, i) => (
                 <li key={word}>
                   <span
-                    className="block cursor-default select-none text-[clamp(2rem,7.5vw,5.5rem)] font-semibold uppercase leading-[0.95] tracking-tight text-white/25 transition-all duration-500 hover:-translate-y-1 hover:text-[#f5f1e8]"
+                    className="block cursor-default select-none text-[clamp(1.9rem,5.6vw,4.25rem)] font-semibold uppercase leading-[0.95] tracking-tight text-white/25 transition-all duration-500 hover:-translate-y-1 hover:text-[#f5f1e8]"
                     style={{ opacity: 1 - i * 0.04 }}
                   >
                     {word}
