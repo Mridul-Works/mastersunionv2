@@ -538,15 +538,11 @@ function FacultyPage() {
       {/* INDUSTRY PRACTITIONERS */}
       <section id="practitioners" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
-          <SectionHeader
+          <SectionIntro
             index="01"
             eyebrow="Industry Practitioners"
             title={<>The people who teach here are not between jobs. They are active.</>}
             intro="Half of the faculty are CEOs, MDs, founders and investors — bringing this week's decisions into the classroom, not last decade's case studies."
-            introCenter
-            dark
-            serif
-            wide
           />
           <EditorialGrid
             gallery
@@ -572,15 +568,11 @@ function FacultyPage() {
       {/* FULL-TIME FACULTY */}
       <section id="full-time" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
-          <SectionHeader
+          <SectionIntro
             index="02"
             eyebrow="Full-time Faculty"
             title={<>{FULLTIME.length} PhD faculty. Active researchers. Published where the best B-schools read.</>}
             intro="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing in FT50 and A* journals."
-            introCenter
-            dark
-            serif
-            wide
           />
           <EditorialGrid
             gallery
@@ -616,15 +608,11 @@ function FacultyPage() {
       {/* VISITING */}
       <section id="visiting" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
-          <SectionHeader
+          <SectionIntro
             index="03"
             eyebrow="Visiting Faculty"
             title={<>Professors who teach here because they believe in what Masters&apos; Union is building.</>}
             intro="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
-            introCenter
-            dark
-            serif
-            wide
           />
           <EditorialGrid
             gallery
@@ -670,12 +658,10 @@ function FacultyPage() {
       {/* TESTIMONIALS */}
       <section className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
-          <SectionHeader
+          <SectionIntro
             index="04"
             eyebrow="What students say"
             title={<>Learning from operators, in their own words.</>}
-            dark
-            serif
           />
           <StudentTestimonials items={TESTIMONIALS} />
 
@@ -685,27 +671,13 @@ function FacultyPage() {
       {/* BECOME A MASTER */}
       <section className="screen-section border-y border-white/10 bg-[#0a0a0a] text-white">
         <div className="screen-y flex w-full flex-col items-center justify-center">
-          <div className="page-shell w-full text-center">
-            <p
-              className="flex justify-center gap-3 text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]"
-              style={{ fontFamily: MONO }}
-            >
-              <span>05</span>
-              <span aria-hidden className="text-[#B89146]/50">/</span>
-              <span>Become a Master</span>
-            </p>
-
-            <h2
-              className="mx-auto mt-[clamp(1.25rem,3.5vh,2.25rem)] max-w-[min(100%,26ch)] text-balance text-[clamp(1.75rem,4.4vw,3.4rem)] font-medium italic leading-[1.06] tracking-tight text-white"
-              style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-            >
-              We&apos;re always looking for practitioners who want to teach what they know.
-            </h2>
-
-            <p className="mx-auto mt-[clamp(1.1rem,3vh,1.75rem)] max-w-[58ch] text-[0.98rem] leading-[1.6] text-white/60">
-              If you have built something, led something, invested in something, or shaped something — and you
-              believe the best way to teach business is to have done it — we want to hear from you.
-            </p>
+          <div className="page-shell w-full">
+            <SectionIntro
+              index="05"
+              eyebrow="Become a Master"
+              title={<>We&apos;re always looking for practitioners who want to teach what they know.</>}
+              intro={<>If you have built something, led something, invested in something, or shaped something — and you believe the best way to teach business is to have done it — we want to hear from you.</>}
+            />
 
             <div className="mt-[clamp(1.5rem,4vh,2.5rem)] flex justify-center">
               <a
