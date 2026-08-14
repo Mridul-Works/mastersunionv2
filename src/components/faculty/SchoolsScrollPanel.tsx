@@ -205,18 +205,18 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
       ctx.clearRect(0, 0, w, h);
       // density/brightness ramp saturates gently but geometry keeps moving
       const glow = Math.min(1, Math.max(0, t * 2.2));
-      // primarily leftward drift toward the content column (≈22% of panel width)
-      const drift = -driftEase(t) * 0.22;
+      // leftward drift, emerging from behind the meter and spreading inward
+      const drift = -driftEase(t) * 0.3;
 
       const pts = NODES.map((n) => {
         // slow, bounded orbit — a drift through the panel, not a sweep
-        const a = n.ph + t * n.sp * 0.55 * TAU;
+        const a = n.ph + t * n.sp * 0.5 * TAU;
         // hard geometric exclusion: nothing may pass MAX_X (the meter spine)
         const nx = Math.min(MAX_X, n.bx + drift + Math.cos(a) * n.rx);
         return {
           x: nx * w,
           // vertical motion is a very subtle secondary component
-          y: (n.by + Math.sin(a * 0.85 + 0.6) * n.ry * 0.2) * h,
+          y: (n.by + Math.sin(a * 0.85 + 0.6) * n.ry * 0.18) * h,
           r: n.r,
           s: n.s,
           kind: n.kind,
@@ -226,12 +226,12 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
 
 
       if (tier < 2) {
-        // 1. branches inside each institutional cluster — always present
-        ctx.lineWidth = 1.0;
+        // 1. hairline branches inside each cluster
+        ctx.lineWidth = 0.6;
         for (const pt of pts) {
           if (pt.parent < 0) continue;
           const p = pts[pt.parent];
-          const a = 0.12 + 0.14 * glow;
+          const a = 0.05 + 0.07 * glow;
           ctx.strokeStyle = `rgba(255,255,255,${a.toFixed(3)})`;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
@@ -239,16 +239,15 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
           ctx.stroke();
         }
 
-        // 2. bridges between clusters — revealed progressively, so separate
-        //    ecosystems gradually become one network as the section advances.
+        // 2. a few extra links revealed progressively along the scroll
         if (tier === 0) {
-          ctx.lineWidth = 1.1;
+          ctx.lineWidth = 0.7;
           for (const br of BRIDGES) {
             const reveal = smooth((t - br.at) / 0.3);
             if (reveal <= 0.001) continue;
             const a = pts[br.a];
             const b = pts[br.b];
-            const alpha = reveal * (0.14 + 0.14 * glow);
+            const alpha = reveal * (0.06 + 0.08 * glow);
             ctx.strokeStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -265,27 +264,29 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
       }
 
       // soft glow for every star
-      ctx.shadowBlur = 6;
-      ctx.shadowColor = "rgba(255,255,255,0.18)";
+      ctx.shadowBlur = 4;
+      ctx.shadowColor = "rgba(255,255,255,0.14)";
       for (const pt of pts) {
-        const base = pt.kind === 0 ? 0.50 : pt.kind === 1 ? 0.38 : pt.kind === 2 ? 0.26 : 0.18;
-        const a = base + pt.s * (0.12 + 0.22 * glow);
+        const base = pt.kind === 0 ? 0.34 : pt.kind === 1 ? 0.26 : pt.kind === 2 ? 0.16 : 0.12;
+        const a = base + pt.s * (0.08 + 0.14 * glow);
 
         ctx.fillStyle = `rgba(255,255,255,${a.toFixed(3)})`;
         ctx.beginPath();
-        ctx.arc(pt.x, pt.y, pt.r * (1.0 + 0.35 * glow), 0, TAU);
+        ctx.arc(pt.x, pt.y, pt.r * (1.0 + 0.25 * glow), 0, TAU);
         ctx.fill();
-        // anchors carry a faint halo — major institutions, still understated
+        // anchors carry a faint halo — understated, never a glowing blob
         if (pt.kind === 0) {
           ctx.shadowBlur = 0;
-          ctx.strokeStyle = `rgba(255,255,255,${(0.18 + 0.16 * glow).toFixed(3)})`;
-          ctx.lineWidth = 1.0;
+          ctx.strokeStyle = `rgba(255,255,255,${(0.09 + 0.08 * glow).toFixed(3)})`;
+          ctx.lineWidth = 0.7;
           ctx.beginPath();
-          ctx.arc(pt.x, pt.y, pt.r * 3.0 + 2, 0, TAU);
+          ctx.arc(pt.x, pt.y, pt.r * 2.8 + 2, 0, TAU);
           ctx.stroke();
+          ctx.shadowBlur = 4;
         }
       }
       ctx.shadowBlur = 0;
+
 
 
       // profile + degrade/recover without ever stopping the scroll mapping
