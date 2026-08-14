@@ -223,7 +223,7 @@ export default function MastersVideos({
         <div className="mx-auto w-full max-w-[1520px] px-5 pt-[clamp(0.75rem,2vh,1.25rem)] md:px-10 lg:pt-[clamp(28px,3.4vh,46px)]">
           {/* one large rounded exhibition container */}
           <div
-            className={`mv-reveal flex flex-col items-stretch justify-center gap-[clamp(1.25rem,2.6vw,3rem)] lg:flex-row lg:gap-[clamp(2.5rem,5vw,5rem)] ${line} ${shell} backdrop-blur-[14px] shadow-[0_30px_80px_-60px_rgba(0,0,0,0.6)]`}
+            className={`mv-reveal flex flex-col items-stretch justify-center gap-[clamp(1.25rem,2.6vw,3rem)] overflow-hidden rounded-[clamp(20px,2.6vw,34px)] border ${line} ${shell} backdrop-blur-[14px] shadow-[0_30px_80px_-60px_rgba(0,0,0,0.6)] lg:flex-row lg:gap-[clamp(2.5rem,5vw,5rem)]`}
             style={{ padding: "clamp(1rem,2.2vw,2rem)" }}
           >
               {/* featured portrait artwork */}
