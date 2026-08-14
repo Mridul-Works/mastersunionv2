@@ -177,8 +177,11 @@ export default function SchoolsScrollPanel() {
       // usable timeline even when the block is shorter than the viewport
       const span = Math.max(vh * 0.85, rect.height - vh * 0.6);
 
-      // raw, unclamped timeline: keeps advancing after the section is covered
-      const raw = (vh * 0.75 - rect.top) / span;
+      // document-space timeline: keeps advancing even while the section is
+      // pinned inside the sticky stack (where rect.top can stay constant)
+      const scrollY = window.scrollY || window.pageYOffset || 0;
+      const docTop = rect.top + scrollY;
+      const raw = (scrollY + vh * 0.75 - docTop) / span;
       progressRef.current = raw;
 
       const p = Math.min(1, Math.max(0, raw));
