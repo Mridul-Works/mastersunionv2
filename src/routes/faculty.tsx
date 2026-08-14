@@ -713,15 +713,63 @@ function FacultyPage() {
           {/* Giant type + strip + utility row */}
           <div>
             <div className="px-[clamp(1rem,2.5vw,2.5rem)]">
-              <h2 className="text-center font-semibold uppercase leading-[0.82] tracking-[-0.045em] text-[#f5f1e8] text-[clamp(3rem,11.6vw,14.5rem)]">
-                <span className="block sm:hidden">
-                  Join the
-                  <br />
-                  Union
-                </span>
-                <span className="hidden whitespace-nowrap sm:block">Join the Union</span>
-              </h2>
+              <h2 className="sr-only">Join the Union</h2>
+              {/* Fluid full-width display type: SVG auto-fits the container at any width */}
+              <svg
+                aria-hidden
+                viewBox="0 0 1200 168"
+                className="hidden h-auto w-full sm:block"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                <text
+                  x="600"
+                  y="132"
+                  textAnchor="middle"
+                  textLength="1188"
+                  lengthAdjust="spacingAndGlyphs"
+                  fill="#f5f1e8"
+                  fontSize="170"
+                  fontWeight="700"
+                  style={{ fontFamily: "Inter, system-ui, sans-serif", letterSpacing: "-0.04em" }}
+                >
+                  JOIN THE UNION
+                </text>
+              </svg>
+              <svg
+                aria-hidden
+                viewBox="0 0 600 250"
+                className="h-auto w-full sm:hidden"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                <text
+                  x="300"
+                  y="106"
+                  textAnchor="middle"
+                  textLength="588"
+                  lengthAdjust="spacingAndGlyphs"
+                  fill="#f5f1e8"
+                  fontSize="135"
+                  fontWeight="700"
+                  style={{ fontFamily: "Inter, system-ui, sans-serif", letterSpacing: "-0.04em" }}
+                >
+                  JOIN THE
+                </text>
+                <text
+                  x="300"
+                  y="226"
+                  textAnchor="middle"
+                  textLength="588"
+                  lengthAdjust="spacingAndGlyphs"
+                  fill="#f5f1e8"
+                  fontSize="135"
+                  fontWeight="700"
+                  style={{ fontFamily: "Inter, system-ui, sans-serif", letterSpacing: "-0.04em" }}
+                >
+                  UNION
+                </text>
+              </svg>
             </div>
+
 
             <div className="relative mt-[clamp(1.5rem,4vh,3rem)] h-[clamp(80px,16vh,160px)] w-full">
               <img
