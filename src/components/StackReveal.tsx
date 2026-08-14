@@ -19,11 +19,15 @@ function Panel({
   index,
   bg,
   isLast,
+  coverVhMultiplier,
+  prevCoverVhMultiplier,
 }: {
   children: React.ReactNode;
   index: number;
   bg: string;
   isLast: boolean;
+  coverVhMultiplier: number;
+  prevCoverVhMultiplier: number;
 }) {
   const innerRef = React.useRef<HTMLDivElement>(null);
   const [contentH, setContentH] = React.useState(0);
@@ -50,18 +54,21 @@ function Panel({
 
   const measured = contentH > 0 && vh > 0;
   const overflow = measured ? Math.max(0, contentH - vh) : 0;
+  const coverVh = measured ? coverVhMultiplier * vh : 0;
+  const prevCoverVh = measured ? prevCoverVhMultiplier * vh : 0;
 
   return (
     <div
       style={{
         zIndex: index + 1,
         position: "relative",
-        // content scroll range + one viewport of pinned "cover-up" range
-        // one viewport of overlap so the NEXT panel (pulled up by -vh)
-        // slides over this one while it stays pinned
-        height: measured ? (isLast ? contentH : contentH + vh) : undefined,
-        // pull this panel up so it enters over the previous pinned panel
-        marginTop: index > 0 && measured ? -vh : undefined,
+        // content scroll range + cover-up range; the cover-up range is
+        // multiplied per panel so certain sections stay pinned longer and the
+        // next sheet rises more slowly over them.
+        height: measured ? (isLast ? contentH : contentH + coverVh) : undefined,
+        // pull this panel up so it enters over the previous pinned panel by
+        // exactly the previous panel's cover-up range
+        marginTop: index > 0 && measured ? -prevCoverVh : undefined,
       }}
     >
       <div
@@ -79,17 +86,27 @@ export default function StackReveal({
   children,
   className = "",
   bg = "bg-[#0a0a0a]",
+  coverMultipliers,
 }: {
   children: React.ReactNode;
   className?: string;
   bg?: string;
+  /** Per-panel cover-up duration multipliers, relative to 1 viewport. */
+  coverMultipliers?: number[];
 }) {
   const panels = React.Children.toArray(children).filter(Boolean);
 
   return (
     <div className={`relative ${className}`}>
       {panels.map((child, i) => (
-        <Panel key={i} index={i} bg={bg} isLast={i === panels.length - 1}>
+        <Panel
+          key={i}
+          index={i}
+          bg={bg}
+          isLast={i === panels.length - 1}
+          coverVhMultiplier={coverMultipliers?.[i] ?? 1}
+          prevCoverVhMultiplier={coverMultipliers?.[i - 1] ?? 1}
+        >
           {child}
         </Panel>
       ))}
