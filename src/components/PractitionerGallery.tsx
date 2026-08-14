@@ -440,7 +440,7 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                     )}
                     {isActive && !isFlipped ? (
                       <div
-                        className={`pointer-events-none absolute bottom-4 right-4 z-10 flex items-center gap-1.5 rounded-full border border-white/20 bg-black/75 px-3 py-1.5 text-[9px] uppercase tracking-[0.22em] text-white/90 shadow-[0_8px_24px_-6px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 md:bottom-5 md:right-5 md:px-3.5 md:py-2 md:text-[10px] ${hasEntered && !hasFlipped ? "animate-mu-flip-hint" : ""} ${activeHovered ? "border-white/35 text-white" : ""}`}
+                        className={`pointer-events-none absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-white/20 bg-black/75 px-3 py-1.5 text-[9px] uppercase tracking-[0.22em] text-white/90 shadow-[0_8px_24px_-6px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 md:bottom-5 md:px-3.5 md:py-2 md:text-[10px] ${hasEntered && !hasFlipped ? "animate-mu-flip-hint" : ""} ${activeHovered ? "border-white/35 text-white" : ""}`}
                         style={{ fontFamily: MONO }}
                         aria-hidden
                       >
