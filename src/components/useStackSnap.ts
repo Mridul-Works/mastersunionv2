@@ -106,7 +106,10 @@ export function useStackSnap(containerRef: React.RefObject<HTMLElement | null>) 
     const inRange = () => {
       const y = window.scrollY || window.pageYOffset || 0;
       if (!stops.length) return false;
-      return y >= stops[0]! - 4 && y <= stops[stops.length - 1]! + 4;
+      return (
+        y >= stops[0]! - window.innerHeight &&
+        y <= stops[stops.length - 1]! + 4
+      );
     };
 
     let wheelAcc = 0;
