@@ -122,7 +122,7 @@ export default function StudentTestimonials({ items }: { items: Testimonial[] })
             const t = items[idx];
             const dist = Math.abs(off);
             const isActive = off === 0;
-            const step = visible === 1 ? 84 : visible === 3 ? 78 : 74;
+            const step = visible === 1 ? 82 : visible === 3 ? 104 : 102;
             const opacity = isActive ? 1 : dist === 1 ? (visible === 1 ? 0.3 : 0.45) : 0.16;
             const scale = isActive ? 1 : dist === 1 ? 0.92 : 0.84;
             return (
