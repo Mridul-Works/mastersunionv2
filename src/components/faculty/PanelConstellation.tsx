@@ -156,7 +156,7 @@ function buildOrbits(rand: () => number): Field {
     push(bx, rand(), 2);
   }
 
-  return { nodes, links: connect(nodes, rand, { maxDist: 0.115, gate: 0.62, maxPerNode: 2 }) };
+  return { nodes, links: connect(nodes, rand, { maxDist: 0.1, gate: 0.62, maxPerNode: 2 }) };
 }
 
 /**
@@ -332,7 +332,7 @@ export default function PanelConstellation({
       // ---- stars ------------------------------------------------------------
       for (const pt of pts) {
         if (pt.on <= 0.005) continue;
-        const base = pt.kind === 0 ? 0.42 : pt.kind === 1 ? 0.3 : 0.19;
+        const base = pt.kind === 0 ? 0.6 : pt.kind === 1 ? 0.44 : 0.28;
         const a = (base + pt.s * (0.08 + 0.14 * glow)) * pt.dim * pt.on;
         ctx.fillStyle = `rgba(255,255,255,${a.toFixed(3)})`;
         ctx.beginPath();
