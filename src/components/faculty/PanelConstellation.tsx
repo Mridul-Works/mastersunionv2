@@ -221,6 +221,35 @@ export default function PanelConstellation({
         const a = (base + s.s * 0.22) * far * near * enter * (1 + flare * 0.5);
         if (a <= 0.006) continue;
 
+        // ---- this star's OWN tapered trail --------------------------------
+        // The trail is simply where this same star sat slightly deeper in space,
+        // so it always points straight back along its own line of travel. It
+        // belongs to one star only and can never connect two stars.
+        if (tier < 2) {
+          const zBack = z + 0.1 + 1.35 / (z + 0.55);
+          const sb = FOCAL / zBack;
+          const bx = ox + s.x * sb * unit;
+          const by = oy + s.y * sb * unit;
+          const len = Math.hypot(x - bx, y - by);
+          if (len > 1.4) {
+            const tAlpha = a * (0.22 + 0.4 * clampF(scale * 0.45, 0, 1)) * (s.kind === 3 ? 0.5 : 1);
+            if (tAlpha > 0.008) {
+              const grad = ctx.createLinearGradient(bx, by, x, y);
+              grad.addColorStop(0, "rgba(255,255,255,0)");
+              grad.addColorStop(1, `rgba(255,255,255,${tAlpha.toFixed(3)})`);
+              ctx.strokeStyle = grad;
+              ctx.lineCap = "butt";
+              ctx.lineWidth = clampF(0.3 + scale * 0.2, 0.3, Math.max(0.4, s.r * grow * 0.9));
+              ctx.beginPath();
+              ctx.moveTo(bx, by);
+              ctx.lineTo(x, y);
+              ctx.stroke();
+            }
+          }
+        }
+
+
+
         if (flare > 0.01) {
           ctx.shadowColor = `rgba(255,255,255,${(0.16 * flare).toFixed(3)})`;
           ctx.shadowBlur = 6 + 12 * flare;
