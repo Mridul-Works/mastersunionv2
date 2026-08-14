@@ -22,10 +22,17 @@ import * as React from "react";
 
 const TAU = Math.PI * 2;
 
-/** How many panel-widths the field travels over the full scroll range. */
-const DRIFT_TOTAL = 1.75;
+/**
+ * The constellation's active scroll range is the ENTIRE lifespan of the section:
+ * progress 0..1 covers the pinned/unobstructed part, and everything up to
+ * LIFESPAN keeps running underneath the incoming stacked panel. It only settles
+ * once the next stack has fully covered this section.
+ */
+const LIFESPAN = 1.55;
+/** How many panel-widths the field travels over that whole lifespan. */
+const DRIFT_TOTAL = 2.7;
 /** Extra world width so nodes always exist beyond the right edge. */
-const WORLD_W = 1 + DRIFT_TOTAL + 0.35;
+const WORLD_W = 1 + DRIFT_TOTAL + 0.4;
 
 function makeRng(seed: number) {
   let a = seed >>> 0;
@@ -166,7 +173,7 @@ function buildOrbits(rand: () => number): Field {
   // per panel-width densities → constant supply across the whole world
   const anchors = Math.round(4 * WORLD_W);
   const mediums = Math.round(15 * WORLD_W);
-  const tinies = Math.round((150 + rand() * 30) * WORLD_W);
+  const tinies = Math.round((130 + rand() * 25) * WORLD_W);
 
   for (let i = 0; i < anchors; i++) push(rand() * WORLD_W, between(0.1, 0.9), 0);
   for (let i = 0; i < mediums; i++) push(rand() * WORLD_W, between(0.06, 0.94), 1);
@@ -233,7 +240,7 @@ function buildArcs(rand: () => number): Field {
   }
 
   // scattered isolated dust, generous negative space
-  const dust = Math.round((105 + rand() * 30) * WORLD_W);
+  const dust = Math.round((90 + rand() * 25) * WORLD_W);
   for (let i = 0; i < dust; i++) push(rand() * WORLD_W, rand(), 2);
 
   return { nodes, links: connect(nodes, rand, { maxDist: 0.095, gate: 0.55, maxPerNode: 2 }) };
@@ -293,10 +300,12 @@ export default function PanelConstellation({
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
+    // near-linear so the field keeps supplying nodes at a steady rate for the
+    // whole lifespan, including while the next stack slides over the section
     const driftEase = (t: number) => {
-      const x = Math.min(1, Math.max(0, t));
+      const x = clampF(t / LIFESPAN, 0, 1);
       const quint = x * x * x * (x * (x * 6 - 15) + 10);
-      return quint * 0.55 + x * 0.45;
+      return quint * 0.2 + x * 0.8;
     };
 
     const smooth = (x: number) => {
