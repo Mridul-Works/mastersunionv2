@@ -690,6 +690,7 @@ function FacultyPage() {
               </a>
             </div>
           </div>
+          </div>
 
           {/* Giant type + strip + utility row */}
           <div className="mt-[clamp(40px,8vh,86px)]">
