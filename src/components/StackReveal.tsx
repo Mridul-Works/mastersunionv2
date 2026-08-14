@@ -19,13 +19,11 @@ function Panel({
   index,
   bg,
   isLast,
-  hold,
 }: {
   children: React.ReactNode;
   index: number;
   bg: string;
   isLast: boolean;
-  hold: number;
 }) {
   const innerRef = React.useRef<HTMLDivElement>(null);
   const [contentH, setContentH] = React.useState(0);
@@ -59,11 +57,11 @@ function Panel({
         zIndex: index + 1,
         position: "relative",
         // content scroll range + one viewport of pinned "cover-up" range
-        height: measured
-          ? isLast
-            ? contentH
-            : contentH + vh * (1 + hold)
-          : undefined,
+        // one viewport of overlap so the NEXT panel (pulled up by -vh)
+        // slides over this one while it stays pinned
+        height: measured ? (isLast ? contentH : contentH + vh) : undefined,
+        // pull this panel up so it enters over the previous pinned panel
+        marginTop: index > 0 && measured ? -vh : undefined,
       }}
     >
       <div
@@ -81,20 +79,17 @@ export default function StackReveal({
   children,
   className = "",
   bg = "bg-[#0a0a0a]",
-  holds = {},
 }: {
   children: React.ReactNode;
   className?: string;
   bg?: string;
-  /** Extra pinned dwell per panel index, in viewport heights. */
-  holds?: Record<number, number>;
 }) {
   const panels = React.Children.toArray(children).filter(Boolean);
 
   return (
     <div className={`relative ${className}`}>
       {panels.map((child, i) => (
-        <Panel key={i} index={i} bg={bg} isLast={i === panels.length - 1} hold={holds[i] ?? 0}>
+        <Panel key={i} index={i} bg={bg} isLast={i === panels.length - 1}>
           {child}
         </Panel>
       ))}
