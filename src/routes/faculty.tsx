@@ -101,7 +101,13 @@ function SectionHeader({
       <h2
         className={`text-[clamp(1.55rem,3.2vw,2.75rem)] font-medium italic leading-[1.08] tracking-tight ${
           dark ? "text-white" : "text-black"
-        } ${isCenter ? "mx-auto max-w-[min(100%,28ch)]" : wide ? "max-w-[min(100%,40ch)]" : "max-w-[min(100%,34ch)]"}`}
+        } ${
+          isCenter
+            ? "mx-auto max-w-[min(100%,28ch)]"
+            : wide
+              ? "max-w-[min(100%,34ch)] md:max-w-[min(100%,60ch)] lg:max-w-[min(100%,80ch)]"
+              : "max-w-[min(100%,34ch)]"
+        }`}
         style={{ fontFamily: serif ? "'Fraunces', Georgia, serif" : "'Inter', system-ui, sans-serif" }}
       >
         {title}
@@ -528,6 +534,7 @@ function FacultyPage() {
             introCenter
             dark
             serif
+            wide
           />
           <EditorialGrid
             gallery
@@ -571,6 +578,7 @@ function FacultyPage() {
             introCenter
             dark
             serif
+            wide
           />
           <EditorialGrid
             gallery
