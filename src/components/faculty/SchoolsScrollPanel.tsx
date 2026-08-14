@@ -156,6 +156,11 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
   );
 }
 
+const smooth = (t: number) => {
+  const c = Math.min(1, Math.max(0, t));
+  return c * c * (3 - 2 * c);
+};
+
 export default function SchoolsScrollPanel() {
   const sectionRef = React.useRef<HTMLDivElement>(null);
   /** unbounded, continuous scroll timeline value */
@@ -163,6 +168,8 @@ export default function SchoolsScrollPanel() {
   const blocksRef = React.useRef<Array<HTMLElement | null>>([]);
   const meterRef = React.useRef<Array<HTMLElement | null>>([]);
   const barRef = React.useRef<HTMLDivElement>(null);
+  const labelRef = React.useRef<HTMLDivElement>(null);
+  const stageRef = React.useRef<Array<HTMLElement | null>>([]);
 
   React.useEffect(() => {
     const el = sectionRef.current;
@@ -187,6 +194,29 @@ export default function SchoolsScrollPanel() {
         if (!node) return;
         node.dataset["active"] = String(i === active);
       });
+
+      // ---- progressive, continuously interpolated reveal of the right-panel evidence
+      const n = STAGES.length; // 3
+      if (labelRef.current) {
+        const lr = smooth(p / 0.1);
+        labelRef.current.style.opacity = (0.08 + 0.92 * lr).toFixed(3);
+        labelRef.current.style.transform = `translate3d(0, ${((1 - lr) * 18).toFixed(2)}px, 0)`;
+      }
+
+      stageRef.current.forEach((node, i) => {
+        if (!node) return;
+        // reveal window: stage i starts appearing slightly before its slot
+        const start = i === 0 ? 0.04 : i / n - 0.1;
+        const rv = smooth((p - start) / 0.26);
+        // emphasis: peaks while the stage owns the meter, decays gently after
+        const center = (i + 0.55) / n;
+        const emph = 1 - Math.min(1, Math.abs(p - center) / 0.5);
+        const op = 0.06 + 0.94 * rv * (0.42 + 0.58 * smooth(emph));
+        node.style.opacity = op.toFixed(3);
+        node.style.transform = `translate3d(0, ${((1 - rv) * 18).toFixed(2)}px, 0)`;
+        node.style.filter = `brightness(${(0.82 + 0.28 * smooth(emph)).toFixed(3)})`;
+      });
+
 
       // restrained reveal for left editorial blocks
       blocksRef.current.forEach((node) => {
