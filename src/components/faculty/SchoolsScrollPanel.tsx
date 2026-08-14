@@ -27,17 +27,35 @@ type Node = {
   s: number;
 };
 
-const NODE_COUNT = 34;
-const NODES: Node[] = Array.from({ length: NODE_COUNT }, (_, i) => ({
-  bx: 0.06 + rand(i + 1) * 0.88,
-  by: 0.05 + rand(i + 21) * 0.9,
-  rx: 0.03 + rand(i + 41) * 0.07,
-  ry: 0.03 + rand(i + 61) * 0.09,
-  sp: 0.25 + rand(i + 121) * 0.75,
-  ph: rand(i + 141) * Math.PI * 2,
-  r: 0.7 + rand(i + 81) * 1.5,
-  s: 0.35 + rand(i + 101) * 0.65,
-}));
+/**
+ * Denser field built as small clusters rather than one scaled-up grid: ~2x the
+ * node count of before, with smaller radii so the geometry reads as many little
+ * networks filling the lower/outer areas instead of a few oversized points.
+ */
+const CLUSTER_COUNT = 14;
+const PER_CLUSTER = 5;
+const NODES: Node[] = Array.from({ length: CLUSTER_COUNT }, (_, c) => {
+  // cluster anchors spread over the full panel, including bottom + outer edges
+  const cx = 0.04 + rand(c + 3) * 0.92;
+  const cy = 0.04 + rand(c + 37) * 0.92;
+  const spread = 0.05 + rand(c + 71) * 0.1;
+  return Array.from({ length: PER_CLUSTER }, (_, k) => {
+    const i = c * PER_CLUSTER + k;
+    return {
+      bx: Math.min(0.97, Math.max(0.02, cx + (rand(i + 1) - 0.5) * spread * 2)),
+      by: Math.min(0.98, Math.max(0.02, cy + (rand(i + 21) - 0.5) * spread * 2.2)),
+      rx: 0.015 + rand(i + 41) * 0.055,
+      ry: 0.02 + rand(i + 61) * 0.07,
+      sp: 0.25 + rand(i + 121) * 0.75,
+      ph: rand(i + 141) * Math.PI * 2,
+      // varied but smaller dots so a denser field stays atmospheric
+      r: 0.45 + rand(i + 81) * 1.15,
+      s: 0.28 + rand(i + 101) * 0.6,
+    } as Node;
+  });
+}).flat();
+const NODE_COUNT = NODES.length;
+
 
 const TAU = Math.PI * 2;
 
