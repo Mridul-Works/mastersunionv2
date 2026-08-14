@@ -68,19 +68,20 @@ const minorCount = 8 + Math.round(rand() * 3); // 8–11 minor hubs
 type Seed = { x: number; y: number; anchor: boolean };
 const seeds: Seed[] = [];
 
-// Anchors form a compact diagonal / horizontal cluster near the meter, not a vertical spine.
-// Their satellites extend outward, filling the rest of the panel.
+// 3-4 anchors cluster in a compact region near the meter (right side).
+// Their satellites and minor hubs extend outward to fill the rest of the panel,
+// so the constellation reads as distinct clusters rather than a vertical chain.
 for (let i = 0; i < anchorCount; i++) {
   let attempts = 0;
   let x = 0;
   let y = 0;
   do {
-    x = clampF(between(0.62, 0.88), 0.45, MAX_X);
-    y = clampF(between(0.38, 0.62), 0.15, 0.85);
+    x = clampF(between(0.72, 0.88), 0.55, MAX_X);
+    y = clampF(between(0.35, 0.55), 0.20, 0.80);
     attempts++;
   } while (
     attempts < 20 &&
-    seeds.some((s) => s.anchor && Math.hypot(s.x - x, s.y - y) < 0.14)
+    seeds.some((s) => s.anchor && Math.hypot(s.x - x, s.y - y) < 0.08)
   );
   seeds.push({ x, y, anchor: true });
 }
