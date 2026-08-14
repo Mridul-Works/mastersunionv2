@@ -59,6 +59,9 @@ const clampF = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, 
  */
 const MAX_X = 0.985;
 
+/** Inter-cluster relationships, each revealed at its own point in the scroll. */
+const BRIDGES: { a: number; b: number; at: number }[] = [];
+
 const anchorCount = 3 + Math.round(rand()); // 3–4 anchors
 const minorCount = 4 + Math.round(rand() * 3); // 4–7 minor hubs
 
@@ -159,8 +162,6 @@ for (let i = 0; i < loneCount; i++) {
   });
 }
 
-/** Inter-cluster relationships, each revealed at its own point in the scroll. */
-const BRIDGES: { a: number; b: number; at: number }[] = [];
 for (let i = 0; i < HUBS.length; i++) {
   for (let j = i + 1; j < HUBS.length; j++) {
     const a = NODES[HUBS[i]];
