@@ -189,6 +189,19 @@ export default function SchoolsScrollPanel() {
         node.dataset["active"] = String(i === active);
       });
 
+      // one shared stage viewport: long slow crossfades, only one dominant state
+      const span = 1 / STAGES.length;
+      stageRef.current.forEach((node, i) => {
+        if (!node) return;
+        const d = (p - (i + 0.5) * span) / span; // -inf..inf in stage units
+        const ad = Math.abs(d);
+        const f = Math.min(1, Math.max(0, (ad - 0.28) / 0.42));
+        const o = 1 - f * f * (3 - 2 * f);
+        node.style.opacity = o.toFixed(3);
+        node.style.visibility = o < 0.01 ? "hidden" : "visible";
+        node.style.transform = `translate3d(0, ${(-Math.max(-1.4, Math.min(1.4, d)) * 14).toFixed(2)}px, 0)`;
+      });
+
       // restrained reveal for left editorial blocks
       blocksRef.current.forEach((node) => {
         if (!node) return;
