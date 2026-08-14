@@ -53,9 +53,10 @@ export function SectionIntro({
       </p>
 
       <h2
-        className="mx-auto mt-[clamp(1.25rem,3.5vh,2.25rem)] max-w-[min(100%,26ch)] text-balance text-[clamp(1.75rem,4.4vw,3.4rem)] font-medium italic leading-[1.06] tracking-tight text-white"
-        style={{ fontFamily: SERIF }}
+        className="mx-auto mt-[clamp(1.25rem,3.5vh,2.25rem)] max-w-[min(100%,26ch)] text-balance text-[clamp(1.75rem,4.4vw,3.4rem)] font-bold not-italic leading-[1.06] tracking-[-0.025em] text-white"
+        style={{ fontFamily: SANS }}
       >
+
         {title}
       </h2>
 
