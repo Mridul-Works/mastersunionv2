@@ -63,24 +63,10 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
    * Hybrid devices can have both a fine pointer and a touchscreen, so viewport
    * breakpoints are not a reliable input signal. Start with the device's actual
    * capabilities, then follow the pointer type used for the latest interaction.
-   * Tablets in a tab-sized viewport also default to "tap" so the preview matches
-   * the expected touch UX.
    */
   useEffect(() => {
-    const mqTouch = window.matchMedia("(any-pointer: coarse)");
-    const mqTablet = window.matchMedia("(max-width: 1024px)");
-    const update = () => {
-      const hasTouch = navigator.maxTouchPoints > 0 || mqTouch.matches;
-      const isTablet = mqTablet.matches;
-      setInputMode(hasTouch || isTablet ? "touch" : "pointer");
-    };
-    update();
-    mqTouch.addEventListener("change", update);
-    mqTablet.addEventListener("change", update);
-    return () => {
-      mqTouch.removeEventListener("change", update);
-      mqTablet.removeEventListener("change", update);
-    };
+    const hasTouch = navigator.maxTouchPoints > 0 || window.matchMedia("(any-pointer: coarse)").matches;
+    setInputMode(hasTouch ? "touch" : "pointer");
   }, []);
 
   /**
