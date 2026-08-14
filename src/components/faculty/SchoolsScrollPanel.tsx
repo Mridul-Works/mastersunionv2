@@ -101,7 +101,7 @@ seeds.forEach((seed) => {
   NODES.push({
     bx: seed.x,
     by: seed.y,
-    rx: between(0.012, 0.032),
+    rx: between(0.018, 0.045),
     ry: between(0.012, 0.032),
     sp: between(0.18, 0.52),
     ph: rand() * Math.PI * 2,
