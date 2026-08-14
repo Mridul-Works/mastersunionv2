@@ -363,7 +363,7 @@ export default function SchoolsScrollPanel() {
             </div>
           </div>
 
-          </div>
+
 
           {/* meter — dedicated protected column, never overlapped by the network */}
           <div className="relative z-20 flex w-[54px] shrink-0 flex-col justify-between py-8 pl-2 pr-4 md:w-[60px] md:pr-5">
