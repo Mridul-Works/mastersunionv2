@@ -2,6 +2,7 @@ import type { FacultyStat } from "@/lib/faculty-stats";
 
 const MONO = "'JetBrains Mono', ui-monospace, monospace";
 const SERIF_IT = "'Fraunces', Georgia, serif";
+const SANS_H = "'Inter', system-ui, sans-serif";
 
 /**
  * "By the numbers" panel — belongs to SECTION 2 (white). Light glass treatment,
@@ -56,8 +57,8 @@ export default function FacultyStatsCard({
         {stats.map((s) => (
           <div key={s.l} className="group flex min-w-0 flex-col items-center text-center">
             <div
-              className={`text-[clamp(1.5rem,4.6vw,2.6rem)] font-medium leading-[0.9] tracking-[-0.035em] ${dark ? "text-white" : "text-black"}`}
-              style={{ fontFamily: SERIF_IT }}
+              className={`text-[clamp(1.5rem,4.6vw,2.6rem)] font-extrabold not-italic leading-[0.9] tracking-[-0.04em] ${dark ? "text-white" : "text-black"}`}
+              style={{ fontFamily: SANS_H }}
             >
               {s.v}
             </div>
