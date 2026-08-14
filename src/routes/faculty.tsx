@@ -70,6 +70,7 @@ function SectionHeader({
   title,
   intro,
   align = "left",
+  introCenter = false,
   dark = false,
   serif = false,
   wide = false,
@@ -79,11 +80,13 @@ function SectionHeader({
   title: React.ReactNode;
   intro?: React.ReactNode;
   align?: "left" | "center";
+  introCenter?: boolean;
   dark?: boolean;
   serif?: boolean;
   wide?: boolean;
 }) {
   const isCenter = align === "center";
+  const introIsCenter = isCenter || introCenter;
   return (
     <header className={isCenter ? "text-center" : ""}>
       <p
@@ -107,7 +110,7 @@ function SectionHeader({
         <p
           className={`mt-[clamp(0.75rem,2.2vh,1.5rem)] text-[clamp(0.92rem,1.1vw,0.98rem)] leading-[1.6] ${
             dark ? "text-white/60" : "text-black/60"
-          } ${isCenter ? "mx-auto max-w-[min(100%,70ch)]" : "max-w-[min(100%,72ch)]"}`}
+          } ${introIsCenter ? "mx-auto max-w-[min(100%,56ch)] text-center" : "max-w-[min(100%,72ch)]"}`}
         >
           {intro}
         </p>
