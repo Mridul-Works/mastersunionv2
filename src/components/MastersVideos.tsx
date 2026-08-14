@@ -267,7 +267,7 @@ export default function MastersVideos({
               </div>
 
               {/* editorial information panel */}
-              <div className="order-2 flex min-w-0 flex-col justify-center">
+              <div className="order-2 flex min-w-0 flex-1 flex-col justify-center lg:max-w-[640px]">
                 <p className="mv-reveal font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-[#B89146]">
                   500+ Masters · Masterclass
                 </p>
