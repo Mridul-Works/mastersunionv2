@@ -789,6 +789,7 @@ function FacultyPage() {
           </div>
         </div>
       </footer>
+      </div>
     </main>
 
   );
