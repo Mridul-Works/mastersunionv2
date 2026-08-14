@@ -436,6 +436,14 @@ function FacultyPage() {
     }
   }, []);
 
+  const industryReveal = useRevealSection<HTMLElement>("screen-section border-y border-white/10 bg-[#0a0a0a]");
+  const fullTimeReveal = useRevealSection<HTMLElement>("screen-section border-y border-white/10 bg-[#0a0a0a]");
+  const visitingReveal = useRevealSection<HTMLElement>("screen-section border-y border-white/10 bg-[#0a0a0a]");
+  const testimonialsReveal = useRevealSection<HTMLElement>("screen-section border-y border-white/10 bg-[#0a0a0a]");
+  const becomeMasterReveal = useRevealSection<HTMLElement>("screen-section border-y border-white/10 bg-[#0a0a0a] text-white");
+  const numberReveal = useRevealSection<HTMLElement>("group relative flex min-h-[110svh] flex-col items-center justify-center overflow-hidden border-y border-white/10 bg-[#0a0a0a] py-[clamp(4rem,10vh,8rem)] text-white");
+  const footerReveal = useRevealSection<HTMLElement>("relative min-h-[100svh] overflow-x-hidden bg-[#0a0a0a] text-white");
+
   return (
     <main className="min-h-screen bg-[#0a0a0a] pb-24 text-white sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
       <SectionNav items={NAV} applyHref="#cta" />
