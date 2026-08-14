@@ -768,7 +768,7 @@ function FacultyPage() {
             </div>
 
 
-            <div className="relative mt-[clamp(1.5rem,4vh,3rem)] h-[clamp(220px,44vh,460px)] w-full">
+            <div className="relative mt-[clamp(1.5rem,4vh,3rem)] h-[clamp(209px,41.8vh,437px)] w-full">
               <img
                 src={footerStripAsset.url}
                 alt="Masters' Union campus life"
