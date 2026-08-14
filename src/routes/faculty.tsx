@@ -477,34 +477,14 @@ function FacultyPage() {
       {/* FULL-TIME FACULTY */}
       <section id="full-time" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
-          {/* Two-card editorial layout */}
-          <div className="grid items-stretch gap-5 lg:grid-cols-[minmax(0,45%)_minmax(0,55%)] lg:gap-7">
-            {/* Card 1 — Full-time Faculty */}
-            <div className="flex flex-col rounded-[clamp(16px,2.2vw,24px)] border border-white/10 bg-white/[0.04] p-[clamp(1.25rem,2.8vw,2.5rem)]">
-              <p className="mb-[clamp(0.4rem,1.2vh,0.75rem)] flex gap-3 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] text-white/50">
-                <span>02</span>
-                <span aria-hidden className="text-white/25">/</span>
-                <span>Full-time Faculty</span>
-              </p>
-              <h2 className="max-w-[26ch] text-[clamp(1.5rem,2.9vw,2.5rem)] font-medium italic leading-[1.1] tracking-tight text-white" style={{ fontFamily: SERIF }}>
-                {FULLTIME.length} PhD faculty. Active researchers. Published where the best B-schools read.
-              </h2>
-              <p className="mt-[clamp(0.75rem,2.2vh,1.5rem)] max-w-sm text-[0.98rem] leading-relaxed text-white/60">
-                A core of PhD faculty from India&apos;s and the world&apos;s top institutions — shaping curriculum and publishing in FT50 and A* journals.
-              </p>
-            </div>
-
-            {/* Card 2 — Faculty from Leading Institutions */}
-            <div className="flex flex-col rounded-[clamp(16px,2.2vw,24px)] border border-white/10 bg-white/[0.04] p-[clamp(1.25rem,2.8vw,2.5rem)]">
-              <h2 className="text-[clamp(1.15rem,2vw,1.75rem)] font-normal italic leading-[1.1] tracking-tight text-white/90" style={{ fontFamily: SERIF }}>
-                FACULTY FROM LEADING INSTITUTIONS
-              </h2>
-              <p className="mt-[clamp(0.75rem,2.2vh,1.5rem)] text-[0.98rem] leading-[1.55] text-white/70">
-                Doctorates from IIM Ahmedabad, Bangalore, Calcutta, Kozhikode and Tiruchirappalli, IIT Bombay and Kanpur, Delhi University, Shiv Nadar, Christ University, TERI and the University of Bath — across finance, marketing, operations, organisational behaviour, economics, decision sciences and strategy.
-              </p>
-            </div>
-          </div>
-
+          <SectionHeader
+            index="02"
+            eyebrow="Full-time Faculty"
+            title={<>{FULLTIME.length} PhD faculty. Active researchers. Published where the best B-schools read.</>}
+            intro="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing in FT50 and A* journals."
+            dark
+            serif
+          />
           <EditorialGrid
             gallery
             cardStats
@@ -518,6 +498,9 @@ function FacultyPage() {
             ]}
             items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
           />
+          <p className="mt-[clamp(0.75rem,1.8vh,1.25rem)] max-w-[62ch] text-[0.98rem] leading-[1.55] text-white/70">
+            Doctorates from IIM Ahmedabad, Bangalore, Calcutta, Kozhikode and Tiruchirappalli, IIT Bombay and Kanpur, Delhi University, Shiv Nadar, Christ University, TERI and the University of Bath — across finance, marketing, operations, organisational behaviour, economics, decision sciences and strategy.
+          </p>
         </div>
       </section>
 
