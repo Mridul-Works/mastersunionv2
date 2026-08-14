@@ -205,7 +205,17 @@ export default function PractitionerGallery({
         if (!Number.isNaN(o)) alpha *= o;
         node = node.parentElement;
       }
-      inViewRef.current = alpha > 0.06;
+      // occlusion: while another stacked section fully covers this gallery there
+      // is no reason to paint or animate it
+      let occluded = false;
+      if (alpha > 0.06) {
+        const r = el.getBoundingClientRect();
+        const cx = Math.min(Math.max(r.left + r.width / 2, 1), window.innerWidth - 1);
+        const cy = Math.min(Math.max(r.top + r.height / 2, 1), window.innerHeight - 1);
+        const hit = document.elementFromPoint(cx, cy);
+        occluded = !!hit && !el.contains(hit) && hit !== el;
+      }
+      inViewRef.current = alpha > 0.06 && !occluded;
       // a fully faded-out gallery costs nothing to paint either
       const stage = stageRef.current;
       if (stage) stage.style.visibility = inViewRef.current ? "visible" : "hidden";
