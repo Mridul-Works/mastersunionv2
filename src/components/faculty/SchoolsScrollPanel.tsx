@@ -54,7 +54,6 @@ const NODES: Node[] = Array.from({ length: CLUSTER_COUNT }, (_, c) => {
     } as Node;
   });
 }).flat();
-const NODE_COUNT = NODES.length;
 
 
 const TAU = Math.PI * 2;
@@ -118,8 +117,8 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
       ctx.clearRect(0, 0, w, h);
       // density/brightness ramp saturates gently but geometry keeps moving
       const glow = Math.min(1, Math.max(0, t * 2.2));
-      // primarily leftward drift toward the content column (≈7.5% of panel width)
-      const drift = -driftEase(t) * 0.075;
+      // primarily leftward drift toward the content column (≈15% of panel width — 2x)
+      const drift = -driftEase(t) * 0.15;
 
 
       const pts = NODES.map((n) => {
@@ -136,7 +135,7 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
 
       if (tier < 2) {
         const step = tier === 0 ? 1 : 2; // tier 1 halves the link pass
-        const maxD = Math.min(w, h) * (0.3 + 0.12 * glow) * (tier === 0 ? 1 : 0.85);
+        const maxD = Math.min(w, h) * (0.17 + 0.07 * glow) * (tier === 0 ? 1 : 0.85);
         ctx.lineWidth = 0.6;
         for (let i = 0; i < pts.length; i++) {
           for (let j = i + step; j < pts.length; j += step) {
@@ -144,7 +143,7 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
             const dy = pts[i].y - pts[j].y;
             const d = Math.hypot(dx, dy);
             if (d > maxD) continue;
-            const a = (1 - d / maxD) * (0.06 + 0.11 * glow);
+            const a = (1 - d / maxD) * (0.05 + 0.09 * glow);
             ctx.strokeStyle = `rgba(255,255,255,${a.toFixed(3)})`;
             ctx.beginPath();
             ctx.moveTo(pts[i].x, pts[i].y);
