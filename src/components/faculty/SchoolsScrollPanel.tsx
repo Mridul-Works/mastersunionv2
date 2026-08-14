@@ -262,11 +262,11 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
 
       if (tier < 2) {
         // 1. branches inside each institutional cluster — always present
-        ctx.lineWidth = 0.55;
+        ctx.lineWidth = 0.6;
         for (const pt of pts) {
           if (pt.parent < 0) continue;
           const p = pts[pt.parent];
-          const a = 0.035 + 0.075 * glow;
+          const a = 0.055 + 0.10 * glow;
           ctx.strokeStyle = `rgba(255,255,255,${a.toFixed(3)})`;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
@@ -277,13 +277,13 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
         // 2. bridges between clusters — revealed progressively, so separate
         //    ecosystems gradually become one network as the section advances.
         if (tier === 0) {
-          ctx.lineWidth = 0.7;
+          ctx.lineWidth = 0.75;
           for (const br of BRIDGES) {
             const reveal = smooth((t - br.at) / 0.3);
             if (reveal <= 0.001) continue;
             const a = pts[br.a];
             const b = pts[br.b];
-            const alpha = reveal * (0.05 + 0.07 * glow);
+            const alpha = reveal * (0.08 + 0.12 * glow);
             ctx.strokeStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
