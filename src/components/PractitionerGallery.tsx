@@ -523,7 +523,7 @@ export default function PractitionerGallery({
                       {/* TOP ROW — category + prominent brand mark */}
                       <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2 sm:gap-3">
                         <div
-                          className="min-w-0 truncate text-[8px] uppercase tracking-[0.16em] text-white/45 sm:text-[9px] sm:tracking-[0.22em] md:text-[10.5px]"
+                          className="min-w-0 text-[8px] uppercase leading-[1.35] tracking-[0.14em] text-white/45 sm:truncate sm:text-[9px] sm:tracking-[0.22em] md:text-[10.5px]"
                           style={{ fontFamily: MONO }}
                         >
                           {category}
