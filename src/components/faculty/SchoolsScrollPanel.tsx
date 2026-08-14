@@ -169,17 +169,28 @@ export default function SchoolsScrollPanel() {
     const el = sectionRef.current;
     if (!el) return;
     let raf = 0;
+    /** scroll position at which this section's own timeline starts */
+    let startY: number | null = null;
 
     const update = () => {
       raf = 0;
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight || 1;
+      const scrollY = window.scrollY || window.pageYOffset || 0;
 
-      // Section-local timeline: 0% the moment the block has properly entered the
-      // viewport, 100% as its bottom edge leaves the top. Never global scroll.
-      const span = Math.max(vh * 0.5, rect.height + vh * 0.6);
-      const raw = (vh * 0.6 - rect.top) / span;
+      // Section-local timeline: anchored to the scroll position at which the
+      // block has properly entered the viewport, so 0% = "just appeared" no
+      // matter how far the page was scrolled before, and it keeps advancing
+      // while the section is pinned inside the sticky stack.
+      const entered = rect.top <= vh * 0.55;
+      if (!entered) startY = null;
+      else if (startY === null) startY = scrollY;
+
+      const span = vh * 1.9;
+      const raw = startY === null ? 0 : (scrollY - startY) / span;
       progressRef.current = raw;
+
+
 
 
       const p = Math.min(1, Math.max(0, raw));
