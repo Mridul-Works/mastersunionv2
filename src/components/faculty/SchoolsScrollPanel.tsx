@@ -52,131 +52,91 @@ const HUBS: number[] = [];
 const clampF = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
 
 /**
- * A constellation of institutions that emerges from beneath the meter (the
- * right edge of the pattern box) and branches outward to the left, toward the
- * story column. Geometry is hard-constrained to x <= 0.985 of the pattern box,
- * which ends before the protected meter column — nothing can ever cross it.
+ * Constellation A — sparse clusters that emerge from beneath the meter edge on
+ * the right and spread inward (leftward), thinning out as they travel. Geometry
+ * is hard-capped at MAX_X so nothing ever renders over the meter column.
  */
-const MAX_X = 0.985;
+const MAX_X = 0.995;
 
-/** Inter-cluster relationships, each revealed at its own point in the scroll. */
+/** Short, sparse links, each revealed at its own point in the scroll. */
 const BRIDGES: { a: number; b: number; at: number }[] = [];
 
-const anchorCount = 3 + Math.round(rand()); // 3–4 anchor constellations
-const minorCount = 6 + Math.round(rand() * 3); // 6–9 minor constellations
-
+// 4–5 clusters whose "origin" hugs the meter edge, then step inward
+const clusterCount = 4 + Math.round(rand());
 type Seed = { x: number; y: number; anchor: boolean };
 const seeds: Seed[] = [];
 
-// Place anchors across a 2D region in the right half of the panel, so their
-// satellite clusters overlap and intermingle instead of lining up vertically.
-for (let i = 0; i < anchorCount; i++) {
-  let attempts = 0;
+for (let i = 0; i < clusterCount; i++) {
+  // depth 0 = right at the meter, later clusters progressively further inward
+  const depth = i / Math.max(1, clusterCount - 1);
   let x = 0;
   let y = 0;
-  do {
-    x = clampF(between(0.55, 0.90), 0.45, MAX_X);
-    y = clampF(between(0.18, 0.82), 0.12, 0.88);
-    attempts++;
-  } while (
-    attempts < 30 &&
-    seeds.some((s) => s.anchor && Math.hypot(s.x - x, s.y - y) < 0.18)
-  );
-  seeds.push({ x, y, anchor: true });
-}
-for (let i = 0; i < minorCount; i++) {
-  // minor constellations drift in the left/middle field, never overlapping anchors
   let attempts = 0;
-  let x = 0;
-  let y = 0;
   do {
-    x = clampF(between(0.15, 0.55), 0.08, MAX_X);
-    y = clampF(rand(), 0.12, 0.88);
+    x = clampF(0.94 - depth * between(0.5, 0.78) + (rand() - 0.5) * 0.06, 0.08, MAX_X);
+    y = clampF(between(0.1, 0.9), 0.08, 0.92);
     attempts++;
-  } while (
-    attempts < 30 &&
-    seeds.some((s) => Math.hypot(s.x - x, s.y - y) < 0.14)
-  );
-  seeds.push({ x, y, anchor: false });
+  } while (attempts < 30 && seeds.some((s) => Math.hypot(s.x - x, (s.y - y) * 0.7) < 0.22));
+  seeds.push({ x, y, anchor: depth < 0.5 });
 }
 
-seeds.forEach((seed) => {
+seeds.forEach((seed, si) => {
   const hubIndex = NODES.length;
   HUBS.push(hubIndex);
+  const fade = 1 - si / (seeds.length + 1); // clusters thin out away from the meter
   NODES.push({
     bx: seed.x,
     by: seed.y,
-    rx: between(0.018, 0.045),
-    ry: between(0.012, 0.032),
-    sp: between(0.18, 0.52),
+    rx: between(0.014, 0.032),
+    ry: between(0.008, 0.02),
+    sp: between(0.12, 0.34),
     ph: rand() * Math.PI * 2,
-    r: seed.anchor ? between(4.0, 6.5) : between(2.8, 4.2),
-    s: seed.anchor ? between(0.85, 0.98) : between(0.6, 0.82),
+    r: seed.anchor ? between(2.2, 3.0) : between(1.6, 2.2),
+    s: seed.anchor ? between(0.7, 0.9) : between(0.5, 0.7),
     parent: -1,
     kind: seed.anchor ? 0 : 1,
   });
 
-  // satellites: smaller stars orbiting the hub in dense organic clusters
-  const count = seed.anchor ? 18 + Math.round(rand() * 12) : 7 + Math.round(rand() * 4);
+  // few satellites, biased leftward — spread rather than a dense ball
+  const count = Math.max(3, Math.round((seed.anchor ? 7 : 5) * fade + rand() * 3));
   for (let k = 0; k < count; k++) {
-    const ang = seed.anchor
-      ? Math.PI * 0.35 + rand() * Math.PI * 1.3 // strongly leftward bias for anchors
-      : rand() * Math.PI * 2;
-    const len = (seed.anchor ? 0.09 : 0.05) * between(0.5, 1.3);
+    const ang = Math.PI * 0.3 + rand() * Math.PI * 1.4;
+    const len = between(0.05, 0.14);
+    const idx = NODES.length;
     NODES.push({
-      bx: clampF(seed.x + Math.cos(ang) * len * 1.7, 0.02, MAX_X),
-      by: clampF(seed.y + Math.sin(ang) * len * 1.4, 0.02, 0.98),
-      rx: between(0.012, 0.040),
-      ry: between(0.008, 0.028),
-      sp: between(0.22, 0.75),
+      bx: clampF(seed.x + Math.cos(ang) * len * 1.5, 0.03, MAX_X),
+      by: clampF(seed.y + Math.sin(ang) * len * 0.9, 0.03, 0.97),
+      rx: between(0.01, 0.028),
+      ry: between(0.006, 0.018),
+      sp: between(0.16, 0.44),
       ph: rand() * Math.PI * 2,
-      r: between(1.4, 2.6),
-      s: between(0.35, 0.72),
-      parent: hubIndex,
+      r: between(0.8, 1.5),
+      s: between(0.28, 0.55),
+      parent: rand() > 0.45 ? hubIndex : -1,
       kind: 2,
     });
+    if (rand() > 0.82) BRIDGES.push({ a: hubIndex, b: idx, at: between(0.06, 0.7) });
   }
 });
 
-// short intra-cluster links between nearby satellites (orbits, not long chains)
-for (let i = 0; i < HUBS.length; i++) {
-  const hub = HUBS[i];
-  const satellites: number[] = [];
-  for (let j = hub + 1; j < NODES.length && NODES[j].parent === hub; j++) {
-    satellites.push(j);
-  }
-  for (let a = 0; a < satellites.length; a++) {
-    for (let b = a + 1; b < satellites.length; b++) {
-      const n1 = NODES[satellites[a]];
-      const n2 = NODES[satellites[b]];
-      const d = Math.hypot(n1.bx - n2.bx, n1.by - n2.by);
-      if (d < 0.14 && rand() > 0.4) {
-        BRIDGES.push({ a: satellites[a], b: satellites[b], at: between(0.08, 0.7) });
-      }
-    }
-  }
-}
-
-
-// isolated stars — gentle negative space between clusters
-const loneCount = 40 + Math.round(rand() * 16);
+// isolated stars — generous negative space, thinning toward the left
+const loneCount = 22 + Math.round(rand() * 10);
 for (let i = 0; i < loneCount; i++) {
+  const bias = Math.pow(rand(), 0.65); // denser near the meter edge
   NODES.push({
-    bx: clampF(between(0.03, MAX_X), 0.02, MAX_X),
+    bx: clampF(0.06 + bias * (MAX_X - 0.06), 0.03, MAX_X),
     by: clampF(rand(), 0.03, 0.97),
-    rx: between(0.008, 0.032),
-    ry: between(0.008, 0.028),
-    sp: between(0.18, 0.7),
+    rx: between(0.008, 0.026),
+    ry: between(0.006, 0.02),
+    sp: between(0.14, 0.42),
     ph: rand() * Math.PI * 2,
-    r: between(0.8, 1.7),
-    s: between(0.35, 0.62),
+    r: between(0.55, 1.15),
+    s: between(0.22, 0.44),
     parent: -1,
     kind: 3,
   });
 }
 
-// No inter-hub bridges: each anchor/minor cluster is a distinct constellation.
-// This prevents the long vertical chains that made the field read as a network.
 
 
 const TAU = Math.PI * 2;
