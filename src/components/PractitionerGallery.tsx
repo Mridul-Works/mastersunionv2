@@ -50,7 +50,13 @@ function computeGeometry(stageW: number, viewportH: number): Geometry {
  * RIGHT portrait, joined by a large sweeping curved cutout — and the portrait can
  * still be clicked to flip and reveal the practitioner's details.
  */
-export default function PractitionerGallery({ items }: { items: GalleryItem[] }) {
+export default function PractitionerGallery({
+  items,
+  category = "Industry Practitioner",
+}: {
+  items: GalleryItem[];
+  category?: string;
+}) {
   const n = items.length;
   const [inputMode, setInputMode] = useState<"touch" | "pointer">("pointer");
   const [isTouchViewport, setIsTouchViewport] = useState(false);
@@ -498,52 +504,96 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
                     ) : null}
                   </div>
 
-                  {/* BACK — practitioner details, one vertically centred block */}
+                  {/* BACK — collectible trading-card face */}
                   <div
-                    className="absolute inset-0 overflow-hidden rounded-[20px] bg-[#131313] sm:rounded-[24px] md:rounded-[32px]"
+                    className="absolute inset-0 overflow-hidden rounded-[20px] border border-white/10 sm:rounded-[24px] md:rounded-[32px]"
                     style={{
                       backfaceVisibility: "hidden",
                       WebkitBackfaceVisibility: "hidden",
                       transform: "rotateY(180deg)",
+                      background:
+                        "radial-gradient(120% 85% at 50% 0%, #1c1c1c 0%, #131313 45%, #0d0d0d 100%)",
+                      boxShadow:
+                        "inset 0 1px 0 rgba(255,255,255,0.07), inset 0 0 60px rgba(255,255,255,0.03)",
                     }}
                     aria-hidden={!(isFlipped && isActive)}
                   >
-                    <div className="flex h-full w-full items-center justify-center overflow-y-auto px-[clamp(1.25rem,7%,2.75rem)] py-[clamp(1.25rem,5%,2.5rem)]">
-                      <div className="flex w-full max-w-[38ch] flex-col items-start gap-[clamp(0.6rem,1.6%,0.9rem)] text-left">
+                    {/* trading-card composition: top row / centred identity / anchored metadata */}
+                    <div className="grid h-full w-full grid-rows-[auto_1fr_auto] gap-[clamp(0.6rem,2.5%,1.35rem)] px-[clamp(0.85rem,6%,2.25rem)] py-[clamp(0.9rem,5%,2rem)]">
+                      {/* TOP ROW — category + prominent brand mark */}
+                      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2 sm:gap-3">
                         <div
-                          className="text-[9px] uppercase tracking-[0.22em] text-white/45 md:text-[10.5px]"
+                          className="min-w-0 text-[8px] uppercase leading-[1.35] tracking-[0.14em] text-white/45 sm:truncate sm:text-[9px] sm:tracking-[0.22em] md:text-[10.5px]"
                           style={{ fontFamily: MONO }}
                         >
-                          Industry Practitioner
+                          {category}
                         </div>
-                        <h4
-                          className="text-[clamp(1.25rem,3.2vw,2.05rem)] font-medium leading-[1.05] tracking-[-0.03em] text-white"
-                          style={{ fontFamily: SERIF }}
-                        >
-                          {item.name}
-                        </h4>
-                        <div
-                          className="text-[9.5px] uppercase leading-[1.6] tracking-[0.16em] text-white/60 md:text-[11px]"
-                          style={{ fontFamily: MONO }}
-                        >
-                          {item.role}
+                        {brand ? (
+                          <BrandLogo
+                            brand={brand}
+                            className="shrink-0"
+                            imgClassName="h-[26px] w-auto max-w-[92px] select-none object-contain opacity-95 grayscale contrast-125 sm:h-[34px] sm:max-w-[110px] md:h-[clamp(38px,4vw,52px)] md:max-w-[140px]"
+                          />
+                        ) : null}
+                      </div>
+
+                      {/* IDENTITY + BODY — vertically centred inside the flexible row */}
+                      <div className="flex min-h-0 flex-col justify-center gap-[clamp(0.55rem,2.2%,1.1rem)] overflow-y-auto">
+                        <div className="flex flex-col items-start gap-[0.6rem] sm:flex-row sm:items-center sm:gap-[clamp(0.7rem,2.5%,1.15rem)]">
+                          <div className="h-[54px] w-[54px] shrink-0 overflow-hidden rounded-full border border-white/20 bg-neutral-900 shadow-[0_0_0_4px_rgba(255,255,255,0.03)] sm:h-[clamp(64px,9vw,104px)] sm:w-[clamp(64px,9vw,104px)] sm:shadow-[0_0_0_5px_rgba(255,255,255,0.03)]">
+                            {item.img ? (
+                              <img
+                                src={item.img}
+                                alt=""
+                                draggable={false}
+                                className="h-full w-full select-none object-cover object-[50%_18%] grayscale"
+                              />
+                            ) : (
+                              <Initials name={item.name} />
+                            )}
+                          </div>
+                          <div className="min-w-0">
+                            <h4
+                              className="text-[1.02rem] font-medium leading-[1.08] tracking-[-0.03em] text-white sm:text-[clamp(1.2rem,2.6vw,1.95rem)] sm:leading-[1.05]"
+                              style={{ fontFamily: SERIF }}
+                            >
+                              {item.name}
+                            </h4>
+                            <div
+                              className="mt-[0.45em] text-[8.5px] uppercase leading-[1.5] tracking-[0.12em] text-white/60 sm:text-[9.5px] sm:tracking-[0.16em] md:text-[11px]"
+                              style={{ fontFamily: MONO }}
+                            >
+                              {item.role}
+                            </div>
+                          </div>
                         </div>
-                        {brand ? <BrandLogo brand={brand} /> : null}
                         {item.blurb ? (
-                          <p className="text-[0.95rem] leading-[1.7] text-white/70 md:text-[0.98rem]">
+                          <p className="text-[0.8rem] leading-[1.55] text-white/70 sm:text-[0.92rem] sm:leading-[1.65] md:text-[0.98rem]">
                             {item.blurb}
                           </p>
                         ) : null}
-                        {item.sub ? (
+                      </div>
+
+
+                      {/* METADATA STRIP — anchored to the bottom of the card */}
+                      {item.sub || brand ? (
+                        <div className="w-full border-t border-white/12 pt-[clamp(0.55rem,1.8%,0.9rem)]">
                           <div
-                            className="w-full border-t border-white/12 pt-[clamp(0.6rem,1.6%,0.9rem)] text-[9.5px] uppercase leading-[1.6] tracking-[0.16em] text-white/45 md:text-[10.5px]"
+                            className="text-[7.5px] uppercase tracking-[0.2em] text-white/35 sm:text-[8.5px] sm:tracking-[0.24em] md:text-[9.5px]"
                             style={{ fontFamily: MONO }}
                           >
-                            {item.sub}
+                            {item.sub ? "Expertise" : "Affiliation"}
                           </div>
-                        ) : null}
-                      </div>
+                          <div
+                            className="mt-[0.4em] text-[8.5px] uppercase leading-[1.5] tracking-[0.1em] text-white/65 sm:text-[9.5px] sm:tracking-[0.14em] md:text-[10.5px]"
+                            style={{ fontFamily: MONO }}
+                          >
+                            {item.sub ?? brand?.name}
+                          </div>
+                        </div>
+                      ) : null}
                     </div>
+
                   </div>
 
                 </div>
