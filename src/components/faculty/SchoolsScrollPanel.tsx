@@ -60,26 +60,27 @@ const clampF = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, 
 const MAX_X = 0.985;
 
 const anchorCount = 3 + Math.round(rand()); // 3–4 anchors
-const minorCount = 8 + Math.round(rand() * 4); // 8–12 hubs
+const minorCount = 4 + Math.round(rand() * 3); // 4–7 minor hubs
 
 type Seed = { x: number; y: number; anchor: boolean };
 const seeds: Seed[] = [];
 
 for (let i = 0; i < anchorCount; i++) {
-  // anchors sit closer to the meter spine — the origin of the network
-  const band = (i + 0.5) / anchorCount;
+  // anchors form distinct, organically scattered clusters — not a vertical spine
+  const cx = 0.55 + rand() * 0.32; // 0.55 – 0.87, closer to meter origin
+  const cy = 0.12 + rand() * 0.76; // full vertical spread
   seeds.push({
-    x: clampF(between(0.5, 0.94) - rand() * 0.08, 0.1, MAX_X),
-    y: clampF(band + between(-0.13, 0.13), 0.06, 0.94),
+    x: clampF(cx + between(-0.1, 0.1), 0.2, MAX_X),
+    y: clampF(cy + between(-0.08, 0.08), 0.08, 0.92),
     anchor: true,
   });
 }
 for (let i = 0; i < minorCount; i++) {
-  // hubs spread leftward, density decaying away from the spine
-  const bias = Math.pow(rand(), 0.65); // more mass toward the right/spine
+  // minor hubs orbit between anchors and the left edge, filling gaps
+  const bias = Math.pow(rand(), 0.75); // more mass toward the right/spine
   seeds.push({
-    x: clampF(0.06 + bias * 0.9, 0.03, MAX_X),
-    y: clampF(rand(), 0.04, 0.96),
+    x: clampF(0.18 + bias * 0.72, 0.08, MAX_X),
+    y: clampF(rand(), 0.08, 0.92),
     anchor: false,
   });
 }
@@ -90,36 +91,56 @@ seeds.forEach((seed) => {
   NODES.push({
     bx: seed.x,
     by: seed.y,
-    rx: between(0.01, 0.036),
-    ry: between(0.012, 0.042),
-    sp: between(0.2, 0.62),
+    rx: between(0.012, 0.032),
+    ry: between(0.012, 0.032),
+    sp: between(0.18, 0.52),
     ph: rand() * Math.PI * 2,
-    r: seed.anchor ? between(1.9, 2.9) : between(1.1, 1.75),
+    r: seed.anchor ? between(2.0, 3.0) : between(1.2, 1.8),
     s: seed.anchor ? between(0.78, 0.92) : between(0.5, 0.7),
     parent: -1,
     kind: seed.anchor ? 0 : 1,
   });
 
-  // satellites: people and knowledge branching off the institution, biased to
-  // fan out leftward (away from the meter spine)
-  const count = seed.anchor ? 5 + Math.round(rand() * 4) : 2 + Math.round(rand() * 3);
+  // satellites: smaller stars orbiting the hub in varied organic clusters
+  const count = seed.anchor ? 6 + Math.round(rand() * 5) : 2 + Math.round(rand() * 2);
   for (let k = 0; k < count; k++) {
-    const ang = Math.PI * 0.45 + rand() * Math.PI * 1.1; // leftward fan
-    const len = (seed.anchor ? 0.06 : 0.042) * between(0.35, 1.6);
+    // full-circle orbit, but biased slightly leftward so clusters drift toward content
+    const ang = rand() * Math.PI * 2;
+    const len = (seed.anchor ? 0.07 : 0.045) * between(0.4, 1.2);
     NODES.push({
-      bx: clampF(seed.x + Math.cos(ang) * len * 1.7, 0.015, MAX_X),
-      by: clampF(seed.y + Math.sin(ang) * len * 1.9, 0.015, 0.985),
-      rx: between(0.008, 0.036),
-      ry: between(0.01, 0.042),
-      sp: between(0.22, 0.95),
+      bx: clampF(seed.x + Math.cos(ang) * len * 1.5, 0.02, MAX_X),
+      by: clampF(seed.y + Math.sin(ang) * len * 1.6, 0.02, 0.98),
+      rx: between(0.008, 0.026),
+      ry: between(0.008, 0.026),
+      sp: between(0.22, 0.75),
       ph: rand() * Math.PI * 2,
-      r: between(0.35, 1.15),
-      s: between(0.28, 0.72),
+      r: between(0.35, 1.1),
+      s: between(0.28, 0.68),
       parent: hubIndex,
       kind: 2,
     });
   }
 });
+
+// short intra-cluster links between nearby satellites (orbits, not long chains)
+for (let i = 0; i < HUBS.length; i++) {
+  const hub = HUBS[i];
+  const satellites: number[] = [];
+  for (let j = hub + 1; j < NODES.length && NODES[j].parent === hub; j++) {
+    satellites.push(j);
+  }
+  for (let a = 0; a < satellites.length; a++) {
+    for (let b = a + 1; b < satellites.length; b++) {
+      const n1 = NODES[satellites[a]];
+      const n2 = NODES[satellites[b]];
+      const d = Math.hypot(n1.bx - n2.bx, n1.by - n2.by);
+      if (d < 0.12 && rand() > 0.55) {
+        BRIDGES.push({ a: satellites[a], b: satellites[b], at: between(0.08, 0.7) });
+      }
+    }
+  }
+}
+
 
 // a handful of isolated stars — negative space with a little life in it
 const loneCount = 8 + Math.round(rand() * 6);
