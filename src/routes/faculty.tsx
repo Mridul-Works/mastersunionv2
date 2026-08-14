@@ -507,7 +507,8 @@ function FacultyPage() {
             title={<>The people who teach here are not between jobs. They are <Accent>active</Accent>.</>}
             intro="Half of the faculty are CEOs, MDs, founders and investors — bringing this week's decisions into the classroom, not last decade's case studies."
           />
-          <EditorialGrid
+          <div className="reveal-up" style={{ transitionDelay: "160ms" }}>
+            <EditorialGrid
             gallery
             cardStats
             dark
