@@ -195,6 +195,7 @@ export default function PractitionerGallery({
     const evaluate = () => {
       if (document.hidden || !intersecting) {
         inViewRef.current = false;
+        if (stageRef.current) stageRef.current.style.visibility = "hidden";
         stopLoop();
         return;
       }
