@@ -693,7 +693,7 @@ function FacultyPage() {
           </div>
 
           {/* Giant type + strip + utility row */}
-          <div className="mt-[clamp(40px,8vh,86px)]">
+          <div className="reveal-up mt-[clamp(40px,8vh,86px)]" style={{ transitionDelay: "120ms" }}>
 
             <div className="px-[clamp(1rem,2.5vw,2.5rem)]">
               <h2 className="sr-only">Join the Union</h2>
