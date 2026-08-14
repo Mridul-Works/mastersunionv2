@@ -235,7 +235,7 @@ export default function MastersVideos({
                   type="button"
                   onClick={() => setOpen(current)}
                   aria-label={`Play ${current.title}`}
-                  className="group relative flex w-full items-center justify-center"
+                  className="group relative flex h-full w-full items-center justify-center"
                 >
                   {/* frame is sized by height so the full portrait poster stays intact */}
                   <div
