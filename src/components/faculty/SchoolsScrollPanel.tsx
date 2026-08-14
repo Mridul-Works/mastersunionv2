@@ -262,11 +262,11 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
 
       if (tier < 2) {
         // 1. branches inside each institutional cluster — always present
-        ctx.lineWidth = 0.8;
+        ctx.lineWidth = 1.0;
         for (const pt of pts) {
           if (pt.parent < 0) continue;
           const p = pts[pt.parent];
-          const a = 0.08 + 0.12 * glow;
+          const a = 0.12 + 0.14 * glow;
           ctx.strokeStyle = `rgba(255,255,255,${a.toFixed(3)})`;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
@@ -277,13 +277,13 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
         // 2. bridges between clusters — revealed progressively, so separate
         //    ecosystems gradually become one network as the section advances.
         if (tier === 0) {
-          ctx.lineWidth = 0.9;
+          ctx.lineWidth = 1.1;
           for (const br of BRIDGES) {
             const reveal = smooth((t - br.at) / 0.3);
             if (reveal <= 0.001) continue;
             const a = pts[br.a];
             const b = pts[br.b];
-            const alpha = reveal * (0.10 + 0.14 * glow);
+            const alpha = reveal * (0.14 + 0.14 * glow);
             ctx.strokeStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -299,9 +299,12 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
         }
       }
 
+      // soft glow for every star
+      ctx.shadowBlur = 6;
+      ctx.shadowColor = "rgba(255,255,255,0.18)";
       for (const pt of pts) {
-        const base = pt.kind === 0 ? 0.24 : pt.kind === 1 ? 0.18 : pt.kind === 2 ? 0.13 : 0.10;
-        const a = base + pt.s * (0.12 + 0.24 * glow);
+        const base = pt.kind === 0 ? 0.50 : pt.kind === 1 ? 0.38 : pt.kind === 2 ? 0.26 : 0.18;
+        const a = base + pt.s * (0.12 + 0.22 * glow);
 
         ctx.fillStyle = `rgba(255,255,255,${a.toFixed(3)})`;
         ctx.beginPath();
@@ -309,13 +312,15 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
         ctx.fill();
         // anchors carry a faint halo — major institutions, still understated
         if (pt.kind === 0) {
-          ctx.strokeStyle = `rgba(255,255,255,${(0.12 + 0.14 * glow).toFixed(3)})`;
-          ctx.lineWidth = 0.8;
+          ctx.shadowBlur = 0;
+          ctx.strokeStyle = `rgba(255,255,255,${(0.18 + 0.16 * glow).toFixed(3)})`;
+          ctx.lineWidth = 1.0;
           ctx.beginPath();
           ctx.arc(pt.x, pt.y, pt.r * 3.0 + 2, 0, TAU);
           ctx.stroke();
         }
       }
+      ctx.shadowBlur = 0;
 
 
       // profile + degrade/recover without ever stopping the scroll mapping
