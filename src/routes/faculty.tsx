@@ -617,7 +617,7 @@ function FacultyPage() {
               intro={<>If you have built something, led something, invested in something, or shaped something — and you believe the best way to teach business is to have done it — we want to hear from you.</>}
             />
 
-            <div className="mt-[clamp(1.5rem,4vh,2.5rem)] flex justify-center">
+            <div className="reveal-up mt-[clamp(1.5rem,4vh,2.5rem)] flex justify-center" style={{ transitionDelay: "160ms" }}>
               <a
                 href="https://mastersunion.org/become-a-master"
                 target="_blank"
