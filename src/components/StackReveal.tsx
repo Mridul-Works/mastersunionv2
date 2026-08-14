@@ -31,8 +31,10 @@ function Panel({
 }) {
   const wrapRef = React.useRef<HTMLDivElement>(null);
   const innerRef = React.useRef<HTMLDivElement>(null);
+  const contentRef = React.useRef<HTMLDivElement>(null);
   const [contentH, setContentH] = React.useState(0);
   const [vh, setVh] = React.useState(0);
+
 
   React.useEffect(() => {
     const el = innerRef.current;
@@ -62,8 +64,8 @@ function Panel({
   React.useEffect(() => {
     if (isLast || !measured) return;
     const wrap = wrapRef.current;
-    const inner = innerRef.current;
-    if (!wrap || !inner) return;
+    const content = contentRef.current;
+    if (!wrap || !content) return;
 
     let raf = 0;
     let last = -1;
@@ -75,12 +77,12 @@ function Panel({
       if (Math.abs(p - last) < 0.004) return;
       last = p;
       if (p <= 0) {
-        inner.style.opacity = "";
+        content.style.opacity = "";
         return;
       }
-      // Smooth editorial fade: 1 -> ~0.3 -> 0
+      // Smooth editorial fade: 1 -> ~0.3 -> 0 (content only; surface stays opaque)
       const opacity = (1 - p) * (1 - 0.7 * p);
-      inner.style.opacity = opacity.toFixed(3);
+      content.style.opacity = opacity.toFixed(3);
     };
 
     const onScroll = () => {
@@ -94,7 +96,7 @@ function Panel({
       if (raf) cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
-      inner.style.opacity = "";
+      content.style.opacity = "";
     };
   }, [isLast, measured, overflow, coverVh]);
 
@@ -116,12 +118,15 @@ function Panel({
       <div
         ref={innerRef}
         className={`sticky ${bg}`}
-        style={{ top: measured ? -overflow : 0 }}
+        style={{ top: measured ? -overflow : 0, isolation: "isolate" }}
       >
-        {children}
+        <div ref={contentRef} className="relative">
+          {children}
+        </div>
       </div>
     </div>
   );
+
 
 }
 
