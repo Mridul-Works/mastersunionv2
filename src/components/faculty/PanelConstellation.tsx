@@ -464,7 +464,7 @@ export default function PanelConstellation({
   return (
     <div
       aria-hidden
-      className="pointer-events-none absolute bottom-0 left-0 top-0 right-0 z-0 overflow-hidden md:right-[60px]"
+      className="pointer-events-none absolute bottom-0 left-0 top-0 right-[54px] z-0 overflow-hidden md:right-[60px]"
     >
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
     </div>
