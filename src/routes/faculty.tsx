@@ -455,6 +455,7 @@ function FacultyPage() {
             intro="Half of the faculty are CEOs, MDs, founders and investors — bringing this week's decisions into the classroom, not last decade's case studies."
             dark
             serif
+            wide
           />
           <EditorialGrid
             gallery
