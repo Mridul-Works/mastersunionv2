@@ -2,6 +2,15 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import BrandLogo from "@/components/BrandLogo";
 import { findBrand } from "@/lib/brand-logos";
 
+/**
+ * Portraits ship as ~1000x1360 PNGs (up to 1.8 MB). Requesting a width-capped
+ * variant keeps the identical composition while cutting decode + rescale cost,
+ * which is what made the arc hitch as cards entered the viewport.
+ */
+function sized(url: string, w: number) {
+  return url.includes("?") ? url : `${url}?w=${w}`;
+}
+
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
 const SANS_H = "'Inter', system-ui, sans-serif";
 
@@ -477,7 +486,7 @@ export default function PractitionerGallery({
         <div className="absolute inset-0 bg-[#0b0b0b]" />
         {activeImg ? (
           <img
-            src={activeImg}
+            src={sized(activeImg, 480)}
             alt=""
             className="absolute inset-0 h-full w-full scale-110 object-cover opacity-[0.12] grayscale blur-3xl transition-opacity duration-700"
           />
@@ -595,7 +604,7 @@ export default function PractitionerGallery({
                   >
                     {item.img ? (
                       <img
-                        src={item.img}
+                        src={sized(item.img, 760)}
                         alt={item.name}
                         draggable={false}
                         data-mu-portrait
@@ -670,8 +679,10 @@ export default function PractitionerGallery({
                           <div className="h-[54px] w-[54px] shrink-0 overflow-hidden rounded-full border border-white/20 bg-neutral-900 shadow-[0_0_0_4px_rgba(255,255,255,0.03)] sm:h-[clamp(64px,9vw,104px)] sm:w-[clamp(64px,9vw,104px)] sm:shadow-[0_0_0_5px_rgba(255,255,255,0.03)]">
                             {item.img ? (
                               <img
-                                src={item.img}
+                                src={sized(item.img, 220)}
                                 alt=""
+                                loading="lazy"
+                                decoding="async"
                                 draggable={false}
                                 className="h-full w-full select-none object-cover object-[50%_18%]"
                               />
