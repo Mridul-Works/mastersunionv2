@@ -320,6 +320,9 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
       className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onFocusCapture={() => (focusRef.current = true)}
+      onBlurCapture={() => (focusRef.current = false)}
+      tabIndex={0}
     >
 
       {/* ambient dark atmosphere behind the active card */}
