@@ -77,6 +77,8 @@ export function brandLogoUrl(domain: string, size = 96): string | null {
     format: "png",
     theme: "dark",
     retina: "true",
+    // 404 instead of a generic placeholder so we never show a wrong mark
+    fallback: "404",
   });
   return `https://img.logo.dev/${domain}?${params.toString()}`;
 }
