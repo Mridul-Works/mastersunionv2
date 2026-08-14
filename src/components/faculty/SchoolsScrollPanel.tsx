@@ -247,8 +247,8 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
       ctx.clearRect(0, 0, w, h);
       // density/brightness ramp saturates gently but geometry keeps moving
       const glow = Math.min(1, Math.max(0, t * 2.2));
-      // primarily leftward drift toward the content column (≈15% of panel width — 2x)
-      const drift = -driftEase(t) * 0.15;
+      // primarily leftward drift toward the content column (≈22% of panel width)
+      const drift = -driftEase(t) * 0.22;
 
       const pts = NODES.map((n) => {
         // slow, bounded orbit — a drift through the panel, not a sweep
