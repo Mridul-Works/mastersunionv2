@@ -81,10 +81,10 @@ function Panel({
         return;
       }
       const blur = reduced ? 0 : (10 * p).toFixed(2);
+      const dim = (1 - 0.18 * p).toFixed(3);
       inner.style.filter = reduced
-        ? `brightness(${(1 - 0.12 * p).toFixed(3)})`
-        : `blur(${blur}px) brightness(${(1 - 0.12 * p).toFixed(3)})`;
-      inner.style.opacity = (1 - 0.15 * p).toFixed(3);
+        ? `brightness(${dim})`
+        : `blur(${blur}px) brightness(${dim})`;
     };
 
     const onScroll = () => {
