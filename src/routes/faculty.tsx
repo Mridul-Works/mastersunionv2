@@ -66,68 +66,6 @@ const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
 const SERIF = "'Fraunces', 'Cormorant Garamond', ui-serif, Georgia, serif";
 
-function SectionHeader({
-  index,
-  eyebrow,
-  title,
-  intro,
-  align = "left",
-  introCenter = false,
-  dark = false,
-  serif = false,
-  wide = false,
-}: {
-  index: string;
-  eyebrow: string;
-  title: React.ReactNode;
-  intro?: React.ReactNode;
-  align?: "left" | "center";
-  introCenter?: boolean;
-  dark?: boolean;
-  serif?: boolean;
-  wide?: boolean;
-}) {
-  const isCenter = align === "center";
-  const introIsCenter = isCenter || introCenter;
-  return (
-    <header className={isCenter ? "text-center" : ""}>
-      <p
-        className={`mb-[clamp(0.4rem,1.2vh,0.75rem)] font-mono text-[10px] font-semibold uppercase tracking-[0.28em] ${
-          serif ? "text-[#B89146]" : dark ? "text-white/50" : "text-black/50"
-        } ${isCenter ? "flex justify-center gap-3" : "flex gap-3"}`}
-      >
-        <span>{index}</span>
-        <span aria-hidden className={serif ? "text-[#B89146]/50" : dark ? "text-white/25" : "text-black/25"}>/</span>
-        <span>{eyebrow}</span>
-      </p>
-      <h2
-        className={`text-[clamp(1.55rem,3.2vw,2.75rem)] font-medium italic leading-[1.08] tracking-tight ${
-          dark ? "text-white" : "text-black"
-        } ${
-          isCenter
-            ? "mx-auto max-w-[min(100%,28ch)]"
-            : wide
-              ? "max-w-[min(100%,34ch)] md:max-w-[min(100%,60ch)] lg:max-w-[min(100%,80ch)]"
-              : "max-w-[min(100%,34ch)]"
-        }`}
-        style={{ fontFamily: serif ? "'Fraunces', Georgia, serif" : "'Inter', system-ui, sans-serif" }}
-      >
-        {title}
-      </h2>
-      {intro ? (
-        <p
-          className={`mt-[clamp(0.75rem,2.2vh,1.5rem)] text-[clamp(0.92rem,1.1vw,0.98rem)] leading-[1.6] ${
-            dark ? "text-white/60" : "text-black/60"
-          } ${introIsCenter ? "mx-auto max-w-[min(100%,56ch)] text-center" : "max-w-[min(100%,72ch)]"}`}
-        >
-          {intro}
-        </p>
-      ) : null}
-    </header>
-  );
-}
-
-
 const NAV: SectionNavItem[] = [
   { id: "top", label: "Overview" },
   { id: "masters", label: "Masters" },
@@ -539,6 +477,7 @@ function FacultyPage() {
       <section id="practitioners" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
           <SectionIntro
+            className="mb-[clamp(2rem,5vh,3.25rem)]"
             index="01"
             eyebrow="Industry Practitioners"
             title={<>The people who teach here are not between jobs. They are active.</>}
@@ -569,6 +508,7 @@ function FacultyPage() {
       <section id="full-time" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
           <SectionIntro
+            className="mb-[clamp(2rem,5vh,3.25rem)]"
             index="02"
             eyebrow="Full-time Faculty"
             title={<>{FULLTIME.length} PhD faculty. Active researchers. Published where the best B-schools read.</>}
@@ -609,6 +549,7 @@ function FacultyPage() {
       <section id="visiting" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
           <SectionIntro
+            className="mb-[clamp(2rem,5vh,3.25rem)]"
             index="03"
             eyebrow="Visiting Faculty"
             title={<>Professors who teach here because they believe in what Masters&apos; Union is building.</>}
@@ -659,6 +600,7 @@ function FacultyPage() {
       <section className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
           <SectionIntro
+            className="mb-[clamp(2rem,5vh,3.25rem)]"
             index="04"
             eyebrow="What students say"
             title={<>Learning from operators, in their own words.</>}
