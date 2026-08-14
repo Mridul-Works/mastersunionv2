@@ -216,7 +216,7 @@ export default function StudentTestimonials({ items }: { items: Testimonial[] })
       {/* Hero quote */}
       <figure key={active} className="mt-[clamp(1.5rem,4vh,2.5rem)] animate-fade-in">
         <blockquote
-          className="max-w-[min(100%,30ch)] text-[clamp(1.5rem,3.4vw,2.9rem)] font-medium italic leading-[1.14] tracking-[-0.01em] text-white/[0.14] md:max-w-[min(100%,42ch)]"
+          className="max-w-[min(100%,30ch)] text-[clamp(1.5rem,3.4vw,2.9rem)] font-medium italic leading-[1.14] tracking-[-0.01em] text-white/[0.14] transition-colors duration-500 hover:text-[#f5f1e8]/85 md:max-w-[min(100%,42ch)]"
           style={{ fontFamily: SERIF }}
         >
           &ldquo;{current.q}&rdquo;
