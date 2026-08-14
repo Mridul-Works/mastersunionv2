@@ -487,6 +487,7 @@ function Immersions({ items }: { items: string[] }) {
 
 function Faculty({ roster }: { roster: FacultyMember[] }) {
   const scrollerRef = useRef<HTMLDivElement | null>(null);
+  const activeRef = useRef(false);
 
   // Attach portraits to each faculty; fall back to the shared pool so the carousel
   // always has visual density even when names don't match a filename directly.
@@ -504,8 +505,31 @@ function Faculty({ roster }: { roster: FacultyMember[] }) {
     el.scrollBy({ left: dir * step * 1.5, behavior: "smooth" });
   };
 
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (!activeRef.current) return;
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        scrollBy(1);
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        scrollBy(-1);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   return (
-    <section id="faculty" className="relative overflow-hidden">
+    <section
+      id="faculty"
+      className="relative overflow-hidden"
+      onMouseEnter={() => (activeRef.current = true)}
+      onMouseLeave={() => (activeRef.current = false)}
+      onFocusCapture={() => (activeRef.current = true)}
+      onBlurCapture={() => (activeRef.current = false)}
+      tabIndex={0}
+    >
       <div className="mx-auto max-w-[1180px] px-4 py-12 sm:px-6">
         <div className="mb-7 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
