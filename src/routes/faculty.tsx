@@ -539,7 +539,7 @@ function FacultyPage() {
           />
           <EditorialSplit
             left={
-              <p className="max-w-[70ch] text-[0.98rem] leading-[1.5] text-white/75">
+              <p className="max-w-[min(100%,74ch)] text-[clamp(1.02rem,1.3vw,1.18rem)] leading-[1.58] text-white/[0.85]">
                 Doctorates from IIM Ahmedabad, Bangalore, Calcutta, Kozhikode and Tiruchirappalli, IIT Bombay and Kanpur, Delhi University, Shiv Nadar, Christ University, TERI and the University of Bath — across finance, marketing, operations, organisational behaviour, economics, decision sciences and strategy.
               </p>
             }
