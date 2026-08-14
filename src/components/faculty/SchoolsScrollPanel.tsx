@@ -55,15 +55,27 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
+
     let w = 0;
     let h = 0;
     let raf = 0;
     let last = Number.NaN;
     let alive = true;
+    let onScreen = true;
+    let lastDrawAt = 0;
+
+    // ---- adaptive quality ("throttling safeguard") -------------------------
+    // tier 0 = full (links + nodes), 1 = fewer links, 2 = nodes only.
+    let tier = reduced ? 2 : 0;
+    let avgCost = 0; // EWMA of draw cost in ms
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const BUDGET_MS = 5.5; // keep the main thread well inside a 60fps frame
+    const MIN_FRAME_MS = 1000 / 60; // never draw more than once per display frame
 
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, tier === 0 ? 2 : 1.5);
       w = Math.max(1, rect.width);
       h = Math.max(1, rect.height);
       canvas.width = Math.round(w * dpr);
@@ -72,6 +84,7 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
     };
 
     const draw = (t: number) => {
+      const t0 = performance.now();
       ctx.clearRect(0, 0, w, h);
       // density/brightness ramp saturates gently but geometry keeps moving
       const glow = Math.min(1, Math.max(0, t * 2.2));
@@ -90,21 +103,23 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
         };
       });
 
-
-      const maxD = Math.min(w, h) * (0.3 + 0.12 * glow);
-      ctx.lineWidth = 0.6;
-      for (let i = 0; i < pts.length; i++) {
-        for (let j = i + 1; j < pts.length; j++) {
-          const dx = pts[i].x - pts[j].x;
-          const dy = pts[i].y - pts[j].y;
-          const d = Math.hypot(dx, dy);
-          if (d > maxD) continue;
-          const a = (1 - d / maxD) * (0.06 + 0.11 * glow);
-          ctx.strokeStyle = `rgba(255,255,255,${a.toFixed(3)})`;
-          ctx.beginPath();
-          ctx.moveTo(pts[i].x, pts[i].y);
-          ctx.lineTo(pts[j].x, pts[j].y);
-          ctx.stroke();
+      if (tier < 2) {
+        const step = tier === 0 ? 1 : 2; // tier 1 halves the link pass
+        const maxD = Math.min(w, h) * (0.3 + 0.12 * glow) * (tier === 0 ? 1 : 0.85);
+        ctx.lineWidth = 0.6;
+        for (let i = 0; i < pts.length; i++) {
+          for (let j = i + step; j < pts.length; j += step) {
+            const dx = pts[i].x - pts[j].x;
+            const dy = pts[i].y - pts[j].y;
+            const d = Math.hypot(dx, dy);
+            if (d > maxD) continue;
+            const a = (1 - d / maxD) * (0.06 + 0.11 * glow);
+            ctx.strokeStyle = `rgba(255,255,255,${a.toFixed(3)})`;
+            ctx.beginPath();
+            ctx.moveTo(pts[i].x, pts[i].y);
+            ctx.lineTo(pts[j].x, pts[j].y);
+            ctx.stroke();
+          }
         }
       }
 
@@ -115,16 +130,41 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
         ctx.arc(pt.x, pt.y, pt.r * (0.85 + 0.35 * glow), 0, TAU);
         ctx.fill();
       }
+
+      // profile + degrade/recover without ever stopping the scroll mapping
+      const cost = performance.now() - t0;
+      avgCost = avgCost ? avgCost * 0.8 + cost * 0.2 : cost;
+      if (!reduced) {
+        if (avgCost > BUDGET_MS && tier < 2) {
+          tier += 1;
+          avgCost = 0;
+          resize();
+        } else if (avgCost < BUDGET_MS * 0.45 && tier > 0) {
+          tier -= 1;
+          avgCost = 0;
+          resize();
+        }
+      }
     };
 
-    const tick = () => {
+    const tick = (now: number) => {
       raf = 0;
       if (!alive) return;
       const t = progressRef.current;
-      if (t !== last) {
-        last = t;
-        draw(t);
+      if (t === last) return;
+      // coalesce fast-scroll bursts into at most one draw per display frame
+      if (now - lastDrawAt < MIN_FRAME_MS) {
+        raf = requestAnimationFrame(tick);
+        return;
       }
+      // while covered / far off-screen, keep tracking t but skip painting
+      if (!onScreen) {
+        last = t;
+        return;
+      }
+      last = t;
+      lastDrawAt = now;
+      draw(t);
     };
 
     const kick = () => {
@@ -139,6 +179,21 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
       draw(progressRef.current);
     });
     ro.observe(canvas);
+
+    // Painting pauses only when the canvas is genuinely out of view; progress
+    // stays scroll-driven so re-entry never snaps or resets.
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        onScreen = entry.isIntersecting;
+        if (onScreen) {
+          last = Number.NaN;
+          kick();
+        }
+      },
+      { rootMargin: "200px 0px" },
+    );
+    io.observe(canvas);
+
     window.addEventListener("scroll", kick, { passive: true });
     window.addEventListener("resize", kick);
 
@@ -146,10 +201,12 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
       alive = false;
       if (raf) cancelAnimationFrame(raf);
       ro.disconnect();
+      io.disconnect();
       window.removeEventListener("scroll", kick);
       window.removeEventListener("resize", kick);
     };
   }, [progressRef]);
+
 
   return (
     <canvas
