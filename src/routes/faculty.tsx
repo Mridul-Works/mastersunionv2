@@ -676,7 +676,8 @@ function FacultyPage() {
       <footer ref={footerReveal.ref} id="cta" className={footerReveal.className}>
         <div className="flex min-h-[100svh] flex-col justify-between pt-[clamp(4rem,14vh,10rem)]">
           {/* Top CTA */}
-          <div className="page-shell-narrow text-center">
+          <div className="reveal-up" style={{ transitionDelay: "0ms" }}>
+            <div className="page-shell-narrow text-center">
             <p className="text-balance text-[0.98rem] not-italic leading-[1.35] text-white/85">
               Learn from the people doing it — not just studying it.
             </p>
