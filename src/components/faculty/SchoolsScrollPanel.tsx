@@ -83,13 +83,26 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
+    /**
+     * Horizontal easing for the drift. C1-continuous over the whole 0–100%
+     * range: a quintic ease-in-out (zero velocity AND zero acceleration at both
+     * ends) blended with a small linear term so the middle never plateaus and
+     * the slope never changes abruptly.
+     */
+    const driftEase = (t: number) => {
+      const x = Math.min(1, Math.max(0, t));
+      const quint = x * x * x * (x * (x * 6 - 15) + 10); // smootherstep
+      return quint * 0.82 + x * 0.18;
+    };
+
     const draw = (t: number) => {
       const t0 = performance.now();
       ctx.clearRect(0, 0, w, h);
       // density/brightness ramp saturates gently but geometry keeps moving
       const glow = Math.min(1, Math.max(0, t * 2.2));
       // primarily leftward drift toward the content column (≈7.5% of panel width)
-      const drift = -t * 0.075;
+      const drift = -driftEase(t) * 0.075;
+
 
       const pts = NODES.map((n) => {
         // slow, bounded orbit — a drift through the panel, not a sweep
@@ -147,24 +160,41 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
       }
     };
 
+    // Exponentially smoothed progress: fast scroll jumps get eased out over a
+    // ~120ms time constant, so the drift slope stays continuous instead of
+    // snapping between distant scroll samples.
+    let shown = progressRef.current;
+    let lastTickAt = 0;
+    const TAU_MS = 120;
+
     const tick = (now: number) => {
       raf = 0;
       if (!alive) return;
-      const t = progressRef.current;
-      if (t === last) return;
-      // coalesce fast-scroll bursts into at most one draw per display frame
-      if (now - lastDrawAt < MIN_FRAME_MS) {
-        raf = requestAnimationFrame(tick);
-        return;
-      }
-      // while covered / far off-screen, keep tracking t but skip painting
+      const target = progressRef.current;
+
+      const dt = lastTickAt ? Math.min(64, now - lastTickAt) : MIN_FRAME_MS;
+      lastTickAt = now;
+      const k = 1 - Math.exp(-dt / TAU_MS);
+      const delta = target - shown;
+      shown = Math.abs(delta) < 0.00015 ? target : shown + delta * k;
+      const settled = shown === target;
+
+      // while covered / far off-screen, keep tracking progress but skip painting
       if (!onScreen) {
-        last = t;
+        shown = target;
+        last = target;
         return;
       }
-      last = t;
-      lastDrawAt = now;
-      draw(t);
+
+      // coalesce fast-scroll bursts into at most one draw per display frame
+      if (now - lastDrawAt >= MIN_FRAME_MS && shown !== last) {
+        last = shown;
+        lastDrawAt = now;
+        draw(shown);
+      }
+
+      // keep animating until the eased value has caught up with the scroll value
+      if (!settled) raf = requestAnimationFrame(tick);
     };
 
     const kick = () => {
@@ -172,12 +202,13 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
     };
 
     resize();
-    draw(progressRef.current);
+    draw(shown);
 
     const ro = new ResizeObserver(() => {
       resize();
-      draw(progressRef.current);
+      draw(shown);
     });
+
     ro.observe(canvas);
 
     // Painting pauses only when the canvas is genuinely out of view; progress
