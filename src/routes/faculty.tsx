@@ -788,7 +788,6 @@ function FacultyPage() {
           </div>
         </div>
       </footer>
-      </StackReveal>
     </main>
 
   );
