@@ -462,10 +462,29 @@ function FacultyPage() {
           1, // Footer (last panel — no cover-up)
         ]}
       >
-      {/* HERO — first pinned layer of the stack (exactly 100vh) */}
-      <div className="min-h-screen">
+      {/* HERO — first pinned layer of the stack (hero content + image + By the numbers panel) */}
+      <div className="flex min-h-screen flex-col bg-[#0a0a0a]">
         <HeroFadeOut>
           <FacultyHero />
+          {/* By the numbers — attached to the hero's bottom edge, moves with the hero */}
+          <div className="page-shell w-full bg-[#0a0a0a] pb-[clamp(1.25rem,3vh,2.25rem)]">
+            <FacultyStatsCard
+              dark
+              stats={HERO_STATS}
+              refreshed={statsRefreshedLabel()}
+              universities={[
+                "Harvard",
+                "Wharton",
+                "Stanford",
+                "Kellogg",
+                "Cornell",
+                "NYU",
+                "Columbia",
+                "USC",
+                "Imperial",
+              ]}
+            />
+          </div>
         </HeroFadeOut>
       </div>
 
@@ -473,28 +492,8 @@ function FacultyPage() {
 
 
       {/* SECTION 2 — MASTERS: Built by Scholars, Led by Industry Practitioners */}
-      <MastersVideos
-        dark
-        bg="bg-[#0a0a0a]"
-        statsSlot={
-          <FacultyStatsCard
-            dark
-            stats={HERO_STATS}
-            refreshed={statsRefreshedLabel()}
-            universities={[
-              "Harvard",
-              "Wharton",
-              "Stanford",
-              "Kellogg",
-              "Cornell",
-              "NYU",
-              "Columbia",
-              "USC",
-              "Imperial",
-            ]}
-          />
-        }
-      />
+      <MastersVideos dark bg="bg-[#0a0a0a]" />
+
 
       {/* INDUSTRY PRACTITIONERS */}
       <section id="practitioners" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
