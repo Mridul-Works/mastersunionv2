@@ -453,10 +453,6 @@ function FacultyPage() {
           1.75, // 01 Industry Practitioners — slower cover-up
           1.75, // 02 Full-time Faculty
           1.75, // 03 Visiting Faculty
-          1, // 04 What Students Say
-          1, // 05 Become a Master
-          1, // The Number That Matters
-          1, // Footer / closing
         ]}
       >
       {/* HERO — first pinned layer of the stack (exactly 100vh) */}
@@ -616,8 +612,11 @@ function FacultyPage() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section className="screen-section border-y border-white/10 bg-[#0a0a0a]">
+      </StackReveal>
+
+      <div className="relative z-50">
+        {/* TESTIMONIALS */}
+        <section className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
           <SectionIntro
             className="mb-[clamp(2rem,5vh,3.25rem)]"
@@ -695,7 +694,7 @@ function FacultyPage() {
 
 
       {/* CTA / CLOSING FOOTER */}
-      <footer id="cta" className="relative min-h-[100svh] overflow-hidden bg-[#0a0a0a] text-white">
+      <footer id="cta" className="relative min-h-[100svh] overflow-x-hidden bg-[#0a0a0a] text-white">
         <div className="flex min-h-[100svh] flex-col justify-between pt-[clamp(4rem,14vh,10rem)]">
           {/* Top CTA */}
           <div className="page-shell-narrow text-center">
@@ -790,7 +789,7 @@ function FacultyPage() {
           </div>
         </div>
       </footer>
-      </StackReveal>
+      </div>
     </main>
 
   );
