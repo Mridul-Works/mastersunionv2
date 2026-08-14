@@ -117,8 +117,8 @@ seeds.forEach((seed) => {
       ry: between(0.008, 0.026),
       sp: between(0.22, 0.75),
       ph: rand() * Math.PI * 2,
-      r: between(0.35, 1.1),
-      s: between(0.28, 0.68),
+      r: between(1.4, 2.6),
+      s: between(0.35, 0.72),
       parent: hubIndex,
       kind: 2,
     });
