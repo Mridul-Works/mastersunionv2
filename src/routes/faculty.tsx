@@ -735,39 +735,32 @@ function FacultyPage() {
                   JOIN THE UNION
                 </text>
               </svg>
-              <svg
-                aria-hidden
-                viewBox="0 0 600 250"
-                className="h-auto w-full sm:hidden"
-                preserveAspectRatio="xMidYMid meet"
-              >
-                <text
-                  x="300"
-                  y="106"
-                  textAnchor="middle"
-                  textLength="588"
-                  lengthAdjust="spacingAndGlyphs"
-                  fill="#f5f1e8"
-                  fontSize="135"
-                  fontWeight="700"
-                  style={{ fontFamily: "Inter, system-ui, sans-serif", letterSpacing: "-0.04em" }}
-                >
-                  JOIN THE
-                </text>
-                <text
-                  x="300"
-                  y="226"
-                  textAnchor="middle"
-                  textLength="588"
-                  lengthAdjust="spacingAndGlyphs"
-                  fill="#f5f1e8"
-                  fontSize="135"
-                  fontWeight="700"
-                  style={{ fontFamily: "Inter, system-ui, sans-serif", letterSpacing: "-0.04em" }}
-                >
-                  UNION
-                </text>
-              </svg>
+              <div className="sm:hidden">
+                {["JOIN THE", "UNION"].map((line) => (
+                  <svg
+                    key={line}
+                    aria-hidden
+                    viewBox="0 0 600 120"
+                    className="h-auto w-full"
+                    preserveAspectRatio="xMidYMid meet"
+                  >
+                    <text
+                      x="300"
+                      y="98"
+                      textAnchor="middle"
+                      textLength="592"
+                      lengthAdjust="spacingAndGlyphs"
+                      fill="#f5f1e8"
+                      fontSize="120"
+                      fontWeight="700"
+                      style={{ fontFamily: "Inter, system-ui, sans-serif", letterSpacing: "-0.04em" }}
+                    >
+                      {line}
+                    </text>
+                  </svg>
+                ))}
+              </div>
+
             </div>
 
 
