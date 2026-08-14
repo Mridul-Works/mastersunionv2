@@ -431,7 +431,7 @@ function FacultyPage() {
   }, []);
 
   return (
-    <main className="min-h-screen overflow-x-clip bg-[#0a0a0a] pb-24 text-white sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
+    <main className="min-h-screen bg-[#0a0a0a] pb-24 text-white sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
       <SectionNav items={NAV} applyHref="#cta" />
 
       {/* Chapter marker */}
