@@ -279,6 +279,7 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
 
       for (const pt of pts) {
         const base = pt.kind === 0 ? 0.16 : pt.kind === 1 ? 0.12 : pt.kind === 2 ? 0.08 : 0.06;
+        const a = base + pt.s * (0.1 + 0.26 * glow);
 
         ctx.fillStyle = `rgba(255,255,255,${a.toFixed(3)})`;
         ctx.beginPath();
