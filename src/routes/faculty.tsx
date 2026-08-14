@@ -588,31 +588,8 @@ function FacultyPage() {
             ]}
             items={VISITING.map((v) => ({ name: v.name, role: v.role, sub: v.school, img: v.img }))}
           />
-          <EditorialSplit
-            left={
-              <p className="max-w-[min(100%,62ch)] text-[clamp(1.4rem,2.2vw,1.85rem)] leading-[1.42] text-white/[0.96]">
-                <span className="font-medium text-white">Kellogg School of Management</span> — led by Professor Mohanbir Sawhney, one of the world&apos;s foremost authorities on technology strategy and marketing innovation — has brought students to Masters&apos; Union for two consecutive years. <span className="font-medium text-white">Harvard Business School India</span> immersion students have visited campus. When schools like these come here to learn, something is working.
-              </p>
-            }
-            right={
-              <SupportingPanel title="Schools That Come Here">
-                <InfoRow delay={0}>
-                  <div className="text-[0.95rem] font-medium leading-[1.3] text-white">Kellogg</div>
-                  <div className="mt-0.5 break-words text-[11px] uppercase tracking-[0.2em] text-white/70" style={{ fontFamily: MONO }}>School of Management</div>
-                </InfoRow>
-                <InfoRow delay={800}>
-                  <div className="text-[0.95rem] font-medium leading-[1.3] text-white">Harvard</div>
-                  <div className="mt-0.5 break-words text-[11px] uppercase tracking-[0.2em] text-white/70" style={{ fontFamily: MONO }}>Business School India</div>
-                </InfoRow>
-                <InfoRow delay={1600}>
-                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                    <div className="text-[2rem] font-bold leading-[0.9] tracking-[-0.04em] text-white">02</div>
-                    <div className="text-[11px] uppercase tracking-[0.18em] text-white/60" style={{ fontFamily: MONO }}>consecutive years</div>
-                  </div>
-                </InfoRow>
-              </SupportingPanel>
-            }
-          />
+          <SchoolsScrollPanel />
+
         </div>
       </section>
 
