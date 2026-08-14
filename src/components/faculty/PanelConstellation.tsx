@@ -122,7 +122,7 @@ function buildOrbits(rand: () => number): Field {
 
   const push = (bx: number, by: number, kind: 0 | 1 | 2) => {
     const r =
-      kind === 0 ? between(1.5, 2.0) : kind === 1 ? between(0.85, 1.25) : between(0.28, 0.62);
+      kind === 0 ? between(1.7, 2.3) : kind === 1 ? between(1.0, 1.45) : between(0.5, 0.95);
     nodes.push({
       bx: clampF(bx, 0.015, MAX_X),
       by: clampF(by, 0.025, 0.975),
@@ -170,7 +170,7 @@ function buildArcs(rand: () => number): Field {
 
   const push = (bx: number, by: number, kind: 0 | 1 | 2) => {
     const r =
-      kind === 0 ? between(1.4, 1.9) : kind === 1 ? between(0.8, 1.2) : between(0.26, 0.6);
+      kind === 0 ? between(1.6, 2.1) : kind === 1 ? between(0.95, 1.4) : between(0.45, 0.9);
     nodes.push({
       bx: clampF(bx, 0.015, MAX_X),
       by: clampF(by, 0.025, 0.975),
@@ -319,7 +319,7 @@ export default function PanelConstellation({
           const b = pts[link.b];
           if (tier === 1 && Math.abs(b.x - a.x) > w * 0.06) continue;
           const e = smooth(grow);
-          const alpha = (0.03 + 0.055 * glow) * ((a.dim + b.dim) / 2) * Math.min(1, grow * 1.6);
+          const alpha = (0.05 + 0.075 * glow) * ((a.dim + b.dim) / 2) * Math.min(1, grow * 1.6);
           ctx.strokeStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
@@ -332,8 +332,8 @@ export default function PanelConstellation({
       // ---- stars ------------------------------------------------------------
       for (const pt of pts) {
         if (pt.on <= 0.005) continue;
-        const base = pt.kind === 0 ? 0.3 : pt.kind === 1 ? 0.2 : 0.12;
-        const a = (base + pt.s * (0.05 + 0.1 * glow)) * pt.dim * pt.on;
+        const base = pt.kind === 0 ? 0.42 : pt.kind === 1 ? 0.3 : 0.19;
+        const a = (base + pt.s * (0.08 + 0.14 * glow)) * pt.dim * pt.on;
         ctx.fillStyle = `rgba(255,255,255,${a.toFixed(3)})`;
         ctx.beginPath();
         ctx.arc(pt.x, pt.y, pt.r * (0.9 + 0.2 * pt.on), 0, TAU);
