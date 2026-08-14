@@ -581,7 +581,7 @@ function FacultyPage() {
           />
           <EditorialSplit
             left={
-              <p className="max-w-[70ch] text-[0.98rem] leading-[1.5] text-white/75">
+              <p className="max-w-[min(100%,74ch)] text-[clamp(1.02rem,1.3vw,1.18rem)] leading-[1.58] text-white/[0.85]">
                 <span className="font-medium text-white">Kellogg School of Management</span> — led by Professor Mohanbir Sawhney, one of the world&apos;s foremost authorities on technology strategy and marketing innovation — has brought students to Masters&apos; Union for two consecutive years. <span className="font-medium text-white">Harvard Business School India</span> immersion students have visited campus. When schools like these come here to learn, something is working.
               </p>
             }
