@@ -29,6 +29,7 @@ function Panel({
   coverVhMultiplier: number;
   prevCoverVhMultiplier: number;
 }) {
+  const wrapRef = React.useRef<HTMLDivElement>(null);
   const innerRef = React.useRef<HTMLDivElement>(null);
   const [contentH, setContentH] = React.useState(0);
   const [vh, setVh] = React.useState(0);
@@ -57,8 +58,54 @@ function Panel({
   const coverVh = measured ? coverVhMultiplier * vh : 0;
   const prevCoverVh = measured ? prevCoverVhMultiplier * vh : 0;
 
+  // Scroll-progress-driven blur/dim while the next panel covers this one.
+  React.useEffect(() => {
+    if (isLast || !measured) return;
+    const wrap = wrapRef.current;
+    const inner = innerRef.current;
+    if (!wrap || !inner) return;
+
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let raf = 0;
+    let last = -1;
+
+    const update = () => {
+      raf = 0;
+      const scrolled = -wrap.getBoundingClientRect().top;
+      const p = Math.min(1, Math.max(0, (scrolled - overflow) / Math.max(1, coverVh)));
+      if (Math.abs(p - last) < 0.004) return;
+      last = p;
+      if (p <= 0) {
+        inner.style.filter = "";
+        inner.style.opacity = "";
+        return;
+      }
+      const blur = reduced ? 0 : (10 * p).toFixed(2);
+      inner.style.filter = reduced
+        ? `brightness(${(1 - 0.12 * p).toFixed(3)})`
+        : `blur(${blur}px) brightness(${(1 - 0.12 * p).toFixed(3)})`;
+      inner.style.opacity = (1 - 0.15 * p).toFixed(3);
+    };
+
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      inner.style.filter = "";
+      inner.style.opacity = "";
+    };
+  }, [isLast, measured, overflow, coverVh]);
+
   return (
     <div
+      ref={wrapRef}
       style={{
         zIndex: index + 1,
         position: "relative",
@@ -80,6 +127,7 @@ function Panel({
       </div>
     </div>
   );
+
 }
 
 export default function StackReveal({
