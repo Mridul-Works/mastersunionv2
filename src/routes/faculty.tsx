@@ -440,6 +440,32 @@ function PedigreeGroup({ label, items, delay = 0 }: { label: string; items: stri
   );
 }
 
+const MARQUEE_WORDS = ["Built", "Led", "Invested", "Shaped"];
+
+function WordMarquee() {
+  return (
+    <div className="marquee-hover mt-[clamp(2.5rem,7vh,5rem)] w-full border-y border-white/10 py-[clamp(1.25rem,4vh,2.5rem)]">
+      <div className="w-full overflow-hidden">
+        <div className="animate-marquee-slow flex w-max items-baseline">
+          {[0, 1].map((copy) => (
+            <div key={copy} aria-hidden={copy === 1} className="flex items-baseline">
+              {MARQUEE_WORDS.map((word) => (
+                <span
+                  key={word}
+                  tabIndex={copy === 0 ? 0 : -1}
+                  className="block cursor-default select-none px-[clamp(1.25rem,3vw,3.5rem)] text-[clamp(4.5rem,13vw,15rem)] font-semibold uppercase leading-[0.86] tracking-[-0.02em] text-white/[0.14] outline-none transition-colors duration-500 hover:text-[#f5f1e8]/85 focus-visible:text-[#f5f1e8]/85"
+                >
+                  {word}
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 
 
 export const Route = createFileRoute("/faculty")({
