@@ -86,17 +86,27 @@ export default function StackReveal({
   children,
   className = "",
   bg = "bg-[#0a0a0a]",
+  coverMultipliers,
 }: {
   children: React.ReactNode;
   className?: string;
   bg?: string;
+  /** Per-panel cover-up duration multipliers, relative to 1 viewport. */
+  coverMultipliers?: number[];
 }) {
   const panels = React.Children.toArray(children).filter(Boolean);
 
   return (
     <div className={`relative ${className}`}>
       {panels.map((child, i) => (
-        <Panel key={i} index={i} bg={bg} isLast={i === panels.length - 1}>
+        <Panel
+          key={i}
+          index={i}
+          bg={bg}
+          isLast={i === panels.length - 1}
+          coverVhMultiplier={coverMultipliers?.[i] ?? 1}
+          prevCoverVhMultiplier={coverMultipliers?.[i - 1] ?? 1}
+        >
           {child}
         </Panel>
       ))}
