@@ -694,6 +694,8 @@ function FacultyBlock() {
 
 function FacultyPager({ items }: { items: typeof FACULTY_ALL }) {
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const activeRef = useRef(false);
   const [page, setPage] = useState(0);
   const PER_PAGE = 12; // 4 cols x 3 rows
   const pages: typeof FACULTY_ALL[] = [];
@@ -707,8 +709,31 @@ function FacultyPager({ items }: { items: typeof FACULTY_ALL }) {
     if (el) el.scrollTo({ left: next * el.clientWidth, behavior: "smooth" });
   };
 
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (!activeRef.current) return;
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        go(1);
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        go(-1);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [page, totalPages]);
+
   return (
-    <div className="relative">
+    <div
+      ref={wrapRef}
+      className="relative"
+      onMouseEnter={() => (activeRef.current = true)}
+      onMouseLeave={() => (activeRef.current = false)}
+      onFocusCapture={() => (activeRef.current = true)}
+      onBlurCapture={() => (activeRef.current = false)}
+      tabIndex={0}
+    >
       <div
         ref={scrollerRef}
         className="flex snap-x snap-mandatory overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
