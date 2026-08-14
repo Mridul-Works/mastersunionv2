@@ -52,131 +52,91 @@ const HUBS: number[] = [];
 const clampF = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
 
 /**
- * A constellation of institutions that emerges from beneath the meter (the
- * right edge of the pattern box) and branches outward to the left, toward the
- * story column. Geometry is hard-constrained to x <= 0.985 of the pattern box,
- * which ends before the protected meter column — nothing can ever cross it.
+ * Constellation A — sparse clusters that emerge from beneath the meter edge on
+ * the right and spread inward (leftward), thinning out as they travel. Geometry
+ * is hard-capped at MAX_X so nothing ever renders over the meter column.
  */
-const MAX_X = 0.985;
+const MAX_X = 0.995;
 
-/** Inter-cluster relationships, each revealed at its own point in the scroll. */
+/** Short, sparse links, each revealed at its own point in the scroll. */
 const BRIDGES: { a: number; b: number; at: number }[] = [];
 
-const anchorCount = 3 + Math.round(rand()); // 3–4 anchor constellations
-const minorCount = 6 + Math.round(rand() * 3); // 6–9 minor constellations
-
+// 4–5 clusters whose "origin" hugs the meter edge, then step inward
+const clusterCount = 4 + Math.round(rand());
 type Seed = { x: number; y: number; anchor: boolean };
 const seeds: Seed[] = [];
 
-// Place anchors across a 2D region in the right half of the panel, so their
-// satellite clusters overlap and intermingle instead of lining up vertically.
-for (let i = 0; i < anchorCount; i++) {
-  let attempts = 0;
+for (let i = 0; i < clusterCount; i++) {
+  // depth 0 = right at the meter, later clusters progressively further inward
+  const depth = i / Math.max(1, clusterCount - 1);
   let x = 0;
   let y = 0;
-  do {
-    x = clampF(between(0.55, 0.90), 0.45, MAX_X);
-    y = clampF(between(0.18, 0.82), 0.12, 0.88);
-    attempts++;
-  } while (
-    attempts < 30 &&
-    seeds.some((s) => s.anchor && Math.hypot(s.x - x, s.y - y) < 0.18)
-  );
-  seeds.push({ x, y, anchor: true });
-}
-for (let i = 0; i < minorCount; i++) {
-  // minor constellations drift in the left/middle field, never overlapping anchors
   let attempts = 0;
-  let x = 0;
-  let y = 0;
   do {
-    x = clampF(between(0.15, 0.55), 0.08, MAX_X);
-    y = clampF(rand(), 0.12, 0.88);
+    x = clampF(0.94 - depth * between(0.5, 0.78) + (rand() - 0.5) * 0.06, 0.08, MAX_X);
+    y = clampF(between(0.1, 0.9), 0.08, 0.92);
     attempts++;
-  } while (
-    attempts < 30 &&
-    seeds.some((s) => Math.hypot(s.x - x, s.y - y) < 0.14)
-  );
-  seeds.push({ x, y, anchor: false });
+  } while (attempts < 30 && seeds.some((s) => Math.hypot(s.x - x, (s.y - y) * 0.7) < 0.22));
+  seeds.push({ x, y, anchor: depth < 0.5 });
 }
 
-seeds.forEach((seed) => {
+seeds.forEach((seed, si) => {
   const hubIndex = NODES.length;
   HUBS.push(hubIndex);
+  const fade = 1 - si / (seeds.length + 1); // clusters thin out away from the meter
   NODES.push({
     bx: seed.x,
     by: seed.y,
-    rx: between(0.018, 0.045),
-    ry: between(0.012, 0.032),
-    sp: between(0.18, 0.52),
+    rx: between(0.014, 0.032),
+    ry: between(0.008, 0.02),
+    sp: between(0.12, 0.34),
     ph: rand() * Math.PI * 2,
-    r: seed.anchor ? between(4.0, 6.5) : between(2.8, 4.2),
-    s: seed.anchor ? between(0.85, 0.98) : between(0.6, 0.82),
+    r: seed.anchor ? between(2.2, 3.0) : between(1.6, 2.2),
+    s: seed.anchor ? between(0.7, 0.9) : between(0.5, 0.7),
     parent: -1,
     kind: seed.anchor ? 0 : 1,
   });
 
-  // satellites: smaller stars orbiting the hub in dense organic clusters
-  const count = seed.anchor ? 18 + Math.round(rand() * 12) : 7 + Math.round(rand() * 4);
+  // few satellites, biased leftward — spread rather than a dense ball
+  const count = Math.max(3, Math.round((seed.anchor ? 7 : 5) * fade + rand() * 3));
   for (let k = 0; k < count; k++) {
-    const ang = seed.anchor
-      ? Math.PI * 0.35 + rand() * Math.PI * 1.3 // strongly leftward bias for anchors
-      : rand() * Math.PI * 2;
-    const len = (seed.anchor ? 0.09 : 0.05) * between(0.5, 1.3);
+    const ang = Math.PI * 0.3 + rand() * Math.PI * 1.4;
+    const len = between(0.05, 0.14);
+    const idx = NODES.length;
     NODES.push({
-      bx: clampF(seed.x + Math.cos(ang) * len * 1.7, 0.02, MAX_X),
-      by: clampF(seed.y + Math.sin(ang) * len * 1.4, 0.02, 0.98),
-      rx: between(0.012, 0.040),
-      ry: between(0.008, 0.028),
-      sp: between(0.22, 0.75),
+      bx: clampF(seed.x + Math.cos(ang) * len * 1.5, 0.03, MAX_X),
+      by: clampF(seed.y + Math.sin(ang) * len * 0.9, 0.03, 0.97),
+      rx: between(0.01, 0.028),
+      ry: between(0.006, 0.018),
+      sp: between(0.16, 0.44),
       ph: rand() * Math.PI * 2,
-      r: between(1.4, 2.6),
-      s: between(0.35, 0.72),
-      parent: hubIndex,
+      r: between(0.8, 1.5),
+      s: between(0.28, 0.55),
+      parent: rand() > 0.45 ? hubIndex : -1,
       kind: 2,
     });
+    if (rand() > 0.82) BRIDGES.push({ a: hubIndex, b: idx, at: between(0.06, 0.7) });
   }
 });
 
-// short intra-cluster links between nearby satellites (orbits, not long chains)
-for (let i = 0; i < HUBS.length; i++) {
-  const hub = HUBS[i];
-  const satellites: number[] = [];
-  for (let j = hub + 1; j < NODES.length && NODES[j].parent === hub; j++) {
-    satellites.push(j);
-  }
-  for (let a = 0; a < satellites.length; a++) {
-    for (let b = a + 1; b < satellites.length; b++) {
-      const n1 = NODES[satellites[a]];
-      const n2 = NODES[satellites[b]];
-      const d = Math.hypot(n1.bx - n2.bx, n1.by - n2.by);
-      if (d < 0.14 && rand() > 0.4) {
-        BRIDGES.push({ a: satellites[a], b: satellites[b], at: between(0.08, 0.7) });
-      }
-    }
-  }
-}
-
-
-// isolated stars — gentle negative space between clusters
-const loneCount = 40 + Math.round(rand() * 16);
+// isolated stars — generous negative space, thinning toward the left
+const loneCount = 22 + Math.round(rand() * 10);
 for (let i = 0; i < loneCount; i++) {
+  const bias = Math.pow(rand(), 0.65); // denser near the meter edge
   NODES.push({
-    bx: clampF(between(0.03, MAX_X), 0.02, MAX_X),
+    bx: clampF(0.06 + bias * (MAX_X - 0.06), 0.03, MAX_X),
     by: clampF(rand(), 0.03, 0.97),
-    rx: between(0.008, 0.032),
-    ry: between(0.008, 0.028),
-    sp: between(0.18, 0.7),
+    rx: between(0.008, 0.026),
+    ry: between(0.006, 0.02),
+    sp: between(0.14, 0.42),
     ph: rand() * Math.PI * 2,
-    r: between(0.8, 1.7),
-    s: between(0.35, 0.62),
+    r: between(0.55, 1.15),
+    s: between(0.22, 0.44),
     parent: -1,
     kind: 3,
   });
 }
 
-// No inter-hub bridges: each anchor/minor cluster is a distinct constellation.
-// This prevents the long vertical chains that made the field read as a network.
 
 
 const TAU = Math.PI * 2;
@@ -245,18 +205,18 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
       ctx.clearRect(0, 0, w, h);
       // density/brightness ramp saturates gently but geometry keeps moving
       const glow = Math.min(1, Math.max(0, t * 2.2));
-      // primarily leftward drift toward the content column (≈22% of panel width)
-      const drift = -driftEase(t) * 0.22;
+      // leftward drift, emerging from behind the meter and spreading inward
+      const drift = -driftEase(t) * 0.3;
 
       const pts = NODES.map((n) => {
         // slow, bounded orbit — a drift through the panel, not a sweep
-        const a = n.ph + t * n.sp * 0.55 * TAU;
+        const a = n.ph + t * n.sp * 0.5 * TAU;
         // hard geometric exclusion: nothing may pass MAX_X (the meter spine)
         const nx = Math.min(MAX_X, n.bx + drift + Math.cos(a) * n.rx);
         return {
           x: nx * w,
           // vertical motion is a very subtle secondary component
-          y: (n.by + Math.sin(a * 0.85 + 0.6) * n.ry * 0.2) * h,
+          y: (n.by + Math.sin(a * 0.85 + 0.6) * n.ry * 0.18) * h,
           r: n.r,
           s: n.s,
           kind: n.kind,
@@ -266,12 +226,12 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
 
 
       if (tier < 2) {
-        // 1. branches inside each institutional cluster — always present
-        ctx.lineWidth = 1.0;
+        // 1. hairline branches inside each cluster
+        ctx.lineWidth = 0.6;
         for (const pt of pts) {
           if (pt.parent < 0) continue;
           const p = pts[pt.parent];
-          const a = 0.12 + 0.14 * glow;
+          const a = 0.05 + 0.07 * glow;
           ctx.strokeStyle = `rgba(255,255,255,${a.toFixed(3)})`;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
@@ -279,16 +239,15 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
           ctx.stroke();
         }
 
-        // 2. bridges between clusters — revealed progressively, so separate
-        //    ecosystems gradually become one network as the section advances.
+        // 2. a few extra links revealed progressively along the scroll
         if (tier === 0) {
-          ctx.lineWidth = 1.1;
+          ctx.lineWidth = 0.7;
           for (const br of BRIDGES) {
             const reveal = smooth((t - br.at) / 0.3);
             if (reveal <= 0.001) continue;
             const a = pts[br.a];
             const b = pts[br.b];
-            const alpha = reveal * (0.14 + 0.14 * glow);
+            const alpha = reveal * (0.06 + 0.08 * glow);
             ctx.strokeStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -305,27 +264,29 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
       }
 
       // soft glow for every star
-      ctx.shadowBlur = 6;
-      ctx.shadowColor = "rgba(255,255,255,0.18)";
+      ctx.shadowBlur = 4;
+      ctx.shadowColor = "rgba(255,255,255,0.14)";
       for (const pt of pts) {
-        const base = pt.kind === 0 ? 0.50 : pt.kind === 1 ? 0.38 : pt.kind === 2 ? 0.26 : 0.18;
-        const a = base + pt.s * (0.12 + 0.22 * glow);
+        const base = pt.kind === 0 ? 0.34 : pt.kind === 1 ? 0.26 : pt.kind === 2 ? 0.16 : 0.12;
+        const a = base + pt.s * (0.08 + 0.14 * glow);
 
         ctx.fillStyle = `rgba(255,255,255,${a.toFixed(3)})`;
         ctx.beginPath();
-        ctx.arc(pt.x, pt.y, pt.r * (1.0 + 0.35 * glow), 0, TAU);
+        ctx.arc(pt.x, pt.y, pt.r * (1.0 + 0.25 * glow), 0, TAU);
         ctx.fill();
-        // anchors carry a faint halo — major institutions, still understated
+        // anchors carry a faint halo — understated, never a glowing blob
         if (pt.kind === 0) {
           ctx.shadowBlur = 0;
-          ctx.strokeStyle = `rgba(255,255,255,${(0.18 + 0.16 * glow).toFixed(3)})`;
-          ctx.lineWidth = 1.0;
+          ctx.strokeStyle = `rgba(255,255,255,${(0.09 + 0.08 * glow).toFixed(3)})`;
+          ctx.lineWidth = 0.7;
           ctx.beginPath();
-          ctx.arc(pt.x, pt.y, pt.r * 3.0 + 2, 0, TAU);
+          ctx.arc(pt.x, pt.y, pt.r * 2.8 + 2, 0, TAU);
           ctx.stroke();
+          ctx.shadowBlur = 4;
         }
       }
       ctx.shadowBlur = 0;
+
 
 
       // profile + degrade/recover without ever stopping the scroll mapping
@@ -427,8 +388,7 @@ function NetworkField({ progressRef }: { progressRef: React.MutableRefObject<num
     <canvas
       ref={canvasRef}
       aria-hidden
-      className="pointer-events-none absolute inset-y-0 left-0 h-full"
-      style={{ width: "82%" }}
+      className="pointer-events-none absolute inset-0 h-full w-full"
     />
   );
 }
