@@ -15,11 +15,11 @@ const PHOTO_CLASS =
 const HEADLINE = (
   <>
     At most B-schools, faculty{" "}
-    <span className="font-light italic text-white" style={{ fontFamily: SERIF_IT }}>
+    <span className="font-light italic text-white/[0.14]" style={{ fontFamily: SERIF_IT }}>
       study
     </span>{" "}
     companies. Here, they{" "}
-    <span className="font-light italic text-white" style={{ fontFamily: SERIF_IT }}>
+    <span className="font-light italic text-white/[0.14]" style={{ fontFamily: SERIF_IT }}>
       ran
     </span>{" "}
     them and most still do.
