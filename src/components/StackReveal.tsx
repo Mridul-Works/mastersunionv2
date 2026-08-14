@@ -58,14 +58,13 @@ function Panel({
   const coverVh = measured ? coverVhMultiplier * vh : 0;
   const prevCoverVh = measured ? prevCoverVhMultiplier * vh : 0;
 
-  // Scroll-progress-driven blur/dim while the next panel covers this one.
+  // Scroll-progress-driven fade while the next panel covers this one.
   React.useEffect(() => {
     if (isLast || !measured) return;
     const wrap = wrapRef.current;
     const inner = innerRef.current;
     if (!wrap || !inner) return;
 
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let raf = 0;
     let last = -1;
 
@@ -76,15 +75,12 @@ function Panel({
       if (Math.abs(p - last) < 0.004) return;
       last = p;
       if (p <= 0) {
-        inner.style.filter = "";
         inner.style.opacity = "";
         return;
       }
-      const blur = reduced ? 0 : (10 * p).toFixed(2);
-      const dim = (1 - 0.18 * p).toFixed(3);
-      inner.style.filter = reduced
-        ? `brightness(${dim})`
-        : `blur(${blur}px) brightness(${dim})`;
+      // Smooth editorial fade: 1 -> ~0.3 -> 0
+      const opacity = (1 - p) * (1 - 0.7 * p);
+      inner.style.opacity = opacity.toFixed(3);
     };
 
     const onScroll = () => {
@@ -98,7 +94,6 @@ function Panel({
       if (raf) cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
-      inner.style.filter = "";
       inner.style.opacity = "";
     };
   }, [isLast, measured, overflow, coverVh]);
