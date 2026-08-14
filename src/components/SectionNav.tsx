@@ -140,87 +140,80 @@ export function SectionNav({
 
   return (
     <header
-      className="fixed left-0 top-0 z-[100] hidden h-screen flex-col items-center justify-between py-5 md:flex"
+      className="fixed left-0 top-0 z-[100] hidden h-screen w-[72px] flex-col items-center justify-between border-r border-border/40 bg-background/80 py-6 backdrop-blur-md md:flex lg:w-[84px]"
       style={{
         transform: visible ? "translateX(0)" : "translateX(calc(-100% - 24px))",
         transition: "transform 450ms cubic-bezier(0.22, 1, 0.36, 1)",
       }}
     >
-      <div
-        className={
-          "relative mx-3 flex h-[calc(100dvh-40px)] w-14 flex-col items-center justify-between overflow-hidden rounded-full border py-5 transition-all duration-300 sm:w-16 sm:py-6 " +
-          (scrolled
-            ? "border-border bg-background/85 shadow-[0_0_50px_-20px_rgba(0,0,0,0.28)] backdrop-blur-xl"
-            : "border-border/60 bg-background/80 shadow-[0_0_40px_-25px_rgba(0,0,0,0.25)] backdrop-blur-md")
-        }
+      {/* scroll progress rail */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute left-0 top-0 h-full w-[2px] origin-top transition-transform duration-150"
+        style={{
+          transform: `scaleY(${progress})`,
+          backgroundImage:
+            "linear-gradient(180deg, #39B5D7 -6.14%, #F7D544 47.02%, #E38330 99.71%)",
+        }}
+      />
+
+      <a href="/" className="flex flex-col items-center gap-2" aria-label="Masters' Union home">
+        <img src={logoAsset.url} alt="Masters' Union" className="h-7 w-auto lg:h-8" />
+        <span className="font-mono text-[8px] uppercase tracking-[0.12em] text-muted-foreground">
+          {clock}
+        </span>
+      </a>
+
+      <nav
+        aria-label="Sections"
+        className="flex w-full flex-1 flex-col items-center justify-center gap-3 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
-        {/* scroll progress rail */}
-        <span
-          aria-hidden
-          className="pointer-events-none absolute left-0 top-0 h-full w-[2px] origin-top transition-transform duration-150"
-          style={{
-            transform: `scaleY(${progress})`,
-            backgroundImage:
-              "linear-gradient(180deg, #39B5D7 -6.14%, #F7D544 47.02%, #E38330 99.71%)",
-          }}
-        />
+        {items.map((item) => (
+          <a
+            key={item.id}
+            href={item.href ?? `#${item.id}`}
+            onClick={(e) => {
+              if (item.href) return;
+              e.preventDefault();
+              scrollToId(item.id);
+            }}
+            className={
+              "flex h-9 w-9 items-center justify-center rounded-full text-[10px] font-medium transition-colors lg:h-10 lg:w-10 lg:text-[11px] " +
+              (!item.href && active === item.id
+                ? "bg-foreground/[0.07] text-foreground"
+                : "text-foreground/70 hover:bg-foreground/[0.06] hover:text-foreground")
+            }
+            title={item.label}
+          >
+            {item.label.slice(0, 2).toUpperCase()}
+          </a>
+        ))}
 
-        <a href="/" className="flex shrink-0 flex-col items-center gap-1.5" aria-label="Masters' Union home">
-          <img src={logoAsset.url} alt="Masters' Union" className="h-5 w-auto sm:h-6" />
-          <span className="hidden font-mono text-[8px] uppercase tracking-[0.16em] text-muted-foreground sm:block">
-            {clock}
-          </span>
-        </a>
+        {extraLinks.map((l) => (
+          <a
+            key={l.href}
+            href={l.href}
+            className="flex h-9 w-9 items-center justify-center rounded-full text-[10px] font-medium text-foreground/70 transition-colors hover:bg-foreground/[0.06] hover:text-foreground lg:h-10 lg:w-10"
+            title={l.label}
+          >
+            {l.label.slice(0, 2).toUpperCase()}
+          </a>
+        ))}
+      </nav>
 
-        <nav
-          aria-label="Sections"
-          className="flex w-full flex-1 flex-col items-center justify-center gap-2 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
-          {items.map((item) => (
-            <a
-              key={item.id}
-              href={item.href ?? `#${item.id}`}
-              onClick={(e) => {
-                if (item.href) return;
-                e.preventDefault();
-                scrollToId(item.id);
-              }}
-              className={
-                "flex h-8 w-8 items-center justify-center rounded-full text-[10px] font-medium transition-colors sm:h-9 sm:w-9 sm:text-[11px] " +
-                (!item.href && active === item.id
-                  ? "bg-foreground/[0.07] text-foreground"
-                  : "text-foreground/70 hover:bg-foreground/[0.06] hover:text-foreground")
-              }
-              title={item.label}
-            >
-              {item.label.slice(0, 2).toUpperCase()}
-            </a>
-          ))}
-
-          {extraLinks.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="flex h-8 w-8 items-center justify-center rounded-full text-[10px] font-medium text-foreground/70 transition-colors hover:bg-foreground/[0.06] hover:text-foreground sm:h-9 sm:w-9"
-              title={l.label}
-            >
-              {l.label.slice(0, 2).toUpperCase()}
-            </a>
-          ))}
-        </nav>
-
+      <div className="flex flex-col items-center gap-3">
         <a
           href={applyHref}
           onClick={handleApply}
-          className="group inline-flex shrink-0 flex-col items-center justify-center gap-1"
+          className="group inline-flex flex-col items-center justify-center gap-1"
           title="Apply"
         >
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform duration-300 group-hover:rotate-45 sm:h-10 sm:w-10">
+          <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform duration-300 group-hover:rotate-45 lg:h-11 lg:w-11">
             <ArrowUpRight className="h-4 w-4" strokeWidth={2.25} />
           </span>
         </a>
 
-        <div className="rounded-full border border-border/60 bg-background/80 px-2.5 py-1 text-center text-[9px] font-medium text-foreground/70 shadow-[0_0_30px_-20px_rgba(0,0,0,0.25)] backdrop-blur-md">
+        <div className="w-[56px] rounded-full border border-border/60 bg-background/80 px-2 py-1.5 text-center text-[9px] font-medium text-foreground/70 backdrop-blur-md lg:w-[62px]">
           {activeLabel}
         </div>
       </div>
