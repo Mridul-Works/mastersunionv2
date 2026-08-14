@@ -540,7 +540,8 @@ function FacultyPage() {
             title={<>{FULLTIME.length} PhD faculty. Active researchers. Published where the <Accent>best B-schools read</Accent>.</>}
             intro="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing in FT50 and A* journals."
           />
-          <EditorialGrid
+          <div className="reveal-up" style={{ transitionDelay: "160ms" }}>
+            <EditorialGrid
             gallery
             cardStats
             dark
