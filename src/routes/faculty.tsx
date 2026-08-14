@@ -646,7 +646,7 @@ function FacultyPage() {
       <section className="group relative flex min-h-[110svh] flex-col items-center justify-center overflow-hidden border-y border-white/10 bg-[#0a0a0a] py-[clamp(4rem,10vh,8rem)] text-white">
         {/* Background DOERS watermark */}
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
-          <div className="text-white/[0.14] transition-colors duration-500 hover:text-[#f5f1e8]/85">
+          <div className="text-white/[0.14] transition-colors duration-500 group-hover:text-[#f5f1e8]/85">
             <svg
               aria-hidden
               viewBox="0 0 1200 260"
