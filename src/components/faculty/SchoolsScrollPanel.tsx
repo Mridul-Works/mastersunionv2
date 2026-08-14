@@ -62,28 +62,30 @@ const MAX_X = 0.985;
 /** Inter-cluster relationships, each revealed at its own point in the scroll. */
 const BRIDGES: { a: number; b: number; at: number }[] = [];
 
-const anchorCount = 5 + Math.round(rand()); // 5–6 anchors
-const minorCount = 8 + Math.round(rand() * 3); // 8–11 minor hubs
+const anchorCount = 3 + Math.round(rand()); // 3–4 anchors
+const minorCount = 6 + Math.round(rand() * 3); // 6–9 minor hubs
 
 type Seed = { x: number; y: number; anchor: boolean };
 const seeds: Seed[] = [];
 
+// pre-seeded anchor positions: 3-4 distinct clusters scattered in 2D near the meter
+const anchorYZones = [0.25, 0.55, 0.80, 0.42] as const;
+const anchorXZones = [0.62, 0.80, 0.68, 0.88] as const;
 for (let i = 0; i < anchorCount; i++) {
-  // anchors form distinct, organically scattered clusters — not a vertical spine
-  const cx = 0.55 + rand() * 0.32; // 0.55 – 0.87, closer to meter origin
-  const cy = 0.12 + rand() * 0.76; // full vertical spread
+  const yBase = anchorYZones[i % anchorYZones.length];
+  const xBase = anchorXZones[i % anchorXZones.length];
   seeds.push({
-    x: clampF(cx + between(-0.1, 0.1), 0.2, MAX_X),
-    y: clampF(cy + between(-0.08, 0.08), 0.08, 0.92),
+    x: clampF(xBase + between(-0.08, 0.08), 0.35, MAX_X),
+    y: clampF(yBase + between(-0.06, 0.06), 0.12, 0.88),
     anchor: true,
   });
 }
 for (let i = 0; i < minorCount; i++) {
-  // minor hubs orbit between anchors and the left edge, filling gaps
-  const bias = Math.pow(rand(), 0.75); // more mass toward the right/spine
+  // minor hubs fill the mid-ground between anchors and the left edge
+  const bias = Math.pow(rand(), 0.8); // more mass toward the right/spine
   seeds.push({
-    x: clampF(0.18 + bias * 0.72, 0.08, MAX_X),
-    y: clampF(rand(), 0.08, 0.92),
+    x: clampF(0.22 + bias * 0.58, 0.12, MAX_X),
+    y: clampF(rand(), 0.12, 0.88),
     anchor: false,
   });
 }
