@@ -174,7 +174,8 @@ export default function SchoolsScrollPanel() {
       raf = 0;
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight || 1;
-      const span = Math.max(1, rect.height - vh * 0.6);
+      // usable timeline even when the block is shorter than the viewport
+      const span = Math.max(vh * 0.85, rect.height - vh * 0.6);
 
       // raw, unclamped timeline: keeps advancing after the section is covered
       const raw = (vh * 0.75 - rect.top) / span;
