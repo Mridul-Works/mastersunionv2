@@ -376,6 +376,8 @@ function EditorialGrid({
       )}
     </div>
   );
+}
+
 function EditorialSplit({ left, right }: { left: React.ReactNode; right: React.ReactNode }) {
   return (
     <div className="mt-[clamp(0.75rem,1.8vh,1.25rem)] grid gap-0 border border-white/10 bg-white/[0.04] md:grid-cols-[minmax(0,1fr)_minmax(300px,35%)]">
