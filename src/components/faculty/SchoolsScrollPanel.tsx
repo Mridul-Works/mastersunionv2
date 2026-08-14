@@ -280,7 +280,7 @@ export default function SchoolsScrollPanel() {
           {/* RIGHT — scroll-revealed data panel: NETWORK | GAP | METER */}
           <div className="relative flex h-full overflow-hidden">
             {/* network area — 82% of the panel, network can never cross this box */}
-            <div className="relative flex min-w-0 flex-1 flex-col justify-center p-6 md:p-8 lg:p-10">
+            <div className="relative flex min-w-0 flex-1 flex-col justify-center overflow-hidden p-6 md:p-8 lg:p-10">
               <NetworkField progressRef={progressRef} />
 
               {/* single shared stage viewport — one active state at a time */}
