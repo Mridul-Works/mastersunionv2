@@ -148,6 +148,8 @@ export default function MastersVideos({
   const pendingRef = useRef<number | null>(null);
   const total = MASTER_VIDEOS.length;
   const current = MASTER_VIDEOS[active];
+  const containerRef = useRef<HTMLElement | null>(null);
+  const activeRef = useRef(false);
 
   // crossfade + subtle slide when the featured item changes
   const goTo = useCallback(
@@ -171,6 +173,22 @@ export default function MastersVideos({
     },
     [active, total],
   );
+
+  // keyboard left/right arrows for the prev/next buttons
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (!activeRef.current) return;
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        goTo(active + 1);
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        goTo(active - 1);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [goTo, active]);
 
   // keep the active thumbnail in view
   const stripRef = useRef<HTMLDivElement | null>(null);
@@ -207,7 +225,14 @@ export default function MastersVideos({
   return (
     <section
       id="masters"
-      ref={sectionRef}
+      ref={(node) => {
+        sectionRef.current = node;
+        containerRef.current = node;
+      }}
+      onMouseEnter={() => (activeRef.current = true)}
+      onMouseLeave={() => (activeRef.current = false)}
+      onFocusCapture={() => (activeRef.current = true)}
+      onBlurCapture={() => (activeRef.current = false)}
       className={`mv-section ${revealed ? "is-revealed" : ""} relative flex w-full min-h-[100svh] flex-col overflow-x-hidden border-t ${line} ${bg}`}
       style={{
         paddingTop: "clamp(0.75rem, 2vh, 1.75rem)",

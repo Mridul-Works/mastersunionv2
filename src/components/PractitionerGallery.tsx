@@ -274,10 +274,18 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
     return () => el.removeEventListener("wheel", listener);
   }, []);
 
+  const focusRef = useRef(false);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") go(1);
-      if (e.key === "ArrowLeft") go(-1);
+      if (!hoverRef.current && !focusRef.current) return;
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        go(1);
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        go(-1);
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -312,6 +320,9 @@ export default function PractitionerGallery({ items }: { items: GalleryItem[] })
       className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onFocusCapture={() => (focusRef.current = true)}
+      onBlurCapture={() => (focusRef.current = false)}
+      tabIndex={0}
     >
 
       {/* ambient dark atmosphere behind the active card */}
