@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { TouchColorImg } from "@/components/TouchColorImg";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowUpRight,
