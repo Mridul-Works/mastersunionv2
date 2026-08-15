@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import logoAsset from "@/assets/logo-2.png.asset.json";
+import { useIsTouchNav } from "@/hooks/use-nav-mode";
 
 export type SectionNavItem = {
   /** Section id on the current page (without the `#`). Use "top" to scroll to top. */
@@ -128,6 +129,7 @@ export function SectionNav({
   const { scrolled, progress, visible } = useScrollState();
   const active = useActiveSection(items.map((i) => i.id));
   const clock = useClock();
+  const isTouchNav = useIsTouchNav();
 
   const handleApply = (e: React.MouseEvent) => {
     if (applyHref.startsWith("#")) {
@@ -136,9 +138,12 @@ export function SectionNav({
     }
   };
 
+  // Touch phones/tablets use the fixed bottom navigation instead.
+  if (isTouchNav) return null;
+
   return (
     <header
-      className="fixed left-3 right-3 top-3 z-[100] hidden lg:flex sm:left-4 sm:right-4 sm:top-4"
+      className="fixed left-3 right-3 top-3 z-[100] flex sm:left-4 sm:right-4 sm:top-4"
       style={{
         transform: visible ? "translateY(0)" : "translateY(calc(-100% - 24px))",
         transition: "transform 450ms cubic-bezier(0.22, 1, 0.36, 1)",
