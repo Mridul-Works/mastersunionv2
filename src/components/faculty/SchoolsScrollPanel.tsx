@@ -133,7 +133,7 @@ export default function SchoolsScrollPanel() {
           <div className="grid h-full grid-cols-1 grid-rows-[minmax(0,1fr)_clamp(180px,26svh,280px)] border border-white/10 bg-white/[0.04] md:h-full md:min-h-0 md:grid-cols-[minmax(0,68%)_minmax(0,32%)] md:grid-rows-1">
           <PanelConstellation progressRef={progressRef} variant="orbits" />
           {/* LEFT — editorial story, scrolls internally on mobile if needed */}
-          <div className="relative z-10 flex min-h-0 flex-col justify-center overflow-y-auto no-scrollbar border-b border-white/10 py-6 pl-0 md:min-h-0 md:overflow-hidden md:border-b-0 md:border-r md:border-white/10 md:py-8 md:pr-8 lg:py-10 lg:pr-10">
+          <div className="relative z-10 flex min-h-0 flex-col justify-center overflow-y-auto no-scrollbar border-b border-white/10 py-6 pl-0 md:min-h-0 md:overflow-hidden md:border-b-0 md:border-r md:border-white/10 md:py-8 md:pl-8 md:pr-8 lg:py-10 lg:pl-10 lg:pr-10">
 
 
             <div className="faculty-editorial-text">
