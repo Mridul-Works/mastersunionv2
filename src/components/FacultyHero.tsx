@@ -275,7 +275,7 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
               {/* Paragraph with visiting-faculty overlay treatment */}
               <motion.div
                 variants={itemFromBelow}
-                className="relative z-10 mt-[clamp(0.9rem,2.4vh,1.7rem)] max-w-[44rem] border-l-2 border-white/80 bg-white/[0.04] p-[clamp(0.85rem,2vh,1.5rem)] lg:max-w-[40rem]"
+                className="relative z-10 mt-[clamp(0.9rem,2.4vh,1.7rem)] faculty-editorial-text border-l-2 border-white/80 bg-white/[0.04]"
               >
                 <p className="max-w-[70ch] text-[0.98rem] leading-[1.5] text-white/75">
                   500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered
