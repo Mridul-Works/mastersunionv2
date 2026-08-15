@@ -192,7 +192,7 @@ export function SectionNav({
       <div className="lg:hidden">
         <div
           className={
-            "relative flex items-center justify-between gap-3 overflow-hidden rounded-full border px-4 py-2.5 transition-all duration-300 " +
+            "relative flex items-center justify-between gap-3 overflow-hidden rounded-full border px-4 py-5 transition-all duration-300 " +
             (scrolled
               ? "border-border bg-background/90 shadow-[0_0_50px_-20px_rgba(0,0,0,0.28)] backdrop-blur-xl"
               : "border-border/60 bg-background/80 shadow-[0_0_40px_-25px_rgba(0,0,0,0.25)] backdrop-blur-md")
@@ -240,7 +240,7 @@ export function SectionNav({
           <div
             className="absolute inset-x-3 overflow-y-auto rounded-[26px] border border-white/10 bg-[#0b0b0b]/95 p-5 shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)] backdrop-blur-xl sm:inset-x-4"
             style={{
-              top: `calc(env(safe-area-inset-top, 0px) + 74px)`,
+              top: `calc(env(safe-area-inset-top, 0px) + 92px)`,
               maxHeight: "calc(100dvh - env(safe-area-inset-top, 0px) - 110px)",
               transform: menuOpen ? "translateY(0) scale(1)" : "translateY(-10px) scale(0.99)",
               transition: "transform 320ms cubic-bezier(0.22, 1, 0.36, 1)",
