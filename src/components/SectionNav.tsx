@@ -27,44 +27,70 @@ function scrollToId(id: string) {
 
 function useScrollState() {
   const [scrolled, setScrolled] = useState(false);
-  const [progress, setProgress] = useState(0);
   const [visible, setVisible] = useState(true);
   const lastScrollY = useRef(0);
   const directionStartY = useRef(0);
+  /** progress rail is written straight to the DOM — no re-render per scroll frame */
+  const railRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const THRESHOLD = 10;
-    const onScroll = () => {
+    let raf = 0;
+    // scrollHeight forces layout, so it is measured only on resize/mutation
+    let max = document.documentElement.scrollHeight - window.innerHeight;
+    let lastProgress = -1;
+
+    const update = () => {
+      raf = 0;
       const current = window.scrollY;
       const delta = current - lastScrollY.current;
-      const max = document.documentElement.scrollHeight - window.innerHeight;
 
-      setScrolled(current > 24);
-      setProgress(max > 0 ? Math.min(1, current / max) : 0);
+      const p = max > 0 ? Math.min(1, Math.max(0, current / max)) : 0;
+      if (Math.abs(p - lastProgress) > 0.001) {
+        lastProgress = p;
+        if (railRef.current) railRef.current.style.transform = `scaleX(${p.toFixed(4)})`;
+      }
 
-      if (current < 24) {
-        setVisible(true);
-        directionStartY.current = current;
-      } else if (delta < 0) {
-        setVisible(true);
+      setScrolled((prev) => {
+        const next = current > 24;
+        return prev === next ? prev : next;
+      });
+
+      if (current < 24 || delta < 0) {
+        setVisible((prev) => (prev ? prev : true));
         directionStartY.current = current;
       } else if (delta > 0 && current > directionStartY.current + THRESHOLD) {
-        setVisible(false);
+        setVisible((prev) => (prev ? false : prev));
       }
 
       lastScrollY.current = current;
     };
-    onScroll();
+
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+
+    const measure = () => {
+      max = document.documentElement.scrollHeight - window.innerHeight;
+      onScroll();
+    };
+
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener("resize", measure);
+    const ro = new ResizeObserver(measure);
+    ro.observe(document.documentElement);
     return () => {
+      if (raf) cancelAnimationFrame(raf);
+      ro.disconnect();
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("resize", measure);
     };
   }, []);
 
-  return { scrolled, progress, visible };
+  return { scrolled, visible, railRef };
 }
+
 
 function useActiveSection(ids: string[]) {
   const [active, setActive] = useState<string | null>(null);
