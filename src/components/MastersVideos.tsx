@@ -400,7 +400,8 @@ export default function MastersVideos({
                       <TouchColorImg
                         src={v.thumb}
                         alt=""
-                        loading="lazy"
+                        loading={i < MASTER_VIDEO_PRIORITY_COUNT ? "eager" : "lazy"}
+                        fetchPriority={i < MASTER_VIDEO_PRIORITY_COUNT ? "high" : "low"}
                         decoding="async"
                         className="h-full w-full object-contain grayscale contrast-[0.95] saturate-[0.75] transition-all duration-[350ms] ease-out group-hover:grayscale-0 group-hover:contrast-100 group-hover:saturate-100 data-[touch-color-active]:grayscale-0 data-[touch-color-active]:contrast-100 data-[touch-color-active]:saturate-100"
                       />
