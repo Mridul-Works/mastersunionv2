@@ -192,7 +192,7 @@ export function SectionNav({
       <div className="lg:hidden">
         <div
           className={
-            "relative flex items-center justify-between gap-3 overflow-hidden rounded-full border px-4 py-5 transition-all duration-300 " +
+            "relative flex h-20 items-center justify-between gap-3 overflow-hidden rounded-full border px-4 transition-all duration-300 " +
             (scrolled
               ? "border-border bg-background/90 shadow-[0_0_50px_-20px_rgba(0,0,0,0.28)] backdrop-blur-xl"
               : "border-border/60 bg-background/80 shadow-[0_0_40px_-25px_rgba(0,0,0,0.25)] backdrop-blur-md")
