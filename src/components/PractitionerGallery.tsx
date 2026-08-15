@@ -529,7 +529,9 @@ export default function PractitionerGallery({
           <img
             src={activeImg}
             alt=""
-            className="absolute inset-0 h-full w-full scale-110 object-cover opacity-[0.12] grayscale blur-3xl transition-opacity duration-700"
+            decoding="async"
+            fetchPriority="low"
+            className="no-img-zoom absolute inset-0 h-full w-full scale-110 object-cover opacity-[0.12] grayscale blur-3xl transition-opacity duration-700"
           />
         ) : null}
         <div className="absolute inset-0 bg-gradient-to-r from-[#0b0b0b] via-transparent to-[#0b0b0b]" />

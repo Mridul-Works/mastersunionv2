@@ -736,6 +736,7 @@ function FacultyPage() {
                 src={footerStripAsset.url}
                 alt="Masters' Union campus life"
                 loading="lazy"
+                decoding="async"
                 className="h-full w-full object-cover object-[56%_40%] opacity-60 grayscale-[0.25]"
               />
               <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-transparent to-[#0a0a0a]" />
