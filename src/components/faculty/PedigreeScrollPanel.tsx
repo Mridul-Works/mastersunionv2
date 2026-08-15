@@ -130,11 +130,19 @@ export default function PedigreeScrollPanel() {
       className="relative mt-[clamp(0.75rem,1.8vh,1.25rem)]"
       style={{ height: "380vh" }}
     >
-      <div className="sticky top-0 md:h-[calc(100svh-var(--nav-reserve,0px))] md:overflow-hidden">
-        <div className="grid min-h-[calc(100svh-var(--nav-reserve,0px))] grid-cols-1 grid-rows-[auto_clamp(200px,30svh,280px)] border border-white/10 bg-white/[0.04] md:h-full md:min-h-0 md:grid-cols-[minmax(0,68%)_minmax(0,32%)] md:grid-rows-1">
+      <div
+        className="sticky top-0 h-[var(--panel-h)] overflow-hidden md:h-[calc(100svh-var(--nav-reserve,0px))]"
+        style={
+          {
+            "--panel-h":
+              "calc(100dvh - var(--nav-reserve, 0px) - env(safe-area-inset-bottom, 0px) - 12px)",
+          } as React.CSSProperties
+        }
+      >
+        <div className="grid h-full grid-cols-1 grid-rows-[minmax(0,1fr)_clamp(180px,26svh,280px)] border border-white/10 bg-white/[0.04] md:h-full md:min-h-0 md:grid-cols-[minmax(0,68%)_minmax(0,32%)] md:grid-rows-1">
           <PanelConstellation progressRef={progressRef} variant="arcs" />
-          {/* LEFT — editorial copy, natural height on mobile */}
-          <div className="relative z-10 flex h-auto flex-col justify-center overflow-visible border-b border-white/10 p-6 pb-[calc(1.5rem+var(--nav-reserve,0px))] md:min-h-0 md:overflow-hidden md:border-b-0 md:border-r md:border-white/10 md:p-8 md:pb-8 lg:p-10">
+          {/* LEFT — editorial copy, scrolls internally on mobile if needed */}
+          <div className="relative z-10 flex min-h-0 flex-col justify-center overflow-y-auto border-b border-white/10 p-6 md:min-h-0 md:overflow-hidden md:border-b-0 md:border-r md:border-white/10 md:p-8 md:pb-8 lg:p-10">
 
             <div className="max-w-[min(100%,62ch)]">
               <div
