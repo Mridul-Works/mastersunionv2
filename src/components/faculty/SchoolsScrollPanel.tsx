@@ -136,7 +136,7 @@ export default function SchoolsScrollPanel() {
           <div className="relative z-10 flex min-h-0 flex-col justify-center overflow-y-auto no-scrollbar border-b border-white/10 py-6 pl-0 md:min-h-0 md:overflow-hidden md:border-b-0 md:border-r md:border-white/10 md:py-8 md:pl-8 md:pr-8 lg:py-10 lg:pl-10 lg:pr-10">
 
 
-            <div className="faculty-editorial-text">
+            <div className="faculty-editorial-text mx-auto">
               <div
                 className="text-[clamp(9px,2.2vw,10px)] uppercase tracking-[0.28em] text-white/45 md:text-[10px]"
                 style={{ fontFamily: MONO }}
