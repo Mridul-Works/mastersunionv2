@@ -453,7 +453,7 @@ function FacultyPage() {
         ]}
       >
       {/* HERO — first pinned layer of the stack (hero content + image + By the numbers panel) */}
-      <div className="flex min-h-[100svh] flex-col bg-[#0a0a0a] pb-[calc(80px+env(safe-area-inset-bottom,0px))] md:min-h-screen md:pb-0">
+      <div className="flex min-h-[calc(100svh-var(--nav-reserve,0px))] flex-col bg-[#0a0a0a] md:min-h-screen md:pb-0">
         <HeroFadeOut>
           <FacultyHero />
           {/* By the numbers — attached to the hero's bottom edge, moves with the hero */}
@@ -622,7 +622,7 @@ function FacultyPage() {
 
 
       {/* THE NUMBER */}
-      <section className="group relative flex min-h-[110svh] flex-col items-center justify-center overflow-hidden border-y border-white/10 bg-[#0a0a0a] py-[clamp(4rem,10vh,8rem)] text-white">
+      <section className="group relative flex min-h-[calc(110svh-var(--nav-reserve,0px))] flex-col items-center justify-center overflow-hidden border-y border-white/10 bg-[#0a0a0a] py-[clamp(4rem,10vh,8rem)] text-white">
         <div className="page-shell-narrow relative z-10 text-center">
           <div className="text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO }}>
             The number that matters
@@ -654,8 +654,8 @@ function FacultyPage() {
 
 
       {/* CTA / CLOSING FOOTER */}
-      <footer id="cta" className="relative min-h-[100svh] overflow-x-hidden bg-[#0a0a0a] text-white">
-        <div className="flex min-h-[100svh] flex-col justify-between pt-[clamp(4rem,14vh,10rem)]">
+      <footer id="cta" className="relative min-h-[calc(100svh-var(--nav-reserve,0px))] overflow-x-hidden bg-[#0a0a0a] text-white">
+        <div className="flex min-h-[calc(100svh-var(--nav-reserve,0px))] flex-col justify-between pt-[clamp(4rem,14vh,10rem)]">
           {/* Top CTA */}
           <div className="page-shell-narrow text-center">
             <p className="text-balance text-[0.98rem] not-italic leading-[1.35] text-white/85">
