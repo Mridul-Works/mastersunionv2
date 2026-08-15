@@ -130,26 +130,26 @@ export default function SchoolsScrollPanel() {
 
             <div className="max-w-[min(100%,62ch)]">
               <div
-                className="text-[10px] uppercase tracking-[0.28em] text-white/45"
+                className="text-[clamp(9px,2.2vw,10px)] uppercase tracking-[0.28em] text-white/45 md:text-[10px]"
                 style={{ fontFamily: MONO }}
               >
                 Who visits, and why
               </div>
 
-              <p className="mt-6 text-[clamp(1.35rem,2.1vw,1.8rem)] leading-[1.4] text-white/[0.96]">
+              <p className="mt-4 text-[clamp(1rem,4.6vw,1.35rem)] leading-[1.4] text-white/[0.96] md:mt-6 md:text-[clamp(1.35rem,2.1vw,1.8rem)] md:leading-[1.4]">
                 <span className="font-medium text-white">Kellogg School of Management</span> — led by
                 Professor Mohanbir Sawhney, one of the world&apos;s foremost authorities on technology
                 strategy and marketing innovation — has brought students to Masters&apos; Union for two
                 consecutive years.
               </p>
 
-              <p className="mt-[clamp(1.25rem,3.5vh,2.25rem)] text-[clamp(1.05rem,1.5vw,1.3rem)] leading-[1.55] text-white/70">
+              <p className="mt-[clamp(0.9rem,2.8vw,1.25rem)] text-[clamp(0.95rem,3.8vw,1.15rem)] leading-[1.5] text-white/70 md:mt-[clamp(1.25rem,3.5vh,2.25rem)] md:text-[clamp(1.05rem,1.5vw,1.3rem)] md:leading-[1.55]">
                 <span className="font-medium text-white/95">Harvard Business School India</span>{" "}
                 immersion students have visited campus.
               </p>
 
-              <div className="mt-[clamp(1.25rem,3.5vh,2.25rem)] border-l border-white/15 pl-5 md:pl-7">
-                <p className="text-[clamp(1.3rem,2vw,1.7rem)] font-medium leading-[1.34] tracking-[-0.01em] text-white">
+              <div className="mt-[clamp(0.9rem,2.8vw,1.25rem)] border-l border-white/15 pl-4 md:mt-[clamp(1.25rem,3.5vh,2.25rem)] md:pl-7">
+                <p className="text-[clamp(1.05rem,4.4vw,1.35rem)] font-medium leading-[1.34] tracking-[-0.01em] text-white md:text-[clamp(1.3rem,2vw,1.7rem)] md:leading-[1.34]">
                   When schools like these come here to learn, something is working.
                 </p>
               </div>
