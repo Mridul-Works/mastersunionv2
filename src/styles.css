@@ -622,13 +622,26 @@ body::-webkit-scrollbar {
 
 
 /* ============================================================
-   Fluid responsive layout primitives (shared editorial grid)
+   Faculty editorial text column — shared across hero, schools & pedigree
+   ============================================================ */
+@utility faculty-editorial-text {
+  width: 100%;
+  max-width: min(100%, 40rem);
+  padding-left: clamp(0.85rem, 2vh, 1.5rem);
+  padding-right: clamp(0.85rem, 2vh, 1.5rem);
+}
+
+/* ============================================================
+   Page gutter — shared horizontal padding for full-width sections
    ============================================================ */
 @utility page-gutter {
   padding-inline: clamp(20px, 4vw, 64px);
 }
-/* MASTER EDITORIAL GRID — every section below the hero shares these edges.
-   Matches the hero container (max-w 1440px + clamp(20px,4vw,64px) gutter). */
+
+/* ============================================================
+   MASTER EDITORIAL GRID — every section below the hero shares these edges.
+   Matches the hero container (max-w 1440px + clamp(20px,4vw,64px) gutter).
+   ============================================================ */
 @utility page-shell {
   width: min(100%, 1440px);
   margin-inline: auto;
