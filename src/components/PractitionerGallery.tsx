@@ -162,12 +162,18 @@ export default function PractitionerGallery({
         posRef.current += velRef.current * dt;
       }
 
-      // paint straight to the DOM — compositor-friendly, zero React work
-      for (const paint of paintersRef.current) paint?.();
-      const nf = mod(Math.round(posRef.current));
-      setFrontIdx((p) => (p === nf ? p : nf));
+      // paint straight to the DOM — compositor-friendly, zero React work.
+      // When the wheel is completely at rest (hover-paused / settled) the
+      // per-card writes are skipped so the loop costs nothing during scroll.
+      if (posRef.current !== lastPaintPosRef.current) {
+        lastPaintPosRef.current = posRef.current;
+        for (const paint of paintersRef.current) paint?.();
+        const nf = mod(Math.round(posRef.current));
+        setFrontIdx((p) => (p === nf ? p : nf));
+      }
 
       rafRef.current = requestAnimationFrame(tick);
+
     },
     [mod, n, takeControl],
   );
