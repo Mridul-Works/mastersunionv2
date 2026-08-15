@@ -131,11 +131,11 @@ export default function PedigreeScrollPanel() {
       style={{ height: "380vh" }}
     >
       <div
-        className="sticky top-0 h-[var(--panel-h)] overflow-hidden md:h-[calc(100svh-var(--nav-reserve,0px))]"
+        className="sticky top-[var(--top-nav-reserve,0px)] h-[var(--panel-h)] overflow-hidden md:top-0 md:h-[calc(100svh-var(--nav-reserve,0px))]"
         style={
           {
             "--panel-h":
-              "calc(100dvh - var(--nav-reserve, 0px) - env(safe-area-inset-bottom, 0px) - 12px)",
+              "calc(100dvh - var(--top-nav-reserve, 0px) - var(--nav-reserve, 0px) - env(safe-area-inset-bottom, 0px) - 12px)",
           } as React.CSSProperties
         }
       >
