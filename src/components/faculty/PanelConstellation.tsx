@@ -288,23 +288,24 @@ export default function PanelConstellation({
           const sb = FOCAL / zBack;
           const bx = ox + s.x * sb * unit;
           const by = oy + s.y * sb * unit;
-          const len = Math.hypot(x - bx, y - by);
+          const dx = x - bx;
+          const dy = y - by;
+          const len = Math.sqrt(dx * dx + dy * dy);
           if (len > 1.4) {
             const tAlpha = a * (0.22 + 0.4 * clampF(scale * 0.45, 0, 1)) * (s.kind === 3 ? 0.5 : 1);
             if (tAlpha > 0.008) {
-              const grad = ctx.createLinearGradient(bx, by, x, y);
-              grad.addColorStop(0, "rgba(255,255,255,0)");
-              grad.addColorStop(1, `rgba(255,255,255,${tAlpha.toFixed(3)})`);
-              ctx.strokeStyle = grad;
-              ctx.lineCap = "butt";
-              ctx.lineWidth = clampF(0.3 + scale * 0.2, 0.3, Math.max(0.4, s.r * grow * 0.9));
-              ctx.beginPath();
-              ctx.moveTo(bx, by);
-              ctx.lineTo(x, y);
-              ctx.stroke();
+              const lw = clampF(0.3 + scale * 0.2, 0.3, Math.max(0.4, s.r * grow * 0.9));
+              ctx.globalAlpha = Math.min(1, tAlpha);
+              ctx.translate(bx, by);
+              ctx.rotate(Math.atan2(dy, dx));
+              ctx.drawImage(trail, 0, -lw / 2, len, lw);
+              ctx.rotate(-Math.atan2(dy, dx));
+              ctx.translate(-bx, -by);
+              ctx.globalAlpha = 1;
             }
           }
         }
+
 
 
 
