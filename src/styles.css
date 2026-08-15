@@ -70,11 +70,11 @@
   --radius: 0.875rem;
 }
 
-/* Mobile only: reserve room for the fixed bottom and top navigation */
+/* Mobile only: reserve room for the fixed bottom navigation only */
 @media (max-width: 768px) {
   :root {
     --nav-reserve: calc(80px + env(safe-area-inset-bottom, 0px));
-    --top-nav-reserve: calc(80px + 12px); /* nav height + small visual gap */
+    --top-nav-reserve: 0px; /* no top nav on mobile/tablet */
   }
 }
 
