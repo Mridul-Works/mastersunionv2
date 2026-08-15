@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import logoAsset from "@/assets/logo-2.png.asset.json";
 
 export type SectionNavItem = {
