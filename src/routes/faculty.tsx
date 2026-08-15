@@ -5,7 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import StudentTestimonials from "@/components/StudentTestimonials";
 import { Accent, SectionIntro } from "@/components/SectionIntro";
 import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
-import MastersVideos from "@/components/MastersVideos";
+import MastersVideos, { MASTER_VIDEO_PRELOAD } from "@/components/MastersVideos";
 import FacultyHero from "@/components/FacultyHero";
 import HeroFadeOut from "@/components/HeroFadeOut";
 import StackReveal from "@/components/StackReveal";
@@ -424,6 +424,12 @@ export const Route = createFileRoute("/faculty")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: MASTER_VIDEO_PRELOAD.map((href) => ({
+      rel: "preload" as const,
+      as: "image" as const,
+      href,
+      fetchpriority: "high",
+    })),
   }),
   component: FacultyPage,
 });

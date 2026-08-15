@@ -83,6 +83,12 @@ export const MASTER_VIDEOS: MasterVideo[] = [
   },
 ];
 
+/** thumbnails visible in the initial filmstrip viewport — preloaded/high priority */
+export const MASTER_VIDEO_PRIORITY_COUNT = 5;
+export const MASTER_VIDEO_PRELOAD = MASTER_VIDEOS.slice(0, MASTER_VIDEO_PRIORITY_COUNT).map(
+  (v) => v.thumb,
+);
+
 const SERIF_IT = "'Fraunces', Georgia, serif";
 const SANS_H = "'Inter', system-ui, sans-serif";
 
@@ -278,6 +284,8 @@ export default function MastersVideos({
                       src={current.thumb}
                       alt={current.title}
                       decoding="async"
+                      loading="eager"
+                      fetchPriority="high"
                       className="h-full w-full object-contain grayscale contrast-[0.95] saturate-[0.75] transition-all duration-[350ms] ease-out group-hover:grayscale-0 group-hover:contrast-100 group-hover:saturate-100 data-[touch-color-active]:grayscale-0 data-[touch-color-active]:contrast-100 data-[touch-color-active]:saturate-100"
                       style={{
                         opacity: phase === "in" ? 1 : 0,
@@ -392,7 +400,8 @@ export default function MastersVideos({
                       <TouchColorImg
                         src={v.thumb}
                         alt=""
-                        loading="lazy"
+                        loading={i < MASTER_VIDEO_PRIORITY_COUNT ? "eager" : "lazy"}
+                        fetchPriority={i < MASTER_VIDEO_PRIORITY_COUNT ? "high" : "low"}
                         decoding="async"
                         className="h-full w-full object-contain grayscale contrast-[0.95] saturate-[0.75] transition-all duration-[350ms] ease-out group-hover:grayscale-0 group-hover:contrast-100 group-hover:saturate-100 data-[touch-color-active]:grayscale-0 data-[touch-color-active]:contrast-100 data-[touch-color-active]:saturate-100"
                       />
