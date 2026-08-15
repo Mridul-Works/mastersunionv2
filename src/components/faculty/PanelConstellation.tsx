@@ -205,7 +205,7 @@ export default function PanelConstellation({
   React.useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { alpha: true, desynchronized: true });
     if (!ctx) return;
 
     const { stars: STARS, vp: VP } = FIELDS[variant];
@@ -244,6 +244,7 @@ export default function PanelConstellation({
     };
 
     const glow = getGlowSprite();
+    const trail = getTrailSprite();
 
     const draw = (t: number) => {
       const t0 = performance.now();
@@ -295,13 +296,12 @@ export default function PanelConstellation({
             const tAlpha = a * (0.22 + 0.4 * clampF(scale * 0.45, 0, 1)) * (s.kind === 3 ? 0.5 : 1);
             if (tAlpha > 0.008) {
               const lw = clampF(0.3 + scale * 0.2, 0.3, Math.max(0.4, s.r * grow * 0.9));
+              ctx.save();
               ctx.globalAlpha = Math.min(1, tAlpha);
               ctx.translate(bx, by);
               ctx.rotate(Math.atan2(dy, dx));
               ctx.drawImage(trail, 0, -lw / 2, len, lw);
-              ctx.rotate(-Math.atan2(dy, dx));
-              ctx.translate(-bx, -by);
-              ctx.globalAlpha = 1;
+              ctx.restore();
             }
           }
         }
