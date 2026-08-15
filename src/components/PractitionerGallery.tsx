@@ -400,6 +400,17 @@ export default function PractitionerGallery({
 
   const activeImg = items[active]?.img;
 
+  /**
+   * Download window. Only the cards on-arc plus the immediate next/previous card
+   * get a `src`, so the initial page load never pulls the whole roster. Indices
+   * are UNIONED into a ref-backed set and never removed: once a portrait has a
+   * `src` it keeps it, so the <img> element is never unmounted and the browser
+   * never re-requests an image the user scrolls back to.
+   */
+  const armedRef = useRef<Set<number>>(new Set());
+  const [armedTick, setArmedTick] = useState(0);
+
+
   /** Live geometry — measured so the arc and card scale with the viewport. */
   const [geo, setGeo] = useState<Geometry>(() => computeGeometry(1280, 900));
   useEffect(() => {
