@@ -3,13 +3,14 @@ import BrandLogo from "@/components/BrandLogo";
 import { findBrand } from "@/lib/brand-logos";
 
 /**
- * Portraits ship as ~1000x1360 PNGs (up to 1.8 MB). Requesting a width-capped
- * variant keeps the identical composition while cutting decode + rescale cost,
- * which is what made the arc hitch as cards entered the viewport.
+ * Portraits are served from the immutable asset CDN
+ * (`cache-control: public, max-age=31536000, immutable`), so the browser reuses
+ * them from memory/disk cache on every revisit. The CDN does NOT transform on a
+ * `?w=` query, so appending one only created a SECOND cache entry for identical
+ * bytes — every portrait was downloaded twice (card + ambient backdrop). One
+ * canonical URL per portrait keeps a single download and a guaranteed cache hit.
  */
-function sized(url: string, w: number) {
-  return url.includes("?") ? url : `${url}?w=${w}`;
-}
+
 
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
 const SANS_H = "'Inter', system-ui, sans-serif";
