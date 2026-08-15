@@ -70,21 +70,12 @@
   --radius: 0.875rem;
 }
 
-/* Touch devices (phones/tablets): reserve room for the fixed bottom navigation */
+/* Mobile only: reserve room for the fixed bottom navigation only */
 @media (max-width: 768px) {
   :root {
     --nav-reserve: calc(80px + env(safe-area-inset-bottom, 0px));
-    --top-nav-reserve: 0px; /* no top nav on touch devices */
+    --top-nav-reserve: 0px; /* no top nav on mobile/tablet */
   }
-}
-
-:root[data-nav-mode="touch"] {
-  --nav-reserve: calc(80px + env(safe-area-inset-bottom, 0px));
-  --top-nav-reserve: 0px;
-}
-
-:root[data-nav-mode="pointer"] {
-  --nav-reserve: 0px;
 }
 
 :root {
