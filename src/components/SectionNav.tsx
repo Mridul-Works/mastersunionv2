@@ -151,7 +151,7 @@ export function SectionNav({
   applyHref?: string;
   extraLinks?: { href: string; label: string }[];
 }) {
-  const { scrolled, progress, visible } = useScrollState();
+  const { scrolled, visible, railRef } = useScrollState();
   const active = useActiveSection(items.map((i) => i.id));
   const clock = useClock();
 
@@ -183,10 +183,11 @@ export function SectionNav({
 
         {/* scroll progress rail */}
         <span
+          ref={railRef}
           aria-hidden
-          className="pointer-events-none absolute bottom-0 left-0 h-[2px] w-full origin-left transition-transform duration-150"
+          className="pointer-events-none absolute bottom-0 left-0 h-[2px] w-full origin-left will-change-transform"
           style={{
-            transform: `scaleX(${progress})`,
+            transform: "scaleX(0)",
             backgroundImage:
               "linear-gradient(90deg, #39B5D7 -6.14%, #F7D544 47.02%, #E38330 99.71%)",
           }}
