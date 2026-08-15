@@ -255,7 +255,9 @@ export default function PanelConstellation({
     const draw = (t: number) => {
       ctx.clearRect(0, 0, w, h);
 
-      const enter = smooth(t / 0.08);
+      // Entry brightening only — the field is NEVER faded to nothing, so nodes
+      // stay continuously rendered instead of blinking out near the boundary.
+      const enter = 0.42 + 0.58 * smooth(t / 0.08);
       const cam = travelAt(t);
       const ox = VP.x * w;
       const oy = VP.y * h;
@@ -392,6 +394,14 @@ export default function PanelConstellation({
     );
     io.observe(canvas);
 
+    // A hidden tab / restored page can drop the canvas backing store; force a
+    // fresh paint on return so the field never comes back blank.
+    const repaint = () => {
+      last = Number.NaN;
+      kick();
+    };
+    document.addEventListener("visibilitychange", repaint);
+    window.addEventListener("pageshow", repaint);
     window.addEventListener("scroll", kick, { passive: true });
     window.addEventListener("resize", kick);
 
@@ -400,6 +410,8 @@ export default function PanelConstellation({
       if (raf) cancelAnimationFrame(raf);
       ro.disconnect();
       io.disconnect();
+      document.removeEventListener("visibilitychange", repaint);
+      window.removeEventListener("pageshow", repaint);
       window.removeEventListener("scroll", kick);
       window.removeEventListener("resize", kick);
     };
