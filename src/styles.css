@@ -698,3 +698,15 @@ body::-webkit-scrollbar {
   overscroll-behavior: contain;
   scrollbar-width: thin;
 }
+
+/* Large touch screens (e.g. touchscreen laptops/PCs) should show the mobile
+   bottom bar instead of the desktop pill, and the mobile bar should remain
+   wide with a comfortable max-width. */
+@media (pointer: coarse) and (min-width: 1024px) {
+  [data-mobile-bottom-nav] {
+    display: flex !important;
+  }
+  [data-desktop-bottom-nav] {
+    display: none !important;
+  }
+}

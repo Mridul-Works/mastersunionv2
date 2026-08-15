@@ -146,15 +146,16 @@ export function MobileBottomBar() {
 
   return (
     <>
-      {/* Bottom bar — visible on mobile + tablet (below lg) */}
+      {/* Bottom bar — visible on mobile + tablet (below lg) and on large touch screens */}
       <nav
+        data-mobile-bottom-nav
         aria-label="Mobile navigation"
         className="fixed inset-x-0 bottom-0 z-[150] flex pb-[max(env(safe-area-inset-bottom),8px)] pt-2 lg:hidden"
         style={{
           background: "linear-gradient(to top, rgba(255,255,255,0.95) 60%, rgba(255,255,255,0))",
         }}
       >
-        <div className="mx-auto flex max-w-[420px] items-center justify-between rounded-full border border-black/10 bg-white/95 px-1.5 py-1.5 shadow-[0_18px_50px_-18px_rgba(0,0,0,0.35)] backdrop-blur-xl mx-3">
+        <div className="mx-auto flex w-[calc(100%-1rem)] items-center justify-between rounded-full border border-black/10 bg-white/95 px-1.5 py-1.5 shadow-[0_18px_50px_-18px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:w-[calc(100%-2rem)] md:max-w-[720px]">
           {/* Menu */}
           <button
             type="button"
