@@ -347,7 +347,7 @@ function Index() {
                   <img
                     src={logoAsset.url}
                     alt="Masters' Union"
-                    className="h-8 w-auto md:h-10 brightness-0 invert"
+                    className="no-img-zoom h-8 w-auto md:h-10 brightness-0 invert"
                   />
                 </div>
                 <span

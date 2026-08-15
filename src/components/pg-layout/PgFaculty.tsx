@@ -152,7 +152,7 @@ function PeopleCarousel() {
                 src={p.image}
                 alt={p.name}
                 loading="lazy"
-                className="h-full w-full object-cover grayscale transition-transform duration-500 group-hover:scale-[1.03] group-hover:grayscale-0 data-[touch-color-active]:grayscale-0"
+                className="h-full w-full object-cover grayscale transition-transform duration-500 group-hover:grayscale-0 data-[touch-color-active]:grayscale-0"
               />
             </div>
             <span

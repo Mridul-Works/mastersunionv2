@@ -19,7 +19,7 @@ function Card({ card }: { card: GridCard }) {
             src={card.image}
             alt={card.title}
             loading="lazy"
-            className="h-full w-full object-cover transition duration-500 hover:scale-[1.03]"
+            className="h-full w-full object-cover transition duration-500"
           />
         </div>
       ) : null}

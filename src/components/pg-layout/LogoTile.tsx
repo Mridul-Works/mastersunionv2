@@ -17,7 +17,7 @@ export function LogoTile({ name, src, size = "md", className }: Props) {
     <div
       title={name}
       className={cn(
-        "flex items-center justify-center rounded-[6px] border border-border bg-secondary/30 px-3 transition-colors hover:bg-secondary/60",
+        "no-img-zoom flex items-center justify-center rounded-[6px] border border-border bg-secondary/30 px-3 transition-colors hover:bg-secondary/60",
         size === "sm" ? "h-12" : size === "lg" ? "h-24" : "h-16",
         className,
       )}

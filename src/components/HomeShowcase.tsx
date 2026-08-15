@@ -532,7 +532,7 @@ function NormalizedLogo({ src, alt, size = "md" }: { src: string; alt: string; s
       loading="lazy"
       onLoad={onLoad}
       style={{ height: `${h}px` }}
-      className="w-auto max-w-full object-contain opacity-95 transition duration-300 hover:opacity-100"
+      className="no-img-zoom w-auto max-w-full object-contain opacity-95 transition duration-300 hover:opacity-100"
     />
   );
 }
@@ -755,7 +755,7 @@ function FacultyPager({ items }: { items: typeof FACULTY_ALL }) {
                         src={f.img}
                         alt={f.name}
                         loading="lazy"
-                        className="absolute inset-0 h-full w-full object-cover object-top grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.04] data-[touch-color-active]:grayscale-0"
+                        className="absolute inset-0 h-full w-full object-cover object-top grayscale transition duration-500 group-hover:grayscale-0 data-[touch-color-active]:grayscale-0"
                       />
 
                     ) : (
@@ -1137,7 +1137,7 @@ function SharkTankLogoBar() {
                     alt={p.company}
                     loading="lazy"
                     style={{ transform: isMeta ? "scale(0.82)" : undefined }}
-                    className="h-8 w-full object-contain opacity-70 transition hover:opacity-100 [filter:brightness(0)_invert(1)]"
+                    className="no-img-zoom h-8 w-full object-contain opacity-70 transition hover:opacity-100 [filter:brightness(0)_invert(1)]"
                   />
                 ) : (
                   <span className="text-[11px] font-semibold text-white/70">{p.company}</span>
@@ -1169,7 +1169,7 @@ function UniformLogoList({ groups }: { groups: LogoGroup[] }) {
               alt={name}
               title={name}
               loading="lazy"
-              className="max-h-10 w-auto max-w-[85%] object-contain opacity-95 transition duration-300 hover:opacity-100"
+              className="no-img-zoom max-h-10 w-auto max-w-[85%] object-contain opacity-95 transition duration-300 hover:opacity-100"
             />
           </div>
         );

@@ -171,7 +171,7 @@ export function SectionNav({
           className="flex shrink-0 items-center gap-2"
           aria-label="Masters' Union home"
         >
-          <img src={logoAsset.url} alt="Masters' Union" className="h-5 w-auto sm:h-6" />
+          <img src={logoAsset.url} alt="Masters' Union" className="no-img-zoom h-5 w-auto sm:h-6" />
           <span className="hidden font-mono text-[9px] uppercase tracking-[0.16em] text-muted-foreground sm:block">
             {clock}
           </span>
