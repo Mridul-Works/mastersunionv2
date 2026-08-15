@@ -453,7 +453,7 @@ function FacultyPage() {
         ]}
       >
       {/* HERO — first pinned layer of the stack (hero content + image + By the numbers panel) */}
-      <div className="flex min-h-screen flex-col bg-[#0a0a0a]">
+      <div className="flex min-h-[100svh] flex-col bg-[#0a0a0a] pb-[calc(80px+env(safe-area-inset-bottom,0px))] md:min-h-screen md:pb-0">
         <HeroFadeOut>
           <FacultyHero />
           {/* By the numbers — attached to the hero's bottom edge, moves with the hero */}

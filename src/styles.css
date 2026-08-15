@@ -65,7 +65,20 @@
 }
 
 :root {
+  --sab: env(safe-area-inset-bottom, 0px);
+  --nav-reserve: 0px;
   --radius: 0.875rem;
+}
+
+/* Mobile only: reserve room for the fixed bottom navigation */
+@media (max-width: 768px) {
+  :root {
+    --nav-reserve: calc(80px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+:root {
+
   /* Editorial palette pulled from the Mindora reference + recolored building */
   --background: oklch(0.985 0.005 90);          /* warm off-white */
   --foreground: oklch(0.18 0.01 80);            /* near-black ink */

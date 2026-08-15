@@ -42,7 +42,14 @@ function Panel({
 
     const measure = () => {
       setContentH(el.scrollHeight);
-      setVh(window.innerHeight);
+      // On mobile, reserve room for the fixed bottom navigation (+ safe area)
+      // so no panel's bottom content ends up hidden underneath it.
+      const isMobile = window.innerWidth < 768;
+      const safe = Number.parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue("--sab") || "0",
+      );
+      const reserve = isMobile ? 76 + (Number.isFinite(safe) ? safe : 0) : 0;
+      setVh(Math.max(320, window.innerHeight - reserve));
     };
     measure();
 
@@ -54,6 +61,7 @@ function Panel({
       window.removeEventListener("resize", measure);
     };
   }, []);
+
 
   const measured = contentH > 0 && vh > 0;
   const overflow = measured ? Math.max(0, contentH - vh) : 0;
