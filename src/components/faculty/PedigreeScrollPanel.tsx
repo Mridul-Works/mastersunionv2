@@ -138,12 +138,12 @@ export default function PedigreeScrollPanel() {
 
             <div className="max-w-[min(100%,62ch)]">
               <div
-                className="text-[10px] uppercase tracking-[0.28em] text-white/45"
+                className="text-[clamp(9px,2.2vw,10px)] uppercase tracking-[0.28em] text-white/45 md:text-[10px]"
                 style={{ fontFamily: MONO }}
               >
                 Where they trained
               </div>
-              <p className="mt-6 text-[clamp(1.4rem,2.2vw,1.85rem)] leading-[1.42] text-white/[0.96]">
+              <p className="mt-4 text-[clamp(1.05rem,4.4vw,1.4rem)] leading-[1.4] text-white/[0.96] md:mt-6 md:text-[clamp(1.4rem,2.2vw,1.85rem)] md:leading-[1.42]">
                 Doctorates from IIM Ahmedabad, Bangalore, Calcutta, Kozhikode and Tiruchirappalli,
                 IIT Bombay and Kanpur, Delhi University, Shiv Nadar, Christ University, TERI and the
                 University of Bath — across finance, marketing, operations, organisational behaviour,
