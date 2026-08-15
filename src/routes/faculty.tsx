@@ -424,6 +424,12 @@ export const Route = createFileRoute("/faculty")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: MASTER_VIDEO_PRELOAD.map((href) => ({
+      rel: "preload" as const,
+      as: "image" as const,
+      href,
+      fetchpriority: "high",
+    })),
   }),
   component: FacultyPage,
 });
