@@ -205,7 +205,7 @@ export default function PanelConstellation({
   React.useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d", { alpha: true, desynchronized: true });
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     const { stars: STARS, vp: VP } = FIELDS[variant];
@@ -219,11 +219,17 @@ export default function PanelConstellation({
     let onScreen = true;
     let lastDrawAt = 0;
 
-    // tier 0 = full field + flares, 1 = full field, 2 = reduced field
-    let tier = reduced ? 2 : 0;
-    let avgCost = 0;
-    let dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const BUDGET_MS = 5.5;
+    /**
+     * Quality tier is decided ONCE at mount and never changes again.
+     * The previous adaptive tier could flip mid-scroll, and each flip resized
+     * the canvas (which wipes it) and dropped half the dust field — that was the
+     * blink / vanish-and-return the field showed while scrolling. Rendering is
+     * now a single stable configuration for the lifetime of the panel.
+     * tier 0 = full field + flares, 1 = full field, 2 = reduced field
+     */
+    const cores = navigator.hardwareConcurrency || 4;
+    const tier: 0 | 1 | 2 = reduced ? 2 : cores <= 4 ? 1 : 0;
+    let dpr = Math.min(window.devicePixelRatio || 1, tier === 0 ? 2 : 1.5);
     const MIN_FRAME_MS = 1000 / 60;
 
     const resize = () => {
@@ -247,10 +253,11 @@ export default function PanelConstellation({
     const trail = getTrailSprite();
 
     const draw = (t: number) => {
-      const t0 = performance.now();
       ctx.clearRect(0, 0, w, h);
 
-      const enter = smooth(t / 0.08);
+      // Entry brightening only — the field is NEVER faded to nothing, so nodes
+      // stay continuously rendered instead of blinking out near the boundary.
+      const enter = 0.42 + 0.58 * smooth(t / 0.08);
       const cam = travelAt(t);
       const ox = VP.x * w;
       const oy = VP.y * h;
@@ -330,19 +337,6 @@ export default function PanelConstellation({
         ctx.fill();
       }
 
-      const cost = performance.now() - t0;
-      avgCost = avgCost ? avgCost * 0.8 + cost * 0.2 : cost;
-      if (!reduced) {
-        if (avgCost > BUDGET_MS && tier < 2) {
-          tier += 1;
-          avgCost = 0;
-          resize();
-        } else if (avgCost < BUDGET_MS * 0.45 && tier > 0) {
-          tier -= 1;
-          avgCost = 0;
-          resize();
-        }
-      }
     };
 
     let shown = progressRef.current;
@@ -400,6 +394,14 @@ export default function PanelConstellation({
     );
     io.observe(canvas);
 
+    // A hidden tab / restored page can drop the canvas backing store; force a
+    // fresh paint on return so the field never comes back blank.
+    const repaint = () => {
+      last = Number.NaN;
+      kick();
+    };
+    document.addEventListener("visibilitychange", repaint);
+    window.addEventListener("pageshow", repaint);
     window.addEventListener("scroll", kick, { passive: true });
     window.addEventListener("resize", kick);
 
@@ -408,6 +410,8 @@ export default function PanelConstellation({
       if (raf) cancelAnimationFrame(raf);
       ro.disconnect();
       io.disconnect();
+      document.removeEventListener("visibilitychange", repaint);
+      window.removeEventListener("pageshow", repaint);
       window.removeEventListener("scroll", kick);
       window.removeEventListener("resize", kick);
     };
