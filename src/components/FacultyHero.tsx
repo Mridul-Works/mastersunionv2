@@ -226,7 +226,7 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
         style={{ minHeight: "clamp(560px, calc(100svh - 150px), 1000px)", paddingBottom: "clamp(2rem,6vh,4.5rem)" }}
       >
         {/* Left content column: architectural black space */}
-        <div className="relative flex flex-col justify-center py-[clamp(1.25rem,3.2vh,2.25rem)] lg:col-span-7 lg:pr-10">
+        <div className="relative flex flex-col justify-center pt-[max(0.75rem,env(safe-area-inset-top))] pb-[clamp(1.25rem,3.2vh,2.25rem)] lg:col-span-7 lg:py-[clamp(1.25rem,3.2vh,2.25rem)] lg:pr-10">
           {/* Typography — demo's staggered Framer Motion entrance system */}
           <motion.div
             className="relative z-10"
@@ -235,7 +235,7 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
             initial={noMotion ? "visible" : "hidden"}
             animate="visible"
           >
-            <motion.div variants={itemFromLeft} style={{ marginTop: "-1.75rem" }}>
+            <motion.div variants={itemFromLeft} className="mt-0 lg:-mt-7">
               <div className="flex items-center gap-3 sm:gap-4">
                 <span className="h-px w-6 shrink-0 bg-white/30 sm:w-8" aria-hidden />
                 <div
