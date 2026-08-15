@@ -668,7 +668,7 @@ body::-webkit-scrollbar {
 
 /* Full-screen scene sections (faculty page) — viewport-fit, bottom-nav aware */
 @utility screen-section {
-  min-height: 100svh;
+  min-height: calc(100svh - var(--nav-reserve, 0px));
   display: flex;
   flex-direction: column;
   justify-content: center;
