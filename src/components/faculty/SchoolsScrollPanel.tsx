@@ -122,10 +122,11 @@ export default function SchoolsScrollPanel() {
       style={{ height: "380vh" }}
     >
       <div className="sticky top-0 h-[calc(100svh-var(--nav-reserve,0px))] overflow-hidden">
-        <div className="grid h-full grid-cols-1 border border-white/10 bg-white/[0.04] md:grid-cols-[minmax(0,68%)_minmax(0,32%)]">
+        <div className="grid h-full grid-cols-1 grid-rows-[minmax(0,1fr)_clamp(200px,30svh,280px)] border border-white/10 bg-white/[0.04] md:grid-cols-[minmax(0,68%)_minmax(0,32%)] md:grid-rows-1">
           <PanelConstellation progressRef={progressRef} variant="orbits" />
           {/* LEFT — editorial story, stays readable while pinned */}
-          <div className="relative z-10 flex flex-col justify-center border-b border-white/10 p-6 md:border-b-0 md:border-r md:border-white/10 md:p-8 lg:p-10">
+          <div className="relative z-10 flex min-h-0 flex-col justify-center overflow-hidden border-b border-white/10 p-6 md:border-b-0 md:border-r md:border-white/10 md:p-8 lg:p-10">
+
             <div className="max-w-[min(100%,62ch)]">
               <div
                 className="text-[10px] uppercase tracking-[0.28em] text-white/45"
