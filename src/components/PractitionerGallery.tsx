@@ -3,13 +3,14 @@ import BrandLogo from "@/components/BrandLogo";
 import { findBrand } from "@/lib/brand-logos";
 
 /**
- * Portraits ship as ~1000x1360 PNGs (up to 1.8 MB). Requesting a width-capped
- * variant keeps the identical composition while cutting decode + rescale cost,
- * which is what made the arc hitch as cards entered the viewport.
+ * Portraits are served from the immutable asset CDN
+ * (`cache-control: public, max-age=31536000, immutable`), so the browser reuses
+ * them from memory/disk cache on every revisit. The CDN does NOT transform on a
+ * `?w=` query, so appending one only created a SECOND cache entry for identical
+ * bytes — every portrait was downloaded twice (card + ambient backdrop). One
+ * canonical URL per portrait keeps a single download and a guaranteed cache hit.
  */
-function sized(url: string, w: number) {
-  return url.includes("?") ? url : `${url}?w=${w}`;
-}
+
 
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
 const SANS_H = "'Inter', system-ui, sans-serif";
@@ -399,6 +400,17 @@ export default function PractitionerGallery({
 
   const activeImg = items[active]?.img;
 
+  /**
+   * Download window. Only the cards on-arc plus the immediate next/previous card
+   * get a `src`, so the initial page load never pulls the whole roster. Indices
+   * are UNIONED into a ref-backed set and never removed: once a portrait has a
+   * `src` it keeps it, so the <img> element is never unmounted and the browser
+   * never re-requests an image the user scrolls back to.
+   */
+  const armedRef = useRef<Set<number>>(new Set());
+  const [armedTick, setArmedTick] = useState(0);
+
+
   /** Live geometry — measured so the arc and card scale with the viewport. */
   const [geo, setGeo] = useState<Geometry>(() => computeGeometry(1280, 900));
   useEffect(() => {
@@ -420,6 +432,24 @@ export default function PractitionerGallery({
     };
   }, []);
   const VISIBLE = geo.visible;
+
+  /** Arm the on-arc cards + one neighbour on each side as the wheel turns. */
+  useEffect(() => {
+    if (!n) return;
+    const reach = VISIBLE + 1;
+    const set = armedRef.current;
+    let added = false;
+    for (let d = -reach; d <= reach; d += 1) {
+      const idx = ((active + d) % n + n) % n;
+      if (!set.has(idx)) {
+        set.add(idx);
+        added = true;
+      }
+    }
+    if (added) setArmedTick((t) => t + 1);
+  }, [active, VISIBLE, n]);
+  void armedTick;
+
 
   const geoRef = useRef(geo);
   geoRef.current = geo;
@@ -497,7 +527,7 @@ export default function PractitionerGallery({
         <div className="absolute inset-0 bg-[#0b0b0b]" />
         {activeImg ? (
           <img
-            src={sized(activeImg, 480)}
+            src={activeImg}
             alt=""
             className="absolute inset-0 h-full w-full scale-110 object-cover opacity-[0.12] grayscale blur-3xl transition-opacity duration-700"
           />
@@ -615,11 +645,15 @@ export default function PractitionerGallery({
                   >
                     {item.img ? (
                       <img
-                        src={sized(item.img, 760)}
+                        // armed indices only: keeps the initial load to the arc +
+                        // one neighbour each side. Once armed it stays armed, so
+                        // the element is never remounted and never re-downloads.
+                        src={armedRef.current.has(i) ? item.img : undefined}
                         alt={item.name}
                         draggable={false}
                         data-mu-portrait
-                        loading={i < VISIBLE + 2 ? "eager" : "lazy"}
+                        loading={abs <= 1 ? "eager" : "lazy"}
+                        fetchPriority={abs < 0.5 ? "high" : abs <= 1 ? "auto" : "low"}
                         decoding="async"
                         width={Math.round(geo.cw)}
                         height={Math.round(geo.ch)}
@@ -627,6 +661,7 @@ export default function PractitionerGallery({
                         style={{ filter: `grayscale(${grayscale})` }}
                       />
                     ) : (
+
 
 
                       <Initials name={item.name} />
@@ -690,7 +725,7 @@ export default function PractitionerGallery({
                           <div className="h-[54px] w-[54px] shrink-0 overflow-hidden rounded-full border border-white/20 bg-neutral-900 shadow-[0_0_0_4px_rgba(255,255,255,0.03)] sm:h-[clamp(64px,9vw,104px)] sm:w-[clamp(64px,9vw,104px)] sm:shadow-[0_0_0_5px_rgba(255,255,255,0.03)]">
                             {item.img ? (
                               <img
-                                src={sized(item.img, 220)}
+                                src={item.img}
                                 alt=""
                                 loading="lazy"
                                 decoding="async"

@@ -204,8 +204,11 @@ function Portrait({ item, aspect = "aspect-[4/5]", dark = false }: { item: Edito
         <img
           src={item.img}
           alt={item.name}
+          loading="lazy"
+          decoding="async"
           className="h-full w-full object-cover grayscale transition duration-500 hover:grayscale-0"
         />
+
       ) : (
         <Initials name={item.name} dark={dark} />
       )}
