@@ -111,6 +111,7 @@ export default function PractitionerGallery({
   /** Per-frame DOM writers registered by each card — no React state on scroll. */
   const paintersRef = useRef<Array<(() => void) | null>>([]);
   const inViewRef = useRef(true);
+  const lastPaintPosRef = useRef(Number.NaN);
 
 
   /** px of horizontal travel that equals one card of wheel rotation. */
