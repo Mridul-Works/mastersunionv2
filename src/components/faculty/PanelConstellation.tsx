@@ -50,6 +50,35 @@ const smooth = (x: number) => {
   return v * v * (3 - 2 * v);
 };
 
+/**
+ * Cached glow sprite. Canvas `shadowBlur` re-runs a gaussian blur per draw call
+ * (hundreds per frame here) and was the single most expensive part of the field.
+ * A pre-rendered radial-gradient sprite blitted with drawImage produces the same
+ * soft halo at a fraction of the raster cost.
+ */
+const GLOW_SIZE = 128;
+let glowSprite: HTMLCanvasElement | null = null;
+function getGlowSprite() {
+  if (glowSprite) return glowSprite;
+  const c = document.createElement("canvas");
+  c.width = GLOW_SIZE;
+  c.height = GLOW_SIZE;
+  const g = c.getContext("2d");
+  if (g) {
+    const r = GLOW_SIZE / 2;
+    const grad = g.createRadialGradient(r, r, 0, r, r, r);
+    grad.addColorStop(0, "rgba(255,255,255,1)");
+    grad.addColorStop(0.18, "rgba(255,255,255,0.55)");
+    grad.addColorStop(0.42, "rgba(255,255,255,0.16)");
+    grad.addColorStop(0.72, "rgba(255,255,255,0.03)");
+    grad.addColorStop(1, "rgba(255,255,255,0)");
+    g.fillStyle = grad;
+    g.fillRect(0, 0, GLOW_SIZE, GLOW_SIZE);
+  }
+  glowSprite = c;
+  return c;
+}
+
 export type Variant = "orbits" | "arcs";
 
 type Star = {
@@ -187,6 +216,8 @@ export default function PanelConstellation({
       return (quint * 0.18 + x * 0.82) * TRAVEL;
     };
 
+    const glow = getGlowSprite();
+
     const draw = (t: number) => {
       const t0 = performance.now();
       ctx.clearRect(0, 0, w, h);
@@ -250,22 +281,25 @@ export default function PanelConstellation({
 
 
 
-        // subtle, restrained glow around every visible node
+        // subtle, restrained glow around every visible node — blitted sprite
         const glowAlpha = a * 0.32 * (s.kind === 0 ? 1.5 : s.kind === 1 ? 1.2 : 0.85);
         const glowBlur = Math.min(s.r * grow * 3.5 + (s.kind <= 1 ? 6.0 : 3.5), 26);
-        if (flare > 0.01) {
-          ctx.shadowColor = `rgba(255,255,255,${Math.max(0.08, 0.32 * flare).toFixed(3)})`;
-          ctx.shadowBlur = Math.max(glowBlur, 10 + 24 * flare);
-        } else if (glowAlpha > 0.01) {
-          ctx.shadowColor = `rgba(255,255,255,${glowAlpha.toFixed(3)})`;
-          ctx.shadowBlur = glowBlur;
+        const halo =
+          flare > 0.01
+            ? { alpha: Math.max(0.08, 0.32 * flare), blur: Math.max(glowBlur, 10 + 24 * flare) }
+            : glowAlpha > 0.01
+              ? { alpha: glowAlpha, blur: glowBlur }
+              : null;
+        if (halo) {
+          const rad = s.r * grow + halo.blur * 0.95;
+          ctx.globalAlpha = Math.min(1, halo.alpha * 2.4);
+          ctx.drawImage(glow, x - rad, y - rad, rad * 2, rad * 2);
+          ctx.globalAlpha = 1;
         }
         ctx.fillStyle = `rgba(255,255,255,${Math.min(0.9, a).toFixed(3)})`;
         ctx.beginPath();
         ctx.arc(x, y, s.r * grow, 0, TAU);
         ctx.fill();
-        ctx.shadowBlur = 0;
-        ctx.shadowColor = "transparent";
       }
 
       const cost = performance.now() - t0;

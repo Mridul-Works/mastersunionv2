@@ -523,13 +523,21 @@ export default function PractitionerGallery({
     >
 
       {/* ambient dark atmosphere behind the active card */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+      {/* Own compositor layer: the 64px-blur backdrop rasters once instead of
+          repainting alongside the 3D cards on every animation frame. */}
+      <div
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+        aria-hidden
+        style={{ transform: "translateZ(0)", contain: "paint" }}
+      >
         <div className="absolute inset-0 bg-[#0b0b0b]" />
         {activeImg ? (
           <img
             src={activeImg}
             alt=""
-            className="absolute inset-0 h-full w-full scale-110 object-cover opacity-[0.12] grayscale blur-3xl transition-opacity duration-700"
+            decoding="async"
+            fetchPriority="low"
+            className="no-img-zoom absolute inset-0 h-full w-full scale-110 object-cover opacity-[0.12] grayscale blur-3xl transition-opacity duration-700"
           />
         ) : null}
         <div className="absolute inset-0 bg-gradient-to-r from-[#0b0b0b] via-transparent to-[#0b0b0b]" />
