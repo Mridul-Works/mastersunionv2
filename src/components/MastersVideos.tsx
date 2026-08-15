@@ -83,11 +83,10 @@ export const MASTER_VIDEOS: MasterVideo[] = [
   },
 ];
 
-/** thumbnails visible in the initial filmstrip viewport — preloaded/high priority */
+/** thumbnails visible in the initial filmstrip viewport — highest fetch priority */
 export const MASTER_VIDEO_PRIORITY_COUNT = 5;
-export const MASTER_VIDEO_PRELOAD = MASTER_VIDEOS.slice(0, MASTER_VIDEO_PRIORITY_COUNT).map(
-  (v) => v.thumb,
-);
+/** every masterclass thumbnail is preloaded eagerly (deduped, finite set) */
+export const MASTER_VIDEO_PRELOAD = Array.from(new Set(MASTER_VIDEOS.map((v) => v.thumb)));
 
 const SERIF_IT = "'Fraunces', Georgia, serif";
 const SANS_H = "'Inter', system-ui, sans-serif";
@@ -400,8 +399,8 @@ export default function MastersVideos({
                       <TouchColorImg
                         src={v.thumb}
                         alt=""
-                        loading={i < MASTER_VIDEO_PRIORITY_COUNT ? "eager" : "lazy"}
-                        fetchPriority={i < MASTER_VIDEO_PRIORITY_COUNT ? "high" : "low"}
+                        loading="eager"
+                        fetchPriority={i < MASTER_VIDEO_PRIORITY_COUNT ? "high" : "auto"}
                         decoding="async"
                         className="h-full w-full object-contain grayscale contrast-[0.95] saturate-[0.75] transition-all duration-[350ms] ease-out group-hover:grayscale-0 group-hover:contrast-100 group-hover:saturate-100 data-[touch-color-active]:grayscale-0 data-[touch-color-active]:contrast-100 data-[touch-color-active]:saturate-100"
                       />
