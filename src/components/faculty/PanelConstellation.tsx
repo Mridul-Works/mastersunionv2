@@ -251,8 +251,8 @@ export default function PanelConstellation({
 
 
         // subtle, restrained glow around every visible node
-        const glowAlpha = a * 0.28 * (s.kind === 0 ? 1.5 : s.kind === 1 ? 1.2 : 0.85);
-        const glowBlur = s.r * grow * 5.0 + (s.kind <= 1 ? 6.0 : 3.5);
+        const glowAlpha = a * 0.32 * (s.kind === 0 ? 1.5 : s.kind === 1 ? 1.2 : 0.85);
+        const glowBlur = Math.min(s.r * grow * 3.5 + (s.kind <= 1 ? 6.0 : 3.5), 26);
         if (flare > 0.01) {
           ctx.shadowColor = `rgba(255,255,255,${Math.max(0.08, 0.32 * flare).toFixed(3)})`;
           ctx.shadowBlur = Math.max(glowBlur, 10 + 24 * flare);
