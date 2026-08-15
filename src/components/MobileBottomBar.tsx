@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRouterState } from "@tanstack/react-router";
 import { Menu, X, Sparkles, ArrowUpRight } from "lucide-react";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { SageChat, type SageContext } from "./SageChat";
 
 type Section = { id: string; label: string };
@@ -117,7 +116,6 @@ function scrollToId(id: string) {
 }
 
 export function MobileBottomBar() {
-  const isMobile = useIsMobile();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [menuOpen, setMenuOpen] = useState(false);
   const [sageOpen, setSageOpen] = useState(false);
@@ -146,14 +144,12 @@ export function MobileBottomBar() {
     setMenuOpen(false);
   }, [pathname]);
 
-  if (!isMobile) return null;
-
   return (
     <>
-      {/* Bottom bar */}
+      {/* Bottom bar — visible on mobile + tablet (below lg) */}
       <nav
         aria-label="Mobile navigation"
-        className="fixed inset-x-0 bottom-0 z-[150] pb-[max(env(safe-area-inset-bottom),8px)] pt-2"
+        className="fixed inset-x-0 bottom-0 z-[150] flex pb-[max(env(safe-area-inset-bottom),8px)] pt-2 lg:hidden"
         style={{
           background: "linear-gradient(to top, rgba(255,255,255,0.95) 60%, rgba(255,255,255,0))",
         }}
