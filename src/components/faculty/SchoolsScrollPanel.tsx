@@ -156,10 +156,14 @@ export default function SchoolsScrollPanel() {
                 immersion students have visited campus.
               </p>
 
-              <div className="mt-[clamp(0.9rem,2.8vw,1.25rem)] border-l border-white/15 pl-4 md:mt-[clamp(1.25rem,3.5vh,2.25rem)] md:pl-7">
-                <p className="text-[clamp(1.05rem,4.4vw,1.35rem)] font-medium leading-[1.34] tracking-[-0.01em] text-white md:text-[clamp(1.3rem,2vw,1.7rem)] md:leading-[1.34]">
-                  When schools like these come here to learn, something is working.
-                </p>
+              <div className="mt-[clamp(0.9rem,2.8vw,1.25rem)] md:mt-[clamp(1.25rem,3.5vh,2.25rem)]">
+                <div className="rounded-[clamp(10px,1.8vw,18px)] border border-white/[0.08] bg-black/25 p-[clamp(0.75rem,2.2vw,1.15rem)] backdrop-blur-md md:p-[clamp(0.9rem,1.6vw,1.35rem)]">
+                  <div className="border-l border-white/15 pl-4 md:pl-7">
+                    <p className="text-[clamp(1.05rem,4.4vw,1.35rem)] font-medium leading-[1.34] tracking-[-0.01em] text-white md:text-[clamp(1.3rem,2vw,1.7rem)] md:leading-[1.34]">
+                      When schools like these come here to learn, something is working.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
