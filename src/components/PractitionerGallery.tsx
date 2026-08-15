@@ -433,6 +433,24 @@ export default function PractitionerGallery({
   }, []);
   const VISIBLE = geo.visible;
 
+  /** Arm the on-arc cards + one neighbour on each side as the wheel turns. */
+  useEffect(() => {
+    if (!n) return;
+    const reach = VISIBLE + 1;
+    const set = armedRef.current;
+    let added = false;
+    for (let d = -reach; d <= reach; d += 1) {
+      const idx = ((active + d) % n + n) % n;
+      if (!set.has(idx)) {
+        set.add(idx);
+        added = true;
+      }
+    }
+    if (added) setArmedTick((t) => t + 1);
+  }, [active, VISIBLE, n]);
+  void armedTick;
+
+
   const geoRef = useRef(geo);
   geoRef.current = geo;
   const activeHoveredRef = useRef(false);
