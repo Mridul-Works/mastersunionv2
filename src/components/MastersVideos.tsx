@@ -83,6 +83,12 @@ export const MASTER_VIDEOS: MasterVideo[] = [
   },
 ];
 
+/** thumbnails visible in the initial filmstrip viewport — preloaded/high priority */
+export const MASTER_VIDEO_PRIORITY_COUNT = 5;
+export const MASTER_VIDEO_PRELOAD = MASTER_VIDEOS.slice(0, MASTER_VIDEO_PRIORITY_COUNT).map(
+  (v) => v.thumb,
+);
+
 const SERIF_IT = "'Fraunces', Georgia, serif";
 const SANS_H = "'Inter', system-ui, sans-serif";
 
