@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { TouchColorImg } from "@/components/TouchColorImg";
 import { BookOpen, ChevronLeft, ChevronRight, FlaskConical, Users, type LucideIcon } from "lucide-react";
 import { Reveal } from "@/components/pg-layout/Reveal";
 import { pgpFaculty as faculty } from "@/lib/pgp-tbm-content";
