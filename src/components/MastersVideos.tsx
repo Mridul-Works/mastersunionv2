@@ -271,9 +271,12 @@ export default function MastersVideos({
                     }}
                   >
                     <img
-                      key={current.thumb}
+                      // no `key`: swapping src on the SAME element avoids an
+                      // unmount/remount cycle that would re-request the poster
                       src={current.thumb}
                       alt={current.title}
+                      decoding="async"
+
                       className="h-full w-full object-contain grayscale contrast-[0.95] saturate-[0.75] transition-all duration-[350ms] ease-out group-hover:grayscale-0 group-hover:contrast-100 group-hover:saturate-100"
                       style={{
                         opacity: phase === "in" ? 1 : 0,
