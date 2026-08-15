@@ -623,7 +623,7 @@ function FacultyPage() {
 
       {/* THE NUMBER */}
       <section className="group relative flex min-h-[calc(110svh-var(--nav-reserve,0px))] flex-col items-center justify-center overflow-hidden border-y border-white/10 bg-[#0a0a0a] py-[clamp(4rem,10vh,8rem)] text-white">
-        <div className="page-shell-narrow relative z-10 text-center">
+        <div className="page-shell-narrow relative z-10 mt-[clamp(2rem,7svh,4rem)] text-center md:mt-0">
           <div className="text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO }}>
             The number that matters
           </div>
