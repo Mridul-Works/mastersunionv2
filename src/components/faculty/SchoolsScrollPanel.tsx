@@ -156,22 +156,23 @@ export default function SchoolsScrollPanel() {
           </div>
 
           {/* RIGHT — scroll-revealed data panel: NETWORK | GAP | METER */}
-          <div className="relative z-10 flex h-full overflow-hidden">
+          <div className="relative z-10 flex h-full min-h-0 overflow-hidden">
             {/* network area — 82% of the panel, network can never cross this box */}
-            <div className="relative flex min-w-0 flex-1 flex-col justify-center overflow-hidden p-6 md:p-8 lg:p-10">
+            <div className="relative flex min-h-0 min-w-0 flex-1 flex-col justify-center overflow-hidden p-6 md:p-8 lg:p-10">
               
 
               {/* single shared stage viewport — one active state at a time */}
-              <div className="relative z-10 min-h-[190px]">
+              <div className="relative z-10 h-full min-h-[190px] md:h-auto">
                 {[0, 1, 2].map((i) => (
                   <div
                     key={i}
                     ref={(n) => {
                       stageRef.current[i] = n;
                     }}
-                    className="absolute inset-x-0 top-0 will-change-transform"
+                    className="absolute inset-0 flex flex-col justify-center will-change-transform md:justify-start"
                     style={{ opacity: i === 0 ? 1 : 0, visibility: i === 0 ? "visible" : "hidden" }}
                   >
+
                     {i === 0 && (
                       <>
                         <div
