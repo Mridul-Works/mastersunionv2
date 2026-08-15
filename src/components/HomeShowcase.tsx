@@ -972,6 +972,7 @@ function FounderFilmstrip() {
         </div>
       </div>
       <div
+        data-touch-gallery
         ref={scrollerRef}
         className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
@@ -982,11 +983,11 @@ function FounderFilmstrip() {
             className="group relative flex shrink-0 snap-start basis-[65%] flex-col sm:basis-[38%] md:basis-[25%]"
           >
             <div className="relative w-full aspect-[16/10] overflow-hidden bg-neutral-100">
-              <img
+              <TouchColorImg
                 src={f.photo}
                 alt={`${f.name} — ${f.company}`}
                 loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover object-center grayscale contrast-[1.05] transition duration-500 group-hover:grayscale-0"
+                className="absolute inset-0 h-full w-full object-cover object-center grayscale contrast-[1.05] transition duration-500 group-hover:grayscale-0 data-[touch-color-active]:grayscale-0"
               />
               <span className="absolute left-2 top-2 bg-black/70 px-1.5 py-0.5 text-[9px] uppercase tracking-wider text-white">
                 {f.tag}
