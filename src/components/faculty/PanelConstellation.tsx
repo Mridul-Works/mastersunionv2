@@ -250,18 +250,22 @@ export default function PanelConstellation({
 
 
 
+        // subtle, restrained glow around every visible node
+        const glowAlpha = a * 0.32 * (s.kind === 0 ? 1.5 : s.kind === 1 ? 1.2 : 0.85);
+        const glowBlur = Math.min(s.r * grow * 3.5 + (s.kind <= 1 ? 6.0 : 3.5), 26);
         if (flare > 0.01) {
-          ctx.shadowColor = `rgba(255,255,255,${(0.16 * flare).toFixed(3)})`;
-          ctx.shadowBlur = 6 + 12 * flare;
+          ctx.shadowColor = `rgba(255,255,255,${Math.max(0.08, 0.32 * flare).toFixed(3)})`;
+          ctx.shadowBlur = Math.max(glowBlur, 10 + 24 * flare);
+        } else if (glowAlpha > 0.01) {
+          ctx.shadowColor = `rgba(255,255,255,${glowAlpha.toFixed(3)})`;
+          ctx.shadowBlur = glowBlur;
         }
         ctx.fillStyle = `rgba(255,255,255,${Math.min(0.9, a).toFixed(3)})`;
         ctx.beginPath();
         ctx.arc(x, y, s.r * grow, 0, TAU);
         ctx.fill();
-        if (flare > 0.01) {
-          ctx.shadowBlur = 0;
-          ctx.shadowColor = "transparent";
-        }
+        ctx.shadowBlur = 0;
+        ctx.shadowColor = "transparent";
       }
 
       const cost = performance.now() - t0;
