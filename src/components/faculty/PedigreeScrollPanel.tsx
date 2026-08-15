@@ -31,6 +31,10 @@ export default function PedigreeScrollPanel() {
     if (!el) return;
     let raf = 0;
     let lastP = Number.NaN;
+    // Scroll work is skipped entirely while the section is far outside the
+    // viewport (its mapped progress is clamped there anyway), so the pinned
+    // sections above/below don't pay for this handler.
+    let active = true;
 
     const layoutTop = (node: HTMLElement) => {
       let y = 0;
@@ -103,7 +107,8 @@ export default function PedigreeScrollPanel() {
     };
 
     const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
+      if (!active || raf) return;
+      raf = requestAnimationFrame(update);
     };
     const onResize = () => {
       measure();
@@ -113,12 +118,25 @@ export default function PedigreeScrollPanel() {
     const ro = new ResizeObserver(onResize);
     ro.observe(el);
 
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        active = entry.isIntersecting;
+        // settle once on both enter and leave so the visual state is always
+        // correct at the boundary
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(update);
+      },
+      { rootMargin: "300px 0px" },
+    );
+    io.observe(el);
+
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onResize);
     return () => {
       if (raf) cancelAnimationFrame(raf);
       ro.disconnect();
+      io.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
     };

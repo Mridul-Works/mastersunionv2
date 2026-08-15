@@ -79,6 +79,33 @@ function getGlowSprite() {
   return c;
 }
 
+/**
+ * Cached trail sprite: a horizontal transparent→white ramp. Previously each
+ * star built a fresh `createLinearGradient` every frame (≈900 gradient objects
+ * per frame), which was the dominant scroll cost in these panels. Blitting a
+ * rotated sprite produces the identical tapered trail for a fraction of it.
+ */
+const TRAIL_W = 64;
+const TRAIL_H = 8;
+let trailSprite: HTMLCanvasElement | null = null;
+function getTrailSprite() {
+  if (trailSprite) return trailSprite;
+  const c = document.createElement("canvas");
+  c.width = TRAIL_W;
+  c.height = TRAIL_H;
+  const g = c.getContext("2d");
+  if (g) {
+    const grad = g.createLinearGradient(0, 0, TRAIL_W, 0);
+    grad.addColorStop(0, "rgba(255,255,255,0)");
+    grad.addColorStop(1, "rgba(255,255,255,1)");
+    g.fillStyle = grad;
+    g.fillRect(0, 0, TRAIL_W, TRAIL_H);
+  }
+  trailSprite = c;
+  return c;
+}
+
+
 export type Variant = "orbits" | "arcs";
 
 type Star = {
@@ -178,7 +205,7 @@ export default function PanelConstellation({
   React.useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { alpha: true, desynchronized: true });
     if (!ctx) return;
 
     const { stars: STARS, vp: VP } = FIELDS[variant];
@@ -217,6 +244,7 @@ export default function PanelConstellation({
     };
 
     const glow = getGlowSprite();
+    const trail = getTrailSprite();
 
     const draw = (t: number) => {
       const t0 = performance.now();
@@ -261,23 +289,23 @@ export default function PanelConstellation({
           const sb = FOCAL / zBack;
           const bx = ox + s.x * sb * unit;
           const by = oy + s.y * sb * unit;
-          const len = Math.hypot(x - bx, y - by);
+          const dx = x - bx;
+          const dy = y - by;
+          const len = Math.sqrt(dx * dx + dy * dy);
           if (len > 1.4) {
             const tAlpha = a * (0.22 + 0.4 * clampF(scale * 0.45, 0, 1)) * (s.kind === 3 ? 0.5 : 1);
             if (tAlpha > 0.008) {
-              const grad = ctx.createLinearGradient(bx, by, x, y);
-              grad.addColorStop(0, "rgba(255,255,255,0)");
-              grad.addColorStop(1, `rgba(255,255,255,${tAlpha.toFixed(3)})`);
-              ctx.strokeStyle = grad;
-              ctx.lineCap = "butt";
-              ctx.lineWidth = clampF(0.3 + scale * 0.2, 0.3, Math.max(0.4, s.r * grow * 0.9));
-              ctx.beginPath();
-              ctx.moveTo(bx, by);
-              ctx.lineTo(x, y);
-              ctx.stroke();
+              const lw = clampF(0.3 + scale * 0.2, 0.3, Math.max(0.4, s.r * grow * 0.9));
+              ctx.save();
+              ctx.globalAlpha = Math.min(1, tAlpha);
+              ctx.translate(bx, by);
+              ctx.rotate(Math.atan2(dy, dx));
+              ctx.drawImage(trail, 0, -lw / 2, len, lw);
+              ctx.restore();
             }
           }
         }
+
 
 
 

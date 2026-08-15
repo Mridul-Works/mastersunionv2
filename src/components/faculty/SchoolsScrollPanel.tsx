@@ -23,6 +23,10 @@ export default function SchoolsScrollPanel() {
     if (!el) return;
     let raf = 0;
     let lastP = Number.NaN;
+    // Scroll work is skipped entirely while the section is far outside the
+    // viewport (its mapped progress is clamped there anyway), so the pinned
+    // sections above/below don't pay for this handler.
+    let active = true;
 
     /** layout offset of the section in the document — unaffected by sticky/pinning */
     const layoutTop = (node: HTMLElement) => {
@@ -90,7 +94,8 @@ export default function SchoolsScrollPanel() {
     };
 
     const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
+      if (!active || raf) return;
+      raf = requestAnimationFrame(update);
     };
 
     const onResize = () => {
@@ -103,12 +108,25 @@ export default function SchoolsScrollPanel() {
     const ro = new ResizeObserver(onResize);
     ro.observe(el);
 
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        active = entry.isIntersecting;
+        // settle once on both enter and leave so the visual state is always
+        // correct at the boundary
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(update);
+      },
+      { rootMargin: "300px 0px" },
+    );
+    io.observe(el);
+
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onResize);
     return () => {
       if (raf) cancelAnimationFrame(raf);
       ro.disconnect();
+      io.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
     };
@@ -157,7 +175,8 @@ export default function SchoolsScrollPanel() {
               </p>
 
               <div className="mt-[clamp(0.9rem,2.8vw,1.25rem)] md:mt-[clamp(1.25rem,3.5vh,2.25rem)]">
-                <div className="rounded-[clamp(10px,1.8vw,18px)] border border-white/[0.08] bg-black/25 p-[clamp(0.75rem,2.2vw,1.15rem)] backdrop-blur-md md:p-[clamp(0.9rem,1.6vw,1.35rem)]">
+                <div className="rounded-[clamp(10px,1.8vw,18px)] border border-white/[0.08] bg-black/25 p-[clamp(0.75rem,2.2vw,1.15rem)] backdrop-blur-md md:p-[clamp(0.9rem,1.6vw,1.35rem)]"
+                  style={{ transform: "translateZ(0)", contain: "paint" }}>
                   <div className="border-l border-white/15 pl-4 md:pl-7">
                     <p className="text-[clamp(1.05rem,4.4vw,1.35rem)] font-medium leading-[1.34] tracking-[-0.01em] text-white md:text-[clamp(1.3rem,2vw,1.7rem)] md:leading-[1.34]">
                       When schools like these come here to learn, something is working.
