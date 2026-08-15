@@ -121,7 +121,7 @@ export default function SchoolsScrollPanel() {
       className="relative mt-[clamp(0.75rem,1.8vh,1.25rem)]"
       style={{ height: "380vh" }}
     >
-      <div className="sticky top-0 h-screen overflow-hidden">
+      <div className="sticky top-0 h-[calc(100svh-var(--nav-reserve,0px))] overflow-hidden">
         <div className="grid h-full grid-cols-1 border border-white/10 bg-white/[0.04] md:grid-cols-[minmax(0,68%)_minmax(0,32%)]">
           <PanelConstellation progressRef={progressRef} variant="orbits" />
           {/* LEFT — editorial story, stays readable while pinned */}
