@@ -20,7 +20,7 @@ export default function BrandLogo({
   if (!src || failed) return null;
 
   return (
-    <span className={`inline-flex items-center justify-center ${className}`}>
+    <span className={`inline-flex items-center justify-center no-img-zoom ${className}`}>
       <img
         src={src}
         alt={`${brand.name} logo`}

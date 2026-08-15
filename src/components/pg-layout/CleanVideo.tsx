@@ -44,7 +44,7 @@ export function CleanVideo({
             loading="lazy"
             width={1280}
             height={720}
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500"
           />
         )}
         {!hidePlayButton && (

@@ -420,7 +420,7 @@ function VenturesSection({ ventures }: { ventures: Venture[] }) {
                     <img
                       src={logo}
                       alt={v.startup}
-                      className="h-8 max-w-[120px] object-contain"
+                      className="no-img-zoom h-8 max-w-[120px] object-contain"
                       loading="lazy"
                     />
                   ) : null}
@@ -466,7 +466,7 @@ function Immersions({ items }: { items: string[] }) {
                   <img
                     src={logo}
                     alt=""
-                    className="h-10 w-16 shrink-0 object-contain"
+                    className="no-img-zoom h-10 w-16 shrink-0 object-contain"
                     loading="lazy"
                   />
                 ) : (

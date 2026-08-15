@@ -160,7 +160,7 @@ function LogoStrip({
             <img
               src={l.src}
               alt={l.name}
-              className="max-h-7 w-auto max-w-[85%] object-contain"
+              className="no-img-zoom max-h-7 w-auto max-w-[85%] object-contain"
               loading="lazy"
             />
           </div>

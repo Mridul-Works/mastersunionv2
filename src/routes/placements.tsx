@@ -299,7 +299,7 @@ function CareerPodcast() {
                 src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
                 alt="Masters' Union placements podcast"
                 loading="lazy"
-                className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
+                className="h-full w-full object-cover transition duration-700"
               />
               <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
               <span className="absolute bottom-5 left-5 flex items-center gap-3">
@@ -401,7 +401,7 @@ function LogoRow({ names }: { names: string[] }) {
   return (
     <div className="flex flex-wrap items-center gap-x-10 gap-y-6">
       {found.map((n) => (
-        <img key={n} src={LOGOS[n]} alt={n} loading="lazy" className="h-6 w-auto object-contain opacity-80" />
+        <img key={n} src={LOGOS[n]} alt={n} loading="lazy" className="no-img-zoom h-6 w-auto object-contain opacity-80" />
       ))}
     </div>
   );

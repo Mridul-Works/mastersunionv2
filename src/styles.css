@@ -710,3 +710,20 @@ body::-webkit-scrollbar {
     display: none !important;
   }
 }
+
+/* Global subtle image hover zoom — desktop/mouse only.
+   Images scale to 1.04x on hover and stay clipped to their own frame.
+   Filter and opacity transitions are preserved so existing grayscale
+   and fade interactions keep their smooth behavior. */
+@media (hover: hover) and (pointer: fine) {
+  img:not(.no-img-zoom):not(.no-img-zoom img) {
+    transition: transform 450ms ease-out, filter 450ms ease-out, opacity 450ms ease-out;
+    transform-origin: center;
+    clip-path: inset(0);
+  }
+
+  img:not(.no-img-zoom):not(.no-img-zoom img):hover {
+    transform: scale(1.04);
+  }
+}
+

@@ -86,7 +86,7 @@ export function CampusRadioCard({
             }}
             alt={`${ep.name} — ${ep.title}`}
             loading="lazy"
-            className="h-full w-full object-cover transition duration-[900ms] ease-out group-hover:scale-[1.03]"
+            className="h-full w-full object-cover transition duration-[900ms] ease-out"
           />
         </div>
         <span className="absolute left-0 top-0 grid h-8 w-8 place-items-center bg-black text-white transition-colors group-hover:bg-[#B89146] group-hover:text-black">
@@ -164,7 +164,7 @@ export function CampusRadioSlab({ start = 0, count = 1 }: { start?: number; coun
                   src={ytThumb(ep.id)}
                   alt={`${ep.name} — ${ep.title}`}
                   loading="lazy"
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                  className="h-full w-full object-cover transition duration-500"
                 />
               </div>
               <span className="absolute inset-0 grid place-items-center">

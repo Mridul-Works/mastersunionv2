@@ -297,7 +297,7 @@ function PartnerBlock({
               src={partner.logo}
               alt={`${partner.shortName} logo`}
               loading="lazy"
-              className="max-h-8 w-auto object-contain"
+              className="no-img-zoom max-h-8 w-auto object-contain"
             />
           </div>
         ) : (
