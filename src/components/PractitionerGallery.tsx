@@ -193,11 +193,26 @@ export default function PractitionerGallery({
     if (!el) return;
 
     let intersecting = false;
+    let lastScrollAt = 0;
+    let retry = 0;
+    const markScroll = () => {
+      lastScrollAt = performance.now();
+    };
+
     const evaluate = () => {
       if (document.hidden || !intersecting) {
         inViewRef.current = false;
         if (stageRef.current) stageRef.current.style.visibility = "hidden";
         stopLoop();
+        return;
+      }
+      // The visibility/occlusion probe below forces style + layout + hit-testing.
+      // Running it mid-scroll produced a periodic hitch, so while the user is
+      // actively scrolling it is deferred until the gesture pauses. Nothing
+      // about the resulting state changes — only when it is computed.
+      if (performance.now() - lastScrollAt < 140) {
+        window.clearTimeout(retry);
+        retry = window.setTimeout(evaluate, 160);
         return;
       }
       let node: HTMLElement | null = el;
@@ -235,13 +250,17 @@ export default function PractitionerGallery({
     io.observe(el);
     const poll = window.setInterval(evaluate, 400);
     document.addEventListener("visibilitychange", evaluate);
+    window.addEventListener("scroll", markScroll, { passive: true });
     return () => {
       io.disconnect();
       window.clearInterval(poll);
+      window.clearTimeout(retry);
       document.removeEventListener("visibilitychange", evaluate);
+      window.removeEventListener("scroll", markScroll);
       stopLoop();
     };
   }, [startLoop, stopLoop]);
+
 
 
 
