@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { TouchColorImg } from "@/components/TouchColorImg";
 
 export type MasterVideo = {
   thumb: string;
@@ -249,6 +250,7 @@ export default function MastersVideos({
         <div className="page-shell w-full pt-[clamp(0.75rem,2vh,1.25rem)] lg:pt-[clamp(28px,3.4vh,46px)]">
           {/* one large rounded exhibition container */}
           <div
+            data-touch-gallery
             className={`mv-reveal flex flex-col items-stretch justify-center gap-[clamp(1.25rem,2.6vw,3rem)] overflow-hidden rounded-[clamp(20px,2.6vw,34px)] border ${line} ${shell} backdrop-blur-[14px] shadow-[0_30px_80px_-60px_rgba(0,0,0,0.6)] lg:flex-row lg:gap-[clamp(2.5rem,5vw,5rem)]`}
             style={{ padding: "clamp(1rem,2.2vw,2rem)" }}
           >
@@ -270,14 +272,13 @@ export default function MastersVideos({
                       maxWidth: "100%",
                     }}
                   >
-                    <img
+                    <TouchColorImg
                       // no `key`: swapping src on the SAME element avoids an
                       // unmount/remount cycle that would re-request the poster
                       src={current.thumb}
                       alt={current.title}
                       decoding="async"
-
-                      className="h-full w-full object-contain grayscale contrast-[0.95] saturate-[0.75] transition-all duration-[350ms] ease-out group-hover:grayscale-0 group-hover:contrast-100 group-hover:saturate-100"
+                      className="h-full w-full object-contain grayscale contrast-[0.95] saturate-[0.75] transition-all duration-[350ms] ease-out group-hover:grayscale-0 group-hover:contrast-100 group-hover:saturate-100 data-[touch-color-active]:grayscale-0 data-[touch-color-active]:contrast-100 data-[touch-color-active]:saturate-100"
                       style={{
                         opacity: phase === "in" ? 1 : 0,
                         transform:
@@ -388,11 +389,11 @@ export default function MastersVideos({
                       }`}
                       style={{ aspectRatio: "223/398" }}
                     >
-                      <img
+                      <TouchColorImg
                         src={v.thumb}
                         alt=""
                         loading="lazy"
-                        className="h-full w-full object-contain grayscale contrast-[0.95] saturate-[0.75] transition-all duration-[350ms] ease-out group-hover:grayscale-0 group-hover:contrast-100 group-hover:saturate-100"
+                        className="h-full w-full object-contain grayscale contrast-[0.95] saturate-[0.75] transition-all duration-[350ms] ease-out group-hover:grayscale-0 group-hover:contrast-100 group-hover:saturate-100 data-[touch-color-active]:grayscale-0 data-[touch-color-active]:contrast-100 data-[touch-color-active]:saturate-100"
                       />
                     </button>
                   ))}

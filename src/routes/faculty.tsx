@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { TouchColorImg } from "@/components/TouchColorImg";
 import { ArrowUpRight } from "lucide-react";
 import StudentTestimonials from "@/components/StudentTestimonials";
 import { Accent, SectionIntro } from "@/components/SectionIntro";
@@ -201,14 +202,13 @@ function Portrait({ item, aspect = "aspect-[4/5]", dark = false }: { item: Edito
   return (
     <div className={`w-full overflow-hidden ${dark ? "bg-[#1a1a1a]" : "bg-[#ececec]"} ${aspect}`}>
       {item.img ? (
-        <img
+        <TouchColorImg
           src={item.img}
           alt={item.name}
           loading="lazy"
           decoding="async"
-          className="h-full w-full object-cover grayscale transition duration-500 hover:grayscale-0"
+          className="h-full w-full object-cover grayscale transition duration-500 hover:grayscale-0 data-[touch-color-active]:grayscale-0"
         />
-
       ) : (
         <Initials name={item.name} dark={dark} />
       )}
@@ -319,7 +319,7 @@ function EditorialGrid({
           <PractitionerGallery items={items} />
         </div>
       ) : (
-        <div className={`scene-scroll grid grid-cols-2 divide-x divide-y border-b sm:grid-cols-3 md:grid-cols-4 ${dark ? "divide-white/10 border-white/15" : "divide-black/10 border-black/15"}`}>
+        <div data-touch-gallery className={`scene-scroll grid grid-cols-2 divide-x divide-y border-b sm:grid-cols-3 md:grid-cols-4 ${dark ? "divide-white/10 border-white/15" : "divide-black/10 border-black/15"}`}>
           {items.map((item) => (
             <article key={item.name} className="p-5 md:p-6">
               <Portrait item={item} dark={dark} />

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type SyntheticEvent } from "react";
 import { ArrowUpRight, Download, Quote } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { TouchColorImg } from "@/components/TouchColorImg";
 import founderPhoto from "@/assets/founder-pratham-cutout.webp";
 
 import venturesFilm from "@/assets/ventures-film.mp4.asset.json";
@@ -745,16 +746,16 @@ function FacultyPager({ items }: { items: typeof FACULTY_ALL }) {
       >
         {pages.map((pageItems, pi) => (
           <div key={pi} className="w-full flex-shrink-0 snap-start">
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-4">
+            <div data-touch-gallery className="grid grid-cols-2 gap-3 sm:grid-cols-4 md:grid-cols-4">
               {pageItems.map((f) => (
                 <figure key={f.name} title={f.name} className="group flex flex-col">
                   <div className="relative aspect-[3/4] overflow-hidden bg-black/5">
                     {f.img ? (
-                      <img
+                      <TouchColorImg
                         src={f.img}
                         alt={f.name}
                         loading="lazy"
-                        className="absolute inset-0 h-full w-full object-cover object-top grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.04]"
+                        className="absolute inset-0 h-full w-full object-cover object-top grayscale transition duration-500 group-hover:grayscale-0 group-hover:scale-[1.04] data-[touch-color-active]:grayscale-0"
                       />
 
                     ) : (
@@ -971,6 +972,7 @@ function FounderFilmstrip() {
         </div>
       </div>
       <div
+        data-touch-gallery
         ref={scrollerRef}
         className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
@@ -981,11 +983,11 @@ function FounderFilmstrip() {
             className="group relative flex shrink-0 snap-start basis-[65%] flex-col sm:basis-[38%] md:basis-[25%]"
           >
             <div className="relative w-full aspect-[16/10] overflow-hidden bg-neutral-100">
-              <img
+              <TouchColorImg
                 src={f.photo}
                 alt={`${f.name} — ${f.company}`}
                 loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover object-center grayscale contrast-[1.05] transition duration-500 group-hover:grayscale-0"
+                className="absolute inset-0 h-full w-full object-cover object-center grayscale contrast-[1.05] transition duration-500 group-hover:grayscale-0 data-[touch-color-active]:grayscale-0"
               />
               <span className="absolute left-2 top-2 bg-black/70 px-1.5 py-0.5 text-[9px] uppercase tracking-wider text-white">
                 {f.tag}

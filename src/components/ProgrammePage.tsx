@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { TouchColorImg } from "@/components/TouchColorImg";
 import { Link } from "@tanstack/react-router";
 import {
   ArrowUpRight,
@@ -569,6 +570,7 @@ function Faculty({ roster }: { roster: FacultyMember[] }) {
         </div>
 
         <div
+          data-touch-gallery
           ref={scrollerRef}
           className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 sm:-mx-6 sm:px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
@@ -580,10 +582,10 @@ function Faculty({ roster }: { roster: FacultyMember[] }) {
             >
               <div className="relative aspect-[3/4] w-full overflow-hidden bg-neutral-100">
                 {f.image ? (
-                  <img
+                  <TouchColorImg
                     src={f.image}
                     alt={f.name}
-                    className="h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0"
+                    className="h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0 data-[touch-color-active]:grayscale-0"
                     loading="lazy"
                   />
                 ) : (

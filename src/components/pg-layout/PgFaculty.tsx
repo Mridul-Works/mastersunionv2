@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { TouchColorImg } from "@/components/TouchColorImg";
 import { BookOpen, ChevronLeft, ChevronRight, FlaskConical, Users, type LucideIcon } from "lucide-react";
 import { Reveal } from "@/components/pg-layout/Reveal";
 import { pgpFaculty as faculty } from "@/lib/pgp-tbm-content";
@@ -138,6 +139,7 @@ function PeopleCarousel() {
 
       <div
         ref={trackRef}
+        data-touch-gallery
         className="flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth scroll-pl-5 px-5 pb-4 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] sm:scroll-pl-8 sm:px-8 sm:pb-6 [&::-webkit-scrollbar]:hidden"
       >
         {faculty.people.map((p, i) => (
@@ -146,11 +148,11 @@ function PeopleCarousel() {
             className="group relative w-[168px] shrink-0 snap-start overflow-hidden rounded-none border border-border bg-secondary/30 transition-colors hover:border-primary/40 sm:w-[198px] lg:w-[220px]"
           >
             <div className="relative aspect-[3/4] overflow-hidden">
-              <img
+              <TouchColorImg
                 src={p.image}
                 alt={p.name}
                 loading="lazy"
-                className="h-full w-full object-cover grayscale transition-transform duration-500 group-hover:scale-[1.03] group-hover:grayscale-0"
+                className="h-full w-full object-cover grayscale transition-transform duration-500 group-hover:scale-[1.03] group-hover:grayscale-0 data-[touch-color-active]:grayscale-0"
               />
             </div>
             <span
