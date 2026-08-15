@@ -131,10 +131,10 @@ export default function PedigreeScrollPanel() {
       style={{ height: "380vh" }}
     >
       <div className="sticky top-0 h-[calc(100svh-var(--nav-reserve,0px))] overflow-hidden">
-        <div className="grid h-full grid-cols-1 border border-white/10 bg-white/[0.04] md:grid-cols-[minmax(0,68%)_minmax(0,32%)]">
+        <div className="grid h-full grid-cols-1 grid-rows-[minmax(0,1fr)_clamp(200px,30svh,280px)] border border-white/10 bg-white/[0.04] md:grid-cols-[minmax(0,68%)_minmax(0,32%)] md:grid-rows-1">
           <PanelConstellation progressRef={progressRef} variant="arcs" />
           {/* LEFT — editorial copy */}
-          <div className="relative z-10 flex flex-col justify-center border-b border-white/10 p-6 md:border-b-0 md:border-r md:border-white/10 md:p-8 lg:p-10">
+          <div className="relative z-10 flex min-h-0 flex-col justify-center overflow-hidden border-b border-white/10 p-6 md:border-b-0 md:border-r md:border-white/10 md:p-8 lg:p-10">
             <div className="max-w-[min(100%,62ch)]">
               <div
                 className="text-[10px] uppercase tracking-[0.28em] text-white/45"
@@ -152,45 +152,41 @@ export default function PedigreeScrollPanel() {
           </div>
 
           {/* RIGHT — constellation | stages | meter */}
-          <div className="relative z-10 flex h-full overflow-hidden">
-            <div className="relative flex min-w-0 flex-1 flex-col justify-center overflow-hidden p-6 md:p-8 lg:p-10">
-              
-
-              <div className="relative z-10">
-                <div
-                  ref={headRef}
-                  className="mb-6 text-[10px] uppercase tracking-[0.26em] text-white/50 will-change-transform"
-                  style={{ fontFamily: MONO, opacity: 0 }}
-                >
-                  Faculty Pedigree
-                </div>
-
-                <div className="relative min-h-[190px]">
-                  {GROUPS.map((g, i) => (
+          <div className="relative z-10 flex h-full min-h-0 overflow-hidden">
+            <div className="relative flex min-h-0 min-w-0 flex-1 flex-col justify-center overflow-hidden p-6 md:p-8 lg:p-10">
+              {/* single shared stage viewport — all stages occupy the same box */}
+              <div className="relative z-10 h-full min-h-[190px] md:h-auto">
+                {GROUPS.map((g, i) => (
+                  <div
+                    key={g.title}
+                    ref={(n) => {
+                      stageRef.current[i] = n;
+                    }}
+                    className="absolute inset-0 flex flex-col justify-center will-change-transform md:justify-start"
+                    style={{ opacity: 0, visibility: "hidden" }}
+                  >
                     <div
-                      key={g.title}
-                      ref={(n) => {
-                        stageRef.current[i] = n;
-                      }}
-                      className="absolute inset-x-0 top-0 will-change-transform"
-                      style={{ opacity: 0, visibility: "hidden" }}
+                      className="mb-6 text-[10px] uppercase tracking-[0.26em] text-white/50"
+                      style={{ fontFamily: MONO }}
                     >
-                      <div className="border-y border-white/10 py-5">
-                        <div className="text-[clamp(1.5rem,2.4vw,2.1rem)] font-medium leading-[1.15] tracking-[-0.02em] text-white">
-                          {g.title}
-                        </div>
-                        <div
-                          className="mt-2 break-words text-[10.5px] uppercase tracking-[0.2em] text-white/60"
-                          style={{ fontFamily: MONO }}
-                        >
-                          {g.items}
-                        </div>
+                      Faculty Pedigree
+                    </div>
+                    <div className="border-y border-white/10 py-5">
+                      <div className="text-[clamp(1.5rem,2.4vw,2.1rem)] font-medium leading-[1.15] tracking-[-0.02em] text-white">
+                        {g.title}
+                      </div>
+                      <div
+                        className="mt-2 break-words text-[10.5px] uppercase tracking-[0.2em] text-white/60"
+                        style={{ fontFamily: MONO }}
+                      >
+                        {g.items}
                       </div>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
+
 
             {/* meter — protected column */}
             <div className="relative z-20 flex w-[54px] shrink-0 flex-col justify-between py-8 pl-2 pr-4 md:w-[60px] md:pr-5">
