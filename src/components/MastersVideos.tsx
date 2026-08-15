@@ -284,6 +284,8 @@ export default function MastersVideos({
                       src={current.thumb}
                       alt={current.title}
                       decoding="async"
+                      loading="eager"
+                      fetchPriority="high"
                       className="h-full w-full object-contain grayscale contrast-[0.95] saturate-[0.75] transition-all duration-[350ms] ease-out group-hover:grayscale-0 group-hover:contrast-100 group-hover:saturate-100 data-[touch-color-active]:grayscale-0 data-[touch-color-active]:contrast-100 data-[touch-color-active]:saturate-100"
                       style={{
                         opacity: phase === "in" ? 1 : 0,
