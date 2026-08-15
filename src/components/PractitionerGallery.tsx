@@ -645,11 +645,15 @@ export default function PractitionerGallery({
                   >
                     {item.img ? (
                       <img
-                        src={item.img}
+                        // armed indices only: keeps the initial load to the arc +
+                        // one neighbour each side. Once armed it stays armed, so
+                        // the element is never remounted and never re-downloads.
+                        src={armedRef.current.has(i) ? item.img : undefined}
                         alt={item.name}
                         draggable={false}
                         data-mu-portrait
-                        loading={i < VISIBLE + 2 ? "eager" : "lazy"}
+                        loading={abs <= 1 ? "eager" : "lazy"}
+                        fetchPriority={abs < 0.5 ? "high" : abs <= 1 ? "auto" : "low"}
                         decoding="async"
                         width={Math.round(geo.cw)}
                         height={Math.round(geo.ch)}
@@ -657,6 +661,7 @@ export default function PractitionerGallery({
                         style={{ filter: `grayscale(${grayscale})` }}
                       />
                     ) : (
+
 
 
                       <Initials name={item.name} />
