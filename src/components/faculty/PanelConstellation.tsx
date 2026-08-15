@@ -79,6 +79,33 @@ function getGlowSprite() {
   return c;
 }
 
+/**
+ * Cached trail sprite: a horizontal transparent→white ramp. Previously each
+ * star built a fresh `createLinearGradient` every frame (≈900 gradient objects
+ * per frame), which was the dominant scroll cost in these panels. Blitting a
+ * rotated sprite produces the identical tapered trail for a fraction of it.
+ */
+const TRAIL_W = 64;
+const TRAIL_H = 8;
+let trailSprite: HTMLCanvasElement | null = null;
+function getTrailSprite() {
+  if (trailSprite) return trailSprite;
+  const c = document.createElement("canvas");
+  c.width = TRAIL_W;
+  c.height = TRAIL_H;
+  const g = c.getContext("2d");
+  if (g) {
+    const grad = g.createLinearGradient(0, 0, TRAIL_W, 0);
+    grad.addColorStop(0, "rgba(255,255,255,0)");
+    grad.addColorStop(1, "rgba(255,255,255,1)");
+    g.fillStyle = grad;
+    g.fillRect(0, 0, TRAIL_W, TRAIL_H);
+  }
+  trailSprite = c;
+  return c;
+}
+
+
 export type Variant = "orbits" | "arcs";
 
 type Star = {
