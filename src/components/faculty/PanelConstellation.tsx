@@ -131,9 +131,11 @@ function build(rand: () => number, variant: Variant): Field {
   const between = (lo: number, hi: number) => lo + rand() * (hi - lo);
   const arcs = variant === "arcs";
 
+  // vanishing point near the centre of the full-width hero background so stars
+  // travel outward to every edge, including straight through the right meter
   const vp = arcs
-    ? { x: 0.6 + rand() * 0.06, y: 0.46 + rand() * 0.06 }
-    : { x: 0.66 + rand() * 0.06, y: 0.5 + rand() * 0.05 };
+    ? { x: 0.48 + rand() * 0.05, y: 0.46 + rand() * 0.06 }
+    : { x: 0.52 + rand() * 0.05, y: 0.5 + rand() * 0.05 };
 
   const stars: Star[] = [];
 
