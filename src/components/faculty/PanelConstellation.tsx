@@ -3,10 +3,10 @@ import * as React from "react";
 /**
  * Scroll-driven deep-space travel field for the split panels.
  *
- * The canvas spans BOTH columns of a split panel and is inset on the right by
- * the meter column width, so no star can ever render over the protected meter.
- * The field's vanishing point sits toward the centre/right of the panel — stars
- * appear to originate from behind the meter and travel outward to the viewer.
+ * The canvas fills the ENTIRE panel background layer (including the right meter
+ * column) at z-0, while content and the meter sit above it. Stars originate near
+ * the panel centre and travel outward to every edge, passing behind and through
+ * the meter so it reads as fixed UI floating over a continuous field.
  *
  * MODEL
  * Every star is an INDEPENDENT point in a 3D world (x, y, z). There are no
@@ -131,9 +131,11 @@ function build(rand: () => number, variant: Variant): Field {
   const between = (lo: number, hi: number) => lo + rand() * (hi - lo);
   const arcs = variant === "arcs";
 
+  // vanishing point near the centre of the full-width hero background so stars
+  // travel outward to every edge, including straight through the right meter
   const vp = arcs
-    ? { x: 0.6 + rand() * 0.06, y: 0.46 + rand() * 0.06 }
-    : { x: 0.66 + rand() * 0.06, y: 0.5 + rand() * 0.05 };
+    ? { x: 0.48 + rand() * 0.05, y: 0.46 + rand() * 0.06 }
+    : { x: 0.52 + rand() * 0.05, y: 0.5 + rand() * 0.05 };
 
   const stars: Star[] = [];
 
@@ -420,7 +422,7 @@ export default function PanelConstellation({
   return (
     <div
       aria-hidden
-      className="pointer-events-none absolute bottom-0 left-0 top-0 right-[54px] z-0 overflow-hidden md:right-[60px]"
+      className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
     >
       <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
     </div>
