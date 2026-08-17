@@ -21,6 +21,7 @@ import { Route as FoodLabRouteImport } from './routes/food-lab'
 import { Route as FacultyRouteImport } from './routes/faculty'
 import { Route as D2cChallengeRouteImport } from './routes/d2c-challenge'
 import { Route as CreatorChallengeRouteImport } from './routes/creator-challenge'
+import { Route as CinematicRouteImport } from './routes/cinematic'
 import { Route as CardGridRouteImport } from './routes/card-grid'
 import { Route as CampusRadioRouteImport } from './routes/campus-radio'
 import { Route as CampusRouteImport } from './routes/campus'
@@ -105,6 +106,11 @@ const D2cChallengeRoute = D2cChallengeRouteImport.update({
 const CreatorChallengeRoute = CreatorChallengeRouteImport.update({
   id: '/creator-challenge',
   path: '/creator-challenge',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CinematicRoute = CinematicRouteImport.update({
+  id: '/cinematic',
+  path: '/cinematic',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CardGridRoute = CardGridRouteImport.update({
@@ -260,6 +266,7 @@ export interface FileRoutesByFullPath {
   '/campus': typeof CampusRoute
   '/campus-radio': typeof CampusRadioRoute
   '/card-grid': typeof CardGridRoute
+  '/cinematic': typeof CinematicRoute
   '/creator-challenge': typeof CreatorChallengeRoute
   '/d2c-challenge': typeof D2cChallengeRoute
   '/faculty': typeof FacultyRoute
@@ -299,6 +306,7 @@ export interface FileRoutesByTo {
   '/campus': typeof CampusRoute
   '/campus-radio': typeof CampusRadioRoute
   '/card-grid': typeof CardGridRoute
+  '/cinematic': typeof CinematicRoute
   '/creator-challenge': typeof CreatorChallengeRoute
   '/d2c-challenge': typeof D2cChallengeRoute
   '/faculty': typeof FacultyRoute
@@ -339,6 +347,7 @@ export interface FileRoutesById {
   '/campus': typeof CampusRoute
   '/campus-radio': typeof CampusRadioRoute
   '/card-grid': typeof CardGridRoute
+  '/cinematic': typeof CinematicRoute
   '/creator-challenge': typeof CreatorChallengeRoute
   '/d2c-challenge': typeof D2cChallengeRoute
   '/faculty': typeof FacultyRoute
@@ -380,6 +389,7 @@ export interface FileRouteTypes {
     | '/campus'
     | '/campus-radio'
     | '/card-grid'
+    | '/cinematic'
     | '/creator-challenge'
     | '/d2c-challenge'
     | '/faculty'
@@ -419,6 +429,7 @@ export interface FileRouteTypes {
     | '/campus'
     | '/campus-radio'
     | '/card-grid'
+    | '/cinematic'
     | '/creator-challenge'
     | '/d2c-challenge'
     | '/faculty'
@@ -458,6 +469,7 @@ export interface FileRouteTypes {
     | '/campus'
     | '/campus-radio'
     | '/card-grid'
+    | '/cinematic'
     | '/creator-challenge'
     | '/d2c-challenge'
     | '/faculty'
@@ -498,6 +510,7 @@ export interface RootRouteChildren {
   CampusRoute: typeof CampusRoute
   CampusRadioRoute: typeof CampusRadioRoute
   CardGridRoute: typeof CardGridRoute
+  CinematicRoute: typeof CinematicRoute
   CreatorChallengeRoute: typeof CreatorChallengeRoute
   D2cChallengeRoute: typeof D2cChallengeRoute
   FacultyRoute: typeof FacultyRoute
@@ -615,6 +628,13 @@ declare module '@tanstack/react-router' {
       path: '/creator-challenge'
       fullPath: '/creator-challenge'
       preLoaderRoute: typeof CreatorChallengeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cinematic': {
+      id: '/cinematic'
+      path: '/cinematic'
+      fullPath: '/cinematic'
+      preLoaderRoute: typeof CinematicRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/card-grid': {
@@ -802,6 +822,7 @@ const rootRouteChildren: RootRouteChildren = {
   CampusRoute: CampusRoute,
   CampusRadioRoute: CampusRadioRoute,
   CardGridRoute: CardGridRoute,
+  CinematicRoute: CinematicRoute,
   CreatorChallengeRoute: CreatorChallengeRoute,
   D2cChallengeRoute: D2cChallengeRoute,
   FacultyRoute: FacultyRoute,
