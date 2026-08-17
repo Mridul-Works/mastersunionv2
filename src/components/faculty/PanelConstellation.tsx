@@ -3,10 +3,10 @@ import * as React from "react";
 /**
  * Scroll-driven deep-space travel field for the split panels.
  *
- * The canvas spans BOTH columns of a split panel and is inset on the right by
- * the meter column width, so no star can ever render over the protected meter.
- * The field's vanishing point sits toward the centre/right of the panel — stars
- * appear to originate from behind the meter and travel outward to the viewer.
+ * The canvas fills the ENTIRE panel background layer (including the right meter
+ * column) at z-0, while content and the meter sit above it. Stars originate near
+ * the panel centre and travel outward to every edge, passing behind and through
+ * the meter so it reads as fixed UI floating over a continuous field.
  *
  * MODEL
  * Every star is an INDEPENDENT point in a 3D world (x, y, z). There are no
