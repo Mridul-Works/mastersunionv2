@@ -577,7 +577,7 @@ function Page() {
       <section id="top" className="relative overflow-hidden">
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-[8vw] top-[6vh] select-none text-[26vw] font-medium leading-none tracking-[-0.05em] text-black/[0.035]"
+          className="pointer-events-none absolute -right-[8vw] top-[10vh] select-none text-[24vw] font-medium leading-none tracking-[-0.05em] text-black/[0.035]"
         >
           <Parallax strength={70}>2025</Parallax>
         </div>
@@ -618,7 +618,7 @@ function Page() {
           {HERO_STATS.map((s, i) => (
             <div key={s.label}>
               <Reveal
-                delay={900 + i * 120}
+                delay={200 + i * 110}
                 duration={850}
                 className="group grid grid-cols-1 items-baseline gap-2 py-6 transition-colors duration-500 hover:bg-black/[0.02] md:grid-cols-12 md:gap-6 md:py-8"
               >
@@ -626,13 +626,13 @@ function Page() {
                   <Index n={i + 1} />
                 </div>
                 <div className="text-[clamp(1.7rem,3.4vw,2.9rem)] leading-none tracking-[-0.03em] md:col-span-5">
-                  <CountUp value={s.value} delay={900 + i * 120} />
+                  <CountUp value={s.value} delay={200 + i * 110} />
                 </div>
                 <div className="text-[10px] uppercase tracking-[0.2em] text-black/60 transition-transform duration-500 group-hover:translate-x-1 md:col-span-6 md:text-right" style={{ fontFamily: MONO }}>
                   {s.label}
                 </div>
               </Reveal>
-              <Rule delay={940 + i * 120} />
+              <Rule delay={260 + i * 110} />
             </div>
           ))}
         </div>
