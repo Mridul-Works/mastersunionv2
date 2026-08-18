@@ -310,12 +310,23 @@ const LEADERS = [
 function TopNav() {
   const [scrolled, setScrolled] = useState(false);
 
-  if (typeof window !== "undefined") {
-    // passive listener registered once per mount via ref-free closure
-  }
+  useEffect(() => {
+    let last = false;
+    const handler = () => {
+      const next = window.scrollY > 24;
+      if (next !== last) {
+        last = next;
+        setScrolled(next);
+      }
+    };
+    handler();
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
 
   return (
-    <ScrollAware onChange={setScrolled}>
+    <>
+
       <header
         className={
           "fixed inset-x-0 top-0 z-50 hidden transition-colors duration-300 lg:block " +
