@@ -253,6 +253,7 @@ const LEADERS = [
   { name: "Sunjay Kapur", role: "Chairman, Sona Comstar" },
 ];
 
+
 /* -------------------------------- primitives ------------------------------ */
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
@@ -263,85 +264,161 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
   );
 }
 
+/** Section index marker used across the editorial rows. */
+function Index({ n }: { n: number }) {
+  return (
+    <span className="text-[10px] tabular-nums tracking-[0.24em] text-black/35" style={{ fontFamily: MONO }}>
+      {String(n).padStart(2, "0")}
+    </span>
+  );
+}
+
+function Rule({ delay = 0 }: { delay?: number }) {
+  return <Draw delay={delay} className="h-px w-full bg-black/12" />;
+}
+
+function useScrolled(threshold = 24) {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      setScrolled(window.scrollY > threshold);
+    };
+    const tick = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", tick, { passive: true });
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", tick);
+    };
+  }, [threshold]);
+  return scrolled;
+}
+
+/** Shared editorial shell: generous whitespace, tonal background, full-bleed rules. */
+function Band({
+  id,
+  tone = "white",
+  className = "",
+  children,
+}: {
+  id?: string;
+  tone?: "white" | "paper" | "grey";
+  className?: string;
+  children: React.ReactNode;
+}) {
+  const bg = tone === "white" ? "bg-white" : tone === "paper" ? "bg-[#faf9f7]" : "bg-[#f2f1ee]";
+  return (
+    <section id={id} className={`relative ${bg} ${className}`}>
+      <div className="mx-auto max-w-6xl px-5 py-16 md:px-10 md:py-28">{children}</div>
+    </section>
+  );
+}
+
+/** Sticky editorial column: heading holds while the data scrolls beside it. */
+function StickyHead({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="lg:col-span-4">
+      <div className="lg:sticky lg:top-24">{children}</div>
+    </div>
+  );
+}
+
 function CareerPodcast() {
   const [playing, setPlaying] = useState(false);
   const id = "uiNTwDixAts";
 
   return (
-    <div className="grid grid-cols-1 gap-6 border-t border-black/10 pt-8 lg:grid-cols-12 lg:gap-10">
+    <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
       <div className="lg:col-span-5">
-        <Eyebrow>Podcast</Eyebrow>
-        <h3 className="mt-5 text-[clamp(1.4rem,2.6vw,2.1rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-          How Masters&apos; Union prepares students for top 1% placements
-        </h3>
-        <p className="mt-4 max-w-[46ch] text-[15px] leading-relaxed text-black/65">
-          A detailed conversation on the placement engine behind Masters&apos; Union — how recruiter
-          access, live industry projects and year-round career coaching translate into offers at the
-          firms shaping the next decade.
-        </p>
-        <a
-          href={`https://www.youtube.com/watch?v=${id}`}
-          target="_blank"
-          rel="noreferrer"
-          className="group mt-6 inline-flex items-center gap-2 border-b border-black/25 pb-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-black transition hover:border-black"
-        >
-          Watch on YouTube
-          <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </a>
+        <Reveal>
+          <Eyebrow>Podcast</Eyebrow>
+        </Reveal>
+        <Reveal delay={90}>
+          <h3 className="mt-5 text-[clamp(1.4rem,2.6vw,2.1rem)] font-medium leading-[1.1] tracking-[-0.015em]">
+            How Masters&apos; Union prepares students for top 1% placements
+          </h3>
+        </Reveal>
+        <Reveal delay={180}>
+          <p className="mt-6 max-w-[46ch] text-[15px] leading-relaxed text-black/65">
+            A detailed conversation on the placement engine behind Masters&apos; Union — how recruiter
+            access, live industry projects and year-round career coaching translate into offers at the
+            firms shaping the next decade.
+          </p>
+        </Reveal>
+        <Reveal delay={260}>
+          <a
+            href={`https://www.youtube.com/watch?v=${id}`}
+            target="_blank"
+            rel="noreferrer"
+            className="group mt-8 inline-flex items-center gap-2 border-b border-black/25 pb-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-black transition hover:border-black"
+          >
+            Watch on YouTube
+            <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+        </Reveal>
       </div>
 
       <div className="lg:col-span-7">
-        <div className="relative aspect-video w-full overflow-hidden rounded-[14px] bg-black shadow-[0_18px_44px_-26px_rgba(0,0,0,0.6)]">
-          {playing ? (
-            <iframe
-              className="h-full w-full"
-              src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`}
-              title="How Masters' Union prepares students for top 1% placements"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
-              allowFullScreen
-            />
-          ) : (
-            <button
-              type="button"
-              onClick={() => setPlaying(true)}
-              aria-label="Play placements podcast"
-              className="group absolute inset-0 h-full w-full"
-            >
-              <img
-                src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
-                alt="Masters' Union placements podcast"
-                loading="lazy"
-                className="h-full w-full object-cover transition duration-700"
+        <ClipReveal>
+          <div className="relative aspect-video w-full overflow-hidden bg-black">
+            {playing ? (
+              <iframe
+                className="h-full w-full"
+                src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`}
+                title="How Masters' Union prepares students for top 1% placements"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
+                allowFullScreen
               />
-              <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-              <span className="absolute bottom-5 left-5 flex items-center gap-3">
-                <span className="grid size-11 place-items-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md transition group-hover:bg-white/25">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setPlaying(true)}
+                aria-label="Play placements podcast"
+                className="group absolute inset-0 h-full w-full"
+              >
+                <img
+                  src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
+                  alt="Masters' Union placements podcast"
+                  loading="lazy"
+                  className="h-full w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-[1.03]"
+                />
+                <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                <span className="absolute bottom-5 left-5 flex items-center gap-3">
+                  <span className="grid size-11 place-items-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md transition group-hover:bg-white/25">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </span>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/90">
+                    Play podcast
+                  </span>
                 </span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/90">
-                  Play podcast
-                </span>
-              </span>
-            </button>
-          )}
-        </div>
+              </button>
+            )}
+          </div>
+        </ClipReveal>
       </div>
     </div>
   );
 }
 
-
-
 function BarChart({ data, max, unit = "L" }: { data: { cohort: string; value: number }[]; max: number; unit?: string }) {
   return (
-    <div className="flex h-56 items-end gap-3 md:gap-6">
-      {data.map((d) => (
-        <div key={d.cohort} className="flex flex-1 flex-col items-center justify-end gap-3">
-          <div className="text-[0.9rem] tracking-[-0.02em]">₹{d.value}{unit}</div>
-          <div
-            className="w-full rounded-t-[3px] bg-black transition-all duration-500"
+    <div className="flex h-60 items-end gap-4 md:gap-8">
+      {data.map((d, i) => (
+        <div key={d.cohort} className="group flex flex-1 flex-col items-center justify-end gap-3">
+          <Reveal delay={i * 90} y={12} duration={650} className="text-[0.9rem] tracking-[-0.02em]">
+            <CountUp value={`₹${d.value}${unit}`} delay={i * 90} />
+          </Reveal>
+          <Draw
+            axis="y"
+            delay={i * 90}
+            duration={1000}
+            className="w-full bg-black transition-colors duration-500 group-hover:bg-black/70"
             style={{ height: `${(d.value / max) * 100}%` }}
           />
           <div className="text-[10px] uppercase tracking-[0.18em] text-black/55" style={{ fontFamily: MONO }}>
@@ -353,16 +430,44 @@ function BarChart({ data, max, unit = "L" }: { data: { cohort: string; value: nu
   );
 }
 
-function RangeBar({ row, max }: { row: CohortRow; max: number }) {
+function RangeBar({ row, max, delay = 0 }: { row: CohortRow; max: number; delay?: number }) {
   const left = (row.bottom25 / max) * 100;
   const width = ((row.top25 - row.bottom25) / max) * 100;
   const avg = (row.avg / max) * 100;
   const med = (row.median / max) * 100;
+  const { ref, inView } = useInView<HTMLDivElement>();
+  const reduced = useReducedMotion();
+  const on = inView || reduced;
+
   return (
-    <div className="relative h-8 w-full rounded-[3px] bg-black/[0.05]">
-      <div className="absolute inset-y-2 rounded-[2px] bg-black/20" style={{ left: `${left}%`, width: `${width}%` }} />
-      <div className="absolute inset-y-0 w-[2px] bg-black" style={{ left: `${avg}%` }} title={`Average ₹${row.avg}L`} />
-      <div className="absolute inset-y-1 w-[2px] bg-black/40" style={{ left: `${med}%` }} title={`Median ₹${row.median}L`} />
+    <div ref={ref} className="relative h-8 w-full bg-black/[0.045]">
+      <div
+        className="absolute inset-y-[10px] origin-left bg-black/20"
+        style={{
+          left: `${left}%`,
+          width: `${width}%`,
+          transform: on ? "scaleX(1)" : "scaleX(0)",
+          transition: reduced ? "none" : `transform 900ms cubic-bezier(0.16,0.84,0.24,1) ${delay}ms`,
+        }}
+      />
+      {[
+        { pos: avg, cls: "inset-y-0 bg-black", d: 420 },
+        { pos: med, cls: "inset-y-1 bg-black/40", d: 540 },
+      ].map((m) => (
+        <div
+          key={m.cls}
+          className={`absolute w-[2px] ${m.cls}`}
+          style={{
+            left: `${m.pos}%`,
+            opacity: on ? 1 : 0,
+            transform: on ? "scaleY(1)" : "scaleY(0.3)",
+            transition: reduced
+              ? "none"
+              : `opacity 500ms ease-out ${delay + m.d}ms, transform 500ms cubic-bezier(0.16,0.84,0.24,1) ${delay + m.d}ms`,
+          }}
+          title={m.d === 420 ? `Average ₹${row.avg}L` : `Median ₹${row.median}L`}
+        />
+      ))}
     </div>
   );
 }
@@ -372,11 +477,16 @@ function Donut({ data }: { data: { label: string; pct: number }[] }) {
   const C = 2 * Math.PI * R;
   let offset = 0;
   const shades = ["rgba(0,0,0,0.88)", "rgba(0,0,0,0.45)", "rgba(0,0,0,0.18)"];
+  const { ref, inView } = useInView<HTMLDivElement>();
+  const reduced = useReducedMotion();
+  const on = inView || reduced;
+
   return (
-    <div className="flex flex-wrap items-center gap-10">
-      <svg viewBox="0 0 160 160" className="size-40 -rotate-90">
+    <div ref={ref} className="flex flex-wrap items-center gap-12">
+      <svg viewBox="0 0 160 160" className="size-44 -rotate-90">
         {data.map((d, i) => {
           const len = (d.pct / 100) * C;
+          const start = offset;
           const el = (
             <circle
               key={d.label}
@@ -386,21 +496,28 @@ function Donut({ data }: { data: { label: string; pct: number }[] }) {
               fill="none"
               stroke={shades[i % shades.length]}
               strokeWidth="22"
-              strokeDasharray={`${len} ${C - len}`}
-              strokeDashoffset={-offset}
+              strokeDasharray={`${on ? len : 0} ${on ? C - len : C}`}
+              strokeDashoffset={-start}
+              style={{
+                transition: reduced
+                  ? "none"
+                  : `stroke-dasharray 950ms cubic-bezier(0.16,0.84,0.24,1) ${i * 160}ms`,
+              }}
             />
           );
           offset += len;
           return el;
         })}
       </svg>
-      <div className="space-y-4">
+      <div className="space-y-5">
         {data.map((d, i) => (
-          <div key={d.label} className="flex items-center gap-3">
-            <span className="size-3 rounded-[2px]" style={{ background: shades[i % shades.length] }} />
+          <Reveal key={d.label} delay={i * 90} y={14} className="flex items-center gap-3">
+            <span className="size-3" style={{ background: shades[i % shades.length] }} />
             <span className="text-[0.95rem]">{d.label}</span>
-            <span className="text-[0.95rem] text-black/50">{d.pct}%</span>
-          </div>
+            <span className="text-[0.95rem] text-black/50">
+              <CountUp value={`${d.pct}%`} delay={i * 90} />
+            </span>
+          </Reveal>
         ))}
       </div>
     </div>
@@ -411,9 +528,16 @@ function LogoRow({ names }: { names: string[] }) {
   const found = names.filter((n) => LOGOS[n]);
   if (found.length === 0) return null;
   return (
-    <div className="flex flex-wrap items-center gap-x-10 gap-y-6">
-      {found.map((n) => (
-        <img key={n} src={LOGOS[n]} alt={n} loading="lazy" className="no-img-zoom h-6 w-auto object-contain opacity-80" />
+    <div className="flex flex-wrap items-center gap-x-12 gap-y-8">
+      {found.map((n, i) => (
+        <Reveal key={n} delay={i * 60} y={14} duration={650}>
+          <img
+            src={LOGOS[n]}
+            alt={n}
+            loading="lazy"
+            className="no-img-zoom h-6 w-auto object-contain opacity-70 transition-opacity duration-500 hover:opacity-100"
+          />
+        </Reveal>
       ))}
     </div>
   );
@@ -425,378 +549,676 @@ function Page() {
   const maxCtc = 55;
   const [recruiterTab, setRecruiterTab] = useState(RECRUITER_GROUPS[0].category);
   const active = RECRUITER_GROUPS.find((g) => g.category === recruiterTab)!;
+  const scrolled = useScrolled();
 
   return (
-    <main className="min-h-screen bg-white pb-16 text-black md:pb-18" style={{ fontFamily: INTER }}>
+    <main className="min-h-screen overflow-x-clip bg-white pb-16 text-black md:pb-18" style={{ fontFamily: INTER }}>
+      <ScrollProgress />
       <BottomNav items={NAV} applyHref="#contact" />
 
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">
-        <Link to="/" className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-black/70 hover:text-black" style={{ fontFamily: MONO }}>
-          <span aria-hidden>←</span> Masters&apos; Union
-        </Link>
-        <div className="text-[11px] uppercase tracking-[0.25em] text-black/55" style={{ fontFamily: MONO }}>Careers at Masters&apos; Union</div>
+      <div
+        className={`sticky top-0 z-40 transition-[background-color,border-color,backdrop-filter,padding] duration-500 ${
+          scrolled ? "border-b border-black/10 bg-white/80 backdrop-blur-xl" : "border-b border-transparent bg-transparent"
+        }`}
+      >
+        <div
+          className={`mx-auto flex max-w-6xl items-center justify-between px-5 transition-all duration-500 md:px-10 ${
+            scrolled ? "py-3" : "py-6 md:py-8"
+          }`}
+        >
+          <Link to="/" className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-black/70 hover:text-black" style={{ fontFamily: MONO }}>
+            <span aria-hidden>←</span> Masters&apos; Union
+          </Link>
+          <div className="text-[11px] uppercase tracking-[0.25em] text-black/55" style={{ fontFamily: MONO }}>Careers at Masters&apos; Union</div>
+        </div>
       </div>
 
       {/* HERO */}
-      <section id="top" className="mx-auto max-w-6xl px-5 pb-9 pt-10 md:px-10 md:pt-14">
-        <Eyebrow>Careers</Eyebrow>
-        <h1 className="mt-6 max-w-[20ch] text-balance text-[clamp(2.4rem,7vw,6rem)] font-medium leading-[0.95] tracking-[-0.02em]">
-          Accelerate your career growth.
-        </h1>
-        <p className="mt-8 max-w-[58ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55] text-black/70">
-          Benefit from an exceptional track record of our graduates&apos; success — audited, published, and repeated across five cohorts.
-        </p>
-        <div className="mt-7 flex flex-wrap gap-3">
-          <a href="#outcomes" className="inline-flex items-center gap-2 bg-black px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-white hover:opacity-80" style={{ fontFamily: MONO }}>
-            <Download className="size-3.5" /> Placement report
-          </a>
-          <a href="#recruiters" className="inline-flex items-center gap-2 border border-black/20 px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-black hover:border-black" style={{ fontFamily: MONO }}>
-            Our recruiters <ArrowUpRight className="size-3.5" />
-          </a>
+      <section id="top" className="relative overflow-hidden">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -right-[8vw] top-[6vh] select-none text-[26vw] font-medium leading-none tracking-[-0.05em] text-black/[0.035]"
+        >
+          <Parallax strength={70}>2025</Parallax>
         </div>
-      </section>
 
-      <section className="mx-auto max-w-6xl px-5 md:px-10">
-        <div className="grid grid-cols-2 gap-px bg-black/10 md:grid-cols-4">
-          {HERO_STATS.map((s) => (
-            <div key={s.label} className="bg-white px-5 py-7">
-              <div className="text-[clamp(1.7rem,3vw,2.6rem)] leading-none tracking-[-0.03em]">{s.value}</div>
-              <div className="mt-4 text-[10px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>{s.label}</div>
+        <div className="relative mx-auto grid max-w-6xl grid-cols-1 gap-10 px-5 pb-16 pt-14 md:px-10 md:pb-24 md:pt-24 lg:grid-cols-12">
+          <div className="lg:col-span-9">
+            <Reveal delay={120} y={14} duration={700}>
+              <Eyebrow>Careers</Eyebrow>
+            </Reveal>
+            <div className="overflow-hidden">
+              <Reveal delay={280} y={56} duration={1100}>
+                <h1 className="mt-8 max-w-[20ch] text-balance text-[clamp(2.4rem,7vw,6rem)] font-medium leading-[0.95] tracking-[-0.02em]">
+                  Accelerate your career growth.
+                </h1>
+              </Reveal>
+            </div>
+            <Reveal delay={520} duration={900}>
+              <p className="mt-10 max-w-[58ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55] text-black/70">
+                Benefit from an exceptional track record of our graduates&apos; success — audited, published, and repeated across five cohorts.
+              </p>
+            </Reveal>
+            <Reveal delay={720} duration={900}>
+              <div className="mt-10 flex flex-wrap gap-3">
+                <a href="#outcomes" className="group inline-flex items-center gap-2 bg-black px-6 py-3.5 text-[11px] uppercase tracking-[0.22em] text-white transition hover:opacity-80" style={{ fontFamily: MONO }}>
+                  <Download className="size-3.5 transition-transform duration-500 group-hover:translate-y-0.5" /> Placement report
+                </a>
+                <a href="#recruiters" className="group inline-flex items-center gap-2 border border-black/20 px-6 py-3.5 text-[11px] uppercase tracking-[0.22em] text-black transition hover:border-black" style={{ fontFamily: MONO }}>
+                  Our recruiters <ArrowUpRight className="size-3.5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </a>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+
+        {/* Hero statistics — editorial rows, revealed one by one */}
+        <div className="relative mx-auto max-w-6xl px-5 pb-16 md:px-10 md:pb-24">
+          <Rule />
+          {HERO_STATS.map((s, i) => (
+            <div key={s.label}>
+              <Reveal
+                delay={900 + i * 120}
+                duration={850}
+                className="group grid grid-cols-1 items-baseline gap-2 py-6 transition-colors duration-500 hover:bg-black/[0.02] md:grid-cols-12 md:gap-6 md:py-8"
+              >
+                <div className="md:col-span-1">
+                  <Index n={i + 1} />
+                </div>
+                <div className="text-[clamp(1.7rem,3.4vw,2.9rem)] leading-none tracking-[-0.03em] md:col-span-5">
+                  <CountUp value={s.value} delay={900 + i * 120} />
+                </div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-black/60 transition-transform duration-500 group-hover:translate-x-1 md:col-span-6 md:text-right" style={{ fontFamily: MONO }}>
+                  {s.label}
+                </div>
+              </Reveal>
+              <Rule delay={940 + i * 120} />
             </div>
           ))}
         </div>
       </section>
 
       {/* PODCAST */}
-      <section className="mx-auto max-w-6xl px-5 pt-12 md:px-10 md:pt-14">
+      <Band tone="paper">
         <CareerPodcast />
-      </section>
-
-
+      </Band>
 
       {/* AUDITED OUTCOMES */}
-      <section id="outcomes" className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
-        <Eyebrow>Five years of audited placements</Eyebrow>
-        <h2 className="mt-5 max-w-[26ch] text-[clamp(1.8rem,3.6vw,3rem)] font-medium leading-[1.05] tracking-[-0.015em]">
-          Proven outcomes, verified line by line.
-        </h2>
-        <p className="mt-6 max-w-[68ch] text-[1.05rem] leading-[1.65] text-black/70">
-          Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and follow the IPRS Revision 2.2 framework for transparent, consistent compensation data.
-        </p>
-        <div className="mt-8 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-3">
-          {AUDIT_STATS.map((s) => (
-            <div key={s.suffix} className="bg-white p-8">
-              <div className="text-[clamp(2rem,4vw,3.2rem)] leading-none tracking-[-0.03em]">{s.value}</div>
-              <div className="mt-4 text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>{s.suffix}</div>
-              <p className="mt-4 text-[0.92rem] leading-[1.6] text-black/70">{s.note}</p>
+      <Band id="outcomes" tone="white">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+          <StickyHead>
+            <Reveal>
+              <Eyebrow>Five years of audited placements</Eyebrow>
+            </Reveal>
+            <Reveal delay={120}>
+              <h2 className="mt-6 max-w-[26ch] text-[clamp(1.8rem,3.6vw,3rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+                Proven outcomes, verified line by line.
+              </h2>
+            </Reveal>
+            <Reveal delay={240}>
+              <p className="mt-6 max-w-[68ch] text-[1.05rem] leading-[1.65] text-black/70">
+                Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and follow the IPRS Revision 2.2 framework for transparent, consistent compensation data.
+              </p>
+            </Reveal>
+          </StickyHead>
+
+          <div className="lg:col-span-8">
+            <Rule />
+            {AUDIT_STATS.map((s, i) => (
+              <div key={s.suffix}>
+                <Reveal
+                  delay={i * 120}
+                  className="group grid grid-cols-1 gap-4 py-8 transition-colors duration-500 hover:bg-black/[0.02] md:grid-cols-12 md:gap-8 md:py-10"
+                >
+                  <div className="md:col-span-1">
+                    <Index n={i + 1} />
+                  </div>
+                  <div className="md:col-span-5">
+                    <div className="text-[clamp(2rem,4.4vw,3.4rem)] leading-none tracking-[-0.03em]">
+                      <CountUp value={s.value} delay={i * 120} />
+                    </div>
+                    <div className="mt-4 text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>{s.suffix}</div>
+                  </div>
+                  <p className="text-[0.92rem] leading-[1.6] text-black/70 md:col-span-6">{s.note}</p>
+                </Reveal>
+                <Rule delay={i * 120 + 60} />
+              </div>
+            ))}
+
+            <div className="mt-10 flex flex-wrap items-center gap-3">
+              <Reveal y={12}>
+                <span className="text-[11px] uppercase tracking-[0.2em] text-black/55" style={{ fontFamily: MONO }}>Reports</span>
+              </Reveal>
+              {REPORT_YEARS.map((y, i) => (
+                <Reveal key={y} delay={80 + i * 80} y={12}>
+                  <span className="inline-flex items-center gap-2 border border-black/15 px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-black/75 transition-colors duration-500 hover:border-black/45" style={{ fontFamily: MONO }}>
+                    <Download className="size-3" /> Cohort {y}
+                  </span>
+                </Reveal>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
-        <div className="mt-7 flex flex-wrap items-center gap-3">
-          <span className="text-[11px] uppercase tracking-[0.2em] text-black/55" style={{ fontFamily: MONO }}>Reports</span>
-          {REPORT_YEARS.map((y) => (
-            <span key={y} className="inline-flex items-center gap-2 border border-black/15 px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-black/75" style={{ fontFamily: MONO }}>
-              <Download className="size-3" /> Cohort {y}
-            </span>
-          ))}
-        </div>
-      </section>
+      </Band>
 
       {/* FOUNDER QUOTE */}
-      <section className="mt-14 border-y border-black/10 bg-neutral-50 md:mt-18">
-        <div className="mx-auto max-w-6xl px-5 py-10 md:px-10 md:py-12">
-          <blockquote className="max-w-[52ch] text-[clamp(1.3rem,2.6vw,2.1rem)] font-medium leading-[1.25] tracking-[-0.015em]">
-            “We don&apos;t approach placements the way most B-schools do. At Masters&apos; Union, placements are run by a 50+ member, full-time team spanning company outreach, career preparation, and role-specific coaching.”
-          </blockquote>
-          <div className="mt-8 text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>
-            Pratham Mittal — Founder &amp; CEO, Masters&apos; Union
-          </div>
+      <section className="relative overflow-hidden border-y border-black/10 bg-[#f2f1ee]">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -left-6 -top-16 select-none text-[22rem] leading-none text-black/[0.04]"
+        >
+          <Parallax strength={50}>“</Parallax>
+        </div>
+        <div className="relative mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-28">
+          <Reveal duration={950}>
+            <blockquote className="max-w-[52ch] text-[clamp(1.3rem,2.6vw,2.1rem)] font-medium leading-[1.25] tracking-[-0.015em]">
+              “We don&apos;t approach placements the way most B-schools do. At Masters&apos; Union, placements are run by a 50+ member, full-time team spanning company outreach, career preparation, and role-specific coaching.”
+            </blockquote>
+          </Reveal>
+          <Reveal delay={220}>
+            <div className="mt-10 text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>
+              Pratham Mittal — Founder &amp; CEO, Masters&apos; Union
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* COHORT CHARTS */}
-      <section id="cohorts" className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
-        <Eyebrow>Cohort average CTC</Eyebrow>
-        <h2 className="mt-5 max-w-[30ch] text-[clamp(1.8rem,3.6vw,3rem)] font-medium leading-[1.05] tracking-[-0.015em]">
-          ₹29.12L, ₹33.10L and ₹34.07L — cohort averages that surpassed top B-schools.
-        </h2>
-        <div className="mt-8 grid grid-cols-1 gap-12 lg:grid-cols-2">
-          <div className="border border-black/10 p-6 md:p-8">
-            <div className="flex items-baseline justify-between">
-              <div className="text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>PGP TBM — average CTC</div>
-              <div className="text-[11px] text-black/45" style={{ fontFamily: MONO }}>₹ lakh</div>
-            </div>
-            <div className="mt-8"><BarChart data={TBM_SERIES} max={38} /></div>
+      <Band id="cohorts" tone="white">
+        <Reveal>
+          <Eyebrow>Cohort average CTC</Eyebrow>
+        </Reveal>
+        <Reveal delay={120}>
+          <h2 className="mt-6 max-w-[30ch] text-[clamp(1.8rem,3.6vw,3rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+            ₹29.12L, ₹33.10L and ₹34.07L — cohort averages that surpassed top B-schools.
+          </h2>
+        </Reveal>
+        <div className="mt-14 grid grid-cols-1 gap-16 lg:grid-cols-2">
+          <div>
+            <Reveal y={14}>
+              <div className="flex items-baseline justify-between border-b border-black/10 pb-4">
+                <div className="text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>PGP TBM — average CTC</div>
+                <div className="text-[11px] text-black/45" style={{ fontFamily: MONO }}>₹ lakh</div>
+              </div>
+            </Reveal>
+            <div className="mt-10"><BarChart data={TBM_SERIES} max={38} /></div>
           </div>
-          <div className="border border-black/10 p-6 md:p-8">
-            <div className="flex items-baseline justify-between">
-              <div className="text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>PGP TBM YLC — average CTC</div>
-              <div className="text-[11px] text-black/45" style={{ fontFamily: MONO }}>₹ lakh</div>
-            </div>
-            <div className="mt-8"><BarChart data={YLC_SERIES} max={38} /></div>
+          <div>
+            <Reveal y={14} delay={100}>
+              <div className="flex items-baseline justify-between border-b border-black/10 pb-4">
+                <div className="text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>PGP TBM YLC — average CTC</div>
+                <div className="text-[11px] text-black/45" style={{ fontFamily: MONO }}>₹ lakh</div>
+              </div>
+            </Reveal>
+            <div className="mt-10"><BarChart data={YLC_SERIES} max={38} /></div>
           </div>
         </div>
-        <p className="mt-8 max-w-[70ch] text-[0.95rem] leading-[1.7] text-black/60">
-          Reports available for Cohorts 2021–2024, verified and audited by Brickworks Analytics, auditor for IIM Ahmedabad&apos;s placement report.
-        </p>
-      </section>
+        <Reveal delay={160}>
+          <p className="mt-12 max-w-[70ch] text-[0.95rem] leading-[1.7] text-black/60">
+            Reports available for Cohorts 2021–2024, verified and audited by Brickworks Analytics, auditor for IIM Ahmedabad&apos;s placement report.
+          </p>
+        </Reveal>
+      </Band>
 
       {/* DISTRIBUTION TABLE */}
-      <section className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
-        <Eyebrow>Placement statistics — PGP TBM</Eyebrow>
-        <h2 className="mt-5 max-w-[30ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-          The full distribution, not just the headline number.
-        </h2>
-        <div className="mt-7 space-y-6">
-          {TBM_TABLE.map((r) => (
-            <div key={r.cohort} className="grid grid-cols-1 gap-4 border-b border-black/10 pb-6 md:grid-cols-12 md:items-center md:gap-6">
-              <div className="text-[11px] uppercase tracking-[0.22em] text-black/60 md:col-span-1" style={{ fontFamily: MONO }}>Co{r.cohort}</div>
-              <div className="md:col-span-6"><RangeBar row={r} max={maxCtc} /></div>
-              <div className="grid grid-cols-3 gap-4 md:col-span-5">
-                <div>
-                  <div className="text-[1.05rem] tracking-[-0.02em]">₹{r.avg}L</div>
-                  <div className="text-[9px] uppercase tracking-[0.18em] text-black/50" style={{ fontFamily: MONO }}>Average</div>
-                </div>
-                <div>
-                  <div className="text-[1.05rem] tracking-[-0.02em]">₹{r.median}L</div>
-                  <div className="text-[9px] uppercase tracking-[0.18em] text-black/50" style={{ fontFamily: MONO }}>Median</div>
-                </div>
-                <div>
-                  <div className="text-[1.05rem] tracking-[-0.02em]">{r.highestLabel}</div>
-                  <div className="text-[9px] uppercase tracking-[0.18em] text-black/50" style={{ fontFamily: MONO }}>Highest</div>
-                </div>
+      <Band tone="paper">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+          <StickyHead>
+            <Reveal>
+              <Eyebrow>Placement statistics — PGP TBM</Eyebrow>
+            </Reveal>
+            <Reveal delay={120}>
+              <h2 className="mt-6 max-w-[30ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
+                The full distribution, not just the headline number.
+              </h2>
+            </Reveal>
+            <Reveal delay={240}>
+              <div className="mt-8 flex flex-col gap-3 text-[10px] uppercase tracking-[0.18em] text-black/55" style={{ fontFamily: MONO }}>
+                <span className="inline-flex items-center gap-2"><span className="h-2 w-6 bg-black/20" /> Bottom 25% → Top 25%</span>
+                <span className="inline-flex items-center gap-2"><span className="h-4 w-[2px] bg-black" /> Average</span>
+                <span className="inline-flex items-center gap-2"><span className="h-4 w-[2px] bg-black/40" /> Median</span>
               </div>
-            </div>
-          ))}
-        </div>
-        <div className="mt-6 flex flex-wrap gap-6 text-[10px] uppercase tracking-[0.18em] text-black/55" style={{ fontFamily: MONO }}>
-          <span className="inline-flex items-center gap-2"><span className="h-2 w-6 bg-black/20" /> Bottom 25% → Top 25%</span>
-          <span className="inline-flex items-center gap-2"><span className="h-4 w-[2px] bg-black" /> Average</span>
-          <span className="inline-flex items-center gap-2"><span className="h-4 w-[2px] bg-black/40" /> Median</span>
+            </Reveal>
+          </StickyHead>
+
+          <div className="lg:col-span-8">
+            <Rule />
+            {TBM_TABLE.map((r, i) => (
+              <div key={r.cohort}>
+                <Reveal
+                  delay={i * 90}
+                  className="group grid grid-cols-1 gap-5 py-7 transition-colors duration-500 hover:bg-black/[0.02] md:grid-cols-12 md:items-center md:gap-6"
+                >
+                  <div className="text-[11px] uppercase tracking-[0.22em] text-black/60 md:col-span-1" style={{ fontFamily: MONO }}>Co{r.cohort}</div>
+                  <div className="md:col-span-6"><RangeBar row={r} max={maxCtc} delay={i * 90} /></div>
+                  <div className="grid grid-cols-3 gap-4 md:col-span-5">
+                    <div>
+                      <div className="text-[1.05rem] tracking-[-0.02em]"><CountUp value={`₹${r.avg}L`} delay={i * 90} /></div>
+                      <div className="text-[9px] uppercase tracking-[0.18em] text-black/50" style={{ fontFamily: MONO }}>Average</div>
+                    </div>
+                    <div>
+                      <div className="text-[1.05rem] tracking-[-0.02em]"><CountUp value={`₹${r.median}L`} delay={i * 90 + 80} /></div>
+                      <div className="text-[9px] uppercase tracking-[0.18em] text-black/50" style={{ fontFamily: MONO }}>Median</div>
+                    </div>
+                    <div>
+                      <div className="text-[1.05rem] tracking-[-0.02em]"><CountUp value={r.highestLabel} delay={i * 90 + 160} /></div>
+                      <div className="text-[9px] uppercase tracking-[0.18em] text-black/50" style={{ fontFamily: MONO }}>Highest</div>
+                    </div>
+                  </div>
+                </Reveal>
+                <Rule delay={i * 90 + 60} />
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-12 border-t border-black/10 pt-8 lg:grid-cols-2">
+        <div className="mt-20 grid grid-cols-1 gap-14 border-t border-black/10 pt-14 lg:grid-cols-2">
           <div>
-            <Eyebrow>Salary components — Cohort &apos;24</Eyebrow>
-            <p className="mt-5 max-w-[46ch] text-[1rem] leading-[1.7] text-black/70">
-              How packages are structured between in-hand cash components and stock options, counting Year 1 vesting only.
-            </p>
+            <Reveal>
+              <Eyebrow>Salary components — Cohort &apos;24</Eyebrow>
+            </Reveal>
+            <Reveal delay={120}>
+              <p className="mt-6 max-w-[46ch] text-[1rem] leading-[1.7] text-black/70">
+                How packages are structured between in-hand cash components and stock options, counting Year 1 vesting only.
+              </p>
+            </Reveal>
           </div>
           <Donut data={SALARY_COMPONENTS} />
         </div>
-      </section>
+      </Band>
 
       {/* RECRUITERS */}
-      <section id="recruiters" className="mt-14 border-y border-black/10 bg-neutral-50 md:mt-18">
-        <div className="mx-auto max-w-6xl px-5 py-12 md:px-10 md:py-14">
+      <Band id="recruiters" tone="grey" className="border-y border-black/10">
+        <Reveal>
           <Eyebrow>Our recruiters</Eyebrow>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
+        </Reveal>
+        <Reveal delay={120}>
+          <h2 className="mt-6 max-w-[26ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
             Six categories. One hiring calendar.
           </h2>
-          <div className="mt-7 flex flex-wrap gap-2">
-            {RECRUITER_GROUPS.map((g) => (
+        </Reveal>
+        <div className="mt-10 flex flex-wrap gap-2">
+          {RECRUITER_GROUPS.map((g, i) => (
+            <Reveal key={g.category} delay={i * 70} y={12}>
               <button
-                key={g.category}
                 onClick={() => setRecruiterTab(g.category)}
-                className={`px-4 py-2 text-[11px] uppercase tracking-[0.18em] transition-colors ${
+                className={`px-4 py-2 text-[11px] uppercase tracking-[0.18em] transition-all duration-500 ${
                   recruiterTab === g.category ? "bg-black text-white" : "border border-black/15 text-black/65 hover:border-black/40"
                 }`}
                 style={{ fontFamily: MONO }}
               >
                 {g.category}
               </button>
-            ))}
-          </div>
-          <div className="mt-7 min-h-[120px] bg-white p-8">
-            <LogoRow names={active.logos} />
-          </div>
+            </Reveal>
+          ))}
         </div>
-      </section>
+        <div key={recruiterTab} className="mt-10 min-h-[132px] bg-white p-10">
+          <LogoRow names={active.logos} />
+        </div>
+      </Band>
 
       {/* TRANSITIONS */}
-      <section className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
-        <Eyebrow>Career transitions</Eyebrow>
-        <h2 className="mt-5 max-w-[28ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-          Where students come from, and where they go.
-        </h2>
-        <div className="mt-8 space-y-9">
-          {TRANSITIONS.map((t) => (
-            <div key={t.title}>
-              <h3 className="text-[1.2rem] font-medium">{t.title}</h3>
-              <div className="mt-1 text-[11px] uppercase tracking-[0.2em] text-black/55" style={{ fontFamily: MONO }}>{t.sub}</div>
-              <div className="mt-6 divide-y divide-black/10 border-y border-black/10">
-                {t.rows.map(([from, to]) => (
-                  <div key={from + to} className="grid grid-cols-1 items-center gap-2 py-4 md:grid-cols-[1fr_auto_1fr] md:gap-6">
-                    <div className="text-[0.98rem] text-black/60">{from}</div>
-                    <ArrowUpRight className="size-4 rotate-45 text-black/30" />
-                    <div className="text-[0.98rem]">{to}</div>
+      <Band tone="white">
+        <Reveal>
+          <Eyebrow>Career transitions</Eyebrow>
+        </Reveal>
+        <Reveal delay={120}>
+          <h2 className="mt-6 max-w-[28ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
+            Where students come from, and where they go.
+          </h2>
+        </Reveal>
+        <div className="mt-14 space-y-16">
+          {TRANSITIONS.map((t, ti) => (
+            <div key={t.title} className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-16">
+              <StickyHead>
+                <Reveal>
+                  <div className="flex items-baseline gap-4">
+                    <Index n={ti + 1} />
+                    <h3 className="text-[1.2rem] font-medium">{t.title}</h3>
+                  </div>
+                  <div className="mt-2 pl-9 text-[11px] uppercase tracking-[0.2em] text-black/55" style={{ fontFamily: MONO }}>{t.sub}</div>
+                </Reveal>
+              </StickyHead>
+              <div className="lg:col-span-8">
+                <Rule />
+                {t.rows.map(([from, to], i) => (
+                  <div key={from + to}>
+                    <Reveal
+                      delay={i * 80}
+                      className="group grid grid-cols-1 items-center gap-2 py-5 transition-colors duration-500 hover:bg-black/[0.02] md:grid-cols-[1fr_auto_1fr] md:gap-6"
+                    >
+                      <div className="text-[0.98rem] text-black/60 transition-colors duration-500 group-hover:text-black/80">{from}</div>
+                      <ArrowUpRight className="size-4 rotate-45 text-black/30 transition-all duration-500 group-hover:translate-x-1 group-hover:text-black/60" />
+                      <div className="text-[0.98rem]">{to}</div>
+                    </Reveal>
+                    <Rule delay={i * 80 + 60} />
                   </div>
                 ))}
               </div>
             </div>
           ))}
         </div>
-      </section>
+      </Band>
 
       {/* ALUMNI STORIES */}
-      <section id="stories" className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
-        <Eyebrow>Hear straight from our alumni</Eyebrow>
-        <div className="mt-7 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-3">
-          {ALUMNI.map((a) => (
-            <div key={a.name} className="bg-white p-7">
-              <p className="text-[0.98rem] leading-[1.65] text-black/80">“{a.quote}”</p>
-              <div className="mt-6 text-[1rem] font-medium leading-tight">{a.name}</div>
-              <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-black/55" style={{ fontFamily: MONO }}>{a.role}</div>
+      <Band id="stories" tone="paper">
+        <Reveal>
+          <Eyebrow>Hear straight from our alumni</Eyebrow>
+        </Reveal>
+        <div className="mt-12 space-y-0">
+          <Rule />
+          {ALUMNI.map((a, i) => (
+            <div key={a.name}>
+              <Reveal
+                delay={(i % 2) * 90}
+                className="group grid grid-cols-1 gap-6 py-10 transition-colors duration-500 hover:bg-black/[0.02] lg:grid-cols-12 lg:gap-16"
+              >
+                <div className="lg:col-span-4">
+                  <div className="flex items-baseline gap-4">
+                    <Index n={i + 1} />
+                    <div>
+                      <div className="text-[1.05rem] font-medium leading-tight">{a.name}</div>
+                      <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-black/55" style={{ fontFamily: MONO }}>{a.role}</div>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-[clamp(1rem,1.5vw,1.2rem)] leading-[1.6] text-black/80 lg:col-span-8">“{a.quote}”</p>
+              </Reveal>
+              <Rule delay={60} />
             </div>
           ))}
         </div>
 
-        <div className="mt-10">
-          <Eyebrow>Student placement experience — 39 stories, selected</Eyebrow>
-          <div className="mt-8 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-3">
-            {TESTIMONIALS.map((t) => (
-              <div key={t.name} className="bg-white p-6">
-                <div className="text-[0.98rem] font-medium leading-tight">{t.name}</div>
-                <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-black/55" style={{ fontFamily: MONO }}>{t.role}</div>
-                <p className="mt-3 text-[0.9rem] leading-[1.6] text-black/70">{t.note}</p>
+        <div className="mt-20">
+          <Reveal>
+            <Eyebrow>Student placement experience — 39 stories, selected</Eyebrow>
+          </Reveal>
+          <div className="mt-10 grid grid-cols-1 gap-x-16 md:grid-cols-2">
+            {TESTIMONIALS.map((t, i) => (
+              <div key={t.name}>
+                <Reveal
+                  delay={(i % 2) * 90}
+                  className="group border-t border-black/10 py-7 transition-colors duration-500 hover:bg-black/[0.02]"
+                >
+                  <div className="flex items-baseline justify-between gap-4">
+                    <div className="text-[0.98rem] font-medium leading-tight">{t.name}</div>
+                    <Index n={i + 1} />
+                  </div>
+                  <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-black/55" style={{ fontFamily: MONO }}>{t.role}</div>
+                  <p className="mt-3 max-w-[52ch] text-[0.9rem] leading-[1.6] text-black/70">{t.note}</p>
+                </Reveal>
               </div>
             ))}
           </div>
         </div>
-      </section>
+      </Band>
 
       {/* VENTURES + COMPETITIONS + LIVE PROJECTS */}
-      <section className="mt-14 border-y border-black/10 bg-neutral-50 md:mt-18">
-        <div className="mx-auto max-w-6xl px-5 py-12 md:px-10 md:py-14">
+      <Band tone="grey" className="border-y border-black/10">
+        <Reveal>
           <Eyebrow>Startups founded by MU students</Eyebrow>
-          <div className="mt-7 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-3">
-            {VENTURES.map((v) => (
-              <div key={v.name} className="bg-white p-6">
-                <div className="text-[1rem] font-medium leading-tight">{v.name}</div>
-                <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-black/55" style={{ fontFamily: MONO }}>{v.founder}</div>
-                <p className="mt-3 text-[0.9rem] leading-[1.6] text-black/70">{v.note}</p>
-              </div>
-            ))}
-          </div>
+        </Reveal>
+        <div className="mt-10">
+          <Rule />
+          {VENTURES.map((v, i) => (
+            <div key={v.name}>
+              <Reveal
+                delay={(i % 3) * 80}
+                className="group grid grid-cols-1 items-baseline gap-3 py-6 transition-colors duration-500 hover:bg-black/[0.03] md:grid-cols-12 md:gap-8"
+              >
+                <div className="md:col-span-1"><Index n={i + 1} /></div>
+                <div className="text-[1.15rem] font-medium leading-tight transition-transform duration-500 group-hover:translate-x-1 md:col-span-3">{v.name}</div>
+                <div className="text-[10px] uppercase tracking-[0.18em] text-black/55 md:col-span-3" style={{ fontFamily: MONO }}>{v.founder}</div>
+                <p className="text-[0.9rem] leading-[1.6] text-black/70 md:col-span-5">{v.note}</p>
+              </Reveal>
+              <Rule delay={40} />
+            </div>
+          ))}
+        </div>
 
-          <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-2">
-            <div>
+        <div className="mt-20 grid grid-cols-1 gap-16 lg:grid-cols-2">
+          <div>
+            <Reveal>
               <Eyebrow>Case competition wins</Eyebrow>
-              <div className="mt-6 divide-y divide-black/10 border-y border-black/10">
-                {COMPETITIONS.map((c) => (
-                  <div key={c.what} className="py-5">
+            </Reveal>
+            <div className="mt-8">
+              <Rule />
+              {COMPETITIONS.map((c, i) => (
+                <div key={c.what}>
+                  <Reveal delay={i * 80} className="group py-6 transition-colors duration-500 hover:bg-black/[0.03]">
                     <div className="text-[0.98rem] font-medium">{c.what}</div>
                     <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-black/55" style={{ fontFamily: MONO }}>{c.who}</div>
                     <p className="mt-2 text-[0.9rem] leading-[1.6] text-black/70">{c.note}</p>
-                  </div>
-                ))}
-              </div>
+                  </Reveal>
+                  <Rule delay={40} />
+                </div>
+              ))}
             </div>
-            <div>
+          </div>
+          <div>
+            <Reveal>
               <Eyebrow>Live projects</Eyebrow>
-              <div className="mt-6 divide-y divide-black/10 border-y border-black/10">
-                {LIVE_PROJECTS.map((p) => (
-                  <div key={p.name} className="py-5">
+            </Reveal>
+            <div className="mt-8">
+              <Rule />
+              {LIVE_PROJECTS.map((p, i) => (
+                <div key={p.name}>
+                  <Reveal delay={i * 80} className="group py-6 transition-colors duration-500 hover:bg-black/[0.03]">
                     <div className="text-[0.98rem] font-medium">{p.name}</div>
                     <p className="mt-2 text-[0.9rem] leading-[1.6] text-black/70">{p.note}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-7">
+                  </Reveal>
+                  <Rule delay={40} />
+                </div>
+              ))}
+            </div>
+            <div className="mt-12">
+              <Reveal>
                 <Eyebrow>Student content creators</Eyebrow>
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {CREATORS.map((c) => (
-                    <span key={c.name} className="border border-black/15 bg-white px-3 py-2 text-[0.85rem] text-black/75">
+              </Reveal>
+              <div className="mt-8 flex flex-wrap gap-2">
+                {CREATORS.map((c, i) => (
+                  <Reveal key={c.name} delay={i * 60} y={12}>
+                    <span className="inline-block border border-black/15 bg-white px-3 py-2 text-[0.85rem] text-black/75 transition-colors duration-500 hover:border-black/40">
                       {c.handle} <span className="text-black/40">· {c.name}</span>
                     </span>
-                  ))}
-                </div>
+                  </Reveal>
+                ))}
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </Band>
 
       {/* PATHWAY */}
-      <section id="pathway" className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
-        <Eyebrow>A tailored career pathway</Eyebrow>
-        <h2 className="mt-5 max-w-[28ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-          Eight terms. One continuous career roadmap.
-        </h2>
-        <div className="mt-8 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-4">
-          {TERMS.map((t) => (
-            <div key={t.term} className="bg-white p-6">
-              <div className="text-[10px] uppercase tracking-[0.22em] text-black/50" style={{ fontFamily: MONO }}>{t.term}</div>
-              <div className="mt-3 text-[1rem] font-medium leading-snug">{t.title}</div>
-              <ul className="mt-4 space-y-1.5">
-                {t.items.map((i) => (
-                  <li key={i} className="text-[0.85rem] leading-[1.5] text-black/65">{i}</li>
-                ))}
-              </ul>
+      <Band id="pathway" tone="white">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+          <StickyHead>
+            <Reveal>
+              <Eyebrow>A tailored career pathway</Eyebrow>
+            </Reveal>
+            <Reveal delay={120}>
+              <h2 className="mt-6 max-w-[28ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
+                Eight terms. One continuous career roadmap.
+              </h2>
+            </Reveal>
+          </StickyHead>
+
+          <div className="relative lg:col-span-8">
+            {/* progressively drawn roadmap rail */}
+            <div className="absolute left-[7px] top-2 h-[calc(100%-1rem)] w-px bg-black/10">
+              <TimelineRail className="h-full w-px bg-black" />
             </div>
-          ))}
+
+            <div className="space-y-14 md:space-y-16">
+              {TERMS.map((t, i) => (
+                <RoadmapStage key={t.term} term={t} index={i} />
+              ))}
+            </div>
+          </div>
         </div>
-      </section>
+      </Band>
 
       {/* COACHES */}
-      <section className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
-        <Eyebrow>Dedicated career coaches</Eyebrow>
-        <h2 className="mt-5 max-w-[24ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-          Making you industry ready.
-        </h2>
-        <div className="mt-7 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-3">
-          {COACH_TRACKS.map((c) => (
-            <div key={c.title} className="bg-white p-7">
-              <div className="text-[1.05rem] font-medium leading-tight">{c.title}</div>
+      <Band tone="paper">
+        <Reveal>
+          <Eyebrow>Dedicated career coaches</Eyebrow>
+        </Reveal>
+        <Reveal delay={120}>
+          <h2 className="mt-6 max-w-[24ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
+            Making you industry ready.
+          </h2>
+        </Reveal>
+        <div className="mt-12 grid grid-cols-1 gap-x-14 md:grid-cols-3">
+          {COACH_TRACKS.map((c, i) => (
+            <Reveal key={c.title} delay={i * 100} className="border-t border-black/10 pt-7">
+              <div className="flex items-baseline gap-3">
+                <Index n={i + 1} />
+                <div className="text-[1.05rem] font-medium leading-tight">{c.title}</div>
+              </div>
               <p className="mt-4 text-[0.92rem] leading-[1.6] text-black/70">{c.note}</p>
+            </Reveal>
+          ))}
+        </div>
+        <div className="mt-16">
+          <Rule />
+          {COACHES.map((c, i) => (
+            <div key={c.name}>
+              <Reveal
+                delay={i * 80}
+                className="group grid grid-cols-1 gap-1 py-6 transition-colors duration-500 hover:bg-black/[0.02] md:grid-cols-12 md:items-baseline md:gap-6"
+              >
+                <div className="text-[1rem] font-medium transition-transform duration-500 group-hover:translate-x-1 md:col-span-3">{c.name}</div>
+                <div className="text-[0.95rem] text-black/65 md:col-span-7">{c.role}</div>
+                <div className="text-[10px] uppercase tracking-[0.18em] text-black/50 md:col-span-2 md:text-right" style={{ fontFamily: MONO }}>{c.exp}</div>
+              </Reveal>
+              <Rule delay={40} />
             </div>
           ))}
         </div>
-        <div className="mt-7 divide-y divide-black/10 border-y border-black/10">
-          {COACHES.map((c) => (
-            <div key={c.name} className="grid grid-cols-1 gap-1 py-4 md:grid-cols-12 md:items-baseline md:gap-6">
-              <div className="text-[1rem] font-medium md:col-span-3">{c.name}</div>
-              <div className="text-[0.95rem] text-black/65 md:col-span-7">{c.role}</div>
-              <div className="text-[10px] uppercase tracking-[0.18em] text-black/50 md:col-span-2 md:text-right" style={{ fontFamily: MONO }}>{c.exp}</div>
-            </div>
-          ))}
-        </div>
-      </section>
+      </Band>
 
       {/* LEADERS */}
-      <section className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
-        <Eyebrow>Your future recruiters on campus</Eyebrow>
-        <p className="mt-5 max-w-[62ch] text-[1.02rem] leading-[1.7] text-black/70">
-          CEOs and MDs, CHROs, unicorn founders and senior executives teach, mentor and recruit on campus.
-        </p>
-        <div className="mt-7 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-3 lg:grid-cols-4">
-          {LEADERS.map((l) => (
-            <div key={l.name} className="bg-white p-6">
-              <div className="text-[0.98rem] font-medium leading-tight">{l.name}</div>
-              <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-black/55" style={{ fontFamily: MONO }}>{l.role}</div>
-            </div>
+      <Band tone="white">
+        <Reveal>
+          <Eyebrow>Your future recruiters on campus</Eyebrow>
+        </Reveal>
+        <Reveal delay={120}>
+          <p className="mt-6 max-w-[62ch] text-[1.02rem] leading-[1.7] text-black/70">
+            CEOs and MDs, CHROs, unicorn founders and senior executives teach, mentor and recruit on campus.
+          </p>
+        </Reveal>
+        <div className="mt-12 grid grid-cols-1 gap-x-14 md:grid-cols-2">
+          {LEADERS.map((l, i) => (
+            <Reveal
+              key={l.name}
+              delay={(i % 2) * 90}
+              className="group flex items-baseline justify-between gap-6 border-t border-black/10 py-6 transition-colors duration-500 hover:bg-black/[0.02]"
+            >
+              <div>
+                <div className="text-[0.98rem] font-medium leading-tight transition-transform duration-500 group-hover:translate-x-1">{l.name}</div>
+                <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-black/55" style={{ fontFamily: MONO }}>{l.role}</div>
+              </div>
+              <Index n={i + 1} />
+            </Reveal>
           ))}
         </div>
-      </section>
+      </Band>
 
       {/* CONTACT */}
-      <section id="contact" className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
-        <div className="border border-black/10 p-8 md:p-12">
-          <Eyebrow>Careers team</Eyebrow>
-          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-            A 50+ member team, working full time on your outcome.
-          </h2>
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <a href="mailto:careerservices@mastersunion.org" className="inline-flex items-center gap-2 bg-black px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-white hover:opacity-80" style={{ fontFamily: MONO }}>
-              <Mail className="size-3.5" /> careerservices@mastersunion.org
-            </a>
-            <span className="inline-flex items-center gap-2 border border-black/20 px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-black/70" style={{ fontFamily: MONO }}>
-              <Download className="size-3.5" /> Internship report
-            </span>
-          </div>
+      <section id="contact" className="relative overflow-hidden border-t border-black/10 bg-[#f2f1ee]">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 -bottom-8 select-none text-center text-[18vw] font-medium leading-none tracking-[-0.05em] text-black/[0.04]"
+        >
+          <Parallax strength={60}>CAREERS</Parallax>
+        </div>
+        <div className="relative mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-28">
+          <Reveal>
+            <Eyebrow>Careers team</Eyebrow>
+          </Reveal>
+          <Reveal delay={140} duration={950}>
+            <h2 className="mt-6 max-w-[24ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
+              A 50+ member team, working full time on your outcome.
+            </h2>
+          </Reveal>
+          <Reveal delay={280}>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <a href="mailto:careerservices@mastersunion.org" className="group inline-flex items-center gap-2 bg-black px-6 py-3.5 text-[11px] uppercase tracking-[0.22em] text-white transition hover:opacity-80" style={{ fontFamily: MONO }}>
+                <Mail className="size-3.5 transition-transform duration-500 group-hover:-translate-y-0.5" /> careerservices@mastersunion.org
+              </a>
+              <span className="inline-flex items-center gap-2 border border-black/20 px-6 py-3.5 text-[11px] uppercase tracking-[0.22em] text-black/70" style={{ fontFamily: MONO }}>
+                <Download className="size-3.5" /> Internship report
+              </span>
+            </div>
+          </Reveal>
         </div>
       </section>
     </main>
+  );
+}
+
+/** One roadmap stage: node activates and content reveals as it enters view. */
+function RoadmapStage({
+  term,
+  index,
+}: {
+  term: { term: string; title: string; items: string[] };
+  index: number;
+}) {
+  const { ref, inView } = useInView<HTMLDivElement>("0px 0px -25% 0px");
+  const reduced = useReducedMotion();
+  const on = inView || reduced;
+
+  return (
+    <div ref={ref} className="relative pl-10">
+      <span
+        className="absolute left-0 top-[6px] block size-[15px] rounded-full border border-black/25 bg-white"
+        style={{
+          transition: reduced ? "none" : "border-color 600ms ease-out, transform 600ms cubic-bezier(0.16,0.84,0.24,1)",
+          borderColor: on ? "rgba(0,0,0,0.9)" : "rgba(0,0,0,0.2)",
+          transform: on ? "scale(1)" : "scale(0.7)",
+        }}
+      >
+        <span
+          className="absolute inset-[3px] rounded-full bg-black"
+          style={{
+            opacity: on ? 1 : 0,
+            transition: reduced ? "none" : "opacity 600ms ease-out 120ms",
+          }}
+        />
+      </span>
+
+      <div
+        style={{
+          opacity: on ? 1 : 0.25,
+          transform: on ? "none" : "translate3d(0,22px,0)",
+          transition: reduced
+            ? "opacity 240ms linear"
+            : "opacity 800ms cubic-bezier(0.16,0.84,0.24,1), transform 800ms cubic-bezier(0.16,0.84,0.24,1)",
+        }}
+      >
+        <div className="text-[10px] uppercase tracking-[0.22em] text-black/50" style={{ fontFamily: MONO }}>{term.term}</div>
+        <div className="mt-3 max-w-[24ch] text-[clamp(1.1rem,2vw,1.5rem)] font-medium leading-snug">{term.title}</div>
+        <ul className="mt-5 flex flex-wrap gap-x-8 gap-y-2">
+          {term.items.map((i, k) => (
+            <li
+              key={i}
+              className="text-[0.85rem] leading-[1.5] text-black/65"
+              style={{
+                opacity: on ? 1 : 0,
+                transform: on ? "none" : "translate3d(0,10px,0)",
+                transition: reduced
+                  ? "none"
+                  : `opacity 600ms ease-out ${180 + k * 55}ms, transform 600ms cubic-bezier(0.16,0.84,0.24,1) ${180 + k * 55}ms`,
+              }}
+            >
+              {i}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <span className="sr-only">{index}</span>
+    </div>
   );
 }
 
