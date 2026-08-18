@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import * as React from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowUpRight,
   Home,
@@ -12,6 +13,17 @@ import {
   Mail,
 } from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
+import {
+  ClipReveal,
+  CountUp,
+  Draw,
+  Parallax,
+  Reveal,
+  ScrollProgress,
+  TimelineRail,
+  useInView,
+  useReducedMotion,
+} from "@/components/placements/motion";
 
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
