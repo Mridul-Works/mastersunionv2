@@ -365,57 +365,10 @@ function TopNav() {
           </a>
         </div>
       </header>
-    </ScrollAware>
+    </>
   );
 }
 
-/** Tiny scroll listener wrapper — keeps the nav free of per-frame re-renders. */
-function ScrollAware({
-  onChange,
-  children,
-}: {
-  onChange: (v: boolean) => void;
-  children: React.ReactNode;
-}) {
-  useScrollFlag(onChange);
-  return <>{children}</>;
-}
-
-function useScrollFlag(onChange: (v: boolean) => void) {
-  const [, setInit] = useState(false);
-  if (typeof window !== "undefined") {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useIsomorphicScroll(onChange, setInit);
-  }
-}
-
-function useIsomorphicScroll(onChange: (v: boolean) => void, setInit: (v: boolean) => void) {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffectOnce(() => {
-    let last = false;
-    const handler = () => {
-      const next = window.scrollY > 24;
-      if (next !== last) {
-        last = next;
-        onChange(next);
-      }
-    };
-    handler();
-    setInit(true);
-    window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
-  });
-}
-
-function useEffectOnce(fn: () => void | (() => void)) {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [, force] = useState(0);
-  void force;
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  useReactEffect(fn);
-}
-
-import { useEffect as useReactEffect } from "react";
 
 /** Minimal vertical bar series. */
 function BarSeries({
