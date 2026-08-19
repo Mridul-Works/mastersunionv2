@@ -529,7 +529,7 @@ function StatsAccordion() {
 
                 {/* Main value area — grows when active, collapses when inactive */}
                 <div
-                  className="flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
+                  className="flex w-full min-w-0 flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
                   style={{ flexGrow: isActive ? 3 : 1 }}
                 >
                   {isActive ? (
