@@ -528,7 +528,7 @@ function StatsAccordion() {
                 </span>
                 <div
                   className={`mt-12 whitespace-nowrap leading-[0.86] tracking-[-0.05em] md:mt-16 ${
-                    s.value.length <= 4 ? "text-[clamp(3rem,7.5vw,8rem)]" : "text-[clamp(2.5rem,5.5vw,6.5rem)]"
+                    s.value.length <= 4 ? "text-[clamp(3rem,8.5vw,8.5rem)]" : "text-[clamp(2.5rem,5.5vw,6.5rem)]"
                   }`}
                 >
                   {isActive ? <CountUp value={s.value} delay={80} /> : s.value}
