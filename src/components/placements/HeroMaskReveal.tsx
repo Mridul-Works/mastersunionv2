@@ -64,9 +64,9 @@ const MOBILE: Block[] = [
   { x: 30, y: 0, w: 40, h: 46, dir: "up", delay: 150, duration: 900 },
   { x: 30, y: 46, w: 40, h: 54, dir: "down", delay: 150, duration: 900 },
   { x: 0, y: 0, w: 30, h: 40, dir: "left", delay: 240, duration: 850 },
-  { x: 0, y: 40, w: 30, h: 60, dir: "left", delay: 240, duration: 850, push: 1.2 },
+  { x: 0, y: 40, w: 30, h: 60, dir: "left", delay: 240, duration: 850 },
   { x: 70, y: 0, w: 30, h: 58, dir: "right", delay: 320, duration: 810 },
-  { x: 70, y: 58, w: 30, h: 42, dir: "right", delay: 320, duration: 810, push: 1.2 },
+  { x: 70, y: 58, w: 30, h: 42, dir: "right", delay: 320, duration: 810 },
   { x: 22, y: 82, w: 56, h: 18, dir: "down", delay: 400, duration: 780 },
 ];
 
@@ -77,19 +77,22 @@ function pickSet(w: number) {
   return DESKTOP;
 }
 
+/* Travel distance is derived from the block's own geometry, expressed as a
+   percentage of its own size, so every block ends fully outside the hero. */
 function offset(b: Block) {
-  const push = b.push ?? 1;
+  const pad = 14 * (b.push ?? 1);
   switch (b.dir) {
     case "left":
-      return `translate3d(-${(110 * push).toFixed(0)}%, 0, 0)`;
+      return `translate3d(-${(((b.x + b.w) / b.w) * 100 + pad).toFixed(1)}%, 0, 0)`;
     case "right":
-      return `translate3d(${(110 * push).toFixed(0)}%, 0, 0)`;
+      return `translate3d(${(((100 - b.x) / b.w) * 100 + pad).toFixed(1)}%, 0, 0)`;
     case "up":
-      return `translate3d(0, -${(115 * push).toFixed(0)}%, 0)`;
+      return `translate3d(0, -${(((b.y + b.h) / b.h) * 100 + pad).toFixed(1)}%, 0)`;
     default:
-      return `translate3d(0, ${(115 * push).toFixed(0)}%, 0)`;
+      return `translate3d(0, ${(((100 - b.y) / b.h) * 100 + pad).toFixed(1)}%, 0)`;
   }
 }
+
 
 export function HeroMaskReveal() {
   const reduced = useReducedMotion();
