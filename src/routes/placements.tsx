@@ -500,87 +500,81 @@ function StatsAccordion() {
                   setActive(i);
                 }
               }}
-              className={`group relative overflow-hidden ${
-                isActive
-                  ? "bg-[#faf9f7] text-[#0a0a0a]"
-                  : "cursor-pointer bg-[#0a0a0a] text-white hover:bg-[#141414]"
-              } ${i > 0 ? "border-t border-white/12 md:border-t-0 md:border-l md:border-white/12" : ""}`}
+              className={`group relative flex flex-col items-center overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+                i > 0 ? "border-t border-white/12 md:border-t-0 md:border-l md:border-white/12" : ""
+              } ${isActive ? "cursor-default bg-[#faf9f7] text-[#0a0a0a]" : "cursor-pointer bg-[#0a0a0a] text-white hover:bg-[#141414]"}`}
               style={{
                 flexGrow: isActive ? 68 : 12,
                 flexShrink: 1,
                 flexBasis: 0,
                 minWidth: 0,
-                transition: "flex-grow 600ms cubic-bezier(0.76,0,0.24,1), background-color 500ms cubic-bezier(0.76,0,0.24,1)",
               }}
             >
-              {/* ACTIVE — large editorial canvas */}
-              <div
-                className={`grid h-full grid-rows-[auto_1fr_auto] justify-items-center gap-6 px-5 py-14 text-center md:px-8 md:py-16 lg:px-10 ${
-                  isActive ? "opacity-100" : "pointer-events-none absolute inset-0 opacity-0"
-                }`}
-                style={{
-                  transition: "opacity 420ms cubic-bezier(0.76,0,0.24,1) 120ms",
-                  containerType: "inline-size",
-                }}
-                aria-hidden={!isActive}
-              >
+              {/* Unified inner content — everything anchors to the panel lifecycle */}
+              <div className="flex h-full w-full flex-col items-center justify-between px-5 py-10 md:px-8 md:py-16 lg:px-10">
+                {/* Index */}
                 <span
-                  className="text-[10px] tabular-nums tracking-[0.28em] text-black/45"
+                  className={`text-[10px] tabular-nums tracking-[0.28em] transition-colors duration-500 ${
+                    isActive ? "text-black/45" : "text-white/45"
+                  }`}
                   style={{ fontFamily: MONO }}
                 >
                   {idx}
                 </span>
-                <div
-                  className="flex w-full min-w-0 items-center justify-center whitespace-nowrap leading-[0.86] tracking-[-0.05em]"
-                  style={{
-                    fontSize: `min(clamp(2.25rem, 30cqw, 8.5rem), ${Math.round(
-                      150 / Math.max(3, s.value.length),
-                    )}cqw)`,
-                  }}
 
+                {/* Main value — collapses to zero height when inactive so the bottom anchor stays compact */}
+                <div
+                  className="flex flex-1 items-center justify-center overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
+                  style={{
+                    maxHeight: isActive ? "100%" : "0px",
+                    opacity: isActive ? 1 : 0,
+                    transform: isActive ? "scale(1)" : "scale(0.92)",
+                    containerType: "inline-size",
+                  }}
                 >
-                  {isActive ? <CountUp value={s.value} delay={80} /> : s.value}
+                  {isActive ? (
+                    <div
+                      className="w-full min-w-0 items-center justify-center whitespace-nowrap text-center leading-[0.86] tracking-[-0.05em]"
+                      style={{
+                        fontSize: `min(clamp(2.25rem, 30cqw, 8.5rem), ${Math.round(
+                          150 / Math.max(3, s.value.length),
+                        )}cqw)`,
+                      }}
+                    >
+                      <CountUp value={s.value} delay={80} />
+                    </div>
+                  ) : (
+                    <span className="invisible">{s.value}</span>
+                  )}
                 </div>
-                <div className="flex w-full flex-col items-center">
-                  <div className="h-px w-full max-w-[420px] bg-black/15" />
+
+                {/* Bottom anchor: divider + label always move as one solid piece */}
+                <div className="flex w-full flex-col items-center justify-center">
+                  {/* Divider */}
                   <div
-                    className="mt-5 text-[10px] uppercase tracking-[0.24em] text-black/60"
-                    style={{ fontFamily: MONO }}
+                    className={`transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+                      isActive ? "bg-black/15" : "bg-white/15 group-hover:bg-white/35"
+                    } ${isActive ? "h-px" : "h-8 md:h-20"}`}
+                    style={{ width: isActive ? "min(100%, 420px)" : "1px" }}
+                  />
+                  {/* Label */}
+                  <div
+                    className={`transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] overflow-visible ${
+                      isActive ? "text-black/60" : "text-white/45 group-hover:text-white/70"
+                    }`}
+                    style={{
+                      marginTop: isActive ? "20px" : "0",
+                      transform: isActive ? "rotate(0deg)" : "rotate(-90deg)",
+                      transformOrigin: "center",
+                    }}
                   >
-                    {s.label}
+                    <span
+                      className="whitespace-nowrap uppercase tracking-[0.24em] transition-all duration-700"
+                      style={{ fontFamily: MONO, fontSize: isActive ? "10px" : "9px" }}
+                    >
+                      {s.label}
+                    </span>
                   </div>
-                </div>
-              </div>
-
-
-              {/* COLLAPSED — narrow vertical column */}
-              <div
-                className={`flex h-full flex-col items-center justify-between px-4 py-12 md:py-14 lg:py-16 ${
-                  isActive ? "pointer-events-none absolute inset-0 opacity-0" : "opacity-100"
-                }`}
-                style={{ transition: "opacity 360ms cubic-bezier(0.76,0,0.24,1)" }}
-                aria-hidden={isActive}
-              >
-                <span
-                  className="text-[10px] tabular-nums tracking-[0.28em] text-white/45"
-                  style={{ fontFamily: MONO }}
-                >
-                  {idx}
-                </span>
-
-                <div className="flex flex-1 items-center justify-center py-8">
-                  <span className="h-20 w-px bg-white/15 transition-colors duration-500 group-hover:bg-white/35 md:h-24 lg:h-28" />
-                </div>
-
-                <div
-                  className="max-h-[280px] overflow-hidden whitespace-nowrap text-[9px] uppercase tracking-[0.24em] text-white/45 transition-colors duration-500 group-hover:text-white/70"
-                  style={{
-                    fontFamily: MONO,
-                    writingMode: "vertical-rl",
-                    transform: "rotate(180deg)",
-                  }}
-                >
-                  {s.label}
                 </div>
               </div>
             </div>
