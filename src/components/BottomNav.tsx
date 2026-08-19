@@ -63,7 +63,74 @@ export function BottomNav({
     return () => window.removeEventListener("scroll", onScroll);
   }, [items]);
 
+  if (variant === "inline") {
+    return (
+      <div
+        data-hero-section-nav
+        className={
+          "sticky top-2 z-[60] -mx-1 flex w-full justify-start transition-all duration-500 sm:top-3 " +
+          (compact ? "translate-y-0" : "")
+        }
+      >
+        <nav
+          aria-label="Section navigation"
+          className={
+            "flex max-w-full items-center gap-1 overflow-x-auto rounded-full border transition-all duration-500 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden " +
+            (compact
+              ? "border-black/10 bg-white/85 p-1 shadow-[0_14px_40px_-20px_rgba(0,0,0,0.45)] backdrop-blur-xl"
+              : "border-white/25 bg-white/10 p-1.5 backdrop-blur-md")
+          }
+        >
+          <ul className="flex shrink-0 items-center gap-0.5">
+            {items.map(({ id, label, icon: Icon }) => {
+              const isActive = active === id;
+              return (
+                <li key={id}>
+                  <button
+                    type="button"
+                    onClick={() => scrollToId(id)}
+                    aria-current={isActive ? "true" : undefined}
+                    className={
+                      "group inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.16em] transition-colors " +
+                      (compact
+                        ? isActive
+                          ? "bg-black/5 text-black"
+                          : "text-black/55 hover:bg-black/5 hover:text-black"
+                        : isActive
+                          ? "bg-white/20 text-white"
+                          : "text-white/70 hover:bg-white/10 hover:text-white")
+                    }
+                  >
+                    <Icon className="size-[14px]" strokeWidth={1.75} />
+                    <span className="text-[9.5px]">{label}</span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+          <a
+            href={applyHref}
+            onClick={(e) => {
+              if (applyHref.startsWith("#")) {
+                e.preventDefault();
+                scrollToId(applyHref.slice(1));
+              }
+            }}
+            className={
+              "ml-1 inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full px-3.5 py-2 text-[10.5px] font-semibold uppercase tracking-[0.16em] transition-transform hover:scale-[1.03] active:scale-[0.97] " +
+              (compact ? "bg-black text-white" : "bg-white text-black")
+            }
+          >
+            Apply
+            <ArrowUpRight className="size-3.5" strokeWidth={2.2} />
+          </a>
+        </nav>
+      </div>
+    );
+  }
+
   return (
+
     <div
       data-desktop-bottom-nav
       className="pointer-events-none fixed inset-x-0 bottom-0 z-[100] hidden justify-center px-3 pb-3 sm:pb-5 lg:flex"
