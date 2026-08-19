@@ -407,6 +407,12 @@ function CinematicHero() {
             <Eyebrow className="text-white/75">Careers</Eyebrow>
           </div>
 
+          {/* editorial section navigation, aligned to the hero content grid */}
+          <div className="mt-7 md:mt-9" style={step(640, 14)}>
+            <BottomNav items={NAV} applyHref="#contact" variant="inline" />
+          </div>
+
+
           {/* left/middle: supporting copy + CTA */}
           <div ref={copyRef} className="mt-10 max-w-[600px] md:mt-14" style={{ willChange: "transform, opacity" }}>
             <p
@@ -744,7 +750,7 @@ function Page() {
   return (
     <main className="min-h-screen overflow-x-clip bg-white pb-16 text-black md:pb-18" style={{ fontFamily: INTER }}>
       <ScrollProgress />
-      <BottomNav items={NAV} applyHref="#contact" />
+      
 
       <div
         className={`sticky top-0 z-40 transition-[background-color,border-color,backdrop-filter,padding] duration-500 ${
