@@ -319,7 +319,6 @@ function CinematicHero() {
   const headlineRef = useRef<HTMLDivElement | null>(null);
   const [entered, setEntered] = useState(false);
   const reduced = useReducedMotion();
-  const [activeRightStat, setActiveRightStat] = useState(0);
 
 
   useEffect(() => {
@@ -387,7 +386,7 @@ function CinematicHero() {
         id="top"
         ref={sectionRef}
         className="relative z-0 bg-[#0a0a0a]"
-        style={{ height: "calc(100svh + 100svh)" }}
+        style={{ height: "100svh" }}
       >
        <div className="sticky top-0 h-[100svh] overflow-hidden">
         {/* Photograph — full bleed, full fidelity */}
@@ -473,107 +472,109 @@ function CinematicHero() {
         <HeroMaskReveal />
        </div>
       </section>
+    </>
+  );
+}
 
+/** Horizontal preview-stack accordion for the four hero statistics. */
+function StatsAccordion() {
+  const [active, setActive] = useState(0);
 
-      {/* Hero statistics — rises from below and physically covers the hero */}
-      <section
-        className="relative z-10 bg-[#0a0a0a] text-white"
-        style={{ marginTop: "-100svh" }}
-      >
-        <div className="flex min-h-[640px] flex-col md:min-h-[78vh] md:flex-row">
-          {HERO_STATS.map((s, i) => {
-            const active = activeRightStat === i;
-            const idx = String(i + 1).padStart(2, "0");
-            return (
+  return (
+    <section className="relative z-10 h-full min-h-[520px] w-full bg-[#0a0a0a] text-white md:min-h-[560px]">
+      <div className="flex h-full min-h-[inherit] w-full flex-col md:flex-row">
+        {HERO_STATS.map((s, i) => {
+          const isActive = active === i;
+          const idx = String(i + 1).padStart(2, "0");
+          return (
+            <div
+              key={s.label}
+              role="button"
+              tabIndex={0}
+              aria-pressed={isActive}
+              aria-label={`${s.label} statistic`}
+              onClick={() => setActive(i)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setActive(i);
+                }
+              }}
+              className={`group relative overflow-hidden ${
+                isActive
+                  ? "bg-[#faf9f7] text-[#0a0a0a]"
+                  : "cursor-pointer bg-[#0a0a0a] text-white hover:bg-[#141414]"
+              } ${i > 0 ? "border-t border-white/12 md:border-t-0 md:border-l md:border-white/12" : ""}`}
+              style={{
+                flexGrow: isActive ? 58 : 14,
+                flexShrink: 1,
+                flexBasis: 0,
+                transition: "flex-grow 600ms cubic-bezier(0.76,0,0.24,1), background-color 500ms cubic-bezier(0.76,0,0.24,1)",
+              }}
+            >
+              {/* ACTIVE — large editorial canvas */}
               <div
-                key={s.label}
-                role="button"
-                tabIndex={0}
-                aria-pressed={active}
-                aria-label={`${s.label} statistic`}
-                onClick={() => setActiveRightStat(i)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    setActiveRightStat(i);
-                  }
-                }}
-                className={`group relative overflow-hidden ${
-                  active
-                    ? "bg-[#faf9f7] text-[#0a0a0a]"
-                    : "cursor-pointer bg-[#0a0a0a] text-white hover:bg-[#141414]"
-                } ${i > 0 ? "border-t border-white/12 md:border-t-0 md:border-l md:border-white/12" : ""}`}
-                style={{
-                  flexGrow: active ? 58 : 14,
-                  flexShrink: 1,
-                  flexBasis: 0,
-                  transition: "flex-grow 600ms cubic-bezier(0.76,0,0.24,1), background-color 500ms cubic-bezier(0.76,0,0.24,1)",
-                }}
+                className={`flex h-full flex-col justify-between px-6 py-14 md:px-10 md:py-16 lg:px-12 ${
+                  isActive ? "opacity-100" : "pointer-events-none absolute inset-0 opacity-0"
+                }`}
+                style={{ transition: "opacity 420ms cubic-bezier(0.76,0,0.24,1) 120ms" }}
+                aria-hidden={!isActive}
               >
-                {/* ACTIVE — large editorial canvas */}
-                <div
-                  className={`flex h-full flex-col justify-between px-6 py-14 md:px-14 md:py-20 lg:px-20 ${
-                    active ? "opacity-100" : "pointer-events-none absolute inset-0 opacity-0"
-                  }`}
-                  style={{ transition: "opacity 420ms cubic-bezier(0.76,0,0.24,1) 120ms" }}
-                  aria-hidden={!active}
+                <span
+                  className="text-[10px] tabular-nums tracking-[0.28em] text-black/45"
+                  style={{ fontFamily: MONO }}
                 >
-                  <span
-                    className="text-[10px] tabular-nums tracking-[0.28em] text-black/45"
-                    style={{ fontFamily: MONO }}
-                  >
-                    {idx}
-                  </span>
-                  <div className="mt-16 whitespace-nowrap text-[clamp(3rem,9vw,9rem)] leading-[0.86] tracking-[-0.05em] md:mt-24">
-                    {active ? <CountUp value={s.value} delay={80} /> : s.value}
-                  </div>
-                  <div className="mt-10 md:mt-16">
-                    <div className="h-px w-full max-w-[520px] bg-black/15" />
-                    <div
-                      className="mt-5 text-[10px] uppercase tracking-[0.24em] text-black/60"
-                      style={{ fontFamily: MONO }}
-                    >
-                      {s.label}
-                    </div>
-                  </div>
+                  {idx}
+                </span>
+                <div className="mt-12 whitespace-nowrap text-[clamp(2.5rem,5.5vw,6.5rem)] leading-[0.86] tracking-[-0.05em] md:mt-16">
+                  {isActive ? <CountUp value={s.value} delay={80} /> : s.value}
                 </div>
-
-                {/* COLLAPSED — narrow vertical column */}
-                <div
-                  className={`flex h-full flex-col items-center justify-between px-4 py-10 md:py-16 ${
-                    active ? "pointer-events-none absolute inset-0 opacity-0" : "opacity-100"
-                  }`}
-                  style={{ transition: "opacity 360ms cubic-bezier(0.76,0,0.24,1)" }}
-                  aria-hidden={active}
-                >
-                  <span
-                    className="text-[10px] tabular-nums tracking-[0.28em] text-white/45"
-                    style={{ fontFamily: MONO }}
-                  >
-                    {idx}
-                  </span>
-
-                  <div className="flex flex-1 items-center justify-center py-8">
-                    <span className="h-16 w-px bg-white/15 transition-colors duration-500 group-hover:bg-white/35 md:h-24" />
-                  </div>
-
+                <div className="mt-10 md:mt-12">
+                  <div className="h-px w-full max-w-[420px] bg-black/15" />
                   <div
-                    className="max-h-[220px] overflow-hidden whitespace-nowrap text-[9px] uppercase tracking-[0.24em] text-white/45 transition-colors duration-500 group-hover:text-white/70"
-                    style={{
-                      fontFamily: MONO,
-                      writingMode: "vertical-rl",
-                      transform: "rotate(180deg)",
-                    }}
+                    className="mt-5 text-[10px] uppercase tracking-[0.24em] text-black/60"
+                    style={{ fontFamily: MONO }}
                   >
                     {s.label}
                   </div>
                 </div>
               </div>
-            );
-          })}
-        </div>
-      </section>
-    </>
+
+              {/* COLLAPSED — narrow vertical column */}
+              <div
+                className={`flex h-full flex-col items-center justify-between px-4 py-10 md:py-12 ${
+                  isActive ? "pointer-events-none absolute inset-0 opacity-0" : "opacity-100"
+                }`}
+                style={{ transition: "opacity 360ms cubic-bezier(0.76,0,0.24,1)" }}
+                aria-hidden={isActive}
+              >
+                <span
+                  className="text-[10px] tabular-nums tracking-[0.28em] text-white/45"
+                  style={{ fontFamily: MONO }}
+                >
+                  {idx}
+                </span>
+
+                <div className="flex flex-1 items-center justify-center py-8">
+                  <span className="h-16 w-px bg-white/15 transition-colors duration-500 group-hover:bg-white/35 md:h-20" />
+                </div>
+
+                <div
+                  className="max-h-[220px] overflow-hidden whitespace-nowrap text-[9px] uppercase tracking-[0.24em] text-white/45 transition-colors duration-500 group-hover:text-white/70"
+                  style={{
+                    fontFamily: MONO,
+                    writingMode: "vertical-rl",
+                    transform: "rotate(180deg)",
+                  }}
+                >
+                  {s.label}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
   );
 }
 
@@ -612,8 +613,8 @@ function CareerPodcast() {
   const id = "uiNTwDixAts";
 
   return (
-    <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
-      <div className="lg:col-span-5">
+    <div className="flex flex-col gap-8">
+      <div>
         <Reveal>
           <Eyebrow>Podcast</Eyebrow>
         </Reveal>
@@ -642,46 +643,44 @@ function CareerPodcast() {
         </Reveal>
       </div>
 
-      <div className="lg:col-span-7">
-        <ClipReveal>
-          <div className="relative aspect-video w-full overflow-hidden bg-black">
-            {playing ? (
-              <iframe
-                className="h-full w-full"
-                src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`}
-                title="How Masters' Union prepares students for top 1% placements"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
-                allowFullScreen
+      <ClipReveal>
+        <div className="relative aspect-video w-full overflow-hidden bg-black">
+          {playing ? (
+            <iframe
+              className="h-full w-full"
+              src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`}
+              title="How Masters' Union prepares students for top 1% placements"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
+              allowFullScreen
+            />
+          ) : (
+            <button
+              type="button"
+              onClick={() => setPlaying(true)}
+              aria-label="Play placements podcast"
+              className="group absolute inset-0 h-full w-full"
+            >
+              <img
+                src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
+                alt="Masters' Union placements podcast"
+                loading="lazy"
+                className="h-full w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-[1.03]"
               />
-            ) : (
-              <button
-                type="button"
-                onClick={() => setPlaying(true)}
-                aria-label="Play placements podcast"
-                className="group absolute inset-0 h-full w-full"
-              >
-                <img
-                  src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
-                  alt="Masters' Union placements podcast"
-                  loading="lazy"
-                  className="h-full w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-[1.03]"
-                />
-                <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-                <span className="absolute bottom-5 left-5 flex items-center gap-3">
-                  <span className="grid size-11 place-items-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md transition group-hover:bg-white/25">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </span>
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/90">
-                    Play podcast
-                  </span>
+              <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+              <span className="absolute bottom-5 left-5 flex items-center gap-3">
+                <span className="grid size-11 place-items-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md transition group-hover:bg-white/25">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
                 </span>
-              </button>
-            )}
-          </div>
-        </ClipReveal>
-      </div>
+                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/90">
+                  Play podcast
+                </span>
+              </span>
+            </button>
+          )}
+        </div>
+      </ClipReveal>
     </div>
   );
 }
@@ -850,9 +849,12 @@ function Page() {
 
 
 
-      {/* PODCAST */}
+      {/* PODCAST + STATISTICS — combined horizontal section */}
       <Band tone="paper">
-        <CareerPodcast />
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[5fr_6fr] lg:gap-10">
+          <CareerPodcast />
+          <StatsAccordion />
+        </div>
       </Band>
 
       {/* AUDITED OUTCOMES */}
