@@ -44,10 +44,12 @@ export function BottomNav({
       .filter((el): el is HTMLElement => !!el);
 
     const onScroll = () => {
+      setCompact(window.scrollY > 140);
       if (window.scrollY < 120) {
         setActive(ids.includes("top") ? "top" : ids[0]);
         return;
       }
+
       const mid = window.scrollY + window.innerHeight * 0.35;
       let current = ids.includes("top") ? "top" : ids[0];
       for (const el of targets) {
