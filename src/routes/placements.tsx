@@ -339,9 +339,9 @@ function CinematicHero() {
       // 0 at rest, 1 once the second section has taken over
       const p = Math.min(1, Math.max(0, -rect.top / track));
       if (imgWrapRef.current) {
-        // the photograph drifts upward behind the pinned copy
-        imgWrapRef.current.style.transform = `translate3d(0, ${(-p * 26).toFixed(2)}%, 0)`;
-        imgWrapRef.current.style.opacity = String(1 - Math.min(1, Math.max(0, (p - 0.72) / 0.28)) * 0.35);
+        // the photograph drifts upward behind the pinned copy; it never fades —
+        // the second section physically slides over it instead
+        imgWrapRef.current.style.transform = `translate3d(0, ${(-p * 22).toFixed(2)}%, 0)`;
       }
       if (copyRef.current) {
         // stays put, then eases out only at the very end of the pin
@@ -384,10 +384,10 @@ function CinematicHero() {
       <section
         id="top"
         ref={sectionRef}
-        className="relative isolate bg-[#0a0a0a]"
-        style={{ height: "calc(82svh + 115vh)" }}
+        className="relative z-0 bg-[#0a0a0a]"
+        style={{ height: "calc(100svh + 100svh)" }}
       >
-       <div className="sticky top-0 h-[82svh] overflow-hidden lg:h-[86vh]">
+       <div className="sticky top-0 h-[100svh] overflow-hidden">
         {/* Photograph — full bleed, full fidelity */}
         <div ref={imgWrapRef} aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden" style={{ willChange: "transform" }}>
           <img
@@ -472,8 +472,11 @@ function CinematicHero() {
       </section>
 
 
-      {/* Hero statistics — editorial annotations continuing out of the photograph */}
-      <section className="relative bg-[#0a0a0a] text-white">
+      {/* Hero statistics — rises from below and physically covers the hero */}
+      <section
+        className="relative z-10 bg-[#0a0a0a] text-white"
+        style={{ marginTop: "-100svh" }}
+      >
         <div className="mx-auto max-w-6xl px-5 pb-20 pt-4 md:px-10 md:pb-28">
           <div className="h-px w-full bg-white/15" />
           {HERO_STATS.map((s, i) => (
