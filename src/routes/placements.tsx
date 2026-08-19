@@ -379,13 +379,13 @@ function CinematicHero() {
         ref={sectionRef}
         className="relative isolate min-h-[82svh] overflow-hidden bg-[#0a0a0a] lg:min-h-[86vh]"
       >
-        {/* Photograph — original aspect ratio, full-bleed container */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden bg-[#0a0a0a]">
+        {/* Photograph — full bleed, full fidelity */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
           <img
             ref={imgRef}
             src={heroBg.url}
             alt=""
-            className="no-img-zoom h-full w-full object-contain"
+            className="no-img-zoom h-full w-full object-cover object-[58%_46%] md:object-[60%_38%]"
             style={{
               filter: "contrast(1.06) saturate(1.02)",
               transform: on ? "translate3d(0,0,0) scale(1.02)" : "translate3d(0,0,0) scale(1.06)",
