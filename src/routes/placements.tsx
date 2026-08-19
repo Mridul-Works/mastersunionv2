@@ -829,6 +829,7 @@ function LogoRow({ names }: { names: string[] }) {
 /* ---------------------------------- page ---------------------------------- */
 
 function Page() {
+  const reduced = useReducedMotion();
   const maxCtc = 55;
   const [recruiterTab, setRecruiterTab] = useState(RECRUITER_GROUPS[0].category);
   const active = RECRUITER_GROUPS.find((g) => g.category === recruiterTab)!;
