@@ -575,6 +575,22 @@ function Page() {
 
       {/* HERO */}
       <section id="top" className="relative overflow-hidden">
+        {/* Hero background photograph */}
+        <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[92vh] overflow-hidden">
+          <Parallax strength={60} className="h-full">
+            <img
+              src={heroBg.url}
+              alt=""
+              className="no-img-zoom h-full w-full object-cover object-center opacity-[0.55]"
+              style={{ filter: "grayscale(0.35) contrast(1.02)" }}
+              decoding="async"
+              fetchPriority="high"
+            />
+          </Parallax>
+          <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/80 to-white" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/85 via-white/45 to-white/10" />
+        </div>
+
         <div
           aria-hidden
           className="pointer-events-none absolute -right-[8vw] top-[10vh] select-none text-[24vw] font-medium leading-none tracking-[-0.05em] text-black/[0.035]"
@@ -583,6 +599,7 @@ function Page() {
         </div>
 
         <div className="relative mx-auto grid max-w-6xl grid-cols-1 gap-10 px-5 pb-16 pt-14 md:px-10 md:pb-24 md:pt-24 lg:grid-cols-12">
+
           <div className="lg:col-span-9">
             <Reveal delay={120} y={14} duration={700}>
               <Eyebrow>Careers</Eyebrow>
