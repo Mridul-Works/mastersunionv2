@@ -484,6 +484,25 @@ body::-webkit-scrollbar {
   }
 }
 
+/* Master horizontal page gutter — mirrors the placements hero left padding. */
+@utility page-x {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+@media (min-width: 768px) {
+  .page-x {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+@media (min-width: 1280px) {
+  .page-x {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+  }
+}
+
+
 @utility page-canvas {
   position: relative;
   background:
