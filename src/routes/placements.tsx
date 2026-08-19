@@ -389,8 +389,8 @@ function CinematicHero() {
             className="no-img-zoom h-full w-full object-cover object-[58%_46%] md:object-[60%_38%]"
             style={{
               filter: "contrast(1.06) saturate(1.02)",
-              transform: on ? "translate3d(0,0,0) scale(1.02)" : "translate3d(0,0,0) scale(1.06)",
-              transition: reduced ? "none" : `transform 1600ms ${HERO_EASE} 60ms`,
+               transform: on ? "translate3d(0,0,0) scale(1.005)" : "translate3d(0,0,0) scale(1.035)",
+              transition: reduced ? "none" : `transform 1700ms ${HERO_EASE} 120ms`,
               willChange: "transform",
             }}
             decoding="async"
