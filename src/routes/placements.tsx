@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import {
   ArrowUpRight,
   Home,
