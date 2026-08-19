@@ -429,17 +429,15 @@ function CinematicHero() {
             className="pt-2 md:pt-3"
             style={{ willChange: "transform, opacity" }}
           >
-            <div style={{ clipPath: "inset(-20% -20% 0% -20%)" }}>
-              <h1
-                className="max-w-[16ch] text-[clamp(3.1rem,9.4vw,7.6rem)] font-medium leading-[0.94] tracking-[-0.035em] text-white"
-                style={{
-                  ...step(980, 56),
-                  textShadow: "0 1px 40px rgba(0,0,0,0.28)",
-                }}
-              >
-                Accelerate your career growth.
-              </h1>
-            </div>
+            <h1
+              className="max-w-[16ch] text-[clamp(3.1rem,9.4vw,7.6rem)] font-medium leading-[1.0] tracking-[-0.035em] text-white"
+              style={{
+                ...step(980, 56),
+                textShadow: "0 1px 40px rgba(0,0,0,0.28)",
+              }}
+            >
+              Accelerate your career growth.
+            </h1>
           </div>
 
           {/* left/middle: supporting copy + CTA directly under headline */}
