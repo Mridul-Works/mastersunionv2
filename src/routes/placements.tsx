@@ -402,13 +402,32 @@ function CinematicHero() {
 
         {/* Editorial composition */}
         <div className="relative flex min-h-[82svh] flex-col px-5 pb-28 pt-10 md:px-10 md:pb-24 md:pt-14 lg:min-h-[86vh]">
-          {/* upper-left metadata */}
-          <div style={step(560, 16)}>
+          {/* top: oversized headline first */}
+          <div
+            ref={headlineRef}
+            className="pt-2 md:pt-4"
+            style={{ willChange: "transform, opacity" }}
+          >
+            <div style={{ clipPath: "inset(-20% -20% 0% -20%)" }}>
+              <h1
+                className="max-w-[16ch] text-[clamp(3.1rem,9.4vw,7.6rem)] font-medium leading-[0.94] tracking-[-0.035em] text-white"
+                style={{
+                  ...step(520, 90),
+                  textShadow: "0 1px 40px rgba(0,0,0,0.28)",
+                }}
+              >
+                Accelerate your career growth.
+              </h1>
+            </div>
+          </div>
+
+          {/* careers eyebrow under headline */}
+          <div className="mt-6 md:mt-8" style={step(560, 16)}>
             <Eyebrow className="text-white/75">Careers</Eyebrow>
           </div>
 
           {/* left/middle: supporting copy + CTA */}
-          <div ref={copyRef} className="mt-10 max-w-[600px] md:mt-14" style={{ willChange: "transform, opacity" }}>
+          <div ref={copyRef} className="mt-auto max-w-[600px]" style={{ willChange: "transform, opacity" }}>
             <p
               className="text-[clamp(1rem,1.35vw,1.2rem)] leading-[1.6] text-white/85"
               style={step(720, 22)}
@@ -430,21 +449,6 @@ function CinematicHero() {
               >
                 Our recruiters <ArrowUpRight className="size-3.5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </a>
-            </div>
-          </div>
-
-          {/* lower third: oversized headline */}
-          <div ref={headlineRef} className="mt-auto pt-16" style={{ willChange: "transform, opacity" }}>
-            <div style={{ clipPath: "inset(-20% -20% 0% -20%)" }}>
-              <h1
-                className="max-w-[16ch] text-[clamp(3.1rem,9.4vw,7.6rem)] font-medium leading-[0.94] tracking-[-0.035em] text-white"
-                style={{
-                  ...step(780, 90),
-                  textShadow: "0 1px 40px rgba(0,0,0,0.28)",
-                }}
-              >
-                Accelerate your career growth.
-              </h1>
             </div>
           </div>
         </div>
