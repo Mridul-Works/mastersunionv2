@@ -850,12 +850,14 @@ function Page() {
 
 
       {/* PODCAST + STATISTICS — combined horizontal section */}
-      <Band tone="paper">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[5fr_6fr] lg:gap-10">
-          <CareerPodcast />
-          <StatsAccordion />
+      <section className="relative bg-[#faf9f7]">
+        <div className="px-4 py-10 md:px-8 md:py-12 lg:px-[5%] lg:py-14">
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-7">
+            <CareerPodcast />
+            <StatsAccordion />
+          </div>
         </div>
-      </Band>
+      </section>
 
       {/* AUDITED OUTCOMES */}
       <Band id="outcomes" tone="white">
