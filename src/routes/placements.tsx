@@ -543,11 +543,11 @@ function StatsAccordion() {
                       }}
                     >
                       <div
-                        className="w-full min-w-0 items-center justify-center whitespace-nowrap text-center leading-none tracking-[-0.05em]"
+                        className="w-full max-w-full min-w-0 items-center justify-center whitespace-nowrap text-center leading-none tracking-[-0.05em]"
                         style={{
-                          fontSize: `clamp(2rem, min(12cqi, ${Math.round(
-                            90 / Math.max(3, s.value.length),
-                          )}cqi), 7.5rem)`,
+                          fontSize: `clamp(2rem, min(20cqi, ${Math.round(
+                            78 / Math.max(3, s.value.length),
+                          )}cqi), 8.5rem)`,
                         }}
                       >
                         <CountUp value={s.value} delay={80} />
