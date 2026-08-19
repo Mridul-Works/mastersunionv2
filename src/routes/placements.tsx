@@ -418,7 +418,7 @@ function CinematicHero() {
               <h1
                 className="max-w-[16ch] text-[clamp(3.1rem,9.4vw,7.6rem)] font-medium leading-[0.94] tracking-[-0.035em] text-white"
                 style={{
-                  ...step(520, 90),
+                  ...step(980, 56),
                   textShadow: "0 1px 40px rgba(0,0,0,0.28)",
                 }}
               >
