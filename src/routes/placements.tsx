@@ -1357,7 +1357,7 @@ function Page() {
         >
           <Parallax strength={60}>CAREERS</Parallax>
         </div>
-        <div className="relative mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-28">
+        <div className="page-x relative py-20 md:py-28">
           <Reveal>
             <Eyebrow>Careers team</Eyebrow>
           </Reveal>
