@@ -511,7 +511,7 @@ function StatsAccordion() {
               }}
             >
               {/* Inner content: number at top, divider centred, label anchored at bottom */}
-              <div className="flex h-full w-full flex-col items-center justify-start px-5 py-10 md:px-8 md:py-16 lg:px-10">
+              <div className="flex h-full w-full flex-col items-center justify-start px-2 py-2 md:px-8 md:py-16 lg:px-10">
                 {/* Index */}
                 <span
                   className={`text-[10px] tabular-nums tracking-[0.28em] transition-colors duration-500 ${
