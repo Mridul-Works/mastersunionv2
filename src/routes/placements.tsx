@@ -478,145 +478,146 @@ function CinematicHero() {
 }
 
 /** Horizontal preview-stack accordion for the four hero statistics. */
+const STATS_EASE = "cubic-bezier(0.76,0,0.24,1)";
+
+function StatPanel({
+  value,
+  label,
+  index,
+  isActive,
+  isFirst,
+  onSelect,
+}: {
+  value: string;
+  label: string;
+  index: string;
+  isActive: boolean;
+  isFirst: boolean;
+  onSelect: () => void;
+}) {
+  // Character-aware cap so long values ($149,114) shrink but short ones (30) stay large.
+  const cap = Math.round(76 / Math.max(3, value.length));
+
+  return (
+    <div
+      role="button"
+      tabIndex={0}
+      aria-pressed={isActive}
+      aria-label={`${label} statistic`}
+      onClick={onSelect}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onSelect();
+        }
+      }}
+      className={`group relative overflow-hidden ${
+        isFirst ? "" : "border-t border-white/12 md:border-t-0 md:border-l md:border-white/12"
+      } ${isActive ? "cursor-default bg-[#faf9f7] text-[#0a0a0a]" : "cursor-pointer bg-[#0a0a0a] text-white hover:bg-[#141414]"}`}
+      style={{
+        flexGrow: isActive ? 70 : 12,
+        flexShrink: 1,
+        flexBasis: 0,
+        minWidth: 0,
+        minHeight: 0,
+        containerType: "size",
+        transition: `flex-grow 700ms ${STATS_EASE}, background-color 500ms ease`,
+      }}
+    >
+      {/* ---- Expanded layer ---- */}
+      <div
+        className="absolute inset-0 flex flex-col items-center px-[8%] py-6 md:py-12"
+        style={{
+          opacity: isActive ? 1 : 0,
+          pointerEvents: isActive ? "auto" : "none",
+          transition: `opacity 450ms ${STATS_EASE} ${isActive ? "180ms" : "0ms"}`,
+        }}
+      >
+        <span
+          className="text-[10px] tabular-nums tracking-[0.28em] text-black/45"
+          style={{ fontFamily: MONO }}
+        >
+          {index}
+        </span>
+        <div className="flex min-h-0 w-full flex-1 items-center justify-center">
+          <div
+            className="w-full whitespace-nowrap text-center leading-none tracking-[-0.05em]"
+            style={{ fontSize: `clamp(1.75rem, min(22cqw, ${cap}cqw, 34cqh), 8.5rem)` }}
+          >
+            <CountUp value={value} delay={80} />
+          </div>
+        </div>
+        <div className="flex w-full flex-col items-center">
+          <div className="h-px w-full max-w-[420px] bg-black/15" />
+          <span
+            className="mt-4 whitespace-nowrap text-center uppercase tracking-[0.24em] text-black/60"
+            style={{ fontFamily: MONO, fontSize: "10px" }}
+          >
+            {label}
+          </span>
+        </div>
+      </div>
+
+      {/* ---- Closed layer ---- */}
+      <div
+        className="absolute inset-0 flex flex-col items-center justify-between px-2 py-4 md:py-10"
+        style={{
+          opacity: isActive ? 0 : 1,
+          pointerEvents: isActive ? "none" : "auto",
+          transition: `opacity 350ms ${STATS_EASE} ${isActive ? "0ms" : "220ms"}`,
+        }}
+      >
+        <span
+          className="text-[10px] tabular-nums tracking-[0.28em] text-white/45"
+          style={{ fontFamily: MONO }}
+        >
+          {index}
+        </span>
+        <div className="w-px flex-1 bg-white/15 transition-colors duration-500 group-hover:bg-white/35" />
+        <span
+          className="mt-2 hidden whitespace-nowrap uppercase tracking-[0.24em] text-white/45 transition-colors duration-500 group-hover:text-white/70 md:block"
+          style={{
+            fontFamily: MONO,
+            fontSize: "9px",
+            writingMode: "vertical-rl",
+            transform: "rotate(180deg)",
+          }}
+        >
+          {label}
+        </span>
+        <span
+          className="mt-2 block max-w-full truncate uppercase tracking-[0.24em] text-white/45 md:hidden"
+          style={{ fontFamily: MONO, fontSize: "9px" }}
+        >
+          {label}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 function StatsAccordion() {
   const [active, setActive] = useState(0);
-  const isMobile = useIsMobile();
 
   return (
     <section className="relative z-10 h-full min-h-[540px] w-full bg-[#0a0a0a] text-white md:min-h-[600px] lg:min-h-[640px]">
       <div className="flex h-full min-h-[inherit] w-full flex-col md:flex-row">
-        {HERO_STATS.map((s, i) => {
-          const isActive = active === i;
-          const idx = String(i + 1).padStart(2, "0");
-          // Mobile needs more height for closed rows so labels remain visible and anchored.
-          const activeGrow = isMobile ? 48 : 68;
-          const inactiveGrow = isMobile ? 18 : 12;
-          return (
-            <div
-              key={s.label}
-              role="button"
-              tabIndex={0}
-              aria-pressed={isActive}
-              aria-label={`${s.label} statistic`}
-              onClick={() => setActive(i)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  setActive(i);
-                }
-              }}
-              className={`group relative flex flex-col items-center overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
-                i > 0 ? "border-t border-white/12 md:border-t-0 md:border-l md:border-white/12" : ""
-              } ${isActive ? "cursor-default bg-[#faf9f7] text-[#0a0a0a]" : "cursor-pointer bg-[#0a0a0a] text-white hover:bg-[#141414]"}`}
-              style={{
-                flexGrow: isActive ? activeGrow : inactiveGrow,
-                flexShrink: 1,
-                flexBasis: 0,
-                minWidth: 0,
-              }}
-            >
-              {/* Inner content: number at top, divider centred, label anchored at bottom */}
-              <div className="flex h-full w-full flex-col items-center justify-start px-2 py-2 md:px-8 md:py-16 lg:px-10">
-                {/* Index */}
-                <span
-                  className={`text-[10px] tabular-nums tracking-[0.28em] transition-colors duration-500 ${
-                    isActive ? "text-black/45" : "text-white/45"
-                  }`}
-                  style={{ fontFamily: MONO }}
-                >
-                  {idx}
-                </span>
-
-                {/* Main value area — grows when active, collapses when inactive */}
-                <div
-                  className="flex w-full min-w-0 flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
-                  style={{ flexGrow: isActive ? 3 : 1, containerType: isActive ? "inline-size" : undefined }}
-                >
-                  {isActive ? (
-                    <div
-                      className="flex w-full items-center justify-center overflow-visible transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
-                      style={{
-                        maxHeight: "100%",
-                        opacity: 1,
-                        transform: "scale(1)",
-                      }}
-                    >
-                      <div
-                        className="w-full max-w-full min-w-0 items-center justify-center whitespace-nowrap text-center leading-none tracking-[-0.05em]"
-                        style={{
-                          fontSize: `clamp(2rem, min(20cqi, ${Math.round(
-                            78 / Math.max(3, s.value.length),
-                          )}cqi), 8.5rem)`,
-                        }}
-                      >
-                        <CountUp value={s.value} delay={80} />
-                      </div>
-                    </div>
-                  ) : (
-                    <span className="invisible">{s.value}</span>
-                  )}
-                </div>
-
-                {/* Bottom anchor: divider + label move together with the panel */}
-                <div
-                  className="flex w-full flex-col items-center transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
-                  style={{ flexGrow: isActive ? 0 : 1 }}
-                >
-                  {/* Divider */}
-                  <div
-                    className={`transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
-                      isActive ? "bg-black/15" : "bg-white/15 group-hover:bg-white/35"
-                    }`}
-                    style={{
-                      width: isActive ? "min(100%, 420px)" : "1px",
-                      height: isActive ? "1px" : "8px",
-                    }}
-                  />
-                  {/* Label */}
-                  <div
-                    className="flex items-center justify-center overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
-                    style={{ marginTop: isActive ? "20px" : "auto" }}
-                  >
-                    {isActive ? (
-                      <span
-                        className="whitespace-nowrap uppercase tracking-[0.24em] text-black/60"
-                        style={{ fontFamily: MONO, fontSize: "10px" }}
-                      >
-                        {s.label}
-                      </span>
-                    ) : (
-                      <>
-                        {/* Desktop / tablet: vertical label */}
-                        <span
-                          className="hidden whitespace-nowrap uppercase tracking-[0.24em] text-white/45 group-hover:text-white/70 md:block"
-                          style={{
-                            fontFamily: MONO,
-                            fontSize: "9px",
-                            writingMode: "vertical-rl",
-                            transform: "rotate(180deg)",
-                          }}
-                        >
-                          {s.label}
-                        </span>
-                        {/* Mobile: horizontal label so it remains readable in short stacked bars */}
-                        <span
-                          className="block whitespace-nowrap uppercase tracking-[0.24em] text-white/45 group-hover:text-white/70 md:hidden"
-                          style={{ fontFamily: MONO, fontSize: "9px" }}
-                        >
-                          {s.label}
-                        </span>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+        {HERO_STATS.map((s, i) => (
+          <StatPanel
+            key={s.label}
+            value={s.value}
+            label={s.label}
+            index={String(i + 1).padStart(2, "0")}
+            isActive={active === i}
+            isFirst={i === 0}
+            onSelect={() => setActive(i)}
+          />
+        ))}
       </div>
     </section>
   );
 }
+
 
 
 /** Shared editorial shell: generous whitespace, tonal background, full-bleed rules. */
