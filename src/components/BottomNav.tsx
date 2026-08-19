@@ -26,10 +26,12 @@ export function BottomNav({
   items,
   applyHref = "#apply",
   className,
+  variant = "pill",
 }: {
   items: BottomNavItem[];
   applyHref?: string;
   className?: string;
+  variant?: "pill" | "bar";
 }) {
   const [active, setActive] = useState<string>(items[0]?.id ?? "");
 
@@ -58,6 +60,60 @@ export function BottomNav({
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [items]);
+
+  if (variant === "bar") {
+    return (
+      <div
+        data-desktop-bottom-nav
+        className={
+          "pointer-events-none absolute inset-x-0 top-0 z-50 hidden justify-center lg:flex " +
+          (className ?? "")
+        }
+      >
+        <nav
+          aria-label="Section navigation"
+          className="pointer-events-auto mx-auto flex w-full max-w-6xl items-center gap-1 border-b border-white/15 px-5 py-4 sm:py-5 md:px-10"
+        >
+          <ul className="flex flex-1 items-center justify-start gap-0.5 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-1">
+            {items.map(({ id, label, icon: Icon }) => {
+              const isActive = active === id;
+              return (
+                <li key={id} className="shrink-0">
+                  <button
+                    type="button"
+                    onClick={() => scrollToId(id)}
+                    aria-current={isActive ? "true" : undefined}
+                    className={
+                      "group inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.14em] transition-colors sm:px-3.5 " +
+                      (isActive
+                        ? "bg-white/10 text-white"
+                        : "text-white/70 hover:bg-white/10 hover:text-white")
+                    }
+                  >
+                    <Icon className="size-[15px]" strokeWidth={1.75} />
+                    <span className="text-[9.5px] sm:text-[10px]">{label}</span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+          <a
+            href={applyHref}
+            onClick={(e) => {
+              if (applyHref.startsWith("#")) {
+                e.preventDefault();
+                scrollToId(applyHref.slice(1));
+              }
+            }}
+            className="inline-flex shrink-0 items-center gap-1 rounded-full bg-black px-3.5 py-2 text-[10.5px] font-semibold uppercase tracking-[0.16em] text-white transition-transform hover:scale-[1.03] active:scale-[0.97] sm:px-4"
+          >
+            Apply
+            <ArrowUpRight className="size-3.5" strokeWidth={2.2} />
+          </a>
+        </nav>
+      </div>
+    );
+  }
 
   return (
     <div
