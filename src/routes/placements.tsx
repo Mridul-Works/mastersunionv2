@@ -623,12 +623,12 @@ function CareerPodcast() {
           <Eyebrow>Podcast</Eyebrow>
         </Reveal>
         <Reveal delay={90}>
-          <h3 className="mt-5 text-[clamp(1.4rem,2.6vw,2.1rem)] font-medium leading-[1.1] tracking-[-0.015em]">
+          <h3 className="mt-5 text-[clamp(1.55rem,2.9vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
             How Masters&apos; Union prepares students for top 1% placements
           </h3>
         </Reveal>
         <Reveal delay={180}>
-          <p className="mt-6 max-w-[46ch] text-[15px] leading-relaxed text-black/65">
+          <p className="mt-6 max-w-[50ch] text-[16px] leading-relaxed text-black/65">
             A detailed conversation on the placement engine behind Masters&apos; Union — how recruiter
             access, live industry projects and year-round career coaching translate into offers at the
             firms shaping the next decade.
