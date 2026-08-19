@@ -417,7 +417,7 @@ function CinematicHero() {
 
 
         {/* Editorial composition */}
-        <div className="relative z-10 flex h-full flex-col px-5 pb-28 pt-24 md:px-10 md:pb-24 md:pt-28">
+        <div className="page-x relative z-10 flex h-full flex-col pb-28 pt-24 md:pb-24 md:pt-28">
 
           {/* top: careers eyebrow */}
           <div style={step(450, 16)}>
@@ -598,7 +598,7 @@ function Band({
   const bg = tone === "white" ? "bg-white" : tone === "paper" ? "bg-[#faf9f7]" : "bg-[#f2f1ee]";
   return (
     <section id={id} className={`relative ${bg} ${className}`}>
-      <div className="mx-auto max-w-6xl px-5 py-16 md:px-10 md:py-28">{children}</div>
+      <div className="page-x py-16 md:py-28">{children}</div>
     </section>
   );
 }
@@ -859,7 +859,7 @@ function Page() {
         className="relative z-20 bg-[#faf9f7]"
         style={{ marginTop: reduced ? 0 : "calc(-100svh - 1px)" }}
       >
-        <div className="px-4 py-10 md:px-8 md:py-12 lg:px-[5%] lg:py-14">
+        <div className="page-x py-10 md:py-12 lg:py-14">
           <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
             <CareerPodcast />
             <StatsAccordion />
@@ -933,7 +933,8 @@ function Page() {
         >
           <Parallax strength={50}>“</Parallax>
         </div>
-        <div className="relative mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-28">
+        <div className="page-x relative py-20 md:py-28">
+
           <Reveal duration={950}>
             <blockquote className="max-w-[52ch] text-[clamp(1.3rem,2.6vw,2.1rem)] font-medium leading-[1.25] tracking-[-0.015em]">
               “We don&apos;t approach placements the way most B-schools do. At Masters&apos; Union, placements are run by a 50+ member, full-time team spanning company outreach, career preparation, and role-specific coaching.”
@@ -1356,7 +1357,7 @@ function Page() {
         >
           <Parallax strength={60}>CAREERS</Parallax>
         </div>
-        <div className="relative mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-28">
+        <div className="page-x relative py-20 md:py-28">
           <Reveal>
             <Eyebrow>Careers team</Eyebrow>
           </Reveal>
