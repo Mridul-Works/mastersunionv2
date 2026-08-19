@@ -384,10 +384,10 @@ function CinematicHero() {
       <section
         id="top"
         ref={sectionRef}
-        className="relative isolate bg-[#0a0a0a]"
-        style={{ height: "calc(82svh + 115vh)" }}
+        className="relative z-0 bg-[#0a0a0a]"
+        style={{ height: "calc(100svh + 100svh)" }}
       >
-       <div className="sticky top-0 h-[82svh] overflow-hidden lg:h-[86vh]">
+       <div className="sticky top-0 h-[100svh] overflow-hidden">
         {/* Photograph — full bleed, full fidelity */}
         <div ref={imgWrapRef} aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden" style={{ willChange: "transform" }}>
           <img
