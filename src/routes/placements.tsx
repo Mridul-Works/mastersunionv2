@@ -26,6 +26,7 @@ import {
   useInView,
   useReducedMotion,
 } from "@/components/placements/motion";
+import { HeroMaskReveal } from "@/components/placements/HeroMaskReveal";
 
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
@@ -388,8 +389,8 @@ function CinematicHero() {
             className="no-img-zoom h-full w-full object-cover object-[58%_46%] md:object-[60%_38%]"
             style={{
               filter: "contrast(1.06) saturate(1.02)",
-              transform: on ? "translate3d(0,0,0) scale(1.02)" : "translate3d(0,0,0) scale(1.06)",
-              transition: reduced ? "none" : `transform 1600ms ${HERO_EASE} 60ms`,
+               transform: on ? "translate3d(0,0,0) scale(1.005)" : "translate3d(0,0,0) scale(1.035)",
+              transition: reduced ? "none" : `transform 1700ms ${HERO_EASE} 120ms`,
               willChange: "transform",
             }}
             decoding="async"
@@ -403,7 +404,7 @@ function CinematicHero() {
         {/* Editorial composition */}
         <div className="relative flex min-h-[82svh] flex-col px-5 pb-28 pt-10 md:px-10 md:pb-24 md:pt-14 lg:min-h-[86vh]">
           {/* top: careers eyebrow */}
-          <div style={step(560, 16)}>
+          <div style={step(450, 16)}>
             <Eyebrow className="text-white/75">Careers</Eyebrow>
           </div>
 
@@ -417,7 +418,7 @@ function CinematicHero() {
               <h1
                 className="max-w-[16ch] text-[clamp(3.1rem,9.4vw,7.6rem)] font-medium leading-[0.94] tracking-[-0.035em] text-white"
                 style={{
-                  ...step(520, 90),
+                  ...step(980, 56),
                   textShadow: "0 1px 40px rgba(0,0,0,0.28)",
                 }}
               >
@@ -430,11 +431,11 @@ function CinematicHero() {
           <div ref={copyRef} className="mt-4 max-w-[600px] md:mt-5" style={{ willChange: "transform, opacity" }}>
             <p
               className="text-[clamp(1rem,1.35vw,1.2rem)] leading-[1.6] text-white/85"
-              style={step(720, 22)}
+              style={step(700, 22)}
             >
               Benefit from an exceptional track record of our graduates&apos; success — audited, published, and repeated across five cohorts.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3" style={step(1100, 18)}>
+            <div className="mt-8 flex flex-wrap gap-3" style={step(860, 18)}>
               <a
                 href="#outcomes"
                 className="group inline-flex items-center gap-2 bg-white px-6 py-3.5 text-[11px] uppercase tracking-[0.22em] text-black transition hover:opacity-85"
@@ -452,6 +453,9 @@ function CinematicHero() {
             </div>
           </div>
         </div>
+
+        {/* Editorial block reveal — runs once on first load */}
+        <HeroMaskReveal />
       </section>
 
       {/* Hero statistics — editorial annotations continuing out of the photograph */}
