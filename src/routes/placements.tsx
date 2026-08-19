@@ -401,7 +401,7 @@ function CinematicHero() {
         </div>
 
         {/* Editorial composition */}
-        <div className="relative flex min-h-[92svh] flex-col px-5 pb-10 pt-10 md:px-10 md:pb-14 md:pt-14 lg:min-h-[96vh]">
+        <div className="relative flex min-h-[92svh] flex-col px-5 pb-16 pt-10 md:px-10 md:pb-20 md:pt-14 lg:min-h-[96vh]">
           {/* upper-left metadata */}
           <div style={step(560, 16)}>
             <Eyebrow className="text-white/75">Careers</Eyebrow>
