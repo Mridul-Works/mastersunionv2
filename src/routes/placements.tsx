@@ -856,7 +856,7 @@ function Page() {
       {/* PODCAST + STATISTICS — combined horizontal section */}
       <section className="relative bg-[#faf9f7]">
         <div className="px-4 py-10 md:px-8 md:py-12 lg:px-[5%] lg:py-14">
-          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-7">
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
             <CareerPodcast />
             <StatsAccordion />
           </div>
