@@ -386,7 +386,7 @@ function CinematicHero() {
         id="top"
         ref={sectionRef}
         className="relative z-0 bg-[#0a0a0a]"
-        style={{ height: reduced ? "100svh" : "175svh" }}
+        style={{ height: reduced ? "100svh" : "200svh" }}
       >
        <div className="sticky top-0 h-[100svh] overflow-hidden">
         {/* Photograph — full bleed, full fidelity */}
@@ -829,6 +829,7 @@ function LogoRow({ names }: { names: string[] }) {
 /* ---------------------------------- page ---------------------------------- */
 
 function Page() {
+  const reduced = useReducedMotion();
   const maxCtc = 55;
   const [recruiterTab, setRecruiterTab] = useState(RECRUITER_GROUPS[0].category);
   const active = RECRUITER_GROUPS.find((g) => g.category === recruiterTab)!;
@@ -854,7 +855,10 @@ function Page() {
 
 
       {/* PODCAST + STATISTICS — rises from below and slides over the pinned hero */}
-      <section className="relative z-20 mt-[-75svh] bg-[#faf9f7]">
+      <section
+        className="relative z-20 bg-[#faf9f7]"
+        style={{ marginTop: reduced ? 0 : "calc(-100svh - 1px)" }}
+      >
         <div className="px-4 py-10 md:px-8 md:py-12 lg:px-[5%] lg:py-14">
           <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
             <CareerPodcast />
