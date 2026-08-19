@@ -855,7 +855,10 @@ function Page() {
 
 
       {/* PODCAST + STATISTICS — rises from below and slides over the pinned hero */}
-      <section className="relative z-20 mt-[-75svh] bg-[#faf9f7]">
+      <section
+        className="relative z-20 bg-[#faf9f7]"
+        style={{ marginTop: reduced ? 0 : "calc(-100svh - 1px)" }}
+      >
         <div className="px-4 py-10 md:px-8 md:py-12 lg:px-[5%] lg:py-14">
           <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
             <CareerPodcast />
