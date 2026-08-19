@@ -407,6 +407,12 @@ function CinematicHero() {
             <Eyebrow className="text-white/75">Careers</Eyebrow>
           </div>
 
+          {/* editorial section navigation, aligned to the hero content grid */}
+          <div className="mt-7 md:mt-9" style={step(640, 14)}>
+            <BottomNav items={NAV} applyHref="#contact" variant="inline" />
+          </div>
+
+
           {/* left/middle: supporting copy + CTA */}
           <div ref={copyRef} className="mt-10 max-w-[600px] md:mt-14" style={{ willChange: "transform, opacity" }}>
             <p
