@@ -378,10 +378,12 @@ function CinematicHero() {
       <section
         id="top"
         ref={sectionRef}
-        className="relative isolate min-h-[82svh] overflow-hidden bg-[#0a0a0a] lg:min-h-[86vh]"
+        className="relative isolate bg-[#0a0a0a]"
+        style={{ height: "calc(82svh + 62vh)" }}
       >
+       <div className="sticky top-0 h-[82svh] overflow-hidden lg:h-[86vh]">
         {/* Photograph — full bleed, full fidelity */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div ref={imgWrapRef} aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden" style={{ willChange: "transform" }}>
           <img
             ref={imgRef}
             src={heroBg.url}
@@ -405,7 +407,8 @@ function CinematicHero() {
 
 
         {/* Editorial composition */}
-        <div className="relative flex min-h-[82svh] flex-col px-5 pb-28 pt-24 md:px-10 md:pb-24 md:pt-28 lg:min-h-[86vh]">
+        <div className="relative flex h-full flex-col px-5 pb-28 pt-24 md:px-10 md:pb-24 md:pt-28">
+
           {/* top: careers eyebrow */}
           <div style={step(450, 16)}>
             <Eyebrow className="text-white/75">Careers</Eyebrow>
