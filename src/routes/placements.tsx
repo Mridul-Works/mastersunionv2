@@ -508,11 +508,10 @@ function StatsAccordion() {
                 flexShrink: 1,
                 flexBasis: 0,
                 minWidth: 0,
-                minHeight: 0,
               }}
             >
               {/* Unified inner content — everything anchors to the panel lifecycle */}
-              <div className="flex h-full w-full flex-col items-center justify-between px-5 py-14 md:px-8 md:py-16 lg:px-10">
+              <div className="flex h-full w-full flex-col items-center justify-between px-5 py-10 md:px-8 md:py-16 lg:px-10">
                 {/* Index */}
                 <span
                   className={`text-[10px] tabular-nums tracking-[0.28em] transition-colors duration-500 ${
@@ -523,10 +522,11 @@ function StatsAccordion() {
                   {idx}
                 </span>
 
-                {/* Main value */}
+                {/* Main value — collapses to zero height when inactive so the bottom anchor stays compact */}
                 <div
-                  className="flex flex-1 items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
+                  className="flex flex-1 items-center justify-center overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
                   style={{
+                    maxHeight: isActive ? "100%" : "0px",
                     opacity: isActive ? 1 : 0,
                     transform: isActive ? "scale(1)" : "scale(0.92)",
                     containerType: "inline-size",
@@ -554,11 +554,8 @@ function StatsAccordion() {
                   <div
                     className={`transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
                       isActive ? "bg-black/15" : "bg-white/15 group-hover:bg-white/35"
-                    }`}
-                    style={{
-                      width: isActive ? "min(100%, 420px)" : "1px",
-                      height: isActive ? "1px" : "80px",
-                    }}
+                    } ${isActive ? "h-px" : "h-8 md:h-20"}`}
+                    style={{ width: isActive ? "min(100%, 420px)" : "1px" }}
                   />
                   {/* Label */}
                   <div
