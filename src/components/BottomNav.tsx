@@ -71,7 +71,10 @@ export function BottomNav({
     >
       <nav
         aria-label="Section navigation"
-        className="pointer-events-auto flex w-full max-w-[560px] items-center gap-1 rounded-full border border-black/10 bg-white/85 p-1.5 shadow-[0_18px_50px_-18px_rgba(0,0,0,0.4)] backdrop-blur-xl sm:max-w-[620px]"
+        className={
+          "pointer-events-auto flex w-full max-w-[560px] items-center gap-1 rounded-full border border-black/10 bg-white/85 p-1.5 shadow-[0_18px_50px_-18px_rgba(0,0,0,0.4)] backdrop-blur-xl sm:max-w-[620px] " +
+          (innerClassName ?? "")
+        }
       >
         <ul className="flex flex-1 items-center justify-around gap-0.5">
           {items.map(({ id, label, icon: Icon }) => {
