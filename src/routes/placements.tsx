@@ -479,6 +479,7 @@ function CinematicHero() {
 /** Horizontal preview-stack accordion for the four hero statistics. */
 function StatsAccordion() {
   const [active, setActive] = useState(0);
+  const isMobile = useIsMobile();
 
   return (
     <section className="relative z-10 h-full min-h-[540px] w-full bg-[#0a0a0a] text-white md:min-h-[600px] lg:min-h-[640px]">
@@ -486,6 +487,9 @@ function StatsAccordion() {
         {HERO_STATS.map((s, i) => {
           const isActive = active === i;
           const idx = String(i + 1).padStart(2, "0");
+          // Mobile needs more height for closed rows so labels remain visible and anchored.
+          const activeGrow = isMobile ? 48 : 68;
+          const inactiveGrow = isMobile ? 18 : 12;
           return (
             <div
               key={s.label}
@@ -504,7 +508,7 @@ function StatsAccordion() {
                 i > 0 ? "border-t border-white/12 md:border-t-0 md:border-l md:border-white/12" : ""
               } ${isActive ? "cursor-default bg-[#faf9f7] text-[#0a0a0a]" : "cursor-pointer bg-[#0a0a0a] text-white hover:bg-[#141414]"}`}
               style={{
-                flexGrow: isActive ? 68 : 12,
+                flexGrow: isActive ? activeGrow : inactiveGrow,
                 flexShrink: 1,
                 flexBasis: 0,
                 minWidth: 0,
