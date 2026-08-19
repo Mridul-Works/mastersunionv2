@@ -514,7 +514,7 @@ function StatsAccordion() {
             >
               {/* ACTIVE — large editorial canvas */}
               <div
-                className={`flex h-full flex-col justify-between px-6 py-14 md:px-10 md:py-16 lg:px-12 ${
+                className={`flex h-full flex-col justify-between px-5 py-14 md:px-8 md:py-16 lg:px-10 ${
                   isActive ? "opacity-100" : "pointer-events-none absolute inset-0 opacity-0"
                 }`}
                 style={{ transition: "opacity 420ms cubic-bezier(0.76,0,0.24,1) 120ms" }}
