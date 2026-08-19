@@ -589,12 +589,9 @@ function Page() {
               fetchPriority="high"
             />
           </Parallax>
-          {/* Subtle localized gradient behind the left text column only */}
-          <div className="absolute inset-y-0 left-0 w-[58%] bg-gradient-to-r from-black/20 via-black/8 to-transparent lg:w-[52%]" />
+          {/* Subtle localized dark gradient behind the left text column only */}
+          <div className="absolute inset-y-0 left-0 w-[62%] bg-gradient-to-r from-black/35 via-black/12 to-transparent lg:w-[56%]" />
         </div>
-
-        {/* Subtle dark scrim directly behind the text block for readability */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-[62%] bg-gradient-to-r from-black/20 via-black/8 to-transparent lg:w-[56%]" />
 
         <div
           aria-hidden
