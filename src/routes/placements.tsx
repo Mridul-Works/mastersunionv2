@@ -386,7 +386,7 @@ function CinematicHero() {
         id="top"
         ref={sectionRef}
         className="relative z-0 bg-[#0a0a0a]"
-        style={{ height: "100svh" }}
+        style={{ height: reduced ? "100svh" : "175svh" }}
       >
        <div className="sticky top-0 h-[100svh] overflow-hidden">
         {/* Photograph — full bleed, full fidelity */}
@@ -853,8 +853,8 @@ function Page() {
 
 
 
-      {/* PODCAST + STATISTICS — combined horizontal section */}
-      <section className="relative bg-[#faf9f7]">
+      {/* PODCAST + STATISTICS — rises over the hero as a solid layer */}
+      <section className="relative z-20 -mt-px bg-[#faf9f7]">
         <div className="px-4 py-10 md:px-8 md:py-12 lg:px-[5%] lg:py-14">
           <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
             <CareerPodcast />
