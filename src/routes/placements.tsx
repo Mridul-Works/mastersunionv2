@@ -598,7 +598,7 @@ function Band({
   const bg = tone === "white" ? "bg-white" : tone === "paper" ? "bg-[#faf9f7]" : "bg-[#f2f1ee]";
   return (
     <section id={id} className={`relative ${bg} ${className}`}>
-      <div className="mx-auto max-w-6xl px-5 py-16 md:px-10 md:py-28">{children}</div>
+      <div className="page-x py-16 md:py-28">{children}</div>
     </section>
   );
 }
