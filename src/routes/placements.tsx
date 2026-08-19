@@ -481,7 +481,7 @@ function StatsAccordion() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="relative z-10 h-full min-h-[520px] w-full bg-[#0a0a0a] text-white md:min-h-[560px]">
+    <section className="relative z-10 h-full min-h-[540px] w-full bg-[#0a0a0a] text-white md:min-h-[600px] lg:min-h-[640px]">
       <div className="flex h-full min-h-[inherit] w-full flex-col md:flex-row">
         {HERO_STATS.map((s, i) => {
           const isActive = active === i;
@@ -506,7 +506,7 @@ function StatsAccordion() {
                   : "cursor-pointer bg-[#0a0a0a] text-white hover:bg-[#141414]"
               } ${i > 0 ? "border-t border-white/12 md:border-t-0 md:border-l md:border-white/12" : ""}`}
               style={{
-                flexGrow: isActive ? 58 : 14,
+                flexGrow: isActive ? 56 : 16,
                 flexShrink: 1,
                 flexBasis: 0,
                 transition: "flex-grow 600ms cubic-bezier(0.76,0,0.24,1), background-color 500ms cubic-bezier(0.76,0,0.24,1)",
@@ -514,7 +514,7 @@ function StatsAccordion() {
             >
               {/* ACTIVE — large editorial canvas */}
               <div
-                className={`flex h-full flex-col justify-between px-6 py-14 md:px-10 md:py-16 lg:px-12 ${
+                className={`flex h-full flex-col justify-between px-5 py-14 md:px-8 md:py-16 lg:px-10 ${
                   isActive ? "opacity-100" : "pointer-events-none absolute inset-0 opacity-0"
                 }`}
                 style={{ transition: "opacity 420ms cubic-bezier(0.76,0,0.24,1) 120ms" }}
@@ -526,7 +526,11 @@ function StatsAccordion() {
                 >
                   {idx}
                 </span>
-                <div className="mt-12 whitespace-nowrap text-[clamp(2.5rem,5.5vw,6.5rem)] leading-[0.86] tracking-[-0.05em] md:mt-16">
+                <div
+                  className={`mt-12 whitespace-nowrap leading-[0.86] tracking-[-0.05em] md:mt-16 ${
+                    s.value.length <= 4 ? "text-[clamp(3rem,8.5vw,8.5rem)]" : "text-[clamp(2.5rem,5.5vw,6.5rem)]"
+                  }`}
+                >
                   {isActive ? <CountUp value={s.value} delay={80} /> : s.value}
                 </div>
                 <div className="mt-10 md:mt-12">
@@ -542,7 +546,7 @@ function StatsAccordion() {
 
               {/* COLLAPSED — narrow vertical column */}
               <div
-                className={`flex h-full flex-col items-center justify-between px-4 py-10 md:py-12 ${
+                className={`flex h-full flex-col items-center justify-between px-4 py-12 md:py-14 lg:py-16 ${
                   isActive ? "pointer-events-none absolute inset-0 opacity-0" : "opacity-100"
                 }`}
                 style={{ transition: "opacity 360ms cubic-bezier(0.76,0,0.24,1)" }}
@@ -556,11 +560,11 @@ function StatsAccordion() {
                 </span>
 
                 <div className="flex flex-1 items-center justify-center py-8">
-                  <span className="h-16 w-px bg-white/15 transition-colors duration-500 group-hover:bg-white/35 md:h-20" />
+                  <span className="h-20 w-px bg-white/15 transition-colors duration-500 group-hover:bg-white/35 md:h-24 lg:h-28" />
                 </div>
 
                 <div
-                  className="max-h-[220px] overflow-hidden whitespace-nowrap text-[9px] uppercase tracking-[0.24em] text-white/45 transition-colors duration-500 group-hover:text-white/70"
+                  className="max-h-[280px] overflow-hidden whitespace-nowrap text-[9px] uppercase tracking-[0.24em] text-white/45 transition-colors duration-500 group-hover:text-white/70"
                   style={{
                     fontFamily: MONO,
                     writingMode: "vertical-rl",
@@ -619,12 +623,12 @@ function CareerPodcast() {
           <Eyebrow>Podcast</Eyebrow>
         </Reveal>
         <Reveal delay={90}>
-          <h3 className="mt-5 text-[clamp(1.4rem,2.6vw,2.1rem)] font-medium leading-[1.1] tracking-[-0.015em]">
+          <h3 className="mt-5 text-[clamp(1.55rem,2.9vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
             How Masters&apos; Union prepares students for top 1% placements
           </h3>
         </Reveal>
         <Reveal delay={180}>
-          <p className="mt-6 max-w-[46ch] text-[15px] leading-relaxed text-black/65">
+          <p className="mt-6 max-w-[50ch] text-[16px] leading-relaxed text-black/65">
             A detailed conversation on the placement engine behind Masters&apos; Union — how recruiter
             access, live industry projects and year-round career coaching translate into offers at the
             firms shaping the next decade.
@@ -850,12 +854,14 @@ function Page() {
 
 
       {/* PODCAST + STATISTICS — combined horizontal section */}
-      <Band tone="paper">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[5fr_6fr] lg:gap-10">
-          <CareerPodcast />
-          <StatsAccordion />
+      <section className="relative bg-[#faf9f7]">
+        <div className="px-4 py-10 md:px-8 md:py-12 lg:px-[5%] lg:py-14">
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
+            <CareerPodcast />
+            <StatsAccordion />
+          </div>
         </div>
-      </Band>
+      </section>
 
       {/* AUDITED OUTCOMES */}
       <Band id="outcomes" tone="white">
