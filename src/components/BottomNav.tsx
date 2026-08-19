@@ -26,10 +26,12 @@ export function BottomNav({
   items,
   applyHref = "#apply",
   className,
+  innerClassName,
 }: {
   items: BottomNavItem[];
   applyHref?: string;
   className?: string;
+  innerClassName?: string;
 }) {
   const [active, setActive] = useState<string>(items[0]?.id ?? "");
 
