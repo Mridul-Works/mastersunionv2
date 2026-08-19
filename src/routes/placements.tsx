@@ -559,7 +559,7 @@ function StatPanel({
 
       {/* ---- Closed layer ---- */}
       <div
-        className="absolute inset-0 flex flex-col items-center justify-between px-2 py-4 md:py-10"
+        className="absolute inset-0 flex flex-row items-center justify-between px-5 py-3 md:flex-col md:justify-between md:px-2 md:py-10"
         style={{
           opacity: isActive ? 0 : 1,
           pointerEvents: isActive ? "none" : "auto",
@@ -572,7 +572,8 @@ function StatPanel({
         >
           {index}
         </span>
-        <div className="w-px flex-1 bg-white/15 transition-colors duration-500 group-hover:bg-white/35" />
+        <div className="hidden w-px flex-1 bg-white/15 transition-colors duration-500 group-hover:bg-white/35 md:block" />
+
         <span
           className="mt-2 hidden whitespace-nowrap uppercase tracking-[0.24em] text-white/45 transition-colors duration-500 group-hover:text-white/70 md:block"
           style={{
