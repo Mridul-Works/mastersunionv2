@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import {
   ArrowUpRight,
   Home,
@@ -479,6 +480,7 @@ function CinematicHero() {
 /** Horizontal preview-stack accordion for the four hero statistics. */
 function StatsAccordion() {
   const [active, setActive] = useState(0);
+  const isMobile = useIsMobile();
 
   return (
     <section className="relative z-10 h-full min-h-[540px] w-full bg-[#0a0a0a] text-white md:min-h-[600px] lg:min-h-[640px]">
@@ -486,6 +488,9 @@ function StatsAccordion() {
         {HERO_STATS.map((s, i) => {
           const isActive = active === i;
           const idx = String(i + 1).padStart(2, "0");
+          // Mobile needs more height for closed rows so labels remain visible and anchored.
+          const activeGrow = isMobile ? 48 : 68;
+          const inactiveGrow = isMobile ? 18 : 12;
           return (
             <div
               key={s.label}
@@ -504,14 +509,14 @@ function StatsAccordion() {
                 i > 0 ? "border-t border-white/12 md:border-t-0 md:border-l md:border-white/12" : ""
               } ${isActive ? "cursor-default bg-[#faf9f7] text-[#0a0a0a]" : "cursor-pointer bg-[#0a0a0a] text-white hover:bg-[#141414]"}`}
               style={{
-                flexGrow: isActive ? 68 : 12,
+                flexGrow: isActive ? activeGrow : inactiveGrow,
                 flexShrink: 1,
                 flexBasis: 0,
                 minWidth: 0,
               }}
             >
-              {/* Unified inner content — everything anchors to the panel lifecycle */}
-              <div className="flex h-full w-full flex-col items-center justify-between px-5 py-10 md:px-8 md:py-16 lg:px-10">
+              {/* Inner content: number at top, divider centred, label anchored at bottom */}
+              <div className="flex h-full w-full flex-col items-center justify-start px-2 py-2 md:px-8 md:py-16 lg:px-10">
                 {/* Index */}
                 <span
                   className={`text-[10px] tabular-nums tracking-[0.28em] transition-colors duration-500 ${
@@ -522,58 +527,86 @@ function StatsAccordion() {
                   {idx}
                 </span>
 
-                {/* Main value — collapses to zero height when inactive so the bottom anchor stays compact */}
+                {/* Main value area — grows when active, collapses when inactive */}
                 <div
-                  className="flex flex-1 items-center justify-center overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
-                  style={{
-                    maxHeight: isActive ? "100%" : "0px",
-                    opacity: isActive ? 1 : 0,
-                    transform: isActive ? "scale(1)" : "scale(0.92)",
-                    containerType: "inline-size",
-                  }}
+                  className="flex flex-col items-center justify-center overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
+                  style={{ flexGrow: isActive ? 3 : 1 }}
                 >
                   {isActive ? (
                     <div
-                      className="w-full min-w-0 items-center justify-center whitespace-nowrap text-center leading-[0.86] tracking-[-0.05em]"
+                      className="flex w-full items-center justify-center overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
                       style={{
-                        fontSize: `min(clamp(2.25rem, 30cqw, 8.5rem), ${Math.round(
-                          150 / Math.max(3, s.value.length),
-                        )}cqw)`,
+                        maxHeight: "100%",
+                        opacity: 1,
+                        transform: "scale(1)",
                       }}
                     >
-                      <CountUp value={s.value} delay={80} />
+                      <div
+                        className="w-full min-w-0 items-center justify-center whitespace-nowrap text-center leading-[0.86] tracking-[-0.05em]"
+                        style={{
+                          fontSize: `min(clamp(2.25rem, 15vw, 8.5rem), ${Math.round(
+                            80 / Math.max(3, s.value.length),
+                          )}vw)`,
+                        }}
+                      >
+                        <CountUp value={s.value} delay={80} />
+                      </div>
                     </div>
                   ) : (
                     <span className="invisible">{s.value}</span>
                   )}
                 </div>
 
-                {/* Bottom anchor: divider + label always move as one solid piece */}
-                <div className="flex w-full flex-col items-center justify-center">
+                {/* Bottom anchor: divider + label move together with the panel */}
+                <div
+                  className="flex w-full flex-col items-center transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
+                  style={{ flexGrow: isActive ? 0 : 1 }}
+                >
                   {/* Divider */}
                   <div
                     className={`transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
                       isActive ? "bg-black/15" : "bg-white/15 group-hover:bg-white/35"
-                    } ${isActive ? "h-px" : "h-8 md:h-20"}`}
-                    style={{ width: isActive ? "min(100%, 420px)" : "1px" }}
+                    }`}
+                    style={{
+                      width: isActive ? "min(100%, 420px)" : "1px",
+                      height: isActive ? "1px" : "8px",
+                    }}
                   />
                   {/* Label */}
                   <div
-                    className={`transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] overflow-visible ${
-                      isActive ? "text-black/60" : "text-white/45 group-hover:text-white/70"
-                    }`}
-                    style={{
-                      marginTop: isActive ? "20px" : "0",
-                      transform: isActive ? "rotate(0deg)" : "rotate(-90deg)",
-                      transformOrigin: "center",
-                    }}
+                    className="flex items-center justify-center overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
+                    style={{ marginTop: isActive ? "20px" : "auto" }}
                   >
-                    <span
-                      className="whitespace-nowrap uppercase tracking-[0.24em] transition-all duration-700"
-                      style={{ fontFamily: MONO, fontSize: isActive ? "10px" : "9px" }}
-                    >
-                      {s.label}
-                    </span>
+                    {isActive ? (
+                      <span
+                        className="whitespace-nowrap uppercase tracking-[0.24em] text-black/60"
+                        style={{ fontFamily: MONO, fontSize: "10px" }}
+                      >
+                        {s.label}
+                      </span>
+                    ) : (
+                      <>
+                        {/* Desktop / tablet: vertical label */}
+                        <span
+                          className="hidden whitespace-nowrap uppercase tracking-[0.24em] text-white/45 group-hover:text-white/70 md:block"
+                          style={{
+                            fontFamily: MONO,
+                            fontSize: "9px",
+                            writingMode: "vertical-rl",
+                            transform: "rotate(180deg)",
+                          }}
+                        >
+                          {s.label}
+                        </span>
+                        {/* Mobile: horizontal label so it remains readable in short stacked bars */}
+                        <span
+                          className="block whitespace-nowrap uppercase tracking-[0.24em] text-white/45 group-hover:text-white/70 md:hidden"
+                          style={{ fontFamily: MONO, fontSize: "9px" }}
+                        >
+                          {s.label}
+                        </span>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
