@@ -437,7 +437,7 @@ function CinematicHero() {
           <div ref={headlineRef} className="mt-auto pt-16" style={{ willChange: "transform, opacity" }}>
             <div style={{ clipPath: "inset(-20% -20% 0% -20%)" }}>
               <h1
-                className="max-w-[16ch] text-[clamp(2.8rem,10.5vw,8.2rem)] font-medium leading-[0.94] tracking-[-0.035em] text-white"
+                className="max-w-[16ch] text-[clamp(2.8rem,9.4vw,7.6rem)] font-medium leading-[0.94] tracking-[-0.035em] text-white"
                 style={{
                   ...step(780, 90),
                   textShadow: "0 1px 40px rgba(0,0,0,0.28)",
