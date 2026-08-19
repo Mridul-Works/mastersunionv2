@@ -377,7 +377,7 @@ function CinematicHero() {
       <section
         id="top"
         ref={sectionRef}
-        className="relative -mt-[calc(var(--hero-nav-offset,0px))] isolate min-h-[92svh] overflow-hidden bg-[#0a0a0a] lg:min-h-[96vh]"
+        className="relative isolate min-h-[92svh] overflow-hidden bg-[#0a0a0a] lg:min-h-[96vh]"
       >
         {/* Photograph — full bleed, full fidelity */}
         <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
