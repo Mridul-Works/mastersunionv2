@@ -533,10 +533,11 @@ function StatsAccordion() {
                 <div
                   className="flex w-full min-w-0 items-center justify-center whitespace-nowrap leading-[0.86] tracking-[-0.05em]"
                   style={{
-                    fontSize: `min(clamp(2.25rem, 9cqw, 8.5rem), ${Math.round(
-                      160 / Math.max(3, s.value.length),
+                    fontSize: `min(clamp(2.25rem, 30cqw, 8.5rem), ${Math.round(
+                      150 / Math.max(3, s.value.length),
                     )}cqw)`,
                   }}
+
                 >
                   {isActive ? <CountUp value={s.value} delay={80} /> : s.value}
                 </div>
