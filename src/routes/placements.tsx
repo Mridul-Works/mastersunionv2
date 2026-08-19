@@ -385,7 +385,7 @@ function CinematicHero() {
             ref={imgRef}
             src={heroBg.url}
             alt=""
-            className="no-img-zoom h-full w-full object-cover object-[68%_35%] md:object-[60%_38%]"
+            className="no-img-zoom h-full w-full object-cover object-[58%_46%] md:object-[60%_38%]"
             style={{
               filter: "contrast(1.06) saturate(1.02)",
               transform: on ? "translate3d(0,0,0) scale(1.02)" : "translate3d(0,0,0) scale(1.06)",
@@ -437,7 +437,7 @@ function CinematicHero() {
           <div ref={headlineRef} className="mt-auto pt-16" style={{ willChange: "transform, opacity" }}>
             <div style={{ clipPath: "inset(-20% -20% 0% -20%)" }}>
               <h1
-                className="max-w-[16ch] text-[clamp(2.8rem,9.4vw,7.6rem)] font-medium leading-[0.94] tracking-[-0.035em] text-white"
+                className="max-w-[16ch] text-[clamp(3.1rem,9.4vw,7.6rem)] font-medium leading-[0.94] tracking-[-0.035em] text-white"
                 style={{
                   ...step(780, 90),
                   textShadow: "0 1px 40px rgba(0,0,0,0.28)",
