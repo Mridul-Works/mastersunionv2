@@ -508,7 +508,7 @@ function StatsAccordion() {
                 flexShrink: 1,
                 flexBasis: 0,
                 minWidth: 0,
-                containerType: "size",
+                containerType: "inline-size",
               }}
             >
               {/* Index — anchored to its own panel */}
