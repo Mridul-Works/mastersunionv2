@@ -534,7 +534,7 @@ function StatsAccordion() {
                 >
                   {isActive ? (
                     <div
-                      className="flex items-center justify-center overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
+                      className="flex w-full items-center justify-center overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
                       style={{
                         maxHeight: "100%",
                         opacity: 1,
