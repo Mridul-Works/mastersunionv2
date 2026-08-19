@@ -445,7 +445,7 @@ function CinematicHero() {
           {/* left/middle: supporting copy + CTA directly under headline */}
           <div ref={copyRef} className="mt-4 max-w-[600px] md:mt-5" style={{ willChange: "transform, opacity" }}>
             <p
-              className="text-[clamp(1rem,1.35vw,1.2rem)] leading-[1.6] text-white/85"
+              className="text-[clamp(1rem,1.35vw,1.2rem)] font-medium leading-[1.6] text-white/85"
               style={step(700, 22)}
             >
               Benefit from an exceptional track record of our graduates&apos; success — audited, published, and repeated across five cohorts.
@@ -1340,7 +1340,7 @@ function Page() {
       <section id="contact" className="relative overflow-hidden border-t border-black/10 bg-[#f2f1ee]">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 -bottom-8 select-none text-center text-[18vw] font-medium leading-none tracking-[-0.05em] text-black/[0.04]"
+          className="pointer-events-none absolute inset-x-0 -bottom-8 select-none text-center text-[18vw] font-semibold leading-none tracking-[-0.05em] text-black/[0.04]"
         >
           <Parallax strength={60}>CAREERS</Parallax>
         </div>
