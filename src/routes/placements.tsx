@@ -453,6 +453,9 @@ function CinematicHero() {
             </div>
           </div>
         </div>
+
+        {/* Editorial block reveal — runs once on first load */}
+        <HeroMaskReveal />
       </section>
 
       {/* Hero statistics — editorial annotations continuing out of the photograph */}
