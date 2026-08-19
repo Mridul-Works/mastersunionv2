@@ -68,14 +68,14 @@ export function BottomNav({
       <div
         data-hero-section-nav
         className={
-          "sticky top-2 z-[60] -mx-1 flex w-full justify-start transition-all duration-500 sm:top-3 " +
+          "sticky top-2 z-[60] -mx-1 flex w-full items-start justify-start transition-all duration-500 sm:top-3 " +
           (compact ? "translate-y-0" : "")
         }
       >
         <nav
           aria-label="Section navigation"
           className={
-            "flex max-w-full items-center gap-1 overflow-x-auto rounded-full border transition-all duration-500 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden " +
+            "inline-flex w-auto max-w-full shrink items-center gap-1 overflow-x-auto rounded-full border transition-all duration-500 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden " +
             (compact
               ? "border-black/10 bg-white/85 p-1 shadow-[0_14px_40px_-20px_rgba(0,0,0,0.45)] backdrop-blur-xl"
               : "border-white/25 bg-white/10 p-1.5 backdrop-blur-md")
