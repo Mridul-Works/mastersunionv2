@@ -575,87 +575,9 @@ function Page() {
         </div>
       </div>
 
-      {/* HERO */}
-      <section id="top" className="relative overflow-hidden">
-        {/* Hero background photograph — full natural color, no global wash */}
-        <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[92vh] overflow-hidden">
-          <Parallax strength={60} className="h-full">
-            <img
-              src={heroBg.url}
-              alt=""
-              className="no-img-zoom h-full w-full object-cover object-center"
-              style={{ filter: "contrast(1.05)" }}
-              decoding="async"
-              fetchPriority="high"
-            />
-          </Parallax>
-          {/* Subtle localized dark gradient behind the left text column only */}
-          <div className="absolute inset-y-0 left-0 w-[62%] bg-gradient-to-r from-black/25 via-black/10 to-transparent lg:w-[56%]" />
-        </div>
+      {/* HERO — full-bleed cinematic editorial */}
+      <CinematicHero />
 
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-[8vw] top-[10vh] select-none text-[24vw] font-medium leading-none tracking-[-0.05em] text-black/[0.035]"
-        >
-          <Parallax strength={70}>2025</Parallax>
-        </div>
-
-        <div className="relative mx-auto grid max-w-6xl grid-cols-1 gap-10 px-5 pb-16 pt-14 md:px-10 md:pb-24 md:pt-24 lg:grid-cols-12">
-
-          <div className="lg:col-span-9">
-            <Reveal delay={120} y={14} duration={700}>
-              <Eyebrow className="text-white/70">Careers</Eyebrow>
-            </Reveal>
-            <div className="overflow-hidden">
-              <Reveal delay={280} y={56} duration={1100}>
-                <h1 className="mt-8 max-w-[20ch] text-balance text-[clamp(2.4rem,7vw,6rem)] font-medium leading-[0.95] tracking-[-0.02em] text-white">
-                  Accelerate your career growth.
-                </h1>
-              </Reveal>
-            </div>
-            <Reveal delay={520} duration={900}>
-              <p className="mt-10 max-w-[58ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55] text-white/80">
-                Benefit from an exceptional track record of our graduates&apos; success — audited, published, and repeated across five cohorts.
-              </p>
-            </Reveal>
-            <Reveal delay={720} duration={900}>
-              <div className="mt-10 flex flex-wrap gap-3">
-                <a href="#outcomes" className="group inline-flex items-center gap-2 bg-black px-6 py-3.5 text-[11px] uppercase tracking-[0.22em] text-white transition hover:opacity-80" style={{ fontFamily: MONO }}>
-                  <Download className="size-3.5 transition-transform duration-500 group-hover:translate-y-0.5" /> Placement report
-                </a>
-                <a href="#recruiters" className="group inline-flex items-center gap-2 border border-black/20 px-6 py-3.5 text-[11px] uppercase tracking-[0.22em] text-black transition hover:border-black" style={{ fontFamily: MONO }}>
-                  Our recruiters <ArrowUpRight className="size-3.5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                </a>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-
-        {/* Hero statistics — editorial rows, revealed one by one */}
-        <div className="relative mx-auto max-w-6xl px-5 pb-16 md:px-10 md:pb-24">
-          <Rule />
-          {HERO_STATS.map((s, i) => (
-            <div key={s.label}>
-              <Reveal
-                delay={200 + i * 110}
-                duration={850}
-                className="group grid grid-cols-1 items-baseline gap-2 py-6 transition-colors duration-500 hover:bg-black/[0.02] md:grid-cols-12 md:gap-6 md:py-8"
-              >
-                <div className="md:col-span-1">
-                  <Index n={i + 1} />
-                </div>
-                <div className="text-[clamp(1.7rem,3.4vw,2.9rem)] leading-none tracking-[-0.03em] md:col-span-5">
-                  <CountUp value={s.value} delay={200 + i * 110} />
-                </div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-black/60 transition-transform duration-500 group-hover:translate-x-1 md:col-span-6 md:text-right" style={{ fontFamily: MONO }}>
-                  {s.label}
-                </div>
-              </Reveal>
-              <Rule delay={260 + i * 110} />
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* PODCAST */}
       <Band tone="paper">
