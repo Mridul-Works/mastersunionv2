@@ -319,6 +319,8 @@ function CinematicHero() {
   const headlineRef = useRef<HTMLDivElement | null>(null);
   const [entered, setEntered] = useState(false);
   const reduced = useReducedMotion();
+  const [activeRightStat, setActiveRightStat] = useState(0);
+
 
   useEffect(() => {
     const id = requestAnimationFrame(() => setEntered(true));
