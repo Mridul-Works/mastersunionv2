@@ -22,6 +22,43 @@ function scrollToId(id: string) {
   if (window.history.replaceState) window.history.replaceState(null, "", `#${id}`);
 }
 
+function useScrollDirection(enabled: boolean) {
+  const [hidden, setHidden] = useState(false);
+
+  useEffect(() => {
+    if (!enabled || typeof window === "undefined") return;
+    let last = window.scrollY;
+    let raf = 0;
+    const threshold = 8;
+
+    const update = () => {
+      raf = 0;
+      const current = window.scrollY;
+      const delta = current - last;
+      if (current < 60) {
+        setHidden(false);
+      } else if (delta > threshold) {
+        setHidden(true);
+      } else if (delta < -threshold) {
+        setHidden(false);
+      }
+      last = current;
+    };
+
+    const tick = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+
+    window.addEventListener("scroll", tick, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", tick);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [enabled]);
+
+  return hidden;
+}
+
 export function BottomNav({
   items,
   applyHref = "#apply",
