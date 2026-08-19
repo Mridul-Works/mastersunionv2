@@ -530,7 +530,7 @@ function StatsAccordion() {
                 {/* Main value area — grows when active, collapses when inactive */}
                 <div
                   className="flex w-full min-w-0 flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
-                  style={{ flexGrow: isActive ? 3 : 1 }}
+                  style={{ flexGrow: isActive ? 3 : 1, containerType: isActive ? "inline-size" : undefined }}
                 >
                   {isActive ? (
                     <div
@@ -539,7 +539,6 @@ function StatsAccordion() {
                         maxHeight: "100%",
                         opacity: 1,
                         transform: "scale(1)",
-                        containerType: "inline-size",
                       }}
                     >
                       <div
