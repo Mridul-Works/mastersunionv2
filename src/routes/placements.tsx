@@ -577,20 +577,24 @@ function Page() {
 
       {/* HERO */}
       <section id="top" className="relative overflow-hidden">
-        {/* Hero background photograph */}
+        {/* Hero background photograph — full natural color, no global wash */}
         <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[92vh] overflow-hidden">
           <Parallax strength={60} className="h-full">
             <img
               src={heroBg.url}
               alt=""
-              className="no-img-zoom h-full w-full object-cover object-center opacity-[0.55]"
-              style={{ filter: "grayscale(0.35) contrast(1.02)" }}
+              className="no-img-zoom h-full w-full object-cover object-center"
+              style={{ filter: "contrast(1.05)" }}
               decoding="async"
               fetchPriority="high"
             />
           </Parallax>
-          {/* No overlay; photograph remains legible behind dark typography */}
+          {/* Subtle localized gradient behind the left text column only */}
+          <div className="absolute inset-y-0 left-0 w-[58%] bg-gradient-to-r from-black/20 via-black/8 to-transparent lg:w-[52%]" />
         </div>
+
+        {/* Subtle dark scrim directly behind the text block for readability */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-[62%] bg-gradient-to-r from-black/20 via-black/8 to-transparent lg:w-[56%]" />
 
         <div
           aria-hidden
