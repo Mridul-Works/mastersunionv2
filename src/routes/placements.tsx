@@ -314,6 +314,7 @@ const HERO_EASE = "cubic-bezier(0.16, 0.84, 0.24, 1)";
 function CinematicHero() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const imgRef = useRef<HTMLImageElement | null>(null);
+  const imgWrapRef = useRef<HTMLDivElement | null>(null);
   const copyRef = useRef<HTMLDivElement | null>(null);
   const headlineRef = useRef<HTMLDivElement | null>(null);
   const [entered, setEntered] = useState(false);
@@ -333,26 +334,31 @@ function CinematicHero() {
     const update = () => {
       raf = 0;
       const rect = section.getBoundingClientRect();
-      const h = rect.height || 1;
-      // 0 at rest, 1 once the hero has fully scrolled away
-      const p = Math.min(1, Math.max(0, -rect.top / h));
-      if (imgRef.current) {
-        imgRef.current.style.transform = `translate3d(0, ${(p * 7).toFixed(2)}%, 0) scale(1.02)`;
+      // travel distance over which the pin lasts
+      const track = Math.max(1, rect.height - window.innerHeight);
+      // 0 at rest, 1 once the second section has taken over
+      const p = Math.min(1, Math.max(0, -rect.top / track));
+      if (imgWrapRef.current) {
+        // the photograph drifts upward behind the pinned copy
+        imgWrapRef.current.style.transform = `translate3d(0, ${(-p * 26).toFixed(2)}%, 0)`;
+        imgWrapRef.current.style.opacity = String(1 - Math.min(1, Math.max(0, (p - 0.72) / 0.28)) * 0.35);
       }
       if (copyRef.current) {
-        const cp = Math.min(1, p / 0.42);
+        // stays put, then eases out only at the very end of the pin
+        const cp = Math.min(1, Math.max(0, (p - 0.68) / 0.32));
         copyRef.current.style.opacity = String(1 - cp);
-        copyRef.current.style.transform = `translate3d(0, ${(-cp * 34).toFixed(1)}px, 0)`;
+        copyRef.current.style.transform = `translate3d(0, ${(cp * 12).toFixed(1)}px, 0)`;
       }
       if (headlineRef.current) {
-        const hp = Math.min(1, p / 0.85);
-        headlineRef.current.style.opacity = String(1 - hp * 0.85);
-        headlineRef.current.style.transform = `translate3d(0, ${(-hp * 90).toFixed(1)}px, 0)`;
+        const hp = Math.min(1, Math.max(0, (p - 0.74) / 0.26));
+        headlineRef.current.style.opacity = String(1 - hp);
+        headlineRef.current.style.transform = `translate3d(0, ${(hp * 14).toFixed(1)}px, 0)`;
       }
     };
     const tick = () => {
       if (!raf) raf = requestAnimationFrame(update);
     };
+
 
     update();
     window.addEventListener("scroll", tick, { passive: true });
