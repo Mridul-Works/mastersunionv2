@@ -107,13 +107,15 @@ export function HeroMaskReveal() {
       const t = setTimeout(() => setDone(true), 300);
       return () => clearTimeout(t);
     }
+    // deterministic start on the next frame, hard stop at 1300ms
     const raf = requestAnimationFrame(() => setGo(true));
-    const t = setTimeout(() => setDone(true), 2400);
+    const t = setTimeout(() => setDone(true), 1300);
     return () => {
       cancelAnimationFrame(raf);
       clearTimeout(t);
     };
   }, [blocks, reduced]);
+
 
   if (done || !blocks) return null;
 
