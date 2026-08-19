@@ -545,9 +545,9 @@ function StatsAccordion() {
                       <div
                         className="w-full min-w-0 items-center justify-center whitespace-nowrap text-center leading-[0.86] tracking-[-0.05em]"
                         style={{
-                          fontSize: `min(clamp(2.25rem, 30cqw, 8.5rem), ${Math.round(
-                            150 / Math.max(3, s.value.length),
-                          )}cqw)`,
+                          fontSize: `min(clamp(2.25rem, 15vw, 8.5rem), ${Math.round(
+                            80 / Math.max(3, s.value.length),
+                          )}vw)`,
                         }}
                       >
                         <CountUp value={s.value} delay={80} />
