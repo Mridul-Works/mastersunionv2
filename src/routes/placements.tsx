@@ -539,7 +539,6 @@ function StatsAccordion() {
                         maxHeight: "100%",
                         opacity: 1,
                         transform: "scale(1)",
-                        containerType: "inline-size",
                       }}
                     >
                       <div
