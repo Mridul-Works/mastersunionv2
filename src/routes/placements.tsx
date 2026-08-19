@@ -507,51 +507,91 @@ function CinematicHero() {
             </Reveal>
           </div>
 
-          {/* RIGHT — three vertical columns on deep black */}
-          <div className="grid w-full grid-cols-1 bg-[#0a0a0a] md:w-[43%] md:grid-cols-3">
-            {HERO_STATS.slice(1).map((s, i) => (
-              <Reveal
-                key={s.label}
-                delay={240 + i * 80}
-                duration={900}
-                y={24}
-                className={`relative flex flex-col justify-between px-6 py-12 md:px-6 md:py-16 ${
-                  i > 0 ? "border-t border-white/12 md:border-t-0 md:border-l md:border-white/12" : ""
-                }`}
-              >
-                <span
-                  className="text-[10px] tabular-nums tracking-[0.28em] text-white/40"
-                  style={{ fontFamily: MONO }}
-                >
-                  {String(i + 2).padStart(2, "0")}
-                </span>
-
-                <div className="mt-10 text-[clamp(1.75rem,3.1vw,2.6rem)] leading-none tracking-[-0.04em] md:mt-14">
-                  <CountUp value={s.value} delay={280 + i * 80} />
-                </div>
-
-                {/* label reads vertically on desktop, horizontally on mobile */}
+          {/* RIGHT — three interactive vertical columns on deep black */}
+          <div className="flex w-full min-h-[420px] flex-col bg-[#0a0a0a] md:min-h-0 md:w-[43%] md:flex-row">
+            {HERO_STATS.slice(1).map((s, i) => {
+              const active = activeRightStat === i;
+              return (
                 <div
-                  className="mt-6 text-[10px] uppercase tracking-[0.22em] text-white/50 md:hidden"
-                  style={{ fontFamily: MONO }}
+                  key={s.label}
+                  className={`group relative flex cursor-pointer flex-col overflow-hidden transition-all duration-[500ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    active ? "flex-[1.5] bg-white/[0.05]" : "flex-[0.75] hover:bg-white/[0.03]"
+                  } ${i > 0 ? "border-t border-white/12 md:border-t-0 md:border-l md:border-white/12" : ""}`}
+                  onClick={() => setActiveRightStat(i)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setActiveRightStat(i);
+                    }
+                  }}
+                  aria-pressed={active}
+                  aria-label={`${s.label} statistic`}
                 >
-                  {s.label}
-                </div>
-                <div className="hidden md:mt-16 md:flex md:flex-1 md:items-end">
-                  <div
-                    className="whitespace-nowrap text-[10px] uppercase tracking-[0.24em] text-white/50"
-                    style={{
-                      fontFamily: MONO,
-                      writingMode: "vertical-rl",
-                      transform: "rotate(180deg)",
-                    }}
+                  {/* subtle top accent line */}
+                  <span
+                    className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-white transition-opacity duration-500 ${
+                      active ? "opacity-30" : "opacity-0 group-hover:opacity-20"
+                    }`}
+                  />
+                  {/* subtle bottom accent line */}
+                  <span
+                    className={`pointer-events-none absolute inset-x-0 bottom-0 h-px bg-white transition-opacity duration-500 ${
+                      active ? "opacity-30" : "opacity-0 group-hover:opacity-20"
+                    }`}
+                  />
+
+                  <Reveal
+                    delay={240 + i * 80}
+                    duration={900}
+                    y={24}
+                    className="flex h-full flex-col justify-between px-6 py-10 md:px-6 md:py-16"
                   >
-                    {s.label}
-                  </div>
+                    <span
+                      className="text-[10px] tabular-nums tracking-[0.28em] text-white/40"
+                      style={{ fontFamily: MONO }}
+                    >
+                      {String(i + 2).padStart(2, "0")}
+                    </span>
+
+                    <div
+                      className={`mt-10 text-[clamp(1.75rem,3.1vw,2.6rem)] leading-none tracking-[-0.04em] transition-colors duration-500 md:mt-14 ${
+                        active ? "text-white" : "text-white/90"
+                      }`}
+                    >
+                      <CountUp value={s.value} delay={280 + i * 80} />
+                    </div>
+
+                    {/* label reads horizontally on mobile, vertically on desktop */}
+                    <div
+                      className={`mt-6 text-[10px] uppercase tracking-[0.22em] transition-colors duration-500 md:hidden ${
+                        active ? "text-white/70" : "text-white/50"
+                      }`}
+                      style={{ fontFamily: MONO }}
+                    >
+                      {s.label}
+                    </div>
+                    <div className="hidden md:mt-16 md:flex md:flex-1 md:items-end">
+                      <div
+                        className={`whitespace-nowrap text-[10px] uppercase tracking-[0.24em] transition-colors duration-500 ${
+                          active ? "text-white/70" : "text-white/50"
+                        }`}
+                        style={{
+                          fontFamily: MONO,
+                          writingMode: "vertical-rl",
+                          transform: "rotate(180deg)",
+                        }}
+                      >
+                        {s.label}
+                      </div>
+                    </div>
+                  </Reveal>
                 </div>
-              </Reveal>
-            ))}
+              );
+            })}
           </div>
+
         </div>
       </section>
     </>
