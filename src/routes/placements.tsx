@@ -613,8 +613,8 @@ function CareerPodcast() {
   const id = "uiNTwDixAts";
 
   return (
-    <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
-      <div className="lg:col-span-5">
+    <div className="flex flex-col gap-8">
+      <div>
         <Reveal>
           <Eyebrow>Podcast</Eyebrow>
         </Reveal>
@@ -643,46 +643,44 @@ function CareerPodcast() {
         </Reveal>
       </div>
 
-      <div className="lg:col-span-7">
-        <ClipReveal>
-          <div className="relative aspect-video w-full overflow-hidden bg-black">
-            {playing ? (
-              <iframe
-                className="h-full w-full"
-                src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`}
-                title="How Masters' Union prepares students for top 1% placements"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
-                allowFullScreen
+      <ClipReveal>
+        <div className="relative aspect-video w-full overflow-hidden bg-black">
+          {playing ? (
+            <iframe
+              className="h-full w-full"
+              src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`}
+              title="How Masters' Union prepares students for top 1% placements"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
+              allowFullScreen
+            />
+          ) : (
+            <button
+              type="button"
+              onClick={() => setPlaying(true)}
+              aria-label="Play placements podcast"
+              className="group absolute inset-0 h-full w-full"
+            >
+              <img
+                src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
+                alt="Masters' Union placements podcast"
+                loading="lazy"
+                className="h-full w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-[1.03]"
               />
-            ) : (
-              <button
-                type="button"
-                onClick={() => setPlaying(true)}
-                aria-label="Play placements podcast"
-                className="group absolute inset-0 h-full w-full"
-              >
-                <img
-                  src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
-                  alt="Masters' Union placements podcast"
-                  loading="lazy"
-                  className="h-full w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-[1.03]"
-                />
-                <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-                <span className="absolute bottom-5 left-5 flex items-center gap-3">
-                  <span className="grid size-11 place-items-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md transition group-hover:bg-white/25">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </span>
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/90">
-                    Play podcast
-                  </span>
+              <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+              <span className="absolute bottom-5 left-5 flex items-center gap-3">
+                <span className="grid size-11 place-items-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md transition group-hover:bg-white/25">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
                 </span>
-              </button>
-            )}
-          </div>
-        </ClipReveal>
-      </div>
+                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/90">
+                  Play podcast
+                </span>
+              </span>
+            </button>
+          )}
+        </div>
+      </ClipReveal>
     </div>
   );
 }
