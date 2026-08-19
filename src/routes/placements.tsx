@@ -300,6 +300,194 @@ function useScrolled(threshold = 24) {
   return scrolled;
 }
 
+/* ------------------------------ cinematic hero ----------------------------- */
+
+const HERO_EASE = "cubic-bezier(0.16, 0.84, 0.24, 1)";
+
+/**
+ * Full-bleed editorial hero: the graduation photograph fills the viewport at
+ * full fidelity, the existing copy sits as quiet metadata, and the existing
+ * headline anchors the lower third as oversized typography.
+ * Content is unchanged — composition, scale, layering and motion only.
+ */
+function CinematicHero() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const imgRef = useRef<HTMLImageElement | null>(null);
+  const copyRef = useRef<HTMLDivElement | null>(null);
+  const headlineRef = useRef<HTMLDivElement | null>(null);
+  const [entered, setEntered] = useState(false);
+  const reduced = useReducedMotion();
+
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setEntered(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
+  useEffect(() => {
+    if (reduced) return;
+    const section = sectionRef.current;
+    if (!section) return;
+    let raf = 0;
+
+    const update = () => {
+      raf = 0;
+      const rect = section.getBoundingClientRect();
+      const h = rect.height || 1;
+      // 0 at rest, 1 once the hero has fully scrolled away
+      const p = Math.min(1, Math.max(0, -rect.top / h));
+      if (imgRef.current) {
+        imgRef.current.style.transform = `translate3d(0, ${(p * 7).toFixed(2)}%, 0) scale(1.02)`;
+      }
+      if (copyRef.current) {
+        const cp = Math.min(1, p / 0.42);
+        copyRef.current.style.opacity = String(1 - cp);
+        copyRef.current.style.transform = `translate3d(0, ${(-cp * 34).toFixed(1)}px, 0)`;
+      }
+      if (headlineRef.current) {
+        const hp = Math.min(1, p / 0.85);
+        headlineRef.current.style.opacity = String(1 - hp * 0.85);
+        headlineRef.current.style.transform = `translate3d(0, ${(-hp * 90).toFixed(1)}px, 0)`;
+      }
+    };
+    const tick = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", tick, { passive: true });
+    window.addEventListener("resize", tick);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", tick);
+      window.removeEventListener("resize", tick);
+    };
+  }, [reduced]);
+
+  const on = entered || reduced;
+  const step = (delay: number, y = 22) => ({
+    opacity: on ? 1 : 0,
+    transform: on ? "none" : `translate3d(0,${y}px,0)`,
+    transition: reduced
+      ? "opacity 240ms linear"
+      : `opacity 900ms ${HERO_EASE} ${delay}ms, transform 1000ms ${HERO_EASE} ${delay}ms`,
+  });
+
+  return (
+    <>
+      <section
+        id="top"
+        ref={sectionRef}
+        className="relative -mt-[calc(var(--hero-nav-offset,0px))] isolate min-h-[92svh] overflow-hidden bg-[#0a0a0a] lg:min-h-[96vh]"
+      >
+        {/* Photograph — full bleed, full fidelity */}
+        <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+          <img
+            ref={imgRef}
+            src={heroBg.url}
+            alt=""
+            className="no-img-zoom h-full w-full object-cover object-[68%_35%] md:object-[60%_38%]"
+            style={{
+              filter: "contrast(1.06) saturate(1.02)",
+              transform: on ? "translate3d(0,0,0) scale(1.02)" : "translate3d(0,0,0) scale(1.06)",
+              transition: reduced ? "none" : `transform 1600ms ${HERO_EASE} 60ms`,
+              willChange: "transform",
+            }}
+            decoding="async"
+            fetchPriority="high"
+          />
+          {/* Localized readability gradients only — no panel, no wash */}
+          <div className="absolute inset-x-0 bottom-0 h-[58%] bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
+          <div className="absolute inset-y-0 left-0 w-[70%] bg-gradient-to-r from-black/35 via-black/10 to-transparent lg:w-[52%]" />
+        </div>
+
+        {/* Editorial composition */}
+        <div className="relative flex min-h-[92svh] flex-col px-5 pb-10 pt-10 md:px-10 md:pb-14 md:pt-14 lg:min-h-[96vh]">
+          {/* upper-left metadata */}
+          <div style={step(560, 16)}>
+            <Eyebrow className="text-white/75">Careers</Eyebrow>
+          </div>
+
+          {/* left/middle: supporting copy + CTA */}
+          <div ref={copyRef} className="mt-10 max-w-[600px] md:mt-14" style={{ willChange: "transform, opacity" }}>
+            <p
+              className="text-[clamp(1rem,1.35vw,1.2rem)] leading-[1.6] text-white/85"
+              style={step(720, 22)}
+            >
+              Benefit from an exceptional track record of our graduates&apos; success — audited, published, and repeated across five cohorts.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3" style={step(1100, 18)}>
+              <a
+                href="#outcomes"
+                className="group inline-flex items-center gap-2 bg-white px-6 py-3.5 text-[11px] uppercase tracking-[0.22em] text-black transition hover:opacity-85"
+                style={{ fontFamily: MONO }}
+              >
+                <Download className="size-3.5 transition-transform duration-500 group-hover:translate-y-0.5" /> Placement report
+              </a>
+              <a
+                href="#recruiters"
+                className="group inline-flex items-center gap-2 border border-white/35 px-6 py-3.5 text-[11px] uppercase tracking-[0.22em] text-white transition hover:border-white"
+                style={{ fontFamily: MONO }}
+              >
+                Our recruiters <ArrowUpRight className="size-3.5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
+            </div>
+          </div>
+
+          {/* lower third: oversized headline */}
+          <div ref={headlineRef} className="mt-auto pt-16" style={{ willChange: "transform, opacity" }}>
+            <div style={{ clipPath: "inset(-20% -20% 0% -20%)" }}>
+              <h1
+                className="max-w-[16ch] text-[clamp(2.8rem,10.5vw,8.2rem)] font-medium leading-[0.94] tracking-[-0.035em] text-white"
+                style={{
+                  ...step(780, 90),
+                  textShadow: "0 1px 40px rgba(0,0,0,0.28)",
+                }}
+              >
+                Accelerate your career growth.
+              </h1>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Hero statistics — editorial annotations continuing out of the photograph */}
+      <section className="relative bg-[#0a0a0a] text-white">
+        <div className="mx-auto max-w-6xl px-5 pb-20 pt-4 md:px-10 md:pb-28">
+          <div className="h-px w-full bg-white/15" />
+          {HERO_STATS.map((s, i) => (
+            <div key={s.label}>
+              <Reveal
+                delay={80 + i * 110}
+                duration={850}
+                className="group grid grid-cols-1 items-baseline gap-2 py-6 transition-colors duration-500 hover:bg-white/[0.03] md:grid-cols-12 md:gap-6 md:py-8"
+              >
+                <div className="md:col-span-1">
+                  <span className="text-[10px] tabular-nums tracking-[0.24em] text-white/40" style={{ fontFamily: MONO }}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <div className="text-[clamp(1.9rem,4vw,3.4rem)] leading-none tracking-[-0.035em] md:col-span-5">
+                  <CountUp value={s.value} delay={80 + i * 110} />
+                </div>
+                <div
+                  className="text-[10px] uppercase tracking-[0.2em] text-white/55 transition-transform duration-500 group-hover:translate-x-1 md:col-span-6 md:text-right"
+                  style={{ fontFamily: MONO }}
+                >
+                  {s.label}
+                </div>
+              </Reveal>
+              <Draw delay={140 + i * 110} className="h-px w-full bg-white/12" />
+            </div>
+          ))}
+        </div>
+        {/* polished hand-off into the next editorial spread */}
+        <div aria-hidden className="h-24 bg-gradient-to-b from-transparent to-[#faf9f7]" />
+      </section>
+    </>
+  );
+}
+
+
 /** Shared editorial shell: generous whitespace, tonal background, full-bleed rules. */
 function Band({
   id,
