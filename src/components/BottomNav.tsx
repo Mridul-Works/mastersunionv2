@@ -64,13 +64,18 @@ export function BottomNav({
   applyHref = "#apply",
   className,
   innerClassName,
+  compact = false,
+  hideOnScroll = false,
 }: {
   items: BottomNavItem[];
   applyHref?: string;
   className?: string;
   innerClassName?: string;
+  compact?: boolean;
+  hideOnScroll?: boolean;
 }) {
   const [active, setActive] = useState<string>(items[0]?.id ?? "");
+  const hidden = useScrollDirection(hideOnScroll);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
