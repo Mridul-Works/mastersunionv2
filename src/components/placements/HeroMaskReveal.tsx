@@ -51,12 +51,13 @@ const TABLET: Block[] = [
   { x: 52, y: 34, w: 22, h: 66, dir: "down", delay: 150, duration: 900 },
   { x: 32, y: 55, w: 20, h: 45, dir: "down", delay: 230, duration: 860 },
   { x: 52, y: 0, w: 22, h: 34, dir: "up", delay: 230, duration: 860, push: 1.15 },
-  { x: 12, y: 0, w: 20, h: 50, dir: "left", delay: 310, duration: 810 },
-  { x: 12, y: 50, w: 20, h: 50, dir: "left", delay: 310, duration: 810, push: 1.2 },
+  { x: 12, y: 0, w: 20, h: 50, dir: "up", delay: 310, duration: 810 },
+  { x: 12, y: 50, w: 20, h: 50, dir: "down", delay: 310, duration: 810 },
   { x: 74, y: 0, w: 26, h: 46, dir: "right", delay: 390, duration: 780 },
-  { x: 74, y: 46, w: 26, h: 54, dir: "right", delay: 390, duration: 780, push: 1.25 },
-  { x: 0, y: 0, w: 12, h: 100, dir: "left", delay: 460, duration: 750, push: 1.35 },
+  { x: 74, y: 46, w: 26, h: 54, dir: "right", delay: 390, duration: 780 },
+  { x: 0, y: 0, w: 12, h: 100, dir: "left", delay: 460, duration: 750 },
 ];
+
 
 /* Mobile: 7 larger blocks. */
 const MOBILE: Block[] = [
