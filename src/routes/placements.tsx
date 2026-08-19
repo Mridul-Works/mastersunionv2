@@ -13,6 +13,8 @@ import {
   Mail,
 } from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
+import heroBg from "@/assets/placement-hero.webp.asset.json";
+
 import {
   ClipReveal,
   CountUp,
