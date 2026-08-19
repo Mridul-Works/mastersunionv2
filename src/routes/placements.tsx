@@ -527,13 +527,16 @@ function StatsAccordion() {
                 style={{ opacity: isActive ? 1 : 0 }}
               >
                 <div
-                  className="w-full min-w-0 whitespace-nowrap text-center leading-[0.86] tracking-[-0.05em]"
-                  style={{
-                    fontSize: `min(clamp(1.75rem, 30cqw, 8.5rem), ${Math.round(
-                      150 / Math.max(3, s.value.length),
-                    )}cqw, 42cqh)`,
-                  }}
+                  className="w-full min-w-0 whitespace-nowrap text-center text-[min(var(--stat-fs),2.6rem)] leading-[0.86] tracking-[-0.05em] md:text-[var(--stat-fs)]"
+                  style={
+                    {
+                      "--stat-fs": `min(clamp(1.75rem, 30cqw, 8.5rem), ${Math.round(
+                        150 / Math.max(3, s.value.length),
+                      )}cqw)`,
+                    } as React.CSSProperties
+                  }
                 >
+
                   {isActive ? <CountUp value={s.value} delay={80} /> : s.value}
                 </div>
               </div>
