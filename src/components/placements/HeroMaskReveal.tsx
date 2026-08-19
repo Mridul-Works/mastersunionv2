@@ -32,16 +32,17 @@ const DESKTOP: Block[] = [
   { x: 50, y: 38, w: 18, h: 62, dir: "down", delay: 150, duration: 900 },
   { x: 34, y: 62, w: 16, h: 38, dir: "down", delay: 230, duration: 860 },
   { x: 50, y: 0, w: 18, h: 38, dir: "up", delay: 230, duration: 860, push: 1.15 },
-  // middle group
-  { x: 18, y: 0, w: 16, h: 48, dir: "left", delay: 300, duration: 820 },
-  { x: 18, y: 48, w: 16, h: 52, dir: "left", delay: 300, duration: 820, push: 1.2 },
-  { x: 68, y: 0, w: 15, h: 56, dir: "right", delay: 380, duration: 780 },
-  { x: 68, y: 56, w: 15, h: 44, dir: "right", delay: 380, duration: 780, push: 1.2 },
-  // outer group
-  { x: 0, y: 0, w: 18, h: 58, dir: "left", delay: 450, duration: 760, push: 1.3 },
-  { x: 0, y: 58, w: 18, h: 42, dir: "down", delay: 450, duration: 760 },
-  { x: 83, y: 0, w: 17, h: 40, dir: "up", delay: 450, duration: 760 },
-  { x: 83, y: 40, w: 17, h: 60, dir: "right", delay: 450, duration: 760, push: 1.3 },
+  // middle group — exit through their nearest (vertical) edge, never across the photo
+  { x: 18, y: 0, w: 16, h: 48, dir: "up", delay: 300, duration: 820 },
+  { x: 18, y: 48, w: 16, h: 52, dir: "down", delay: 300, duration: 820 },
+  { x: 68, y: 0, w: 15, h: 56, dir: "up", delay: 380, duration: 780 },
+  { x: 68, y: 56, w: 15, h: 44, dir: "down", delay: 380, duration: 780 },
+  // outer group — flush with the edges, so they exit sideways
+  { x: 0, y: 0, w: 18, h: 58, dir: "left", delay: 450, duration: 760 },
+  { x: 0, y: 58, w: 18, h: 42, dir: "left", delay: 450, duration: 760 },
+  { x: 83, y: 0, w: 17, h: 40, dir: "right", delay: 450, duration: 760 },
+  { x: 83, y: 40, w: 17, h: 60, dir: "right", delay: 450, duration: 760 },
+
 ];
 
 /* Tablet: 9 blocks. */
