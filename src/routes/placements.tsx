@@ -472,6 +472,10 @@ function CinematicHero() {
         <HeroMaskReveal />
        </div>
       </section>
+    </>
+  );
+}
+
 /** Horizontal preview-stack accordion for the four hero statistics. */
 function StatsAccordion() {
   const [active, setActive] = useState(0);
