@@ -258,9 +258,9 @@ const LEADERS = [
 
 /* -------------------------------- primitives ------------------------------ */
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
+function Eyebrow({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
+    <div className={`text-[11px] uppercase tracking-[0.3em] text-black/55 ${className}`} style={{ fontFamily: MONO }}>
       {children}
     </div>
   );
