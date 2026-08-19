@@ -426,8 +426,8 @@ function CinematicHero() {
             </div>
           </div>
 
-          {/* left/middle: supporting copy + CTA */}
-          <div ref={copyRef} className="mt-auto max-w-[600px]" style={{ willChange: "transform, opacity" }}>
+          {/* left/middle: supporting copy + CTA directly under headline */}
+          <div ref={copyRef} className="mt-4 max-w-[600px] md:mt-5" style={{ willChange: "transform, opacity" }}>
             <p
               className="text-[clamp(1rem,1.35vw,1.2rem)] leading-[1.6] text-white/85"
               style={step(720, 22)}
