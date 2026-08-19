@@ -758,7 +758,7 @@ function Page() {
       <BottomNav
         items={NAV}
         applyHref="#contact"
-        className="!fixed !inset-x-0 !top-0 !bottom-auto z-50 justify-center px-3 pt-4 md:pt-5 lg:flex"
+        className="!fixed !inset-x-0 !top-0 !bottom-auto z-50 justify-center px-3 pt-0 pb-3 lg:flex"
         innerClassName="!max-w-none"
         compact
         hideOnScroll
