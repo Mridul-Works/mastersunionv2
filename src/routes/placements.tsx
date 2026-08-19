@@ -508,7 +508,7 @@ function StatsAccordion() {
                 flexShrink: 1,
                 flexBasis: 0,
                 minWidth: 0,
-                containerType: "inline-size",
+                containerType: "size",
               }}
             >
               {/* Index — anchored to its own panel */}
@@ -529,9 +529,9 @@ function StatsAccordion() {
                 <div
                   className="w-full min-w-0 whitespace-nowrap text-center leading-[0.86] tracking-[-0.05em]"
                   style={{
-                    fontSize: `min(clamp(2.25rem, 30cqw, 8.5rem), ${Math.round(
+                    fontSize: `min(clamp(1.75rem, 30cqw, 8.5rem), ${Math.round(
                       150 / Math.max(3, s.value.length),
-                    )}cqw)`,
+                    )}cqw, 42cqh)`,
                   }}
                 >
                   {isActive ? <CountUp value={s.value} delay={80} /> : s.value}
