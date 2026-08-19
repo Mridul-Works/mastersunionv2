@@ -462,7 +462,9 @@ function CinematicHero() {
 
         {/* Editorial block reveal — runs once on first load */}
         <HeroMaskReveal />
+       </div>
       </section>
+
 
       {/* Hero statistics — editorial annotations continuing out of the photograph */}
       <section className="relative bg-[#0a0a0a] text-white">
