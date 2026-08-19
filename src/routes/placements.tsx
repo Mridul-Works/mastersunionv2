@@ -404,14 +404,12 @@ function CinematicHero() {
             decoding="async"
             fetchPriority="high"
           />
-          {/* Localized readability gradient behind the typography only — left-to-right fade to transparent */}
-          <div
-            className="pointer-events-none absolute inset-0"
-            aria-hidden
-            style={{
-              background: "radial-gradient(ellipse 82% 96% at 22% 52%, rgba(0,0,0,0.22) 0%, rgba(0,0,0,0.12) 22%, rgba(0,0,0,0.05) 38%, rgba(0,0,0,0) 64%)",
-            }}
-          />
+          {/* Localized readability gradients only — no panel, no wash */}
+          <div className="absolute inset-x-0 bottom-0 h-[58%] bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
+          <div className="absolute inset-y-0 left-0 w-[70%] bg-gradient-to-r from-black/35 via-black/10 to-transparent lg:w-[52%]" />
+          {/* Very subtle transparent black overlay over the entire image */}
+          <div className="absolute inset-0 bg-black/[0.13]" aria-hidden />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-black/5 to-transparent lg:w-[65%]" aria-hidden />
         </div>
 
 
@@ -436,7 +434,7 @@ function CinematicHero() {
                 className="max-w-[16ch] text-[clamp(3.1rem,9.4vw,7.6rem)] font-medium leading-[0.94] tracking-[-0.035em] text-white"
                 style={{
                   ...step(980, 56),
-                  textShadow: "0 1px 10px rgba(0,0,0,0.18)",
+                  textShadow: "0 1px 40px rgba(0,0,0,0.28)",
                 }}
               >
                 Accelerate your career growth.
@@ -448,7 +446,7 @@ function CinematicHero() {
           <div ref={copyRef} className="mt-4 max-w-[600px] md:mt-5" style={{ willChange: "transform, opacity" }}>
             <p
               className="text-[clamp(1rem,1.35vw,1.2rem)] leading-[1.6] text-white/85"
-              style={{ ...step(700, 22), textShadow: "0 1px 8px rgba(0,0,0,0.16)" }}
+              style={step(700, 22)}
             >
               Benefit from an exceptional track record of our graduates&apos; success — audited, published, and repeated across five cohorts.
             </p>
