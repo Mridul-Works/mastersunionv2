@@ -529,24 +529,25 @@ function StatsAccordion() {
 
                 {/* Main value area — grows when active, collapses when inactive */}
                 <div
-                  className="flex flex-col items-center justify-center overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
+                  className="flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
                   style={{ flexGrow: isActive ? 3 : 1 }}
                 >
                   {isActive ? (
                     <div
-                      className="flex w-full items-center justify-center overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
+                      className="flex w-full items-center justify-center overflow-visible transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
                       style={{
                         maxHeight: "100%",
                         opacity: 1,
                         transform: "scale(1)",
+                        containerType: "inline-size",
                       }}
                     >
                       <div
-                        className="w-full min-w-0 items-center justify-center whitespace-nowrap text-center leading-[0.86] tracking-[-0.05em]"
+                        className="w-full min-w-0 items-center justify-center whitespace-nowrap text-center leading-none tracking-[-0.05em]"
                         style={{
-                          fontSize: `min(clamp(2.25rem, 15vw, 8.5rem), ${Math.round(
-                            80 / Math.max(3, s.value.length),
-                          )}vw)`,
+                          fontSize: `clamp(2rem, min(12cqi, ${Math.round(
+                            90 / Math.max(3, s.value.length),
+                          )}cqi), 7.5rem)`,
                         }}
                       >
                         <CountUp value={s.value} delay={80} />
