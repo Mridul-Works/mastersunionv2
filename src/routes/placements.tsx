@@ -26,6 +26,7 @@ import {
   useInView,
   useReducedMotion,
 } from "@/components/placements/motion";
+import { HeroMaskReveal } from "@/components/placements/HeroMaskReveal";
 
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
