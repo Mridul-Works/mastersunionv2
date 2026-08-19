@@ -386,7 +386,7 @@ function CinematicHero() {
         id="top"
         ref={sectionRef}
         className="relative z-0 bg-[#0a0a0a]"
-        style={{ height: "calc(100svh + 100svh)" }}
+        style={{ height: "100svh" }}
       >
        <div className="sticky top-0 h-[100svh] overflow-hidden">
         {/* Photograph — full bleed, full fidelity */}
