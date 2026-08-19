@@ -933,7 +933,8 @@ function Page() {
         >
           <Parallax strength={50}>“</Parallax>
         </div>
-        <div className="relative mx-auto max-w-6xl px-5 py-20 md:px-10 md:py-28">
+        <div className="page-x relative py-20 md:py-28">
+
           <Reveal duration={950}>
             <blockquote className="max-w-[52ch] text-[clamp(1.3rem,2.6vw,2.1rem)] font-medium leading-[1.25] tracking-[-0.015em]">
               “We don&apos;t approach placements the way most B-schools do. At Masters&apos; Union, placements are run by a 50+ member, full-time team spanning company outreach, career preparation, and role-specific coaching.”
