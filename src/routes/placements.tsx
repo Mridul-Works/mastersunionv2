@@ -481,7 +481,7 @@ function StatsAccordion() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="relative z-10 h-full min-h-[520px] w-full bg-[#0a0a0a] text-white md:min-h-[560px]">
+    <section className="relative z-10 h-full min-h-[540px] w-full bg-[#0a0a0a] text-white md:min-h-[600px] lg:min-h-[640px]">
       <div className="flex h-full min-h-[inherit] w-full flex-col md:flex-row">
         {HERO_STATS.map((s, i) => {
           const isActive = active === i;
@@ -506,7 +506,7 @@ function StatsAccordion() {
                   : "cursor-pointer bg-[#0a0a0a] text-white hover:bg-[#141414]"
               } ${i > 0 ? "border-t border-white/12 md:border-t-0 md:border-l md:border-white/12" : ""}`}
               style={{
-                flexGrow: isActive ? 58 : 14,
+                flexGrow: isActive ? 56 : 16,
                 flexShrink: 1,
                 flexBasis: 0,
                 transition: "flex-grow 600ms cubic-bezier(0.76,0,0.24,1), background-color 500ms cubic-bezier(0.76,0,0.24,1)",
