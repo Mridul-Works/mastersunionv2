@@ -478,36 +478,79 @@ function CinematicHero() {
         className="relative z-10 bg-[#0a0a0a] text-white"
         style={{ marginTop: "-100svh" }}
       >
-        <div className="mx-auto max-w-6xl px-5 pb-20 pt-4 md:px-10 md:pb-28">
-          <div className="h-px w-full bg-white/15" />
-          {HERO_STATS.map((s, i) => (
-            <div key={s.label}>
-              <Reveal
-                delay={80 + i * 110}
-                duration={850}
-                className="group grid grid-cols-1 items-baseline gap-2 py-6 transition-colors duration-500 hover:bg-white/[0.03] md:grid-cols-12 md:gap-6 md:py-8"
+        <div className="flex flex-col md:min-h-[78vh] md:flex-row">
+          {/* LEFT — featured statistic 01 on warm off-white */}
+          <div className="flex w-full flex-col justify-between bg-[#faf9f7] px-6 py-14 text-[#0a0a0a] md:w-[57%] md:px-14 md:py-20 lg:px-20">
+            <Reveal duration={900} y={26}>
+              <span
+                className="text-[10px] tabular-nums tracking-[0.28em] text-black/45"
+                style={{ fontFamily: MONO }}
               >
-                <div className="md:col-span-1">
-                  <span className="text-[10px] tabular-nums tracking-[0.24em] text-white/40" style={{ fontFamily: MONO }}>
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
+                {"01"}
+              </span>
+            </Reveal>
+            <Reveal delay={80} duration={950} y={28} className="mt-16 md:mt-24">
+              <div className="text-[clamp(4.5rem,13vw,11rem)] leading-[0.86] tracking-[-0.05em]">
+                <CountUp value={HERO_STATS[0].value} delay={120} />
+              </div>
+            </Reveal>
+            <Reveal delay={160} duration={900} y={20} className="mt-10 md:mt-16">
+              <div className="h-px w-full max-w-[520px] bg-black/15" />
+              <div
+                className="mt-5 text-[10px] uppercase tracking-[0.24em] text-black/60"
+                style={{ fontFamily: MONO }}
+              >
+                {HERO_STATS[0].label}
+              </div>
+            </Reveal>
+          </div>
+
+          {/* RIGHT — three vertical columns on deep black */}
+          <div className="grid w-full grid-cols-1 bg-[#0a0a0a] md:w-[43%] md:grid-cols-3">
+            {HERO_STATS.slice(1).map((s, i) => (
+              <Reveal
+                key={s.label}
+                delay={240 + i * 80}
+                duration={900}
+                y={24}
+                className={`relative flex flex-col justify-between px-6 py-12 md:px-6 md:py-16 ${
+                  i > 0 ? "border-t border-white/12 md:border-t-0 md:border-l md:border-white/12" : ""
+                }`}
+              >
+                <span
+                  className="text-[10px] tabular-nums tracking-[0.28em] text-white/40"
+                  style={{ fontFamily: MONO }}
+                >
+                  {String(i + 2).padStart(2, "0")}
+                </span>
+
+                <div className="mt-10 text-[clamp(1.75rem,3.1vw,2.6rem)] leading-none tracking-[-0.04em] md:mt-14">
+                  <CountUp value={s.value} delay={280 + i * 80} />
                 </div>
-                <div className="text-[clamp(1.9rem,4vw,3.4rem)] leading-none tracking-[-0.035em] md:col-span-5">
-                  <CountUp value={s.value} delay={80 + i * 110} />
-                </div>
+
+                {/* label reads vertically on desktop, horizontally on mobile */}
                 <div
-                  className="text-[10px] uppercase tracking-[0.2em] text-white/55 transition-transform duration-500 group-hover:translate-x-1 md:col-span-6 md:text-right"
+                  className="mt-6 text-[10px] uppercase tracking-[0.22em] text-white/50 md:hidden"
                   style={{ fontFamily: MONO }}
                 >
                   {s.label}
                 </div>
+                <div className="hidden md:mt-16 md:flex md:flex-1 md:items-end">
+                  <div
+                    className="whitespace-nowrap text-[10px] uppercase tracking-[0.24em] text-white/50"
+                    style={{
+                      fontFamily: MONO,
+                      writingMode: "vertical-rl",
+                      transform: "rotate(180deg)",
+                    }}
+                  >
+                    {s.label}
+                  </div>
+                </div>
               </Reveal>
-              <Draw delay={140 + i * 110} className="h-px w-full bg-white/12" />
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-        {/* polished hand-off into the next editorial spread */}
-        <div aria-hidden className="h-24 bg-gradient-to-b from-transparent to-[#faf9f7]" />
       </section>
     </>
   );
