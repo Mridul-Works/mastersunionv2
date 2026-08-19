@@ -506,18 +506,22 @@ function StatsAccordion() {
                   : "cursor-pointer bg-[#0a0a0a] text-white hover:bg-[#141414]"
               } ${i > 0 ? "border-t border-white/12 md:border-t-0 md:border-l md:border-white/12" : ""}`}
               style={{
-                flexGrow: isActive ? 56 : 16,
+                flexGrow: isActive ? 68 : 12,
                 flexShrink: 1,
                 flexBasis: 0,
+                minWidth: 0,
                 transition: "flex-grow 600ms cubic-bezier(0.76,0,0.24,1), background-color 500ms cubic-bezier(0.76,0,0.24,1)",
               }}
             >
               {/* ACTIVE — large editorial canvas */}
               <div
-                className={`flex h-full flex-col justify-between px-5 py-14 md:px-8 md:py-16 lg:px-10 ${
+                className={`grid h-full grid-rows-[auto_1fr_auto] justify-items-center gap-6 px-5 py-14 text-center md:px-8 md:py-16 lg:px-10 ${
                   isActive ? "opacity-100" : "pointer-events-none absolute inset-0 opacity-0"
                 }`}
-                style={{ transition: "opacity 420ms cubic-bezier(0.76,0,0.24,1) 120ms" }}
+                style={{
+                  transition: "opacity 420ms cubic-bezier(0.76,0,0.24,1) 120ms",
+                  containerType: "inline-size",
+                }}
                 aria-hidden={!isActive}
               >
                 <span
@@ -527,13 +531,17 @@ function StatsAccordion() {
                   {idx}
                 </span>
                 <div
-                  className={`mt-12 whitespace-nowrap leading-[0.86] tracking-[-0.05em] md:mt-16 ${
-                    s.value.length <= 4 ? "text-[clamp(3rem,8.5vw,8.5rem)]" : "text-[clamp(2.5rem,5.5vw,6.5rem)]"
-                  }`}
+                  className="flex w-full min-w-0 items-center justify-center whitespace-nowrap leading-[0.86] tracking-[-0.05em]"
+                  style={{
+                    fontSize: `min(clamp(2.25rem, 30cqw, 8.5rem), ${Math.round(
+                      150 / Math.max(3, s.value.length),
+                    )}cqw)`,
+                  }}
+
                 >
                   {isActive ? <CountUp value={s.value} delay={80} /> : s.value}
                 </div>
-                <div className="mt-10 md:mt-12">
+                <div className="flex w-full flex-col items-center">
                   <div className="h-px w-full max-w-[420px] bg-black/15" />
                   <div
                     className="mt-5 text-[10px] uppercase tracking-[0.24em] text-black/60"
@@ -543,6 +551,7 @@ function StatsAccordion() {
                   </div>
                 </div>
               </div>
+
 
               {/* COLLAPSED — narrow vertical column */}
               <div
