@@ -420,7 +420,7 @@ function CinematicHero() {
 
           {/* top: careers eyebrow */}
           <div style={step(450, 16)}>
-            <Eyebrow className="text-white/75 font-semibold">Careers</Eyebrow>
+            <Eyebrow className="text-white/75">Careers</Eyebrow>
           </div>
 
           {/* oversized headline under the eyebrow */}
@@ -429,9 +429,9 @@ function CinematicHero() {
             className="pt-2 md:pt-3"
             style={{ willChange: "transform, opacity" }}
           >
-            <div className="overflow-visible" style={{ clipPath: "inset(-20% -20% -10% -20%)" }}>
+            <div style={{ clipPath: "inset(-20% -20% 0% -20%)" }}>
               <h1
-                className="max-w-[16ch] text-[clamp(3.1rem,9.4vw,7.6rem)] font-medium leading-[1.0] tracking-[-0.035em] text-white"
+                className="max-w-[16ch] text-[clamp(3.1rem,9.4vw,7.6rem)] font-medium leading-[0.94] tracking-[-0.035em] text-white"
                 style={{
                   ...step(980, 56),
                   textShadow: "0 1px 40px rgba(0,0,0,0.28)",
@@ -445,7 +445,7 @@ function CinematicHero() {
           {/* left/middle: supporting copy + CTA directly under headline */}
           <div ref={copyRef} className="mt-4 max-w-[600px] md:mt-5" style={{ willChange: "transform, opacity" }}>
             <p
-              className="text-[clamp(1.12rem,1.5vw,1.35rem)] font-semibold leading-[1.6] text-white/85"
+              className="text-[clamp(1rem,1.35vw,1.2rem)] leading-[1.6] text-white/85"
               style={step(700, 22)}
             >
               Benefit from an exceptional track record of our graduates&apos; success — audited, published, and repeated across five cohorts.
