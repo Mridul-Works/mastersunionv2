@@ -25,9 +25,11 @@ function scrollToId(id: string) {
 export function BottomNav({
   items,
   applyHref = "#apply",
+  className,
 }: {
   items: BottomNavItem[];
   applyHref?: string;
+  className?: string;
 }) {
   const [active, setActive] = useState<string>(items[0]?.id ?? "");
 
@@ -60,7 +62,10 @@ export function BottomNav({
   return (
     <div
       data-desktop-bottom-nav
-      className="pointer-events-none fixed inset-x-0 bottom-0 z-[100] hidden justify-center px-3 pb-3 sm:pb-5 lg:flex"
+      className={
+        "pointer-events-none fixed inset-x-0 bottom-0 z-[100] hidden justify-center px-3 pb-3 sm:pb-5 lg:flex " +
+        (className ?? "")
+      }
     >
       <nav
         aria-label="Section navigation"
