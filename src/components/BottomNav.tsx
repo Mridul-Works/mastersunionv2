@@ -22,18 +22,60 @@ function scrollToId(id: string) {
   if (window.history.replaceState) window.history.replaceState(null, "", `#${id}`);
 }
 
+function useScrollDirection(enabled: boolean) {
+  const [hidden, setHidden] = useState(false);
+
+  useEffect(() => {
+    if (!enabled || typeof window === "undefined") return;
+    let last = window.scrollY;
+    let raf = 0;
+    const threshold = 8;
+
+    const update = () => {
+      raf = 0;
+      const current = window.scrollY;
+      const delta = current - last;
+      if (current < 60) {
+        setHidden(false);
+      } else if (delta > threshold) {
+        setHidden(true);
+      } else if (delta < -threshold) {
+        setHidden(false);
+      }
+      last = current;
+    };
+
+    const tick = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+
+    window.addEventListener("scroll", tick, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", tick);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [enabled]);
+
+  return hidden;
+}
+
 export function BottomNav({
   items,
   applyHref = "#apply",
   className,
   innerClassName,
+  compact = false,
+  hideOnScroll = false,
 }: {
   items: BottomNavItem[];
   applyHref?: string;
   className?: string;
   innerClassName?: string;
+  compact?: boolean;
+  hideOnScroll?: boolean;
 }) {
   const [active, setActive] = useState<string>(items[0]?.id ?? "");
+  const hidden = useScrollDirection(hideOnScroll);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -65,14 +107,18 @@ export function BottomNav({
     <div
       data-desktop-bottom-nav
       className={
-        "pointer-events-none fixed inset-x-0 bottom-0 z-[100] hidden justify-center px-3 pb-3 sm:pb-5 lg:flex " +
+        "pointer-events-none fixed inset-x-0 bottom-0 z-[100] hidden justify-center px-3 pb-3 transition-transform duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] sm:pb-5 lg:flex " +
         (className ?? "")
       }
+      style={{
+        transform: hidden ? "translateY(-120%)" : undefined,
+      }}
     >
       <nav
         aria-label="Section navigation"
         className={
-          "pointer-events-auto flex w-full max-w-[560px] items-center gap-1 rounded-full border border-black/10 bg-white/85 p-1.5 shadow-[0_18px_50px_-18px_rgba(0,0,0,0.4)] backdrop-blur-xl sm:max-w-[620px] " +
+          "pointer-events-auto flex w-full max-w-[560px] items-center gap-1 rounded-full border border-black/10 bg-white/85 shadow-[0_18px_50px_-18px_rgba(0,0,0,0.4)] backdrop-blur-xl sm:max-w-[620px] " +
+          (compact ? "p-1 " : "p-1.5 ") +
           (innerClassName ?? "")
         }
       >
@@ -86,7 +132,8 @@ export function BottomNav({
                   onClick={() => scrollToId(id)}
                   aria-current={isActive ? "true" : undefined}
                   className={
-                    "group flex w-full flex-col items-center justify-center gap-0.5 rounded-full px-2 py-1.5 text-[10px] font-medium uppercase tracking-[0.14em] transition-colors " +
+                    "group flex w-full flex-col items-center justify-center gap-0.5 rounded-full px-2 text-[10px] font-medium uppercase tracking-[0.14em] transition-colors " +
+                    (compact ? "py-1 " : "py-1.5 ") +
                     (isActive
                       ? "bg-black/5 text-black"
                       : "text-black/55 hover:bg-black/5 hover:text-black")
@@ -107,7 +154,10 @@ export function BottomNav({
               scrollToId(applyHref.slice(1));
             }
           }}
-          className="inline-flex items-center gap-1 rounded-full bg-black px-3.5 py-2 text-[10.5px] font-semibold uppercase tracking-[0.16em] text-white transition-transform hover:scale-[1.03] active:scale-[0.97] sm:px-4"
+          className={
+            "inline-flex items-center gap-1 rounded-full bg-black text-[10.5px] font-semibold uppercase tracking-[0.16em] text-white transition-transform hover:scale-[1.03] active:scale-[0.97] " +
+            (compact ? "px-3 py-1.5 " : "px-3.5 py-2 sm:px-4 ")
+          }
         >
           Apply
           <ArrowUpRight className="size-3.5" strokeWidth={2.2} />
