@@ -25,11 +25,15 @@ function scrollToId(id: string) {
 export function BottomNav({
   items,
   applyHref = "#apply",
+  variant = "floating",
 }: {
   items: BottomNavItem[];
   applyHref?: string;
+  variant?: "floating" | "inline";
 }) {
   const [active, setActive] = useState<string>(items[0]?.id ?? "");
+  const [compact, setCompact] = useState(false);
+
 
   useEffect(() => {
     if (typeof window === "undefined") return;
