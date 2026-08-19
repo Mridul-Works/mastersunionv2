@@ -546,7 +546,7 @@ function StatsAccordion() {
 
               {/* COLLAPSED — narrow vertical column */}
               <div
-                className={`flex h-full flex-col items-center justify-between px-4 py-10 md:py-12 ${
+                className={`flex h-full flex-col items-center justify-between px-4 py-12 md:py-14 lg:py-16 ${
                   isActive ? "pointer-events-none absolute inset-0 opacity-0" : "opacity-100"
                 }`}
                 style={{ transition: "opacity 360ms cubic-bezier(0.76,0,0.24,1)" }}
@@ -560,11 +560,11 @@ function StatsAccordion() {
                 </span>
 
                 <div className="flex flex-1 items-center justify-center py-8">
-                  <span className="h-16 w-px bg-white/15 transition-colors duration-500 group-hover:bg-white/35 md:h-20" />
+                  <span className="h-20 w-px bg-white/15 transition-colors duration-500 group-hover:bg-white/35 md:h-24 lg:h-28" />
                 </div>
 
                 <div
-                  className="max-h-[220px] overflow-hidden whitespace-nowrap text-[9px] uppercase tracking-[0.24em] text-white/45 transition-colors duration-500 group-hover:text-white/70"
+                  className="max-h-[280px] overflow-hidden whitespace-nowrap text-[9px] uppercase tracking-[0.24em] text-white/45 transition-colors duration-500 group-hover:text-white/70"
                   style={{
                     fontFamily: MONO,
                     writingMode: "vertical-rl",
