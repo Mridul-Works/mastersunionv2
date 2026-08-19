@@ -386,7 +386,7 @@ function CinematicHero() {
         id="top"
         ref={sectionRef}
         className="relative z-0 bg-[#0a0a0a]"
-        style={{ height: reduced ? "100svh" : "175svh" }}
+        style={{ height: reduced ? "100svh" : "200svh" }}
       >
        <div className="sticky top-0 h-[100svh] overflow-hidden">
         {/* Photograph — full bleed, full fidelity */}
