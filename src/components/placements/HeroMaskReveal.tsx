@@ -32,16 +32,17 @@ const DESKTOP: Block[] = [
   { x: 50, y: 38, w: 18, h: 62, dir: "down", delay: 150, duration: 900 },
   { x: 34, y: 62, w: 16, h: 38, dir: "down", delay: 230, duration: 860 },
   { x: 50, y: 0, w: 18, h: 38, dir: "up", delay: 230, duration: 860, push: 1.15 },
-  // middle group
-  { x: 18, y: 0, w: 16, h: 48, dir: "left", delay: 300, duration: 820 },
-  { x: 18, y: 48, w: 16, h: 52, dir: "left", delay: 300, duration: 820, push: 1.2 },
-  { x: 68, y: 0, w: 15, h: 56, dir: "right", delay: 380, duration: 780 },
-  { x: 68, y: 56, w: 15, h: 44, dir: "right", delay: 380, duration: 780, push: 1.2 },
-  // outer group
-  { x: 0, y: 0, w: 18, h: 58, dir: "left", delay: 450, duration: 760, push: 1.3 },
-  { x: 0, y: 58, w: 18, h: 42, dir: "down", delay: 450, duration: 760 },
-  { x: 83, y: 0, w: 17, h: 40, dir: "up", delay: 450, duration: 760 },
-  { x: 83, y: 40, w: 17, h: 60, dir: "right", delay: 450, duration: 760, push: 1.3 },
+  // middle group — exit through their nearest (vertical) edge, never across the photo
+  { x: 18, y: 0, w: 16, h: 48, dir: "up", delay: 300, duration: 820 },
+  { x: 18, y: 48, w: 16, h: 52, dir: "down", delay: 300, duration: 820 },
+  { x: 68, y: 0, w: 15, h: 56, dir: "up", delay: 380, duration: 780 },
+  { x: 68, y: 56, w: 15, h: 44, dir: "down", delay: 380, duration: 780 },
+  // outer group — flush with the edges, so they exit sideways
+  { x: 0, y: 0, w: 18, h: 58, dir: "left", delay: 450, duration: 760 },
+  { x: 0, y: 58, w: 18, h: 42, dir: "left", delay: 450, duration: 760 },
+  { x: 83, y: 0, w: 17, h: 40, dir: "right", delay: 450, duration: 760 },
+  { x: 83, y: 40, w: 17, h: 60, dir: "right", delay: 450, duration: 760 },
+
 ];
 
 /* Tablet: 9 blocks. */
@@ -50,21 +51,22 @@ const TABLET: Block[] = [
   { x: 52, y: 34, w: 22, h: 66, dir: "down", delay: 150, duration: 900 },
   { x: 32, y: 55, w: 20, h: 45, dir: "down", delay: 230, duration: 860 },
   { x: 52, y: 0, w: 22, h: 34, dir: "up", delay: 230, duration: 860, push: 1.15 },
-  { x: 12, y: 0, w: 20, h: 50, dir: "left", delay: 310, duration: 810 },
-  { x: 12, y: 50, w: 20, h: 50, dir: "left", delay: 310, duration: 810, push: 1.2 },
+  { x: 12, y: 0, w: 20, h: 50, dir: "up", delay: 310, duration: 810 },
+  { x: 12, y: 50, w: 20, h: 50, dir: "down", delay: 310, duration: 810 },
   { x: 74, y: 0, w: 26, h: 46, dir: "right", delay: 390, duration: 780 },
-  { x: 74, y: 46, w: 26, h: 54, dir: "right", delay: 390, duration: 780, push: 1.25 },
-  { x: 0, y: 0, w: 12, h: 100, dir: "left", delay: 460, duration: 750, push: 1.35 },
+  { x: 74, y: 46, w: 26, h: 54, dir: "right", delay: 390, duration: 780 },
+  { x: 0, y: 0, w: 12, h: 100, dir: "left", delay: 460, duration: 750 },
 ];
+
 
 /* Mobile: 7 larger blocks. */
 const MOBILE: Block[] = [
   { x: 30, y: 0, w: 40, h: 46, dir: "up", delay: 150, duration: 900 },
   { x: 30, y: 46, w: 40, h: 54, dir: "down", delay: 150, duration: 900 },
   { x: 0, y: 0, w: 30, h: 40, dir: "left", delay: 240, duration: 850 },
-  { x: 0, y: 40, w: 30, h: 60, dir: "left", delay: 240, duration: 850, push: 1.2 },
+  { x: 0, y: 40, w: 30, h: 60, dir: "left", delay: 240, duration: 850 },
   { x: 70, y: 0, w: 30, h: 58, dir: "right", delay: 320, duration: 810 },
-  { x: 70, y: 58, w: 30, h: 42, dir: "right", delay: 320, duration: 810, push: 1.2 },
+  { x: 70, y: 58, w: 30, h: 42, dir: "right", delay: 320, duration: 810 },
   { x: 22, y: 82, w: 56, h: 18, dir: "down", delay: 400, duration: 780 },
 ];
 
@@ -75,19 +77,22 @@ function pickSet(w: number) {
   return DESKTOP;
 }
 
+/* Travel distance is derived from the block's own geometry, expressed as a
+   percentage of its own size, so every block ends fully outside the hero. */
 function offset(b: Block) {
-  const push = b.push ?? 1;
+  const pad = 14 * (b.push ?? 1);
   switch (b.dir) {
     case "left":
-      return `translate3d(-${(110 * push).toFixed(0)}%, 0, 0)`;
+      return `translate3d(-${(((b.x + b.w) / b.w) * 100 + pad).toFixed(1)}%, 0, 0)`;
     case "right":
-      return `translate3d(${(110 * push).toFixed(0)}%, 0, 0)`;
+      return `translate3d(${(((100 - b.x) / b.w) * 100 + pad).toFixed(1)}%, 0, 0)`;
     case "up":
-      return `translate3d(0, -${(115 * push).toFixed(0)}%, 0)`;
+      return `translate3d(0, -${(((b.y + b.h) / b.h) * 100 + pad).toFixed(1)}%, 0)`;
     default:
-      return `translate3d(0, ${(115 * push).toFixed(0)}%, 0)`;
+      return `translate3d(0, ${(((100 - b.y) / b.h) * 100 + pad).toFixed(1)}%, 0)`;
   }
 }
+
 
 export function HeroMaskReveal() {
   const reduced = useReducedMotion();
