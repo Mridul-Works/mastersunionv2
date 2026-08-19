@@ -402,10 +402,15 @@ function CinematicHero() {
 
         {/* Editorial composition */}
         <div className="relative flex min-h-[82svh] flex-col px-5 pb-28 pt-10 md:px-10 md:pb-24 md:pt-14 lg:min-h-[86vh]">
-          {/* top: oversized headline first */}
+          {/* top: careers eyebrow */}
+          <div style={step(560, 16)}>
+            <Eyebrow className="text-white/75">Careers</Eyebrow>
+          </div>
+
+          {/* oversized headline under the eyebrow */}
           <div
             ref={headlineRef}
-            className="pt-2 md:pt-4"
+            className="pt-2 md:pt-3"
             style={{ willChange: "transform, opacity" }}
           >
             <div style={{ clipPath: "inset(-20% -20% 0% -20%)" }}>
@@ -419,11 +424,6 @@ function CinematicHero() {
                 Accelerate your career growth.
               </h1>
             </div>
-          </div>
-
-          {/* careers eyebrow under headline */}
-          <div className="mt-6 md:mt-8" style={step(560, 16)}>
-            <Eyebrow className="text-white/75">Careers</Eyebrow>
           </div>
 
           {/* left/middle: supporting copy + CTA */}
