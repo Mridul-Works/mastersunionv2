@@ -538,32 +538,32 @@ function StatsAccordion() {
                 </div>
               </div>
 
-              {/* Divider — belongs to the expanded panel only */}
+              {/* Vertical divider — closed columns only, centered above the label */}
               <div
-                className={`pointer-events-none absolute left-1/2 -translate-x-1/2 bg-black/15 transition-opacity duration-500 ${
-                  isActive ? "opacity-100" : "opacity-0"
+                className={`pointer-events-none absolute left-1/2 -translate-x-1/2 bg-white/25 transition-opacity duration-500 ${
+                  isActive ? "opacity-0" : "opacity-100"
                 }`}
-                style={{ bottom: "88px", height: "1px", width: "min(80%, 420px)" }}
+                style={{ bottom: "196px", width: "1px", height: "40px" }}
               />
 
-              {/* Label — closed: vertically centered in its own column; active: under the divider */}
+              {/* Label — closed: vertical, anchored near bottom of its own column; active: horizontal at bottom */}
               <div
-                className={`pointer-events-none absolute left-1/2 flex items-center justify-center transition-opacity duration-500 ${
-                  isActive ? "text-black/60" : "text-white/45 group-hover:text-white/70"
+                className={`pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-center transition-opacity duration-500 ${
+                  isActive ? "h-16 text-black/60" : "h-[180px] text-white/45 group-hover:text-white/70"
                 }`}
-                style={
-                  isActive
-                    ? { bottom: "56px", transform: "translateX(-50%)" }
-                    : { top: "50%", transform: "translate(-50%, -50%) rotate(-90deg)" }
-                }
               >
                 <span
                   className="whitespace-nowrap uppercase tracking-[0.24em]"
-                  style={{ fontFamily: MONO, fontSize: isActive ? "10px" : "9px" }}
+                  style={{
+                    fontFamily: MONO,
+                    fontSize: isActive ? "10px" : "9px",
+                    transform: isActive ? "none" : "rotate(-90deg)",
+                  }}
                 >
                   {s.label}
                 </span>
               </div>
+
             </div>
           );
         })}
