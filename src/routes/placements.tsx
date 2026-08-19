@@ -472,8 +472,11 @@ function CinematicHero() {
       </section>
 
 
-      {/* Hero statistics — editorial annotations continuing out of the photograph */}
-      <section className="relative bg-[#0a0a0a] text-white">
+      {/* Hero statistics — rises from below and physically covers the hero */}
+      <section
+        className="relative z-10 bg-[#0a0a0a] text-white"
+        style={{ marginTop: "-100svh" }}
+      >
         <div className="mx-auto max-w-6xl px-5 pb-20 pt-4 md:px-10 md:pb-28">
           <div className="h-px w-full bg-white/15" />
           {HERO_STATS.map((s, i) => (
