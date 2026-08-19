@@ -106,7 +106,7 @@ export function HeroMaskReveal() {
       return () => clearTimeout(t);
     }
     const raf = requestAnimationFrame(() => setGo(true));
-    const t = setTimeout(() => setDone(true), 2000);
+    const t = setTimeout(() => setDone(true), 2400);
     return () => {
       cancelAnimationFrame(raf);
       clearTimeout(t);
