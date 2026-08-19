@@ -24,48 +24,50 @@ type Block = {
   push?: number;
 };
 
-/* Desktop: 12 asymmetric editorial blocks, center group first. */
+/* Fixed timeline: every mask satisfies delay + duration <= 1250ms.
+   Groups start at 150 / 230 / 300 / 380 / 450ms and all land together. */
 const DESKTOP: Block[] = [
   // center group
-  { x: 34, y: 0, w: 16, h: 62, dir: "up", delay: 240, duration: 980, push: 1.1 },
-  { x: 50, y: 38, w: 18, h: 62, dir: "down", delay: 260, duration: 1000 },
-  { x: 34, y: 62, w: 16, h: 38, dir: "down", delay: 320, duration: 940 },
-  { x: 50, y: 0, w: 18, h: 38, dir: "up", delay: 300, duration: 960, push: 1.15 },
+  { x: 34, y: 0, w: 16, h: 62, dir: "up", delay: 150, duration: 900, push: 1.1 },
+  { x: 50, y: 38, w: 18, h: 62, dir: "down", delay: 150, duration: 900 },
+  { x: 34, y: 62, w: 16, h: 38, dir: "down", delay: 230, duration: 860 },
+  { x: 50, y: 0, w: 18, h: 38, dir: "up", delay: 230, duration: 860, push: 1.15 },
   // middle group
-  { x: 18, y: 0, w: 16, h: 48, dir: "left", delay: 400, duration: 1040 },
-  { x: 18, y: 48, w: 16, h: 52, dir: "left", delay: 470, duration: 1000, push: 1.2 },
-  { x: 68, y: 0, w: 15, h: 56, dir: "right", delay: 420, duration: 1040 },
-  { x: 68, y: 56, w: 15, h: 44, dir: "right", delay: 500, duration: 1010, push: 1.2 },
+  { x: 18, y: 0, w: 16, h: 48, dir: "left", delay: 300, duration: 820 },
+  { x: 18, y: 48, w: 16, h: 52, dir: "left", delay: 300, duration: 820, push: 1.2 },
+  { x: 68, y: 0, w: 15, h: 56, dir: "right", delay: 380, duration: 780 },
+  { x: 68, y: 56, w: 15, h: 44, dir: "right", delay: 380, duration: 780, push: 1.2 },
   // outer group
-  { x: 0, y: 0, w: 18, h: 58, dir: "left", delay: 580, duration: 1080, push: 1.3 },
-  { x: 0, y: 58, w: 18, h: 42, dir: "down", delay: 660, duration: 1040 },
-  { x: 83, y: 0, w: 17, h: 40, dir: "up", delay: 620, duration: 1060 },
-  { x: 83, y: 40, w: 17, h: 60, dir: "right", delay: 700, duration: 1080, push: 1.3 },
+  { x: 0, y: 0, w: 18, h: 58, dir: "left", delay: 450, duration: 760, push: 1.3 },
+  { x: 0, y: 58, w: 18, h: 42, dir: "down", delay: 450, duration: 760 },
+  { x: 83, y: 0, w: 17, h: 40, dir: "up", delay: 450, duration: 760 },
+  { x: 83, y: 40, w: 17, h: 60, dir: "right", delay: 450, duration: 760, push: 1.3 },
 ];
 
 /* Tablet: 9 blocks. */
 const TABLET: Block[] = [
-  { x: 32, y: 0, w: 20, h: 55, dir: "up", delay: 240, duration: 980 },
-  { x: 52, y: 34, w: 22, h: 66, dir: "down", delay: 280, duration: 1000 },
-  { x: 32, y: 55, w: 20, h: 45, dir: "down", delay: 340, duration: 960 },
-  { x: 52, y: 0, w: 22, h: 34, dir: "up", delay: 300, duration: 980, push: 1.15 },
-  { x: 12, y: 0, w: 20, h: 50, dir: "left", delay: 420, duration: 1040 },
-  { x: 12, y: 50, w: 20, h: 50, dir: "left", delay: 490, duration: 1020, push: 1.2 },
-  { x: 74, y: 0, w: 26, h: 46, dir: "right", delay: 440, duration: 1040 },
-  { x: 74, y: 46, w: 26, h: 54, dir: "right", delay: 520, duration: 1060, push: 1.25 },
-  { x: 0, y: 0, w: 12, h: 100, dir: "left", delay: 600, duration: 1080, push: 1.35 },
+  { x: 32, y: 0, w: 20, h: 55, dir: "up", delay: 150, duration: 900 },
+  { x: 52, y: 34, w: 22, h: 66, dir: "down", delay: 150, duration: 900 },
+  { x: 32, y: 55, w: 20, h: 45, dir: "down", delay: 230, duration: 860 },
+  { x: 52, y: 0, w: 22, h: 34, dir: "up", delay: 230, duration: 860, push: 1.15 },
+  { x: 12, y: 0, w: 20, h: 50, dir: "left", delay: 310, duration: 810 },
+  { x: 12, y: 50, w: 20, h: 50, dir: "left", delay: 310, duration: 810, push: 1.2 },
+  { x: 74, y: 0, w: 26, h: 46, dir: "right", delay: 390, duration: 780 },
+  { x: 74, y: 46, w: 26, h: 54, dir: "right", delay: 390, duration: 780, push: 1.25 },
+  { x: 0, y: 0, w: 12, h: 100, dir: "left", delay: 460, duration: 750, push: 1.35 },
 ];
 
 /* Mobile: 7 larger blocks. */
 const MOBILE: Block[] = [
-  { x: 30, y: 0, w: 40, h: 46, dir: "up", delay: 240, duration: 960 },
-  { x: 30, y: 46, w: 40, h: 54, dir: "down", delay: 300, duration: 980 },
-  { x: 0, y: 0, w: 30, h: 40, dir: "left", delay: 400, duration: 1020 },
-  { x: 0, y: 40, w: 30, h: 60, dir: "left", delay: 470, duration: 1040, push: 1.2 },
-  { x: 70, y: 0, w: 30, h: 58, dir: "right", delay: 430, duration: 1020 },
-  { x: 70, y: 58, w: 30, h: 42, dir: "right", delay: 510, duration: 1040, push: 1.2 },
-  { x: 22, y: 82, w: 56, h: 18, dir: "down", delay: 600, duration: 1060 },
+  { x: 30, y: 0, w: 40, h: 46, dir: "up", delay: 150, duration: 900 },
+  { x: 30, y: 46, w: 40, h: 54, dir: "down", delay: 150, duration: 900 },
+  { x: 0, y: 0, w: 30, h: 40, dir: "left", delay: 240, duration: 850 },
+  { x: 0, y: 40, w: 30, h: 60, dir: "left", delay: 240, duration: 850, push: 1.2 },
+  { x: 70, y: 0, w: 30, h: 58, dir: "right", delay: 320, duration: 810 },
+  { x: 70, y: 58, w: 30, h: 42, dir: "right", delay: 320, duration: 810, push: 1.2 },
+  { x: 22, y: 82, w: 56, h: 18, dir: "down", delay: 400, duration: 780 },
 ];
+
 
 function pickSet(w: number) {
   if (w < 700) return MOBILE;
