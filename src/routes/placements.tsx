@@ -586,9 +586,10 @@ function StatPanel({
           {label}
         </span>
         <span
-          className="mt-2 block max-w-full truncate uppercase tracking-[0.24em] text-white/45 md:hidden"
+          className="ml-4 block min-w-0 truncate uppercase tracking-[0.24em] text-white/45 md:hidden"
           style={{ fontFamily: MONO, fontSize: "9px" }}
         >
+
           {label}
         </span>
       </div>
