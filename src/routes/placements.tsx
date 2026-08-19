@@ -750,7 +750,7 @@ function Page() {
   return (
     <main className="min-h-screen overflow-x-clip bg-white pb-16 text-black md:pb-18" style={{ fontFamily: INTER }}>
       <ScrollProgress />
-      <BottomNav items={NAV} applyHref="#contact" />
+      
 
       <div
         className={`sticky top-0 z-40 transition-[background-color,border-color,backdrop-filter,padding] duration-500 ${
