@@ -849,9 +849,12 @@ function Page() {
 
 
 
-      {/* PODCAST */}
+      {/* PODCAST + STATISTICS — combined horizontal section */}
       <Band tone="paper">
-        <CareerPodcast />
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[5fr_6fr] lg:gap-10">
+          <CareerPodcast />
+          <StatsAccordion />
+        </div>
       </Band>
 
       {/* AUDITED OUTCOMES */}
