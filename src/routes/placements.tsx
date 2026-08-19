@@ -401,15 +401,8 @@ function CinematicHero() {
           <div className="absolute inset-y-0 left-0 w-[70%] bg-gradient-to-r from-black/35 via-black/10 to-transparent lg:w-[52%]" />
         </div>
 
-        {/* Main navigation — moved from bottom to top of hero */}
-        <BottomNav
-          items={NAV}
-          applyHref="#contact"
-          className="!absolute !inset-x-0 !top-0 !bottom-auto z-50 justify-center px-3 pt-4 md:pt-5 lg:flex"
-          innerClassName="!max-w-none"
-          compact
-          hideOnScroll
-        />
+
+
 
         {/* Editorial composition */}
         <div className="relative flex min-h-[82svh] flex-col px-5 pb-28 pt-24 md:px-10 md:pb-24 md:pt-28 lg:min-h-[86vh]">
@@ -760,6 +753,18 @@ function Page() {
   return (
     <main className="min-h-screen overflow-x-clip bg-white pb-16 text-black md:pb-18" style={{ fontFamily: INTER }}>
       <ScrollProgress />
+
+      {/* Global top navigation — fixed, hides on scroll down, reveals on scroll up */}
+      <BottomNav
+        items={NAV}
+        applyHref="#contact"
+        className="!fixed !inset-x-0 !top-0 !bottom-auto z-50 justify-center px-3 pt-4 md:pt-5 lg:flex"
+        innerClassName="!max-w-none"
+        compact
+        hideOnScroll
+      />
+
+
 
       {/* HERO — full-bleed cinematic editorial */}
       <CinematicHero />
