@@ -542,22 +542,22 @@ function StatsAccordion() {
               <div
                 className={`pointer-events-none absolute left-1/2 -translate-x-1/2 bg-white/25 transition-opacity duration-500 ${
                   isActive ? "opacity-0" : "opacity-100"
-                } bottom-[110px] h-6 md:bottom-[268px] md:h-9`}
+                } hidden md:block md:bottom-[268px] md:h-9`}
                 style={{ width: "1px" }}
               />
 
               {/* Label — closed: vertical, anchored near bottom of its own column; active: horizontal at bottom */}
               <div
                 className={`pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-center transition-opacity duration-500 ${
-                  isActive ? "h-16 text-black/60" : "h-[96px] text-white/45 group-hover:text-white/70 md:h-[256px]"
+                  isActive ? "h-16 text-black/60" : "h-16 text-white/45 group-hover:text-white/70 md:h-[256px]"
                 }`}
               >
                 <span
-                  className="whitespace-nowrap uppercase tracking-[0.24em]"
+                  className={`whitespace-nowrap uppercase tracking-[0.24em] ${isActive ? "" : "md:rotate-[-90deg]"}`}
                   style={{
                     fontFamily: MONO,
                     fontSize: isActive ? "10px" : "9px",
-                    transform: isActive ? "none" : "rotate(-90deg)",
+                    transform: isActive ? "none" : undefined,
                   }}
                 >
                   {s.label}
