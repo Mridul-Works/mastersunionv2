@@ -406,6 +406,7 @@ function CinematicHero() {
           items={NAV}
           applyHref="#contact"
           className="!absolute !inset-x-0 !top-0 !bottom-auto z-50 justify-center px-3 pt-4 md:pt-5 lg:flex"
+          innerClassName="!max-w-none"
         />
 
         {/* Editorial composition */}
