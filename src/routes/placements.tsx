@@ -377,7 +377,7 @@ function CinematicHero() {
       <section
         id="top"
         ref={sectionRef}
-        className="relative isolate min-h-[92svh] overflow-hidden bg-[#0a0a0a] lg:min-h-[96vh]"
+        className="relative isolate min-h-[92svh] overflow-hidden bg-[#0a0a0a] lg:min-h-[86vh]"
       >
         {/* Photograph — full bleed, full fidelity */}
         <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -401,7 +401,7 @@ function CinematicHero() {
         </div>
 
         {/* Editorial composition */}
-        <div className="relative flex min-h-[92svh] flex-col px-5 pb-16 pt-10 md:px-10 md:pb-20 md:pt-14 lg:min-h-[96vh]">
+        <div className="relative flex min-h-[92svh] flex-col px-5 pb-28 pt-10 md:px-10 md:pb-24 md:pt-14 lg:min-h-[86vh]">
           {/* upper-left metadata */}
           <div style={step(560, 16)}>
             <Eyebrow className="text-white/75">Careers</Eyebrow>
