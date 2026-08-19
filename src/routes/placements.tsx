@@ -500,7 +500,7 @@ function StatsAccordion() {
                   setActive(i);
                 }
               }}
-              className={`group relative min-h-[120px] overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+              className={`group relative flex flex-col items-center overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
                 i > 0 ? "border-t border-white/12 md:border-t-0 md:border-l md:border-white/12" : ""
               } ${isActive ? "cursor-default bg-[#faf9f7] text-[#0a0a0a]" : "cursor-pointer bg-[#0a0a0a] text-white hover:bg-[#141414]"}`}
               style={{
@@ -508,65 +508,75 @@ function StatsAccordion() {
                 flexShrink: 1,
                 flexBasis: 0,
                 minWidth: 0,
-                containerType: "inline-size",
               }}
             >
-              {/* Index — anchored to its own panel */}
-              <span
-                className={`pointer-events-none absolute inset-x-0 top-10 text-center text-[10px] tabular-nums tracking-[0.28em] transition-colors duration-500 md:top-16 ${
-                  isActive ? "text-black/45" : "text-white/45"
-                }`}
-                style={{ fontFamily: MONO }}
-              >
-                {idx}
-              </span>
-
-              {/* Main value — always mounted, centered in its own panel */}
-              <div
-                className="pointer-events-none absolute inset-x-0 top-1/2 flex -translate-y-1/2 items-center justify-center px-5 transition-opacity duration-500 md:px-8 lg:px-10"
-                style={{ opacity: isActive ? 1 : 0 }}
-              >
-                <div
-                  className="w-full min-w-0 whitespace-nowrap text-center text-[min(var(--stat-fs),2.6rem)] leading-[0.86] tracking-[-0.05em] md:text-[var(--stat-fs)]"
-                  style={
-                    {
-                      "--stat-fs": `min(clamp(1.75rem, 30cqw, 8.5rem), ${Math.round(
-                        150 / Math.max(3, s.value.length),
-                      )}cqw)`,
-                    } as React.CSSProperties
-                  }
-                >
-
-                  {isActive ? <CountUp value={s.value} delay={80} /> : s.value}
-                </div>
-              </div>
-
-              {/* Vertical divider — closed columns only, centered above the label */}
-              <div
-                className={`pointer-events-none absolute left-1/2 -translate-x-1/2 bg-white/25 transition-opacity duration-500 ${
-                  isActive ? "opacity-0" : "opacity-100"
-                } hidden md:block md:bottom-[268px] md:h-9`}
-                style={{ width: "1px" }}
-              />
-
-              {/* Label — closed: vertical, anchored near bottom of its own column; active: horizontal at bottom */}
-              <div
-                className={`pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-center transition-opacity duration-500 ${
-                  isActive ? "h-16 text-black/60" : "h-16 text-white/45 group-hover:text-white/70 md:h-[256px]"
-                }`}
-              >
+              {/* Unified inner content — everything anchors to the panel lifecycle */}
+              <div className="flex h-full w-full flex-col items-center justify-between px-5 py-10 md:px-8 md:py-16 lg:px-10">
+                {/* Index */}
                 <span
-                  className={`whitespace-nowrap uppercase tracking-[0.24em] ${isActive ? "" : "md:rotate-[-90deg]"}`}
+                  className={`text-[10px] tabular-nums tracking-[0.28em] transition-colors duration-500 ${
+                    isActive ? "text-black/45" : "text-white/45"
+                  }`}
+                  style={{ fontFamily: MONO }}
+                >
+                  {idx}
+                </span>
+
+                {/* Main value — collapses to zero height when inactive so the bottom anchor stays compact */}
+                <div
+                  className="flex flex-1 items-center justify-center overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
                   style={{
-                    fontFamily: MONO,
-                    fontSize: isActive ? "10px" : "9px",
-                    transform: isActive ? "none" : undefined,
+                    maxHeight: isActive ? "100%" : "0px",
+                    opacity: isActive ? 1 : 0,
+                    transform: isActive ? "scale(1)" : "scale(0.92)",
+                    containerType: "inline-size",
                   }}
                 >
-                  {s.label}
-                </span>
-              </div>
+                  {isActive ? (
+                    <div
+                      className="w-full min-w-0 items-center justify-center whitespace-nowrap text-center leading-[0.86] tracking-[-0.05em]"
+                      style={{
+                        fontSize: `min(clamp(2.25rem, 30cqw, 8.5rem), ${Math.round(
+                          150 / Math.max(3, s.value.length),
+                        )}cqw)`,
+                      }}
+                    >
+                      <CountUp value={s.value} delay={80} />
+                    </div>
+                  ) : (
+                    <span className="invisible">{s.value}</span>
+                  )}
+                </div>
 
+                {/* Bottom anchor: divider + label always move as one solid piece */}
+                <div className="flex w-full flex-col items-center justify-center">
+                  {/* Divider */}
+                  <div
+                    className={`transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
+                      isActive ? "bg-black/15" : "bg-white/15 group-hover:bg-white/35"
+                    } ${isActive ? "h-px" : "h-8 md:h-20"}`}
+                    style={{ width: isActive ? "min(100%, 420px)" : "1px" }}
+                  />
+                  {/* Label */}
+                  <div
+                    className={`transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] overflow-visible ${
+                      isActive ? "text-black/60" : "text-white/45 group-hover:text-white/70"
+                    }`}
+                    style={{
+                      marginTop: isActive ? "20px" : "0",
+                      transform: isActive ? "rotate(0deg)" : "rotate(-90deg)",
+                      transformOrigin: "center",
+                    }}
+                  >
+                    <span
+                      className="whitespace-nowrap uppercase tracking-[0.24em] transition-all duration-700"
+                      style={{ fontFamily: MONO, fontSize: isActive ? "10px" : "9px" }}
+                    >
+                      {s.label}
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           );
         })}
