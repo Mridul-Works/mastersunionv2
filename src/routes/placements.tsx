@@ -590,7 +590,7 @@ function Page() {
             />
           </Parallax>
           {/* Subtle localized dark gradient behind the left text column only */}
-          <div className="absolute inset-y-0 left-0 w-[62%] bg-gradient-to-r from-black/35 via-black/12 to-transparent lg:w-[56%]" />
+          <div className="absolute inset-y-0 left-0 w-[62%] bg-gradient-to-r from-black/25 via-black/10 to-transparent lg:w-[56%]" />
         </div>
 
         <div
