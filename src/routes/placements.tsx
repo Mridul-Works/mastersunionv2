@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -747,32 +747,14 @@ function Page() {
   const maxCtc = 55;
   const [recruiterTab, setRecruiterTab] = useState(RECRUITER_GROUPS[0].category);
   const active = RECRUITER_GROUPS.find((g) => g.category === recruiterTab)!;
-  const scrolled = useScrolled();
-
   return (
     <main className="min-h-screen overflow-x-clip bg-white pb-16 text-black md:pb-18" style={{ fontFamily: INTER }}>
       <ScrollProgress />
       <BottomNav items={NAV} applyHref="#contact" />
 
-      <div
-        className={`sticky top-0 z-40 transition-[background-color,border-color,backdrop-filter,padding] duration-500 ${
-          scrolled ? "border-b border-black/10 bg-white/80 backdrop-blur-xl" : "border-b border-transparent bg-transparent"
-        }`}
-      >
-        <div
-          className={`mx-auto flex max-w-6xl items-center justify-between px-5 transition-all duration-500 md:px-10 ${
-            scrolled ? "py-3" : "py-6 md:py-8"
-          }`}
-        >
-          <Link to="/" className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-black/70 hover:text-black" style={{ fontFamily: MONO }}>
-            <span aria-hidden>←</span> Masters&apos; Union
-          </Link>
-          <div className="text-[11px] uppercase tracking-[0.25em] text-black/55" style={{ fontFamily: MONO }}>Careers at Masters&apos; Union</div>
-        </div>
-      </div>
-
       {/* HERO — full-bleed cinematic editorial */}
       <CinematicHero />
+
 
 
       {/* PODCAST */}
