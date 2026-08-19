@@ -472,8 +472,105 @@ function CinematicHero() {
         <HeroMaskReveal />
        </div>
       </section>
+/** Horizontal preview-stack accordion for the four hero statistics. */
+function StatsAccordion() {
+  const [active, setActive] = useState(0);
 
-    </>
+  return (
+    <section className="relative z-10 h-full min-h-[520px] w-full bg-[#0a0a0a] text-white md:min-h-[560px]">
+      <div className="flex h-full min-h-[inherit] w-full flex-col md:flex-row">
+        {HERO_STATS.map((s, i) => {
+          const isActive = active === i;
+          const idx = String(i + 1).padStart(2, "0");
+          return (
+            <div
+              key={s.label}
+              role="button"
+              tabIndex={0}
+              aria-pressed={isActive}
+              aria-label={`${s.label} statistic`}
+              onClick={() => setActive(i)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setActive(i);
+                }
+              }}
+              className={`group relative overflow-hidden ${
+                isActive
+                  ? "bg-[#faf9f7] text-[#0a0a0a]"
+                  : "cursor-pointer bg-[#0a0a0a] text-white hover:bg-[#141414]"
+              } ${i > 0 ? "border-t border-white/12 md:border-t-0 md:border-l md:border-white/12" : ""}`}
+              style={{
+                flexGrow: isActive ? 58 : 14,
+                flexShrink: 1,
+                flexBasis: 0,
+                transition: "flex-grow 600ms cubic-bezier(0.76,0,0.24,1), background-color 500ms cubic-bezier(0.76,0,0.24,1)",
+              }}
+            >
+              {/* ACTIVE — large editorial canvas */}
+              <div
+                className={`flex h-full flex-col justify-between px-6 py-14 md:px-10 md:py-16 lg:px-12 ${
+                  isActive ? "opacity-100" : "pointer-events-none absolute inset-0 opacity-0"
+                }`}
+                style={{ transition: "opacity 420ms cubic-bezier(0.76,0,0.24,1) 120ms" }}
+                aria-hidden={!isActive}
+              >
+                <span
+                  className="text-[10px] tabular-nums tracking-[0.28em] text-black/45"
+                  style={{ fontFamily: MONO }}
+                >
+                  {idx}
+                </span>
+                <div className="mt-12 whitespace-nowrap text-[clamp(2.5rem,5.5vw,6.5rem)] leading-[0.86] tracking-[-0.05em] md:mt-16">
+                  {isActive ? <CountUp value={s.value} delay={80} /> : s.value}
+                </div>
+                <div className="mt-10 md:mt-12">
+                  <div className="h-px w-full max-w-[420px] bg-black/15" />
+                  <div
+                    className="mt-5 text-[10px] uppercase tracking-[0.24em] text-black/60"
+                    style={{ fontFamily: MONO }}
+                  >
+                    {s.label}
+                  </div>
+                </div>
+              </div>
+
+              {/* COLLAPSED — narrow vertical column */}
+              <div
+                className={`flex h-full flex-col items-center justify-between px-4 py-10 md:py-12 ${
+                  isActive ? "pointer-events-none absolute inset-0 opacity-0" : "opacity-100"
+                }`}
+                style={{ transition: "opacity 360ms cubic-bezier(0.76,0,0.24,1)" }}
+                aria-hidden={isActive}
+              >
+                <span
+                  className="text-[10px] tabular-nums tracking-[0.28em] text-white/45"
+                  style={{ fontFamily: MONO }}
+                >
+                  {idx}
+                </span>
+
+                <div className="flex flex-1 items-center justify-center py-8">
+                  <span className="h-16 w-px bg-white/15 transition-colors duration-500 group-hover:bg-white/35 md:h-20" />
+                </div>
+
+                <div
+                  className="max-h-[220px] overflow-hidden whitespace-nowrap text-[9px] uppercase tracking-[0.24em] text-white/45 transition-colors duration-500 group-hover:text-white/70"
+                  style={{
+                    fontFamily: MONO,
+                    writingMode: "vertical-rl",
+                    transform: "rotate(180deg)",
+                  }}
+                >
+                  {s.label}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
   );
 }
 
