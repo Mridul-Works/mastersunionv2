@@ -258,9 +258,9 @@ const LEADERS = [
 
 /* -------------------------------- primitives ------------------------------ */
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
+function Eyebrow({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
+    <div className={`text-[11px] uppercase tracking-[0.3em] text-black/55 ${className}`} style={{ fontFamily: MONO }}>
       {children}
     </div>
   );
@@ -577,19 +577,20 @@ function Page() {
 
       {/* HERO */}
       <section id="top" className="relative overflow-hidden">
-        {/* Hero background photograph */}
+        {/* Hero background photograph — full natural color, no global wash */}
         <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[92vh] overflow-hidden">
           <Parallax strength={60} className="h-full">
             <img
               src={heroBg.url}
               alt=""
-              className="no-img-zoom h-full w-full object-cover object-center opacity-[0.55]"
-              style={{ filter: "grayscale(0.35) contrast(1.02)" }}
+              className="no-img-zoom h-full w-full object-cover object-center"
+              style={{ filter: "contrast(1.05)" }}
               decoding="async"
               fetchPriority="high"
             />
           </Parallax>
-          {/* No overlay; photograph remains legible behind dark typography */}
+          {/* Subtle localized dark gradient behind the left text column only */}
+          <div className="absolute inset-y-0 left-0 w-[62%] bg-gradient-to-r from-black/25 via-black/10 to-transparent lg:w-[56%]" />
         </div>
 
         <div
@@ -603,17 +604,17 @@ function Page() {
 
           <div className="lg:col-span-9">
             <Reveal delay={120} y={14} duration={700}>
-              <Eyebrow>Careers</Eyebrow>
+              <Eyebrow className="text-white/70">Careers</Eyebrow>
             </Reveal>
             <div className="overflow-hidden">
               <Reveal delay={280} y={56} duration={1100}>
-                <h1 className="mt-8 max-w-[20ch] text-balance text-[clamp(2.4rem,7vw,6rem)] font-medium leading-[0.95] tracking-[-0.02em]">
+                <h1 className="mt-8 max-w-[20ch] text-balance text-[clamp(2.4rem,7vw,6rem)] font-medium leading-[0.95] tracking-[-0.02em] text-white">
                   Accelerate your career growth.
                 </h1>
               </Reveal>
             </div>
             <Reveal delay={520} duration={900}>
-              <p className="mt-10 max-w-[58ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55] text-black/70">
+              <p className="mt-10 max-w-[58ch] text-[clamp(1.05rem,1.6vw,1.35rem)] leading-[1.55] text-white/80">
                 Benefit from an exceptional track record of our graduates&apos; success — audited, published, and repeated across five cohorts.
               </p>
             </Reveal>
