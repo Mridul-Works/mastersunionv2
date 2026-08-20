@@ -985,7 +985,7 @@ function OutcomesStory() {
   const reports = Math.min(1, Math.max(0, (p - slideSpan) / (1 - slideSpan)));
 
   return (
-    <div ref={ref} className="relative" style={{ height: `${slides * 100 + 40}svh` }}>
+    <div ref={ref} className="relative" style={{ height: `${slides * 90 + 30}svh` }}>
       <div className="sticky top-0 flex min-h-svh items-center">
         <div className="page-x w-full py-16 md:py-20">
           <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-16">
@@ -1003,7 +1003,7 @@ function OutcomesStory() {
 
             {/* RIGHT — scroll-driven slides in one fixed-height stage */}
             <div className="lg:col-span-8">
-              <div className="relative h-[clamp(360px,54svh,520px)]">
+              <div className="relative h-[clamp(320px,42svh,440px)]">
                 {AUDIT_STATS.map((s, i) => {
                   const d = pos - i;
                   const a = Math.max(0, 1 - Math.abs(d));
