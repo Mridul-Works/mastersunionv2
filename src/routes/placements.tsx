@@ -1085,8 +1085,8 @@ function CohortReports() {
 
 function FounderQuoteSection() {
   return (
-    <section className="relative bg-[#F2F1EE] py-16 md:py-24">
-      <div className="page-x relative">
+    <section className="relative flex min-h-[100svh] items-center bg-[#F2F1EE] py-14 md:py-16">
+      <div className="page-x relative w-full">
         <div className="relative mx-auto max-w-[56ch]">
           <Quote
             className="absolute -left-1 -top-2 size-10 text-black/10 md:-left-6 md:-top-4 md:size-16"
@@ -1113,6 +1113,7 @@ function FounderQuoteSection() {
     </section>
   );
 }
+
 
 function AuditedOutcomes() {
   return (
