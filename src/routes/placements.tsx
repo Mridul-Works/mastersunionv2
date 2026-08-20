@@ -1328,12 +1328,11 @@ function Page() {
             </section>
           }
           over={<AuditedOutcomes />}
+          tail={<FounderQuoteSection />}
         />
       </div>
 
 
-      {/* FOUNDER QUOTE — standalone editorial statement */}
-      <FounderQuoteSection />
 
       {/* COHORT CHARTS */}
       <Band id="cohorts" tone="white">
