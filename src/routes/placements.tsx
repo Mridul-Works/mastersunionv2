@@ -689,18 +689,18 @@ function CareerPodcast() {
   const id = "uiNTwDixAts";
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 text-white">
       <div>
         <Reveal>
-          <Eyebrow>Podcast</Eyebrow>
+          <Eyebrow className="!text-white/55">Podcast</Eyebrow>
         </Reveal>
         <Reveal delay={90}>
-          <h3 className="mt-5 text-[clamp(1.55rem,2.9vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
+          <h3 className="mt-5 text-[clamp(1.55rem,2.9vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em] text-white">
             How Masters&apos; Union prepares students for top 1% placements
           </h3>
         </Reveal>
         <Reveal delay={180}>
-          <p className="mt-6 max-w-[50ch] text-[16px] leading-relaxed text-black/65">
+          <p className="mt-6 max-w-[50ch] text-[16px] leading-relaxed text-white/65">
             A detailed conversation on the placement engine behind Masters&apos; Union — how recruiter
             access, live industry projects and year-round career coaching translate into offers at the
             firms shaping the next decade.
@@ -711,10 +711,10 @@ function CareerPodcast() {
             href={`https://www.youtube.com/watch?v=${id}`}
             target="_blank"
             rel="noreferrer"
-            className="group mt-8 inline-flex items-center gap-2 border-b border-black/25 pb-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-black transition hover:border-black"
+            className="group mt-8 inline-flex items-center gap-2 border-b border-white/25 pb-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition hover:border-white"
           >
             Watch on YouTube
-            <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <ArrowUpRight className="size-3.5 text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
         </Reveal>
       </div>
