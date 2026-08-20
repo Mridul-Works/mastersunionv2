@@ -902,31 +902,178 @@ function LogoRow({ names }: { names: string[] }) {
 
 /* ---------------------------- audited outcomes ---------------------------- */
 
-function OutcomeColumn({
+/** 0..1 progress of a tall container travelling through the viewport. */
+function useStageProgress<T extends HTMLElement = HTMLDivElement>() {
+  const ref = useRef<T | null>(null);
+  const [p, setP] = useState(0);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const rect = el.getBoundingClientRect();
+      const distance = rect.height - window.innerHeight;
+      const next = distance > 0 ? Math.min(1, Math.max(0, -rect.top / distance)) : 0;
+      setP((prev) => (Math.abs(prev - next) < 0.0015 ? prev : next));
+    };
+    const tick = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", tick, { passive: true });
+    window.addEventListener("resize", tick);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", tick);
+      window.removeEventListener("resize", tick);
+    };
+  }, []);
+
+  return { ref, p };
+}
+
+function OutcomePanel({
   stat,
   n,
-  className = "",
+  weight,
+  open,
 }: {
   stat: (typeof AUDIT_STATS)[number];
   n: number;
-  className?: string;
+  weight: number;
+  open: number;
 }) {
+  const label = stat.suffix;
   return (
-    <div className={`flex flex-col px-0 py-6 sm:px-6 sm:py-7 ${className}`}>
-      <Index n={n} />
-      <div className="mt-5 text-[clamp(2.2rem,4.6vw,3.6rem)] leading-[0.92] tracking-[-0.035em]">
-        {stat.value}
-      </div>
+    <div
+      className="relative min-h-0 min-w-0 overflow-hidden bg-black text-white"
+      style={{
+        flex: `${weight.toFixed(4)} 1 0%`,
+        transition: "flex-grow 120ms linear",
+        willChange: "flex-grow",
+      }}
+    >
+      {/* structural vertical hairline — attached to the panel */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute bottom-0 left-4 top-0 w-px bg-white/15 sm:left-5"
+      />
+
+      {/* slide number — always anchored top-left */}
       <div
-        className="mt-5 text-[10px] uppercase tracking-[0.24em] text-black/60"
+        className="absolute left-8 top-5 text-[10px] uppercase tracking-[0.24em] text-white/55 sm:left-10 sm:top-6"
         style={{ fontFamily: MONO }}
       >
-        {stat.suffix}
+        {String(n).padStart(2, "0")}
       </div>
-      <p className="mt-3 max-w-[30ch] text-[0.9rem] leading-[1.6] text-black/60">{stat.note}</p>
+
+      {/* CLOSED state — compact descriptor */}
+      <div
+        aria-hidden={open > 0.5}
+        className="absolute inset-0"
+        style={{ opacity: 1 - Math.min(1, open * 1.6), transition: "opacity 200ms linear" }}
+      >
+        {/* vertical descriptor for row layout */}
+        <div className="absolute bottom-5 left-1/2 hidden -translate-x-1/2 md:block">
+          <span
+            className="whitespace-nowrap text-[10px] uppercase tracking-[0.28em] text-white/60"
+            style={{ fontFamily: MONO, writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+          >
+            {label}
+          </span>
+        </div>
+        {/* horizontal descriptor for stacked layout */}
+        <div className="absolute bottom-4 left-8 right-5 md:hidden">
+          <span
+            className="block truncate text-[10px] uppercase tracking-[0.24em] text-white/60"
+            style={{ fontFamily: MONO }}
+          >
+            {label}
+          </span>
+        </div>
+      </div>
+
+      {/* OPEN state — the statistic */}
+      <div
+        aria-hidden={open < 0.5}
+        className="absolute inset-0 flex flex-col justify-center px-8 sm:px-10"
+        style={{ opacity: Math.max(0, open * 1.15 - 0.15), transition: "opacity 220ms linear" }}
+      >
+        <div className="flex flex-1 items-center">
+          <div className="min-w-0">
+            <div className="whitespace-nowrap text-[clamp(2rem,4.6vw,4.2rem)] leading-[0.95] tracking-[-0.035em]">
+              {stat.value}
+            </div>
+            <p className="mt-4 max-w-[34ch] text-[0.9rem] leading-[1.6] text-white/60">
+              {stat.note}
+            </p>
+          </div>
+        </div>
+        <div className="pb-6 sm:pb-7">
+          <div className="h-px w-full bg-white/15" />
+          <div
+            className="mt-4 text-[10px] uppercase tracking-[0.24em] text-white/65"
+            style={{ fontFamily: MONO }}
+          >
+            {label}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
+
+function OutcomesAccordion() {
+  const reduced = useReducedMotion();
+  const { ref, p } = useStageProgress<HTMLDivElement>();
+  const count = AUDIT_STATS.length;
+  const pos = Math.min(count - 1, Math.max(0, p / 0.9) * (count - 1));
+
+  return (
+    <div ref={ref} className="relative" style={{ height: `${count * 85 + 15}svh` }}>
+      <div className="sticky top-0 flex min-h-svh items-center">
+        <div className="page-x w-full py-10">
+          <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
+            {/* LEFT — anchored editorial column */}
+            <div className="lg:col-span-4">
+              <Eyebrow>Five years of audited placements</Eyebrow>
+              <h2 className="mt-4 max-w-[24ch] text-[clamp(1.7rem,3.2vw,2.7rem)] font-medium leading-[1.06] tracking-[-0.02em]">
+                Proven outcomes, verified line by line.
+              </h2>
+              <p className="mt-5 max-w-[50ch] text-[0.95rem] leading-[1.65] text-black/65">
+                Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and
+                follow the IPRS Revision 2.2 framework for transparent, consistent compensation
+                data.
+              </p>
+            </div>
+
+            {/* RIGHT — scroll-driven static accordion */}
+            <div className="lg:col-span-8">
+              <div className="flex h-[clamp(360px,58svh,520px)] flex-col gap-1.5 md:flex-row md:gap-2">
+                {AUDIT_STATS.map((s, i) => {
+                  const open = reduced ? (i === 0 ? 1 : 0) : Math.max(0, 1 - Math.abs(pos - i));
+                  const eased = open * open * (3 - 2 * open);
+                  return (
+                    <OutcomePanel
+                      key={s.suffix}
+                      stat={s}
+                      n={i + 1}
+                      weight={1 + eased * 5}
+                      open={eased}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 
 function CohortReportCard({ year }: { year: string }) {
   return (
