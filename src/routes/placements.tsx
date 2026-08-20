@@ -998,8 +998,12 @@ function OutcomePanel({
       {/* OPEN state — the statistic */}
       <div
         aria-hidden={open < 0.5}
-        className="absolute inset-0 flex flex-col justify-center px-8 sm:px-10"
-        style={{ opacity: Math.max(0, open * 1.15 - 0.15), transition: "opacity 220ms linear" }}
+        className="pointer-events-none absolute inset-0 flex flex-col justify-center px-8 sm:px-10"
+        style={{
+          opacity: Math.max(0, (open - 0.45) / 0.55),
+          visibility: open < 0.45 ? "hidden" : "visible",
+          transition: "opacity 200ms linear",
+        }}
       >
         <div className="flex flex-1 items-center">
           <div className="min-w-0">
