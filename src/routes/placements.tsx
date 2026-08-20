@@ -10,6 +10,7 @@ import {
   Users,
   Route as RouteIcon,
   Download,
+  FileText,
   Mail,
 } from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
