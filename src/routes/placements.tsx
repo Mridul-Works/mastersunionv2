@@ -1227,6 +1227,7 @@ function CoverStage({
       <>
         {under}
         {over}
+        {tail}
       </>
     );
   }
@@ -1235,6 +1236,8 @@ function CoverStage({
   const eased = p * p * (3 - 2 * p);
   // tall-layer sticky offset: keeps the podcast pinned even when it exceeds the viewport
   const underTop = vh && underH > vh ? Math.min(0, vh - underH) : 0;
+  // extra viewport of pinned time so the tail layer can rise up and cover the over layer
+  const tailTravel = tail ? vh : 0;
 
   return (
     <div className="relative">
@@ -1252,7 +1255,7 @@ function CoverStage({
       <div
         ref={zoneRef}
         className="relative z-[2]"
-        style={overH && vh ? { height: `${overH + vh}px` } : undefined}
+        style={overH && vh ? { height: `${overH + vh + tailTravel}px` } : undefined}
       >
         <div
           ref={overRef}
@@ -1266,9 +1269,15 @@ function CoverStage({
           {over}
         </div>
       </div>
+
+      {/* LAYER 3 — the real Quote section. It begins exactly one viewport below the
+          fold and scrolls upward over the still-pinned Proven Outcomes layer, so it
+          physically covers it (no spacer, no duplicate, no crossfade). */}
+      {tail ? <div className="relative z-[3]">{tail}</div> : null}
     </div>
   );
 }
+
 
 
 
