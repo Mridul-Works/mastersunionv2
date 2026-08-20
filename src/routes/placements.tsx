@@ -65,7 +65,7 @@ const HERO_STATS = [
 const AUDIT_STATS = [
   { value: "4", suffix: "Offers > ₹1 Cr", note: "Marking strong compensation figures" },
   { value: ">90%", suffix: "Placed early", note: "Joined full-time roles before the penultimate term" },
-  { value: "₹54.80L", suffix: "Top 25% average CTC", note: "Cohort '25 top quartile" },
+  { value: "₹54.80 LPA", suffix: "Top 25% average CTC", note: "Cohort '25 top quartile" },
 ];
 
 const REPORT_YEARS = ["2021", "2022", "2023", "2024", "2025"];
