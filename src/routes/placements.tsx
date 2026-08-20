@@ -1116,7 +1116,7 @@ function FounderQuoteSection() {
 
 function AuditedOutcomes() {
   return (
-    <section id="outcomes" className="relative bg-white">
+    <section id="outcomes" className="relative bg-white pb-5">
       {/* sticky left + click-driven horizontal accordion */}
       <OutcomesAccordion />
 
