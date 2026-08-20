@@ -1145,9 +1145,11 @@ function AuditedOutcomes() {
 function CoverStage({
   under,
   over,
+  tail,
 }: {
   under: React.ReactNode;
   over: React.ReactNode;
+  tail?: React.ReactNode;
 }) {
   const reduced = useReducedMotion();
   const zoneRef = useRef<HTMLDivElement>(null);
