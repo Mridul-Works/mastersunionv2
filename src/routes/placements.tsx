@@ -988,15 +988,15 @@ function OutcomesAccordion() {
   const [open, setOpen] = useState(0);
 
   return (
-    <div className="page-x py-6">
+    <div className="page-x py-4">
       <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
         {/* LEFT — anchored editorial column */}
         <div className="lg:col-span-4">
           <Eyebrow>Five years of audited placements</Eyebrow>
-          <h2 className="mt-4 max-w-[24ch] text-[clamp(1.7rem,3.2vw,2.7rem)] font-medium leading-[1.06] tracking-[-0.02em]">
+          <h2 className="mt-3 max-w-[24ch] text-[clamp(1.7rem,3.2vw,2.7rem)] font-medium leading-[1.06] tracking-[-0.02em]">
             Proven outcomes, verified line by line.
           </h2>
-          <p className="mt-5 max-w-[50ch] text-[0.95rem] leading-[1.65] text-black/65">
+          <p className="mt-4 max-w-[50ch] text-[0.95rem] leading-[1.65] text-black/65">
             Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and follow
             the IPRS Revision 2.2 framework for transparent, consistent compensation data.
           </p>
