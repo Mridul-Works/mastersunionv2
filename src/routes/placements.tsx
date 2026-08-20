@@ -618,6 +618,10 @@ function StatsAccordion() {
           />
         ))}
       </div>
+    </section>
+  );
+}
+
 function EditorialSeparator() {
   const { ref, inView } = useInView<HTMLDivElement>();
   const reduced = useReducedMotion();
@@ -657,9 +661,6 @@ function EditorialSeparator() {
     </div>
   );
 }
-
-
-
 
 function Band({
   id,
