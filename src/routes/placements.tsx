@@ -1059,15 +1059,20 @@ function OutcomesAccordion() {
             <div className="lg:col-span-8">
               <div className="flex h-[clamp(360px,58svh,520px)] flex-col gap-1.5 md:flex-row md:gap-2">
                 {AUDIT_STATS.map((s, i) => {
-                  const open = reduced ? (i === 0 ? 1 : 0) : Math.max(0, 1 - Math.abs(pos - i));
-                  const eased = open * open * (3 - 2 * open);
+                  const nearness = reduced
+                    ? i === 0
+                      ? 1
+                      : 0
+                    : Math.max(0, 1 - Math.abs(pos - i));
+                  const eased = nearness * nearness * (3 - 2 * nearness);
+                  const activeIndex = reduced ? 0 : Math.round(pos);
                   return (
                     <OutcomePanel
                       key={s.suffix}
                       stat={s}
                       n={i + 1}
                       weight={1 + eased * 5}
-                      open={eased}
+                      active={i === activeIndex}
                     />
                   );
                 })}
