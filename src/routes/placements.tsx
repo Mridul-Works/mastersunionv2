@@ -1156,28 +1156,6 @@ function Page() {
       <AuditedOutcomes />
 
 
-      {/* FOUNDER QUOTE */}
-      <section className="relative overflow-hidden border-y border-black/10 bg-[#f2f1ee]">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -left-6 -top-16 select-none text-[22rem] leading-none text-black/[0.04]"
-        >
-          <Parallax strength={50}>“</Parallax>
-        </div>
-        <div className="page-x relative py-20 md:py-28">
-
-          <Reveal duration={950}>
-            <blockquote className="max-w-[52ch] text-[clamp(1.3rem,2.6vw,2.1rem)] font-medium leading-[1.25] tracking-[-0.015em]">
-              “We don&apos;t approach placements the way most B-schools do. At Masters&apos; Union, placements are run by a 50+ member, full-time team spanning company outreach, career preparation, and role-specific coaching.”
-            </blockquote>
-          </Reveal>
-          <Reveal delay={220}>
-            <div className="mt-10 text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>
-              Pratham Mittal — Founder &amp; CEO, Masters&apos; Union
-            </div>
-          </Reveal>
-        </div>
-      </section>
 
       {/* COHORT CHARTS */}
       <Band id="cohorts" tone="white">
