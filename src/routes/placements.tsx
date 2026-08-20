@@ -925,7 +925,7 @@ function OutcomePanel({
       className="group relative flex w-full flex-col items-stretch justify-start overflow-hidden bg-black text-left text-white cursor-pointer"
       style={{
         ["--panel-closed" as string]: "clamp(56px, 9vh, 64px)",
-        ["--panel-open" as string]: "clamp(170px, 24vh, 210px)",
+        ["--panel-open" as string]: "clamp(200px, 30vh, 246px)",
         height: active ? "var(--panel-open)" : "var(--panel-closed)",
         transition: `height 620ms ${PANEL_EASE}`,
         willChange: "height",
