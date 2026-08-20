@@ -903,8 +903,6 @@ function LogoRow({ names }: { names: string[] }) {
 /* ---------------------------- audited outcomes ---------------------------- */
 
 const PANEL_EASE = "cubic-bezier(0.22,1,0.36,1)";
-const PANEL_CLOSED = 78;
-const PANEL_OPEN = 320;
 
 function OutcomePanel({
   stat,
@@ -925,7 +923,9 @@ function OutcomePanel({
       aria-expanded={active}
       className="group relative flex w-full flex-col items-stretch justify-start overflow-hidden bg-black text-left text-white cursor-pointer"
       style={{
-        height: active ? PANEL_OPEN : PANEL_CLOSED,
+        ["--panel-closed" as string]: "clamp(56px, 9vh, 64px)",
+        ["--panel-open" as string]: "clamp(200px, 30vh, 246px)",
+        height: active ? "var(--panel-open)" : "var(--panel-closed)",
         transition: `height 620ms ${PANEL_EASE}`,
         willChange: "height",
       }}
@@ -937,7 +937,10 @@ function OutcomePanel({
       />
 
       {/* header row — number + label, never moves */}
-      <div className="flex h-[78px] shrink-0 items-center gap-5 pl-8 pr-6 sm:pl-10 sm:pr-8">
+      <div
+        className="flex shrink-0 items-center gap-5 pl-8 pr-6 sm:pl-10 sm:pr-8"
+        style={{ height: "var(--panel-closed)" }}
+      >
         <span
           className="text-[10px] uppercase tracking-[0.24em] text-white/55"
           style={{ fontFamily: MONO }}
@@ -956,13 +959,13 @@ function OutcomePanel({
       <div
         aria-hidden={!active}
         className="absolute inset-x-0 bottom-0 px-8 sm:px-10"
-        style={{ top: PANEL_CLOSED }}
+        style={{ top: "var(--panel-closed)" }}
       >
         <div className="h-px w-full bg-white/15" />
         <div
           className="flex flex-col items-center justify-center px-2 text-center"
           style={{
-            height: PANEL_OPEN - PANEL_CLOSED - 1,
+            height: "calc(var(--panel-open) - var(--panel-closed) - 1px)",
             opacity: active ? 1 : 0,
             transform: active ? "translateY(0)" : "translateY(10px)",
             transition: `opacity 520ms ${PANEL_EASE} 60ms, transform 620ms ${PANEL_EASE}`,
@@ -984,7 +987,7 @@ function OutcomesAccordion() {
   const [open, setOpen] = useState(0);
 
   return (
-    <div className="page-x py-10">
+    <div className="page-x py-6">
       <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
         {/* LEFT — anchored editorial column */}
         <div className="lg:col-span-4">
@@ -1108,9 +1111,9 @@ function AuditedOutcomes() {
       <OutcomesAccordion />
 
       {/* cohort reports */}
-      <div className="page-x pt-2">
+      <div className="page-x pt-1">
         <div
-          className="mb-4 text-[10px] uppercase tracking-[0.2em] text-black/50"
+          className="mb-3 text-[10px] uppercase tracking-[0.2em] text-black/50"
           style={{ fontFamily: MONO }}
         >
           Reports
@@ -1119,7 +1122,7 @@ function AuditedOutcomes() {
       </div>
 
       {/* quote coda */}
-      <div className="mt-12 md:mt-14">
+      <div className="mt-6 md:mt-8">
         <OutcomesQuoteCoda />
       </div>
     </section>
