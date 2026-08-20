@@ -1028,8 +1028,8 @@ function CohortReportCard({ year }: { year: string }) {
       aria-label={`Cohort ${year} placement report`}
       className="group flex h-full flex-col border border-black/12 p-3 transition-colors duration-500 hover:border-black/40"
     >
-      {/* neutral document placeholder */}
-      <div className="relative flex aspect-[3/4] w-full items-center justify-center bg-black/[0.035]">
+      {/* compact document preview */}
+      <div className="relative flex aspect-[16/9] w-full items-center justify-center bg-black/[0.035]">
         <div className="flex flex-col items-center gap-1.5 text-black/35">
           <FileText className="size-6" strokeWidth={1.25} />
           <span
@@ -1042,7 +1042,7 @@ function CohortReportCard({ year }: { year: string }) {
         <span className="pointer-events-none absolute inset-x-4 top-1/2 h-px bg-black/[0.06]" />
       </div>
 
-      <div className="mt-3 flex items-start justify-between gap-2">
+      <div className="mt-2 flex items-start justify-between gap-2">
         <div className="min-w-0">
           <div className="text-[0.95rem] leading-none tracking-[-0.01em]">{year}</div>
           <div
@@ -1069,10 +1069,10 @@ function CohortReports() {
         ))}
       </div>
 
-      <div className="mt-5">
+      <div className="mt-3">
         <a
           href="#"
-          className="inline-flex items-center gap-2 border border-black/15 px-4 py-2.5 text-[10px] uppercase tracking-[0.2em] text-black/70 transition-colors duration-500 hover:border-black/45 hover:text-black"
+          className="inline-flex items-center gap-2 border border-black/15 px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-black/70 transition-colors duration-500 hover:border-black/45 hover:text-black"
           style={{ fontFamily: MONO }}
         >
           <Download className="size-3.5" /> Download placement report
@@ -1111,9 +1111,9 @@ function AuditedOutcomes() {
       <OutcomesAccordion />
 
       {/* cohort reports */}
-      <div className="page-x pt-1">
+      <div className="page-x pt-0">
         <div
-          className="mb-3 text-[10px] uppercase tracking-[0.2em] text-black/50"
+          className="mb-2 text-[10px] uppercase tracking-[0.2em] text-black/50"
           style={{ fontFamily: MONO }}
         >
           Reports
