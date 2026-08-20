@@ -903,8 +903,8 @@ function LogoRow({ names }: { names: string[] }) {
 /* ---------------------------- audited outcomes ---------------------------- */
 
 const PANEL_EASE = "cubic-bezier(0.22,1,0.36,1)";
-const PANEL_CLOSED = 78;
-const PANEL_OPEN = 320;
+const PANEL_CLOSED = 64;
+const PANEL_OPEN = 246;
 
 function OutcomePanel({
   stat,
@@ -937,7 +937,7 @@ function OutcomePanel({
       />
 
       {/* header row — number + label, never moves */}
-      <div className="flex h-[78px] shrink-0 items-center gap-5 pl-8 pr-6 sm:pl-10 sm:pr-8">
+      <div className="flex h-[64px] shrink-0 items-center gap-5 pl-8 pr-6 sm:pl-10 sm:pr-8">
         <span
           className="text-[10px] uppercase tracking-[0.24em] text-white/55"
           style={{ fontFamily: MONO }}
@@ -984,7 +984,7 @@ function OutcomesAccordion() {
   const [open, setOpen] = useState(0);
 
   return (
-    <div className="page-x py-10">
+    <div className="page-x py-6">
       <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
         {/* LEFT — anchored editorial column */}
         <div className="lg:col-span-4">
@@ -1108,9 +1108,9 @@ function AuditedOutcomes() {
       <OutcomesAccordion />
 
       {/* cohort reports */}
-      <div className="page-x pt-2">
+      <div className="page-x pt-1">
         <div
-          className="mb-4 text-[10px] uppercase tracking-[0.2em] text-black/50"
+          className="mb-3 text-[10px] uppercase tracking-[0.2em] text-black/50"
           style={{ fontFamily: MONO }}
         >
           Reports
@@ -1119,7 +1119,7 @@ function AuditedOutcomes() {
       </div>
 
       {/* quote coda */}
-      <div className="mt-12 md:mt-14">
+      <div className="mt-6 md:mt-8">
         <OutcomesQuoteCoda />
       </div>
     </section>
