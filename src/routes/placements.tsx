@@ -1084,28 +1084,112 @@ function CohortReports() {
   );
 }
 
+const QUOTE_TEXT = (
+  <>
+    “We don&apos;t approach placements the way most B-schools do. At Masters&apos; Union,
+    placements are run by a 50+ member, full-time team spanning company outreach, career
+    preparation, and role-specific coaching.”
+  </>
+);
+
+const QUOTE_CLASS =
+  "text-[clamp(1.35rem,2.8vw,2.2rem)] font-medium leading-[1.35] tracking-[-0.015em]";
+
+/** scroll progress (0→1) of an element travelling through the viewport */
+function useSectionProgress<T extends HTMLElement>() {
+  const ref = useRef<T | null>(null);
+  const [p, setP] = useState(0);
+
+  useEffect(() => {
+    let raf = 0;
+    const compute = () => {
+      raf = 0;
+      const el = ref.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const vh = window.innerHeight || 1;
+      // 0 when the section top hits the viewport bottom-ish, 1 when it is fully scrolled through
+      const total = r.height * 0.7 + vh * 0.3;
+      const travelled = vh - r.top - vh * 0.25;
+      const next = Math.min(1, Math.max(0, travelled / Math.max(1, total)));
+      setP((prev) => (Math.abs(prev - next) > 0.004 ? next : prev));
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(compute);
+    };
+    compute();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  return { ref, progress: p };
+}
+
 function FounderQuoteSection() {
+  const { ref, progress } = useSectionProgress<HTMLDivElement>();
+  const [reduced, setReduced] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(mq.matches);
+    const on = () => setReduced(mq.matches);
+    mq.addEventListener("change", on);
+    return () => mq.removeEventListener("change", on);
+  }, []);
+
+  // left → right wipe: soft edge that sweeps across the typography
+  const edge = progress * 118 - 9; // -9% → 109%
+  const mask = reduced
+    ? "none"
+    : `linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0) ${Math.max(0, edge - 9)}%, #000 ${edge + 9}%, #000 100%)`;
+
   return (
     <section
       className="relative flex min-h-[100svh] items-center overflow-hidden bg-black py-14 md:py-16"
       style={{ backgroundImage: `url(${manojKohliBg.url})`, backgroundSize: "cover", backgroundPosition: "85% 55%" }}
     >
-      {/* gradient overlay: heavier on the left for text, lighter on the right so the body stays visible */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/20" />
+      {/* very subtle gradient so the solid state stays readable without dulling the photograph */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/25 via-black/15 to-transparent" />
       <div className="page-x relative w-full">
-        <div className="relative max-w-[56ch] md:ml-[10%] lg:ml-[12%]">
+        <div ref={ref} className="relative max-w-[56ch] md:ml-[10%] lg:ml-[12%]">
           <Quote
             className="absolute -left-1 -top-2 size-10 text-white/15 md:-left-6 md:-top-4 md:size-16"
             strokeWidth={1}
             aria-hidden="true"
           />
-          <Reveal duration={900}>
-            <blockquote className="text-[clamp(1.35rem,2.8vw,2.2rem)] font-medium leading-[1.35] tracking-[-0.015em] text-white">
-              “We don&apos;t approach placements the way most B-schools do. At Masters&apos; Union,
-              placements are run by a 50+ member, full-time team spanning company outreach, career
-              preparation, and role-specific coaching.”
+          <div className="relative">
+            {/* image-filled layer (underneath) */}
+            <blockquote
+              aria-hidden="true"
+              className={`${QUOTE_CLASS} text-transparent`}
+              style={{
+                backgroundImage: `url(${manojKohliBg.url})`,
+                backgroundSize: "cover",
+                backgroundPosition: "85% 55%",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                filter: "brightness(1.25) contrast(1.05)",
+              }}
+            >
+              {QUOTE_TEXT}
             </blockquote>
-          </Reveal>
+            {/* solid white layer that gets wiped away left → right, letterforms preserved below */}
+            <blockquote
+              className={`${QUOTE_CLASS} absolute inset-0 text-white`}
+              style={{
+                WebkitMaskImage: mask,
+                maskImage: mask,
+                willChange: "mask-image",
+              }}
+            >
+              {QUOTE_TEXT}
+            </blockquote>
+          </div>
           <Reveal delay={180}>
             <div
               className="mt-8 text-[10px] uppercase tracking-[0.2em] text-white/70"
@@ -1119,6 +1203,7 @@ function FounderQuoteSection() {
     </section>
   );
 }
+
 
 
 function AuditedOutcomes() {
