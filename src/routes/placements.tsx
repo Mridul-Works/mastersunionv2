@@ -494,8 +494,8 @@ function StatPanel({
   isFirst: boolean;
   onSelect: () => void;
 }) {
-  // Character-aware cap so long values ($149,114) shrink but short ones (30) stay large.
-  const cap = Math.round(76 / Math.max(3, value.length));
+  // Normalize expanded font size to match the ₹64 LPA reference.
+  const cap = Math.round(76 / "₹64 LPA".length);
 
   return (
     <div
