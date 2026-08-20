@@ -1093,7 +1093,7 @@ function FounderQuoteSection() {
       {/* gradient overlay: heavier on the left for text, lighter on the right so the body stays visible */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/20" />
       <div className="page-x relative w-full">
-        <div className="relative mx-auto max-w-[56ch]">
+        <div className="relative max-w-[56ch] md:ml-[10%] lg:ml-[12%]">
           <Quote
             className="absolute -left-1 -top-2 size-10 text-white/15 md:-left-6 md:-top-4 md:size-16"
             strokeWidth={1}
