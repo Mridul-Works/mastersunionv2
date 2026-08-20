@@ -903,8 +903,6 @@ function LogoRow({ names }: { names: string[] }) {
 /* ---------------------------- audited outcomes ---------------------------- */
 
 const PANEL_EASE = "cubic-bezier(0.22,1,0.36,1)";
-const PANEL_CLOSED = 64;
-const PANEL_OPEN = 246;
 
 function OutcomePanel({
   stat,
@@ -925,7 +923,9 @@ function OutcomePanel({
       aria-expanded={active}
       className="group relative flex w-full flex-col items-stretch justify-start overflow-hidden bg-black text-left text-white cursor-pointer"
       style={{
-        height: active ? PANEL_OPEN : PANEL_CLOSED,
+        ["--panel-closed" as string]: "clamp(56px, 9vh, 64px)",
+        ["--panel-open" as string]: "clamp(200px, 30vh, 246px)",
+        height: active ? "var(--panel-open)" : "var(--panel-closed)",
         transition: `height 620ms ${PANEL_EASE}`,
         willChange: "height",
       }}
@@ -937,7 +937,10 @@ function OutcomePanel({
       />
 
       {/* header row — number + label, never moves */}
-      <div className="flex h-[64px] shrink-0 items-center gap-5 pl-8 pr-6 sm:pl-10 sm:pr-8">
+      <div
+        className="flex shrink-0 items-center gap-5 pl-8 pr-6 sm:pl-10 sm:pr-8"
+        style={{ height: "var(--panel-closed)" }}
+      >
         <span
           className="text-[10px] uppercase tracking-[0.24em] text-white/55"
           style={{ fontFamily: MONO }}
@@ -956,13 +959,13 @@ function OutcomePanel({
       <div
         aria-hidden={!active}
         className="absolute inset-x-0 bottom-0 px-8 sm:px-10"
-        style={{ top: PANEL_CLOSED }}
+        style={{ top: "var(--panel-closed)" }}
       >
         <div className="h-px w-full bg-white/15" />
         <div
           className="flex flex-col items-center justify-center px-2 text-center"
           style={{
-            height: PANEL_OPEN - PANEL_CLOSED - 1,
+            height: "calc(var(--panel-open) - var(--panel-closed) - 1px)",
             opacity: active ? 1 : 0,
             transform: active ? "translateY(0)" : "translateY(10px)",
             transition: `opacity 520ms ${PANEL_EASE} 60ms, transform 620ms ${PANEL_EASE}`,
