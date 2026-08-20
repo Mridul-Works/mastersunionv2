@@ -938,8 +938,9 @@ function Page() {
         style={{ marginTop: reduced ? 0 : "calc(-100svh - 1px)" }}
       >
         <div className="page-x py-10 md:py-12 lg:py-14">
-          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
+          <div className="relative grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
             <CareerPodcast />
+            <EditorialSeparator />
             <StatsAccordion />
           </div>
         </div>
