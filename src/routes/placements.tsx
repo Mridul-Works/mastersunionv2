@@ -65,7 +65,7 @@ const HERO_STATS = [
 const AUDIT_STATS = [
   { value: "4", suffix: "Offers > ₹1 Cr", note: "Marking strong compensation figures" },
   { value: ">90%", suffix: "Placed early", note: "Joined full-time roles before the penultimate term" },
-  { value: "₹54.80L", suffix: "Top 25% average CTC", note: "Cohort '25 top quartile" },
+  { value: "₹54.80 LPA", suffix: "Top 25% average CTC", note: "Cohort '25 top quartile" },
 ];
 
 const REPORT_YEARS = ["2021", "2022", "2023", "2024", "2025"];
@@ -902,31 +902,189 @@ function LogoRow({ names }: { names: string[] }) {
 
 /* ---------------------------- audited outcomes ---------------------------- */
 
-function OutcomeColumn({
+/** 0..1 progress of a tall container travelling through the viewport. */
+function useStageProgress<T extends HTMLElement = HTMLDivElement>() {
+  const ref = useRef<T | null>(null);
+  const [p, setP] = useState(0);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const rect = el.getBoundingClientRect();
+      const distance = rect.height - window.innerHeight;
+      const next = distance > 0 ? Math.min(1, Math.max(0, -rect.top / distance)) : 0;
+      setP((prev) => (Math.abs(prev - next) < 0.0015 ? prev : next));
+    };
+    const tick = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", tick, { passive: true });
+    window.addEventListener("resize", tick);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", tick);
+      window.removeEventListener("resize", tick);
+    };
+  }, []);
+
+  return { ref, p };
+}
+
+function OutcomePanel({
   stat,
   n,
-  className = "",
+  weight,
+  active,
 }: {
   stat: (typeof AUDIT_STATS)[number];
   n: number;
-  className?: string;
+  weight: number;
+  active: boolean;
 }) {
+  const label = stat.suffix;
   return (
-    <div className={`flex flex-col px-0 py-6 sm:px-6 sm:py-7 ${className}`}>
-      <Index n={n} />
-      <div className="mt-5 text-[clamp(2.2rem,4.6vw,3.6rem)] leading-[0.92] tracking-[-0.035em]">
-        {stat.value}
-      </div>
+    <div
+      className="relative min-h-[76px] min-w-0 overflow-hidden bg-black text-white md:min-h-0"
+      style={{
+        flex: `${weight.toFixed(4)} 1 0%`,
+        transition: "flex-grow 140ms linear",
+        willChange: "flex-grow",
+      }}
+    >
+      {/* structural vertical hairline — attached to the panel */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute bottom-0 left-4 top-0 w-px bg-white/15 sm:left-5"
+      />
+
+      {/* slide number — always anchored top-left */}
       <div
-        className="mt-5 text-[10px] uppercase tracking-[0.24em] text-black/60"
+        className="absolute left-8 top-4 text-[10px] uppercase tracking-[0.24em] text-white/55 sm:left-10 sm:top-6"
         style={{ fontFamily: MONO }}
       >
-        {stat.suffix}
+        {String(n).padStart(2, "0")}
       </div>
-      <p className="mt-3 max-w-[30ch] text-[0.9rem] leading-[1.6] text-black/60">{stat.note}</p>
+
+      {/* CLOSED state — compact descriptor */}
+      <div
+        aria-hidden={active}
+        className="absolute inset-0"
+        style={{
+          opacity: active ? 0 : 1,
+          transition: "opacity 420ms cubic-bezier(0.16,0.84,0.24,1)",
+        }}
+      >
+        {/* vertical descriptor for row layout */}
+        <div className="absolute bottom-5 left-1/2 hidden -translate-x-1/2 md:block">
+          <span
+            className="whitespace-nowrap text-[10px] uppercase tracking-[0.28em] text-white/60"
+            style={{ fontFamily: MONO, writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+          >
+            {label}
+          </span>
+        </div>
+        {/* horizontal descriptor for stacked layout */}
+        <div className="absolute bottom-3.5 left-8 right-5 md:hidden">
+          <span
+            className="block truncate text-[10px] uppercase tracking-[0.24em] text-white/60"
+            style={{ fontFamily: MONO }}
+          >
+            {label}
+          </span>
+        </div>
+      </div>
+
+      {/* OPEN state — the statistic */}
+      <div
+        aria-hidden={!active}
+        className="pointer-events-none absolute inset-0 flex flex-col justify-center px-8 sm:px-10"
+        style={{
+          opacity: active ? 1 : 0,
+          transition: "opacity 480ms cubic-bezier(0.16,0.84,0.24,1)",
+        }}
+      >
+        <div className="flex flex-1 items-center">
+          <div className="min-w-0">
+            <div className="whitespace-nowrap text-[clamp(2rem,4.6vw,4.2rem)] leading-[0.95] tracking-[-0.035em]">
+              {stat.value}
+            </div>
+            <p className="mt-4 max-w-[34ch] text-[0.9rem] leading-[1.6] text-white/60">
+              {stat.note}
+            </p>
+          </div>
+        </div>
+        <div className="pb-6 sm:pb-7">
+          <div className="h-px w-full bg-white/15" />
+          <div
+            className="mt-4 text-[10px] uppercase tracking-[0.24em] text-white/65"
+            style={{ fontFamily: MONO }}
+          >
+            {label}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
+
+function OutcomesAccordion() {
+  const reduced = useReducedMotion();
+  const { ref, p } = useStageProgress<HTMLDivElement>();
+  const count = AUDIT_STATS.length;
+  const pos = Math.min(count - 1, Math.max(0, p / 0.9) * (count - 1));
+
+  return (
+    <div ref={ref} className="relative" style={{ height: `${count * 85 + 15}svh` }}>
+      <div className="sticky top-0 flex min-h-svh items-center">
+        <div className="page-x w-full py-10">
+          <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
+            {/* LEFT — anchored editorial column */}
+            <div className="lg:col-span-4">
+              <Eyebrow>Five years of audited placements</Eyebrow>
+              <h2 className="mt-4 max-w-[24ch] text-[clamp(1.7rem,3.2vw,2.7rem)] font-medium leading-[1.06] tracking-[-0.02em]">
+                Proven outcomes, verified line by line.
+              </h2>
+              <p className="mt-5 max-w-[50ch] text-[0.95rem] leading-[1.65] text-black/65">
+                Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and
+                follow the IPRS Revision 2.2 framework for transparent, consistent compensation
+                data.
+              </p>
+            </div>
+
+            {/* RIGHT — scroll-driven static accordion */}
+            <div className="lg:col-span-8">
+              <div className="flex h-[clamp(360px,58svh,520px)] flex-col gap-1.5 md:flex-row md:gap-2">
+                {AUDIT_STATS.map((s, i) => {
+                  const nearness = reduced
+                    ? i === 0
+                      ? 1
+                      : 0
+                    : Math.max(0, 1 - Math.abs(pos - i));
+                  const eased = nearness * nearness * (3 - 2 * nearness);
+                  const activeIndex = reduced ? 0 : Math.round(pos);
+                  return (
+                    <OutcomePanel
+                      key={s.suffix}
+                      stat={s}
+                      n={i + 1}
+                      weight={1 + eased * 5}
+                      active={i === activeIndex}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 
 function CohortReportCard({ year }: { year: string }) {
   return (
@@ -1014,58 +1172,28 @@ function OutcomesQuoteCoda() {
 function AuditedOutcomes() {
   return (
     <section id="outcomes" className="relative bg-white">
-      <div className="page-x pt-14 md:pt-16">
-        {/* 1 — intro */}
-        <div className="grid grid-cols-1 items-end gap-6 lg:grid-cols-12 lg:gap-12">
-          <div className="lg:col-span-7">
-            <Eyebrow>Five years of audited placements</Eyebrow>
-            <h2 className="mt-4 max-w-[24ch] text-[clamp(1.7rem,3.4vw,2.9rem)] font-medium leading-[1.05] tracking-[-0.02em]">
-              Proven outcomes, verified line by line.
-            </h2>
-          </div>
-          <div className="lg:col-span-5">
-            <p className="max-w-[52ch] text-[0.95rem] leading-[1.65] text-black/65">
-              Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and
-              follow the IPRS Revision 2.2 framework for transparent, consistent compensation data.
-            </p>
-          </div>
-        </div>
+      {/* sticky left + scroll-driven right accordion */}
+      <OutcomesAccordion />
 
-        {/* 2 — statistics */}
-        <div className="mt-8 border-t border-black/12 md:mt-10">
-          <div className="grid grid-cols-1 divide-y divide-black/12 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-            {AUDIT_STATS.map((s, i) => (
-              <Reveal key={s.suffix} delay={i * 90} y={18} className="min-w-0">
-                <OutcomeColumn
-                  stat={s}
-                  n={i + 1}
-                  className={i === 0 ? "sm:pl-0" : i === AUDIT_STATS.length - 1 ? "sm:pr-0" : ""}
-                />
-              </Reveal>
-            ))}
-          </div>
-          <div className="h-px w-full bg-black/12" />
+      {/* cohort reports */}
+      <div className="page-x pt-2">
+        <div
+          className="mb-4 text-[10px] uppercase tracking-[0.2em] text-black/50"
+          style={{ fontFamily: MONO }}
+        >
+          Reports
         </div>
-
-        {/* 3 — cohort reports */}
-        <div className="mt-8 md:mt-10">
-          <div
-            className="mb-4 text-[10px] uppercase tracking-[0.2em] text-black/50"
-            style={{ fontFamily: MONO }}
-          >
-            Reports
-          </div>
-          <CohortReports />
-        </div>
+        <CohortReports />
       </div>
 
-      {/* 4 — quote coda */}
+      {/* quote coda */}
       <div className="mt-12 md:mt-14">
         <OutcomesQuoteCoda />
       </div>
     </section>
   );
 }
+
 
 
 /* ---------------------------------- page ---------------------------------- */
