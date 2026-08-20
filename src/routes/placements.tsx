@@ -1084,118 +1084,14 @@ function CohortReports() {
   );
 }
 
-/**
- * Scroll-driven reconstruction of the quote photograph.
- * The photo is split into rectangular tiles — each tile renders the SAME image
- * at container size with an offset, so at progress 1 the crop is pixel-identical
- * to the untiled background beneath it (no seams, gaps or duplicates possible).
- */
-function QuoteImageBlocks({ src }: { src: string }) {
-  const hostRef = React.useRef<HTMLDivElement | null>(null);
-  const [p, setP] = React.useState(0);
-  const [cols, setCols] = React.useState(4);
-
-  React.useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
-    const apply = () => setCols(mq.matches ? 2 : 4);
-    apply();
-    mq.addEventListener("change", apply);
-    return () => mq.removeEventListener("change", apply);
-  }, []);
-  const rows = cols === 2 ? 3 : 3; // 12 desktop / 6 mobile pieces
-
-  React.useEffect(() => {
-    const el = hostRef.current;
-    if (!el) return;
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      const rect = el.getBoundingClientRect();
-      const vh = window.innerHeight || 1;
-      // 0 when the section's top is a viewport away, 1 once it is settled at the top
-      const travel = vh * 0.85;
-      const prog = (vh - rect.top) / travel;
-      setP(Math.min(1, Math.max(0, prog)));
-    };
-    const tick = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", tick, { passive: true });
-    window.addEventListener("resize", tick);
-    return () => {
-      if (raf) cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", tick);
-      window.removeEventListener("resize", tick);
-    };
-  }, [cols]);
-
-  const tiles = [];
-  const cx = (cols - 1) / 2;
-  const cy = (rows - 1) / 2;
-  const maxD = Math.hypot(cx, cy) || 1;
-
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-      // asymmetric editorial displacement: outward-in, blocks pull toward centre
-      const dx = c - cx;
-      const dy = r - cy;
-      const dist = Math.hypot(dx, dy) / maxD;
-      const ox = -dx * 26 - dy * 9;
-      const oy = -dy * 30 + dx * 7;
-      // stagger centre -> edges, tightly synchronised (all done at p = 1)
-      const start = dist * 0.32;
-      const local = Math.min(1, Math.max(0, (p - start) / (1 - start || 1)));
-      const eased = 1 - Math.pow(1 - local, 3);
-      const k = 1 - eased;
-
-      tiles.push(
-        <div
-          key={`${r}-${c}`}
-          className="absolute overflow-hidden"
-          style={{
-            left: `${(c / cols) * 100}%`,
-            top: `${(r / rows) * 100}%`,
-            width: `${100 / cols}%`,
-            height: `${100 / rows}%`,
-            transform: `translate3d(${(ox * k).toFixed(2)}px, ${(oy * k).toFixed(2)}px, 0)`,
-            willChange: "transform",
-          }}
-        >
-          <div
-            className="absolute"
-            style={{
-              left: `${-c * 100}%`,
-              top: `${-r * 100}%`,
-              width: `${cols * 100}%`,
-              height: `${rows * 100}%`,
-              backgroundImage: `url(${src})`,
-              backgroundSize: "cover",
-              backgroundPosition: "85% 55%",
-            }}
-          />
-        </div>,
-      );
-    }
-  }
-
-  return (
-    <div ref={hostRef} className="absolute inset-0 overflow-hidden">
-      {tiles}
-    </div>
-  );
-}
-
 function FounderQuoteSection() {
   return (
     <section
       className="relative flex min-h-[100svh] items-center overflow-hidden bg-black py-14 md:py-16"
       style={{ backgroundImage: `url(${manojKohliBg.url})`, backgroundSize: "cover", backgroundPosition: "85% 55%" }}
     >
-      <QuoteImageBlocks src={manojKohliBg.url} />
       {/* gradient overlay: heavier on the left for text, lighter on the right so the body stays visible */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/20" />
-
       <div className="page-x relative w-full">
         <div className="relative max-w-[56ch] md:ml-[10%] lg:ml-[12%]">
           <Quote
