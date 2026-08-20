@@ -12,6 +12,7 @@ import {
   Download,
   FileText,
   Mail,
+  Quote,
 } from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
 import heroBg from "@/assets/placement-hero.webp.asset.json";
@@ -1082,32 +1083,41 @@ function CohortReports() {
   );
 }
 
-function OutcomesQuoteCoda() {
+function FounderQuoteSection() {
   return (
-    <div className="page-x relative border-t border-black/10 py-10 md:py-14">
-      <Reveal duration={900}>
-        <blockquote className="max-w-[52ch] text-[clamp(1.15rem,2.2vw,1.8rem)] font-medium leading-[1.3] tracking-[-0.015em]">
-          “We don&apos;t approach placements the way most B-schools do. At Masters&apos; Union,
-          placements are run by a 50+ member, full-time team spanning company outreach, career
-          preparation, and role-specific coaching.”
-        </blockquote>
-      </Reveal>
-      <Reveal delay={180}>
-        <div
-          className="mt-6 text-[10px] uppercase tracking-[0.2em] text-black/60"
-          style={{ fontFamily: MONO }}
-        >
-          Pratham Mittal — Founder &amp; CEO, Masters&apos; Union
+    <section className="relative bg-[#F2F1EE] py-16 md:py-24">
+      <div className="page-x relative">
+        <div className="relative mx-auto max-w-[56ch]">
+          <Quote
+            className="absolute -left-1 -top-2 size-10 text-black/10 md:-left-6 md:-top-4 md:size-16"
+            strokeWidth={1}
+            aria-hidden="true"
+          />
+          <Reveal duration={900}>
+            <blockquote className="text-[clamp(1.35rem,2.8vw,2.2rem)] font-medium leading-[1.35] tracking-[-0.015em]">
+              “We don&apos;t approach placements the way most B-schools do. At Masters&apos; Union,
+              placements are run by a 50+ member, full-time team spanning company outreach, career
+              preparation, and role-specific coaching.”
+            </blockquote>
+          </Reveal>
+          <Reveal delay={180}>
+            <div
+              className="mt-8 text-[10px] uppercase tracking-[0.2em] text-black/60"
+              style={{ fontFamily: MONO }}
+            >
+              Pratham Mittal — Founder &amp; CEO, Masters&apos; Union
+            </div>
+          </Reveal>
         </div>
-      </Reveal>
-    </div>
+      </div>
+    </section>
   );
 }
 
 function AuditedOutcomes() {
   return (
     <section id="outcomes" className="relative bg-white">
-      {/* sticky left + scroll-driven right accordion */}
+      {/* sticky left + click-driven horizontal accordion */}
       <OutcomesAccordion />
 
       {/* cohort reports */}
@@ -1119,11 +1129,6 @@ function AuditedOutcomes() {
           Reports
         </div>
         <CohortReports />
-      </div>
-
-      {/* quote coda */}
-      <div className="mt-6 md:mt-8">
-        <OutcomesQuoteCoda />
       </div>
     </section>
   );
@@ -1176,7 +1181,8 @@ function Page() {
       {/* AUDITED OUTCOMES — scroll-driven sticky editorial storytelling */}
       <AuditedOutcomes />
 
-
+      {/* FOUNDER QUOTE — standalone editorial statement */}
+      <FounderQuoteSection />
 
       {/* COHORT CHARTS */}
       <Band id="cohorts" tone="white">
