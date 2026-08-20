@@ -1024,16 +1024,17 @@ function OutcomesStory() {
                 })}
               </div>
 
-              <ReportsRow
-                className="mt-2"
-                // reports reveal as the final beat
-              />
               <div
-                aria-hidden
-                className="pointer-events-none absolute"
-                style={{ opacity: 0 }}
-              />
-              <style>{`.outcomes-reports{opacity:${reports.toFixed(3)};transform:translate3d(0,${((1 - reports) * 18).toFixed(2)}px,0)}`}</style>
+                style={{
+                  opacity: reports,
+                  transform: `translate3d(0, ${((1 - reports) * 18).toFixed(2)}px, 0)`,
+                  pointerEvents: reports > 0.5 ? "auto" : "none",
+                  willChange: "transform, opacity",
+                }}
+              >
+                <ReportsRow className="mt-2" />
+              </div>
+
             </div>
           </div>
         </div>
