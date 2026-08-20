@@ -689,18 +689,18 @@ function CareerPodcast() {
   const id = "uiNTwDixAts";
 
   return (
-    <div className="flex flex-col gap-8 text-white">
+    <div className="flex flex-col gap-8">
       <div>
         <Reveal>
-          <Eyebrow className="!text-white/55">Podcast</Eyebrow>
+          <Eyebrow>Podcast</Eyebrow>
         </Reveal>
         <Reveal delay={90}>
-          <h3 className="mt-5 text-[clamp(1.55rem,2.9vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em] text-white">
+          <h3 className="mt-5 text-[clamp(1.55rem,2.9vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
             How Masters&apos; Union prepares students for top 1% placements
           </h3>
         </Reveal>
         <Reveal delay={180}>
-          <p className="mt-6 max-w-[50ch] text-[16px] leading-relaxed text-white/65">
+          <p className="mt-6 max-w-[50ch] text-[16px] leading-relaxed text-black/65">
             A detailed conversation on the placement engine behind Masters&apos; Union — how recruiter
             access, live industry projects and year-round career coaching translate into offers at the
             firms shaping the next decade.
@@ -711,10 +711,10 @@ function CareerPodcast() {
             href={`https://www.youtube.com/watch?v=${id}`}
             target="_blank"
             rel="noreferrer"
-            className="group mt-8 inline-flex items-center gap-2 border-b border-white/25 pb-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition hover:border-white"
+            className="group mt-8 inline-flex items-center gap-2 border-b border-black/25 pb-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-black transition hover:border-black"
           >
             Watch on YouTube
-            <ArrowUpRight className="size-3.5 text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
         </Reveal>
       </div>
@@ -928,7 +928,7 @@ function Page() {
 
       {/* PODCAST + STATISTICS — rises from below and slides over the pinned hero */}
       <section
-        className="relative z-20 bg-[#323231]"
+        className="relative z-20 bg-[#F2F1EE]"
         style={{ marginTop: reduced ? 0 : "calc(-100svh - 1px)" }}
       >
         <div className="page-x py-10 md:py-12 lg:py-14">
