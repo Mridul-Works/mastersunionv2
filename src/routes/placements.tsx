@@ -1030,7 +1030,7 @@ function CohortReportCard({ year }: { year: string }) {
       className="group flex h-full flex-col border border-black/12 p-3 transition-colors duration-500 hover:border-black/40"
     >
       {/* compact document preview */}
-      <div className="relative flex aspect-[16/9] w-full items-center justify-center bg-black/[0.035]">
+      <div className="relative flex aspect-[16/10] w-full items-center justify-center bg-black/[0.035]">
         <div className="flex flex-col items-center gap-1.5 text-black/35">
           <FileText className="size-6" strokeWidth={1.25} />
           <span
