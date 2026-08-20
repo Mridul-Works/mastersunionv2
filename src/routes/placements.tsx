@@ -1044,40 +1044,70 @@ function OutcomesStory() {
   );
 }
 
+function OutcomesQuoteCoda() {
+  return (
+    <div className="relative overflow-hidden">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-6 -top-16 select-none text-[22rem] leading-none text-black/[0.04]"
+      >
+        <Parallax strength={50}>“</Parallax>
+      </div>
+      <div className="page-x relative py-20 md:py-28">
+        <Reveal duration={950}>
+          <blockquote className="max-w-[52ch] text-[clamp(1.3rem,2.6vw,2.1rem)] font-medium leading-[1.25] tracking-[-0.015em]">
+            “We don&apos;t approach placements the way most B-schools do. At Masters&apos; Union, placements are run by a 50+ member, full-time team spanning company outreach, career preparation, and role-specific coaching.”
+          </blockquote>
+        </Reveal>
+        <Reveal delay={220}>
+          <div className="mt-10 text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>
+            Pratham Mittal — Founder &amp; CEO, Masters&apos; Union
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  );
+}
+
 function AuditedOutcomes() {
   const reduced = useReducedMotion();
   const isMobile = useIsMobile();
 
   if (reduced || isMobile) {
     return (
-      <Band id="outcomes" tone="white">
-        <Eyebrow>Five years of audited placements</Eyebrow>
-        <h2 className="mt-6 max-w-[26ch] text-[clamp(1.8rem,6vw,2.4rem)] font-medium leading-[1.05] tracking-[-0.015em]">
-          Proven outcomes, verified line by line.
-        </h2>
-        <p className="mt-5 max-w-[60ch] text-[1rem] leading-[1.65] text-black/70">
-          Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and follow
-          the IPRS Revision 2.2 framework for transparent, consistent compensation data.
-        </p>
-        <div className="mt-12 space-y-10">
-          {AUDIT_STATS.map((s, i) => (
-            <Reveal key={s.suffix} delay={i * 90}>
-              <OutcomeStory stat={s} n={i + 1} />
-            </Reveal>
-          ))}
-        </div>
-        <Reveal delay={120}>
-          <ReportsRow className="mt-10" />
-        </Reveal>
-      </Band>
+      <section id="outcomes" className="relative bg-white">
+        <Band tone="white">
+          <Eyebrow>Five years of audited placements</Eyebrow>
+          <h2 className="mt-6 max-w-[26ch] text-[clamp(1.8rem,6vw,2.4rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+            Proven outcomes, verified line by line.
+          </h2>
+          <p className="mt-5 max-w-[60ch] text-[1rem] leading-[1.65] text-black/70">
+            Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and follow
+            the IPRS Revision 2.2 framework for transparent, consistent compensation data.
+          </p>
+          <div className="mt-12 space-y-10">
+            {AUDIT_STATS.map((s, i) => (
+              <Reveal key={s.suffix} delay={i * 90}>
+                <OutcomeStory stat={s} n={i + 1} />
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={120}>
+            <ReportsRow className="mt-10" />
+          </Reveal>
+        </Band>
+        <OutcomesQuoteCoda />
+      </section>
     );
   }
 
   return (
     <section id="outcomes" className="relative bg-white">
       <OutcomesStory />
+      <OutcomesQuoteCoda />
     </section>
   );
+
 }
 
 /* ---------------------------------- page ---------------------------------- */
