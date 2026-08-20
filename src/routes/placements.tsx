@@ -477,7 +477,6 @@ function CinematicHero() {
 }
 
 /** Horizontal preview-stack accordion for the four hero statistics. */
-const STATS_EASE = "cubic-bezier(0.76,0,0.24,1)";
 const STATS_SMOOTH = "cubic-bezier(0.33,1,0.68,1)";
 
 function StatPanel({
