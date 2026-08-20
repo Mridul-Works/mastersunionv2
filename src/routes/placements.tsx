@@ -27,6 +27,7 @@ import {
   useReducedMotion,
 } from "@/components/placements/motion";
 import { HeroMaskReveal } from "@/components/placements/HeroMaskReveal";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
@@ -898,6 +899,187 @@ function LogoRow({ names }: { names: string[] }) {
   );
 }
 
+/* ------------------------ audited outcomes (scroll story) ----------------- */
+
+function useStageProgress<T extends HTMLElement = HTMLDivElement>() {
+  const ref = useRef<T | null>(null);
+  const [p, setP] = useState(0);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const rect = el.getBoundingClientRect();
+      const distance = rect.height - window.innerHeight;
+      const scrolled = -rect.top;
+      const next = distance > 0 ? Math.min(1, Math.max(0, scrolled / distance)) : 0;
+      setP((prev) => (Math.abs(prev - next) < 0.0015 ? prev : next));
+    };
+    const tick = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", tick, { passive: true });
+    window.addEventListener("resize", tick);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", tick);
+      window.removeEventListener("resize", tick);
+    };
+  }, []);
+
+  return { ref, p };
+}
+
+function OutcomeStory({ stat, n }: { stat: (typeof AUDIT_STATS)[number]; n: number }) {
+  return (
+    <div>
+      <div className="h-px w-full bg-black/12" />
+      <div className="flex items-baseline gap-4 pt-8">
+        <Index n={n} />
+      </div>
+      <div className="mt-6 text-[clamp(2.6rem,7vw,6rem)] leading-[0.92] tracking-[-0.035em]">
+        {stat.value}
+      </div>
+      <div
+        className="mt-7 text-[11px] uppercase tracking-[0.24em] text-black/60"
+        style={{ fontFamily: MONO }}
+      >
+        {stat.suffix}
+      </div>
+      <p className="mt-4 max-w-[36ch] text-[0.95rem] leading-[1.65] text-black/65">{stat.note}</p>
+      <div className="mt-8 h-px w-full bg-black/12" />
+    </div>
+  );
+}
+
+function ReportsRow({ className = "" }: { className?: string }) {
+  return (
+    <div className={`flex flex-wrap items-center gap-3 ${className}`}>
+      <span
+        className="text-[11px] uppercase tracking-[0.2em] text-black/55"
+        style={{ fontFamily: MONO }}
+      >
+        Reports
+      </span>
+      {REPORT_YEARS.map((y) => (
+        <span
+          key={y}
+          className="inline-flex items-center gap-2 border border-black/15 px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-black/75 transition-colors duration-500 hover:border-black/45"
+          style={{ fontFamily: MONO }}
+        >
+          <Download className="size-3" /> Cohort {y}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function OutcomesStory() {
+  const { ref, p } = useStageProgress<HTMLDivElement>();
+  const slides = AUDIT_STATS.length;
+  const slideSpan = 0.82;
+  const pos = Math.min(slides - 1, (Math.min(p, slideSpan) / slideSpan) * (slides - 1));
+  const reports = Math.min(1, Math.max(0, (p - slideSpan) / (1 - slideSpan)));
+
+  return (
+    <div ref={ref} className="relative" style={{ height: `${slides * 90 + 30}svh` }}>
+      <div className="sticky top-0 flex min-h-svh items-center">
+        <div className="page-x w-full py-16 md:py-20">
+          <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-16">
+            {/* LEFT — anchored editorial column */}
+            <div className="lg:col-span-4">
+              <Eyebrow>Five years of audited placements</Eyebrow>
+              <h2 className="mt-6 max-w-[26ch] text-[clamp(1.8rem,3.6vw,3rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+                Proven outcomes, verified line by line.
+              </h2>
+              <p className="mt-6 max-w-[52ch] text-[1.05rem] leading-[1.65] text-black/70">
+                Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and
+                follow the IPRS Revision 2.2 framework for transparent, consistent compensation data.
+              </p>
+            </div>
+
+            {/* RIGHT — scroll-driven slides in one fixed-height stage */}
+            <div className="lg:col-span-8">
+              <div className="relative h-[clamp(320px,42svh,440px)]">
+                {AUDIT_STATS.map((s, i) => {
+                  const d = pos - i;
+                  const a = Math.max(0, 1 - Math.abs(d));
+                  return (
+                    <div
+                      key={s.suffix}
+                      aria-hidden={a < 0.5}
+                      className="absolute inset-x-0 top-0"
+                      style={{
+                        opacity: a * a,
+                        transform: `translate3d(0, ${(-d * 56).toFixed(2)}px, 0)`,
+                        pointerEvents: a > 0.6 ? "auto" : "none",
+                        willChange: "transform, opacity",
+                      }}
+                    >
+                      <OutcomeStory stat={s} n={i + 1} />
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div
+                style={{
+                  opacity: reports,
+                  transform: `translate3d(0, ${((1 - reports) * 18).toFixed(2)}px, 0)`,
+                  pointerEvents: reports > 0.5 ? "auto" : "none",
+                  willChange: "transform, opacity",
+                }}
+              >
+                <ReportsRow className="mt-2" />
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function AuditedOutcomes() {
+  const reduced = useReducedMotion();
+  const isMobile = useIsMobile();
+
+  if (reduced || isMobile) {
+    return (
+      <Band id="outcomes" tone="white">
+        <Eyebrow>Five years of audited placements</Eyebrow>
+        <h2 className="mt-6 max-w-[26ch] text-[clamp(1.8rem,6vw,2.4rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+          Proven outcomes, verified line by line.
+        </h2>
+        <p className="mt-5 max-w-[60ch] text-[1rem] leading-[1.65] text-black/70">
+          Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and follow
+          the IPRS Revision 2.2 framework for transparent, consistent compensation data.
+        </p>
+        <div className="mt-12 space-y-10">
+          {AUDIT_STATS.map((s, i) => (
+            <Reveal key={s.suffix} delay={i * 90}>
+              <OutcomeStory stat={s} n={i + 1} />
+            </Reveal>
+          ))}
+        </div>
+        <Reveal delay={120}>
+          <ReportsRow className="mt-10" />
+        </Reveal>
+      </Band>
+    );
+  }
+
+  return (
+    <section id="outcomes" className="relative bg-white">
+      <OutcomesStory />
+    </section>
+  );
+}
+
 /* ---------------------------------- page ---------------------------------- */
 
 function Page() {
@@ -940,63 +1122,9 @@ function Page() {
         </div>
       </section>
 
-      {/* AUDITED OUTCOMES */}
-      <Band id="outcomes" tone="white">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-          <StickyHead>
-            <Reveal>
-              <Eyebrow>Five years of audited placements</Eyebrow>
-            </Reveal>
-            <Reveal delay={120}>
-              <h2 className="mt-6 max-w-[26ch] text-[clamp(1.8rem,3.6vw,3rem)] font-medium leading-[1.05] tracking-[-0.015em]">
-                Proven outcomes, verified line by line.
-              </h2>
-            </Reveal>
-            <Reveal delay={240}>
-              <p className="mt-6 max-w-[68ch] text-[1.05rem] leading-[1.65] text-black/70">
-                Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and follow the IPRS Revision 2.2 framework for transparent, consistent compensation data.
-              </p>
-            </Reveal>
-          </StickyHead>
+      {/* AUDITED OUTCOMES — scroll-driven sticky editorial storytelling */}
+      <AuditedOutcomes />
 
-          <div className="lg:col-span-8">
-            <Rule />
-            {AUDIT_STATS.map((s, i) => (
-              <div key={s.suffix}>
-                <Reveal
-                  delay={i * 120}
-                  className="group grid grid-cols-1 gap-4 py-8 transition-colors duration-500 hover:bg-black/[0.02] md:grid-cols-12 md:gap-8 md:py-10"
-                >
-                  <div className="md:col-span-1">
-                    <Index n={i + 1} />
-                  </div>
-                  <div className="md:col-span-5">
-                    <div className="text-[clamp(2rem,4.4vw,3.4rem)] leading-none tracking-[-0.03em]">
-                      <CountUp value={s.value} delay={i * 120} />
-                    </div>
-                    <div className="mt-4 text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>{s.suffix}</div>
-                  </div>
-                  <p className="text-[0.92rem] leading-[1.6] text-black/70 md:col-span-6">{s.note}</p>
-                </Reveal>
-                <Rule delay={i * 120 + 60} />
-              </div>
-            ))}
-
-            <div className="mt-10 flex flex-wrap items-center gap-3">
-              <Reveal y={12}>
-                <span className="text-[11px] uppercase tracking-[0.2em] text-black/55" style={{ fontFamily: MONO }}>Reports</span>
-              </Reveal>
-              {REPORT_YEARS.map((y, i) => (
-                <Reveal key={y} delay={80 + i * 80} y={12}>
-                  <span className="inline-flex items-center gap-2 border border-black/15 px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-black/75 transition-colors duration-500 hover:border-black/45" style={{ fontFamily: MONO }}>
-                    <Download className="size-3" /> Cohort {y}
-                  </span>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </div>
-      </Band>
 
       {/* FOUNDER QUOTE */}
       <section className="relative overflow-hidden border-y border-black/10 bg-[#f2f1ee]">
