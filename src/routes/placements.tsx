@@ -622,9 +622,46 @@ function StatsAccordion() {
   );
 }
 
+function EditorialSeparator() {
+  const { ref, inView } = useInView<HTMLDivElement>();
+  const reduced = useReducedMotion();
+  const on = inView || reduced;
 
+  return (
+    <div
+      ref={ref}
+      className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden h-[55%] flex-col items-center gap-3 lg:flex"
+      aria-hidden="true"
+      style={{
+        transform: on ? "translate(-50%, -50%) translateY(0)" : "translate(-50%, -50%) translateY(12px)",
+        opacity: on ? 1 : 0,
+        transition: reduced
+          ? "opacity 240ms linear"
+          : "opacity 700ms cubic-bezier(0.16, 0.84, 0.24, 1) 0ms, transform 700ms cubic-bezier(0.16, 0.84, 0.24, 1) 0ms",
+        willChange: "transform, opacity",
+      }}
+    >
+      <span
+        className="text-[10px] tabular-nums tracking-[0.24em] text-black/35"
+        style={{ fontFamily: MONO }}
+      >
+        01
+      </span>
+      <div
+        className="w-px flex-1 bg-black/10"
+        style={{
+          transformOrigin: "top center",
+          transform: on ? "scaleY(1)" : "scaleY(0)",
+          transition: reduced
+            ? "none"
+            : "transform 900ms cubic-bezier(0.16, 0.84, 0.24, 1) 120ms",
+          willChange: reduced ? undefined : "transform",
+        }}
+      />
+    </div>
+  );
+}
 
-/** Shared editorial shell: generous whitespace, tonal background, full-bleed rules. */
 function Band({
   id,
   tone = "white",
@@ -901,8 +938,9 @@ function Page() {
         style={{ marginTop: reduced ? 0 : "calc(-100svh - 1px)" }}
       >
         <div className="page-x py-10 md:py-12 lg:py-14">
-          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
+          <div className="relative grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
             <CareerPodcast />
+            <EditorialSeparator />
             <StatsAccordion />
           </div>
         </div>
