@@ -940,63 +940,9 @@ function Page() {
         </div>
       </section>
 
-      {/* AUDITED OUTCOMES */}
-      <Band id="outcomes" tone="white">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-          <StickyHead>
-            <Reveal>
-              <Eyebrow>Five years of audited placements</Eyebrow>
-            </Reveal>
-            <Reveal delay={120}>
-              <h2 className="mt-6 max-w-[26ch] text-[clamp(1.8rem,3.6vw,3rem)] font-medium leading-[1.05] tracking-[-0.015em]">
-                Proven outcomes, verified line by line.
-              </h2>
-            </Reveal>
-            <Reveal delay={240}>
-              <p className="mt-6 max-w-[68ch] text-[1.05rem] leading-[1.65] text-black/70">
-                Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and follow the IPRS Revision 2.2 framework for transparent, consistent compensation data.
-              </p>
-            </Reveal>
-          </StickyHead>
+      {/* AUDITED OUTCOMES — scroll-driven sticky editorial storytelling */}
+      <AuditedOutcomes />
 
-          <div className="lg:col-span-8">
-            <Rule />
-            {AUDIT_STATS.map((s, i) => (
-              <div key={s.suffix}>
-                <Reveal
-                  delay={i * 120}
-                  className="group grid grid-cols-1 gap-4 py-8 transition-colors duration-500 hover:bg-black/[0.02] md:grid-cols-12 md:gap-8 md:py-10"
-                >
-                  <div className="md:col-span-1">
-                    <Index n={i + 1} />
-                  </div>
-                  <div className="md:col-span-5">
-                    <div className="text-[clamp(2rem,4.4vw,3.4rem)] leading-none tracking-[-0.03em]">
-                      <CountUp value={s.value} delay={i * 120} />
-                    </div>
-                    <div className="mt-4 text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>{s.suffix}</div>
-                  </div>
-                  <p className="text-[0.92rem] leading-[1.6] text-black/70 md:col-span-6">{s.note}</p>
-                </Reveal>
-                <Rule delay={i * 120 + 60} />
-              </div>
-            ))}
-
-            <div className="mt-10 flex flex-wrap items-center gap-3">
-              <Reveal y={12}>
-                <span className="text-[11px] uppercase tracking-[0.2em] text-black/55" style={{ fontFamily: MONO }}>Reports</span>
-              </Reveal>
-              {REPORT_YEARS.map((y, i) => (
-                <Reveal key={y} delay={80 + i * 80} y={12}>
-                  <span className="inline-flex items-center gap-2 border border-black/15 px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-black/75 transition-colors duration-500 hover:border-black/45" style={{ fontFamily: MONO }}>
-                    <Download className="size-3" /> Cohort {y}
-                  </span>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </div>
-      </Band>
 
       {/* FOUNDER QUOTE */}
       <section className="relative overflow-hidden border-y border-black/10 bg-[#f2f1ee]">
