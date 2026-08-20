@@ -1152,6 +1152,7 @@ function CoverStage({
   const zoneRef = useRef<HTMLDivElement>(null);
   const overRef = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false);
+  const [overH, setOverH] = useState(0);
   const [p, setP] = useState(0);
 
   useEffect(() => {
@@ -1166,6 +1167,17 @@ function CoverStage({
     return () => mq.removeEventListener("change", sync);
   }, [reduced]);
 
+  // measure the real Proven Outcomes height so the scroll budget adds no blank space
+  useEffect(() => {
+    if (!enabled) return;
+    const el = overRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => setOverH(el.offsetHeight));
+    ro.observe(el);
+    setOverH(el.offsetHeight);
+    return () => ro.disconnect();
+  }, [enabled]);
+
   useEffect(() => {
     if (!enabled) {
       setP(0);
@@ -1178,8 +1190,7 @@ function CoverStage({
       if (!zone) return;
       const travel = window.innerHeight;
       const top = zone.getBoundingClientRect().top;
-      const next = Math.min(1, Math.max(0, -top / travel));
-      setP(next);
+      setP(Math.min(1, Math.max(0, -top / travel)));
     };
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(read);
@@ -1203,17 +1214,21 @@ function CoverStage({
     );
   }
 
-  // ease-out-quint keeps the cover motion smooth at both ends without snapping
   const eased = 1 - Math.pow(1 - p, 4);
 
   return (
     <div className="relative">
       <div className="sticky bottom-0 z-0">{under}</div>
 
-      <div ref={zoneRef} className="relative z-10" style={{ height: "200svh" }}>
+      {/* the scroll budget lives in this wrapper's height — no blank/spacer section */}
+      <div
+        ref={zoneRef}
+        className="relative z-10"
+        style={overH ? { height: `${overH + window.innerHeight}px` } : undefined}
+      >
         <div
           ref={overRef}
-          className="sticky top-0 h-[100svh] bg-white"
+          className="sticky top-0"
           style={{
             transform: `translate3d(${(1 - eased) * 100}%, 0, 0)`,
             willChange: "transform",
@@ -1226,6 +1241,7 @@ function CoverStage({
     </div>
   );
 }
+
 
 
 /* ---------------------------------- page ---------------------------------- */
