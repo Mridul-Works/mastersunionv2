@@ -1146,7 +1146,7 @@ function FounderQuoteSection() {
   const edge = progress * 118 - 9; // -9% → 109%
   const mask = reduced
     ? "none"
-    : `linear-gradient(to right, #000 0%, #000 ${Math.max(0, edge - 9)}%, rgba(0,0,0,0) ${edge + 9}%, rgba(0,0,0,0) 100%)`;
+    : `linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0) ${Math.max(0, edge - 9)}%, #000 ${edge + 9}%, #000 100%)`;
 
   return (
     <section
