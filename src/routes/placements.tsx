@@ -10,6 +10,7 @@ import {
   Users,
   Route as RouteIcon,
   Download,
+  FileText,
   Mail,
 } from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
@@ -27,7 +28,7 @@ import {
   useReducedMotion,
 } from "@/components/placements/motion";
 import { HeroMaskReveal } from "@/components/placements/HeroMaskReveal";
-import { useIsMobile } from "@/hooks/use-mobile";
+
 
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
@@ -899,146 +900,90 @@ function LogoRow({ names }: { names: string[] }) {
   );
 }
 
-/* ------------------------ audited outcomes (scroll story) ----------------- */
+/* ---------------------------- audited outcomes ---------------------------- */
 
-function useStageProgress<T extends HTMLElement = HTMLDivElement>() {
-  const ref = useRef<T | null>(null);
-  const [p, setP] = useState(0);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      const rect = el.getBoundingClientRect();
-      const distance = rect.height - window.innerHeight;
-      const scrolled = -rect.top;
-      const next = distance > 0 ? Math.min(1, Math.max(0, scrolled / distance)) : 0;
-      setP((prev) => (Math.abs(prev - next) < 0.0015 ? prev : next));
-    };
-    const tick = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", tick, { passive: true });
-    window.addEventListener("resize", tick);
-    return () => {
-      if (raf) cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", tick);
-      window.removeEventListener("resize", tick);
-    };
-  }, []);
-
-  return { ref, p };
-}
-
-function OutcomeStory({ stat, n }: { stat: (typeof AUDIT_STATS)[number]; n: number }) {
+function OutcomeColumn({
+  stat,
+  n,
+  className = "",
+}: {
+  stat: (typeof AUDIT_STATS)[number];
+  n: number;
+  className?: string;
+}) {
   return (
-    <div>
-      <div className="h-px w-full bg-black/12" />
-      <div className="flex items-baseline gap-4 pt-8">
-        <Index n={n} />
-      </div>
-      <div className="mt-6 text-[clamp(2.6rem,7vw,6rem)] leading-[0.92] tracking-[-0.035em]">
+    <div className={`flex flex-col px-0 py-6 sm:px-6 sm:py-7 ${className}`}>
+      <Index n={n} />
+      <div className="mt-5 text-[clamp(2.2rem,4.6vw,3.6rem)] leading-[0.92] tracking-[-0.035em]">
         {stat.value}
       </div>
       <div
-        className="mt-7 text-[11px] uppercase tracking-[0.24em] text-black/60"
+        className="mt-5 text-[10px] uppercase tracking-[0.24em] text-black/60"
         style={{ fontFamily: MONO }}
       >
         {stat.suffix}
       </div>
-      <p className="mt-4 max-w-[36ch] text-[0.95rem] leading-[1.65] text-black/65">{stat.note}</p>
-      <div className="mt-8 h-px w-full bg-black/12" />
+      <p className="mt-3 max-w-[30ch] text-[0.9rem] leading-[1.6] text-black/60">{stat.note}</p>
     </div>
   );
 }
 
-function ReportsRow({ className = "" }: { className?: string }) {
+function CohortReportCard({ year }: { year: string }) {
   return (
-    <div className={`flex flex-wrap items-center gap-3 ${className}`}>
-      <span
-        className="text-[11px] uppercase tracking-[0.2em] text-black/55"
-        style={{ fontFamily: MONO }}
-      >
-        Reports
-      </span>
-      {REPORT_YEARS.map((y) => (
-        <span
-          key={y}
-          className="inline-flex items-center gap-2 border border-black/15 px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-black/75 transition-colors duration-500 hover:border-black/45"
-          style={{ fontFamily: MONO }}
-        >
-          <Download className="size-3" /> Cohort {y}
-        </span>
-      ))}
-    </div>
-  );
-}
+    <a
+      href="#"
+      aria-label={`Cohort ${year} placement report`}
+      className="group flex h-full flex-col border border-black/12 p-3 transition-colors duration-500 hover:border-black/40"
+    >
+      {/* neutral document placeholder */}
+      <div className="relative flex aspect-[3/4] w-full items-center justify-center bg-black/[0.035]">
+        <div className="flex flex-col items-center gap-1.5 text-black/35">
+          <FileText className="size-6" strokeWidth={1.25} />
+          <span
+            className="text-[8px] uppercase tracking-[0.2em]"
+            style={{ fontFamily: MONO }}
+          >
+            PDF
+          </span>
+        </div>
+        <span className="pointer-events-none absolute inset-x-4 top-1/2 h-px bg-black/[0.06]" />
+      </div>
 
-function OutcomesStory() {
-  const { ref, p } = useStageProgress<HTMLDivElement>();
-  const slides = AUDIT_STATS.length;
-  const slideSpan = 0.82;
-  const pos = Math.min(slides - 1, (Math.min(p, slideSpan) / slideSpan) * (slides - 1));
-  const reports = Math.min(1, Math.max(0, (p - slideSpan) / (1 - slideSpan)));
-
-  return (
-    <div ref={ref} className="relative" style={{ height: `${slides * 90 + 30}svh` }}>
-      <div className="sticky top-0 flex min-h-svh items-center">
-        <div className="page-x w-full py-16 md:py-20">
-          <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-16">
-            {/* LEFT — anchored editorial column */}
-            <div className="lg:col-span-4">
-              <Eyebrow>Five years of audited placements</Eyebrow>
-              <h2 className="mt-6 max-w-[26ch] text-[clamp(1.8rem,3.6vw,3rem)] font-medium leading-[1.05] tracking-[-0.015em]">
-                Proven outcomes, verified line by line.
-              </h2>
-              <p className="mt-6 max-w-[52ch] text-[1.05rem] leading-[1.65] text-black/70">
-                Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and
-                follow the IPRS Revision 2.2 framework for transparent, consistent compensation data.
-              </p>
-            </div>
-
-            {/* RIGHT — scroll-driven slides in one fixed-height stage */}
-            <div className="lg:col-span-8">
-              <div className="relative h-[clamp(320px,42svh,440px)]">
-                {AUDIT_STATS.map((s, i) => {
-                  const d = pos - i;
-                  const a = Math.max(0, 1 - Math.abs(d));
-                  return (
-                    <div
-                      key={s.suffix}
-                      aria-hidden={a < 0.5}
-                      className="absolute inset-x-0 top-0"
-                      style={{
-                        opacity: a * a,
-                        transform: `translate3d(0, ${(-d * 56).toFixed(2)}px, 0)`,
-                        pointerEvents: a > 0.6 ? "auto" : "none",
-                        willChange: "transform, opacity",
-                      }}
-                    >
-                      <OutcomeStory stat={s} n={i + 1} />
-                    </div>
-                  );
-                })}
-              </div>
-
-              <div
-                style={{
-                  opacity: reports,
-                  transform: `translate3d(0, ${((1 - reports) * 18).toFixed(2)}px, 0)`,
-                  pointerEvents: reports > 0.5 ? "auto" : "none",
-                  willChange: "transform, opacity",
-                }}
-              >
-                <ReportsRow className="mt-2" />
-              </div>
-
-            </div>
+      <div className="mt-3 flex items-start justify-between gap-2">
+        <div className="min-w-0">
+          <div className="text-[0.95rem] leading-none tracking-[-0.01em]">{year}</div>
+          <div
+            className="mt-2 text-[9px] uppercase tracking-[0.2em] text-black/50"
+            style={{ fontFamily: MONO }}
+          >
+            Placement report
           </div>
         </div>
+        <Download className="mt-0.5 size-3.5 shrink-0 text-black/40 transition-transform duration-500 group-hover:translate-y-0.5" />
+      </div>
+    </a>
+  );
+}
+
+function CohortReports() {
+  return (
+    <div>
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
+        {REPORT_YEARS.map((y, i) => (
+          <Reveal key={y} delay={i * 70} y={16}>
+            <CohortReportCard year={`Cohort ${y}`} />
+          </Reveal>
+        ))}
+      </div>
+
+      <div className="mt-5">
+        <a
+          href="#"
+          className="inline-flex items-center gap-2 border border-black/15 px-4 py-2.5 text-[10px] uppercase tracking-[0.2em] text-black/70 transition-colors duration-500 hover:border-black/45 hover:text-black"
+          style={{ fontFamily: MONO }}
+        >
+          <Download className="size-3.5" /> Download placement report
+        </a>
       </div>
     </div>
   );
@@ -1046,69 +991,82 @@ function OutcomesStory() {
 
 function OutcomesQuoteCoda() {
   return (
-    <div className="relative overflow-hidden">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -left-6 -top-16 select-none text-[22rem] leading-none text-black/[0.04]"
-      >
-        <Parallax strength={50}>“</Parallax>
-      </div>
-      <div className="page-x relative py-20 md:py-28">
-        <Reveal duration={950}>
-          <blockquote className="max-w-[52ch] text-[clamp(1.3rem,2.6vw,2.1rem)] font-medium leading-[1.25] tracking-[-0.015em]">
-            “We don&apos;t approach placements the way most B-schools do. At Masters&apos; Union, placements are run by a 50+ member, full-time team spanning company outreach, career preparation, and role-specific coaching.”
-          </blockquote>
-        </Reveal>
-        <Reveal delay={220}>
-          <div className="mt-10 text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>
-            Pratham Mittal — Founder &amp; CEO, Masters&apos; Union
-          </div>
-        </Reveal>
-      </div>
+    <div className="page-x relative border-t border-black/10 py-10 md:py-14">
+      <Reveal duration={900}>
+        <blockquote className="max-w-[52ch] text-[clamp(1.15rem,2.2vw,1.8rem)] font-medium leading-[1.3] tracking-[-0.015em]">
+          “We don&apos;t approach placements the way most B-schools do. At Masters&apos; Union,
+          placements are run by a 50+ member, full-time team spanning company outreach, career
+          preparation, and role-specific coaching.”
+        </blockquote>
+      </Reveal>
+      <Reveal delay={180}>
+        <div
+          className="mt-6 text-[10px] uppercase tracking-[0.2em] text-black/60"
+          style={{ fontFamily: MONO }}
+        >
+          Pratham Mittal — Founder &amp; CEO, Masters&apos; Union
+        </div>
+      </Reveal>
     </div>
   );
 }
 
 function AuditedOutcomes() {
-  const reduced = useReducedMotion();
-  const isMobile = useIsMobile();
+  return (
+    <section id="outcomes" className="relative bg-white">
+      <div className="page-x pt-14 md:pt-16">
+        {/* 1 — intro */}
+        <div className="grid grid-cols-1 items-end gap-6 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-7">
+            <Eyebrow>Five years of audited placements</Eyebrow>
+            <h2 className="mt-4 max-w-[24ch] text-[clamp(1.7rem,3.4vw,2.9rem)] font-medium leading-[1.05] tracking-[-0.02em]">
+              Proven outcomes, verified line by line.
+            </h2>
+          </div>
+          <div className="lg:col-span-5">
+            <p className="max-w-[52ch] text-[0.95rem] leading-[1.65] text-black/65">
+              Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and
+              follow the IPRS Revision 2.2 framework for transparent, consistent compensation data.
+            </p>
+          </div>
+        </div>
 
-  if (reduced || isMobile) {
-    return (
-      <section id="outcomes" className="relative bg-white">
-        <Band tone="white">
-          <Eyebrow>Five years of audited placements</Eyebrow>
-          <h2 className="mt-6 max-w-[26ch] text-[clamp(1.8rem,6vw,2.4rem)] font-medium leading-[1.05] tracking-[-0.015em]">
-            Proven outcomes, verified line by line.
-          </h2>
-          <p className="mt-5 max-w-[60ch] text-[1rem] leading-[1.65] text-black/70">
-            Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and follow
-            the IPRS Revision 2.2 framework for transparent, consistent compensation data.
-          </p>
-          <div className="mt-12 space-y-10">
+        {/* 2 — statistics */}
+        <div className="mt-8 border-t border-black/12 md:mt-10">
+          <div className="grid grid-cols-1 divide-y divide-black/12 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
             {AUDIT_STATS.map((s, i) => (
-              <Reveal key={s.suffix} delay={i * 90}>
-                <OutcomeStory stat={s} n={i + 1} />
+              <Reveal key={s.suffix} delay={i * 90} y={18} className="min-w-0">
+                <OutcomeColumn
+                  stat={s}
+                  n={i + 1}
+                  className={i === 0 ? "sm:pl-0" : i === AUDIT_STATS.length - 1 ? "sm:pr-0" : ""}
+                />
               </Reveal>
             ))}
           </div>
-          <Reveal delay={120}>
-            <ReportsRow className="mt-10" />
-          </Reveal>
-        </Band>
-        <OutcomesQuoteCoda />
-      </section>
-    );
-  }
+          <div className="h-px w-full bg-black/12" />
+        </div>
 
-  return (
-    <section id="outcomes" className="relative bg-white">
-      <OutcomesStory />
-      <OutcomesQuoteCoda />
+        {/* 3 — cohort reports */}
+        <div className="mt-8 md:mt-10">
+          <div
+            className="mb-4 text-[10px] uppercase tracking-[0.2em] text-black/50"
+            style={{ fontFamily: MONO }}
+          >
+            Reports
+          </div>
+          <CohortReports />
+        </div>
+      </div>
+
+      {/* 4 — quote coda */}
+      <div className="mt-12 md:mt-14">
+        <OutcomesQuoteCoda />
+      </div>
     </section>
   );
-
 }
+
 
 /* ---------------------------------- page ---------------------------------- */
 
