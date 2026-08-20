@@ -980,62 +980,102 @@ function ReportsRow({ className = "" }: { className?: string }) {
 function OutcomesStory() {
   const { ref, p } = useStageProgress<HTMLDivElement>();
   const slides = AUDIT_STATS.length;
-  const slideSpan = 0.82;
+  // scroll budget: slides -> reports -> quote, all inside one sticky viewport
+  const slideSpan = 0.58;
+  const reportsEnd = 0.74;
   const pos = Math.min(slides - 1, (Math.min(p, slideSpan) / slideSpan) * (slides - 1));
-  const reports = Math.min(1, Math.max(0, (p - slideSpan) / (1 - slideSpan)));
+  const reports = Math.min(1, Math.max(0, (p - slideSpan * 0.86) / (reportsEnd - slideSpan * 0.86)));
+  const quote = Math.min(1, Math.max(0, (p - reportsEnd) / (1 - reportsEnd)));
+  const statsOut = 1 - quote;
 
   return (
-    <div ref={ref} className="relative" style={{ height: `${slides * 90 + 30}svh` }}>
-      <div className="sticky top-0 flex min-h-svh items-center">
-        <div className="page-x w-full py-16 md:py-20">
-          <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-16">
+    <div ref={ref} className="relative" style={{ height: "260svh" }}>
+      <div className="sticky top-0 flex min-h-svh items-center overflow-hidden">
+        <div className="page-x w-full py-12 md:py-14">
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-16">
             {/* LEFT — anchored editorial column */}
             <div className="lg:col-span-4">
               <Eyebrow>Five years of audited placements</Eyebrow>
-              <h2 className="mt-6 max-w-[26ch] text-[clamp(1.8rem,3.6vw,3rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+              <h2 className="mt-5 max-w-[26ch] text-[clamp(1.7rem,3.2vw,2.7rem)] font-medium leading-[1.05] tracking-[-0.015em]">
                 Proven outcomes, verified line by line.
               </h2>
-              <p className="mt-6 max-w-[52ch] text-[1.05rem] leading-[1.65] text-black/70">
+              <p className="mt-5 max-w-[52ch] text-[1rem] leading-[1.6] text-black/70">
                 Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and
                 follow the IPRS Revision 2.2 framework for transparent, consistent compensation data.
               </p>
             </div>
 
-            {/* RIGHT — scroll-driven slides in one fixed-height stage */}
+            {/* RIGHT — scroll-driven stage: slides -> reports -> quote */}
             <div className="lg:col-span-8">
-              <div className="relative h-[clamp(320px,42svh,440px)]">
-                {AUDIT_STATS.map((s, i) => {
-                  const d = pos - i;
-                  const a = Math.max(0, 1 - Math.abs(d));
-                  return (
-                    <div
-                      key={s.suffix}
-                      aria-hidden={a < 0.5}
-                      className="absolute inset-x-0 top-0"
-                      style={{
-                        opacity: a * a,
-                        transform: `translate3d(0, ${(-d * 56).toFixed(2)}px, 0)`,
-                        pointerEvents: a > 0.6 ? "auto" : "none",
-                        willChange: "transform, opacity",
-                      }}
-                    >
-                      <OutcomeStory stat={s} n={i + 1} />
-                    </div>
-                  );
-                })}
-              </div>
+              <div className="relative h-[clamp(300px,52svh,460px)]">
+                {/* stats + reports layer */}
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    opacity: statsOut * statsOut,
+                    transform: `translate3d(0, ${(-quote * 40).toFixed(2)}px, 0)`,
+                    pointerEvents: quote > 0.5 ? "none" : "auto",
+                    willChange: "transform, opacity",
+                  }}
+                >
+                  <div className="relative h-[clamp(220px,38svh,340px)]">
+                    {AUDIT_STATS.map((s, i) => {
+                      const d = pos - i;
+                      const a = Math.max(0, 1 - Math.abs(d));
+                      return (
+                        <div
+                          key={s.suffix}
+                          aria-hidden={a < 0.5}
+                          className="absolute inset-x-0 top-0"
+                          style={{
+                            opacity: a * a,
+                            transform: `translate3d(0, ${(-d * 48).toFixed(2)}px, 0)`,
+                            pointerEvents: a > 0.6 ? "auto" : "none",
+                            willChange: "transform, opacity",
+                          }}
+                        >
+                          <OutcomeStory stat={s} n={i + 1} />
+                        </div>
+                      );
+                    })}
+                  </div>
 
-              <div
-                style={{
-                  opacity: reports,
-                  transform: `translate3d(0, ${((1 - reports) * 18).toFixed(2)}px, 0)`,
-                  pointerEvents: reports > 0.5 ? "auto" : "none",
-                  willChange: "transform, opacity",
-                }}
-              >
-                <ReportsRow className="mt-2" />
-              </div>
+                  <div
+                    style={{
+                      opacity: reports,
+                      transform: `translate3d(0, ${((1 - reports) * 16).toFixed(2)}px, 0)`,
+                      pointerEvents: reports > 0.5 ? "auto" : "none",
+                      willChange: "transform, opacity",
+                    }}
+                  >
+                    <ReportsRow className="mt-4" />
+                  </div>
+                </div>
 
+                {/* closing quote layer */}
+                <div
+                  className="absolute inset-0 flex flex-col justify-center"
+                  aria-hidden={quote < 0.5}
+                  style={{
+                    opacity: quote * quote,
+                    transform: `translate3d(0, ${((1 - quote) * 40).toFixed(2)}px, 0)`,
+                    pointerEvents: quote > 0.5 ? "auto" : "none",
+                    willChange: "transform, opacity",
+                  }}
+                >
+                  <blockquote className="max-w-[52ch] text-[clamp(1.2rem,2.2vw,1.9rem)] font-medium leading-[1.25] tracking-[-0.015em]">
+                    “We don&apos;t approach placements the way most B-schools do. At Masters&apos;
+                    Union, placements are run by a 50+ member, full-time team spanning company
+                    outreach, career preparation, and role-specific coaching.”
+                  </blockquote>
+                  <div
+                    className="mt-8 text-[11px] uppercase tracking-[0.2em] text-black/60"
+                    style={{ fontFamily: MONO }}
+                  >
+                    Pratham Mittal — Founder &amp; CEO, Masters&apos; Union
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1046,25 +1086,22 @@ function OutcomesStory() {
 
 function OutcomesQuoteCoda() {
   return (
-    <div className="relative overflow-hidden">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -left-6 -top-16 select-none text-[22rem] leading-none text-black/[0.04]"
-      >
-        <Parallax strength={50}>“</Parallax>
-      </div>
-      <div className="page-x relative py-20 md:py-28">
-        <Reveal duration={950}>
-          <blockquote className="max-w-[52ch] text-[clamp(1.3rem,2.6vw,2.1rem)] font-medium leading-[1.25] tracking-[-0.015em]">
-            “We don&apos;t approach placements the way most B-schools do. At Masters&apos; Union, placements are run by a 50+ member, full-time team spanning company outreach, career preparation, and role-specific coaching.”
-          </blockquote>
-        </Reveal>
-        <Reveal delay={220}>
-          <div className="mt-10 text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>
-            Pratham Mittal — Founder &amp; CEO, Masters&apos; Union
-          </div>
-        </Reveal>
-      </div>
+    <div className="page-x relative py-14">
+      <Reveal duration={950}>
+        <blockquote className="max-w-[52ch] text-[clamp(1.2rem,4.6vw,1.7rem)] font-medium leading-[1.25] tracking-[-0.015em]">
+          “We don&apos;t approach placements the way most B-schools do. At Masters&apos; Union,
+          placements are run by a 50+ member, full-time team spanning company outreach, career
+          preparation, and role-specific coaching.”
+        </blockquote>
+      </Reveal>
+      <Reveal delay={220}>
+        <div
+          className="mt-8 text-[11px] uppercase tracking-[0.2em] text-black/60"
+          style={{ fontFamily: MONO }}
+        >
+          Pratham Mittal — Founder &amp; CEO, Masters&apos; Union
+        </div>
+      </Reveal>
     </div>
   );
 }
@@ -1076,16 +1113,16 @@ function AuditedOutcomes() {
   if (reduced || isMobile) {
     return (
       <section id="outcomes" className="relative bg-white">
-        <Band tone="white">
+        <div className="page-x py-16">
           <Eyebrow>Five years of audited placements</Eyebrow>
-          <h2 className="mt-6 max-w-[26ch] text-[clamp(1.8rem,6vw,2.4rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.7rem,6vw,2.3rem)] font-medium leading-[1.05] tracking-[-0.015em]">
             Proven outcomes, verified line by line.
           </h2>
-          <p className="mt-5 max-w-[60ch] text-[1rem] leading-[1.65] text-black/70">
+          <p className="mt-4 max-w-[60ch] text-[0.98rem] leading-[1.6] text-black/70">
             Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and follow
             the IPRS Revision 2.2 framework for transparent, consistent compensation data.
           </p>
-          <div className="mt-12 space-y-10">
+          <div className="mt-9 space-y-8">
             {AUDIT_STATS.map((s, i) => (
               <Reveal key={s.suffix} delay={i * 90}>
                 <OutcomeStory stat={s} n={i + 1} />
@@ -1093,9 +1130,9 @@ function AuditedOutcomes() {
             ))}
           </div>
           <Reveal delay={120}>
-            <ReportsRow className="mt-10" />
+            <ReportsRow className="mt-8" />
           </Reveal>
-        </Band>
+        </div>
         <OutcomesQuoteCoda />
       </section>
     );
@@ -1104,11 +1141,10 @@ function AuditedOutcomes() {
   return (
     <section id="outcomes" className="relative bg-white">
       <OutcomesStory />
-      <OutcomesQuoteCoda />
     </section>
   );
-
 }
+
 
 /* ---------------------------------- page ---------------------------------- */
 
