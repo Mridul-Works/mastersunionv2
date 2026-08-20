@@ -1228,7 +1228,8 @@ function CoverStage({
     );
   }
 
-  const eased = 1 - Math.pow(1 - p, 4);
+  // smoothstep: continuous, no snap at either end
+  const eased = p * p * (3 - 2 * p);
   // tall-layer sticky offset: keeps the podcast pinned even when it exceeds the viewport
   const underTop = vh && underH > vh ? Math.min(0, vh - underH) : 0;
 
