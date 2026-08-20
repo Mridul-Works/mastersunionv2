@@ -1088,7 +1088,7 @@ function FounderQuoteSection() {
   return (
     <section
       className="relative flex min-h-[100svh] items-center overflow-hidden bg-black py-14 md:py-16"
-      style={{ backgroundImage: `url(${manojKohliBg.url})`, backgroundSize: "cover", backgroundPosition: "right center" }}
+      style={{ backgroundImage: `url(${manojKohliBg.url})`, backgroundSize: "cover", backgroundPosition: "85% 55%" }}
     >
       {/* gradient overlay: heavier on the left for text, lighter on the right so the body stays visible */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/20" />
