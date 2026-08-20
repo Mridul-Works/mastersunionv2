@@ -1085,8 +1085,8 @@ function CohortReports() {
 
 function FounderQuoteSection() {
   return (
-    <section className="relative bg-[#F2F1EE] py-16 md:py-24">
-      <div className="page-x relative">
+    <section className="relative flex min-h-[100svh] items-center bg-[#F2F1EE] py-14 md:py-16">
+      <div className="page-x relative w-full">
         <div className="relative mx-auto max-w-[56ch]">
           <Quote
             className="absolute -left-1 -top-2 size-10 text-black/10 md:-left-6 md:-top-4 md:size-16"
@@ -1113,6 +1113,7 @@ function FounderQuoteSection() {
     </section>
   );
 }
+
 
 function AuditedOutcomes() {
   return (
@@ -1144,9 +1145,11 @@ function AuditedOutcomes() {
 function CoverStage({
   under,
   over,
+  tail,
 }: {
   under: React.ReactNode;
   over: React.ReactNode;
+  tail?: React.ReactNode;
 }) {
   const reduced = useReducedMotion();
   const zoneRef = useRef<HTMLDivElement>(null);
@@ -1224,6 +1227,7 @@ function CoverStage({
       <>
         {under}
         {over}
+        {tail}
       </>
     );
   }
@@ -1232,6 +1236,8 @@ function CoverStage({
   const eased = p * p * (3 - 2 * p);
   // tall-layer sticky offset: keeps the podcast pinned even when it exceeds the viewport
   const underTop = vh && underH > vh ? Math.min(0, vh - underH) : 0;
+  // extra viewport of pinned time so the tail layer can rise up and cover the over layer
+  const tailTravel = tail ? vh : 0;
 
   return (
     <div className="relative">
@@ -1249,7 +1255,7 @@ function CoverStage({
       <div
         ref={zoneRef}
         className="relative z-[2]"
-        style={overH && vh ? { height: `${overH + vh}px` } : undefined}
+        style={overH && vh ? { height: `${overH + vh + tailTravel}px` } : undefined}
       >
         <div
           ref={overRef}
@@ -1263,9 +1269,15 @@ function CoverStage({
           {over}
         </div>
       </div>
+
+      {/* LAYER 3 — the real Quote section. It begins exactly one viewport below the
+          fold and scrolls upward over the still-pinned Proven Outcomes layer, so it
+          physically covers it (no spacer, no duplicate, no crossfade). */}
+      {tail ? <div className="relative z-[3]">{tail}</div> : null}
     </div>
   );
 }
+
 
 
 
@@ -1316,12 +1328,11 @@ function Page() {
             </section>
           }
           over={<AuditedOutcomes />}
+          tail={<FounderQuoteSection />}
         />
       </div>
 
 
-      {/* FOUNDER QUOTE — standalone editorial statement */}
-      <FounderQuoteSection />
 
       {/* COHORT CHARTS */}
       <Band id="cohorts" tone="white">
