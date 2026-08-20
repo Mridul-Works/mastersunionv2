@@ -1137,6 +1137,95 @@ function AuditedOutcomes() {
   );
 }
 
+/**
+ * Sticky podcast stage + Proven Outcomes sliding in from the right to cover it.
+ * Pure transform, driven by main page scroll. Disabled for reduced motion / small screens.
+ */
+function CoverStage({
+  under,
+  over,
+}: {
+  under: React.ReactNode;
+  over: React.ReactNode;
+}) {
+  const reduced = useReducedMotion();
+  const zoneRef = useRef<HTMLDivElement>(null);
+  const overRef = useRef<HTMLDivElement>(null);
+  const [enabled, setEnabled] = useState(false);
+  const [p, setP] = useState(0);
+
+  useEffect(() => {
+    if (reduced) {
+      setEnabled(false);
+      return;
+    }
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const sync = () => setEnabled(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, [reduced]);
+
+  useEffect(() => {
+    if (!enabled) {
+      setP(0);
+      return;
+    }
+    let raf = 0;
+    const read = () => {
+      raf = 0;
+      const zone = zoneRef.current;
+      if (!zone) return;
+      const travel = window.innerHeight;
+      const top = zone.getBoundingClientRect().top;
+      const next = Math.min(1, Math.max(0, -top / travel));
+      setP(next);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(read);
+    };
+    read();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [enabled]);
+
+  if (!enabled) {
+    return (
+      <>
+        {under}
+        {over}
+      </>
+    );
+  }
+
+  // ease-out-quint keeps the cover motion smooth at both ends without snapping
+  const eased = 1 - Math.pow(1 - p, 4);
+
+  return (
+    <div className="relative">
+      <div className="sticky bottom-0 z-0">{under}</div>
+
+      <div ref={zoneRef} className="relative z-10" style={{ height: "200svh" }}>
+        <div
+          ref={overRef}
+          className="sticky top-0 h-[100svh]"
+          style={{
+            transform: `translate3d(${(1 - eased) * 100}%, 0, 0)`,
+            willChange: "transform",
+            backfaceVisibility: "hidden",
+          }}
+        >
+          {over}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 
 /* ---------------------------------- page ---------------------------------- */
