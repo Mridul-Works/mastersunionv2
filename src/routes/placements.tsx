@@ -630,7 +630,7 @@ function EditorialSeparator() {
   return (
     <div
       ref={ref}
-      className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden h-[55%] flex-col items-center gap-3 lg:flex"
+      className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden h-[55%] flex-col items-center lg:flex"
       aria-hidden="true"
       style={{
         transform: on ? "translate(-50%, -50%) translateY(0)" : "translate(-50%, -50%) translateY(12px)",
@@ -641,12 +641,6 @@ function EditorialSeparator() {
         willChange: "transform, opacity",
       }}
     >
-      <span
-        className="text-[10px] tabular-nums tracking-[0.24em] text-black/35"
-        style={{ fontFamily: MONO }}
-      >
-        01
-      </span>
       <div
         className="w-px flex-1 bg-black/10"
         style={{
