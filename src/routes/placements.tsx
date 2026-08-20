@@ -943,13 +943,13 @@ function OutcomePanel({
         style={{ height: "var(--panel-closed)" }}
       >
         <span
-          className="text-[10px] uppercase tracking-[0.24em] text-white/55"
+          className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/55"
           style={{ fontFamily: MONO }}
         >
           {String(n).padStart(2, "0")}
         </span>
         <span
-          className="min-w-0 truncate text-[10px] uppercase tracking-[0.24em] text-white/70 transition-colors duration-500 group-hover:text-white"
+          className="min-w-0 truncate text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70 transition-colors duration-500 group-hover:text-white"
           style={{ fontFamily: MONO }}
         >
           {label}
@@ -993,10 +993,10 @@ function OutcomesAccordion() {
         {/* LEFT — anchored editorial column */}
         <div className="lg:col-span-4">
           <Eyebrow>Five years of audited placements</Eyebrow>
-          <h2 className="mt-3 max-w-[24ch] text-[clamp(1.7rem,3.2vw,2.7rem)] font-medium leading-[1.06] tracking-[-0.02em]">
+          <h2 className="mt-3 max-w-[24ch] text-[clamp(1.55rem,2.9vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
             Proven outcomes, verified line by line.
           </h2>
-          <p className="mt-4 max-w-[50ch] text-[0.95rem] leading-[1.65] text-black/65">
+          <p className="mt-4 max-w-[50ch] text-[16px] leading-relaxed text-black/65">
             Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and follow
             the IPRS Revision 2.2 framework for transparent, consistent compensation data.
           </p>
@@ -1031,29 +1031,29 @@ function CohortReportCard({ year }: { year: string }) {
     >
       {/* compact document preview */}
       <div className="relative flex aspect-[16/10] w-full items-center justify-center bg-black/[0.035]">
-        <div className="flex flex-col items-center gap-1.5 text-black/35">
-          <FileText className="size-6" strokeWidth={1.25} />
-          <span
-            className="text-[8px] uppercase tracking-[0.2em]"
-            style={{ fontFamily: MONO }}
-          >
-            PDF
-          </span>
-        </div>
-        <span className="pointer-events-none absolute inset-x-4 top-1/2 h-px bg-black/[0.06]" />
-      </div>
-
-      <div className="mt-2 flex items-start justify-between gap-2">
-        <div className="min-w-0">
-          <div className="text-[0.95rem] leading-none tracking-[-0.01em]">{year}</div>
-          <div
-            className="mt-2 text-[9px] uppercase tracking-[0.2em] text-black/50"
-            style={{ fontFamily: MONO }}
-          >
-            Placement report
+          <div className="flex flex-col items-center gap-1.5 text-black/35">
+            <FileText className="size-6" strokeWidth={1.25} />
+            <span
+              className="text-[10px] font-semibold uppercase tracking-[0.2em]"
+              style={{ fontFamily: MONO }}
+            >
+              PDF
+            </span>
           </div>
+          <span className="pointer-events-none absolute inset-x-4 top-1/2 h-px bg-black/[0.06]" />
         </div>
-        <Download className="mt-0.5 size-3.5 shrink-0 text-black/40 transition-transform duration-500 group-hover:translate-y-0.5" />
+
+        <div className="mt-2 flex items-start justify-between gap-2">
+          <div className="min-w-0">
+            <div className="text-[16px] leading-relaxed text-black">{year}</div>
+            <div
+              className="mt-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50"
+              style={{ fontFamily: MONO }}
+            >
+              Placement report
+            </div>
+          </div>
+          <Download className="mt-0.5 size-3.5 shrink-0 text-black/40 transition-transform duration-500 group-hover:translate-y-0.5" />
       </div>
     </a>
   );
@@ -1073,7 +1073,7 @@ function CohortReports() {
       <div className="mt-6">
         <a
           href="#"
-          className="inline-flex items-center gap-2 border border-black/15 px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-black/70 transition-colors duration-500 hover:border-black/45 hover:text-black"
+          className="inline-flex items-center gap-2 border border-black/15 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-black/70 transition-colors duration-500 hover:border-black/45 hover:text-black"
           style={{ fontFamily: MONO }}
         >
           <Download className="size-3.5" /> Download placement report
@@ -1126,7 +1126,7 @@ function AuditedOutcomes() {
       {/* cohort reports */}
       <div className="page-x pt-0">
         <div
-          className="mb-2 text-[10px] uppercase tracking-[0.2em] text-black/50"
+          className="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50"
           style={{ fontFamily: MONO }}
         >
           Reports
