@@ -988,15 +988,15 @@ function OutcomesAccordion() {
   const [open, setOpen] = useState(0);
 
   return (
-    <div className="page-x py-6">
+    <div className="page-x py-4">
       <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
         {/* LEFT — anchored editorial column */}
         <div className="lg:col-span-4">
           <Eyebrow>Five years of audited placements</Eyebrow>
-          <h2 className="mt-4 max-w-[24ch] text-[clamp(1.7rem,3.2vw,2.7rem)] font-medium leading-[1.06] tracking-[-0.02em]">
+          <h2 className="mt-3 max-w-[24ch] text-[clamp(1.7rem,3.2vw,2.7rem)] font-medium leading-[1.06] tracking-[-0.02em]">
             Proven outcomes, verified line by line.
           </h2>
-          <p className="mt-5 max-w-[50ch] text-[0.95rem] leading-[1.65] text-black/65">
+          <p className="mt-4 max-w-[50ch] text-[0.95rem] leading-[1.65] text-black/65">
             Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and follow
             the IPRS Revision 2.2 framework for transparent, consistent compensation data.
           </p>
@@ -1030,7 +1030,7 @@ function CohortReportCard({ year }: { year: string }) {
       className="group flex h-full flex-col border border-black/12 p-3 transition-colors duration-500 hover:border-black/40"
     >
       {/* compact document preview */}
-      <div className="relative flex aspect-[16/9] w-full items-center justify-center bg-black/[0.035]">
+      <div className="relative flex aspect-[16/10] w-full items-center justify-center bg-black/[0.035]">
         <div className="flex flex-col items-center gap-1.5 text-black/35">
           <FileText className="size-6" strokeWidth={1.25} />
           <span
@@ -1070,7 +1070,7 @@ function CohortReports() {
         ))}
       </div>
 
-      <div className="mt-3">
+      <div className="mt-6">
         <a
           href="#"
           className="inline-flex items-center gap-2 border border-black/15 px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-black/70 transition-colors duration-500 hover:border-black/45 hover:text-black"
@@ -1116,7 +1116,10 @@ function FounderQuoteSection() {
 
 function AuditedOutcomes() {
   return (
-    <section id="outcomes" className="relative bg-white">
+    <section
+      id="outcomes"
+      className="relative flex min-h-[100svh] flex-col justify-between bg-white pb-6"
+    >
       {/* sticky left + click-driven horizontal accordion */}
       <OutcomesAccordion />
 
