@@ -1161,58 +1161,28 @@ function OutcomesQuoteCoda() {
 function AuditedOutcomes() {
   return (
     <section id="outcomes" className="relative bg-white">
-      <div className="page-x pt-14 md:pt-16">
-        {/* 1 — intro */}
-        <div className="grid grid-cols-1 items-end gap-6 lg:grid-cols-12 lg:gap-12">
-          <div className="lg:col-span-7">
-            <Eyebrow>Five years of audited placements</Eyebrow>
-            <h2 className="mt-4 max-w-[24ch] text-[clamp(1.7rem,3.4vw,2.9rem)] font-medium leading-[1.05] tracking-[-0.02em]">
-              Proven outcomes, verified line by line.
-            </h2>
-          </div>
-          <div className="lg:col-span-5">
-            <p className="max-w-[52ch] text-[0.95rem] leading-[1.65] text-black/65">
-              Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and
-              follow the IPRS Revision 2.2 framework for transparent, consistent compensation data.
-            </p>
-          </div>
-        </div>
+      {/* sticky left + scroll-driven right accordion */}
+      <OutcomesAccordion />
 
-        {/* 2 — statistics */}
-        <div className="mt-8 border-t border-black/12 md:mt-10">
-          <div className="grid grid-cols-1 divide-y divide-black/12 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-            {AUDIT_STATS.map((s, i) => (
-              <Reveal key={s.suffix} delay={i * 90} y={18} className="min-w-0">
-                <OutcomeColumn
-                  stat={s}
-                  n={i + 1}
-                  className={i === 0 ? "sm:pl-0" : i === AUDIT_STATS.length - 1 ? "sm:pr-0" : ""}
-                />
-              </Reveal>
-            ))}
-          </div>
-          <div className="h-px w-full bg-black/12" />
+      {/* cohort reports */}
+      <div className="page-x pt-2">
+        <div
+          className="mb-4 text-[10px] uppercase tracking-[0.2em] text-black/50"
+          style={{ fontFamily: MONO }}
+        >
+          Reports
         </div>
-
-        {/* 3 — cohort reports */}
-        <div className="mt-8 md:mt-10">
-          <div
-            className="mb-4 text-[10px] uppercase tracking-[0.2em] text-black/50"
-            style={{ fontFamily: MONO }}
-          >
-            Reports
-          </div>
-          <CohortReports />
-        </div>
+        <CohortReports />
       </div>
 
-      {/* 4 — quote coda */}
+      {/* quote coda */}
       <div className="mt-12 md:mt-14">
         <OutcomesQuoteCoda />
       </div>
     </section>
   );
 }
+
 
 
 /* ---------------------------------- page ---------------------------------- */
