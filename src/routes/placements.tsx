@@ -938,12 +938,12 @@ function OutcomePanel({
   stat,
   n,
   weight,
-  open,
+  active,
 }: {
   stat: (typeof AUDIT_STATS)[number];
   n: number;
   weight: number;
-  open: number;
+  active: boolean;
 }) {
   const label = stat.suffix;
   return (
@@ -951,7 +951,7 @@ function OutcomePanel({
       className="relative min-h-0 min-w-0 overflow-hidden bg-black text-white"
       style={{
         flex: `${weight.toFixed(4)} 1 0%`,
-        transition: "flex-grow 120ms linear",
+        transition: "flex-grow 140ms linear",
         willChange: "flex-grow",
       }}
     >
@@ -971,9 +971,12 @@ function OutcomePanel({
 
       {/* CLOSED state — compact descriptor */}
       <div
-        aria-hidden={open > 0.5}
+        aria-hidden={active}
         className="absolute inset-0"
-        style={{ opacity: 1 - Math.min(1, open * 1.6), transition: "opacity 200ms linear" }}
+        style={{
+          opacity: active ? 0 : 1,
+          transition: "opacity 420ms cubic-bezier(0.16,0.84,0.24,1)",
+        }}
       >
         {/* vertical descriptor for row layout */}
         <div className="absolute bottom-5 left-1/2 hidden -translate-x-1/2 md:block">
@@ -997,12 +1000,11 @@ function OutcomePanel({
 
       {/* OPEN state — the statistic */}
       <div
-        aria-hidden={open < 0.5}
+        aria-hidden={!active}
         className="pointer-events-none absolute inset-0 flex flex-col justify-center px-8 sm:px-10"
         style={{
-          opacity: Math.max(0, (open - 0.45) / 0.55),
-          visibility: open < 0.45 ? "hidden" : "visible",
-          transition: "opacity 200ms linear",
+          opacity: active ? 1 : 0,
+          transition: "opacity 480ms cubic-bezier(0.16,0.84,0.24,1)",
         }}
       >
         <div className="flex flex-1 items-center">
