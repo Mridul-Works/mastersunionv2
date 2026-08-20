@@ -923,7 +923,7 @@ function OutcomePanel({
       type="button"
       onClick={onSelect}
       aria-expanded={active}
-      className="group relative block w-full cursor-pointer overflow-hidden bg-black text-left text-white"
+      className="group relative flex w-full flex-col items-stretch justify-start overflow-hidden bg-black text-left text-white cursor-pointer"
       style={{
         height: active ? PANEL_OPEN : PANEL_CLOSED,
         transition: `height 620ms ${PANEL_EASE}`,
@@ -937,7 +937,7 @@ function OutcomePanel({
       />
 
       {/* header row — number + label, never moves */}
-      <div className="flex h-[78px] items-center gap-5 pl-8 pr-6 sm:pl-10 sm:pr-8">
+      <div className="flex h-[78px] shrink-0 items-center gap-5 pl-8 pr-6 sm:pl-10 sm:pr-8">
         <span
           className="text-[10px] uppercase tracking-[0.24em] text-white/55"
           style={{ fontFamily: MONO }}
