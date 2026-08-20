@@ -948,7 +948,7 @@ function OutcomePanel({
   const label = stat.suffix;
   return (
     <div
-      className="relative min-h-0 min-w-0 overflow-hidden bg-black text-white"
+      className="relative min-h-[76px] min-w-0 overflow-hidden bg-black text-white md:min-h-0"
       style={{
         flex: `${weight.toFixed(4)} 1 0%`,
         transition: "flex-grow 140ms linear",
@@ -963,7 +963,7 @@ function OutcomePanel({
 
       {/* slide number — always anchored top-left */}
       <div
-        className="absolute left-8 top-5 text-[10px] uppercase tracking-[0.24em] text-white/55 sm:left-10 sm:top-6"
+        className="absolute left-8 top-4 text-[10px] uppercase tracking-[0.24em] text-white/55 sm:left-10 sm:top-6"
         style={{ fontFamily: MONO }}
       >
         {String(n).padStart(2, "0")}
@@ -988,7 +988,7 @@ function OutcomePanel({
           </span>
         </div>
         {/* horizontal descriptor for stacked layout */}
-        <div className="absolute bottom-4 left-8 right-5 md:hidden">
+        <div className="absolute bottom-3.5 left-8 right-5 md:hidden">
           <span
             className="block truncate text-[10px] uppercase tracking-[0.24em] text-white/60"
             style={{ fontFamily: MONO }}
