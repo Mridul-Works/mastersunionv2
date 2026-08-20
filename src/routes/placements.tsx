@@ -478,6 +478,7 @@ function CinematicHero() {
 
 /** Horizontal preview-stack accordion for the four hero statistics. */
 const STATS_EASE = "cubic-bezier(0.76,0,0.24,1)";
+const STATS_SMOOTH = "cubic-bezier(0.33,1,0.68,1)";
 
 function StatPanel({
   value,
@@ -565,7 +566,8 @@ function StatPanel({
         style={{
           opacity: isActive ? 0 : 1,
           pointerEvents: isActive ? "none" : "auto",
-          transition: `opacity 350ms ${STATS_EASE} ${isActive ? "0ms" : "220ms"}`,
+          willChange: "opacity",
+          transition: `opacity 800ms ${STATS_SMOOTH}`,
         }}
       >
         <span
