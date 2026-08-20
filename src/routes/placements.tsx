@@ -477,7 +477,7 @@ function CinematicHero() {
 }
 
 /** Horizontal preview-stack accordion for the four hero statistics. */
-const STATS_EASE = "cubic-bezier(0.76,0,0.24,1)";
+const STATS_SMOOTH = "cubic-bezier(0.33,1,0.68,1)";
 
 function StatPanel({
   value,
@@ -514,13 +514,14 @@ function StatPanel({
         isFirst ? "" : "border-t border-white/12 md:border-t-0 md:border-l md:border-white/12"
       } ${isActive ? "cursor-default bg-[#faf9f7] text-[#0a0a0a]" : "cursor-pointer bg-[#0a0a0a] text-white hover:bg-[#141414]"}`}
       style={{
-        flexGrow: isActive ? 70 : 12,
-        flexShrink: 1,
-        flexBasis: 0,
+        flexGrow: 0,
+        flexShrink: 0,
+        flexBasis: isActive ? "70%" : "10%",
         minWidth: 0,
         minHeight: 0,
         containerType: "size",
-        transition: `flex-grow 700ms ${STATS_EASE}, background-color 500ms ease`,
+        willChange: "flex-basis",
+        transition: `flex-basis 800ms ${STATS_SMOOTH}, background-color 800ms ${STATS_SMOOTH}`,
       }}
     >
       {/* ---- Expanded layer ---- */}
@@ -529,7 +530,8 @@ function StatPanel({
         style={{
           opacity: isActive ? 1 : 0,
           pointerEvents: isActive ? "auto" : "none",
-          transition: `opacity 450ms ${STATS_EASE} ${isActive ? "180ms" : "0ms"}`,
+          willChange: "opacity",
+          transition: `opacity 800ms ${STATS_SMOOTH}`,
         }}
       >
         <span
@@ -563,7 +565,8 @@ function StatPanel({
         style={{
           opacity: isActive ? 0 : 1,
           pointerEvents: isActive ? "none" : "auto",
-          transition: `opacity 350ms ${STATS_EASE} ${isActive ? "0ms" : "220ms"}`,
+          willChange: "opacity",
+          transition: `opacity 800ms ${STATS_SMOOTH}`,
         }}
       >
         <span
