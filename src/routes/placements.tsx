@@ -1213,7 +1213,7 @@ function CoverStage({
       <div ref={zoneRef} className="relative z-10" style={{ height: "200svh" }}>
         <div
           ref={overRef}
-          className="sticky top-0 h-[100svh]"
+          className="sticky top-0 h-[100svh] bg-white"
           style={{
             transform: `translate3d(${(1 - eased) * 100}%, 0, 0)`,
             willChange: "transform",
