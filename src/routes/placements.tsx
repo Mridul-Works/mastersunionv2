@@ -1151,8 +1151,11 @@ function CoverStage({
   const reduced = useReducedMotion();
   const zoneRef = useRef<HTMLDivElement>(null);
   const overRef = useRef<HTMLDivElement>(null);
+  const underRef = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false);
   const [overH, setOverH] = useState(0);
+  const [underH, setUnderH] = useState(0);
+  const [vh, setVh] = useState(0);
   const [p, setP] = useState(0);
 
   useEffect(() => {
@@ -1167,15 +1170,26 @@ function CoverStage({
     return () => mq.removeEventListener("change", sync);
   }, [reduced]);
 
-  // measure the real Proven Outcomes height so the scroll budget adds no blank space
+  // measure both layers so the scroll budget adds no blank space
   useEffect(() => {
     if (!enabled) return;
-    const el = overRef.current;
-    if (!el) return;
-    const ro = new ResizeObserver(() => setOverH(el.offsetHeight));
-    ro.observe(el);
-    setOverH(el.offsetHeight);
-    return () => ro.disconnect();
+    const a = overRef.current;
+    const b = underRef.current;
+    if (!a || !b) return;
+    const measure = () => {
+      setOverH(a.offsetHeight);
+      setUnderH(b.offsetHeight);
+      setVh(window.innerHeight);
+    };
+    const ro = new ResizeObserver(measure);
+    ro.observe(a);
+    ro.observe(b);
+    measure();
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
   }, [enabled]);
 
   useEffect(() => {
@@ -1215,20 +1229,30 @@ function CoverStage({
   }
 
   const eased = 1 - Math.pow(1 - p, 4);
+  // tall-layer sticky offset: keeps the podcast pinned even when it exceeds the viewport
+  const underTop = vh && underH > vh ? Math.min(0, vh - underH) : 0;
 
   return (
     <div className="relative">
-      <div className="sticky bottom-0 z-0">{under}</div>
+      {/* LAYER 1 — podcast, full width, pinned underneath */}
+      <div
+        ref={underRef}
+        className="sticky z-[1]"
+        style={{ top: `${underTop}px` }}
+      >
+        {under}
+      </div>
 
-      {/* the scroll budget lives in this wrapper's height — no blank/spacer section */}
+      {/* LAYER 2 — the real Proven Outcomes section, full width, slides right → left.
+          The wrapper only supplies vertical scroll distance; it renders nothing itself. */}
       <div
         ref={zoneRef}
-        className="relative z-10"
-        style={overH ? { height: `${overH + window.innerHeight}px` } : undefined}
+        className="relative z-[2]"
+        style={overH && vh ? { height: `${overH + vh}px` } : undefined}
       >
         <div
           ref={overRef}
-          className="sticky top-0"
+          className="sticky top-0 w-full"
           style={{
             transform: `translate3d(${(1 - eased) * 100}%, 0, 0)`,
             willChange: "transform",
@@ -1241,6 +1265,7 @@ function CoverStage({
     </div>
   );
 }
+
 
 
 
