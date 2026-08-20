@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
 import heroBg from "@/assets/placement-hero.webp.asset.json";
+import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
 import {
   ClipReveal,
@@ -1085,16 +1086,21 @@ function CohortReports() {
 
 function FounderQuoteSection() {
   return (
-    <section className="relative flex min-h-[100svh] items-center bg-[#F2F1EE] py-14 md:py-16">
+    <section
+      className="relative flex min-h-[100svh] items-center overflow-hidden bg-black py-14 md:py-16"
+      style={{ backgroundImage: `url(${manojKohliBg.url})`, backgroundSize: "cover", backgroundPosition: "center" }}
+    >
+      {/* dark overlay for text readability */}
+      <div className="absolute inset-0 bg-black/45" />
       <div className="page-x relative w-full">
         <div className="relative mx-auto max-w-[56ch]">
           <Quote
-            className="absolute -left-1 -top-2 size-10 text-black/10 md:-left-6 md:-top-4 md:size-16"
+            className="absolute -left-1 -top-2 size-10 text-white/15 md:-left-6 md:-top-4 md:size-16"
             strokeWidth={1}
             aria-hidden="true"
           />
           <Reveal duration={900}>
-            <blockquote className="text-[clamp(1.35rem,2.8vw,2.2rem)] font-medium leading-[1.35] tracking-[-0.015em]">
+            <blockquote className="text-[clamp(1.35rem,2.8vw,2.2rem)] font-medium leading-[1.35] tracking-[-0.015em] text-white">
               “We don&apos;t approach placements the way most B-schools do. At Masters&apos; Union,
               placements are run by a 50+ member, full-time team spanning company outreach, career
               preparation, and role-specific coaching.”
@@ -1102,7 +1108,7 @@ function FounderQuoteSection() {
           </Reveal>
           <Reveal delay={180}>
             <div
-              className="mt-8 text-[10px] uppercase tracking-[0.2em] text-black/60"
+              className="mt-8 text-[10px] uppercase tracking-[0.2em] text-white/70"
               style={{ fontFamily: MONO }}
             >
               Pratham Mittal — Founder &amp; CEO, Masters&apos; Union
