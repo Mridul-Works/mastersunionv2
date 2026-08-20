@@ -27,6 +27,7 @@ import {
   useReducedMotion,
 } from "@/components/placements/motion";
 import { HeroMaskReveal } from "@/components/placements/HeroMaskReveal";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
