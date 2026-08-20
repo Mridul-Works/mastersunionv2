@@ -1070,7 +1070,7 @@ function CohortReports() {
         ))}
       </div>
 
-      <div className="mt-3">
+      <div className="mt-5">
         <a
           href="#"
           className="inline-flex items-center gap-2 border border-black/15 px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-black/70 transition-colors duration-500 hover:border-black/45 hover:text-black"
