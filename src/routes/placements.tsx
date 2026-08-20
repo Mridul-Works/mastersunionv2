@@ -1181,7 +1181,8 @@ function Page() {
       {/* AUDITED OUTCOMES — scroll-driven sticky editorial storytelling */}
       <AuditedOutcomes />
 
-
+      {/* FOUNDER QUOTE — standalone editorial statement */}
+      <FounderQuoteSection />
 
       {/* COHORT CHARTS */}
       <Band id="cohorts" tone="white">
