@@ -1100,7 +1100,7 @@ function FounderQuoteSection() {
             aria-hidden="true"
           />
           <Reveal duration={900}>
-            <blockquote className="text-[clamp(1.35rem,2.8vw,2.2rem)] font-medium leading-[1.35] tracking-[-0.015em] text-white">
+            <blockquote className="text-[clamp(1.5rem,3.6vw,2.8rem)] font-medium leading-[1.3] tracking-[-0.015em] text-white">
               “We don&apos;t approach placements the way most B-schools do. At Masters&apos; Union,
               placements are run by a 50+ member, full-time team spanning company outreach, career
               preparation, and role-specific coaching.”
