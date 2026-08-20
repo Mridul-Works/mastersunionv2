@@ -902,182 +902,114 @@ function LogoRow({ names }: { names: string[] }) {
 
 /* ---------------------------- audited outcomes ---------------------------- */
 
-/** 0..1 progress of a tall container travelling through the viewport. */
-function useStageProgress<T extends HTMLElement = HTMLDivElement>() {
-  const ref = useRef<T | null>(null);
-  const [p, setP] = useState(0);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      const rect = el.getBoundingClientRect();
-      const distance = rect.height - window.innerHeight;
-      const next = distance > 0 ? Math.min(1, Math.max(0, -rect.top / distance)) : 0;
-      setP((prev) => (Math.abs(prev - next) < 0.0015 ? prev : next));
-    };
-    const tick = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", tick, { passive: true });
-    window.addEventListener("resize", tick);
-    return () => {
-      if (raf) cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", tick);
-      window.removeEventListener("resize", tick);
-    };
-  }, []);
-
-  return { ref, p };
-}
+const PANEL_EASE = "cubic-bezier(0.22,1,0.36,1)";
+const PANEL_CLOSED = 78;
+const PANEL_OPEN = 320;
 
 function OutcomePanel({
   stat,
   n,
-  weight,
   active,
+  onSelect,
 }: {
   stat: (typeof AUDIT_STATS)[number];
   n: number;
-  weight: number;
   active: boolean;
+  onSelect: () => void;
 }) {
   const label = stat.suffix;
   return (
-    <div
-      className="relative min-h-[76px] min-w-0 overflow-hidden bg-black text-white md:min-h-0"
+    <button
+      type="button"
+      onClick={onSelect}
+      aria-expanded={active}
+      className="group relative block w-full cursor-pointer overflow-hidden bg-black text-left text-white"
       style={{
-        flex: `${weight.toFixed(4)} 1 0%`,
-        transition: "flex-grow 140ms linear",
-        willChange: "flex-grow",
+        height: active ? PANEL_OPEN : PANEL_CLOSED,
+        transition: `height 620ms ${PANEL_EASE}`,
+        willChange: "height",
       }}
     >
-      {/* structural vertical hairline — attached to the panel */}
+      {/* subtle decorative vertical line — travels with the panel */}
       <span
         aria-hidden
         className="pointer-events-none absolute bottom-0 left-4 top-0 w-px bg-white/15 sm:left-5"
       />
 
-      {/* slide number — always anchored top-left */}
-      <div
-        className="absolute left-8 top-4 text-[10px] uppercase tracking-[0.24em] text-white/55 sm:left-10 sm:top-6"
-        style={{ fontFamily: MONO }}
-      >
-        {String(n).padStart(2, "0")}
+      {/* header row — number + label, never moves */}
+      <div className="flex h-[78px] items-center gap-5 pl-8 pr-6 sm:pl-10 sm:pr-8">
+        <span
+          className="text-[10px] uppercase tracking-[0.24em] text-white/55"
+          style={{ fontFamily: MONO }}
+        >
+          {String(n).padStart(2, "0")}
+        </span>
+        <span
+          className="min-w-0 truncate text-[10px] uppercase tracking-[0.24em] text-white/70 transition-colors duration-500 group-hover:text-white"
+          style={{ fontFamily: MONO }}
+        >
+          {label}
+        </span>
       </div>
 
-      {/* CLOSED state — compact descriptor */}
-      <div
-        aria-hidden={active}
-        className="absolute inset-0"
-        style={{
-          opacity: active ? 0 : 1,
-          transition: "opacity 420ms cubic-bezier(0.16,0.84,0.24,1)",
-        }}
-      >
-        {/* vertical descriptor for row layout */}
-        <div className="absolute bottom-5 left-1/2 hidden -translate-x-1/2 md:block">
-          <span
-            className="whitespace-nowrap text-[10px] uppercase tracking-[0.28em] text-white/60"
-            style={{ fontFamily: MONO, writingMode: "vertical-rl", transform: "rotate(180deg)" }}
-          >
-            {label}
-          </span>
-        </div>
-        {/* horizontal descriptor for stacked layout */}
-        <div className="absolute bottom-3.5 left-8 right-5 md:hidden">
-          <span
-            className="block truncate text-[10px] uppercase tracking-[0.24em] text-white/60"
-            style={{ fontFamily: MONO }}
-          >
-            {label}
-          </span>
-        </div>
-      </div>
-
-      {/* OPEN state — the statistic */}
+      {/* expanded body — statistic, centered */}
       <div
         aria-hidden={!active}
-        className="pointer-events-none absolute inset-0 flex flex-col justify-center px-8 sm:px-10"
-        style={{
-          opacity: active ? 1 : 0,
-          transition: "opacity 480ms cubic-bezier(0.16,0.84,0.24,1)",
-        }}
+        className="absolute inset-x-0 bottom-0 px-8 sm:px-10"
+        style={{ top: PANEL_CLOSED }}
       >
-        <div className="flex flex-1 items-center">
-          <div className="min-w-0">
-            <div className="whitespace-nowrap text-[clamp(2rem,4.6vw,4.2rem)] leading-[0.95] tracking-[-0.035em]">
-              {stat.value}
-            </div>
-            <p className="mt-4 max-w-[34ch] text-[0.9rem] leading-[1.6] text-white/60">
-              {stat.note}
-            </p>
+        <div className="h-px w-full bg-white/15" />
+        <div
+          className="flex flex-col items-center justify-center px-2 text-center"
+          style={{
+            height: PANEL_OPEN - PANEL_CLOSED - 1,
+            opacity: active ? 1 : 0,
+            transform: active ? "translateY(0)" : "translateY(10px)",
+            transition: `opacity 520ms ${PANEL_EASE} 60ms, transform 620ms ${PANEL_EASE}`,
+          }}
+        >
+          <div className="whitespace-nowrap text-[clamp(2.4rem,5.4vw,4.4rem)] leading-[0.95] tracking-[-0.035em]">
+            {stat.value}
           </div>
-        </div>
-        <div className="pb-6 sm:pb-7">
-          <div className="h-px w-full bg-white/15" />
-          <div
-            className="mt-4 text-[10px] uppercase tracking-[0.24em] text-white/65"
-            style={{ fontFamily: MONO }}
-          >
-            {label}
-          </div>
+          <p className="mt-4 max-w-[42ch] text-[0.9rem] leading-[1.6] text-white/60">
+            {stat.note}
+          </p>
         </div>
       </div>
-    </div>
+    </button>
   );
 }
 
 function OutcomesAccordion() {
-  const reduced = useReducedMotion();
-  const { ref, p } = useStageProgress<HTMLDivElement>();
-  const count = AUDIT_STATS.length;
-  const pos = Math.min(count - 1, Math.max(0, p / 0.9) * (count - 1));
+  const [open, setOpen] = useState(0);
 
   return (
-    <div ref={ref} className="relative" style={{ height: `${count * 85 + 15}svh` }}>
-      <div className="sticky top-0 flex min-h-svh items-center">
-        <div className="page-x w-full py-10">
-          <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
-            {/* LEFT — anchored editorial column */}
-            <div className="lg:col-span-4">
-              <Eyebrow>Five years of audited placements</Eyebrow>
-              <h2 className="mt-4 max-w-[24ch] text-[clamp(1.7rem,3.2vw,2.7rem)] font-medium leading-[1.06] tracking-[-0.02em]">
-                Proven outcomes, verified line by line.
-              </h2>
-              <p className="mt-5 max-w-[50ch] text-[0.95rem] leading-[1.65] text-black/65">
-                Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and
-                follow the IPRS Revision 2.2 framework for transparent, consistent compensation
-                data.
-              </p>
-            </div>
+    <div className="page-x py-10">
+      <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
+        {/* LEFT — anchored editorial column */}
+        <div className="lg:col-span-4">
+          <Eyebrow>Five years of audited placements</Eyebrow>
+          <h2 className="mt-4 max-w-[24ch] text-[clamp(1.7rem,3.2vw,2.7rem)] font-medium leading-[1.06] tracking-[-0.02em]">
+            Proven outcomes, verified line by line.
+          </h2>
+          <p className="mt-5 max-w-[50ch] text-[0.95rem] leading-[1.65] text-black/65">
+            Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and follow
+            the IPRS Revision 2.2 framework for transparent, consistent compensation data.
+          </p>
+        </div>
 
-            {/* RIGHT — scroll-driven static accordion */}
-            <div className="lg:col-span-8">
-              <div className="flex h-[clamp(360px,58svh,520px)] flex-col gap-1.5 md:flex-row md:gap-2">
-                {AUDIT_STATS.map((s, i) => {
-                  const nearness = reduced
-                    ? i === 0
-                      ? 1
-                      : 0
-                    : Math.max(0, 1 - Math.abs(pos - i));
-                  const eased = nearness * nearness * (3 - 2 * nearness);
-                  const activeIndex = reduced ? 0 : Math.round(pos);
-                  return (
-                    <OutcomePanel
-                      key={s.suffix}
-                      stat={s}
-                      n={i + 1}
-                      weight={1 + eased * 5}
-                      active={i === activeIndex}
-                    />
-                  );
-                })}
-              </div>
-            </div>
+        {/* RIGHT — click-driven horizontal accordion */}
+        <div className="lg:col-span-8">
+          <div className="flex flex-col gap-1.5 sm:gap-2">
+            {AUDIT_STATS.map((s, i) => (
+              <OutcomePanel
+                key={s.suffix}
+                stat={s}
+                n={i + 1}
+                active={open === i}
+                onSelect={() => setOpen(i)}
+              />
+            ))}
           </div>
         </div>
       </div>
