@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import * as React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
   Home,
@@ -1343,17 +1343,17 @@ function CoverStage({
 }: {
   under: React.ReactNode;
   over: React.ReactNode;
-  tail?: (progress?: number) => React.ReactNode;
+  tail?: (animated: boolean) => React.ReactNode;
 }) {
   const reduced = useReducedMotion();
   const zoneRef = useRef<HTMLDivElement>(null);
   const overRef = useRef<HTMLDivElement>(null);
   const underRef = useRef<HTMLDivElement>(null);
+  const tailRef = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false);
   const [overH, setOverH] = useState(0);
   const [underH, setUnderH] = useState(0);
   const [vh, setVh] = useState(0);
-  const [raw, setRaw] = useState(0);
 
   useEffect(() => {
     if (reduced) {
@@ -1550,7 +1550,7 @@ function Page() {
             </section>
           }
           over={<AuditedOutcomes />}
-          tail={(q) => <FounderQuoteSection progress={q} />}
+          tail={(animated) => <FounderQuoteSection animated={animated} />}
         />
       </div>
 
