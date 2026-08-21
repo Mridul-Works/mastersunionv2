@@ -1122,15 +1122,32 @@ const QUOTE_BLOCKS: {
   { x: 46, y: 74, w: 54, h: 26, dx: 0.6, dy: 1.6, delay: 0.36 },
 ];
 
-
+/* --- single continuous progress channel, written once per frame, no React re-render --- */
+type PuzzleSub = (p: number) => void;
+const puzzleSubs = new Set<PuzzleSub>();
+let puzzleP = 0;
+function setPuzzleProgress(p: number) {
+  if (p === puzzleP) return;
+  puzzleP = p;
+  puzzleSubs.forEach((f) => f(p));
+}
+function subscribePuzzle(f: PuzzleSub) {
+  puzzleSubs.add(f);
+  f(puzzleP);
+  return () => {
+    puzzleSubs.delete(f);
+  };
+}
 
 function easeOutCubic(t: number) {
   return 1 - Math.pow(1 - t, 3);
 }
 
-function FounderQuoteSection({ progress }: { progress?: number }) {
-  const q = progress === undefined ? 1 : Math.min(1, Math.max(0, progress));
+function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
   const hostRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const pieceRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [box, setBox] = useState({ w: 0, h: 0 });
   const [ar, setAr] = useState(0);
 
@@ -1165,6 +1182,50 @@ function FounderQuoteSection({ progress }: { progress?: number }) {
   const offX = (bw - w) * 0.85; // matches the original backgroundPosition "85% 55%"
   const offY = (bh - h) * 0.55;
 
+  /* one continuous state → every block interpolates from the same normalized progress.
+     Written straight to the compositor; no layout properties touched, no DOM churn. */
+  const apply = useCallback(
+    (q: number) => {
+      const p = q < 0 ? 0 : q > 1 ? 1 : q;
+      const els = pieceRefs.current;
+      for (let i = 0; i < QUOTE_BLOCKS.length; i++) {
+        const el = els[i];
+        if (!el) continue;
+        const b = QUOTE_BLOCKS[i];
+        const span = 1 - b.delay;
+        const raw = (p - b.delay) / span;
+        const local = raw <= 0 ? 0 : raw >= 1 ? 1 : easeOutCubic(raw);
+        if (local >= 1) {
+          // settle exactly, once — same value the static render uses
+          el.style.transform = "translate3d(0px, 0px, 0px)";
+          el.style.willChange = "auto";
+        } else {
+          const away = 1 - local;
+          el.style.willChange = "transform";
+          el.style.transform = `translate3d(${b.dx * w * away}px, ${b.dy * h * away}px, 0px)`;
+        }
+      }
+      const shell = Math.min(1, Math.max(0, (p - 0.82) / 0.18));
+      const t = Math.min(1, Math.max(0, (p - 0.92) / 0.08));
+      if (hostRef.current) hostRef.current.style.background = `rgba(0,0,0,${shell})`;
+      if (overlayRef.current) overlayRef.current.style.opacity = `${shell}`;
+      if (textRef.current) {
+        textRef.current.style.opacity = `${t}`;
+        textRef.current.style.transform =
+          t >= 1 ? "translate3d(0px, 0px, 0px)" : `translate3d(0px, ${(1 - t) * 20}px, 0px)`;
+      }
+    },
+    [w, h],
+  );
+
+  useEffect(() => {
+    if (!animated) {
+      apply(1);
+      return;
+    }
+    return subscribePuzzle(apply);
+  }, [animated, apply, ready]);
+
   const pieces: React.ReactNode[] = [];
   if (ready) {
     QUOTE_BLOCKS.forEach((b, i) => {
@@ -1172,13 +1233,13 @@ function FounderQuoteSection({ progress }: { progress?: number }) {
       const y0 = Math.round((b.y / 100) * h);
       const x1 = Math.round(((b.x + b.w) / 100) * w);
       const y1 = Math.round(((b.y + b.h) / 100) * h);
-      const span = 1 - b.delay;
-      const local = easeOutCubic(Math.min(1, Math.max(0, (q - b.delay) / span)));
-      const away = 1 - local;
       pieces.push(
         <div
           key={i}
           aria-hidden
+          ref={(n) => {
+            pieceRefs.current[i] = n;
+          }}
           style={{
             position: "absolute",
             left: `${x0}px`,
@@ -1190,44 +1251,36 @@ function FounderQuoteSection({ progress }: { progress?: number }) {
             backgroundSize: `${bw}px ${bh}px`,
             backgroundPosition: `${-(x0 + offX)}px ${-(y0 + offY)}px`,
             backgroundRepeat: "no-repeat",
-            transform: `translate3d(${(b.dx * w * away).toFixed(2)}px, ${(b.dy * h * away).toFixed(2)}px, 0)`,
-            willChange: "transform",
+            transform: "translate3d(0px, 0px, 0px)",
             backfaceVisibility: "hidden",
+            contain: "paint",
           }}
         />,
       );
     });
   }
 
-
-  // text only starts once the photograph has fully assembled
-  const t = Math.min(1, Math.max(0, (q - 0.92) / 0.08));
-
-  // section background stays transparent until the puzzle closes, so Proven Outcomes
-  // shows through the gaps between the flying pieces
-  const shell = Math.min(1, Math.max(0, (q - 0.82) / 0.18));
-
   return (
     <section
       ref={hostRef}
       className="relative flex min-h-[100svh] items-start overflow-hidden pt-20 md:pt-24 lg:pt-28 py-14 md:py-16"
-      style={{ background: `rgba(0,0,0,${shell.toFixed(3)})` }}
+      style={{ background: animated ? "rgba(0,0,0,0)" : "rgba(0,0,0,1)" }}
     >
       <div className="absolute inset-0">{pieces}</div>
       {/* gradient overlay: heavier on the left for text, lighter on the right so the body stays visible */}
       <div
+        ref={overlayRef}
         className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/20"
-        style={{ opacity: shell }}
+        style={{ opacity: animated ? 0 : 1 }}
       />
 
       <div className="page-x relative w-full">
         <div
+          ref={textRef}
           className="relative max-w-[56ch]"
           style={{
-            opacity: t,
-            transform: `translate3d(0, ${((1 - t) * 20).toFixed(2)}px, 0)`,
-            transition: progress === undefined ? undefined : "none",
-            willChange: "transform, opacity",
+            opacity: animated ? 0 : 1,
+            transform: "translate3d(0px, 0px, 0px)",
           }}
         >
           <Quote
@@ -1251,6 +1304,7 @@ function FounderQuoteSection({ progress }: { progress?: number }) {
     </section>
   );
 }
+
 
 
 
