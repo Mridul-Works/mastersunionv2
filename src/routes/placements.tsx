@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import * as React from "react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
   Home,
@@ -1122,15 +1122,32 @@ const QUOTE_BLOCKS: {
   { x: 46, y: 74, w: 54, h: 26, dx: 0.6, dy: 1.6, delay: 0.36 },
 ];
 
-
+/* --- single continuous progress channel, written once per frame, no React re-render --- */
+type PuzzleSub = (p: number) => void;
+const puzzleSubs = new Set<PuzzleSub>();
+let puzzleP = 0;
+function setPuzzleProgress(p: number) {
+  if (p === puzzleP) return;
+  puzzleP = p;
+  puzzleSubs.forEach((f) => f(p));
+}
+function subscribePuzzle(f: PuzzleSub) {
+  puzzleSubs.add(f);
+  f(puzzleP);
+  return () => {
+    puzzleSubs.delete(f);
+  };
+}
 
 function easeOutCubic(t: number) {
   return 1 - Math.pow(1 - t, 3);
 }
 
-function FounderQuoteSection({ progress }: { progress?: number }) {
-  const q = progress === undefined ? 1 : Math.min(1, Math.max(0, progress));
+function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
   const hostRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const pieceRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [box, setBox] = useState({ w: 0, h: 0 });
   const [ar, setAr] = useState(0);
 
@@ -1165,6 +1182,50 @@ function FounderQuoteSection({ progress }: { progress?: number }) {
   const offX = (bw - w) * 0.85; // matches the original backgroundPosition "85% 55%"
   const offY = (bh - h) * 0.55;
 
+  /* one continuous state → every block interpolates from the same normalized progress.
+     Written straight to the compositor; no layout properties touched, no DOM churn. */
+  const apply = useCallback(
+    (q: number) => {
+      const p = q < 0 ? 0 : q > 1 ? 1 : q;
+      const els = pieceRefs.current;
+      for (let i = 0; i < QUOTE_BLOCKS.length; i++) {
+        const el = els[i];
+        if (!el) continue;
+        const b = QUOTE_BLOCKS[i];
+        const span = 1 - b.delay;
+        const raw = (p - b.delay) / span;
+        const local = raw <= 0 ? 0 : raw >= 1 ? 1 : easeOutCubic(raw);
+        if (local >= 1) {
+          // settle exactly, once — same value the static render uses
+          el.style.transform = "translate3d(0px, 0px, 0px)";
+          el.style.willChange = "auto";
+        } else {
+          const away = 1 - local;
+          el.style.willChange = "transform";
+          el.style.transform = `translate3d(${b.dx * w * away}px, ${b.dy * h * away}px, 0px)`;
+        }
+      }
+      const shell = Math.min(1, Math.max(0, (p - 0.82) / 0.18));
+      const t = Math.min(1, Math.max(0, (p - 0.92) / 0.08));
+      if (hostRef.current) hostRef.current.style.background = `rgba(0,0,0,${shell})`;
+      if (overlayRef.current) overlayRef.current.style.opacity = `${shell}`;
+      if (textRef.current) {
+        textRef.current.style.opacity = `${t}`;
+        textRef.current.style.transform =
+          t >= 1 ? "translate3d(0px, 0px, 0px)" : `translate3d(0px, ${(1 - t) * 20}px, 0px)`;
+      }
+    },
+    [w, h],
+  );
+
+  useEffect(() => {
+    if (!animated) {
+      apply(1);
+      return;
+    }
+    return subscribePuzzle(apply);
+  }, [animated, apply, ready]);
+
   const pieces: React.ReactNode[] = [];
   if (ready) {
     QUOTE_BLOCKS.forEach((b, i) => {
@@ -1172,13 +1233,13 @@ function FounderQuoteSection({ progress }: { progress?: number }) {
       const y0 = Math.round((b.y / 100) * h);
       const x1 = Math.round(((b.x + b.w) / 100) * w);
       const y1 = Math.round(((b.y + b.h) / 100) * h);
-      const span = 1 - b.delay;
-      const local = easeOutCubic(Math.min(1, Math.max(0, (q - b.delay) / span)));
-      const away = 1 - local;
       pieces.push(
         <div
           key={i}
           aria-hidden
+          ref={(n) => {
+            pieceRefs.current[i] = n;
+          }}
           style={{
             position: "absolute",
             left: `${x0}px`,
@@ -1190,44 +1251,36 @@ function FounderQuoteSection({ progress }: { progress?: number }) {
             backgroundSize: `${bw}px ${bh}px`,
             backgroundPosition: `${-(x0 + offX)}px ${-(y0 + offY)}px`,
             backgroundRepeat: "no-repeat",
-            transform: `translate3d(${(b.dx * w * away).toFixed(2)}px, ${(b.dy * h * away).toFixed(2)}px, 0)`,
-            willChange: "transform",
+            transform: "translate3d(0px, 0px, 0px)",
             backfaceVisibility: "hidden",
+            contain: "paint",
           }}
         />,
       );
     });
   }
 
-
-  // text only starts once the photograph has fully assembled
-  const t = Math.min(1, Math.max(0, (q - 0.92) / 0.08));
-
-  // section background stays transparent until the puzzle closes, so Proven Outcomes
-  // shows through the gaps between the flying pieces
-  const shell = Math.min(1, Math.max(0, (q - 0.82) / 0.18));
-
   return (
     <section
       ref={hostRef}
       className="relative flex min-h-[100svh] items-start overflow-hidden pt-20 md:pt-24 lg:pt-28 py-14 md:py-16"
-      style={{ background: `rgba(0,0,0,${shell.toFixed(3)})` }}
+      style={{ background: animated ? "rgba(0,0,0,0)" : "rgba(0,0,0,1)" }}
     >
       <div className="absolute inset-0">{pieces}</div>
       {/* gradient overlay: heavier on the left for text, lighter on the right so the body stays visible */}
       <div
+        ref={overlayRef}
         className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/20"
-        style={{ opacity: shell }}
+        style={{ opacity: animated ? 0 : 1 }}
       />
 
       <div className="page-x relative w-full">
         <div
+          ref={textRef}
           className="relative max-w-[56ch]"
           style={{
-            opacity: t,
-            transform: `translate3d(0, ${((1 - t) * 20).toFixed(2)}px, 0)`,
-            transition: progress === undefined ? undefined : "none",
-            willChange: "transform, opacity",
+            opacity: animated ? 0 : 1,
+            transform: "translate3d(0px, 0px, 0px)",
           }}
         >
           <Quote
@@ -1251,6 +1304,7 @@ function FounderQuoteSection({ progress }: { progress?: number }) {
     </section>
   );
 }
+
 
 
 
@@ -1289,17 +1343,17 @@ function CoverStage({
 }: {
   under: React.ReactNode;
   over: React.ReactNode;
-  tail?: (progress?: number) => React.ReactNode;
+  tail?: (animated: boolean) => React.ReactNode;
 }) {
   const reduced = useReducedMotion();
   const zoneRef = useRef<HTMLDivElement>(null);
   const overRef = useRef<HTMLDivElement>(null);
   const underRef = useRef<HTMLDivElement>(null);
+  const tailRef = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false);
   const [overH, setOverH] = useState(0);
   const [underH, setUnderH] = useState(0);
   const [vh, setVh] = useState(0);
-  const [raw, setRaw] = useState(0);
 
   useEffect(() => {
     if (reduced) {
@@ -1335,19 +1389,39 @@ function CoverStage({
     };
   }, [enabled]);
 
+  // phase 2 — puzzle assembly, spread over PUZZLE viewports of scroll
+  const PUZZLE = 1.5;
+  const HOLD = 0.35; // extra pinned time once the photograph is complete
+  const tailTravel = tail ? vh * (PUZZLE + HOLD) : 0;
+  // tall-layer sticky offset: keeps the podcast pinned even when it exceeds the viewport
+  const underTop = vh && underH > vh ? Math.min(0, vh - underH) : 0;
+
+  /* one rAF reader → writes transforms straight to the DOM. No React state per frame,
+     so nothing re-renders (and nothing re-measures) while scrolling. */
   useEffect(() => {
-    if (!enabled) {
-      setRaw(0);
-      return;
-    }
+    if (!enabled) return;
     let rafId = 0;
     const read = () => {
       rafId = 0;
       const zone = zoneRef.current;
-      if (!zone) return;
-      const travel = window.innerHeight;
-      const top = zone.getBoundingClientRect().top;
-      setRaw(Math.max(0, -top / travel));
+      const overEl = overRef.current;
+      if (!zone || !overEl) return;
+      const travel = window.innerHeight || 1;
+      const raw = Math.max(0, -zone.getBoundingClientRect().top / travel);
+
+      // phase 1 — Proven Outcomes slides in over the first viewport of scroll
+      const p = Math.min(1, raw);
+      const eased = p * p * (3 - 2 * p);
+      overEl.style.transform =
+        p >= 1 ? "translate3d(0%, 0, 0)" : `translate3d(${(1 - eased) * 100}%, 0, 0)`;
+      overEl.style.willChange = p >= 1 ? "auto" : "transform";
+
+      if (tail) {
+        const q = Math.min(1, Math.max(0, (raw - 1) / PUZZLE));
+        setPuzzleProgress(q);
+        const tw = tailRef.current;
+        if (tw) tw.style.pointerEvents = q > 0.98 ? "auto" : "none";
+      }
     };
     const onScroll = () => {
       if (!rafId) rafId = requestAnimationFrame(read);
@@ -1360,28 +1434,17 @@ function CoverStage({
       window.removeEventListener("resize", onScroll);
       if (rafId) cancelAnimationFrame(rafId);
     };
-  }, [enabled]);
+  }, [enabled, !!tail]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!enabled) {
     return (
       <>
         {under}
         {over}
-        {tail?.(undefined)}
+        {tail?.(false)}
       </>
     );
   }
-
-  // phase 1 — Proven Outcomes slides in over the first viewport of scroll
-  const p = Math.min(1, raw);
-  const eased = p * p * (3 - 2 * p);
-  // phase 2 — puzzle assembly, spread over PUZZLE viewports of scroll
-  const PUZZLE = 1.5;
-  const HOLD = 0.35; // extra pinned time once the photograph is complete
-  const q = tail ? Math.min(1, Math.max(0, (raw - 1) / PUZZLE)) : 0;
-  // tall-layer sticky offset: keeps the podcast pinned even when it exceeds the viewport
-  const underTop = vh && underH > vh ? Math.min(0, vh - underH) : 0;
-  const tailTravel = tail ? vh * (PUZZLE + HOLD) : 0;
 
   return (
     <div className="relative">
@@ -1406,31 +1469,27 @@ function CoverStage({
           ref={overRef}
           className="sticky top-0 w-full"
           style={{
-            transform: `translate3d(${(1 - eased) * 100}%, 0, 0)`,
-            willChange: "transform",
+            transform: "translate3d(100%, 0, 0)",
             backfaceVisibility: "hidden",
           }}
         >
           {over}
         </div>
 
-        {/* LAYER 3 — the real Quote section, pinned on top. Its background photograph is
-            split into pieces that fly in from every edge as scroll progresses; the quote
-            text reveals only once the image has fully assembled. */}
-        {tail ? (
+        {/* LAYER 3 — the real Quote section. Native `sticky` inside a rail that starts one
+            viewport in, so the pinning is compositor-driven (no per-frame transform, no
+            one-frame scroll lag). Its photograph assembles from the shared progress. */}
+        {tail && vh ? (
           <div
-            className="absolute inset-x-0 z-[3] h-[100svh]"
+            ref={tailRef}
+            className="absolute inset-x-0 z-[3]"
             style={{
               top: `${vh}px`,
-              transform: `translate3d(0, ${Math.min(
-                Math.max(0, (raw - 1) * vh),
-                Math.max(0, overH + tailTravel - vh),
-              ).toFixed(1)}px, 0)`,
-              willChange: "transform",
-              pointerEvents: q > 0.98 ? "auto" : "none",
+              height: `${Math.max(0, overH + tailTravel)}px`,
+              pointerEvents: "none",
             }}
           >
-            {tail(q)}
+            <div className="sticky top-0 h-[100svh]">{tail(true)}</div>
           </div>
         ) : null}
 
@@ -1438,6 +1497,7 @@ function CoverStage({
     </div>
   );
 }
+
 
 
 
@@ -1490,7 +1550,7 @@ function Page() {
             </section>
           }
           over={<AuditedOutcomes />}
-          tail={(q) => <FounderQuoteSection progress={q} />}
+          tail={(animated) => <FounderQuoteSection animated={animated} />}
         />
       </div>
 
