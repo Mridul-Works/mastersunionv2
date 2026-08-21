@@ -1389,19 +1389,39 @@ function CoverStage({
     };
   }, [enabled]);
 
+  // phase 2 — puzzle assembly, spread over PUZZLE viewports of scroll
+  const PUZZLE = 1.5;
+  const HOLD = 0.35; // extra pinned time once the photograph is complete
+  const tailTravel = tail ? vh * (PUZZLE + HOLD) : 0;
+  // tall-layer sticky offset: keeps the podcast pinned even when it exceeds the viewport
+  const underTop = vh && underH > vh ? Math.min(0, vh - underH) : 0;
+
+  /* one rAF reader → writes transforms straight to the DOM. No React state per frame,
+     so nothing re-renders (and nothing re-measures) while scrolling. */
   useEffect(() => {
-    if (!enabled) {
-      setRaw(0);
-      return;
-    }
+    if (!enabled) return;
     let rafId = 0;
     const read = () => {
       rafId = 0;
       const zone = zoneRef.current;
-      if (!zone) return;
-      const travel = window.innerHeight;
-      const top = zone.getBoundingClientRect().top;
-      setRaw(Math.max(0, -top / travel));
+      const overEl = overRef.current;
+      if (!zone || !overEl) return;
+      const travel = window.innerHeight || 1;
+      const raw = Math.max(0, -zone.getBoundingClientRect().top / travel);
+
+      // phase 1 — Proven Outcomes slides in over the first viewport of scroll
+      const p = Math.min(1, raw);
+      const eased = p * p * (3 - 2 * p);
+      overEl.style.transform =
+        p >= 1 ? "translate3d(0%, 0, 0)" : `translate3d(${(1 - eased) * 100}%, 0, 0)`;
+      overEl.style.willChange = p >= 1 ? "auto" : "transform";
+
+      if (tail) {
+        const q = Math.min(1, Math.max(0, (raw - 1) / PUZZLE));
+        setPuzzleProgress(q);
+        const tw = tailRef.current;
+        if (tw) tw.style.pointerEvents = q > 0.98 ? "auto" : "none";
+      }
     };
     const onScroll = () => {
       if (!rafId) rafId = requestAnimationFrame(read);
@@ -1414,28 +1434,17 @@ function CoverStage({
       window.removeEventListener("resize", onScroll);
       if (rafId) cancelAnimationFrame(rafId);
     };
-  }, [enabled]);
+  }, [enabled, tail]);
 
   if (!enabled) {
     return (
       <>
         {under}
         {over}
-        {tail?.(undefined)}
+        {tail?.(false)}
       </>
     );
   }
-
-  // phase 1 — Proven Outcomes slides in over the first viewport of scroll
-  const p = Math.min(1, raw);
-  const eased = p * p * (3 - 2 * p);
-  // phase 2 — puzzle assembly, spread over PUZZLE viewports of scroll
-  const PUZZLE = 1.5;
-  const HOLD = 0.35; // extra pinned time once the photograph is complete
-  const q = tail ? Math.min(1, Math.max(0, (raw - 1) / PUZZLE)) : 0;
-  // tall-layer sticky offset: keeps the podcast pinned even when it exceeds the viewport
-  const underTop = vh && underH > vh ? Math.min(0, vh - underH) : 0;
-  const tailTravel = tail ? vh * (PUZZLE + HOLD) : 0;
 
   return (
     <div className="relative">
@@ -1460,31 +1469,27 @@ function CoverStage({
           ref={overRef}
           className="sticky top-0 w-full"
           style={{
-            transform: `translate3d(${(1 - eased) * 100}%, 0, 0)`,
-            willChange: "transform",
+            transform: "translate3d(100%, 0, 0)",
             backfaceVisibility: "hidden",
           }}
         >
           {over}
         </div>
 
-        {/* LAYER 3 — the real Quote section, pinned on top. Its background photograph is
-            split into pieces that fly in from every edge as scroll progresses; the quote
-            text reveals only once the image has fully assembled. */}
-        {tail ? (
+        {/* LAYER 3 — the real Quote section. Native `sticky` inside a rail that starts one
+            viewport in, so the pinning is compositor-driven (no per-frame transform, no
+            one-frame scroll lag). Its photograph assembles from the shared progress. */}
+        {tail && vh ? (
           <div
-            className="absolute inset-x-0 z-[3] h-[100svh]"
+            ref={tailRef}
+            className="absolute inset-x-0 z-[3]"
             style={{
               top: `${vh}px`,
-              transform: `translate3d(0, ${Math.min(
-                Math.max(0, (raw - 1) * vh),
-                Math.max(0, overH + tailTravel - vh),
-              ).toFixed(1)}px, 0)`,
-              willChange: "transform",
-              pointerEvents: q > 0.98 ? "auto" : "none",
+              height: `${Math.max(0, overH + tailTravel)}px`,
+              pointerEvents: "none",
             }}
           >
-            {tail(q)}
+            <div className="sticky top-0 h-[100svh]">{tail(true)}</div>
           </div>
         ) : null}
 
@@ -1492,6 +1497,7 @@ function CoverStage({
     </div>
   );
 }
+
 
 
 
