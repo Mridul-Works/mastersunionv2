@@ -1167,40 +1167,38 @@ function FounderQuoteSection({ progress }: { progress?: number }) {
 
   const pieces: React.ReactNode[] = [];
   if (ready) {
-    for (let row = 0; row < PZ_ROWS; row++) {
-      for (let col = 0; col < PZ_COLS; col++) {
-        const x0 = Math.round((col * w) / PZ_COLS);
-        const y0 = Math.round((row * h) / PZ_ROWS);
-        const x1 = Math.round(((col + 1) * w) / PZ_COLS);
-        const y1 = Math.round(((row + 1) * h) / PZ_ROWS);
-        const { dx, dy, delay } = pieceMotion(col, row);
-        const span = 1 - delay;
-        const local = easeOutCubic(Math.min(1, Math.max(0, (q - delay) / span)));
-        const away = 1 - local;
-        pieces.push(
-          <div
-            key={`${col}-${row}`}
-            aria-hidden
-            style={{
-              position: "absolute",
-              left: `${x0}px`,
-              top: `${y0}px`,
-              // +1px bleed removes sub-pixel seams; the extra sliver is off-piece background
-              width: `${x1 - x0 + 1}px`,
-              height: `${y1 - y0 + 1}px`,
-              backgroundImage: `url(${manojKohliBg.url})`,
-              backgroundSize: `${bw}px ${bh}px`,
-              backgroundPosition: `${-(x0 + offX)}px ${-(y0 + offY)}px`,
-              backgroundRepeat: "no-repeat",
-              transform: `translate3d(${(dx * w * away).toFixed(2)}px, ${(dy * h * away).toFixed(2)}px, 0)`,
-              willChange: "transform",
-              backfaceVisibility: "hidden",
-            }}
-          />,
-        );
-      }
-    }
+    QUOTE_BLOCKS.forEach((b, i) => {
+      const x0 = Math.round((b.x / 100) * w);
+      const y0 = Math.round((b.y / 100) * h);
+      const x1 = Math.round(((b.x + b.w) / 100) * w);
+      const y1 = Math.round(((b.y + b.h) / 100) * h);
+      const span = 1 - b.delay;
+      const local = easeOutCubic(Math.min(1, Math.max(0, (q - b.delay) / span)));
+      const away = 1 - local;
+      pieces.push(
+        <div
+          key={i}
+          aria-hidden
+          style={{
+            position: "absolute",
+            left: `${x0}px`,
+            top: `${y0}px`,
+            // +1px bleed removes sub-pixel seams; the extra sliver is off-piece background
+            width: `${x1 - x0 + 1}px`,
+            height: `${y1 - y0 + 1}px`,
+            backgroundImage: `url(${manojKohliBg.url})`,
+            backgroundSize: `${bw}px ${bh}px`,
+            backgroundPosition: `${-(x0 + offX)}px ${-(y0 + offY)}px`,
+            backgroundRepeat: "no-repeat",
+            transform: `translate3d(${(b.dx * w * away).toFixed(2)}px, ${(b.dy * h * away).toFixed(2)}px, 0)`,
+            willChange: "transform",
+            backfaceVisibility: "hidden",
+          }}
+        />,
+      );
+    });
   }
+
 
   // text only starts once the photograph has fully assembled
   const t = Math.min(1, Math.max(0, (q - 0.92) / 0.08));
