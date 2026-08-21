@@ -1434,7 +1434,7 @@ function CoverStage({
       window.removeEventListener("resize", onScroll);
       if (rafId) cancelAnimationFrame(rafId);
     };
-  }, [enabled, tail]);
+  }, [enabled, !!tail]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!enabled) {
     return (
