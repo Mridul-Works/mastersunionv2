@@ -1084,41 +1084,155 @@ function CohortReports() {
   );
 }
 
-function FounderQuoteSection() {
+/* ------------------------- quote: puzzle cover reveal ---------------------- */
+
+const PZ_COLS = 4;
+const PZ_ROWS = 3;
+
+/** Per-piece displacement (in viewport units) + stagger, so assembly feels organic. */
+function pieceMotion(col: number, row: number) {
+  const cx = (col + 0.5) / PZ_COLS - 0.5; // -0.5..0.5
+  const cy = (row + 0.5) / PZ_ROWS - 0.5;
+  // pieces come from the nearest outside edge, biased diagonally by their position
+  const mag = 1.15 + ((col * 7 + row * 13) % 5) * 0.12; // 1.15..1.63
+  const dx = Math.sign(cx) * (0.45 + Math.abs(cx) * 1.5) * mag;
+  const dy = Math.sign(cy) * (0.55 + Math.abs(cy) * 1.4) * mag;
+  // outer ring lands last, centre first
+  const ring = Math.max(Math.abs(cx) / 0.5, Math.abs(cy) / 0.5);
+  const delay = 0.06 + ring * 0.34; // 0..0.4 of the timeline
+  return { dx, dy, delay };
+}
+
+function easeOutCubic(t: number) {
+  return 1 - Math.pow(1 - t, 3);
+}
+
+function FounderQuoteSection({ progress }: { progress?: number }) {
+  const q = progress === undefined ? 1 : Math.min(1, Math.max(0, progress));
+  const hostRef = useRef<HTMLDivElement>(null);
+  const [box, setBox] = useState({ w: 0, h: 0 });
+  const [ar, setAr] = useState(0);
+
+  useEffect(() => {
+    const el = hostRef.current;
+    if (!el) return;
+    const measure = () => setBox({ w: el.offsetWidth, h: el.offsetHeight });
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    measure();
+    return () => ro.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = manojKohliBg.url;
+    const on = () => setAr(img.naturalWidth / Math.max(1, img.naturalHeight));
+    if (img.complete && img.naturalWidth) on();
+    else img.addEventListener("load", on);
+    return () => img.removeEventListener("load", on);
+  }, []);
+
+  // exact `cover` geometry so every piece shows the correct crop of the photograph
+  const { w, h } = box;
+  const ready = w > 0 && h > 0 && ar > 0;
+  let bw = w;
+  let bh = h;
+  if (ready) {
+    bw = Math.max(w, h * ar);
+    bh = bw / ar;
+  }
+  const offX = (bw - w) * 0.85; // matches the original backgroundPosition "85% 55%"
+  const offY = (bh - h) * 0.55;
+
+  const pieces: React.ReactNode[] = [];
+  if (ready) {
+    for (let row = 0; row < PZ_ROWS; row++) {
+      for (let col = 0; col < PZ_COLS; col++) {
+        const x0 = Math.round((col * w) / PZ_COLS);
+        const y0 = Math.round((row * h) / PZ_ROWS);
+        const x1 = Math.round(((col + 1) * w) / PZ_COLS);
+        const y1 = Math.round(((row + 1) * h) / PZ_ROWS);
+        const { dx, dy, delay } = pieceMotion(col, row);
+        const span = 1 - delay;
+        const local = easeOutCubic(Math.min(1, Math.max(0, (q - delay) / span)));
+        const away = 1 - local;
+        pieces.push(
+          <div
+            key={`${col}-${row}`}
+            aria-hidden
+            style={{
+              position: "absolute",
+              left: `${x0}px`,
+              top: `${y0}px`,
+              // +1px bleed removes sub-pixel seams; the extra sliver is off-piece background
+              width: `${x1 - x0 + 1}px`,
+              height: `${y1 - y0 + 1}px`,
+              backgroundImage: `url(${manojKohliBg.url})`,
+              backgroundSize: `${bw}px ${bh}px`,
+              backgroundPosition: `${-(x0 + offX)}px ${-(y0 + offY)}px`,
+              backgroundRepeat: "no-repeat",
+              transform: `translate3d(${(dx * w * away).toFixed(2)}px, ${(dy * h * away).toFixed(2)}px, 0)`,
+              willChange: "transform",
+              backfaceVisibility: "hidden",
+            }}
+          />,
+        );
+      }
+    }
+  }
+
+  // text only starts once the photograph has fully assembled
+  const t = Math.min(1, Math.max(0, (q - 0.92) / 0.08));
+
+  // section background stays transparent until the puzzle closes, so Proven Outcomes
+  // shows through the gaps between the flying pieces
+  const shell = Math.min(1, Math.max(0, (q - 0.82) / 0.18));
+
   return (
     <section
-      className="relative flex min-h-[100svh] items-start overflow-hidden bg-black pt-20 md:pt-24 lg:pt-28 py-14 md:py-16"
-      style={{ backgroundImage: `url(${manojKohliBg.url})`, backgroundSize: "cover", backgroundPosition: "85% 55%" }}
+      ref={hostRef}
+      className="relative flex min-h-[100svh] items-start overflow-hidden pt-20 md:pt-24 lg:pt-28 py-14 md:py-16"
+      style={{ background: `rgba(0,0,0,${shell.toFixed(3)})` }}
     >
+      <div className="absolute inset-0">{pieces}</div>
       {/* gradient overlay: heavier on the left for text, lighter on the right so the body stays visible */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/20" />
+      <div
+        className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/20"
+        style={{ opacity: shell }}
+      />
+
       <div className="page-x relative w-full">
-        <div className="relative max-w-[56ch]">
+        <div
+          className="relative max-w-[56ch]"
+          style={{
+            opacity: t,
+            transform: `translate3d(0, ${((1 - t) * 20).toFixed(2)}px, 0)`,
+            transition: progress === undefined ? undefined : "none",
+            willChange: "transform, opacity",
+          }}
+        >
           <Quote
             className="absolute -left-1 -top-2 size-10 text-white/15 md:-top-4 md:size-16"
             strokeWidth={1}
             aria-hidden="true"
           />
-          <Reveal duration={900}>
-            <blockquote className="text-[clamp(1.5rem,3.6vw,2.8rem)] font-medium leading-[1.3] tracking-[-0.015em] text-white">
-              “We don&apos;t approach placements the way most B-schools do. At Masters&apos; Union,
-              placements are run by a 50+ member, full-time team spanning company outreach, career
-              preparation, and role-specific coaching.”
-            </blockquote>
-          </Reveal>
-          <Reveal delay={180}>
-            <div
-              className="mt-8 text-[10px] uppercase tracking-[0.2em] text-white/70"
-              style={{ fontFamily: MONO }}
-            >
-              Pratham Mittal — Founder &amp; CEO, Masters&apos; Union
-            </div>
-          </Reveal>
+          <blockquote className="text-[clamp(1.5rem,3.6vw,2.8rem)] font-medium leading-[1.3] tracking-[-0.015em] text-white">
+            “We don&apos;t approach placements the way most B-schools do. At Masters&apos; Union,
+            placements are run by a 50+ member, full-time team spanning company outreach, career
+            preparation, and role-specific coaching.”
+          </blockquote>
+          <div
+            className="mt-8 text-[10px] uppercase tracking-[0.2em] text-white/70"
+            style={{ fontFamily: MONO }}
+          >
+            Pratham Mittal — Founder &amp; CEO, Masters&apos; Union
+          </div>
         </div>
       </div>
     </section>
   );
 }
+
 
 
 function AuditedOutcomes() {
@@ -1145,7 +1259,8 @@ function AuditedOutcomes() {
 }
 
 /**
- * Sticky podcast stage + Proven Outcomes sliding in from the right to cover it.
+ * Sticky podcast stage → Proven Outcomes slides in from the right to cover it →
+ * the Quote photograph assembles over the pinned Proven Outcomes as a puzzle.
  * Pure transform, driven by main page scroll. Disabled for reduced motion / small screens.
  */
 function CoverStage({
@@ -1155,7 +1270,7 @@ function CoverStage({
 }: {
   under: React.ReactNode;
   over: React.ReactNode;
-  tail?: React.ReactNode;
+  tail?: (progress?: number) => React.ReactNode;
 }) {
   const reduced = useReducedMotion();
   const zoneRef = useRef<HTMLDivElement>(null);
@@ -1165,7 +1280,7 @@ function CoverStage({
   const [overH, setOverH] = useState(0);
   const [underH, setUnderH] = useState(0);
   const [vh, setVh] = useState(0);
-  const [p, setP] = useState(0);
+  const [raw, setRaw] = useState(0);
 
   useEffect(() => {
     if (reduced) {
@@ -1203,20 +1318,20 @@ function CoverStage({
 
   useEffect(() => {
     if (!enabled) {
-      setP(0);
+      setRaw(0);
       return;
     }
-    let raf = 0;
+    let rafId = 0;
     const read = () => {
-      raf = 0;
+      rafId = 0;
       const zone = zoneRef.current;
       if (!zone) return;
       const travel = window.innerHeight;
       const top = zone.getBoundingClientRect().top;
-      setP(Math.min(1, Math.max(0, -top / travel)));
+      setRaw(Math.max(0, -top / travel));
     };
     const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(read);
+      if (!rafId) rafId = requestAnimationFrame(read);
     };
     read();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -1224,7 +1339,7 @@ function CoverStage({
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
-      if (raf) cancelAnimationFrame(raf);
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, [enabled]);
 
@@ -1233,17 +1348,21 @@ function CoverStage({
       <>
         {under}
         {over}
-        {tail}
+        {tail?.(undefined)}
       </>
     );
   }
 
-  // smoothstep: continuous, no snap at either end
+  // phase 1 — Proven Outcomes slides in over the first viewport of scroll
+  const p = Math.min(1, raw);
   const eased = p * p * (3 - 2 * p);
+  // phase 2 — puzzle assembly, spread over PUZZLE viewports of scroll
+  const PUZZLE = 1.5;
+  const HOLD = 0.35; // extra pinned time once the photograph is complete
+  const q = tail ? Math.min(1, Math.max(0, (raw - 1) / PUZZLE)) : 0;
   // tall-layer sticky offset: keeps the podcast pinned even when it exceeds the viewport
   const underTop = vh && underH > vh ? Math.min(0, vh - underH) : 0;
-  // extra viewport of pinned time so the tail layer can rise up and cover the over layer
-  const tailTravel = tail ? vh : 0;
+  const tailTravel = tail ? vh * (PUZZLE + HOLD) : 0;
 
   return (
     <div className="relative">
@@ -1256,7 +1375,8 @@ function CoverStage({
         {under}
       </div>
 
-      {/* LAYER 2 — the real Proven Outcomes section, full width, slides right → left.
+      {/* LAYER 2 — the real Proven Outcomes section, full width, slides right → left,
+          then stays pinned while the puzzle assembles above it.
           The wrapper only supplies vertical scroll distance; it renders nothing itself. */}
       <div
         ref={zoneRef}
@@ -1274,15 +1394,32 @@ function CoverStage({
         >
           {over}
         </div>
-      </div>
 
-      {/* LAYER 3 — the real Quote section. It begins exactly one viewport below the
-          fold and scrolls upward over the still-pinned Proven Outcomes layer, so it
-          physically covers it (no spacer, no duplicate, no crossfade). */}
-      {tail ? <div className="relative z-[3]">{tail}</div> : null}
+        {/* LAYER 3 — the real Quote section, pinned on top. Its background photograph is
+            split into pieces that fly in from every edge as scroll progresses; the quote
+            text reveals only once the image has fully assembled. */}
+        {tail ? (
+          <div
+            className="absolute inset-x-0 z-[3] h-[100svh]"
+            style={{
+              top: `${vh}px`,
+              transform: `translate3d(0, ${Math.min(
+                Math.max(0, (raw - 1) * vh),
+                Math.max(0, overH + tailTravel - vh),
+              ).toFixed(1)}px, 0)`,
+              willChange: "transform",
+              pointerEvents: q > 0.98 ? "auto" : "none",
+            }}
+          >
+            {tail(q)}
+          </div>
+        ) : null}
+
+      </div>
     </div>
   );
 }
+
 
 
 
@@ -1334,7 +1471,7 @@ function Page() {
             </section>
           }
           over={<AuditedOutcomes />}
-          tail={<FounderQuoteSection />}
+          tail={(q) => <FounderQuoteSection progress={q} />}
         />
       </div>
 
