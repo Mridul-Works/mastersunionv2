@@ -1086,22 +1086,43 @@ function CohortReports() {
 
 /* ------------------------- quote: puzzle cover reveal ---------------------- */
 
-const PZ_COLS = 4;
-const PZ_ROWS = 3;
+/**
+ * Editorial block arrangement: long vertical strips, long horizontal strips and a few
+ * large asymmetric panels. Percentages tile the section exactly — shared guide values
+ * keep the reassembled photograph seamless.
+ *   x/y/w/h — percentages of the section box
+ *   dx/dy   — displacement in multiples of section width / height (start position)
+ *   delay   — fraction of the timeline before the block starts travelling
+ */
+const QUOTE_BLOCKS: {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  dx: number;
+  dy: number;
+  delay: number;
+}[] = [
+  // TOP BAND — three long horizontal strips (y 0 → 26)
+  { x: 0, y: 0, w: 38, h: 26, dx: -0.9, dy: -0.7, delay: 0.30 },
+  { x: 38, y: 0, w: 34, h: 26, dx: 0, dy: -1.5, delay: 0.16 },
+  { x: 72, y: 0, w: 28, h: 26, dx: 1.0, dy: -0.8, delay: 0.34 },
 
-/** Per-piece displacement (in viewport units) + stagger, so assembly feels organic. */
-function pieceMotion(col: number, row: number) {
-  const cx = (col + 0.5) / PZ_COLS - 0.5; // -0.5..0.5
-  const cy = (row + 0.5) / PZ_ROWS - 0.5;
-  // pieces come from the nearest outside edge, biased diagonally by their position
-  const mag = 1.15 + ((col * 7 + row * 13) % 5) * 0.12; // 1.15..1.63
-  const dx = Math.sign(cx) * (0.45 + Math.abs(cx) * 1.5) * mag;
-  const dy = Math.sign(cy) * (0.55 + Math.abs(cy) * 1.4) * mag;
-  // outer ring lands last, centre first
-  const ring = Math.max(Math.abs(cx) / 0.5, Math.abs(cy) / 0.5);
-  const delay = 0.06 + ring * 0.34; // 0..0.4 of the timeline
-  return { dx, dy, delay };
-}
+  // MIDDLE BAND (y 26 → 74)
+  // tall vertical strip on the left
+  { x: 0, y: 26, w: 22, h: 48, dx: -1.5, dy: 0.12, delay: 0.22 },
+  // large asymmetric panel through the centre
+  { x: 22, y: 26, w: 36, h: 48, dx: 0, dy: 1.2, delay: 0.04 },
+  // two long horizontal strips on the right
+  { x: 58, y: 26, w: 42, h: 24, dx: 1.4, dy: -0.1, delay: 0.18 },
+  { x: 58, y: 50, w: 42, h: 24, dx: 1.6, dy: 0.14, delay: 0.28 },
+
+  // BOTTOM BAND — two very long horizontal panels (y 74 → 100)
+  { x: 0, y: 74, w: 46, h: 26, dx: -0.7, dy: 1.5, delay: 0.24 },
+  { x: 46, y: 74, w: 54, h: 26, dx: 0.6, dy: 1.6, delay: 0.36 },
+];
+
+
 
 function easeOutCubic(t: number) {
   return 1 - Math.pow(1 - t, 3);
