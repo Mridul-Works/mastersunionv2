@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
-const SERIF = "'Fraunces', 'Cormorant Garamond', ui-serif, Georgia, serif";
+const MONO = "var(--font-mono)";
+const SERIF = "var(--font-serif)";
 
 export type Testimonial = { q: string; a: string; r: string };
 

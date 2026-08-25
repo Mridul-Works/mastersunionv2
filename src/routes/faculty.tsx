@@ -409,7 +409,7 @@ function WordMarquee() {
                 <span
                   key={word}
                   tabIndex={copy === 0 ? 0 : -1}
-                  className="block cursor-default select-none px-[clamp(1.25rem,3vw,3.5rem)] text-[clamp(4.5rem,13vw,15rem)] font-semibold uppercase leading-[0.86] tracking-[-0.02em] text-white/[0.14] outline-none transition-colors duration-500 hover:text-[var(--cream)]/85 focus-visible:text-[var(--cream)]/85"
+                  className="block cursor-default select-none px-[clamp(1.25rem,3vw,3.5rem)] text-[clamp(4.5rem,13vw,15rem)] font-semibold uppercase leading-[0.86] tracking-[-0.02em] text-white/[0.14] outline-none transition-colors duration-500 hover:text-cream/85 focus-visible:text-cream/85"
                 >
                   {word}
                 </span>
@@ -631,7 +631,7 @@ function FacultyPage() {
                 href="https://mastersunion.org/become-a-master"
                 target="_blank"
                 rel="noreferrer"
-                className="group inline-flex items-center gap-2.5 rounded-[2px] border border-[var(--cream)] bg-[var(--cream)] px-7 py-4 text-[11px] uppercase tracking-[0.22em] text-black transition-colors duration-300 hover:bg-transparent hover:text-[var(--cream)]"
+                className="group inline-flex items-center gap-2.5 rounded-[2px] border border-cream bg-cream px-7 py-4 text-[11px] uppercase tracking-[0.22em] text-black transition-colors duration-300 hover:bg-transparent hover:text-cream"
                 style={{ fontFamily: MONO }}
               >
                 Apply to teach
@@ -658,7 +658,7 @@ function FacultyPage() {
             <div className="relative z-10 text-[clamp(6rem,17vw,14rem)] font-extrabold leading-[0.85] tracking-[-0.04em]">
               500+
             </div>
-            <div className="relative z-0 -mt-[clamp(2rem,5vh,3.5rem)] text-[clamp(4rem,11vw,9rem)] font-bold leading-[0.85] tracking-[-0.03em] text-white/[0.14] transition-colors duration-500 group-hover:text-[var(--cream)]/85">
+            <div className="relative z-0 -mt-[clamp(2rem,5vh,3.5rem)] text-[clamp(4rem,11vw,9rem)] font-bold leading-[0.85] tracking-[-0.03em] text-white/[0.14] transition-colors duration-500 group-hover:text-cream/85">
               DOERS
             </div>
           </div>
@@ -703,7 +703,7 @@ function FacultyPage() {
             <div className="px-[clamp(1rem,2.5vw,2.5rem)]">
               <h2 className="sr-only">Join the Union</h2>
               {/* Fluid full-width display type: SVG auto-fits the container at any width */}
-              <div className="text-white/[0.14] transition-colors duration-500 hover:text-[var(--cream)]/85">
+              <div className="text-white/[0.14] transition-colors duration-500 hover:text-cream/85">
                 <svg
                   aria-hidden
                   viewBox="0 0 1200 168"
