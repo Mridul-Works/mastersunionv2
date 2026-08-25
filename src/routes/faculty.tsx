@@ -563,12 +563,12 @@ function FacultyPage() {
       <section id="visiting" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
           <SectionIntro
-            className="mb-[clamp(2rem,5vh,3.25rem)]"
             index="03"
             eyebrow="Visiting Faculty"
             title={<>Professors who teach here because they <Accent>believe</Accent> in what Masters&apos; Union is building.</>}
             intro="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
           />
+          <SectionDivider inset="none" className="my-[clamp(1.5rem,4vh,2.5rem)]" />
           <EditorialGrid
             gallery
             cardStats
@@ -581,6 +581,13 @@ function FacultyPage() {
               { v: "12", l: "Countries represented" },
             ]}
             items={VISITING.map((v) => ({ name: v.name, role: v.role, sub: v.school, img: v.img }))}
+          />
+          <LogoMarquee
+            variant="banded"
+            speed="slow"
+            className="mt-[clamp(1.25rem,3vh,2rem)]"
+            label="Schools our visiting faculty teach at"
+            items={VISITING_SCHOOLS.map((name) => ({ name }))}
           />
           <SchoolsScrollPanel />
 
