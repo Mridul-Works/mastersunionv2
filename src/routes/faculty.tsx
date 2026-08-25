@@ -65,8 +65,6 @@ import PedigreeScrollPanel from "@/components/faculty/PedigreeScrollPanel";
 import { SectionDivider } from "@/components/patterns/section-divider";
 import { LogoMarquee } from "@/components/patterns/logo-marquee";
 
-import { QuoteBlock } from "@/components/patterns/quote-block";
-
 
 
 const manojImg = manojAsset.url;
