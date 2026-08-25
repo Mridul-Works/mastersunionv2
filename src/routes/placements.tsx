@@ -1441,21 +1441,15 @@ function Page() {
 
 
 
-      {/* PODCAST (sticks) → PROVEN OUTCOMES slides in from the right and covers it */}
+      {/* STAT ACCORDION (sticks) → PROVEN OUTCOMES slides in from the right and covers it */}
       <div className="relative z-20">
         <CoverStage
           under={
             <section
-              className="relative bg-[#F2F1EE]"
+              className="relative"
               style={{ marginTop: reduced ? 0 : "calc(-100svh - 1px)" }}
             >
-              <div className="page-x py-10 md:py-12 lg:py-14">
-                <div className="relative grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
-                  <CareerPodcast />
-                  <EditorialSeparator />
-                  <StatsAccordion />
-                </div>
-              </div>
+              <StatsAccordion />
             </section>
           }
           over={<AuditedOutcomes />}
