@@ -185,6 +185,19 @@ const TESTIMONIALS = [
   { name: "Harshit Gambhir", role: "Program Manager, Blinkit", note: "Built product acumen after 6 years in automotive R&D — offer within 8 months." },
 ];
 
+/** Composite-pattern feeds: recruiter marquee + testimonial carousels. */
+const ALL_RECRUITERS = RECRUITER_GROUPS.flatMap((g) => g.logos).map((name) => ({
+  name,
+  src: LOGOS[name],
+}));
+
+const STORY_QUOTES = TESTIMONIALS.map((t) => ({
+  id: t.name,
+  quote: t.note,
+  author: t.name,
+  role: t.role,
+}));
+
 const VENTURES = [
   { name: "Bullspree", founder: "Dharmil Bavishi", note: "Experiential stock market gaming platform teaching market dynamics through play." },
   { name: "Eight.Network", founder: "Mohit Paliwal", note: "Audio streaming for stories and podcasts. 1 million+ listeners." },
