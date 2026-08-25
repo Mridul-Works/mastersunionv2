@@ -1160,7 +1160,6 @@ function AuditedOutcomes() {
 /* ---------------------------------- page ---------------------------------- */
 
 function Page() {
-  const reduced = useReducedMotion();
   const maxCtc = 55;
   const [recruiterTab, setRecruiterTab] = useState(RECRUITER_GROUPS[0].category);
   const active = RECRUITER_GROUPS.find((g) => g.category === recruiterTab)!;
@@ -1185,27 +1184,20 @@ function Page() {
 
 
 
-      {/* PODCAST (sticks) → PROVEN OUTCOMES slides in from the right and covers it */}
-      <div className="relative z-20">
-        <CoverStage
-          under={
-            <section
-              className="relative bg-[#F2F1EE]"
-              style={{ marginTop: reduced ? 0 : "calc(-100svh - 1px)" }}
-            >
-              <div className="page-x py-10 md:py-12 lg:py-14">
-                <div className="relative grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
-                  <CareerPodcast />
-                  <EditorialSeparator />
-                  <StatsAccordion />
-                </div>
-              </div>
-            </section>
-          }
-          over={<AuditedOutcomes />}
-          tail={(animated) => <FounderQuoteSection animated={animated} />}
-        />
-      </div>
+      {/* PODCAST → PROVEN OUTCOMES → FOUNDER QUOTE (simple scrollable flow) */}
+      <section className="relative bg-[#F2F1EE]">
+        <div className="page-x py-10 md:py-12 lg:py-14">
+          <div className="relative grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
+            <CareerPodcast />
+            <EditorialSeparator />
+            <StatsAccordion />
+          </div>
+        </div>
+      </section>
+
+      <AuditedOutcomes />
+
+      <FounderQuoteSection />
 
 
 
