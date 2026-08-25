@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import * as React from "react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
   Home,
@@ -1086,203 +1086,22 @@ function CohortReports() {
 
 /* ------------------------- quote: puzzle cover reveal ---------------------- */
 
-/**
- * Editorial block arrangement: long vertical strips, long horizontal strips and a few
- * large asymmetric panels. Percentages tile the section exactly — shared guide values
- * keep the reassembled photograph seamless.
- *   x/y/w/h — percentages of the section box
- *   dx/dy   — displacement in multiples of section width / height (start position)
- *   delay   — fraction of the timeline before the block starts travelling
- */
-const QUOTE_BLOCKS: {
-  x: number;
-  y: number;
-  w: number;
-  h: number;
-  dx: number;
-  dy: number;
-  delay: number;
-}[] = [
-  // TOP BAND — three long horizontal strips (y 0 → 26)
-  { x: 0, y: 0, w: 38, h: 26, dx: -0.9, dy: -0.7, delay: 0.30 },
-  { x: 38, y: 0, w: 34, h: 26, dx: 0, dy: -1.5, delay: 0.16 },
-  { x: 72, y: 0, w: 28, h: 26, dx: 1.0, dy: -0.8, delay: 0.34 },
-
-  // MIDDLE BAND (y 26 → 74)
-  // tall vertical strip on the left
-  { x: 0, y: 26, w: 22, h: 48, dx: -1.5, dy: 0.12, delay: 0.22 },
-  // large asymmetric panel through the centre
-  { x: 22, y: 26, w: 36, h: 48, dx: 0, dy: 1.2, delay: 0.04 },
-  // two long horizontal strips on the right
-  { x: 58, y: 26, w: 42, h: 24, dx: 1.4, dy: -0.1, delay: 0.18 },
-  { x: 58, y: 50, w: 42, h: 24, dx: 1.6, dy: 0.14, delay: 0.28 },
-
-  // BOTTOM BAND — two very long horizontal panels (y 74 → 100)
-  { x: 0, y: 74, w: 46, h: 26, dx: -0.7, dy: 1.5, delay: 0.24 },
-  { x: 46, y: 74, w: 54, h: 26, dx: 0.6, dy: 1.6, delay: 0.36 },
-];
-
-/* --- single continuous progress channel, written once per frame, no React re-render --- */
-type PuzzleSub = (p: number) => void;
-const puzzleSubs = new Set<PuzzleSub>();
-let puzzleP = 0;
-function setPuzzleProgress(p: number) {
-  if (p === puzzleP) return;
-  puzzleP = p;
-  puzzleSubs.forEach((f) => f(p));
-}
-function subscribePuzzle(f: PuzzleSub) {
-  puzzleSubs.add(f);
-  f(puzzleP);
-  return () => {
-    puzzleSubs.delete(f);
-  };
-}
-
-function easeOutCubic(t: number) {
-  return 1 - Math.pow(1 - t, 3);
-}
-
-function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
-  const hostRef = useRef<HTMLDivElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
-  const pieceRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [box, setBox] = useState({ w: 0, h: 0 });
-  const [ar, setAr] = useState(0);
-
-  useEffect(() => {
-    const el = hostRef.current;
-    if (!el) return;
-    const measure = () => setBox({ w: el.offsetWidth, h: el.offsetHeight });
-    const ro = new ResizeObserver(measure);
-    ro.observe(el);
-    measure();
-    return () => ro.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const img = new Image();
-    img.src = manojKohliBg.url;
-    const on = () => setAr(img.naturalWidth / Math.max(1, img.naturalHeight));
-    if (img.complete && img.naturalWidth) on();
-    else img.addEventListener("load", on);
-    return () => img.removeEventListener("load", on);
-  }, []);
-
-  // exact `cover` geometry so every piece shows the correct crop of the photograph
-  const { w, h } = box;
-  const ready = w > 0 && h > 0 && ar > 0;
-  let bw = w;
-  let bh = h;
-  if (ready) {
-    bw = Math.max(w, h * ar);
-    bh = bw / ar;
-  }
-  const offX = (bw - w) * 0.85; // matches the original backgroundPosition "85% 55%"
-  const offY = (bh - h) * 0.55;
-
-  /* one continuous state → every block interpolates from the same normalized progress.
-     Written straight to the compositor; no layout properties touched, no DOM churn. */
-  const apply = useCallback(
-    (q: number) => {
-      const p = q < 0 ? 0 : q > 1 ? 1 : q;
-      const els = pieceRefs.current;
-      for (let i = 0; i < QUOTE_BLOCKS.length; i++) {
-        const el = els[i];
-        if (!el) continue;
-        const b = QUOTE_BLOCKS[i];
-        const span = 1 - b.delay;
-        const raw = (p - b.delay) / span;
-        const local = raw <= 0 ? 0 : raw >= 1 ? 1 : easeOutCubic(raw);
-        if (local >= 1) {
-          // settle exactly, once — same value the static render uses
-          el.style.transform = "translate3d(0px, 0px, 0px)";
-          el.style.willChange = "auto";
-        } else {
-          const away = 1 - local;
-          el.style.willChange = "transform";
-          el.style.transform = `translate3d(${b.dx * w * away}px, ${b.dy * h * away}px, 0px)`;
-        }
-      }
-      const shell = Math.min(1, Math.max(0, (p - 0.82) / 0.18));
-      const t = Math.min(1, Math.max(0, (p - 0.92) / 0.08));
-      if (hostRef.current) hostRef.current.style.background = `rgba(0,0,0,${shell})`;
-      if (overlayRef.current) overlayRef.current.style.opacity = `${shell}`;
-      if (textRef.current) {
-        textRef.current.style.opacity = `${t}`;
-        textRef.current.style.transform =
-          t >= 1 ? "translate3d(0px, 0px, 0px)" : `translate3d(0px, ${(1 - t) * 20}px, 0px)`;
-      }
-    },
-    [w, h],
-  );
-
-  useEffect(() => {
-    if (!animated) {
-      apply(1);
-      return;
-    }
-    return subscribePuzzle(apply);
-  }, [animated, apply, ready]);
-
-  const pieces: React.ReactNode[] = [];
-  if (ready) {
-    QUOTE_BLOCKS.forEach((b, i) => {
-      const x0 = Math.round((b.x / 100) * w);
-      const y0 = Math.round((b.y / 100) * h);
-      const x1 = Math.round(((b.x + b.w) / 100) * w);
-      const y1 = Math.round(((b.y + b.h) / 100) * h);
-      pieces.push(
-        <div
-          key={i}
-          aria-hidden
-          ref={(n) => {
-            pieceRefs.current[i] = n;
-          }}
-          style={{
-            position: "absolute",
-            left: `${x0}px`,
-            top: `${y0}px`,
-            // +1px bleed removes sub-pixel seams; the extra sliver is off-piece background
-            width: `${x1 - x0 + 1}px`,
-            height: `${y1 - y0 + 1}px`,
-            backgroundImage: `url(${manojKohliBg.url})`,
-            backgroundSize: `${bw}px ${bh}px`,
-            backgroundPosition: `${-(x0 + offX)}px ${-(y0 + offY)}px`,
-            backgroundRepeat: "no-repeat",
-            transform: "translate3d(0px, 0px, 0px)",
-            backfaceVisibility: "hidden",
-            contain: "paint",
-          }}
-        />,
-      );
-    });
-  }
-
+function FounderQuoteSection() {
   return (
     <section
-      ref={hostRef}
-      className="relative flex min-h-[100svh] items-start overflow-hidden pt-20 md:pt-24 lg:pt-28 py-14 md:py-16"
-      style={{ background: animated ? "rgba(0,0,0,0)" : "rgba(0,0,0,1)" }}
+      className="relative flex min-h-[100svh] items-start overflow-hidden bg-black py-14 pt-20 md:py-16 md:pt-24 lg:pt-28"
+      style={{
+        backgroundImage: `url(${manojKohliBg.url})`,
+        backgroundSize: "cover",
+        backgroundPosition: "85% 55%",
+        backgroundRepeat: "no-repeat",
+      }}
     >
-      <div className="absolute inset-0">{pieces}</div>
       {/* gradient overlay: heavier on the left for text, lighter on the right so the body stays visible */}
-      <div
-        ref={overlayRef}
-        className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/20"
-        style={{ opacity: animated ? 0 : 1 }}
-      />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/20" />
 
       <div className="page-x relative w-full">
-        <div
-          ref={textRef}
-          className="relative max-w-[56ch]"
-          style={{
-            opacity: animated ? 0 : 1,
-            transform: "translate3d(0px, 0px, 0px)",
-          }}
-        >
+        <div className="relative max-w-[56ch]">
           <Quote
             className="absolute -left-1 -top-2 size-10 text-white/15 md:-top-4 md:size-16"
             strokeWidth={1}
@@ -1331,172 +1150,6 @@ function AuditedOutcomes() {
   );
 }
 
-/**
- * Sticky podcast stage → Proven Outcomes slides in from the right to cover it →
- * the Quote photograph assembles over the pinned Proven Outcomes as a puzzle.
- * Pure transform, driven by main page scroll. Disabled for reduced motion / small screens.
- */
-function CoverStage({
-  under,
-  over,
-  tail,
-}: {
-  under: React.ReactNode;
-  over: React.ReactNode;
-  tail?: (animated: boolean) => React.ReactNode;
-}) {
-  const reduced = useReducedMotion();
-  const zoneRef = useRef<HTMLDivElement>(null);
-  const overRef = useRef<HTMLDivElement>(null);
-  const underRef = useRef<HTMLDivElement>(null);
-  const tailRef = useRef<HTMLDivElement>(null);
-  const [enabled, setEnabled] = useState(false);
-  const [overH, setOverH] = useState(0);
-  const [underH, setUnderH] = useState(0);
-  const [vh, setVh] = useState(0);
-
-  useEffect(() => {
-    if (reduced) {
-      setEnabled(false);
-      return;
-    }
-    const mq = window.matchMedia("(min-width: 1024px)");
-    const sync = () => setEnabled(mq.matches);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, [reduced]);
-
-  // measure both layers so the scroll budget adds no blank space
-  useEffect(() => {
-    if (!enabled) return;
-    const a = overRef.current;
-    const b = underRef.current;
-    if (!a || !b) return;
-    const measure = () => {
-      setOverH(a.offsetHeight);
-      setUnderH(b.offsetHeight);
-      setVh(window.innerHeight);
-    };
-    const ro = new ResizeObserver(measure);
-    ro.observe(a);
-    ro.observe(b);
-    measure();
-    window.addEventListener("resize", measure);
-    return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", measure);
-    };
-  }, [enabled]);
-
-  // phase 2 — puzzle assembly, spread over PUZZLE viewports of scroll
-  const PUZZLE = 1.5;
-  const HOLD = 0.35; // extra pinned time once the photograph is complete
-  const tailTravel = tail ? vh * (PUZZLE + HOLD) : 0;
-  // tall-layer sticky offset: keeps the podcast pinned even when it exceeds the viewport
-  const underTop = vh && underH > vh ? Math.min(0, vh - underH) : 0;
-
-  /* one rAF reader → writes transforms straight to the DOM. No React state per frame,
-     so nothing re-renders (and nothing re-measures) while scrolling. */
-  useEffect(() => {
-    if (!enabled) return;
-    let rafId = 0;
-    const read = () => {
-      rafId = 0;
-      const zone = zoneRef.current;
-      const overEl = overRef.current;
-      if (!zone || !overEl) return;
-      const travel = window.innerHeight || 1;
-      const raw = Math.max(0, -zone.getBoundingClientRect().top / travel);
-
-      // phase 1 — Proven Outcomes slides in over the first viewport of scroll
-      const p = Math.min(1, raw);
-      const eased = p * p * (3 - 2 * p);
-      overEl.style.transform =
-        p >= 1 ? "translate3d(0%, 0, 0)" : `translate3d(${(1 - eased) * 100}%, 0, 0)`;
-      overEl.style.willChange = p >= 1 ? "auto" : "transform";
-
-      if (tail) {
-        const q = Math.min(1, Math.max(0, (raw - 1) / PUZZLE));
-        setPuzzleProgress(q);
-        const tw = tailRef.current;
-        if (tw) tw.style.pointerEvents = q > 0.98 ? "auto" : "none";
-      }
-    };
-    const onScroll = () => {
-      if (!rafId) rafId = requestAnimationFrame(read);
-    };
-    read();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (rafId) cancelAnimationFrame(rafId);
-    };
-  }, [enabled, !!tail]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  if (!enabled) {
-    return (
-      <>
-        {under}
-        {over}
-        {tail?.(false)}
-      </>
-    );
-  }
-
-  return (
-    <div className="relative">
-      {/* LAYER 1 — podcast, full width, pinned underneath */}
-      <div
-        ref={underRef}
-        className="sticky z-[1]"
-        style={{ top: `${underTop}px` }}
-      >
-        {under}
-      </div>
-
-      {/* LAYER 2 — the real Proven Outcomes section, full width, slides right → left,
-          then stays pinned while the puzzle assembles above it.
-          The wrapper only supplies vertical scroll distance; it renders nothing itself. */}
-      <div
-        ref={zoneRef}
-        className="relative z-[2]"
-        style={overH && vh ? { height: `${overH + vh + tailTravel}px` } : undefined}
-      >
-        <div
-          ref={overRef}
-          className="sticky top-0 w-full"
-          style={{
-            transform: "translate3d(100%, 0, 0)",
-            backfaceVisibility: "hidden",
-          }}
-        >
-          {over}
-        </div>
-
-        {/* LAYER 3 — the real Quote section. Native `sticky` inside a rail that starts one
-            viewport in, so the pinning is compositor-driven (no per-frame transform, no
-            one-frame scroll lag). Its photograph assembles from the shared progress. */}
-        {tail && vh ? (
-          <div
-            ref={tailRef}
-            className="absolute inset-x-0 z-[3]"
-            style={{
-              top: `${vh}px`,
-              height: `${Math.max(0, overH + tailTravel)}px`,
-              pointerEvents: "none",
-            }}
-          >
-            <div className="sticky top-0 h-[100svh]">{tail(true)}</div>
-          </div>
-        ) : null}
-
-      </div>
-    </div>
-  );
-}
 
 
 
@@ -1507,7 +1160,6 @@ function CoverStage({
 /* ---------------------------------- page ---------------------------------- */
 
 function Page() {
-  const reduced = useReducedMotion();
   const maxCtc = 55;
   const [recruiterTab, setRecruiterTab] = useState(RECRUITER_GROUPS[0].category);
   const active = RECRUITER_GROUPS.find((g) => g.category === recruiterTab)!;
@@ -1532,27 +1184,20 @@ function Page() {
 
 
 
-      {/* PODCAST (sticks) → PROVEN OUTCOMES slides in from the right and covers it */}
-      <div className="relative z-20">
-        <CoverStage
-          under={
-            <section
-              className="relative bg-[#F2F1EE]"
-              style={{ marginTop: reduced ? 0 : "calc(-100svh - 1px)" }}
-            >
-              <div className="page-x py-10 md:py-12 lg:py-14">
-                <div className="relative grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
-                  <CareerPodcast />
-                  <EditorialSeparator />
-                  <StatsAccordion />
-                </div>
-              </div>
-            </section>
-          }
-          over={<AuditedOutcomes />}
-          tail={(animated) => <FounderQuoteSection animated={animated} />}
-        />
-      </div>
+      {/* PODCAST → PROVEN OUTCOMES → FOUNDER QUOTE (simple scrollable flow) */}
+      <section className="relative bg-[#F2F1EE]">
+        <div className="page-x py-10 md:py-12 lg:py-14">
+          <div className="relative grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
+            <CareerPodcast />
+            <EditorialSeparator />
+            <StatsAccordion />
+          </div>
+        </div>
+      </section>
+
+      <AuditedOutcomes />
+
+      <FounderQuoteSection />
 
 
 
