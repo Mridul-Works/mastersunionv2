@@ -535,12 +535,12 @@ function FacultyPage() {
       <section id="full-time" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
           <SectionIntro
-            className="mb-[clamp(2rem,5vh,3.25rem)]"
             index="02"
             eyebrow="Full-time Faculty"
             title={<>{FULLTIME.length} PhD faculty. Active researchers. Published where the <Accent>best B-schools read</Accent>.</>}
             intro="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing in FT50 and A* journals."
           />
+          <SectionDivider inset="none" className="my-[clamp(1.5rem,4vh,2.5rem)]" />
           <EditorialGrid
             gallery
             cardStats
