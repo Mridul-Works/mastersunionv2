@@ -72,9 +72,11 @@ const bhupeshImg = bhupeshAsset.url;
 const nandiniImg = nandiniAsset.url;
 const garimaImg = garimaAsset.url;
 
-const INTER = "'Inter', system-ui, sans-serif";
-const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
-const SERIF = "'Fraunces', 'Cormorant Garamond', ui-serif, Georgia, serif";
+/* Typography from the Masters' Union design system tokens (src/styles.css). */
+const INTER = "var(--font-sans)";
+const MONO = "var(--font-mono)";
+const SERIF = "var(--font-serif)";
+
 
 const NAV: SectionNavItem[] = [
   { id: "top", label: "Overview" },
@@ -407,7 +409,7 @@ function WordMarquee() {
                 <span
                   key={word}
                   tabIndex={copy === 0 ? 0 : -1}
-                  className="block cursor-default select-none px-[clamp(1.25rem,3vw,3.5rem)] text-[clamp(4.5rem,13vw,15rem)] font-semibold uppercase leading-[0.86] tracking-[-0.02em] text-white/[0.14] outline-none transition-colors duration-500 hover:text-[#f5f1e8]/85 focus-visible:text-[#f5f1e8]/85"
+                  className="block cursor-default select-none px-[clamp(1.25rem,3vw,3.5rem)] text-[clamp(4.5rem,13vw,15rem)] font-semibold uppercase leading-[0.86] tracking-[-0.02em] text-white/[0.14] outline-none transition-colors duration-500 hover:text-cream/85 focus-visible:text-cream/85"
                 >
                   {word}
                 </span>
@@ -453,7 +455,7 @@ function FacultyPage() {
   }, []);
 
   return (
-    <main className="ink-scope min-h-screen bg-[#0a0a0a] pb-24 text-white sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
+    <main className="ink-scope min-h-screen bg-ink pb-24 text-white sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
       <SectionNav items={NAV} applyHref="#cta" />
 
       <StackReveal
@@ -470,12 +472,12 @@ function FacultyPage() {
         ]}
       >
       {/* HERO — first pinned layer of the stack (hero content + image + By the numbers panel) */}
-      <div className="flex min-h-[calc(100svh-var(--nav-reserve,0px))] flex-col bg-[#0a0a0a] md:min-h-screen md:pb-0">
+      <div className="flex min-h-[calc(100svh-var(--nav-reserve,0px))] flex-col bg-ink md:min-h-screen md:pb-0">
         <HeroFadeOut>
           <FacultyHero />
           {/* By the numbers — attached to the hero's bottom edge, moves with the hero */}
           <div
-            className="page-shell w-full bg-[#0a0a0a] pb-[clamp(1.25rem,3vh,2.25rem)]"
+            className="page-shell w-full bg-ink pb-[clamp(1.25rem,3vh,2.25rem)]"
             style={{ marginTop: "calc(-1 * clamp(2rem, 6vh, 4.5rem) + clamp(1.25rem, 2.5vh, 1.75rem))" }}
           >
             <FacultyStatsCard
@@ -502,11 +504,11 @@ function FacultyPage() {
 
 
       {/* SECTION 2 — MASTERS: Built by Scholars, Led by Industry Practitioners */}
-      <MastersVideos dark bg="bg-[#0a0a0a]" />
+      <MastersVideos dark bg="bg-ink" />
 
 
       {/* INDUSTRY PRACTITIONERS */}
-      <section id="practitioners" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
+      <section id="practitioners" className="screen-section border-y border-white/10 bg-ink">
         <div className="page-shell screen-y">
           <SectionIntro
             index="01"
@@ -537,7 +539,7 @@ function FacultyPage() {
       </section>
 
       {/* FULL-TIME FACULTY */}
-      <section id="full-time" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
+      <section id="full-time" className="screen-section border-y border-white/10 bg-ink">
         <div className="page-shell screen-y">
           <SectionIntro
             index="02"
@@ -565,7 +567,7 @@ function FacultyPage() {
       </section>
 
       {/* VISITING */}
-      <section id="visiting" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
+      <section id="visiting" className="screen-section border-y border-white/10 bg-ink">
         <div className="page-shell screen-y">
           <SectionIntro
             index="03"
@@ -600,7 +602,7 @@ function FacultyPage() {
       </section>
 
       {/* TESTIMONIALS */}
-        <section className="screen-section border-y border-white/10 bg-[#0a0a0a]">
+        <section className="screen-section border-y border-white/10 bg-ink">
         <div className="page-shell screen-y">
           <SectionIntro
             index="04"
@@ -614,7 +616,7 @@ function FacultyPage() {
       </section>
 
       {/* BECOME A MASTER */}
-      <section className="screen-section border-y border-white/10 bg-[#0a0a0a] text-white">
+      <section className="screen-section border-y border-white/10 bg-ink text-white">
         <div className="screen-y flex w-full flex-col items-center justify-center">
           <div className="page-shell w-full">
             <SectionIntro
@@ -629,7 +631,7 @@ function FacultyPage() {
                 href="https://mastersunion.org/become-a-master"
                 target="_blank"
                 rel="noreferrer"
-                className="group inline-flex items-center gap-2.5 rounded-[2px] border border-[#f5f1e8] bg-[#f5f1e8] px-7 py-4 text-[11px] uppercase tracking-[0.22em] text-black transition-colors duration-300 hover:bg-transparent hover:text-[#f5f1e8]"
+                className="group inline-flex items-center gap-2.5 rounded-[2px] border border-cream bg-cream px-7 py-4 text-[11px] uppercase tracking-[0.22em] text-black transition-colors duration-300 hover:bg-transparent hover:text-cream"
                 style={{ fontFamily: MONO }}
               >
                 Apply to teach
@@ -646,7 +648,7 @@ function FacultyPage() {
 
 
       {/* THE NUMBER */}
-      <section className="group relative flex min-h-[calc(110svh-var(--nav-reserve,0px))] flex-col items-center justify-center overflow-hidden border-y border-white/10 bg-[#0a0a0a] py-[clamp(4rem,10vh,8rem)] text-white">
+      <section className="group relative flex min-h-[calc(110svh-var(--nav-reserve,0px))] flex-col items-center justify-center overflow-hidden border-y border-white/10 bg-ink py-[clamp(4rem,10vh,8rem)] text-white">
         <div className="page-shell-narrow relative z-10 mt-[clamp(2rem,7svh,4rem)] text-center md:mt-0">
           <div className="text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO }}>
             The number that matters
@@ -656,7 +658,7 @@ function FacultyPage() {
             <div className="relative z-10 text-[clamp(6rem,17vw,14rem)] font-extrabold leading-[0.85] tracking-[-0.04em]">
               500+
             </div>
-            <div className="relative z-0 -mt-[clamp(2rem,5vh,3.5rem)] text-[clamp(4rem,11vw,9rem)] font-bold leading-[0.85] tracking-[-0.03em] text-white/[0.14] transition-colors duration-500 group-hover:text-[#f5f1e8]/85">
+            <div className="relative z-0 -mt-[clamp(2rem,5vh,3.5rem)] text-[clamp(4rem,11vw,9rem)] font-bold leading-[0.85] tracking-[-0.03em] text-white/[0.14] transition-colors duration-500 group-hover:text-cream/85">
               DOERS
             </div>
           </div>
@@ -678,7 +680,7 @@ function FacultyPage() {
 
 
       {/* CTA / CLOSING FOOTER */}
-      <footer id="cta" className="relative min-h-[calc(100svh-var(--nav-reserve,0px))] overflow-x-hidden bg-[#0a0a0a] text-white">
+      <footer id="cta" className="relative min-h-[calc(100svh-var(--nav-reserve,0px))] overflow-x-hidden bg-ink text-white">
         <div className="flex min-h-[calc(100svh-var(--nav-reserve,0px))] flex-col justify-between pt-[clamp(4rem,14vh,10rem)]">
           {/* Top CTA */}
           <div className="page-shell-narrow text-center">
@@ -701,7 +703,7 @@ function FacultyPage() {
             <div className="px-[clamp(1rem,2.5vw,2.5rem)]">
               <h2 className="sr-only">Join the Union</h2>
               {/* Fluid full-width display type: SVG auto-fits the container at any width */}
-              <div className="text-white/[0.14] transition-colors duration-500 hover:text-[#f5f1e8]/85">
+              <div className="text-white/[0.14] transition-colors duration-500 hover:text-cream/85">
                 <svg
                   aria-hidden
                   viewBox="0 0 1200 168"
@@ -761,7 +763,7 @@ function FacultyPage() {
                 className="h-full w-full object-cover object-[56%_40%] opacity-60 grayscale-[0.25]"
               />
               <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-transparent to-[#0a0a0a]" />
-              <div aria-hidden className="absolute inset-0 bg-[#0a0a0a]/25" />
+              <div aria-hidden className="absolute inset-0 bg-ink/25" />
             </div>
 
             <div className="border-t border-white/10">

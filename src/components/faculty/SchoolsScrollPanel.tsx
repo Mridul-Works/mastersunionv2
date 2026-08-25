@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
+const MONO = "var(--font-mono)";
 
 const STAGES = [
   { n: "01", label: "Kellogg" },
