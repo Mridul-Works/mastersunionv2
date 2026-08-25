@@ -706,15 +706,9 @@ function StickyHead({ children }: { children: React.ReactNode }) {
   );
 }
 
-const WAVEFORM = [
-  6, 12, 9, 18, 24, 14, 30, 20, 11, 26, 34, 17, 9, 21, 29, 13, 8, 19, 27, 15, 10, 23, 31, 16, 7,
-  20, 28, 12, 9, 17, 25, 11, 6, 14, 22, 10,
-];
-
 function CareerPodcast() {
-
-  const [playing, setPlaying] = useState(false);
   const id = "uiNTwDixAts";
+
 
   return (
     <div className="flex flex-col gap-8">
