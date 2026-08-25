@@ -1663,14 +1663,15 @@ function Page() {
       {/* RECRUITERS */}
       <Band id="recruiters" tone="grey" className="border-y border-black/10">
         <Reveal>
-          <Eyebrow>Our recruiters</Eyebrow>
-        </Reveal>
-        <Reveal delay={120}>
-          <h2 className="mt-6 max-w-[26ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-            Six categories. One hiring calendar.
-          </h2>
+          <SectionHeading
+            size="md"
+            eyebrow="Our recruiters"
+            title="Six categories."
+            emphasis="One hiring calendar."
+          />
         </Reveal>
         <div className="mt-10 flex flex-wrap gap-2">
+
           {RECRUITER_GROUPS.map((g, i) => (
             <Reveal key={g.category} delay={i * 70} y={12}>
               <button
