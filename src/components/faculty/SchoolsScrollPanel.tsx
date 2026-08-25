@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import PanelConstellation from "./PanelConstellation";
-
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
 
 const STAGES = [
@@ -12,8 +10,6 @@ const STAGES = [
 
 export default function SchoolsScrollPanel() {
   const sectionRef = React.useRef<HTMLDivElement>(null);
-  /** internal progress 0..1, only advances while the section is pinned */
-  const progressRef = React.useRef(0);
   const meterRef = React.useRef<Array<HTMLElement | null>>([]);
   const stageRef = React.useRef<Array<HTMLElement | null>>([]);
   const barRef = React.useRef<HTMLDivElement>(null);
@@ -56,11 +52,6 @@ export default function SchoolsScrollPanel() {
       const span = Math.max(1, cachedHeight - vh);
       const scrolled = (window.scrollY || window.pageYOffset || 0) - cachedTop;
       const p = Math.min(1, Math.max(0, scrolled / span));
-
-      // The network runs on a pure, layout-derived scroll value so it keeps
-      // advancing (and exactly retraces on the way back) even once this
-      // section is pinned and covered by the next stacked panel.
-      progressRef.current = Math.max(0, scrolled / span);
 
       // skip all DOM writes when the mapped progress hasn't changed
       if (p === lastP) return;
@@ -149,7 +140,6 @@ export default function SchoolsScrollPanel() {
         }
       >
           <div className="grid h-full grid-cols-1 grid-rows-[minmax(0,1fr)_clamp(180px,26svh,280px)] border border-white/10 bg-white/[0.04] md:h-full md:min-h-0 md:grid-cols-[minmax(0,68%)_minmax(0,32%)] md:grid-rows-1">
-          <PanelConstellation progressRef={progressRef} variant="orbits" />
           {/* LEFT — editorial story, scrolls internally on mobile if needed */}
           <div className="relative z-10 flex min-h-0 flex-col justify-center overflow-y-auto no-scrollbar border-b border-white/10 py-6 pl-0 md:min-h-0 md:overflow-hidden md:border-b-0 md:border-r md:border-white/10 md:py-8 md:pl-8 md:pr-8 lg:py-10 lg:pl-10 lg:pr-10">
 
