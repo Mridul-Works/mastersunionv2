@@ -15,7 +15,6 @@ import {
   Quote,
 } from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
-import { PodcastPlayerCard } from "@/components/placements/PodcastPlayerCard";
 
 import heroBg from "@/assets/placement-hero.webp.asset.json";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
@@ -646,40 +645,6 @@ function StatsAccordion() {
   );
 }
 
-function EditorialSeparator() {
-  const { ref, inView } = useInView<HTMLDivElement>();
-  const reduced = useReducedMotion();
-  const on = inView || reduced;
-
-  return (
-    <div
-      ref={ref}
-      className="pointer-events-none absolute left-1/2 top-1/2 z-10 hidden h-[55%] flex-col items-center lg:flex"
-      aria-hidden="true"
-      style={{
-        transform: on ? "translate(-50%, -50%) translateY(0)" : "translate(-50%, -50%) translateY(12px)",
-        opacity: on ? 1 : 0,
-        transition: reduced
-          ? "opacity 240ms linear"
-          : "opacity 700ms cubic-bezier(0.16, 0.84, 0.24, 1) 0ms, transform 700ms cubic-bezier(0.16, 0.84, 0.24, 1) 0ms",
-        willChange: "transform, opacity",
-      }}
-    >
-      <div
-        className="w-px flex-1 bg-black/10"
-        style={{
-          transformOrigin: "top center",
-          transform: on ? "scaleY(1)" : "scaleY(0)",
-          transition: reduced
-            ? "none"
-            : "transform 900ms cubic-bezier(0.16, 0.84, 0.24, 1) 120ms",
-          willChange: reduced ? undefined : "transform",
-        }}
-      />
-    </div>
-  );
-}
-
 function Band({
   id,
   tone = "white",
@@ -708,53 +673,6 @@ function StickyHead({ children }: { children: React.ReactNode }) {
   );
 }
 
-function CareerPodcast() {
-  const id = "uiNTwDixAts";
-
-
-  return (
-    <div className="flex flex-col gap-8">
-      <div>
-        <Reveal>
-          <Eyebrow>Podcast</Eyebrow>
-        </Reveal>
-        <Reveal delay={90}>
-          <h3 className="mt-5 text-[clamp(1.55rem,2.9vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-            How Masters&apos; Union prepares students for top 1% placements
-          </h3>
-        </Reveal>
-        <Reveal delay={180}>
-          <p className="mt-6 max-w-[50ch] text-[16px] leading-relaxed text-black/65">
-            A detailed conversation on the placement engine behind Masters&apos; Union — how recruiter
-            access, live industry projects and year-round career coaching translate into offers at the
-            firms shaping the next decade.
-          </p>
-        </Reveal>
-        <Reveal delay={260}>
-          <a
-            href={`https://www.youtube.com/watch?v=${id}`}
-            target="_blank"
-            rel="noreferrer"
-            className="group mt-8 inline-flex items-center gap-2 border-b border-black/25 pb-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-black transition hover:border-black"
-          >
-            Watch on YouTube
-            <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
-        </Reveal>
-      </div>
-
-      <ClipReveal>
-        <PodcastPlayerCard
-          videoId={id}
-          title="How Masters' Union prepares students for top 1% placements"
-          eyebrow="Episode 01 · Careers"
-        />
-      </ClipReveal>
-
-
-    </div>
-  );
-}
 
 function BarChart({ data, max, unit = "L" }: { data: { cohort: string; value: number }[]; max: number; unit?: string }) {
   return (
@@ -1523,21 +1441,15 @@ function Page() {
 
 
 
-      {/* PODCAST (sticks) → PROVEN OUTCOMES slides in from the right and covers it */}
+      {/* STAT ACCORDION (sticks) → PROVEN OUTCOMES slides in from the right and covers it */}
       <div className="relative z-20">
         <CoverStage
           under={
             <section
-              className="relative bg-[#F2F1EE]"
+              className="relative"
               style={{ marginTop: reduced ? 0 : "calc(-100svh - 1px)" }}
             >
-              <div className="page-x py-10 md:py-12 lg:py-14">
-                <div className="relative grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
-                  <CareerPodcast />
-                  <EditorialSeparator />
-                  <StatsAccordion />
-                </div>
-              </div>
+              <StatsAccordion />
             </section>
           }
           over={<AuditedOutcomes />}
