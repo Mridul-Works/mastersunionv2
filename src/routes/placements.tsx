@@ -15,7 +15,6 @@ import {
   Quote,
 } from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
-import { PodcastPlayerCard } from "@/components/placements/PodcastPlayerCard";
 
 import heroBg from "@/assets/placement-hero.webp.asset.json";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
