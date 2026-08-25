@@ -10,8 +10,6 @@ const STAGES = [
 
 export default function SchoolsScrollPanel() {
   const sectionRef = React.useRef<HTMLDivElement>(null);
-  /** internal progress 0..1, only advances while the section is pinned */
-  const progressRef = React.useRef(0);
   const meterRef = React.useRef<Array<HTMLElement | null>>([]);
   const stageRef = React.useRef<Array<HTMLElement | null>>([]);
   const barRef = React.useRef<HTMLDivElement>(null);

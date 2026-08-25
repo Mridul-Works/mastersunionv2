@@ -18,7 +18,6 @@ const GROUPS = [
 
 export default function PedigreeScrollPanel() {
   const sectionRef = React.useRef<HTMLDivElement>(null);
-  const progressRef = React.useRef(0);
   const meterRef = React.useRef<Array<HTMLElement | null>>([]);
   const stageRef = React.useRef<Array<HTMLElement | null>>([]);
   const headRef = React.useRef<HTMLDivElement>(null);
