@@ -62,6 +62,9 @@ import vfVishnu from "@/assets/faculty/visiting/vishnuprasad-n.png.asset.json";
 import vfRajesh from "@/assets/faculty/visiting/rajesh-bhargave.png.asset.json";
 import SchoolsScrollPanel from "@/components/faculty/SchoolsScrollPanel";
 import PedigreeScrollPanel from "@/components/faculty/PedigreeScrollPanel";
+import { SectionDivider } from "@/components/patterns/section-divider";
+import { LogoMarquee } from "@/components/patterns/logo-marquee";
+
 
 
 const manojImg = manojAsset.url;
@@ -161,6 +164,11 @@ const VISITING: Visiting[] = [
   { name: "Amit Shrivastava", role: "Visiting Faculty", school: "Masters' Union", img: vfAmit.url },
   { name: "Dr Vishnuprasad N.", role: "Visiting Faculty", school: "Masters' Union", img: vfVishnu.url },
 ];
+
+/** Unique schools represented by the visiting roster — text lockup marquee. */
+const VISITING_SCHOOLS = Array.from(new Set(VISITING.map((v) => v.school))).filter(
+  (s) => s !== "Masters' Union",
+);
 
 /**
  * Live "By the numbers" figures, derived from the rosters above (practitioners,
@@ -445,7 +453,7 @@ function FacultyPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] pb-24 text-white sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
+    <main className="ink-scope min-h-screen bg-[#0a0a0a] pb-24 text-white sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
       <SectionNav items={NAV} applyHref="#cta" />
 
       <StackReveal
@@ -501,12 +509,12 @@ function FacultyPage() {
       <section id="practitioners" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
           <SectionIntro
-            className="mb-[clamp(2rem,5vh,3.25rem)]"
             index="01"
             eyebrow="Industry Practitioners"
             title={<>The people who teach here are not between jobs. They are <Accent>active</Accent>.</>}
             intro="Half of the faculty are CEOs, MDs, founders and investors — bringing this week's decisions into the classroom, not last decade's case studies."
           />
+          <SectionDivider inset="none" className="my-[clamp(1.5rem,4vh,2.5rem)]" />
           <EditorialGrid
             gallery
             cardStats
@@ -532,12 +540,12 @@ function FacultyPage() {
       <section id="full-time" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
           <SectionIntro
-            className="mb-[clamp(2rem,5vh,3.25rem)]"
             index="02"
             eyebrow="Full-time Faculty"
             title={<>{FULLTIME.length} PhD faculty. Active researchers. Published where the <Accent>best B-schools read</Accent>.</>}
             intro="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing in FT50 and A* journals."
           />
+          <SectionDivider inset="none" className="my-[clamp(1.5rem,4vh,2.5rem)]" />
           <EditorialGrid
             gallery
             cardStats
@@ -560,12 +568,12 @@ function FacultyPage() {
       <section id="visiting" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
           <SectionIntro
-            className="mb-[clamp(2rem,5vh,3.25rem)]"
             index="03"
             eyebrow="Visiting Faculty"
             title={<>Professors who teach here because they <Accent>believe</Accent> in what Masters&apos; Union is building.</>}
             intro="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
           />
+          <SectionDivider inset="none" className="my-[clamp(1.5rem,4vh,2.5rem)]" />
           <EditorialGrid
             gallery
             cardStats
@@ -579,6 +587,13 @@ function FacultyPage() {
             ]}
             items={VISITING.map((v) => ({ name: v.name, role: v.role, sub: v.school, img: v.img }))}
           />
+          <LogoMarquee
+            variant="banded"
+            speed="slow"
+            className="mt-[clamp(1.25rem,3vh,2rem)]"
+            label="Schools our visiting faculty teach at"
+            items={VISITING_SCHOOLS.map((name) => ({ name }))}
+          />
           <SchoolsScrollPanel />
 
         </div>
@@ -588,11 +603,11 @@ function FacultyPage() {
         <section className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
           <SectionIntro
-            className="mb-[clamp(2rem,5vh,3.25rem)]"
             index="04"
             eyebrow="What students say"
             title={<>Learning from operators, <Accent>in their own words</Accent>.</>}
           />
+          <SectionDivider inset="none" className="my-[clamp(1.5rem,4vh,2.5rem)]" />
           <StudentTestimonials items={TESTIMONIALS} />
 
         </div>
