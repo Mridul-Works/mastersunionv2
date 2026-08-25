@@ -1781,29 +1781,29 @@ function Page() {
           ))}
         </div>
 
-        <div className="mt-20">
-          <Reveal>
-            <Eyebrow>Student placement experience — 39 stories, selected</Eyebrow>
-          </Reveal>
-          <div className="mt-10 grid grid-cols-1 gap-x-16 md:grid-cols-2">
-            {TESTIMONIALS.map((t, i) => (
-              <div key={t.name}>
-                <Reveal
-                  delay={(i % 2) * 90}
-                  className="group border-t border-black/10 py-7 transition-colors duration-500 hover:bg-black/[0.02]"
-                >
-                  <div className="flex items-baseline justify-between gap-4">
-                    <div className="text-[0.98rem] font-medium leading-tight">{t.name}</div>
-                    <Index n={i + 1} />
-                  </div>
-                  <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-black/55" style={{ fontFamily: MONO }}>{t.role}</div>
-                  <p className="mt-3 max-w-[52ch] text-[0.9rem] leading-[1.6] text-black/70">{t.note}</p>
-                </Reveal>
-              </div>
-            ))}
-          </div>
+        <div className="mt-16 grid grid-cols-1 gap-10 lg:grid-cols-2">
+          <TestimonialCarousel
+            label="Student placement experience — selected stories"
+            eyebrow="Student placement experience — 39 stories, selected"
+            testimonials={STORY_QUOTES.slice(0, 6)}
+          />
+          <TestimonialCarousel
+            label="Student placement experience — more stories"
+            eyebrow="More from the cohort"
+            variant="card"
+            testimonials={STORY_QUOTES.slice(6)}
+          />
+        </div>
+
+        <div className="mt-14">
+          <StatStrip
+            variant="bare"
+            columns={4}
+            stats={HERO_STATS.map((s) => ({ value: s.value, label: s.label }))}
+          />
         </div>
       </Band>
+
 
       {/* VENTURES + COMPETITIONS + LIVE PROJECTS */}
       <Band tone="grey" className="border-y border-black/10">
