@@ -30,6 +30,11 @@ import {
   useReducedMotion,
 } from "@/components/placements/motion";
 import { HeroMaskReveal } from "@/components/placements/HeroMaskReveal";
+import { SectionHeading } from "@/components/patterns/section-heading";
+import { SectionDivider } from "@/components/patterns/section-divider";
+import { LogoMarquee } from "@/components/patterns/logo-marquee";
+import { StatStrip } from "@/components/patterns/stat-strip";
+import { TestimonialCarousel } from "@/components/patterns/testimonial-carousel";
 
 
 const INTER = "'Inter', system-ui, sans-serif";
@@ -179,6 +184,19 @@ const TESTIMONIALS = [
   { name: "Varun Makhija", role: "Product Manager, ServiceNow", note: "Case practice, product practicums and behavioural prep from named mentors." },
   { name: "Harshit Gambhir", role: "Program Manager, Blinkit", note: "Built product acumen after 6 years in automotive R&D — offer within 8 months." },
 ];
+
+/** Composite-pattern feeds: recruiter marquee + testimonial carousels. */
+const ALL_RECRUITERS = RECRUITER_GROUPS.flatMap((g) => g.logos).map((name) => ({
+  name,
+  src: LOGOS[name],
+}));
+
+const STORY_QUOTES = TESTIMONIALS.map((t) => ({
+  id: t.name,
+  quote: t.note,
+  author: t.name,
+  role: t.role,
+}));
 
 const VENTURES = [
   { name: "Bullspree", founder: "Dharmil Bavishi", note: "Experiential stock market gaming platform teaching market dynamics through play." },
@@ -1663,14 +1681,15 @@ function Page() {
       {/* RECRUITERS */}
       <Band id="recruiters" tone="grey" className="border-y border-black/10">
         <Reveal>
-          <Eyebrow>Our recruiters</Eyebrow>
-        </Reveal>
-        <Reveal delay={120}>
-          <h2 className="mt-6 max-w-[26ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-            Six categories. One hiring calendar.
-          </h2>
+          <SectionHeading
+            size="md"
+            eyebrow="Our recruiters"
+            title="Six categories."
+            emphasis="One hiring calendar."
+          />
         </Reveal>
         <div className="mt-10 flex flex-wrap gap-2">
+
           {RECRUITER_GROUPS.map((g, i) => (
             <Reveal key={g.category} delay={i * 70} y={12}>
               <button
@@ -1688,7 +1707,19 @@ function Page() {
         <div key={recruiterTab} className="mt-10 min-h-[132px] bg-white p-10">
           <LogoRow names={active.logos} />
         </div>
+
+        <div className="mt-10">
+          <SectionDivider variant="spectrum" inset="none" />
+          <LogoMarquee
+            className="mt-6"
+            variant="banded"
+            speed="slow"
+            label="All recruiting partners"
+            items={ALL_RECRUITERS}
+          />
+        </div>
       </Band>
+
 
       {/* TRANSITIONS */}
       <Band tone="white">
@@ -1736,8 +1767,14 @@ function Page() {
       {/* ALUMNI STORIES */}
       <Band id="stories" tone="paper">
         <Reveal>
-          <Eyebrow>Hear straight from our alumni</Eyebrow>
+          <SectionHeading
+            size="md"
+            eyebrow="Hear straight from our alumni"
+            title="Six years of offers,"
+            emphasis="in their own words."
+          />
         </Reveal>
+
         <div className="mt-12 space-y-0">
           <Rule />
           {ALUMNI.map((a, i) => (
@@ -1762,29 +1799,29 @@ function Page() {
           ))}
         </div>
 
-        <div className="mt-20">
-          <Reveal>
-            <Eyebrow>Student placement experience — 39 stories, selected</Eyebrow>
-          </Reveal>
-          <div className="mt-10 grid grid-cols-1 gap-x-16 md:grid-cols-2">
-            {TESTIMONIALS.map((t, i) => (
-              <div key={t.name}>
-                <Reveal
-                  delay={(i % 2) * 90}
-                  className="group border-t border-black/10 py-7 transition-colors duration-500 hover:bg-black/[0.02]"
-                >
-                  <div className="flex items-baseline justify-between gap-4">
-                    <div className="text-[0.98rem] font-medium leading-tight">{t.name}</div>
-                    <Index n={i + 1} />
-                  </div>
-                  <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-black/55" style={{ fontFamily: MONO }}>{t.role}</div>
-                  <p className="mt-3 max-w-[52ch] text-[0.9rem] leading-[1.6] text-black/70">{t.note}</p>
-                </Reveal>
-              </div>
-            ))}
-          </div>
+        <div className="mt-16 grid grid-cols-1 gap-10 lg:grid-cols-2">
+          <TestimonialCarousel
+            label="Student placement experience — selected stories"
+            eyebrow="Student placement experience — 39 stories, selected"
+            testimonials={STORY_QUOTES.slice(0, 6)}
+          />
+          <TestimonialCarousel
+            label="Student placement experience — more stories"
+            eyebrow="More from the cohort"
+            variant="card"
+            testimonials={STORY_QUOTES.slice(6)}
+          />
+        </div>
+
+        <div className="mt-14">
+          <StatStrip
+            variant="bare"
+            columns={4}
+            stats={HERO_STATS.map((s) => ({ value: s.value, label: s.label }))}
+          />
         </div>
       </Band>
+
 
       {/* VENTURES + COMPETITIONS + LIVE PROJECTS */}
       <Band tone="grey" className="border-y border-black/10">
