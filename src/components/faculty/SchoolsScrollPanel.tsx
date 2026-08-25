@@ -53,11 +53,6 @@ export default function SchoolsScrollPanel() {
       const scrolled = (window.scrollY || window.pageYOffset || 0) - cachedTop;
       const p = Math.min(1, Math.max(0, scrolled / span));
 
-      // The network runs on a pure, layout-derived scroll value so it keeps
-      // advancing (and exactly retraces on the way back) even once this
-      // section is pinned and covered by the next stacked panel.
-      progressRef.current = Math.max(0, scrolled / span);
-
       // skip all DOM writes when the mapped progress hasn't changed
       if (p === lastP) return;
       lastP = p;

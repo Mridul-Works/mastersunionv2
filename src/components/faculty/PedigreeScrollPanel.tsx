@@ -57,8 +57,6 @@ export default function PedigreeScrollPanel() {
       const scrolled = (window.scrollY || window.pageYOffset || 0) - cachedTop;
       const p = Math.min(1, Math.max(0, scrolled / span));
 
-      progressRef.current = Math.max(0, scrolled / span);
-
       if (p === lastP) return;
       lastP = p;
 
