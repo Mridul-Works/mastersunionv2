@@ -1689,7 +1689,19 @@ function Page() {
         <div key={recruiterTab} className="mt-10 min-h-[132px] bg-white p-10">
           <LogoRow names={active.logos} />
         </div>
+
+        <div className="mt-10">
+          <SectionDivider variant="spectrum" inset="none" />
+          <LogoMarquee
+            className="mt-6"
+            variant="banded"
+            speed="slow"
+            label="All recruiting partners"
+            items={ALL_RECRUITERS}
+          />
+        </div>
       </Band>
+
 
       {/* TRANSITIONS */}
       <Band tone="white">
