@@ -603,11 +603,11 @@ function FacultyPage() {
         <section className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
           <SectionIntro
-            className="mb-[clamp(2rem,5vh,3.25rem)]"
             index="04"
             eyebrow="What students say"
             title={<>Learning from operators, <Accent>in their own words</Accent>.</>}
           />
+          <SectionDivider inset="none" className="my-[clamp(1.5rem,4vh,2.5rem)]" />
           <StudentTestimonials items={TESTIMONIALS} />
 
         </div>
