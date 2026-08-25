@@ -504,12 +504,12 @@ function FacultyPage() {
       <section id="practitioners" className="screen-section border-y border-white/10 bg-[#0a0a0a]">
         <div className="page-shell screen-y">
           <SectionIntro
-            className="mb-[clamp(2rem,5vh,3.25rem)]"
             index="01"
             eyebrow="Industry Practitioners"
             title={<>The people who teach here are not between jobs. They are <Accent>active</Accent>.</>}
             intro="Half of the faculty are CEOs, MDs, founders and investors — bringing this week's decisions into the classroom, not last decade's case studies."
           />
+          <SectionDivider inset="none" className="my-[clamp(1.5rem,4vh,2.5rem)]" />
           <EditorialGrid
             gallery
             cardStats
