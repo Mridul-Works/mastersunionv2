@@ -706,13 +706,7 @@ function StickyHead({ children }: { children: React.ReactNode }) {
   );
 }
 
-const WAVEFORM = [
-  6, 12, 9, 18, 24, 14, 30, 20, 11, 26, 34, 17, 9, 21, 29, 13, 8, 19, 27, 15, 10, 23, 31, 16, 7,
-  20, 28, 12, 9, 17, 25, 11, 6, 14, 22, 10,
-];
-
 function CareerPodcast() {
-
   const [playing, setPlaying] = useState(false);
   const id = "uiNTwDixAts";
 
@@ -748,95 +742,43 @@ function CareerPodcast() {
       </div>
 
       <ClipReveal>
-        <div className="overflow-hidden rounded-[18px] border border-black/10 bg-white shadow-[0_18px_50px_-30px_rgba(0,0,0,0.45)]">
-          {/* Artwork / player stage */}
-          <div className="relative aspect-video w-full overflow-hidden bg-black">
-            {playing ? (
-              <iframe
-                className="h-full w-full"
-                src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`}
-                title="How Masters' Union prepares students for top 1% placements"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
-                allowFullScreen
+        <div className="relative aspect-video w-full overflow-hidden bg-black">
+          {playing ? (
+            <iframe
+              className="h-full w-full"
+              src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`}
+              title="How Masters' Union prepares students for top 1% placements"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
+              allowFullScreen
+            />
+          ) : (
+            <button
+              type="button"
+              onClick={() => setPlaying(true)}
+              aria-label="Play placements podcast"
+              className="group absolute inset-0 h-full w-full"
+            >
+              <img
+                src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
+                alt="Masters' Union placements podcast"
+                loading="lazy"
+                className="h-full w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-[1.03]"
               />
-            ) : (
-              <button
-                type="button"
-                onClick={() => setPlaying(true)}
-                aria-label="Play placements podcast"
-                className="group absolute inset-0 h-full w-full"
-              >
-                <img
-                  src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
-                  alt="Masters' Union placements podcast"
-                  loading="lazy"
-                  className="h-full w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-[1.03]"
-                />
-                <span className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-black/25" />
-
-                <span
-                  className="absolute left-4 top-4 rounded-full border border-white/25 bg-black/40 px-2.5 py-1 text-[9.5px] font-semibold uppercase tracking-[0.22em] text-white/85 backdrop-blur-md"
-                  style={{ fontFamily: MONO }}
-                >
-                  Episode 01 · Careers
+              <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+              <span className="absolute bottom-5 left-5 flex items-center gap-3">
+                <span className="grid size-11 place-items-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md transition group-hover:bg-white/25">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
                 </span>
-
-                {/* Big centred play control */}
-                <span className="absolute inset-0 grid place-items-center">
-                  <span className="relative grid size-[74px] place-items-center rounded-full border border-white/35 bg-white/15 text-white backdrop-blur-md transition duration-500 group-hover:scale-[1.08] group-hover:bg-white group-hover:text-black">
-                    <span className="absolute inset-0 rounded-full border border-white/25 transition duration-700 group-hover:scale-125 group-hover:opacity-0" />
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </span>
+                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/90">
+                  Play podcast
                 </span>
-
-                {/* Waveform detail */}
-                <span className="absolute bottom-5 left-5 right-5 flex items-end gap-[3px]">
-                  {WAVEFORM.map((h, i) => (
-                    <span
-                      key={i}
-                      className="flex-1 rounded-full bg-white/45 transition-colors group-hover:bg-white/70"
-                      style={{ height: `${h}px` }}
-                    />
-                  ))}
-                </span>
-              </button>
-            )}
-          </div>
-
-          {/* Player chrome */}
-          <div className="px-5 pb-5 pt-4 md:px-6 md:pb-6">
-            <div className="flex items-center gap-3">
-              <button
-                type="button"
-                onClick={() => setPlaying(true)}
-                aria-label="Play placements podcast"
-                className="grid size-9 shrink-0 place-items-center rounded-full bg-black text-white transition hover:bg-black/80"
-              >
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </button>
-              <div className="min-w-0 flex-1">
-                <div className="h-[3px] w-full overflow-hidden rounded-full bg-black/10">
-                  <div className="relative h-full w-[18%] rounded-full bg-black">
-                    <span className="absolute -right-[3px] top-1/2 size-[7px] -translate-y-1/2 rounded-full bg-black" />
-                  </div>
-                </div>
-                <div
-                  className="mt-2 flex items-center justify-between text-[9.5px] uppercase tracking-[0.2em] text-black/45"
-                  style={{ fontFamily: MONO }}
-                >
-                  <span>00:00</span>
-                  <span>Full episode · 42:18</span>
-                </div>
-              </div>
-            </div>
-          </div>
+              </span>
+            </button>
+          )}
         </div>
       </ClipReveal>
-
     </div>
   );
 }
