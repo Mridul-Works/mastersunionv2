@@ -30,6 +30,11 @@ import {
   useReducedMotion,
 } from "@/components/placements/motion";
 import { HeroMaskReveal } from "@/components/placements/HeroMaskReveal";
+import { SectionHeading } from "@/components/patterns/section-heading";
+import { SectionDivider } from "@/components/patterns/section-divider";
+import { LogoMarquee } from "@/components/patterns/logo-marquee";
+import { StatStrip } from "@/components/patterns/stat-strip";
+import { TestimonialCarousel } from "@/components/patterns/testimonial-carousel";
 
 
 const INTER = "'Inter', system-ui, sans-serif";
