@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import PanelConstellation from "./PanelConstellation";
-
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
 
 const STAGES = [
