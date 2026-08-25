@@ -72,9 +72,11 @@ const bhupeshImg = bhupeshAsset.url;
 const nandiniImg = nandiniAsset.url;
 const garimaImg = garimaAsset.url;
 
-const INTER = "'Inter', system-ui, sans-serif";
-const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
-const SERIF = "'Fraunces', 'Cormorant Garamond', ui-serif, Georgia, serif";
+/* Typography from the Masters' Union design system tokens (src/styles.css). */
+const INTER = "var(--font-sans)";
+const MONO = "var(--font-mono)";
+const SERIF = "var(--font-serif)";
+
 
 const NAV: SectionNavItem[] = [
   { id: "top", label: "Overview" },
