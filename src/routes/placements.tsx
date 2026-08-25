@@ -1749,8 +1749,14 @@ function Page() {
       {/* ALUMNI STORIES */}
       <Band id="stories" tone="paper">
         <Reveal>
-          <Eyebrow>Hear straight from our alumni</Eyebrow>
+          <SectionHeading
+            size="md"
+            eyebrow="Hear straight from our alumni"
+            title="Six years of offers,"
+            emphasis="in their own words."
+          />
         </Reveal>
+
         <div className="mt-12 space-y-0">
           <Rule />
           {ALUMNI.map((a, i) => (
