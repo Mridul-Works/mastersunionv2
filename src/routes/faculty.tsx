@@ -165,6 +165,11 @@ const VISITING: Visiting[] = [
   { name: "Dr Vishnuprasad N.", role: "Visiting Faculty", school: "Masters' Union", img: vfVishnu.url },
 ];
 
+/** Unique schools represented by the visiting roster — text lockup marquee. */
+const VISITING_SCHOOLS = Array.from(new Set(VISITING.map((v) => v.school))).filter(
+  (s) => s !== "Masters' Union",
+);
+
 /**
  * Live "By the numbers" figures, derived from the rosters above (practitioners,
  * full-time PhD faculty, visiting faculty and their universities). Recomputed
