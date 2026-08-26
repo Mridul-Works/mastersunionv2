@@ -541,7 +541,7 @@ function PodcastTextBlock() {
       </Reveal>
       <Reveal delay={90}>
         <h3 className="mt-4 text-[clamp(1.55rem,2.9vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-          How Masters&apos; Union prepares students for top 1% placements
+          How Masters&apos; Union <em className="font-serif-italic">prepares students for top 1% placements</em>
         </h3>
       </Reveal>
       <Reveal delay={180}>
