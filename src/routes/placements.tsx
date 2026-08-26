@@ -37,8 +37,8 @@ import { StatStrip } from "@/components/patterns/stat-strip";
 import { TestimonialCarousel } from "@/components/patterns/testimonial-carousel";
 
 
-const INTER = "'Inter', system-ui, sans-serif";
-const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
+const INTER = "var(--font-display)";
+const MONO = "var(--font-mono-tech)";
 
 const logoModules = import.meta.glob<{ default: { url: string } }>(
   "../assets/recruiter-logos/*.png.asset.json",
@@ -282,10 +282,13 @@ const LEADERS = [
 /* -------------------------------- primitives ------------------------------ */
 
 function Eyebrow({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const base = className.includes("text-") ? "" : "text-muted-foreground";
+  const rule = className.includes("text-white") ? "bg-white/30" : "bg-border";
   return (
-    <div className={`text-[11px] uppercase tracking-[0.3em] text-black/55 ${className}`} style={{ fontFamily: MONO }}>
-      {children}
-    </div>
+    <p className={`eyebrow flex items-center gap-2.5 ${base} ${className}`}>
+      <span aria-hidden className={`h-px w-6 ${rule}`} />
+      <span>{children}</span>
+    </p>
   );
 }
 
@@ -299,7 +302,7 @@ function Index({ n }: { n: number }) {
 }
 
 function Rule({ delay = 0 }: { delay?: number }) {
-  return <Draw delay={delay} className="h-px w-full bg-black/12" />;
+  return <Draw delay={delay} className="rule-gradient w-full" />;
 }
 
 function useScrolled(threshold = 24) {
@@ -545,9 +548,9 @@ function Band({
   className?: string;
   children: React.ReactNode;
 }) {
-  const bg = tone === "white" ? "bg-white" : tone === "paper" ? "bg-[#faf9f7]" : "bg-[#f2f1ee]";
+  const bg = tone === "white" ? "bg-background" : tone === "paper" ? "bg-paper" : "bg-secondary";
   return (
-    <section id={id} className={`relative ${bg} ${className}`}>
+    <section id={id} className={`section-edge relative ${bg} ${className}`}>
       <div className="page-x py-16 md:py-28">{children}</div>
     </section>
   );
@@ -642,11 +645,11 @@ function CareerPodcast() {
 /** Static editorial metrics panel for the Podcast section. */
 function EditorialMetricsPanel() {
   return (
-    <div className="flex h-full min-h-[420px] flex-col bg-white">
+    <div className="card-elevated flex h-full min-h-[420px] flex-col border border-border bg-card">
       {AUDIT_STATS.map((stat, i) => (
         <React.Fragment key={stat.suffix}>
-          {i > 0 ? <div className="h-px w-full bg-black/10" /> : null}
-          <div className="group relative flex flex-1 items-stretch overflow-hidden bg-white transition-colors duration-500 ease-out">
+          {i > 0 ? <div className="h-px w-full bg-border" /> : null}
+          <div className="group relative flex flex-1 items-stretch overflow-hidden bg-card transition-colors duration-500 ease-out">
             {/* accent sweep — left to right, retracts to left on leave */}
             <span
               aria-hidden
@@ -674,7 +677,7 @@ function EditorialMetricsPanel() {
                 </div>
 
                 {/* MIDDLE: thin divider rule */}
-                <div className="h-px w-full bg-black/10" />
+                <div className="h-px w-full bg-border" />
 
                 {/* BOTTOM: label + description */}
                 <div className="flex flex-1 flex-col justify-center gap-1">
@@ -927,7 +930,7 @@ function OutcomesAccordion() {
         <div className="lg:col-span-4">
           <Eyebrow>Five years of audited placements</Eyebrow>
           <h2 className="mt-3 max-w-[24ch] text-[clamp(1.55rem,2.9vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-            Proven outcomes, verified line by line.
+            Proven outcomes, <em className="font-serif-italic">verified line by line.</em>
           </h2>
           <p className="mt-4 max-w-[50ch] text-[16px] leading-relaxed text-black/65">
             Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and follow
@@ -960,10 +963,10 @@ function CohortReportCard({ year }: { year: string }) {
     <a
       href="#"
       aria-label={`Cohort ${year} placement report`}
-      className="group flex h-full flex-col border border-black/12 p-3 transition-colors duration-500 hover:border-black/40"
+      className="card-elevated group flex h-full flex-col border border-border bg-card p-3 transition-colors duration-500 hover:border-teal/40"
     >
       {/* compact document preview */}
-      <div className="relative flex aspect-[16/10] w-full items-center justify-center bg-black/[0.035]">
+      <div className="relative flex aspect-[16/10] w-full items-center justify-center bg-muted">
           <div className="flex flex-col items-center gap-1.5 text-black/35">
             <FileText className="size-6" strokeWidth={1.25} />
             <span
@@ -1444,7 +1447,7 @@ function Page() {
   const [recruiterTab, setRecruiterTab] = useState(RECRUITER_GROUPS[0].category);
   const active = RECRUITER_GROUPS.find((g) => g.category === recruiterTab)!;
   return (
-    <main className="min-h-screen overflow-x-clip bg-white pb-16 text-black md:pb-18" style={{ fontFamily: INTER }}>
+    <main className="min-h-screen overflow-x-clip bg-background pb-16 text-foreground md:pb-18" style={{ fontFamily: INTER }}>
       <ScrollProgress />
 
       {/* Global top navigation — fixed, hides on scroll down, reveals on scroll up */}
@@ -1495,7 +1498,7 @@ function Page() {
         </Reveal>
         <Reveal delay={120}>
           <h2 className="mt-6 max-w-[30ch] text-[clamp(1.8rem,3.6vw,3rem)] font-medium leading-[1.05] tracking-[-0.015em]">
-            ₹29.12L, ₹33.10L and ₹34.07L — cohort averages that surpassed top B-schools.
+            ₹29.12L, ₹33.10L and ₹34.07L — cohort averages that <em className="font-serif-italic">surpassed top B-schools.</em>
           </h2>
         </Reveal>
         <div className="mt-14 grid grid-cols-1 gap-16 lg:grid-cols-2">
@@ -1534,7 +1537,7 @@ function Page() {
             </Reveal>
             <Reveal delay={120}>
               <h2 className="mt-6 max-w-[30ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-                The full distribution, not just the headline number.
+                The full distribution, <em className="font-serif-italic">not just the headline number.</em>
               </h2>
             </Reveal>
             <Reveal delay={240}>
@@ -1642,7 +1645,7 @@ function Page() {
         </Reveal>
         <Reveal delay={120}>
           <h2 className="mt-6 max-w-[28ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-            Where students come from, and where they go.
+            Where students come from, <em className="font-serif-italic">and where they go.</em>
           </h2>
         </Reveal>
         <div className="mt-14 space-y-16">
@@ -1822,7 +1825,7 @@ function Page() {
             </Reveal>
             <Reveal delay={120}>
               <h2 className="mt-6 max-w-[28ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-                Eight terms. One continuous career roadmap.
+                Eight terms. <em className="font-serif-italic">One continuous career roadmap.</em>
               </h2>
             </Reveal>
           </StickyHead>
@@ -1849,7 +1852,7 @@ function Page() {
         </Reveal>
         <Reveal delay={120}>
           <h2 className="mt-6 max-w-[24ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-            Making you industry ready.
+            Making you <em className="font-serif-italic">industry ready.</em>
           </h2>
         </Reveal>
         <div className="mt-12 grid grid-cols-1 gap-x-14 md:grid-cols-3">
@@ -1922,7 +1925,7 @@ function Page() {
           </Reveal>
           <Reveal delay={140} duration={950}>
             <h2 className="mt-6 max-w-[24ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-              A 50+ member team, working full time on your outcome.
+              A 50+ member team, <em className="font-serif-italic">working full time on your outcome.</em>
             </h2>
           </Reveal>
           <Reveal delay={280}>
