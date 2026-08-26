@@ -1195,8 +1195,8 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
           />
           <blockquote className="text-[clamp(1.5rem,3.6vw,2.8rem)] font-medium leading-[1.3] tracking-[-0.015em] text-white">
             “We don&apos;t approach placements the way most B-schools do. At Masters&apos; Union,
-            placements are run by a 50+ member, full-time team spanning company outreach, career
-            preparation, and role-specific coaching.”
+            placements are <em className="font-serif-italic">run by a 50+ member, full-time team</em> spanning company
+            outreach, career preparation, and role-specific coaching.”
           </blockquote>
           <div
             className="mt-8 text-[10px] uppercase tracking-[0.2em] text-white/70"
