@@ -1311,13 +1311,19 @@ function CoverStage({
     const b = underRef.current;
     if (!a || !b) return;
     const measure = () => {
-      setOverH(a.offsetHeight);
-      setUnderH(b.offsetHeight);
-      setVh(window.innerHeight);
+      // Round to whole pixels and ignore sub-pixel noise: these values feed the
+      // scroll-rail height, so churning them mid-scroll would shift the document.
+      const nextOver = Math.round(a.offsetHeight);
+      const nextUnder = Math.round(b.offsetHeight);
+      const nextVh = Math.round(window.innerHeight);
+      setOverH((prev) => (Math.abs(prev - nextOver) > 1 ? nextOver : prev));
+      setUnderH((prev) => (Math.abs(prev - nextUnder) > 1 ? nextUnder : prev));
+      setVh((prev) => (Math.abs(prev - nextVh) > 1 ? nextVh : prev));
       const zone = zoneRef.current;
-      if (zone) zoneTopRef.current = zone.getBoundingClientRect().top + window.scrollY;
+      if (zone) zoneTopRef.current = Math.round(zone.getBoundingClientRect().top + window.scrollY);
       invalidateScroll();
     };
+
     const ro = new ResizeObserver(measure);
     ro.observe(a);
     ro.observe(b);

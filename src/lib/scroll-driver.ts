@@ -35,8 +35,7 @@ let started = false;
 let lastY = -1;
 let dirty = true;
 
-function frame() {
-  raf = 0;
+function runFrame() {
   state.y = window.scrollY;
   if (!dirty && state.y === lastY) return;
   lastY = state.y;
@@ -47,8 +46,26 @@ function frame() {
   for (const w of writers) w(state);
 }
 
+function frame() {
+  raf = 0;
+  runFrame();
+}
+
 function schedule() {
   if (!raf) raf = requestAnimationFrame(frame);
+}
+
+/**
+ * Scroll handler. The writes run synchronously here so the new transforms land
+ * in the SAME frame the browser is already committing for this scroll offset.
+ * Deferring them to requestAnimationFrame costs one frame of lag, which shows up
+ * on desktop as animated/sticky layers drifting a few pixels against the rest of
+ * the page — the up/down jitter. A trailing rAF pass still covers inertial or
+ * compositor-only scrolls that do not dispatch an event every frame.
+ */
+function onScroll() {
+  runFrame();
+  schedule();
 }
 
 function syncViewport() {
@@ -62,10 +79,11 @@ function start() {
   if (started || typeof window === "undefined") return;
   started = true;
   syncViewport();
-  window.addEventListener("scroll", schedule, { passive: true });
+  window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", syncViewport, { passive: true });
   window.addEventListener("orientationchange", syncViewport, { passive: true });
 }
+
 
 /** Forces the next frame to run even if the scroll position has not changed. */
 export function invalidateScroll() {
