@@ -1427,11 +1427,11 @@ function CoverStage({
       const travel = window.innerHeight || 1;
       const raw = Math.max(0, -zone.getBoundingClientRect().top / travel);
 
-      // phase 1 — Proven Outcomes slides in over the first viewport of scroll
+      // phase 1 — Proven Outcomes rises from the bottom over the first viewport of scroll
       const p = Math.min(1, raw);
       const eased = p * p * (3 - 2 * p);
       overEl.style.transform =
-        p >= 1 ? "translate3d(0%, 0, 0)" : `translate3d(${(1 - eased) * 100}%, 0, 0)`;
+        p >= 1 ? "translate3d(0, 0%, 0)" : `translate3d(0, ${(1 - eased) * 100}%, 0)`;
       overEl.style.willChange = p >= 1 ? "auto" : "transform";
 
       if (tail) {
