@@ -1350,7 +1350,7 @@ function AuditedOutcomes() {
 }
 
 /**
- * Sticky podcast stage → Proven Outcomes slides in from the right to cover it →
+ * Sticky podcast stage → Proven Outcomes rises from the bottom to cover it →
  * the Quote photograph assembles over the pinned Proven Outcomes as a puzzle.
  * Pure transform, driven by main page scroll. Disabled for reduced motion / small screens.
  */
