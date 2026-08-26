@@ -653,31 +653,41 @@ function EditorialMetricsPanel() {
               className="absolute inset-0 z-0 origin-left scale-x-0 bg-accent transition-transform duration-500 ease-out group-hover:scale-x-100"
             />
 
-            <div className="relative z-10 grid h-full w-full grid-cols-[2rem_minmax(7rem,auto)_1fr] items-center gap-x-3 px-5 py-5 md:gap-x-4 md:px-7 lg:gap-x-5 lg:px-9 lg:py-6">
-              {/* Index column */}
-              <span
-                className="text-[10px] tabular-nums tracking-[0.28em] text-black/40"
-                style={{ fontFamily: MONO }}
-              >
-                {String(i + 1).padStart(2, "0")}
-              </span>
-
-              {/* Number column */}
-              <span className="whitespace-nowrap text-[clamp(2rem,4.4vw,3.2rem)] font-medium leading-none tracking-[-0.04em] text-black">
-                {stat.value}
-              </span>
-
-              {/* Label + description column */}
-              <div className="flex min-w-0 flex-col gap-1">
+            <div className="relative z-10 flex h-full w-full items-stretch px-5 py-5 md:px-7 lg:px-9 lg:py-6">
+              {/* Index column — vertically centered with the middle divider */}
+              <div className="flex w-10 shrink-0 items-center justify-start md:w-12 lg:w-14">
                 <span
-                  className="text-[11px] font-semibold uppercase tracking-[0.16em] text-black/80 whitespace-nowrap"
+                  className="text-[10px] tabular-nums tracking-[0.28em] text-black/40"
                   style={{ fontFamily: MONO }}
                 >
-                  {stat.suffix}
+                  {String(i + 1).padStart(2, "0")}
                 </span>
-                <p className="text-[13px] leading-snug text-black/55">
-                  {stat.note}
-                </p>
+              </div>
+
+              {/* Content column — number / divider / label+description */}
+              <div className="flex min-w-0 flex-1 flex-col">
+                {/* TOP: large number */}
+                <div className="flex flex-1 items-center">
+                  <span className="whitespace-nowrap text-[clamp(2rem,4.4vw,3.2rem)] font-medium leading-none tracking-[-0.04em] text-black">
+                    {stat.value}
+                  </span>
+                </div>
+
+                {/* MIDDLE: thin divider rule */}
+                <div className="h-px w-full bg-black/10" />
+
+                {/* BOTTOM: label + description */}
+                <div className="flex flex-1 flex-col justify-center gap-1">
+                  <span
+                    className="whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.16em] text-black/80"
+                    style={{ fontFamily: MONO }}
+                  >
+                    {stat.suffix}
+                  </span>
+                  <p className="text-[13px] leading-snug text-black/55">
+                    {stat.note}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
