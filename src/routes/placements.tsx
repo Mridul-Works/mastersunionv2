@@ -1550,7 +1550,7 @@ function Page() {
 
 
 
-      {/* PODCAST (sticks) → PROVEN OUTCOMES slides in from the right and covers it */}
+      {/* PODCAST (sticks) → PROVEN OUTCOMES rises from the bottom and covers it */}
       <div className="relative z-20">
         <CoverStage
           under={
