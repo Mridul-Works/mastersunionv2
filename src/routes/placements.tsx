@@ -1210,7 +1210,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
       />
 
 
-      <div className="page-x relative w-full">
+      <div className="page-x relative w-full" style={{ zIndex: 3 }}>
         <div
           ref={textRef}
           className="relative max-w-[56ch]"
