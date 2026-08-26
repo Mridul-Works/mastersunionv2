@@ -541,7 +541,7 @@ function PodcastTextBlock() {
       </Reveal>
       <Reveal delay={90}>
         <h3 className="mt-4 text-[clamp(1.55rem,2.9vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-          How Masters&apos; Union prepares students for top 1% placements
+          How Masters&apos; Union <em className="font-serif-italic">prepares students for top 1% placements</em>
         </h3>
       </Reveal>
       <Reveal delay={180}>
@@ -1195,8 +1195,8 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
           />
           <blockquote className="text-[clamp(1.5rem,3.6vw,2.8rem)] font-medium leading-[1.3] tracking-[-0.015em] text-white">
             “We don&apos;t approach placements the way most B-schools do. At Masters&apos; Union,
-            placements are run by a 50+ member, full-time team spanning company outreach, career
-            preparation, and role-specific coaching.”
+            placements are <em className="font-serif-italic">run by a 50+ member, full-time team</em> spanning company
+            outreach, career preparation, and role-specific coaching.”
           </blockquote>
           <div
             className="mt-8 text-[10px] uppercase tracking-[0.2em] text-white/70"
