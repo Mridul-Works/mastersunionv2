@@ -1210,7 +1210,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
       />
 
 
-      <div className="page-x relative w-full">
+      <div className="page-x relative w-full" style={{ zIndex: 3 }}>
         <div
           ref={textRef}
           className="relative max-w-[56ch]"
@@ -1368,7 +1368,12 @@ function CoverStage({
           : `translate3d(0, ${((1 - eased) * travel).toFixed(2)}px, 0)`;
 
       if (tail) {
-        const q = Math.min(1, Math.max(0, (raw - 1) / PUZZLE));
+        // Map the puzzle onto the window in which the quote is actually pinned:
+        // the rail starts one viewport in and pins for (railHeight - vh) pixels.
+        // Assembling over 70% of that leaves a genuine hold on the finished frame.
+        const pinStart = zoneTopRef.current + travel;
+        const assemble = Math.max(1, (overH + tailTravel - travel) * 0.7);
+        const q = Math.min(1, Math.max(0, (y - pinStart) / assemble));
         setPuzzleProgress(q);
         const tw = tailRef.current;
         const next = q > 0.98;
@@ -1383,7 +1388,8 @@ function CoverStage({
       off();
       overEl.style.willChange = "";
     };
-  }, [enabled, !!tail]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [enabled, !!tail, overH, tailTravel]); // eslint-disable-line react-hooks/exhaustive-deps
+
 
 
   if (!enabled) {
