@@ -348,6 +348,15 @@ function CinematicHero() {
     return () => cancelAnimationFrame(id);
   }, []);
 
+  // Bake the hero tone into the bitmap so the parallax frames stay
+  // compositor-only (a live CSS filter on a transformed layer re-runs per frame).
+  useEffect(() => {
+    const img = imgRef.current;
+    if (!img) return;
+    return bakeImageFilter(img, "contrast(1.06) saturate(1.02)");
+  }, []);
+
+
   useEffect(() => {
     if (reduced) return;
     const section = sectionRef.current;
