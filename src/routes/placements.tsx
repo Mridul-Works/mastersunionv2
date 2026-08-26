@@ -1446,10 +1446,12 @@ function Page() {
               style={{ marginTop: reduced ? 0 : "calc(-100svh - 1px)" }}
             >
               <div className="page-x flex h-full min-h-[100svh] items-center py-6 md:py-8 lg:py-10">
-                <div className="relative grid w-full grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
-                  <CareerPodcast />
-                  <EditorialSeparator />
-                  <EditorialMetricsPanel />
+                <div className="relative flex w-full flex-col gap-5 lg:gap-6">
+                  <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
+                    <PodcastTextBlock />
+                    <PodcastVideoPlayer />
+                  </div>
+                  <HorizontalMetricsStrip />
                 </div>
               </div>
             </section>
