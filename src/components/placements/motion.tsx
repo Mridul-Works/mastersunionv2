@@ -1,4 +1,6 @@
 import * as React from "react";
+import { onScrollFrame, onViewportResize } from "@/lib/scroll-driver";
+
 
 /* -------------------------------------------------------------------------- */
 /*  Shared scroll-motion primitives for the Careers & Placements page.        */
@@ -73,6 +75,14 @@ export function Reveal({
   const { ref, inView } = useInView<HTMLDivElement>();
   const reduced = useReducedMotion();
   const Comp = as as any;
+  // the compositor hint is only useful while the reveal is running; leaving it on
+  // dozens of nodes forever keeps as many permanent layers alive (costly on wide screens)
+  const [settled, setSettled] = React.useState(false);
+  React.useEffect(() => {
+    if (!inView || reduced) return;
+    const t = window.setTimeout(() => setSettled(true), delay + duration + 60);
+    return () => window.clearTimeout(t);
+  }, [inView, reduced, delay, duration]);
 
   return (
     <Comp
@@ -85,13 +95,14 @@ export function Reveal({
         transition: reduced
           ? "opacity 240ms linear"
           : `opacity ${duration}ms ${EASE} ${delay}ms, transform ${duration}ms ${EASE} ${delay}ms`,
-        willChange: reduced ? undefined : "transform, opacity",
+        willChange: reduced || settled ? undefined : "transform, opacity",
       }}
     >
       {children}
     </Comp>
   );
 }
+
 
 /** Clip-path mask wipe + gentle scale settle for imagery. */
 export function ClipReveal({
@@ -145,44 +156,61 @@ export function Parallax({
     if (reduced) return;
     const el = ref.current;
     if (!el) return;
-    let raf = 0;
     let visible = false;
+    let applied = 0;
+    let docCenter = 0;
+    let last = NaN;
+
+    // geometry is measured once (and on resize / size change), never per frame
+    const measure = () => {
+      const rect = el.getBoundingClientRect();
+      docCenter = rect.top + window.scrollY - applied + rect.height / 2;
+    };
 
     const io = new IntersectionObserver((e) => {
       visible = e[0]?.isIntersecting ?? false;
-      if (visible) tick();
     });
     io.observe(el);
 
-    const update = () => {
-      raf = 0;
-      const rect = el.getBoundingClientRect();
-      const vh = window.innerHeight || 1;
-      const p = (rect.top + rect.height / 2 - vh / 2) / vh; // -1..1
-      el.style.transform = `translate3d(0, ${(-p * strength).toFixed(2)}px, 0)`;
-    };
-    const tick = () => {
-      if (!raf && visible) raf = requestAnimationFrame(update);
-    };
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
 
-    update();
-    window.addEventListener("scroll", tick, { passive: true });
-    window.addEventListener("resize", tick);
+    const offResize = onViewportResize(measure);
+
+    const off = onScrollFrame(({ y, vh }) => {
+      if (!visible) return;
+      const p = (docCenter - y - vh / 2) / vh; // -1..1
+      const next = Number((-p * strength).toFixed(2));
+      if (next === last) return;
+      last = next;
+      applied = next;
+      el.style.transform = `translate3d(0, ${next}px, 0)`;
+    });
+
     return () => {
       io.disconnect();
-      if (raf) cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", tick);
-      window.removeEventListener("resize", tick);
+      ro.disconnect();
+      offResize();
+      off();
       el.style.transform = "";
     };
   }, [reduced, strength]);
 
   return (
-    <div ref={ref} className={className} style={{ willChange: reduced ? undefined : "transform" }}>
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        willChange: reduced ? undefined : "transform",
+        transform: reduced ? undefined : "translate3d(0,0,0)",
+        backfaceVisibility: reduced ? undefined : "hidden",
+      }}
+    >
       {children}
     </div>
   );
 }
+
 
 /* --------------------------------- count-up -------------------------------- */
 
@@ -310,25 +338,29 @@ export function ScrollProgress({ color = "rgba(0,0,0,0.75)" }: { color?: string 
   React.useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      const p = max > 0 ? window.scrollY / max : 0;
-      el.style.transform = `scaleX(${Math.min(1, Math.max(0, p)).toFixed(4)})`;
+    // scrollHeight is a layout read — cache it and refresh only when the document resizes
+    let max = 1;
+    let last = NaN;
+    const measure = () => {
+      max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
     };
-    const tick = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", tick, { passive: true });
-    window.addEventListener("resize", tick);
+    const ro = new ResizeObserver(measure);
+    ro.observe(document.documentElement);
+    const offResize = onViewportResize(measure);
+    const off = onScrollFrame(({ y }) => {
+      const p = Math.min(1, Math.max(0, y / max));
+      const next = Number(p.toFixed(4));
+      if (next === last) return;
+      last = next;
+      el.style.transform = `scaleX(${next})`;
+    });
     return () => {
-      if (raf) cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", tick);
-      window.removeEventListener("resize", tick);
+      ro.disconnect();
+      offResize();
+      off();
     };
   }, []);
+
 
   return (
     <div className="pointer-events-none fixed inset-x-0 top-0 z-50 h-[2px] bg-transparent">
@@ -355,34 +387,43 @@ export function TimelineRail({ className = "" }: { className?: string }) {
       el.style.transform = "scaleY(1)";
       return;
     }
-    let raf = 0;
     let visible = false;
+    let docTop = 0;
+    let height = 1;
+    let last = NaN;
+
+    const measure = () => {
+      const rect = host.getBoundingClientRect();
+      docTop = rect.top + window.scrollY;
+      height = Math.max(1, rect.height);
+    };
+
     const io = new IntersectionObserver((e) => {
       visible = e[0]?.isIntersecting ?? false;
-      if (visible) tick();
     });
     io.observe(host);
 
-    const update = () => {
-      raf = 0;
-      const rect = host.getBoundingClientRect();
-      const vh = window.innerHeight || 1;
-      const p = (vh * 0.72 - rect.top) / Math.max(1, rect.height);
-      el.style.transform = `scaleY(${Math.min(1, Math.max(0, p)).toFixed(4)})`;
-    };
-    const tick = () => {
-      if (!raf && visible) raf = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", tick, { passive: true });
-    window.addEventListener("resize", tick);
+    const ro = new ResizeObserver(measure);
+    ro.observe(host);
+    const offResize = onViewportResize(measure);
+
+    const off = onScrollFrame(({ y, vh }) => {
+      if (!visible) return;
+      const p = (vh * 0.72 - (docTop - y)) / height;
+      const next = Number(Math.min(1, Math.max(0, p)).toFixed(4));
+      if (next === last) return;
+      last = next;
+      el.style.transform = `scaleY(${next})`;
+    });
+
     return () => {
       io.disconnect();
-      if (raf) cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", tick);
-      window.removeEventListener("resize", tick);
+      ro.disconnect();
+      offResize();
+      off();
     };
   }, [reduced]);
+
 
   return (
     <div
