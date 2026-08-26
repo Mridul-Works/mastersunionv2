@@ -30,6 +30,10 @@ import {
   useReducedMotion,
 } from "@/components/placements/motion";
 import { HeroMaskReveal } from "@/components/placements/HeroMaskReveal";
+import { onScrollFrame, onViewportResize, invalidateScroll } from "@/lib/scroll-driver";
+import { bakeImageFilter } from "@/lib/bake-image-filter";
+
+
 import { SectionHeading } from "@/components/patterns/section-heading";
 import { SectionDivider } from "@/components/patterns/section-divider";
 import { LogoMarquee } from "@/components/patterns/logo-marquee";
@@ -308,23 +312,18 @@ function Rule({ delay = 0 }: { delay?: number }) {
 function useScrolled(threshold = 24) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      setScrolled(window.scrollY > threshold);
-    };
-    const tick = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", tick, { passive: true });
-    return () => {
-      if (raf) cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", tick);
-    };
+    // boolean flag only — React re-renders on the crossing, never per frame
+    let on = false;
+    return onScrollFrame(({ y }) => {
+      const next = y > threshold;
+      if (next === on) return;
+      on = next;
+      setScrolled(next);
+    });
   }, [threshold]);
   return scrolled;
 }
+
 
 /* ------------------------------ cinematic hero ----------------------------- */
 
@@ -351,19 +350,38 @@ function CinematicHero() {
     return () => cancelAnimationFrame(id);
   }, []);
 
+  // Bake the hero tone into the bitmap so the parallax frames stay
+  // compositor-only (a live CSS filter on a transformed layer re-runs per frame).
+  useEffect(() => {
+    const img = imgRef.current;
+    if (!img) return;
+    return bakeImageFilter(img, "contrast(1.06) saturate(1.02)");
+  }, []);
+
+
   useEffect(() => {
     if (reduced) return;
     const section = sectionRef.current;
     if (!section) return;
-    let raf = 0;
 
-    const update = () => {
-      raf = 0;
+    // section geometry never changes while scrolling → measure once + on resize
+    let docTop = 0;
+    let track = 1;
+    let lastP = NaN;
+    const measure = () => {
       const rect = section.getBoundingClientRect();
-      // travel distance over which the pin lasts
-      const track = Math.max(1, rect.height - window.innerHeight);
+      docTop = rect.top + window.scrollY;
+      track = Math.max(1, rect.height - (window.innerHeight || 1));
+    };
+    const ro = new ResizeObserver(measure);
+    ro.observe(section);
+    const offResize = onViewportResize(measure);
+
+    const off = onScrollFrame(({ y }) => {
       // 0 at rest, 1 once the second section has taken over
-      const p = Math.min(1, Math.max(0, -rect.top / track));
+      const p = Math.min(1, Math.max(0, (y - docTop) / track));
+      if (p === lastP) return;
+      lastP = p;
       if (imgWrapRef.current) {
         // the photograph drifts upward behind the pinned copy; it never fades —
         // the second section physically slides over it instead
@@ -380,21 +398,15 @@ function CinematicHero() {
         headlineRef.current.style.opacity = String(1 - hp);
         headlineRef.current.style.transform = `translate3d(0, ${(hp * 14).toFixed(1)}px, 0)`;
       }
-    };
-    const tick = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
+    });
 
-
-    update();
-    window.addEventListener("scroll", tick, { passive: true });
-    window.addEventListener("resize", tick);
     return () => {
-      if (raf) cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", tick);
-      window.removeEventListener("resize", tick);
+      ro.disconnect();
+      offResize();
+      off();
     };
   }, [reduced]);
+
 
   const on = entered || reduced;
   const step = (delay: number, y = 22) => ({
@@ -1051,7 +1063,9 @@ function easeOutCubic(t: number) {
 function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
   const hostRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const shellRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
+
   const pieceRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [box, setBox] = useState({ w: 0, h: 0 });
   const [ar, setAr] = useState(0);
@@ -1089,9 +1103,12 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
 
   /* one continuous state → every block interpolates from the same normalized progress.
      Written straight to the compositor; no layout properties touched, no DOM churn. */
+  const lastQ = useRef(NaN);
   const apply = useCallback(
     (q: number) => {
       const p = q < 0 ? 0 : q > 1 ? 1 : q;
+      if (p === lastQ.current) return;
+      lastQ.current = p;
       const els = pieceRefs.current;
       for (let i = 0; i < QUOTE_BLOCKS.length; i++) {
         const el = els[i];
@@ -1101,29 +1118,31 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
         const raw = (p - b.delay) / span;
         const local = raw <= 0 ? 0 : raw >= 1 ? 1 : easeOutCubic(raw);
         if (local >= 1) {
-          // settle exactly, once — same value the static render uses
+          // settle exactly — same value the static render uses
           el.style.transform = "translate3d(0px, 0px, 0px)";
-          el.style.willChange = "auto";
         } else {
           const away = 1 - local;
-          el.style.willChange = "transform";
-          el.style.transform = `translate3d(${b.dx * w * away}px, ${b.dy * h * away}px, 0px)`;
+          el.style.transform = `translate3d(${(b.dx * w * away).toFixed(2)}px, ${(b.dy * h * away).toFixed(2)}px, 0px)`;
         }
       }
       const shell = Math.min(1, Math.max(0, (p - 0.82) / 0.18));
       const t = Math.min(1, Math.max(0, (p - 0.92) / 0.08));
-      if (hostRef.current) hostRef.current.style.background = `rgba(0,0,0,${shell})`;
+      // opacity on a dedicated black layer instead of the section's own background:
+      // identical result, but composited rather than repainting the whole section
+      if (shellRef.current) shellRef.current.style.opacity = `${shell}`;
       if (overlayRef.current) overlayRef.current.style.opacity = `${shell}`;
       if (textRef.current) {
         textRef.current.style.opacity = `${t}`;
         textRef.current.style.transform =
-          t >= 1 ? "translate3d(0px, 0px, 0px)" : `translate3d(0px, ${(1 - t) * 20}px, 0px)`;
+          t >= 1 ? "translate3d(0px, 0px, 0px)" : `translate3d(0px, ${((1 - t) * 20).toFixed(2)}px, 0px)`;
       }
     },
     [w, h],
   );
 
+
   useEffect(() => {
+    lastQ.current = NaN; // geometry changed → force a fresh write
     if (!animated) {
       apply(1);
       return;
@@ -1158,6 +1177,8 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
             backgroundRepeat: "no-repeat",
             transform: "translate3d(0px, 0px, 0px)",
             backfaceVisibility: "hidden",
+            // promoted once for the whole travel instead of toggling the hint per frame
+            willChange: animated ? "transform" : undefined,
             contain: "paint",
           }}
         />,
@@ -1169,15 +1190,25 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
     <section
       ref={hostRef}
       className="relative flex min-h-[100svh] items-start overflow-hidden pt-20 md:pt-24 lg:pt-28 py-14 md:py-16"
-      style={{ background: animated ? "rgba(0,0,0,0)" : "rgba(0,0,0,1)" }}
+      style={{ background: "transparent" }}
     >
-      <div className="absolute inset-0">{pieces}</div>
+      {/* black shell: fades in as a composited layer (was the section's own background) */}
+      <div
+        ref={shellRef}
+        aria-hidden
+        className="absolute inset-0 bg-black"
+        style={{ opacity: animated ? 0 : 1, zIndex: 0 }}
+      />
+      <div className="absolute inset-0" style={{ zIndex: 1 }}>
+        {pieces}
+      </div>
       {/* gradient overlay: heavier on the left for text, lighter on the right so the body stays visible */}
       <div
         ref={overlayRef}
         className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/20"
-        style={{ opacity: animated ? 0 : 1 }}
+        style={{ opacity: animated ? 0 : 1, zIndex: 2 }}
       />
+
 
       <div className="page-x relative w-full">
         <div
@@ -1273,6 +1304,7 @@ function CoverStage({
   }, [reduced]);
 
   // measure both layers so the scroll budget adds no blank space
+  const zoneTopRef = useRef(0);
   useEffect(() => {
     if (!enabled) return;
     const a = overRef.current;
@@ -1282,15 +1314,18 @@ function CoverStage({
       setOverH(a.offsetHeight);
       setUnderH(b.offsetHeight);
       setVh(window.innerHeight);
+      const zone = zoneRef.current;
+      if (zone) zoneTopRef.current = zone.getBoundingClientRect().top + window.scrollY;
+      invalidateScroll();
     };
     const ro = new ResizeObserver(measure);
     ro.observe(a);
     ro.observe(b);
     measure();
-    window.addEventListener("resize", measure);
+    const offResize = onViewportResize(measure);
     return () => {
       ro.disconnect();
-      window.removeEventListener("resize", measure);
+      offResize();
     };
   }, [enabled]);
 
@@ -1301,45 +1336,49 @@ function CoverStage({
   // tall-layer sticky offset: keeps the podcast pinned even when it exceeds the viewport
   const underTop = vh && underH > vh ? Math.min(0, vh - underH) : 0;
 
-  /* one rAF reader → writes transforms straight to the DOM. No React state per frame,
-     so nothing re-renders (and nothing re-measures) while scrolling. */
+  /* shared scroll driver → writes transforms straight to the DOM. No React state per
+     frame, no per-frame layout reads: the rail's document offset is cached on resize. */
   useEffect(() => {
     if (!enabled) return;
-    let rafId = 0;
-    const read = () => {
-      rafId = 0;
-      const zone = zoneRef.current;
-      const overEl = overRef.current;
-      if (!zone || !overEl) return;
-      const travel = window.innerHeight || 1;
-      const raw = Math.max(0, -zone.getBoundingClientRect().top / travel);
+    const overEl = overRef.current;
+    if (!overEl) return;
+    // the compositor hint is set once, not rewritten every frame (rewriting it
+    // forces the layer to be torn down and re-rasterised mid-scroll)
+    overEl.style.willChange = "transform";
+    let lastRaw = NaN;
+    let interactive: boolean | null = null;
+
+    const off = onScrollFrame(({ y, vh: travel }) => {
+      const raw = Math.max(0, (y - zoneTopRef.current) / (travel || 1));
+      if (raw === lastRaw) return;
+      lastRaw = raw;
 
       // phase 1 — Proven Outcomes rises from the bottom over the first viewport of scroll
       const p = Math.min(1, raw);
       const eased = p * p * (3 - 2 * p);
       overEl.style.transform =
-        p >= 1 ? "translate3d(0, 0, 0)" : `translate3d(0, ${((1 - eased) * travel).toFixed(2)}px, 0)`;
-      overEl.style.willChange = p >= 1 ? "auto" : "transform";
+        p >= 1
+          ? "translate3d(0, 0, 0)"
+          : `translate3d(0, ${((1 - eased) * travel).toFixed(2)}px, 0)`;
 
       if (tail) {
         const q = Math.min(1, Math.max(0, (raw - 1) / PUZZLE));
         setPuzzleProgress(q);
         const tw = tailRef.current;
-        if (tw) tw.style.pointerEvents = q > 0.98 ? "auto" : "none";
+        const next = q > 0.98;
+        if (tw && next !== interactive) {
+          interactive = next;
+          tw.style.pointerEvents = next ? "auto" : "none";
+        }
       }
-    };
-    const onScroll = () => {
-      if (!rafId) rafId = requestAnimationFrame(read);
-    };
-    read();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    });
+
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (rafId) cancelAnimationFrame(rafId);
+      off();
+      overEl.style.willChange = "";
     };
   }, [enabled, !!tail]); // eslint-disable-line react-hooks/exhaustive-deps
+
 
   if (!enabled) {
     return (
