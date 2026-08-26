@@ -641,8 +641,8 @@ function HorizontalMetricsStrip() {
             {/* Content column — number / divider / label+description */}
             <div className="flex min-w-0 flex-1 flex-col">
               {/* TOP: large number */}
-              <div className="flex flex-1 items-center">
-                <span className="whitespace-nowrap text-[clamp(2rem,4.4vw,3.2rem)] font-medium leading-none tracking-[-0.04em] text-black">
+              <div className="flex flex-1 items-center justify-center">
+                <span className="whitespace-nowrap text-center text-[clamp(2rem,4.4vw,3.2rem)] font-medium leading-none tracking-[-0.04em] text-black">
                   {stat.value}
                 </span>
               </div>
@@ -651,14 +651,14 @@ function HorizontalMetricsStrip() {
               <div className="h-px w-full bg-border" />
 
               {/* BOTTOM: label + description */}
-              <div className="flex flex-1 flex-col justify-center gap-1">
+              <div className="flex flex-1 flex-col items-center justify-center gap-1 text-center">
                 <span
-                  className="whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.16em] text-black/80"
+                  className="whitespace-nowrap text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-black/80"
                   style={{ fontFamily: MONO }}
                 >
                   {stat.suffix}
                 </span>
-                <p className="text-[13px] leading-snug text-black/55">
+                <p className="text-center text-[13px] leading-snug text-black/55">
                   {stat.note}
                 </p>
               </div>
@@ -1446,7 +1446,7 @@ function Page() {
               style={{ marginTop: reduced ? 0 : "calc(-100svh - 1px)" }}
             >
               <div className="page-x flex h-full min-h-[100svh] items-center py-6 md:py-8 lg:py-10">
-                <div className="relative flex w-full flex-col gap-5 lg:gap-6">
+                <div className="relative flex w-full flex-col gap-6 lg:gap-8">
                   <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
                     <PodcastTextBlock />
                     <PodcastVideoPlayer />
