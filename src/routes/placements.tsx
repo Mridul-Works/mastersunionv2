@@ -70,9 +70,9 @@ const HERO_STATS = [
 ];
 
 const AUDIT_STATS = [
-  { value: "4", suffix: "Offers > ₹1 Cr", note: "Marking strong compensation figures" },
-  { value: ">90%", suffix: "Placed early", note: "Joined full-time roles before the penultimate term" },
-  { value: "₹54.80 LPA", suffix: "Top 25% average CTC", note: "Cohort '25 top quartile" },
+  { value: "4", suffix: "OFFERS > ₹1 CR", note: "Marking strong compensation figures" },
+  { value: ">90%", suffix: "PLACED EARLY", note: "Joined full-time roles before the penultimate term" },
+  { value: "₹54.80 LPA", suffix: "TOP 25% AVERAGE CTC", note: "Cohort '25 top quartile" },
 ];
 
 const REPORT_YEARS = ["2021", "2022", "2023", "2024", "2025"];
@@ -498,151 +498,7 @@ function CinematicHero() {
   );
 }
 
-/** Horizontal preview-stack accordion for the four hero statistics. */
-const STATS_SMOOTH = "cubic-bezier(0.33,1,0.68,1)";
 
-function StatPanel({
-  value,
-  label,
-  index,
-  isActive,
-  isFirst,
-  onSelect,
-}: {
-  value: string;
-  label: string;
-  index: string;
-  isActive: boolean;
-  isFirst: boolean;
-  onSelect: () => void;
-}) {
-  // Normalize expanded font size to match the ₹64 LPA reference.
-  const cap = Math.round(76 / "₹64 LPA".length);
-
-  return (
-    <div
-      role="button"
-      tabIndex={0}
-      aria-pressed={isActive}
-      aria-label={`${label} statistic`}
-      onClick={onSelect}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onSelect();
-        }
-      }}
-      className={`group relative overflow-hidden ${
-        isFirst ? "" : "border-t border-white/12 md:border-t-0 md:border-l md:border-white/12"
-      } ${isActive ? "cursor-default bg-[#faf9f7] text-[#0a0a0a]" : "cursor-pointer bg-[#0a0a0a] text-white hover:bg-[#141414]"}`}
-      style={{
-        flexGrow: 0,
-        flexShrink: 0,
-        flexBasis: isActive ? "70%" : "10%",
-        minWidth: 0,
-        minHeight: 0,
-        containerType: "size",
-        willChange: "flex-basis",
-        transition: `flex-basis 800ms ${STATS_SMOOTH}, background-color 800ms ${STATS_SMOOTH}`,
-      }}
-    >
-      {/* ---- Expanded layer ---- */}
-      <div
-        className="absolute inset-0 flex flex-col items-center px-[8%] py-6 md:py-12"
-        style={{
-          opacity: isActive ? 1 : 0,
-          pointerEvents: isActive ? "auto" : "none",
-          willChange: "opacity",
-          transition: `opacity 800ms ${STATS_SMOOTH}`,
-        }}
-      >
-        <span
-          className="text-[10px] tabular-nums tracking-[0.28em] text-black/45"
-          style={{ fontFamily: MONO }}
-        >
-          {index}
-        </span>
-        <div className="flex min-h-0 w-full flex-1 items-center justify-center">
-          <div
-            className="w-full whitespace-nowrap text-center leading-none tracking-[-0.05em]"
-            style={{ fontSize: `clamp(1.75rem, min(22cqw, ${cap}cqw, 34cqh), 8.5rem)` }}
-          >
-            <CountUp value={value} delay={80} />
-          </div>
-        </div>
-        <div className="flex w-full flex-col items-center">
-          <div className="h-px w-full max-w-[420px] bg-black/15" />
-          <span
-            className="mt-4 whitespace-nowrap text-center uppercase tracking-[0.24em] text-black/60"
-            style={{ fontFamily: MONO, fontSize: "10px" }}
-          >
-            {label}
-          </span>
-        </div>
-      </div>
-
-      {/* ---- Closed layer ---- */}
-      <div
-        className="absolute inset-0 flex flex-row items-center justify-between px-5 py-3 md:flex-col md:justify-between md:px-2 md:py-10"
-        style={{
-          opacity: isActive ? 0 : 1,
-          pointerEvents: isActive ? "none" : "auto",
-          willChange: "opacity",
-          transition: `opacity 800ms ${STATS_SMOOTH}`,
-        }}
-      >
-        <span
-          className="text-[10px] tabular-nums tracking-[0.28em] text-white/45"
-          style={{ fontFamily: MONO }}
-        >
-          {index}
-        </span>
-        <div className="hidden h-16 w-px flex-none bg-white/15 transition-colors duration-500 group-hover:bg-white/35 md:block" />
-
-        <span
-          className="mt-2 hidden whitespace-nowrap uppercase tracking-[0.24em] text-white/45 transition-colors duration-500 group-hover:text-white/70 md:block"
-          style={{
-            fontFamily: MONO,
-            fontSize: "9px",
-            writingMode: "vertical-rl",
-            transform: "rotate(180deg)",
-          }}
-        >
-          {label}
-        </span>
-        <span
-          className="ml-4 block min-w-0 truncate uppercase tracking-[0.24em] text-white/45 md:hidden"
-          style={{ fontFamily: MONO, fontSize: "9px" }}
-        >
-
-          {label}
-        </span>
-      </div>
-    </div>
-  );
-}
-
-function StatsAccordion() {
-  const [active, setActive] = useState(0);
-
-  return (
-    <section className="relative z-10 h-full min-h-[540px] w-full bg-[#0a0a0a] text-white md:min-h-[600px] lg:min-h-[640px]">
-      <div className="flex h-full min-h-[inherit] w-full flex-col md:flex-row">
-        {HERO_STATS.map((s, i) => (
-          <StatPanel
-            key={s.label}
-            value={s.value}
-            label={s.label}
-            index={String(i + 1).padStart(2, "0")}
-            isActive={active === i}
-            isFirst={i === 0}
-            onSelect={() => setActive(i)}
-          />
-        ))}
-      </div>
-    </section>
-  );
-}
 
 function EditorialSeparator() {
   const { ref, inView } = useInView<HTMLDivElement>();
@@ -779,6 +635,45 @@ function CareerPodcast() {
           )}
         </div>
       </ClipReveal>
+    </div>
+  );
+}
+
+/** Static editorial metrics panel for the Podcast section. */
+function EditorialMetricsPanel() {
+  return (
+    <div className="flex h-full min-h-[480px] flex-col bg-white py-8 md:py-10 lg:py-12">
+      {AUDIT_STATS.map((stat, i) => (
+        <React.Fragment key={stat.suffix}>
+          {i > 0 ? <div className="h-px w-full bg-black/10" /> : null}
+          <div className="flex flex-1 items-center px-6 md:px-8 lg:px-10">
+            <div className="flex w-full items-start gap-4 py-5 md:gap-6 lg:gap-8">
+              <span
+                className="pt-1 text-[10px] tabular-nums tracking-[0.28em] text-black/40 md:pt-0"
+                style={{ fontFamily: MONO }}
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div className="flex min-w-0 flex-1 flex-col gap-2">
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <span className="whitespace-nowrap text-[clamp(2rem,4.4vw,3.2rem)] font-medium leading-none tracking-[-0.04em] text-black">
+                    {stat.value}
+                  </span>
+                  <span
+                    className="text-[11px] font-semibold uppercase tracking-[0.16em] text-black"
+                    style={{ fontFamily: MONO }}
+                  >
+                    {stat.suffix}
+                  </span>
+                </div>
+                <p className="max-w-[30ch] text-[13px] leading-snug text-black/55">
+                  {stat.note}
+                </p>
+              </div>
+            </div>
+          </div>
+        </React.Fragment>
+      ))}
     </div>
   );
 }
@@ -1562,7 +1457,7 @@ function Page() {
                 <div className="relative grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
                   <CareerPodcast />
                   <EditorialSeparator />
-                  <StatsAccordion />
+                  <EditorialMetricsPanel />
                 </div>
               </div>
             </section>
