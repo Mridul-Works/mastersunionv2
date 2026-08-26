@@ -1394,12 +1394,12 @@ function CoverStage({
           above it. The wrapper only supplies vertical scroll distance. */}
       <div
         ref={zoneRef}
-        className="relative z-[2] bg-transparent"
+        className="pointer-events-none relative z-[2] bg-transparent"
         style={overH && vh ? { height: `${overH + vh + tailTravel}px` } : undefined}
       >
         <div
           ref={overRef}
-          className="sticky top-0 w-full"
+          className="pointer-events-auto sticky top-0 w-full"
           style={{
             transform: "translate3d(0, 100svh, 0)",
             backfaceVisibility: "hidden",
