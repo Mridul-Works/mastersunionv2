@@ -567,18 +567,18 @@ function CareerPodcast() {
   const id = "uiNTwDixAts";
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-6">
       <div>
         <Reveal>
           <Eyebrow>Podcast</Eyebrow>
         </Reveal>
         <Reveal delay={90}>
-          <h3 className="mt-5 text-[clamp(1.55rem,2.9vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
+          <h3 className="mt-4 text-[clamp(1.55rem,2.9vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
             How Masters&apos; Union prepares students for top 1% placements
           </h3>
         </Reveal>
         <Reveal delay={180}>
-          <p className="mt-6 max-w-[50ch] text-[16px] leading-relaxed text-black/65">
+          <p className="mt-4 max-w-[50ch] text-[16px] leading-relaxed text-black/65">
             A detailed conversation on the placement engine behind Masters&apos; Union — how recruiter
             access, live industry projects and year-round career coaching translate into offers at the
             firms shaping the next decade.
@@ -589,7 +589,7 @@ function CareerPodcast() {
             href={`https://www.youtube.com/watch?v=${id}`}
             target="_blank"
             rel="noreferrer"
-            className="group mt-8 inline-flex items-center gap-2 border-b border-black/25 pb-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-black transition hover:border-black"
+            className="group mt-6 inline-flex items-center gap-2 border-b border-black/25 pb-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-black transition hover:border-black"
           >
             Watch on YouTube
             <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -642,31 +642,29 @@ function CareerPodcast() {
 /** Static editorial metrics panel for the Podcast section. */
 function EditorialMetricsPanel() {
   return (
-    <div className="flex h-full min-h-[480px] flex-col bg-white py-8 md:py-10 lg:py-12">
+    <div className="flex h-full min-h-[420px] flex-col bg-white">
       {AUDIT_STATS.map((stat, i) => (
         <React.Fragment key={stat.suffix}>
           {i > 0 ? <div className="h-px w-full bg-black/10" /> : null}
-          <div className="flex flex-1 items-center px-6 md:px-8 lg:px-10">
-            <div className="flex w-full items-start gap-4 py-5 md:gap-6 lg:gap-8">
+          <div className="group flex flex-1 items-start transition-colors duration-300 ease-out hover:bg-black/[0.03]">
+            <div className="grid w-full grid-cols-[auto_auto_1fr] items-baseline gap-x-3 px-5 py-5 transition-transform duration-300 ease-out group-hover:translate-x-1.5 md:gap-x-4 md:px-7 lg:px-9 lg:py-6">
               <span
-                className="pt-1 text-[10px] tabular-nums tracking-[0.28em] text-black/40 md:pt-0"
+                className="text-[10px] tabular-nums tracking-[0.28em] text-black/40"
                 style={{ fontFamily: MONO }}
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <div className="flex min-w-0 flex-1 flex-col gap-2">
-                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <span className="whitespace-nowrap text-[clamp(2rem,4.4vw,3.2rem)] font-medium leading-none tracking-[-0.04em] text-black">
-                    {stat.value}
-                  </span>
-                  <span
-                    className="text-[11px] font-semibold uppercase tracking-[0.16em] text-black"
-                    style={{ fontFamily: MONO }}
-                  >
-                    {stat.suffix}
-                  </span>
-                </div>
-                <p className="max-w-[30ch] text-[13px] leading-snug text-black/55">
+              <span className="whitespace-nowrap text-[clamp(2rem,4.4vw,3.2rem)] font-medium leading-none tracking-[-0.04em] text-black">
+                {stat.value}
+              </span>
+              <div className="flex min-w-0 flex-col gap-1">
+                <span
+                  className="text-[11px] font-semibold uppercase tracking-[0.16em] text-black/80 transition-colors duration-300 group-hover:text-black"
+                  style={{ fontFamily: MONO }}
+                >
+                  {stat.suffix}
+                </span>
+                <p className="max-w-[34ch] text-[13px] leading-snug text-black/55 transition-colors duration-300 group-hover:text-black/70">
                   {stat.note}
                 </p>
               </div>
@@ -1453,8 +1451,8 @@ function Page() {
               className="relative min-h-[100svh] bg-[#F2F1EE]"
               style={{ marginTop: reduced ? 0 : "calc(-100svh - 1px)" }}
             >
-              <div className="page-x py-10 md:py-12 lg:py-14">
-                <div className="relative grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
+              <div className="page-x flex h-full min-h-[100svh] items-center py-6 md:py-8 lg:py-10">
+                <div className="relative grid w-full grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
                   <CareerPodcast />
                   <EditorialSeparator />
                   <EditorialMetricsPanel />
