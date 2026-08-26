@@ -1350,7 +1350,7 @@ function AuditedOutcomes() {
 }
 
 /**
- * Sticky podcast stage → Proven Outcomes slides in from the right to cover it →
+ * Sticky podcast stage → Proven Outcomes rises from the bottom to cover it →
  * the Quote photograph assembles over the pinned Proven Outcomes as a puzzle.
  * Pure transform, driven by main page scroll. Disabled for reduced motion / small screens.
  */
@@ -1427,11 +1427,11 @@ function CoverStage({
       const travel = window.innerHeight || 1;
       const raw = Math.max(0, -zone.getBoundingClientRect().top / travel);
 
-      // phase 1 — Proven Outcomes slides in over the first viewport of scroll
+      // phase 1 — Proven Outcomes rises from the bottom over the first viewport of scroll
       const p = Math.min(1, raw);
       const eased = p * p * (3 - 2 * p);
       overEl.style.transform =
-        p >= 1 ? "translate3d(0%, 0, 0)" : `translate3d(${(1 - eased) * 100}%, 0, 0)`;
+        p >= 1 ? "translate3d(0, 0%, 0)" : `translate3d(0, ${(1 - eased) * 100}%, 0)`;
       overEl.style.willChange = p >= 1 ? "auto" : "transform";
 
       if (tail) {
@@ -1475,9 +1475,9 @@ function CoverStage({
         {under}
       </div>
 
-      {/* LAYER 2 — the real Proven Outcomes section, full width, slides right → left,
-          then stays pinned while the puzzle assembles above it.
-          The wrapper only supplies vertical scroll distance; it renders nothing itself. */}
+      {/* LAYER 2 — the real Proven Outcomes section, full width, rises from the
+          bottom to cover the Podcast, then stays pinned while the puzzle assembles
+          above it. The wrapper only supplies vertical scroll distance. */}
       <div
         ref={zoneRef}
         className="relative z-[2]"
@@ -1487,7 +1487,7 @@ function CoverStage({
           ref={overRef}
           className="sticky top-0 w-full"
           style={{
-            transform: "translate3d(100%, 0, 0)",
+            transform: "translate3d(0, 100%, 0)",
             backfaceVisibility: "hidden",
           }}
         >
@@ -1550,7 +1550,7 @@ function Page() {
 
 
 
-      {/* PODCAST (sticks) → PROVEN OUTCOMES slides in from the right and covers it */}
+      {/* PODCAST (sticks) → PROVEN OUTCOMES rises from the bottom and covers it */}
       <div className="relative z-20">
         <CoverStage
           under={
