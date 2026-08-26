@@ -1475,9 +1475,9 @@ function CoverStage({
         {under}
       </div>
 
-      {/* LAYER 2 — the real Proven Outcomes section, full width, slides right → left,
-          then stays pinned while the puzzle assembles above it.
-          The wrapper only supplies vertical scroll distance; it renders nothing itself. */}
+      {/* LAYER 2 — the real Proven Outcomes section, full width, rises from the
+          bottom to cover the Podcast, then stays pinned while the puzzle assembles
+          above it. The wrapper only supplies vertical scroll distance. */}
       <div
         ref={zoneRef}
         className="relative z-[2]"
@@ -1487,7 +1487,7 @@ function CoverStage({
           ref={overRef}
           className="sticky top-0 w-full"
           style={{
-            transform: "translate3d(100%, 0, 0)",
+            transform: "translate3d(0, 100%, 0)",
             backfaceVisibility: "hidden",
           }}
         >
