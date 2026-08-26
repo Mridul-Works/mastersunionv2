@@ -646,8 +646,14 @@ function EditorialMetricsPanel() {
       {AUDIT_STATS.map((stat, i) => (
         <React.Fragment key={stat.suffix}>
           {i > 0 ? <div className="h-px w-full bg-black/10" /> : null}
-          <div className="group flex flex-1 items-start transition-colors duration-300 ease-out hover:bg-black/[0.03]">
-            <div className="grid w-full grid-cols-[auto_auto_1fr] items-baseline gap-x-3 px-5 py-5 transition-transform duration-300 ease-out group-hover:translate-x-1.5 md:gap-x-4 md:px-7 lg:px-9 lg:py-6">
+          <div className="group relative flex flex-1 items-stretch overflow-hidden bg-white transition-colors duration-500 ease-out">
+            {/* accent sweep — left to right, retracts to left on leave */}
+            <span
+              aria-hidden
+              className="absolute inset-0 z-0 origin-left scale-x-0 bg-accent transition-transform duration-500 ease-out group-hover:scale-x-100"
+            />
+
+            <div className="relative z-10 grid h-full w-full grid-cols-[auto_auto_1fr] items-baseline gap-x-3 px-5 py-5 md:gap-x-4 md:px-7 lg:px-9 lg:py-6">
               <span
                 className="text-[10px] tabular-nums tracking-[0.28em] text-black/40"
                 style={{ fontFamily: MONO }}
@@ -659,12 +665,12 @@ function EditorialMetricsPanel() {
               </span>
               <div className="flex min-w-0 flex-col gap-1">
                 <span
-                  className="text-[11px] font-semibold uppercase tracking-[0.16em] text-black/80 transition-colors duration-300 group-hover:text-black"
+                  className="text-[11px] font-semibold uppercase tracking-[0.16em] text-black/80"
                   style={{ fontFamily: MONO }}
                 >
                   {stat.suffix}
                 </span>
-                <p className="max-w-[34ch] text-[13px] leading-snug text-black/55 transition-colors duration-300 group-hover:text-black/70">
+                <p className="max-w-[34ch] text-[13px] leading-snug text-black/55">
                   {stat.note}
                 </p>
               </div>
