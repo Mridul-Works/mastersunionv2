@@ -532,136 +532,139 @@ function StickyHead({ children }: { children: React.ReactNode }) {
   );
 }
 
-function CareerPodcast() {
-  const [playing, setPlaying] = useState(false);
+function PodcastTextBlock() {
   const id = "uiNTwDixAts";
-
   return (
-    <div className="flex flex-col gap-6">
-      <div>
-        <Reveal>
-          <Eyebrow>Podcast</Eyebrow>
-        </Reveal>
-        <Reveal delay={90}>
-          <h3 className="mt-4 text-[clamp(1.55rem,2.9vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-            How Masters&apos; Union prepares students for top 1% placements
-          </h3>
-        </Reveal>
-        <Reveal delay={180}>
-          <p className="mt-4 max-w-[50ch] text-[16px] leading-relaxed text-black/65">
-            A detailed conversation on the placement engine behind Masters&apos; Union — how recruiter
-            access, live industry projects and year-round career coaching translate into offers at the
-            firms shaping the next decade.
-          </p>
-        </Reveal>
-        <Reveal delay={260}>
-          <a
-            href={`https://www.youtube.com/watch?v=${id}`}
-            target="_blank"
-            rel="noreferrer"
-            className="group mt-6 inline-flex items-center gap-2 border-b border-black/25 pb-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-black transition hover:border-black"
-          >
-            Watch on YouTube
-            <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
-        </Reveal>
-      </div>
-
-      <ClipReveal>
-        <div className="relative aspect-video w-full overflow-hidden bg-black">
-          {playing ? (
-            <iframe
-              className="h-full w-full"
-              src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`}
-              title="How Masters' Union prepares students for top 1% placements"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
-              allowFullScreen
-            />
-          ) : (
-            <button
-              type="button"
-              onClick={() => setPlaying(true)}
-              aria-label="Play placements podcast"
-              className="group absolute inset-0 h-full w-full"
-            >
-              <img
-                src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
-                alt="Masters' Union placements podcast"
-                loading="lazy"
-                className="h-full w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-[1.03]"
-              />
-              <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-              <span className="absolute bottom-5 left-5 flex items-center gap-3">
-                <span className="grid size-11 place-items-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md transition group-hover:bg-white/25">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/90">
-                  Play podcast
-                </span>
-              </span>
-            </button>
-          )}
-        </div>
-      </ClipReveal>
+    <div className="flex flex-col justify-center">
+      <Reveal>
+        <Eyebrow>Podcast</Eyebrow>
+      </Reveal>
+      <Reveal delay={90}>
+        <h3 className="mt-4 text-[clamp(1.55rem,2.9vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
+          How Masters&apos; Union prepares students for top 1% placements
+        </h3>
+      </Reveal>
+      <Reveal delay={180}>
+        <p className="mt-4 max-w-[50ch] text-[16px] leading-relaxed text-black/65">
+          A detailed conversation on the placement engine behind Masters&apos; Union — how recruiter
+          access, live industry projects and year-round career coaching translate into offers at the
+          firms shaping the next decade.
+        </p>
+      </Reveal>
+      <Reveal delay={260}>
+        <a
+          href={`https://www.youtube.com/watch?v=${id}`}
+          target="_blank"
+          rel="noreferrer"
+          className="group mt-6 inline-flex items-center gap-2 border-b border-black/25 pb-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-black transition hover:border-black"
+        >
+          Watch on YouTube
+          <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </a>
+      </Reveal>
     </div>
   );
 }
 
-/** Static editorial metrics panel for the Podcast section. */
-function EditorialMetricsPanel() {
-  return (
-    <div className="card-elevated flex h-full min-h-[420px] flex-col border border-border bg-card">
-      {AUDIT_STATS.map((stat, i) => (
-        <React.Fragment key={stat.suffix}>
-          {i > 0 ? <div className="h-px w-full bg-border" /> : null}
-          <div className="group relative flex flex-1 items-stretch overflow-hidden bg-card transition-colors duration-500 ease-out">
-            {/* accent sweep — left to right, retracts to left on leave */}
-            <span
-              aria-hidden
-              className="absolute inset-0 z-0 origin-left scale-x-0 bg-accent transition-transform duration-500 ease-out group-hover:scale-x-100"
-            />
+function PodcastVideoPlayer() {
+  const [playing, setPlaying] = useState(false);
+  const id = "uiNTwDixAts";
 
-            <div className="relative z-10 flex h-full w-full items-stretch px-5 py-5 md:px-7 lg:px-9 lg:py-6">
-              {/* Index column — vertically centered with the middle divider */}
-              <div className="flex w-10 shrink-0 items-center justify-start md:w-12 lg:w-14">
-                <span
-                  className="text-[10px] tabular-nums tracking-[0.28em] text-black/40"
-                  style={{ fontFamily: MONO }}
-                >
-                  {String(i + 1).padStart(2, "0")}
+  return (
+    <ClipReveal>
+      <div className="relative aspect-video w-full overflow-hidden bg-black">
+        {playing ? (
+          <iframe
+            className="h-full w-full"
+            src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`}
+            title="How Masters' Union prepares students for top 1% placements"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
+            allowFullScreen
+          />
+        ) : (
+          <button
+            type="button"
+            onClick={() => setPlaying(true)}
+            aria-label="Play placements podcast"
+            className="group absolute inset-0 h-full w-full"
+          >
+            <img
+              src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
+              alt="Masters' Union placements podcast"
+              loading="lazy"
+              className="h-full w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-[1.03]"
+            />
+            <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+            <span className="absolute bottom-5 left-5 flex items-center gap-3">
+              <span className="grid size-11 place-items-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md transition group-hover:bg-white/25">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </span>
+              <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/90">
+                Play podcast
+              </span>
+            </span>
+          </button>
+        )}
+      </div>
+    </ClipReveal>
+  );
+}
+
+/** Horizontal editorial metrics strip for the Podcast section. */
+function HorizontalMetricsStrip() {
+  return (
+    <div className="card-elevated grid grid-cols-1 divide-y divide-border border border-border bg-card lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+      {AUDIT_STATS.map((stat, i) => (
+        <div
+          key={stat.suffix}
+          className="group relative flex flex-col overflow-hidden bg-card transition-colors duration-500 ease-out"
+        >
+          {/* accent sweep — left to right, retracts to left on leave */}
+          <span
+            aria-hidden
+            className="absolute inset-0 z-0 origin-left scale-x-0 bg-accent transition-transform duration-500 ease-out group-hover:scale-x-100"
+          />
+
+          <div className="relative z-10 flex flex-1 items-stretch px-5 py-5 md:px-7 lg:px-9 lg:py-6">
+            {/* Index column — vertically centered with the middle divider */}
+            <div className="flex w-10 shrink-0 items-center justify-start md:w-12 lg:w-14">
+              <span
+                className="text-[10px] tabular-nums tracking-[0.28em] text-black/40"
+                style={{ fontFamily: MONO }}
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
+            </div>
+
+            {/* Content column — number / divider / label+description */}
+            <div className="flex min-w-0 flex-1 flex-col">
+              {/* TOP: large number */}
+              <div className="flex flex-1 items-center">
+                <span className="whitespace-nowrap text-[clamp(2rem,4.4vw,3.2rem)] font-medium leading-none tracking-[-0.04em] text-black">
+                  {stat.value}
                 </span>
               </div>
 
-              {/* Content column — number / divider / label+description */}
-              <div className="flex min-w-0 flex-1 flex-col">
-                {/* TOP: large number */}
-                <div className="flex flex-1 items-center">
-                  <span className="whitespace-nowrap text-[clamp(2rem,4.4vw,3.2rem)] font-medium leading-none tracking-[-0.04em] text-black">
-                    {stat.value}
-                  </span>
-                </div>
+              {/* MIDDLE: thin divider rule */}
+              <div className="h-px w-full bg-border" />
 
-                {/* MIDDLE: thin divider rule */}
-                <div className="h-px w-full bg-border" />
-
-                {/* BOTTOM: label + description */}
-                <div className="flex flex-1 flex-col justify-center gap-1">
-                  <span
-                    className="whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.16em] text-black/80"
-                    style={{ fontFamily: MONO }}
-                  >
-                    {stat.suffix}
-                  </span>
-                  <p className="text-[13px] leading-snug text-black/55">
-                    {stat.note}
-                  </p>
-                </div>
+              {/* BOTTOM: label + description */}
+              <div className="flex flex-1 flex-col justify-center gap-1">
+                <span
+                  className="whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.16em] text-black/80"
+                  style={{ fontFamily: MONO }}
+                >
+                  {stat.suffix}
+                </span>
+                <p className="text-[13px] leading-snug text-black/55">
+                  {stat.note}
+                </p>
               </div>
             </div>
           </div>
-        </React.Fragment>
+        </div>
       ))}
     </div>
   );
