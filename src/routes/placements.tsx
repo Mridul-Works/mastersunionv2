@@ -1431,7 +1431,7 @@ function CoverStage({
       const p = Math.min(1, raw);
       const eased = p * p * (3 - 2 * p);
       overEl.style.transform =
-        p >= 1 ? "translate3d(0, 0%, 0)" : `translate3d(0, ${(1 - eased) * 100}%, 0)`;
+        p >= 1 ? "translate3d(0, 0, 0)" : `translate3d(0, ${((1 - eased) * travel).toFixed(2)}px, 0)`;
       overEl.style.willChange = p >= 1 ? "auto" : "transform";
 
       if (tail) {
@@ -1465,11 +1465,11 @@ function CoverStage({
   }
 
   return (
-    <div className="relative">
+    <div className="relative bg-transparent">
       {/* LAYER 1 — podcast, full width, pinned underneath */}
       <div
         ref={underRef}
-        className="sticky z-[1]"
+        className="sticky z-[1] min-h-[100svh] bg-[#F2F1EE]"
         style={{ top: `${underTop}px` }}
       >
         {under}
@@ -1480,14 +1480,14 @@ function CoverStage({
           above it. The wrapper only supplies vertical scroll distance. */}
       <div
         ref={zoneRef}
-        className="relative z-[2]"
+        className="relative z-[2] bg-transparent"
         style={overH && vh ? { height: `${overH + vh + tailTravel}px` } : undefined}
       >
         <div
           ref={overRef}
           className="sticky top-0 w-full"
           style={{
-            transform: "translate3d(0, 100%, 0)",
+            transform: "translate3d(0, 100svh, 0)",
             backfaceVisibility: "hidden",
           }}
         >
@@ -1555,7 +1555,7 @@ function Page() {
         <CoverStage
           under={
             <section
-              className="relative bg-[#F2F1EE]"
+              className="relative min-h-[100svh] bg-[#F2F1EE]"
               style={{ marginTop: reduced ? 0 : "calc(-100svh - 1px)" }}
             >
               <div className="page-x py-10 md:py-12 lg:py-14">
