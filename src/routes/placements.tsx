@@ -1032,7 +1032,6 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
       // opacity on a dedicated black layer instead of the section's own background:
       // identical result, but composited rather than repainting the whole section
       if (shellRef.current) shellRef.current.style.opacity = `${shell}`;
-      if (overlayRef.current) overlayRef.current.style.opacity = `${shell}`;
       if (textRef.current) {
         textRef.current.style.opacity = `${t}`;
         textRef.current.style.transform =
@@ -1073,10 +1072,11 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
             // +1px bleed removes sub-pixel seams; the extra sliver is off-piece background
             width: `${x1 - x0 + 1}px`,
             height: `${y1 - y0 + 1}px`,
-            backgroundImage: `url(${manojKohliBg.url})`,
-            backgroundSize: `${bw}px ${bh}px`,
-            backgroundPosition: `${-(x0 + offX)}px ${-(y0 + offY)}px`,
-            backgroundRepeat: "no-repeat",
+            // overlay baked per piece so it stays dark throughout the puzzle animation
+            backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.2) 100%), url(${manojKohliBg.url})`,
+            backgroundSize: `${w}px ${h}px, ${bw}px ${bh}px`,
+            backgroundPosition: `${-x0}px ${-y0}px, ${-(x0 + offX)}px ${-(y0 + offY)}px`,
+            backgroundRepeat: "no-repeat, no-repeat",
             transform: "translate3d(0px, 0px, 0px)",
             backfaceVisibility: "hidden",
             // promoted once for the whole travel instead of toggling the hint per frame
@@ -1104,11 +1104,11 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
       <div className="absolute inset-0" style={{ zIndex: 1 }}>
         {pieces}
       </div>
-      {/* gradient overlay: heavier on the left for text, lighter on the right so the body stays visible */}
+      {/* gradient overlay: now baked into each puzzle piece so brightness never changes mid-animation */}
       <div
         ref={overlayRef}
         className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/20"
-        style={{ opacity: animated ? 0 : 1, zIndex: 2 }}
+        style={{ opacity: 0, zIndex: 2 }}
       />
 
 
