@@ -631,7 +631,7 @@ function HorizontalMetricsStrip() {
       {AUDIT_STATS.map((stat, i) => (
         <div
           key={stat.suffix}
-          className="card-elevated group relative flex flex-col overflow-hidden border border-border bg-card transition-colors duration-500 ease-out"
+          className="metric-card card-elevated group relative flex flex-col overflow-hidden border border-border bg-card transition-colors duration-500 ease-out"
         >
           {/* accent sweep — left to right, retracts to left on leave */}
           <span
@@ -642,14 +642,14 @@ function HorizontalMetricsStrip() {
           <div className="relative z-10 flex flex-col items-center justify-center gap-4 px-5 py-6 md:px-7 md:py-7 lg:px-8 lg:py-8">
             {/* index */}
             <span
-              className="text-[10px] tabular-nums tracking-[0.28em] text-black/40 transition-colors duration-500 !group-hover:text-black"
+              className="text-[10px] tabular-nums tracking-[0.28em] text-black/40 transition-colors duration-500"
               style={{ fontFamily: MONO }}
             >
               {String(i + 1).padStart(2, "0")}
             </span>
 
             {/* number */}
-            <span className="whitespace-nowrap text-center text-[clamp(1.7rem,3.6vw,2.6rem)] font-medium leading-none tracking-[-0.04em] text-black transition-colors duration-500 !group-hover:text-black">
+            <span className="whitespace-nowrap text-center text-[clamp(1.7rem,3.6vw,2.6rem)] font-medium leading-none tracking-[-0.04em] text-black transition-colors duration-500">
               {stat.value}
             </span>
 
@@ -659,12 +659,12 @@ function HorizontalMetricsStrip() {
             {/* label + description */}
             <div className="flex flex-col items-center gap-1.5 text-center">
               <span
-                className="whitespace-nowrap text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-black/80 transition-colors duration-500 !group-hover:text-black"
+                className="whitespace-nowrap text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-black/80 transition-colors duration-500"
                 style={{ fontFamily: MONO }}
               >
                 {stat.suffix}
               </span>
-              <p className="max-w-[26ch] text-center text-[13px] leading-snug text-black/55 transition-colors duration-500 !group-hover:text-black">
+              <p className="max-w-[26ch] text-center text-[13px] leading-snug text-black/55 transition-colors duration-500">
                 {stat.note}
               </p>
             </div>
