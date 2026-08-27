@@ -821,93 +821,10 @@ function LogoRow({ names }: { names: string[] }) {
 
 /* ---------------------------- audited outcomes ---------------------------- */
 
-const PANEL_EASE = "cubic-bezier(0.22,1,0.36,1)";
-
-function OutcomePanel({
-  stat,
-  n,
-  active,
-  onSelect,
-}: {
-  stat: (typeof AUDIT_STATS)[number];
-  n: number;
-  active: boolean;
-  onSelect: () => void;
-}) {
-  const label = stat.suffix;
-  return (
-    <button
-      type="button"
-      onClick={onSelect}
-      aria-expanded={active}
-      className="group relative flex w-full flex-col items-stretch justify-start overflow-hidden bg-black text-left text-white cursor-pointer"
-      style={{
-        ["--panel-closed" as string]: "clamp(56px, 9vh, 64px)",
-        ["--panel-open" as string]: "clamp(200px, 30vh, 246px)",
-        height: active ? "var(--panel-open)" : "var(--panel-closed)",
-        transition: `height 620ms ${PANEL_EASE}`,
-        willChange: "height",
-      }}
-    >
-      {/* subtle decorative vertical line — travels with the panel */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute bottom-0 left-4 top-0 w-px bg-white/15 sm:left-5"
-      />
-
-      {/* header row — number + label, never moves */}
-      <div
-        className="flex shrink-0 items-center gap-5 pl-8 pr-6 sm:pl-10 sm:pr-8"
-        style={{ height: "var(--panel-closed)" }}
-      >
-        <span
-          className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/55"
-          style={{ fontFamily: MONO }}
-        >
-          {String(n).padStart(2, "0")}
-        </span>
-        <span
-          className="min-w-0 truncate text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70 transition-colors duration-500 group-hover:text-white"
-          style={{ fontFamily: MONO }}
-        >
-          {label}
-        </span>
-      </div>
-
-      {/* expanded body — statistic, centered */}
-      <div
-        aria-hidden={!active}
-        className="absolute inset-x-0 bottom-0 px-8 sm:px-10"
-        style={{ top: "var(--panel-closed)" }}
-      >
-        <div className="h-px w-full bg-white/15" />
-        <div
-          className="flex flex-col items-center justify-center px-2 text-center"
-          style={{
-            height: "calc(var(--panel-open) - var(--panel-closed) - 1px)",
-            opacity: active ? 1 : 0,
-            transform: active ? "translateY(0)" : "translateY(10px)",
-            transition: `opacity 520ms ${PANEL_EASE} 60ms, transform 620ms ${PANEL_EASE}`,
-          }}
-        >
-          <div className="whitespace-nowrap text-[clamp(2.4rem,5.4vw,4.4rem)] leading-[0.95] tracking-[-0.035em]">
-            {stat.value}
-          </div>
-          <p className="mt-4 max-w-[42ch] text-[0.9rem] leading-[1.6] text-white/60">
-            {stat.note}
-          </p>
-        </div>
-      </div>
-    </button>
-  );
-}
-
 function OutcomesAccordion() {
-  const [open, setOpen] = useState(0);
-
   return (
     <div className="page-x py-4">
-      <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
+      <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-12">
         {/* LEFT — anchored editorial column */}
         <div className="lg:col-span-4">
           <Eyebrow>Five years of audited placements</Eyebrow>
@@ -920,24 +837,15 @@ function OutcomesAccordion() {
           </p>
         </div>
 
-        {/* RIGHT — click-driven horizontal accordion */}
+        {/* RIGHT — static metrics bar (shared Podcast layout) */}
         <div className="lg:col-span-8">
-          <div className="flex flex-col gap-1.5 sm:gap-2">
-            {AUDIT_STATS.map((s, i) => (
-              <OutcomePanel
-                key={s.suffix}
-                stat={s}
-                n={i + 1}
-                active={open === i}
-                onSelect={() => setOpen(i)}
-              />
-            ))}
-          </div>
+          <HorizontalMetricsStrip />
         </div>
       </div>
     </div>
   );
 }
+
 
 
 function CohortReportCard({ year }: { year: string }) {
