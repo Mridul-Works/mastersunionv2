@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import MobileBottomBar from "../components/MobileBottomBar";
+import SmoothScroll from "../components/SmoothScroll";
 
 
 function NotFoundComponent() {
@@ -127,8 +128,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Native scroll (matches Program Layout UG v2.0) — no smooth-scroll hijack */}
+      {/* Heavy lerp smooth-scroll (Lenis) — no wheel amplification */}
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+      <SmoothScroll />
       <Outlet />
       <MobileBottomBar />
     </QueryClientProvider>
