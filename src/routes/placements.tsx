@@ -1144,6 +1144,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
             aria-hidden="true"
           />
           <blockquote className="text-[clamp(1.5rem,3.6vw,2.8rem)] font-medium leading-[1.3] tracking-[-0.015em] text-white">
+            &ldquo;
             {QUOTE_WORDS.map((w, i) => (
               <React.Fragment key={i}>
                 <span
@@ -1158,6 +1159,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
                 {i < QUOTE_WORDS.length - 1 ? "\u00A0" : ""}
               </React.Fragment>
             ))}
+            &rdquo;
           </blockquote>
           <div
             className="mt-8 text-[10px] uppercase tracking-[0.2em] text-white/70"
