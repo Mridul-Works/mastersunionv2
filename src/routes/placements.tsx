@@ -1142,8 +1142,9 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
           ref={textRef}
           className="relative max-w-[56ch]"
           style={{
-            opacity: 1,
-            transform: "translate3d(0px, 0px, 0px)",
+            opacity: animated ? 0 : 1,
+            transform: animated ? "translate3d(0px, 18px, 0px)" : "translate3d(0px, 0px, 0px)",
+            willChange: animated ? "opacity, transform" : undefined,
           }}
         >
           <Quote
