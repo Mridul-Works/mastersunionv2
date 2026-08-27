@@ -13,9 +13,9 @@ import Lenis from "lenis";
 export default function SmoothScroll() {
   useEffect(() => {
     const lenis = new Lenis({
-      lerp: 0.1,
-      wheelMultiplier: 0.35,
-      touchMultiplier: 0.45,
+      lerp: 0.085,
+      wheelMultiplier: 0.24,
+      touchMultiplier: 0.35,
       smoothWheel: true,
       syncTouch: false,
     });
