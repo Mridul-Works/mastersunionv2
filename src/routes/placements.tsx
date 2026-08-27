@@ -1422,6 +1422,9 @@ function Page() {
                     <PodcastTextBlock />
                     <PodcastVideoPlayer />
                   </div>
+
+                  <div className="h-px w-full bg-white/15" aria-hidden="true" />
+
                   <HorizontalMetricsStrip />
                 </div>
               </div>
