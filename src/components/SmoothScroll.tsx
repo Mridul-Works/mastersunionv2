@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 
 /**
- * Global smooth-scroll layer (Lenis).
+ * Global inertial (momentum) scrolling layer (Lenis).
+ * - duration + exponential ease-out => the page keeps gliding and decelerates
  * - wheelMultiplier stays at 1 (no input amplification, deltaY untouched)
- * - gentle lerp so the page glides toward the native scroll position
- * - disabled for reduced-motion users and touch devices (native momentum)
+ * - disabled for reduced-motion users; touch keeps native momentum
  */
 export default function SmoothScroll() {
   useEffect(() => {
@@ -20,13 +20,16 @@ export default function SmoothScroll() {
       if (cancelled) return;
 
       lenis = new Lenis({
-        lerp: 0.085, // heavy, controlled glide toward native position
+        // inertial mode: each impulse carries momentum, then decelerates
+        duration: 1.35,
+        easing: (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
         wheelMultiplier: 1, // never amplify wheel input
         touchMultiplier: 1,
         smoothWheel: true,
         syncTouch: false,
         autoRaf: false,
       });
+
 
       (window as any).__lenis = lenis;
 
