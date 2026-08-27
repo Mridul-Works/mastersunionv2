@@ -1294,9 +1294,10 @@ function CoverStage({
     };
   }, [enabled]);
 
-  // phase 2 — puzzle assembly, spread over PUZZLE viewports of scroll
-  const PUZZLE = 1.5;
-  const HOLD = 0.35; // extra pinned time once the photograph is complete
+  // Give the image assembly and typography reveal enough physical scroll travel
+  // that a trackpad gesture cannot rush through both phases at once.
+  const PUZZLE = 3.4;
+  const HOLD = 0.5; // quiet settling time once the typography is fully revealed
   const tailTravel = tail ? vh * (PUZZLE + HOLD) : 0;
   // tall-layer sticky offset: keeps the podcast pinned even when it exceeds the viewport
   const underTop = vh && underH > vh ? Math.min(0, vh - underH) : 0;
