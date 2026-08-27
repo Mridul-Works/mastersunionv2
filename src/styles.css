@@ -937,3 +937,20 @@ body::-webkit-scrollbar {
   --ring: oklch(0.6 0.03 150);
   --teal: #4FBF9A;
 }
+
+/* Route-level obsidian treatment for the placements editorial page. */
+.placements-obsidian section,
+.placements-obsidian [class*="bg-white"],
+.placements-obsidian [class*="bg-paper"],
+.placements-obsidian [class*="bg-background"],
+.placements-obsidian [class*="bg-secondary"] {
+  background-color: #0b1215;
+}
+
+.placements-obsidian [class*="text-black"] {
+  color: rgb(242 241 238 / 0.72);
+}
+
+.placements-obsidian [class*="border-black"] {
+  border-color: rgb(242 241 238 / 0.16);
+}

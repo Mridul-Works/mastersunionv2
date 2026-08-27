@@ -527,7 +527,7 @@ function Band({
   className?: string;
   children: React.ReactNode;
 }) {
-  const bg = tone === "white" ? "bg-background" : tone === "paper" ? "bg-paper" : "bg-secondary";
+  const bg = "bg-[#0B1215]";
   return (
     <section id={id} className={`section-edge relative ${bg} ${className}`}>
       <div className="page-x py-16 md:py-28">{children}</div>
@@ -1309,7 +1309,7 @@ function CoverStage({
       {/* LAYER 1 — podcast, full width, pinned underneath */}
       <div
         ref={underRef}
-        className="sticky z-[1] min-h-[100svh] bg-[#F2F1EE]"
+        className="sticky z-[1] min-h-[100svh] bg-[#0B1215]"
         style={{ top: `${underTop}px` }}
       >
         {under}
@@ -1370,7 +1370,7 @@ function Page() {
   const [recruiterTab, setRecruiterTab] = useState(RECRUITER_GROUPS[0].category);
   const active = RECRUITER_GROUPS.find((g) => g.category === recruiterTab)!;
   return (
-    <main className="min-h-screen overflow-x-clip bg-[#0B1215] pb-16 text-foreground md:pb-18" style={{ fontFamily: INTER }}>
+    <main className="placements-obsidian ink-scope min-h-screen overflow-x-clip bg-[#0B1215] pb-16 text-foreground md:pb-18" style={{ fontFamily: INTER }}>
       <ScrollProgress />
 
       {/* Global top navigation — fixed, hides on scroll down, reveals on scroll up */}
@@ -1395,7 +1395,7 @@ function Page() {
         <CoverStage
           under={
             <section
-              className="relative min-h-[100svh] bg-[#F2F1EE]"
+              className="relative min-h-[100svh] bg-[#0B1215]"
               style={{ marginTop: reduced ? 0 : "calc(-100svh - 1px)" }}
             >
               <div className="page-x flex h-full min-h-[100svh] items-center py-6 md:py-8 lg:py-10">
