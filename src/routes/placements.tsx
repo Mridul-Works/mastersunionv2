@@ -1462,7 +1462,6 @@ function Page() {
                     <PodcastTextBlock />
                     <PodcastVideoPlayer />
                   </div>
-                  <HorizontalMetricsStrip />
                 </div>
               </div>
             </section>
