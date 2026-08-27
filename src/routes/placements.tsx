@@ -824,7 +824,7 @@ function LogoRow({ names }: { names: string[] }) {
 function OutcomesAccordion() {
   return (
     <div className="page-x py-4">
-      <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-12">
+      <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
         {/* LEFT — anchored editorial column */}
         <div className="lg:col-span-4">
           <Eyebrow>Five years of audited placements</Eyebrow>
