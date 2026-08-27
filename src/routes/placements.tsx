@@ -1301,11 +1301,11 @@ function CoverStage({
 
       if (tail) {
         // Map the puzzle onto the window in which the quote is actually pinned:
-        // the rail starts one viewport in and pins for (railHeight - vh) pixels.
-        // Assembling over 70% of that leaves a genuine hold on the finished frame.
+        // 0 → 1 assembles the image over the first half of the pin, 1 → 2 then
+        // drives the quote fade-in and the scroll text reveal on the finished frame.
         const pinStart = zoneTopRef.current + travel;
-        const assemble = Math.max(1, (overH + tailTravel - travel) * 0.7);
-        const q = Math.min(1, Math.max(0, (y - pinStart) / assemble));
+        const assemble = Math.max(1, (overH + tailTravel - travel) * 0.5);
+        const q = Math.min(2, Math.max(0, (y - pinStart) / assemble));
         setPuzzleProgress(q);
         const tw = tailRef.current;
         const next = q > 0.98;
