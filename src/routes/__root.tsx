@@ -12,7 +12,6 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import MobileBottomBar from "../components/MobileBottomBar";
-import SmoothScroll from "../components/SmoothScroll";
 
 
 function NotFoundComponent() {
