@@ -1370,7 +1370,7 @@ function Page() {
   const [recruiterTab, setRecruiterTab] = useState(RECRUITER_GROUPS[0].category);
   const active = RECRUITER_GROUPS.find((g) => g.category === recruiterTab)!;
   return (
-    <main className="min-h-screen overflow-x-clip bg-background pb-16 text-foreground md:pb-18" style={{ fontFamily: INTER }}>
+    <main className="min-h-screen overflow-x-clip bg-[#0B1215] pb-16 text-foreground md:pb-18" style={{ fontFamily: INTER }}>
       <ScrollProgress />
 
       {/* Global top navigation — fixed, hides on scroll down, reveals on scroll up */}
