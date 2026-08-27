@@ -69,7 +69,7 @@ export default function SmoothScroll() {
           Math.sign(pendingWheelY) *
           Math.min(Math.abs(pendingWheelY), frameCap);
         pendingWheelY -= applied;
-        lenis.scrollBy(applied);
+        lenis.scrollTo(lenis.targetScroll + applied);
       }
 
       lenis.raf(time);
