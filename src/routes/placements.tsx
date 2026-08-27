@@ -1470,9 +1470,12 @@ function Page() {
                     </div>
                     <div className="lg:col-span-7">
                       <PodcastVideoPlayer />
-                      <p className="mt-4 text-[11px] font-medium uppercase tracking-[0.18em] text-black/50">
-                        Episode 01 — The Placement Engine
-                      </p>
+                      <div className="mt-4 flex flex-col gap-4">
+                        <div className="h-px w-full bg-black/20" />
+                        <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-black/50">
+                          Episode — The story behind ₹33 lakh per LPA average placements — Watch / Listen
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
