@@ -1104,11 +1104,11 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
       <div className="absolute inset-0" style={{ zIndex: 1 }}>
         {pieces}
       </div>
-      {/* gradient overlay: heavier on the left for text, lighter on the right so the body stays visible */}
+      {/* gradient overlay: now baked into each puzzle piece so brightness never changes mid-animation */}
       <div
         ref={overlayRef}
         className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/20"
-        style={{ opacity: animated ? 0 : 1, zIndex: 2 }}
+        style={{ opacity: 0, zIndex: 2 }}
       />
 
 
