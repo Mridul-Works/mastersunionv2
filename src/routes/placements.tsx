@@ -563,6 +563,12 @@ function PodcastTextBlock() {
           firms shaping the next decade.
         </p>
       </Reveal>
+      <Reveal delay={230}>
+        <p className="mt-5 max-w-[46ch] text-[15px] leading-relaxed text-black/80">
+          Inside the <em className="font-serif-italic">placement engine</em> behind the next
+          generation of business leaders.
+        </p>
+      </Reveal>
       <Reveal delay={260}>
         <a
           href={`https://www.youtube.com/watch?v=${id}`}
@@ -1458,9 +1464,13 @@ function Page() {
             >
               <div className="page-x flex h-full min-h-[100svh] items-center py-6 md:py-8 lg:py-10">
                 <div className="relative flex w-full flex-col gap-10 lg:gap-14">
-                  <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
-                    <PodcastTextBlock />
-                    <PodcastVideoPlayer />
+                  <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-8">
+                    <div className="lg:col-span-5">
+                      <PodcastTextBlock />
+                    </div>
+                    <div className="lg:col-span-7">
+                      <PodcastVideoPlayer />
+                    </div>
                   </div>
                 </div>
               </div>
