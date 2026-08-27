@@ -624,14 +624,14 @@ function PodcastVideoPlayer() {
   );
 }
 
-/** Horizontal editorial metrics strip for the Podcast section. */
+/** Editorial metric blocks for the Podcast and Proven Outcomes sections. */
 function HorizontalMetricsStrip() {
   return (
-    <div className="card-elevated grid grid-cols-1 divide-y divide-border border border-border bg-card lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+    <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
       {AUDIT_STATS.map((stat, i) => (
         <div
           key={stat.suffix}
-          className="group relative flex flex-col overflow-hidden bg-card transition-colors duration-500 ease-out"
+          className="card-elevated group relative flex flex-col overflow-hidden border border-border bg-card transition-colors duration-500 ease-out"
         >
           {/* accent sweep — left to right, retracts to left on leave */}
           <span
@@ -639,41 +639,34 @@ function HorizontalMetricsStrip() {
             className="absolute inset-0 z-0 origin-left scale-x-0 bg-accent transition-transform duration-500 ease-out group-hover:scale-x-100"
           />
 
-          <div className="relative z-10 flex flex-1 items-stretch px-5 py-5 md:px-7 lg:px-9 lg:py-6">
-            {/* Index column — vertically centered with the middle divider */}
-            <div className="flex w-10 shrink-0 items-center justify-start md:w-12 lg:w-14">
+          <div className="relative z-10 flex flex-col items-center justify-center gap-4 px-5 py-6 md:px-7 md:py-7 lg:px-8 lg:py-8">
+            {/* index */}
+            <span
+              className="text-[10px] tabular-nums tracking-[0.28em] text-black/40"
+              style={{ fontFamily: MONO }}
+            >
+              {String(i + 1).padStart(2, "0")}
+            </span>
+
+            {/* number */}
+            <span className="whitespace-nowrap text-center text-[clamp(1.7rem,3.6vw,2.6rem)] font-medium leading-none tracking-[-0.04em] text-black">
+              {stat.value}
+            </span>
+
+            {/* divider */}
+            <div className="h-px w-20 bg-border" />
+
+            {/* label + description */}
+            <div className="flex flex-col items-center gap-1.5 text-center">
               <span
-                className="text-[10px] tabular-nums tracking-[0.28em] text-black/40"
+                className="whitespace-nowrap text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-black/80"
                 style={{ fontFamily: MONO }}
               >
-                {String(i + 1).padStart(2, "0")}
+                {stat.suffix}
               </span>
-            </div>
-
-            {/* Content column — number / divider / label+description */}
-            <div className="flex min-w-0 flex-1 flex-col">
-              {/* TOP: large number */}
-              <div className="flex flex-1 items-center justify-center">
-                <span className="whitespace-nowrap text-center text-[clamp(2rem,4.4vw,3.2rem)] font-medium leading-none tracking-[-0.04em] text-black">
-                  {stat.value}
-                </span>
-              </div>
-
-              {/* MIDDLE: thin divider rule */}
-              <div className="h-px w-full bg-border" />
-
-              {/* BOTTOM: label + description */}
-              <div className="flex flex-1 flex-col items-center justify-center gap-1 text-center">
-                <span
-                  className="whitespace-nowrap text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-black/80"
-                  style={{ fontFamily: MONO }}
-                >
-                  {stat.suffix}
-                </span>
-                <p className="text-center text-[13px] leading-snug text-black/55">
-                  {stat.note}
-                </p>
-              </div>
+              <p className="max-w-[26ch] text-center text-[13px] leading-snug text-black/55">
+                {stat.note}
+              </p>
             </div>
           </div>
         </div>
@@ -681,6 +674,7 @@ function HorizontalMetricsStrip() {
     </div>
   );
 }
+
 
 function BarChart({ data, max, unit = "L" }: { data: { cohort: string; value: number }[]; max: number; unit?: string }) {
   return (
