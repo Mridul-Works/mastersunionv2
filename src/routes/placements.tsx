@@ -969,6 +969,13 @@ const QUOTE_WORDS = QUOTE_TEXT.split(/\s+/).map((text, idx) => ({
   em: idx >= 14 && idx <= 20,
 }));
 
+const TYPOGRAPHY_ITEMS: { type: "open" | "word" | "close" | "attribution"; text: string; em?: boolean }[] = [
+  { type: "open", text: "\u201C" },
+  ...QUOTE_WORDS.map((w) => ({ type: "word" as const, text: w.text, em: w.em })),
+  { type: "close", text: "\u201D" },
+  { type: "attribution", text: "Pratham Mittal — Founder & CEO, Masters' Union" },
+];
+
 function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
   const hostRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -976,7 +983,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
   const textRef = useRef<HTMLDivElement>(null);
 
   const pieceRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const wordRefs = useRef<(HTMLElement | null)[]>([]);
   const [box, setBox] = useState({ w: 0, h: 0 });
   const [ar, setAr] = useState(0);
 
@@ -1153,29 +1160,40 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
             aria-hidden="true"
           />
           <blockquote className="text-[clamp(1.5rem,3.6vw,2.8rem)] font-medium leading-[1.3] tracking-[-0.015em] text-white">
-            &ldquo;
-            {QUOTE_WORDS.map((w, i) => (
-              <React.Fragment key={i}>
-                <span
-                  ref={(n) => {
-                    wordRefs.current[i] = n;
-                  }}
-                  className={`inline-block ${w.em ? "font-serif-italic" : ""}`}
-                  style={{ opacity: animated ? 0.18 : 1, willChange: "opacity" }}
-                >
-                  {w.text}
-                </span>
-                {i < QUOTE_WORDS.length - 1 ? "\u00A0" : ""}
-              </React.Fragment>
-            ))}
-            &rdquo;
+            {TYPOGRAPHY_ITEMS.map((item, i) => {
+              if (item.type === "attribution") return null;
+              const isLastWord = item.type === "word" && i === TYPOGRAPHY_ITEMS.length - 3;
+              return (
+                <React.Fragment key={i}>
+                  <span
+                    ref={(n) => {
+                      wordRefs.current[i] = n;
+                    }}
+                    className={`inline-block ${item.em ? "font-serif-italic" : ""}`}
+                    style={{ opacity: animated ? 0.18 : 1, willChange: "opacity" }}
+                  >
+                    {item.text}
+                  </span>
+                  {item.type === "word" && !isLastWord ? "\u00A0" : ""}
+                </React.Fragment>
+              );
+            })}
           </blockquote>
-          <div
-            className="mt-8 text-[10px] uppercase tracking-[0.2em] text-white/70"
-            style={{ fontFamily: MONO }}
-          >
-            Pratham Mittal — Founder &amp; CEO, Masters&apos; Union
-          </div>
+          {TYPOGRAPHY_ITEMS.map((item, i) => {
+            if (item.type !== "attribution") return null;
+            return (
+              <div
+                key={i}
+                ref={(n) => {
+                  wordRefs.current[i] = n;
+                }}
+                className="mt-8 text-[10px] uppercase tracking-[0.2em] text-white/70"
+                style={{ fontFamily: MONO, opacity: animated ? 0.18 : 1, willChange: "opacity" }}
+              >
+                {item.text}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
