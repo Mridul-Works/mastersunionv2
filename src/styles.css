@@ -582,6 +582,36 @@ body::-webkit-scrollbar {
   }
 }
 
+@utility sweep-link {
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: color-mix(in oklab, var(--teal) 35%, transparent);
+    transform: scaleX(0);
+    transform-origin: 100% 100%;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-2px) scale(1.02);
+
+      &::after {
+        transform: scaleX(1);
+        transform-origin: 0% 100%;
+      }
+    }
+  }
+}
+
 @utility rail-scroll {
   overflow-x: auto;
   overscroll-behavior-x: contain;
