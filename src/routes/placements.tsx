@@ -1032,7 +1032,6 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
       // opacity on a dedicated black layer instead of the section's own background:
       // identical result, but composited rather than repainting the whole section
       if (shellRef.current) shellRef.current.style.opacity = `${shell}`;
-      if (overlayRef.current) overlayRef.current.style.opacity = `${shell}`;
       if (textRef.current) {
         textRef.current.style.opacity = `${t}`;
         textRef.current.style.transform =
