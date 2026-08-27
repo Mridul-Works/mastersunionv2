@@ -564,21 +564,21 @@ function PodcastTextBlock() {
         </p>
       </Reveal>
       <Reveal delay={230}>
-        <p className="mt-5 max-w-[46ch] text-[15px] leading-relaxed text-black/80">
-          Inside the <em className="font-serif-italic">placement engine</em> behind the next
-          generation of business leaders.
-        </p>
-      </Reveal>
-      <Reveal delay={260}>
-        <a
-          href={`https://www.youtube.com/watch?v=${id}`}
-          target="_blank"
-          rel="noreferrer"
-          className="group mt-6 inline-flex items-center gap-2 border-b border-black/25 pb-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-black transition hover:border-black"
-        >
-          Watch on YouTube
-          <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </a>
+        <div className="mt-5 max-w-[46ch] rounded-md border border-[var(--teal)] bg-[#0B1215] p-5">
+          <p className="text-[15px] leading-relaxed text-black/80">
+            Inside the <em className="font-serif-italic">placement engine</em> behind the next
+            generation of business leaders.
+          </p>
+          <a
+            href={`https://www.youtube.com/watch?v=${id}`}
+            target="_blank"
+            rel="noreferrer"
+            className="group mt-4 inline-flex items-center gap-2 border-b border-black/25 pb-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-black transition hover:border-black"
+          >
+            Watch on YouTube
+            <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+        </div>
       </Reveal>
     </div>
   );
