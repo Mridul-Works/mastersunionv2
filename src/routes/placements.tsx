@@ -1150,7 +1150,7 @@ function AuditedOutcomes() {
   return (
     <section
       id="outcomes"
-      className="relative bg-white py-10 md:py-12 lg:py-14"
+      className="relative flex min-h-[100svh] flex-col justify-between bg-white py-8 md:py-10 lg:py-12"
     >
       {/* sticky left + click-driven horizontal accordion */}
       <OutcomesAccordion />
