@@ -951,6 +951,11 @@ body::-webkit-scrollbar {
   color: rgb(242 241 238 / 0.72);
 }
 
+.placements-obsidian .metric-card:hover span,
+.placements-obsidian .metric-card:hover p {
+  color: #000000;
+}
+
 .placements-obsidian [class*="border-black"] {
   border-color: rgb(242 241 238 / 0.16);
 }
