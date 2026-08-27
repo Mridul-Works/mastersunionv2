@@ -1402,16 +1402,16 @@ function Page() {
               <div
                 className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[36%] blueprint-grid"
                 style={{
-                  maskImage: "linear-gradient(to bottom, transparent 0%, black 32%, black 68%, transparent 100%)",
-                  WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 32%, black 68%, transparent 100%)",
+                  maskImage: "linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)",
+                  WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)",
                 }}
                 aria-hidden="true"
               />
               <div
                 className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[36%] blueprint-grid"
                 style={{
-                  maskImage: "linear-gradient(to bottom, transparent 0%, black 32%, black 68%, transparent 100%)",
-                  WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 32%, black 68%, transparent 100%)",
+                  maskImage: "linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)",
+                  WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)",
                 }}
                 aria-hidden="true"
               />
