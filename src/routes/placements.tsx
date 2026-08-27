@@ -962,6 +962,13 @@ function easeOutCubic(t: number) {
   return 1 - Math.pow(1 - t, 3);
 }
 
+const QUOTE_TEXT =
+  "We don't approach placements the way most B-schools do. At Masters' Union, placements are run by a 50+ member, full-time team spanning company outreach, career preparation, and role-specific coaching.";
+const QUOTE_WORDS = QUOTE_TEXT.split(/\s+/).map((text, idx) => ({
+  text,
+  em: idx >= 14 && idx <= 20,
+}));
+
 function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
   const hostRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -969,6 +976,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
   const textRef = useRef<HTMLDivElement>(null);
 
   const pieceRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const [box, setBox] = useState({ w: 0, h: 0 });
   const [ar, setAr] = useState(0);
 
@@ -1028,19 +1036,29 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
         }
       }
       const shell = Math.min(1, Math.max(0, (p - 0.82) / 0.18));
-      const t = Math.min(1, Math.max(0, (p - 0.92) / 0.08));
-      // opacity on a dedicated black layer instead of the section's own background:
-      // identical result, but composited rather than repainting the whole section
       if (shellRef.current) shellRef.current.style.opacity = `${shell}`;
-      if (textRef.current) {
-        textRef.current.style.opacity = `${t}`;
-        textRef.current.style.transform =
-          t >= 1 ? "translate3d(0px, 0px, 0px)" : `translate3d(0px, ${((1 - t) * 20).toFixed(2)}px, 0px)`;
+
+      // scroll-driven top-to-bottom text reveal: dim words early, bright as the quote assembles
+      const words = wordRefs.current;
+      const totalWords = words.length;
+      if (totalWords > 0) {
+        const revealStart = 0.1;
+        const revealEnd = 1.0;
+        const rp = Math.min(1, Math.max(0, (p - revealStart) / (revealEnd - revealStart)));
+        const dim = 0.18;
+        for (let i = 0; i < totalWords; i++) {
+          const el = words[i];
+          if (!el) continue;
+          const t = i / (totalWords - 1);
+          const window = 0.08;
+          const raw = (rp - (t - window / 2)) / window;
+          const local = raw <= 0 ? 0 : raw >= 1 ? 1 : easeOutCubic(raw);
+          el.style.opacity = `${dim + (1 - dim) * local}`;
+        }
       }
     },
     [w, h],
   );
-
 
   useEffect(() => {
     lastQ.current = NaN; // geometry changed → force a fresh write
@@ -1111,13 +1129,12 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
         style={{ opacity: 0, zIndex: 2 }}
       />
 
-
       <div className="page-x relative w-full" style={{ zIndex: 3 }}>
         <div
           ref={textRef}
           className="relative max-w-[56ch]"
           style={{
-            opacity: animated ? 0 : 1,
+            opacity: 1,
             transform: "translate3d(0px, 0px, 0px)",
           }}
         >
@@ -1127,9 +1144,22 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
             aria-hidden="true"
           />
           <blockquote className="text-[clamp(1.5rem,3.6vw,2.8rem)] font-medium leading-[1.3] tracking-[-0.015em] text-white">
-            “We don&apos;t approach placements the way most B-schools do. At Masters&apos; Union,
-            placements are <em className="font-serif-italic">run by a 50+ member, full-time team</em> spanning company
-            outreach, career preparation, and role-specific coaching.”
+            &ldquo;
+            {QUOTE_WORDS.map((w, i) => (
+              <React.Fragment key={i}>
+                <span
+                  ref={(n) => {
+                    wordRefs.current[i] = n;
+                  }}
+                  className={`inline-block ${w.em ? "font-serif-italic" : ""}`}
+                  style={{ opacity: animated ? 0.18 : 1, willChange: "opacity" }}
+                >
+                  {w.text}
+                </span>
+                {i < QUOTE_WORDS.length - 1 ? "\u00A0" : ""}
+              </React.Fragment>
+            ))}
+            &rdquo;
           </blockquote>
           <div
             className="mt-8 text-[10px] uppercase tracking-[0.2em] text-white/70"
