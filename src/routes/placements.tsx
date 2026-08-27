@@ -1016,9 +1016,11 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
   const lastQ = useRef(NaN);
   const apply = useCallback(
     (q: number) => {
-      const p = q < 0 ? 0 : q > 1 ? 1 : q;
-      if (p === lastQ.current) return;
-      lastQ.current = p;
+      const t = q < 0 ? 0 : q > 2 ? 2 : q;
+      if (t === lastQ.current) return;
+      lastQ.current = t;
+      // phase A (0 → 1): image blocks assemble. phase B (1 → 2): quote fade + reveal.
+      const p = Math.min(1, t);
       const els = pieceRefs.current;
       for (let i = 0; i < QUOTE_BLOCKS.length; i++) {
         const el = els[i];
@@ -1038,20 +1040,26 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
       const shell = Math.min(1, Math.max(0, (p - 0.82) / 0.18));
       if (shellRef.current) shellRef.current.style.opacity = `${shell}`;
 
-      // scroll-driven top-to-bottom text reveal: dim words early, bright as the quote assembles
+      // phase B — the quote stays completely hidden until the image is assembled
+      const phase = Math.min(1, Math.max(0, t - 1));
+      const fade = Math.min(1, phase / 0.16); // block fully assembled → quote fades in
+      if (textRef.current) {
+        textRef.current.style.opacity = `${fade}`;
+        textRef.current.style.transform = `translate3d(0px, ${((1 - fade) * 18).toFixed(2)}px, 0px)`;
+      }
+
+      // scroll-driven top-to-bottom word reveal, only after the fade-in
       const words = wordRefs.current;
       const totalWords = words.length;
-      if (totalWords > 0) {
-        const revealStart = 0.1;
-        const revealEnd = 1.0;
-        const rp = Math.min(1, Math.max(0, (p - revealStart) / (revealEnd - revealStart)));
+      if (totalWords > 1) {
+        const rp = Math.min(1, Math.max(0, (phase - 0.16) / 0.74));
         const dim = 0.18;
         for (let i = 0; i < totalWords; i++) {
           const el = words[i];
           if (!el) continue;
-          const t = i / (totalWords - 1);
-          const window = 0.08;
-          const raw = (rp - (t - window / 2)) / window;
+          const at = i / (totalWords - 1);
+          const win = 0.12;
+          const raw = (rp - (at - win / 2)) / win;
           const local = raw <= 0 ? 0 : raw >= 1 ? 1 : easeOutCubic(raw);
           el.style.opacity = `${dim + (1 - dim) * local}`;
         }
@@ -1063,7 +1071,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
   useEffect(() => {
     lastQ.current = NaN; // geometry changed → force a fresh write
     if (!animated) {
-      apply(1);
+      apply(2);
       return;
     }
     return subscribePuzzle(apply);
@@ -1134,8 +1142,9 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
           ref={textRef}
           className="relative max-w-[56ch]"
           style={{
-            opacity: 1,
-            transform: "translate3d(0px, 0px, 0px)",
+            opacity: animated ? 0 : 1,
+            transform: animated ? "translate3d(0px, 18px, 0px)" : "translate3d(0px, 0px, 0px)",
+            willChange: animated ? "opacity, transform" : undefined,
           }}
         >
           <Quote
@@ -1301,11 +1310,11 @@ function CoverStage({
 
       if (tail) {
         // Map the puzzle onto the window in which the quote is actually pinned:
-        // the rail starts one viewport in and pins for (railHeight - vh) pixels.
-        // Assembling over 70% of that leaves a genuine hold on the finished frame.
+        // 0 → 1 assembles the image over the first half of the pin, 1 → 2 then
+        // drives the quote fade-in and the scroll text reveal on the finished frame.
         const pinStart = zoneTopRef.current + travel;
-        const assemble = Math.max(1, (overH + tailTravel - travel) * 0.7);
-        const q = Math.min(1, Math.max(0, (y - pinStart) / assemble));
+        const assemble = Math.max(1, (overH + tailTravel - travel) * 0.5);
+        const q = Math.min(2, Math.max(0, (y - pinStart) / assemble));
         setPuzzleProgress(q);
         const tw = tailRef.current;
         const next = q > 0.98;
