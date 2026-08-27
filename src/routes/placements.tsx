@@ -1470,6 +1470,9 @@ function Page() {
                     </div>
                     <div className="lg:col-span-7">
                       <PodcastVideoPlayer />
+                      <p className="mt-4 text-[11px] font-medium uppercase tracking-[0.18em] text-black/50">
+                        Episode 01 — The Placement Engine
+                      </p>
                     </div>
                   </div>
                 </div>
