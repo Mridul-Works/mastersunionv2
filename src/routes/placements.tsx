@@ -642,14 +642,14 @@ function HorizontalMetricsStrip() {
           <div className="relative z-10 flex flex-col items-center justify-center gap-4 px-5 py-6 md:px-7 md:py-7 lg:px-8 lg:py-8">
             {/* index */}
             <span
-              className="text-[10px] tabular-nums tracking-[0.28em] text-black/40"
+              className="text-[10px] tabular-nums tracking-[0.28em] text-black/40 transition-colors duration-500 !group-hover:text-black"
               style={{ fontFamily: MONO }}
             >
               {String(i + 1).padStart(2, "0")}
             </span>
 
             {/* number */}
-            <span className="whitespace-nowrap text-center text-[clamp(1.7rem,3.6vw,2.6rem)] font-medium leading-none tracking-[-0.04em] text-black">
+            <span className="whitespace-nowrap text-center text-[clamp(1.7rem,3.6vw,2.6rem)] font-medium leading-none tracking-[-0.04em] text-black transition-colors duration-500 !group-hover:text-black">
               {stat.value}
             </span>
 
@@ -659,12 +659,12 @@ function HorizontalMetricsStrip() {
             {/* label + description */}
             <div className="flex flex-col items-center gap-1.5 text-center">
               <span
-                className="whitespace-nowrap text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-black/80"
+                className="whitespace-nowrap text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-black/80 transition-colors duration-500 !group-hover:text-black"
                 style={{ fontFamily: MONO }}
               >
                 {stat.suffix}
               </span>
-              <p className="max-w-[26ch] text-center text-[13px] leading-snug text-black/55">
+              <p className="max-w-[26ch] text-center text-[13px] leading-snug text-black/55 transition-colors duration-500 !group-hover:text-black">
                 {stat.note}
               </p>
             </div>
