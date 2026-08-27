@@ -1398,7 +1398,25 @@ function Page() {
               className="relative min-h-[100svh] bg-[#0B1215]"
               style={{ marginTop: reduced ? 0 : "calc(-100svh - 1px)" }}
             >
-              <div className="page-x flex h-full min-h-[100svh] items-center py-6 md:py-8 lg:py-10">
+              {/* Blueprint grid — technical texture masked at top and bottom */}
+              <div
+                className="pointer-events-none absolute inset-x-0 top-0 z-0 h-[36%] blueprint-grid"
+                style={{
+                  maskImage: "linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)",
+                  WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)",
+                }}
+                aria-hidden="true"
+              />
+              <div
+                className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[36%] blueprint-grid"
+                style={{
+                  maskImage: "linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)",
+                  WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)",
+                }}
+                aria-hidden="true"
+              />
+
+              <div className="page-x relative z-10 flex h-full min-h-[100svh] items-center py-6 md:py-8 lg:py-10">
                 <div className="relative flex w-full flex-col gap-10 lg:gap-14">
                   <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
                     <PodcastTextBlock />
