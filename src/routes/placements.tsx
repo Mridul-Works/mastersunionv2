@@ -1072,10 +1072,11 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
             // +1px bleed removes sub-pixel seams; the extra sliver is off-piece background
             width: `${x1 - x0 + 1}px`,
             height: `${y1 - y0 + 1}px`,
-            backgroundImage: `url(${manojKohliBg.url})`,
-            backgroundSize: `${bw}px ${bh}px`,
-            backgroundPosition: `${-(x0 + offX)}px ${-(y0 + offY)}px`,
-            backgroundRepeat: "no-repeat",
+            // overlay baked per piece so it stays dark throughout the puzzle animation
+            backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.2) 100%), url(${manojKohliBg.url})`,
+            backgroundSize: `${w}px ${h}px, ${bw}px ${bh}px`,
+            backgroundPosition: `${-x0}px ${-y0}px, ${-(x0 + offX)}px ${-(y0 + offY)}px`,
+            backgroundRepeat: "no-repeat, no-repeat",
             transform: "translate3d(0px, 0px, 0px)",
             backfaceVisibility: "hidden",
             // promoted once for the whole travel instead of toggling the hint per frame
