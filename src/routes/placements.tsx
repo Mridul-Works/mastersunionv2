@@ -564,24 +564,11 @@ function PodcastTextBlock() {
         </p>
       </Reveal>
       <Reveal delay={260}>
-        <p className="mt-4 max-w-[48ch] text-[15px] leading-relaxed text-black/80">
-          Inside the <em className="font-serif-italic">placement engine</em> behind the next generation of business leaders.
-        </p>
-      </Reveal>
-      <Reveal delay={340}>
-        <p
-          className="mt-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-muted-foreground"
-          style={{ fontFamily: MONO }}
-        >
-          EP. 01 / PLACEMENTS &amp; CAREERS / 12 MIN LISTEN
-        </p>
-      </Reveal>
-      <Reveal delay={420}>
         <a
           href={`https://www.youtube.com/watch?v=${id}`}
           target="_blank"
           rel="noreferrer"
-          className="group mt-5 inline-flex items-center gap-2 border-b border-black/25 pb-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-black transition hover:border-black"
+          className="group mt-6 inline-flex items-center gap-2 border-b border-black/25 pb-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-black transition hover:border-black"
         >
           Watch on YouTube
           <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -596,55 +583,44 @@ function PodcastVideoPlayer() {
   const id = "uiNTwDixAts";
 
   return (
-    <div className="flex flex-col">
-      <ClipReveal>
-        <div className="relative aspect-video w-full overflow-hidden bg-black">
-          {playing ? (
-            <iframe
-              className="h-full w-full"
-              src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`}
-              title="How Masters' Union prepares students for top 1% placements"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
-              allowFullScreen
+    <ClipReveal>
+      <div className="relative aspect-video w-full overflow-hidden bg-black">
+        {playing ? (
+          <iframe
+            className="h-full w-full"
+            src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`}
+            title="How Masters' Union prepares students for top 1% placements"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
+            allowFullScreen
+          />
+        ) : (
+          <button
+            type="button"
+            onClick={() => setPlaying(true)}
+            aria-label="Play placements podcast"
+            className="group absolute inset-0 h-full w-full"
+          >
+            <img
+              src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
+              alt="Masters' Union placements podcast"
+              loading="lazy"
+              className="h-full w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-[1.03]"
             />
-          ) : (
-            <button
-              type="button"
-              onClick={() => setPlaying(true)}
-              aria-label="Play placements podcast"
-              className="group absolute inset-0 h-full w-full"
-            >
-              <img
-                src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
-                alt="Masters' Union placements podcast"
-                loading="lazy"
-                className="h-full w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-[1.03]"
-              />
-              <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-              <span className="absolute bottom-5 left-5 flex items-center gap-3">
-                <span className="grid size-11 place-items-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md transition group-hover:bg-white/25">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/90">
-                  Play podcast
-                </span>
+            <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+            <span className="absolute bottom-5 left-5 flex items-center gap-3">
+              <span className="grid size-11 place-items-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md transition group-hover:bg-white/25">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
               </span>
-            </button>
-          )}
-        </div>
-      </ClipReveal>
-      <a
-        href={`https://www.youtube.com/watch?v=${id}`}
-        target="_blank"
-        rel="noreferrer"
-        className="group mt-5 flex items-center justify-between border-t border-black/20 pt-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-black/70 transition hover:text-black"
-      >
-        <span>EP. 01 — PLACEMENT ENGINE — WATCH / LISTEN</span>
-        <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-      </a>
-    </div>
+              <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/90">
+                Play podcast
+              </span>
+            </span>
+          </button>
+        )}
+      </div>
+    </ClipReveal>
   );
 }
 
@@ -1482,7 +1458,7 @@ function Page() {
             >
               <div className="page-x flex h-full min-h-[100svh] items-center py-6 md:py-8 lg:py-10">
                 <div className="relative flex w-full flex-col gap-10 lg:gap-14">
-                  <div className="grid grid-cols-1 gap-5 lg:grid-cols-[5fr_8fr] lg:gap-7">
+                  <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
                     <PodcastTextBlock />
                     <PodcastVideoPlayer />
                   </div>
