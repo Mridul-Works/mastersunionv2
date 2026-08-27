@@ -128,7 +128,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <SmoothScroll />
+      {/* Native scroll (matches Program Layout UG v2.0) — no smooth-scroll hijack */}
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
       <MobileBottomBar />
