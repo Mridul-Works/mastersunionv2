@@ -564,11 +564,24 @@ function PodcastTextBlock() {
         </p>
       </Reveal>
       <Reveal delay={260}>
+        <p className="mt-4 max-w-[48ch] text-[15px] leading-relaxed text-black/80">
+          Inside the <em className="font-serif-italic">placement engine</em> behind the next generation of business leaders.
+        </p>
+      </Reveal>
+      <Reveal delay={340}>
+        <p
+          className="mt-5 text-[10px] font-semibold uppercase tracking-[0.24em] text-muted-foreground"
+          style={{ fontFamily: MONO }}
+        >
+          EP. 01 / PLACEMENTS &amp; CAREERS / 12 MIN LISTEN
+        </p>
+      </Reveal>
+      <Reveal delay={420}>
         <a
           href={`https://www.youtube.com/watch?v=${id}`}
           target="_blank"
           rel="noreferrer"
-          className="group mt-6 inline-flex items-center gap-2 border-b border-black/25 pb-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-black transition hover:border-black"
+          className="group mt-5 inline-flex items-center gap-2 border-b border-black/25 pb-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-black transition hover:border-black"
         >
           Watch on YouTube
           <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
