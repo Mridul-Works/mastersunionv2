@@ -1482,7 +1482,7 @@ function Page() {
             >
               <div className="page-x flex h-full min-h-[100svh] items-center py-6 md:py-8 lg:py-10">
                 <div className="relative flex w-full flex-col gap-10 lg:gap-14">
-                  <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
+                  <div className="grid grid-cols-1 gap-5 lg:grid-cols-[5fr_8fr] lg:gap-7">
                     <PodcastTextBlock />
                     <PodcastVideoPlayer />
                   </div>
