@@ -602,7 +602,7 @@ function PodcastVideoPlayer() {
 
   return (
     <ClipReveal>
-      <div className="group relative aspect-video w-full overflow-hidden bg-black transition-transform duration-700 ease-out hover:scale-[1.03]">
+      <div className="group relative aspect-video w-full overflow-hidden bg-black">
         {playing ? (
           <iframe
             className="h-full w-full"
