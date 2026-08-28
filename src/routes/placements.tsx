@@ -762,6 +762,15 @@ function PodcastChapters() {
 
   return (
     <div className="mt-5 border-t border-black/15 pt-4">
+      <div className="flex items-center justify-between">
+        <span
+          className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50"
+          style={{ fontFamily: MONO }}
+        >
+          What you&apos;ll hear
+        </span>
+      </div>
+
       <ul className="flex flex-col">
         {previewChapters.map((chapter) => (
           <ChapterRow chapter={chapter} key={chapter.seconds} />
@@ -782,14 +791,9 @@ function PodcastChapters() {
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="group mt-3 flex w-full items-center justify-between gap-3 border-t border-black/15 pt-3 text-left"
+        aria-label="Toggle chapter timeline"
+        className="group mt-3 flex w-full items-center justify-end gap-3 border-t border-black/15 pt-3 text-left"
       >
-        <span
-          className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50 transition-colors duration-300 group-hover:text-[var(--accent)]"
-          style={{ fontFamily: MONO }}
-        >
-          What you&apos;ll hear
-        </span>
         <ChevronDown
           aria-hidden
           className={`size-4 text-black/40 transition-transform duration-500 ease-in-out group-hover:text-[var(--accent)] ${open ? "rotate-180" : ""}`}
