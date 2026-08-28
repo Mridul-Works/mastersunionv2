@@ -673,6 +673,52 @@ function PodcastVideoPlayer() {
   );
 }
 
+function PodcastChapters() {
+  const id = "uiNTwDixAts";
+  return (
+    <Reveal delay={280}>
+      <div className="mt-6">
+        <p
+          className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50"
+          style={{ fontFamily: MONO }}
+        >
+          What you&apos;ll hear
+        </p>
+        <div className="mt-3 max-h-[clamp(260px,36vh,380px)] overflow-y-auto pr-1 [scrollbar-width:thin] [scrollbar-color:var(--accent)_transparent]">
+          <ul className="flex flex-col">
+            {PODCAST_CHAPTERS.map((chapter) => (
+              <li key={chapter.seconds}>
+                <a
+                  href={`https://www.youtube.com/watch?v=${id}&t=${chapter.seconds}s`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-center justify-between border-b border-black/15 py-3 transition-colors duration-300"
+                >
+                  <div className="flex items-baseline gap-4">
+                    <span
+                      className="text-[11px] tabular-nums tracking-[0.12em] text-black/40 transition-colors duration-300 group-hover:text-[var(--accent)]"
+                      style={{ fontFamily: MONO }}
+                    >
+                      {chapter.time}
+                    </span>
+                    <span className="text-[14px] leading-snug text-black/80 transition-colors duration-300 group-hover:text-[var(--accent)]">
+                      {chapter.title}
+                    </span>
+                  </div>
+                  <ArrowUpRight
+                    aria-hidden
+                    className="size-3.5 -translate-x-1 text-black/30 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:text-[var(--accent)] group-hover:opacity-100"
+                  />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </Reveal>
+  );
+}
+
 /** Editorial metric blocks for the Podcast and Proven Outcomes sections. */
 function HorizontalMetricsStrip() {
   return (
