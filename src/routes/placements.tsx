@@ -496,8 +496,8 @@ function CinematicHero() {
                   aria-hidden
                   className="absolute inset-0 z-0 origin-left scale-x-0 bg-accent transition-transform duration-500 ease-out group-hover:scale-x-100"
                 />
-                <span className="relative z-10 inline-flex items-center gap-2 !text-white transition-colors duration-500 group-hover:!text-black">
-                  <Download className="size-3.5 !text-white transition-all duration-500 group-hover:!text-black group-hover:translate-y-0.5" /> Placement report
+                <span className="relative z-10 inline-flex items-center gap-2 text-white transition-colors duration-500 group-hover:text-[#000000]">
+                  <Download className="size-3.5 text-white transition-all duration-500 group-hover:text-[#000000] group-hover:translate-y-0.5" /> Placement report
                 </span>
               </a>
               <a
@@ -509,8 +509,8 @@ function CinematicHero() {
                   aria-hidden
                   className="absolute inset-0 z-0 origin-left scale-x-0 bg-accent transition-transform duration-500 ease-out group-hover:scale-x-100"
                 />
-                <span className="relative z-10 inline-flex items-center gap-2 !text-white transition-colors duration-500 group-hover:!text-black">
-                  Our recruiters <ArrowUpRight className="size-3.5 !text-white transition-all duration-500 group-hover:!text-black group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                <span className="relative z-10 inline-flex items-center gap-2 text-white transition-colors duration-500 group-hover:text-[#000000]">
+                  Our recruiters <ArrowUpRight className="size-3.5 text-white transition-all duration-500 group-hover:text-[#000000] group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </span>
               </a>
             </div>
