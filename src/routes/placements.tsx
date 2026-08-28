@@ -634,7 +634,7 @@ function PodcastTextBlock() {
         </p>
       </Reveal>
       <Reveal delay={230}>
-        <div className="mt-5 max-w-[46ch] rounded-md border border-[var(--teal)] bg-[#0B1215] p-5">
+        <div className="mt-8 max-w-[46ch] rounded-md border border-[var(--teal)] bg-[#0B1215] p-5">
           <p className="text-[15px] leading-relaxed text-black/80">
             Inside the <em className="font-serif-italic">placement engine</em> behind the next
             generation of business leaders.
