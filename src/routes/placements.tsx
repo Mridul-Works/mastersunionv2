@@ -602,7 +602,7 @@ function PodcastVideoPlayer() {
 
   return (
     <ClipReveal>
-      <div className="relative aspect-video w-full overflow-hidden bg-black">
+      <div className="group relative aspect-video w-full overflow-hidden bg-black transition-transform duration-700 ease-out hover:scale-[1.03]">
         {playing ? (
           <iframe
             className="h-full w-full"
@@ -616,7 +616,7 @@ function PodcastVideoPlayer() {
             type="button"
             onClick={() => setPlaying(true)}
             aria-label="Play placements podcast"
-            className="group absolute inset-0 h-full w-full"
+            className="absolute inset-0 h-full w-full"
           >
             <img
               src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
