@@ -479,17 +479,17 @@ function CinematicHero() {
           </div>
 
           {/* left/middle: supporting copy + CTA directly under headline */}
-          <div ref={copyRef} className="mt-6 max-w-[600px] md:mt-9" style={{ willChange: "transform, opacity" }}>
+          <div ref={copyRef} className="mt-4 max-w-[600px] md:mt-5" style={{ willChange: "transform, opacity" }}>
             <p
-              className="text-2xl leading-snug text-white"
+              className="text-[16px] leading-relaxed text-white/65"
               style={step(700, 22)}
             >
               Benefit from an exceptional track record of our graduates&apos; success — audited, published, and repeated across five cohorts.
             </p>
-            <div className="mt-14 flex flex-wrap gap-3" style={step(860, 18)}>
+            <div className="mt-8 flex flex-wrap gap-3" style={step(860, 18)}>
               <a
                 href="#outcomes"
-                className="hero-cta group inline-flex items-center gap-2 bg-white px-6 py-3.5 text-[11px] uppercase tracking-[0.22em] text-black transition hover:opacity-85"
+                className="group inline-flex items-center gap-2 bg-white px-6 py-3.5 text-[11px] uppercase tracking-[0.22em] text-black transition hover:opacity-85"
                 style={{ fontFamily: MONO }}
               >
                 <Download className="size-3.5 transition-transform duration-500 group-hover:translate-y-0.5" /> Placement report

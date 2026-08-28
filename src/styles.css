@@ -968,19 +968,16 @@ body::-webkit-scrollbar {
   --teal: #4FBF9A;
 }
 
-/* Route-level obsidian treatment for the placements editorial page.
-   Use exact class-token selectors so opacity variants (e.g. bg-white/15,
-   text-black/55) keep their alpha, and exempt the hero CTA so its white
-   fill and black text remain intact against the dark hero image. */
+/* Route-level obsidian treatment for the placements editorial page. */
 .placements-obsidian section,
-.placements-obsidian .bg-white:not(.hero-cta),
-.placements-obsidian .bg-paper,
-.placements-obsidian .bg-background,
-.placements-obsidian .bg-secondary {
+.placements-obsidian [class*="bg-white"],
+.placements-obsidian [class*="bg-paper"],
+.placements-obsidian [class*="bg-background"],
+.placements-obsidian [class*="bg-secondary"] {
   background-color: #0b1215;
 }
 
-.placements-obsidian .text-black:not(.hero-cta) {
+.placements-obsidian [class*="text-black"] {
   color: rgb(242 241 238 / 0.72);
 }
 
@@ -989,6 +986,6 @@ body::-webkit-scrollbar {
   color: #000000;
 }
 
-.placements-obsidian .border-black {
+.placements-obsidian [class*="border-black"] {
   border-color: rgb(242 241 238 / 0.16);
 }
