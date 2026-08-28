@@ -730,7 +730,7 @@ function PodcastVideoPlayer({
 function PodcastChapters() {
   const { seek } = React.useContext(PodcastContext);
   const [open, setOpen] = useState(false);
-  const PREVIEW_COUNT = 3;
+  const PREVIEW_COUNT = 4;
   const previewChapters = PODCAST_CHAPTERS.slice(0, PREVIEW_COUNT);
   const extraChapters = PODCAST_CHAPTERS.slice(PREVIEW_COUNT);
 
