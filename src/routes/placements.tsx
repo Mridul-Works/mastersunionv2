@@ -607,6 +607,7 @@ function PodcastTextBlock() {
           </a>
         </div>
       </Reveal>
+      <PodcastChapters />
     </div>
   );
 }
