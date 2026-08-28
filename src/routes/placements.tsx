@@ -13,6 +13,8 @@ import {
   FileText,
   Mail,
   Quote,
+  ChevronDown,
+
 } from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
 import heroBg from "@/assets/placement-hero.webp.asset.json";
