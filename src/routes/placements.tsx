@@ -13,6 +13,8 @@ import {
   FileText,
   Mail,
   Quote,
+  ChevronDown,
+
 } from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
 import heroBg from "@/assets/placement-hero.webp.asset.json";
@@ -571,8 +573,49 @@ function StickyHead({ children }: { children: React.ReactNode }) {
   );
 }
 
+const PODCAST_ID = "uiNTwDixAts";
+
+type PodcastCtx = { seek: (seconds: number) => void };
+const PodcastContext = React.createContext<PodcastCtx>({ seek: () => {} });
+
+function PodcastSection() {
+  const [state, setState] = useState<{ playing: boolean; start: number; token: number }>({
+    playing: false,
+    start: 0,
+    token: 0,
+  });
+
+  const seek = React.useCallback((seconds: number) => {
+    setState((s) => ({ playing: true, start: seconds, token: s.token + 1 }));
+  }, []);
+
+  return (
+    <PodcastContext.Provider value={{ seek }}>
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-8">
+        <div className="lg:col-span-5">
+          <PodcastTextBlock />
+        </div>
+        <div className="lg:col-span-7">
+          <PodcastVideoPlayer
+            playing={state.playing}
+            start={state.start}
+            seekToken={state.token}
+            onPlay={() => setState((s) => ({ ...s, playing: true }))}
+          />
+          <div className="mt-4 flex flex-col gap-4">
+            <div className="h-px w-full bg-black/20" />
+            <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-black/50">
+              Episode — The story behind ₹33 lakh per LPA average placements — Watch / Listen
+            </p>
+          </div>
+        </div>
+      </div>
+    </PodcastContext.Provider>
+  );
+}
+
 function PodcastTextBlock() {
-  const id = "uiNTwDixAts";
+  const id = PODCAST_ID;
   return (
     <div className="flex flex-col justify-center">
       <Reveal>
@@ -605,24 +648,34 @@ function PodcastTextBlock() {
             Watch on YouTube
             <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
+          <PodcastChapters />
         </div>
       </Reveal>
-      <PodcastChapters />
     </div>
   );
 }
 
-function PodcastVideoPlayer() {
-  const [playing, setPlaying] = useState(false);
-  const id = "uiNTwDixAts";
+function PodcastVideoPlayer({
+  playing,
+  start,
+  seekToken,
+  onPlay,
+}: {
+  playing: boolean;
+  start: number;
+  seekToken: number;
+  onPlay: () => void;
+}) {
+  const id = PODCAST_ID;
 
   return (
     <ClipReveal>
       <div className="group relative aspect-video w-full overflow-hidden bg-black">
         {playing ? (
           <iframe
+            key={seekToken}
             className="h-full w-full"
-            src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0`}
+            src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0&start=${start}`}
             title="How Masters' Union prepares students for top 1% placements"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
             allowFullScreen
@@ -630,7 +683,7 @@ function PodcastVideoPlayer() {
         ) : (
           <button
             type="button"
-            onClick={() => setPlaying(true)}
+            onClick={onPlay}
             aria-label="Play placements podcast"
             className="absolute inset-0 h-full w-full"
           >
@@ -675,49 +728,61 @@ function PodcastVideoPlayer() {
 }
 
 function PodcastChapters() {
-  const id = "uiNTwDixAts";
+  const { seek } = React.useContext(PodcastContext);
+  const [open, setOpen] = useState(false);
+
   return (
-    <Reveal delay={280}>
-      <div className="mt-6">
-        <p
-          className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50"
+    <div className="mt-5 border-t border-black/15 pt-4">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        className="group flex w-full items-center justify-between gap-3 text-left"
+      >
+        <span
+          className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50 transition-colors duration-300 group-hover:text-[var(--accent)]"
           style={{ fontFamily: MONO }}
         >
           What you&apos;ll hear
-        </p>
-        <div className="mt-3 max-h-[clamp(260px,36vh,380px)] overflow-y-auto pr-1 [scrollbar-width:thin] [scrollbar-color:var(--accent)_transparent]">
-          <ul className="flex flex-col">
-            {PODCAST_CHAPTERS.map((chapter) => (
-              <li key={chapter.seconds}>
-                <a
-                  href={`https://www.youtube.com/watch?v=${id}&t=${chapter.seconds}s`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group flex items-center justify-between border-b border-black/15 py-3 transition-colors duration-300"
-                >
-                  <div className="flex items-baseline gap-4">
-                    <span
-                      className="text-[11px] tabular-nums tracking-[0.12em] text-black/40 transition-colors duration-300 group-hover:text-[var(--accent)]"
-                      style={{ fontFamily: MONO }}
-                    >
-                      {chapter.time}
-                    </span>
-                    <span className="text-[14px] leading-snug text-black/80 transition-colors duration-300 group-hover:text-[var(--accent)]">
-                      {chapter.title}
-                    </span>
-                  </div>
-                  <ArrowUpRight
-                    aria-hidden
-                    className="size-3.5 -translate-x-1 text-black/30 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:text-[var(--accent)] group-hover:opacity-100"
-                  />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </Reveal>
+        </span>
+        <ChevronDown
+          aria-hidden
+          className={`size-4 text-black/40 transition-transform duration-300 group-hover:text-[var(--accent)] ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+
+      {open && (
+        <ul className="mt-3 flex flex-col">
+          {PODCAST_CHAPTERS.map((chapter) => (
+            <li key={chapter.seconds}>
+              <button
+                type="button"
+                onClick={() => seek(chapter.seconds)}
+                className="group flex w-full items-center justify-between gap-3 border-b border-black/15 py-3 text-left transition-colors duration-300"
+              >
+                <span className="flex items-baseline gap-4">
+                  <span
+                    className="text-[11px] tabular-nums tracking-[0.12em] text-black/40 transition-colors duration-300 group-hover:text-[var(--accent)]"
+                    style={{ fontFamily: MONO }}
+                  >
+                    {chapter.time}
+                  </span>
+                  <span className="text-[14px] leading-snug text-black/80 transition-colors duration-300 group-hover:text-[var(--accent)]">
+                    {chapter.title}
+                  </span>
+                </span>
+                <ArrowUpRight
+                  aria-hidden
+                  className="size-3.5 shrink-0 -translate-x-1 text-black/30 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:text-[var(--accent)] group-hover:opacity-100"
+                />
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
+
 }
 
 /** Editorial metric blocks for the Podcast and Proven Outcomes sections. */
@@ -1554,20 +1619,8 @@ function Page() {
             >
               <div className="page-x flex h-full min-h-[100svh] items-center py-6 md:py-8 lg:py-10">
                 <div className="relative flex w-full flex-col gap-10 lg:gap-14">
-                  <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-8">
-                    <div className="lg:col-span-5">
-                      <PodcastTextBlock />
-                    </div>
-                    <div className="lg:col-span-7">
-                      <PodcastVideoPlayer />
-                      <div className="mt-4 flex flex-col gap-4">
-                        <div className="h-px w-full bg-black/20" />
-                        <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-black/50">
-                          Episode — The story behind ₹33 lakh per LPA average placements — Watch / Listen
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                  <PodcastSection />
+
                 </div>
               </div>
             </section>
