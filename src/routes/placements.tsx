@@ -486,17 +486,17 @@ function CinematicHero() {
             >
               Benefit from an exceptional track record of our graduates&apos; success — audited, published, and repeated across five cohorts.
             </p>
-            <div className="mt-14 flex flex-wrap gap-3" style={step(860, 18)}>
+            <div className="mt-8 flex flex-wrap gap-3 md:mt-14" style={step(860, 18)}>
               <a
                 href="#outcomes"
-                className="group inline-flex items-center gap-2 bg-white px-6 py-3.5 text-[11px] uppercase tracking-[0.22em] text-black transition hover:opacity-85"
+                className="group inline-flex items-center gap-2 bg-white px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-black transition hover:opacity-85"
                 style={{ fontFamily: MONO }}
               >
                 <Download className="size-3.5 transition-transform duration-500 group-hover:translate-y-0.5" /> Placement report
               </a>
               <a
                 href="#recruiters"
-                className="group inline-flex items-center gap-2 border border-white/35 px-6 py-3.5 text-[11px] uppercase tracking-[0.22em] text-white transition hover:border-white"
+                className="group inline-flex items-center gap-2 border border-white/35 px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-white transition hover:border-white"
                 style={{ fontFamily: MONO }}
               >
                 Our recruiters <ArrowUpRight className="size-3.5 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
