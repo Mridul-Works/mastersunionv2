@@ -282,6 +282,21 @@ const LEADERS = [
   { name: "Sunjay Kapur", role: "Chairman, Sona Comstar" },
 ];
 
+const PODCAST_CHAPTERS = [
+  { time: "00:00", title: "Trailer", seconds: 0 },
+  { time: "01:49", title: "Introduction", seconds: 109 },
+  { time: "03:40", title: "Student Placement Stories", seconds: 220 },
+  { time: "08:55", title: "Where Career Prep Starts", seconds: 535 },
+  { time: "17:16", title: "Starting Out: Framework & Resume Prep", seconds: 1036 },
+  { time: "23:08", title: "Career Team Structure", seconds: 1388 },
+  { time: "29:08", title: "LMP & the Placement War Room", seconds: 1748 },
+  { time: "33:06", title: "Job Negotiation Training", seconds: 1986 },
+  { time: "37:32", title: "AI-Led Career Consultation", seconds: 2252 },
+  { time: "40:00", title: "Student Practice & Mock Preparation", seconds: 2400 },
+  { time: "44:47", title: "Building a Standout CV", seconds: 2687 },
+  { time: "52:02", title: "Cracking Your Dream Job", seconds: 3122 },
+];
+
 
 /* -------------------------------- primitives ------------------------------ */
 
