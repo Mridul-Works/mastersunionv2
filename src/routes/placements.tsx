@@ -282,6 +282,21 @@ const LEADERS = [
   { name: "Sunjay Kapur", role: "Chairman, Sona Comstar" },
 ];
 
+const PODCAST_CHAPTERS = [
+  { time: "00:00", title: "Trailer", seconds: 0 },
+  { time: "01:49", title: "Introduction", seconds: 109 },
+  { time: "03:40", title: "Student Placement Stories", seconds: 220 },
+  { time: "08:55", title: "Where Career Prep Starts", seconds: 535 },
+  { time: "17:16", title: "Starting Out: Framework & Resume Prep", seconds: 1036 },
+  { time: "23:08", title: "Career Team Structure", seconds: 1388 },
+  { time: "29:08", title: "LMP & the Placement War Room", seconds: 1748 },
+  { time: "33:06", title: "Job Negotiation Training", seconds: 1986 },
+  { time: "37:32", title: "AI-Led Career Consultation", seconds: 2252 },
+  { time: "40:00", title: "Student Practice & Mock Preparation", seconds: 2400 },
+  { time: "44:47", title: "Building a Standout CV", seconds: 2687 },
+  { time: "52:02", title: "Cracking Your Dream Job", seconds: 3122 },
+];
+
 
 /* -------------------------------- primitives ------------------------------ */
 
@@ -592,6 +607,7 @@ function PodcastTextBlock() {
           </a>
         </div>
       </Reveal>
+      <PodcastChapters />
     </div>
   );
 }
@@ -655,6 +671,52 @@ function PodcastVideoPlayer() {
         )}
       </div>
     </ClipReveal>
+  );
+}
+
+function PodcastChapters() {
+  const id = "uiNTwDixAts";
+  return (
+    <Reveal delay={280}>
+      <div className="mt-6">
+        <p
+          className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50"
+          style={{ fontFamily: MONO }}
+        >
+          What you&apos;ll hear
+        </p>
+        <div className="mt-3 max-h-[clamp(260px,36vh,380px)] overflow-y-auto pr-1 [scrollbar-width:thin] [scrollbar-color:var(--accent)_transparent]">
+          <ul className="flex flex-col">
+            {PODCAST_CHAPTERS.map((chapter) => (
+              <li key={chapter.seconds}>
+                <a
+                  href={`https://www.youtube.com/watch?v=${id}&t=${chapter.seconds}s`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-center justify-between border-b border-black/15 py-3 transition-colors duration-300"
+                >
+                  <div className="flex items-baseline gap-4">
+                    <span
+                      className="text-[11px] tabular-nums tracking-[0.12em] text-black/40 transition-colors duration-300 group-hover:text-[var(--accent)]"
+                      style={{ fontFamily: MONO }}
+                    >
+                      {chapter.time}
+                    </span>
+                    <span className="text-[14px] leading-snug text-black/80 transition-colors duration-300 group-hover:text-[var(--accent)]">
+                      {chapter.title}
+                    </span>
+                  </div>
+                  <ArrowUpRight
+                    aria-hidden
+                    className="size-3.5 -translate-x-1 text-black/30 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:text-[var(--accent)] group-hover:opacity-100"
+                  />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </Reveal>
   );
 }
 
