@@ -287,7 +287,7 @@ const LEADERS = [
 
 function Eyebrow({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const base = className.includes("text-") ? "" : "text-muted-foreground";
-  const rule = className.includes("text-white") ? "bg-white/30" : "bg-border";
+  const rule = className.includes("text-white") ? "bg-[#FFFFFF]" : "bg-border";
   return (
     <p className={`eyebrow flex items-center gap-2.5 ${base} ${className}`}>
       <span aria-hidden className={`h-px w-6 ${rule}`} />
