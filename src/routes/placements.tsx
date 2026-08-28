@@ -458,7 +458,7 @@ function CinematicHero() {
 
           {/* top: careers eyebrow */}
           <div style={step(450, 16)}>
-            <Eyebrow className="text-white/75">Careers</Eyebrow>
+            <Eyebrow className="text-white">Careers</Eyebrow>
           </div>
 
           {/* oversized headline under the eyebrow */}
