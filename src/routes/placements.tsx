@@ -468,13 +468,13 @@ function CinematicHero() {
             style={{ willChange: "transform, opacity" }}
           >
             <h1
-              className="max-w-[16ch] text-[clamp(3.1rem,9.4vw,7.6rem)] font-medium leading-[1.0] tracking-[-0.035em] text-white"
+              className="max-w-[16ch] text-[clamp(3.1rem,9.4vw,7.6rem)] font-medium leading-[1.1] tracking-[-0.015em] text-white"
               style={{
                 ...step(980, 56),
                 textShadow: "0 1px 40px rgba(0,0,0,0.28)",
               }}
             >
-              Accelerate your career growth.
+              Accelerate your <em className="font-serif-italic">career growth.</em>
             </h1>
           </div>
 
