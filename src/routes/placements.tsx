@@ -1619,7 +1619,7 @@ function Page() {
               className="relative min-h-[100svh] bg-[#0B1215]"
               style={{ marginTop: reduced ? 0 : "calc(-100svh - 1px)" }}
             >
-              <div className="page-x flex h-full min-h-[100svh] items-center py-6 md:py-8 lg:py-10">
+              <div className="page-x flex h-full min-h-[100svh] items-center pt-8 pb-6 md:pt-10 md:pb-8 lg:pt-12 lg:pb-10">
                 <div className="relative flex w-full flex-col gap-10 lg:gap-14">
                   <PodcastSection />
 
