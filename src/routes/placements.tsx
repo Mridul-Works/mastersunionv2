@@ -1617,20 +1617,8 @@ function Page() {
             >
               <div className="page-x flex h-full min-h-[100svh] items-center py-6 md:py-8 lg:py-10">
                 <div className="relative flex w-full flex-col gap-10 lg:gap-14">
-                  <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-8">
-                    <div className="lg:col-span-5">
-                      <PodcastTextBlock />
-                    </div>
-                    <div className="lg:col-span-7">
-                      <PodcastVideoPlayer />
-                      <div className="mt-4 flex flex-col gap-4">
-                        <div className="h-px w-full bg-black/20" />
-                        <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-black/50">
-                          Episode — The story behind ₹33 lakh per LPA average placements — Watch / Listen
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                  <PodcastSection />
+
                 </div>
               </div>
             </section>
