@@ -747,12 +747,14 @@ function PodcastChapters() {
         </span>
         <ChevronDown
           aria-hidden
-          className={`size-4 text-black/40 transition-transform duration-300 group-hover:text-[var(--accent)] ${open ? "rotate-180" : ""}`}
+          className={`size-4 text-black/40 transition-transform duration-500 ease-in-out group-hover:text-[var(--accent)] ${open ? "rotate-180" : ""}`}
         />
       </button>
 
-      {open && (
-        <ul className="mt-3 flex flex-col">
+      <div
+        className={`grid transition-[grid-template-rows,opacity] duration-[600ms] ease-in-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+      >
+        <ul className="mt-3 flex flex-col overflow-hidden">
           {PODCAST_CHAPTERS.map((chapter) => (
             <li key={chapter.seconds}>
               <button
@@ -779,7 +781,7 @@ function PodcastChapters() {
             </li>
           ))}
         </ul>
-      )}
+      </div>
     </div>
   );
 
