@@ -626,9 +626,25 @@ function PodcastVideoPlayer() {
             />
             <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
             <span className="absolute bottom-5 left-5 flex items-center gap-3">
-              <span className="grid size-11 place-items-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md transition group-hover:bg-white/25">
+              <span className="relative grid size-11 place-items-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md transition group-hover:bg-white/25">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M8 5v14l11-7z" />
+                </svg>
+                <svg
+                  aria-hidden
+                  className="pointer-events-none absolute -inset-[3px] size-[50px] transition-[stroke-dashoffset] duration-[900ms] ease-out [stroke-dasharray:138.23] [stroke-dashoffset:138.23] group-hover:[stroke-dashoffset:0]"
+                  viewBox="0 0 50 50"
+                  style={{ transform: "rotate(-90deg)" }}
+                >
+                  <circle
+                    cx="25"
+                    cy="25"
+                    r="22"
+                    fill="none"
+                    stroke="var(--accent)"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
                 </svg>
               </span>
               <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/90">
