@@ -257,6 +257,15 @@ const RAW_CHAPTERS = [
     chips: ["Google", "Microsoft", "DLF Cyberpark", "Gurugram", "LEED Platinum"],
     cta: "Walk the campus", route: "/campus", bg: "#14233F", ink: "#E6DDC8", image: mu08,
   },
+  {
+    n: "11", tag: "Student Life",
+    headline: "A day at Masters' Union can rather be unusual.",
+    body: "Sleep is optional. Building is mandatory. A normal day here would be a quarter's worth of memories anywhere else.",
+    stat: "24/7", label: "Campus access for builders",
+    stats: [{ value: "24/7", label: "Campus access" }, { value: "Daily", label: "Mentor calls" }, { value: "On-site", label: "Studio, kitchen, fund" }],
+    chips: ["Studio", "Food Lab", "Investment Lab", "Cohort Slack"],
+    cta: "Live a day", route: "/life-at-mu", bg: "#14233F", ink: "#E6DDC8", image: mu07,
+  },
 ];
 
 export const CHAPTERS: Chapter[] = RAW_CHAPTERS.map((c) => withSections(c));

@@ -489,7 +489,7 @@ function CinematicHero() {
             <div className="mt-8 flex flex-wrap gap-3" style={step(860, 18)}>
               <a
                 href="#outcomes"
-                className="group inline-flex items-center gap-2 bg-white px-6 py-3.5 text-[11px] uppercase tracking-[0.22em] text-black transition hover:opacity-85"
+                className="hero-cta group inline-flex items-center gap-2 bg-white px-6 py-3.5 text-[11px] uppercase tracking-[0.22em] text-black transition hover:opacity-85"
                 style={{ fontFamily: MONO }}
               >
                 <Download className="size-3.5 transition-transform duration-500 group-hover:translate-y-0.5" /> Placement report
