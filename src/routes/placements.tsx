@@ -479,7 +479,7 @@ function CinematicHero() {
           </div>
 
           {/* left/middle: supporting copy + CTA directly under headline */}
-          <div ref={copyRef} className="mt-4 max-w-[600px] md:mt-5" style={{ willChange: "transform, opacity" }}>
+          <div ref={copyRef} className="mt-6 max-w-[600px] md:mt-9" style={{ willChange: "transform, opacity" }}>
             <p
               className="text-2xl font-bold leading-snug text-white"
               style={step(700, 22)}
