@@ -489,28 +489,28 @@ function CinematicHero() {
             <div className="mt-8 flex flex-wrap gap-3 md:mt-14" style={step(860, 18)}>
               <a
                 href="#outcomes"
-                className="group relative inline-flex items-center gap-2 overflow-hidden bg-white px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-black transition hover:opacity-100"
+                className="hero-sweep-button group relative inline-flex items-center gap-2 overflow-hidden bg-white px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-black transition hover:opacity-100"
                 style={{ fontFamily: MONO }}
               >
                 <span
                   aria-hidden
                   className="absolute inset-0 z-0 origin-left scale-x-0 bg-accent transition-transform duration-500 ease-out group-hover:scale-x-100"
                 />
-                <span className="relative z-10 inline-flex items-center gap-2 text-white transition-colors duration-500 group-hover:text-[#000000]">
-                  <Download className="size-3.5 text-white transition-all duration-500 group-hover:text-[#000000] group-hover:translate-y-0.5" /> Placement report
+                <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-500">
+                  <Download className="size-3.5 transition-all duration-500 group-hover:translate-y-0.5" /> Placement report
                 </span>
               </a>
               <a
                 href="#recruiters"
-                className="group relative inline-flex items-center gap-2 overflow-hidden border border-white/35 px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-white transition hover:border-white/35"
+                className="hero-sweep-button group relative inline-flex items-center gap-2 overflow-hidden border border-white/35 px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-white transition hover:border-white/35"
                 style={{ fontFamily: MONO }}
               >
                 <span
                   aria-hidden
                   className="absolute inset-0 z-0 origin-left scale-x-0 bg-accent transition-transform duration-500 ease-out group-hover:scale-x-100"
                 />
-                <span className="relative z-10 inline-flex items-center gap-2 text-white transition-colors duration-500 group-hover:text-[#000000]">
-                  Our recruiters <ArrowUpRight className="size-3.5 text-white transition-all duration-500 group-hover:text-[#000000] group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-500">
+                  Our recruiters <ArrowUpRight className="size-3.5 transition-all duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </span>
               </a>
             </div>
