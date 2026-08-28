@@ -730,14 +730,59 @@ function PodcastVideoPlayer({
 function PodcastChapters() {
   const { seek } = React.useContext(PodcastContext);
   const [open, setOpen] = useState(false);
+  const PREVIEW_COUNT = 4;
+  const previewChapters = PODCAST_CHAPTERS.slice(0, PREVIEW_COUNT);
+  const extraChapters = PODCAST_CHAPTERS.slice(PREVIEW_COUNT);
+
+  const ChapterRow = ({ chapter }: { chapter: (typeof PODCAST_CHAPTERS)[number] }) => (
+    <li key={chapter.seconds}>
+      <button
+        type="button"
+        onClick={() => seek(chapter.seconds)}
+        className="group flex w-full items-center justify-between gap-3 border-b border-black/15 py-3 text-left transition-colors duration-300"
+      >
+        <span className="flex items-baseline gap-4">
+          <span
+            className="text-[11px] tabular-nums tracking-[0.12em] text-black/40 transition-colors duration-300 group-hover:text-[var(--accent)]"
+            style={{ fontFamily: MONO }}
+          >
+            {chapter.time}
+          </span>
+          <span className="text-[14px] leading-snug text-black/80 transition-colors duration-300 group-hover:text-[var(--accent)]">
+            {chapter.title}
+          </span>
+        </span>
+        <ArrowUpRight
+          aria-hidden
+          className="size-3.5 shrink-0 -translate-x-1 text-black/30 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:text-[var(--accent)] group-hover:opacity-100"
+        />
+      </button>
+    </li>
+  );
 
   return (
     <div className="mt-5 border-t border-black/15 pt-4">
+      <ul className="flex flex-col">
+        {previewChapters.map((chapter) => (
+          <ChapterRow chapter={chapter} key={chapter.seconds} />
+        ))}
+      </ul>
+
+      <div
+        className={`grid transition-[grid-template-rows,opacity] duration-[600ms] ease-in-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+      >
+        <ul className="flex flex-col overflow-hidden">
+          {extraChapters.map((chapter) => (
+            <ChapterRow chapter={chapter} key={chapter.seconds} />
+          ))}
+        </ul>
+      </div>
+
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="group flex w-full items-center justify-between gap-3 text-left"
+        className="group mt-3 flex w-full items-center justify-between gap-3 border-t border-black/15 pt-3 text-left"
       >
         <span
           className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50 transition-colors duration-300 group-hover:text-[var(--accent)]"
@@ -750,41 +795,8 @@ function PodcastChapters() {
           className={`size-4 text-black/40 transition-transform duration-500 ease-in-out group-hover:text-[var(--accent)] ${open ? "rotate-180" : ""}`}
         />
       </button>
-
-      <div
-        className={`grid transition-[grid-template-rows,opacity] duration-[600ms] ease-in-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
-      >
-        <ul className="mt-3 flex flex-col overflow-hidden">
-          {PODCAST_CHAPTERS.map((chapter) => (
-            <li key={chapter.seconds}>
-              <button
-                type="button"
-                onClick={() => seek(chapter.seconds)}
-                className="group flex w-full items-center justify-between gap-3 border-b border-black/15 py-3 text-left transition-colors duration-300"
-              >
-                <span className="flex items-baseline gap-4">
-                  <span
-                    className="text-[11px] tabular-nums tracking-[0.12em] text-black/40 transition-colors duration-300 group-hover:text-[var(--accent)]"
-                    style={{ fontFamily: MONO }}
-                  >
-                    {chapter.time}
-                  </span>
-                  <span className="text-[14px] leading-snug text-black/80 transition-colors duration-300 group-hover:text-[var(--accent)]">
-                    {chapter.title}
-                  </span>
-                </span>
-                <ArrowUpRight
-                  aria-hidden
-                  className="size-3.5 shrink-0 -translate-x-1 text-black/30 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:text-[var(--accent)] group-hover:opacity-100"
-                />
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
     </div>
   );
-
 }
 
 /** Editorial metric blocks for the Podcast and Proven Outcomes sections. */
