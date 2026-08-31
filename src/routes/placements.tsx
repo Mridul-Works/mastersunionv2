@@ -1040,6 +1040,7 @@ function OutcomesAccordion() {
 
 
 function CohortReportCard({ year, href, cover }: { year: string; href: string; cover: string }) {
+  const is2022 = year.includes("2022");
   return (
     <a
       href={href}
@@ -1054,7 +1055,7 @@ function CohortReportCard({ year, href, cover }: { year: string; href: string; c
             src={cover}
             alt={`${year} placement report cover`}
             loading="lazy"
-            className="h-full w-full object-contain object-center"
+            className={`h-full w-full ${is2022 ? "object-contain object-center" : "object-cover object-center"}`}
           />
         </div>
 
