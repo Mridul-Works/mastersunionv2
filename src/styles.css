@@ -1951,7 +1951,7 @@ body::-webkit-scrollbar {
 
 .placement-stats-panel {
   padding: clamp(1.5rem, 3vw, 2.5rem);
-  background: var(--placements-inner-surface);
+  background: #0E1113;
 }
 
 
