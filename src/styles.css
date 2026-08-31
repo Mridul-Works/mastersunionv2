@@ -1318,10 +1318,26 @@ body::-webkit-scrollbar {
   overflow: hidden;
 }
 
-.placements-ug-v2 .placements-section-shell .salary-viz-panel,
-.placements-ug-v2 .placements-section-shell .metric-card,
-.placements-ug-v2 .placements-section-shell .placement-data-bento > * {
+.placements-ug-v2 .placements-section-shell .metric-card {
   border-radius: 10px;
+}
+
+/* Split-panel children must stay square inside their rounded parent frame.
+   Giving each child its own top radius creates pointed seams where panels meet. */
+.placements-ug-v2 .placements-section-shell .placement-data-bento > *,
+.placements-ug-v2 .placements-section-shell .salary-viz-panel,
+.placements-ug-v2 .placements-section-shell .placement-stats-panel {
+  border-radius: 0;
+  clip-path: none;
+}
+
+.placements-ug-v2 .placements-section-shell .placement-data-bento > *::before,
+.placements-ug-v2 .placements-section-shell .placement-data-bento > *::after,
+.placements-ug-v2 .placements-section-shell .salary-viz-panel::before,
+.placements-ug-v2 .placements-section-shell .salary-viz-panel::after,
+.placements-ug-v2 .placements-section-shell .placement-stats-panel::before,
+.placements-ug-v2 .placements-section-shell .placement-stats-panel::after {
+  clip-path: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
