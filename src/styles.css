@@ -1271,6 +1271,10 @@ body::-webkit-scrollbar {
   box-shadow: var(--shadow-soft);
 }
 
+.placements-ug-v2 .recruiter-marquee-panel {
+  background: #0E1113;
+}
+
 /* UG v2.0 section framing: every editorial band gets the same nested,
    softly curved surface language used by the recruiter logo area. */
 .placements-ug-v2 .placements-section-shell {
