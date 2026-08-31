@@ -212,7 +212,7 @@ function ReportModal({ onClose }: { onClose: () => void }) {
                   aria-label="Country code"
                   value={code}
                   onChange={(e) => setCode(e.target.value)}
-                  className={`${inputClass} w-[92px] shrink-0 cursor-pointer appearance-none bg-[#0B1215] text-center`}
+                  className={`${inputClass} w-[92px]! shrink-0 cursor-pointer appearance-none bg-[#0B1215] text-center`}
                 >
                   {COUNTRY_CODES.map((c) => (
                     <option key={c} value={c} className="bg-[#0B1215]">
