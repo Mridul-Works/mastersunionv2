@@ -1,23 +1,25 @@
-# Salary Distribution + Components Redesign
+# Apply the UG v2.0 Visual System to Careers & Placements
 
 ## Scope
-Redesign only the salary visualization band immediately below Placement Statistics. Keep every other page section, interaction, and dataset unchanged.
+Restyle the current Careers & Placements page using the visual language from “Program Layout - UG v2.0,” while preserving all existing page content, data, section order, media, interactions, and scroll behavior.
 
 ## Changes
-- Replace the current light salary band with one cohesive dark editorial section using the existing placements-page typography, white text, green accent, thin rules, and spacing system.
-- Use the exact supplied Salary Distribution data: ₹20–25L (21.02%), ₹25–30L (33.76%), ₹30–35L (17.20%), ₹35–40L (8.28%), and ₹40L+ (19.75%).
-- Build the distribution as a responsive five-column extruded chart with visible front/top/side depth, baseline and scale context, animated entry, and accessible labels. Hover/focus will lift and slightly scale the active column over 450ms, introduce a restrained green highlight, and emphasize its percentage.
-- Replace the existing salary-component data with the exact supplied values: Avg. Base — 81% — ₹27.16 Lakh; Avg. Variable — 13% — ₹4.34 Lakh; Avg. ESOPs — 6% — ₹2 Lakh.
-- Build the components graphic as an interactive SVG donut with a refined legend. Hovering or keyboard-focusing either a segment or its matching legend row will offset the segment outward and highlight the corresponding label/value with the existing green accent over 450ms.
-- Preserve reduced-motion behavior by showing final chart states without transforms or animated drawing when motion reduction is enabled.
+- Apply the reference typography hierarchy: light-weight display headings, restrained body copy, technical mono labels, and editorial italic accents.
+- Match the reference sizing rhythm across hero, section headings, descriptions, labels, and supporting text, with responsive scaling.
+- Replace current page-specific CTA treatments with the reference rounded accent and outlined pill styles, including their subtle lift and color transitions.
+- Adopt the reference bottle-green accent treatment for italic emphasis, active states, rules, chart highlights, and interactive feedback while retaining accessible contrast on the dark page.
+- Standardize page containers to the reference `1320px` content width and responsive `16px / 24px / 40px` gutters.
+- Restyle metric strips as full-width, rule-separated rails with restrained hover backgrounds and an accent line reveal, without changing any metric values.
+- Apply the reference hover language to applicable cards, tabs, rows, links, and category controls: subtle lift, border emphasis, and smooth 350–700ms easing.
+- Replace page divider treatments with the reference fine edge rule: neutral fades at the sides with a bottle-green center accent.
 
 ## Technical details
-- Keep the work scoped to `src/routes/placements.tsx` and narrowly prefixed styles in `src/styles.css`.
-- Use React state to synchronize chart segments with their labels, semantic buttons for interactive legend rows, and SVG titles/ARIA labels for chart accessibility.
-- Reuse the existing `Reveal`, `CountUp`, `useInView`, and `useReducedMotion` primitives; add no dependencies.
-- Keep responsive dimensions stable so labels and charts do not shift or overlap on mobile, tablet, or desktop.
+- Scope all overrides beneath the placements page root so other routes remain unchanged.
+- Add reusable placements-page utility classes in `src/styles.css` and make targeted class updates in `src/routes/placements.tsx`.
+- Reuse the current Inter, Fraunces, and JetBrains Mono font loading; no new dependencies or assets.
+- Preserve reduced-motion behavior, keyboard focus states, modal functionality, podcast controls, charts, tables, recruiter filters, and report downloads.
 
 ## Verification
-- Confirm all eight supplied values render exactly.
-- Verify bar and donut hover/focus states, reduced-motion behavior, and responsive layouts in the live preview.
-- Confirm the project build remains clean and no surrounding section changes visually or structurally.
+- Compare the live page at desktop and mobile widths against the reference system.
+- Verify CTA hover/focus, metric-strip hover, recruiter tabs, charts, tables, and section dividers.
+- Confirm no content or behavior changed and the build remains clean.
