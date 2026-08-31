@@ -83,6 +83,14 @@ const AUDIT_STATS = [
 
 const REPORT_YEARS = ["2021", "2022", "2023", "2024", "2025"];
 
+const PLACEMENT_REPORTS: Record<string, { pdf: string; cover: string }> = {
+  "2021": { pdf: report2021.url, cover: cover2021.url },
+  "2022": { pdf: report2022.url, cover: cover2022.url },
+  "2023": { pdf: report2023.url, cover: cover2023.url },
+  "2024": { pdf: report2024.url, cover: cover2024.url },
+  "2025": { pdf: report2025.url, cover: cover2025.url },
+};
+
 type CohortRow = {
   cohort: string;
   avg: number;
