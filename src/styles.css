@@ -1291,10 +1291,10 @@ body::-webkit-scrollbar {
   overflow: hidden;
   border: 1px solid color-mix(in oklab, white 14%, transparent);
   border-radius: 18px;
-  background: color-mix(in oklab, var(--card) 88%, transparent);
+  background: color-mix(in oklab, #0b1215 96%, transparent);
   backdrop-filter: blur(14px);
   box-shadow:
-    0 40px 120px -30px rgba(0, 0, 0, 0.8),
+    0 40px 120px -30px rgba(0, 0, 0, 0.9),
     var(--shadow-soft);
 }
 
@@ -1302,7 +1302,7 @@ body::-webkit-scrollbar {
   overflow: hidden;
   border: 1px solid color-mix(in oklab, white 10%, transparent);
   border-radius: 12px;
-  background: color-mix(in oklab, #0b1215 80%, transparent);
+  background: color-mix(in oklab, #101a1e 78%, transparent);
 }
 
 .placements-ug-v2 .report-modal-image {
