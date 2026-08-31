@@ -1847,10 +1847,6 @@ body::-webkit-scrollbar {
 }
 
 /* ===== Our Placement Statistics ===== */
-.placement-stats-section {
-  /* no top divider */
-}
-
 .placement-stats-header {
   display: grid;
   gap: 2rem;
