@@ -1985,6 +1985,7 @@ body::-webkit-scrollbar {
 .career-transition-cell {
   min-width: 0;
   padding-block: 1rem;
+  padding-left: clamp(0.625rem, 1.5vw, 1rem);
   font-size: clamp(0.82rem, 1.1vw, 0.96rem);
   line-height: 1.5;
 }
