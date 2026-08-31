@@ -1145,8 +1145,7 @@ body::-webkit-scrollbar {
   color: color-mix(in oklab, #ffffff 58%, transparent);
   font-size: 0.95rem;
   line-height: 1.7;
-  background: color-mix(in oklab, #0b1215 86%, transparent);
-  border-radius: 0.35rem;
+  background: radial-gradient(ellipse at center, color-mix(in oklab, #0b1215 92%, transparent) 0%, color-mix(in oklab, #0b1215 62%, transparent) 55%, transparent 82%);
   pointer-events: none;
 }
 
