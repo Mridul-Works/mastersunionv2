@@ -1104,52 +1104,54 @@ const PLACEMENT_STATS = {
 function OurPlacementStatistics() {
   return (
     <div className="mt-10" aria-labelledby="placement-stats-title">
-      <header className="placement-stats-header">
-        <div>
-          <span className="placement-stats-kicker" style={{ fontFamily: MONO }}>
-            Placement statistics / 2025
-          </span>
-          <h2 id="placement-stats-title" className="placement-stats-title">
-            Our placement <em className="font-serif-italic" style={{ color: "var(--teal)" }}>statistics.</em>
-          </h2>
-        </div>
-        <div className="placement-stats-headlines">
-          <div className="placement-stats-headline">
-            <span className="placement-stats-headline-value">
-              <CountUp value="30" />
+      <div className="placements-section-shell placements-section-shell-dark">
+        <header className="placement-stats-header">
+          <div>
+            <span className="placement-stats-kicker" style={{ fontFamily: MONO }}>
+              Placement statistics / 2025
             </span>
-            <span className="placement-stats-headline-label">Total International &amp; International Remote Offers</span>
+            <h2 id="placement-stats-title" className="placement-stats-title">
+              Our placement <em className="font-serif-italic" style={{ color: "var(--teal)" }}>statistics.</em>
+            </h2>
           </div>
-          <span className="placement-stats-headline-divider" aria-hidden="true" />
-          <div className="placement-stats-headline">
-            <span className="placement-stats-headline-value">
-              <CountUp value="₹64 LPA" />
-            </span>
-            <span className="placement-stats-headline-label">International Average CTC</span>
+          <div className="placement-stats-headlines">
+            <div className="placement-stats-headline">
+              <span className="placement-stats-headline-value">
+                <CountUp value="30" />
+              </span>
+              <span className="placement-stats-headline-label">Total International &amp; International Remote Offers</span>
+            </div>
+            <span className="placement-stats-headline-divider" aria-hidden="true" />
+            <div className="placement-stats-headline">
+              <span className="placement-stats-headline-value">
+                <CountUp value="₹64 LPA" />
+              </span>
+              <span className="placement-stats-headline-label">International Average CTC</span>
+            </div>
           </div>
+        </header>
+
+        <div className="placement-stats-grid">
+          <article className="placement-stats-panel" aria-labelledby="placement-stats-ylc-heading">
+            <div className="placement-stats-panel-heading">
+              <span style={{ fontFamily: MONO }}>01 / PGP TBM YLC</span>
+              <h3 id="placement-stats-ylc-heading">
+                PGP TBM <em className="font-serif-italic" style={{ color: "var(--teal)" }}>YLC</em>
+              </h3>
+            </div>
+            <MetricBarGroup metrics={PLACEMENT_STATS.ylc} max={50} />
+          </article>
+
+          <article className="placement-stats-panel" aria-labelledby="placement-stats-tbm-heading">
+            <div className="placement-stats-panel-heading">
+              <span style={{ fontFamily: MONO }}>02 / PGP TBM</span>
+              <h3 id="placement-stats-tbm-heading">
+                PGP TBM <em className="font-serif-italic" style={{ color: "var(--teal)" }}>cohort</em>
+              </h3>
+            </div>
+            <MetricBarGroup metrics={PLACEMENT_STATS.tbm} max={150} />
+          </article>
         </div>
-      </header>
-
-      <div className="placement-stats-grid">
-        <article className="placement-stats-panel" aria-labelledby="placement-stats-ylc-heading">
-          <div className="placement-stats-panel-heading">
-            <span style={{ fontFamily: MONO }}>01 / PGP TBM YLC</span>
-            <h3 id="placement-stats-ylc-heading">
-              PGP TBM <em className="font-serif-italic" style={{ color: "var(--teal)" }}>YLC</em>
-            </h3>
-          </div>
-          <MetricBarGroup metrics={PLACEMENT_STATS.ylc} max={50} />
-        </article>
-
-        <article className="placement-stats-panel" aria-labelledby="placement-stats-tbm-heading">
-          <div className="placement-stats-panel-heading">
-            <span style={{ fontFamily: MONO }}>02 / PGP TBM</span>
-            <h3 id="placement-stats-tbm-heading">
-              PGP TBM <em className="font-serif-italic" style={{ color: "var(--teal)" }}>cohort</em>
-            </h3>
-          </div>
-          <MetricBarGroup metrics={PLACEMENT_STATS.tbm} max={150} />
-        </article>
       </div>
     </div>
   );
