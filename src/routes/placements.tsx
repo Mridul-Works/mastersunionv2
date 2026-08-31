@@ -23,11 +23,11 @@ import report2022 from "@/assets/placement-reports/report-2022.pdf.asset.json";
 import report2023 from "@/assets/placement-reports/report-2023.pdf.asset.json";
 import report2024 from "@/assets/placement-reports/report-2024.pdf.asset.json";
 import report2025 from "@/assets/placement-reports/report-2025.pdf.asset.json";
-import cover2021 from "@/assets/placement-reports/cover-2021.jpg.asset.json";
-import cover2022 from "@/assets/placement-reports/cover-2022.jpg.asset.json";
-import cover2023 from "@/assets/placement-reports/cover-2023.jpg.asset.json";
-import cover2024 from "@/assets/placement-reports/cover-2024.jpg.asset.json";
-import cover2025 from "@/assets/placement-reports/cover-2025.jpg.asset.json";
+import cover2021 from "@/assets/placement-reports/cover-2021.png.asset.json";
+import cover2022 from "@/assets/placement-reports/cover-2022.png.asset.json";
+import cover2023 from "@/assets/placement-reports/cover-2023.png.asset.json";
+import cover2024 from "@/assets/placement-reports/cover-2024.png.asset.json";
+import cover2025 from "@/assets/placement-reports/cover-2025.png.asset.json";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
 import {
