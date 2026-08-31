@@ -41,10 +41,14 @@ const inputClass =
 const EXPERIENCE_OPTIONS = [
   "Fresher",
   "0 – 1 year",
-  "1 – 3 years",
-  "3 – 5 years",
-  "5 – 8 years",
-  "8+ years",
+  "1 – 2 years",
+  "2 – 3 years",
+  "3 – 4 years",
+  "4 – 5 years",
+  "5 – 7 years",
+  "7 – 10 years",
+  "10 – 15 years",
+  "15+ years",
 ];
 
 const COUNTRY_CODES = ["+91", "+1", "+44", "+61", "+65", "+971"];
@@ -124,7 +128,7 @@ function ExperienceSelect({
           id="rpr-exp-options"
           role="listbox"
           aria-label="Current Total Work Experience"
-          className="absolute inset-x-0 top-[calc(100%+4px)] z-30 overflow-hidden border border-white/15 bg-[#0B1215] shadow-[0_16px_40px_rgba(0,0,0,0.45)]"
+          className="absolute inset-x-0 top-[calc(100%+4px)] z-30 max-h-56 overflow-y-auto border border-white/15 bg-[#0B1215] shadow-[0_16px_40px_rgba(0,0,0,0.45)]"
         >
           {EXPERIENCE_OPTIONS.map((option, index) => {
             const selected = option === value;
