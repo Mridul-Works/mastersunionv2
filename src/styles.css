@@ -1921,10 +1921,10 @@ body::-webkit-scrollbar {
 
 .career-transition-list {
   min-width: 0;
-  overflow: visible;
-  border: none;
-  border-radius: 0;
-  background: transparent;
+  overflow: clip;
+  border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent);
+  border-radius: 12px;
+  background: var(--placements-inner-surface, #0E1113);
 }
 
 
