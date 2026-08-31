@@ -899,7 +899,7 @@ function SalaryDistributionChart() {
             type="button"
             variant="ghost"
             className="salary-viz-column group h-auto rounded-none p-0 hover:bg-transparent focus-visible:ring-accent"
-            style={{ "--salary-height": `${item.pct * 0.43}rem`, "--salary-delay": `${index * 85}ms` } as React.CSSProperties}
+            style={{ "--salary-pct": `${item.pct}`, "--salary-delay": `${index * 85}ms` } as React.CSSProperties}
             aria-label={`${item.range}: ${item.pct.toFixed(2)} percent`}
           >
             <span className="salary-viz-value"><CountUp value={`${item.pct.toFixed(2)}%`} delay={index * 85} /></span>
@@ -1007,7 +1007,9 @@ function SalaryVisualizations() {
               <h3 id="salary-distribution-heading">Salary <em>distribution</em></h3>
             </div>
             <SalaryDistributionChart />
-            <p className="salary-viz-distribution-intro">How compensation is distributed across the cohort, and how the average offer is constructed.</p>
+            <div className="salary-viz-distribution-intro">
+              <p>How compensation is distributed across the cohort, and how the average offer is constructed.</p>
+            </div>
           </article>
 
           <article className="salary-viz-panel salary-viz-panel-components" aria-labelledby="salary-components-heading">
