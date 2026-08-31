@@ -992,7 +992,7 @@ function SalaryComponentsDonut() {
 function SalaryVisualizations() {
   return (
     <section className="salary-viz-section section-edge bg-[#0B1215]" aria-labelledby="salary-viz-title">
-      <div className="page-x py-16 md:py-24">
+      <div className="page-x py-10 md:py-14">
         <div className="placements-section-shell placements-section-shell-dark">
         <header className="salary-viz-header">
           <div>
@@ -1104,7 +1104,7 @@ const PLACEMENT_STATS = {
 function OurPlacementStatistics() {
   return (
     <section className="placement-stats-section section-edge bg-[#0B1215]" aria-labelledby="placement-stats-title">
-      <div className="page-x pt-20 pb-16 md:pt-28 md:pb-24">
+      <div className="page-x py-10 md:py-14">
         <div className="placements-section-shell placements-section-shell-dark">
           <header className="placement-stats-header">
             <div>
