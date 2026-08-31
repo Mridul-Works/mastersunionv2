@@ -1014,6 +1014,7 @@ function SalaryVisualizations() {
               <span style={{ fontFamily: MONO }}>02 / COMPONENTS</span>
               <h3 id="salary-components-heading">Salary <em>components</em></h3>
             </div>
+            <p className="salary-viz-components-intro">How compensation is distributed across the cohort, and how the average offer is constructed.</p>
             <SalaryComponentsDonut />
           </article>
         </div>
