@@ -1326,9 +1326,6 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
             );
           })}
         </div>
-        <div className="mt-14 md:mt-16">
-          <EditorialRule />
-        </div>
       </div>
     </section>
   );
