@@ -1986,11 +1986,24 @@ body::-webkit-scrollbar {
   padding-left: clamp(0.625rem, 1.5vw, 1rem);
   font-size: clamp(0.82rem, 1.1vw, 0.96rem);
   line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .career-transition-row:not(.career-transition-row-launch) .career-transition-cell:last-child {
   color: color-mix(in oklab, #ffffff 90%, transparent);
   font-weight: 500;
+}
+
+/* Career Launches: center-align all three columns */
+.career-transition-columns-launch span {
+  text-align: center;
+}
+
+.career-transition-row-launch .career-transition-cell {
+  text-align: center;
+  align-items: center;
 }
 
 .career-transition-arrow {
