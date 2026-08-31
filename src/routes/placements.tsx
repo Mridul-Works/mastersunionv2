@@ -1722,7 +1722,7 @@ function EditorialPlacementData() {
           </div>
         </div>
 
-        <div className="mt-6 border border-white/15 bg-[#0A1712]">
+        <div className="mt-10 border border-white/15 bg-[#0A1712]">
           <div className="flex flex-col gap-4 border-b border-white/15 px-5 py-5 md:flex-row md:items-end md:justify-between md:px-8">
             <div>
               <div className="text-[10px] uppercase tracking-[0.22em] text-accent" style={{ fontFamily: MONO }}>Primary data view</div>
@@ -1756,7 +1756,7 @@ function EditorialPlacementData() {
           </div>
         </div>
 
-        <div className="mt-6 grid border border-white/15 bg-[#0A1712] lg:grid-cols-12">
+        <div className="mt-10 grid border border-white/15 bg-[#0A1712] lg:grid-cols-12">
           <div className="flex flex-col justify-between border-b border-white/15 p-7 md:p-8 lg:col-span-3 lg:border-r lg:border-b-0">
             <span className="text-[10px] uppercase tracking-[0.22em] text-accent" style={{ fontFamily: MONO }}>Distinct programme view</span>
             <div className="mt-14 lg:mt-0">
