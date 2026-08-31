@@ -1,4 +1,4 @@
-import { X, Download, ArrowUpRight } from "lucide-react";
+import { X, Download, ArrowUpRight, Check, ChevronDown } from "lucide-react";
 import {
   createContext,
   useCallback,
@@ -48,6 +48,109 @@ const EXPERIENCE_OPTIONS = [
 ];
 
 const COUNTRY_CODES = ["+91", "+1", "+44", "+61", "+65", "+971"];
+
+function ExperienceSelect({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: (value: string) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const selectedIndex = EXPERIENCE_OPTIONS.indexOf(value);
+    setActiveIndex(selectedIndex >= 0 ? selectedIndex : 0);
+    const closeOnOutsideClick = (event: MouseEvent) => {
+      if (!rootRef.current?.contains(event.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", closeOnOutsideClick);
+    return () => document.removeEventListener("mousedown", closeOnOutsideClick);
+  }, [open, value]);
+
+  const choose = (option: string) => {
+    onChange(option);
+    setOpen(false);
+  };
+
+  const onKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      if (!open) {
+        setOpen(true);
+        return;
+      }
+      const direction = event.key === "ArrowDown" ? 1 : -1;
+      setActiveIndex((current) =>
+        (current + direction + EXPERIENCE_OPTIONS.length) % EXPERIENCE_OPTIONS.length,
+      );
+    } else if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      if (open) choose(EXPERIENCE_OPTIONS[activeIndex] ?? EXPERIENCE_OPTIONS[0]);
+      else setOpen(true);
+    } else if (event.key === "Escape") {
+      event.preventDefault();
+      setOpen(false);
+    }
+  };
+
+  return (
+    <div ref={rootRef} className="relative">
+      <button
+        id="rpr-exp"
+        type="button"
+        role="combobox"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-controls="rpr-exp-options"
+        aria-activedescendant={open ? `rpr-exp-${activeIndex}` : undefined}
+        onClick={() => setOpen((current) => !current)}
+        onKeyDown={onKeyDown}
+        className={`${inputClass} flex cursor-pointer items-center justify-between bg-[#0B1215] pr-4 text-left ${
+          value ? "text-white" : "text-white/30"
+        }`}
+      >
+        <span>{value || "Select your experience"}</span>
+        <ChevronDown
+          className={`size-3.5 shrink-0 text-white/40 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+
+      {open && (
+        <div
+          id="rpr-exp-options"
+          role="listbox"
+          aria-label="Current Total Work Experience"
+          className="absolute inset-x-0 top-[calc(100%+4px)] z-30 overflow-hidden border border-white/15 bg-[#0B1215] shadow-[0_16px_40px_rgba(0,0,0,0.45)]"
+        >
+          {EXPERIENCE_OPTIONS.map((option, index) => {
+            const selected = option === value;
+            return (
+              <button
+                id={`rpr-exp-${index}`}
+                key={option}
+                type="button"
+                role="option"
+                aria-selected={selected}
+                onMouseEnter={() => setActiveIndex(index)}
+                onClick={() => choose(option)}
+                className={`flex w-full items-center justify-between px-4 py-2.5 text-left text-[14px] transition-colors duration-200 hover:bg-accent hover:text-black focus:bg-accent focus:text-black focus:outline-none ${
+                  selected || activeIndex === index ? "bg-accent text-black" : "bg-[#0B1215] text-white"
+                }`}
+              >
+                <span>{option}</span>
+                {selected && <Check className="size-3.5" aria-hidden />}
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
 
 /* -------------------------------- modal --------------------------------- */
 
@@ -236,26 +339,7 @@ function ReportModal({ onClose }: { onClose: () => void }) {
 
             <div>
               <FieldLabel htmlFor="rpr-exp">Current Total Work Experience*</FieldLabel>
-              <div className="relative">
-                <select
-                  id="rpr-exp"
-                  value={experience}
-                  onChange={(e) => setExperience(e.target.value)}
-                  className={`${inputClass} accent-select cursor-pointer appearance-none bg-[#0B1215] pr-10 ${
-                    experience ? "text-white" : "text-white/30"
-                  }`}
-                >
-                  <option value="" disabled className="bg-[#0B1215]">
-                    Select your experience
-                  </option>
-                  {EXPERIENCE_OPTIONS.map((o) => (
-                    <option key={o} value={o} className="bg-[#0B1215] text-white">
-                      {o}
-                    </option>
-                  ))}
-                </select>
-                <ArrowUpRight className="pointer-events-none absolute right-4 top-1/2 size-3.5 -translate-y-1/2 rotate-135 text-white/40" />
-              </div>
+              <ExperienceSelect value={experience} onChange={setExperience} />
             </div>
 
             {error && (
