@@ -1440,7 +1440,7 @@ function EditorialPlacementData() {
                 {TBM_TABLE.map((row, rowIndex) => (
                   <tr key={row.cohort} className="placement-ledger-row border-t border-white/12">
                     {tbmColumns.map((column, columnIndex) => (
-                      <td key={column.key} className={`placement-data-number px-5 py-5 tabular-nums text-white md:px-8 ${columnIndex === 0 ? "text-[11px] font-medium tracking-[0.16em]" : "text-[0.98rem]"}`} style={{ transitionDelay: `${rowIndex * 55 + columnIndex * 22}ms`, fontFamily: columnIndex === 0 ? MONO : undefined }}>
+                      <td key={column.key} className={`placement-data-number px-5 py-5 tabular-nums md:px-8 ${columnIndex === 0 ? "text-[11px] font-medium tracking-[0.16em]" : "text-[0.98rem]"}`} style={{ transitionDelay: `${rowIndex * 55 + columnIndex * 22}ms`, fontFamily: columnIndex === 0 ? MONO : undefined }}>
                         {columnIndex === 0 ? row[column.key] : <CountUp value={row[column.key]} delay={rowIndex * 65 + columnIndex * 30} />}
                       </td>
                     ))}
@@ -1472,7 +1472,7 @@ function EditorialPlacementData() {
                 {YLC_TABLE.map((row, rowIndex) => (
                   <tr key={row.cohort} className="placement-ledger-row border-t border-white/12">
                     {ylcColumns.map((column, columnIndex) => (
-                      <td key={column.key} className={`placement-data-number px-5 py-4 tabular-nums text-white md:px-8 ${columnIndex === 0 ? "text-[11px] font-medium tracking-[0.16em]" : "text-[0.98rem]"}`} style={{ transitionDelay: `${320 + rowIndex * 55 + columnIndex * 22}ms`, fontFamily: columnIndex === 0 ? MONO : undefined }}>
+                      <td key={column.key} className={`placement-data-number px-5 py-4 tabular-nums md:px-8 ${columnIndex === 0 ? "text-[11px] font-medium tracking-[0.16em]" : "text-[0.98rem]"}`} style={{ transitionDelay: `${320 + rowIndex * 55 + columnIndex * 22}ms`, fontFamily: columnIndex === 0 ? MONO : undefined }}>
                         {columnIndex === 0 ? row[column.key] : <CountUp value={row[column.key]} delay={rowIndex * 65 + columnIndex * 30} />}
                       </td>
                     ))}
