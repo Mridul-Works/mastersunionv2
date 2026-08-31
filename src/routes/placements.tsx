@@ -1192,7 +1192,15 @@ function OutcomesAccordion() {
           </h2>
           <p className="mt-4 max-w-[50ch] text-[16px] leading-relaxed text-black/65">
             Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and follow
-            the IPRS Revision 2.2 framework for transparent, consistent compensation data.
+            the IPRS Revision 2.2 framework for transparent, consistent compensation data.{" "}
+            <a
+              href="https://www01.iima.ac.in/iprs/about-iprs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-0.5 font-medium text-black/70 underline underline-offset-2 transition-colors hover:text-black"
+            >
+              Know more <ArrowUpRight className="inline-block size-3.5" strokeWidth={2} />
+            </a>
           </p>
         </div>
 
