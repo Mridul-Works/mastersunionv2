@@ -2201,6 +2201,9 @@ body::-webkit-scrollbar {
 }
 
 @media (max-width: 560px) {
+  .placement-stats-panel {
+    padding-inline: clamp(0.75rem, 4vw, 1.25rem);
+  }
   .placement-stats-bars {
     height: 17.75rem;
     padding-left: 1.25rem;
