@@ -1946,9 +1946,14 @@ body::-webkit-scrollbar {
   letter-spacing: 0.16em;
 }
 
+.career-transition-columns:not(.career-transition-columns-launch) span {
+  text-align: center;
+}
+
 .career-transition-columns:not(.career-transition-columns-launch) span:last-child {
   grid-column: 3;
 }
+
 
 .career-transition-row {
   position: relative;
