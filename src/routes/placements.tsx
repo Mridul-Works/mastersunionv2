@@ -620,46 +620,76 @@ function StickyHead({ children }: { children: React.ReactNode }) {
   );
 }
 
-function CareerTransitionRow({ row, columns }: { row: string[]; columns: string[] }) {
-  const ref = React.useRef<HTMLDivElement | null>(null);
-  const [active, setActive] = React.useState(false);
+function CareerTransitionList({ transition }: { transition: (typeof TRANSITIONS)[number] }) {
+  const listRef = React.useRef<HTMLDivElement | null>(null);
+  const [scrollKey, setScrollKey] = React.useState<string | null>(null);
+  const [hoverKey, setHoverKey] = React.useState<string | null>(null);
+  const activeKey = hoverKey ?? scrollKey;
+  const isLaunch = transition.columns.length === 3;
 
   React.useEffect(() => {
-    const node = ref.current;
-    if (!node || typeof IntersectionObserver === "undefined") return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setActive(entry?.isIntersecting ?? false),
-      { rootMargin: "-36% 0px -42% 0px", threshold: 0 },
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
+    const compute = () => {
+      const list = listRef.current;
+      if (!list) return;
+      const focus = window.innerHeight * 0.45;
+      let bestKey: string | null = null;
+      let bestDist = Infinity;
+      list.querySelectorAll<HTMLElement>("[data-row-key]").forEach((node) => {
+        const rect = node.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const dist = Math.abs(center - focus);
+        if (rect.bottom > 0 && rect.top < window.innerHeight && dist < bestDist) {
+          bestDist = dist;
+          bestKey = node.dataset.rowKey ?? null;
+        }
+      });
+      setScrollKey(bestKey);
+    };
+    compute();
+    window.addEventListener("scroll", compute, { passive: true });
+    window.addEventListener("resize", compute);
+    return () => {
+      window.removeEventListener("scroll", compute);
+      window.removeEventListener("resize", compute);
+    };
   }, []);
 
-  const isLaunch = columns.length === 3;
-
   return (
-    <div
-      ref={ref}
-      className={`career-transition-row group ${isLaunch ? "career-transition-row-launch" : ""}`}
-      data-active={active ? "true" : "false"}
-    >
-      {row.map((value, index) => (
-        <React.Fragment key={`${value}-${index}`}>
-          <div className="career-transition-cell">
-            <span className="career-transition-mobile-label">{columns[index]}</span>
-            <span>{value}</span>
+    <div className="career-transition-list" ref={listRef} onMouseLeave={() => setHoverKey(null)}>
+      <div className={`career-transition-columns ${isLaunch ? "career-transition-columns-launch" : ""}`}>
+        {transition.columns.map((column) => <span key={column}>{column}</span>)}
+      </div>
+      {transition.rows.map((row) => {
+        const key = row.join("-");
+        return (
+          <div
+            key={key}
+            data-row-key={key}
+            className={`career-transition-row group ${isLaunch ? "career-transition-row-launch" : ""}`}
+            data-active={activeKey === key ? "true" : "false"}
+            onMouseEnter={() => setHoverKey(key)}
+          >
+            {row.map((value, index) => (
+              <React.Fragment key={`${value}-${index}`}>
+                <div className="career-transition-cell">
+                  <span className="career-transition-mobile-label">{transition.columns[index]}</span>
+                  <span>{value}</span>
+                </div>
+                {!isLaunch && index === 0 ? (
+                  <div className="career-transition-arrow" aria-hidden="true">
+                    <span />
+                    <ArrowUpRight className="size-4 rotate-45" />
+                  </div>
+                ) : null}
+              </React.Fragment>
+            ))}
           </div>
-          {!isLaunch && index === 0 ? (
-            <div className="career-transition-arrow" aria-hidden="true">
-              <span />
-              <ArrowUpRight className="size-4 rotate-45" />
-            </div>
-          ) : null}
-        </React.Fragment>
-      ))}
+        );
+      })}
     </div>
   );
 }
+
 
 function CareerTransitionsSection() {
   return (
