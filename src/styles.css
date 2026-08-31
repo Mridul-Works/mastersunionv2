@@ -1241,6 +1241,10 @@ body::-webkit-scrollbar {
   color: var(--accent-foreground);
 }
 
+.placements-ug-v2 .recruiter-category-button:hover > span {
+  color: #000000;
+}
+
 /* UG v2.0 nested recruiter surfaces: one curved outer container with
    individually framed marks that retain their optical footprint. */
 .placements-ug-v2 .recruiter-logo-panel,
