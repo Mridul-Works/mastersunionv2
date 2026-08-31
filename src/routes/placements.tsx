@@ -104,27 +104,28 @@ const PLACEMENT_REPORTS: Record<string, { pdf: string; cover: string }> = {
 
 type CohortRow = {
   cohort: string;
-  avg: number;
-  median: number;
-  highest: number;
-  top25: number;
-  bottom25: number;
-  mid80: number;
-  highestLabel: string;
+  avg: string;
+  median: string;
+  highest: string;
+  top25: string;
+  bottom25: string;
+  mid80: string;
 };
 
 const TBM_TABLE: CohortRow[] = [
-  { cohort: "'21", avg: 29.12, median: 29.5, highest: 45, top25: 41.14, bottom25: 19.38, mid80: 28.76, highestLabel: "₹45 L" },
-  { cohort: "'22", avg: 33.1, median: 30.92, highest: 64.15, top25: 44.52, bottom25: 20.02, mid80: 33.73, highestLabel: "₹64.15 L" },
-  { cohort: "'23", avg: 34.07, median: 32.19, highest: 57.08, top25: 44.67, bottom25: 22.35, mid80: 34.09, highestLabel: "₹57.08 L" },
-  { cohort: "'24", avg: 28.52, median: 27.77, highest: 61.8, top25: 43.79, bottom25: 19.3, mid80: 27.05, highestLabel: "₹61.80 L" },
-  { cohort: "'25", avg: 33.39, median: 27.79, highest: 128, top25: 54.8, bottom25: 22.75, mid80: 29.2, highestLabel: "₹1.28 Cr" },
+  { cohort: "2025", avg: "₹33.39 L", median: "₹27.79 L", highest: "₹1.28 Cr", top25: "₹54.80 L", bottom25: "₹22.75 L", mid80: "₹29.20 L" },
+  { cohort: "2024", avg: "₹28.52 L", median: "₹27.77 L", highest: "₹61.80 L", top25: "₹43.79 L", bottom25: "₹19.30 L", mid80: "₹27.05 L" },
+  { cohort: "2023", avg: "₹34.07 L", median: "₹32.19 L", highest: "₹57.08 L", top25: "₹44.67 L", bottom25: "₹22.35 L", mid80: "₹34.09 L" },
+  { cohort: "2022", avg: "₹33.10 L", median: "₹30.92 L", highest: "₹64.15 L", top25: "₹44.52 L", bottom25: "₹20.02 L", mid80: "₹33.73 L" },
+  { cohort: "2021", avg: "₹29.12 L", median: "₹29.50 L", highest: "₹45 L", top25: "₹41.14 L", bottom25: "₹19.38 L", mid80: "₹28.76 L" },
 ];
 
-const YLC_SERIES = [
-  { cohort: "Co'21", value: 23.57 },
-  { cohort: "Co'22", value: 27.17 },
-  { cohort: "Co'23", value: 27.76 },
+const YLC_TABLE = [
+  { cohort: "2025", avg: "₹28.24 L", median: "₹27.43 L", highest: "₹46.22 L" },
+  { cohort: "2024", avg: "₹23.59 L", median: "₹22.69 L", highest: "₹36 L" },
+  { cohort: "2023", avg: "₹27.76 L", median: "₹26 L", highest: "₹38 L" },
+  { cohort: "2022", avg: "₹27.17 L", median: "₹25 L", highest: "₹42 L" },
+  { cohort: "2021", avg: "₹23.57 L", median: "₹24 L", highest: "₹30 L" },
 ];
 
 const TBM_SERIES = [
@@ -1635,7 +1636,6 @@ function CoverStage({
 
 function Page() {
   const reduced = useReducedMotion();
-  const maxCtc = 55;
   const [recruiterTab, setRecruiterTab] = useState(RECRUITER_GROUPS[0].category);
   const active = RECRUITER_GROUPS.find((g) => g.category === recruiterTab)!;
   return (
@@ -1683,94 +1683,10 @@ function Page() {
 
 
 
-      {/* COHORT CHARTS */}
-      <Band id="cohorts" tone="white">
-        <Reveal>
-          <Eyebrow>Cohort average CTC</Eyebrow>
-        </Reveal>
-        <Reveal delay={120}>
-          <h2 className="mt-6 max-w-[30ch] text-[clamp(1.8rem,3.6vw,3rem)] font-medium leading-[1.05] tracking-[-0.015em]">
-            ₹29.12L, ₹33.10L and ₹34.07L — cohort averages that <em className="font-serif-italic">surpassed top B-schools.</em>
-          </h2>
-        </Reveal>
-        <div className="mt-14 grid grid-cols-1 gap-16 lg:grid-cols-2">
-          <div>
-            <Reveal y={14}>
-              <div className="flex items-baseline justify-between border-b border-black/10 pb-4">
-                <div className="text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>PGP TBM — average CTC</div>
-                <div className="text-[11px] text-black/45" style={{ fontFamily: MONO }}>₹ lakh</div>
-              </div>
-            </Reveal>
-            <div className="mt-10"><BarChart data={TBM_SERIES} max={38} /></div>
-          </div>
-          <div>
-            <Reveal y={14} delay={100}>
-              <div className="flex items-baseline justify-between border-b border-black/10 pb-4">
-                <div className="text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>PGP TBM YLC — average CTC</div>
-                <div className="text-[11px] text-black/45" style={{ fontFamily: MONO }}>₹ lakh</div>
-              </div>
-            </Reveal>
-            <div className="mt-10"><BarChart data={YLC_SERIES} max={38} /></div>
-          </div>
-        </div>
-        <Reveal delay={160}>
-          <p className="mt-12 max-w-[70ch] text-[0.95rem] leading-[1.7] text-black/60">
-            Reports available for Cohorts 2021–2024, verified and audited by Brickworks Analytics, auditor for IIM Ahmedabad&apos;s placement report.
-          </p>
-        </Reveal>
-      </Band>
+      {/* COHORT AVERAGES + PLACEMENT STATISTICS */}
+      <EditorialPlacementData />
 
-      {/* DISTRIBUTION TABLE */}
       <Band tone="paper">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-          <StickyHead>
-            <Reveal>
-              <Eyebrow>Placement statistics — PGP TBM</Eyebrow>
-            </Reveal>
-            <Reveal delay={120}>
-              <h2 className="mt-6 max-w-[30ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-                The full distribution, <em className="font-serif-italic">not just the headline number.</em>
-              </h2>
-            </Reveal>
-            <Reveal delay={240}>
-              <div className="mt-8 flex flex-col gap-3 text-[10px] uppercase tracking-[0.18em] text-black/55" style={{ fontFamily: MONO }}>
-                <span className="inline-flex items-center gap-2"><span className="h-2 w-6 bg-black/20" /> Bottom 25% → Top 25%</span>
-                <span className="inline-flex items-center gap-2"><span className="h-4 w-[2px] bg-black" /> Average</span>
-                <span className="inline-flex items-center gap-2"><span className="h-4 w-[2px] bg-black/40" /> Median</span>
-              </div>
-            </Reveal>
-          </StickyHead>
-
-          <div className="lg:col-span-8">
-            <Rule />
-            {TBM_TABLE.map((r, i) => (
-              <div key={r.cohort}>
-                <Reveal
-                  delay={i * 90}
-                  className="group grid grid-cols-1 gap-5 py-7 transition-colors duration-500 hover:bg-black/[0.02] md:grid-cols-12 md:items-center md:gap-6"
-                >
-                  <div className="text-[11px] uppercase tracking-[0.22em] text-black/60 md:col-span-1" style={{ fontFamily: MONO }}>Co{r.cohort}</div>
-                  <div className="md:col-span-6"><RangeBar row={r} max={maxCtc} delay={i * 90} /></div>
-                  <div className="grid grid-cols-3 gap-4 md:col-span-5">
-                    <div>
-                      <div className="text-[1.05rem] tracking-[-0.02em]"><CountUp value={`₹${r.avg}L`} delay={i * 90} /></div>
-                      <div className="text-[9px] uppercase tracking-[0.18em] text-black/50" style={{ fontFamily: MONO }}>Average</div>
-                    </div>
-                    <div>
-                      <div className="text-[1.05rem] tracking-[-0.02em]"><CountUp value={`₹${r.median}L`} delay={i * 90 + 80} /></div>
-                      <div className="text-[9px] uppercase tracking-[0.18em] text-black/50" style={{ fontFamily: MONO }}>Median</div>
-                    </div>
-                    <div>
-                      <div className="text-[1.05rem] tracking-[-0.02em]"><CountUp value={r.highestLabel} delay={i * 90 + 160} /></div>
-                      <div className="text-[9px] uppercase tracking-[0.18em] text-black/50" style={{ fontFamily: MONO }}>Highest</div>
-                    </div>
-                  </div>
-                </Reveal>
-                <Rule delay={i * 90 + 60} />
-              </div>
-            ))}
-          </div>
-        </div>
 
         <div className="mt-20 grid grid-cols-1 gap-14 border-t border-black/10 pt-14 lg:grid-cols-2">
           <div>
