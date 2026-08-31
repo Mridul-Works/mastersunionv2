@@ -1928,6 +1928,7 @@ body::-webkit-scrollbar {
   grid-template-columns: minmax(0, 1fr) minmax(4.5rem, 0.42fr) minmax(0, 1fr);
   align-items: center;
   gap: clamp(0.75rem, 1.8vw, 1.5rem);
+  padding-inline: clamp(0.75rem, 1.8vw, 1.25rem);
 }
 
 .career-transition-columns-launch,
