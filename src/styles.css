@@ -1080,6 +1080,16 @@ body::-webkit-scrollbar {
   color: #ffffff;
 }
 
+.placements-obsidian .hero-sweep-button.quote-readmore-button .hero-sweep-button-content,
+.placements-obsidian .hero-sweep-button.quote-readmore-button .hero-sweep-button-content svg {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.placements-obsidian .hero-sweep-button.quote-readmore-button:hover .hero-sweep-button-content,
+.placements-obsidian .hero-sweep-button.quote-readmore-button:hover .hero-sweep-button-content svg {
+  color: #000000;
+}
+
 .placements-obsidian .hero-sweep-button:hover .hero-sweep-button-content,
 .placements-obsidian .hero-sweep-button:hover .hero-sweep-button-content svg {
   color: #000000;
@@ -1469,6 +1479,10 @@ body::-webkit-scrollbar {
 .placement-data-section[data-in-view="true"] .placement-data-number {
   opacity: 1;
   transform: translateY(0);
+}
+
+.placements-dim-white {
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .placement-ledger-row {

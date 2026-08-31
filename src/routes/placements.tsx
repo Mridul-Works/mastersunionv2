@@ -532,7 +532,7 @@ function CinematicHero() {
           {/* left/middle: supporting copy + CTA directly under headline */}
           <div ref={copyRef} className="mt-8 max-w-[600px] md:mt-14" style={{ willChange: "transform, opacity" }}>
             <p
-              className="text-[25px] leading-relaxed text-[#FFFFFF]"
+              className="text-[25px] leading-relaxed placements-dim-white"
               style={step(700, 22)}
             >
               Benefit from an exceptional track record of our graduates&apos; success — audited, published, and repeated across five cohorts.
@@ -1418,7 +1418,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
             strokeWidth={1}
             aria-hidden="true"
           />
-          <blockquote className="text-[clamp(1.5rem,3.6vw,2.8rem)] font-medium leading-[1.3] tracking-[-0.015em] text-white">
+          <blockquote className="text-[clamp(1.5rem,3.6vw,2.8rem)] font-medium leading-[1.3] tracking-[-0.015em] placements-dim-white">
             {TYPOGRAPHY_ITEMS.map((item, i) => {
               if (item.type === "attribution") return null;
               const isLastWord = item.type === "word" && i === TYPOGRAPHY_ITEMS.length - 3;
@@ -1446,7 +1446,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
                 ref={(n) => {
                   wordRefs.current[i] = n;
                 }}
-                className="mt-8 text-[10px] uppercase tracking-[0.2em] text-white/70"
+                className="mt-8 text-[10px] uppercase tracking-[0.2em] placements-dim-white"
                 style={{ fontFamily: MONO, opacity: animated ? 0.18 : 1, willChange: "opacity" }}
               >
                 {item.text}
@@ -1455,7 +1455,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
           })}
           <button
             type="button"
-            className="hero-sweep-button group relative mt-8 inline-flex items-center gap-2 overflow-hidden border border-white/35 px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:border-accent hover:bg-accent hover:shadow-[0_0_28px_-6px_color-mix(in_oklab,var(--accent)_60%,transparent)]"
+            className="hero-sweep-button quote-readmore-button group relative mt-8 inline-flex items-center gap-2 overflow-hidden border border-white/35 px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:border-accent hover:bg-accent hover:shadow-[0_0_28px_-6px_color-mix(in_oklab,var(--accent)_60%,transparent)]"
             style={{ fontFamily: MONO }}
           >
             <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
