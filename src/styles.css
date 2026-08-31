@@ -1005,7 +1005,8 @@ body::-webkit-scrollbar {
   border-color: rgb(242 241 238 / 0.16);
 }
 
-/* green hover highlight for the experience dropdown */
+/* green selection highlight for the experience dropdown */
+.accent-select option:checked,
 .accent-select option:hover {
   background: var(--accent);
   color: #000000;
