@@ -905,7 +905,6 @@ function SalaryDistributionChart() {
             <span className="salary-viz-value"><CountUp value={`${item.pct.toFixed(2)}%`} delay={index * 85} /></span>
             <span className="salary-viz-extrusion" aria-hidden>
               <span className="salary-viz-face-front" />
-              <span className="salary-viz-face-top" />
               <span className="salary-viz-face-side" />
             </span>
             <span className="salary-viz-range">{item.range}</span>
