@@ -1111,13 +1111,6 @@ body::-webkit-scrollbar {
   font-weight: 400;
 }
 
-.salary-viz-header > p {
-  max-width: 38rem;
-  align-self: center;
-  color: color-mix(in oklab, #ffffff 58%, transparent);
-  font-size: 0.95rem;
-  line-height: 1.7;
-}
 
 .salary-viz-grid {
   display: grid;
@@ -1133,6 +1126,27 @@ body::-webkit-scrollbar {
 
 .salary-viz-panel + .salary-viz-panel {
   border-top: 1px solid color-mix(in oklab, #ffffff 15%, transparent);
+}
+
+.salary-viz-panel-components {
+  position: relative;
+}
+
+.salary-viz-components-intro {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  width: 100%;
+  max-width: 38rem;
+  padding: 1.25rem clamp(1.5rem, 3vw, 2.5rem);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: color-mix(in oklab, #ffffff 58%, transparent);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  background: radial-gradient(ellipse at center, color-mix(in oklab, #0b1215 92%, transparent) 0%, color-mix(in oklab, #0b1215 62%, transparent) 55%, transparent 82%);
+  pointer-events: none;
 }
 
 .salary-viz-panel-heading h3 {
