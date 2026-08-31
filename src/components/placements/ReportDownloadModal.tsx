@@ -213,7 +213,7 @@ function ReportModal({ onClose }: { onClose: () => void }) {
       role="dialog"
       aria-modal="true"
       aria-label="Download placement report"
-      className={`fixed inset-0 z-[100] flex items-center justify-center p-4 transition-opacity duration-300 ease-out md:p-8 ${
+      className={`placements-ug-v2 fixed inset-0 z-[100] flex items-center justify-center p-4 transition-opacity duration-300 ease-out md:p-8 ${
         visible ? "opacity-100" : "opacity-0"
       }`}
     >
@@ -226,7 +226,7 @@ function ReportModal({ onClose }: { onClose: () => void }) {
 
       {/* panel */}
       <div
-        className={`relative grid w-full max-w-[880px] grid-cols-1 overflow-hidden border border-white/12 bg-[#0B1215] shadow-[0_40px_120px_-30px_rgba(0,0,0,0.8)] transition-all duration-300 ease-out md:grid-cols-[38%_62%] ${
+        className={`report-modal-outer relative grid w-full max-w-[880px] grid-cols-1 overflow-hidden p-3 gap-3 transition-all duration-300 ease-out md:grid-cols-[38%_62%] ${
           visible ? "translate-y-0 scale-100 opacity-100" : "translate-y-3 scale-[0.97] opacity-0"
         }`}
         style={{ fontFamily: INTER }}
@@ -241,7 +241,7 @@ function ReportModal({ onClose }: { onClose: () => void }) {
         </button>
 
         {/* left: image area */}
-        <div className="relative hidden min-h-[420px] overflow-hidden bg-black/40 md:block">
+        <div className="report-modal-inner report-modal-image relative hidden min-h-[420px] overflow-hidden md:block">
           <img
             src={modalStudents.url}
             alt="Masters' Union student reading on campus"
@@ -263,7 +263,7 @@ function ReportModal({ onClose }: { onClose: () => void }) {
         </div>
 
         {/* right: form */}
-        <div className="px-6 py-8 md:px-10 md:py-10">
+        <div className="report-modal-inner px-6 py-8 md:px-10 md:py-10">
           <div
             className="mb-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50"
             style={{ fontFamily: MONO }}
