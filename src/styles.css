@@ -1972,6 +1972,8 @@ body::-webkit-scrollbar {
   position: relative;
   height: clamp(16rem, 30vw, 20rem);
   padding-left: 2.75rem;
+  background: #181D1F;
+  border-radius: 10px;
 }
 
 .placement-stats-scale {
