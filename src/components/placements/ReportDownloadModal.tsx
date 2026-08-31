@@ -325,7 +325,7 @@ function ReportModal({ onClose }: { onClose: () => void }) {
                   type="tel"
                   inputMode="tel"
                   autoComplete="tel-national"
-                  placeholder="98765 43210"
+                  placeholder="enter your mobile number"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   className={inputClass}
