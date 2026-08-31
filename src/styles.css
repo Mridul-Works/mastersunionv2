@@ -1286,6 +1286,42 @@ body::-webkit-scrollbar {
   }
 }
 
+/* UG v2.0 report-download modal: nested curved container matching the page sections. */
+.placements-ug-v2 .report-modal-outer {
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, white 14%, transparent);
+  border-radius: 18px;
+  background: color-mix(in oklab, var(--card) 88%, transparent);
+  backdrop-filter: blur(14px);
+  box-shadow:
+    0 40px 120px -30px rgba(0, 0, 0, 0.8),
+    var(--shadow-soft);
+}
+
+.placements-ug-v2 .report-modal-inner {
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, white 10%, transparent);
+  border-radius: 12px;
+  background: color-mix(in oklab, #0b1215 80%, transparent);
+}
+
+.placements-ug-v2 .report-modal-image {
+  background: transparent;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .placements-ug-v2 .report-modal-outer {
+    transition: border-color 350ms ease, box-shadow 350ms ease;
+  }
+
+  .placements-ug-v2 .report-modal-outer:hover {
+    border-color: color-mix(in oklab, var(--accent) 30%, transparent);
+    box-shadow:
+      0 40px 120px -30px color-mix(in oklab, var(--accent) 35%, transparent),
+      var(--shadow-soft);
+  }
+}
+
 .placements-ug-v2 .recruiter-logo-row {
   justify-content: center;
 }
