@@ -1044,12 +1044,26 @@ body::-webkit-scrollbar {
 }
 
 /* Route-level obsidian treatment for the placements editorial page. */
+.placements-obsidian {
+  --placements-page-surface: #050708;
+  --placements-outer-surface: #0b1012;
+  --placements-inner-surface: #121719;
+  --background: var(--placements-page-surface);
+  --card: var(--placements-outer-surface);
+  background-color: var(--placements-page-surface);
+}
+
 .placements-obsidian section,
 .placements-obsidian [class*="bg-white"],
 .placements-obsidian [class*="bg-paper"],
 .placements-obsidian [class*="bg-background"],
 .placements-obsidian [class*="bg-secondary"] {
-  background-color: #0b1215;
+  background-color: var(--placements-page-surface);
+}
+
+.placements-obsidian [class*="bg-[#0A1712]"],
+.placements-obsidian [class*="bg-[#0B1215]"]:not(section):not(main) {
+  background-color: var(--placements-inner-surface);
 }
 
 .placements-obsidian [class*="text-black"] {
@@ -1252,7 +1266,7 @@ body::-webkit-scrollbar {
   overflow: hidden;
   border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent);
   border-radius: 18px;
-  background: color-mix(in oklab, var(--card) 82%, transparent);
+  background: var(--placements-outer-surface);
   backdrop-filter: blur(14px);
   box-shadow: var(--shadow-soft);
 }
@@ -1265,7 +1279,7 @@ body::-webkit-scrollbar {
   border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent);
   border-radius: 18px;
   padding: clamp(1.25rem, 3vw, 2.5rem);
-  background: color-mix(in oklab, var(--card) 82%, transparent);
+  background: var(--placements-outer-surface);
   backdrop-filter: blur(14px);
   box-shadow: var(--shadow-soft);
 }
@@ -1276,7 +1290,17 @@ body::-webkit-scrollbar {
 
 .placements-ug-v2 .placements-section-shell-dark {
   border-color: color-mix(in oklab, white 14%, transparent);
-  background: color-mix(in oklab, var(--card) 88%, transparent);
+  background: var(--placements-outer-surface);
+}
+
+.placements-ug-v2 .placements-section-shell .placements-section-shell,
+.placements-ug-v2 .placements-section-shell > .placement-data-bento,
+.placements-ug-v2 .placements-section-shell > .salary-viz-grid,
+.placements-ug-v2 .placements-section-shell .recruiter-logo-panel,
+.placements-ug-v2 .placements-section-shell .recruiter-marquee-panel,
+.placements-ug-v2 .placements-section-shell .recruiter-logo-tile,
+.placements-ug-v2 .placements-section-shell .recruiter-logo-marquee li {
+  background: var(--placements-inner-surface);
 }
 
 .placements-ug-v2 .placements-section-shell > .placement-data-bento,
@@ -1312,7 +1336,7 @@ body::-webkit-scrollbar {
   overflow: hidden;
   border: 1px solid color-mix(in oklab, white 14%, transparent);
   border-radius: 18px;
-  background: #0b1215;
+  background: var(--placements-outer-surface);
   backdrop-filter: blur(14px);
   box-shadow:
     0 40px 120px -30px rgba(0, 0, 0, 0.9),
@@ -1323,7 +1347,7 @@ body::-webkit-scrollbar {
   overflow: hidden;
   border: 1px solid color-mix(in oklab, white 10%, transparent);
   border-radius: 12px;
-  background: color-mix(in oklab, #101a1e 78%, transparent);
+  background: var(--placements-inner-surface);
 }
 
 .placements-ug-v2 .report-modal-image {
@@ -1351,7 +1375,7 @@ body::-webkit-scrollbar {
 .placements-ug-v2 .recruiter-logo-marquee li {
   border: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
   border-radius: 12px;
-  background: color-mix(in oklab, var(--foreground) 4%, transparent);
+  background: var(--placements-inner-surface);
   transition:
     transform 350ms cubic-bezier(0.22, 1, 0.36, 1),
     border-color 350ms ease,
