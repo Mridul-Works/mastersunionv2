@@ -1276,11 +1276,6 @@ body::-webkit-scrollbar {
   transition: color 450ms cubic-bezier(0.16, 0.84, 0.24, 1);
 }
 
-.salary-viz-column:hover,
-.salary-viz-column:focus-visible {
-  transform: translateY(-0.35rem) scale(1.025);
-}
-
 .salary-viz-column:hover .salary-viz-value,
 .salary-viz-column:focus-visible .salary-viz-value,
 .salary-viz-column:hover .salary-viz-range,
