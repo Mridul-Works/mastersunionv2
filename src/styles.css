@@ -1882,6 +1882,17 @@ body::-webkit-scrollbar {
   backdrop-filter: blur(14px);
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .placements-ug-v2 .career-transitions-section .placements-section-shell {
+    transition: border-color 350ms ease, box-shadow 350ms ease;
+  }
+
+  .placements-ug-v2 .career-transitions-section .placements-section-shell:hover {
+    border-color: color-mix(in oklab, var(--accent) 30%, transparent);
+    box-shadow: 0 22px 52px -34px color-mix(in oklab, var(--accent) 58%, transparent);
+  }
+}
+
 .career-transition-story {
   overflow: visible;
   background: transparent;
