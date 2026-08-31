@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useRouter } from "@tanstack/react-router";
 import Lenis from "lenis";
+import { invalidateScroll, setLenisSource } from "@/lib/scroll-driver";
 
 /**
  * Smooth-scroll layer.
@@ -11,10 +12,10 @@ import Lenis from "lenis";
  * trackpad without allowing one gesture to skip several sections. Single
  * instance on window.__lenis for nav/anchor scrollTo.
  *
- * On the /placements page we intentionally fall back to native browser
- * scrolling — this matches the "Program Layout - UG v2.0" reference project
- * and avoids the custom smooth-scroll driver fighting the page's own
- * scroll-linked animations.
+ * The /placements page uses a lower-sensitivity Lenis config so the page
+ * scrolls more gently, while the scroll driver reads Lenis's smoothed value
+ * directly to keep scroll-linked transforms in sync and avoid the stutter
+ * that comes from two independent animation loops.
  */
 export default function SmoothScroll() {
   const router = useRouter();
@@ -22,25 +23,24 @@ export default function SmoothScroll() {
   const lenisRef = useRef<Lenis | undefined>(undefined);
 
   useEffect(() => {
-    // Use native scroll on the placements page to match the reference project.
-    if (pathname === "/placements") {
-      if (lenisRef.current) {
-        lenisRef.current.destroy();
-        lenisRef.current = undefined;
-      }
-      delete (window as unknown as { __lenis?: Lenis }).__lenis;
-      return;
-    }
+    const isPlacements = pathname === "/placements";
 
+    // Lower input sensitivity on the placements page so one gesture doesn't
+    // cover too much ground. A slightly stronger lerp keeps the glide smooth.
     const lenis = new Lenis({
-      lerp: 0.085,
-      wheelMultiplier: 0.24,
-      touchMultiplier: 0.35,
+      lerp: isPlacements ? 0.06 : 0.085,
+      wheelMultiplier: isPlacements ? 0.18 : 0.24,
+      touchMultiplier: isPlacements ? 0.25 : 0.35,
       smoothWheel: true,
       syncTouch: false,
     });
     lenisRef.current = lenis;
     (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
+    setLenisSource(lenis);
+
+    // Feed Lenis's smoothed scroll value into the shared driver so every
+    // scroll-linked transform stays locked to the same source of truth.
+    const offScroll = lenis.on("scroll", () => invalidateScroll());
 
     let raf = 0;
     const loop = (time: number) => {
@@ -50,8 +50,10 @@ export default function SmoothScroll() {
     raf = requestAnimationFrame(loop);
 
     return () => {
+      offScroll();
       cancelAnimationFrame(raf);
       lenis.destroy();
+      setLenisSource(undefined);
       if (lenisRef.current === lenis) {
         lenisRef.current = undefined;
       }

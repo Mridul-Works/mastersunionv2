@@ -35,8 +35,18 @@ let started = false;
 let lastY = -1;
 let dirty = true;
 
+/** Optional smooth-scroll source (e.g. Lenis). When present, the driver reads
+ *  its smoothed scroll value so scroll-linked transforms stay in sync. */
+type ScrollSource = { scroll: number };
+let lenisSource: ScrollSource | null = null;
+
+export function setLenisSource(source: ScrollSource | null | undefined) {
+  lenisSource = source ?? null;
+  invalidateScroll();
+}
+
 function runFrame() {
-  state.y = window.scrollY;
+  state.y = lenisSource?.scroll ?? window.scrollY;
   if (!dirty && state.y === lastY) return;
   lastY = state.y;
   dirty = false;
