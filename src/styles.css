@@ -1231,7 +1231,7 @@ body::-webkit-scrollbar {
 }
 
 .placements-ug-v2 .recruiter-category-button.is-active > span {
-  color: #000000;
+  color: var(--accent-foreground);
 }
 
 /* UG v2.0 nested recruiter surfaces: one curved outer container with
