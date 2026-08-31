@@ -2040,9 +2040,9 @@ body::-webkit-scrollbar {
   height: 100%;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(0.75rem, 2vw, 1.5rem);
+  column-gap: clamp(0.5rem, 2vw, 1.5rem);
   align-items: end;
-  padding-bottom: 2rem;
+  padding-bottom: 2.75rem;
 }
 
 .placement-stats-columns::after {
@@ -2050,7 +2050,7 @@ body::-webkit-scrollbar {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 2rem;
+  bottom: 2.75rem;
   height: 1px;
   background: color-mix(in oklab, #ffffff 22%, transparent);
 }
@@ -2128,12 +2128,23 @@ body::-webkit-scrollbar {
 
 .placement-stats-label {
   margin-top: 0.75rem;
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  min-height: 2rem;
+  align-items: flex-start;
+  justify-content: center;
+  padding-inline: clamp(0.1rem, 0.7vw, 0.35rem);
   font-size: clamp(0.58rem, 1.1vw, 0.72rem);
+  line-height: 1.35;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: color-mix(in oklab, #ffffff 55%, transparent);
   font-family: var(--font-mono-tech);
   text-align: center;
+  text-wrap: balance;
+  overflow-wrap: normal;
+  word-break: normal;
   transition: color 450ms ease;
 }
 
@@ -2190,22 +2201,31 @@ body::-webkit-scrollbar {
 }
 
 @media (max-width: 560px) {
+  .placements-ug-v2 .placements-section-shell .placement-stats-panel {
+    padding-inline: clamp(0.75rem, 4vw, 1.25rem);
+  }
   .placement-stats-bars {
-    height: 17rem;
-    padding-left: 2rem;
+    height: 17.75rem;
+    padding-left: 1.25rem;
   }
   .placement-stats-scale {
-    width: 1.75rem;
+    width: 1.1rem;
     font-size: 0.5rem;
+    padding-right: 0.15rem;
   }
   .placement-stats-extrusion {
     width: min(2.4rem, calc(100% - 0.5rem));
+  }
+  .placement-stats-columns {
+    column-gap: clamp(0.4rem, 2vw, 0.6rem);
   }
   .placement-stats-value {
     font-size: 0.62rem;
   }
   .placement-stats-label {
     font-size: 0.5rem;
+    line-height: 1.4;
+    letter-spacing: 0.04em;
   }
 }
 
