@@ -1122,6 +1122,7 @@ function OurPlacementStatistics() {
                 </span>
                 <span className="placement-stats-headline-label">Total International &amp; International Remote Offers</span>
               </div>
+              <span className="placement-stats-headline-divider" aria-hidden="true" />
               <div className="placement-stats-headline">
                 <span className="placement-stats-headline-value">
                   <CountUp value="₹64 LPA" />

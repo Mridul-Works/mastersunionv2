@@ -1885,14 +1885,23 @@ body::-webkit-scrollbar {
 
 .placement-stats-headlines {
   display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
 }
 
 .placement-stats-headline {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
+}
+
+.placement-stats-headline-divider {
+  width: 1px;
+  align-self: stretch;
+  background: color-mix(in oklab, #ffffff 15%, transparent);
+  min-height: 2.5rem;
 }
 
 .placement-stats-headline-value {
