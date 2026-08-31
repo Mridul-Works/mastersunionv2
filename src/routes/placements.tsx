@@ -594,7 +594,9 @@ function Band({
   const bg = "bg-[#0B1215]";
   return (
     <section id={id} className={`section-edge relative ${bg} ${className}`}>
-      <div className="page-x py-16 md:py-28">{children}</div>
+      <div className="page-x py-16 md:py-28">
+        <div className="placements-section-shell placements-section-shell-light">{children}</div>
+      </div>
     </section>
   );
 }
@@ -999,6 +1001,7 @@ function SalaryVisualizations() {
   return (
     <section className="salary-viz-section section-edge bg-[#0B1215]" aria-labelledby="salary-viz-title">
       <div className="page-x py-16 md:py-24">
+        <div className="placements-section-shell placements-section-shell-dark">
         <header className="salary-viz-header">
           <div>
             <span className="salary-viz-kicker" style={{ fontFamily: MONO }}>Compensation anatomy / Cohort 2025</span>
@@ -1025,6 +1028,7 @@ function SalaryVisualizations() {
             </div>
             <SalaryComponentsDonut />
           </article>
+        </div>
         </div>
       </div>
     </section>
@@ -1056,7 +1060,7 @@ function LogoRow({ names }: { names: string[] }) {
 
 function OutcomesAccordion() {
   return (
-    <div className="page-x py-4">
+    <div className="py-4">
       <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
         {/* LEFT — anchored editorial column */}
         <div className="lg:col-span-4">
@@ -1334,20 +1338,24 @@ function AuditedOutcomes() {
       id="outcomes"
       className="relative flex flex-col justify-between bg-white py-8 md:py-10 lg:py-12"
     >
-      {/* sticky left + click-driven horizontal accordion */}
-      <OutcomesAccordion />
+      <div className="page-x">
+        <div className="placements-section-shell placements-section-shell-light">
+          {/* sticky left + click-driven horizontal accordion */}
+          <OutcomesAccordion />
 
-      {/* cohort reports */}
-      <div className="page-x pt-0">
-        <div
-          className="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50"
-          style={{ fontFamily: MONO }}
-        >
-          Reports
-        </div>
-        <CohortReports />
-        <div className="mt-8 md:mt-10 lg:mt-12">
-          <EditorialRule />
+          {/* cohort reports */}
+          <div className="pt-0">
+            <div
+              className="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50"
+              style={{ fontFamily: MONO }}
+            >
+              Reports
+            </div>
+            <CohortReports />
+            <div className="mt-8 md:mt-10 lg:mt-12">
+              <EditorialRule />
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1381,6 +1389,7 @@ function EditorialPlacementData() {
       aria-labelledby="placement-data-title"
     >
       <div className="page-x py-16 md:py-24">
+        <div className="placements-section-shell placements-section-shell-dark">
         <div ref={ref} className="placement-data-bento grid overflow-hidden border border-white/15 lg:grid-cols-12">
           <header className="flex min-h-[260px] flex-col justify-between border-b border-white/15 p-7 md:p-10 lg:col-span-7 lg:border-r lg:border-b-0">
             <div className="flex items-center justify-between gap-6">
@@ -1485,6 +1494,7 @@ function EditorialPlacementData() {
         <p className="mt-6 text-[10px] uppercase tracking-[0.16em] text-white/38" style={{ fontFamily: MONO }}>
           Compensation figures shown exactly as reported · ₹ lakh unless stated otherwise
         </p>
+        </div>
       </div>
     </section>
   );
@@ -1521,7 +1531,7 @@ function Page() {
       <div className="relative z-20 -mt-[100svh] motion-reduce:mt-0">
         <section className="relative min-h-[100svh] bg-[#0B1215]">
           <div className="page-x flex h-full min-h-[100svh] items-center pt-8 pb-6 md:pt-10 md:pb-8 lg:pt-12 lg:pb-10">
-            <div className="relative flex w-full flex-col gap-10 lg:gap-14">
+            <div className="placements-section-shell placements-section-shell-dark relative flex w-full flex-col gap-10 lg:gap-14">
               <PodcastSection />
               <div className="mt-6 md:mt-8 lg:mt-10">
                 <EditorialRule />
@@ -1870,6 +1880,7 @@ function Page() {
           <Parallax strength={60}>CAREERS</Parallax>
         </div>
         <div className="page-x relative py-20 md:py-28">
+          <div className="placements-section-shell placements-section-shell-light">
           <Reveal>
             <Eyebrow>Careers team</Eyebrow>
           </Reveal>
@@ -1888,6 +1899,7 @@ function Page() {
               </span>
             </div>
           </Reveal>
+          </div>
         </div>
       </section>
    </main>

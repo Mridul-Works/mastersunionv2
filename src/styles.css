@@ -1236,6 +1236,39 @@ body::-webkit-scrollbar {
   box-shadow: var(--shadow-soft);
 }
 
+/* UG v2.0 section framing: every editorial band gets the same nested,
+   softly curved surface language used by the recruiter logo area. */
+.placements-ug-v2 .placements-section-shell {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent);
+  border-radius: 18px;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  background: color-mix(in oklab, var(--card) 82%, transparent);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-soft);
+}
+
+.placements-ug-v2 .placements-section-shell-light {
+  color: var(--foreground);
+}
+
+.placements-ug-v2 .placements-section-shell-dark {
+  border-color: color-mix(in oklab, white 14%, transparent);
+  background: color-mix(in oklab, var(--placement-ink) 88%, transparent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .placements-ug-v2 .placements-section-shell {
+    transition: border-color 350ms ease, box-shadow 350ms ease;
+  }
+
+  .placements-ug-v2 .placements-section-shell:hover {
+    border-color: color-mix(in oklab, var(--accent) 30%, transparent);
+    box-shadow: 0 22px 52px -34px color-mix(in oklab, var(--accent) 58%, transparent);
+  }
+}
+
 .placements-ug-v2 .recruiter-logo-row {
   justify-content: center;
 }
