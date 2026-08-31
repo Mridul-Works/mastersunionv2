@@ -241,7 +241,7 @@ function ReportModal({ onClose }: { onClose: () => void }) {
         </button>
 
         {/* left: image area */}
-        <div className="relative hidden min-h-[420px] overflow-hidden bg-black/40 md:block">
+        <div className="report-modal-inner report-modal-image relative hidden min-h-[420px] overflow-hidden md:block">
           <img
             src={modalStudents.url}
             alt="Masters' Union student reading on campus"
@@ -263,7 +263,7 @@ function ReportModal({ onClose }: { onClose: () => void }) {
         </div>
 
         {/* right: form */}
-        <div className="px-6 py-8 md:px-10 md:py-10">
+        <div className="report-modal-inner px-6 py-8 md:px-10 md:py-10">
           <div
             className="mb-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50"
             style={{ fontFamily: MONO }}
