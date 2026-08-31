@@ -1038,7 +1038,7 @@ function LogoRow({ names }: { names: string[] }) {
     <div className="recruiter-logo-row flex flex-wrap items-center gap-x-12 gap-y-8">
       {found.map((n, i) => (
         <Reveal key={n} delay={i * 60} y={14} duration={650}>
-          <div className="flex h-14 w-28 items-center justify-center">
+          <div className="recruiter-logo-tile flex h-14 w-28 items-center justify-center">
             <img
               src={LOGOS[n]}
               alt={n}
@@ -1571,11 +1571,11 @@ function Page() {
             );
           })}
         </div>
-        <div key={recruiterTab} className="mt-10 min-h-[132px] bg-white p-10">
+        <div key={recruiterTab} className="recruiter-logo-panel mt-10 min-h-[132px] p-4 sm:p-6 lg:p-8">
           <LogoRow names={active.logos} />
         </div>
 
-        <div className="mt-10">
+        <div className="recruiter-marquee-panel mt-10 p-4 sm:p-6">
           <EditorialRule />
           <LogoMarquee
             className="recruiter-logo-marquee mt-6"
