@@ -1076,6 +1076,7 @@ body::-webkit-scrollbar {
   --accent: oklch(0.47 0.09 158);
   --accent-foreground: oklch(0.98 0.01 145);
   --teal: oklch(0.47 0.09 158);
+  --font-display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
   --placements-rule: linear-gradient(
     to right,
     transparent 0%,
