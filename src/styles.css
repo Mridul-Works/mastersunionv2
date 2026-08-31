@@ -1547,7 +1547,7 @@ body::-webkit-scrollbar {
   padding: 1.35rem 1.6rem;
   border: 1px solid color-mix(in oklab, var(--teal) 55%, transparent);
   border-radius: 0.9rem;
-  background: color-mix(in oklab, #ffffff 5%, transparent);
+  background: #0E1113;
   backdrop-filter: blur(6px);
 }
 
