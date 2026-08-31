@@ -1004,3 +1004,12 @@ body::-webkit-scrollbar {
 .placements-obsidian [class*="border-black"] {
   border-color: rgb(242 241 238 / 0.16);
 }
+
+/* green selection highlight for the experience dropdown */
+.accent-select option:checked,
+.accent-select option:hover {
+  background: var(--accent);
+  color: #000000;
+  -webkit-text-fill-color: #000000;
+  box-shadow: 0 0 0 100px var(--accent) inset;
+}
