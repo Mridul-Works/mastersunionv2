@@ -7,7 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
-import cover2025 from "@/assets/placement-reports/cover-2025.png.asset.json";
+import modalStudents from "@/assets/modal-students.webp.asset.json";
 import report2025 from "@/assets/placement-reports/report-2025.pdf.asset.json";
 
 const MONO = "var(--font-mono-tech)";
@@ -144,11 +144,11 @@ function ReportModal({ onClose }: { onClose: () => void }) {
         {/* left: image area */}
         <div className="relative hidden min-h-[420px] overflow-hidden bg-black/40 md:block">
           <img
-            src={cover2025.url}
-            alt="Placement report preview"
-            className="absolute inset-0 h-full w-full object-cover object-center opacity-90"
+            src={modalStudents.url}
+            alt="Masters' Union student reading on campus"
+            className="absolute inset-0 h-full w-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0B1215] via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-black/12" />
           <div className="absolute bottom-6 left-6 right-6">
             <div
               className="mb-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--accent)]"
