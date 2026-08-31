@@ -168,34 +168,52 @@ const RECRUITER_GROUPS: { category: string; logos: string[] }[] = [
 const TRANSITIONS = [
   {
     title: "Industry transition",
-    sub: "PGP TBM · changing industries",
+    sub: "PGP TBM · Pre-MBA to Post-MBA",
+    columns: ["From", "To"],
     rows: [
       ["Senior Data Science Analyst, Merkle", "Program Manager, Zomato"],
+      ["Project Manager, One Window Overseas Education", "Consultant, KPMG India"],
       ["CIB Analyst, JPMC", "Manager – Design Planning, Razorpay"],
-      ["Senior Financial Analyst, TresVista", "Manager – CEO Office, Reliance Infrastructure"],
+      ["Business Analyst, FreshWorks", "Senior Manager I – Program Management, Zepto"],
+      ["Senior Financial Analyst, TresVista Financial Services", "Manager – CEO Office, Reliance Infrastructure"],
+      ["Deputy Manager, Hero Motorcorp", "Program Manager, Blinkit"],
+      ["Consultant, Protiviti", "Product Specialist – Analytics Department, Bloomberg"],
+      ["Analyst, McKinsey and Company", "Lead, Partnerships, OneBanc"],
+      ["Tax Associate, Guru and Jana", "Growth Strategist, Consultadd"],
+      ["Associate Consultant, ZS Associates", "Inbound Product Manager, Service Now"],
     ],
   },
   {
     title: "Career advancement",
-    sub: "PGP TBM · rising up the ranks",
+    sub: "PGP TBM · Pre-MBA to Post-MBA",
+    columns: ["From", "To"],
     rows: [
       ["Associate Consultant, ZS Associates", "Senior Associate – Transformation, DP World"],
+      ["Senior Analyst, Capgemini", "Management Trainee – Data Science & Business Analytics, American Express"],
+      ["Executive of Marketing & Business Strategy, Bhagat Forge Limited", "Management Trainee, Aditya Birla Capital"],
       ["Associate Product Manager, Statiq", "Digital Product Manager, IndusInd Bank"],
       ["Team Lead – Product, Paytm", "Assistant Manager – Product, Airtel"],
+      ["PPC Manager, Feel Good Contacts", "Senior Manager – Digital Marketing, Just Dial"],
+      ["IT Engineer II, Honeywell", "Insights and Automation Manager, Careem"],
+      ["Q.C. Officer 3, Alter Domus", "Manager – Quality, Flipkart"],
+      ["Senior Relationship Manager, Drip Capital", "Senior Manager I – Strategic Alliances & Partnerships, Zepto"],
+      ["Associate ML Engineer, Delhivery", "Data Scientist, Funder.ai"],
     ],
   },
   {
     title: "Career launches",
-    sub: "PGP TBM YLC · undergraduate to industry",
+    sub: "PGP TBM YLC · Undergraduate to Post-MBA",
+    columns: ["UG College", "Post MBA Company", "Post MBA Role"],
     rows: [
-      ["Hans Raj College", "Associate Program Manager, Zomato"],
-      ["NMIMS", "Deputy Manager, Founders' Office, Tata 1mg"],
-      ["Delhi College of Arts and Commerce", "Analytics – ADSK, Bloomberg"],
-      ["Delhi Technological University", "Consultant, KPMG India"],
-      ["HR College, Mumbai", "Management Trainee – Business, Flipkart"],
-      ["Maitreyi College, DU", "AVP – Brand Marketing, Fitelo"],
-      ["Sri Aurobindo College, DU", "Solution Specialist I, Pine Labs"],
-      ["Veer Narmad South Gujarat University", "Associate Founder's Office, Neve Jewels"],
+      ["Delhi Technological University, Delhi", "KPMG India", "Consultant"],
+      ["University Of Madras, Tamil Nadu", "WebEngage", "Growth Consultant"],
+      ["G.H. Raisoni College Of Engineering", "Yardstick", "Marketing Specialist"],
+      ["Vellore Institute Of Technology", "Consultadd", "Strategic Consultant"],
+      ["University Of Calcutta", "Hyperflex", "Business Development Representative"],
+      ["HR College, Mumbai", "Flipkart", "Management Trainee – Business"],
+      ["Maitreyi College, Delhi University", "Fitelo", "AVP – Brand Marketing"],
+      ["Sri Aurobindo College, Delhi University", "Pine Labs", "Solution Specialist I"],
+      ["Veer Narmad South Gujarat University, Gujarat", "Neve Jewels", "Associate Founder's Office"],
     ],
   },
 ];
@@ -599,6 +617,90 @@ function StickyHead({ children }: { children: React.ReactNode }) {
     <div className="lg:col-span-4">
       <div className="lg:sticky lg:top-24">{children}</div>
     </div>
+  );
+}
+
+function CareerTransitionRow({ row, columns }: { row: string[]; columns: string[] }) {
+  const ref = React.useRef<HTMLDivElement | null>(null);
+  const [active, setActive] = React.useState(false);
+
+  React.useEffect(() => {
+    const node = ref.current;
+    if (!node || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setActive(entry?.isIntersecting ?? false),
+      { rootMargin: "-36% 0px -42% 0px", threshold: 0 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  const isLaunch = columns.length === 3;
+
+  return (
+    <div
+      ref={ref}
+      className={`career-transition-row group ${isLaunch ? "career-transition-row-launch" : ""}`}
+      data-active={active ? "true" : "false"}
+    >
+      {row.map((value, index) => (
+        <React.Fragment key={`${value}-${index}`}>
+          <div className="career-transition-cell">
+            <span className="career-transition-mobile-label">{columns[index]}</span>
+            <span>{value}</span>
+          </div>
+          {!isLaunch && index === 0 ? (
+            <div className="career-transition-arrow" aria-hidden="true">
+              <span />
+              <ArrowUpRight className="size-4 rotate-45" />
+            </div>
+          ) : null}
+        </React.Fragment>
+      ))}
+    </div>
+  );
+}
+
+function CareerTransitionsSection() {
+  return (
+    <Band tone="white" className="career-transitions-section">
+      <Reveal>
+        <Eyebrow>Career transitions</Eyebrow>
+      </Reveal>
+      <Reveal delay={120}>
+        <h2 className="mt-6 max-w-[28ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
+          Where students come from, <em className="font-serif-italic">and where they go.</em>
+        </h2>
+      </Reveal>
+
+      <div className="career-transition-story mt-14">
+        {TRANSITIONS.map((transition, transitionIndex) => (
+          <section key={transition.title} className="career-transition-chapter">
+            <div className="career-transition-sticky">
+              <div className="career-transition-category">
+                <div className="flex items-baseline gap-4">
+                  <Index n={transitionIndex + 1} />
+                  <h3 className="text-[1.2rem] font-medium capitalize">{transition.title}</h3>
+                </div>
+                <p className="mt-2 pl-9 text-[11px] uppercase tracking-[0.2em] text-black/55" style={{ fontFamily: MONO }}>
+                  {transition.sub}
+                </p>
+                <span className="career-transition-category-rule" aria-hidden="true" />
+              </div>
+            </div>
+
+            <div className="career-transition-list">
+              <div className={`career-transition-columns ${transition.columns.length === 3 ? "career-transition-columns-launch" : ""}`}>
+                {transition.columns.map((column) => <span key={column}>{column}</span>)}
+              </div>
+              {transition.rows.map((row) => (
+                <CareerTransitionRow key={row.join("-")} row={row} columns={transition.columns} />
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </Band>
   );
 }
 
@@ -1740,47 +1842,7 @@ function Page() {
 
 
       {/* TRANSITIONS */}
-      <Band tone="white">
-        <Reveal>
-          <Eyebrow>Career transitions</Eyebrow>
-        </Reveal>
-        <Reveal delay={120}>
-          <h2 className="mt-6 max-w-[28ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-            Where students come from, <em className="font-serif-italic">and where they go.</em>
-          </h2>
-        </Reveal>
-        <div className="mt-14 space-y-16">
-          {TRANSITIONS.map((t, ti) => (
-            <div key={t.title} className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-16">
-              <StickyHead>
-                <Reveal>
-                  <div className="flex items-baseline gap-4">
-                    <Index n={ti + 1} />
-                    <h3 className="text-[1.2rem] font-medium">{t.title}</h3>
-                  </div>
-                  <div className="mt-2 pl-9 text-[11px] uppercase tracking-[0.2em] text-black/55" style={{ fontFamily: MONO }}>{t.sub}</div>
-                </Reveal>
-              </StickyHead>
-              <div className="lg:col-span-8">
-                <Rule />
-                {t.rows.map(([from, to], i) => (
-                  <div key={from + to}>
-                    <Reveal
-                      delay={i * 80}
-                      className="group grid grid-cols-1 items-center gap-2 py-5 transition-colors duration-500 hover:bg-black/[0.02] md:grid-cols-[1fr_auto_1fr] md:gap-6"
-                    >
-                      <div className="text-[0.98rem] text-black/60 transition-colors duration-500 group-hover:text-black/80">{from}</div>
-                      <ArrowUpRight className="size-4 rotate-45 text-black/30 transition-all duration-500 group-hover:translate-x-1 group-hover:text-black/60" />
-                      <div className="text-[0.98rem]">{to}</div>
-                    </Reveal>
-                    <Rule delay={i * 80 + 60} />
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </Band>
+      <CareerTransitionsSection />
 
       {/* ALUMNI STORIES */}
       <Band id="stories" tone="paper">
