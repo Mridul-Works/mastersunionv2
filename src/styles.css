@@ -290,6 +290,40 @@
   object-fit: contain;
 }
 
+/* Recruiter category buttons — same left-to-right accent sweep as hero/report buttons. */
+.recruiter-category-button {
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.recruiter-category-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 500ms ease-out;
+}
+
+.recruiter-category-button:hover::before {
+  transform: scaleX(1);
+}
+
+.recruiter-category-button > span {
+  position: relative;
+  z-index: 1;
+  transition: color 500ms ease;
+}
+
+.recruiter-category-button:hover > span {
+  transition: color 0ms;
+  color: #000000;
+}
+
 /* Practitioner gallery — flip icon hover rotation */
 @keyframes mu-flip-spin-once {
   from { transform: rotate(0deg); }
