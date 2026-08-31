@@ -1212,7 +1212,6 @@ body::-webkit-scrollbar {
   color: #ffffff;
   font-weight: 400;
   outline-offset: 5px;
-  transition: transform 450ms cubic-bezier(0.16, 0.84, 0.24, 1);
 }
 
 .salary-viz-value {
