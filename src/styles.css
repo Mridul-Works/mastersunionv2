@@ -1258,6 +1258,23 @@ body::-webkit-scrollbar {
   background: color-mix(in oklab, var(--card) 88%, transparent);
 }
 
+.placements-ug-v2 .placements-section-shell > .placement-data-bento,
+.placements-ug-v2 .placements-section-shell > .salary-viz-header,
+.placements-ug-v2 .placements-section-shell > .salary-viz-grid,
+.placements-ug-v2 .placements-section-shell .placements-metrics-strip,
+.placements-ug-v2 .placements-section-shell .card-elevated,
+.placements-ug-v2 .placements-section-shell > div > .border,
+.placements-ug-v2 .placements-section-shell > .border {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.placements-ug-v2 .placements-section-shell .salary-viz-panel,
+.placements-ug-v2 .placements-section-shell .metric-card,
+.placements-ug-v2 .placements-section-shell .placement-data-bento > * {
+  border-radius: 10px;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .placements-ug-v2 .placements-section-shell {
     transition: border-color 350ms ease, box-shadow 350ms ease;
