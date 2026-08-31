@@ -1866,19 +1866,24 @@ function Page() {
         </Reveal>
         <div className="mt-10 flex flex-wrap gap-2">
 
-          {RECRUITER_GROUPS.map((g, i) => (
-            <Reveal key={g.category} delay={i * 70} y={12}>
-              <button
-                onClick={() => setRecruiterTab(g.category)}
-                className={`px-4 py-2 text-[11px] uppercase tracking-[0.18em] transition-all duration-500 ${
-                  recruiterTab === g.category ? "bg-black text-white" : "border border-black/15 text-black/65 hover:border-black/40"
-                }`}
-                style={{ fontFamily: MONO }}
-              >
-                {g.category}
-              </button>
-            </Reveal>
-          ))}
+          {RECRUITER_GROUPS.map((g, i) => {
+            const isActive = recruiterTab === g.category;
+            return (
+              <Reveal key={g.category} delay={i * 70} y={12}>
+                <button
+                  onClick={() => setRecruiterTab(g.category)}
+                  className={`px-4 py-2 text-[11px] uppercase tracking-[0.18em] ${
+                    isActive
+                      ? "bg-black text-white"
+                      : "recruiter-category-button border border-black/15 text-black/65"
+                  }`}
+                  style={{ fontFamily: MONO }}
+                >
+                  <span>{g.category}</span>
+                </button>
+              </Reveal>
+            );
+          })}
         </div>
         <div key={recruiterTab} className="mt-10 min-h-[132px] bg-white p-10">
           <LogoRow names={active.logos} />
