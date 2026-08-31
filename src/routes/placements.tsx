@@ -719,14 +719,8 @@ function CareerTransitionsSection() {
               </div>
             </div>
 
-            <div className="career-transition-list">
-              <div className={`career-transition-columns ${transition.columns.length === 3 ? "career-transition-columns-launch" : ""}`}>
-                {transition.columns.map((column) => <span key={column}>{column}</span>)}
-              </div>
-              {transition.rows.map((row) => (
-                <CareerTransitionRow key={row.join("-")} row={row} columns={transition.columns} />
-              ))}
-            </div>
+            <CareerTransitionList transition={transition} />
+
           </section>
         ))}
       </div>
