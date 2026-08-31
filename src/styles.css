@@ -1080,9 +1080,14 @@ body::-webkit-scrollbar {
   color: #ffffff;
 }
 
-.placements-obsidian.placements-ug-v2 .hero-sweep-button.quote-readmore-button .hero-sweep-button-content,
-.placements-obsidian.placements-ug-v2 .hero-sweep-button.quote-readmore-button .hero-sweep-button-content svg {
+.placements-obsidian .hero-sweep-button.quote-readmore-button .hero-sweep-button-content,
+.placements-obsidian .hero-sweep-button.quote-readmore-button .hero-sweep-button-content svg {
   color: rgba(255, 255, 255, 0.78);
+}
+
+.placements-obsidian .hero-sweep-button.quote-readmore-button:hover .hero-sweep-button-content,
+.placements-obsidian .hero-sweep-button.quote-readmore-button:hover .hero-sweep-button-content svg {
+  color: #000000;
 }
 
 .placements-obsidian .hero-sweep-button:hover .hero-sweep-button-content,
