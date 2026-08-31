@@ -1105,7 +1105,7 @@ body::-webkit-scrollbar {
 
 .salary-viz-title em,
 .salary-viz-panel-heading h3 em {
-  color: var(--accent);
+  color: var(--teal);
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 400;
