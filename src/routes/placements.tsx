@@ -1146,58 +1146,22 @@ function CohortReports() {
   );
 }
 
-/* ------------------------- quote: puzzle cover reveal ---------------------- */
+/* ---------------------- quote: bottom-to-top cover ------------------------ */
 
-/**
- * Editorial block arrangement: long vertical strips, long horizontal strips and a few
- * large asymmetric panels. Percentages tile the section exactly — shared guide values
- * keep the reassembled photograph seamless.
- *   x/y/w/h — percentages of the section box
- *   dx/dy   — displacement in multiples of section width / height (start position)
- *   delay   — fraction of the timeline before the block starts travelling
- */
-const QUOTE_BLOCKS: {
-  x: number;
-  y: number;
-  w: number;
-  h: number;
-  dx: number;
-  dy: number;
-  delay: number;
-}[] = [
-  // TOP BAND — three long horizontal strips (y 0 → 26)
-  { x: 0, y: 0, w: 38, h: 26, dx: -0.9, dy: -0.7, delay: 0.30 },
-  { x: 38, y: 0, w: 34, h: 26, dx: 0, dy: -1.5, delay: 0.16 },
-  { x: 72, y: 0, w: 28, h: 26, dx: 1.0, dy: -0.8, delay: 0.34 },
-
-  // MIDDLE BAND (y 26 → 74)
-  // tall vertical strip on the left
-  { x: 0, y: 26, w: 22, h: 48, dx: -1.5, dy: 0.12, delay: 0.22 },
-  // large asymmetric panel through the centre
-  { x: 22, y: 26, w: 36, h: 48, dx: 0, dy: 1.2, delay: 0.04 },
-  // two long horizontal strips on the right
-  { x: 58, y: 26, w: 42, h: 24, dx: 1.4, dy: -0.1, delay: 0.18 },
-  { x: 58, y: 50, w: 42, h: 24, dx: 1.6, dy: 0.14, delay: 0.28 },
-
-  // BOTTOM BAND — two very long horizontal panels (y 74 → 100)
-  { x: 0, y: 74, w: 46, h: 26, dx: -0.7, dy: 1.5, delay: 0.24 },
-  { x: 46, y: 74, w: 54, h: 26, dx: 0.6, dy: 1.6, delay: 0.36 },
-];
-
-/* --- single continuous progress channel, written once per frame, no React re-render --- */
-type PuzzleSub = (p: number) => void;
-const puzzleSubs = new Set<PuzzleSub>();
-let puzzleP = 0;
-function setPuzzleProgress(p: number) {
-  if (p === puzzleP) return;
-  puzzleP = p;
-  puzzleSubs.forEach((f) => f(p));
+/* Single continuous progress channel, written once per frame without React re-renders. */
+type QuoteCoverSub = (p: number) => void;
+const quoteCoverSubs = new Set<QuoteCoverSub>();
+let quoteCoverP = 0;
+function setQuoteCoverProgress(p: number) {
+  if (p === quoteCoverP) return;
+  quoteCoverP = p;
+  quoteCoverSubs.forEach((f) => f(p));
 }
-function subscribePuzzle(f: PuzzleSub) {
-  puzzleSubs.add(f);
-  f(puzzleP);
+function subscribeQuoteCover(f: QuoteCoverSub) {
+  quoteCoverSubs.add(f);
+  f(quoteCoverP);
   return () => {
-    puzzleSubs.delete(f);
+    quoteCoverSubs.delete(f);
   };
 }
 
@@ -1221,78 +1185,28 @@ const TYPOGRAPHY_ITEMS: { type: "open" | "word" | "close" | "attribution"; text:
 
 function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
   const hostRef = useRef<HTMLDivElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
-  const shellRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
 
-  const pieceRefs = useRef<(HTMLDivElement | null)[]>([]);
   const wordRefs = useRef<(HTMLElement | null)[]>([]);
-  const [box, setBox] = useState({ w: 0, h: 0 });
-  const [ar, setAr] = useState(0);
 
-  useEffect(() => {
-    const el = hostRef.current;
-    if (!el) return;
-    const measure = () => setBox({ w: el.offsetWidth, h: el.offsetHeight });
-    const ro = new ResizeObserver(measure);
-    ro.observe(el);
-    measure();
-    return () => ro.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const img = new Image();
-    img.src = manojKohliBg.url;
-    const on = () => setAr(img.naturalWidth / Math.max(1, img.naturalHeight));
-    if (img.complete && img.naturalWidth) on();
-    else img.addEventListener("load", on);
-    return () => img.removeEventListener("load", on);
-  }, []);
-
-  // exact `cover` geometry so every piece shows the correct crop of the photograph
-  const { w, h } = box;
-  const ready = w > 0 && h > 0 && ar > 0;
-  let bw = w;
-  let bh = h;
-  if (ready) {
-    bw = Math.max(w, h * ar);
-    bh = bw / ar;
-  }
-  const offX = (bw - w) * 0.85; // matches the original backgroundPosition "85% 55%"
-  const offY = (bh - h) * 0.55;
-
-  /* one continuous state → every block interpolates from the same normalized progress.
-     Written straight to the compositor; no layout properties touched, no DOM churn. */
+  /* One continuous state: the full image covers upward, then the existing text reveal runs. */
   const lastQ = useRef(NaN);
   const apply = useCallback(
     (q: number) => {
       const t = q < 0 ? 0 : q > 2 ? 2 : q;
       if (t === lastQ.current) return;
       lastQ.current = t;
-      // phase A (0 → 1): image blocks assemble. phase B (1 → 2): quote fade + reveal.
+      // phase A (0 → 1): the complete Quote section covers upward as one stable layer.
       const p = Math.min(1, t);
-      const els = pieceRefs.current;
-      for (let i = 0; i < QUOTE_BLOCKS.length; i++) {
-        const el = els[i];
-        if (!el) continue;
-        const b = QUOTE_BLOCKS[i];
-        const span = 1 - b.delay;
-        const raw = (p - b.delay) / span;
-        const local = raw <= 0 ? 0 : raw >= 1 ? 1 : easeOutCubic(raw);
-        if (local >= 1) {
-          // settle exactly — same value the static render uses
-          el.style.transform = "translate3d(0px, 0px, 0px)";
-        } else {
-          const away = 1 - local;
-          el.style.transform = `translate3d(${(b.dx * w * away).toFixed(2)}px, ${(b.dy * h * away).toFixed(2)}px, 0px)`;
-        }
+      const cover = p * p * (3 - 2 * p);
+      if (hostRef.current) {
+        hostRef.current.style.transform =
+          p >= 1 ? "translate3d(0, 0, 0)" : `translate3d(0, ${((1 - cover) * 100).toFixed(3)}%, 0)`;
       }
-      const shell = Math.min(1, Math.max(0, (p - 0.82) / 0.18));
-      if (shellRef.current) shellRef.current.style.opacity = `${shell}`;
 
-      // phase B — the quote stays completely hidden until the image is assembled
+      // phase B — preserve the existing quote fade and word-by-word reveal.
       const phase = Math.min(1, Math.max(0, t - 1));
-      const fade = Math.min(1, phase / 0.16); // block fully assembled → quote fades in
+      const fade = Math.min(1, phase / 0.16);
       if (textRef.current) {
         textRef.current.style.opacity = `${fade}`;
         textRef.current.style.transform = `translate3d(0px, ${((1 - fade) * 18).toFixed(2)}px, 0px)`;
@@ -1315,76 +1229,37 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
         }
       }
     },
-    [w, h],
+    [],
   );
 
   useEffect(() => {
-    lastQ.current = NaN; // geometry changed → force a fresh write
+    lastQ.current = NaN;
     if (!animated) {
       apply(2);
       return;
     }
-    return subscribePuzzle(apply);
-  }, [animated, apply, ready]);
-
-  const pieces: React.ReactNode[] = [];
-  if (ready) {
-    QUOTE_BLOCKS.forEach((b, i) => {
-      const x0 = Math.round((b.x / 100) * w);
-      const y0 = Math.round((b.y / 100) * h);
-      const x1 = Math.round(((b.x + b.w) / 100) * w);
-      const y1 = Math.round(((b.y + b.h) / 100) * h);
-      pieces.push(
-        <div
-          key={i}
-          aria-hidden
-          ref={(n) => {
-            pieceRefs.current[i] = n;
-          }}
-          style={{
-            position: "absolute",
-            left: `${x0}px`,
-            top: `${y0}px`,
-            // +1px bleed removes sub-pixel seams; the extra sliver is off-piece background
-            width: `${x1 - x0 + 1}px`,
-            height: `${y1 - y0 + 1}px`,
-            // overlay baked per piece so it stays dark throughout the puzzle animation
-            backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.2) 100%), url(${manojKohliBg.url})`,
-            backgroundSize: `${w}px ${h}px, ${bw}px ${bh}px`,
-            backgroundPosition: `${-x0}px ${-y0}px, ${-(x0 + offX)}px ${-(y0 + offY)}px`,
-            backgroundRepeat: "no-repeat, no-repeat",
-            transform: "translate3d(0px, 0px, 0px)",
-            backfaceVisibility: "hidden",
-            // promoted once for the whole travel instead of toggling the hint per frame
-            willChange: animated ? "transform" : undefined,
-            contain: "paint",
-          }}
-        />,
-      );
-    });
-  }
+    return subscribeQuoteCover(apply);
+  }, [animated, apply]);
 
   return (
     <section
       ref={hostRef}
       className="relative flex min-h-[100svh] items-end lg:items-start overflow-hidden pt-20 md:pt-24 lg:pt-28 py-14 md:py-16"
-      style={{ background: "transparent" }}
+      style={{
+        backgroundColor: "black",
+        backgroundImage: `url(${manojKohliBg.url})`,
+        backgroundPosition: "85% 55%",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        transform: animated ? "translate3d(0, 100%, 0)" : "translate3d(0, 0, 0)",
+        willChange: animated ? "transform" : undefined,
+        backfaceVisibility: "hidden",
+      }}
     >
-      {/* black shell: fades in as a composited layer (was the section's own background) */}
+      {/* Existing dark overlay, now applied once over the continuous image. */}
       <div
-        ref={shellRef}
-        aria-hidden
-        className="absolute inset-0 bg-black"
-        style={{ opacity: animated ? 0 : 1, zIndex: 0 }}
-      />
-      <div className="absolute inset-0" style={{ zIndex: 1 }}>
-        {pieces}
-      </div>
-      {/* gradient overlay: now baked into each puzzle piece so brightness never changes mid-animation */}
-      <div
-        ref={overlayRef}
         className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/20"
-        style={{ opacity: 0, zIndex: 2 }}
+        style={{ zIndex: 2 }}
       />
 
       <div className="page-x relative w-full" style={{ zIndex: 3 }}>
@@ -1471,7 +1346,7 @@ function AuditedOutcomes() {
 
 /**
  * Sticky podcast stage → Proven Outcomes rises from the bottom to cover it →
- * the Quote photograph assembles over the pinned Proven Outcomes as a puzzle.
+ * the complete Quote photograph rises from the bottom to cover Proven Outcomes.
  * Pure transform, driven by main page scroll. Disabled for reduced motion / small screens.
  */
 function CoverStage({
@@ -1537,11 +1412,11 @@ function CoverStage({
     };
   }, [enabled]);
 
-  // Give the image assembly and typography reveal enough physical scroll travel
+  // Give the image cover and typography reveal enough physical scroll travel
   // that a trackpad gesture cannot rush through both phases at once.
-  const PUZZLE = 3.4;
+  const QUOTE_COVER = 3.4;
   const HOLD = 0.5; // quiet settling time once the typography is fully revealed
-  const tailTravel = tail ? vh * (PUZZLE + HOLD) : 0;
+  const tailTravel = tail ? vh * (QUOTE_COVER + HOLD) : 0;
   // tall-layer sticky offset: keeps the podcast pinned even when it exceeds the viewport
   const underTop = vh && underH > vh ? Math.min(0, vh - underH) : 0;
 
@@ -1571,13 +1446,13 @@ function CoverStage({
           : `translate3d(0, ${((1 - eased) * travel).toFixed(2)}px, 0)`;
 
       if (tail) {
-        // Map the puzzle onto the window in which the quote is actually pinned:
-        // 0 → 1 assembles the image over the first half of the pin, 1 → 2 then
+        // Map the cover onto the window in which the quote is pinned:
+        // 0 → 1 raises the full image over the first half of the pin, 1 → 2 then
         // drives the quote fade-in and the scroll text reveal on the finished frame.
         const pinStart = zoneTopRef.current + travel;
         const assemble = Math.max(1, (overH + tailTravel - travel) * 0.5);
         const q = Math.min(2, Math.max(0, (y - pinStart) / assemble));
-        setPuzzleProgress(q);
+        setQuoteCoverProgress(q);
         const tw = tailRef.current;
         const next = q > 0.98;
         if (tw && next !== interactive) {
@@ -1617,7 +1492,7 @@ function CoverStage({
       </div>
 
       {/* LAYER 2 — the real Proven Outcomes section, full width, rises from the
-          bottom to cover the Podcast, then stays pinned while the puzzle assembles
+          bottom to cover the Podcast, then stays pinned while the Quote covers it
           above it. The wrapper only supplies vertical scroll distance. */}
       <div
         ref={zoneRef}
@@ -1636,8 +1511,7 @@ function CoverStage({
         </div>
 
         {/* LAYER 3 — the real Quote section. Native `sticky` inside a rail that starts one
-            viewport in, so the pinning is compositor-driven (no per-frame transform, no
-            one-frame scroll lag). Its photograph assembles from the shared progress. */}
+            viewport in; its single continuous image covers upward from shared progress. */}
         {tail && vh ? (
           <div
             ref={tailRef}
