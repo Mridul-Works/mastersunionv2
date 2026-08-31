@@ -1111,13 +1111,6 @@ body::-webkit-scrollbar {
   font-weight: 400;
 }
 
-.salary-viz-header > p {
-  max-width: 38rem;
-  align-self: center;
-  color: color-mix(in oklab, #ffffff 58%, transparent);
-  font-size: 0.95rem;
-  line-height: 1.7;
-}
 
 .salary-viz-grid {
   display: grid;
