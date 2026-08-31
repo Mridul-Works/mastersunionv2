@@ -1507,8 +1507,8 @@ function Page() {
 
 
 
-      {/* PODCAST and all following sections remain in one continuous document flow. */}
-      <div className="relative z-20">
+      {/* Podcast rises over the pinned Hero, then all following sections continue in normal flow. */}
+      <div className="relative z-20 -mt-[100svh] motion-reduce:mt-0">
         <section className="relative min-h-[100svh] bg-[#0B1215]">
           <div className="page-x flex h-full min-h-[100svh] items-center pt-8 pb-6 md:pt-10 md:pb-8 lg:pt-12 lg:pb-10">
             <div className="relative flex w-full flex-col gap-10 lg:gap-14">
