@@ -1705,16 +1705,16 @@ function EditorialPlacementData() {
             </div>
           </header>
 
-          <div className="relative flex min-h-[260px] flex-col justify-between overflow-hidden p-7 md:p-10 lg:col-span-5">
+          <div className="relative flex min-h-[260px] flex-col items-center justify-center overflow-hidden p-7 md:p-10 lg:col-span-5">
             <div className="placement-data-grid absolute inset-0 opacity-25" aria-hidden />
-            <span className="relative text-[10px] font-medium uppercase tracking-[0.22em] text-white/45" style={{ fontFamily: MONO }}>
+            <span className="absolute left-7 top-7 text-[10px] font-medium uppercase tracking-[0.22em] text-white/45 md:left-10 md:top-10" style={{ fontFamily: MONO }}>
               Latest cohort / PGP TBM
             </span>
-            <div className="relative">
+            <div className="relative flex flex-col items-center text-center">
               <div className="placement-data-number text-[clamp(3.5rem,7vw,6.6rem)] font-medium leading-none text-white">
                 <CountUp value="₹33.39 L" />
               </div>
-              <div className="mt-3 flex items-center gap-3">
+              <div className="mt-3 flex items-center justify-center gap-3">
                 <span className="h-px w-8 bg-accent" aria-hidden />
                 <span className="text-[10px] uppercase tracking-[0.22em] text-accent" style={{ fontFamily: MONO }}>Average CTC · Cohort 2025</span>
               </div>
