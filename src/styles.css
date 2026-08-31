@@ -1947,7 +1947,7 @@ body::-webkit-scrollbar {
 }
 
 .placement-stats-grid {
-  border: 1px solid color-mix(in oklab, var(--teal) 55%, transparent);
+  border: 1px solid color-mix(in oklab, #ffffff 15%, transparent);
   display: grid;
   border-radius: 12px;
   overflow: hidden;
