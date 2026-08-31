@@ -1253,7 +1253,7 @@ body::-webkit-scrollbar {
 
 .salary-viz-face-front {
   inset: 0;
-  background: color-mix(in oklab, #ffffff 72%, transparent);
+  background: color-mix(in oklab, #ffffff 72%, #0b1215);
   border: 1px solid color-mix(in oklab, #ffffff 18%, transparent);
 }
 
@@ -1262,7 +1262,7 @@ body::-webkit-scrollbar {
   right: -0.42rem;
   bottom: 0;
   width: 0.42rem;
-  background: color-mix(in oklab, #ffffff 35%, transparent);
+  background: color-mix(in oklab, #ffffff 35%, #0b1215);
 }
 
 .salary-viz-range {
