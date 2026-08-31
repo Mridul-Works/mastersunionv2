@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useRouter } from "@tanstack/react-router";
 import Lenis from "lenis";
+import { invalidateScroll, setLenisSource } from "@/lib/scroll-driver";
 
 /**
  * Smooth-scroll layer.
@@ -11,10 +12,10 @@ import Lenis from "lenis";
  * trackpad without allowing one gesture to skip several sections. Single
  * instance on window.__lenis for nav/anchor scrollTo.
  *
- * On the /placements page we intentionally fall back to native browser
- * scrolling — this matches the "Program Layout - UG v2.0" reference project
- * and avoids the custom smooth-scroll driver fighting the page's own
- * scroll-linked animations.
+ * The /placements page uses a lower-sensitivity Lenis config so the page
+ * scrolls more gently, while the scroll driver reads Lenis's smoothed value
+ * directly to keep scroll-linked transforms in sync and avoid the stutter
+ * that comes from two independent animation loops.
  */
 export default function SmoothScroll() {
   const router = useRouter();
