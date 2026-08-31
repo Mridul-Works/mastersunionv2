@@ -1244,7 +1244,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
   return (
     <section
       ref={hostRef}
-      className="relative flex min-h-[100svh] items-end lg:items-start overflow-hidden pt-20 md:pt-24 lg:pt-28 py-14 md:py-16"
+      className="relative flex items-end lg:items-start pt-20 md:pt-24 lg:pt-28 py-14 md:py-16"
       style={{
         backgroundColor: "black",
         backgroundImage: `url(${manojKohliBg.url})`,
@@ -1325,7 +1325,7 @@ function AuditedOutcomes() {
   return (
     <section
       id="outcomes"
-      className="relative flex min-h-[100svh] flex-col justify-between bg-white py-8 md:py-10 lg:py-12"
+      className="relative flex flex-col justify-between bg-white py-8 md:py-10 lg:py-12"
     >
       {/* sticky left + click-driven horizontal accordion */}
       <OutcomesAccordion />
