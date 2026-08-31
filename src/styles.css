@@ -1035,9 +1035,8 @@ body::-webkit-scrollbar {
 .placement-data-number {
   opacity: 0;
   transform: translateY(8px);
-  transition-property: opacity, transform, color;
-  transition-duration: 560ms, 560ms, 300ms;
-  transition-timing-function: cubic-bezier(0.16, 0.84, 0.24, 1);
+  transition: opacity 560ms cubic-bezier(0.16, 0.84, 0.24, 1),
+              transform 560ms cubic-bezier(0.16, 0.84, 0.24, 1);
 }
 
 .placement-data-section[data-in-view="true"] .placement-data-number {
@@ -1050,7 +1049,7 @@ body::-webkit-scrollbar {
   background-repeat: no-repeat;
   background-position: left center;
   background-size: 0 100%;
-  transition: background-size 420ms cubic-bezier(0.16, 0.84, 0.24, 1), color 300ms ease;
+  transition: background-size 650ms cubic-bezier(0.16, 0.84, 0.24, 1);
 }
 
 .placement-ledger-row:hover {
@@ -1058,7 +1057,8 @@ body::-webkit-scrollbar {
 }
 
 .placement-ledger-row:hover .placement-data-number {
-  color: var(--accent-foreground);
+  color: #000000;
+  transition: color 0ms linear !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
