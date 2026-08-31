@@ -2127,7 +2127,7 @@ body::-webkit-scrollbar {
     grid-template-columns: minmax(0, 1.4fr) minmax(14rem, 0.6fr);
   }
   .placement-stats-headlines {
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
   }
   .placement-stats-title {
