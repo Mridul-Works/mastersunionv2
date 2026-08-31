@@ -1054,7 +1054,7 @@ function CohortReportCard({ year, href, cover }: { year: string; href: string; c
             src={cover}
             alt={`${year} placement report cover`}
             loading="lazy"
-            className="h-full w-full object-cover object-top"
+            className="h-full w-full object-contain object-center"
           />
         </div>
 
