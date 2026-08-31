@@ -1432,13 +1432,13 @@ body::-webkit-scrollbar {
 
 @media (min-width: 640px) {
   .placements-ug-v2 .page-x {
-    padding-inline: 1.5rem;
+    padding-inline: var(--page-x);
   }
 }
 
 @media (min-width: 1024px) {
   .placements-ug-v2 .page-x {
-    padding-inline: 2.5rem;
+    padding-inline: var(--page-x);
   }
 }
 
