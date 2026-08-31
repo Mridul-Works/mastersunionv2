@@ -38,18 +38,7 @@ function FieldLabel({ children, htmlFor }: { children: React.ReactNode; htmlFor:
 const inputClass =
   "w-full border border-white/15 bg-transparent px-4 py-3 text-[15px] text-white placeholder:text-white/30 outline-none transition-colors duration-300 focus:border-[var(--accent)]";
 
-const EXPERIENCE_OPTIONS = [
-  "Fresher",
-  "0 – 1 year",
-  "1 – 2 years",
-  "2 – 3 years",
-  "3 – 4 years",
-  "4 – 5 years",
-  "5 – 7 years",
-  "7 – 10 years",
-  "10 – 15 years",
-  "15+ years",
-];
+const EXPERIENCE_OPTIONS = ["≤ 11 months", "> 11 months"];
 
 const COUNTRY_CODES = ["+91", "+1", "+44", "+61", "+65", "+971"];
 
