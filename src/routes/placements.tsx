@@ -56,9 +56,8 @@ import { Button } from "@/components/ui/button";
 function EditorialRule() {
   return (
     <div
-      className="h-px w-full"
+      className="placements-editorial-rule h-px w-full"
       aria-hidden="true"
-      style={{ backgroundColor: "color-mix(in oklab, #ffffff 15%, transparent)" }}
     />
   );
 }
@@ -842,18 +841,12 @@ function PodcastChapters() {
 /** Editorial metric blocks for the Podcast and Proven Outcomes sections. */
 function HorizontalMetricsStrip() {
   return (
-    <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
+    <div className="placements-metrics-strip grid grid-cols-1 gap-px overflow-hidden border-y border-foreground/10 bg-foreground/10 lg:grid-cols-3">
       {AUDIT_STATS.map((stat, i) => (
         <div
           key={stat.suffix}
-          className="metric-card card-elevated group relative flex flex-col overflow-hidden border border-border bg-card transition-colors duration-500 ease-out"
+          className="metric-card group relative flex flex-col overflow-hidden bg-background transition-colors duration-500 ease-out"
         >
-          {/* accent sweep — left to right, retracts to left on leave */}
-          <span
-            aria-hidden
-            className="absolute inset-0 z-0 origin-left scale-x-0 bg-accent transition-transform duration-500 ease-out group-hover:scale-x-100"
-          />
-
           <div className="relative z-10 flex flex-col items-center justify-center gap-4 px-5 py-6 md:px-7 md:py-7 lg:px-8 lg:py-8">
             {/* index */}
             <span
@@ -883,6 +876,7 @@ function HorizontalMetricsStrip() {
                 {stat.note}
               </p>
             </div>
+            <span aria-hidden className="placements-metric-accent mt-1 block h-px w-0 bg-accent transition-all duration-700 group-hover:w-full" />
           </div>
         </div>
       ))}
@@ -1503,7 +1497,7 @@ function Page() {
   const active = RECRUITER_GROUPS.find((g) => g.category === recruiterTab)!;
   return (
     <ReportModalProvider>
-    <main className="placements-obsidian ink-scope min-h-screen overflow-x-clip bg-[#0B1215] pb-16 text-foreground md:pb-18" style={{ fontFamily: INTER }}>
+    <main className="placements-obsidian placements-ug-v2 ink-scope min-h-screen overflow-x-clip bg-[#0B1215] pb-16 text-foreground md:pb-18" style={{ fontFamily: INTER }}>
       <ScrollProgress />
 
       {/* Global top navigation — fixed, hides on scroll down, reveals on scroll up */}
@@ -1566,7 +1560,7 @@ function Page() {
                   onClick={() => setRecruiterTab(g.category)}
                   className={`px-4 py-2 text-[11px] uppercase tracking-[0.18em] ${
                     isActive
-                      ? "bg-black text-white"
+                      ? "recruiter-category-button is-active bg-accent text-accent-foreground"
                       : "recruiter-category-button border border-black/15 text-black/65"
                   }`}
                   style={{ fontFamily: MONO }}
@@ -1886,10 +1880,10 @@ function Page() {
           </Reveal>
           <Reveal delay={280}>
             <div className="mt-10 flex flex-wrap items-center gap-4">
-              <a href="mailto:careerservices@mastersunion.org" className="group inline-flex items-center gap-2 bg-black px-6 py-3.5 text-[11px] uppercase tracking-[0.22em] text-white transition hover:opacity-80" style={{ fontFamily: MONO }}>
+              <a href="mailto:careerservices@mastersunion.org" className="placements-pill-accent group inline-flex items-center gap-2 px-7 py-3.5 text-[13px] font-medium" style={{ fontFamily: INTER }}>
                 <Mail className="size-3.5 transition-transform duration-500 group-hover:-translate-y-0.5" /> careerservices@mastersunion.org
               </a>
-              <span className="inline-flex items-center gap-2 border border-black/20 px-6 py-3.5 text-[11px] uppercase tracking-[0.22em] text-black/70" style={{ fontFamily: MONO }}>
+              <span className="placements-pill-ghost inline-flex items-center gap-2 px-7 py-3.5 text-[13px] font-medium" style={{ fontFamily: INTER }}>
                 <Download className="size-3.5" /> Internship report
               </span>
             </div>
