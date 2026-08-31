@@ -1970,15 +1970,13 @@ body::-webkit-scrollbar {
   transition: transform 460ms cubic-bezier(0.16, 0.84, 0.24, 1);
 }
 
-.career-transition-row[data-active="true"],
-.career-transition-row:hover {
+.career-transition-row[data-active="true"] {
   color: color-mix(in oklab, #ffffff 94%, transparent);
   background: color-mix(in oklab, var(--teal) 9%, transparent);
   border-color: color-mix(in oklab, var(--teal) 42%, transparent);
 }
 
-.career-transition-row[data-active="true"]::before,
-.career-transition-row:hover::before {
+.career-transition-row[data-active="true"]::before {
   transform: scaleY(1);
 }
 
@@ -2008,8 +2006,7 @@ body::-webkit-scrollbar {
   background: color-mix(in oklab, var(--teal) 45%, transparent);
 }
 
-.career-transition-row[data-active="true"] .career-transition-arrow,
-.career-transition-row:hover .career-transition-arrow {
+.career-transition-row[data-active="true"] .career-transition-arrow {
   color: var(--teal);
   transform: translateX(0.25rem);
 }
