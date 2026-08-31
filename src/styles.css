@@ -1279,6 +1279,69 @@ body::-webkit-scrollbar {
   background: color-mix(in oklab, var(--card) 88%, transparent);
 }
 
+.placements-ug-v2 .placements-section-shell-light-green {
+  border-color: color-mix(in oklab, #0b1215 14%, transparent);
+  background: #e8f1ec;
+  color: #0b1215;
+}
+
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-title,
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-headline-value,
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-panel-heading h3,
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-value,
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-column {
+  color: #0b1215;
+}
+
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-kicker,
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-headline-label,
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-panel-heading > span,
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-label,
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-scale {
+  color: color-mix(in oklab, #0b1215 60%, transparent);
+}
+
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-header,
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-grid,
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-panel + .placement-stats-panel,
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-headline-divider,
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-columns::after,
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-face-front {
+  border-color: color-mix(in oklab, #0b1215 15%, transparent);
+}
+
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-face-front {
+  background: color-mix(in oklab, #0b1215 72%, white);
+}
+
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-face-side {
+  background: color-mix(in oklab, #0b1215 45%, white);
+}
+
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-column:hover .placement-stats-face-front,
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-column:focus-visible .placement-stats-face-front {
+  background: var(--accent);
+}
+
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-column:hover .placement-stats-face-side,
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-column:focus-visible .placement-stats-face-side {
+  background: color-mix(in oklab, var(--accent) 45%, white);
+}
+
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-column:hover .placement-stats-value,
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-column:focus-visible .placement-stats-value,
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-column:hover .placement-stats-label,
+.placements-ug-v2 .placements-section-shell-light-green .placement-stats-column:focus-visible .placement-stats-label {
+  color: var(--accent);
+}
+
+@media (min-width: 1024px) {
+  .placements-ug-v2 .placements-section-shell-light-green .placement-stats-panel + .placement-stats-panel {
+    border-color: color-mix(in oklab, #0b1215 15%, transparent);
+  }
+}
+
+
 .placements-ug-v2 .placements-section-shell > .placement-data-bento,
 .placements-ug-v2 .placements-section-shell > .salary-viz-header,
 .placements-ug-v2 .placements-section-shell > .salary-viz-grid,
