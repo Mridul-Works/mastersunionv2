@@ -1021,25 +1021,23 @@ function OutcomesAccordion() {
 
 
 
-function CohortReportCard({ year }: { year: string }) {
+function CohortReportCard({ year, href, cover }: { year: string; href: string; cover: string }) {
   return (
     <a
-      href="#"
-      aria-label={`Cohort ${year} placement report`}
+      href={href}
+      target="_blank"
+      rel="noopener"
+      aria-label={`${year} placement report (PDF)`}
       className="card-elevated group flex h-full flex-col border border-border bg-card p-3 transition-colors duration-500 hover:border-teal/40"
     >
       {/* compact document preview */}
-      <div className="relative flex aspect-[16/17] w-full items-center justify-center bg-muted">
-          <div className="flex flex-col items-center gap-1.5 text-black/35">
-            <FileText className="size-6" strokeWidth={1.25} />
-            <span
-              className="text-[10px] font-semibold uppercase tracking-[0.2em]"
-              style={{ fontFamily: MONO }}
-            >
-              PDF
-            </span>
-          </div>
-          <span className="pointer-events-none absolute inset-x-4 top-1/2 h-px bg-black/[0.06]" />
+      <div className="relative flex aspect-[16/17] w-full items-center justify-center overflow-hidden bg-muted">
+          <img
+            src={cover}
+            alt={`${year} placement report cover`}
+            loading="lazy"
+            className="h-full w-full object-cover object-top"
+          />
         </div>
 
         <div className="mt-2 flex items-start justify-between gap-2">
@@ -1064,7 +1062,11 @@ function CohortReports() {
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
         {REPORT_YEARS.map((y, i) => (
           <Reveal key={y} delay={i * 70} y={16}>
-            <CohortReportCard year={`Cohort ${y}`} />
+            <CohortReportCard
+              year={`Cohort ${y}`}
+              href={PLACEMENT_REPORTS[y].pdf}
+              cover={PLACEMENT_REPORTS[y].cover}
+            />
           </Reveal>
         ))}
       </div>
