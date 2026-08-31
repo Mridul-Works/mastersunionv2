@@ -1868,6 +1868,14 @@ body::-webkit-scrollbar {
 }
 
 /* Career Transitions — one continuous sticky-left editorial story. */
+/* `overflow: hidden` on the shared section shell turns it into a scrollport,
+   which silently kills position: sticky inside. `clip` gives the same visual
+   containment without creating a scroll container, so the left chapter marker
+   sticks against the page scroll. */
+.placements-ug-v2 .career-transitions-section .placements-section-shell {
+  overflow: clip;
+}
+
 .career-transition-story {
   border-top: 1px solid color-mix(in oklab, var(--teal) 70%, transparent);
 }
