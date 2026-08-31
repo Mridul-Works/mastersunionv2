@@ -1158,11 +1158,16 @@ body::-webkit-scrollbar {
   height: 24rem;
   margin-top: 2.5rem;
   padding: 0 0 3rem 2.5rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 2.25rem minmax(0, 1fr) 2.5rem;
 }
 
 .salary-viz-scale {
-  position: absolute;
-  inset: 2.25rem 0 5.5rem 0;
+  position: relative;
+  grid-column: 1;
+  grid-row: 2;
+  margin-left: -2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1187,6 +1192,8 @@ body::-webkit-scrollbar {
 
 .salary-viz-columns {
   position: relative;
+  grid-column: 1;
+  grid-row: 1 / -1;
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
