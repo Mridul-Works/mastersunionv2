@@ -1894,7 +1894,7 @@ body::-webkit-scrollbar {
   gap: clamp(1.5rem, 3vw, 2.5rem);
 }
 
-.career-transition-chapter {
+.placements-obsidian .career-transition-chapter {
   display: grid;
   grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
   gap: clamp(2.5rem, 5vw, 5rem);
@@ -1906,11 +1906,11 @@ body::-webkit-scrollbar {
   overflow: clip;
 }
 
-.career-transition-chapter + .career-transition-chapter {
+.placements-obsidian .career-transition-chapter + .career-transition-chapter {
   border-top: 0;
 }
 
-.career-transition-list {
+.placements-obsidian .career-transition-list {
   min-width: 0;
   overflow: visible;
   border: none;
