@@ -1299,6 +1299,11 @@ body::-webkit-scrollbar {
   background: color-mix(in oklab, var(--accent) 45%, #0b1215);
 }
 
+@keyframes salary-bar-rise {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
 .salary-viz-donut-layout {
   display: grid;
   gap: 2rem;
