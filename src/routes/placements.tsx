@@ -1438,72 +1438,10 @@ function AuditedOutcomes() {
 }
 
 /**
- * Tablet / mobile: the Quote keeps the same staggered puzzle-block assembly and the
- * quote fade + word reveal, driven by its own sticky scroll rail (the desktop
- * CoverStage layering is not used below 1024px).
- */
-function SmallScreenPuzzleStage({ tail }: { tail: (animated: boolean) => React.ReactNode }) {
-  const reduced = useReducedMotion();
-  const railRef = useRef<HTMLDivElement>(null);
-  const [enabled, setEnabled] = useState(false);
-  const [vh, setVh] = useState(0);
-  const railTopRef = useRef(0);
-
-  useEffect(() => {
-    if (reduced) {
-      setEnabled(false);
-      return;
-    }
-    const mq = window.matchMedia("(max-width: 1023px)");
-    const sync = () => setEnabled(mq.matches);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, [reduced]);
-
-  useEffect(() => {
-    if (!enabled) return;
-    const measure = () => {
-      const next = Math.round(window.innerHeight);
-      setVh((prev) => (Math.abs(prev - next) > 1 ? next : prev));
-      const rail = railRef.current;
-      if (rail) railTopRef.current = Math.round(rail.getBoundingClientRect().top + window.scrollY);
-      invalidateScroll();
-    };
-    measure();
-    const off = onViewportResize(measure);
-    return () => off();
-  }, [enabled]);
-
-  const assemble = vh ? Math.round(vh * 0.95) : 0;
-
-  useEffect(() => {
-    if (!enabled || !assemble) return;
-    let last = NaN;
-    const off = onScrollFrame(({ y }) => {
-      const q = Math.min(2, Math.max(0, (y - railTopRef.current) / assemble));
-      if (q === last) return;
-      last = q;
-      setPuzzleProgress(q);
-    });
-    return () => off();
-  }, [enabled, assemble]);
-
-  if (!enabled || !vh) return <>{tail(enabled)}</>;
-
-  return (
-    <div ref={railRef} className="relative" style={{ height: `${vh + assemble * 2}px` }}>
-      <div className="sticky top-0 h-[100svh]">{tail(true)}</div>
-    </div>
-  );
-}
-
-/**
  * Sticky podcast stage → Proven Outcomes rises from the bottom to cover it →
  * the Quote photograph assembles over the pinned Proven Outcomes as a puzzle.
  * Pure transform, driven by main page scroll. Disabled for reduced motion / small screens.
  */
-
 function CoverStage({
   under,
   over,
@@ -1630,11 +1568,10 @@ function CoverStage({
       <>
         {under}
         {over}
-        {tail ? <SmallScreenPuzzleStage tail={tail} /> : null}
+        {tail?.(false)}
       </>
     );
   }
-
 
   return (
     <div className="relative bg-transparent">
