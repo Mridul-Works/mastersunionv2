@@ -1867,43 +1867,55 @@ body::-webkit-scrollbar {
   .salary-viz-legend-value { grid-column: 2; }
 }
 
-/* Career Transitions — one continuous sticky-left editorial story. */
+/* Career Transitions — outer shared container + per-chapter inner containers. */
 /* `overflow: hidden` on the shared section shell turns it into a scrollport,
    which silently kills position: sticky inside. `clip` gives the same visual
    containment without creating a scroll container, so the left chapter marker
    sticks against the page scroll. */
 .placements-ug-v2 .career-transitions-section .placements-section-shell {
   overflow: clip;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  padding: 0;
-  box-shadow: none;
-  backdrop-filter: none;
+  background: var(--placements-outer-surface);
+  border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent);
+  border-radius: 18px;
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(14px);
 }
 
 .career-transition-story {
-  /* outer #131618 container removed; inner career-transition-list cards stay untouched */
   overflow: visible;
   background: transparent;
   border: none;
   border-radius: 0;
   padding: 0;
   box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
 }
-
-
 
 .career-transition-chapter {
   display: grid;
   grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
   gap: clamp(2.5rem, 5vw, 5rem);
   position: relative;
-  padding-block: clamp(2.75rem, 6vw, 5.5rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: var(--placements-inner-surface);
+  border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent);
+  border-radius: 12px;
+  overflow: clip;
 }
 
 .career-transition-chapter + .career-transition-chapter {
-  border-top: 1px solid color-mix(in oklab, var(--teal) 38%, transparent);
+  border-top: 0;
+}
+
+.career-transition-list {
+  min-width: 0;
+  overflow: visible;
+  border: none;
+  border-radius: 0;
+  background: transparent;
 }
 
 .career-transition-sticky {
