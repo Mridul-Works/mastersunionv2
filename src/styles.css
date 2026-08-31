@@ -1100,6 +1100,7 @@ body::-webkit-scrollbar {
   --accent-foreground: oklch(0.98 0.01 145);
   --teal: oklch(0.47 0.09 158);
   --font-display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+  --page-x: clamp(0.75rem, 2.2vw, 1.25rem);
   --placements-rule: linear-gradient(
     to right,
     transparent 0%,
