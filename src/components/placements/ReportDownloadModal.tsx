@@ -7,7 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
-import cover2025 from "@/assets/placement-reports/cover-2025.png.asset.json";
+import modalStudents from "@/assets/modal-students.webp.asset.json";
 import report2025 from "@/assets/placement-reports/report-2025.pdf.asset.json";
 
 const MONO = "var(--font-mono-tech)";
