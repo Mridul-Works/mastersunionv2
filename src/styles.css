@@ -1867,6 +1867,219 @@ body::-webkit-scrollbar {
   .salary-viz-legend-value { grid-column: 2; }
 }
 
+/* Career Transitions — one continuous sticky-left editorial story. */
+.career-transition-story {
+  border-top: 1px solid color-mix(in oklab, var(--teal) 70%, transparent);
+}
+
+.career-transition-chapter {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  gap: clamp(2.5rem, 5vw, 5rem);
+  position: relative;
+  padding-block: clamp(2.75rem, 6vw, 5.5rem);
+}
+
+.career-transition-chapter + .career-transition-chapter {
+  border-top: 1px solid color-mix(in oklab, var(--teal) 38%, transparent);
+}
+
+.career-transition-sticky {
+  min-width: 0;
+}
+
+.career-transition-category {
+  position: sticky;
+  top: clamp(5.5rem, 10vh, 7.5rem);
+  padding-right: clamp(1rem, 3vw, 3rem);
+  transition: opacity 420ms cubic-bezier(0.16, 0.84, 0.24, 1), transform 420ms cubic-bezier(0.16, 0.84, 0.24, 1);
+}
+
+.career-transition-category-rule {
+  display: block;
+  width: min(8rem, 50%);
+  height: 1px;
+  margin-top: 1.5rem;
+  margin-left: 2.25rem;
+  background: var(--teal);
+}
+
+.career-transition-list {
+  min-width: 0;
+  border-top: 1px solid color-mix(in oklab, var(--teal) 48%, transparent);
+}
+
+.career-transition-columns,
+.career-transition-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(4.5rem, 0.42fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(0.75rem, 1.8vw, 1.5rem);
+}
+
+.career-transition-columns-launch,
+.career-transition-row-launch {
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.85fr) minmax(0, 1fr);
+}
+
+.career-transition-columns {
+  min-height: 3.25rem;
+  border-bottom: 1px solid color-mix(in oklab, #ffffff 10%, transparent);
+  color: color-mix(in oklab, #ffffff 45%, transparent);
+  font-family: var(--font-mono-tech);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.career-transition-columns:not(.career-transition-columns-launch) span:last-child {
+  grid-column: 3;
+}
+
+.career-transition-row {
+  position: relative;
+  min-height: clamp(6.25rem, 9vw, 8rem);
+  border-bottom: 1px solid color-mix(in oklab, #ffffff 10%, transparent);
+  color: color-mix(in oklab, #ffffff 62%, transparent);
+  transition: background-color 460ms cubic-bezier(0.16, 0.84, 0.24, 1), color 460ms cubic-bezier(0.16, 0.84, 0.24, 1), border-color 460ms ease;
+}
+
+.career-transition-row::before {
+  content: "";
+  position: absolute;
+  inset-block: 16%;
+  left: 0;
+  width: 2px;
+  background: var(--teal);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 460ms cubic-bezier(0.16, 0.84, 0.24, 1);
+}
+
+.career-transition-row[data-active="true"],
+.career-transition-row:hover {
+  color: color-mix(in oklab, #ffffff 94%, transparent);
+  background: color-mix(in oklab, var(--teal) 9%, transparent);
+  border-color: color-mix(in oklab, var(--teal) 42%, transparent);
+}
+
+.career-transition-row[data-active="true"]::before,
+.career-transition-row:hover::before {
+  transform: scaleY(1);
+}
+
+.career-transition-cell {
+  min-width: 0;
+  padding-block: 1rem;
+  font-size: clamp(0.82rem, 1.1vw, 0.96rem);
+  line-height: 1.5;
+}
+
+.career-transition-row:not(.career-transition-row-launch) .career-transition-cell:last-child {
+  color: color-mix(in oklab, #ffffff 90%, transparent);
+  font-weight: 500;
+}
+
+.career-transition-arrow {
+  display: flex;
+  align-items: center;
+  color: color-mix(in oklab, var(--teal) 72%, transparent);
+  transition: color 460ms ease, transform 460ms cubic-bezier(0.16, 0.84, 0.24, 1);
+}
+
+.career-transition-arrow span {
+  height: 1px;
+  flex: 1;
+  background: color-mix(in oklab, var(--teal) 45%, transparent);
+}
+
+.career-transition-row[data-active="true"] .career-transition-arrow,
+.career-transition-row:hover .career-transition-arrow {
+  color: var(--teal);
+  transform: translateX(0.25rem);
+}
+
+.career-transition-mobile-label {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .career-transition-chapter {
+    display: block;
+    padding-block: 3.5rem;
+  }
+
+  .career-transition-category {
+    position: static;
+    padding-right: 0;
+    margin-bottom: 2rem;
+  }
+
+  .career-transition-list {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .career-transition-chapter {
+    padding-block: 2.75rem;
+  }
+
+  .career-transition-columns {
+    display: none;
+  }
+
+  .career-transition-row,
+  .career-transition-row-launch {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    min-height: 0;
+    padding: 1.1rem 0.9rem;
+  }
+
+  .career-transition-row:not(.career-transition-row-launch) {
+    grid-template-columns: minmax(0, 1fr) 1.5rem minmax(0, 1fr);
+    gap: 0.55rem;
+  }
+
+  .career-transition-cell {
+    padding: 0;
+    font-size: 0.8rem;
+  }
+
+  .career-transition-row-launch .career-transition-cell + .career-transition-cell {
+    margin-top: 0.9rem;
+  }
+
+  .career-transition-mobile-label {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: color-mix(in oklab, #ffffff 38%, transparent);
+    font-family: var(--font-mono-tech);
+    font-size: 0.52rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .career-transition-arrow span {
+    display: none;
+  }
+
+  .career-transition-arrow {
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .career-transition-category,
+  .career-transition-row,
+  .career-transition-row::before,
+  .career-transition-arrow {
+    transition: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .salary-viz-extrusion,
   .salary-viz-column,
