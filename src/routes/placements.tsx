@@ -998,7 +998,6 @@ function SalaryVisualizations() {
             <span className="salary-viz-kicker" style={{ fontFamily: MONO }}>Compensation anatomy / Cohort 2025</span>
             <h2 id="salary-viz-title" className="salary-viz-title">Beyond the average. <em>Inside the offer.</em></h2>
           </div>
-          <p>How compensation is distributed across the cohort, and how the average offer is constructed.</p>
         </header>
 
         <div className="salary-viz-grid">
