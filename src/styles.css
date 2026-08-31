@@ -1187,9 +1187,10 @@ body::-webkit-scrollbar {
     transform: translateY(-1px);
   }
 
+  .placements-obsidian.placements-ug-v2 .hero-sweep-button.bg-white:hover,
   .placements-ug-v2 .hero-sweep-button:hover {
-    background-color: var(--accent) !important;
-    border-color: var(--accent) !important;
+    background-color: var(--accent);
+    border-color: var(--accent);
     box-shadow: 0 0 28px -6px color-mix(in oklab, var(--accent) 60%, transparent);
   }
 
