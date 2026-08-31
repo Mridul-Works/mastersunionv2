@@ -1139,12 +1139,14 @@ body::-webkit-scrollbar {
   z-index: 10;
   width: 100%;
   max-width: 38rem;
-  padding: 0 clamp(1.5rem, 3vw, 2.5rem);
+  padding: 1.25rem clamp(1.5rem, 3vw, 2.5rem);
   transform: translate(-50%, -50%);
   text-align: center;
   color: color-mix(in oklab, #ffffff 58%, transparent);
   font-size: 0.95rem;
   line-height: 1.7;
+  background: color-mix(in oklab, #0b1215 86%, transparent);
+  border-radius: 0.35rem;
   pointer-events: none;
 }
 
