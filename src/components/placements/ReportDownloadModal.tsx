@@ -226,10 +226,10 @@ function ReportModal({ onClose }: { onClose: () => void }) {
 
       {/* panel */}
       <div
-        className={`report-modal-outer relative grid w-full max-w-[880px] grid-cols-1 overflow-hidden gap-[clamp(1rem,2.5vw,2rem)] transition-all duration-300 ease-out md:grid-cols-[38%_62%] ${
+        className={`report-modal-outer relative w-full max-w-[880px] overflow-hidden transition-all duration-300 ease-out ${
           visible ? "translate-y-0 scale-100 opacity-100" : "translate-y-3 scale-[0.97] opacity-0"
         }`}
-        style={{ fontFamily: INTER, padding: "clamp(1rem, 2.5vw, 2rem)" }}
+        style={{ fontFamily: INTER }}
       >
         {/* close */}
         <button
@@ -241,8 +241,9 @@ function ReportModal({ onClose }: { onClose: () => void }) {
           <X className="size-4" />
         </button>
 
-        {/* left: image area */}
-        <div className="report-modal-inner report-modal-image relative hidden min-h-[420px] overflow-hidden md:block">
+        <div className="grid grid-cols-1 gap-[clamp(1rem,2.5vw,2rem)] p-[clamp(1rem,2.5vw,2rem)] md:grid-cols-[minmax(0,38fr)_minmax(0,62fr)]">
+          {/* left: image area */}
+          <div className="report-modal-inner report-modal-image relative hidden min-h-[420px] overflow-hidden md:block">
           <img
             src={modalStudents.url}
             alt="Masters' Union student reading on campus"
@@ -261,10 +262,10 @@ function ReportModal({ onClose }: { onClose: () => void }) {
               Five cohorts. Audited, published, <em className="font-serif-italic">verified.</em>
             </p>
           </div>
-        </div>
+          </div>
 
-        {/* right: form */}
-        <div className="report-modal-inner p-6">
+          {/* right: form */}
+          <div className="report-modal-inner p-6">
           <div
             className="mb-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50"
             style={{ fontFamily: MONO }}
@@ -361,7 +362,8 @@ function ReportModal({ onClose }: { onClose: () => void }) {
                 </span>
               </button>
             </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>
