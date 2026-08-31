@@ -1098,10 +1098,16 @@ function CohortReports() {
         <button
           type="button"
           onClick={reportModal.open}
-          className="inline-flex cursor-pointer items-center gap-2 border border-black/15 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-black/70 transition-colors duration-500 hover:border-black/45 hover:text-black"
+          className="report-sweep-button group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden border border-black/15 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-black/70 transition-colors duration-500 hover:border-black/45"
           style={{ fontFamily: MONO }}
         >
-          <Download className="size-3.5" /> Download placement report
+          <span
+            aria-hidden
+            className="absolute inset-0 z-0 origin-left scale-x-0 bg-accent transition-transform duration-500 ease-out group-hover:scale-x-100"
+          />
+          <span className="report-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-500">
+            <Download className="size-3.5" /> Download placement report
+          </span>
         </button>
       </div>
     </div>
