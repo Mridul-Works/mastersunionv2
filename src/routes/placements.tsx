@@ -1035,7 +1035,7 @@ function LogoRow({ names }: { names: string[] }) {
             src={LOGOS[n]}
             alt={n}
             loading="lazy"
-            className="no-img-zoom h-6 w-auto object-contain opacity-70 transition-opacity duration-500 hover:opacity-100"
+            className="no-img-zoom h-10 w-auto object-contain opacity-70 transition-opacity duration-500 hover:opacity-100"
           />
         </Reveal>
       ))}
