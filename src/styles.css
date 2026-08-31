@@ -1005,11 +1005,19 @@ body::-webkit-scrollbar {
   border-color: rgb(242 241 238 / 0.16);
 }
 
-/* green selection highlight for the experience dropdown */
+/* green selection + hover highlight for the experience dropdown */
+.accent-select {
+  accent-color: var(--accent);
+}
+
 .accent-select option:checked,
-.accent-select option:hover {
-  background: var(--accent);
-  color: #000000;
+.accent-select option:hover,
+.accent-select option:focus,
+.accent-select option:active {
+  background: var(--accent) !important;
+  background-color: var(--accent) !important;
+  color: #000000 !important;
   -webkit-text-fill-color: #000000;
   box-shadow: 0 0 0 100px var(--accent) inset;
 }
+
