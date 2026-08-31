@@ -1187,6 +1187,12 @@ body::-webkit-scrollbar {
     transform: translateY(-1px);
   }
 
+  .placements-ug-v2 .hero-sweep-button:hover {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 28px -6px color-mix(in oklab, var(--accent) 60%, transparent);
+  }
+
   .placements-ug-v2 .placements-pill-accent:hover {
     background: color-mix(in oklab, var(--accent) 88%, white);
     box-shadow: 0 14px 34px -18px color-mix(in oklab, var(--accent) 75%, transparent);
