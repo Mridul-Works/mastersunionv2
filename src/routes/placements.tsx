@@ -1327,7 +1327,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
           })}
         </div>
         <div className="mt-14 md:mt-16">
-          <SectionDivider variant="spectrum" inset="none" />
+          <EditorialRule />
         </div>
       </div>
     </section>
@@ -1356,7 +1356,7 @@ function AuditedOutcomes() {
         </div>
         <CohortReports />
         <div className="mt-8 md:mt-10 lg:mt-12">
-          <SectionDivider variant="spectrum" inset="none" />
+          <EditorialRule />
         </div>
       </div>
     </section>
@@ -1533,7 +1533,7 @@ function Page() {
             <div className="relative flex w-full flex-col gap-10 lg:gap-14">
               <PodcastSection />
               <div className="mt-6 md:mt-8 lg:mt-10">
-                <SectionDivider variant="spectrum" inset="none" />
+                <EditorialRule />
               </div>
             </div>
           </div>
@@ -1585,7 +1585,7 @@ function Page() {
         </div>
 
         <div className="mt-10">
-          <SectionDivider variant="spectrum" inset="none" />
+          <EditorialRule />
           <LogoMarquee
             className="recruiter-logo-marquee mt-6"
             variant="banded"
