@@ -1335,7 +1335,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
   return (
     <section
       ref={hostRef}
-      className="relative flex min-h-[100svh] items-start overflow-hidden pt-20 md:pt-24 lg:pt-28 py-14 md:py-16"
+      className="relative flex min-h-[100svh] items-end lg:items-start overflow-hidden pt-20 md:pt-24 lg:pt-28 py-14 md:py-16"
       style={{ background: "transparent" }}
     >
       {/* black shell: fades in as a composited layer (was the section's own background) */}
