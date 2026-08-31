@@ -1027,6 +1027,137 @@ function SalaryVisualizations() {
   );
 }
 
+function MetricBarGroup({
+  metrics,
+  max,
+  unit,
+}: {
+  metrics: { label: string; value: string; raw: number }[];
+  max: number;
+  unit?: string;
+}) {
+  const { ref, inView } = useInView<HTMLDivElement>("0px 0px -8% 0px");
+  const reduced = useReducedMotion();
+
+  return (
+    <div
+      ref={ref}
+      data-in-view={inView || reduced}
+      className="placement-stats-bars"
+      aria-label={`Metrics up to ${max} ${unit || "LPA"}`}
+    >
+      <div className="placement-stats-scale" aria-hidden>
+        <span>
+          {max} {unit || "L"}
+        </span>
+        <span>
+          {max / 2} {unit || "L"}
+        </span>
+        <span>0</span>
+      </div>
+      <div className="placement-stats-columns">
+        {metrics.map((item, index) => {
+          const height = Math.min(100, Math.max(4, (item.raw / max) * 100));
+          return (
+            <Button
+              key={item.label}
+              type="button"
+              variant="ghost"
+              className="placement-stats-column group h-auto rounded-none p-0 hover:bg-transparent focus-visible:ring-accent"
+              style={
+                { "--bar-pct": `${height}`, "--bar-delay": `${index * 120}ms` } as React.CSSProperties
+              }
+              aria-label={`${item.label}: ${item.value}`}
+            >
+              <span className="placement-stats-bar-stack">
+                <span className="placement-stats-value">
+                  <CountUp value={item.value} delay={index * 120} />
+                </span>
+                <span className="placement-stats-extrusion" aria-hidden>
+                  <span className="placement-stats-face-front" />
+                  <span className="placement-stats-face-side" />
+                </span>
+              </span>
+              <span className="placement-stats-label">{item.label}</span>
+            </Button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+const PLACEMENT_STATS = {
+  international: { offers: "30", average: "₹64 LPA" },
+  ylc: [
+    { label: "Average CTC", value: "₹28.24 LPA", raw: 28.24 },
+    { label: "Median CTC", value: "₹27.43 LPA", raw: 27.43 },
+    { label: "Highest CTC", value: "₹46.22 LPA", raw: 46.22 },
+  ],
+  tbm: [
+    { label: "Average CTC", value: "₹33.39 LPA", raw: 33.39 },
+    { label: "Domestic Average CTC", value: "₹30.72 LPA", raw: 30.72 },
+    { label: "Highest CTC", value: "₹1.28 Cr", raw: 128 },
+  ],
+};
+
+function OurPlacementStatistics() {
+  return (
+    <section className="placement-stats-section section-edge bg-[#0B1215]" aria-labelledby="placement-stats-title">
+      <div className="page-x py-16 md:py-24">
+        <div className="placements-section-shell placements-section-shell-dark">
+          <header className="placement-stats-header">
+            <div>
+              <span className="placement-stats-kicker" style={{ fontFamily: MONO }}>
+                Placement statistics / 2025
+              </span>
+              <h2 id="placement-stats-title" className="placement-stats-title">
+                Our placement <em className="font-serif-italic" style={{ color: "var(--teal)" }}>statistics.</em>
+              </h2>
+            </div>
+            <div className="placement-stats-headlines">
+              <div className="placement-stats-headline">
+                <span className="placement-stats-headline-value">
+                  <CountUp value="30" />
+                </span>
+                <span className="placement-stats-headline-label">Total International &amp; International Remote Offers</span>
+              </div>
+              <div className="placement-stats-headline">
+                <span className="placement-stats-headline-value">
+                  <CountUp value="₹64 LPA" />
+                </span>
+                <span className="placement-stats-headline-label">International Average CTC</span>
+              </div>
+            </div>
+          </header>
+
+          <div className="placement-stats-grid">
+            <article className="placement-stats-panel" aria-labelledby="placement-stats-ylc-heading">
+              <div className="placement-stats-panel-heading">
+                <span style={{ fontFamily: MONO }}>01 / PGP TBM YLC</span>
+                <h3 id="placement-stats-ylc-heading">
+                  PGP TBM <em className="font-serif-italic" style={{ color: "var(--teal)" }}>YLC</em>
+                </h3>
+              </div>
+              <MetricBarGroup metrics={PLACEMENT_STATS.ylc} max={50} />
+            </article>
+
+            <article className="placement-stats-panel" aria-labelledby="placement-stats-tbm-heading">
+              <div className="placement-stats-panel-heading">
+                <span style={{ fontFamily: MONO }}>02 / PGP TBM</span>
+                <h3 id="placement-stats-tbm-heading">
+                  PGP TBM <em className="font-serif-italic" style={{ color: "var(--teal)" }}>cohort</em>
+                </h3>
+              </div>
+              <MetricBarGroup metrics={PLACEMENT_STATS.tbm} max={150} />
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function LogoRow({ names }: { names: string[] }) {
   const found = names.filter((n) => LOGOS[n]);
   if (found.length === 0) return null;
@@ -1539,6 +1670,8 @@ function Page() {
 
       {/* COHORT AVERAGES + PLACEMENT STATISTICS */}
       <EditorialPlacementData />
+
+      <OurPlacementStatistics />
 
       <SalaryVisualizations />
 
