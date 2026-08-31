@@ -1028,7 +1028,7 @@ function LogoRow({ names }: { names: string[] }) {
   const found = names.filter((n) => LOGOS[n]);
   if (found.length === 0) return null;
   return (
-    <div className="flex flex-wrap items-center gap-x-12 gap-y-8">
+    <div className="recruiter-logo-row flex flex-wrap items-center gap-x-12 gap-y-8">
       {found.map((n, i) => (
         <Reveal key={n} delay={i * 60} y={14} duration={650}>
           <img

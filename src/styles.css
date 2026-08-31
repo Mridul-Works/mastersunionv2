@@ -260,11 +260,13 @@
 
 /* Recruiter marks: retain their geometry while lifting dark source artwork
    into a crisp light lockup on the editorial band. */
+.recruiter-logo-row img,
 .recruiter-logo-marquee img {
   opacity: 0.92;
   filter: brightness(0) invert(1);
 }
 
+.recruiter-logo-row img:hover,
 .recruiter-logo-marquee img:hover {
   opacity: 1;
 }
