@@ -1132,7 +1132,7 @@ body::-webkit-scrollbar {
   max-width: 44rem;
   margin-top: 2.25rem;
   padding: 1.35rem 1.6rem;
-  border: 1px solid color-mix(in oklab, #ffffff 18%, transparent);
+  border: 1px solid color-mix(in oklab, var(--teal) 55%, transparent);
   border-radius: 0.9rem;
   background: color-mix(in oklab, #ffffff 5%, transparent);
   backdrop-filter: blur(6px);
