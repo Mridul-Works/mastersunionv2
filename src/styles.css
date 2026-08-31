@@ -1299,11 +1299,6 @@ body::-webkit-scrollbar {
   border-color: var(--accent);
 }
 
-.salary-viz-column:hover .salary-viz-face-top,
-.salary-viz-column:focus-visible .salary-viz-face-top {
-  background: color-mix(in oklab, var(--accent) 95%, #ffffff);
-}
-
 .salary-viz-column:hover .salary-viz-face-side,
 .salary-viz-column:focus-visible .salary-viz-face-side {
   background: color-mix(in oklab, var(--accent) 45%, #0b1215);
