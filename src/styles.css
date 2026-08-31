@@ -1921,8 +1921,12 @@ body::-webkit-scrollbar {
 
 .career-transition-list {
   min-width: 0;
-  border-top: 1px solid color-mix(in oklab, var(--teal) 48%, transparent);
+  overflow: clip;
+  border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent);
+  border-radius: 12px;
+  background: var(--placements-inner-surface, #0E1113);
 }
+
 
 .career-transition-columns,
 .career-transition-row {
