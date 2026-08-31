@@ -1100,6 +1100,7 @@ body::-webkit-scrollbar {
   --accent-foreground: oklch(0.98 0.01 145);
   --teal: oklch(0.47 0.09 158);
   --font-display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+  --page-x: clamp(0.75rem, 2.2vw, 1.25rem);
   --placements-rule: linear-gradient(
     to right,
     transparent 0%,
@@ -1115,7 +1116,7 @@ body::-webkit-scrollbar {
   width: 100%;
   max-width: 82.5rem;
   margin-inline: auto;
-  padding-inline: 1rem;
+  padding-inline: var(--page-x);
 }
 
 .placements-ug-v2 h1,
@@ -1282,7 +1283,8 @@ body::-webkit-scrollbar {
   overflow: hidden;
   border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent);
   border-radius: 18px;
-  padding: clamp(1.25rem, 3vw, 2.5rem);
+  padding-block: clamp(1.25rem, 3vw, 2.5rem);
+  padding-inline: var(--page-x);
   background: var(--placements-outer-surface);
   backdrop-filter: blur(14px);
   box-shadow: var(--shadow-soft);
@@ -1428,17 +1430,6 @@ body::-webkit-scrollbar {
   }
 }
 
-@media (min-width: 640px) {
-  .placements-ug-v2 .page-x {
-    padding-inline: 1.5rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .placements-ug-v2 .page-x {
-    padding-inline: 2.5rem;
-  }
-}
 
 .experience-option:hover,
 .experience-option:focus-visible {
