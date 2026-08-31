@@ -1873,7 +1873,13 @@ body::-webkit-scrollbar {
    containment without creating a scroll container, so the left chapter marker
    sticks against the page scroll. */
 .placements-ug-v2 .career-transitions-section .placements-section-shell {
-  overflow: clip;
+  overflow: visible;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 .career-transition-story {
