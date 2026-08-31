@@ -1918,8 +1918,7 @@ body::-webkit-scrollbar {
   font-family: var(--font-mono-tech);
 }
 
-.placement-stats-card {
-  background: #121417;
+.placement-stats-grid {
   border: 1px solid color-mix(in oklab, #ffffff 15%, transparent);
   display: grid;
   border-radius: 12px;

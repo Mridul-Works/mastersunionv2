@@ -1104,8 +1104,7 @@ const PLACEMENT_STATS = {
 function OurPlacementStatistics() {
   return (
     <div className="mt-10" aria-labelledby="placement-stats-title">
-      <div className="placements-section-shell placements-section-shell-dark placement-stats-card">
-
+      <div className="placements-section-shell placements-section-shell-dark">
         <header className="placement-stats-header">
           <div>
             <span className="placement-stats-kicker" style={{ fontFamily: MONO }}>
