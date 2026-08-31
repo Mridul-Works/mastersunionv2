@@ -1568,10 +1568,11 @@ function CoverStage({
       <>
         {under}
         {over}
-        {tail?.(false)}
+        {tail ? <SmallScreenPuzzleStage tail={tail} /> : null}
       </>
     );
   }
+
 
   return (
     <div className="relative bg-transparent">
