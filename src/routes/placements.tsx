@@ -104,35 +104,28 @@ const PLACEMENT_REPORTS: Record<string, { pdf: string; cover: string }> = {
 
 type CohortRow = {
   cohort: string;
-  avg: number;
-  median: number;
-  highest: number;
-  top25: number;
-  bottom25: number;
-  mid80: number;
-  highestLabel: string;
+  avg: string;
+  median: string;
+  highest: string;
+  top25: string;
+  bottom25: string;
+  mid80: string;
 };
 
 const TBM_TABLE: CohortRow[] = [
-  { cohort: "'21", avg: 29.12, median: 29.5, highest: 45, top25: 41.14, bottom25: 19.38, mid80: 28.76, highestLabel: "₹45 L" },
-  { cohort: "'22", avg: 33.1, median: 30.92, highest: 64.15, top25: 44.52, bottom25: 20.02, mid80: 33.73, highestLabel: "₹64.15 L" },
-  { cohort: "'23", avg: 34.07, median: 32.19, highest: 57.08, top25: 44.67, bottom25: 22.35, mid80: 34.09, highestLabel: "₹57.08 L" },
-  { cohort: "'24", avg: 28.52, median: 27.77, highest: 61.8, top25: 43.79, bottom25: 19.3, mid80: 27.05, highestLabel: "₹61.80 L" },
-  { cohort: "'25", avg: 33.39, median: 27.79, highest: 128, top25: 54.8, bottom25: 22.75, mid80: 29.2, highestLabel: "₹1.28 Cr" },
+  { cohort: "2025", avg: "₹33.39 L", median: "₹27.79 L", highest: "₹1.28 Cr", top25: "₹54.80 L", bottom25: "₹22.75 L", mid80: "₹29.20 L" },
+  { cohort: "2024", avg: "₹28.52 L", median: "₹27.77 L", highest: "₹61.80 L", top25: "₹43.79 L", bottom25: "₹19.30 L", mid80: "₹27.05 L" },
+  { cohort: "2023", avg: "₹34.07 L", median: "₹32.19 L", highest: "₹57.08 L", top25: "₹44.67 L", bottom25: "₹22.35 L", mid80: "₹34.09 L" },
+  { cohort: "2022", avg: "₹33.10 L", median: "₹30.92 L", highest: "₹64.15 L", top25: "₹44.52 L", bottom25: "₹20.02 L", mid80: "₹33.73 L" },
+  { cohort: "2021", avg: "₹29.12 L", median: "₹29.50 L", highest: "₹45 L", top25: "₹41.14 L", bottom25: "₹19.38 L", mid80: "₹28.76 L" },
 ];
 
-const YLC_SERIES = [
-  { cohort: "Co'21", value: 23.57 },
-  { cohort: "Co'22", value: 27.17 },
-  { cohort: "Co'23", value: 27.76 },
-];
-
-const TBM_SERIES = [
-  { cohort: "Co'21", value: 29.12 },
-  { cohort: "Co'22", value: 33.1 },
-  { cohort: "Co'23", value: 34.07 },
-  { cohort: "Co'24", value: 28.52 },
-  { cohort: "Co'25", value: 33.39 },
+const YLC_TABLE = [
+  { cohort: "2025", avg: "₹28.24 L", median: "₹27.43 L", highest: "₹46.22 L" },
+  { cohort: "2024", avg: "₹23.59 L", median: "₹22.69 L", highest: "₹36 L" },
+  { cohort: "2023", avg: "₹27.76 L", median: "₹26 L", highest: "₹38 L" },
+  { cohort: "2022", avg: "₹27.17 L", median: "₹25 L", highest: "₹42 L" },
+  { cohort: "2021", avg: "₹23.57 L", median: "₹24 L", highest: "₹30 L" },
 ];
 
 const SALARY_COMPONENTS = [
@@ -876,72 +869,6 @@ function HorizontalMetricsStrip() {
 }
 
 
-function BarChart({ data, max, unit = "L" }: { data: { cohort: string; value: number }[]; max: number; unit?: string }) {
-  return (
-    <div className="flex h-60 items-end gap-4 md:gap-8">
-      {data.map((d, i) => (
-        <div key={d.cohort} className="group flex flex-1 flex-col items-center justify-end gap-3">
-          <Reveal delay={i * 90} y={12} duration={650} className="text-[0.9rem] tracking-[-0.02em]">
-            <CountUp value={`₹${d.value}${unit}`} delay={i * 90} />
-          </Reveal>
-          <Draw
-            axis="y"
-            delay={i * 90}
-            duration={1000}
-            className="w-full bg-black transition-colors duration-500 group-hover:bg-black/70"
-            style={{ height: `${(d.value / max) * 100}%` }}
-          />
-          <div className="text-[10px] uppercase tracking-[0.18em] text-black/55" style={{ fontFamily: MONO }}>
-            {d.cohort}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function RangeBar({ row, max, delay = 0 }: { row: CohortRow; max: number; delay?: number }) {
-  const left = (row.bottom25 / max) * 100;
-  const width = ((row.top25 - row.bottom25) / max) * 100;
-  const avg = (row.avg / max) * 100;
-  const med = (row.median / max) * 100;
-  const { ref, inView } = useInView<HTMLDivElement>();
-  const reduced = useReducedMotion();
-  const on = inView || reduced;
-
-  return (
-    <div ref={ref} className="relative h-8 w-full bg-black/[0.045]">
-      <div
-        className="absolute inset-y-[10px] origin-left bg-black/20"
-        style={{
-          left: `${left}%`,
-          width: `${width}%`,
-          transform: on ? "scaleX(1)" : "scaleX(0)",
-          transition: reduced ? "none" : `transform 900ms cubic-bezier(0.16,0.84,0.24,1) ${delay}ms`,
-        }}
-      />
-      {[
-        { pos: avg, cls: "inset-y-0 bg-black", d: 420 },
-        { pos: med, cls: "inset-y-1 bg-black/40", d: 540 },
-      ].map((m) => (
-        <div
-          key={m.cls}
-          className={`absolute w-[2px] ${m.cls}`}
-          style={{
-            left: `${m.pos}%`,
-            opacity: on ? 1 : 0,
-            transform: on ? "scaleY(1)" : "scaleY(0.3)",
-            transition: reduced
-              ? "none"
-              : `opacity 500ms ease-out ${delay + m.d}ms, transform 500ms cubic-bezier(0.16,0.84,0.24,1) ${delay + m.d}ms`,
-          }}
-          title={m.d === 420 ? `Average ₹${row.avg}L` : `Median ₹${row.median}L`}
-        />
-      ))}
-    </div>
-  );
-}
-
 function Donut({ data }: { data: { label: string; pct: number }[] }) {
   const R = 60;
   const C = 2 * Math.PI * R;
@@ -1631,11 +1558,145 @@ function CoverStage({
 
 
 
+function EditorialPlacementData() {
+  const { ref, inView } = useInView<HTMLDivElement>("0px 0px -10% 0px");
+  const tbmColumns: Array<{ key: keyof CohortRow; label: string }> = [
+    { key: "cohort", label: "Cohort" },
+    { key: "avg", label: "Avg. CTC" },
+    { key: "median", label: "Median CTC" },
+    { key: "highest", label: "Highest CTC" },
+    { key: "top25", label: "Top 25%" },
+    { key: "bottom25", label: "Bottom 25%" },
+    { key: "mid80", label: "Middle 80%" },
+  ];
+  const ylcColumns = [
+    { key: "cohort", label: "Cohort" },
+    { key: "avg", label: "Avg. CTC" },
+    { key: "median", label: "Median CTC" },
+    { key: "highest", label: "Highest CTC" },
+  ] as const;
+
+  return (
+    <section
+      id="cohorts"
+      data-in-view={inView}
+      className="placement-data-section section-edge relative bg-[#0B1215]"
+      aria-labelledby="placement-data-title"
+    >
+      <div className="page-x py-16 md:py-24">
+        <div ref={ref} className="placement-data-bento grid overflow-hidden border border-white/15 lg:grid-cols-12">
+          <header className="flex min-h-[260px] flex-col justify-between border-b border-white/15 p-7 md:p-10 lg:col-span-7 lg:border-r lg:border-b-0">
+            <div className="flex items-center justify-between gap-6">
+              <span className="text-[10px] font-medium uppercase tracking-[0.22em] text-white/50" style={{ fontFamily: MONO }}>
+                Financial performance / 2021—2025
+              </span>
+              <span className="h-px w-10 origin-left bg-accent placement-data-rule" aria-hidden />
+            </div>
+            <div>
+              <h2 id="placement-data-title" className="max-w-[16ch] text-[clamp(2.25rem,5vw,4.7rem)] font-medium leading-[0.98] text-white">
+                Cohort average CTC &amp; <em className="font-serif-italic text-accent">placement statistics.</em>
+              </h2>
+              <p className="mt-5 max-w-[58ch] text-[0.95rem] leading-relaxed text-white/58">
+                Five cohorts, presented as a complete compensation distribution rather than a single headline figure.
+              </p>
+            </div>
+          </header>
+
+          <div className="relative flex min-h-[260px] flex-col justify-between overflow-hidden p-7 md:p-10 lg:col-span-5">
+            <div className="placement-data-grid absolute inset-0 opacity-25" aria-hidden />
+            <span className="relative text-[10px] font-medium uppercase tracking-[0.22em] text-white/45" style={{ fontFamily: MONO }}>
+              Latest cohort / PGP TBM
+            </span>
+            <div className="relative">
+              <div className="placement-data-number text-[clamp(3.5rem,7vw,6.6rem)] font-medium leading-none text-white">
+                <CountUp value="₹33.39 L" />
+              </div>
+              <div className="mt-3 flex items-center gap-3">
+                <span className="h-px w-8 bg-accent" aria-hidden />
+                <span className="text-[10px] uppercase tracking-[0.22em] text-accent" style={{ fontFamily: MONO }}>Average CTC · Cohort 2025</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-6 border border-white/15 bg-[#0A1712]">
+          <div className="flex flex-col gap-4 border-b border-white/15 px-5 py-5 md:flex-row md:items-end md:justify-between md:px-8">
+            <div>
+              <div className="text-[10px] uppercase tracking-[0.22em] text-accent" style={{ fontFamily: MONO }}>Primary data view</div>
+              <h3 className="mt-2 text-[clamp(1.45rem,2.6vw,2.25rem)] font-medium text-white">PGP TBM <em className="font-serif-italic text-accent">cohort ledger</em></h3>
+            </div>
+            <div className="text-[10px] uppercase tracking-[0.18em] text-white/40" style={{ fontFamily: MONO }}>All values / annual CTC</div>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[980px] table-fixed border-collapse text-left">
+              <thead>
+                <tr>
+                  {tbmColumns.map((column, index) => (
+                    <th key={column.key} scope="col" className={`px-5 py-4 text-[9px] font-medium uppercase tracking-[0.18em] text-white/42 md:px-8 ${index === 0 ? "w-[12%]" : ""}`} style={{ fontFamily: MONO }}>
+                      {column.label}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {TBM_TABLE.map((row, rowIndex) => (
+                  <tr key={row.cohort} className="placement-ledger-row border-t border-white/12">
+                    {tbmColumns.map((column, columnIndex) => (
+                      <td key={column.key} className={`placement-data-number px-5 py-5 tabular-nums text-white transition-colors duration-300 md:px-8 ${columnIndex === 0 ? "text-[11px] font-medium tracking-[0.16em]" : "text-[0.98rem]"}`} style={{ transitionDelay: `${rowIndex * 55 + columnIndex * 22}ms`, fontFamily: columnIndex === 0 ? MONO : undefined }}>
+                        {columnIndex === 0 ? row[column.key] : <CountUp value={row[column.key]} delay={rowIndex * 65 + columnIndex * 30} />}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="mt-6 grid border border-white/15 bg-[#0A1712] lg:grid-cols-12">
+          <div className="flex flex-col justify-between border-b border-white/15 p-7 md:p-8 lg:col-span-3 lg:border-r lg:border-b-0">
+            <span className="text-[10px] uppercase tracking-[0.22em] text-accent" style={{ fontFamily: MONO }}>Distinct programme view</span>
+            <div className="mt-14 lg:mt-0">
+              <h3 className="text-[clamp(1.65rem,3vw,2.6rem)] font-medium leading-tight text-white">PGP TBM <em className="font-serif-italic text-accent">YLC</em></h3>
+              <p className="mt-3 text-[0.85rem] leading-relaxed text-white/52">Average, median and highest CTC across five cohorts.</p>
+            </div>
+          </div>
+          <div className="overflow-x-auto lg:col-span-9">
+            <table className="w-full min-w-[620px] table-fixed border-collapse text-left">
+              <thead>
+                <tr>
+                  {ylcColumns.map((column) => (
+                    <th key={column.key} scope="col" className="px-5 py-4 text-[9px] font-medium uppercase tracking-[0.18em] text-white/42 md:px-8" style={{ fontFamily: MONO }}>{column.label}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {YLC_TABLE.map((row, rowIndex) => (
+                  <tr key={row.cohort} className="placement-ledger-row border-t border-white/12">
+                    {ylcColumns.map((column, columnIndex) => (
+                      <td key={column.key} className={`placement-data-number px-5 py-4 tabular-nums text-white transition-colors duration-300 md:px-8 ${columnIndex === 0 ? "text-[11px] font-medium tracking-[0.16em]" : "text-[0.98rem]"}`} style={{ transitionDelay: `${320 + rowIndex * 55 + columnIndex * 22}ms`, fontFamily: columnIndex === 0 ? MONO : undefined }}>
+                        {columnIndex === 0 ? row[column.key] : <CountUp value={row[column.key]} delay={rowIndex * 65 + columnIndex * 30} />}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <p className="mt-6 text-[10px] uppercase tracking-[0.16em] text-white/38" style={{ fontFamily: MONO }}>
+          Compensation figures shown exactly as reported · ₹ lakh unless stated otherwise
+        </p>
+      </div>
+    </section>
+  );
+}
+
 /* ---------------------------------- page ---------------------------------- */
 
 function Page() {
   const reduced = useReducedMotion();
-  const maxCtc = 55;
   const [recruiterTab, setRecruiterTab] = useState(RECRUITER_GROUPS[0].category);
   const active = RECRUITER_GROUPS.find((g) => g.category === recruiterTab)!;
   return (
@@ -1683,94 +1744,10 @@ function Page() {
 
 
 
-      {/* COHORT CHARTS */}
-      <Band id="cohorts" tone="white">
-        <Reveal>
-          <Eyebrow>Cohort average CTC</Eyebrow>
-        </Reveal>
-        <Reveal delay={120}>
-          <h2 className="mt-6 max-w-[30ch] text-[clamp(1.8rem,3.6vw,3rem)] font-medium leading-[1.05] tracking-[-0.015em]">
-            ₹29.12L, ₹33.10L and ₹34.07L — cohort averages that <em className="font-serif-italic">surpassed top B-schools.</em>
-          </h2>
-        </Reveal>
-        <div className="mt-14 grid grid-cols-1 gap-16 lg:grid-cols-2">
-          <div>
-            <Reveal y={14}>
-              <div className="flex items-baseline justify-between border-b border-black/10 pb-4">
-                <div className="text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>PGP TBM — average CTC</div>
-                <div className="text-[11px] text-black/45" style={{ fontFamily: MONO }}>₹ lakh</div>
-              </div>
-            </Reveal>
-            <div className="mt-10"><BarChart data={TBM_SERIES} max={38} /></div>
-          </div>
-          <div>
-            <Reveal y={14} delay={100}>
-              <div className="flex items-baseline justify-between border-b border-black/10 pb-4">
-                <div className="text-[11px] uppercase tracking-[0.2em] text-black/60" style={{ fontFamily: MONO }}>PGP TBM YLC — average CTC</div>
-                <div className="text-[11px] text-black/45" style={{ fontFamily: MONO }}>₹ lakh</div>
-              </div>
-            </Reveal>
-            <div className="mt-10"><BarChart data={YLC_SERIES} max={38} /></div>
-          </div>
-        </div>
-        <Reveal delay={160}>
-          <p className="mt-12 max-w-[70ch] text-[0.95rem] leading-[1.7] text-black/60">
-            Reports available for Cohorts 2021–2024, verified and audited by Brickworks Analytics, auditor for IIM Ahmedabad&apos;s placement report.
-          </p>
-        </Reveal>
-      </Band>
+      {/* COHORT AVERAGES + PLACEMENT STATISTICS */}
+      <EditorialPlacementData />
 
-      {/* DISTRIBUTION TABLE */}
       <Band tone="paper">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-          <StickyHead>
-            <Reveal>
-              <Eyebrow>Placement statistics — PGP TBM</Eyebrow>
-            </Reveal>
-            <Reveal delay={120}>
-              <h2 className="mt-6 max-w-[30ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-                The full distribution, <em className="font-serif-italic">not just the headline number.</em>
-              </h2>
-            </Reveal>
-            <Reveal delay={240}>
-              <div className="mt-8 flex flex-col gap-3 text-[10px] uppercase tracking-[0.18em] text-black/55" style={{ fontFamily: MONO }}>
-                <span className="inline-flex items-center gap-2"><span className="h-2 w-6 bg-black/20" /> Bottom 25% → Top 25%</span>
-                <span className="inline-flex items-center gap-2"><span className="h-4 w-[2px] bg-black" /> Average</span>
-                <span className="inline-flex items-center gap-2"><span className="h-4 w-[2px] bg-black/40" /> Median</span>
-              </div>
-            </Reveal>
-          </StickyHead>
-
-          <div className="lg:col-span-8">
-            <Rule />
-            {TBM_TABLE.map((r, i) => (
-              <div key={r.cohort}>
-                <Reveal
-                  delay={i * 90}
-                  className="group grid grid-cols-1 gap-5 py-7 transition-colors duration-500 hover:bg-black/[0.02] md:grid-cols-12 md:items-center md:gap-6"
-                >
-                  <div className="text-[11px] uppercase tracking-[0.22em] text-black/60 md:col-span-1" style={{ fontFamily: MONO }}>Co{r.cohort}</div>
-                  <div className="md:col-span-6"><RangeBar row={r} max={maxCtc} delay={i * 90} /></div>
-                  <div className="grid grid-cols-3 gap-4 md:col-span-5">
-                    <div>
-                      <div className="text-[1.05rem] tracking-[-0.02em]"><CountUp value={`₹${r.avg}L`} delay={i * 90} /></div>
-                      <div className="text-[9px] uppercase tracking-[0.18em] text-black/50" style={{ fontFamily: MONO }}>Average</div>
-                    </div>
-                    <div>
-                      <div className="text-[1.05rem] tracking-[-0.02em]"><CountUp value={`₹${r.median}L`} delay={i * 90 + 80} /></div>
-                      <div className="text-[9px] uppercase tracking-[0.18em] text-black/50" style={{ fontFamily: MONO }}>Median</div>
-                    </div>
-                    <div>
-                      <div className="text-[1.05rem] tracking-[-0.02em]"><CountUp value={r.highestLabel} delay={i * 90 + 160} /></div>
-                      <div className="text-[9px] uppercase tracking-[0.18em] text-black/50" style={{ fontFamily: MONO }}>Highest</div>
-                    </div>
-                  </div>
-                </Reveal>
-                <Rule delay={i * 90 + 60} />
-              </div>
-            ))}
-          </div>
-        </div>
 
         <div className="mt-20 grid grid-cols-1 gap-14 border-t border-black/10 pt-14 lg:grid-cols-2">
           <div>

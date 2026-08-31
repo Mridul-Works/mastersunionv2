@@ -1011,3 +1011,63 @@ body::-webkit-scrollbar {
   color: var(--accent-foreground);
 }
 
+/* Placement data ledger — architectural editorial treatment. */
+.placement-data-section {
+  --placement-forest: #0a1712;
+  --placement-rule: color-mix(in oklab, var(--foreground) 15%, transparent);
+}
+
+.placement-data-grid {
+  background-image: radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--foreground) 22%, transparent) 1px, transparent 0);
+  background-size: 32px 32px;
+  mask-image: linear-gradient(to bottom left, black, transparent 78%);
+}
+
+.placement-data-rule {
+  transform: scaleX(0);
+  transition: transform 700ms cubic-bezier(0.16, 0.84, 0.24, 1) 120ms;
+}
+
+.placement-data-section[data-in-view="true"] .placement-data-rule {
+  transform: scaleX(1);
+}
+
+.placement-data-number {
+  opacity: 0;
+  transform: translateY(8px);
+  transition-property: opacity, transform, color;
+  transition-duration: 560ms, 560ms, 300ms;
+  transition-timing-function: cubic-bezier(0.16, 0.84, 0.24, 1);
+}
+
+.placement-data-section[data-in-view="true"] .placement-data-number {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.placement-ledger-row {
+  background-image: linear-gradient(to right, var(--accent), var(--accent));
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 0 100%;
+  transition: background-size 420ms cubic-bezier(0.16, 0.84, 0.24, 1), color 300ms ease;
+}
+
+.placement-ledger-row:hover {
+  background-size: 100% 100%;
+}
+
+.placement-ledger-row:hover .placement-data-number {
+  color: var(--accent-foreground);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .placement-data-rule,
+  .placement-data-number,
+  .placement-ledger-row {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
