@@ -2126,7 +2126,8 @@ function Page() {
           </Reveal>
         </div>
       </section>
-    </main>
+   </main>
+    </ReportModalProvider>
   );
 }
 
