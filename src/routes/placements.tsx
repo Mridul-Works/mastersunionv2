@@ -379,6 +379,7 @@ function CinematicHero() {
   const headlineRef = useRef<HTMLDivElement | null>(null);
   const [entered, setEntered] = useState(false);
   const reduced = useReducedMotion();
+  const reportModal = useReportModal();
 
 
   useEffect(() => {
@@ -523,9 +524,10 @@ function CinematicHero() {
               Benefit from an exceptional track record of our graduates&apos; success — audited, published, and repeated across five cohorts.
             </p>
             <div className="mt-8 flex flex-wrap gap-3 md:mt-14" style={step(860, 18)}>
-              <a
-                href="#outcomes"
-                className="hero-sweep-button group relative inline-flex items-center gap-2 overflow-hidden bg-white px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-black transition hover:opacity-100"
+              <button
+                type="button"
+                onClick={reportModal.open}
+                className="hero-sweep-button group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden bg-white px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-black transition hover:opacity-100"
                 style={{ fontFamily: MONO }}
               >
                 <span
@@ -535,7 +537,7 @@ function CinematicHero() {
                 <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-500">
                   <Download className="size-3.5 transition-all duration-500 group-hover:translate-y-0.5" /> Placement report
                 </span>
-              </a>
+              </button>
               <a
                 href="#recruiters"
                 className="hero-sweep-button group relative inline-flex items-center gap-2 overflow-hidden border border-white/35 px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-white transition hover:border-white/35"
@@ -1077,6 +1079,7 @@ function CohortReportCard({ year, href, cover }: { year: string; href: string; c
 }
 
 function CohortReports() {
+  const reportModal = useReportModal();
   return (
     <div>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
@@ -1092,13 +1095,14 @@ function CohortReports() {
       </div>
 
       <div className="mt-6">
-        <a
-          href="#"
-          className="inline-flex items-center gap-2 border border-black/15 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-black/70 transition-colors duration-500 hover:border-black/45 hover:text-black"
+        <button
+          type="button"
+          onClick={reportModal.open}
+          className="inline-flex cursor-pointer items-center gap-2 border border-black/15 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-black/70 transition-colors duration-500 hover:border-black/45 hover:text-black"
           style={{ fontFamily: MONO }}
         >
           <Download className="size-3.5" /> Download placement report
-        </a>
+        </button>
       </div>
     </div>
   );
@@ -1629,6 +1633,7 @@ function Page() {
   const [recruiterTab, setRecruiterTab] = useState(RECRUITER_GROUPS[0].category);
   const active = RECRUITER_GROUPS.find((g) => g.category === recruiterTab)!;
   return (
+    <ReportModalProvider>
     <main className="placements-obsidian ink-scope min-h-screen overflow-x-clip bg-[#0B1215] pb-16 text-foreground md:pb-18" style={{ fontFamily: INTER }}>
       <ScrollProgress />
 
