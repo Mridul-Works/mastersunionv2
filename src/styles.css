@@ -1874,15 +1874,22 @@ body::-webkit-scrollbar {
    sticks against the page scroll. */
 .placements-ug-v2 .career-transitions-section .placements-section-shell {
   overflow: clip;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 .career-transition-story {
-  overflow: clip;
-  border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent);
-  border-radius: 18px;
-  background: var(--placements-outer-surface, oklch(0.205 0.007 250 / 0.7));
-  padding: clamp(0.75rem, 2vw, 1.5rem);
-  box-shadow: var(--shadow-soft);
+  /* outer #131618 container removed; inner career-transition-list cards stay untouched */
+  overflow: visible;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
 }
 
 
@@ -1921,10 +1928,10 @@ body::-webkit-scrollbar {
 
 .career-transition-list {
   min-width: 0;
-  overflow: visible;
-  border: none;
-  border-radius: 0;
-  background: transparent;
+  overflow: clip;
+  border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent);
+  border-radius: 12px;
+  background: var(--placements-inner-surface, #0E1113);
 }
 
 
