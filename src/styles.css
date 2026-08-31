@@ -2052,7 +2052,7 @@ body::-webkit-scrollbar {
 }
 
 @media (max-width: 1023px) {
-  .career-transition-chapter {
+  .placements-obsidian .career-transition-chapter {
     display: block;
     padding-block: 3.5rem;
   }
@@ -2069,7 +2069,7 @@ body::-webkit-scrollbar {
 }
 
 @media (max-width: 640px) {
-  .career-transition-chapter {
+  .placements-obsidian .career-transition-chapter {
     padding-block: 2.75rem;
   }
 
