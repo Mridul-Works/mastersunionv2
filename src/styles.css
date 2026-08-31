@@ -271,6 +271,25 @@
   opacity: 1;
 }
 
+/* Optical equalization: every recruiter logo gets the same allocated footprint
+   so smaller/wider marks scale up and oversized marks scale down, while
+   aspect ratio stays intact. */
+.recruiter-logo-marquee li {
+  display: flex;
+  width: 7rem;
+  height: 3.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.recruiter-logo-marquee li img {
+  height: auto;
+  width: auto;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
 /* Practitioner gallery — flip icon hover rotation */
 @keyframes mu-flip-spin-once {
   from { transform: rotate(0deg); }

@@ -1031,12 +1031,14 @@ function LogoRow({ names }: { names: string[] }) {
     <div className="recruiter-logo-row flex flex-wrap items-center gap-x-12 gap-y-8">
       {found.map((n, i) => (
         <Reveal key={n} delay={i * 60} y={14} duration={650}>
-          <img
-            src={LOGOS[n]}
-            alt={n}
-            loading="lazy"
-            className="no-img-zoom h-10 w-auto object-contain opacity-70 transition-opacity duration-500 hover:opacity-100"
-          />
+          <div className="flex h-14 w-28 items-center justify-center">
+            <img
+              src={LOGOS[n]}
+              alt={n}
+              loading="lazy"
+              className="no-img-zoom max-h-full max-w-full object-contain opacity-70 transition-opacity duration-500 hover:opacity-100"
+            />
+          </div>
         </Reveal>
       ))}
     </div>
