@@ -231,16 +231,6 @@ function ReportModal({ onClose }: { onClose: () => void }) {
         }`}
         style={{ fontFamily: INTER }}
       >
-        {/* close */}
-        <button
-          onClick={requestClose}
-          aria-label="Close dialog"
-          className="absolute z-10 flex size-9 items-center justify-center border border-white/15 text-white/60 transition-colors duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)]"
-          style={{ top: "clamp(1rem, 2.5vw, 2rem)", right: "clamp(1rem, 2.5vw, 2rem)" }}
-        >
-          <X className="size-4" />
-        </button>
-
         <div className="grid grid-cols-1 gap-[clamp(1rem,2.5vw,2rem)] p-[clamp(1rem,2.5vw,2rem)] md:grid-cols-[minmax(0,38fr)_minmax(0,62fr)]">
           {/* left: image area */}
           <div className="report-modal-inner report-modal-image relative hidden min-h-[420px] overflow-hidden md:block">
@@ -265,7 +255,16 @@ function ReportModal({ onClose }: { onClose: () => void }) {
           </div>
 
           {/* right: form */}
-          <div className="report-modal-inner p-6">
+          <div className="report-modal-inner relative p-6">
+            {/* close */}
+            <button
+              onClick={requestClose}
+              aria-label="Close dialog"
+              className="absolute z-10 flex size-9 items-center justify-center border border-white/15 text-white/60 transition-colors duration-300 hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              style={{ top: "clamp(0.5rem, 1.5vw, 1rem)", right: "clamp(0.5rem, 1.5vw, 1rem)" }}
+            >
+              <X className="size-4" />
+            </button>
           <div
             className="mb-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50"
             style={{ fontFamily: MONO }}
