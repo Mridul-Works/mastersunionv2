@@ -1005,3 +1005,9 @@ body::-webkit-scrollbar {
   border-color: rgb(242 241 238 / 0.16);
 }
 
+.experience-option:hover,
+.experience-option:focus-visible {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+

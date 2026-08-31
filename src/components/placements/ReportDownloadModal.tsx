@@ -137,7 +137,7 @@ function ExperienceSelect({
                 aria-selected={selected}
                 onMouseEnter={() => setActiveIndex(index)}
                 onClick={() => choose(option)}
-                className={`flex w-full items-center justify-between px-4 py-2.5 text-left text-[14px] transition-colors duration-200 hover:bg-accent hover:text-black focus:bg-accent focus:text-black focus:outline-none ${
+                className={`experience-option flex w-full items-center justify-between px-4 py-2.5 text-left text-[14px] transition-colors duration-200 focus:outline-none ${
                   selected || activeIndex === index ? "bg-accent text-black" : "bg-[#0B1215] text-white"
                 }`}
               >
