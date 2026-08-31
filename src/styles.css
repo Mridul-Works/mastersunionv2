@@ -1047,7 +1047,7 @@ body::-webkit-scrollbar {
 .placements-obsidian {
   --placements-page-surface: #050708;
   --placements-outer-surface: oklch(0.205 0.007 250 / 0.7);
-  --placements-inner-surface: oklch(0.205 0.007 250 / 0.7);
+  --placements-inner-surface: #0E1113;
   --background: var(--placements-page-surface);
   --card: var(--placements-outer-surface);
   background-color: var(--placements-page-surface);
@@ -1880,10 +1880,11 @@ body::-webkit-scrollbar {
   overflow: clip;
   border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent);
   border-radius: 18px;
-  background: var(--placements-inner-surface);
+  background: var(--placements-outer-surface, oklch(0.205 0.007 250 / 0.7));
   padding: clamp(0.75rem, 2vw, 1.5rem);
   box-shadow: var(--shadow-soft);
 }
+
 
 
 .career-transition-chapter {
@@ -1920,8 +1921,12 @@ body::-webkit-scrollbar {
 
 .career-transition-list {
   min-width: 0;
-  border-top: 1px solid color-mix(in oklab, var(--teal) 48%, transparent);
+  overflow: clip;
+  border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent);
+  border-radius: 12px;
+  background: var(--placements-inner-surface, #0E1113);
 }
+
 
 .career-transition-columns,
 .career-transition-row {
