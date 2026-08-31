@@ -62,7 +62,7 @@ export const LogoMarquee = React.forwardRef<HTMLDivElement, LogoMarqueeProps>(
                   src={item.src}
                   alt={i >= items.length ? "" : item.name}
                   loading="lazy"
-                  className="h-7 w-auto opacity-70 transition-opacity hover:opacity-100"
+                  className="h-11 w-auto opacity-70 transition-opacity hover:opacity-100"
                 />
               ) : (
                 <span className="font-tech text-[13px] uppercase tracking-[0.18em] text-muted-foreground">
