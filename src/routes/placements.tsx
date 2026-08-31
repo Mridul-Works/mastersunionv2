@@ -1484,7 +1484,7 @@ function EditorialPlacementData() {
         </div>
 
         <p className="mt-6 text-[10px] uppercase tracking-[0.16em] text-white/38" style={{ fontFamily: MONO }}>
-          Compensation figures shown exactly as reported · ₹ lakh unless stated otherwise
+          *Please note that the YLC numbers have been taken from the students having 0–1 years of experience from PGP TBM cohort.
         </p>
         </div>
       </div>
