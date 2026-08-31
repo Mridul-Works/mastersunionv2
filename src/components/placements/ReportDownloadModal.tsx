@@ -1,4 +1,4 @@
-import { X, Download, ArrowUpRight, Check, ChevronDown } from "lucide-react";
+import { X, Download, Check, ChevronDown } from "lucide-react";
 import {
   createContext,
   useCallback,
