@@ -10,7 +10,7 @@ import {
   Users,
   Route as RouteIcon,
   Download,
-  FileText,
+  
   Mail,
   Quote,
   ChevronDown,
@@ -18,6 +18,16 @@ import {
 } from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
 import heroBg from "@/assets/placement-hero.webp.asset.json";
+import report2021 from "@/assets/placement-reports/report-2021.pdf.asset.json";
+import report2022 from "@/assets/placement-reports/report-2022.pdf.asset.json";
+import report2023 from "@/assets/placement-reports/report-2023.pdf.asset.json";
+import report2024 from "@/assets/placement-reports/report-2024.pdf.asset.json";
+import report2025 from "@/assets/placement-reports/report-2025.pdf.asset.json";
+import cover2021 from "@/assets/placement-reports/cover-2021.jpg.asset.json";
+import cover2022 from "@/assets/placement-reports/cover-2022.jpg.asset.json";
+import cover2023 from "@/assets/placement-reports/cover-2023.jpg.asset.json";
+import cover2024 from "@/assets/placement-reports/cover-2024.jpg.asset.json";
+import cover2025 from "@/assets/placement-reports/cover-2025.jpg.asset.json";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
 import {
@@ -82,6 +92,14 @@ const AUDIT_STATS = [
 ];
 
 const REPORT_YEARS = ["2021", "2022", "2023", "2024", "2025"];
+
+const PLACEMENT_REPORTS: Record<string, { pdf: string; cover: string }> = {
+  "2021": { pdf: report2021.url, cover: cover2021.url },
+  "2022": { pdf: report2022.url, cover: cover2022.url },
+  "2023": { pdf: report2023.url, cover: cover2023.url },
+  "2024": { pdf: report2024.url, cover: cover2024.url },
+  "2025": { pdf: report2025.url, cover: cover2025.url },
+};
 
 type CohortRow = {
   cohort: string;
@@ -1021,25 +1039,23 @@ function OutcomesAccordion() {
 
 
 
-function CohortReportCard({ year }: { year: string }) {
+function CohortReportCard({ year, href, cover }: { year: string; href: string; cover: string }) {
   return (
     <a
-      href="#"
-      aria-label={`Cohort ${year} placement report`}
+      href={href}
+      target="_blank"
+      rel="noopener"
+      aria-label={`${year} placement report (PDF)`}
       className="card-elevated group flex h-full flex-col border border-border bg-card p-3 transition-colors duration-500 hover:border-teal/40"
     >
       {/* compact document preview */}
-      <div className="relative flex aspect-[16/17] w-full items-center justify-center bg-muted">
-          <div className="flex flex-col items-center gap-1.5 text-black/35">
-            <FileText className="size-6" strokeWidth={1.25} />
-            <span
-              className="text-[10px] font-semibold uppercase tracking-[0.2em]"
-              style={{ fontFamily: MONO }}
-            >
-              PDF
-            </span>
-          </div>
-          <span className="pointer-events-none absolute inset-x-4 top-1/2 h-px bg-black/[0.06]" />
+      <div className="relative flex aspect-[16/17] w-full items-center justify-center overflow-hidden bg-muted">
+          <img
+            src={cover}
+            alt={`${year} placement report cover`}
+            loading="lazy"
+            className="h-full w-full object-cover object-top"
+          />
         </div>
 
         <div className="mt-2 flex items-start justify-between gap-2">
@@ -1064,7 +1080,11 @@ function CohortReports() {
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
         {REPORT_YEARS.map((y, i) => (
           <Reveal key={y} delay={i * 70} y={16}>
-            <CohortReportCard year={`Cohort ${y}`} />
+            <CohortReportCard
+              year={`Cohort ${y}`}
+              href={PLACEMENT_REPORTS[y].pdf}
+              cover={PLACEMENT_REPORTS[y].cover}
+            />
           </Reveal>
         ))}
       </div>
