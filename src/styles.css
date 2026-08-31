@@ -1966,7 +1966,7 @@ body::-webkit-scrollbar {
   left: 0;
   top: 0;
   bottom: 2rem;
-  width: 2.25rem;
+  width: 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1974,11 +1974,12 @@ body::-webkit-scrollbar {
   font-family: var(--font-mono-tech);
   font-size: 0.6rem;
   text-align: right;
-  padding-right: 0.5rem;
+  padding-right: 0.35rem;
 }
 
 .placement-stats-scale span {
   display: block;
+  white-space: nowrap;
 }
 
 .placement-stats-columns {
@@ -2026,16 +2027,16 @@ body::-webkit-scrollbar {
 }
 
 .placement-stats-value {
-  font-size: clamp(0.8rem, 1.5vw, 1rem);
-  font-weight: 500;
-  color: color-mix(in oklab, #ffffff 78%, transparent);
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-weight: 600;
+  color: color-mix(in oklab, #ffffff 92%, transparent);
   font-variant-numeric: tabular-nums;
   transition: color 450ms ease, transform 450ms ease;
 }
 
 .placement-stats-extrusion {
   position: relative;
-  width: min(3.5rem, calc(100% - 0.75rem));
+  width: min(4rem, calc(100% - 0.75rem));
   height: calc(var(--bar-pct) * 1%);
   max-height: 100%;
   transform-origin: center bottom;
