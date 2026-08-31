@@ -290,12 +290,13 @@
   object-fit: contain;
 }
 
-/* Recruiter category buttons — same left-to-right accent sweep as hero/report buttons. */
+/* Recruiter category buttons — premium pop-in glow, no sweep. */
 .recruiter-category-button {
   position: relative;
   display: inline-flex;
   overflow: hidden;
   cursor: pointer;
+  transition: background-color 300ms ease, box-shadow 300ms ease, border-color 300ms ease, transform 300ms ease;
 }
 
 .recruiter-category-button::before {
@@ -304,24 +305,32 @@
   inset: 0;
   z-index: 0;
   background-color: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 500ms ease-out;
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 300ms ease, transform 300ms ease;
 }
 
-.recruiter-category-button:hover::before {
-  transform: scaleX(1);
+.recruiter-category-button:hover::before,
+.recruiter-category-button.is-active::before {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .recruiter-category-button > span {
   position: relative;
   z-index: 1;
-  transition: color 500ms ease;
+  transition: color 300ms ease;
 }
 
-.recruiter-category-button:hover > span {
-  transition: color 0ms;
+.recruiter-category-button:hover > span,
+.recruiter-category-button.is-active > span {
   color: #000000;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .recruiter-category-button:hover {
+    box-shadow: 0 0 26px -6px color-mix(in oklab, var(--accent) 55%, transparent);
+  }
 }
 
 /* Practitioner gallery — flip icon hover rotation */
