@@ -1880,10 +1880,11 @@ body::-webkit-scrollbar {
   overflow: clip;
   border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent);
   border-radius: 18px;
-  background: var(--placements-inner-surface);
+  background: var(--placements-outer-surface, oklch(0.205 0.007 250 / 0.7));
   padding: clamp(0.75rem, 2vw, 1.5rem);
   box-shadow: var(--shadow-soft);
 }
+
 
 
 .career-transition-chapter {
