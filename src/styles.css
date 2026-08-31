@@ -1071,3 +1071,370 @@ body::-webkit-scrollbar {
   }
 }
 
+/* Salary visualizations — scoped editorial charts. */
+.salary-viz-section {
+  color: #ffffff;
+  border-top: 1px solid color-mix(in oklab, #ffffff 14%, transparent);
+}
+
+.salary-viz-header {
+  display: grid;
+  gap: 1.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid color-mix(in oklab, #ffffff 15%, transparent);
+}
+
+.salary-viz-kicker,
+.salary-viz-panel-heading > span {
+  display: block;
+  color: color-mix(in oklab, #ffffff 48%, transparent);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.salary-viz-title {
+  max-width: 16ch;
+  margin-top: 1rem;
+  font-size: clamp(2.25rem, 5vw, 4.7rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+.salary-viz-title em,
+.salary-viz-panel-heading h3 em {
+  color: var(--accent);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.salary-viz-header > p {
+  max-width: 38rem;
+  align-self: end;
+  color: color-mix(in oklab, #ffffff 58%, transparent);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.salary-viz-grid {
+  display: grid;
+  border-right: 1px solid color-mix(in oklab, #ffffff 15%, transparent);
+  border-bottom: 1px solid color-mix(in oklab, #ffffff 15%, transparent);
+  border-left: 1px solid color-mix(in oklab, #ffffff 15%, transparent);
+}
+
+.salary-viz-panel {
+  min-width: 0;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.salary-viz-panel + .salary-viz-panel {
+  border-top: 1px solid color-mix(in oklab, #ffffff 15%, transparent);
+}
+
+.salary-viz-panel-heading h3 {
+  margin-top: 0.65rem;
+  color: #ffffff;
+  font-size: clamp(1.55rem, 2.8vw, 2.35rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.salary-viz-bars {
+  position: relative;
+  height: 24rem;
+  margin-top: 2.5rem;
+  padding: 0 0 3rem 2.5rem;
+}
+
+.salary-viz-scale {
+  position: absolute;
+  inset: 0 0 3rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.salary-viz-scale-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: color-mix(in oklab, #ffffff 33%, transparent);
+  font-family: var(--font-mono-tech);
+  font-size: 0.55rem;
+  letter-spacing: 0;
+}
+
+.salary-viz-scale-row i {
+  height: 1px;
+  flex: 1;
+  background: color-mix(in oklab, #ffffff 10%, transparent);
+}
+
+.salary-viz-columns {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(0.65rem, 2vw, 1.4rem);
+  height: 100%;
+  align-items: end;
+}
+
+.salary-viz-column {
+  position: relative;
+  display: grid;
+  grid-template-rows: 2.25rem minmax(0, 1fr) 2.5rem;
+  min-width: 0;
+  color: #ffffff;
+  font-weight: 400;
+  outline-offset: 5px;
+  transition: transform 450ms cubic-bezier(0.16, 0.84, 0.24, 1);
+}
+
+.salary-viz-value {
+  align-self: start;
+  color: color-mix(in oklab, #ffffff 68%, transparent);
+  font-size: clamp(0.68rem, 1.2vw, 0.82rem);
+  font-variant-numeric: tabular-nums;
+  transition: color 450ms cubic-bezier(0.16, 0.84, 0.24, 1), transform 450ms cubic-bezier(0.16, 0.84, 0.24, 1);
+}
+
+.salary-viz-extrusion {
+  position: relative;
+  align-self: end;
+  width: min(3.6rem, calc(100% - 0.75rem));
+  height: var(--salary-height);
+  margin-inline: auto;
+  transform: scaleY(0);
+  transform-origin: center bottom;
+  transition: transform 850ms cubic-bezier(0.16, 0.84, 0.24, 1) var(--salary-delay), filter 450ms cubic-bezier(0.16, 0.84, 0.24, 1);
+}
+
+.salary-viz-bars[data-in-view="true"] .salary-viz-extrusion {
+  transform: scaleY(1);
+}
+
+.salary-viz-face-front,
+.salary-viz-face-top,
+.salary-viz-face-side {
+  position: absolute;
+  display: block;
+  transition: background-color 450ms cubic-bezier(0.16, 0.84, 0.24, 1), border-color 450ms cubic-bezier(0.16, 0.84, 0.24, 1);
+}
+
+.salary-viz-face-front {
+  inset: 0;
+  background: color-mix(in oklab, #ffffff 72%, transparent);
+  border: 1px solid color-mix(in oklab, #ffffff 18%, transparent);
+}
+
+.salary-viz-face-top {
+  right: -0.42rem;
+  top: -0.42rem;
+  left: 0.42rem;
+  height: 0.42rem;
+  background: color-mix(in oklab, #ffffff 92%, transparent);
+  clip-path: polygon(0 100%, 12% 0, 100% 0, 88% 100%);
+}
+
+.salary-viz-face-side {
+  top: -0.42rem;
+  right: -0.42rem;
+  bottom: 0;
+  width: 0.42rem;
+  background: color-mix(in oklab, #ffffff 35%, transparent);
+  clip-path: polygon(0 0, 100% 0.42rem, 100% 100%, 0 100%);
+}
+
+.salary-viz-range {
+  align-self: end;
+  justify-self: center;
+  white-space: nowrap;
+  color: color-mix(in oklab, #ffffff 58%, transparent);
+  font-family: var(--font-mono-tech);
+  font-size: clamp(0.52rem, 1.1vw, 0.68rem);
+  letter-spacing: 0;
+  transition: color 450ms cubic-bezier(0.16, 0.84, 0.24, 1);
+}
+
+.salary-viz-column:hover,
+.salary-viz-column:focus-visible {
+  transform: translateY(-0.35rem) scale(1.025);
+}
+
+.salary-viz-column:hover .salary-viz-value,
+.salary-viz-column:focus-visible .salary-viz-value,
+.salary-viz-column:hover .salary-viz-range,
+.salary-viz-column:focus-visible .salary-viz-range {
+  color: var(--accent);
+}
+
+.salary-viz-column:hover .salary-viz-value,
+.salary-viz-column:focus-visible .salary-viz-value {
+  transform: translateY(-0.15rem) scale(1.08);
+}
+
+.salary-viz-column:hover .salary-viz-face-front,
+.salary-viz-column:focus-visible .salary-viz-face-front {
+  background: color-mix(in oklab, var(--accent) 82%, #0b1215);
+  border-color: var(--accent);
+}
+
+.salary-viz-column:hover .salary-viz-face-top,
+.salary-viz-column:focus-visible .salary-viz-face-top {
+  background: color-mix(in oklab, var(--accent) 95%, #ffffff);
+}
+
+.salary-viz-column:hover .salary-viz-face-side,
+.salary-viz-column:focus-visible .salary-viz-face-side {
+  background: color-mix(in oklab, var(--accent) 45%, #0b1215);
+}
+
+.salary-viz-donut-layout {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  margin-top: 2.5rem;
+}
+
+.salary-viz-donut-wrap {
+  width: min(100%, 19rem);
+  aspect-ratio: 1;
+  margin-inline: auto;
+}
+
+.salary-viz-donut {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.salary-viz-donut-track,
+.salary-viz-segment {
+  fill: none;
+  stroke-width: 25;
+}
+
+.salary-viz-donut-track {
+  stroke: color-mix(in oklab, #ffffff 7%, transparent);
+}
+
+.salary-viz-segment-group {
+  transition: transform 450ms cubic-bezier(0.16, 0.84, 0.24, 1);
+}
+
+.salary-viz-segment {
+  cursor: pointer;
+  transition: stroke-dasharray 950ms cubic-bezier(0.16, 0.84, 0.24, 1), stroke 450ms cubic-bezier(0.16, 0.84, 0.24, 1), filter 450ms cubic-bezier(0.16, 0.84, 0.24, 1);
+}
+
+.salary-viz-segment-1 { stroke: color-mix(in oklab, #ffffff 78%, transparent); }
+.salary-viz-segment-2 { stroke: color-mix(in oklab, #ffffff 43%, transparent); }
+.salary-viz-segment-3 { stroke: color-mix(in oklab, #ffffff 20%, transparent); }
+.salary-viz-segment.is-active { stroke: var(--accent); filter: drop-shadow(0 0 7px color-mix(in oklab, var(--accent) 28%, transparent)); }
+
+.salary-viz-donut-kicker {
+  fill: color-mix(in oklab, #ffffff 40%, transparent);
+  font-family: var(--font-mono-tech);
+  font-size: 6px;
+  letter-spacing: 0.15em;
+}
+
+.salary-viz-donut-total {
+  fill: #ffffff;
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.salary-viz-legend {
+  border-top: 1px solid color-mix(in oklab, #ffffff 15%, transparent);
+}
+
+.salary-viz-legend-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.9rem;
+  align-items: center;
+  min-height: 4.25rem;
+  border-bottom: 1px solid color-mix(in oklab, #ffffff 15%, transparent);
+  color: #ffffff;
+  outline-offset: -2px;
+}
+
+.salary-viz-swatch {
+  width: 0.55rem;
+  height: 0.55rem;
+  transition: background-color 450ms cubic-bezier(0.16, 0.84, 0.24, 1), transform 450ms cubic-bezier(0.16, 0.84, 0.24, 1);
+}
+
+.salary-viz-swatch-1 { background: color-mix(in oklab, #ffffff 78%, transparent); }
+.salary-viz-swatch-2 { background: color-mix(in oklab, #ffffff 43%, transparent); }
+.salary-viz-swatch-3 { background: color-mix(in oklab, #ffffff 20%, transparent); }
+
+.salary-viz-legend-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.salary-viz-legend-label,
+.salary-viz-legend-value,
+.salary-viz-legend-detail {
+  transition: color 450ms cubic-bezier(0.16, 0.84, 0.24, 1);
+}
+
+.salary-viz-legend-label { font-size: 0.9rem; }
+.salary-viz-legend-detail { color: color-mix(in oklab, #ffffff 42%, transparent); font-size: 0.68rem; }
+.salary-viz-legend-value { color: color-mix(in oklab, #ffffff 68%, transparent); font-size: 0.82rem; font-variant-numeric: tabular-nums; }
+
+.salary-viz-legend-row.is-active .salary-viz-swatch { background: var(--accent); transform: scale(1.25); }
+.salary-viz-legend-row.is-active .salary-viz-legend-label,
+.salary-viz-legend-row.is-active .salary-viz-legend-detail,
+.salary-viz-legend-row.is-active .salary-viz-legend-value { color: var(--accent); }
+
+@media (min-width: 768px) {
+  .salary-viz-header { grid-template-columns: minmax(0, 1.4fr) minmax(18rem, 0.6fr); }
+  .salary-viz-donut-layout { grid-template-columns: minmax(14rem, 0.8fr) minmax(15rem, 1.2fr); }
+}
+
+@media (min-width: 1100px) {
+  .salary-viz-grid { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); }
+  .salary-viz-panel + .salary-viz-panel { border-top: 0; border-left: 1px solid color-mix(in oklab, #ffffff 15%, transparent); }
+  .salary-viz-donut-layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .salary-viz-bars { height: 19rem; padding-left: 1.8rem; }
+  .salary-viz-columns { gap: 0.4rem; }
+  .salary-viz-extrusion { width: min(2.5rem, calc(100% - 0.5rem)); }
+  .salary-viz-value { font-size: 0.58rem; }
+  .salary-viz-range { font-size: 0.5rem; }
+  .salary-viz-legend-row { grid-template-columns: auto minmax(0, 1fr); padding-block: 0.75rem; }
+  .salary-viz-legend-value { grid-column: 2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .salary-viz-extrusion,
+  .salary-viz-column,
+  .salary-viz-value,
+  .salary-viz-face-front,
+  .salary-viz-face-top,
+  .salary-viz-face-side,
+  .salary-viz-segment,
+  .salary-viz-segment-group,
+  .salary-viz-swatch,
+  .salary-viz-legend-label,
+  .salary-viz-legend-value,
+  .salary-viz-legend-detail {
+    transition: none;
+  }
+}
+

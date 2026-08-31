@@ -52,6 +52,7 @@ import { SectionDivider } from "@/components/patterns/section-divider";
 import { LogoMarquee } from "@/components/patterns/logo-marquee";
 import { StatStrip } from "@/components/patterns/stat-strip";
 import { TestimonialCarousel } from "@/components/patterns/testimonial-carousel";
+import { Button } from "@/components/ui/button";
 
 
 const INTER = "var(--font-display)";
@@ -128,10 +129,18 @@ const YLC_TABLE = [
   { cohort: "2021", avg: "₹23.57 L", median: "₹24 L", highest: "₹30 L" },
 ];
 
+const SALARY_DISTRIBUTION = [
+  { range: "₹20–25L", pct: 21.02 },
+  { range: "₹25–30L", pct: 33.76 },
+  { range: "₹30–35L", pct: 17.2 },
+  { range: "₹35–40L", pct: 8.28 },
+  { range: "₹40L+", pct: 19.75 },
+];
+
 const SALARY_COMPONENTS = [
-  { label: "Fixed cash", pct: 72 },
-  { label: "Variable / bonus", pct: 16 },
-  { label: "Stock (Year 1 vesting)", pct: 12 },
+  { label: "Avg. Base", pct: 81, value: "₹27.16 Lakh" },
+  { label: "Avg. Variable", pct: 13, value: "₹4.34 Lakh" },
+  { label: "Avg. ESOPs", pct: 6, value: "₹2 Lakh" },
 ];
 
 const RECRUITER_GROUPS: { category: string; logos: string[] }[] = [
@@ -869,55 +878,148 @@ function HorizontalMetricsStrip() {
 }
 
 
-function Donut({ data }: { data: { label: string; pct: number }[] }) {
-  const R = 60;
-  const C = 2 * Math.PI * R;
-  let offset = 0;
-  const shades = ["rgba(0,0,0,0.88)", "rgba(0,0,0,0.45)", "rgba(0,0,0,0.18)"];
-  const { ref, inView } = useInView<HTMLDivElement>();
+function SalaryDistributionChart() {
+  const { ref, inView } = useInView<HTMLDivElement>("0px 0px -8% 0px");
   const reduced = useReducedMotion();
-  const on = inView || reduced;
 
   return (
-    <div ref={ref} className="flex flex-wrap items-center gap-12">
-      <svg viewBox="0 0 160 160" className="size-44 -rotate-90">
-        {data.map((d, i) => {
-          const len = (d.pct / 100) * C;
-          const start = offset;
-          const el = (
-            <circle
-              key={d.label}
-              cx="80"
-              cy="80"
-              r={R}
-              fill="none"
-              stroke={shades[i % shades.length]}
-              strokeWidth="22"
-              strokeDasharray={`${on ? len : 0} ${on ? C - len : C}`}
-              strokeDashoffset={-start}
-              style={{
-                transition: reduced
-                  ? "none"
-                  : `stroke-dasharray 950ms cubic-bezier(0.16,0.84,0.24,1) ${i * 160}ms`,
-              }}
-            />
-          );
-          offset += len;
-          return el;
-        })}
-      </svg>
-      <div className="space-y-5">
-        {data.map((d, i) => (
-          <Reveal key={d.label} delay={i * 90} y={14} className="flex items-center gap-3">
-            <span className="size-3" style={{ background: shades[i % shades.length] }} />
-            <span className="text-[0.95rem]">{d.label}</span>
-            <span className="text-[0.95rem] text-black/50">
-              <CountUp value={`${d.pct}%`} delay={i * 90} />
+    <div ref={ref} data-in-view={inView || reduced} className="salary-viz-bars" aria-label="Salary distribution by CTC range">
+      <div className="salary-viz-scale" aria-hidden>
+        {[40, 30, 20, 10, 0].map((tick) => (
+          <div key={tick} className="salary-viz-scale-row">
+            <span>{tick}%</span>
+            <i />
+          </div>
+        ))}
+      </div>
+      <div className="salary-viz-columns">
+        {SALARY_DISTRIBUTION.map((item, index) => (
+          <Button
+            key={item.range}
+            type="button"
+            variant="ghost"
+            className="salary-viz-column group h-auto rounded-none p-0 hover:bg-transparent focus-visible:ring-accent"
+            style={{ "--salary-height": `${item.pct * 0.43}rem`, "--salary-delay": `${index * 85}ms` } as React.CSSProperties}
+            aria-label={`${item.range}: ${item.pct.toFixed(2)} percent`}
+          >
+            <span className="salary-viz-value"><CountUp value={`${item.pct.toFixed(2)}%`} delay={index * 85} /></span>
+            <span className="salary-viz-extrusion" aria-hidden>
+              <span className="salary-viz-face-front" />
+              <span className="salary-viz-face-top" />
+              <span className="salary-viz-face-side" />
             </span>
-          </Reveal>
+            <span className="salary-viz-range">{item.range}</span>
+          </Button>
         ))}
       </div>
     </div>
+  );
+}
+
+function SalaryComponentsDonut() {
+  const { ref, inView } = useInView<HTMLDivElement>("0px 0px -8% 0px");
+  const reduced = useReducedMotion();
+  const [active, setActive] = useState<number | null>(null);
+  let offset = 0;
+  const on = inView || reduced;
+
+  return (
+    <div ref={ref} className="salary-viz-donut-layout">
+      <div className="salary-viz-donut-wrap">
+        <svg className="salary-viz-donut" viewBox="0 0 200 200" role="img" aria-labelledby="salary-components-title salary-components-desc">
+          <title id="salary-components-title">Salary components</title>
+          <desc id="salary-components-desc">Average base is 81 percent, average variable is 13 percent, and average ESOPs are 6 percent of CTC.</desc>
+          <circle cx="100" cy="100" r="68" pathLength="100" className="salary-viz-donut-track" />
+          {SALARY_COMPONENTS.map((item, index) => {
+            const start = offset;
+            const angle = (-90 + (start + item.pct / 2) * 3.6) * (Math.PI / 180);
+            const distance = active === index && !reduced ? 6 : 0;
+            offset += item.pct;
+            return (
+              <g
+                key={item.label}
+                className="salary-viz-segment-group"
+                style={{ transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)` }}
+              >
+                <circle
+                  cx="100"
+                  cy="100"
+                  r="68"
+                  pathLength="100"
+                  fill="none"
+                  className={`salary-viz-segment salary-viz-segment-${index + 1}${active === index ? " is-active" : ""}`}
+                  strokeDasharray={`${on ? item.pct : 0} ${on ? 100 - item.pct : 100}`}
+                  strokeDashoffset={-start}
+                  transform="rotate(-90 100 100)"
+                  onMouseEnter={() => setActive(index)}
+                  onMouseLeave={() => setActive(null)}
+                  aria-label={`${item.label}: ${item.pct}% of CTC, ${item.value}`}
+                />
+              </g>
+            );
+          })}
+          <text x="100" y="94" textAnchor="middle" className="salary-viz-donut-kicker">TOTAL CTC</text>
+          <text x="100" y="116" textAnchor="middle" className="salary-viz-donut-total">100%</text>
+        </svg>
+      </div>
+
+      <div className="salary-viz-legend" aria-label="Salary component details">
+        {SALARY_COMPONENTS.map((item, index) => (
+          <Button
+            key={item.label}
+            type="button"
+            variant="ghost"
+            className={`salary-viz-legend-row h-auto w-full rounded-none p-0 text-left hover:bg-transparent focus-visible:ring-accent${active === index ? " is-active" : ""}`}
+            onMouseEnter={() => setActive(index)}
+            onMouseLeave={() => setActive(null)}
+            onFocus={() => setActive(index)}
+            onBlur={() => setActive(null)}
+            aria-label={`${item.label}: ${item.pct}% of CTC, ${item.value}`}
+          >
+            <span className={`salary-viz-swatch salary-viz-swatch-${index + 1}`} aria-hidden />
+            <span className="salary-viz-legend-copy">
+              <span className="salary-viz-legend-label">{item.label}</span>
+              <span className="salary-viz-legend-detail">{item.pct}% of CTC</span>
+            </span>
+            <span className="salary-viz-legend-value">{item.value}</span>
+          </Button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SalaryVisualizations() {
+  return (
+    <section className="salary-viz-section section-edge bg-[#0B1215]" aria-labelledby="salary-viz-title">
+      <div className="page-x py-16 md:py-24">
+        <header className="salary-viz-header">
+          <div>
+            <span className="salary-viz-kicker" style={{ fontFamily: MONO }}>Compensation anatomy / Cohort 2025</span>
+            <h2 id="salary-viz-title" className="salary-viz-title">Beyond the average. <em>Inside the offer.</em></h2>
+          </div>
+          <p>How compensation is distributed across the cohort, and how the average offer is constructed.</p>
+        </header>
+
+        <div className="salary-viz-grid">
+          <article className="salary-viz-panel salary-viz-panel-distribution" aria-labelledby="salary-distribution-heading">
+            <div className="salary-viz-panel-heading">
+              <span style={{ fontFamily: MONO }}>01 / DISTRIBUTION</span>
+              <h3 id="salary-distribution-heading">Salary <em>distribution</em></h3>
+            </div>
+            <SalaryDistributionChart />
+          </article>
+
+          <article className="salary-viz-panel salary-viz-panel-components" aria-labelledby="salary-components-heading">
+            <div className="salary-viz-panel-heading">
+              <span style={{ fontFamily: MONO }}>02 / COMPONENTS</span>
+              <h3 id="salary-components-heading">Salary <em>components</em></h3>
+            </div>
+            <SalaryComponentsDonut />
+          </article>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -1747,22 +1849,7 @@ function Page() {
       {/* COHORT AVERAGES + PLACEMENT STATISTICS */}
       <EditorialPlacementData />
 
-      <Band tone="paper">
-
-        <div className="mt-20 grid grid-cols-1 gap-14 border-t border-black/10 pt-14 lg:grid-cols-2">
-          <div>
-            <Reveal>
-              <Eyebrow>Salary components — Cohort &apos;24</Eyebrow>
-            </Reveal>
-            <Reveal delay={120}>
-              <p className="mt-6 max-w-[46ch] text-[1rem] leading-[1.7] text-black/70">
-                How packages are structured between in-hand cash components and stock options, counting Year 1 vesting only.
-              </p>
-            </Reveal>
-          </div>
-          <Donut data={SALARY_COMPONENTS} />
-        </div>
-      </Band>
+      <SalaryVisualizations />
 
       {/* RECRUITERS */}
       <Band id="recruiters" tone="grey" className="border-y border-black/10">
