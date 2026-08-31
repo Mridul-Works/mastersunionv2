@@ -258,6 +258,17 @@
   }
 }
 
+/* Recruiter marks: retain their geometry while lifting dark source artwork
+   into a crisp light lockup on the editorial band. */
+.recruiter-logo-marquee img {
+  opacity: 0.92;
+  filter: brightness(0) invert(1);
+}
+
+.recruiter-logo-marquee img:hover {
+  opacity: 1;
+}
+
 /* Practitioner gallery — flip icon hover rotation */
 @keyframes mu-flip-spin-once {
   from { transform: rotate(0deg); }

@@ -1885,7 +1885,7 @@ function Page() {
         <div className="mt-10">
           <SectionDivider variant="spectrum" inset="none" />
           <LogoMarquee
-            className="mt-6"
+            className="recruiter-logo-marquee mt-6"
             variant="banded"
             speed="slow"
             label="All recruiting partners"
