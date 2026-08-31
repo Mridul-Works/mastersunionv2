@@ -1313,6 +1313,9 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
             );
           })}
         </div>
+        <div className="mt-14 md:mt-16">
+          <SectionDivider variant="spectrum" inset="none" />
+        </div>
       </div>
     </section>
   );
@@ -1339,6 +1342,9 @@ function AuditedOutcomes() {
           Reports
         </div>
         <CohortReports />
+        <div className="mt-8 md:mt-10 lg:mt-12">
+          <SectionDivider variant="spectrum" inset="none" />
+        </div>
       </div>
     </section>
   );
@@ -1513,6 +1519,9 @@ function Page() {
           <div className="page-x flex h-full min-h-[100svh] items-center pt-8 pb-6 md:pt-10 md:pb-8 lg:pt-12 lg:pb-10">
             <div className="relative flex w-full flex-col gap-10 lg:gap-14">
               <PodcastSection />
+              <div className="mt-6 md:mt-8 lg:mt-10">
+                <SectionDivider variant="spectrum" inset="none" />
+              </div>
             </div>
           </div>
         </section>
