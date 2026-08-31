@@ -1446,7 +1446,7 @@ body::-webkit-scrollbar {
 
 .placement-ledger-row:hover .placement-data-number {
   color: #000000;
-  transition: color 300ms ease;
+  transition: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
