@@ -149,6 +149,7 @@ function ReportModal({ onClose }: { onClose: () => void }) {
             className="absolute inset-0 h-full w-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-black/12" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 via-45% to-transparent" />
           <div className="absolute bottom-6 left-6 right-6">
             <div
               className="mb-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--accent)]"
