@@ -2080,7 +2080,7 @@ body::-webkit-scrollbar {
 }
 
 .placement-stats-value {
-  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-size: clamp(0.68rem, 1.2vw, 0.82rem);
   font-weight: 600;
   color: color-mix(in oklab, #ffffff 92%, transparent);
   font-variant-numeric: tabular-nums;
@@ -2135,7 +2135,7 @@ body::-webkit-scrollbar {
   align-items: flex-start;
   justify-content: center;
   padding-inline: clamp(0.1rem, 0.7vw, 0.35rem);
-  font-size: clamp(0.58rem, 1.1vw, 0.72rem);
+  font-size: clamp(0.52rem, 1.1vw, 0.68rem);
   line-height: 1.35;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -2220,10 +2220,10 @@ body::-webkit-scrollbar {
     column-gap: clamp(0.4rem, 2vw, 0.6rem);
   }
   .placement-stats-value {
-    font-size: 0.62rem;
+    font-size: 0.68rem;
   }
   .placement-stats-label {
-    font-size: 0.5rem;
+    font-size: 0.52rem;
     line-height: 1.4;
     letter-spacing: 0.04em;
   }
