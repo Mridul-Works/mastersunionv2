@@ -213,7 +213,7 @@ function ReportModal({ onClose }: { onClose: () => void }) {
       role="dialog"
       aria-modal="true"
       aria-label="Download placement report"
-      className={`fixed inset-0 z-[100] flex items-center justify-center p-4 transition-opacity duration-300 ease-out md:p-8 ${
+      className={`placements-ug-v2 fixed inset-0 z-[100] flex items-center justify-center p-4 transition-opacity duration-300 ease-out md:p-8 ${
         visible ? "opacity-100" : "opacity-0"
       }`}
     >
@@ -226,7 +226,7 @@ function ReportModal({ onClose }: { onClose: () => void }) {
 
       {/* panel */}
       <div
-        className={`relative grid w-full max-w-[880px] grid-cols-1 overflow-hidden border border-white/12 bg-[#0B1215] shadow-[0_40px_120px_-30px_rgba(0,0,0,0.8)] transition-all duration-300 ease-out md:grid-cols-[38%_62%] ${
+        className={`report-modal-outer relative grid w-full max-w-[880px] grid-cols-1 overflow-hidden p-3 gap-3 transition-all duration-300 ease-out md:grid-cols-[38%_62%] ${
           visible ? "translate-y-0 scale-100 opacity-100" : "translate-y-3 scale-[0.97] opacity-0"
         }`}
         style={{ fontFamily: INTER }}
