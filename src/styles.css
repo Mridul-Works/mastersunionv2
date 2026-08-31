@@ -1425,41 +1425,17 @@ body::-webkit-scrollbar {
 }
 
 .placement-ledger-row {
-  position: relative;
   transition: background-color 300ms ease, box-shadow 300ms ease;
 }
 
-.placement-ledger-row::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
+.placement-ledger-row:hover {
   background-color: var(--accent);
-  opacity: 0;
-  transform: scale(0.98);
-  transition: opacity 300ms ease, transform 300ms ease;
-}
-
-.placement-ledger-row:hover::before {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.placement-ledger-row td,
-.placement-ledger-row th {
-  position: relative;
-  z-index: 1;
+  box-shadow: 0 0 24px -8px color-mix(in oklab, var(--accent) 45%, transparent);
 }
 
 .placement-ledger-row:hover .placement-data-number {
   color: #000000;
   transition: color 300ms ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .placement-ledger-row:hover {
-    box-shadow: 0 0 24px -8px color-mix(in oklab, var(--accent) 45%, transparent);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
