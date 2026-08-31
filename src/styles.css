@@ -1195,9 +1195,10 @@ body::-webkit-scrollbar {
   align-items: end;
 }
 
-.salary-viz-column {
+.salary-viz-columns .salary-viz-column {
   position: relative;
   display: grid;
+  height: 100%;
   grid-template-rows: 2.25rem minmax(0, 1fr) 2.5rem;
   min-width: 0;
   color: #ffffff;
