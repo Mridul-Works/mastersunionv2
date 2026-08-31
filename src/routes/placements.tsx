@@ -957,8 +957,8 @@ function SalaryComponentsDonut() {
               </g>
             );
           })}
-          <text x="100" y="94" textAnchor="middle" className="salary-viz-donut-kicker">TOTAL CTC</text>
-          <text x="100" y="116" textAnchor="middle" className="salary-viz-donut-total">100%</text>
+          <text x="100" y="89.79" textAnchor="middle" className="salary-viz-donut-kicker">TOTAL CTC</text>
+          <text x="100" y="111.79" textAnchor="middle" className="salary-viz-donut-total">100%</text>
         </svg>
       </div>
 
