@@ -1113,7 +1113,7 @@ body::-webkit-scrollbar {
 
 .salary-viz-header > p {
   max-width: 38rem;
-  align-self: end;
+  align-self: center;
   color: color-mix(in oklab, #ffffff 58%, transparent);
   font-size: 0.95rem;
   line-height: 1.7;
