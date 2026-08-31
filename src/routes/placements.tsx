@@ -52,15 +52,9 @@ import { SectionDivider } from "@/components/patterns/section-divider";
 import { LogoMarquee } from "@/components/patterns/logo-marquee";
 import { StatStrip } from "@/components/patterns/stat-strip";
 import { TestimonialCarousel } from "@/components/patterns/testimonial-carousel";
-function EditorialRule() {
-  return (
-    <div
-      className="h-px w-full"
-      aria-hidden="true"
-      style={{ backgroundColor: "color-mix(in oklab, #ffffff 15%, transparent)" }}
-    />
-  );
-}
+import { Button } from "@/components/ui/button";
+
+
 
 
 
