@@ -263,7 +263,7 @@ function ReportModal({ onClose }: { onClose: () => void }) {
         </div>
 
         {/* right: form */}
-        <div className="report-modal-inner px-6 py-8 md:px-10 md:py-10">
+        <div className="report-modal-inner p-6">
           <div
             className="mb-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/50"
             style={{ fontFamily: MONO }}
