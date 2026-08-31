@@ -128,7 +128,7 @@ function ExperienceSelect({
           id="rpr-exp-options"
           role="listbox"
           aria-label="Current Total Work Experience"
-          className="absolute inset-x-0 top-[calc(100%+4px)] z-30 overflow-hidden border border-white/15 bg-[#0B1215] shadow-[0_16px_40px_rgba(0,0,0,0.45)]"
+          className="absolute inset-x-0 top-[calc(100%+4px)] z-30 max-h-56 overflow-y-auto border border-white/15 bg-[#0B1215] shadow-[0_16px_40px_rgba(0,0,0,0.45)]"
         >
           {EXPERIENCE_OPTIONS.map((option, index) => {
             const selected = option === value;
