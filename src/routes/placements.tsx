@@ -1103,7 +1103,7 @@ const PLACEMENT_STATS = {
 
 function OurPlacementStatistics() {
   return (
-    <div className="placement-stats-wrap mt-10" aria-labelledby="placement-stats-title">
+    <div className="mt-10" aria-labelledby="placement-stats-title">
       <div className="placements-section-shell placements-section-shell-dark">
         <header className="placement-stats-header">
           <div>
