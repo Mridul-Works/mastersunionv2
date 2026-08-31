@@ -1283,7 +1283,8 @@ body::-webkit-scrollbar {
   overflow: hidden;
   border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent);
   border-radius: 18px;
-  padding: clamp(1.25rem, 3vw, 2.5rem);
+  padding-block: clamp(1.25rem, 3vw, 2.5rem);
+  padding-inline: var(--page-x);
   background: var(--placements-outer-surface);
   backdrop-filter: blur(14px);
   box-shadow: var(--shadow-soft);
