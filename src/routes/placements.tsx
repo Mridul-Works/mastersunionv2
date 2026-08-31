@@ -1344,198 +1344,6 @@ function AuditedOutcomes() {
   );
 }
 
-/**
- * Sticky podcast stage → Proven Outcomes rises from the bottom to cover it →
- * the complete Quote photograph rises from the bottom to cover Proven Outcomes.
- * Pure transform, driven by main page scroll. Disabled for reduced motion / small screens.
- */
-function CoverStage({
-  under,
-  over,
-  tail,
-}: {
-  under: React.ReactNode;
-  over: React.ReactNode;
-  tail?: (animated: boolean) => React.ReactNode;
-}) {
-  const reduced = useReducedMotion();
-  const zoneRef = useRef<HTMLDivElement>(null);
-  const overRef = useRef<HTMLDivElement>(null);
-  const underRef = useRef<HTMLDivElement>(null);
-  const tailRef = useRef<HTMLDivElement>(null);
-  const [enabled, setEnabled] = useState(false);
-  const [overH, setOverH] = useState(0);
-  const [underH, setUnderH] = useState(0);
-  const [vh, setVh] = useState(0);
-
-  useEffect(() => {
-    if (reduced) {
-      setEnabled(false);
-      return;
-    }
-    const mq = window.matchMedia("(min-width: 1024px)");
-    const sync = () => setEnabled(mq.matches);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, [reduced]);
-
-  // measure both layers so the scroll budget adds no blank space
-  const zoneTopRef = useRef(0);
-  useEffect(() => {
-    if (!enabled) return;
-    const a = overRef.current;
-    const b = underRef.current;
-    if (!a || !b) return;
-    const measure = () => {
-      // Round to whole pixels and ignore sub-pixel noise: these values feed the
-      // scroll-rail height, so churning them mid-scroll would shift the document.
-      const nextOver = Math.round(a.offsetHeight);
-      const nextUnder = Math.round(b.offsetHeight);
-      const nextVh = Math.round(window.innerHeight);
-      setOverH((prev) => (Math.abs(prev - nextOver) > 1 ? nextOver : prev));
-      setUnderH((prev) => (Math.abs(prev - nextUnder) > 1 ? nextUnder : prev));
-      setVh((prev) => (Math.abs(prev - nextVh) > 1 ? nextVh : prev));
-      const zone = zoneRef.current;
-      if (zone) zoneTopRef.current = Math.round(zone.getBoundingClientRect().top + window.scrollY);
-      invalidateScroll();
-    };
-
-    const ro = new ResizeObserver(measure);
-    ro.observe(a);
-    ro.observe(b);
-    measure();
-    const offResize = onViewportResize(measure);
-    return () => {
-      ro.disconnect();
-      offResize();
-    };
-  }, [enabled]);
-
-  // Give the image cover and typography reveal enough physical scroll travel
-  // that a trackpad gesture cannot rush through both phases at once.
-  const QUOTE_COVER = 3.4;
-  const HOLD = 0.5; // quiet settling time once the typography is fully revealed
-  const tailTravel = tail ? vh * (QUOTE_COVER + HOLD) : 0;
-  // tall-layer sticky offset: keeps the podcast pinned even when it exceeds the viewport
-  const underTop = vh && underH > vh ? Math.min(0, vh - underH) : 0;
-
-  /* shared scroll driver → writes transforms straight to the DOM. No React state per
-     frame, no per-frame layout reads: the rail's document offset is cached on resize. */
-  useEffect(() => {
-    if (!enabled) return;
-    const overEl = overRef.current;
-    if (!overEl) return;
-    // the compositor hint is set once, not rewritten every frame (rewriting it
-    // forces the layer to be torn down and re-rasterised mid-scroll)
-    overEl.style.willChange = "transform";
-    let lastRaw = NaN;
-    let interactive: boolean | null = null;
-
-    const off = onScrollFrame(({ y, vh: travel }) => {
-      const raw = Math.max(0, (y - zoneTopRef.current) / (travel || 1));
-      if (raw === lastRaw) return;
-      lastRaw = raw;
-
-      // phase 1 — Proven Outcomes rises from the bottom over the first viewport of scroll
-      const p = Math.min(1, raw);
-      const eased = p * p * (3 - 2 * p);
-      overEl.style.transform =
-        p >= 1
-          ? "translate3d(0, 0, 0)"
-          : `translate3d(0, ${((1 - eased) * travel).toFixed(2)}px, 0)`;
-
-      if (tail) {
-        // Map the cover onto the window in which the quote is pinned:
-        // 0 → 1 raises the full image over the first half of the pin, 1 → 2 then
-        // drives the quote fade-in and the scroll text reveal on the finished frame.
-        const pinStart = zoneTopRef.current + travel;
-        const assemble = Math.max(1, (overH + tailTravel - travel) * 0.5);
-        const q = Math.min(2, Math.max(0, (y - pinStart) / assemble));
-        setQuoteCoverProgress(q);
-        const tw = tailRef.current;
-        const next = q > 0.98;
-        if (tw && next !== interactive) {
-          interactive = next;
-          tw.style.pointerEvents = next ? "auto" : "none";
-        }
-      }
-    });
-
-    return () => {
-      off();
-      overEl.style.willChange = "";
-    };
-  }, [enabled, !!tail, overH, tailTravel]); // eslint-disable-line react-hooks/exhaustive-deps
-
-
-
-  if (!enabled) {
-    return (
-      <>
-        {under}
-        {over}
-        {tail?.(false)}
-      </>
-    );
-  }
-
-  return (
-    <div className="relative bg-transparent">
-      {/* LAYER 1 — podcast, full width, pinned underneath */}
-      <div
-        ref={underRef}
-        className="sticky z-[1] min-h-[100svh] bg-[#0B1215]"
-        style={{ top: `${underTop}px` }}
-      >
-        {under}
-      </div>
-
-      {/* LAYER 2 — the real Proven Outcomes section, full width, rises from the
-          bottom to cover the Podcast, then stays pinned while the Quote covers it
-          above it. The wrapper only supplies vertical scroll distance. */}
-      <div
-        ref={zoneRef}
-        className="pointer-events-none relative z-[2] bg-transparent"
-        style={overH && vh ? { height: `${overH + vh + tailTravel}px` } : undefined}
-      >
-        <div
-          ref={overRef}
-          className="pointer-events-auto sticky top-0 w-full"
-          style={{
-            transform: "translate3d(0, 100svh, 0)",
-            backfaceVisibility: "hidden",
-          }}
-        >
-          {over}
-        </div>
-
-        {/* LAYER 3 — the real Quote section. Native `sticky` inside a rail that starts one
-            viewport in; its single continuous image covers upward from shared progress. */}
-        {tail && vh ? (
-          <div
-            ref={tailRef}
-            className="absolute inset-x-0 z-[3]"
-            style={{
-              top: `${vh}px`,
-              height: `${Math.max(0, overH + tailTravel)}px`,
-              pointerEvents: "none",
-            }}
-          >
-            <div className="sticky top-0 h-[100svh]">{tail(true)}</div>
-          </div>
-        ) : null}
-
-      </div>
-    </div>
-  );
-}
-
-
-
-
-
-
 
 function EditorialPlacementData() {
   const { ref, inView } = useInView<HTMLDivElement>("0px 0px -10% 0px");
@@ -1675,7 +1483,6 @@ function EditorialPlacementData() {
 /* ---------------------------------- page ---------------------------------- */
 
 function Page() {
-  const reduced = useReducedMotion();
   const [recruiterTab, setRecruiterTab] = useState(RECRUITER_GROUPS[0].category);
   const active = RECRUITER_GROUPS.find((g) => g.category === recruiterTab)!;
   return (
@@ -1700,25 +1507,17 @@ function Page() {
 
 
 
-      {/* PODCAST (sticks) → PROVEN OUTCOMES rises from the bottom and covers it */}
+      {/* PODCAST and all following sections remain in one continuous document flow. */}
       <div className="relative z-20">
-        <CoverStage
-          under={
-            <section
-              className="relative min-h-[100svh] bg-[#0B1215]"
-              style={{ marginTop: reduced ? 0 : "calc(-100svh - 1px)" }}
-            >
-              <div className="page-x flex h-full min-h-[100svh] items-center pt-8 pb-6 md:pt-10 md:pb-8 lg:pt-12 lg:pb-10">
-                <div className="relative flex w-full flex-col gap-10 lg:gap-14">
-                  <PodcastSection />
-
-                </div>
-              </div>
-            </section>
-          }
-          over={<AuditedOutcomes />}
-          tail={(animated) => <FounderQuoteSection animated={animated} />}
-        />
+        <section className="relative min-h-[100svh] bg-[#0B1215]">
+          <div className="page-x flex h-full min-h-[100svh] items-center pt-8 pb-6 md:pt-10 md:pb-8 lg:pt-12 lg:pb-10">
+            <div className="relative flex w-full flex-col gap-10 lg:gap-14">
+              <PodcastSection />
+            </div>
+          </div>
+        </section>
+        <AuditedOutcomes />
+        <FounderQuoteSection />
       </div>
 
 
