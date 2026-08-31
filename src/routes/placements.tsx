@@ -1197,7 +1197,7 @@ function OutcomesAccordion() {
               href="https://www01.iima.ac.in/iprs/about-iprs"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-0.5 font-medium text-black/70 underline underline-offset-2 transition-colors hover:text-black"
+              className="inline-flex items-center gap-0.5 font-medium text-[var(--teal)] underline underline-offset-2 decoration-2 transition-all duration-300 hover:brightness-110 hover:drop-shadow-[0_0_6px_color-mix(in_oklab,var(--teal)_40%,transparent)]"
             >
               Know more <ArrowUpRight className="inline-block size-3.5" strokeWidth={2} />
             </a>
