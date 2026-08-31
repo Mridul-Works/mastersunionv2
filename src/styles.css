@@ -2203,17 +2203,18 @@ body::-webkit-scrollbar {
 @media (max-width: 560px) {
   .placement-stats-bars {
     height: 17.75rem;
-    padding-left: 1.75rem;
+    padding-left: 1.25rem;
   }
   .placement-stats-scale {
-    width: 1.75rem;
+    width: 1.1rem;
     font-size: 0.5rem;
+    padding-right: 0.15rem;
   }
   .placement-stats-extrusion {
     width: min(2.4rem, calc(100% - 0.5rem));
   }
   .placement-stats-columns {
-    column-gap: clamp(0.25rem, 2vw, 0.6rem);
+    column-gap: clamp(0.4rem, 2vw, 0.6rem);
   }
   .placement-stats-value {
     font-size: 0.62rem;
@@ -2221,7 +2222,7 @@ body::-webkit-scrollbar {
   .placement-stats-label {
     font-size: 0.5rem;
     line-height: 1.4;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.04em;
   }
 }
 
