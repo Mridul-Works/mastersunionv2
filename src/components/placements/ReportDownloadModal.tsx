@@ -241,7 +241,7 @@ function ReportModal({ onClose }: { onClose: () => void }) {
                   id="rpr-exp"
                   value={experience}
                   onChange={(e) => setExperience(e.target.value)}
-                  className={`${inputClass} cursor-pointer appearance-none bg-[#0B1215] pr-10 ${
+                  className={`${inputClass} accent-select cursor-pointer appearance-none bg-[#0B1215] pr-10 ${
                     experience ? "text-white" : "text-white/30"
                   }`}
                 >
