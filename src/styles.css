@@ -1847,6 +1847,10 @@ body::-webkit-scrollbar {
 }
 
 /* ===== Our Placement Statistics ===== */
+.placement-stats-wrap > .placements-section-shell-dark {
+  background: #0B1215;
+}
+
 .placement-stats-header {
   display: grid;
   gap: 2rem;
@@ -1968,6 +1972,8 @@ body::-webkit-scrollbar {
   position: relative;
   height: clamp(16rem, 30vw, 20rem);
   padding-left: 2.75rem;
+  background: #181D1F;
+  border-radius: 10px;
 }
 
 .placement-stats-scale {
