@@ -1871,6 +1871,60 @@ body::-webkit-scrollbar {
 }
 
 /* ===== Our Placement Statistics ===== */
+.placement-stats-scope {
+  --placement-stats-page: oklch(0.16 0.006 250);
+  --placement-stats-container: oklch(0.205 0.007 250);
+  --placement-stats-nested: oklch(0.245 0.008 250);
+  --placement-stats-border: color-mix(in oklab, var(--foreground) 12%, transparent);
+  --placement-stats-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  isolation: isolate;
+  background: var(--placement-stats-page);
+  border-radius: 18px;
+}
+
+.placements-ug-v2 .placement-stats-scope > .placements-section-shell {
+  background: var(--placement-stats-container);
+  border-color: var(--placement-stats-border);
+  box-shadow: 0 1px 2px oklch(0 0 0 / 0.4), 0 18px 44px -28px oklch(0 0 0 / 0.75);
+  transition:
+    box-shadow 350ms var(--placement-stats-ease),
+    transform 350ms var(--placement-stats-ease),
+    border-color 350ms ease;
+}
+
+.placement-stats-scope .placement-stats-grid {
+  background: var(--placement-stats-page);
+  border-color: var(--placement-stats-border);
+}
+
+.placement-stats-scope .placement-stats-panel {
+  background: var(--placement-stats-nested);
+  transition:
+    box-shadow 350ms var(--placement-stats-ease),
+    transform 350ms var(--placement-stats-ease),
+    border-color 350ms ease,
+    background-color 350ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .placements-ug-v2 .placement-stats-scope > .placements-section-shell:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in oklab, var(--teal) 35%, transparent);
+    box-shadow:
+      0 2px 10px oklch(0 0 0 / 0.45),
+      0 34px 70px -34px color-mix(in oklab, var(--accent) 40%, transparent);
+  }
+
+  .placement-stats-scope .placement-stats-panel:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in oklab, var(--teal) 35%, transparent);
+    background: color-mix(in oklab, var(--placement-stats-nested) 92%, var(--teal));
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--teal) 28%, transparent),
+      0 30px 70px -40px color-mix(in oklab, var(--teal) 45%, transparent);
+  }
+}
+
 .placement-stats-header {
   display: grid;
   gap: 2rem;
@@ -1951,7 +2005,7 @@ body::-webkit-scrollbar {
 
 .placement-stats-panel {
   padding: clamp(1.5rem, 3vw, 2.5rem);
-  background: #121719;
+  background: var(--placements-inner-surface);
 }
 
 
