@@ -2135,7 +2135,7 @@ body::-webkit-scrollbar {
   align-items: flex-start;
   justify-content: center;
   padding-inline: clamp(0.1rem, 0.7vw, 0.35rem);
-  font-size: clamp(0.58rem, 1.1vw, 0.72rem);
+  font-size: clamp(0.52rem, 1.1vw, 0.68rem);
   line-height: 1.35;
   text-transform: uppercase;
   letter-spacing: 0.1em;
