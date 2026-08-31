@@ -1848,7 +1848,7 @@ body::-webkit-scrollbar {
 
 /* ===== Our Placement Statistics ===== */
 .placement-stats-section {
-  border-top: 1px solid color-mix(in oklab, #ffffff 12%, transparent);
+  /* no top divider */
 }
 
 .placement-stats-header {
