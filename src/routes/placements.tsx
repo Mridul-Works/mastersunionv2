@@ -48,11 +48,21 @@ import { bakeImageFilter } from "@/lib/bake-image-filter";
 
 
 import { SectionHeading } from "@/components/patterns/section-heading";
-import { SectionDivider } from "@/components/patterns/section-divider";
 import { LogoMarquee } from "@/components/patterns/logo-marquee";
 import { StatStrip } from "@/components/patterns/stat-strip";
 import { TestimonialCarousel } from "@/components/patterns/testimonial-carousel";
 import { Button } from "@/components/ui/button";
+
+function EditorialRule() {
+  return (
+    <div
+      className="h-px w-full"
+      aria-hidden="true"
+      style={{ backgroundColor: "color-mix(in oklab, #ffffff 15%, transparent)" }}
+    />
+  );
+}
+
 
 
 
