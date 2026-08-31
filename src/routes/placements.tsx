@@ -899,7 +899,7 @@ function SalaryDistributionChart() {
             type="button"
             variant="ghost"
             className="salary-viz-column group h-auto rounded-none p-0 hover:bg-transparent focus-visible:ring-accent"
-            style={{ "--salary-value": item.pct, "--salary-delay": `${index * 85}ms` } as React.CSSProperties}
+            style={{ "--salary-height": `${item.pct * 0.43}rem`, "--salary-delay": `${index * 85}ms` } as React.CSSProperties}
             aria-label={`${item.range}: ${item.pct.toFixed(2)} percent`}
           >
             <span className="salary-viz-value"><CountUp value={`${item.pct.toFixed(2)}%`} delay={index * 85} /></span>

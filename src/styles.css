@@ -1209,7 +1209,7 @@ body::-webkit-scrollbar {
   position: relative;
   align-self: end;
   width: min(3.6rem, calc(100% - 0.75rem));
-  height: calc(var(--salary-value) * 0.43rem);
+  height: var(--salary-height);
   margin-inline: auto;
   transform: scaleY(0);
   transform-origin: center bottom;
@@ -1415,7 +1415,6 @@ body::-webkit-scrollbar {
   .salary-viz-bars { height: 19rem; padding-left: 1.8rem; }
   .salary-viz-columns { gap: 0.4rem; }
   .salary-viz-extrusion { width: min(2.5rem, calc(100% - 0.5rem)); }
-  .salary-viz-extrusion { height: calc(var(--salary-value) * 0.3rem); }
   .salary-viz-value { font-size: 0.58rem; }
   .salary-viz-range { font-size: 0.5rem; }
   .salary-viz-legend-row { grid-template-columns: auto minmax(0, 1fr); padding-block: 0.75rem; }
