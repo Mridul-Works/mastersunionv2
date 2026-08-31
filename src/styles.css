@@ -1135,6 +1135,26 @@ body::-webkit-scrollbar {
   border-top: 1px solid color-mix(in oklab, #ffffff 15%, transparent);
 }
 
+.salary-viz-panel-components {
+  position: relative;
+}
+
+.salary-viz-components-intro {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  width: 100%;
+  max-width: 38rem;
+  padding: 0 clamp(1.5rem, 3vw, 2.5rem);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: color-mix(in oklab, #ffffff 58%, transparent);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  pointer-events: none;
+}
+
 .salary-viz-panel-heading h3 {
   margin-top: 0.65rem;
   color: #ffffff;
