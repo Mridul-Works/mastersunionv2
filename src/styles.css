@@ -1255,7 +1255,7 @@ body::-webkit-scrollbar {
 
 .placements-ug-v2 .placements-section-shell-dark {
   border-color: color-mix(in oklab, white 14%, transparent);
-  background: color-mix(in oklab, var(--placement-ink) 88%, transparent);
+  background: color-mix(in oklab, var(--card) 88%, transparent);
 }
 
 @media (hover: hover) and (pointer: fine) {
