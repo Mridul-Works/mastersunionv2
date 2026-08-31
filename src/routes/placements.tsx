@@ -1433,7 +1433,7 @@ function EditorialPlacementData() {
             </div>
             <div className="text-[10px] uppercase tracking-[0.18em] text-white/40" style={{ fontFamily: MONO }}>All values / annual CTC</div>
           </div>
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto no-scrollbar">
             <table className="w-full min-w-[980px] table-fixed border-collapse text-left">
               <thead>
                 <tr>
@@ -1467,7 +1467,7 @@ function EditorialPlacementData() {
               <p className="mt-3 text-[0.85rem] leading-relaxed text-white/52">Average, median and highest CTC across five cohorts.</p>
             </div>
           </div>
-          <div className="overflow-x-auto lg:col-span-9">
+          <div className="overflow-x-auto no-scrollbar lg:col-span-9">
             <table className="w-full min-w-[620px] table-fixed border-collapse text-left">
               <thead>
                 <tr>
