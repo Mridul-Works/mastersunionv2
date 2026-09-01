@@ -103,3 +103,14 @@
 - [x] Add playable YouTube video link for Amit Khatri (Co-founder, Noise) inside CEO & MDs leadership guidance
 - [x] Add playable YouTube video link for Swati & Rohan Bhargava (Co-founders, CashKaro) inside CEO & MDs leadership guidance
 - [x] Add playable YouTube video link for Nipin Marya (CEO, IQOO) inside CEO & MDs leadership guidance
+
+---
+
+2026-09-01 21:33 IST
+- Updated Unicorn Founders section with all 6 names and titles from reference images:
+  1. Vishesh Khurana – Co-founder, Shiprocket
+  2. Alakh Pandey – Founder, PhysicsWallah
+  3. Nitin Jain – Co-founder, OfBusiness
+  4. Ghazal Alagh – Co-founder, Mamaearth
+  5. Sandeep Aggarwal – Founder and CEO, Droom
+  6. Tarun Sharma – Co-founder, mcaffeine
