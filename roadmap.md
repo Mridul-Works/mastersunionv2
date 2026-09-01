@@ -114,3 +114,10 @@
   4. Ghazal Alagh – Co-founder, Mamaearth
   5. Sandeep Aggarwal – Founder and CEO, Droom
   6. Tarun Sharma – Co-founder, mcaffeine
+
+- Updated Executives section with all 5 names and titles from reference images:
+  1. Radhika Maheshwari – Director, Finance, Bacardi
+  2. Nikhil Singhal – MD & Head of Private Banking, HSBC India
+  3. Shiv Kapoor – Vice President, Titan Capital
+  4. Salone Sehgal – Founding General Partner, Lumikai
+  5. Amit Kumar – Sales Director, Google Cloud
