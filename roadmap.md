@@ -9,3 +9,4 @@
 - [x] Add student carousel slides 13–16 (Tushar, Kriti Gupta, Bhanu, Kriti Sharma) with portraits, roles and quotes
 - [ ] Add student carousel slide 17 (Shibi Sadasivam, Program Manager, Zomato) with portrait, role and quote
 - [ ] Add student carousel slide 18 (Varun Makhija, Product Manager, ServiceNow) with portrait, role and quote
+- [ ] Add student carousel slide 19 (Sidhanta Kumar Panigrahi, General Manager - Business Development, Morphogenesis) with portrait, role and quote
