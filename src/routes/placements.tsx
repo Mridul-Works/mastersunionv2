@@ -1198,7 +1198,7 @@ function CareerExperienceArea() {
             type="button"
             onClick={() => setShowAllGuidance((s) => !s)}
             aria-expanded={showAllGuidance}
-            className="hero-sweep-button group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden border border-white/35 px-8 py-4.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:border-accent hover:bg-accent hover:shadow-[0_0_28px_-6px_color-mix(in_oklab,var(--accent)_60%,transparent)]"
+            className="hero-sweep-button group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden border border-white/35 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:border-accent hover:bg-accent hover:shadow-[0_0_28px_-6px_color-mix(in_oklab,var(--accent)_60%,transparent)]"
             style={{ fontFamily: MONO }}
           >
             <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
