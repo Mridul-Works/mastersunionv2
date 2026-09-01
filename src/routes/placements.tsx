@@ -1644,7 +1644,7 @@ function PodcastVideoRail({
 
 function PodcastChapters({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
   const { openVideo } = React.useContext(PodcastContext);
-  const PREVIEW_COUNT = 6;
+  const PREVIEW_COUNT = 4;
   const previewVideos = PAGE_VIDEOS.slice(0, PREVIEW_COUNT);
   const extraVideos = PAGE_VIDEOS.slice(PREVIEW_COUNT);
 
