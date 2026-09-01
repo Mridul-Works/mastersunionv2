@@ -689,7 +689,7 @@ const UNICORN_FOUNDERS = [
 
 const EXECUTIVES = [
   { name: "Radhika Maheshwari", role: "Director, Finance, Bacardi", image: radhikaMaheshwariImg.url },
-  { name: "Nikhil Singhal", role: "MD & Head of Private Banking, HSBC India" },
+  { name: "Nikhil Singhal", role: "MD & Head of Private Banking, HSBC India", image: nikhilSinghalImg.url },
   { name: "Shiv Kapoor", role: "Vice President, Titan Capital" },
   { name: "Salone Sehgal", role: "Founding General Partner, Lumikai" },
   { name: "Amit Kumar", role: "Sales Director, Google Cloud" },
