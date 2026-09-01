@@ -72,6 +72,7 @@ import aarushiImg from "@/assets/placements/Aarushi.webp.asset.json";
 import yashanaImg from "@/assets/placements/yashana.webp.asset.json";
 import atitheeImg from "@/assets/placements/atithee.webp.asset.json";
 import apoorvaImg from "@/assets/placements/apoorva.webp.asset.json";
+import abhishekKaulImg from "@/assets/placements/Abhishek_Kaul.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
