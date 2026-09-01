@@ -1488,7 +1488,8 @@ function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal |
         <div className="lg:col-span-5">
           <PodcastTextBlock chaptersOpen={chaptersOpen} setChaptersOpen={setChaptersOpen} />
         </div>
-        <div className="flex h-full flex-col lg:col-span-7">
+        <div className="relative lg:col-span-7">
+          <div className={cn("flex flex-col", chaptersOpen && "lg:absolute lg:inset-0 lg:h-full")}>
           <PodcastVideoPlayer setVideoModal={setVideoModal} />
           <div className="mt-8 flex min-h-0 flex-1 flex-col gap-8">
             <div className="h-px w-full bg-black/20" />
@@ -1501,6 +1502,7 @@ function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal |
               <PodcastVideoRail setVideoModal={setVideoModal} expanded={chaptersOpen} />
             </div>
 
+          </div>
           </div>
         </div>
       </div>
