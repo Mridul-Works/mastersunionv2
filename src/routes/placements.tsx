@@ -52,6 +52,7 @@ import kritiSharmaImg from "@/assets/placements/kritiSharma.webp.asset.json";
 import shibiImg from "@/assets/placements/shibi.webp.asset.json";
 import varunImg from "@/assets/placements/varun.webp.asset.json";
 import sidhantaImg from "@/assets/placements/sidhanta.webp.asset.json";
+import kartikImg from "@/assets/placements/kartik.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -286,8 +287,14 @@ const TESTIMONIALS = [
     note: "Serving as Student Council President at Masters’ Union gave me first-hand experience in managing teams. MU helped channel that energy into strategic execution and stakeholder management. Its immersive pedagogy and exposure to real industry-led projects through experiential learning developed a 360° business perspective, making my transition to Morphogenesis seamless.",
     image: sidhantaImg.url,
   },
-  ...Array.from({ length: 24 }, (_, i) => ({
-    name: `Placement Story ${String(i + 16).padStart(2, "0")}`,
+  {
+    name: "Kartik Sharma",
+    role: "Senior Manager - Digital Marketing, JustDial",
+    note: "Masters’ Union turned my job hunt into a strategic campaign. Mock interview marathons sharpened my case-solving, storytelling, and situational judgement, so I could answer Justdial’s questions confidently. Marketing Analytics, Full-Funnel Growth, and Statistics labs equipped me with skills to generate insights and prioritize features in Product Management sprints.",
+    image: kartikImg.url,
+  },
+  ...Array.from({ length: 23 }, (_, i) => ({
+    name: `Placement Story ${String(i + 17).padStart(2, "0")}`,
     role: "Role & Company — to be confirmed",
     note: "Placeholder story. Portrait, role and quote will be added once the cohort details are shared.",
   })),
