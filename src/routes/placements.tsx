@@ -1086,6 +1086,8 @@ function CareerExperienceArea() {
   const [term, setTerm] = useState(0);
   const [leaderGroup, setLeaderGroup] = useState(0);
   const [showAllGuidance, setShowAllGuidance] = useState(false);
+  const [coachTrack, setCoachTrack] = useState(0);
+
   const featuredStories = TESTIMONIALS;
   const currentStory = featuredStories[story];
   const currentTerm = TERMS[term];
