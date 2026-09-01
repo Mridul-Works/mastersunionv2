@@ -147,3 +147,5 @@
 - Tarun Sharma: added video link https://youtu.be/Q6cz9ZsoKbQ
 - Radhika Maheshwari: added portrait
 - Executives portraits: Nikhil Singhal, Shiv Kapoor
+- Salone Sehgal: added portrait
+- Amit Kumar (Sales Director, Google Cloud): added portrait
