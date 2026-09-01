@@ -141,3 +141,4 @@
 - CHROs portraits: Sachin Gulati, Sandeep Girotra, Prashant Khullar wired
 - Vishesh Khurana: added video link https://youtu.be/Fs_Z7_ZLS_4
 - Alakh Pandey: added video link https://youtu.be/1kf9JSxA5J0
+- Nitin Jain: added video link https://youtu.be/YJEZfXJsRCg
