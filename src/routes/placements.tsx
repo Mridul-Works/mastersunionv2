@@ -1672,7 +1672,7 @@ function PodcastChapters({ open, setOpen }: { open: boolean; setOpen: (v: boolea
   );
 
   return (
-    <div className="mt-5 border-t border-black/15 pt-4">
+    <div className="mt-5 rounded-xl bg-[#0E1113] p-4">
       <ul className="flex flex-col">
         {previewVideos.map((item) => (
           <VideoRow item={item} key={item.video} />
