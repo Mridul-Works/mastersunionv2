@@ -770,6 +770,161 @@ function CareerTransitionsSection() {
   );
 }
 
+function PortraitPlaceholder({ name, className = "" }: { name: string; className?: string }) {
+  return (
+    <div className={`career-portrait-placeholder ${className}`} role="img" aria-label={`${name} portrait placeholder`}>
+      <span aria-hidden="true">{name.split(" ").map((part) => part[0]).slice(0, 2).join("")}</span>
+    </div>
+  );
+}
+
+function CareerExperienceArea() {
+  const [story, setStory] = useState(0);
+  const [term, setTerm] = useState(0);
+  const [leaderGroup, setLeaderGroup] = useState(0);
+  const featuredStories = TESTIMONIALS.slice(0, 6);
+  const currentStory = featuredStories[story];
+  const currentTerm = TERMS[term];
+  const currentLeaders = LEADER_GROUPS[leaderGroup];
+
+  const moveStory = (direction: number) => {
+    setStory((current) => (current + direction + featuredStories.length) % featuredStories.length);
+  };
+
+  return (
+    <div className="career-experience-area">
+      <Band id="stories" tone="paper">
+        <div className="career-section-number">01</div>
+        <Reveal><Eyebrow>Student placement experience</Eyebrow></Reveal>
+        <div className="career-featured-story mt-10" key={currentStory.name}>
+          <PortraitPlaceholder name={currentStory.name} className="career-featured-portrait" />
+          <div className="career-featured-copy">
+            <div>
+              <p className="career-kicker">Featured story</p>
+              <h2>{currentStory.name}</h2>
+              <p className="career-role">{currentStory.role}</p>
+            </div>
+            <blockquote>“{currentStory.note}”</blockquote>
+            <div className="career-story-controls">
+              <span>{String(story + 1).padStart(2, "0")} / 39</span>
+              <div>
+                <Button variant="outline" size="icon" onClick={() => moveStory(-1)} aria-label="Previous student story"><ChevronLeft /></Button>
+                <Button variant="outline" size="icon" onClick={() => moveStory(1)} aria-label="Next student story"><ChevronRight /></Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Band>
+
+      <Band tone="grey">
+        <div className="career-section-number">02</div>
+        <Reveal><Eyebrow>Professional guidance</Eyebrow></Reveal>
+        <Reveal delay={100}><h2 className="career-area-title">Careers <em className="font-serif-italic">Team</em></h2></Reveal>
+        <div className="career-team-grid mt-12">
+          {CAREERS_TEAM.map((member, index) => (
+            <Reveal key={member.name} delay={(index % 5) * 55}>
+              <article className="career-team-card">
+                <PortraitPlaceholder name={member.name} />
+                <div className="career-team-copy">
+                  <h3>{member.name}</h3>
+                  <p>{member.role}</p>
+                  <small>{member.background}</small>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+        <a className="career-contact-strip mt-10" href="mailto:careerservices@mastersunion.org">
+          <Mail aria-hidden="true" /> Reach out to our team at <span>careerservices@mastersunion.org</span><ArrowUpRight aria-hidden="true" />
+        </a>
+      </Band>
+
+      <Band id="pathway" tone="white">
+        <div className="career-section-number">03</div>
+        <Reveal><Eyebrow>Annual roadmap</Eyebrow></Reveal>
+        <Reveal delay={100}>
+          <h2 className="career-area-title">Benefit From a Tailored <em className="font-serif-italic">Career Pathway</em></h2>
+          <p className="career-area-intro">Leverage the opportunity to engage in workshops, training, panel discussions, counselling sessions, and personalised career progression plans.</p>
+        </Reveal>
+        <div className="career-term-selector mt-10" role="tablist" aria-label="Career pathway terms">
+          {TERMS.map((item, index) => (
+            <Button key={item.term} variant="ghost" role="tab" aria-selected={term === index} className={term === index ? "is-active" : ""} onClick={() => setTerm(index)}>{item.term}</Button>
+          ))}
+        </div>
+        <div className="career-pathway-panel" key={currentTerm.term}>
+          <div className="career-pathway-content">
+            <p className="career-kicker">{currentTerm.term}</p>
+            <h3>{currentTerm.title}</h3>
+            <ul>{currentTerm.items.map((item) => <li key={item}><span aria-hidden="true">+</span>{item}</li>)}</ul>
+          </div>
+          <div className="career-pathway-visual" role="img" aria-label="Students taking part in career preparation">
+            <img src={heroBg.url} alt="Masters' Union students in a career preparation session" loading="lazy" />
+            <span>{String(term + 1).padStart(2, "0")} / 08</span>
+          </div>
+        </div>
+      </Band>
+
+      <Band tone="paper">
+        <div className="career-section-number">04</div>
+        <Reveal><Eyebrow>Dedicated career coaches</Eyebrow></Reveal>
+        <Reveal delay={100}><h2 className="career-area-title">Making You <em className="font-serif-italic">Industry Ready</em></h2></Reveal>
+        <div className="career-coach-grid mt-12">
+          {COACH_TRACKS.map((track, trackIndex) => (
+            <article className="career-coach-track" key={track.title}>
+              <div className="career-coach-icon">{trackIndex === 0 ? <Mic2 /> : trackIndex === 1 ? <BadgeCheck /> : <Compass />}</div>
+              <h3>{track.title} Coach</h3>
+              <p>{track.note}</p>
+              <div className="career-coach-people">
+                {COACHES.slice(trackIndex * 2, trackIndex * 2 + 2).map((coach) => (
+                  <div className="career-coach-person" key={coach.name}>
+                    <PortraitPlaceholder name={coach.name} />
+                    <div><strong>{coach.name}</strong><span>{coach.role}</span><small>Coaching experience: {coach.exp}</small></div>
+                  </div>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </Band>
+
+      <Band tone="white">
+        <div className="career-section-number">05</div>
+        <Reveal><Eyebrow>Leadership guidance</Eyebrow></Reveal>
+        <Reveal delay={100}><h2 className="career-area-title">Your Future Recruiters <em className="font-serif-italic">on Campus</em></h2></Reveal>
+        <div className="career-leader-layout mt-12">
+          <div className="career-leader-selector" role="tablist" aria-label="Recruiter leadership categories">
+            {LEADER_GROUPS.map((group, index) => (
+              <Button key={group.label} variant="ghost" role="tab" aria-selected={leaderGroup === index} className={leaderGroup === index ? "is-active" : ""} onClick={() => setLeaderGroup(index)}>{group.label}</Button>
+            ))}
+          </div>
+          <div className="career-leader-cards" key={currentLeaders.label}>
+            {currentLeaders.people.map((leader, index) => (
+              <article className="career-leader-card" key={leader.name}>
+                <div className="career-leader-media"><PortraitPlaceholder name={leader.name} /><span><Play fill="currentColor" /></span></div>
+                <h3>{leader.name}</h3><p>{leader.role}</p><small>{String(index + 1).padStart(2, "0")} / 03</small>
+              </article>
+            ))}
+          </div>
+        </div>
+      </Band>
+
+      <section className="career-closing-section">
+        <div className="page-x">
+          <div className="career-closing-cta">
+            <h2>Explore <em className="font-serif-italic">Masters' Union</em></h2>
+            <nav aria-label="Explore Masters' Union">
+              <a href="/student-life">Student Life <ArrowUpRight /></a>
+              <a href="/placements">Explore Careers <ArrowUpRight /></a>
+              <a href="/contact">Book a Visit <ArrowUpRight /></a>
+              <a href="/events">Explore Events <ArrowUpRight /></a>
+            </nav>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
 const PODCAST_ID = "uiNTwDixAts";
 
 type PodcastCtx = { seek: (seconds: number) => void };
