@@ -145,3 +145,4 @@
 - Ghazal Alagh: added video link https://youtu.be/rExRUNRJ_Ss
 - Sandeep Aggarwal: added video link https://youtu.be/rpEpQ_2XzKY
 - Tarun Sharma: added video link https://youtu.be/Q6cz9ZsoKbQ
+- Radhika Maheshwari: added portrait
