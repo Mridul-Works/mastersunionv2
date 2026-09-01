@@ -3102,8 +3102,8 @@ body::-webkit-scrollbar {
   font-size: clamp(2.75rem, 6vw, 4.5rem);
   line-height: 0.85;
 }
-.career-roadmap-body { display: grid; gap: 1.25rem; margin-top: 1.5rem; }
-.career-roadmap-visual { min-height: 15rem; border-radius: 12px; }
+.career-roadmap-body { display: grid; gap: 1.25rem; margin-top: 1.5rem; grid-template-columns: 1fr; }
+.career-roadmap-visual { width: 100%; aspect-ratio: 21 / 9; min-height: 14rem; max-height: 22rem; border-radius: 12px; }
 .career-roadmap-items { display: grid; gap: 0.5rem; align-content: start; grid-template-columns: 1fr; }
 .career-roadmap-items li {
   display: flex;
