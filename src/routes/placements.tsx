@@ -1495,7 +1495,7 @@ function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal |
               Episode — The story behind ₹33 lakh per LPA average placements — Watch / Listen
             </p>
             <EditorialRule />
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-5 py-2">
               <Eyebrow>Leadership conversations</Eyebrow>
               <PodcastVideoRail setVideoModal={setVideoModal} />
             </div>
