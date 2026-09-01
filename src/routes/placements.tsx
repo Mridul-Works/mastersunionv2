@@ -49,6 +49,7 @@ import tusharImg from "@/assets/placements/tushar.webp.asset.json";
 import kritiImg from "@/assets/placements/kriti.webp.asset.json";
 import bhanuImg from "@/assets/placements/bhanu.webp.asset.json";
 import kritiSharmaImg from "@/assets/placements/kritiSharma.webp.asset.json";
+import shibiImg from "@/assets/placements/shibi.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
