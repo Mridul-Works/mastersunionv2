@@ -50,6 +50,7 @@ import kritiImg from "@/assets/placements/kriti.webp.asset.json";
 import bhanuImg from "@/assets/placements/bhanu.webp.asset.json";
 import kritiSharmaImg from "@/assets/placements/kritiSharma.webp.asset.json";
 import shibiImg from "@/assets/placements/shibi.webp.asset.json";
+import varunImg from "@/assets/placements/varun.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -266,8 +267,20 @@ const TESTIMONIALS = [
   { name: "Kriti Gupta", role: "Merchandising Manager, Careem | Dubai", note: "Masters’ Union was instrumental in helping me secure my role at Careem. The Career Services team proactively shared my profile for a strong-fit role and coordinated seamlessly with Careem’s recruitment team. They guided me through every stage, including last-mile prep, mock interviews, and connecting me with E-commerce alumni for actionable insights.", image: kritiImg.url },
   { name: "Bhanu Pratap Singh", role: "Strategic Lead, Everest Fleet", note: "Masters’ Union meaningfully shaped my interview readiness and career journey. The curriculum sharpened my core business fundamentals and enabled real-world problem-solving. All of the simulated coursework, case discussions and faculty guidance built enough confidence in me, while the unwavering support from the Prep and Outreach teams helped align roles with my aspirations.", image: bhanuImg.url },
   { name: "Kriti Sharma", role: "Consultant, Praxis Global", note: "Masters’ Union was key in shaping my journey into consulting. Campus interviews with BCG gave me my first exposure, leading to my role at Praxis Global Alliance as a Management Consultant. From excelling in the Dropshipping Challenge to winning a Pre-Seed grant, the real-world problem-solving equipped me with the confidence, skills, and mindset to succeed.", image: kritiSharmaImg.url },
-  ...Array.from({ length: 27 }, (_, i) => ({
-    name: `Placement Story ${String(i + 13).padStart(2, "0")}`,
+  {
+    name: "Shibi Sadasivam",
+    role: "Program Manager, Zomato",
+    note: "Masters’ Union provided a strong platform for my career transition. The industry-focused curriculum, peer learning, and access to a robust network helped me navigate the job search effectively. Guidance from the placement team, faculty and prep team, along with exposure to real-world business problems, shaped me as an individual and helped secure this opportunity.",
+    image: shibiImg.url,
+  },
+  {
+    name: "Varun Makhija",
+    role: "Product Manager, ServiceNow",
+    note: "Masters’ Union played a pivotal role in helping me secure my Product Manager role at ServiceNow. The campus hiring opportunities were exceptional, and the preparation support invaluable. Case practice and product practicums, guided by mentors like Gaurav Sahu and Aditya, sharpened my problem-solving, while Gopika Ma’am’s guidance in behavioural prep was a game-changer.",
+    image: varunImg.url,
+  },
+  ...Array.from({ length: 25 }, (_, i) => ({
+    name: `Placement Story ${String(i + 15).padStart(2, "0")}`,
     role: "Role & Company — to be confirmed",
     note: "Placeholder story. Portrait, role and quote will be added once the cohort details are shared.",
   })),
