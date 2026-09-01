@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
 import heroBg from "@/assets/placement-hero.webp.asset.json";
+import careerJT1Img from "@/assets/placements/careerJT1.webp.asset.json";
 import report2021 from "@/assets/placement-reports/report-2021.pdf.asset.json";
 import report2022 from "@/assets/placement-reports/report-2022.pdf.asset.json";
 import report2023 from "@/assets/placement-reports/report-2023.pdf.asset.json";
@@ -534,7 +535,7 @@ const CREATORS = [
 ];
 
 const TERMS = [
-  { term: "Term 1", title: "Mentor allocation & profile building", items: ["Psychometric Assessment", "1-1 Mentor Allocation", "Resume Formatting for Profile Building", "LinkedIn Profiling", "Professional Photography & Class Photos", "Institution of PlaCom", "Know all Domains", "Placement Policies", "Case and Business Plan Competition Workshop"] },
+  { term: "Term 1", title: "Mentor allocation & profile building", items: ["Psychometric Assessment", "1-1 Mentor Allocation", "Resume Formatting for Profile Building", "LinkedIn Profiling", "Professional Photography & Class Photos", "Institution of PlaCom", "Know all Domains", "Placement Policies", "Case and Business Plan Competition Workshop"], image: careerJT1Img.url },
   { term: "Term 2", title: "Outreach plan & personal branding", items: ["Finalisation of Company Lists", "Company Outreach Plan", "Shortlisting Your Top 3 Domains", "Presentation Skills Workshop", "Industry Engagement Sessions", "Personal Branding Workshop", "Storytelling Workshop", "Career Practicums", "Corporate Competitions"] },
   { term: "Term 3", title: "Functional role-based workshops", items: ["Resume Review #1", "Behavioural Mocks", "Consulting Case Training", "Domain-Specific Seminars and Workshops", "Team Work & Conflict Management Workshop", "Industry/Functional/Role Based Workshops"] },
   { term: "Term 4", title: "Interview preparations", items: ["Resume Review #2", "Stress Management Sessions", "Domain-Specific Seminars", "Corporate Competitions", "Industry/Functional/Role Based Workshops", "Mock Interviews", "Last Mile Preps"], video: "https://youtu.be/KdZNCJz-5ZI" },
@@ -1246,7 +1247,7 @@ function CareerExperienceArea() {
                 loading="lazy"
               />
             ) : (
-              <img src={heroBg.url} alt="Masters' Union students in a career preparation session" loading="lazy" />
+              <img src={currentTerm.image || heroBg.url} alt="Masters' Union students in a career preparation session" loading="lazy" />
             )}
             <span>{String(term + 1).padStart(2, "0")} / 08</span>
           </div>
