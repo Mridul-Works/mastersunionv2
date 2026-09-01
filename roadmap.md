@@ -123,3 +123,5 @@
   5. Amit Kumar – Sales Director, Google Cloud
 
 - Added playable YouTube video link for Rohit Kapoor (CEO & MDs): https://youtu.be/unzkiy1pkZQ
+
+- Added playable YouTube video link for Manish Chowdhary (CEO & MDs): https://youtu.be/I-q_7_FjnrM
