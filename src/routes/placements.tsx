@@ -771,7 +771,14 @@ function CareerTransitionsSection() {
   );
 }
 
-function PortraitPlaceholder({ name, className = "" }: { name: string; className?: string }) {
+function PortraitPlaceholder({ name, imageSrc, className = "" }: { name: string; imageSrc?: string; className?: string }) {
+  if (imageSrc) {
+    return (
+      <div className={`career-portrait-placeholder career-portrait-image ${className}`}>
+        <img src={imageSrc} alt={`${name} portrait`} loading="lazy" />
+      </div>
+    );
+  }
   return (
     <div className={`career-portrait-placeholder ${className}`} role="img" aria-label={`${name} portrait placeholder`}>
       <span aria-hidden="true">{name.split(" ").map((part) => part[0]).slice(0, 2).join("")}</span>
