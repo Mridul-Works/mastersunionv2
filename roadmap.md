@@ -18,3 +18,5 @@
 - [ ] Add student carousel slide 25 (Nimisha Dutta, Program Manager, Blinkit) with portrait, role and quote
 - [ ] Add student carousel slide 26 (Darshan Vithlani, Senior Data Scientist, Abdul Latif Jameel | Abu Dhabi) with portrait, role and quote
 - [ ] Add student carousel slide 27 (Kanishk Chaturvedi, Data Scientist, Funder.ai | Abu Dhabi) with portrait, role and quote
+- [ ] Add student carousel slide 28 (Jayesh Makkar, Manager - SELL, Flipkart) with portrait, role and quote
+- [ ] Add student carousel slide 29 (Sanidhya Sinha, Program Manager, Zomato) with portrait, role and quote
