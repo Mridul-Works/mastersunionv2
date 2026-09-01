@@ -1590,13 +1590,57 @@ function PodcastVideoRail({
   setVideoModal: (modal: VideoModal | null) => void;
   expanded?: boolean;
 }) {
+  const railRef = useRef<HTMLDivElement>(null);
   if (!PODCAST_RAIL_VIDEOS.length) return null;
+
+  const scrollByCard = (dir: number) => {
+    const el = railRef.current;
+    if (!el) return;
+    const first = el.querySelector("button") as HTMLElement | null;
+    if (!first) return;
+    const gap = 16;
+    const step = first.offsetWidth + gap;
+    el.scrollBy({ left: dir * step, behavior: "smooth" });
+  };
 
   return (
     <div className={cn("flex flex-col", expanded && "min-h-0 flex-1")}>
+      {!expanded && (
+        <div className="mb-3 flex items-center justify-end gap-2">
+          <button
+            type="button"
+            onClick={() => scrollByCard(-1)}
+            aria-label="Scroll conversations left"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white/70 transition-colors hover:border-white/40 hover:bg-white/10 hover:text-white"
+          >
+            <ChevronLeft className="size-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollByCard(1)}
+            aria-label="Scroll conversations right"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white/70 transition-colors hover:border-white/40 hover:bg-white/10 hover:text-white"
+          >
+            <ChevronRight className="size-4" />
+          </button>
+          <span className="career-keyboard-hint">Use ← → keys</span>
+        </div>
+      )}
       <div
+        ref={railRef}
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            scrollByCard(-1);
+          }
+          if (e.key === "ArrowRight") {
+            e.preventDefault();
+            scrollByCard(1);
+          }
+        }}
         className={cn(
-          "no-scrollbar pb-2",
+          "no-scrollbar pb-2 focus:outline-none",
           expanded
             ? "grid min-h-0 flex-1 grid-cols-2 content-start gap-4 overflow-y-auto sm:grid-cols-3"
             : "rail-scroll flex items-start gap-4 overflow-x-auto",
@@ -1610,8 +1654,6 @@ function PodcastVideoRail({
             aria-label={`Play conversation with ${item.name}`}
             className={cn("group flex flex-col text-left", expanded ? "w-full" : "w-[240px] shrink-0")}
           >
-
-
             <span className="relative block aspect-video w-full overflow-hidden rounded-md bg-black/10">
               <img
                 src={`https://img.youtube.com/vi/${ytIdOf(item.video)}/maxresdefault.jpg`}
