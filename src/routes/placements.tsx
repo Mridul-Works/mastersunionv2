@@ -577,7 +577,7 @@ const COACHES = [
 
 const LEADERS = [
   { name: "Amit Khatri", role: "Co-founder, Noise", video: "https://youtu.be/OtUiE0AS86U" },
-  { name: "Swati & Rohan Bhargava", role: "Co-founders, CashKaro" },
+  { name: "Swati & Rohan Bhargava", role: "Co-founders, CashKaro", video: "https://youtu.be/_6FfxvVnMTo" },
   { name: "Nipin Marya", role: "CEO, IQOO" },
   { name: "Vikramaditya Chaudhri", role: "Co-Founder, Wingreens Farms" },
   { name: "Hitesh Oberoi", role: "CEO, Info Edge India" },
