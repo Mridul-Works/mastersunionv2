@@ -102,3 +102,4 @@
 - [x] Add Andrea Stone coach portrait
 - [x] Add playable YouTube video link for Amit Khatri (Co-founder, Noise) inside CEO & MDs leadership guidance
 - [x] Add playable YouTube video link for Swati & Rohan Bhargava (Co-founders, CashKaro) inside CEO & MDs leadership guidance
+- [x] Add playable YouTube video link for Nipin Marya (CEO, IQOO) inside CEO & MDs leadership guidance
