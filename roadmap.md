@@ -6,4 +6,4 @@
 - [x] Improve only Our Recruiters logo contrast on the dark background without altering layout or interactions.
 - [x] Apply the Program Layout - UG v2.0 visual system to the Careers & Placements page without changing content or behavior.
 - [x] Replace lower Placements content with career experience narrative while preserving footer
-- [ ] Add student carousel slide 13 (Tushar Gauba) with portrait, role and quote
+- [x] Add student carousel slide 13 (Tushar Gauba) with portrait, role and quote
