@@ -125,6 +125,7 @@ import abhayBarariImg from "@/assets/placements/Abhay_Barari.webp.asset.json";
 import anshikaPandeyImg from "@/assets/placements/Anshika.webp.asset.json";
 import ayushiSinghImg from "@/assets/placements/Ayushi_Singh.webp.asset.json";
 import ankitJainImg from "@/assets/placements/Ankit_Jain.webp.asset.json";
+import rajnishVirmaniImg from "@/assets/placements/RajnishVirmani.png.asset.json";
 import vinayakaGoyalImg from "@/assets/placements/Vinayaka_Goyal.webp.asset.json";
 import rudranshTiwariImg from "@/assets/placements/Rudransh_Tiwari.webp.asset.json";
 import sonaliAwasthiImg from "@/assets/placements/Sonali_Awasthi.webp.asset.json";
