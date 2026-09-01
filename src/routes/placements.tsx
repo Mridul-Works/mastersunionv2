@@ -79,6 +79,8 @@ import aliZeinImg from "@/assets/placements/Ali_Zein_Alabdin_Qeddo.webp.asset.js
 import anuragYadavImg from "@/assets/placements/Anurag_Yadav.webp.asset.json";
 import nishantSinghTanwarImg from "@/assets/placements/Nishant_Singh_Tanwar.webp.asset.json";
 import akhilKrishnaGuptaImg from "@/assets/placements/Akhil_Krishna_Gupta.webp.asset.json";
+import dibyenduChoudhuryImg from "@/assets/placements/Dibyendu_Choudhury.webp.asset.json";
+import aasthaAroraImg from "@/assets/placements/Aastha_Arora.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -537,8 +539,8 @@ const CAREERS_TEAM = [
   { name: "Anurag Yadav", role: "Associate Director — Corporate Engagements", background: "MBA, MDI Gurgaon; Ex-Accenture", image: anuragYadavImg.url },
   { name: "Nishant Singh Tanwar", role: "Associate Director — Corporate Engagements", background: "MBA, XLRI | Ex- Naukri.com, Korn Ferry", image: nishantSinghTanwarImg.url },
   { name: "Akhil Krishna Gupta", role: "Associate Director — Corporate Engagements", background: "IIT-Kharagpur Alumnus | Ex-Reliance Retail, OYO", image: akhilKrishnaGuptaImg.url },
-  { name: "Dibyendu Choudhury", role: "Deputy Director — Corporate Engagements", background: "Ivy, Amity University" },
-  { name: "Aastha Arora", role: "Deputy Director — Corporate Engagements", background: "Ex-Finsmart" },
+  { name: "Dibyendu Choudhury", role: "Deputy Director — Corporate Engagements", background: "Ex- Amity University", image: dibyenduChoudhuryImg.url },
+  { name: "Aastha Arora", role: "Deputy Director — Corporate Engagements", background: "Ex- Emeritus", image: aasthaAroraImg.url },
   { name: "Vinayak Chowdhri", role: "Deputy Director — Corporate Engagements", background: "Ex-mPokket, Proschool, IITC, Hansa, Crownit" },
   { name: "Chaneerat Singh Kalra", role: "General Manager — Corporate Engagements", background: "Ex-Zomato" },
   { name: "Riman Khatri", role: "General Manager — Corporate Engagements", background: "Ex-KPMG, MuSigma" },
