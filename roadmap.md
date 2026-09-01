@@ -121,3 +121,5 @@
   3. Shiv Kapoor – Vice President, Titan Capital
   4. Salone Sehgal – Founding General Partner, Lumikai
   5. Amit Kumar – Sales Director, Google Cloud
+
+- Added playable YouTube video link for Rohit Kapoor (CEO & MDs): https://youtu.be/unzkiy1pkZQ
