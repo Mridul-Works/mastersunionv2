@@ -2483,6 +2483,7 @@ function EditorialPlacementData() {
 function Page() {
   const [recruiterTab, setRecruiterTab] = useState(RECRUITER_GROUPS[0].category);
   const [videoModal, setVideoModal] = useState<VideoModal | null>(null);
+  const [videoMaximized, setVideoMaximized] = useState(false);
   const active = RECRUITER_GROUPS.find((g) => g.category === recruiterTab)!;
   return (
     <ReportModalProvider>
