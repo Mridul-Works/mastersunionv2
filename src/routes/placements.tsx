@@ -579,15 +579,15 @@ const LEADERS = [
   { name: "Amit Khatri", role: "Co-founder, Noise", video: "https://youtu.be/OtUiE0AS86U" },
   { name: "Swati & Rohan Bhargava", role: "Co-founders, CashKaro", video: "https://youtu.be/_6FfxvVnMTo" },
   { name: "Nipin Marya", role: "CEO, IQOO", video: "https://youtu.be/vm4WcgcnhKc" },
-  { name: "Vikramaditya Chaudhri", role: "Co-Founder, Wingreens Farms" },
-  { name: "Hitesh Oberoi", role: "CEO, Info Edge India" },
-  { name: "Rakesh Verma", role: "CMD & Co-Founder, MapmyIndia" },
-  { name: "Sarvesh Agarwal", role: "Founder & CEO, Internshala" },
-  { name: "Punit K Goyal", role: "Co-founder, BluSmart" },
   { name: "Rohit Kapoor", role: "CEO, Food Marketplace, Swiggy" },
   { name: "Rajat Mathur", role: "MD, Morgan Stanley" },
   { name: "Manish Chowdhary", role: "Co-founder, WOW Skin Science" },
   { name: "Sunjay Kapur", role: "Chairman, Sona Comstar" },
+  { name: "Vikramaditya Chaudhri", role: "Co-Founder, Wingreens Farms" },
+  { name: "Hitesh Oberoi", role: "CEO, Info Edge India Ltd." },
+  { name: "Rakesh Verma", role: "Chief Managing Director & Co-Founder, MapmyIndia" },
+  { name: "Sarvesh Agarwal", role: "Founder and CEO, Internshala" },
+  { name: "Punit K Goyal", role: "Co-founder, BluSmart" },
 ];
 
 const CAREERS_TEAM = [
