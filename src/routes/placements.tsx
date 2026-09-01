@@ -1483,24 +1483,23 @@ function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal |
 
   return (
     <PodcastContext.Provider value={{ seek }}>
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-8">
+      <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-5">
           <PodcastTextBlock />
         </div>
-        <div className="lg:col-span-7">
+        <div className="flex h-full flex-col lg:col-span-7">
           <PodcastVideoPlayer setVideoModal={setVideoModal} />
-          <div className="mt-8 flex flex-col gap-8">
+          <div className="mt-8 flex flex-1 flex-col gap-8">
             <div className="h-px w-full bg-black/20" />
             <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-black/50">
               Episode — The story behind ₹33 lakh per LPA average placements — Watch / Listen
             </p>
             <EditorialRule />
-            <div className="flex flex-col gap-5 py-4">
+            <div className="flex flex-1 flex-col gap-5 py-4">
               <Eyebrow>Leadership conversations</Eyebrow>
               <PodcastVideoRail setVideoModal={setVideoModal} />
             </div>
           </div>
-
         </div>
       </div>
     </PodcastContext.Provider>
