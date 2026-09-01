@@ -681,7 +681,7 @@ const UNICORN_FOUNDERS = [
   { name: "Vishesh Khurana", role: "Co-founder, Shiprocket", video: "https://youtu.be/Fs_Z7_ZLS_4" },
   { name: "Alakh Pandey", role: "Founder, PhysicsWallah", video: "https://youtu.be/1kf9JSxA5J0" },
   { name: "Nitin Jain", role: "Co-founder, OfBusiness", video: "https://youtu.be/YJEZfXJsRCg" },
-  { name: "Ghazal Alagh", role: "Co-founder, Mamaearth" },
+  { name: "Ghazal Alagh", role: "Co-founder, Mamaearth", video: "https://youtu.be/rExRUNRJ_Ss" },
   { name: "Sandeep Aggarwal", role: "Founder and CEO, Droom" },
   { name: "Tarun Sharma", role: "Co-founder, mcaffeine" },
 ];
