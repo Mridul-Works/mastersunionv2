@@ -55,6 +55,7 @@ import sidhantaImg from "@/assets/placements/sidhanta.webp.asset.json";
 import kartikImg from "@/assets/placements/kartik.webp.asset.json";
 import ankitSharmaImg from "@/assets/placements/ankitsharma.webp.asset.json";
 import ashmitaImg from "@/assets/placements/ashmita.webp.asset.json";
+import aashutoshImg from "@/assets/placements/Aashutosh.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -307,8 +308,14 @@ const TESTIMONIALS = [
     note: "Masters’ Union was instrumental in helping me pivot to a strategy role at A&M from my audit role at EY. Focusing on real-world business problems and consulting workshops transformed my approach. Continuous support from mentors and the placement team, including mock interviews, resume reviews, and one-on-one guidance, helped me navigate recruitment with clarity and confidence.",
     image: ashmitaImg.url,
   },
-  ...Array.from({ length: 21 }, (_, i) => ({
-    name: `Placement Story ${String(i + 19).padStart(2, "0")}`,
+  {
+    name: "Aashutosh Varakhedkar",
+    role: "Expert - ESG, Trident Group",
+    note: "Masters’ Union played a crucial role in helping me secure my position at Trident through campus placements. The focus on data-driven decision-making and real-world problem-solving strengthened my analytical and structured thinking. Mentorship from Nandini Ma’am and Bhupesh Sir pushed me to identify gaps, making MU the launchpad for my transition into the ESG domain.",
+    image: aashutoshImg.url,
+  },
+  ...Array.from({ length: 20 }, (_, i) => ({
+    name: `Placement Story ${String(i + 20).padStart(2, "0")}`,
     role: "Role & Company — to be confirmed",
     note: "Placeholder story. Portrait, role and quote will be added once the cohort details are shared.",
   })),
