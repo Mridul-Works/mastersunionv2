@@ -1368,7 +1368,7 @@ body::-webkit-scrollbar {
   overflow: hidden;
   border: 1px solid color-mix(in oklab, white 14%, transparent);
   border-radius: 18px;
-  background: var(--placements-outer-surface);
+  background: var(--placements-outer-surface, oklch(0.205 0.007 250 / 0.7));
   backdrop-filter: blur(14px);
   box-shadow:
     0 40px 120px -30px rgba(0, 0, 0, 0.9),
