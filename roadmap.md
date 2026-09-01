@@ -66,3 +66,4 @@
 - [x] Add Professional guidance card 36 (Zubair Warsi) portrait, name, role and background text
 - [x] Add Professional guidance card 37 (Saksham Dutt) portrait, name, role and background text
 - [x] Add Professional guidance card 38 (Vedika Kanodiya) portrait, name, role and background text
+- [x] Add Professional guidance card 39 (Koshlendra Singh) portrait, name, role and background text

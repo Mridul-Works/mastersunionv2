@@ -104,6 +104,7 @@ import nitikaWadhwaImg from "@/assets/placements/Nitika_Wadhwa.webp.asset.json";
 import zubairWarsiImg from "@/assets/placements/Zubair_Warsi.webp.asset.json";
 import sakshamDuttImg from "@/assets/placements/Saksham_Dutt.webp.asset.json";
 import vedikaKanodiyaImg from "@/assets/placements/Vedika_Kanodiya.webp.asset.json";
+import koshlendraSinghImg from "@/assets/placements/Koshlendra_Singh.webp.asset.json";
 import vinayakaGoyalImg from "@/assets/placements/Vinayaka_Goyal.webp.asset.json";
 import rudranshTiwariImg from "@/assets/placements/Rudransh_Tiwari.webp.asset.json";
 import sonaliAwasthiImg from "@/assets/placements/Sonali_Awasthi.webp.asset.json";
@@ -599,6 +600,7 @@ const CAREERS_TEAM = [
   { name: "Zubair Warsi", role: "Program Manager — Corporate Relations", background: "Ex- Spectacom Global, All Stars Digital, Radio Mirchi", image: zubairWarsiImg.url },
   { name: "Saksham Dutt", role: "Manager — Corporate Relations", background: "Ex- Adobe, Cvent, Gartner", image: sakshamDuttImg.url },
   { name: "Vedika Kanodiya", role: "Manager — Corporate Relations", background: "Ex- Axis Max Life Insurance Ltd", image: vedikaKanodiyaImg.url },
+  { name: "Koshlendra Singh", role: "Manager — Corporate Relations", background: "Ex- AccioJob, Zomato", image: koshlendraSinghImg.url },
 ];
 
 const GUIDANCE_PROFILES = [
