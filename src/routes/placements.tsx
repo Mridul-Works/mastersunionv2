@@ -1572,6 +1572,63 @@ function PodcastVideoPlayer({ setVideoModal }: { setVideoModal: (modal: VideoMod
   );
 }
 
+/** Playable rail of the other conversations already featured on this page. */
+const PODCAST_RAIL_VIDEOS = LEADER_GROUPS.flatMap((group) =>
+  group.people
+    .filter((p) => (p as { video?: string }).video)
+    .map((p) => ({
+      name: p.name,
+      role: p.role,
+      video: (p as { video?: string }).video as string,
+    })),
+);
+
+const ytIdOf = (url: string) => url.split("/").pop()?.split("?")[0] ?? "";
+
+function PodcastVideoRail({ setVideoModal }: { setVideoModal: (modal: VideoModal | null) => void }) {
+  if (!PODCAST_RAIL_VIDEOS.length) return null;
+
+  return (
+    <div className="rail-scroll no-scrollbar -mx-1 flex gap-4 overflow-x-auto px-1 pb-2">
+      {PODCAST_RAIL_VIDEOS.map((item) => (
+        <button
+          key={item.video}
+          type="button"
+          onClick={() => setVideoModal({ title: item.name, video: item.video, start: 0 })}
+          aria-label={`Play conversation with ${item.name}`}
+          className="group flex w-[240px] shrink-0 flex-col text-left"
+        >
+          <span className="relative block aspect-video w-full overflow-hidden rounded-md bg-black/10">
+            <img
+              src={`https://img.youtube.com/vi/${ytIdOf(item.video)}/maxresdefault.jpg`}
+              alt={item.name}
+              loading="lazy"
+              className="h-full w-full object-cover transition duration-[900ms] ease-out group-hover:scale-[1.04]"
+              onError={(e) => {
+                const img = e.currentTarget;
+                if (!img.dataset.fallback) {
+                  img.dataset.fallback = "1";
+                  img.src = img.src.replace("maxresdefault", "mqdefault");
+                }
+              }}
+            />
+            <span className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+            <span className="career-podcast-play career-podcast-play--sm">
+              <Play fill="currentColor" />
+            </span>
+          </span>
+          <span className="mt-3 block text-[14px] leading-snug text-black/85 transition-colors duration-300 group-hover:text-[var(--accent)]">
+            {item.name}
+          </span>
+          <span className="mt-1 block text-[11px] leading-snug text-black/50">{item.role}</span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
+
+
 function PodcastChapters() {
   const { seek } = React.useContext(PodcastContext);
   const [open, setOpen] = useState(false);
