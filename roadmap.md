@@ -6,4 +6,4 @@
 - [x] Improve only Our Recruiters logo contrast on the dark background without altering layout or interactions.
 - [x] Apply the Program Layout - UG v2.0 visual system to the Careers & Placements page without changing content or behavior.
 - [x] Replace lower Placements content with career experience narrative while preserving footer
-- [ ] Add student carousel slide 15 (Bhanu Pratap Singh) with portrait, role and quote
+- [ ] Add student carousel slide 16 (Kriti Sharma) with portrait, role and quote
