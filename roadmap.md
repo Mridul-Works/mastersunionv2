@@ -149,3 +149,5 @@
 - Executives portraits: Nikhil Singhal, Shiv Kapoor
 - Salone Sehgal: added portrait
 - Amit Kumar (Sales Director, Google Cloud): added portrait
+
+- Term 4 Interview preparations: replaced inline iframe with YouTube thumbnail + play-button overlay (same pattern as Leadership guidance)
