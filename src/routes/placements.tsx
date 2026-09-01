@@ -540,7 +540,7 @@ const TERMS = [
   { term: "Term 4", title: "Interview preparations", items: ["Resume Review #2", "Stress Management Sessions", "Domain-Specific Seminars", "Corporate Competitions", "Industry/Functional/Role Based Workshops", "Mock Interviews", "Last Mile Preps"] },
   { term: "Term 5", title: "Business etiquette & grooming", items: ["Business Etiquette & Grooming", "Mock Interviews", "Last Mile Preps", "One-on-one With the Director of Career Preparation"] },
   { term: "Term 6", title: "Salary negotiation", items: ["Peer Best Practices & Experience Sharing", "Salary Negotiation Workshops", "Mock Interviews", "Last Mile Preps"] },
-  { term: "Term 7", title: "Placement drive phase 1", items: ["Mock interviews", "Placement drives", "Last mile preps"] },
+  { term: "Term 7", title: "Placement drive phase 1", items: ["Mock Interviews", "Placement Drives", "Last Mile Preps"] },
   { term: "Term 8", title: "Placement drive phase 2", items: ["Placement drives", "Last mile preps"] },
 ];
 
