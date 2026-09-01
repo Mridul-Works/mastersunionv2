@@ -679,7 +679,7 @@ const LEADER_PLACEHOLDER = (label: string, index: number) => ({
 
 const UNICORN_FOUNDERS = [
   { name: "Vishesh Khurana", role: "Co-founder, Shiprocket", video: "https://youtu.be/Fs_Z7_ZLS_4" },
-  { name: "Alakh Pandey", role: "Founder, PhysicsWallah" },
+  { name: "Alakh Pandey", role: "Founder, PhysicsWallah", video: "https://youtu.be/1kf9JSxA5J0" },
   { name: "Nitin Jain", role: "Co-founder, OfBusiness" },
   { name: "Ghazal Alagh", role: "Co-founder, Mamaearth" },
   { name: "Sandeep Aggarwal", role: "Founder and CEO, Droom" },
