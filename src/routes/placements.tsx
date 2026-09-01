@@ -34,6 +34,7 @@ import cover2023 from "@/assets/placement-reports/cover-2023.png.asset.json";
 import cover2024 from "@/assets/placement-reports/cover-2024.png.asset.json";
 import cover2025 from "@/assets/placement-reports/cover-2025.png.asset.json";
 import jasDesaiImg from "@/assets/placements/jas-desai.webp.asset.json";
+import komalBansalImg from "@/assets/placements/komal-bansal.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
