@@ -76,3 +76,5 @@
 - [x] Add Professional guidance card 46 (Mansi Jain) portrait, name, role and background text
 - [x] Add Professional guidance card 47 (Vidit Vishal) portrait, name, role and background text
 - [x] Add Professional guidance card 48 (Tanwir Haque) portrait, name, role and background text
+- [x] Add Professional guidance card 49 (Abhay Barari) portrait, name, role and background text
+- [x] Add Professional guidance card 50 (Anshika Pandey) portrait, name, role and background text

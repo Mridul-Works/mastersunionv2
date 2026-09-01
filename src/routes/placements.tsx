@@ -114,6 +114,8 @@ import anjaliAntilImg from "@/assets/placements/Anjali_Antil.webp.asset.json";
 import mansiJainImg from "@/assets/placements/Mansi_Jain.webp.asset.json";
 import viditVishalImg from "@/assets/placements/Vidit_Vishal.webp.asset.json";
 import tanwirHaqueImg from "@/assets/placements/Tanwir_Haque.webp.asset.json";
+import abhayBarariImg from "@/assets/placements/Abhay_Barari.webp.asset.json";
+import anshikaPandeyImg from "@/assets/placements/Anshika.webp.asset.json";
 import vinayakaGoyalImg from "@/assets/placements/Vinayaka_Goyal.webp.asset.json";
 import rudranshTiwariImg from "@/assets/placements/Rudransh_Tiwari.webp.asset.json";
 import sonaliAwasthiImg from "@/assets/placements/Sonali_Awasthi.webp.asset.json";
@@ -619,6 +621,8 @@ const CAREERS_TEAM = [
   { name: "Mansi Jain", role: "Associate Program Manager — Career Preparation", background: "Ex- CollegeDekho, ImagineXP", image: mansiJainImg.url },
   { name: "Vidit Vishal", role: "Associate Program Manager — Career Preparation", background: "Duke University, NSUT | Ex- Rentickle, CARS24, ABP News", image: viditVishalImg.url },
   { name: "Tanwir Haque", role: "Associate Program Manager — Career Preparation", background: "Eco'n University of Delhi | Ex- MoHUA, Govt. of India", image: tanwirHaqueImg.url },
+  { name: "Abhay Barari", role: "Associate Program Manager — Career Preparation", background: "Ex- Coding Nexus, Study IQ", image: abhayBarariImg.url },
+  { name: "Anshika Pandey", role: "Executive — Corporate Relations", background: "Ex- University Living, BYJU'S", image: anshikaPandeyImg.url },
 ];
 
 const GUIDANCE_PROFILES = [
