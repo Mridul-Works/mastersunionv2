@@ -759,6 +759,17 @@ function useScrolled(threshold = 24) {
 
 const HERO_EASE = "cubic-bezier(0.16, 0.84, 0.24, 1)";
 
+function ScrollIndicator() {
+  return (
+    <div className="hero-scroll-indicator" aria-hidden="true">
+      <div className="hero-scroll-mouse">
+        <div className="hero-scroll-wheel" />
+      </div>
+      <span className="hero-scroll-label">Scroll Down</span>
+    </div>
+  );
+}
+
 /**
  * Full-bleed editorial hero: the graduation photograph fills the viewport at
  * full fidelity, the existing copy sits as quiet metadata, and the existing
