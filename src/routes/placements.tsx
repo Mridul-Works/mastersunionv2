@@ -33,6 +33,7 @@ import cover2022 from "@/assets/placement-reports/cover-2022.png.asset.json";
 import cover2023 from "@/assets/placement-reports/cover-2023.png.asset.json";
 import cover2024 from "@/assets/placement-reports/cover-2024.png.asset.json";
 import cover2025 from "@/assets/placement-reports/cover-2025.png.asset.json";
+import jasDesaiImg from "@/assets/placements/jas-desai.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -233,7 +234,7 @@ const ALUMNI = [
 ];
 
 const TESTIMONIALS = [
-  { name: "Jas Desai", role: "Senior Associate, CEO's Office, DP World, Dubai", note: "Credits the In-class/Out-class approach and CXO sessions for interview confidence." },
+  { name: "Jas Desai", role: "Senior Associate, CEO's Office, DP World, Dubai", note: "Credits the In-class/Out-class approach and CXO sessions for interview confidence.", image: jasDesaiImg.url },
   { name: "Komal Bansal", role: "Senior Associate, BCG", note: "Structured thinking from faculty, Get Prepped mentorship, Dropshipping and VIP exposure." },
   { name: "Archit Bansal", role: "Manager – CEO's Office, Reliance Infrastructure", note: "Led the Masters' Union Investment Fund, sharpening strategic decision-making." },
   { name: "Karan Mulky", role: "Client Solutions Manager, Meta", note: "FOCOS practicum for first-principles thinking and structured interview prep." },
@@ -770,7 +771,14 @@ function CareerTransitionsSection() {
   );
 }
 
-function PortraitPlaceholder({ name, className = "" }: { name: string; className?: string }) {
+function PortraitPlaceholder({ name, imageSrc, className = "" }: { name: string; imageSrc?: string; className?: string }) {
+  if (imageSrc) {
+    return (
+      <div className={`career-portrait-placeholder career-portrait-image ${className}`}>
+        <img src={imageSrc} alt={`${name} portrait`} loading="lazy" />
+      </div>
+    );
+  }
   return (
     <div className={`career-portrait-placeholder ${className}`} role="img" aria-label={`${name} portrait placeholder`}>
       <span aria-hidden="true">{name.split(" ").map((part) => part[0]).slice(0, 2).join("")}</span>
@@ -836,7 +844,7 @@ function CareerExperienceArea() {
             </div>
 
             <div className="career-story-visual">
-              <PortraitPlaceholder name={currentStory.name} className="career-featured-portrait" />
+              <PortraitPlaceholder name={currentStory.name} imageSrc={(currentStory as any).image} className="career-featured-portrait" />
               <div className="career-story-accent">
                 <span>Student voice</span>
                 <p>{currentStory.name}</p>
