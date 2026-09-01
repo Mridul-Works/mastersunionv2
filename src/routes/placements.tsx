@@ -537,7 +537,7 @@ const TERMS = [
   { term: "Term 1", title: "Mentor allocation & profile building", items: ["Psychometric Assessment", "1-1 Mentor Allocation", "Resume Formatting for Profile Building", "LinkedIn Profiling", "Professional Photography & Class Photos", "Institution of PlaCom", "Know all Domains", "Placement Policies", "Case and Business Plan Competition Workshop"] },
   { term: "Term 2", title: "Outreach plan & personal branding", items: ["Finalisation of Company Lists", "Company Outreach Plan", "Shortlisting Your Top 3 Domains", "Presentation Skills Workshop", "Industry Engagement Sessions", "Personal Branding Workshop", "Storytelling Workshop", "Career Practicums", "Corporate Competitions"] },
   { term: "Term 3", title: "Functional role-based workshops", items: ["Resume Review #1", "Behavioural Mocks", "Consulting Case Training", "Domain-Specific Seminars and Workshops", "Team Work & Conflict Management Workshop", "Industry/Functional/Role Based Workshops"] },
-  { term: "Term 4", title: "Interview preparations", items: ["Resume Review #2", "Stress Management Sessions", "Domain-Specific Seminars", "Corporate Competitions", "Industry/Functional/Role Based Workshops", "Mock Interviews", "Last Mile Preps"] },
+  { term: "Term 4", title: "Interview preparations", items: ["Resume Review #2", "Stress Management Sessions", "Domain-Specific Seminars", "Corporate Competitions", "Industry/Functional/Role Based Workshops", "Mock Interviews", "Last Mile Preps"], video: "https://youtu.be/KdZNCJz-5ZI" },
   { term: "Term 5", title: "Business etiquette & grooming", items: ["Business Etiquette & Grooming", "Mock Interviews", "Last Mile Preps", "One-on-one With the Director of Career Preparation"] },
   { term: "Term 6", title: "Salary negotiation", items: ["Peer Best Practices & Experience Sharing", "Salary Negotiation Workshops", "Mock Interviews", "Last Mile Preps"] },
   { term: "Term 7", title: "Placement drive phase 1", items: ["Mock Interviews", "Placement Drives", "Last Mile Preps"] },
@@ -1236,8 +1236,18 @@ function CareerExperienceArea() {
             <h3>{currentTerm.title}</h3>
             <ul>{currentTerm.items.map((item) => <li key={item}><span aria-hidden="true">+</span>{item}</li>)}</ul>
           </div>
-          <div className="career-pathway-visual" role="img" aria-label="Students taking part in career preparation">
-            <img src={heroBg.url} alt="Masters' Union students in a career preparation session" loading="lazy" />
+          <div className="career-pathway-visual" aria-label={currentTerm.video ? "Term 4 interview preparation video" : "Students taking part in career preparation"}>
+            {currentTerm.video ? (
+              <iframe
+                src={`https://www.youtube.com/embed/${currentTerm.video.split("/").pop()?.split("?")[0]}`}
+                title={`${currentTerm.term} video`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+              />
+            ) : (
+              <img src={heroBg.url} alt="Masters' Union students in a career preparation session" loading="lazy" />
+            )}
             <span>{String(term + 1).padStart(2, "0")} / 08</span>
           </div>
         </div>
