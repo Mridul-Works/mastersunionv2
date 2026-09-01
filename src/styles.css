@@ -3063,10 +3063,11 @@ body::-webkit-scrollbar {
 .career-pathway-content li span { color: var(--accent); }
 .career-pathway-visual { position: relative; }
 .career-pathway-visual img,
-.career-pathway-visual iframe { width: 100%; height: 100%; object-fit: cover; }
+.career-pathway-visual iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .career-pathway-visual img { filter: grayscale(1) brightness(0.65); }
-.career-pathway-visual::after { position: absolute; inset: 0; background: linear-gradient(to top, var(--placements-inner-surface), transparent 60%); content: ""; }
-.career-pathway-visual span { position: absolute; z-index: 1; right: 1rem; bottom: 1rem; color: var(--foreground); font-family: var(--font-mono-tech); font-size: 0.65rem; }
+.career-pathway-visual::after { position: absolute; inset: 0; background: linear-gradient(to top, var(--placements-inner-surface), transparent 60%); content: ""; pointer-events: none; }
+.career-pathway-visual iframe { z-index: 1; pointer-events: auto; }
+.career-pathway-visual span { position: absolute; z-index: 2; right: 1rem; bottom: 1rem; color: var(--foreground); font-family: var(--font-mono-tech); font-size: 0.65rem; }
 
 .career-coach-grid { display: grid; gap: 0.75rem; }
 .career-coach-track {
