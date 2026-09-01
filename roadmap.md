@@ -28,3 +28,4 @@
 - [x] Add student carousel slide 35 (Harshit Gambhir, Program Manager, Blinkit) with portrait, role and quote
 - [x] Add student carousel slide 36 (Aarushi Gosain, Consultant, KPMG India) with portrait, role and quote
 - [x] Add student carousel slide 37 (Yashana Lalwani, Management Trainee - Business, Flipkart) with portrait, role and quote
+- [x] Add student carousel slide 38 (Atithee Nandanwar, Marketing Specialist, Yardstick | Remote - UAE) with portrait, role and quote
