@@ -1503,6 +1503,7 @@ function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal |
             </div>
 
           </div>
+          </div>
         </div>
       </div>
     </PodcastContext.Provider>
