@@ -1236,8 +1236,18 @@ function CareerExperienceArea() {
             <h3>{currentTerm.title}</h3>
             <ul>{currentTerm.items.map((item) => <li key={item}><span aria-hidden="true">+</span>{item}</li>)}</ul>
           </div>
-          <div className="career-pathway-visual" role="img" aria-label="Students taking part in career preparation">
-            <img src={heroBg.url} alt="Masters' Union students in a career preparation session" loading="lazy" />
+          <div className="career-pathway-visual" aria-label={currentTerm.video ? "Term 4 interview preparation video" : "Students taking part in career preparation"}>
+            {currentTerm.video ? (
+              <iframe
+                src={`https://www.youtube.com/embed/${currentTerm.video.split("/").pop()?.split("?")[0]}`}
+                title={`${currentTerm.term} video`}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+              />
+            ) : (
+              <img src={heroBg.url} alt="Masters' Union students in a career preparation session" loading="lazy" />
+            )}
             <span>{String(term + 1).padStart(2, "0")} / 08</span>
           </div>
         </div>
