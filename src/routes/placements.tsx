@@ -1671,15 +1671,6 @@ function PodcastChapters({ open, setOpen }: { open: boolean; setOpen: (v: boolea
 
   return (
     <div className="mt-5 border-t border-black/15 pt-4">
-      <div className="flex items-center justify-between">
-        <span
-          className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50"
-          style={{ fontFamily: MONO }}
-        >
-          All videos
-        </span>
-      </div>
-
       <ul className="flex flex-col">
         {previewVideos.map((item) => (
           <VideoRow item={item} key={item.video} />
