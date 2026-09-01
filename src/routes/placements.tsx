@@ -337,6 +337,12 @@ const TESTIMONIALS = [
     image: dakshImg.url,
   },
   {
+    name: "Nimisha Dutta",
+    role: "Program Manager, Blinkit",
+    note: "After five years in impact and management consulting, I aimed to transition into a dynamic, fast-paced environment. Masters’ Union played a crucial role in this shift, helping me secure a Growth Manager role at Blinkit. I now leverage my stakeholder management and leadership skills to lead cross-functional teams, an experience that is both challenging and deeply fulfilling.",
+    image: nimishaImg.url,
+  },
+  {
     name: "Darshan Vithlani",
     role: "Senior Data Scientist, Abdul Latif Jameel | Abu Dhabi",
     note: "At Masters’ Union, learning goes beyond theory. Working on One Day Challenges with companies and learning from CXOs gave me a front-row view of real-world decision-making. The course helped me build the right way to drive strategic outcomes, which helped me pivot into a role at the intersection of business and data, to drive efficient outcomes and increase profitability.",
