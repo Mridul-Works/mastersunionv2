@@ -39,6 +39,7 @@ import architBansalImg from "@/assets/placements/archit-bansal.webp.asset.json";
 import karanMulkyImg from "@/assets/placements/karan-mulky.webp.asset.json";
 import architBhargavaImg from "@/assets/placements/archit-bhargava.webp.asset.json";
 import yashMehtaImg from "@/assets/placements/yash-mehta.webp.asset.json";
+import souravDasImg from "@/assets/placements/sourav.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
