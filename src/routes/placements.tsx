@@ -69,6 +69,7 @@ import shagunImg from "@/assets/placements/shagun.webp.asset.json";
 import karanJhaveriImg from "@/assets/placements/karanJhaveri.webp.asset.json";
 import harshitImg from "@/assets/placements/harshit.webp.asset.json";
 import aarushiImg from "@/assets/placements/Aarushi.webp.asset.json";
+import yashanaImg from "@/assets/placements/yashana.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -399,8 +400,14 @@ const TESTIMONIALS = [
     note: "A big shoutout to the Placement Team for their incredible and unwavering support throughout my journey. They patiently guided me, connected me with the right opportunities, and understood my career goals. Special thanks to Jyoti and Jasleen Ma’am for helping me navigate consulting and secure my placement at KPMG - couldn’t have done it without them!",
     image: aarushiImg.url,
   },
-  ...Array.from({ length: 7 }, (_, i) => ({
-    name: `Placement Story ${String(i + 37).padStart(2, "0")}`,
+  {
+    name: "Yashana Lalwani",
+    role: "Management Trainee - Business, Flipkart",
+    note: "As a fresher, winning Flipkart’s Wired 8.0 case competition was a turning point, leading to a PPI and eventual placement at Flipkart. Masters’ Union’s diverse cohort provided insights that strengthened my case-solving and interview prep. Participating in case competitions not only challenges you but also connects you with talented peers, broadening your perspectives.",
+    image: yashanaImg.url,
+  },
+  ...Array.from({ length: 6 }, (_, i) => ({
+    name: `Placement Story ${String(i + 38).padStart(2, "0")}`,
     role: "Role & Company — to be confirmed",
     note: "Placeholder story. Portrait, role and quote will be added once the cohort details are shared.",
   })),
