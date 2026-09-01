@@ -87,6 +87,7 @@ import simranBhatiaImg from "@/assets/placements/Simran_Bhatia.webp.asset.json";
 import vidhuGoelImg from "@/assets/placements/Vidhu_Goel.webp.asset.json";
 import shelizaMamadImg from "@/assets/placements/Sheliza_Mamad.webp.asset.json";
 import radhikaGoyalImg from "@/assets/placements/Radhika_Goyal.webp.asset.json";
+import shubhamGuptaImg from "@/assets/placements/Shubham_Gupta.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -553,6 +554,7 @@ const CAREERS_TEAM = [
   { name: "Vidhu Goel", role: "General Manager — Career Preparation", background: "MBA, Masters' Union | Ex- EiR, Collegedunia, Ex- Founder", image: vidhuGoelImg.url },
   { name: "Sheliza Mamad", role: "General Manager — Corporate Engagements", background: "Kingston University Alumnus | Ex- Middlesex University, Dubai", image: shelizaMamadImg.url },
   { name: "Radhika Goyal", role: "Senior Manager — Career Preparation", background: "MBA, Masters' Union | Ex- Daarshik Aerotech, Virtusa", image: radhikaGoyalImg.url },
+  { name: "Shubham Gupta", role: "Senior Manager — Career Preparation", background: "MBA, Masters' Union | Ex- Meltwater, Vistara", image: shubhamGuptaImg.url },
 ];
 
 const GUIDANCE_PROFILES = [
