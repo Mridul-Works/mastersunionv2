@@ -55,3 +55,9 @@
 - [x] Add Professional guidance card 25 (Siddharth Jangir) portrait, name, role and background text
 - [x] Add Professional guidance card 26 (Namita Bhatia) portrait, name, role and background text
 - [x] Add Professional guidance card 27 (Riti Marwah) portrait, name, role and background text
+- [x] Add Professional guidance card 28 (Vinayaka Goyal) portrait, name, role and background text
+- [x] Add Professional guidance card 29 (Rudransh Tiwari) portrait, name, role and background text
+- [x] Add Professional guidance card 30 (Sonali Awasthi) portrait, name, role and background text
+- [x] Add Professional guidance card 31 (Kushagra Kumar) portrait, name, role and background text
+- [x] Add Professional guidance card 32 (Shivangi Dwivedi) portrait, name, role and background text
+- [x] Add Professional guidance card 33 (Sourav Majumder) portrait, name, role and background text
