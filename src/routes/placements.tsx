@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { createFileRoute } from "@tanstack/react-router";
 import * as React from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -1643,40 +1644,65 @@ function PodcastChapters() {
 }
 
 /** Editorial metric blocks for the Podcast and Proven Outcomes sections. */
-function HorizontalMetricsStrip() {
+function HorizontalMetricsStrip({ variant = "light" }: { variant?: "light" | "dark" }) {
+  const isDark = variant === "dark";
   return (
-    <div className="placements-metrics-strip grid grid-cols-1 gap-px overflow-hidden border-y border-foreground/10 bg-foreground/10 lg:grid-cols-3">
+    <div
+      className={cn(
+        "placements-metrics-strip grid grid-cols-1 gap-px overflow-hidden border-y lg:grid-cols-3",
+        isDark ? "border-[#131618] bg-[#131618]" : "border-foreground/10 bg-foreground/10"
+      )}
+    >
       {AUDIT_STATS.map((stat, i) => (
         <div
           key={stat.suffix}
-          className="metric-card group relative flex flex-col overflow-hidden bg-background transition-colors duration-500 ease-out"
+          className={cn(
+            "metric-card group relative flex flex-col overflow-hidden transition-colors duration-500 ease-out",
+            isDark ? "bg-[#131618]" : "bg-background"
+          )}
         >
           <div className="relative z-10 flex flex-col items-center justify-center gap-4 px-5 py-6 md:px-7 md:py-7 lg:px-8 lg:py-8">
             {/* index */}
             <span
-              className="text-[10px] tabular-nums tracking-[0.28em] text-black/40 transition-colors duration-500"
+              className={cn(
+                "text-[10px] tabular-nums tracking-[0.28em] transition-colors duration-500",
+                isDark ? "text-white/40" : "text-black/40"
+              )}
               style={{ fontFamily: MONO }}
             >
               {String(i + 1).padStart(2, "0")}
             </span>
 
             {/* number */}
-            <span className="whitespace-nowrap text-center text-[clamp(1.7rem,3.6vw,2.6rem)] font-medium leading-none tracking-[-0.04em] text-black transition-colors duration-500">
+            <span
+              className={cn(
+                "whitespace-nowrap text-center text-[clamp(1.7rem,3.6vw,2.6rem)] font-medium leading-none tracking-[-0.04em] transition-colors duration-500",
+                isDark ? "text-white" : "text-black"
+              )}
+            >
               {stat.value}
             </span>
 
             {/* divider */}
-            <div className="h-px w-20 bg-border" />
+            <div className={cn("h-px w-20 transition-colors duration-500", isDark ? "bg-white/20" : "bg-border")} />
 
             {/* label + description */}
             <div className="flex flex-col items-center gap-1.5 text-center">
               <span
-                className="whitespace-nowrap text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-black/80 transition-colors duration-500"
+                className={cn(
+                  "whitespace-nowrap text-center text-[11px] font-semibold uppercase tracking-[0.16em] transition-colors duration-500",
+                  isDark ? "text-white/85" : "text-black/80"
+                )}
                 style={{ fontFamily: MONO }}
               >
                 {stat.suffix}
               </span>
-              <p className="max-w-[26ch] text-center text-[13px] leading-snug text-black/55 transition-colors duration-500">
+              <p
+                className={cn(
+                  "max-w-[26ch] text-center text-[13px] leading-snug transition-colors duration-500",
+                  isDark ? "text-white/60" : "text-black/55"
+                )}
+              >
                 {stat.note}
               </p>
             </div>
@@ -2016,7 +2042,7 @@ function OutcomesAccordion() {
 
         {/* RIGHT — static metrics bar (shared Podcast layout) */}
         <div className="lg:col-span-8">
-          <HorizontalMetricsStrip />
+          <HorizontalMetricsStrip variant="dark" />
         </div>
       </div>
     </div>
