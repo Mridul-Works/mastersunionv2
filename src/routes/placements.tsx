@@ -1603,7 +1603,7 @@ function PodcastVideoRail({
   };
 
   return (
-    <div className={cn("flex min-w-0 flex-col", expanded && "min-h-0 flex-1")}>
+    <div className={cn("flex min-w-0 w-full flex-col", expanded && "min-h-0 flex-1")}>
       {!expanded && (
         <div className="mb-3 flex items-center justify-end gap-2">
           <button
