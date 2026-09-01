@@ -45,6 +45,7 @@ import ishetaImg from "@/assets/placements/isheta.webp.asset.json";
 import rishieImg from "@/assets/placements/rishie.webp.asset.json";
 import lakshyaImg from "@/assets/placements/lakshya.webp.asset.json";
 import ankitaImg from "@/assets/placements/ankita.webp.asset.json";
+import tusharImg from "@/assets/placements/tushar.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -257,7 +258,7 @@ const TESTIMONIALS = [
   { name: "Rishie Prabhakaran", role: "Product Specialist - Analytics Department, Bloomberg", note: "My journey to prepare for the Bloomberg interview was deeply supported by the structured preparation at Masters’ Union. Multiple resume iterations, regular behavioural mock interviews and personalized mentorship helped me understand my experiences better and articulate them with clarity and confidence—enabling me to show the depth of thought Bloomberg was seeking.", image: rishieImg.url },
   { name: "Lakshya Punjabi", role: "Management Trainee – Data Science & Business Analytics, American Express", note: "Masters’ Union played a pivotal role in helping me secure my role at American Express. The hands-on learning, industry-immersive curriculum and exposure to real-world business problems sharpened my analytical and problem-solving abilities, pushed me to think strategically and execute with precision - directly contributing to my success in the multi-round AMEX interview process.", image: lakshyaImg.url },
   { name: "Ankita Saxena", role: "Manager, Credit Risk, Citibank", note: "Masters’ Union broadened my perspective beyond sheets and risk models. Real-world cases, live projects and mentorship from industry leaders helped me think like a business partner rather than just an analyst. Wearing multiple hats across finance, marketing and ops proved invaluable in transitioning into a managerial role in Credit and Real Estate Underwriting at Citibank.", image: ankitaImg.url },
-  { name: "Kriti Gupta", role: "Merchandising Manager, Careem, Dubai", note: "Career Services proactively shared profiles and opened alumni connections." },
+  { name: "Tushar Gauba", role: "Digital Product Manager, IndusInd Bank", note: "Masters’ Union was instrumental in helping me secure the Product Manager role at IndusInd Bank. The Product Practicum gave me hands-on experience in solving real business problems, which translated into strong talking points during interviews. The career team’s personalized mentorship and timely mock interviews ensured I was fully prepared for questions from the BFSI product space.", image: tusharImg.url },
   { name: "Kriti Gupta", role: "Merchandising Manager, Careem, Dubai", note: "Career Services proactively shared profiles and opened alumni connections." },
   { name: "Varun Makhija", role: "Product Manager, ServiceNow", note: "Case practice, product practicums and behavioural prep from named mentors." },
   { name: "Harshit Gambhir", role: "Program Manager, Blinkit", note: "Built product acumen after 6 years in automotive R&D — offer within 8 months." },
