@@ -3112,9 +3112,9 @@ body::-webkit-scrollbar {
 .career-roadmap-visual.has-video { cursor: pointer; }
 .career-roadmap-visual.has-video img { filter: grayscale(0) brightness(0.85); }
 .career-roadmap-visual .career-roadmap-play { position: absolute; inset: 0; z-index: 3; display: grid; place-items: center; pointer-events: none; }
-.career-roadmap-visual .career-roadmap-play > span { display: grid; place-items: center; width: 3.5rem; height: 3.5rem; border: 1px solid color-mix(in oklab, var(--foreground) 35%, transparent); border-radius: 50%; background: color-mix(in oklab, var(--background) 60%, transparent); color: var(--foreground); transition: transform 300ms ease, background 300ms ease, border-color 300ms ease; }
+.career-roadmap-visual .career-roadmap-play > span { display: grid; place-items: center; width: 3.5rem; height: 3.5rem; border: 1px solid var(--accent); border-radius: 50%; background: var(--accent); color: var(--accent-foreground); transition: transform 300ms ease, background 300ms ease, border-color 300ms ease; box-shadow: 0 0 20px -4px color-mix(in oklab, var(--accent) 40%, transparent); }
 .career-roadmap-visual .career-roadmap-play svg { width: 1rem; height: 1rem; }
-.career-roadmap-visual.has-video:hover .career-roadmap-play > span { transform: scale(1.1); background: var(--accent); border-color: var(--accent); color: var(--background); }
+.career-roadmap-visual.has-video:hover .career-roadmap-play > span { transform: scale(1.1); background: color-mix(in oklab, var(--accent) 88%, var(--foreground)); border-color: color-mix(in oklab, var(--accent) 88%, var(--foreground)); color: var(--accent-foreground); }
 .career-roadmap-items { display: grid; gap: 0.5rem; align-content: start; grid-template-columns: 1fr; }
 .career-roadmap-items li {
   display: flex;
