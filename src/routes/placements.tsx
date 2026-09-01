@@ -579,7 +579,7 @@ const LEADERS = [
   { name: "Amit Khatri", role: "Co-founder, Noise", video: "https://youtu.be/OtUiE0AS86U" },
   { name: "Swati & Rohan Bhargava", role: "Co-founders, CashKaro", video: "https://youtu.be/_6FfxvVnMTo" },
   { name: "Nipin Marya", role: "CEO, IQOO", video: "https://youtu.be/vm4WcgcnhKc" },
-  { name: "Rohit Kapoor", role: "CEO, Food Marketplace, Swiggy" },
+  { name: "Rohit Kapoor", role: "CEO, Food Marketplace, Swiggy", video: "https://youtu.be/unzkiy1pkZQ" },
   { name: "Rajat Mathur", role: "MD, Morgan Stanley" },
   { name: "Manish Chowdhary", role: "Co-founder, WOW Skin Science" },
   { name: "Sunjay Kapur", role: "Chairman, Sona Comstar" },
