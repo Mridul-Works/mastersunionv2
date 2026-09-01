@@ -93,6 +93,8 @@ import pragatiGuptaImg from "@/assets/placements/Pragati_Gupta.webp.asset.json";
 import jasleenTalujaImg from "@/assets/placements/Jasleen_Taluja.webp.asset.json";
 import vibhutiSinghImg from "@/assets/placements/Vibhuti_Singh.webp.asset.json";
 import santanuGoswamiImg from "@/assets/placements/Santanu_Goswami.webp.asset.json";
+import kritiSharmaTeamImg from "@/assets/placements/Kriti_Sharma.webp.asset.json";
+import siddharthJangirImg from "@/assets/placements/Siddharth_Jangir.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -565,6 +567,8 @@ const CAREERS_TEAM = [
   { name: "Jasleen Taluja", role: "Senior Manager — Corporate Relations", background: "MBA, IMT Ghaziabad | Ex- Seekho", image: jasleenTalujaImg.url },
   { name: "Vibhuti Singh", role: "Senior Manager — Corporate Relations", background: "MBA, Murdoch University, Australia | Ex- KiwiTech", image: vibhutiSinghImg.url },
   { name: "Santanu Goswami", role: "Senior Manager — Career Preparation", background: "MBA, IIM-Calcutta | Ex- IB, M&A, VC", image: santanuGoswamiImg.url },
+  { name: "Kriti Sharma", role: "Senior Manager — Career Preparation", background: "MBA, Masters' Union | Ex- BCG, Praxis GA, Qualcomm", image: kritiSharmaTeamImg.url },
+  { name: "Siddharth Jangir", role: "Senior Manager — Career Preparation", background: "MBA, IIM-Kozhikode | Ex- Disney Star, Seashell Logistics", image: siddharthJangirImg.url },
 ];
 
 const GUIDANCE_PROFILES = [

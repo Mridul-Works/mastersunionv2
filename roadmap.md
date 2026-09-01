@@ -51,3 +51,5 @@
 - [x] Add Professional guidance card 19 (Jasleen Taluja) portrait, name, role and background text
 - [x] Add Professional guidance card 20 (Vibhuti Singh) portrait, name, role and background text
 - [x] Add Professional guidance card 21 (Santanu Goswami) portrait, name, role and background text
+- [x] Add Professional guidance card 24 (Kriti Sharma) portrait, name, role and background text
+- [x] Add Professional guidance card 25 (Siddharth Jangir) portrait, name, role and background text
