@@ -10,7 +10,7 @@ import {
   Users,
   Route as RouteIcon,
   Download,
-  
+
   Mail,
   Quote,
   ChevronDown,
@@ -20,7 +20,9 @@ import {
   BadgeCheck,
   Compass,
   Play,
+  X,
 } from "lucide-react";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
 import heroBg from "@/assets/placement-hero.webp.asset.json";
 import careerJT1Img from "@/assets/placements/careerJT1.webp.asset.json";
@@ -574,9 +576,9 @@ const COACHES = [
 
 
 const LEADERS = [
-  { name: "Amit Khatri", role: "Co-founder, Noise" },
-  { name: "Swati & Rohan Bhargava", role: "Co-founders, CashKaro" },
-  { name: "Nipin Marya", role: "CEO, IQOO" },
+  { name: "Amit Khatri", role: "Co-founder, Noise", video: "https://youtu.be/OtUiE0AS86U" },
+  { name: "Swati & Rohan Bhargava", role: "Co-founders, CashKaro", video: "https://youtu.be/_6FfxvVnMTo" },
+  { name: "Nipin Marya", role: "CEO, IQOO", video: "https://youtu.be/vm4WcgcnhKc" },
   { name: "Vikramaditya Chaudhri", role: "Co-Founder, Wingreens Farms" },
   { name: "Hitesh Oberoi", role: "CEO, Info Edge India" },
   { name: "Rakesh Verma", role: "CMD & Co-Founder, MapmyIndia" },
@@ -1090,6 +1092,7 @@ function CareerExperienceArea() {
   const [story, setStory] = useState(0);
   const [term, setTerm] = useState(0);
   const [leaderGroup, setLeaderGroup] = useState(0);
+  const [leaderVideo, setLeaderVideo] = useState<{ name: string; video: string } | null>(null);
   const [showAllGuidance, setShowAllGuidance] = useState(false);
   const [coachTrack, setCoachTrack] = useState(0);
 
@@ -1364,12 +1367,37 @@ function CareerExperienceArea() {
           </div>
           <div className="career-leader-cards" key={currentLeaders.label}>
             {currentLeaders.people.map((leader, index) => (
-              <article className="career-leader-card" key={leader.name}>
-                <div className="career-leader-media"><PortraitPlaceholder name={leader.name} /><span><Play fill="currentColor" /></span></div>
+              <article
+                className={`career-leader-card${(leader as any).video ? " has-video" : ""}`}
+                key={leader.name}
+                role={(leader as any).video ? "button" : undefined}
+                tabIndex={(leader as any).video ? 0 : undefined}
+                onClick={() => (leader as any).video ? setLeaderVideo({ name: leader.name, video: (leader as any).video }) : undefined}
+                onKeyDown={(e) => { if ((leader as any).video && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); setLeaderVideo({ name: leader.name, video: (leader as any).video }); }}}
+                aria-label={(leader as any).video ? `Play video from ${leader.name}` : undefined}
+              >
+                <div className="career-leader-media"><PortraitPlaceholder name={leader.name} />{(leader as any).video ? <span><Play fill="currentColor" /></span> : null}</div>
                 <h3>{leader.name}</h3><p>{leader.role}</p><small>{String(index + 1).padStart(2, "0")} / {String(currentLeaders.people.length).padStart(2, "0")}</small>
               </article>
             ))}
           </div>
+
+          <Dialog open={!!leaderVideo} onOpenChange={(open) => !open && setLeaderVideo(null)}>
+            <DialogContent className="career-leader-video-dialog max-w-3xl border-0 bg-black p-0">
+              <DialogTitle className="sr-only">{leaderVideo?.name ? `Video from ${leaderVideo.name}` : "Leader video"}</DialogTitle>
+              <DialogDescription className="sr-only">YouTube video player</DialogDescription>
+              {leaderVideo && (
+                <div className="career-leader-video-wrap">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${leaderVideo.video.split("/").pop()?.split("?")[0]}?autoplay=1&rel=0`}
+                    title={`Video from ${leaderVideo.name}`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                    allowFullScreen
+                  />
+                </div>
+              )}
+            </DialogContent>
+          </Dialog>
         </div>
       </Band>
 

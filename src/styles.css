@@ -3204,6 +3204,11 @@ body::-webkit-scrollbar {
 .career-leader-card h3 { margin-top: 0.9rem; font-size: 0.9rem; }
 .career-leader-card p { margin-top: 0.25rem; color: color-mix(in oklab, var(--foreground) 50%, transparent); font-size: 0.68rem; }
 .career-leader-card small { position: absolute; right: 0; bottom: 0; color: color-mix(in oklab, var(--foreground) 30%, transparent); font-family: var(--font-mono-tech); font-size: 0.58rem; }
+.career-leader-card.has-video { cursor: pointer; }
+.career-leader-card.has-video .career-leader-media > span { transition: transform 300ms ease, background 300ms ease; }
+.career-leader-video-dialog { padding: 0; }
+.career-leader-video-wrap { position: relative; aspect-ratio: 16 / 9; width: 100%; overflow: hidden; border-radius: 12px; }
+.career-leader-video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
 .career-closing-section { padding: clamp(0.75rem, 2vw, 1.25rem) 0 clamp(4rem, 8vw, 7rem); background: var(--background); }
 .career-closing-cta { padding: clamp(2rem, 6vw, 5rem); border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent); border-radius: 18px; background: var(--placements-outer-surface); text-align: center; }
@@ -3226,6 +3231,7 @@ body::-webkit-scrollbar {
     border-color: color-mix(in oklab, var(--accent) 34%, transparent);
     box-shadow: 0 22px 52px -34px color-mix(in oklab, var(--accent) 58%, transparent);
   }
+  .career-leader-card.has-video:hover .career-leader-media > span { transform: scale(1.1); background: var(--accent); border-color: var(--accent); color: var(--background); }
   .career-guidance-card:hover {
     background: color-mix(in oklab, var(--placements-inner-surface) 94%, var(--accent));
   }
