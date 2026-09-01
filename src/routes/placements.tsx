@@ -1304,23 +1304,45 @@ function CareerExperienceArea() {
         <div className="career-section-number">04</div>
         <Reveal><Eyebrow>Dedicated career coaches</Eyebrow></Reveal>
         <Reveal delay={100}><h2 className="career-area-title">Making You <em className="font-serif-italic">Industry Ready</em></h2></Reveal>
-        <div className="career-coach-grid mt-12">
-          {COACH_TRACKS.map((track, trackIndex) => (
-            <article className="career-coach-track" key={track.title}>
-              <div className="career-coach-icon">{trackIndex === 0 ? <Mic2 /> : trackIndex === 1 ? <BadgeCheck /> : <Compass />}</div>
-              <h3>{track.title} Coach</h3>
-              <p>{track.note}</p>
-              <div className="career-coach-people">
-                {COACHES.slice(trackIndex * 2, trackIndex * 2 + 2).map((coach) => (
-                  <div className="career-coach-person" key={coach.name}>
-                    <PortraitPlaceholder name={coach.name} imageSrc={(coach as any).image} />
-                    <div><strong>{coach.name}</strong><span>{coach.role}</span><small>Coaching experience: {coach.exp}</small></div>
+        <div className="career-coach-shell mt-12">
+          <div className="career-coach-tabs" role="tablist">
+            {COACH_TRACKS.map((track, i) => (
+              <button
+                type="button"
+                role="tab"
+                aria-selected={coachTrack === i}
+                key={track.title}
+                className={`career-coach-tab${coachTrack === i ? " is-active" : ""}`}
+                onClick={() => setCoachTrack(i)}
+              >
+                <span className="career-coach-tab-num">{String(i + 1).padStart(2, "0")}</span>
+                <span className="career-coach-tab-label">{track.title} Coach</span>
+              </button>
+            ))}
+          </div>
+
+          <div className="career-coach-panel" key={coachTrack}>
+            <div className="career-coach-panel-copy">
+              <div className="career-coach-icon">{coachTrack === 0 ? <Mic2 /> : coachTrack === 1 ? <BadgeCheck /> : <Compass />}</div>
+              <h3>{COACH_TRACKS[coachTrack].title} Coach</h3>
+              <p>{COACH_TRACKS[coachTrack].note}</p>
+              <span className="career-coach-ghost">{String(coachTrack + 1).padStart(2, "0")}</span>
+            </div>
+            <div className="career-coach-panel-people">
+              {COACHES.slice(coachTrack * 2, coachTrack * 2 + 2).map((coach) => (
+                <article className="career-coach-card" key={coach.name}>
+                  <PortraitPlaceholder name={coach.name} imageSrc={(coach as any).image} />
+                  <div className="career-coach-card-body">
+                    <strong>{coach.name}</strong>
+                    <span>{coach.role}</span>
+                    <small>Coaching experience: {coach.exp}</small>
                   </div>
-                ))}
-              </div>
-            </article>
-          ))}
+                </article>
+              ))}
+            </div>
+          </div>
         </div>
+
       </Band>
 
       <Band tone="white">
