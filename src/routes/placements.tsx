@@ -146,6 +146,8 @@ import prashantKhullarImg from "@/assets/placements/PrashantKhullar.webp.asset.j
 import tanushriNairImg from "@/assets/placements/TanushriNair.webp.asset.json";
 import rohithHariharanImg from "@/assets/placements/RohithHariharan.webp.asset.json";
 import radhikaMaheshwariImg from "@/assets/placements/radhika.webp.asset.json";
+import nikhilSinghalImg from "@/assets/placements/nikhil.webp.asset.json";
+import shivKapoorImg from "@/assets/placements/shiv-kapoor-gt.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
