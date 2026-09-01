@@ -1590,51 +1590,18 @@ const PODCAST_RAIL_VIDEOS = LEADER_GROUPS.flatMap((group) =>
 const ytIdOf = (url: string) => url.split("/").pop()?.split("?")[0] ?? "";
 
 function PodcastVideoRail({ setVideoModal }: { setVideoModal: (modal: VideoModal | null) => void }) {
-  const railRef = React.useRef<HTMLDivElement>(null);
   if (!PODCAST_RAIL_VIDEOS.length) return null;
 
-  const focusCard = (delta: number, from: number) => {
-    const cards = railRef.current?.querySelectorAll<HTMLButtonElement>("[data-rail-card]");
-    if (!cards?.length) return;
-    const next = Math.min(cards.length - 1, Math.max(0, from + delta));
-    cards[next]?.focus();
-    cards[next]?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
-  };
-
-  const onKeyDown = (event: React.KeyboardEvent, index: number) => {
-    if (event.key === "ArrowRight") {
-      event.preventDefault();
-      focusCard(1, index);
-    } else if (event.key === "ArrowLeft") {
-      event.preventDefault();
-      focusCard(-1, index);
-    } else if (event.key === "Home") {
-      event.preventDefault();
-      focusCard(-PODCAST_RAIL_VIDEOS.length, index);
-    } else if (event.key === "End") {
-      event.preventDefault();
-      focusCard(PODCAST_RAIL_VIDEOS.length, index);
-    }
-  };
-
   return (
-    <div
-      ref={railRef}
-      role="listbox"
-      aria-label="Leadership conversations"
-      className="rail-scroll no-scrollbar -mx-1 flex gap-4 overflow-x-auto px-1 pb-2"
-    >
-      {PODCAST_RAIL_VIDEOS.map((item, index) => (
+    <div className="rail-scroll no-scrollbar -mx-1 flex gap-4 overflow-x-auto px-1 pb-2">
+      {PODCAST_RAIL_VIDEOS.map((item) => (
         <button
           key={item.video}
           type="button"
-          data-rail-card
-          onKeyDown={(event) => onKeyDown(event, index)}
           onClick={() => setVideoModal({ title: item.name, video: item.video, start: 0 })}
           aria-label={`Play conversation with ${item.name}`}
-          className="group flex w-[240px] shrink-0 flex-col text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent)]"
+          className="group flex w-[240px] shrink-0 flex-col text-left"
         >
-
           <span className="relative block aspect-video w-full overflow-hidden rounded-md bg-black/10">
             <img
               src={`https://img.youtube.com/vi/${ytIdOf(item.video)}/maxresdefault.jpg`}
