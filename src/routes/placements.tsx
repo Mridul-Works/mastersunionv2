@@ -1071,10 +1071,12 @@ function CareerExperienceArea() {
   const [story, setStory] = useState(0);
   const [term, setTerm] = useState(0);
   const [leaderGroup, setLeaderGroup] = useState(0);
+  const [showAllGuidance, setShowAllGuidance] = useState(false);
   const featuredStories = TESTIMONIALS;
   const currentStory = featuredStories[story];
   const currentTerm = TERMS[term];
   const currentLeaders = LEADER_GROUPS[leaderGroup];
+  const visibleGuidance = showAllGuidance ? GUIDANCE_PROFILES : GUIDANCE_PROFILES.slice(0, 26);
 
   const moveStory = (direction: number) => {
     setStory((current) => (current + direction + featuredStories.length) % featuredStories.length);
@@ -1170,8 +1172,8 @@ function CareerExperienceArea() {
           </Reveal>
         </div>
 
-        <div className="career-guidance-grid mt-12" aria-label="Professional guidance team, 52 profiles">
-          {GUIDANCE_PROFILES.map((member) => (
+        <div className="career-guidance-grid mt-12" aria-label={`Professional guidance team, ${visibleGuidance.length} of 52 profiles shown`}>
+          {visibleGuidance.map((member) => (
             <article
               className={`career-guidance-card${member.isPlaceholder ? " is-placeholder" : ""}`}
               data-guidance-card
@@ -1189,6 +1191,17 @@ function CareerExperienceArea() {
               </div>
             </article>
           ))}
+        </div>
+
+        <div className="career-guidance-view-more mt-10 flex justify-center">
+          <Button
+            variant="outline"
+            onClick={() => setShowAllGuidance((s) => !s)}
+            aria-expanded={showAllGuidance}
+          >
+            {showAllGuidance ? "View less" : "View more"}
+            <ChevronDown className={`ml-2 size-4 transition-transform duration-300 ${showAllGuidance ? "rotate-180" : ""}`} aria-hidden="true" />
+          </Button>
         </div>
 
         <a className="career-contact-strip mt-10" href="mailto:careerservices@mastersunion.org">
