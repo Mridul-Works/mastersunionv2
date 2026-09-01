@@ -2106,7 +2106,7 @@ function CohortReports() {
         ))}
       </div>
 
-      <div className="mt-6">
+      <div className="mt-10">
           <button
             type="button"
             onClick={reportModal.open}
