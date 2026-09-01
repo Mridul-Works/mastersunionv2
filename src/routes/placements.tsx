@@ -1483,24 +1483,23 @@ function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal |
 
   return (
     <PodcastContext.Provider value={{ seek }}>
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-8">
+      <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-5">
           <PodcastTextBlock />
         </div>
-        <div className="lg:col-span-7">
+        <div className="flex h-full flex-col lg:col-span-7">
           <PodcastVideoPlayer setVideoModal={setVideoModal} />
-          <div className="mt-8 flex flex-col gap-8">
+          <div className="mt-8 flex flex-1 flex-col gap-8">
             <div className="h-px w-full bg-black/20" />
             <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-black/50">
               Episode — The story behind ₹33 lakh per LPA average placements — Watch / Listen
             </p>
             <EditorialRule />
-            <div className="flex flex-col gap-5 py-4">
+            <div className="flex flex-1 flex-col gap-5 py-4">
               <Eyebrow>Leadership conversations</Eyebrow>
               <PodcastVideoRail setVideoModal={setVideoModal} />
             </div>
           </div>
-
         </div>
       </div>
     </PodcastContext.Provider>
@@ -1601,10 +1600,10 @@ function PodcastVideoRail({ setVideoModal }: { setVideoModal: (modal: VideoModal
   };
 
   return (
-    <div>
+    <div className="flex h-full flex-col">
       <div
         ref={railRef}
-        className="rail-scroll no-scrollbar -mx-1 flex gap-4 overflow-x-auto px-1 pb-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]/50"
+        className="rail-scroll no-scrollbar -mx-1 flex flex-1 items-stretch gap-4 overflow-x-auto px-1 pb-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]/50"
         tabIndex={0}
         onKeyDown={(e) => {
           if (e.key === "ArrowLeft") {
@@ -1622,7 +1621,7 @@ function PodcastVideoRail({ setVideoModal }: { setVideoModal: (modal: VideoModal
             type="button"
             onClick={() => setVideoModal({ title: item.name, video: item.video, start: 0 })}
             aria-label={`Play conversation with ${item.name}`}
-            className="group flex w-[240px] shrink-0 flex-col text-left"
+            className="group flex h-full w-[240px] shrink-0 flex-col text-left"
           >
             <span className="relative block aspect-video w-full overflow-hidden rounded-md bg-black/10">
               <img
@@ -1650,7 +1649,7 @@ function PodcastVideoRail({ setVideoModal }: { setVideoModal: (modal: VideoModal
           </button>
         ))}
       </div>
-      <div className="mt-3 flex items-center justify-between">
+      <div className="mt-3 flex shrink-0 items-center justify-between">
         <div className="flex items-center gap-2">
           <Button variant="outline" size="icon" onClick={() => scrollByCard(-1)} aria-label="Scroll video rail left">
             <ChevronLeft className="h-4 w-4" />
