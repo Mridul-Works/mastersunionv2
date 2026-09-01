@@ -15,3 +15,4 @@
 - [ ] Add student carousel slide 22 (Ashmita Malik, Senior Associate, Alvarez & Marsal) with portrait, role and quote
 - [ ] Add student carousel slide 23 (Aashutosh Varakhedkar, Expert - ESG, Trident Group) with portrait, role and quote
 - [ ] Add student carousel slide 24 (Daksh Rastogi, Lead - Partnerships, OneBanc) with portrait, role and quote
+- [ ] Add student carousel slide 25 (Nimisha Dutta, Program Manager, Blinkit) with portrait, role and quote
