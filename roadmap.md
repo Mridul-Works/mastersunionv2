@@ -10,3 +10,4 @@
 - [ ] Add student carousel slide 17 (Shibi Sadasivam, Program Manager, Zomato) with portrait, role and quote
 - [ ] Add student carousel slide 18 (Varun Makhija, Product Manager, ServiceNow) with portrait, role and quote
 - [ ] Add student carousel slide 19 (Sidhanta Kumar Panigrahi, General Manager - Business Development, Morphogenesis) with portrait, role and quote
+- [ ] Add student carousel slide 20 (Kartik Sharma, Senior Manager - Digital Marketing, JustDial) with portrait, role and quote
