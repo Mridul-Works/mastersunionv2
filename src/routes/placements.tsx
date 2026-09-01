@@ -1232,32 +1232,65 @@ function CareerExperienceArea() {
           <h2 className="career-area-title">Benefit From a Tailored <em className="font-serif-italic">Career Pathway</em></h2>
           <p className="career-area-intro">Leverage the opportunity to engage in workshops, training, panel discussions, counselling sessions, and personalised career progression plans.</p>
         </Reveal>
-        <div className="career-term-selector mt-10" role="tablist" aria-label="Career pathway terms">
-          {TERMS.map((item, index) => (
-            <Button key={item.term} variant="ghost" role="tab" aria-selected={term === index} className={term === index ? "is-active" : ""} onClick={() => setTerm(index)}>{item.term}</Button>
-          ))}
-        </div>
-        <div className="career-pathway-panel" key={currentTerm.term}>
-          <div className="career-pathway-content">
-            <p className="career-kicker">{currentTerm.term}</p>
-            <h3>{currentTerm.title}</h3>
-            <ul>{currentTerm.items.map((item) => <li key={item}><span aria-hidden="true">+</span>{item}</li>)}</ul>
+        <div className="career-roadmap-layout mt-10">
+          <nav className="career-roadmap-rail" aria-label="Career pathway terms">
+            {TERMS.map((item, index) => (
+              <button
+                key={item.term}
+                type="button"
+                aria-current={term === index}
+                className={`career-roadmap-rail-item${term === index ? " is-active" : ""}`}
+                onClick={() => setTerm(index)}
+              >
+                <span className="career-roadmap-rail-num">{String(index + 1).padStart(2, "0")}</span>
+                <span className="career-roadmap-rail-copy">
+                  <span className="career-roadmap-rail-term">{item.term}</span>
+                  <span className="career-roadmap-rail-title">{item.title}</span>
+                </span>
+              </button>
+            ))}
+          </nav>
+
+          <div className="career-roadmap-panel" key={currentTerm.term}>
+            <header className="career-roadmap-panel-head">
+              <div>
+                <p className="career-kicker">{currentTerm.term} · {currentTerm.items.length} activities</p>
+                <h3>{currentTerm.title}</h3>
+              </div>
+              <span aria-hidden="true" className="career-roadmap-ghost">{String(term + 1).padStart(2, "0")}</span>
+            </header>
+
+            <div className="career-roadmap-body">
+              <div
+                className="career-pathway-visual career-roadmap-visual"
+                aria-label={currentTerm.video ? "Term 4 interview preparation video" : "Students taking part in career preparation"}
+              >
+                {currentTerm.video ? (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${currentTerm.video.split("/").pop()?.split("?")[0]}`}
+                    title={`${currentTerm.term} video`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    loading="lazy"
+                  />
+                ) : (
+                  <img src={currentTerm.image || heroBg.url} alt="Masters' Union students in a career preparation session" loading="lazy" />
+                )}
+                <span>{String(term + 1).padStart(2, "0")} / {String(TERMS.length).padStart(2, "0")}</span>
+              </div>
+
+              <ul className="career-roadmap-items">
+                {currentTerm.items.map((item, itemIndex) => (
+                  <li key={item}>
+                    <span className="career-roadmap-item-num">{String(itemIndex + 1).padStart(2, "0")}</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div className="career-pathway-visual" aria-label={currentTerm.video ? "Term 4 interview preparation video" : "Students taking part in career preparation"}>
-            {currentTerm.video ? (
-              <iframe
-                src={`https://www.youtube.com/embed/${currentTerm.video.split("/").pop()?.split("?")[0]}`}
-                title={`${currentTerm.term} video`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                loading="lazy"
-              />
-            ) : (
-              <img src={currentTerm.image || heroBg.url} alt="Masters' Union students in a career preparation session" loading="lazy" />
-            )}
-            <span>{String(term + 1).padStart(2, "0")} / 08</span>
-          </div>
         </div>
+
       </Band>
 
       <Band tone="paper">
