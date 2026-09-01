@@ -91,3 +91,4 @@
 - [ ] Add Term 3 Annual Roadmap image (careerImg.webp)
 - [ ] Add Term 5 Annual Roadmap image (cd5.webp)
 - [ ] Add Term 6 Annual Roadmap image (imgcd.webp)
+- [ ] Add Term 7 Annual Roadmap image (imageCd7.webp)
