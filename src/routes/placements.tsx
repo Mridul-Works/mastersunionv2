@@ -1086,36 +1086,27 @@ function CareerExperienceArea() {
           </Reveal>
         </div>
 
-        <div className="career-guidance-mosaic mt-12" aria-label="Professional guidance team, 52 profiles">
-          {GUIDANCE_PROFILES.map((member) => {
-            const variant = member.index % 9 === 1 || member.index % 11 === 0
-              ? "career-guidance-card--feature"
-              : member.index % 4 === 0
-                ? "career-guidance-card--compact"
-                : "career-guidance-card--standard";
-
-            return (
-              <article
-                className={`career-guidance-card ${variant}${member.isPlaceholder ? " is-placeholder" : ""}`}
-                data-guidance-card
-                key={`${member.index}-${member.name}`}
-              >
-                <div className="career-guidance-index">{String(member.index).padStart(2, "0")}</div>
-                {variant !== "career-guidance-card--compact" ? (
-                  <div className="career-guidance-portrait">
-                    <PortraitPlaceholder name={member.isPlaceholder ? `Profile ${member.index}` : member.name} imageSrc={(member as any).image} />
-                    {member.isPlaceholder ? <span>Image pending</span> : null}
-                  </div>
-                ) : null}
-                <div className="career-guidance-copy">
-                  <h3>{member.name}</h3>
-                  <p>{member.role}</p>
-                  {variant !== "career-guidance-card--compact" ? <small>{member.background}</small> : null}
-                </div>
-              </article>
-            );
-          })}
+        <div className="career-guidance-grid mt-12" aria-label="Professional guidance team, 52 profiles">
+          {GUIDANCE_PROFILES.map((member) => (
+            <article
+              className={`career-guidance-card${member.isPlaceholder ? " is-placeholder" : ""}`}
+              data-guidance-card
+              key={`${member.index}-${member.name}`}
+            >
+              <div className="career-guidance-index">{String(member.index).padStart(2, "0")}</div>
+              <div className="career-guidance-portrait">
+                <PortraitPlaceholder name={member.isPlaceholder ? `Profile ${member.index}` : member.name} imageSrc={(member as any).image} />
+                {member.isPlaceholder ? <span>Image pending</span> : null}
+              </div>
+              <div className="career-guidance-copy">
+                <h3>{member.name}</h3>
+                <p>{member.role}</p>
+                <small>{member.background}</small>
+              </div>
+            </article>
+          ))}
         </div>
+
         <a className="career-contact-strip mt-10" href="mailto:careerservices@mastersunion.org">
           <Mail aria-hidden="true" /> Reach out to our team at <span>careerservices@mastersunion.org</span><ArrowUpRight aria-hidden="true" />
         </a>
