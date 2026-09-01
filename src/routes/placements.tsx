@@ -49,6 +49,23 @@ import tusharImg from "@/assets/placements/tushar.webp.asset.json";
 import kritiImg from "@/assets/placements/kriti.webp.asset.json";
 import bhanuImg from "@/assets/placements/bhanu.webp.asset.json";
 import kritiSharmaImg from "@/assets/placements/kritiSharma.webp.asset.json";
+import shibiImg from "@/assets/placements/shibi.webp.asset.json";
+import varunImg from "@/assets/placements/varun.webp.asset.json";
+import sidhantaImg from "@/assets/placements/sidhanta.webp.asset.json";
+import kartikImg from "@/assets/placements/kartik.webp.asset.json";
+import ankitSharmaImg from "@/assets/placements/ankitsharma.webp.asset.json";
+import ashmitaImg from "@/assets/placements/ashmita.webp.asset.json";
+import aashutoshImg from "@/assets/placements/Aashutosh.webp.asset.json";
+import dakshImg from "@/assets/placements/daksh.webp.asset.json";
+import nimishaImg from "@/assets/placements/nimisha.webp.asset.json";
+import darshanImg from "@/assets/placements/darshan.webp.asset.json";
+import kanishkImg from "@/assets/placements/kanishk.webp.asset.json";
+import jayeshImg from "@/assets/placements/jayesh.webp.asset.json";
+import sanidhyaImg from "@/assets/placements/sanidhya.webp.asset.json";
+import malayImg from "@/assets/placements/malay.webp.asset.json";
+import puruImg from "@/assets/placements/puru.webp.asset.json";
+import dhananjayImg from "@/assets/placements/dhananjay.webp.asset.json";
+import shagunImg from "@/assets/placements/shagun.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -265,8 +282,104 @@ const TESTIMONIALS = [
   { name: "Kriti Gupta", role: "Merchandising Manager, Careem | Dubai", note: "Masters’ Union was instrumental in helping me secure my role at Careem. The Career Services team proactively shared my profile for a strong-fit role and coordinated seamlessly with Careem’s recruitment team. They guided me through every stage, including last-mile prep, mock interviews, and connecting me with E-commerce alumni for actionable insights.", image: kritiImg.url },
   { name: "Bhanu Pratap Singh", role: "Strategic Lead, Everest Fleet", note: "Masters’ Union meaningfully shaped my interview readiness and career journey. The curriculum sharpened my core business fundamentals and enabled real-world problem-solving. All of the simulated coursework, case discussions and faculty guidance built enough confidence in me, while the unwavering support from the Prep and Outreach teams helped align roles with my aspirations.", image: bhanuImg.url },
   { name: "Kriti Sharma", role: "Consultant, Praxis Global", note: "Masters’ Union was key in shaping my journey into consulting. Campus interviews with BCG gave me my first exposure, leading to my role at Praxis Global Alliance as a Management Consultant. From excelling in the Dropshipping Challenge to winning a Pre-Seed grant, the real-world problem-solving equipped me with the confidence, skills, and mindset to succeed.", image: kritiSharmaImg.url },
-  ...Array.from({ length: 27 }, (_, i) => ({
-    name: `Placement Story ${String(i + 13).padStart(2, "0")}`,
+  {
+    name: "Shibi Sadasivam",
+    role: "Program Manager, Zomato",
+    note: "Masters’ Union provided a strong platform for my career transition. The industry-focused curriculum, peer learning, and access to a robust network helped me navigate the job search effectively. Guidance from the placement team, faculty and prep team, along with exposure to real-world business problems, shaped me as an individual and helped secure this opportunity.",
+    image: shibiImg.url,
+  },
+  {
+    name: "Varun Makhija",
+    role: "Product Manager, ServiceNow",
+    note: "Masters’ Union played a pivotal role in helping me secure my Product Manager role at ServiceNow. The campus hiring opportunities were exceptional, and the preparation support invaluable. Case practice and product practicums, guided by mentors like Gaurav Sahu and Aditya, sharpened my problem-solving, while Gopika Ma’am’s guidance in behavioural prep was a game-changer.",
+    image: varunImg.url,
+  },
+  {
+    name: "Sidhanta Kumar Panigrahi",
+    role: "General Manager - Business Development, Morphogenesis",
+    note: "Serving as Student Council President at Masters’ Union gave me first-hand experience in managing teams. MU helped channel that energy into strategic execution and stakeholder management. Its immersive pedagogy and exposure to real industry-led projects through experiential learning developed a 360° business perspective, making my transition to Morphogenesis seamless.",
+    image: sidhantaImg.url,
+  },
+  {
+    name: "Kartik Sharma",
+    role: "Senior Manager - Digital Marketing, JustDial",
+    note: "Masters’ Union turned my job hunt into a strategic campaign. Mock interview marathons sharpened my case-solving, storytelling, and situational judgement, so I could answer Justdial’s questions confidently. Marketing Analytics, Full-Funnel Growth, and Statistics labs equipped me with skills to generate insights and prioritize features in Product Management sprints.",
+    image: kartikImg.url,
+  },
+  {
+    name: "Ankit Sharma",
+    role: "Business Analyst, Sirius International Holdings | Abu Dhabi",
+    note: "The hands-on learning and mentorship from industry leaders at Masters’ Union were instrumental in my seamless transition into a global role at Sirius International Holdings. I’m grateful to Pratham Mittal, Abhishek Kaul, Bhupesh Manoharan, Saksham Kotiya, and the MU team for guiding me, refining my analytical thinking and strengthening my business fundamentals.",
+    image: ankitSharmaImg.url,
+  },
+  {
+    name: "Ashmita Malik",
+    role: "Senior Associate, Alvarez & Marsal",
+    note: "Masters’ Union was instrumental in helping me pivot to a strategy role at A&M from my audit role at EY. Focusing on real-world business problems and consulting workshops transformed my approach. Continuous support from mentors and the placement team, including mock interviews, resume reviews, and one-on-one guidance, helped me navigate recruitment with clarity and confidence.",
+    image: ashmitaImg.url,
+  },
+  {
+    name: "Aashutosh Varakhedkar",
+    role: "Expert - ESG, Trident Group",
+    note: "Masters’ Union played a crucial role in helping me secure my position at Trident through campus placements. The focus on data-driven decision-making and real-world problem-solving strengthened my analytical and structured thinking. Mentorship from Nandini Ma’am and Bhupesh Sir pushed me to identify gaps, making MU the launchpad for my transition into the ESG domain.",
+    image: aashutoshImg.url,
+  },
+  {
+    name: "Daksh Rastogi",
+    role: "Lead - Partnerships, OneBanc",
+    note: "After five years in consulting, I aimed to transition into a role combining client-facing experience with my interest in FinTech. Masters’ Union provided the exposure, mentorship, and connections that enabled me to secure a Lead - Partnerships role at OneBanc. The program helped me find a position blending strategy, tech and finance, perfectly aligning with my career goals.",
+    image: dakshImg.url,
+  },
+  {
+    name: "Darshan Vithlani",
+    role: "Senior Data Scientist, Abdul Latif Jameel | Abu Dhabi",
+    note: "At Masters’ Union, learning goes beyond theory. Working on One Day Challenges with companies and learning from CXOs gave me a front-row view of real-world decision-making. The course helped me build the right way to drive strategic outcomes, which helped me pivot into a role at the intersection of business and data, to drive efficient outcomes and increase profitability.",
+    image: darshanImg.url,
+  },
+  {
+    name: "Kanishk Chaturvedi",
+    role: "Data Scientist, Funder.ai | Abu Dhabi",
+    note: "Masters’ Union opened international doors for me through committed, high-quality placement support. Our Placement Director, Abhishek Kaul, personally engaged with top Gulf chairmen to secure opportunities. I’m deeply grateful to Abhishek Sir, Gopika Ma’am, and the exceptional domestic and international faculty, whose guidance prepared me to succeed in securing this role.",
+    image: kanishkImg.url,
+  },
+  {
+    name: "Jayesh Makkar",
+    role: "Manager - SELL, Flipkart",
+    note: "Masters’ Union played a crucial role in helping me secure my on-campus placement at Flipkart as a Category Manager. The Careers Team guided me through resume refinement and interview prep. Mock interviews built confidence, while academic experiences like the Dropshipping stint provided practical exposure directly applicable during all of my interviews.",
+    image: jayeshImg.url,
+  },
+  {
+    name: "Sanidhya Sinha",
+    role: "Program Manager, Zomato",
+    note: "Masters’ Union’s blend of Indian and Western pedagogies taught me to think bigger, overcome obstacles, and innovate effectively. The “learn by doing” approach turned failures into lessons, while industry projects and case competitions strengthened my analytical rigour and communication. This experience built the resilience and adaptability that stood out during recruitment.",
+    image: sanidhyaImg.url,
+  },
+  {
+    name: "Malay Vashi",
+    role: "Manager - Design Planning, Razorpay",
+    note: "Bhupesh Sir’s insight - that real problems are uncovered by listening to customers has stayed with me. Getting inspired, I explored Razorpay users’ challenges and created a solution-oriented deck, which Pratham reviewed and shared with the team. I wouldn’t have landed this offer without their guidance and the lessons from all Masters’ Union professors.",
+    image: malayImg.url,
+  },
+  {
+    name: "Puru Gupta",
+    role: "Senior Manager I - Program Management, Zepto",
+    note: "Masters’ Union played a pivotal role in helping me secure the Program Manager role at Zepto. The hands-on, industry-focused curriculum built a strong foundation in product thinking and data analysis. Mentorship and mock interviews sharpened my communication, while exposure to live startup environments widened my view in terms of business and its elements.",
+    image: puruImg.url,
+  },
+  {
+    name: "Dhananjay Dev",
+    role: "Chief of Staff - Founder's Office, The Souled Store",
+    note: "I’m thrilled to share that I’ve secured a role at The Souled Store, and I owe much of this to Masters’ Union. The hands-on learning environment, continuous mentorship and experiential learning shaped my journey. I’m especially grateful to Simran Bhatia and Siddhartha Bal for their unwavering support, refining my approach and guiding me through every interview round.",
+    image: dhananjayImg.url,
+  },
+  {
+    name: "Shagun Malik",
+    role: "Brand Manager, Farmley",
+    note: "Masters’ Union played a key role in helping me secure my Brand Manager role at Farmley. Hands-on projects and mentorship sharpened my strategic thinking and problem-solving. The immersive curriculum, CXO talks, live business simulations, and networking deepened my understanding in branding, giving me the confidence to lead brand strategy in a fast-paced startup.",
+    image: shagunImg.url,
+  },
+  ...Array.from({ length: 10 }, (_, i) => ({
+    name: `Placement Story ${String(i + 34).padStart(2, "0")}`,
     role: "Role & Company — to be confirmed",
     note: "Placeholder story. Portrait, role and quote will be added once the cohort details are shared.",
   })),
