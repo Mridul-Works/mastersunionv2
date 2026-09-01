@@ -656,6 +656,16 @@ const GUIDANCE_PROFILES = [
   })),
 ];
 
+const CHRO_LEADERS = [
+  { name: "Anil Salvi", role: "MD & Group Head, JM Financial Group" },
+  { name: "Bhavna Batra", role: "Exec. Dir. (People), S&P Global Market Intelligence" },
+  { name: "Dr Sachin Gulati", role: "Head of India Campus Recruitment, American Express" },
+  { name: "Sandeep Girotra", role: "Chief Human Resource Officer, DCM Shriram LTD" },
+  { name: "Prashant Khullar", role: "Chief Human Resources Officer, Ecom Express" },
+  { name: "Tanushri Nair", role: "Director, Human Resources, SAGE Publications" },
+  { name: "Rohith Hariharan", role: "Head, Employer Branding, Ather Energy" },
+];
+
 const LEADER_PLACEHOLDER = (label: string, index: number) => ({
   name: `${label} ${index}`,
   role: "Title and organisation coming soon",
@@ -663,7 +673,7 @@ const LEADER_PLACEHOLDER = (label: string, index: number) => ({
 
 const LEADER_GROUPS = [
   { label: "CEO & MDs", people: LEADERS.slice(0, 11) },
-  { label: "CHROs", people: [...Array.from({ length: 7 }, (_, i) => LEADER_PLACEHOLDER("CHRO", i + 1))] },
+  { label: "CHROs", people: CHRO_LEADERS },
   { label: "Unicorn Founders", people: [...Array.from({ length: 6 }, (_, i) => LEADER_PLACEHOLDER("Unicorn Founder", i + 1))] },
   { label: "Executives", people: [...Array.from({ length: 5 }, (_, i) => LEADER_PLACEHOLDER("Executive", i + 1))] },
 ];
