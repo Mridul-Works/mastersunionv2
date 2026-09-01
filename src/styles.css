@@ -2969,13 +2969,13 @@ body::-webkit-scrollbar {
 
 .career-guidance-copy h3 {
   max-width: calc(100% - 2.4rem);
-  font-size: 0.9rem;
-  font-weight: 500;
-  line-height: 1.25;
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+  font-weight: 300;
+  line-height: 1.05;
 }
 
 .career-guidance-card--feature .career-guidance-copy h3 {
-  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  font-size: clamp(1.35rem, 2.2vw, 1.95rem);
 }
 
 .career-guidance-copy p {
@@ -2992,9 +2992,9 @@ body::-webkit-scrollbar {
   margin-top: 0.75rem;
   padding-top: 0.75rem;
   border-top: 1px solid color-mix(in oklab, var(--foreground) 9%, transparent);
-  color: color-mix(in oklab, var(--foreground) 45%, transparent);
-  font-size: 0.62rem;
-  line-height: 1.55;
+  color: color-mix(in oklab, var(--foreground) 62%, transparent);
+  font-size: 0.72rem;
+  line-height: 1.5;
 }
 
 .career-guidance-card--compact {
