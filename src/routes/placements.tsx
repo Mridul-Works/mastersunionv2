@@ -1384,7 +1384,7 @@ function CareerExperienceArea() {
                       loading="lazy"
                       onError={(e) => {
                         const img = e.currentTarget;
-                        if (!img.dataset.fallback) { img.dataset.fallback = "1"; img.src = img.src.replace("maxresdefault", "hqdefault"); }
+                        if (!img.dataset.fallback) { img.dataset.fallback = "1"; img.src = img.src.replace("maxresdefault", "mqdefault"); }
                       }}
                     />
                   ) : (
