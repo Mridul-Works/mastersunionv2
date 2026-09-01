@@ -68,3 +68,4 @@
 - [x] Add Professional guidance card 38 (Vedika Kanodiya) portrait, name, role and background text
 - [x] Add Professional guidance card 39 (Koshlendra Singh) portrait, name, role and background text
 - [x] Add Professional guidance card 40 (Vansh Pratap Singh) portrait, name, role and background text
+- [x] Add Professional guidance card 41 (Adiksha Bhalla) portrait, name, role and background text

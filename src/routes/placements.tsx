@@ -106,6 +106,7 @@ import sakshamDuttImg from "@/assets/placements/Saksham_Dutt.webp.asset.json";
 import vedikaKanodiyaImg from "@/assets/placements/Vedika_Kanodiya.webp.asset.json";
 import koshlendraSinghImg from "@/assets/placements/Koshlendra_Singh.webp.asset.json";
 import vanshPratapSinghImg from "@/assets/placements/Vansh_Pratap_Singh.webp.asset.json";
+import adikshaBhallaImg from "@/assets/placements/Adiksha_Bhalla.webp.asset.json";
 import vinayakaGoyalImg from "@/assets/placements/Vinayaka_Goyal.webp.asset.json";
 import rudranshTiwariImg from "@/assets/placements/Rudransh_Tiwari.webp.asset.json";
 import sonaliAwasthiImg from "@/assets/placements/Sonali_Awasthi.webp.asset.json";
@@ -603,6 +604,7 @@ const CAREERS_TEAM = [
   { name: "Vedika Kanodiya", role: "Manager — Corporate Relations", background: "Ex- Axis Max Life Insurance Ltd", image: vedikaKanodiyaImg.url },
   { name: "Koshlendra Singh", role: "Manager — Corporate Relations", background: "Ex- AccioJob, Zomato", image: koshlendraSinghImg.url },
   { name: "Vansh Pratap Singh", role: "Manager — Corporate Relations", background: "Ex- KPMG", image: vanshPratapSinghImg.url },
+  { name: "Adiksha Bhalla", role: "Program Manager — Corporate Relations", background: "Ex- Sunstone", image: adikshaBhallaImg.url },
 ];
 
 const GUIDANCE_PROFILES = [
