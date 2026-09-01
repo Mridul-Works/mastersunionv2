@@ -1591,42 +1591,76 @@ const ytIdOf = (url: string) => url.split("/").pop()?.split("?")[0] ?? "";
 
 function PodcastVideoRail({ setVideoModal }: { setVideoModal: (modal: VideoModal | null) => void }) {
   if (!PODCAST_RAIL_VIDEOS.length) return null;
+  const railRef = React.useRef<HTMLDivElement>(null);
+
+  const scrollByCard = (direction: number) => {
+    const container = railRef.current;
+    if (!container) return;
+    const cardWidth = 256; // 240px card + 16px gap
+    container.scrollBy({ left: direction * cardWidth, behavior: "smooth" });
+  };
 
   return (
-    <div className="rail-scroll no-scrollbar -mx-1 flex gap-4 overflow-x-auto px-1 pb-2">
-      {PODCAST_RAIL_VIDEOS.map((item) => (
-        <button
-          key={item.video}
-          type="button"
-          onClick={() => setVideoModal({ title: item.name, video: item.video, start: 0 })}
-          aria-label={`Play conversation with ${item.name}`}
-          className="group flex w-[240px] shrink-0 flex-col text-left"
-        >
-          <span className="relative block aspect-video w-full overflow-hidden rounded-md bg-black/10">
-            <img
-              src={`https://img.youtube.com/vi/${ytIdOf(item.video)}/maxresdefault.jpg`}
-              alt={item.name}
-              loading="lazy"
-              className="h-full w-full object-cover transition duration-[900ms] ease-out group-hover:scale-[1.04]"
-              onError={(e) => {
-                const img = e.currentTarget;
-                if (!img.dataset.fallback) {
-                  img.dataset.fallback = "1";
-                  img.src = img.src.replace("maxresdefault", "mqdefault");
-                }
-              }}
-            />
-            <span className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-            <span className="career-podcast-play career-podcast-play--sm">
-              <Play fill="currentColor" />
+    <div>
+      <div
+        ref={railRef}
+        className="rail-scroll no-scrollbar -mx-1 flex gap-4 overflow-x-auto px-1 pb-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]/50"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            scrollByCard(-1);
+          } else if (e.key === "ArrowRight") {
+            e.preventDefault();
+            scrollByCard(1);
+          }
+        }}
+      >
+        {PODCAST_RAIL_VIDEOS.map((item) => (
+          <button
+            key={item.video}
+            type="button"
+            onClick={() => setVideoModal({ title: item.name, video: item.video, start: 0 })}
+            aria-label={`Play conversation with ${item.name}`}
+            className="group flex w-[240px] shrink-0 flex-col text-left"
+          >
+            <span className="relative block aspect-video w-full overflow-hidden rounded-md bg-black/10">
+              <img
+                src={`https://img.youtube.com/vi/${ytIdOf(item.video)}/maxresdefault.jpg`}
+                alt={item.name}
+                loading="lazy"
+                className="h-full w-full object-cover transition duration-[900ms] ease-out group-hover:scale-[1.04]"
+                onError={(e) => {
+                  const img = e.currentTarget;
+                  if (!img.dataset.fallback) {
+                    img.dataset.fallback = "1";
+                    img.src = img.src.replace("maxresdefault", "mqdefault");
+                  }
+                }}
+              />
+              <span className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+              <span className="career-podcast-play career-podcast-play--sm">
+                <Play fill="currentColor" />
+              </span>
             </span>
-          </span>
-          <span className="mt-3 block text-[14px] leading-snug text-black/85 transition-colors duration-300 group-hover:text-[var(--accent)]">
-            {item.name}
-          </span>
-          <span className="mt-1 block text-[11px] leading-snug text-black/50">{item.role}</span>
-        </button>
-      ))}
+            <span className="mt-3 block text-[14px] leading-snug text-black/85 transition-colors duration-300 group-hover:text-[var(--accent)]">
+              {item.name}
+            </span>
+            <span className="mt-1 block text-[11px] leading-snug text-black/50">{item.role}</span>
+          </button>
+        ))}
+      </div>
+      <div className="mt-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="icon" onClick={() => scrollByCard(-1)} aria-label="Scroll video rail left">
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+          <Button variant="outline" size="icon" onClick={() => scrollByCard(1)} aria-label="Scroll video rail right">
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
+        <span className="career-keyboard-hint" aria-hidden="true">Use ← → keys</span>
+      </div>
     </div>
   );
 }
