@@ -14,7 +14,12 @@ import {
   Mail,
   Quote,
   ChevronDown,
-
+  ChevronLeft,
+  ChevronRight,
+  Mic2,
+  BadgeCheck,
+  Compass,
+  Play,
 } from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
 import heroBg from "@/assets/placement-hero.webp.asset.json";
@@ -333,6 +338,31 @@ const LEADERS = [
   { name: "Rajat Mathur", role: "MD, Morgan Stanley" },
   { name: "Manish Chowdhary", role: "Co-founder, WOW Skin Science" },
   { name: "Sunjay Kapur", role: "Chairman, Sona Comstar" },
+];
+
+const CAREERS_TEAM = [
+  { name: "Abhishek Kaul", role: "Director — Corporate Engagements, Masters' Union & Tetr", background: "MBA, IIM-L; Ex-Walt Disney, EY, Times Group" },
+  { name: "Abhinav Arora", role: "Associate Director — Strategic Initiatives", background: "MBA, IIM-L; Ex-Ernst & Young, Jio, Jio" },
+  { name: "Amit Kumar", role: "Associate Director — Corporate Engagements", background: "MBA, IIM-Ahmedabad; Ex-Paytm, Pepsi, upGrad, NET" },
+  { name: "Ali Zein Alabdain Qaddo", role: "Associate Director — Corporate Engagements", background: "Ex-HR director, Orange, Egypt" },
+  { name: "Anurag Yadav", role: "Associate Director — Corporate Engagements", background: "MBA, MDI Gurgaon; Ex-Accenture" },
+  { name: "Nishant Singh Tanwar", role: "Associate Director — Corporate Engagements", background: "MBA, XLRI; Ex-Naukri.com, XamFerry" },
+  { name: "Akhil Krishna Gupta", role: "Associate Director — Corporate Engagements", background: "IIT Kharagpur Alumni; Ex-Naukri.com, Ecolab, IGR" },
+  { name: "Dibyendu Choudhury", role: "Deputy Director — Corporate Engagements", background: "Ivy, Amity University" },
+  { name: "Aastha Arora", role: "Deputy Director — Corporate Engagements", background: "Ex-Finsmart" },
+  { name: "Vinayak Chowdhri", role: "Deputy Director — Corporate Engagements", background: "Ex-mPokket, Proschool, IITC, Hansa, Crownit" },
+  { name: "Chaneerat Singh Kalra", role: "General Manager — Corporate Engagements", background: "Ex-Zomato" },
+  { name: "Riman Khatri", role: "General Manager — Corporate Engagements", background: "Ex-KPMG, MuSigma" },
+  { name: "Vishu Goyal", role: "General Manager — Career Preparation", background: "MEM, Masters' Union; LLB, LLR, Collabera, K-Laundry" },
+  { name: "Mishika Mansad", role: "General Manager — Corporate Engagements", background: "Kingston University Alumni; Ex-Middlesex University, Dubai" },
+  { name: "Rachika Bawa", role: "Senior Manager — Career Preparation", background: "MBA, Masters' Union; Ex-Lowshik, Autonify, Vtrious" },
+];
+
+const LEADER_GROUPS = [
+  { label: "CEO & MDs", people: LEADERS.slice(0, 3) },
+  { label: "CHROs", people: [LEADERS[8], LEADERS[9], LEADERS[11]] },
+  { label: "Unicorn Founders", people: [LEADERS[0], LEADERS[1], LEADERS[6]] },
+  { label: "Executives", people: [LEADERS[4], LEADERS[7], LEADERS[10]] },
 ];
 
 const PODCAST_CHAPTERS = [
