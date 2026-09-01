@@ -1599,7 +1599,7 @@ function PodcastVideoRail({
           "no-scrollbar pb-2",
           expanded
             ? "grid min-h-0 flex-1 grid-cols-2 content-start gap-4 overflow-y-auto sm:grid-cols-3"
-            : "rail-scroll -mx-1 flex items-start gap-4 overflow-x-auto px-1",
+            : "rail-scroll flex items-start gap-4 overflow-x-auto",
         )}
       >
         {PODCAST_RAIL_VIDEOS.map((item) => (
