@@ -1655,24 +1655,24 @@ function PodcastChapters({ open, setOpen }: { open: boolean; setOpen: (v: boolea
       <button
         type="button"
         onClick={() => openVideo({ title: item.name, video: item.video, start: 0 })}
-        className="group flex w-full items-center justify-between gap-3 rounded-lg border-b border-black/15 py-3 pl-2 pr-2 text-left transition-all duration-300 hover:bg-white/10 hover:pl-3"
+        className="group flex w-full items-center justify-between gap-3 rounded-lg border-b border-white/15 py-3 pl-2 pr-2 text-left transition-all duration-300 hover:bg-white/10 hover:pl-3"
       >
         <span className="flex flex-col gap-0.5">
-          <span className="text-[14px] leading-snug text-black/80 transition-colors duration-300 group-hover:text-[var(--accent)]">
+          <span className="text-[14px] leading-snug text-white/80 transition-colors duration-300 group-hover:text-[var(--accent)]">
             {item.name}
           </span>
-          <span className="text-[11px] leading-snug text-black/50">{item.role}</span>
+          <span className="text-[11px] leading-snug text-white/50">{item.role}</span>
         </span>
         <Play
           aria-hidden
-          className="size-3.5 shrink-0 -translate-x-1 fill-black/30 text-black/30 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:fill-[var(--accent)] group-hover:text-[var(--accent)] group-hover:opacity-100"
+          className="size-3.5 shrink-0 -translate-x-1 fill-white/30 text-white/30 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:fill-[var(--accent)] group-hover:text-[var(--accent)] group-hover:opacity-100"
         />
       </button>
     </li>
   );
 
   return (
-    <div className="mt-5 rounded-xl bg-[#0E1113] p-4">
+    <div className="mt-5 rounded-xl border-t border-white/15 bg-[#0E1113] p-4 pt-4">
       <ul className="flex flex-col">
         {previewVideos.map((item) => (
           <VideoRow item={item} key={item.video} />
@@ -1694,14 +1694,14 @@ function PodcastChapters({ open, setOpen }: { open: boolean; setOpen: (v: boolea
         onClick={() => setOpen(!open)}
         aria-expanded={open}
         aria-label="Toggle video list"
-        className="group mt-3 flex w-full items-center justify-end gap-3 border-t border-black/15 pt-3 text-left"
+        className="group mt-3 flex w-full items-center justify-end gap-3 border-t border-white/15 pt-3 text-left"
       >
-        <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-black/50 transition-colors duration-300 group-hover:text-[var(--accent)]">
+        <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/50 transition-colors duration-300 group-hover:text-[var(--accent)]">
           {open ? "Show less" : "Show all"}
         </span>
         <ChevronDown
           aria-hidden
-          className={`size-4 text-black/40 transition-transform duration-500 ease-in-out group-hover:text-[var(--accent)] ${open ? "rotate-180" : ""}`}
+          className={`size-4 text-white/40 transition-transform duration-500 ease-in-out group-hover:text-[var(--accent)] ${open ? "rotate-180" : ""}`}
         />
       </button>
     </div>
