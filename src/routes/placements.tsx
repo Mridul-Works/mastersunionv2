@@ -585,7 +585,7 @@ const LEADERS = [
   { name: "Sunjay Kapur", role: "Chairman, Sona Comstar", video: "https://youtu.be/BRCS9nhQWuo" },
   { name: "Vikramaditya Chaudhri", role: "Co-Founder, Wingreens Farms", video: "https://youtu.be/BiFlkwBf4xw" },
   { name: "Hitesh Oberoi", role: "CEO, Info Edge India Ltd.", video: "https://youtu.be/m2WLl88yM3g" },
-  { name: "Rakesh Verma", role: "Chief Managing Director & Co-Founder, MapmyIndia" },
+  { name: "Rakesh Verma", role: "Chief Managing Director & Co-Founder, MapmyIndia", video: "https://youtu.be/Lc_eotDL7PQ" },
   { name: "Sarvesh Agarwal", role: "Founder and CEO, Internshala" },
   { name: "Punit K Goyal", role: "Co-founder, BluSmart" },
 ];
