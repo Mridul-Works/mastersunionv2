@@ -1166,7 +1166,6 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
             <div className="career-story-arrows">
               <Button variant="outline" size="icon" onClick={() => moveStory(-1)} aria-label="Previous student story"><ChevronLeft /></Button>
               <Button variant="outline" size="icon" onClick={() => moveStory(1)} aria-label="Next student story"><ChevronRight /></Button>
-              <span className="career-keyboard-hint" aria-hidden="true">Use ← → keys</span>
             </div>
           </div>
 
@@ -1622,7 +1621,6 @@ function PodcastVideoRail({
           >
             <ChevronRight className="size-4" />
           </button>
-          <span className="career-keyboard-hint">Use ← → keys</span>
         </div>
       )}
       <div
