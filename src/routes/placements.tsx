@@ -1011,6 +1011,7 @@ function CareerExperienceArea() {
             <div className="career-story-arrows">
               <Button variant="outline" size="icon" onClick={() => moveStory(-1)} aria-label="Previous student story"><ChevronLeft /></Button>
               <Button variant="outline" size="icon" onClick={() => moveStory(1)} aria-label="Next student story"><ChevronRight /></Button>
+              <span className="career-keyboard-hint" aria-hidden="true">Use ← → keys</span>
             </div>
           </div>
 
