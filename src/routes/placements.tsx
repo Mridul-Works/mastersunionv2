@@ -1012,6 +1012,7 @@ function CareerExperienceArea() {
               <Button variant="outline" size="icon" onClick={() => moveStory(-1)} aria-label="Previous student story"><ChevronLeft /></Button>
               <Button variant="outline" size="icon" onClick={() => moveStory(1)} aria-label="Next student story"><ChevronRight /></Button>
             </div>
+            <span className="career-keyboard-hint" aria-hidden="true">Use ← → keys</span>
           </div>
 
           <div className="career-story-stage" key={currentStory.name} aria-live="polite">
