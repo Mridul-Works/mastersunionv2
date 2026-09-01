@@ -1459,44 +1459,33 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
 
 const PODCAST_ID = "uiNTwDixAts";
 
-type PodcastCtx = { seek: (seconds: number) => void };
-const PodcastContext = React.createContext<PodcastCtx>({ seek: () => {} });
-
 function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal | null) => void }) {
-  const seek = React.useCallback((seconds: number) => {
-    setVideoModal({ title: "Placements Podcast", video: `https://youtu.be/${PODCAST_ID}`, start: seconds });
-  }, [setVideoModal]);
-  const [chaptersOpen, setChaptersOpen] = useState(false);
-
   return (
-    <PodcastContext.Provider value={{ seek }}>
-      <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-8">
-        <div className="lg:col-span-5">
-          <PodcastTextBlock chaptersOpen={chaptersOpen} setChaptersOpen={setChaptersOpen} />
-        </div>
-        <div className="relative lg:col-span-7">
-          <div className={cn("flex flex-col", chaptersOpen && "lg:absolute lg:inset-0 lg:h-full")}>
+    <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-8">
+      <div className="lg:col-span-5">
+        <PodcastTextBlock />
+      </div>
+      <div className="lg:col-span-7">
+        <div className="flex flex-col">
           <PodcastVideoPlayer setVideoModal={setVideoModal} />
-          <div className="mt-8 flex min-h-0 flex-1 flex-col gap-8">
+          <div className="mt-8 flex flex-col gap-8">
             <div className="h-px w-full bg-black/20" />
             <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-black/50">
               Episode — The story behind ₹33 lakh per LPA average placements — Watch / Listen
             </p>
             <EditorialRule />
-            <div className="flex min-h-0 flex-1 flex-col gap-5 py-4">
+            <div className="flex flex-col gap-5 py-4">
               <Eyebrow>Leadership conversations</Eyebrow>
-              <PodcastVideoRail setVideoModal={setVideoModal} expanded={chaptersOpen} />
+              <PodcastVideoRail setVideoModal={setVideoModal} />
             </div>
-
-          </div>
           </div>
         </div>
       </div>
-    </PodcastContext.Provider>
+    </div>
   );
 }
 
-function PodcastTextBlock({ chaptersOpen, setChaptersOpen }: { chaptersOpen: boolean; setChaptersOpen: (v: boolean) => void }) {
+function PodcastTextBlock() {
   const id = PODCAST_ID;
   return (
     <div className="flex flex-col justify-center">
@@ -1530,12 +1519,24 @@ function PodcastTextBlock({ chaptersOpen, setChaptersOpen }: { chaptersOpen: boo
             Watch on YouTube
             <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
-          <PodcastChapters open={chaptersOpen} setOpen={setChaptersOpen} />
+          <a
+            href="#leadership-guidance"
+            className="group mt-4 flex w-full items-center justify-between border-t border-black/15 pt-4 text-left transition-colors duration-300"
+          >
+            <span className="text-[14px] leading-snug text-black/80 transition-colors duration-300 group-hover:text-[var(--accent)]">
+              Leadership conversations
+            </span>
+            <ArrowUpRight
+              aria-hidden
+              className="size-3.5 shrink-0 -translate-x-1 text-black/30 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:text-[var(--accent)] group-hover:opacity-100"
+            />
+          </a>
         </div>
       </Reveal>
     </div>
   );
 }
+
 
 function PodcastVideoPlayer({ setVideoModal }: { setVideoModal: (modal: VideoModal | null) => void }) {
   const id = PODCAST_ID;
