@@ -1410,8 +1410,8 @@ function CareerExperienceArea() {
                 key={leader.name}
                 role={(leader as any).video ? "button" : undefined}
                 tabIndex={(leader as any).video ? 0 : undefined}
-                onClick={() => (leader as any).video ? setLeaderVideo({ name: leader.name, video: (leader as any).video }) : undefined}
-                onKeyDown={(e) => { if ((leader as any).video && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); setLeaderVideo({ name: leader.name, video: (leader as any).video }); }}}
+                onClick={() => (leader as any).video ? setVideoModal({ title: leader.name, video: (leader as any).video }) : undefined}
+                onKeyDown={(e) => { if ((leader as any).video && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); setVideoModal({ title: leader.name, video: (leader as any).video }); }}}
                 aria-label={(leader as any).video ? `Play video from ${leader.name}` : undefined}
               >
                 <div className="career-leader-media">
