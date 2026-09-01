@@ -937,7 +937,7 @@ function CinematicHero() {
                 style={{ fontFamily: MONO }}
               >
                 <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
-                  <Download className="size-3.5 transition-all duration-300 group-hover:translate-y-0.5" /> <span className="text-black/70 transition-colors duration-300 group-hover:text-black">Placement report</span>
+                  <Download className="size-3.5 transition-all duration-300 group-hover:translate-y-0.5" /> Placement report
                 </span>
               </button>
               <a
@@ -952,15 +952,6 @@ function CinematicHero() {
             </div>
           </div>
         </div>
-
-        {/* scroll indicator */}
-        <a
-          href="#outcomes"
-          className="hero-scroll-arrow absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1 text-white/70 transition-colors duration-300 hover:text-white"
-          aria-label="Scroll to outcomes"
-        >
-          <ChevronDown className="size-6" strokeWidth={1.5} />
-        </a>
 
         {/* Editorial block reveal — runs once on first load */}
         <HeroMaskReveal />
@@ -2123,7 +2114,7 @@ function CohortReports() {
           style={{ fontFamily: MONO }}
         >
           <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
-            <Download className="size-3.5 transition-all duration-300 group-hover:translate-y-0.5" /> <span className="text-white/70 transition-colors duration-300 group-hover:text-white">Download placement report</span>
+            <Download className="size-3.5 transition-all duration-300 group-hover:translate-y-0.5" /> Download placement report
           </span>
         </button>
       </div>
