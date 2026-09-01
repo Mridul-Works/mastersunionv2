@@ -1367,12 +1367,37 @@ function CareerExperienceArea() {
           </div>
           <div className="career-leader-cards" key={currentLeaders.label}>
             {currentLeaders.people.map((leader, index) => (
-              <article className="career-leader-card" key={leader.name}>
-                <div className="career-leader-media"><PortraitPlaceholder name={leader.name} /><span><Play fill="currentColor" /></span></div>
+              <article
+                className={`career-leader-card${(leader as any).video ? " has-video" : ""}`}
+                key={leader.name}
+                role={(leader as any).video ? "button" : undefined}
+                tabIndex={(leader as any).video ? 0 : undefined}
+                onClick={() => (leader as any).video ? setLeaderVideo({ name: leader.name, video: (leader as any).video }) : undefined}
+                onKeyDown={(e) => { if ((leader as any).video && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); setLeaderVideo({ name: leader.name, video: (leader as any).video }); }}}
+                aria-label={(leader as any).video ? `Play video from ${leader.name}` : undefined}
+              >
+                <div className="career-leader-media"><PortraitPlaceholder name={leader.name} />{(leader as any).video ? <span><Play fill="currentColor" /></span> : null}</div>
                 <h3>{leader.name}</h3><p>{leader.role}</p><small>{String(index + 1).padStart(2, "0")} / {String(currentLeaders.people.length).padStart(2, "0")}</small>
               </article>
             ))}
           </div>
+
+          <Dialog open={!!leaderVideo} onOpenChange={(open) => !open && setLeaderVideo(null)}>
+            <DialogContent className="career-leader-video-dialog max-w-3xl border-0 bg-black p-0">
+              <DialogTitle className="sr-only">{leaderVideo?.name ? `Video from ${leaderVideo.name}` : "Leader video"}</DialogTitle>
+              <DialogDescription className="sr-only">YouTube video player</DialogDescription>
+              {leaderVideo && (
+                <div className="career-leader-video-wrap">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${leaderVideo.video.split("/").pop()?.split("?")[0]}?autoplay=1&rel=0`}
+                    title={`Video from ${leaderVideo.name}`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                    allowFullScreen
+                  />
+                </div>
+              )}
+            </DialogContent>
+          </Dialog>
         </div>
       </Band>
 
