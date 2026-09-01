@@ -10,7 +10,7 @@ import {
   Users,
   Route as RouteIcon,
   Download,
-  
+
   Mail,
   Quote,
   ChevronDown,
@@ -20,7 +20,9 @@ import {
   BadgeCheck,
   Compass,
   Play,
+  X,
 } from "lucide-react";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
 import heroBg from "@/assets/placement-hero.webp.asset.json";
 import careerJT1Img from "@/assets/placements/careerJT1.webp.asset.json";
