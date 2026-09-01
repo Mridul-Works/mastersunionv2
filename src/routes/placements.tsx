@@ -35,6 +35,7 @@ import cover2024 from "@/assets/placement-reports/cover-2024.png.asset.json";
 import cover2025 from "@/assets/placement-reports/cover-2025.png.asset.json";
 import jasDesaiImg from "@/assets/placements/jas-desai.webp.asset.json";
 import komalBansalImg from "@/assets/placements/komal-bansal.webp.asset.json";
+import architBansalImg from "@/assets/placements/archit-bansal.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -237,7 +238,7 @@ const ALUMNI = [
 const TESTIMONIALS = [
   { name: "Jas Desai", role: "Senior Associate, CEO's Office (Transformation & Strategy)\nDP World, Dubai", note: "Masters' Union's distinctive pedagogy was key to my success in securing a role at DP World, Dubai. The In-class & Out-class approach built practical problem-solving skills for the Transformation & Strategy role at the CEO's Office. Regular CXO sessions and C-suite interactions strengthened my understanding, confidence, and performance during interviews.", image: jasDesaiImg.url },
   { name: "Komal Bansal", role: "Senior Associate, BCG", note: "Masters’ Union shaped my journey from bringing firms like BCG to campus to building a structured thought process through in-class learnings (special thanks to Bhupesh Sir and Vipin Sir) and Get Prepped mentorship. Real-world exposure via Dropshipping and the VIP program equipped me with practical skills that helped me contribute meaningfully during my internship.", image: komalBansalImg.url },
-  { name: "Archit Bansal", role: "Manager – CEO's Office, Reliance Infrastructure", note: "Led the Masters' Union Investment Fund, sharpening strategic decision-making." },
+  { name: "Archit Bansal", role: "Manager – CEO's Office, Reliance Infrastructure", note: "Masters’ Union has been a defining chapter in my professional growth. Coming from a core finance background, the program broadened my perspective beyond numbers. Leading the Masters’ Union Investment Fund sharpened my strategic and decision-making skills, which I now apply daily at Reliance Infrastructure across operations, leadership strategy, and business transformation.", image: architBansalImg.url },
   { name: "Karan Mulky", role: "Client Solutions Manager, Meta", note: "FOCOS practicum for first-principles thinking and structured interview prep." },
   { name: "Archit Bhargava", role: "Analyst, Avaana Capital", note: "Investing programme gave hands-on deal sourcing, diligence and startup evaluation." },
   { name: "Yash Mehta", role: "Chief of Staff – Operations, Puffy, Dubai", note: "Careers team refined his narrative; GetPrepped mentorship from BCG/McKinsey leaders." },
