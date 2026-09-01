@@ -2992,9 +2992,9 @@ body::-webkit-scrollbar {
   margin-top: 0.75rem;
   padding-top: 0.75rem;
   border-top: 1px solid color-mix(in oklab, var(--foreground) 9%, transparent);
-  color: color-mix(in oklab, var(--foreground) 45%, transparent);
-  font-size: 0.62rem;
-  line-height: 1.55;
+  color: color-mix(in oklab, var(--foreground) 62%, transparent);
+  font-size: 0.72rem;
+  line-height: 1.5;
 }
 
 .career-guidance-card--compact {
