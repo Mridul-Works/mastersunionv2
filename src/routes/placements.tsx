@@ -1480,12 +1480,13 @@ function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal |
   const seek = React.useCallback((seconds: number) => {
     setVideoModal({ title: "Placements Podcast", video: `https://youtu.be/${PODCAST_ID}`, start: seconds });
   }, [setVideoModal]);
+  const [chaptersOpen, setChaptersOpen] = useState(false);
 
   return (
     <PodcastContext.Provider value={{ seek }}>
       <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-5">
-          <PodcastTextBlock />
+          <PodcastTextBlock chaptersOpen={chaptersOpen} setChaptersOpen={setChaptersOpen} />
         </div>
         <div className="flex h-full flex-col lg:col-span-7">
           <PodcastVideoPlayer setVideoModal={setVideoModal} />
@@ -1497,7 +1498,7 @@ function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal |
             <EditorialRule />
             <div className="flex min-h-0 flex-1 flex-col gap-5 py-4">
               <Eyebrow>Leadership conversations</Eyebrow>
-              <PodcastVideoRail setVideoModal={setVideoModal} />
+              <PodcastVideoRail setVideoModal={setVideoModal} expanded={chaptersOpen} />
             </div>
 
           </div>
@@ -1507,7 +1508,7 @@ function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal |
   );
 }
 
-function PodcastTextBlock() {
+function PodcastTextBlock({ chaptersOpen, setChaptersOpen }: { chaptersOpen: boolean; setChaptersOpen: (v: boolean) => void }) {
   const id = PODCAST_ID;
   return (
     <div className="flex flex-col justify-center">
@@ -1541,7 +1542,7 @@ function PodcastTextBlock() {
             Watch on YouTube
             <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
-          <PodcastChapters />
+          <PodcastChapters open={chaptersOpen} setOpen={setChaptersOpen} />
         </div>
       </Reveal>
     </div>
@@ -1589,19 +1590,32 @@ const PODCAST_RAIL_VIDEOS = LEADER_GROUPS.flatMap((group) =>
 
 const ytIdOf = (url: string) => url.split("/").pop()?.split("?")[0] ?? "";
 
-function PodcastVideoRail({ setVideoModal }: { setVideoModal: (modal: VideoModal | null) => void }) {
+function PodcastVideoRail({
+  setVideoModal,
+  expanded = false,
+}: {
+  setVideoModal: (modal: VideoModal | null) => void;
+  expanded?: boolean;
+}) {
   if (!PODCAST_RAIL_VIDEOS.length) return null;
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col">
-      <div className="no-scrollbar grid min-h-0 flex-1 grid-cols-2 content-start gap-4 overflow-y-auto pb-2 sm:grid-cols-3">
+    <div className={cn("flex flex-col", expanded && "min-h-0 flex-1")}>
+      <div
+        className={cn(
+          "no-scrollbar pb-2",
+          expanded
+            ? "grid min-h-0 flex-1 grid-cols-2 content-start gap-4 overflow-y-auto sm:grid-cols-3"
+            : "rail-scroll -mx-1 flex items-start gap-4 overflow-x-auto px-1",
+        )}
+      >
         {PODCAST_RAIL_VIDEOS.map((item) => (
           <button
             key={item.video}
             type="button"
             onClick={() => setVideoModal({ title: item.name, video: item.video, start: 0 })}
             aria-label={`Play conversation with ${item.name}`}
-            className="group flex w-full flex-col text-left"
+            className={cn("group flex flex-col text-left", expanded ? "w-full" : "w-[240px] shrink-0")}
           >
 
 
@@ -1637,9 +1651,8 @@ function PodcastVideoRail({ setVideoModal }: { setVideoModal: (modal: VideoModal
 
 
 
-function PodcastChapters() {
+function PodcastChapters({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
   const { seek } = React.useContext(PodcastContext);
-  const [open, setOpen] = useState(false);
   const PREVIEW_COUNT = 4;
   const previewChapters = PODCAST_CHAPTERS.slice(0, PREVIEW_COUNT);
   const extraChapters = PODCAST_CHAPTERS.slice(PREVIEW_COUNT);
@@ -1699,7 +1712,7 @@ function PodcastChapters() {
 
       <button
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => setOpen(!open)}
         aria-expanded={open}
         aria-label="Toggle chapter timeline"
         className="group mt-3 flex w-full items-center justify-end gap-3 border-t border-black/15 pt-3 text-left"
