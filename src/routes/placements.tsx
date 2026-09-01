@@ -930,16 +930,16 @@ function CinematicHero() {
               Benefit from an exceptional track record of our graduates&apos; success — audited, published, and repeated across five cohorts.
             </p>
             <div className="mt-8 flex flex-wrap gap-3 md:mt-14" style={step(860, 18)}>
-              <button
-                type="button"
-                onClick={reportModal.open}
-                className="hero-sweep-button group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden bg-white px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-black transition-all duration-300 ease-out hover:bg-accent hover:shadow-[0_0_28px_-6px_color-mix(in_oklab,var(--accent)_60%,transparent)] hover:opacity-100"
-                style={{ fontFamily: MONO }}
-              >
-                <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
-                  <Download className="size-3.5 transition-all duration-300 group-hover:translate-y-0.5" /> Placement report
-                </span>
-              </button>
+                <button
+                  type="button"
+                  onClick={reportModal.open}
+                  className="hero-sweep-button dim group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden bg-white px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-black transition-all duration-300 ease-out hover:bg-accent hover:shadow-[0_0_28px_-6px_color-mix(in_oklab,var(--accent)_60%,transparent)] hover:opacity-100"
+                  style={{ fontFamily: MONO }}
+                >
+                  <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
+                    <Download className="size-3.5 transition-all duration-300 group-hover:translate-y-0.5" /> Placement report
+                  </span>
+                </button>
               <a
                 href="#recruiters"
                 className="hero-sweep-button group relative inline-flex items-center gap-2 overflow-hidden border border-white/35 px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:border-accent hover:bg-accent hover:shadow-[0_0_28px_-6px_color-mix(in_oklab,var(--accent)_60%,transparent)]"
@@ -2107,16 +2107,16 @@ function CohortReports() {
       </div>
 
       <div className="mt-6">
-        <button
-          type="button"
-          onClick={reportModal.open}
-          className="hero-sweep-button group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden bg-black px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:bg-accent hover:border-accent hover:shadow-[0_0_28px_-6px_color-mix(in_oklab,var(--accent)_60%,transparent)]"
-          style={{ fontFamily: MONO }}
-        >
-          <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
-            <Download className="size-3.5 transition-all duration-300 group-hover:translate-y-0.5" /> Download placement report
-          </span>
-        </button>
+          <button
+            type="button"
+            onClick={reportModal.open}
+            className="hero-sweep-button dim group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden bg-black px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:bg-accent hover:border-accent hover:shadow-[0_0_28px_-6px_color-mix(in_oklab,var(--accent)_60%,transparent)]"
+            style={{ fontFamily: MONO }}
+          >
+            <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
+              <Download className="size-3.5 transition-all duration-300 group-hover:translate-y-0.5" /> Download placement report
+            </span>
+          </button>
       </div>
     </div>
   );
