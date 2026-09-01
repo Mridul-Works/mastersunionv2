@@ -43,3 +43,4 @@
 - [x] Update Professional guidance card 11 (Chanpreet Singh Gulati) portrait, name and background text
 - [x] Update Professional guidance card 12 (Simran Bhatia) portrait, name, role and background text
 - [x] Update Professional guidance card 13 (Vidhu Goel) portrait, name, role and background text
+- [x] Update Professional guidance card 14 (Sheliza Mamad) portrait, name, role and background text

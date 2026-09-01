@@ -85,6 +85,7 @@ import vinayakChowdhriImg from "@/assets/placements/Vinayak_Chowdhri.webp.asset.
 import chanpreetSinghGulatiImg from "@/assets/placements/Chanpreet_Singh_Gulati.webp.asset.json";
 import simranBhatiaImg from "@/assets/placements/Simran_Bhatia.webp.asset.json";
 import vidhuGoelImg from "@/assets/placements/Vidhu_Goel.webp.asset.json";
+import shelizaMamadImg from "@/assets/placements/Sheliza_Mamad.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -549,7 +550,7 @@ const CAREERS_TEAM = [
   { name: "Chanpreet Singh Gulati", role: "General Manager — Corporate Engagements", background: "Ex- Zomato", image: chanpreetSinghGulatiImg.url },
   { name: "Simran Bhatia", role: "General Manager — Corporate Engagements", background: "Ex- KPMG, Unacademy", image: simranBhatiaImg.url },
   { name: "Vidhu Goel", role: "General Manager — Career Preparation", background: "MBA, Masters' Union | Ex- EiR, Collegedunia, Ex- Founder", image: vidhuGoelImg.url },
-  { name: "Mishika Mansad", role: "General Manager — Corporate Engagements", background: "Kingston University Alumni; Ex-Middlesex University, Dubai" },
+  { name: "Sheliza Mamad", role: "General Manager — Corporate Engagements", background: "Kingston University Alumnus | Ex- Middlesex University, Dubai", image: shelizaMamadImg.url },
   { name: "Rachika Bawa", role: "Senior Manager — Career Preparation", background: "MBA, Masters' Union; Ex-Lowshik, Autonify, Vtrious" },
 ];
 
