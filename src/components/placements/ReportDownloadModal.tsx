@@ -373,6 +373,8 @@ function ReportModal({ onClose }: { onClose: () => void }) {
             <div className="pt-1">
               <button
                 type="submit"
+                disabled={downloading}
+                aria-busy={downloading}
                 className="hero-sweep-button group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden bg-white px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-black"
                 style={{ fontFamily: MONO }}
               >
