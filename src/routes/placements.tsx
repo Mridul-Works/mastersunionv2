@@ -37,6 +37,7 @@ import jasDesaiImg from "@/assets/placements/jas-desai.webp.asset.json";
 import komalBansalImg from "@/assets/placements/komal-bansal.webp.asset.json";
 import architBansalImg from "@/assets/placements/archit-bansal.webp.asset.json";
 import karanMulkyImg from "@/assets/placements/karan-mulky.webp.asset.json";
+import architBhargavaImg from "@/assets/placements/archit-bhargava.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -241,7 +242,7 @@ const TESTIMONIALS = [
   { name: "Komal Bansal", role: "Senior Associate, BCG", note: "Masters’ Union shaped my journey from bringing firms like BCG to campus to building a structured thought process through in-class learnings (special thanks to Bhupesh Sir and Vipin Sir) and Get Prepped mentorship. Real-world exposure via Dropshipping and the VIP program equipped me with practical skills that helped me contribute meaningfully during my internship.", image: komalBansalImg.url },
   { name: "Archit Bansal", role: "Manager – CEO's Office, Reliance Infrastructure", note: "Masters’ Union has been a defining chapter in my professional growth. Coming from a core finance background, the program broadened my perspective beyond numbers. Leading the Masters’ Union Investment Fund sharpened my strategic and decision-making skills, which I now apply daily at Reliance Infrastructure across operations, leadership strategy, and business transformation.", image: architBansalImg.url },
   { name: "Karan Mulky", role: "Client Solutions Manager, Meta", note: "Masters’ Union enhanced my skills in marketing, technology and problem-solving, helping me secure my dream role at Meta. The FOCOS practicum built first-principles thinking and a structured interview prep, while constant support from faculty and the placement team pushed me beyond my comfort zone. The real-world learning, exposure and mentorship continue to guide my career.", image: karanMulkyImg.url },
-  { name: "Archit Bhargava", role: "Analyst, Avaana Capital", note: "Investing programme gave hands-on deal sourcing, diligence and startup evaluation." },
+  { name: "Archit Bhargava", role: "Analyst, Avaana Capital\n(Venture Capital)", note: "The hands-on learning during the Investing program at Masters’ Union gave me a deep understanding of fund operations - from sourcing deals to due diligence and evaluating startups for long-term growth. Exposure to live investment committees, mentorship from industry experts and the alumni network strengthened my analytical skills and helped me secure my role at Avaana Capital.", image: architBhargavaImg.url },
   { name: "Yash Mehta", role: "Chief of Staff – Operations, Puffy, Dubai", note: "Careers team refined his narrative; GetPrepped mentorship from BCG/McKinsey leaders." },
   { name: "Rishie Prabhakaran", role: "Product Specialist – Analytics, Bloomberg", note: "Structured resume iterations and behavioural mocks built clarity." },
   { name: "Lakshya Punjabi", role: "Management Trainee – DS & Analytics, American Express", note: "Industry-immersive curriculum sharpened analytics through the multi-round AMEX process." },
