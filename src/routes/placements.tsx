@@ -21,6 +21,8 @@ import {
   BadgeCheck,
   Compass,
   Play,
+  Maximize2,
+  Minimize2,
   X,
 } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
