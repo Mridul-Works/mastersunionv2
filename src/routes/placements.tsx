@@ -1376,7 +1376,22 @@ function CareerExperienceArea() {
                 onKeyDown={(e) => { if ((leader as any).video && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); setLeaderVideo({ name: leader.name, video: (leader as any).video }); }}}
                 aria-label={(leader as any).video ? `Play video from ${leader.name}` : undefined}
               >
-                <div className="career-leader-media"><PortraitPlaceholder name={leader.name} />{(leader as any).video ? <span><Play fill="currentColor" /></span> : null}</div>
+                <div className="career-leader-media">
+                  {(leader as any).video ? (
+                    <img
+                      src={`https://img.youtube.com/vi/${((leader as any).video as string).split("/").pop()?.split("?")[0]}/maxresdefault.jpg`}
+                      alt={`${leader.name} video thumbnail`}
+                      loading="lazy"
+                      onError={(e) => {
+                        const img = e.currentTarget;
+                        if (!img.dataset.fallback) { img.dataset.fallback = "1"; img.src = img.src.replace("maxresdefault", "hqdefault"); }
+                      }}
+                    />
+                  ) : (
+                    <PortraitPlaceholder name={leader.name} />
+                  )}
+                  {(leader as any).video ? <span><Play fill="currentColor" /></span> : null}
+                </div>
                 <h3>{leader.name}</h3><p>{leader.role}</p><small>{String(index + 1).padStart(2, "0")} / {String(currentLeaders.people.length).padStart(2, "0")}</small>
               </article>
             ))}
