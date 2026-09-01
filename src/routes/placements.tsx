@@ -654,11 +654,16 @@ const GUIDANCE_PROFILES = [
   })),
 ];
 
+const LEADER_PLACEHOLDER = (label: string, index: number) => ({
+  name: `${label} ${index}`,
+  role: "Title and organisation coming soon",
+});
+
 const LEADER_GROUPS = [
-  { label: "CEO & MDs", people: LEADERS.slice(0, 3) },
-  { label: "CHROs", people: [LEADERS[8], LEADERS[9], LEADERS[11]] },
-  { label: "Unicorn Founders", people: [LEADERS[0], LEADERS[1], LEADERS[6]] },
-  { label: "Executives", people: [LEADERS[4], LEADERS[7], LEADERS[10]] },
+  { label: "CEO & MDs", people: [...LEADERS.slice(0, 3), ...Array.from({ length: 8 }, (_, i) => LEADER_PLACEHOLDER("CEO & MD", i + 1))] },
+  { label: "CHROs", people: [...[LEADERS[8], LEADERS[9], LEADERS[11]], ...Array.from({ length: 4 }, (_, i) => LEADER_PLACEHOLDER("CHRO", i + 1))] },
+  { label: "Unicorn Founders", people: [...[LEADERS[0], LEADERS[1], LEADERS[6]], ...Array.from({ length: 3 }, (_, i) => LEADER_PLACEHOLDER("Unicorn Founder", i + 1))] },
+  { label: "Executives", people: [...[LEADERS[4], LEADERS[7], LEADERS[10]], ...Array.from({ length: 2 }, (_, i) => LEADER_PLACEHOLDER("Executive", i + 1))] },
 ];
 
 const PODCAST_CHAPTERS = [
@@ -1361,7 +1366,7 @@ function CareerExperienceArea() {
             {currentLeaders.people.map((leader, index) => (
               <article className="career-leader-card" key={leader.name}>
                 <div className="career-leader-media"><PortraitPlaceholder name={leader.name} /><span><Play fill="currentColor" /></span></div>
-                <h3>{leader.name}</h3><p>{leader.role}</p><small>{String(index + 1).padStart(2, "0")} / 03</small>
+                <h3>{leader.name}</h3><p>{leader.role}</p><small>{String(index + 1).padStart(2, "0")} / {String(currentLeaders.people.length).padStart(2, "0")}</small>
               </article>
             ))}
           </div>

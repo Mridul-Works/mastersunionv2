@@ -1,5 +1,10 @@
 # Roadmap
 
+- [x] Leadership guidance: CEO & MDs section should have 11 cards with dummy placeholders for missing cards
+- [x] Leadership guidance: CHROs section should have 7 cards with dummy placeholders for missing cards
+- [x] Leadership guidance: Unicorn Founders section should have 6 cards with dummy placeholders for missing cards
+- [x] Leadership guidance: Executives section should have 5 cards with dummy placeholders for missing cards
+
 - [x] Change Salary Distribution description box border from white to green (`var(--teal)`).
 - [x] Center the Latest Cohort / PGP TBM metric value and label inside the right-side box.
 
