@@ -1458,36 +1458,29 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
 
 const PODCAST_ID = "uiNTwDixAts";
 
-type PodcastCtx = { openVideo: (modal: VideoModal | null) => void };
-const PodcastContext = React.createContext<PodcastCtx>({ openVideo: () => {} });
-
 function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal | null) => void }) {
-  const openVideo = React.useCallback((modal: VideoModal | null) => setVideoModal(modal), [setVideoModal]);
-
   return (
-    <PodcastContext.Provider value={{ openVideo }}>
-      <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-8">
-        <div className="lg:col-span-5">
-          <PodcastTextBlock />
-        </div>
-        <div className="relative lg:col-span-7">
-          <div className="flex min-w-0 flex-col">
-            <PodcastVideoPlayer setVideoModal={setVideoModal} />
-            <div className="mt-3 flex min-h-0 min-w-0 flex-1 flex-col items-stretch gap-2">
-              <div className="h-px w-full bg-black/20" />
-              <p className="text-center text-[11px] font-medium uppercase tracking-[0.18em] text-black/50">
-                Episode — The story behind ₹33 lakh per LPA average placements — Watch / Listen
-              </p>
-              <EditorialRule />
-              <div className="flex min-h-0 min-w-0 flex-1 flex-col items-stretch gap-3 pt-5 pb-4">
-                <Eyebrow>Leadership conversations</Eyebrow>
-                <PodcastVideoRail setVideoModal={setVideoModal} />
-              </div>
+    <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-8">
+      <div className="lg:col-span-5">
+        <PodcastTextBlock />
+      </div>
+      <div className="relative lg:col-span-7">
+        <div className="flex min-w-0 flex-col">
+          <PodcastVideoPlayer setVideoModal={setVideoModal} />
+          <div className="mt-3 flex min-h-0 min-w-0 flex-1 flex-col items-stretch gap-2">
+            <div className="h-px w-full bg-black/20" />
+            <p className="text-center text-[11px] font-medium uppercase tracking-[0.18em] text-black/50">
+              Episode — The story behind ₹33 lakh per LPA average placements — Watch / Listen
+            </p>
+            <EditorialRule />
+            <div className="flex min-h-0 min-w-0 flex-1 flex-col items-stretch gap-3 pt-5 pb-4">
+              <Eyebrow>Leadership conversations</Eyebrow>
+              <PodcastVideoRail setVideoModal={setVideoModal} />
             </div>
           </div>
         </div>
       </div>
-    </PodcastContext.Provider>
+    </div>
   );
 }
 
