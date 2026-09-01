@@ -71,6 +71,7 @@ import harshitImg from "@/assets/placements/harshit.webp.asset.json";
 import aarushiImg from "@/assets/placements/Aarushi.webp.asset.json";
 import yashanaImg from "@/assets/placements/yashana.webp.asset.json";
 import atitheeImg from "@/assets/placements/atithee.webp.asset.json";
+import apoorvaImg from "@/assets/placements/apoorva.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -413,8 +414,14 @@ const TESTIMONIALS = [
     note: "Masters’ Union shaped my journey as I transitioned from entrepreneurship to campus placements. The Placement and Outreach teams provided tailored support at every stage, making preparation seamless. Thanks to MU’s collaborative culture, diverse opportunities, and robust network, I secured a role aligned with my ambitions, navigating the process with clarity and confidence.",
     image: atitheeImg.url,
   },
-  ...Array.from({ length: 5 }, (_, i) => ({
-    name: `Placement Story ${String(i + 39).padStart(2, "0")}`,
+  {
+    name: "Apoorva Rijhwaney",
+    role: "Growth Consultant, WebEngage",
+    note: "Masters’ Union has been transformative in my career journey. The Placement and Outreach teams were proactive and approachable, making the process seamless. Career prep, GetPrep mentors, and peer mock interviews helped me build confidence and present myself effectively. Thanks to MU’s collaborative spirit and opportunities, I secured a role aligned with my ambitions.",
+    image: apoorvaImg.url,
+  },
+  ...Array.from({ length: 4 }, (_, i) => ({
+    name: `Placement Story ${String(i + 40).padStart(2, "0")}`,
     role: "Role & Company — to be confirmed",
     note: "Placeholder story. Portrait, role and quote will be added once the cohort details are shared.",
   })),
