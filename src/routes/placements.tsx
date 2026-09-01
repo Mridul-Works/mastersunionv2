@@ -57,6 +57,7 @@ import ankitSharmaImg from "@/assets/placements/ankitsharma.webp.asset.json";
 import ashmitaImg from "@/assets/placements/ashmita.webp.asset.json";
 import aashutoshImg from "@/assets/placements/Aashutosh.webp.asset.json";
 import dakshImg from "@/assets/placements/daksh.webp.asset.json";
+import nimishaImg from "@/assets/placements/nimisha.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -321,8 +322,14 @@ const TESTIMONIALS = [
     note: "After five years in consulting, I aimed to transition into a role combining client-facing experience with my interest in FinTech. Masters’ Union provided the exposure, mentorship, and connections that enabled me to secure a Lead - Partnerships role at OneBanc. The program helped me find a position blending strategy, tech and finance, perfectly aligning with my career goals.",
     image: dakshImg.url,
   },
-  ...Array.from({ length: 19 }, (_, i) => ({
-    name: `Placement Story ${String(i + 21).padStart(2, "0")}`,
+  {
+    name: "Nimisha Dutta",
+    role: "Program Manager, Blinkit",
+    note: "After five years in impact and management consulting, I aimed to transition into a dynamic, fast-paced environment. Masters’ Union played a crucial role in this shift, helping me secure a Growth Manager role at Blinkit. I now leverage my stakeholder management and leadership skills to lead cross-functional teams, an experience that is both challenging and deeply fulfilling.",
+    image: nimishaImg.url,
+  },
+  ...Array.from({ length: 18 }, (_, i) => ({
+    name: `Placement Story ${String(i + 22).padStart(2, "0")}`,
     role: "Role & Company — to be confirmed",
     note: "Placeholder story. Portrait, role and quote will be added once the cohort details are shared.",
   })),
