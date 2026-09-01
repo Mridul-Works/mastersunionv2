@@ -1194,14 +1194,18 @@ function CareerExperienceArea() {
         </div>
 
         <div className="career-guidance-view-more mt-10 flex justify-center">
-          <Button
-            variant="outline"
+          <button
+            type="button"
             onClick={() => setShowAllGuidance((s) => !s)}
             aria-expanded={showAllGuidance}
+            className="hero-sweep-button group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden border border-white/35 px-8 py-4.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:border-accent hover:bg-accent hover:shadow-[0_0_28px_-6px_color-mix(in_oklab,var(--accent)_60%,transparent)]"
+            style={{ fontFamily: MONO }}
           >
-            {showAllGuidance ? "View less" : "View more"}
-            <ChevronDown className={`ml-2 size-4 transition-transform duration-300 ${showAllGuidance ? "rotate-180" : ""}`} aria-hidden="true" />
-          </Button>
+            <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
+              {showAllGuidance ? "View less" : "View more"}
+              <ChevronDown className={`size-3.5 transition-transform duration-300 ${showAllGuidance ? "rotate-180" : ""}`} aria-hidden="true" />
+            </span>
+          </button>
         </div>
 
         <a className="career-contact-strip mt-10" href="mailto:careerservices@mastersunion.org">
