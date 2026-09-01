@@ -40,3 +40,4 @@
 - [x] Update Professional guidance card 8 (Dibyendu Choudhury) portrait and background text
 - [x] Update Professional guidance card 9 (Aastha Arora) portrait and background text
 - [x] Update Professional guidance card 10 (Vinayak Chowdhri) portrait and background text
+- [x] Update Professional guidance card 11 (Chanpreet Singh Gulati) portrait, name and background text
