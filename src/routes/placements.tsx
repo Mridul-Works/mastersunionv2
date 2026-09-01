@@ -1084,7 +1084,7 @@ function CareerTransitionsSection() {
         <Eyebrow>Career transitions</Eyebrow>
       </Reveal>
       <Reveal delay={120}>
-        <h2 className="mt-6 max-w-[28ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
+        <h2 className="placements-section-title mt-6 max-w-[21ch]">
           Where students come from, <em className="font-serif-italic">and where they go.</em>
         </h2>
       </Reveal>
@@ -1506,12 +1506,12 @@ function PodcastTextBlock() {
         <Eyebrow>Podcast</Eyebrow>
       </Reveal>
       <Reveal delay={90}>
-        <h3 className="mt-4 text-[clamp(1.55rem,2.9vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
+        <h3 className="placements-section-title mt-4 max-w-[21ch]">
           How Masters&apos; Union <em className="font-serif-italic">prepares students for top 1% placements</em>
         </h3>
       </Reveal>
       <Reveal delay={180}>
-        <p className="mt-4 max-w-[50ch] text-[16px] leading-relaxed text-black/65">
+        <p className="placements-section-intro max-w-[50ch]">
           A detailed conversation on the placement engine behind Masters&apos; Union — how recruiter
           access, live industry projects and year-round career coaching translate into offers at the
           firms shaping the next decade.
@@ -2026,10 +2026,10 @@ function OutcomesAccordion() {
         {/* LEFT — anchored editorial column */}
         <div className="lg:col-span-4">
           <Eyebrow>Five years of audited placements</Eyebrow>
-          <h3 className="mt-4 text-[clamp(1.55rem,2.9vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
+          <h3 className="placements-section-title mt-4 max-w-[21ch]">
             Proven outcomes, <em className="font-serif-italic">verified line by line.</em>
           </h3>
-          <p className="mt-4 max-w-[50ch] text-[16px] leading-relaxed text-black/65">
+          <p className="placements-section-intro max-w-[50ch]">
             Our placement reports are audited by Brickworks — auditor for IIM Ahmedabad — and follow
             the IPRS Revision 2.2 framework for transparent, consistent compensation data.{" "}
             <a
@@ -2377,10 +2377,10 @@ function EditorialPlacementData() {
               <span className="h-px w-10 origin-left bg-accent placement-data-rule" aria-hidden />
             </div>
             <div>
-              <h2 id="placement-data-title" className="max-w-[16ch] text-[clamp(2.25rem,5vw,4.7rem)] font-medium leading-[0.98] text-white">
+              <h2 id="placement-data-title" className="placements-section-title max-w-[20ch] text-white">
                 Cohort average CTC &amp; <em className="font-serif-italic text-accent">placement statistics.</em>
               </h2>
-              <p className="mt-5 max-w-[58ch] text-[0.95rem] leading-relaxed text-white/58">
+              <p className="placements-section-intro placements-section-intro-light mt-5 max-w-[58ch]">
                 Five cohorts, presented as a complete compensation distribution rather than a single headline figure.
               </p>
             </div>
@@ -2598,7 +2598,7 @@ function Page() {
             <Eyebrow>Careers team</Eyebrow>
           </Reveal>
           <Reveal delay={140} duration={950}>
-            <h2 className="mt-6 max-w-[24ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
+            <h2 className="placements-section-title mt-6 max-w-[21ch]">
               A 50+ member team, <em className="font-serif-italic">working full time on your outcome.</em>
             </h2>
           </Reveal>
