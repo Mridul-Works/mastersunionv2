@@ -129,3 +129,5 @@
 - Added playable YouTube video link for Sunjay Kapur (CEO & MDs): https://youtu.be/BRCS9nhQWuo
 
 - Added playable YouTube video link for Vikramaditya Chaudhri (CEO & MDs): https://youtu.be/BiFlkwBf4xw
+
+- Added playable YouTube video link for Hitesh Oberoi (CEO & MDs): https://youtu.be/m2WLl88yM3g
