@@ -683,7 +683,7 @@ const UNICORN_FOUNDERS = [
   { name: "Nitin Jain", role: "Co-founder, OfBusiness", video: "https://youtu.be/YJEZfXJsRCg" },
   { name: "Ghazal Alagh", role: "Co-founder, Mamaearth", video: "https://youtu.be/rExRUNRJ_Ss" },
   { name: "Sandeep Aggarwal", role: "Founder and CEO, Droom", video: "https://youtu.be/rpEpQ_2XzKY" },
-  { name: "Tarun Sharma", role: "Co-founder, mcaffeine" },
+  { name: "Tarun Sharma", role: "Co-founder, mcaffeine", video: "https://youtu.be/Q6cz9ZsoKbQ" },
 ];
 
 const EXECUTIVES = [
