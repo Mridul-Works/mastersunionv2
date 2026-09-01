@@ -711,6 +711,20 @@ const LEADER_GROUPS = [
   { label: "Executives", people: EXECUTIVES },
 ];
 
+const PODCAST_CHAPTERS = [
+  { time: "00:00", title: "Trailer", seconds: 0 },
+  { time: "01:49", title: "Introduction", seconds: 109 },
+  { time: "03:40", title: "Student Placement Stories", seconds: 220 },
+  { time: "08:55", title: "Where Career Prep Starts", seconds: 535 },
+  { time: "17:16", title: "Starting Out: Framework & Resume Prep", seconds: 1036 },
+  { time: "23:08", title: "Career Team Structure", seconds: 1388 },
+  { time: "29:08", title: "LMP & the Placement War Room", seconds: 1748 },
+  { time: "33:06", title: "Job Negotiation Training", seconds: 1986 },
+  { time: "37:32", title: "AI-Led Career Consultation", seconds: 2252 },
+  { time: "40:00", title: "Student Practice & Mock Preparation", seconds: 2400 },
+  { time: "44:47", title: "Building a Standout CV", seconds: 2687 },
+  { time: "52:02", title: "Cracking Your Dream Job", seconds: 3122 },
+];
 
 
 /* -------------------------------- primitives ------------------------------ */
@@ -1395,7 +1409,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
 
       </Band>
 
-      <Band id="leadership-guidance" tone="white" className="scroll-mt-24">
+      <Band tone="white">
         <div className="career-section-number">05</div>
         <Reveal><Eyebrow>Leadership guidance</Eyebrow></Reveal>
         <Reveal delay={100}><h2 className="career-area-title">Your Future Recruiters <em className="font-serif-italic">on Campus</em></h2></Reveal>
@@ -1459,33 +1473,44 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
 
 const PODCAST_ID = "uiNTwDixAts";
 
+type PodcastCtx = { seek: (seconds: number) => void };
+const PodcastContext = React.createContext<PodcastCtx>({ seek: () => {} });
+
 function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal | null) => void }) {
+  const seek = React.useCallback((seconds: number) => {
+    setVideoModal({ title: "Placements Podcast", video: `https://youtu.be/${PODCAST_ID}`, start: seconds });
+  }, [setVideoModal]);
+  const [chaptersOpen, setChaptersOpen] = useState(false);
+
   return (
-    <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-8">
-      <div className="lg:col-span-5">
-        <PodcastTextBlock />
-      </div>
-      <div className="lg:col-span-7">
-        <div className="flex flex-col">
+    <PodcastContext.Provider value={{ seek }}>
+      <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-8">
+        <div className="lg:col-span-5">
+          <PodcastTextBlock chaptersOpen={chaptersOpen} setChaptersOpen={setChaptersOpen} />
+        </div>
+        <div className="relative lg:col-span-7">
+          <div className={cn("flex flex-col", chaptersOpen && "lg:absolute lg:inset-0 lg:h-full")}>
           <PodcastVideoPlayer setVideoModal={setVideoModal} />
-          <div className="mt-8 flex flex-col gap-8">
+          <div className="mt-8 flex min-h-0 flex-1 flex-col gap-8">
             <div className="h-px w-full bg-black/20" />
             <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-black/50">
               Episode — The story behind ₹33 lakh per LPA average placements — Watch / Listen
             </p>
             <EditorialRule />
-            <div className="flex flex-col gap-5 py-4">
+            <div className="flex min-h-0 flex-1 flex-col gap-5 py-4">
               <Eyebrow>Leadership conversations</Eyebrow>
-              <PodcastVideoRail setVideoModal={setVideoModal} />
+              <PodcastVideoRail setVideoModal={setVideoModal} expanded={chaptersOpen} />
             </div>
+
+          </div>
           </div>
         </div>
       </div>
-    </div>
+    </PodcastContext.Provider>
   );
 }
 
-function PodcastTextBlock() {
+function PodcastTextBlock({ chaptersOpen, setChaptersOpen }: { chaptersOpen: boolean; setChaptersOpen: (v: boolean) => void }) {
   const id = PODCAST_ID;
   return (
     <div className="flex flex-col justify-center">
@@ -1519,24 +1544,12 @@ function PodcastTextBlock() {
             Watch on YouTube
             <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
-          <a
-            href="#leadership-guidance"
-            className="group mt-4 flex w-full items-center justify-between border-t border-black/15 pt-4 text-left transition-colors duration-300"
-          >
-            <span className="text-[14px] leading-snug text-black/80 transition-colors duration-300 group-hover:text-[var(--accent)]">
-              Leadership conversations
-            </span>
-            <ArrowUpRight
-              aria-hidden
-              className="size-3.5 shrink-0 -translate-x-1 text-black/30 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:text-[var(--accent)] group-hover:opacity-100"
-            />
-          </a>
+          <PodcastChapters open={chaptersOpen} setOpen={setChaptersOpen} />
         </div>
       </Reveal>
     </div>
   );
 }
-
 
 function PodcastVideoPlayer({ setVideoModal }: { setVideoModal: (modal: VideoModal | null) => void }) {
   const id = PODCAST_ID;
@@ -1581,22 +1594,33 @@ const ytIdOf = (url: string) => url.split("/").pop()?.split("?")[0] ?? "";
 
 function PodcastVideoRail({
   setVideoModal,
+  expanded = false,
 }: {
   setVideoModal: (modal: VideoModal | null) => void;
+  expanded?: boolean;
 }) {
   if (!PODCAST_RAIL_VIDEOS.length) return null;
 
   return (
-    <div className="flex flex-col">
-      <div className="rail-scroll -mx-1 flex items-start gap-4 overflow-x-auto px-1 pb-2 no-scrollbar">
+    <div className={cn("flex flex-col", expanded && "min-h-0 flex-1")}>
+      <div
+        className={cn(
+          "no-scrollbar pb-2",
+          expanded
+            ? "grid min-h-0 flex-1 grid-cols-2 content-start gap-4 overflow-y-auto sm:grid-cols-3"
+            : "rail-scroll -mx-1 flex items-start gap-4 overflow-x-auto px-1",
+        )}
+      >
         {PODCAST_RAIL_VIDEOS.map((item) => (
           <button
             key={item.video}
             type="button"
             onClick={() => setVideoModal({ title: item.name, video: item.video, start: 0 })}
             aria-label={`Play conversation with ${item.name}`}
-            className="group flex w-[240px] shrink-0 flex-col text-left"
+            className={cn("group flex flex-col text-left", expanded ? "w-full" : "w-[240px] shrink-0")}
           >
+
+
             <span className="relative block aspect-video w-full overflow-hidden rounded-md bg-black/10">
               <img
                 src={`https://img.youtube.com/vi/${ytIdOf(item.video)}/maxresdefault.jpg`}
@@ -1629,7 +1653,80 @@ function PodcastVideoRail({
 
 
 
+function PodcastChapters({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
+  const { seek } = React.useContext(PodcastContext);
+  const PREVIEW_COUNT = 4;
+  const previewChapters = PODCAST_CHAPTERS.slice(0, PREVIEW_COUNT);
+  const extraChapters = PODCAST_CHAPTERS.slice(PREVIEW_COUNT);
 
+  const ChapterRow = ({ chapter }: { chapter: (typeof PODCAST_CHAPTERS)[number] }) => (
+    <li key={chapter.seconds}>
+      <button
+        type="button"
+        onClick={() => seek(chapter.seconds)}
+        className="group flex w-full items-center justify-between gap-3 border-b border-black/15 py-3 text-left transition-colors duration-300"
+      >
+        <span className="flex items-baseline gap-4">
+          <span
+            className="text-[11px] tabular-nums tracking-[0.12em] text-black/40 transition-colors duration-300 group-hover:text-[var(--accent)]"
+            style={{ fontFamily: MONO }}
+          >
+            {chapter.time}
+          </span>
+          <span className="text-[14px] leading-snug text-black/80 transition-colors duration-300 group-hover:text-[var(--accent)]">
+            {chapter.title}
+          </span>
+        </span>
+        <ArrowUpRight
+          aria-hidden
+          className="size-3.5 shrink-0 -translate-x-1 text-black/30 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:text-[var(--accent)] group-hover:opacity-100"
+        />
+      </button>
+    </li>
+  );
+
+  return (
+    <div className="mt-5 border-t border-black/15 pt-4">
+      <div className="flex items-center justify-between">
+        <span
+          className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50"
+          style={{ fontFamily: MONO }}
+        >
+          What you&apos;ll hear
+        </span>
+      </div>
+
+      <ul className="flex flex-col">
+        {previewChapters.map((chapter) => (
+          <ChapterRow chapter={chapter} key={chapter.seconds} />
+        ))}
+      </ul>
+
+      <div
+        className={`grid transition-[grid-template-rows,opacity] duration-[600ms] ease-in-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+      >
+        <ul className="flex flex-col overflow-hidden">
+          {extraChapters.map((chapter) => (
+            <ChapterRow chapter={chapter} key={chapter.seconds} />
+          ))}
+        </ul>
+      </div>
+
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        aria-label="Toggle chapter timeline"
+        className="group mt-3 flex w-full items-center justify-end gap-3 border-t border-black/15 pt-3 text-left"
+      >
+        <ChevronDown
+          aria-hidden
+          className={`size-4 text-black/40 transition-transform duration-500 ease-in-out group-hover:text-[var(--accent)] ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+    </div>
+  );
+}
 
 /** Editorial metric blocks for the Podcast and Proven Outcomes sections. */
 function HorizontalMetricsStrip({ variant = "light" }: { variant?: "light" | "dark" }) {
