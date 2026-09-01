@@ -1593,7 +1593,21 @@ function PodcastVideoRail({ setVideoModal }: { setVideoModal: (modal: VideoModal
   if (!PODCAST_RAIL_VIDEOS.length) return null;
 
   return (
-    <div className="rail-scroll no-scrollbar -mx-1 flex gap-4 overflow-x-auto px-1 pb-2">
+    <div
+      className="rail-scroll no-scrollbar -mx-1 flex gap-4 overflow-x-auto px-1 pb-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]/50"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        const container = e.currentTarget;
+        const cardWidth = 256; // 240px card + 16px gap
+        if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          container.scrollBy({ left: -cardWidth, behavior: "smooth" });
+        } else if (e.key === "ArrowRight") {
+          e.preventDefault();
+          container.scrollBy({ left: cardWidth, behavior: "smooth" });
+        }
+      }}
+    >
       {PODCAST_RAIL_VIDEOS.map((item) => (
         <button
           key={item.video}
