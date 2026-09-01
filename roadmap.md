@@ -49,3 +49,4 @@
 - [x] Add Professional guidance card 17 (Ajaya Kaushik) portrait, name, role and background text
 - [x] Add Professional guidance card 18 (Pragati Gupta) portrait, name, role and background text
 - [x] Add Professional guidance card 19 (Jasleen Taluja) portrait, name, role and background text
+- [x] Add Professional guidance card 20 (Vibhuti Singh) portrait, name, role and background text
