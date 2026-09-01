@@ -680,11 +680,19 @@ const UNICORN_FOUNDERS = [
   { name: "Tarun Sharma", role: "Co-founder, mcaffeine" },
 ];
 
+const EXECUTIVES = [
+  { name: "Radhika Maheshwari", role: "Director, Finance, Bacardi" },
+  { name: "Nikhil Singhal", role: "MD & Head of Private Banking, HSBC India" },
+  { name: "Shiv Kapoor", role: "Vice President, Titan Capital" },
+  { name: "Salone Sehgal", role: "Founding General Partner, Lumikai" },
+  { name: "Amit Kumar", role: "Sales Director, Google Cloud" },
+];
+
 const LEADER_GROUPS = [
   { label: "CEO & MDs", people: LEADERS.slice(0, 11) },
   { label: "CHROs", people: CHRO_LEADERS },
   { label: "Unicorn Founders", people: UNICORN_FOUNDERS },
-  { label: "Executives", people: [...Array.from({ length: 5 }, (_, i) => LEADER_PLACEHOLDER("Executive", i + 1))] },
+  { label: "Executives", people: EXECUTIVES },
 ];
 
 const PODCAST_CHAPTERS = [
