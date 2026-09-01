@@ -913,10 +913,10 @@ function CareerExperienceArea() {
           <div className="career-closing-cta">
             <h2>Explore <em className="font-serif-italic">Masters' Union</em></h2>
             <nav aria-label="Explore Masters' Union">
-              <a href="/student-life">Student Life <ArrowUpRight /></a>
+              <a href="/life-at-mu">Student Life <ArrowUpRight /></a>
               <a href="/placements">Explore Careers <ArrowUpRight /></a>
-              <a href="/contact">Book a Visit <ArrowUpRight /></a>
-              <a href="/events">Explore Events <ArrowUpRight /></a>
+              <a href="mailto:admissions@mastersunion.org">Book a Visit <ArrowUpRight /></a>
+              <a href="/life-at-mu">Explore Events <ArrowUpRight /></a>
             </nav>
           </div>
         </div>
