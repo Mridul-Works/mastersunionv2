@@ -127,3 +127,5 @@
 - Added playable YouTube video link for Manish Chowdhary (CEO & MDs): https://youtu.be/I-q_7_FjnrM
 
 - Added playable YouTube video link for Sunjay Kapur (CEO & MDs): https://youtu.be/BRCS9nhQWuo
+
+- Added playable YouTube video link for Vikramaditya Chaudhri (CEO & MDs): https://youtu.be/BiFlkwBf4xw
