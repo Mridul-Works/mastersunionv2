@@ -1542,10 +1542,11 @@ function PodcastVideoPlayer({ setVideoModal }: { setVideoModal: (modal: VideoMod
   const id = PODCAST_ID;
 
   return (
-    <div className="career-podcast-media group">
+    <ClipReveal>
+      <div className="career-podcast-media group">
         <button
           type="button"
-          onClick={() => { console.log('PODCAST CLICK'); setVideoModal({ title: "Placements Podcast", video: `https://youtu.be/${id}`, start: 0 }); }}
+          onClick={() => setVideoModal({ title: "Placements Podcast", video: `https://youtu.be/${id}`, start: 0 })}
           aria-label="Play placements podcast"
           className="absolute inset-0 h-full w-full"
         >
@@ -1561,6 +1562,7 @@ function PodcastVideoPlayer({ setVideoModal }: { setVideoModal: (modal: VideoMod
           </span>
         </button>
       </div>
+    </ClipReveal>
   );
 }
 
