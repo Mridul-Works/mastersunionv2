@@ -664,7 +664,7 @@ const CHRO_LEADERS = [
   { name: "Sandeep Girotra", role: "Chief Human Resource Officer, DCM Shriram LTD", image: sandeepGirotraImg.url },
   { name: "Prashant Khullar", role: "Chief Human Resources Officer, Ecom Express", image: prashantKhullarImg.url },
   { name: "Tanushri Nair", role: "Director, Human Resources, SAGE Publications", image: tanushriNairImg.url },
-  { name: "Rohith Hariharan", role: "Head, Employer Branding, Ather Energy" },
+  { name: "Rohith Hariharan", role: "Head, Employer Branding, Ather Energy", image: rohithHariharanImg.url },
 ];
 
 const LEADER_PLACEHOLDER = (label: string, index: number) => ({
