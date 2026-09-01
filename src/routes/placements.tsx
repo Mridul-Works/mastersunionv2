@@ -63,6 +63,9 @@ import kanishkImg from "@/assets/placements/kanishk.webp.asset.json";
 import jayeshImg from "@/assets/placements/jayesh.webp.asset.json";
 import sanidhyaImg from "@/assets/placements/sanidhya.webp.asset.json";
 import malayImg from "@/assets/placements/malay.webp.asset.json";
+import puruImg from "@/assets/placements/puru.webp.asset.json";
+import dhananjayImg from "@/assets/placements/dhananjay.webp.asset.json";
+import shagunImg from "@/assets/placements/shagun.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -357,8 +360,26 @@ const TESTIMONIALS = [
     note: "Bhupesh Sir’s insight - that real problems are uncovered by listening to customers has stayed with me. Getting inspired, I explored Razorpay users’ challenges and created a solution-oriented deck, which Pratham reviewed and shared with the team. I wouldn’t have landed this offer without their guidance and the lessons from all Masters’ Union professors.",
     image: malayImg.url,
   },
-  ...Array.from({ length: 13 }, (_, i) => ({
-    name: `Placement Story ${String(i + 31).padStart(2, "0")}`,
+  {
+    name: "Puru Gupta",
+    role: "Senior Manager I - Program Management, Zepto",
+    note: "Masters’ Union played a pivotal role in helping me secure the Program Manager role at Zepto. The hands-on, industry-focused curriculum built a strong foundation in product thinking and data analysis. Mentorship and mock interviews sharpened my communication, while exposure to live startup environments widened my view in terms of business and its elements.",
+    image: puruImg.url,
+  },
+  {
+    name: "Dhananjay Dev",
+    role: "Chief of Staff - Founder's Office, The Souled Store",
+    note: "I’m thrilled to share that I’ve secured a role at The Souled Store, and I owe much of this to Masters’ Union. The hands-on learning environment, continuous mentorship and experiential learning shaped my journey. I’m especially grateful to Simran Bhatia and Siddhartha Bal for their unwavering support, refining my approach and guiding me through every interview round.",
+    image: dhananjayImg.url,
+  },
+  {
+    name: "Shagun Malik",
+    role: "Brand Manager, Farmley",
+    note: "Masters’ Union played a key role in helping me secure my Brand Manager role at Farmley. Hands-on projects and mentorship sharpened my strategic thinking and problem-solving. The immersive curriculum, CXO talks, live business simulations, and networking deepened my understanding in branding, giving me the confidence to lead brand strategy in a fast-paced startup.",
+    image: shagunImg.url,
+  },
+  ...Array.from({ length: 10 }, (_, i) => ({
+    name: `Placement Story ${String(i + 34).padStart(2, "0")}`,
     role: "Role & Company — to be confirmed",
     note: "Placeholder story. Portrait, role and quote will be added once the cohort details are shared.",
   })),
