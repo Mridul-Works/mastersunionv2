@@ -1473,20 +1473,19 @@ function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal |
           <PodcastTextBlock chaptersOpen={chaptersOpen} setChaptersOpen={setChaptersOpen} />
         </div>
         <div className="relative lg:col-span-7">
-          <div className={cn("flex flex-col", chaptersOpen && "lg:absolute lg:inset-0 lg:h-full")}>
-          <PodcastVideoPlayer setVideoModal={setVideoModal} />
-          <div className="mt-8 flex min-h-0 flex-1 flex-col items-start gap-8">
-            <div className="h-px w-full bg-black/20" />
-            <p className="text-left text-[11px] font-medium uppercase tracking-[0.18em] text-black/50">
-              Episode — The story behind ₹33 lakh per LPA average placements — Watch / Listen
-            </p>
-            <EditorialRule />
-            <div className="flex min-h-0 flex-1 flex-col items-start gap-5 py-4">
-              <Eyebrow>Leadership conversations</Eyebrow>
-              <PodcastVideoRail setVideoModal={setVideoModal} expanded={chaptersOpen} />
+          <div className={cn("flex min-w-0 flex-col", chaptersOpen && "lg:absolute lg:inset-0 lg:h-full")}>
+            <PodcastVideoPlayer setVideoModal={setVideoModal} />
+            <div className="mt-8 flex min-h-0 min-w-0 flex-1 flex-col items-start gap-8">
+              <div className="h-px w-full bg-black/20" />
+              <p className="text-left text-[11px] font-medium uppercase tracking-[0.18em] text-black/50">
+                Episode — The story behind ₹33 lakh per LPA average placements — Watch / Listen
+              </p>
+              <EditorialRule />
+              <div className="flex min-h-0 min-w-0 flex-1 flex-col items-start gap-5 py-4">
+                <Eyebrow>Leadership conversations</Eyebrow>
+                <PodcastVideoRail setVideoModal={setVideoModal} expanded={chaptersOpen} />
+              </div>
             </div>
-
-          </div>
           </div>
         </div>
       </div>
