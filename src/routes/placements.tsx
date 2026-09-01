@@ -48,6 +48,7 @@ import ankitaImg from "@/assets/placements/ankita.webp.asset.json";
 import tusharImg from "@/assets/placements/tushar.webp.asset.json";
 import kritiImg from "@/assets/placements/kriti.webp.asset.json";
 import bhanuImg from "@/assets/placements/bhanu.webp.asset.json";
+import kritiSharmaImg from "@/assets/placements/kritiSharma.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -263,7 +264,7 @@ const TESTIMONIALS = [
   { name: "Tushar Gauba", role: "Digital Product Manager, IndusInd Bank", note: "Masters’ Union was instrumental in helping me secure the Product Manager role at IndusInd Bank. The Product Practicum gave me hands-on experience in solving real business problems, which translated into strong talking points during interviews. The career team’s personalized mentorship and timely mock interviews ensured I was fully prepared for questions from the BFSI product space.", image: tusharImg.url },
   { name: "Kriti Gupta", role: "Merchandising Manager, Careem | Dubai", note: "Masters’ Union was instrumental in helping me secure my role at Careem. The Career Services team proactively shared my profile for a strong-fit role and coordinated seamlessly with Careem’s recruitment team. They guided me through every stage, including last-mile prep, mock interviews, and connecting me with E-commerce alumni for actionable insights.", image: kritiImg.url },
   { name: "Bhanu Pratap Singh", role: "Strategic Lead, Everest Fleet", note: "Masters’ Union meaningfully shaped my interview readiness and career journey. The curriculum sharpened my core business fundamentals and enabled real-world problem-solving. All of the simulated coursework, case discussions and faculty guidance built enough confidence in me, while the unwavering support from the Prep and Outreach teams helped align roles with my aspirations.", image: bhanuImg.url },
-  { name: "Harshit Gambhir", role: "Program Manager, Blinkit", note: "Built product acumen after 6 years in automotive R&D — offer within 8 months." },
+  { name: "Kriti Sharma", role: "Consultant, Praxis Global", note: "Masters’ Union was key in shaping my journey into consulting. Campus interviews with BCG gave me my first exposure, leading to my role at Praxis Global Alliance as a Management Consultant. From excelling in the Dropshipping Challenge to winning a Pre-Seed grant, the real-world problem-solving equipped me with the confidence, skills, and mindset to succeed.", image: kritiSharmaImg.url },
   ...Array.from({ length: 27 }, (_, i) => ({
     name: `Placement Story ${String(i + 13).padStart(2, "0")}`,
     role: "Role & Company — to be confirmed",
