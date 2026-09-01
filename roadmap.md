@@ -86,3 +86,5 @@
 - [x] Update Annual Roadmap Term 6 items with exact provided list
 - [x] Update Annual Roadmap Term 7 items with exact provided list
 - [x] Add YouTube video link to Term 4 Annual Roadmap visual placeholder
+- [x] Fix Term 4 video iframe to be clickable/playable
+- [ ] Add Term 2 Annual Roadmap image (cd2.webp)
