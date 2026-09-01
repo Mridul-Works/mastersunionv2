@@ -1458,41 +1458,33 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
 
 const PODCAST_ID = "uiNTwDixAts";
 
-type PodcastCtx = { openVideo: (modal: VideoModal | null) => void };
-const PodcastContext = React.createContext<PodcastCtx>({ openVideo: () => {} });
-
 function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal | null) => void }) {
-  const openVideo = React.useCallback((modal: VideoModal | null) => setVideoModal(modal), [setVideoModal]);
-  const [chaptersOpen, setChaptersOpen] = useState(false);
-
   return (
-    <PodcastContext.Provider value={{ openVideo }}>
-      <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-8">
-        <div className="lg:col-span-5">
-          <PodcastTextBlock chaptersOpen={chaptersOpen} setChaptersOpen={setChaptersOpen} />
-        </div>
-        <div className="relative lg:col-span-7">
-          <div className={cn("flex min-w-0 flex-col", chaptersOpen && "lg:absolute lg:inset-0 lg:h-full")}>
-            <PodcastVideoPlayer setVideoModal={setVideoModal} />
-            <div className="mt-3 flex min-h-0 min-w-0 flex-1 flex-col items-stretch gap-2">
-              <div className="h-px w-full bg-black/20" />
-              <p className="text-center text-[11px] font-medium uppercase tracking-[0.18em] text-black/50">
-                Episode — The story behind ₹33 lakh per LPA average placements — Watch / Listen
-              </p>
-              <EditorialRule />
-              <div className="flex min-h-0 min-w-0 flex-1 flex-col items-stretch gap-3 pt-5 pb-4">
-                <Eyebrow>Leadership conversations</Eyebrow>
-                <PodcastVideoRail setVideoModal={setVideoModal} expanded={chaptersOpen} />
-              </div>
+    <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-8">
+      <div className="lg:col-span-5">
+        <PodcastTextBlock />
+      </div>
+      <div className="relative lg:col-span-7">
+        <div className="flex min-w-0 flex-col">
+          <PodcastVideoPlayer setVideoModal={setVideoModal} />
+          <div className="mt-3 flex min-h-0 min-w-0 flex-1 flex-col items-stretch gap-2">
+            <div className="h-px w-full bg-black/20" />
+            <p className="text-center text-[11px] font-medium uppercase tracking-[0.18em] text-black/50">
+              Episode — The story behind ₹33 lakh per LPA average placements — Watch / Listen
+            </p>
+            <EditorialRule />
+            <div className="flex min-h-0 min-w-0 flex-1 flex-col items-stretch gap-3 pt-5 pb-4">
+              <Eyebrow>Leadership conversations</Eyebrow>
+              <PodcastVideoRail setVideoModal={setVideoModal} />
             </div>
           </div>
         </div>
       </div>
-    </PodcastContext.Provider>
+    </div>
   );
 }
 
-function PodcastTextBlock({ chaptersOpen, setChaptersOpen }: { chaptersOpen: boolean; setChaptersOpen: (v: boolean) => void }) {
+function PodcastTextBlock() {
   const id = PODCAST_ID;
   return (
     <div className="flex flex-col justify-center">
@@ -1528,7 +1520,6 @@ function PodcastTextBlock({ chaptersOpen, setChaptersOpen }: { chaptersOpen: boo
               <ArrowUpRight className="size-4" />
             </span>
           </a>
-          <PodcastChapters open={chaptersOpen} setOpen={setChaptersOpen} />
         </div>
       </Reveal>
     </div>
@@ -1576,17 +1567,11 @@ const PODCAST_RAIL_VIDEOS = LEADER_GROUPS.flatMap((group) =>
 
 const ytIdOf = (url: string) => url.split("/").pop()?.split("?")[0] ?? "";
 
-const PAGE_VIDEOS = [
-  { name: "Placements Podcast", role: "How Masters' Union prepares students for top 1% placements", video: `https://youtu.be/${PODCAST_ID}` },
-  ...PODCAST_RAIL_VIDEOS,
-];
 
 function PodcastVideoRail({
   setVideoModal,
-  expanded = false,
 }: {
   setVideoModal: (modal: VideoModal | null) => void;
-  expanded?: boolean;
 }) {
   const railRef = useRef<HTMLDivElement>(null);
   if (!PODCAST_RAIL_VIDEOS.length) return null;
@@ -1602,27 +1587,25 @@ function PodcastVideoRail({
   };
 
   return (
-    <div className={cn("flex min-w-0 w-full flex-col", expanded && "min-h-0 flex-1")}>
-      {!expanded && (
-        <div className="mb-3 flex items-center justify-end gap-2">
-          <button
-            type="button"
-            onClick={() => scrollByCard(-1)}
-            aria-label="Scroll conversations left"
-            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white/70 transition-colors hover:border-white/40 hover:bg-white/10 hover:text-white"
-          >
-            <ChevronLeft className="size-4" />
-          </button>
-          <button
-            type="button"
-            onClick={() => scrollByCard(1)}
-            aria-label="Scroll conversations right"
-            className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white/70 transition-colors hover:border-white/40 hover:bg-white/10 hover:text-white"
-          >
-            <ChevronRight className="size-4" />
-          </button>
-        </div>
-      )}
+    <div className="flex min-w-0 w-full flex-col">
+      <div className="mb-3 flex items-center justify-end gap-2">
+        <button
+          type="button"
+          onClick={() => scrollByCard(-1)}
+          aria-label="Scroll conversations left"
+          className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white/70 transition-colors hover:border-white/40 hover:bg-white/10 hover:text-white"
+        >
+          <ChevronLeft className="size-4" />
+        </button>
+        <button
+          type="button"
+          onClick={() => scrollByCard(1)}
+          aria-label="Scroll conversations right"
+          className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-white/70 transition-colors hover:border-white/40 hover:bg-white/10 hover:text-white"
+        >
+          <ChevronRight className="size-4" />
+        </button>
+      </div>
       <div
         ref={railRef}
         tabIndex={0}
@@ -1636,12 +1619,7 @@ function PodcastVideoRail({
             scrollByCard(1);
           }
         }}
-        className={cn(
-          "no-scrollbar pb-2 focus:outline-none",
-          expanded
-            ? "grid min-h-0 flex-1 grid-cols-2 content-start gap-4 overflow-y-auto sm:grid-cols-3"
-            : "rail-scroll flex items-start gap-4 overflow-x-auto",
-        )}
+        className="rail-scroll no-scrollbar flex items-start gap-4 overflow-x-auto pb-2 focus:outline-none"
       >
         {PODCAST_RAIL_VIDEOS.map((item) => (
           <button
@@ -1649,7 +1627,7 @@ function PodcastVideoRail({
             type="button"
             onClick={() => setVideoModal({ title: item.name, video: item.video, start: 0 })}
             aria-label={`Play conversation with ${item.name}`}
-            className={cn("group flex flex-col text-left", expanded ? "w-full" : "w-[240px] shrink-0")}
+            className="group flex w-[240px] shrink-0 flex-col text-left"
           >
             <span className="relative block aspect-video w-full overflow-hidden rounded-md bg-black/10">
               <img
@@ -1683,69 +1661,6 @@ function PodcastVideoRail({
 
 
 
-function PodcastChapters({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
-  const { openVideo } = React.useContext(PodcastContext);
-  const PREVIEW_COUNT = 4;
-  const previewVideos = PAGE_VIDEOS.slice(0, PREVIEW_COUNT);
-  const extraVideos = PAGE_VIDEOS.slice(PREVIEW_COUNT);
-
-  const VideoRow = ({ item }: { item: (typeof PAGE_VIDEOS)[number] }) => (
-    <li key={item.video}>
-      <button
-        type="button"
-        onClick={() => openVideo({ title: item.name, video: item.video, start: 0 })}
-        className="group flex w-full items-center justify-between gap-3 rounded-lg border-b border-white/15 py-3 pl-2 pr-2 text-left transition-all duration-300 hover:bg-white/10 hover:pl-3"
-      >
-        <span className="flex flex-col gap-0.5">
-          <span className="text-[14px] leading-snug text-white/80 transition-colors duration-300 group-hover:text-[var(--accent)]">
-            {item.name}
-          </span>
-          <span className="text-[11px] leading-snug text-white/50">{item.role}</span>
-        </span>
-        <Play
-          aria-hidden
-          className="size-3.5 shrink-0 -translate-x-1 fill-white/30 text-white/30 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:fill-[var(--accent)] group-hover:text-[var(--accent)] group-hover:opacity-100"
-        />
-      </button>
-    </li>
-  );
-
-  return (
-    <div className="mt-5 rounded-xl border-t border-white/15 bg-[#0E1113] p-4 pt-4">
-      <ul className="flex flex-col">
-        {previewVideos.map((item) => (
-          <VideoRow item={item} key={item.video} />
-        ))}
-      </ul>
-
-      <div
-        className={`grid transition-[grid-template-rows,opacity] duration-[600ms] ease-in-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
-      >
-        <ul className="flex flex-col overflow-hidden">
-          {extraVideos.map((item) => (
-            <VideoRow item={item} key={item.video} />
-          ))}
-        </ul>
-      </div>
-
-      <button
-        type="button"
-        onClick={() => setOpen(!open)}
-        aria-expanded={open}
-        aria-label="Toggle video list"
-        className="group mt-3 flex w-full items-center justify-end gap-3 border-t border-white/15 pt-3 text-left"
-      >
-        <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/50 transition-colors duration-300 group-hover:text-[var(--accent)]">
-          {open ? "Show less" : "Show all"}
-        </span>
-        <ChevronDown
-          aria-hidden
-          className={`size-4 text-white/40 transition-transform duration-500 ease-in-out group-hover:text-[var(--accent)] ${open ? "rotate-180" : ""}`}
-        />
-      </button>
-    </div>
-  );
-}
 
 /** Editorial metric blocks for the Podcast and Proven Outcomes sections. */
 function HorizontalMetricsStrip({ variant = "light" }: { variant?: "light" | "dark" }) {
