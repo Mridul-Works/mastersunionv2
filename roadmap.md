@@ -87,9 +87,9 @@
 - [x] Update Annual Roadmap Term 7 items with exact provided list
 - [x] Add YouTube video link to Term 4 Annual Roadmap visual placeholder
 - [x] Fix Term 4 video iframe to be clickable/playable
-- [ ] Add Term 2 Annual Roadmap image (cd2.webp)
-- [ ] Add Term 3 Annual Roadmap image (careerImg.webp)
-- [ ] Add Term 5 Annual Roadmap image (cd5.webp)
-- [ ] Add Term 6 Annual Roadmap image (imgcd.webp)
-- [ ] Add Term 7 Annual Roadmap image (imageCd7.webp)
-- [ ] Add Term 8 Annual Roadmap image (cd8.webp)
+- [x] Add Term 2 Annual Roadmap image (cd2.webp)
+- [x] Add Term 3 Annual Roadmap image (careerImg.webp)
+- [x] Add Term 5 Annual Roadmap image (cd5.webp)
+- [x] Add Term 6 Annual Roadmap image (imgcd.webp)
+- [x] Add Term 7 Annual Roadmap image (imageCd7.webp)
+- [x] Add Term 8 Annual Roadmap image (cd8.webp)
