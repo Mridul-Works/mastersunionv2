@@ -93,6 +93,8 @@ import pragatiGuptaImg from "@/assets/placements/Pragati_Gupta.webp.asset.json";
 import jasleenTalujaImg from "@/assets/placements/Jasleen_Taluja.webp.asset.json";
 import vibhutiSinghImg from "@/assets/placements/Vibhuti_Singh.webp.asset.json";
 import santanuGoswamiImg from "@/assets/placements/Santanu_Goswami.webp.asset.json";
+import mansiBhargavaImg from "@/assets/placements/Mansi_Bhargava.webp.asset.json";
+import kartikeyaGuptaImg from "@/assets/placements/Kartikeya_Gupta.webp.asset.json";
 import kritiSharmaTeamImg from "@/assets/placements/Kriti_Sharma.webp.asset.json";
 import siddharthJangirImg from "@/assets/placements/Siddharth_Jangir.webp.asset.json";
 import namitaBhatiaImg from "@/assets/placements/Namita_Bhatia.webp.asset.json";
