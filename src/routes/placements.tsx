@@ -558,13 +558,14 @@ const COACH_TRACKS = [
 ];
 
 const COACHES = [
-  { name: "Rajnish Virmani", role: "Ex President, COO at Reliance", exp: "10+ yrs" },
-  { name: "Mamta Wasan", role: "Director & CEO, Mekosha Ayurveda", exp: "3+ yrs" },
-  { name: "Sandeep Bidani", role: "Ex Executive Director HR, IBM", exp: "10+ yrs" },
-  { name: "Andrea Stone", role: "Ex CMO, Mahindra Comviva", exp: "10+ yrs" },
-  { name: "Santosh Sharan", role: "Ex Director HR, SC Johnson", exp: "5+ yrs" },
-  { name: "Sandeep Suri", role: "Ex Country Head, Fidelity Investments", exp: "3+ yrs" },
+  { name: "Rajnish Virmani", role: "Ex President, COO at Reliance", exp: "10+ years" },
+  { name: "Andrea Stone", role: "Ex CMO, Mahindra Comviva", exp: "10+ years" },
+  { name: "Mamta Wasan", role: "Director & CEO, Mekosha Ayurveda", exp: "3+ years" },
+  { name: "Santosh Sharan", role: "Ex Director HR, SC Johnson", exp: "5+ years" },
+  { name: "Sandeep Bidani", role: "Ex Executive Director HR, IBM", exp: "10+ years" },
+  { name: "Sandeep Suri", role: "Ex Country Head, Fidelity Investments", exp: "3+ years" },
 ];
+
 
 const LEADERS = [
   { name: "Amit Khatri", role: "Co-founder, Noise" },
