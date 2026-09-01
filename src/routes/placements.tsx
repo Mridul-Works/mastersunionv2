@@ -867,6 +867,7 @@ function CinematicHero() {
       <section
         id="top"
         ref={sectionRef}
+        data-no-reveal
         className="relative z-0 bg-[#0a0a0a]"
         style={{ height: reduced ? "100svh" : "200svh" }}
       >
