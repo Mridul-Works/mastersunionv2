@@ -30,3 +30,4 @@
 - [x] Add student carousel slide 37 (Yashana Lalwani, Management Trainee - Business, Flipkart) with portrait, role and quote
 - [x] Add student carousel slide 38 (Atithee Nandanwar, Marketing Specialist, Yardstick | Remote - UAE) with portrait, role and quote
 - [x] Add student carousel slide 39 (Apoorva Rijhwaney, Growth Consultant, WebEngage) with portrait, role and quote
+- [x] Rebuild Professional guidance as a 52-card staggered mentor mosaic with placeholders for missing content
