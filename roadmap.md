@@ -89,3 +89,4 @@
 - [x] Fix Term 4 video iframe to be clickable/playable
 - [ ] Add Term 2 Annual Roadmap image (cd2.webp)
 - [ ] Add Term 3 Annual Roadmap image (careerImg.webp)
+- [ ] Add Term 5 Annual Roadmap image (cd5.webp)
