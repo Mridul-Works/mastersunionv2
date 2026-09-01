@@ -14,7 +14,12 @@ import {
   Mail,
   Quote,
   ChevronDown,
-
+  ChevronLeft,
+  ChevronRight,
+  Mic2,
+  BadgeCheck,
+  Compass,
+  Play,
 } from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
 import heroBg from "@/assets/placement-hero.webp.asset.json";
@@ -333,6 +338,31 @@ const LEADERS = [
   { name: "Rajat Mathur", role: "MD, Morgan Stanley" },
   { name: "Manish Chowdhary", role: "Co-founder, WOW Skin Science" },
   { name: "Sunjay Kapur", role: "Chairman, Sona Comstar" },
+];
+
+const CAREERS_TEAM = [
+  { name: "Abhishek Kaul", role: "Director — Corporate Engagements, Masters' Union & Tetr", background: "MBA, IIM-L; Ex-Walt Disney, EY, Times Group" },
+  { name: "Abhinav Arora", role: "Associate Director — Strategic Initiatives", background: "MBA, IIM-L; Ex-Ernst & Young, Jio, Jio" },
+  { name: "Amit Kumar", role: "Associate Director — Corporate Engagements", background: "MBA, IIM-Ahmedabad; Ex-Paytm, Pepsi, upGrad, NET" },
+  { name: "Ali Zein Alabdain Qaddo", role: "Associate Director — Corporate Engagements", background: "Ex-HR director, Orange, Egypt" },
+  { name: "Anurag Yadav", role: "Associate Director — Corporate Engagements", background: "MBA, MDI Gurgaon; Ex-Accenture" },
+  { name: "Nishant Singh Tanwar", role: "Associate Director — Corporate Engagements", background: "MBA, XLRI; Ex-Naukri.com, XamFerry" },
+  { name: "Akhil Krishna Gupta", role: "Associate Director — Corporate Engagements", background: "IIT Kharagpur Alumni; Ex-Naukri.com, Ecolab, IGR" },
+  { name: "Dibyendu Choudhury", role: "Deputy Director — Corporate Engagements", background: "Ivy, Amity University" },
+  { name: "Aastha Arora", role: "Deputy Director — Corporate Engagements", background: "Ex-Finsmart" },
+  { name: "Vinayak Chowdhri", role: "Deputy Director — Corporate Engagements", background: "Ex-mPokket, Proschool, IITC, Hansa, Crownit" },
+  { name: "Chaneerat Singh Kalra", role: "General Manager — Corporate Engagements", background: "Ex-Zomato" },
+  { name: "Riman Khatri", role: "General Manager — Corporate Engagements", background: "Ex-KPMG, MuSigma" },
+  { name: "Vishu Goyal", role: "General Manager — Career Preparation", background: "MEM, Masters' Union; LLB, LLR, Collabera, K-Laundry" },
+  { name: "Mishika Mansad", role: "General Manager — Corporate Engagements", background: "Kingston University Alumni; Ex-Middlesex University, Dubai" },
+  { name: "Rachika Bawa", role: "Senior Manager — Career Preparation", background: "MBA, Masters' Union; Ex-Lowshik, Autonify, Vtrious" },
+];
+
+const LEADER_GROUPS = [
+  { label: "CEO & MDs", people: LEADERS.slice(0, 3) },
+  { label: "CHROs", people: [LEADERS[8], LEADERS[9], LEADERS[11]] },
+  { label: "Unicorn Founders", people: [LEADERS[0], LEADERS[1], LEADERS[6]] },
+  { label: "Executives", people: [LEADERS[4], LEADERS[7], LEADERS[10]] },
 ];
 
 const PODCAST_CHAPTERS = [
@@ -737,6 +767,161 @@ function CareerTransitionsSection() {
         ))}
       </div>
     </Band>
+  );
+}
+
+function PortraitPlaceholder({ name, className = "" }: { name: string; className?: string }) {
+  return (
+    <div className={`career-portrait-placeholder ${className}`} role="img" aria-label={`${name} portrait placeholder`}>
+      <span aria-hidden="true">{name.split(" ").map((part) => part[0]).slice(0, 2).join("")}</span>
+    </div>
+  );
+}
+
+function CareerExperienceArea() {
+  const [story, setStory] = useState(0);
+  const [term, setTerm] = useState(0);
+  const [leaderGroup, setLeaderGroup] = useState(0);
+  const featuredStories = TESTIMONIALS.slice(0, 6);
+  const currentStory = featuredStories[story];
+  const currentTerm = TERMS[term];
+  const currentLeaders = LEADER_GROUPS[leaderGroup];
+
+  const moveStory = (direction: number) => {
+    setStory((current) => (current + direction + featuredStories.length) % featuredStories.length);
+  };
+
+  return (
+    <div className="career-experience-area">
+      <Band id="stories" tone="paper">
+        <div className="career-section-number">01</div>
+        <Reveal><Eyebrow>Student placement experience</Eyebrow></Reveal>
+        <div className="career-featured-story mt-10" key={currentStory.name}>
+          <PortraitPlaceholder name={currentStory.name} className="career-featured-portrait" />
+          <div className="career-featured-copy">
+            <div>
+              <p className="career-kicker">Featured story</p>
+              <h2>{currentStory.name}</h2>
+              <p className="career-role">{currentStory.role}</p>
+            </div>
+            <blockquote>“{currentStory.note}”</blockquote>
+            <div className="career-story-controls">
+              <span>{String(story + 1).padStart(2, "0")} / 39</span>
+              <div>
+                <Button variant="outline" size="icon" onClick={() => moveStory(-1)} aria-label="Previous student story"><ChevronLeft /></Button>
+                <Button variant="outline" size="icon" onClick={() => moveStory(1)} aria-label="Next student story"><ChevronRight /></Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Band>
+
+      <Band tone="grey">
+        <div className="career-section-number">02</div>
+        <Reveal><Eyebrow>Professional guidance</Eyebrow></Reveal>
+        <Reveal delay={100}><h2 className="career-area-title">Careers <em className="font-serif-italic">Team</em></h2></Reveal>
+        <div className="career-team-grid mt-12">
+          {CAREERS_TEAM.map((member, index) => (
+            <Reveal key={member.name} delay={(index % 5) * 55}>
+              <article className="career-team-card">
+                <PortraitPlaceholder name={member.name} />
+                <div className="career-team-copy">
+                  <h3>{member.name}</h3>
+                  <p>{member.role}</p>
+                  <small>{member.background}</small>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+        <a className="career-contact-strip mt-10" href="mailto:careerservices@mastersunion.org">
+          <Mail aria-hidden="true" /> Reach out to our team at <span>careerservices@mastersunion.org</span><ArrowUpRight aria-hidden="true" />
+        </a>
+      </Band>
+
+      <Band id="pathway" tone="white">
+        <div className="career-section-number">03</div>
+        <Reveal><Eyebrow>Annual roadmap</Eyebrow></Reveal>
+        <Reveal delay={100}>
+          <h2 className="career-area-title">Benefit From a Tailored <em className="font-serif-italic">Career Pathway</em></h2>
+          <p className="career-area-intro">Leverage the opportunity to engage in workshops, training, panel discussions, counselling sessions, and personalised career progression plans.</p>
+        </Reveal>
+        <div className="career-term-selector mt-10" role="tablist" aria-label="Career pathway terms">
+          {TERMS.map((item, index) => (
+            <Button key={item.term} variant="ghost" role="tab" aria-selected={term === index} className={term === index ? "is-active" : ""} onClick={() => setTerm(index)}>{item.term}</Button>
+          ))}
+        </div>
+        <div className="career-pathway-panel" key={currentTerm.term}>
+          <div className="career-pathway-content">
+            <p className="career-kicker">{currentTerm.term}</p>
+            <h3>{currentTerm.title}</h3>
+            <ul>{currentTerm.items.map((item) => <li key={item}><span aria-hidden="true">+</span>{item}</li>)}</ul>
+          </div>
+          <div className="career-pathway-visual" role="img" aria-label="Students taking part in career preparation">
+            <img src={heroBg.url} alt="Masters' Union students in a career preparation session" loading="lazy" />
+            <span>{String(term + 1).padStart(2, "0")} / 08</span>
+          </div>
+        </div>
+      </Band>
+
+      <Band tone="paper">
+        <div className="career-section-number">04</div>
+        <Reveal><Eyebrow>Dedicated career coaches</Eyebrow></Reveal>
+        <Reveal delay={100}><h2 className="career-area-title">Making You <em className="font-serif-italic">Industry Ready</em></h2></Reveal>
+        <div className="career-coach-grid mt-12">
+          {COACH_TRACKS.map((track, trackIndex) => (
+            <article className="career-coach-track" key={track.title}>
+              <div className="career-coach-icon">{trackIndex === 0 ? <Mic2 /> : trackIndex === 1 ? <BadgeCheck /> : <Compass />}</div>
+              <h3>{track.title} Coach</h3>
+              <p>{track.note}</p>
+              <div className="career-coach-people">
+                {COACHES.slice(trackIndex * 2, trackIndex * 2 + 2).map((coach) => (
+                  <div className="career-coach-person" key={coach.name}>
+                    <PortraitPlaceholder name={coach.name} />
+                    <div><strong>{coach.name}</strong><span>{coach.role}</span><small>Coaching experience: {coach.exp}</small></div>
+                  </div>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
+      </Band>
+
+      <Band tone="white">
+        <div className="career-section-number">05</div>
+        <Reveal><Eyebrow>Leadership guidance</Eyebrow></Reveal>
+        <Reveal delay={100}><h2 className="career-area-title">Your Future Recruiters <em className="font-serif-italic">on Campus</em></h2></Reveal>
+        <div className="career-leader-layout mt-12">
+          <div className="career-leader-selector" role="tablist" aria-label="Recruiter leadership categories">
+            {LEADER_GROUPS.map((group, index) => (
+              <Button key={group.label} variant="ghost" role="tab" aria-selected={leaderGroup === index} className={leaderGroup === index ? "is-active" : ""} onClick={() => setLeaderGroup(index)}>{group.label}</Button>
+            ))}
+          </div>
+          <div className="career-leader-cards" key={currentLeaders.label}>
+            {currentLeaders.people.map((leader, index) => (
+              <article className="career-leader-card" key={leader.name}>
+                <div className="career-leader-media"><PortraitPlaceholder name={leader.name} /><span><Play fill="currentColor" /></span></div>
+                <h3>{leader.name}</h3><p>{leader.role}</p><small>{String(index + 1).padStart(2, "0")} / 03</small>
+              </article>
+            ))}
+          </div>
+        </div>
+      </Band>
+
+      <section className="career-closing-section">
+        <div className="page-x">
+          <div className="career-closing-cta">
+            <h2>Explore <em className="font-serif-italic">Masters' Union</em></h2>
+            <nav aria-label="Explore Masters' Union">
+              <a href="/life-at-mu">Student Life <ArrowUpRight /></a>
+              <a href="/placements">Explore Careers <ArrowUpRight /></a>
+              <a href="mailto:admissions@mastersunion.org">Book a Visit <ArrowUpRight /></a>
+              <a href="/life-at-mu">Explore Events <ArrowUpRight /></a>
+            </nav>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
 
@@ -1880,235 +2065,7 @@ function Page() {
       {/* TRANSITIONS */}
       <CareerTransitionsSection />
 
-      {/* ALUMNI STORIES */}
-      <Band id="stories" tone="paper">
-        <Reveal>
-          <SectionHeading
-            size="md"
-            eyebrow="Hear straight from our alumni"
-            title="Six years of offers,"
-            emphasis="in their own words."
-          />
-        </Reveal>
-
-        <div className="mt-12 space-y-0">
-          <Rule />
-          {ALUMNI.map((a, i) => (
-            <div key={a.name}>
-              <Reveal
-                delay={(i % 2) * 90}
-                className="group grid grid-cols-1 gap-6 py-10 transition-colors duration-500 hover:bg-black/[0.02] lg:grid-cols-12 lg:gap-16"
-              >
-                <div className="lg:col-span-4">
-                  <div className="flex items-baseline gap-4">
-                    <Index n={i + 1} />
-                    <div>
-                      <div className="text-[1.05rem] font-medium leading-tight">{a.name}</div>
-                      <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-black/55" style={{ fontFamily: MONO }}>{a.role}</div>
-                    </div>
-                  </div>
-                </div>
-                <p className="text-[clamp(1rem,1.5vw,1.2rem)] leading-[1.6] text-black/80 lg:col-span-8">“{a.quote}”</p>
-              </Reveal>
-              <Rule delay={60} />
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-16 grid grid-cols-1 gap-10 lg:grid-cols-2">
-          <TestimonialCarousel
-            label="Student placement experience — selected stories"
-            eyebrow="Student placement experience — 39 stories, selected"
-            testimonials={STORY_QUOTES.slice(0, 6)}
-          />
-          <TestimonialCarousel
-            label="Student placement experience — more stories"
-            eyebrow="More from the cohort"
-            variant="card"
-            testimonials={STORY_QUOTES.slice(6)}
-          />
-        </div>
-
-        <div className="mt-14">
-          <StatStrip
-            variant="bare"
-            columns={4}
-            stats={HERO_STATS.map((s) => ({ value: s.value, label: s.label }))}
-          />
-        </div>
-      </Band>
-
-
-      {/* VENTURES + COMPETITIONS + LIVE PROJECTS */}
-      <Band tone="grey" className="border-y border-black/10">
-        <Reveal>
-          <Eyebrow>Startups founded by MU students</Eyebrow>
-        </Reveal>
-        <div className="mt-10">
-          <Rule />
-          {VENTURES.map((v, i) => (
-            <div key={v.name}>
-              <Reveal
-                delay={(i % 3) * 80}
-                className="group grid grid-cols-1 items-baseline gap-3 py-6 transition-colors duration-500 hover:bg-black/[0.03] md:grid-cols-12 md:gap-8"
-              >
-                <div className="md:col-span-1"><Index n={i + 1} /></div>
-                <div className="text-[1.15rem] font-medium leading-tight transition-transform duration-500 group-hover:translate-x-1 md:col-span-3">{v.name}</div>
-                <div className="text-[10px] uppercase tracking-[0.18em] text-black/55 md:col-span-3" style={{ fontFamily: MONO }}>{v.founder}</div>
-                <p className="text-[0.9rem] leading-[1.6] text-black/70 md:col-span-5">{v.note}</p>
-              </Reveal>
-              <Rule delay={40} />
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-20 grid grid-cols-1 gap-16 lg:grid-cols-2">
-          <div>
-            <Reveal>
-              <Eyebrow>Case competition wins</Eyebrow>
-            </Reveal>
-            <div className="mt-8">
-              <Rule />
-              {COMPETITIONS.map((c, i) => (
-                <div key={c.what}>
-                  <Reveal delay={i * 80} className="group py-6 transition-colors duration-500 hover:bg-black/[0.03]">
-                    <div className="text-[0.98rem] font-medium">{c.what}</div>
-                    <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-black/55" style={{ fontFamily: MONO }}>{c.who}</div>
-                    <p className="mt-2 text-[0.9rem] leading-[1.6] text-black/70">{c.note}</p>
-                  </Reveal>
-                  <Rule delay={40} />
-                </div>
-              ))}
-            </div>
-          </div>
-          <div>
-            <Reveal>
-              <Eyebrow>Live projects</Eyebrow>
-            </Reveal>
-            <div className="mt-8">
-              <Rule />
-              {LIVE_PROJECTS.map((p, i) => (
-                <div key={p.name}>
-                  <Reveal delay={i * 80} className="group py-6 transition-colors duration-500 hover:bg-black/[0.03]">
-                    <div className="text-[0.98rem] font-medium">{p.name}</div>
-                    <p className="mt-2 text-[0.9rem] leading-[1.6] text-black/70">{p.note}</p>
-                  </Reveal>
-                  <Rule delay={40} />
-                </div>
-              ))}
-            </div>
-            <div className="mt-12">
-              <Reveal>
-                <Eyebrow>Student content creators</Eyebrow>
-              </Reveal>
-              <div className="mt-8 flex flex-wrap gap-2">
-                {CREATORS.map((c, i) => (
-                  <Reveal key={c.name} delay={i * 60} y={12}>
-                    <span className="inline-block border border-black/15 bg-white px-3 py-2 text-[0.85rem] text-black/75 transition-colors duration-500 hover:border-black/40">
-                      {c.handle} <span className="text-black/40">· {c.name}</span>
-                    </span>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </Band>
-
-      {/* PATHWAY */}
-      <Band id="pathway" tone="white">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
-          <StickyHead>
-            <Reveal>
-              <Eyebrow>A tailored career pathway</Eyebrow>
-            </Reveal>
-            <Reveal delay={120}>
-              <h2 className="mt-6 max-w-[28ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-                Eight terms. <em className="font-serif-italic">One continuous career roadmap.</em>
-              </h2>
-            </Reveal>
-          </StickyHead>
-
-          <div className="relative lg:col-span-8">
-            {/* progressively drawn roadmap rail */}
-            <div className="absolute left-[7px] top-2 h-[calc(100%-1rem)] w-px bg-black/10">
-              <TimelineRail className="h-full w-px bg-black" />
-            </div>
-
-            <div className="space-y-14 md:space-y-16">
-              {TERMS.map((t, i) => (
-                <RoadmapStage key={t.term} term={t} index={i} />
-              ))}
-            </div>
-          </div>
-        </div>
-      </Band>
-
-      {/* COACHES */}
-      <Band tone="paper">
-        <Reveal>
-          <Eyebrow>Dedicated career coaches</Eyebrow>
-        </Reveal>
-        <Reveal delay={120}>
-          <h2 className="mt-6 max-w-[24ch] text-[clamp(1.6rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-            Making you <em className="font-serif-italic">industry ready.</em>
-          </h2>
-        </Reveal>
-        <div className="mt-12 grid grid-cols-1 gap-x-14 md:grid-cols-3">
-          {COACH_TRACKS.map((c, i) => (
-            <Reveal key={c.title} delay={i * 100} className="border-t border-black/10 pt-7">
-              <div className="flex items-baseline gap-3">
-                <Index n={i + 1} />
-                <div className="text-[1.05rem] font-medium leading-tight">{c.title}</div>
-              </div>
-              <p className="mt-4 text-[0.92rem] leading-[1.6] text-black/70">{c.note}</p>
-            </Reveal>
-          ))}
-        </div>
-        <div className="mt-16">
-          <Rule />
-          {COACHES.map((c, i) => (
-            <div key={c.name}>
-              <Reveal
-                delay={i * 80}
-                className="group grid grid-cols-1 gap-1 py-6 transition-colors duration-500 hover:bg-black/[0.02] md:grid-cols-12 md:items-baseline md:gap-6"
-              >
-                <div className="text-[1rem] font-medium transition-transform duration-500 group-hover:translate-x-1 md:col-span-3">{c.name}</div>
-                <div className="text-[0.95rem] text-black/65 md:col-span-7">{c.role}</div>
-                <div className="text-[10px] uppercase tracking-[0.18em] text-black/50 md:col-span-2 md:text-right" style={{ fontFamily: MONO }}>{c.exp}</div>
-              </Reveal>
-              <Rule delay={40} />
-            </div>
-          ))}
-        </div>
-      </Band>
-
-      {/* LEADERS */}
-      <Band tone="white">
-        <Reveal>
-          <Eyebrow>Your future recruiters on campus</Eyebrow>
-        </Reveal>
-        <Reveal delay={120}>
-          <p className="mt-6 max-w-[62ch] text-[1.02rem] leading-[1.7] text-black/70">
-            CEOs and MDs, CHROs, unicorn founders and senior executives teach, mentor and recruit on campus.
-          </p>
-        </Reveal>
-        <div className="mt-12 grid grid-cols-1 gap-x-14 md:grid-cols-2">
-          {LEADERS.map((l, i) => (
-            <Reveal
-              key={l.name}
-              delay={(i % 2) * 90}
-              className="group flex items-baseline justify-between gap-6 border-t border-black/10 py-6 transition-colors duration-500 hover:bg-black/[0.02]"
-            >
-              <div>
-                <div className="text-[0.98rem] font-medium leading-tight transition-transform duration-500 group-hover:translate-x-1">{l.name}</div>
-                <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-black/55" style={{ fontFamily: MONO }}>{l.role}</div>
-              </div>
-              <Index n={i + 1} />
-            </Reveal>
-          ))}
-        </div>
-      </Band>
+      <CareerExperienceArea />
 
       {/* CONTACT */}
       <section id="contact" className="relative overflow-hidden border-t border-black/10 bg-[#f2f1ee]">
