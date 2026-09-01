@@ -1631,7 +1631,7 @@ function PodcastVideoRail({
             scrollByCard(1);
           }
         }}
-        className="rail-scroll no-scrollbar flex items-start gap-4 overflow-x-auto pb-2 focus:outline-none"
+        className="rail-scroll no-scrollbar flex w-full items-stretch gap-4 overflow-x-auto pb-2 focus:outline-none"
       >
         {PODCAST_RAIL_VIDEOS.map((item) => (
           <button
@@ -1639,7 +1639,7 @@ function PodcastVideoRail({
             type="button"
             onClick={() => setVideoModal({ title: item.name, video: item.video, start: 0 })}
             aria-label={`Play conversation with ${item.name}`}
-            className="group flex w-[240px] shrink-0 flex-col text-left"
+            className="group flex min-w-[240px] flex-1 basis-[240px] flex-col text-left"
           >
             <span className="relative block aspect-video w-full overflow-hidden rounded-md bg-black/10">
               <img
