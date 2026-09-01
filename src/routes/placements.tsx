@@ -51,6 +51,7 @@ import bhanuImg from "@/assets/placements/bhanu.webp.asset.json";
 import kritiSharmaImg from "@/assets/placements/kritiSharma.webp.asset.json";
 import shibiImg from "@/assets/placements/shibi.webp.asset.json";
 import varunImg from "@/assets/placements/varun.webp.asset.json";
+import sidhantaImg from "@/assets/placements/sidhanta.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -279,8 +280,14 @@ const TESTIMONIALS = [
     note: "Masters’ Union played a pivotal role in helping me secure my Product Manager role at ServiceNow. The campus hiring opportunities were exceptional, and the preparation support invaluable. Case practice and product practicums, guided by mentors like Gaurav Sahu and Aditya, sharpened my problem-solving, while Gopika Ma’am’s guidance in behavioural prep was a game-changer.",
     image: varunImg.url,
   },
-  ...Array.from({ length: 25 }, (_, i) => ({
-    name: `Placement Story ${String(i + 15).padStart(2, "0")}`,
+  {
+    name: "Sidhanta Kumar Panigrahi",
+    role: "General Manager - Business Development, Morphogenesis",
+    note: "Serving as Student Council President at Masters’ Union gave me first-hand experience in managing teams. MU helped channel that energy into strategic execution and stakeholder management. Its immersive pedagogy and exposure to real industry-led projects through experiential learning developed a 360° business perspective, making my transition to Morphogenesis seamless.",
+    image: sidhantaImg.url,
+  },
+  ...Array.from({ length: 24 }, (_, i) => ({
+    name: `Placement Story ${String(i + 16).padStart(2, "0")}`,
     role: "Role & Company — to be confirmed",
     note: "Placeholder story. Portrait, role and quote will be added once the cohort details are shared.",
   })),
