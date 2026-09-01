@@ -2499,10 +2499,13 @@ function useScrollBlurReveal(rootRef: React.RefObject<HTMLElement | null>) {
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          (entry.target as HTMLElement).dataset.visible = entry.isIntersecting ? "true" : "false";
+          if (entry.isIntersecting) {
+            (entry.target as HTMLElement).dataset.visible = "true";
+            io.unobserve(entry.target);
+          }
         }
       },
-      { threshold: 0.08, rootMargin: "-4% 0px -8% 0px" },
+      { threshold: 0.08, rootMargin: "0px 0px -8% 0px" },
     );
     targets.forEach((el) => io.observe(el));
     return () => io.disconnect();
