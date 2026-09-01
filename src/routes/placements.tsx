@@ -2041,7 +2041,7 @@ function OutcomesAccordion() {
 
         {/* RIGHT — static metrics bar (shared Podcast layout) */}
         <div className="lg:col-span-8">
-          <HorizontalMetricsStrip />
+          <HorizontalMetricsStrip variant="dark" />
         </div>
       </div>
     </div>
