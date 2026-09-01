@@ -582,7 +582,7 @@ const LEADERS = [
   { name: "Rohit Kapoor", role: "CEO, Food Marketplace, Swiggy", video: "https://youtu.be/unzkiy1pkZQ" },
   { name: "Rajat Mathur", role: "MD, Morgan Stanley", video: "https://youtu.be/W0aiybI26ow" },
   { name: "Manish Chowdhary", role: "Co-founder, WOW Skin Science", video: "https://youtu.be/I-q_7_FjnrM" },
-  { name: "Sunjay Kapur", role: "Chairman, Sona Comstar" },
+  { name: "Sunjay Kapur", role: "Chairman, Sona Comstar", video: "https://youtu.be/BRCS9nhQWuo" },
   { name: "Vikramaditya Chaudhri", role: "Co-Founder, Wingreens Farms" },
   { name: "Hitesh Oberoi", role: "CEO, Info Edge India Ltd." },
   { name: "Rakesh Verma", role: "Chief Managing Director & Co-Founder, MapmyIndia" },
