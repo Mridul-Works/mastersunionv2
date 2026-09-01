@@ -1487,7 +1487,7 @@ function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal |
 function PodcastTextBlock() {
   const id = PODCAST_ID;
   return (
-    <div className="flex flex-col justify-center">
+    <div className="flex flex-col">
       <Reveal>
         <Eyebrow>Podcast</Eyebrow>
       </Reveal>
