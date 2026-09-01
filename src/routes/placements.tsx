@@ -795,23 +795,70 @@ function CareerExperienceArea() {
     <div className="career-experience-area">
       <Band id="stories" tone="paper">
         <div className="career-section-number">01</div>
-        <Reveal><Eyebrow>Student placement experience</Eyebrow></Reveal>
-        <div className="career-featured-story mt-10" key={currentStory.name}>
-          <PortraitPlaceholder name={currentStory.name} className="career-featured-portrait" />
-          <div className="career-featured-copy">
-            <div>
-              <p className="career-kicker">Featured story</p>
-              <h2>{currentStory.name}</h2>
-              <p className="career-role">{currentStory.role}</p>
+        <div className="career-story-heading">
+          <Reveal><Eyebrow>Student placement experience</Eyebrow></Reveal>
+          <Reveal delay={100}>
+            <h2>Featured <em className="font-serif-italic">stories</em></h2>
+          </Reveal>
+        </div>
+
+        <div
+          className="career-featured-story"
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Student placement stories"
+          tabIndex={0}
+          onKeyDown={(event) => {
+            if (event.key === "ArrowLeft") moveStory(-1);
+            if (event.key === "ArrowRight") moveStory(1);
+          }}
+        >
+          <div className="career-story-toolbar">
+            <div className="career-story-progress" aria-label={`Story ${story + 1} of ${featuredStories.length}`}>
+              <span>{String(story + 1).padStart(2, "0")}</span>
+              <i aria-hidden="true"><b style={{ width: `${((story + 1) / featuredStories.length) * 100}%` }} /></i>
+              <span>{String(featuredStories.length).padStart(2, "0")}</span>
             </div>
-            <blockquote>“{currentStory.note}”</blockquote>
-            <div className="career-story-controls">
-              <span>{String(story + 1).padStart(2, "0")} / 39</span>
+            <div className="career-story-arrows">
+              <Button variant="outline" size="icon" onClick={() => moveStory(-1)} aria-label="Previous student story"><ChevronLeft /></Button>
+              <Button variant="outline" size="icon" onClick={() => moveStory(1)} aria-label="Next student story"><ChevronRight /></Button>
+            </div>
+          </div>
+
+          <div className="career-story-stage" key={currentStory.name} aria-live="polite">
+            <div className="career-featured-copy">
               <div>
-                <Button variant="outline" size="icon" onClick={() => moveStory(-1)} aria-label="Previous student story"><ChevronLeft /></Button>
-                <Button variant="outline" size="icon" onClick={() => moveStory(1)} aria-label="Next student story"><ChevronRight /></Button>
+                <p className="career-kicker">Featured story <span>— {String(story + 1).padStart(2, "0")}</span></p>
+                <h3>{currentStory.name}</h3>
+                <p className="career-role">{currentStory.role}</p>
+              </div>
+              <blockquote>“{currentStory.note}”</blockquote>
+            </div>
+
+            <div className="career-story-visual">
+              <PortraitPlaceholder name={currentStory.name} className="career-featured-portrait" />
+              <div className="career-story-accent">
+                <span>Student voice</span>
+                <p>{currentStory.name}</p>
+                <strong aria-hidden="true">↗</strong>
               </div>
             </div>
+          </div>
+
+          <div className="career-story-tabs" role="tablist" aria-label="Choose a student story">
+            {featuredStories.map((item, index) => (
+              <button
+                key={item.name}
+                type="button"
+                role="tab"
+                aria-selected={story === index}
+                aria-label={`Show story from ${item.name}`}
+                onClick={() => setStory(index)}
+              >
+                <span aria-hidden="true" />
+                {String(index + 1).padStart(2, "0")}
+              </button>
+            ))}
           </div>
         </div>
       </Band>
