@@ -663,7 +663,7 @@ const LEADER_PLACEHOLDER = (label: string, index: number) => ({
 
 const LEADER_GROUPS = [
   { label: "CEO & MDs", people: LEADERS.slice(0, 11) },
-  { label: "CHROs", people: [...Array.from({ length: 7 }, (_, i) => LEADER_PLACEHOLDER("CHRO", i + 1))] },
+  { label: "CHROs", people: CHRO_LEADERS },
   { label: "Unicorn Founders", people: [...Array.from({ length: 6 }, (_, i) => LEADER_PLACEHOLDER("Unicorn Founder", i + 1))] },
   { label: "Executives", people: [...Array.from({ length: 5 }, (_, i) => LEADER_PLACEHOLDER("Executive", i + 1))] },
 ];
