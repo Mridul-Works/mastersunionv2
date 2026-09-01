@@ -593,6 +593,10 @@ const CAREERS_TEAM = [
   { name: "Kushagra Kumar", role: "Senior Manager — Corporate Relations", background: "MBA, DIAS | Ex- Fuld, 10times, Info Edge (India) Ltd", image: kushagraKumarImg.url },
   { name: "Shivangi Dwivedi", role: "Senior Manager — Corporate Relations", background: "Ex- Britannica Education India", image: shivangiDwivediImg.url },
   { name: "Sourav Majumder", role: "Senior Manager — Corporate Relations", background: "Ex- CodingNinjas", image: souravMajumderImg.url },
+  { name: "Sidhartha Bal", role: "Program Manager — Corporate Relations", background: "Ex- Growth School", image: sidharthaBalImg.url },
+  { name: "Nitika Wadhwa", role: "Program Manager — Corporate Relations", background: "Ex- EHL, Jamboree, Cognizant", image: nitikaWadhwaImg.url },
+  { name: "Zubair Warsi", role: "Program Manager — Corporate Relations", background: "Ex- Spectacom Global, All Stars Digital, Radio Mirchi", image: zubairWarsiImg.url },
+  { name: "Saksham Dutt", role: "Manager — Corporate Relations", background: "Ex- Adobe, Cvent, Gartner", image: sakshamDuttImg.url },
 ];
 
 const GUIDANCE_PROFILES = [
