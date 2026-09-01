@@ -1095,6 +1095,16 @@ body::-webkit-scrollbar {
   color: #000000;
 }
 
+.placements-obsidian .hero-sweep-button.dim .hero-sweep-button-content,
+.placements-obsidian .hero-sweep-button.dim .hero-sweep-button-content svg {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.placements-obsidian .hero-sweep-button.dim:hover .hero-sweep-button-content,
+.placements-obsidian .hero-sweep-button.dim:hover .hero-sweep-button-content svg {
+  color: #000000;
+}
+
 
 .placements-obsidian [class*="border-black"] {
   border-color: rgb(242 241 238 / 0.16);
