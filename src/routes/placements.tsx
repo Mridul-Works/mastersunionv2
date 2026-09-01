@@ -937,7 +937,7 @@ function CinematicHero() {
                 style={{ fontFamily: MONO }}
               >
                 <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
-                  <Download className="size-3.5 transition-all duration-300 group-hover:translate-y-0.5" /> Placement report
+                  <Download className="size-3.5 transition-all duration-300 group-hover:translate-y-0.5" /> <span className="text-black/70 transition-colors duration-300 group-hover:text-black">Placement report</span>
                 </span>
               </button>
               <a
@@ -2123,7 +2123,7 @@ function CohortReports() {
           style={{ fontFamily: MONO }}
         >
           <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
-            <Download className="size-3.5 transition-all duration-300 group-hover:translate-y-0.5" /> Download placement report
+            <Download className="size-3.5 transition-all duration-300 group-hover:translate-y-0.5" /> <span className="text-white/70 transition-colors duration-300 group-hover:text-white">Download placement report</span>
           </span>
         </button>
       </div>
