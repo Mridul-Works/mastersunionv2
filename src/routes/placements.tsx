@@ -426,11 +426,6 @@ const TESTIMONIALS = [
     note: "Masters’ Union has been transformative in my career journey. The Placement and Outreach teams were proactive and approachable, making the process seamless. Career prep, GetPrep mentors, and peer mock interviews helped me build confidence and present myself effectively. Thanks to MU’s collaborative spirit and opportunities, I secured a role aligned with my ambitions.",
     image: apoorvaImg.url,
   },
-  ...Array.from({ length: 4 }, (_, i) => ({
-    name: `Placement Story ${String(i + 40).padStart(2, "0")}`,
-    role: "Role & Company — to be confirmed",
-    note: "Placeholder story. Portrait, role and quote will be added once the cohort details are shared.",
-  })),
 ];
 
 
