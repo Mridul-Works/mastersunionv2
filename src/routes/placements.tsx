@@ -1316,23 +1316,34 @@ function CareerExperienceArea() {
             </header>
 
             <div className="career-roadmap-body">
-              <div
-                className="career-pathway-visual career-roadmap-visual"
-                aria-label={currentTerm.video ? "Term 4 interview preparation video" : "Students taking part in career preparation"}
-              >
-                {currentTerm.video ? (
-                  <iframe
-                    src={`https://www.youtube.com/embed/${currentTerm.video.split("/").pop()?.split("?")[0]}`}
-                    title={`${currentTerm.term} video`}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
+            <div
+              className={`career-pathway-visual career-roadmap-visual${currentTerm.video ? " has-video" : ""}`}
+              aria-label={currentTerm.video ? `${currentTerm.title} video` : "Students taking part in career preparation"}
+              role={currentTerm.video ? "button" : undefined}
+              tabIndex={currentTerm.video ? 0 : undefined}
+              onClick={() => currentTerm.video ? setVideoModal({ title: currentTerm.title, video: currentTerm.video }) : undefined}
+              onKeyDown={(e) => { if (currentTerm.video && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); setVideoModal({ title: currentTerm.title, video: currentTerm.video }); }}}
+            >
+              {currentTerm.video ? (
+                <>
+                  <img
+                    src={`https://img.youtube.com/vi/${currentTerm.video.split("/").pop()?.split("?")[0]}/maxresdefault.jpg`}
+                    alt={`${currentTerm.title} video thumbnail`}
                     loading="lazy"
+                    onError={(e) => {
+                      const img = e.currentTarget;
+                      if (!img.dataset.fallback) { img.dataset.fallback = "1"; img.src = img.src.replace("maxresdefault", "mqdefault"); }
+                    }}
                   />
-                ) : (
-                  <img src={currentTerm.image || heroBg.url} alt="Masters' Union students in a career preparation session" loading="lazy" />
-                )}
-                <span>{String(term + 1).padStart(2, "0")} / {String(TERMS.length).padStart(2, "0")}</span>
-              </div>
+                  <span className="career-roadmap-play" aria-hidden="true">
+                    <span><Play fill="currentColor" /></span>
+                  </span>
+                </>
+              ) : (
+                <img src={currentTerm.image || heroBg.url} alt="Masters' Union students in a career preparation session" loading="lazy" />
+              )}
+              <span className="career-roadmap-counter">{String(term + 1).padStart(2, "0")} / {String(TERMS.length).padStart(2, "0")}</span>
+            </div>
 
               <ul className="career-roadmap-items">
                 {currentTerm.items.map((item, itemIndex) => (
