@@ -1672,7 +1672,7 @@ function PodcastChapters({ open, setOpen }: { open: boolean; setOpen: (v: boolea
   );
 
   return (
-    <div className="mt-5 border-t border-black/15 pt-4">
+    <div className="mt-5 rounded-xl border-t border-white/15 bg-[#0E1113] p-4 pt-4">
       <ul className="flex flex-col">
         {previewVideos.map((item) => (
           <VideoRow item={item} key={item.video} />
@@ -1694,14 +1694,14 @@ function PodcastChapters({ open, setOpen }: { open: boolean; setOpen: (v: boolea
         onClick={() => setOpen(!open)}
         aria-expanded={open}
         aria-label="Toggle video list"
-        className="group mt-3 flex w-full items-center justify-end gap-3 border-t border-black/15 pt-3 text-left"
+        className="group mt-3 flex w-full items-center justify-end gap-3 border-t border-white/15 pt-3 text-left"
       >
-        <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-black/50 transition-colors duration-300 group-hover:text-[var(--accent)]">
+        <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/50 transition-colors duration-300 group-hover:text-[var(--accent)]">
           {open ? "Show less" : "Show all"}
         </span>
         <ChevronDown
           aria-hidden
-          className={`size-4 text-black/40 transition-transform duration-500 ease-in-out group-hover:text-[var(--accent)] ${open ? "rotate-180" : ""}`}
+          className={`size-4 text-white/40 transition-transform duration-500 ease-in-out group-hover:text-[var(--accent)] ${open ? "rotate-180" : ""}`}
         />
       </button>
     </div>
