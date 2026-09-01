@@ -92,3 +92,4 @@
 - [ ] Add Term 5 Annual Roadmap image (cd5.webp)
 - [ ] Add Term 6 Annual Roadmap image (imgcd.webp)
 - [ ] Add Term 7 Annual Roadmap image (imageCd7.webp)
+- [ ] Add Term 8 Annual Roadmap image (cd8.webp)
