@@ -42,6 +42,7 @@ import yashMehtaImg from "@/assets/placements/yash-mehta.webp.asset.json";
 import souravDasImg from "@/assets/placements/sourav.webp.asset.json";
 import diveshAroraImg from "@/assets/placements/divesh.webp.asset.json";
 import ishetaImg from "@/assets/placements/isheta.webp.asset.json";
+import rishieImg from "@/assets/placements/rishie.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -251,6 +252,7 @@ const TESTIMONIALS = [
   { name: "Sourav Das", role: "Junior Consultant, Larsen & Toubro | Riyadh", note: "Some of the best experiences of my life came at Masters’ Union, and securing an international role in Riyadh was the perfect culmination. MU is not just a B-school - it immerses students in real-world problems, ensuring theory translates into practice and industry readiness. I’m grateful to have chosen Masters’ Union; it has truly catapulted my career to the next level.", image: souravDasImg.url },
   { name: "Divesh Arora", role: "Management Trainee, Aditya Birla Capital", note: "The behavioural handbook at Masters’ Union was instrumental in helping me crack my interview at Aditya Birla Capital. It covered a wide range of questions that I practised to refine my responses. A call with alumni working at ABC further gave me clarity on culture, expectations and the work at ABC, ensuring I walked into the interview fully prepared and confident.", image: diveshAroraImg.url },
   { name: "Isheta Agrawal", role: "Project Consultant, Ernst & Young (EY)", note: "Securing this job wouldn’t have been possible without Masters’ Union. The Placement Cell’s support - from CV building to mock interviews and networking - shaped my preparation for the recruitment process. More importantly, the peer group pushed me to grow every day. Masters’ Union didn’t just help me land a job; it shaped me into a professional ready to thrive anywhere.", image: ishetaImg.url },
+  { name: "Rishie Prabhakaran", role: "Product Specialist - Analytics Department, Bloomberg", note: "My journey to prepare for the Bloomberg interview was deeply supported by the structured preparation at Masters’ Union. Multiple resume iterations, regular behavioural mock interviews and personalized mentorship helped me understand my experiences better and articulate them with clarity and confidence—enabling me to show the depth of thought Bloomberg was seeking.", image: rishieImg.url },
   { name: "Ankita Saxena", role: "Manager, Credit Risk, Citibank", note: "Real-world cases and live projects built a business-partner mindset." },
   { name: "Kriti Gupta", role: "Merchandising Manager, Careem, Dubai", note: "Career Services proactively shared profiles and opened alumni connections." },
   { name: "Varun Makhija", role: "Product Manager, ServiceNow", note: "Case practice, product practicums and behavioural prep from named mentors." },
