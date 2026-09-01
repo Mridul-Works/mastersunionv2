@@ -82,3 +82,5 @@
 - [x] Add Professional guidance card 52 (Ankit Jain) portrait, name, role and background text
 - [x] Update Annual Roadmap Term 3 items with exact provided list
 - [x] Update Annual Roadmap Term 4 items with exact provided list
+- [x] Update Annual Roadmap Term 5 items with exact provided list
+- [x] Update Annual Roadmap Term 6 items with exact provided list
