@@ -2110,15 +2110,11 @@ function CohortReports() {
         <button
           type="button"
           onClick={reportModal.open}
-          className="report-sweep-button group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden border border-black/15 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-black/70 transition-colors duration-500 hover:border-black/45"
+          className="hero-sweep-button group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden bg-black px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:bg-accent hover:border-accent hover:shadow-[0_0_28px_-6px_color-mix(in_oklab,var(--accent)_60%,transparent)]"
           style={{ fontFamily: MONO }}
         >
-          <span
-            aria-hidden
-            className="absolute inset-0 z-0 origin-left scale-x-0 bg-accent transition-transform duration-500 ease-out group-hover:scale-x-100"
-          />
-          <span className="report-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-500">
-            <Download className="size-3.5" /> Download placement report
+          <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
+            <Download className="size-3.5 transition-all duration-300 group-hover:translate-y-0.5" /> Download placement report
           </span>
         </button>
       </div>
