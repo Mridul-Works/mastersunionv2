@@ -1095,10 +1095,6 @@ body::-webkit-scrollbar {
   color: #000000;
 }
 
-.report-sweep-button:hover .report-sweep-button-content,
-.report-sweep-button:hover .report-sweep-button-content svg {
-  color: #000000;
-}
 
 .placements-obsidian [class*="border-black"] {
   border-color: rgb(242 241 238 / 0.16);
