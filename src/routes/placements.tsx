@@ -236,7 +236,7 @@ const ALUMNI = [
 
 const TESTIMONIALS = [
   { name: "Jas Desai", role: "Senior Associate, CEO's Office (Transformation & Strategy)\nDP World, Dubai", note: "Masters' Union's distinctive pedagogy was key to my success in securing a role at DP World, Dubai. The In-class & Out-class approach built practical problem-solving skills for the Transformation & Strategy role at the CEO's Office. Regular CXO sessions and C-suite interactions strengthened my understanding, confidence, and performance during interviews.", image: jasDesaiImg.url },
-  { name: "Komal Bansal", role: "Senior Associate, BCG", note: "Structured thinking from faculty, Get Prepped mentorship, Dropshipping and VIP exposure.", image: komalBansalImg.url },
+  { name: "Komal Bansal", role: "Senior Associate, BCG", note: "Masters’ Union shaped my journey from bringing firms like BCG to campus to building a structured thought process through in-class learnings (special thanks to Bhupesh Sir and Vipin Sir) and Get Prepped mentorship. Real-world exposure via Dropshipping and the VIP program equipped me with practical skills that helped me contribute meaningfully during my internship.", image: komalBansalImg.url },
   { name: "Archit Bansal", role: "Manager – CEO's Office, Reliance Infrastructure", note: "Led the Masters' Union Investment Fund, sharpening strategic decision-making." },
   { name: "Karan Mulky", role: "Client Solutions Manager, Meta", note: "FOCOS practicum for first-principles thinking and structured interview prep." },
   { name: "Archit Bhargava", role: "Analyst, Avaana Capital", note: "Investing programme gave hands-on deal sourcing, diligence and startup evaluation." },
