@@ -85,3 +85,4 @@
 - [x] Update Annual Roadmap Term 5 items with exact provided list
 - [x] Update Annual Roadmap Term 6 items with exact provided list
 - [x] Update Annual Roadmap Term 7 items with exact provided list
+- [x] Add YouTube video link to Term 4 Annual Roadmap visual placeholder
