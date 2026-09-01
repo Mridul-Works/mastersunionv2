@@ -1446,15 +1446,15 @@ function CareerExperienceArea() {
             ))}
           </div>
 
-          <Dialog open={!!leaderVideo} onOpenChange={(open) => !open && setLeaderVideo(null)}>
+          <Dialog open={!!videoModal} onOpenChange={(open) => !open && setVideoModal(null)}>
             <DialogContent className="career-leader-video-dialog max-w-3xl border-0 bg-black p-0">
-              <DialogTitle className="sr-only">{leaderVideo?.name ? `Video from ${leaderVideo.name}` : "Leader video"}</DialogTitle>
+              <DialogTitle className="sr-only">{videoModal?.title ? `Video from ${videoModal.title}` : "Leader video"}</DialogTitle>
               <DialogDescription className="sr-only">YouTube video player</DialogDescription>
-              {leaderVideo && (
+              {videoModal && (
                 <div className="career-leader-video-wrap">
                   <iframe
-                    src={`https://www.youtube.com/embed/${leaderVideo.video.split("/").pop()?.split("?")[0]}?autoplay=1&rel=0`}
-                    title={`Video from ${leaderVideo.name}`}
+                    src={`https://www.youtube.com/embed/${videoModal.video.split("/").pop()?.split("?")[0]}?autoplay=1&rel=0`}
+                    title={`Video from ${videoModal.title}`}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
                     allowFullScreen
                   />
