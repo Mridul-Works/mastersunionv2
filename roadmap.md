@@ -38,3 +38,4 @@
 - [x] Update Professional guidance card 6 (Nishant Singh Tanwar) portrait and background text
 - [x] Update Professional guidance card 7 (Akhil Krishna Gupta) portrait and background text
 - [x] Update Professional guidance card 8 (Dibyendu Choudhury) portrait and background text
+- [x] Update Professional guidance card 9 (Aastha Arora) portrait and background text
