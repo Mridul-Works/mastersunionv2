@@ -66,6 +66,9 @@ import malayImg from "@/assets/placements/malay.webp.asset.json";
 import puruImg from "@/assets/placements/puru.webp.asset.json";
 import dhananjayImg from "@/assets/placements/dhananjay.webp.asset.json";
 import shagunImg from "@/assets/placements/shagun.webp.asset.json";
+import karanJhaveriImg from "@/assets/placements/karanJhaveri.webp.asset.json";
+import harshitImg from "@/assets/placements/harshit.webp.asset.json";
+import aarushiImg from "@/assets/placements/Aarushi.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -378,8 +381,26 @@ const TESTIMONIALS = [
     note: "Masters’ Union played a key role in helping me secure my Brand Manager role at Farmley. Hands-on projects and mentorship sharpened my strategic thinking and problem-solving. The immersive curriculum, CXO talks, live business simulations, and networking deepened my understanding in branding, giving me the confidence to lead brand strategy in a fast-paced startup.",
     image: shagunImg.url,
   },
-  ...Array.from({ length: 10 }, (_, i) => ({
-    name: `Placement Story ${String(i + 34).padStart(2, "0")}`,
+  {
+    name: "Karan Jhaveri",
+    role: "Chief of Staff, Confido Health",
+    note: "\"Playing to win\" is the mindset at Masters’ Union. The seamless collaboration between the Career Services and Career Prep teams, combined with personalized support, constant guidance, and one-on-one involvement, made the journey intentional and empowering. Every milestone felt shared, and I credit much of our success to their dedication and belief in students’ goals.",
+    image: karanJhaveriImg.url,
+  },
+  {
+    name: "Harshit Gambhir",
+    role: "Program Manager, Blinkit",
+    note: "Coming from six years in Automotive R&D, I thought transitioning to a new industry would be tough and was concerned about ROI, given my pre-MBA salary as a Project Manager. Masters’ Union changed my outlook—building business and product acumen and teaching me to leverage my expertise strategically. Within eight months, I secured a Program Manager role at Blinkit.",
+    image: harshitImg.url,
+  },
+  {
+    name: "Aarushi Gosain",
+    role: "Consultant, KPMG India",
+    note: "A big shoutout to the Placement Team for their incredible and unwavering support throughout my journey. They patiently guided me, connected me with the right opportunities, and understood my career goals. Special thanks to Jyoti and Jasleen Ma’am for helping me navigate consulting and secure my placement at KPMG - couldn’t have done it without them!",
+    image: aarushiImg.url,
+  },
+  ...Array.from({ length: 7 }, (_, i) => ({
+    name: `Placement Story ${String(i + 37).padStart(2, "0")}`,
     role: "Role & Company — to be confirmed",
     note: "Placeholder story. Portrait, role and quote will be added once the cohort details are shared.",
   })),
