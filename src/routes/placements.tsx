@@ -89,6 +89,7 @@ import shelizaMamadImg from "@/assets/placements/Sheliza_Mamad.webp.asset.json";
 import radhikaGoyalImg from "@/assets/placements/Radhika_Goyal.webp.asset.json";
 import shubhamGuptaImg from "@/assets/placements/Shubham_Gupta.webp.asset.json";
 import ajayaKaushikImg from "@/assets/placements/Ajaya_Kaushik.webp.asset.json";
+import pragatiGuptaImg from "@/assets/placements/Pragati_Gupta.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -557,6 +558,7 @@ const CAREERS_TEAM = [
   { name: "Radhika Goyal", role: "Senior Manager — Career Preparation", background: "MBA, Masters' Union | Ex- Daarshik Aerotech, Virtusa", image: radhikaGoyalImg.url },
   { name: "Shubham Gupta", role: "Senior Manager — Career Preparation", background: "MBA, Masters' Union | Ex- Meltwater, Vistara", image: shubhamGuptaImg.url },
   { name: "Ajaya Kaushik", role: "Senior Manager — Corporate Relations", background: "YIF, Ashoka University | Ex- Deutsche Telekom", image: ajayaKaushikImg.url },
+  { name: "Pragati Gupta", role: "Senior Manager — Corporate Relations", background: "Ex- Pearson", image: pragatiGuptaImg.url },
 ];
 
 const GUIDANCE_PROFILES = [

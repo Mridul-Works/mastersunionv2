@@ -47,3 +47,4 @@
 - [x] Update Professional guidance card 15 (Radhika Goyal) portrait, name, role and background text
 - [x] Add Professional guidance card 16 (Shubham Gupta) portrait, name, role and background text
 - [x] Add Professional guidance card 17 (Ajaya Kaushik) portrait, name, role and background text
+- [x] Add Professional guidance card 18 (Pragati Gupta) portrait, name, role and background text
