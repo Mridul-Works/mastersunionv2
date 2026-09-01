@@ -1105,15 +1105,6 @@ body::-webkit-scrollbar {
   color: #000000;
 }
 
-.placements-obsidian .hero-sweep-button.report-light .hero-sweep-button-content,
-.placements-obsidian .hero-sweep-button.report-light .hero-sweep-button-content svg {
-  color: #131618;
-}
-
-.placements-obsidian .hero-sweep-button.report-light:hover .hero-sweep-button-content,
-.placements-obsidian .hero-sweep-button.report-light:hover .hero-sweep-button-content svg {
-  color: #000000;
-}
 
 
 
