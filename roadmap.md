@@ -131,3 +131,5 @@
 - Added playable YouTube video link for Vikramaditya Chaudhri (CEO & MDs): https://youtu.be/BiFlkwBf4xw
 
 - Added playable YouTube video link for Hitesh Oberoi (CEO & MDs): https://youtu.be/m2WLl88yM3g
+
+- Added playable YouTube video link for Rakesh Verma (CEO & MDs): https://youtu.be/Lc_eotDL7PQ
