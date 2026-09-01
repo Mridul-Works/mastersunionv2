@@ -8,7 +8,7 @@ import {
   useState,
 } from "react";
 import modalStudents from "@/assets/modal-students.webp.asset.json";
-import report2025 from "@/assets/placement-reports/report-2025.pdf.asset.json";
+import placementReport from "@/assets/placement-reports/placement-report.pdf.asset.json";
 
 const MONO = "var(--font-mono-tech)";
 const INTER = "var(--font-display)";
@@ -159,6 +159,7 @@ function ReportModal({ onClose }: { onClose: () => void }) {
   const [phone, setPhone] = useState("");
   const [experience, setExperience] = useState("");
   const [error, setError] = useState("");
+  const [downloading, setDownloading] = useState(false);
   const firstFieldRef = useRef<HTMLInputElement>(null);
 
   /* entrance */
@@ -193,8 +194,20 @@ function ReportModal({ onClose }: { onClose: () => void }) {
     window.setTimeout(onClose, 320);
   }, [closing, onClose]);
 
-  const submit = (e: React.FormEvent) => {
+  const triggerDownload = (href: string, revoke?: string) => {
+    const link = document.createElement("a");
+    link.href = href;
+    link.download = "masters-union-placement-report.pdf";
+    link.rel = "noopener";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    if (revoke) window.setTimeout(() => URL.revokeObjectURL(revoke), 10000);
+  };
+
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (downloading) return;
     if (!name.trim() || !email.trim() || !phone.trim() || !experience) {
       setError("Please fill in all required fields.");
       return;
@@ -204,8 +217,20 @@ function ReportModal({ onClose }: { onClose: () => void }) {
       return;
     }
     setError("");
-    window.open(report2025.url, "_blank", "noopener");
-    requestClose();
+    setDownloading(true);
+    try {
+      const response = await fetch(placementReport.url);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const blob = await response.blob();
+      const objectUrl = URL.createObjectURL(blob);
+      triggerDownload(objectUrl, objectUrl);
+    } catch {
+      // Fall back to a direct download from the asset URL.
+      triggerDownload(placementReport.url);
+    } finally {
+      setDownloading(false);
+      requestClose();
+    }
   };
 
   return (
@@ -348,6 +373,8 @@ function ReportModal({ onClose }: { onClose: () => void }) {
             <div className="pt-1">
               <button
                 type="submit"
+                disabled={downloading}
+                aria-busy={downloading}
                 className="hero-sweep-button group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden bg-white px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-black"
                 style={{ fontFamily: MONO }}
               >
