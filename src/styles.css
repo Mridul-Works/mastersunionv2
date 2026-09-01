@@ -2965,6 +2965,9 @@ body::-webkit-scrollbar {
 }
 
 .career-guidance-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
   padding: 1rem;
 }
 
@@ -2973,10 +2976,6 @@ body::-webkit-scrollbar {
   font-size: clamp(1.05rem, 1.5vw, 1.35rem);
   font-weight: 300;
   line-height: 1.05;
-}
-
-.career-guidance-card--feature .career-guidance-copy h3 {
-  font-size: clamp(1.35rem, 2.2vw, 1.95rem);
 }
 
 .career-guidance-copy p {
@@ -2990,7 +2989,7 @@ body::-webkit-scrollbar {
 
 .career-guidance-copy small {
   display: block;
-  margin-top: 0.75rem;
+  margin-top: auto;
   padding-top: 0.75rem;
   border-top: 1px solid color-mix(in oklab, var(--foreground) 9%, transparent);
   color: color-mix(in oklab, var(--foreground) 62%, transparent);
@@ -2998,16 +2997,6 @@ body::-webkit-scrollbar {
   line-height: 1.5;
 }
 
-.career-guidance-card--compact {
-  min-height: 8.5rem;
-}
-
-.career-guidance-card--compact .career-guidance-copy {
-  display: flex;
-  min-height: 8.5rem;
-  flex-direction: column;
-  justify-content: end;
-}
 
 .career-guidance-card.is-placeholder {
   border-style: dashed;
