@@ -234,7 +234,7 @@ const ALUMNI = [
 ];
 
 const TESTIMONIALS = [
-  { name: "Jas Desai", role: "Senior Associate, CEO's Office, DP World, Dubai", note: "Credits the In-class/Out-class approach and CXO sessions for interview confidence." },
+  { name: "Jas Desai", role: "Senior Associate, CEO's Office, DP World, Dubai", note: "Credits the In-class/Out-class approach and CXO sessions for interview confidence.", image: jasDesaiImg.url },
   { name: "Komal Bansal", role: "Senior Associate, BCG", note: "Structured thinking from faculty, Get Prepped mentorship, Dropshipping and VIP exposure." },
   { name: "Archit Bansal", role: "Manager – CEO's Office, Reliance Infrastructure", note: "Led the Masters' Union Investment Fund, sharpening strategic decision-making." },
   { name: "Karan Mulky", role: "Client Solutions Manager, Meta", note: "FOCOS practicum for first-principles thinking and structured interview prep." },
