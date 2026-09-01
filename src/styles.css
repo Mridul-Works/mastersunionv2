@@ -1379,7 +1379,7 @@ body::-webkit-scrollbar {
   overflow: hidden;
   border: 1px solid color-mix(in oklab, white 10%, transparent);
   border-radius: 12px;
-  background: var(--placements-inner-surface);
+  background: var(--placements-inner-surface, #0E1113);
 }
 
 .placements-ug-v2 .report-modal-image {
