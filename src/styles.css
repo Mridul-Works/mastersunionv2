@@ -2680,15 +2680,6 @@ body::-webkit-scrollbar {
 .career-story-arrows button:first-child:hover { transform: translateX(-2px); }
 .career-story-arrows button:last-child:hover { transform: translateX(2px); }
 
-.career-keyboard-hint {
-  margin-left: 0.75rem;
-  color: color-mix(in oklab, var(--foreground) 45%, transparent);
-  font-family: var(--font-mono-tech);
-  font-size: 0.62rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
 
 .career-story-stage {
   display: grid;
