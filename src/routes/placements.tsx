@@ -75,6 +75,7 @@ import apoorvaImg from "@/assets/placements/apoorva.webp.asset.json";
 import abhishekKaulImg from "@/assets/placements/Abhishek_Kaul.webp.asset.json";
 import abhinavAroraImg from "@/assets/placements/Abhinav_Arora.webp.asset.json";
 import amitKumarImg from "@/assets/placements/Amit_Kumar.webp.asset.json";
+import aliZeinImg from "@/assets/placements/Ali_Zein_Alabdin_Qeddo.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -529,7 +530,7 @@ const CAREERS_TEAM = [
   { name: "Abhishek Kaul", role: "Director — Corporate Engagements, Masters' Union & Tetr", background: "MBA, IIM-L; Ex-Walt Disney, EY, Times Group", image: abhishekKaulImg.url },
   { name: "Abhinav Arora", role: "Associate Director — Strategic Initiatives", background: "MBA, FMS | Ex- Ernst & Young (P), Jio", image: abhinavAroraImg.url },
   { name: "Amit Kumar", role: "Associate Director — Corporate Engagements", background: "MBA, IIM-Ahmedabad | Ex- Paytm, PayU, upGrad, NIIT", image: amitKumarImg.url },
-  { name: "Ali Zein Alabdain Qaddo", role: "Associate Director — Corporate Engagements", background: "Ex-HR director, Orange, Egypt" },
+  { name: "Ali Zein Alabdain Qaddo", role: "Associate Director — Corporate Engagements", background: "Ex- Al Habtoor Group, Bayzat", image: aliZeinImg.url },
   { name: "Anurag Yadav", role: "Associate Director — Corporate Engagements", background: "MBA, MDI Gurgaon; Ex-Accenture" },
   { name: "Nishant Singh Tanwar", role: "Associate Director — Corporate Engagements", background: "MBA, XLRI; Ex-Naukri.com, XamFerry" },
   { name: "Akhil Krishna Gupta", role: "Associate Director — Corporate Engagements", background: "IIT Kharagpur Alumni; Ex-Naukri.com, Ecolab, IGR" },
