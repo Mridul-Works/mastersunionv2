@@ -2850,7 +2850,8 @@ body::-webkit-scrollbar {
 }
 .career-story-tabs button[aria-selected="true"] { color: var(--foreground); }
 .career-story-tabs button[aria-selected="true"] span { background: var(--accent); }
-.career-story-tabs button:hover { color: var(--foreground); }
+.career-story-tabs button:hover { color: var(--accent); }
+.career-story-tabs button:hover span { background: var(--accent); }
 
 @media (max-width: 800px) {
   .career-story-heading {
