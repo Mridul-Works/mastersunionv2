@@ -2613,8 +2613,8 @@ function Page() {
       </section>
     </main>
 
-    <Dialog open={!!videoModal} onOpenChange={(open) => !open && setVideoModal(null)}>
-      <DialogContent className="career-leader-video-dialog max-w-3xl border-0 bg-black p-0">
+    <Dialog open={!!videoModal} onOpenChange={(open) => { if (!open) { setVideoModal(null); setVideoMaximized(false); } }}>
+      <DialogContent className={`career-leader-video-dialog border-0 bg-black p-0 ${videoMaximized ? "career-leader-video-dialog--max" : "max-w-3xl"}`}>
         <DialogTitle className="sr-only">{videoModal?.title ? `Video from ${videoModal.title}` : "Video"}</DialogTitle>
         <DialogDescription className="sr-only">YouTube video player</DialogDescription>
         {videoModal && (
@@ -2625,6 +2625,14 @@ function Page() {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
               allowFullScreen
             />
+            <button
+              type="button"
+              className="career-leader-video-max"
+              aria-label={videoMaximized ? "Exit maximized video" : "Maximize video"}
+              onClick={() => setVideoMaximized((v) => !v)}
+            >
+              {videoMaximized ? <Minimize2 className="size-4" /> : <Maximize2 className="size-4" />}
+            </button>
           </div>
         )}
       </DialogContent>
