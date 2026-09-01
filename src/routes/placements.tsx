@@ -1459,18 +1459,15 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
 
 const PODCAST_ID = "uiNTwDixAts";
 
-type PodcastCtx = { seek: (seconds: number) => void; openVideo: (modal: VideoModal | null) => void };
-const PodcastContext = React.createContext<PodcastCtx>({ seek: () => {}, openVideo: () => {} });
+type PodcastCtx = { openVideo: (modal: VideoModal | null) => void };
+const PodcastContext = React.createContext<PodcastCtx>({ openVideo: () => {} });
 
 function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal | null) => void }) {
-  const seek = React.useCallback((seconds: number) => {
-    setVideoModal({ title: "Placements Podcast", video: `https://youtu.be/${PODCAST_ID}`, start: seconds });
-  }, [setVideoModal]);
   const openVideo = React.useCallback((modal: VideoModal | null) => setVideoModal(modal), [setVideoModal]);
   const [chaptersOpen, setChaptersOpen] = useState(false);
 
   return (
-    <PodcastContext.Provider value={{ seek, openVideo }}>
+    <PodcastContext.Provider value={{ openVideo }}>
       <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-5">
           <PodcastTextBlock chaptersOpen={chaptersOpen} setChaptersOpen={setChaptersOpen} />
