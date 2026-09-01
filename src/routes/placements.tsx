@@ -1605,10 +1605,10 @@ function PodcastVideoRail({
     <div className={cn("flex flex-col", expanded && "min-h-0 flex-1")}>
       <div
         className={cn(
-          "pb-2",
+          "no-scrollbar pb-2",
           expanded
-            ? "podcast-rail-scroll-y grid min-h-0 flex-1 grid-cols-2 content-start gap-4 overflow-y-auto pr-2 sm:grid-cols-3"
-            : "no-scrollbar rail-scroll -mx-1 flex items-start gap-4 overflow-x-auto px-1",
+            ? "grid min-h-0 flex-1 grid-cols-2 content-start gap-4 overflow-y-auto sm:grid-cols-3"
+            : "rail-scroll -mx-1 flex items-start gap-4 overflow-x-auto px-1",
         )}
       >
         {PODCAST_RAIL_VIDEOS.map((item) => (
