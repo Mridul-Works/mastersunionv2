@@ -662,10 +662,10 @@ const LEADER_PLACEHOLDER = (label: string, index: number) => ({
 });
 
 const LEADER_GROUPS = [
-  { label: "CEO & MDs", people: [...LEADERS.slice(0, 3), ...Array.from({ length: 8 }, (_, i) => LEADER_PLACEHOLDER("CEO & MD", i + 1))] },
-  { label: "CHROs", people: [...[LEADERS[8], LEADERS[9], LEADERS[11]], ...Array.from({ length: 4 }, (_, i) => LEADER_PLACEHOLDER("CHRO", i + 1))] },
-  { label: "Unicorn Founders", people: [...[LEADERS[0], LEADERS[1], LEADERS[6]], ...Array.from({ length: 3 }, (_, i) => LEADER_PLACEHOLDER("Unicorn Founder", i + 1))] },
-  { label: "Executives", people: [...[LEADERS[4], LEADERS[7], LEADERS[10]], ...Array.from({ length: 2 }, (_, i) => LEADER_PLACEHOLDER("Executive", i + 1))] },
+  { label: "CEO & MDs", people: LEADERS.slice(0, 11) },
+  { label: "CHROs", people: [...Array.from({ length: 7 }, (_, i) => LEADER_PLACEHOLDER("CHRO", i + 1))] },
+  { label: "Unicorn Founders", people: [...Array.from({ length: 6 }, (_, i) => LEADER_PLACEHOLDER("Unicorn Founder", i + 1))] },
+  { label: "Executives", people: [...Array.from({ length: 5 }, (_, i) => LEADER_PLACEHOLDER("Executive", i + 1))] },
 ];
 
 const PODCAST_CHAPTERS = [
