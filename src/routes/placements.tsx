@@ -953,6 +953,15 @@ function CinematicHero() {
           </div>
         </div>
 
+        {/* scroll indicator */}
+        <a
+          href="#outcomes"
+          className="hero-scroll-arrow absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-1 text-white/70 transition-colors duration-300 hover:text-white"
+          aria-label="Scroll to outcomes"
+        >
+          <ChevronDown className="size-6" strokeWidth={1.5} />
+        </a>
+
         {/* Editorial block reveal — runs once on first load */}
         <HeroMaskReveal />
        </div>
