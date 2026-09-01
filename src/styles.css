@@ -3410,3 +3410,17 @@ body::-webkit-scrollbar {
 @media (hover: hover) {
   .group:hover .career-podcast-play--sm { transform: scale(1.1); background: var(--accent); border-color: var(--accent); color: var(--background); }
 }
+
+/* Vertical scroll affordance for the expanded podcast video grid */
+.podcast-rail-scroll-y {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
+  overscroll-behavior-y: contain;
+}
+.podcast-rail-scroll-y::-webkit-scrollbar { width: 6px; }
+.podcast-rail-scroll-y::-webkit-scrollbar-track { background: transparent; }
+.podcast-rail-scroll-y::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.22);
+  border-radius: 999px;
+}
+.podcast-rail-scroll-y::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.4); }
