@@ -3180,6 +3180,7 @@ body::-webkit-scrollbar {
 }
 .career-coach-card:hover { border-color: color-mix(in oklab, var(--accent) 45%, transparent); }
 .career-coach-card .career-portrait-placeholder { width: 100%; aspect-ratio: 4 / 5; min-height: 0; border-radius: 10px; }
+.career-coach-card .career-portrait-placeholder img { filter: grayscale(100%); }
 .career-coach-card .career-portrait-placeholder::before { display: none; }
 .career-coach-card-body strong,
 .career-coach-card-body span,
