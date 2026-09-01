@@ -624,7 +624,10 @@ function CareerTransitionList({ transition }: { transition: (typeof TRANSITIONS)
   const listRef = React.useRef<HTMLDivElement | null>(null);
   const [scrollKey, setScrollKey] = React.useState<string | null>(null);
   const [hoverKey, setHoverKey] = React.useState<string | null>(null);
-  const activeKey = hoverKey ?? scrollKey;
+  const [hovering, setHovering] = React.useState(false);
+  // Hover always wins while the pointer is inside the list; scroll only
+  // highlights the row that actually sits on the focus line.
+  const activeKey = hovering ? hoverKey : scrollKey;
   const isLaunch = transition.columns.length === 3;
 
   React.useEffect(() => {
@@ -632,18 +635,16 @@ function CareerTransitionList({ transition }: { transition: (typeof TRANSITIONS)
       const list = listRef.current;
       if (!list) return;
       const focus = window.innerHeight * 0.45;
-      let bestKey: string | null = null;
-      let bestDist = Infinity;
+      let activeRow: string | null = null;
       list.querySelectorAll<HTMLElement>("[data-row-key]").forEach((node) => {
         const rect = node.getBoundingClientRect();
-        const center = rect.top + rect.height / 2;
-        const dist = Math.abs(center - focus);
-        if (rect.bottom > 0 && rect.top < window.innerHeight && dist < bestDist) {
-          bestDist = dist;
-          bestKey = node.dataset.rowKey ?? null;
+        // Only the row crossing the focus line is active — scroll past it and
+        // the highlight clears instead of sticking to the nearest row.
+        if (rect.top <= focus && rect.bottom >= focus) {
+          activeRow = node.dataset.rowKey ?? null;
         }
       });
-      setScrollKey(bestKey);
+      setScrollKey(activeRow);
     };
     compute();
     window.addEventListener("scroll", compute, { passive: true });
@@ -655,7 +656,14 @@ function CareerTransitionList({ transition }: { transition: (typeof TRANSITIONS)
   }, []);
 
   return (
-    <div className="career-transition-list" ref={listRef} onMouseLeave={() => setHoverKey(null)}>
+    <div
+      className="career-transition-list"
+      ref={listRef}
+      onMouseLeave={() => {
+        setHovering(false);
+        setHoverKey(null);
+      }}
+    >
       <div className={`career-transition-columns ${isLaunch ? "career-transition-columns-launch" : ""}`}>
         {transition.columns.map((column) => <span key={column}>{column}</span>)}
       </div>
@@ -667,7 +675,11 @@ function CareerTransitionList({ transition }: { transition: (typeof TRANSITIONS)
             data-row-key={key}
             className={`career-transition-row group ${isLaunch ? "career-transition-row-launch" : ""}`}
             data-active={activeKey === key ? "true" : "false"}
-            onMouseEnter={() => setHoverKey(key)}
+            onMouseEnter={() => {
+              setHovering(true);
+              setHoverKey(key);
+            }}
+            onMouseLeave={() => setHoverKey(null)}
           >
             {row.map((value, index) => (
               <React.Fragment key={`${value}-${index}`}>
