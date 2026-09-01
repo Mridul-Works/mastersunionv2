@@ -95,6 +95,14 @@ import vibhutiSinghImg from "@/assets/placements/Vibhuti_Singh.webp.asset.json";
 import santanuGoswamiImg from "@/assets/placements/Santanu_Goswami.webp.asset.json";
 import kritiSharmaTeamImg from "@/assets/placements/Kriti_Sharma.webp.asset.json";
 import siddharthJangirImg from "@/assets/placements/Siddharth_Jangir.webp.asset.json";
+import namitaBhatiaImg from "@/assets/placements/Namita_Bhatia.webp.asset.json";
+import ritiMarwahImg from "@/assets/placements/Riti_Marwah.webp.asset.json";
+import vinayakaGoyalImg from "@/assets/placements/Vinayaka_Goyal.webp.asset.json";
+import rudranshTiwariImg from "@/assets/placements/Rudransh_Tiwari.webp.asset.json";
+import sonaliAwasthiImg from "@/assets/placements/Sonali_Awasthi.webp.asset.json";
+import kushagraKumarImg from "@/assets/placements/Kushagra_Kumar.webp.asset.json";
+import shivangiDwivediImg from "@/assets/placements/Shivangi_Dwivedi.webp.asset.json";
+import souravMajumderImg from "@/assets/placements/Sourav_Majumder.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -569,6 +577,14 @@ const CAREERS_TEAM = [
   { name: "Santanu Goswami", role: "Senior Manager — Career Preparation", background: "MBA, IIM-Calcutta | Ex- IB, M&A, VC", image: santanuGoswamiImg.url },
   { name: "Kriti Sharma", role: "Senior Manager — Career Preparation", background: "MBA, Masters' Union | Ex- BCG, Praxis GA, Qualcomm", image: kritiSharmaTeamImg.url },
   { name: "Siddharth Jangir", role: "Senior Manager — Career Preparation", background: "MBA, IIM-Kozhikode | Ex- Disney Star, Seashell Logistics", image: siddharthJangirImg.url },
+  { name: "Namita Bhatia", role: "Senior Manager — Career Preparation", background: "Employability Skills Trainer, Melbourne Business School, University of Melbourne", image: namitaBhatiaImg.url },
+  { name: "Riti Marwah", role: "Senior Manager — Career Preparation", background: "Internationally Certified Soft Skills Trainer-NABET Accredited, Ex- FIIB", image: ritiMarwahImg.url },
+  { name: "Vinayaka Goyal", role: "Senior Program Manager — Corporate Relations", background: "Ex- AccuWiz Consulting", image: vinayakaGoyalImg.url },
+  { name: "Rudransh Tiwari", role: "Senior Program Manager — Corporate Relations", background: "Ex- Pristyn Care, PhonePe", image: rudranshTiwariImg.url },
+  { name: "Sonali Awasthi", role: "Senior Program Manager — Career Preparation", background: "Ex- NIPUN Bharat (GOI)", image: sonaliAwasthiImg.url },
+  { name: "Kushagra Kumar", role: "Senior Manager — Corporate Relations", background: "MBA, DIAS | Ex- Fuld, 10times, Info Edge (India) Ltd", image: kushagraKumarImg.url },
+  { name: "Shivangi Dwivedi", role: "Senior Manager — Corporate Relations", background: "Ex- Britannica Education India", image: shivangiDwivediImg.url },
+  { name: "Sourav Majumder", role: "Senior Manager — Corporate Relations", background: "Ex- CodingNinjas", image: souravMajumderImg.url },
 ];
 
 const GUIDANCE_PROFILES = [
