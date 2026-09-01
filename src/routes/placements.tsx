@@ -844,7 +844,7 @@ function CareerExperienceArea() {
             </div>
 
             <div className="career-story-visual">
-              <PortraitPlaceholder name={currentStory.name} className="career-featured-portrait" />
+              <PortraitPlaceholder name={currentStory.name} imageSrc={(currentStory as any).image} className="career-featured-portrait" />
               <div className="career-story-accent">
                 <span>Student voice</span>
                 <p>{currentStory.name}</p>
