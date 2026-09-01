@@ -3257,7 +3257,7 @@ body::-webkit-scrollbar {
     border-color: color-mix(in oklab, var(--accent) 34%, transparent);
     box-shadow: 0 22px 52px -34px color-mix(in oklab, var(--accent) 58%, transparent);
   }
-  .career-leader-card.has-video:hover .career-leader-media > span { transform: scale(1.1); background: var(--accent); border-color: var(--accent); color: var(--background); }
+  .career-leader-card.has-video:hover .career-leader-media > span { transform: scale(1.1); background: color-mix(in oklab, var(--accent) 88%, var(--foreground)); border-color: color-mix(in oklab, var(--accent) 88%, var(--foreground)); color: var(--accent-foreground); }
   .career-guidance-card:hover {
     background: color-mix(in oklab, var(--placements-inner-surface) 94%, var(--accent));
   }
