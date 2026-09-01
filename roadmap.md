@@ -94,4 +94,4 @@
 - [x] Add Term 7 Annual Roadmap image (imageCd7.webp)
 - [x] Add Term 8 Annual Roadmap image (cd8.webp)
 - [x] Add Rajnish Virmani coach portrait
-- [ ] Add Andrea Stone coach portrait
+- [x] Add Andrea Stone coach portrait
