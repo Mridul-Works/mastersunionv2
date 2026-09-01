@@ -146,6 +146,8 @@ import prashantKhullarImg from "@/assets/placements/PrashantKhullar.webp.asset.j
 import tanushriNairImg from "@/assets/placements/TanushriNair.webp.asset.json";
 import rohithHariharanImg from "@/assets/placements/RohithHariharan.webp.asset.json";
 import radhikaMaheshwariImg from "@/assets/placements/radhika.webp.asset.json";
+import nikhilSinghalImg from "@/assets/placements/nikhil.webp.asset.json";
+import shivKapoorImg from "@/assets/placements/shiv-kapoor-gt.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -689,8 +691,8 @@ const UNICORN_FOUNDERS = [
 
 const EXECUTIVES = [
   { name: "Radhika Maheshwari", role: "Director, Finance, Bacardi", image: radhikaMaheshwariImg.url },
-  { name: "Nikhil Singhal", role: "MD & Head of Private Banking, HSBC India" },
-  { name: "Shiv Kapoor", role: "Vice President, Titan Capital" },
+  { name: "Nikhil Singhal", role: "MD & Head of Private Banking, HSBC India", image: nikhilSinghalImg.url },
+  { name: "Shiv Kapoor", role: "Vice President, Titan Capital", image: shivKapoorImg.url },
   { name: "Salone Sehgal", role: "Founding General Partner, Lumikai" },
   { name: "Amit Kumar", role: "Sales Director, Google Cloud" },
 ];
