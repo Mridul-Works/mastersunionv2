@@ -3297,3 +3297,33 @@ body::-webkit-scrollbar {
 
 
 
+
+/* -------------------- unified section header / sub-header scale ------------------- */
+.career-area-title,
+.career-story-heading h2,
+.career-closing-cta h2,
+.salary-viz-title,
+.placement-stats-title,
+.placements-section-title {
+  font-size: clamp(1.9rem, 4.2vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.career-story-heading h2 { max-width: 14ch; }
+.salary-viz-title,
+.placement-stats-title { max-width: 20ch; }
+
+.career-area-intro,
+.placements-section-intro {
+  max-width: 52rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: color-mix(in oklab, var(--foreground) 62%, transparent);
+}
+
+.placements-section-intro-light {
+  color: color-mix(in oklab, #ffffff 62%, transparent);
+}
