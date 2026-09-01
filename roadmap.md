@@ -70,3 +70,5 @@
 - [x] Add Professional guidance card 40 (Vansh Pratap Singh) portrait, name, role and background text
 - [x] Add Professional guidance card 41 (Adiksha Bhalla) portrait, name, role and background text
 - [x] Add Professional guidance card 42 (Jitender Sharma) portrait, name, role and background text
+- [x] Add Professional guidance card 43 (Tanya Verma) portrait, name, role and background text
+- [x] Add Professional guidance card 44 (Anshuman Raj) portrait, name, role and background text
