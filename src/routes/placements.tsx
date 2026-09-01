@@ -251,7 +251,13 @@ const TESTIMONIALS = [
   { name: "Kriti Gupta", role: "Merchandising Manager, Careem, Dubai", note: "Career Services proactively shared profiles and opened alumni connections." },
   { name: "Varun Makhija", role: "Product Manager, ServiceNow", note: "Case practice, product practicums and behavioural prep from named mentors." },
   { name: "Harshit Gambhir", role: "Program Manager, Blinkit", note: "Built product acumen after 6 years in automotive R&D — offer within 8 months." },
+  ...Array.from({ length: 27 }, (_, i) => ({
+    name: `Placement Story ${String(i + 13).padStart(2, "0")}`,
+    role: "Role & Company — to be confirmed",
+    note: "Placeholder story. Portrait, role and quote will be added once the cohort details are shared.",
+  })),
 ];
+
 
 /** Composite-pattern feeds: recruiter marquee + testimonial carousels. */
 const ALL_RECRUITERS = RECRUITER_GROUPS.flatMap((g) => g.logos).map((name) => ({
