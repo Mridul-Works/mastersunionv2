@@ -100,6 +100,8 @@ import siddharthJangirImg from "@/assets/placements/Siddharth_Jangir.webp.asset.
 import namitaBhatiaImg from "@/assets/placements/Namita_Bhatia.webp.asset.json";
 import ritiMarwahImg from "@/assets/placements/Riti_Marwah.webp.asset.json";
 import sidharthaBalImg from "@/assets/placements/Sidhartha_Bal.webp.asset.json";
+import nitikaWadhwaImg from "@/assets/placements/Nitika_Wadhwa.webp.asset.json";
+import zubairWarsiImg from "@/assets/placements/Zubair_Warsi.webp.asset.json";
 import vinayakaGoyalImg from "@/assets/placements/Vinayaka_Goyal.webp.asset.json";
 import rudranshTiwariImg from "@/assets/placements/Rudransh_Tiwari.webp.asset.json";
 import sonaliAwasthiImg from "@/assets/placements/Sonali_Awasthi.webp.asset.json";
