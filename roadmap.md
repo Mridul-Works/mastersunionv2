@@ -17,3 +17,4 @@
 - [ ] Add student carousel slide 24 (Daksh Rastogi, Lead - Partnerships, OneBanc) with portrait, role and quote
 - [ ] Add student carousel slide 25 (Nimisha Dutta, Program Manager, Blinkit) with portrait, role and quote
 - [ ] Add student carousel slide 26 (Darshan Vithlani, Senior Data Scientist, Abdul Latif Jameel | Abu Dhabi) with portrait, role and quote
+- [ ] Add student carousel slide 27 (Kanishk Chaturvedi, Data Scientist, Funder.ai | Abu Dhabi) with portrait, role and quote
