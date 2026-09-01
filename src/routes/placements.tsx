@@ -1366,7 +1366,7 @@ function CareerExperienceArea() {
             {currentLeaders.people.map((leader, index) => (
               <article className="career-leader-card" key={leader.name}>
                 <div className="career-leader-media"><PortraitPlaceholder name={leader.name} /><span><Play fill="currentColor" /></span></div>
-                <h3>{leader.name}</h3><p>{leader.role}</p><small>{String(index + 1).padStart(2, "0")} / 03</small>
+                <h3>{leader.name}</h3><p>{leader.role}</p><small>{String(index + 1).padStart(2, "0")} / {String(currentLeaders.people.length).padStart(2, "0")}</small>
               </article>
             ))}
           </div>
