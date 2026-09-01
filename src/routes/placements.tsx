@@ -139,6 +139,7 @@ import sonaliAwasthiImg from "@/assets/placements/Sonali_Awasthi.webp.asset.json
 import kushagraKumarImg from "@/assets/placements/Kushagra_Kumar.webp.asset.json";
 import shivangiDwivediImg from "@/assets/placements/Shivangi_Dwivedi.webp.asset.json";
 import souravMajumderImg from "@/assets/placements/Sourav_Majumder.webp.asset.json";
+import bhavnaBatraImg from "@/assets/placements/BhavnaBatra.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -658,7 +659,7 @@ const GUIDANCE_PROFILES = [
 
 const CHRO_LEADERS = [
   { name: "Anil Salvi", role: "MD & Group Head, JM Financial Group", video: "https://youtu.be/bqDEOr16rZw" },
-  { name: "Bhavna Batra", role: "Exec. Dir. (People), S&P Global Market Intelligence" },
+  { name: "Bhavna Batra", role: "Exec. Dir. (People), S&P Global Market Intelligence", image: bhavnaBatraImg.url },
   { name: "Dr Sachin Gulati", role: "Head of India Campus Recruitment, American Express" },
   { name: "Sandeep Girotra", role: "Chief Human Resource Officer, DCM Shriram LTD" },
   { name: "Prashant Khullar", role: "Chief Human Resources Officer, Ecom Express" },
@@ -1415,7 +1416,7 @@ function CareerExperienceArea() {
                       }}
                     />
                   ) : (
-                    <PortraitPlaceholder name={leader.name} />
+                    <PortraitPlaceholder name={leader.name} imageSrc={(leader as any).image} />
                   )}
                   {(leader as any).video ? <span><Play fill="currentColor" /></span> : null}
                 </div>

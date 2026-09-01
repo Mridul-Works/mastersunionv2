@@ -137,3 +137,4 @@
 - Added playable YouTube video link for Sarvesh Agarwal (CEO & MDs): https://youtu.be/hQZkQGTgaes
 
 - Added playable YouTube video link for Anil Salvi (CHROs): https://youtu.be/bqDEOr16rZw
+- Added Bhavna Batra portrait to CHROs card
