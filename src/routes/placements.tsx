@@ -711,20 +711,6 @@ const LEADER_GROUPS = [
   { label: "Executives", people: EXECUTIVES },
 ];
 
-const PODCAST_CHAPTERS = [
-  { time: "00:00", title: "Trailer", seconds: 0 },
-  { time: "01:49", title: "Introduction", seconds: 109 },
-  { time: "03:40", title: "Student Placement Stories", seconds: 220 },
-  { time: "08:55", title: "Where Career Prep Starts", seconds: 535 },
-  { time: "17:16", title: "Starting Out: Framework & Resume Prep", seconds: 1036 },
-  { time: "23:08", title: "Career Team Structure", seconds: 1388 },
-  { time: "29:08", title: "LMP & the Placement War Room", seconds: 1748 },
-  { time: "33:06", title: "Job Negotiation Training", seconds: 1986 },
-  { time: "37:32", title: "AI-Led Career Consultation", seconds: 2252 },
-  { time: "40:00", title: "Student Practice & Mock Preparation", seconds: 2400 },
-  { time: "44:47", title: "Building a Standout CV", seconds: 2687 },
-  { time: "52:02", title: "Cracking Your Dream Job", seconds: 3122 },
-];
 
 
 /* -------------------------------- primitives ------------------------------ */
@@ -1473,17 +1459,15 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
 
 const PODCAST_ID = "uiNTwDixAts";
 
-type PodcastCtx = { seek: (seconds: number) => void };
-const PodcastContext = React.createContext<PodcastCtx>({ seek: () => {} });
+type PodcastCtx = { openVideo: (modal: VideoModal | null) => void };
+const PodcastContext = React.createContext<PodcastCtx>({ openVideo: () => {} });
 
 function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal | null) => void }) {
-  const seek = React.useCallback((seconds: number) => {
-    setVideoModal({ title: "Placements Podcast", video: `https://youtu.be/${PODCAST_ID}`, start: seconds });
-  }, [setVideoModal]);
+  const openVideo = React.useCallback((modal: VideoModal | null) => setVideoModal(modal), [setVideoModal]);
   const [chaptersOpen, setChaptersOpen] = useState(false);
 
   return (
-    <PodcastContext.Provider value={{ seek }}>
+    <PodcastContext.Provider value={{ openVideo }}>
       <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-5">
           <PodcastTextBlock chaptersOpen={chaptersOpen} setChaptersOpen={setChaptersOpen} />
@@ -1592,6 +1576,11 @@ const PODCAST_RAIL_VIDEOS = LEADER_GROUPS.flatMap((group) =>
 
 const ytIdOf = (url: string) => url.split("/").pop()?.split("?")[0] ?? "";
 
+const PAGE_VIDEOS = [
+  { name: "Placements Podcast", role: "How Masters' Union prepares students for top 1% placements", video: `https://youtu.be/${PODCAST_ID}` },
+  ...PODCAST_RAIL_VIDEOS,
+];
+
 function PodcastVideoRail({
   setVideoModal,
   expanded = false,
@@ -1654,32 +1643,27 @@ function PodcastVideoRail({
 
 
 function PodcastChapters({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
-  const { seek } = React.useContext(PodcastContext);
+  const { openVideo } = React.useContext(PodcastContext);
   const PREVIEW_COUNT = 4;
-  const previewChapters = PODCAST_CHAPTERS.slice(0, PREVIEW_COUNT);
-  const extraChapters = PODCAST_CHAPTERS.slice(PREVIEW_COUNT);
+  const previewVideos = PAGE_VIDEOS.slice(0, PREVIEW_COUNT);
+  const extraVideos = PAGE_VIDEOS.slice(PREVIEW_COUNT);
 
-  const ChapterRow = ({ chapter }: { chapter: (typeof PODCAST_CHAPTERS)[number] }) => (
-    <li key={chapter.seconds}>
+  const VideoRow = ({ item }: { item: (typeof PAGE_VIDEOS)[number] }) => (
+    <li key={item.video}>
       <button
         type="button"
-        onClick={() => seek(chapter.seconds)}
+        onClick={() => openVideo({ title: item.name, video: item.video, start: 0 })}
         className="group flex w-full items-center justify-between gap-3 border-b border-black/15 py-3 text-left transition-colors duration-300"
       >
-        <span className="flex items-baseline gap-4">
-          <span
-            className="text-[11px] tabular-nums tracking-[0.12em] text-black/40 transition-colors duration-300 group-hover:text-[var(--accent)]"
-            style={{ fontFamily: MONO }}
-          >
-            {chapter.time}
-          </span>
+        <span className="flex flex-col gap-0.5">
           <span className="text-[14px] leading-snug text-black/80 transition-colors duration-300 group-hover:text-[var(--accent)]">
-            {chapter.title}
+            {item.name}
           </span>
+          <span className="text-[11px] leading-snug text-black/50">{item.role}</span>
         </span>
-        <ArrowUpRight
+        <Play
           aria-hidden
-          className="size-3.5 shrink-0 -translate-x-1 text-black/30 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:text-[var(--accent)] group-hover:opacity-100"
+          className="size-3.5 shrink-0 -translate-x-1 fill-black/30 text-black/30 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:fill-[var(--accent)] group-hover:text-[var(--accent)] group-hover:opacity-100"
         />
       </button>
     </li>
@@ -1692,13 +1676,13 @@ function PodcastChapters({ open, setOpen }: { open: boolean; setOpen: (v: boolea
           className="text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50"
           style={{ fontFamily: MONO }}
         >
-          What you&apos;ll hear
+          All videos
         </span>
       </div>
 
       <ul className="flex flex-col">
-        {previewChapters.map((chapter) => (
-          <ChapterRow chapter={chapter} key={chapter.seconds} />
+        {previewVideos.map((item) => (
+          <VideoRow item={item} key={item.video} />
         ))}
       </ul>
 
@@ -1706,8 +1690,8 @@ function PodcastChapters({ open, setOpen }: { open: boolean; setOpen: (v: boolea
         className={`grid transition-[grid-template-rows,opacity] duration-[600ms] ease-in-out ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
       >
         <ul className="flex flex-col overflow-hidden">
-          {extraChapters.map((chapter) => (
-            <ChapterRow chapter={chapter} key={chapter.seconds} />
+          {extraVideos.map((item) => (
+            <VideoRow item={item} key={item.video} />
           ))}
         </ul>
       </div>
@@ -1716,9 +1700,12 @@ function PodcastChapters({ open, setOpen }: { open: boolean; setOpen: (v: boolea
         type="button"
         onClick={() => setOpen(!open)}
         aria-expanded={open}
-        aria-label="Toggle chapter timeline"
+        aria-label="Toggle video list"
         className="group mt-3 flex w-full items-center justify-end gap-3 border-t border-black/15 pt-3 text-left"
       >
+        <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-black/50 transition-colors duration-300 group-hover:text-[var(--accent)]">
+          {open ? "Show less" : "Show all"}
+        </span>
         <ChevronDown
           aria-hidden
           className={`size-4 text-black/40 transition-transform duration-500 ease-in-out group-hover:text-[var(--accent)] ${open ? "rotate-180" : ""}`}
