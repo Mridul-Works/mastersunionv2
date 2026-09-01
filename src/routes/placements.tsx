@@ -81,6 +81,7 @@ import nishantSinghTanwarImg from "@/assets/placements/Nishant_Singh_Tanwar.webp
 import akhilKrishnaGuptaImg from "@/assets/placements/Akhil_Krishna_Gupta.webp.asset.json";
 import dibyenduChoudhuryImg from "@/assets/placements/Dibyendu_Choudhury.webp.asset.json";
 import aasthaAroraImg from "@/assets/placements/Aastha_Arora.webp.asset.json";
+import vinayakChowdhriImg from "@/assets/placements/Vinayak_Chowdhri.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -541,7 +542,7 @@ const CAREERS_TEAM = [
   { name: "Akhil Krishna Gupta", role: "Associate Director — Corporate Engagements", background: "IIT-Kharagpur Alumnus | Ex-Reliance Retail, OYO", image: akhilKrishnaGuptaImg.url },
   { name: "Dibyendu Choudhury", role: "Deputy Director — Corporate Engagements", background: "Ex- Amity University", image: dibyenduChoudhuryImg.url },
   { name: "Aastha Arora", role: "Deputy Director — Corporate Engagements", background: "Ex- Emeritus", image: aasthaAroraImg.url },
-  { name: "Vinayak Chowdhri", role: "Deputy Director — Corporate Engagements", background: "Ex-mPokket, Proschool, IITC, Hansa, Crownit" },
+  { name: "Vinayak Chowdhri", role: "Deputy Director — Corporate Engagements", background: "Ex- DTDC Express Ltd, ITC Hotels, GroupOn Inc.", image: vinayakChowdhriImg.url },
   { name: "Chaneerat Singh Kalra", role: "General Manager — Corporate Engagements", background: "Ex-Zomato" },
   { name: "Riman Khatri", role: "General Manager — Corporate Engagements", background: "Ex-KPMG, MuSigma" },
   { name: "Vishu Goyal", role: "General Manager — Career Preparation", background: "MEM, Masters' Union; LLB, LLR, Collabera, K-Laundry" },
