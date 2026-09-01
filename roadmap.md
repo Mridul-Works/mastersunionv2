@@ -61,3 +61,7 @@
 - [x] Add Professional guidance card 31 (Kushagra Kumar) portrait, name, role and background text
 - [x] Add Professional guidance card 32 (Shivangi Dwivedi) portrait, name, role and background text
 - [x] Add Professional guidance card 33 (Sourav Majumder) portrait, name, role and background text
+- [x] Add Professional guidance card 34 (Sidhartha Bal) portrait, name, role and background text
+- [x] Add Professional guidance card 35 (Nitika Wadhwa) portrait, name, role and background text
+- [x] Add Professional guidance card 36 (Zubair Warsi) portrait, name, role and background text
+- [x] Add Professional guidance card 37 (Saksham Dutt) portrait, name, role and background text

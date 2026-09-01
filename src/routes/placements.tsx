@@ -99,6 +99,10 @@ import kritiSharmaTeamImg from "@/assets/placements/Kriti_Sharma.webp.asset.json
 import siddharthJangirImg from "@/assets/placements/Siddharth_Jangir.webp.asset.json";
 import namitaBhatiaImg from "@/assets/placements/Namita_Bhatia.webp.asset.json";
 import ritiMarwahImg from "@/assets/placements/Riti_Marwah.webp.asset.json";
+import sidharthaBalImg from "@/assets/placements/Sidhartha_Bal.webp.asset.json";
+import nitikaWadhwaImg from "@/assets/placements/Nitika_Wadhwa.webp.asset.json";
+import zubairWarsiImg from "@/assets/placements/Zubair_Warsi.webp.asset.json";
+import sakshamDuttImg from "@/assets/placements/Saksham_Dutt.webp.asset.json";
 import vinayakaGoyalImg from "@/assets/placements/Vinayaka_Goyal.webp.asset.json";
 import rudranshTiwariImg from "@/assets/placements/Rudransh_Tiwari.webp.asset.json";
 import sonaliAwasthiImg from "@/assets/placements/Sonali_Awasthi.webp.asset.json";
@@ -589,6 +593,10 @@ const CAREERS_TEAM = [
   { name: "Kushagra Kumar", role: "Senior Manager — Corporate Relations", background: "MBA, DIAS | Ex- Fuld, 10times, Info Edge (India) Ltd", image: kushagraKumarImg.url },
   { name: "Shivangi Dwivedi", role: "Senior Manager — Corporate Relations", background: "Ex- Britannica Education India", image: shivangiDwivediImg.url },
   { name: "Sourav Majumder", role: "Senior Manager — Corporate Relations", background: "Ex- CodingNinjas", image: souravMajumderImg.url },
+  { name: "Sidhartha Bal", role: "Program Manager — Corporate Relations", background: "Ex- Growth School", image: sidharthaBalImg.url },
+  { name: "Nitika Wadhwa", role: "Program Manager — Corporate Relations", background: "Ex- EHL, Jamboree, Cognizant", image: nitikaWadhwaImg.url },
+  { name: "Zubair Warsi", role: "Program Manager — Corporate Relations", background: "Ex- Spectacom Global, All Stars Digital, Radio Mirchi", image: zubairWarsiImg.url },
+  { name: "Saksham Dutt", role: "Manager — Corporate Relations", background: "Ex- Adobe, Cvent, Gartner", image: sakshamDuttImg.url },
 ];
 
 const GUIDANCE_PROFILES = [
