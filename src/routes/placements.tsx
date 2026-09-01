@@ -1580,33 +1580,22 @@ const ytIdOf = (url: string) => url.split("/").pop()?.split("?")[0] ?? "";
 
 function PodcastVideoRail({
   setVideoModal,
-  expanded = false,
 }: {
   setVideoModal: (modal: VideoModal | null) => void;
-  expanded?: boolean;
 }) {
   if (!PODCAST_RAIL_VIDEOS.length) return null;
 
   return (
-    <div className={cn("flex flex-col", expanded && "min-h-0 flex-1")}>
-      <div
-        className={cn(
-          "no-scrollbar pb-2",
-          expanded
-            ? "grid min-h-0 flex-1 grid-cols-2 content-start gap-4 overflow-y-auto sm:grid-cols-3"
-            : "rail-scroll -mx-1 flex items-start gap-4 overflow-x-auto px-1",
-        )}
-      >
+    <div className="flex flex-col">
+      <div className="rail-scroll -mx-1 flex items-start gap-4 overflow-x-auto px-1 pb-2 no-scrollbar">
         {PODCAST_RAIL_VIDEOS.map((item) => (
           <button
             key={item.video}
             type="button"
             onClick={() => setVideoModal({ title: item.name, video: item.video, start: 0 })}
             aria-label={`Play conversation with ${item.name}`}
-            className={cn("group flex flex-col text-left", expanded ? "w-full" : "w-[240px] shrink-0")}
+            className="group flex w-[240px] shrink-0 flex-col text-left"
           >
-
-
             <span className="relative block aspect-video w-full overflow-hidden rounded-md bg-black/10">
               <img
                 src={`https://img.youtube.com/vi/${ytIdOf(item.video)}/maxresdefault.jpg`}
@@ -1636,6 +1625,7 @@ function PodcastVideoRail({
     </div>
   );
 }
+
 
 
 
