@@ -2874,10 +2874,11 @@ body::-webkit-scrollbar {
 
 .career-guidance-heading .career-area-title {
   margin-top: 0;
-  max-width: 15ch;
+  max-width: none;
   font-size: clamp(2.25rem, 5.2vw, 4.8rem);
   font-weight: 300;
   line-height: 0.98;
+  white-space: nowrap;
 }
 
 .career-guidance-count {
