@@ -126,7 +126,7 @@ import anshikaPandeyImg from "@/assets/placements/Anshika.webp.asset.json";
 import ayushiSinghImg from "@/assets/placements/Ayushi_Singh.webp.asset.json";
 import ankitJainImg from "@/assets/placements/Ankit_Jain.webp.asset.json";
 import rajnishVirmaniImg from "@/assets/placements/RajnishVirmani.jpg.asset.json";
-import andreaStoneImg from "@/assets/placements/AndreaStone.png.asset.json";
+import andreaStoneImg from "@/assets/placements/Andrea.webp.asset.json";
 import mamtaWasanImg from "@/assets/placements/MamtaWasan.png.asset.json";
 import santoshSharanImg from "@/assets/placements/SantoshSharan.png.asset.json";
 import sandeepBidaniImg from "@/assets/placements/SandeepBidani.png.asset.json";
