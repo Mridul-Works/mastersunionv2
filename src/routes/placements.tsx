@@ -1395,7 +1395,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
 
       </Band>
 
-      <Band tone="white">
+      <Band id="leadership-guidance" tone="white" className="scroll-mt-24">
         <div className="career-section-number">05</div>
         <Reveal><Eyebrow>Leadership guidance</Eyebrow></Reveal>
         <Reveal delay={100}><h2 className="career-area-title">Your Future Recruiters <em className="font-serif-italic">on Campus</em></h2></Reveal>
