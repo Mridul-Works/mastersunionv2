@@ -660,10 +660,10 @@ const GUIDANCE_PROFILES = [
 const CHRO_LEADERS = [
   { name: "Anil Salvi", role: "MD & Group Head, JM Financial Group", video: "https://youtu.be/bqDEOr16rZw" },
   { name: "Bhavna Batra", role: "Exec. Dir. (People), S&P Global Market Intelligence", image: bhavnaBatraImg.url },
-  { name: "Dr Sachin Gulati", role: "Head of India Campus Recruitment, American Express" },
-  { name: "Sandeep Girotra", role: "Chief Human Resource Officer, DCM Shriram LTD" },
-  { name: "Prashant Khullar", role: "Chief Human Resources Officer, Ecom Express" },
-  { name: "Tanushri Nair", role: "Director, Human Resources, SAGE Publications" },
+  { name: "Dr Sachin Gulati", role: "Head of India Campus Recruitment, American Express", image: sachinGulatiImg.url },
+  { name: "Sandeep Girotra", role: "Chief Human Resource Officer, DCM Shriram LTD", image: sandeepGirotraImg.url },
+  { name: "Prashant Khullar", role: "Chief Human Resources Officer, Ecom Express", image: prashantKhullarImg.url },
+  { name: "Tanushri Nair", role: "Director, Human Resources, SAGE Publications", image: tanushriNairImg.url },
   { name: "Rohith Hariharan", role: "Head, Employer Branding, Ather Energy" },
 ];
 
