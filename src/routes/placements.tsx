@@ -72,6 +72,7 @@ import aarushiImg from "@/assets/placements/Aarushi.webp.asset.json";
 import yashanaImg from "@/assets/placements/yashana.webp.asset.json";
 import atitheeImg from "@/assets/placements/atithee.webp.asset.json";
 import apoorvaImg from "@/assets/placements/apoorva.webp.asset.json";
+import abhishekKaulImg from "@/assets/placements/Abhishek_Kaul.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -523,7 +524,7 @@ const LEADERS = [
 ];
 
 const CAREERS_TEAM = [
-  { name: "Abhishek Kaul", role: "Director — Corporate Engagements, Masters' Union & Tetr", background: "MBA, IIM-L; Ex-Walt Disney, EY, Times Group" },
+  { name: "Abhishek Kaul", role: "Director — Corporate Engagements, Masters' Union & Tetr", background: "MBA, IIM-L; Ex-Walt Disney, EY, Times Group", image: abhishekKaulImg.url },
   { name: "Abhinav Arora", role: "Associate Director — Strategic Initiatives", background: "MBA, IIM-L; Ex-Ernst & Young, Jio, Jio" },
   { name: "Amit Kumar", role: "Associate Director — Corporate Engagements", background: "MBA, IIM-Ahmedabad; Ex-Paytm, Pepsi, upGrad, NET" },
   { name: "Ali Zein Alabdain Qaddo", role: "Associate Director — Corporate Engagements", background: "Ex-HR director, Orange, Egypt" },
@@ -1098,7 +1099,7 @@ function CareerExperienceArea() {
                 <div className="career-guidance-index">{String(member.index).padStart(2, "0")}</div>
                 {variant !== "career-guidance-card--compact" ? (
                   <div className="career-guidance-portrait">
-                    <PortraitPlaceholder name={member.isPlaceholder ? `Profile ${member.index}` : member.name} />
+                    <PortraitPlaceholder name={member.isPlaceholder ? `Profile ${member.index}` : member.name} imageSrc={(member as any).image} />
                     {member.isPlaceholder ? <span>Image pending</span> : null}
                   </div>
                 ) : null}
