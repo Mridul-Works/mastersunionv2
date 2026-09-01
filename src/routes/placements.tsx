@@ -58,6 +58,11 @@ import ashmitaImg from "@/assets/placements/ashmita.webp.asset.json";
 import aashutoshImg from "@/assets/placements/Aashutosh.webp.asset.json";
 import dakshImg from "@/assets/placements/daksh.webp.asset.json";
 import nimishaImg from "@/assets/placements/nimisha.webp.asset.json";
+import darshanImg from "@/assets/placements/darshan.webp.asset.json";
+import kanishkImg from "@/assets/placements/kanishk.webp.asset.json";
+import jayeshImg from "@/assets/placements/jayesh.webp.asset.json";
+import sanidhyaImg from "@/assets/placements/sanidhya.webp.asset.json";
+import malayImg from "@/assets/placements/malay.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -323,13 +328,37 @@ const TESTIMONIALS = [
     image: dakshImg.url,
   },
   {
-    name: "Nimisha Dutta",
-    role: "Program Manager, Blinkit",
-    note: "After five years in impact and management consulting, I aimed to transition into a dynamic, fast-paced environment. Masters’ Union played a crucial role in this shift, helping me secure a Growth Manager role at Blinkit. I now leverage my stakeholder management and leadership skills to lead cross-functional teams, an experience that is both challenging and deeply fulfilling.",
-    image: nimishaImg.url,
+    name: "Darshan Vithlani",
+    role: "Senior Data Scientist, Abdul Latif Jameel | Abu Dhabi",
+    note: "At Masters’ Union, learning goes beyond theory. Working on One Day Challenges with companies and learning from CXOs gave me a front-row view of real-world decision-making. The course helped me build the right way to drive strategic outcomes, which helped me pivot into a role at the intersection of business and data, to drive efficient outcomes and increase profitability.",
+    image: darshanImg.url,
   },
-  ...Array.from({ length: 18 }, (_, i) => ({
-    name: `Placement Story ${String(i + 22).padStart(2, "0")}`,
+  {
+    name: "Kanishk Chaturvedi",
+    role: "Data Scientist, Funder.ai | Abu Dhabi",
+    note: "Masters’ Union opened international doors for me through committed, high-quality placement support. Our Placement Director, Abhishek Kaul, personally engaged with top Gulf chairmen to secure opportunities. I’m deeply grateful to Abhishek Sir, Gopika Ma’am, and the exceptional domestic and international faculty, whose guidance prepared me to succeed in securing this role.",
+    image: kanishkImg.url,
+  },
+  {
+    name: "Jayesh Makkar",
+    role: "Manager - SELL, Flipkart",
+    note: "Masters’ Union played a crucial role in helping me secure my on-campus placement at Flipkart as a Category Manager. The Careers Team guided me through resume refinement and interview prep. Mock interviews built confidence, while academic experiences like the Dropshipping stint provided practical exposure directly applicable during all of my interviews.",
+    image: jayeshImg.url,
+  },
+  {
+    name: "Sanidhya Sinha",
+    role: "Program Manager, Zomato",
+    note: "Masters’ Union’s blend of Indian and Western pedagogies taught me to think bigger, overcome obstacles, and innovate effectively. The “learn by doing” approach turned failures into lessons, while industry projects and case competitions strengthened my analytical rigour and communication. This experience built the resilience and adaptability that stood out during recruitment.",
+    image: sanidhyaImg.url,
+  },
+  {
+    name: "Malay Vashi",
+    role: "Manager - Design Planning, Razorpay",
+    note: "Bhupesh Sir’s insight - that real problems are uncovered by listening to customers has stayed with me. Getting inspired, I explored Razorpay users’ challenges and created a solution-oriented deck, which Pratham reviewed and shared with the team. I wouldn’t have landed this offer without their guidance and the lessons from all Masters’ Union professors.",
+    image: malayImg.url,
+  },
+  ...Array.from({ length: 13 }, (_, i) => ({
+    name: `Placement Story ${String(i + 31).padStart(2, "0")}`,
     role: "Role & Company — to be confirmed",
     note: "Placeholder story. Portrait, role and quote will be added once the cohort details are shared.",
   })),
