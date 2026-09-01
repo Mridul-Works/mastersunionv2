@@ -103,6 +103,19 @@ import sidharthaBalImg from "@/assets/placements/Sidhartha_Bal.webp.asset.json";
 import nitikaWadhwaImg from "@/assets/placements/Nitika_Wadhwa.webp.asset.json";
 import zubairWarsiImg from "@/assets/placements/Zubair_Warsi.webp.asset.json";
 import sakshamDuttImg from "@/assets/placements/Saksham_Dutt.webp.asset.json";
+import vedikaKanodiyaImg from "@/assets/placements/Vedika_Kanodiya.webp.asset.json";
+import koshlendraSinghImg from "@/assets/placements/Koshlendra_Singh.webp.asset.json";
+import vanshPratapSinghImg from "@/assets/placements/Vansh_Pratap_Singh.webp.asset.json";
+import adikshaBhallaImg from "@/assets/placements/Adiksha_Bhalla.webp.asset.json";
+import jitenderSharmaImg from "@/assets/placements/Jitender_Sharma.webp.asset.json";
+import tanyaVermaImg from "@/assets/placements/Tanya_Verma.webp.asset.json";
+import anshumanRajImg from "@/assets/placements/Anshuman_Raj.webp.asset.json";
+import anjaliAntilImg from "@/assets/placements/Anjali_Antil.webp.asset.json";
+import mansiJainImg from "@/assets/placements/Mansi_Jain.webp.asset.json";
+import viditVishalImg from "@/assets/placements/Vidit_Vishal.webp.asset.json";
+import tanwirHaqueImg from "@/assets/placements/Tanwir_Haque.webp.asset.json";
+import abhayBarariImg from "@/assets/placements/Abhay_Barari.webp.asset.json";
+import anshikaPandeyImg from "@/assets/placements/Anshika.webp.asset.json";
 import vinayakaGoyalImg from "@/assets/placements/Vinayaka_Goyal.webp.asset.json";
 import rudranshTiwariImg from "@/assets/placements/Rudransh_Tiwari.webp.asset.json";
 import sonaliAwasthiImg from "@/assets/placements/Sonali_Awasthi.webp.asset.json";
@@ -597,6 +610,19 @@ const CAREERS_TEAM = [
   { name: "Nitika Wadhwa", role: "Program Manager — Corporate Relations", background: "Ex- EHL, Jamboree, Cognizant", image: nitikaWadhwaImg.url },
   { name: "Zubair Warsi", role: "Program Manager — Corporate Relations", background: "Ex- Spectacom Global, All Stars Digital, Radio Mirchi", image: zubairWarsiImg.url },
   { name: "Saksham Dutt", role: "Manager — Corporate Relations", background: "Ex- Adobe, Cvent, Gartner", image: sakshamDuttImg.url },
+  { name: "Vedika Kanodiya", role: "Manager — Corporate Relations", background: "Ex- Axis Max Life Insurance Ltd", image: vedikaKanodiyaImg.url },
+  { name: "Koshlendra Singh", role: "Manager — Corporate Relations", background: "Ex- AccioJob, Zomato", image: koshlendraSinghImg.url },
+  { name: "Vansh Pratap Singh", role: "Manager — Corporate Relations", background: "Ex- KPMG", image: vanshPratapSinghImg.url },
+  { name: "Adiksha Bhalla", role: "Program Manager — Corporate Relations", background: "Ex- Sunstone", image: adikshaBhallaImg.url },
+  { name: "Jitender Sharma", role: "Placement Manager — Corporate Relations", background: "Ex- Amity University, JIMS College", image: jitenderSharmaImg.url },
+  { name: "Tanya Verma", role: "Associate Program Manager — Corporate Relations", background: "Ex- Consultadd", image: tanyaVermaImg.url },
+  { name: "Anshuman Raj", role: "Associate Program Manager — Corporate Relations", background: "Ex- Loop, Simplilearn", image: anshumanRajImg.url },
+  { name: "Anjali Antil", role: "Associate Program Manager — Corporate Relations", background: "Ex- Altera Institute", image: anjaliAntilImg.url },
+  { name: "Mansi Jain", role: "Associate Program Manager — Career Preparation", background: "Ex- CollegeDekho, ImagineXP", image: mansiJainImg.url },
+  { name: "Vidit Vishal", role: "Associate Program Manager — Career Preparation", background: "Duke University, NSUT | Ex- Rentickle, CARS24, ABP News", image: viditVishalImg.url },
+  { name: "Tanwir Haque", role: "Associate Program Manager — Career Preparation", background: "Eco'n University of Delhi | Ex- MoHUA, Govt. of India", image: tanwirHaqueImg.url },
+  { name: "Abhay Barari", role: "Associate Program Manager — Career Preparation", background: "Ex- Coding Nexus, Study IQ", image: abhayBarariImg.url },
+  { name: "Anshika Pandey", role: "Executive — Corporate Relations", background: "Ex- University Living, BYJU'S", image: anshikaPandeyImg.url },
 ];
 
 const GUIDANCE_PROFILES = [
