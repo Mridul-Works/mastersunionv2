@@ -22,3 +22,4 @@
 - [ ] Add student carousel slide 29 (Sanidhya Sinha, Program Manager, Zomato) with portrait, role and quote
 - [ ] Add student carousel slide 30 (Malay Vashi, Manager - Design Planning, Razorpay) with portrait, role and quote
 - [ ] Add student carousel slide 31 (Puru Gupta, Senior Manager I - Program Management, Zepto) with portrait, role and quote
+- [ ] Add student carousel slide 32 (Dhananjay Dev, Chief of Staff - Founder's Office, The Souled Store) with portrait, role and quote
