@@ -77,6 +77,7 @@ import abhinavAroraImg from "@/assets/placements/Abhinav_Arora.webp.asset.json";
 import amitKumarImg from "@/assets/placements/Amit_Kumar.webp.asset.json";
 import aliZeinImg from "@/assets/placements/Ali_Zein_Alabdin_Qeddo.webp.asset.json";
 import anuragYadavImg from "@/assets/placements/Anurag_Yadav.webp.asset.json";
+import nishantSinghTanwarImg from "@/assets/placements/Nishant_Singh_Tanwar.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -533,7 +534,7 @@ const CAREERS_TEAM = [
   { name: "Amit Kumar", role: "Associate Director — Corporate Engagements", background: "MBA, IIM-Ahmedabad | Ex- Paytm, PayU, upGrad, NIIT", image: amitKumarImg.url },
   { name: "Ali Zein Alabdain Qaddo", role: "Associate Director — Corporate Engagements", background: "Ex- Al Habtoor Group, Bayzat", image: aliZeinImg.url },
   { name: "Anurag Yadav", role: "Associate Director — Corporate Engagements", background: "MBA, MDI Gurgaon; Ex-Accenture", image: anuragYadavImg.url },
-  { name: "Nishant Singh Tanwar", role: "Associate Director — Corporate Engagements", background: "MBA, XLRI; Ex-Naukri.com, XamFerry" },
+  { name: "Nishant Singh Tanwar", role: "Associate Director — Corporate Engagements", background: "MBA, XLRI | Ex- Naukri.com, Korn Ferry", image: nishantSinghTanwarImg.url },
   { name: "Akhil Krishna Gupta", role: "Associate Director — Corporate Engagements", background: "IIT Kharagpur Alumni; Ex-Naukri.com, Ecolab, IGR" },
   { name: "Dibyendu Choudhury", role: "Deputy Director — Corporate Engagements", background: "Ivy, Amity University" },
   { name: "Aastha Arora", role: "Deputy Director — Corporate Engagements", background: "Ex-Finsmart" },
