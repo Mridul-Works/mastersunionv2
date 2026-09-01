@@ -97,7 +97,11 @@ import kritiSharmaTeamImg from "@/assets/placements/Kriti_Sharma.webp.asset.json
 import siddharthJangirImg from "@/assets/placements/Siddharth_Jangir.webp.asset.json";
 import namitaBhatiaImg from "@/assets/placements/Namita_Bhatia.webp.asset.json";
 import ritiMarwahImg from "@/assets/placements/Riti_Marwah.webp.asset.json";
-import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
+import vinayakaGoyalImg from "@/assets/placements/Vinayaka_Goyal.webp.asset.json";
+import rudranshTiwariImg from "@/assets/placements/Rudransh_Tiwari.webp.asset.json";
+import sonaliAwasthiImg from "@/assets/placements/Sonali_Awasthi.webp.asset.json";
+import kushagraKumarImg from "@/assets/placements/Kushagra_Kumar.webp.asset.json";
+import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";\
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
 import {
