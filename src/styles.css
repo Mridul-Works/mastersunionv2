@@ -2862,27 +2862,159 @@ body::-webkit-scrollbar {
   .career-featured-copy { min-height: 27rem; }
 }
 
-.career-team-grid {
+.career-guidance-heading {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
+  gap: 2rem;
+  align-items: end;
 }
 
-.career-team-card {
-  height: 100%;
+.career-guidance-title-wrap {
+  max-width: 46rem;
+}
+
+.career-guidance-heading .career-area-title {
+  margin-top: 0;
+  max-width: 15ch;
+  font-size: clamp(2.25rem, 5.2vw, 4.8rem);
+  font-weight: 300;
+  line-height: 0.98;
+}
+
+.career-guidance-count {
+  margin-top: 2rem;
+  color: color-mix(in oklab, var(--foreground) 48%, transparent);
+  font-family: var(--font-mono-tech);
+  font-size: 0.62rem;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.career-guidance-count span {
+  display: block;
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: clamp(2.7rem, 5vw, 4.5rem);
+  font-weight: 300;
+  line-height: 0.9;
+}
+
+.career-guidance-mosaic {
+  columns: 2;
+  column-gap: 0.75rem;
+}
+
+.career-guidance-card {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 0.75rem;
+  break-inside: avoid;
   overflow: clip;
   border: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
-  border-radius: 12px;
+  border-radius: 8px;
   background: var(--placements-inner-surface);
-  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1), border-color 450ms ease, box-shadow 450ms ease;
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1), border-color 500ms ease, box-shadow 500ms ease, background 500ms ease;
 }
 
-.career-team-card .career-portrait-placeholder { aspect-ratio: 4 / 3; min-height: 0; }
-.career-team-card .career-portrait-placeholder span { font-size: clamp(1.5rem, 3vw, 2.8rem); }
-.career-team-copy { padding: 1rem; }
-.career-team-copy h3 { font-size: 0.95rem; }
-.career-team-copy p { margin-top: 0.45rem; color: color-mix(in oklab, var(--foreground) 75%, transparent); font-size: 0.7rem; line-height: 1.5; }
-.career-team-copy small { display: block; margin-top: 0.6rem; color: color-mix(in oklab, var(--foreground) 42%, transparent); font-size: 0.62rem; line-height: 1.5; }
+.career-guidance-index {
+  position: absolute;
+  z-index: 2;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0.28rem 0.38rem;
+  border: 1px solid color-mix(in oklab, var(--foreground) 14%, transparent);
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--background) 78%, transparent);
+  color: color-mix(in oklab, var(--foreground) 65%, transparent);
+  font-family: var(--font-mono-tech);
+  font-size: 0.52rem;
+  line-height: 1;
+}
+
+.career-guidance-portrait {
+  position: relative;
+  overflow: hidden;
+}
+
+.career-guidance-portrait > .career-portrait-placeholder {
+  aspect-ratio: 4 / 3;
+  min-height: 0;
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1), filter 500ms ease;
+}
+
+.career-guidance-card--feature .career-guidance-portrait > .career-portrait-placeholder {
+  aspect-ratio: 4 / 5;
+}
+
+.career-guidance-portrait .career-portrait-placeholder span {
+  font-size: clamp(1.35rem, 3vw, 2.8rem);
+}
+
+.career-guidance-portrait > span {
+  position: absolute;
+  left: 0.7rem;
+  bottom: 0.7rem;
+  color: color-mix(in oklab, var(--foreground) 58%, transparent);
+  font-family: var(--font-mono-tech);
+  font-size: 0.5rem;
+  text-transform: uppercase;
+}
+
+.career-guidance-copy {
+  padding: 1rem;
+}
+
+.career-guidance-copy h3 {
+  max-width: calc(100% - 2.4rem);
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.career-guidance-card--feature .career-guidance-copy h3 {
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+}
+
+.career-guidance-copy p {
+  margin-top: 0.45rem;
+  color: var(--accent);
+  font-family: var(--font-mono-tech);
+  font-size: 0.58rem;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.career-guidance-copy small {
+  display: block;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid color-mix(in oklab, var(--foreground) 9%, transparent);
+  color: color-mix(in oklab, var(--foreground) 45%, transparent);
+  font-size: 0.62rem;
+  line-height: 1.55;
+}
+
+.career-guidance-card--compact {
+  min-height: 8.5rem;
+}
+
+.career-guidance-card--compact .career-guidance-copy {
+  display: flex;
+  min-height: 8.5rem;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.career-guidance-card.is-placeholder {
+  border-style: dashed;
+  background: color-mix(in oklab, var(--placements-inner-surface) 82%, var(--accent));
+}
+
+.career-guidance-card.is-placeholder .career-guidance-copy h3,
+.career-guidance-card.is-placeholder .career-guidance-copy p,
+.career-guidance-card.is-placeholder .career-guidance-copy small {
+  color: color-mix(in oklab, var(--foreground) 34%, transparent);
+}
 
 .career-contact-strip {
   display: flex;
@@ -2990,13 +3122,19 @@ body::-webkit-scrollbar {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .career-team-card:hover,
+  .career-guidance-card:hover,
   .career-coach-track:hover,
   .career-leader-card:hover .career-leader-media,
   .career-closing-cta a:hover {
     transform: translateY(-3px);
     border-color: color-mix(in oklab, var(--accent) 34%, transparent);
     box-shadow: 0 22px 52px -34px color-mix(in oklab, var(--accent) 58%, transparent);
+  }
+  .career-guidance-card:hover {
+    background: color-mix(in oklab, var(--placements-inner-surface) 94%, var(--accent));
+  }
+  .career-guidance-card:hover .career-guidance-portrait > .career-portrait-placeholder {
+    transform: scale(1.035);
   }
 }
 
@@ -3007,7 +3145,8 @@ body::-webkit-scrollbar {
 
 @media (min-width: 768px) {
   .career-featured-story { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); }
-  .career-team-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .career-guidance-heading { grid-template-columns: minmax(10rem, 0.32fr) minmax(0, 0.68fr); }
+  .career-guidance-mosaic { columns: 3; }
   .career-term-selector { grid-template-columns: repeat(8, minmax(0, 1fr)); }
   .career-pathway-panel { grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr); }
   .career-coach-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -3015,11 +3154,11 @@ body::-webkit-scrollbar {
 }
 
 @media (min-width: 1100px) {
-  .career-team-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .career-guidance-mosaic { columns: 5; }
 }
 
 @media (max-width: 520px) {
-  .career-team-grid { grid-template-columns: 1fr; }
+  .career-guidance-mosaic { columns: 1; }
   .career-contact-strip { align-items: flex-start; border-radius: 12px; }
   .career-contact-strip span { overflow-wrap: anywhere; }
   .career-pathway-content ul { grid-template-columns: 1fr; }
@@ -3030,6 +3169,8 @@ body::-webkit-scrollbar {
 @media (prefers-reduced-motion: reduce) {
   .career-pathway-panel,
   .career-leader-cards { animation: none; }
+  .career-guidance-card,
+  .career-guidance-portrait > .career-portrait-placeholder { transition: none; }
 }
 
 

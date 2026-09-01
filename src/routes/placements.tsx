@@ -540,6 +540,17 @@ const CAREERS_TEAM = [
   { name: "Rachika Bawa", role: "Senior Manager — Career Preparation", background: "MBA, Masters' Union; Ex-Lowshik, Autonify, Vtrious" },
 ];
 
+const GUIDANCE_PROFILES = [
+  ...CAREERS_TEAM.map((member, index) => ({ ...member, index: index + 1, isPlaceholder: false })),
+  ...Array.from({ length: 52 - CAREERS_TEAM.length }, (_, index) => ({
+    name: "Profile name pending",
+    role: "Role and organisation pending",
+    background: "Professional background pending",
+    index: CAREERS_TEAM.length + index + 1,
+    isPlaceholder: true,
+  })),
+];
+
 const LEADER_GROUPS = [
   { label: "CEO & MDs", people: LEADERS.slice(0, 3) },
   { label: "CHROs", people: [LEADERS[8], LEADERS[9], LEADERS[11]] },
@@ -1055,21 +1066,50 @@ function CareerExperienceArea() {
 
       <Band tone="grey">
         <div className="career-section-number">02</div>
-        <Reveal><Eyebrow>Professional guidance</Eyebrow></Reveal>
-        <Reveal delay={100}><h2 className="career-area-title">Careers <em className="font-serif-italic">Team</em></h2></Reveal>
-        <div className="career-team-grid mt-12">
-          {CAREERS_TEAM.map((member, index) => (
-            <Reveal key={member.name} delay={(index % 5) * 55}>
-              <article className="career-team-card">
-                <PortraitPlaceholder name={member.name} />
-                <div className="career-team-copy">
+        <div className="career-guidance-heading">
+          <Reveal>
+            <div>
+              <Eyebrow>Professional guidance</Eyebrow>
+              <p className="career-guidance-count"><span>52</span> professionals<br />in your corner</p>
+            </div>
+          </Reveal>
+          <Reveal delay={100}>
+            <div className="career-guidance-title-wrap">
+              <h2 className="career-area-title">Guidance shaped by <em className="font-serif-italic">experience</em></h2>
+              <p className="career-area-intro">A multidisciplinary team helps students sharpen their story, prepare with intent, and navigate every step from first conversation to final offer.</p>
+            </div>
+          </Reveal>
+        </div>
+
+        <div className="career-guidance-mosaic mt-12" aria-label="Professional guidance team, 52 profiles">
+          {GUIDANCE_PROFILES.map((member) => {
+            const variant = member.index % 9 === 1 || member.index % 11 === 0
+              ? "career-guidance-card--feature"
+              : member.index % 4 === 0
+                ? "career-guidance-card--compact"
+                : "career-guidance-card--standard";
+
+            return (
+              <article
+                className={`career-guidance-card ${variant}${member.isPlaceholder ? " is-placeholder" : ""}`}
+                data-guidance-card
+                key={`${member.index}-${member.name}`}
+              >
+                <div className="career-guidance-index">{String(member.index).padStart(2, "0")}</div>
+                {variant !== "career-guidance-card--compact" ? (
+                  <div className="career-guidance-portrait">
+                    <PortraitPlaceholder name={member.isPlaceholder ? `Profile ${member.index}` : member.name} />
+                    {member.isPlaceholder ? <span>Image pending</span> : null}
+                  </div>
+                ) : null}
+                <div className="career-guidance-copy">
                   <h3>{member.name}</h3>
                   <p>{member.role}</p>
-                  <small>{member.background}</small>
+                  {variant !== "career-guidance-card--compact" ? <small>{member.background}</small> : null}
                 </div>
               </article>
-            </Reveal>
-          ))}
+            );
+          })}
         </div>
         <a className="career-contact-strip mt-10" href="mailto:careerservices@mastersunion.org">
           <Mail aria-hidden="true" /> Reach out to our team at <span>careerservices@mastersunion.org</span><ArrowUpRight aria-hidden="true" />
