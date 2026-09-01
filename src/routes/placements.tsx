@@ -1655,17 +1655,17 @@ function PodcastChapters({ open, setOpen }: { open: boolean; setOpen: (v: boolea
       <button
         type="button"
         onClick={() => openVideo({ title: item.name, video: item.video, start: 0 })}
-        className="group flex w-full items-center justify-between gap-3 rounded-lg border-b border-black/15 py-3 pl-2 pr-2 text-left transition-all duration-300 hover:bg-white/10 hover:pl-3"
+        className="group flex w-full items-center justify-between gap-3 rounded-lg border-b border-white/15 py-3 pl-2 pr-2 text-left transition-all duration-300 hover:bg-white/10 hover:pl-3"
       >
         <span className="flex flex-col gap-0.5">
-          <span className="text-[14px] leading-snug text-black/80 transition-colors duration-300 group-hover:text-[var(--accent)]">
+          <span className="text-[14px] leading-snug text-white/80 transition-colors duration-300 group-hover:text-[var(--accent)]">
             {item.name}
           </span>
-          <span className="text-[11px] leading-snug text-black/50">{item.role}</span>
+          <span className="text-[11px] leading-snug text-white/50">{item.role}</span>
         </span>
         <Play
           aria-hidden
-          className="size-3.5 shrink-0 -translate-x-1 fill-black/30 text-black/30 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:fill-[var(--accent)] group-hover:text-[var(--accent)] group-hover:opacity-100"
+          className="size-3.5 shrink-0 -translate-x-1 fill-white/30 text-white/30 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:fill-[var(--accent)] group-hover:text-[var(--accent)] group-hover:opacity-100"
         />
       </button>
     </li>
