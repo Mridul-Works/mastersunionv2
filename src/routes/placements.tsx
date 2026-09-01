@@ -1489,13 +1489,13 @@ function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal |
         </div>
         <div className="flex h-full flex-col lg:col-span-7">
           <PodcastVideoPlayer setVideoModal={setVideoModal} />
-          <div className="mt-8 flex flex-1 flex-col gap-8">
+          <div className="mt-8 flex min-h-0 flex-1 flex-col gap-8">
             <div className="h-px w-full bg-black/20" />
             <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-black/50">
               Episode — The story behind ₹33 lakh per LPA average placements — Watch / Listen
             </p>
             <EditorialRule />
-            <div className="flex flex-col gap-5 py-4">
+            <div className="flex min-h-0 flex-1 flex-col gap-5 py-4">
               <Eyebrow>Leadership conversations</Eyebrow>
               <PodcastVideoRail setVideoModal={setVideoModal} />
             </div>
@@ -1591,39 +1591,19 @@ const ytIdOf = (url: string) => url.split("/").pop()?.split("?")[0] ?? "";
 
 function PodcastVideoRail({ setVideoModal }: { setVideoModal: (modal: VideoModal | null) => void }) {
   if (!PODCAST_RAIL_VIDEOS.length) return null;
-  const railRef = React.useRef<HTMLDivElement>(null);
-
-  const scrollByCard = (direction: number) => {
-    const container = railRef.current;
-    if (!container) return;
-    const cardWidth = 256; // 240px card + 16px gap
-    container.scrollBy({ left: direction * cardWidth, behavior: "smooth" });
-  };
 
   return (
-    <div className="flex flex-col">
-      <div
-        ref={railRef}
-        className="rail-scroll no-scrollbar -mx-1 flex items-start gap-4 overflow-x-auto px-1 pb-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]/50"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === "ArrowLeft") {
-            e.preventDefault();
-            scrollByCard(-1);
-          } else if (e.key === "ArrowRight") {
-            e.preventDefault();
-            scrollByCard(1);
-          }
-        }}
-      >
+    <div className="flex min-h-0 flex-1 flex-col">
+      <div className="no-scrollbar grid min-h-0 flex-1 grid-cols-2 content-start gap-4 overflow-y-auto pb-2 sm:grid-cols-3">
         {PODCAST_RAIL_VIDEOS.map((item) => (
           <button
             key={item.video}
             type="button"
             onClick={() => setVideoModal({ title: item.name, video: item.video, start: 0 })}
             aria-label={`Play conversation with ${item.name}`}
-            className="group flex w-[240px] shrink-0 flex-col text-left"
+            className="group flex w-full flex-col text-left"
           >
+
 
             <span className="relative block aspect-video w-full overflow-hidden rounded-md bg-black/10">
               <img
@@ -1650,17 +1630,6 @@ function PodcastVideoRail({ setVideoModal }: { setVideoModal: (modal: VideoModal
             <span className="mt-1 block text-[11px] leading-snug text-black/50">{item.role}</span>
           </button>
         ))}
-      </div>
-      <div className="mt-3 flex shrink-0 items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Button variant="outline" size="icon" onClick={() => scrollByCard(-1)} aria-label="Scroll video rail left">
-            <ChevronLeft className="h-4 w-4" />
-          </Button>
-          <Button variant="outline" size="icon" onClick={() => scrollByCard(1)} aria-label="Scroll video rail right">
-            <ChevronRight className="h-4 w-4" />
-          </Button>
-        </div>
-        <span className="career-keyboard-hint" aria-hidden="true">Use ← → keys</span>
       </div>
     </div>
   );
