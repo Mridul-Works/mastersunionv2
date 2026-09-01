@@ -1523,10 +1523,12 @@ function PodcastTextBlock({ chaptersOpen, setChaptersOpen }: { chaptersOpen: boo
             href="https://www.youtube.com/channel/UCaTkVutJ9f-AoE7cz7VLlTw"
             target="_blank"
             rel="noreferrer"
-            className="sweep-link group mt-4 inline-flex items-center gap-2 border-b border-black/25 pb-0.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-black"
+            className="group mt-5 inline-flex w-full items-center justify-between gap-3 rounded-xl bg-[#F2F1EE] px-4 py-3.5 text-[13px] font-bold uppercase tracking-[0.12em] text-[#0B1215] transition-all duration-300 hover:scale-[1.02] hover:bg-white hover:shadow-[0_12px_30px_rgba(242,241,238,0.18)] active:scale-[0.98]"
           >
-            Subscribe to Masters' Union
-            <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <span>Subscribe to Masters&apos; Union</span>
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#0B1215] text-[#F2F1EE] transition-transform duration-300 group-hover:translate-x-0.5">
+              <ArrowUpRight className="size-4" />
+            </span>
           </a>
           <PodcastChapters open={chaptersOpen} setOpen={setChaptersOpen} />
         </div>
