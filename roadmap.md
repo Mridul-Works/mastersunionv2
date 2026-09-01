@@ -135,3 +135,5 @@
 - Added playable YouTube video link for Rakesh Verma (CEO & MDs): https://youtu.be/Lc_eotDL7PQ
 
 - Added playable YouTube video link for Sarvesh Agarwal (CEO & MDs): https://youtu.be/hQZkQGTgaes
+
+- Added playable YouTube video link for Anil Salvi (CHROs): https://youtu.be/bqDEOr16rZw

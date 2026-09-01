@@ -657,7 +657,7 @@ const GUIDANCE_PROFILES = [
 ];
 
 const CHRO_LEADERS = [
-  { name: "Anil Salvi", role: "MD & Group Head, JM Financial Group" },
+  { name: "Anil Salvi", role: "MD & Group Head, JM Financial Group", video: "https://youtu.be/bqDEOr16rZw" },
   { name: "Bhavna Batra", role: "Exec. Dir. (People), S&P Global Market Intelligence" },
   { name: "Dr Sachin Gulati", role: "Head of India Campus Recruitment, American Express" },
   { name: "Sandeep Girotra", role: "Chief Human Resource Officer, DCM Shriram LTD" },
