@@ -53,6 +53,7 @@ import shibiImg from "@/assets/placements/shibi.webp.asset.json";
 import varunImg from "@/assets/placements/varun.webp.asset.json";
 import sidhantaImg from "@/assets/placements/sidhanta.webp.asset.json";
 import kartikImg from "@/assets/placements/kartik.webp.asset.json";
+import ankitSharmaImg from "@/assets/placements/ankitsharma.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -293,8 +294,14 @@ const TESTIMONIALS = [
     note: "Masters’ Union turned my job hunt into a strategic campaign. Mock interview marathons sharpened my case-solving, storytelling, and situational judgement, so I could answer Justdial’s questions confidently. Marketing Analytics, Full-Funnel Growth, and Statistics labs equipped me with skills to generate insights and prioritize features in Product Management sprints.",
     image: kartikImg.url,
   },
-  ...Array.from({ length: 23 }, (_, i) => ({
-    name: `Placement Story ${String(i + 17).padStart(2, "0")}`,
+  {
+    name: "Ankit Sharma",
+    role: "Business Analyst, Sirius International Holdings | Abu Dhabi",
+    note: "The hands-on learning and mentorship from industry leaders at Masters’ Union were instrumental in my seamless transition into a global role at Sirius International Holdings. I’m grateful to Pratham Mittal, Abhishek Kaul, Bhupesh Manoharan, Saksham Kotiya, and the MU team for guiding me, refining my analytical thinking and strengthening my business fundamentals.",
+    image: ankitSharmaImg.url,
+  },
+  ...Array.from({ length: 22 }, (_, i) => ({
+    name: `Placement Story ${String(i + 18).padStart(2, "0")}`,
     role: "Role & Company — to be confirmed",
     note: "Placeholder story. Portrait, role and quote will be added once the cohort details are shared.",
   })),
