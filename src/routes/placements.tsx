@@ -1649,8 +1649,11 @@ function HorizontalMetricsStrip({ variant = "light" }: { variant?: "light" | "da
   return (
     <div
       className={cn(
-        "placements-metrics-strip grid grid-cols-1 gap-px overflow-hidden border-y lg:grid-cols-3",
-        isDark ? "border-[#131618] bg-[#131618]" : "border-foreground/10 bg-foreground/10"
+        "placements-metrics-strip grid grid-cols-1 overflow-hidden border-y lg:grid-cols-3",
+        isDark
+          ? "border-[#131618] bg-[#131618] lg:divide-x lg:divide-white/10"
+          : "border-foreground/10 bg-foreground/10 lg:divide-x lg:divide-black/10",
+        "gap-px lg:gap-0"
       )}
     >
       {AUDIT_STATS.map((stat, i) => (
