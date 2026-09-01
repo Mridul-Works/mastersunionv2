@@ -801,7 +801,7 @@ function CareerExperienceArea() {
   const [story, setStory] = useState(0);
   const [term, setTerm] = useState(0);
   const [leaderGroup, setLeaderGroup] = useState(0);
-  const featuredStories = TESTIMONIALS.slice(0, 6);
+  const featuredStories = TESTIMONIALS;
   const currentStory = featuredStories[story];
   const currentTerm = TERMS[term];
   const currentLeaders = LEADER_GROUPS[leaderGroup];
