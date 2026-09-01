@@ -74,3 +74,5 @@
 - [x] Add Professional guidance card 44 (Anshuman Raj) portrait, name, role and background text
 - [x] Add Professional guidance card 45 (Anjali Antil) portrait, name, role and background text
 - [x] Add Professional guidance card 46 (Mansi Jain) portrait, name, role and background text
+- [x] Add Professional guidance card 47 (Vidit Vishal) portrait, name, role and background text
+- [x] Add Professional guidance card 48 (Tanwir Haque) portrait, name, role and background text
