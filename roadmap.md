@@ -20,3 +20,4 @@
 - [ ] Add student carousel slide 27 (Kanishk Chaturvedi, Data Scientist, Funder.ai | Abu Dhabi) with portrait, role and quote
 - [ ] Add student carousel slide 28 (Jayesh Makkar, Manager - SELL, Flipkart) with portrait, role and quote
 - [ ] Add student carousel slide 29 (Sanidhya Sinha, Program Manager, Zomato) with portrait, role and quote
+- [ ] Add student carousel slide 30 (Malay Vashi, Manager - Design Planning, Razorpay) with portrait, role and quote
