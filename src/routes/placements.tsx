@@ -1631,17 +1631,6 @@ function PodcastVideoRail({ setVideoModal }: { setVideoModal: (modal: VideoModal
           </button>
         ))}
       </div>
-      <div className="mt-3 flex shrink-0 items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Button variant="outline" size="icon" onClick={() => scrollByCard(-1)} aria-label="Scroll video rail left">
-            <ChevronLeft className="h-4 w-4" />
-          </Button>
-          <Button variant="outline" size="icon" onClick={() => scrollByCard(1)} aria-label="Scroll video rail right">
-            <ChevronRight className="h-4 w-4" />
-          </Button>
-        </div>
-        <span className="career-keyboard-hint" aria-hidden="true">Use ← → keys</span>
-      </div>
     </div>
   );
 }
