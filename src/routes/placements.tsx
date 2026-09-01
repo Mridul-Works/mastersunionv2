@@ -534,7 +534,7 @@ const CREATORS = [
 ];
 
 const TERMS = [
-  { term: "Term 1", title: "Mentor allocation & profile building", items: ["Psychometric assessment", "1-1 mentor allocation", "Resume formatting", "LinkedIn profiling", "Professional photography", "Institution of PlaCom", "Know all domains", "Placement policies", "Case & business plan workshop"] },
+  { term: "Term 1", title: "Mentor allocation & profile building", items: ["Psychometric Assessment", "1-1 Mentor Allocation", "Resume Formatting for Profile Building", "LinkedIn Profiling", "Professional Photography & Class Photos", "Institution of PlaCom", "Know all Domains", "Placement Policies", "Case and Business Plan Competition Workshop"] },
   { term: "Term 2", title: "Outreach plan & personal branding", items: ["Company list finalisation", "Company outreach plan", "Shortlist top 3 domains", "Presentation skills", "Industry engagement", "Personal branding", "Storytelling workshop", "Career practicums", "Corporate competitions"] },
   { term: "Term 3", title: "Functional role-based workshops", items: ["Resume review #1", "Behavioural mocks", "Consulting case training", "Domain seminars", "Teamwork & conflict management", "Role-based workshops"] },
   { term: "Term 4", title: "Interview preparations", items: ["Resume review #2", "Stress management", "Domain seminars", "Corporate competitions", "Role-based workshops", "Mock interviews", "Last mile preps"] },
