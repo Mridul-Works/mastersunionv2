@@ -524,7 +524,7 @@ const LEADERS = [
 ];
 
 const CAREERS_TEAM = [
-  { name: "Abhishek Kaul", role: "Director — Corporate Engagements, Masters' Union & Tetr", background: "MBA, IIM-L; Ex-Walt Disney, EY, Times Group" },
+  { name: "Abhishek Kaul", role: "Director — Corporate Engagements, Masters' Union & Tetr", background: "MBA, IIM-L; Ex-Walt Disney, EY, Times Group", image: abhishekKaulImg.url },
   { name: "Abhinav Arora", role: "Associate Director — Strategic Initiatives", background: "MBA, IIM-L; Ex-Ernst & Young, Jio, Jio" },
   { name: "Amit Kumar", role: "Associate Director — Corporate Engagements", background: "MBA, IIM-Ahmedabad; Ex-Paytm, Pepsi, upGrad, NET" },
   { name: "Ali Zein Alabdain Qaddo", role: "Associate Director — Corporate Engagements", background: "Ex-HR director, Orange, Egypt" },
