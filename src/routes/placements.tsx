@@ -867,6 +867,7 @@ function CinematicHero() {
       <section
         id="top"
         ref={sectionRef}
+        data-no-reveal
         className="relative z-0 bg-[#0a0a0a]"
         style={{ height: reduced ? "100svh" : "200svh" }}
       >
@@ -2480,14 +2481,47 @@ function EditorialPlacementData() {
 
 /* ---------------------------------- page ---------------------------------- */
 
+/** Blur + lift reveal for every section as it scrolls into view (UG v2.0 rules). */
+function useScrollBlurReveal(rootRef: React.RefObject<HTMLElement | null>) {
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root || typeof IntersectionObserver === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const targets = Array.from(root.querySelectorAll<HTMLElement>("section")).filter(
+      (el) => !el.closest("[data-no-reveal]"),
+    );
+    targets.forEach((el) => {
+      el.classList.add("sd-reveal");
+      el.dataset.visible = "false";
+    });
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            (entry.target as HTMLElement).dataset.visible = "true";
+            io.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -8% 0px" },
+    );
+    targets.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, [rootRef]);
+}
+
 function Page() {
   const [recruiterTab, setRecruiterTab] = useState(RECRUITER_GROUPS[0].category);
   const [videoModal, setVideoModal] = useState<VideoModal | null>(null);
   const [videoMaximized, setVideoMaximized] = useState(false);
   const active = RECRUITER_GROUPS.find((g) => g.category === recruiterTab)!;
+  const pageRef = useRef<HTMLElement | null>(null);
+  useScrollBlurReveal(pageRef);
   return (
     <ReportModalProvider>
-    <main className="placements-obsidian placements-ug-v2 ink-scope min-h-screen overflow-x-clip bg-[#0B1215] pb-16 text-foreground md:pb-18" style={{ fontFamily: INTER }}>
+    <main ref={pageRef} className="placements-obsidian placements-ug-v2 ink-scope min-h-screen overflow-x-clip bg-[#0B1215] pb-16 text-foreground md:pb-18" style={{ fontFamily: INTER }}>
       <ScrollProgress />
 
       {/* Global top navigation — fixed, hides on scroll down, reveals on scroll up */}
