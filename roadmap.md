@@ -100,3 +100,5 @@
 - [x] Add Term 8 Annual Roadmap image (cd8.webp)
 - [x] Add Rajnish Virmani coach portrait
 - [x] Add Andrea Stone coach portrait
+- [x] Add playable YouTube video link for Amit Khatri (Co-founder, Noise) inside CEO & MDs leadership guidance
+- [x] Add playable YouTube video link for Swati & Rohan Bhargava (Co-founders, CashKaro) inside CEO & MDs leadership guidance
