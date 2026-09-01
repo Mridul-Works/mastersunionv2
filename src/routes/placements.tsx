@@ -577,6 +577,8 @@ const CAREERS_TEAM = [
   { name: "Jasleen Taluja", role: "Senior Manager — Corporate Relations", background: "MBA, IMT Ghaziabad | Ex- Seekho", image: jasleenTalujaImg.url },
   { name: "Vibhuti Singh", role: "Senior Manager — Corporate Relations", background: "MBA, Murdoch University, Australia | Ex- KiwiTech", image: vibhutiSinghImg.url },
   { name: "Santanu Goswami", role: "Senior Manager — Career Preparation", background: "MBA, IIM-Calcutta | Ex- IB, M&A, VC", image: santanuGoswamiImg.url },
+  { name: "Mansi Bhargava", role: "Senior Manager — Career Preparation", background: "MBA, IIM-Ranchi | Ex- Web3", image: mansiBhargavaImg.url },
+  { name: "Kartikeya Gupta", role: "Senior Manager — Career Preparation", background: "MBA, Mesa School of Business | Ex- Zomato", image: kartikeyaGuptaImg.url },
   { name: "Kriti Sharma", role: "Senior Manager — Career Preparation", background: "MBA, Masters' Union | Ex- BCG, Praxis GA, Qualcomm", image: kritiSharmaTeamImg.url },
   { name: "Siddharth Jangir", role: "Senior Manager — Career Preparation", background: "MBA, IIM-Kozhikode | Ex- Disney Star, Seashell Logistics", image: siddharthJangirImg.url },
   { name: "Namita Bhatia", role: "Senior Manager — Career Preparation", background: "Employability Skills Trainer, Melbourne Business School, University of Melbourne", image: namitaBhatiaImg.url },
