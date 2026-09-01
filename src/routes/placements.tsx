@@ -116,6 +116,8 @@ import viditVishalImg from "@/assets/placements/Vidit_Vishal.webp.asset.json";
 import tanwirHaqueImg from "@/assets/placements/Tanwir_Haque.webp.asset.json";
 import abhayBarariImg from "@/assets/placements/Abhay_Barari.webp.asset.json";
 import anshikaPandeyImg from "@/assets/placements/Anshika.webp.asset.json";
+import ayushiSinghImg from "@/assets/placements/Ayushi_Singh.webp.asset.json";
+import ankitJainImg from "@/assets/placements/Ankit_Jain.webp.asset.json";
 import vinayakaGoyalImg from "@/assets/placements/Vinayaka_Goyal.webp.asset.json";
 import rudranshTiwariImg from "@/assets/placements/Rudransh_Tiwari.webp.asset.json";
 import sonaliAwasthiImg from "@/assets/placements/Sonali_Awasthi.webp.asset.json";
@@ -623,6 +625,8 @@ const CAREERS_TEAM = [
   { name: "Tanwir Haque", role: "Associate Program Manager — Career Preparation", background: "Eco'n University of Delhi | Ex- MoHUA, Govt. of India", image: tanwirHaqueImg.url },
   { name: "Abhay Barari", role: "Associate Program Manager — Career Preparation", background: "Ex- Coding Nexus, Study IQ", image: abhayBarariImg.url },
   { name: "Anshika Pandey", role: "Executive — Corporate Relations", background: "Ex- University Living, BYJU'S", image: anshikaPandeyImg.url },
+  { name: "Ayushi Singh", role: "Senior Executive — Corporate Relations", background: "Ex- GradRight Inc.", image: ayushiSinghImg.url },
+  { name: "Ankit Jain", role: "Associate — Corporate Relations", background: "Ex- SMC", image: ankitJainImg.url },
 ];
 
 const GUIDANCE_PROFILES = [
