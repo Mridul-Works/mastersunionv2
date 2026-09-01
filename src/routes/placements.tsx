@@ -559,7 +559,7 @@ const COACH_TRACKS = [
 ];
 
 const COACHES = [
-  { name: "Rajnish Virmani", role: "Ex President, COO at Reliance", exp: "10+ years" },
+  { name: "Rajnish Virmani", role: "Ex President, COO at Reliance", exp: "10+ years", image: rajnishVirmaniImg.url },
   { name: "Andrea Stone", role: "Ex CMO, Mahindra Comviva", exp: "10+ years" },
   { name: "Mamta Wasan", role: "Director & CEO, Mekosha Ayurveda", exp: "3+ years" },
   { name: "Santosh Sharan", role: "Ex Director HR, SC Johnson", exp: "5+ years" },
