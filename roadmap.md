@@ -13,3 +13,4 @@
 - [ ] Add student carousel slide 20 (Kartik Sharma, Senior Manager - Digital Marketing, JustDial) with portrait, role and quote
 - [ ] Add student carousel slide 21 (Ankit Sharma, Business Analyst, Sirius International Holdings | Abu Dhabi) with portrait, role and quote
 - [ ] Add student carousel slide 22 (Ashmita Malik, Senior Associate, Alvarez & Marsal) with portrait, role and quote
+- [ ] Add student carousel slide 23 (Aashutosh Varakhedkar, Expert - ESG, Trident Group) with portrait, role and quote
