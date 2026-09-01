@@ -148,6 +148,8 @@ import rohithHariharanImg from "@/assets/placements/RohithHariharan.webp.asset.j
 import radhikaMaheshwariImg from "@/assets/placements/radhika.webp.asset.json";
 import nikhilSinghalImg from "@/assets/placements/nikhil.webp.asset.json";
 import shivKapoorImg from "@/assets/placements/shiv-kapoor-gt.webp.asset.json";
+import saloneSehgalImg from "@/assets/placements/saloneSehgal.webp.asset.json";
+import amitKumarGoogleCloudImg from "@/assets/placements/amitKumarGoogleCloud.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -693,8 +695,8 @@ const EXECUTIVES = [
   { name: "Radhika Maheshwari", role: "Director, Finance, Bacardi", image: radhikaMaheshwariImg.url },
   { name: "Nikhil Singhal", role: "MD & Head of Private Banking, HSBC India", image: nikhilSinghalImg.url },
   { name: "Shiv Kapoor", role: "Vice President, Titan Capital", image: shivKapoorImg.url },
-  { name: "Salone Sehgal", role: "Founding General Partner, Lumikai" },
-  { name: "Amit Kumar", role: "Sales Director, Google Cloud" },
+  { name: "Salone Sehgal", role: "Founding General Partner, Lumikai", image: saloneSehgalImg.url },
+  { name: "Amit Kumar", role: "Sales Director, Google Cloud", image: amitKumarGoogleCloudImg.url },
 ];
 
 const LEADER_GROUPS = [
