@@ -2980,7 +2980,7 @@ body::-webkit-scrollbar {
 
 .career-guidance-copy p {
   margin-top: 0.45rem;
-  color: var(--accent);
+  color: color-mix(in oklab, var(--foreground) 72%, transparent);
   font-family: var(--font-mono-tech);
   font-size: 0.58rem;
   line-height: 1.5;
