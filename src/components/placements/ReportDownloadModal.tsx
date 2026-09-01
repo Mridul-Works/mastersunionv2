@@ -159,6 +159,7 @@ function ReportModal({ onClose }: { onClose: () => void }) {
   const [phone, setPhone] = useState("");
   const [experience, setExperience] = useState("");
   const [error, setError] = useState("");
+  const [downloading, setDownloading] = useState(false);
   const firstFieldRef = useRef<HTMLInputElement>(null);
 
   /* entrance */
