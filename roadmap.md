@@ -138,3 +138,4 @@
 
 - Added playable YouTube video link for Anil Salvi (CHROs): https://youtu.be/bqDEOr16rZw
 - Added Bhavna Batra portrait to CHROs card
+- CHROs portraits: Sachin Gulati, Sandeep Girotra, Prashant Khullar wired

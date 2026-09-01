@@ -140,6 +140,11 @@ import kushagraKumarImg from "@/assets/placements/Kushagra_Kumar.webp.asset.json
 import shivangiDwivediImg from "@/assets/placements/Shivangi_Dwivedi.webp.asset.json";
 import souravMajumderImg from "@/assets/placements/Sourav_Majumder.webp.asset.json";
 import bhavnaBatraImg from "@/assets/placements/BhavnaBatra.webp.asset.json";
+import sachinGulatiImg from "@/assets/placements/sachingulati.webp.asset.json";
+import sandeepGirotraImg from "@/assets/placements/SandeepGirotra.webp.asset.json";
+import prashantKhullarImg from "@/assets/placements/PrashantKhullar.webp.asset.json";
+import tanushriNairImg from "@/assets/placements/TanushriNair.webp.asset.json";
+import rohithHariharanImg from "@/assets/placements/RohithHariharan.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -660,11 +665,11 @@ const GUIDANCE_PROFILES = [
 const CHRO_LEADERS = [
   { name: "Anil Salvi", role: "MD & Group Head, JM Financial Group", video: "https://youtu.be/bqDEOr16rZw" },
   { name: "Bhavna Batra", role: "Exec. Dir. (People), S&P Global Market Intelligence", image: bhavnaBatraImg.url },
-  { name: "Dr Sachin Gulati", role: "Head of India Campus Recruitment, American Express" },
-  { name: "Sandeep Girotra", role: "Chief Human Resource Officer, DCM Shriram LTD" },
-  { name: "Prashant Khullar", role: "Chief Human Resources Officer, Ecom Express" },
-  { name: "Tanushri Nair", role: "Director, Human Resources, SAGE Publications" },
-  { name: "Rohith Hariharan", role: "Head, Employer Branding, Ather Energy" },
+  { name: "Dr Sachin Gulati", role: "Head of India Campus Recruitment, American Express", image: sachinGulatiImg.url },
+  { name: "Sandeep Girotra", role: "Chief Human Resource Officer, DCM Shriram LTD", image: sandeepGirotraImg.url },
+  { name: "Prashant Khullar", role: "Chief Human Resources Officer, Ecom Express", image: prashantKhullarImg.url },
+  { name: "Tanushri Nair", role: "Director, Human Resources, SAGE Publications", image: tanushriNairImg.url },
+  { name: "Rohith Hariharan", role: "Head, Employer Branding, Ather Energy", image: rohithHariharanImg.url },
 ];
 
 const LEADER_PLACEHOLDER = (label: string, index: number) => ({
