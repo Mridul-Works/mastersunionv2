@@ -247,6 +247,8 @@ type CohortRow = {
   mid80: string;
 };
 
+type VideoModal = { title: string; video: string; start?: number };
+
 const TBM_TABLE: CohortRow[] = [
   { cohort: "2025", avg: "₹33.39 L", median: "₹27.79 L", highest: "₹1.28 Cr", top25: "₹54.80 L", bottom25: "₹22.75 L", mid80: "₹29.20 L" },
   { cohort: "2024", avg: "₹28.52 L", median: "₹27.77 L", highest: "₹61.80 L", top25: "₹43.79 L", bottom25: "₹19.30 L", mid80: "₹27.05 L" },
@@ -1126,11 +1128,10 @@ function PortraitPlaceholder({ name, imageSrc, className = "" }: { name: string;
   );
 }
 
-function CareerExperienceArea() {
+function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoModal | null) => void }) {
   const [story, setStory] = useState(0);
   const [term, setTerm] = useState(0);
   const [leaderGroup, setLeaderGroup] = useState(0);
-  const [videoModal, setVideoModal] = useState<{ title: string; video: string } | null>(null);
   const [showAllGuidance, setShowAllGuidance] = useState(false);
   const [coachTrack, setCoachTrack] = useState(0);
 
@@ -1446,22 +1447,6 @@ function CareerExperienceArea() {
             ))}
           </div>
 
-          <Dialog open={!!videoModal} onOpenChange={(open) => !open && setVideoModal(null)}>
-            <DialogContent className="career-leader-video-dialog max-w-3xl border-0 bg-black p-0">
-              <DialogTitle className="sr-only">{videoModal?.title ? `Video from ${videoModal.title}` : "Leader video"}</DialogTitle>
-              <DialogDescription className="sr-only">YouTube video player</DialogDescription>
-              {videoModal && (
-                <div className="career-leader-video-wrap">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${videoModal.video.split("/").pop()?.split("?")[0]}?autoplay=1&rel=0`}
-                    title={`Video from ${videoModal.title}`}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-                    allowFullScreen
-                  />
-                </div>
-              )}
-            </DialogContent>
-          </Dialog>
         </div>
       </Band>
 
@@ -1487,16 +1472,10 @@ const PODCAST_ID = "uiNTwDixAts";
 type PodcastCtx = { seek: (seconds: number) => void };
 const PodcastContext = React.createContext<PodcastCtx>({ seek: () => {} });
 
-function PodcastSection() {
-  const [state, setState] = useState<{ playing: boolean; start: number; token: number }>({
-    playing: false,
-    start: 0,
-    token: 0,
-  });
-
+function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal | null) => void }) {
   const seek = React.useCallback((seconds: number) => {
-    setState((s) => ({ playing: true, start: seconds, token: s.token + 1 }));
-  }, []);
+    setVideoModal({ title: "Placements Podcast", video: `https://youtu.be/${PODCAST_ID}`, start: seconds });
+  }, [setVideoModal]);
 
   return (
     <PodcastContext.Provider value={{ seek }}>
@@ -1505,12 +1484,7 @@ function PodcastSection() {
           <PodcastTextBlock />
         </div>
         <div className="lg:col-span-7">
-          <PodcastVideoPlayer
-            playing={state.playing}
-            start={state.start}
-            seekToken={state.token}
-            onPlay={() => setState((s) => ({ ...s, playing: true }))}
-          />
+          <PodcastVideoPlayer setVideoModal={setVideoModal} />
           <div className="mt-4 flex flex-col gap-4">
             <div className="h-px w-full bg-black/20" />
             <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-black/50">
@@ -1564,73 +1538,29 @@ function PodcastTextBlock() {
   );
 }
 
-function PodcastVideoPlayer({
-  playing,
-  start,
-  seekToken,
-  onPlay,
-}: {
-  playing: boolean;
-  start: number;
-  seekToken: number;
-  onPlay: () => void;
-}) {
+function PodcastVideoPlayer({ setVideoModal }: { setVideoModal: (modal: VideoModal | null) => void }) {
   const id = PODCAST_ID;
 
   return (
     <ClipReveal>
-      <div className="group relative aspect-video w-full overflow-hidden bg-black">
-        {playing ? (
-          <iframe
-            key={seekToken}
-            className="h-full w-full"
-            src={`https://www.youtube.com/embed/${id}?autoplay=1&rel=0&start=${start}`}
-            title="How Masters' Union prepares students for top 1% placements"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture"
-            allowFullScreen
+      <div className="career-podcast-media group">
+        <button
+          type="button"
+          onClick={() => setVideoModal({ title: "Placements Podcast", video: `https://youtu.be/${id}`, start: 0 })}
+          aria-label="Play placements podcast"
+          className="absolute inset-0 h-full w-full"
+        >
+          <img
+            src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
+            alt="Masters' Union placements podcast"
+            loading="lazy"
+            className="h-full w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-[1.03]"
           />
-        ) : (
-          <button
-            type="button"
-            onClick={onPlay}
-            aria-label="Play placements podcast"
-            className="absolute inset-0 h-full w-full"
-          >
-            <img
-              src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
-              alt="Masters' Union placements podcast"
-              loading="lazy"
-              className="h-full w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-[1.03]"
-            />
-            <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-            <span className="absolute bottom-5 left-5 flex items-center gap-3">
-              <span className="relative grid size-11 place-items-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md transition group-hover:bg-white/25">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-                <svg
-                  aria-hidden
-                  className="pointer-events-none absolute -inset-[3px] size-[50px] transition-[stroke-dashoffset] duration-[900ms] ease-out [stroke-dasharray:138.23] [stroke-dashoffset:138.23] group-hover:[stroke-dashoffset:0]"
-                  viewBox="0 0 50 50"
-                  style={{ transform: "rotate(-90deg)" }}
-                >
-                  <circle
-                    cx="25"
-                    cy="25"
-                    r="22"
-                    fill="none"
-                    stroke="var(--accent)"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
-                </svg>
-              </span>
-              <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/90">
-                Play podcast
-              </span>
-            </span>
-          </button>
-        )}
+          <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+          <span className="career-podcast-play">
+            <Play fill="currentColor" />
+          </span>
+        </button>
       </div>
     </ClipReveal>
   );
@@ -2525,6 +2455,7 @@ function EditorialPlacementData() {
 
 function Page() {
   const [recruiterTab, setRecruiterTab] = useState(RECRUITER_GROUPS[0].category);
+  const [videoModal, setVideoModal] = useState<VideoModal | null>(null);
   const active = RECRUITER_GROUPS.find((g) => g.category === recruiterTab)!;
   return (
     <ReportModalProvider>
@@ -2553,7 +2484,7 @@ function Page() {
         <section className="relative min-h-[100svh] bg-[#0B1215]">
           <div className="page-x flex h-full min-h-[100svh] items-center pt-8 pb-6 md:pt-10 md:pb-8 lg:pt-12 lg:pb-10">
             <div className="placements-section-shell placements-section-shell-dark relative flex w-full flex-col gap-10 lg:gap-14">
-              <PodcastSection />
+              <PodcastSection setVideoModal={setVideoModal} />
               <div className="mt-6 md:mt-8 lg:mt-10">
                 <EditorialRule />
               </div>
@@ -2622,7 +2553,7 @@ function Page() {
       {/* TRANSITIONS */}
       <CareerTransitionsSection />
 
-      <CareerExperienceArea />
+      <CareerExperienceArea setVideoModal={setVideoModal} />
 
       {/* CONTACT */}
       <section id="contact" className="relative overflow-hidden border-t border-black/10 bg-[#f2f1ee]">
@@ -2655,7 +2586,24 @@ function Page() {
           </div>
         </div>
       </section>
-   </main>
+    </main>
+
+    <Dialog open={!!videoModal} onOpenChange={(open) => !open && setVideoModal(null)}>
+      <DialogContent className="career-leader-video-dialog max-w-3xl border-0 bg-black p-0">
+        <DialogTitle className="sr-only">{videoModal?.title ? `Video from ${videoModal.title}` : "Video"}</DialogTitle>
+        <DialogDescription className="sr-only">YouTube video player</DialogDescription>
+        {videoModal && (
+          <div className="career-leader-video-wrap">
+            <iframe
+              src={`https://www.youtube.com/embed/${videoModal.video.split("/").pop()?.split("?")[0]}?autoplay=1&rel=0${videoModal.start ? `&start=${videoModal.start}` : ""}`}
+              title={`Video from ${videoModal.title}`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+              allowFullScreen
+            />
+          </div>
+        )}
+      </DialogContent>
+    </Dialog>
     </ReportModalProvider>
   );
 }
