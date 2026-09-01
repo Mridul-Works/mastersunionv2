@@ -1567,10 +1567,6 @@ const PODCAST_RAIL_VIDEOS = LEADER_GROUPS.flatMap((group) =>
 
 const ytIdOf = (url: string) => url.split("/").pop()?.split("?")[0] ?? "";
 
-const PAGE_VIDEOS = [
-  { name: "Placements Podcast", role: "How Masters' Union prepares students for top 1% placements", video: `https://youtu.be/${PODCAST_ID}` },
-  ...PODCAST_RAIL_VIDEOS,
-];
 
 function PodcastVideoRail({
   setVideoModal,
