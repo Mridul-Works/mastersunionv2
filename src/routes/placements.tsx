@@ -56,6 +56,7 @@ import kartikImg from "@/assets/placements/kartik.webp.asset.json";
 import ankitSharmaImg from "@/assets/placements/ankitsharma.webp.asset.json";
 import ashmitaImg from "@/assets/placements/ashmita.webp.asset.json";
 import aashutoshImg from "@/assets/placements/Aashutosh.webp.asset.json";
+import dakshImg from "@/assets/placements/daksh.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -314,8 +315,14 @@ const TESTIMONIALS = [
     note: "Masters’ Union played a crucial role in helping me secure my position at Trident through campus placements. The focus on data-driven decision-making and real-world problem-solving strengthened my analytical and structured thinking. Mentorship from Nandini Ma’am and Bhupesh Sir pushed me to identify gaps, making MU the launchpad for my transition into the ESG domain.",
     image: aashutoshImg.url,
   },
-  ...Array.from({ length: 20 }, (_, i) => ({
-    name: `Placement Story ${String(i + 20).padStart(2, "0")}`,
+  {
+    name: "Daksh Rastogi",
+    role: "Lead - Partnerships, OneBanc",
+    note: "After five years in consulting, I aimed to transition into a role combining client-facing experience with my interest in FinTech. Masters’ Union provided the exposure, mentorship, and connections that enabled me to secure a Lead - Partnerships role at OneBanc. The program helped me find a position blending strategy, tech and finance, perfectly aligning with my career goals.",
+    image: dakshImg.url,
+  },
+  ...Array.from({ length: 19 }, (_, i) => ({
+    name: `Placement Story ${String(i + 21).padStart(2, "0")}`,
     role: "Role & Company — to be confirmed",
     note: "Placeholder story. Portrait, role and quote will be added once the cohort details are shared.",
   })),
