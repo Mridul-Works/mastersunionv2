@@ -566,10 +566,10 @@ const COACH_TRACKS = [
 const COACHES = [
   { name: "Rajnish Virmani", role: "Ex President, COO at Reliance", exp: "10+ years", image: rajnishVirmaniImg.url },
   { name: "Andrea Stone", role: "Ex CMO, Mahindra Comviva", exp: "10+ years", image: andreaStoneImg.url },
-  { name: "Mamta Wasan", role: "Director & CEO, Mekosha Ayurveda", exp: "3+ years" },
-  { name: "Santosh Sharan", role: "Ex Director HR, SC Johnson", exp: "5+ years" },
-  { name: "Sandeep Bidani", role: "Ex Executive Director HR, IBM", exp: "10+ years" },
-  { name: "Sandeep Suri", role: "Ex Country Head, Fidelity Investments", exp: "3+ years" },
+  { name: "Mamta Wasan", role: "Director & CEO, Mekosha Ayurveda", exp: "3+ years", image: mamtaWasanImg.url },
+  { name: "Santosh Sharan", role: "Ex Director HR, SC Johnson", exp: "5+ years", image: santoshSharanImg.url },
+  { name: "Sandeep Bidani", role: "Ex Executive Director HR, IBM", exp: "10+ years", image: sandeepBidaniImg.url },
+  { name: "Sandeep Suri", role: "Ex Country Head, Fidelity Investments", exp: "3+ years", image: sandeepSuriImg.url },
 ];
 
 
