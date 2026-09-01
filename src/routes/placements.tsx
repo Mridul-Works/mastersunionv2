@@ -1099,7 +1099,7 @@ function CareerExperienceArea() {
                 <div className="career-guidance-index">{String(member.index).padStart(2, "0")}</div>
                 {variant !== "career-guidance-card--compact" ? (
                   <div className="career-guidance-portrait">
-                    <PortraitPlaceholder name={member.isPlaceholder ? `Profile ${member.index}` : member.name} />
+                    <PortraitPlaceholder name={member.isPlaceholder ? `Profile ${member.index}` : member.name} imageSrc={(member as any).image} />
                     {member.isPlaceholder ? <span>Image pending</span> : null}
                   </div>
                 ) : null}
