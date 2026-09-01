@@ -41,3 +41,13 @@
 - [x] Update Professional guidance card 9 (Aastha Arora) portrait and background text
 - [x] Update Professional guidance card 10 (Vinayak Chowdhri) portrait and background text
 - [x] Update Professional guidance card 11 (Chanpreet Singh Gulati) portrait, name and background text
+- [x] Update Professional guidance card 12 (Simran Bhatia) portrait, name, role and background text
+- [x] Update Professional guidance card 13 (Vidhu Goel) portrait, name, role and background text
+- [x] Update Professional guidance card 14 (Sheliza Mamad) portrait, name, role and background text
+- [x] Update Professional guidance card 15 (Radhika Goyal) portrait, name, role and background text
+- [x] Add Professional guidance card 16 (Shubham Gupta) portrait, name, role and background text
+- [x] Add Professional guidance card 17 (Ajaya Kaushik) portrait, name, role and background text
+- [x] Add Professional guidance card 18 (Pragati Gupta) portrait, name, role and background text
+- [x] Add Professional guidance card 19 (Jasleen Taluja) portrait, name, role and background text
+- [x] Add Professional guidance card 20 (Vibhuti Singh) portrait, name, role and background text
+- [x] Add Professional guidance card 21 (Santanu Goswami) portrait, name, role and background text
