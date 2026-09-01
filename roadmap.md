@@ -125,3 +125,5 @@
 - Added playable YouTube video link for Rohit Kapoor (CEO & MDs): https://youtu.be/unzkiy1pkZQ
 
 - Added playable YouTube video link for Manish Chowdhary (CEO & MDs): https://youtu.be/I-q_7_FjnrM
+
+- Added playable YouTube video link for Sunjay Kapur (CEO & MDs): https://youtu.be/BRCS9nhQWuo
