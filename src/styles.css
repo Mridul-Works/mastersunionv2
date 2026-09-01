@@ -2869,15 +2869,15 @@ body::-webkit-scrollbar {
 }
 
 .career-guidance-title-wrap {
-  max-width: 46rem;
+  max-width: none;
 }
 
 .career-guidance-heading .career-area-title {
   margin-top: 0;
   max-width: none;
-  font-size: clamp(2.25rem, 5.2vw, 4.8rem);
+  font-size: clamp(1.5rem, 3.5vw, 2.8rem);
   font-weight: 300;
-  line-height: 0.98;
+  line-height: 1.05;
   white-space: nowrap;
 }
 
