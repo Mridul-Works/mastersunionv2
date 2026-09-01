@@ -110,6 +110,7 @@ import adikshaBhallaImg from "@/assets/placements/Adiksha_Bhalla.webp.asset.json
 import jitenderSharmaImg from "@/assets/placements/Jitender_Sharma.webp.asset.json";
 import tanyaVermaImg from "@/assets/placements/Tanya_Verma.webp.asset.json";
 import anshumanRajImg from "@/assets/placements/Anshuman_Raj.webp.asset.json";
+import anjaliAntilImg from "@/assets/placements/Anjali_Antil.webp.asset.json";
 import vinayakaGoyalImg from "@/assets/placements/Vinayaka_Goyal.webp.asset.json";
 import rudranshTiwariImg from "@/assets/placements/Rudransh_Tiwari.webp.asset.json";
 import sonaliAwasthiImg from "@/assets/placements/Sonali_Awasthi.webp.asset.json";
@@ -611,6 +612,7 @@ const CAREERS_TEAM = [
   { name: "Jitender Sharma", role: "Placement Manager — Corporate Relations", background: "Ex- Amity University, JIMS College", image: jitenderSharmaImg.url },
   { name: "Tanya Verma", role: "Associate Program Manager — Corporate Relations", background: "Ex- Consultadd", image: tanyaVermaImg.url },
   { name: "Anshuman Raj", role: "Associate Program Manager — Corporate Relations", background: "Ex- Loop, Simplilearn", image: anshumanRajImg.url },
+  { name: "Anjali Antil", role: "Associate Program Manager — Corporate Relations", background: "Ex- Altera Institute", image: anjaliAntilImg.url },
 ];
 
 const GUIDANCE_PROFILES = [
