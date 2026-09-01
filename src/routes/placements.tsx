@@ -926,7 +926,7 @@ function CinematicHero() {
           {/* left/middle: supporting copy + CTA directly under headline */}
           <div ref={copyRef} className="mt-8 max-w-[600px] md:mt-14" style={{ willChange: "transform, opacity" }}>
             <p
-              className="text-[25px] leading-relaxed placements-dim-white"
+              className="text-[25px] leading-relaxed text-[#FFFFFF]"
               style={step(700, 22)}
             >
               Benefit from an exceptional track record of our graduates&apos; success — audited, published, and repeated across five cohorts.
