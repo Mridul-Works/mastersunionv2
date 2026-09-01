@@ -125,6 +125,8 @@ import abhayBarariImg from "@/assets/placements/Abhay_Barari.webp.asset.json";
 import anshikaPandeyImg from "@/assets/placements/Anshika.webp.asset.json";
 import ayushiSinghImg from "@/assets/placements/Ayushi_Singh.webp.asset.json";
 import ankitJainImg from "@/assets/placements/Ankit_Jain.webp.asset.json";
+import rajnishVirmaniImg from "@/assets/placements/RajnishVirmani.png.asset.json";
+import andreaStoneImg from "@/assets/placements/AndreaStone.png.asset.json";
 import vinayakaGoyalImg from "@/assets/placements/Vinayaka_Goyal.webp.asset.json";
 import rudranshTiwariImg from "@/assets/placements/Rudransh_Tiwari.webp.asset.json";
 import sonaliAwasthiImg from "@/assets/placements/Sonali_Awasthi.webp.asset.json";
@@ -558,8 +560,8 @@ const COACH_TRACKS = [
 ];
 
 const COACHES = [
-  { name: "Rajnish Virmani", role: "Ex President, COO at Reliance", exp: "10+ years" },
-  { name: "Andrea Stone", role: "Ex CMO, Mahindra Comviva", exp: "10+ years" },
+  { name: "Rajnish Virmani", role: "Ex President, COO at Reliance", exp: "10+ years", image: rajnishVirmaniImg.url },
+  { name: "Andrea Stone", role: "Ex CMO, Mahindra Comviva", exp: "10+ years", image: andreaStoneImg.url },
   { name: "Mamta Wasan", role: "Director & CEO, Mekosha Ayurveda", exp: "3+ years" },
   { name: "Santosh Sharan", role: "Ex Director HR, SC Johnson", exp: "5+ years" },
   { name: "Sandeep Bidani", role: "Ex Executive Director HR, IBM", exp: "10+ years" },
@@ -1307,7 +1309,7 @@ function CareerExperienceArea() {
               <div className="career-coach-people">
                 {COACHES.slice(trackIndex * 2, trackIndex * 2 + 2).map((coach) => (
                   <div className="career-coach-person" key={coach.name}>
-                    <PortraitPlaceholder name={coach.name} />
+                    <PortraitPlaceholder name={coach.name} imageSrc={(coach as any).image} />
                     <div><strong>{coach.name}</strong><span>{coach.role}</span><small>Coaching experience: {coach.exp}</small></div>
                   </div>
                 ))}
