@@ -1308,7 +1308,7 @@ function CareerExperienceArea() {
               <div className="career-coach-people">
                 {COACHES.slice(trackIndex * 2, trackIndex * 2 + 2).map((coach) => (
                   <div className="career-coach-person" key={coach.name}>
-                    <PortraitPlaceholder name={coach.name} />
+                    <PortraitPlaceholder name={coach.name} imageSrc={(coach as any).image} />
                     <div><strong>{coach.name}</strong><span>{coach.role}</span><small>Coaching experience: {coach.exp}</small></div>
                   </div>
                 ))}
