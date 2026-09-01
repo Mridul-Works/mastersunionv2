@@ -671,10 +671,19 @@ const LEADER_PLACEHOLDER = (label: string, index: number) => ({
   role: "Title and organisation coming soon",
 });
 
+const UNICORN_FOUNDERS = [
+  { name: "Vishesh Khurana", role: "Co-founder, Shiprocket" },
+  { name: "Alakh Pandey", role: "Founder, PhysicsWallah" },
+  { name: "Nitin Jain", role: "Co-founder, OfBusiness" },
+  { name: "Ghazal Alagh", role: "Co-founder, Mamaearth" },
+  { name: "Sandeep Aggarwal", role: "Founder and CEO, Droom" },
+  { name: "Tarun Sharma", role: "Co-founder, mcaffeine" },
+];
+
 const LEADER_GROUPS = [
   { label: "CEO & MDs", people: LEADERS.slice(0, 11) },
   { label: "CHROs", people: CHRO_LEADERS },
-  { label: "Unicorn Founders", people: [...Array.from({ length: 6 }, (_, i) => LEADER_PLACEHOLDER("Unicorn Founder", i + 1))] },
+  { label: "Unicorn Founders", people: UNICORN_FOUNDERS },
   { label: "Executives", people: [...Array.from({ length: 5 }, (_, i) => LEADER_PLACEHOLDER("Executive", i + 1))] },
 ];
 
