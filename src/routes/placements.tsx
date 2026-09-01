@@ -2606,9 +2606,6 @@ function Page() {
               <a href="mailto:careerservices@mastersunion.org" className="placements-pill-accent group inline-flex items-center gap-2 px-7 py-3.5 text-[13px] font-medium" style={{ fontFamily: INTER }}>
                 <Mail className="size-3.5 transition-transform duration-500 group-hover:-translate-y-0.5" /> careerservices@mastersunion.org
               </a>
-              <span className="placements-pill-ghost inline-flex items-center gap-2 px-7 py-3.5 text-[13px] font-medium" style={{ fontFamily: INTER }}>
-                <Download className="size-3.5" /> Internship report
-              </span>
             </div>
           </Reveal>
           </div>
