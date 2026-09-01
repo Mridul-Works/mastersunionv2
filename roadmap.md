@@ -34,4 +34,5 @@
 - [x] Update Professional guidance card 2 (Abhinav Arora) portrait and background text
 - [x] Update Professional guidance card 3 (Amit Kumar) portrait and background text
 - [x] Update Professional guidance card 4 (Ali Zein Alabdain Qaddo) portrait and background text
-- [ ] Update Professional guidance card 5 (Anurag Yadav) portrait
+- [x] Update Professional guidance card 5 (Anurag Yadav) portrait
+- [ ] Update Professional guidance card 6 (Nishant Singh Tanwar) portrait and background text
