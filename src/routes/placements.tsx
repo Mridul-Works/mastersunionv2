@@ -54,6 +54,7 @@ import varunImg from "@/assets/placements/varun.webp.asset.json";
 import sidhantaImg from "@/assets/placements/sidhanta.webp.asset.json";
 import kartikImg from "@/assets/placements/kartik.webp.asset.json";
 import ankitSharmaImg from "@/assets/placements/ankitsharma.webp.asset.json";
+import ashmitaImg from "@/assets/placements/ashmita.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -300,8 +301,14 @@ const TESTIMONIALS = [
     note: "The hands-on learning and mentorship from industry leaders at Masters’ Union were instrumental in my seamless transition into a global role at Sirius International Holdings. I’m grateful to Pratham Mittal, Abhishek Kaul, Bhupesh Manoharan, Saksham Kotiya, and the MU team for guiding me, refining my analytical thinking and strengthening my business fundamentals.",
     image: ankitSharmaImg.url,
   },
-  ...Array.from({ length: 22 }, (_, i) => ({
-    name: `Placement Story ${String(i + 18).padStart(2, "0")}`,
+  {
+    name: "Ashmita Malik",
+    role: "Senior Associate, Alvarez & Marsal",
+    note: "Masters’ Union was instrumental in helping me pivot to a strategy role at A&M from my audit role at EY. Focusing on real-world business problems and consulting workshops transformed my approach. Continuous support from mentors and the placement team, including mock interviews, resume reviews, and one-on-one guidance, helped me navigate recruitment with clarity and confidence.",
+    image: ashmitaImg.url,
+  },
+  ...Array.from({ length: 21 }, (_, i) => ({
+    name: `Placement Story ${String(i + 19).padStart(2, "0")}`,
     role: "Role & Company — to be confirmed",
     note: "Placeholder story. Portrait, role and quote will be added once the cohort details are shared.",
   })),
