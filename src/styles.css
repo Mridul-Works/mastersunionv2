@@ -2714,6 +2714,18 @@ body::-webkit-scrollbar {
   font-weight: 300;
 }
 
+.career-portrait-image {
+  background: var(--placements-inner-surface);
+}
+
+.career-portrait-image::before { display: none; }
+
+.career-portrait-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .career-featured-copy {
   display: flex;
   flex-direction: column;
