@@ -1476,7 +1476,7 @@ function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal |
             <PodcastVideoPlayer setVideoModal={setVideoModal} />
             <div className="mt-8 flex min-h-0 min-w-0 flex-1 flex-col items-stretch gap-8">
               <div className="h-px w-full bg-black/20" />
-              <p className="text-left text-[11px] font-medium uppercase tracking-[0.18em] text-black/50">
+              <p className="text-center text-[11px] font-medium uppercase tracking-[0.18em] text-black/50">
                 Episode — The story behind ₹33 lakh per LPA average placements — Watch / Listen
               </p>
               <EditorialRule />
