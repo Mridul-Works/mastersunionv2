@@ -54,3 +54,4 @@
 - [x] Add Professional guidance card 24 (Kriti Sharma) portrait, name, role and background text
 - [x] Add Professional guidance card 25 (Siddharth Jangir) portrait, name, role and background text
 - [x] Add Professional guidance card 26 (Namita Bhatia) portrait, name, role and background text
+- [x] Add Professional guidance card 27 (Riti Marwah) portrait, name, role and background text

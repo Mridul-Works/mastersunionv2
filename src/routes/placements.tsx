@@ -96,6 +96,7 @@ import santanuGoswamiImg from "@/assets/placements/Santanu_Goswami.webp.asset.js
 import kritiSharmaTeamImg from "@/assets/placements/Kriti_Sharma.webp.asset.json";
 import siddharthJangirImg from "@/assets/placements/Siddharth_Jangir.webp.asset.json";
 import namitaBhatiaImg from "@/assets/placements/Namita_Bhatia.webp.asset.json";
+import ritiMarwahImg from "@/assets/placements/Riti_Marwah.webp.asset.json";
 import { ReportModalProvider, useReportModal } from "@/components/placements/ReportDownloadModal";
 import manojKohliBg from "@/assets/ManojKohli.webp.asset.json";
 
@@ -571,6 +572,7 @@ const CAREERS_TEAM = [
   { name: "Kriti Sharma", role: "Senior Manager — Career Preparation", background: "MBA, Masters' Union | Ex- BCG, Praxis GA, Qualcomm", image: kritiSharmaTeamImg.url },
   { name: "Siddharth Jangir", role: "Senior Manager — Career Preparation", background: "MBA, IIM-Kozhikode | Ex- Disney Star, Seashell Logistics", image: siddharthJangirImg.url },
   { name: "Namita Bhatia", role: "Senior Manager — Career Preparation", background: "Employability Skills Trainer, Melbourne Business School, University of Melbourne", image: namitaBhatiaImg.url },
+  { name: "Riti Marwah", role: "Senior Manager — Career Preparation", background: "Internationally Certified Soft Skills Trainer-NABET Accredited, Ex- FIIB", image: ritiMarwahImg.url },
 ];
 
 const GUIDANCE_PROFILES = [
