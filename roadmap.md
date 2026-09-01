@@ -23,3 +23,4 @@
 - [ ] Add student carousel slide 30 (Malay Vashi, Manager - Design Planning, Razorpay) with portrait, role and quote
 - [ ] Add student carousel slide 31 (Puru Gupta, Senior Manager I - Program Management, Zepto) with portrait, role and quote
 - [ ] Add student carousel slide 32 (Dhananjay Dev, Chief of Staff - Founder's Office, The Souled Store) with portrait, role and quote
+- [ ] Add student carousel slide 33 (Shagun Malik, Brand Manager, Farmley) with portrait, role and quote
