@@ -8,7 +8,7 @@ import {
   useState,
 } from "react";
 import modalStudents from "@/assets/modal-students.webp.asset.json";
-import report2025 from "@/assets/placement-reports/report-2025.pdf.asset.json";
+import placementReport from "@/assets/placement-reports/placement-report.pdf.asset.json";
 
 const MONO = "var(--font-mono-tech)";
 const INTER = "var(--font-display)";
