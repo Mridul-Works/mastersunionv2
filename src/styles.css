@@ -2675,7 +2675,8 @@ body::-webkit-scrollbar {
 }
 .career-story-arrows button:hover {
   border-color: var(--accent);
-  color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-foreground);
 }
 .career-story-arrows button:first-child:hover { transform: translateX(-2px); }
 .career-story-arrows button:last-child:hover { transform: translateX(2px); }
@@ -2849,7 +2850,8 @@ body::-webkit-scrollbar {
 }
 .career-story-tabs button[aria-selected="true"] { color: var(--foreground); }
 .career-story-tabs button[aria-selected="true"] span { background: var(--accent); }
-.career-story-tabs button:hover { color: var(--foreground); }
+.career-story-tabs button:hover { color: var(--accent); }
+.career-story-tabs button:hover span { background: var(--accent); }
 
 @media (max-width: 800px) {
   .career-story-heading {
@@ -3112,9 +3114,9 @@ body::-webkit-scrollbar {
 .career-roadmap-visual.has-video { cursor: pointer; }
 .career-roadmap-visual.has-video img { filter: grayscale(0) brightness(0.85); }
 .career-roadmap-visual .career-roadmap-play { position: absolute; inset: 0; z-index: 3; display: grid; place-items: center; pointer-events: none; }
-.career-roadmap-visual .career-roadmap-play > span { display: grid; place-items: center; width: 3.5rem; height: 3.5rem; border: 1px solid color-mix(in oklab, var(--foreground) 35%, transparent); border-radius: 50%; background: color-mix(in oklab, var(--background) 60%, transparent); color: var(--foreground); transition: transform 300ms ease, background 300ms ease, border-color 300ms ease; }
+.career-roadmap-visual .career-roadmap-play > span { display: grid; place-items: center; width: 3.5rem; height: 3.5rem; border: 1px solid var(--accent); border-radius: 50%; background: var(--accent); color: var(--accent-foreground); transition: transform 300ms ease, background 300ms ease, border-color 300ms ease; box-shadow: 0 0 20px -4px color-mix(in oklab, var(--accent) 40%, transparent); }
 .career-roadmap-visual .career-roadmap-play svg { width: 1rem; height: 1rem; }
-.career-roadmap-visual.has-video:hover .career-roadmap-play > span { transform: scale(1.1); background: var(--accent); border-color: var(--accent); color: var(--background); }
+.career-roadmap-visual.has-video:hover .career-roadmap-play > span { transform: scale(1.1); background: color-mix(in oklab, var(--accent) 88%, var(--foreground)); border-color: color-mix(in oklab, var(--accent) 88%, var(--foreground)); color: var(--accent-foreground); }
 .career-roadmap-items { display: grid; gap: 0.5rem; align-content: start; grid-template-columns: 1fr; }
 .career-roadmap-items li {
   display: flex;
@@ -3211,7 +3213,7 @@ body::-webkit-scrollbar {
 .career-leader-media { position: relative; overflow: clip; aspect-ratio: 16 / 9; border: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent); border-radius: 12px; }
 .career-leader-media .career-portrait-placeholder { width: 100%; height: 100%; }
 .career-leader-media > img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.career-leader-media > span { position: absolute; inset: 0; display: grid; width: 3rem; height: 3rem; margin: auto; place-items: center; border: 1px solid color-mix(in oklab, var(--foreground) 35%, transparent); border-radius: 50%; background: color-mix(in oklab, var(--background) 60%, transparent); color: var(--foreground); }
+.career-leader-media > span { position: absolute; inset: 0; display: grid; width: 3rem; height: 3rem; margin: auto; place-items: center; border: 1px solid var(--accent); border-radius: 50%; background: var(--accent); color: var(--accent-foreground); transition: transform 300ms ease, background 300ms ease, border-color 300ms ease, color 300ms ease; box-shadow: 0 0 20px -4px color-mix(in oklab, var(--accent) 40%, transparent); }
 .career-leader-media > span svg { width: 0.9rem; }
 .career-leader-card h3 { margin-top: 0.9rem; font-size: 0.9rem; }
 .career-leader-card p { margin-top: 0.25rem; color: color-mix(in oklab, var(--foreground) 50%, transparent); font-size: 0.68rem; }
@@ -3228,10 +3230,10 @@ body::-webkit-scrollbar {
 .career-podcast-media { position: relative; overflow: clip; aspect-ratio: 16 / 9; border: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent); border-radius: 12px; }
 .career-podcast-media > button { display: block; }
 .career-podcast-media > button > img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.career-podcast-media .career-podcast-play { position: absolute; inset: 0; display: grid; width: 3.5rem; height: 3.5rem; margin: auto; place-items: center; border: 1px solid color-mix(in oklab, var(--foreground) 35%, transparent); border-radius: 50%; background: color-mix(in oklab, var(--background) 60%, transparent); color: var(--foreground); transition: transform 300ms ease, background 300ms ease, border-color 300ms ease, color 300ms ease; }
+.career-podcast-media .career-podcast-play { position: absolute; inset: 0; display: grid; width: 3.5rem; height: 3.5rem; margin: auto; place-items: center; border: 1px solid var(--accent); border-radius: 50%; background: var(--accent); color: var(--accent-foreground); transition: transform 300ms ease, background 300ms ease, border-color 300ms ease, color 300ms ease; box-shadow: 0 0 20px -4px color-mix(in oklab, var(--accent) 40%, transparent); }
 .career-podcast-media .career-podcast-play svg { width: 0.9rem; }
 @media (hover: hover) and (pointer: fine) {
-  .career-podcast-media:hover .career-podcast-play { transform: scale(1.1); background: var(--accent); border-color: var(--accent); color: var(--background); }
+  .career-podcast-media:hover .career-podcast-play { transform: scale(1.1); background: color-mix(in oklab, var(--accent) 88%, var(--foreground)); border-color: color-mix(in oklab, var(--accent) 88%, var(--foreground)); color: var(--accent-foreground); }
 }
 
 .career-closing-section { padding: clamp(0.75rem, 2vw, 1.25rem) 0 clamp(4rem, 8vw, 7rem); background: var(--background); }
@@ -3255,7 +3257,7 @@ body::-webkit-scrollbar {
     border-color: color-mix(in oklab, var(--accent) 34%, transparent);
     box-shadow: 0 22px 52px -34px color-mix(in oklab, var(--accent) 58%, transparent);
   }
-  .career-leader-card.has-video:hover .career-leader-media > span { transform: scale(1.1); background: var(--accent); border-color: var(--accent); color: var(--background); }
+  .career-leader-card.has-video:hover .career-leader-media > span { transform: scale(1.1); background: color-mix(in oklab, var(--accent) 88%, var(--foreground)); border-color: color-mix(in oklab, var(--accent) 88%, var(--foreground)); color: var(--accent-foreground); }
   .career-guidance-card:hover {
     background: color-mix(in oklab, var(--placements-inner-surface) 94%, var(--accent));
   }
