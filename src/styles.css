@@ -3505,6 +3505,33 @@ body::-webkit-scrollbar {
   height: 100%;
 }
 
+/* The blanket `height: auto` above outranks Tailwind's h-* utilities, which
+   left the floating nav logo at its intrinsic 600x176. Size it explicitly. */
+.placements-floating-logo img,
+.placements-ug-v2 .placements-floating-logo img {
+  height: 1rem;
+  width: auto;
+  max-width: 5.5rem;
+  object-fit: contain;
+}
+
+@media (min-width: 640px) {
+  .placements-floating-logo img,
+  .placements-ug-v2 .placements-floating-logo img {
+    height: 1.25rem;
+    max-width: 7rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .placements-floating-logo img,
+  .placements-ug-v2 .placements-floating-logo img {
+    height: 1.5rem;
+    max-width: 8rem;
+  }
+}
+
+
 @media (max-width: 1279px) {
   .placements-ug-v2 {
     --page-x: clamp(0.75rem, 2.5vw, 1.25rem);
