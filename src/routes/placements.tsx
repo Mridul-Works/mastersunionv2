@@ -4,12 +4,6 @@ import * as React from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
-  Home,
-  BarChart3,
-  TrendingUp,
-  Briefcase,
-  Users,
-  Route as RouteIcon,
   Download,
 
   Mail,
