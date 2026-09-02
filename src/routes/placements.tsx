@@ -2447,7 +2447,7 @@ function EditorialPlacementData() {
         <div className="mt-10 border border-white/15 bg-[#0A1712]">
           <div className="flex flex-col gap-4 border-b border-white/15 px-5 py-5 md:flex-row md:items-end md:justify-between md:px-8">
             <div>
-              <div className="text-[10px] uppercase tracking-[0.22em] text-accent" style={{ fontFamily: MONO }}>Primary data view</div>
+              <div className="text-[10px] uppercase tracking-[0.22em] text-[#638C75]" style={{ fontFamily: MONO }}>Primary data view</div>
               <h3 className="mt-2 text-[clamp(1.45rem,2.6vw,2.25rem)] font-medium text-white">PGP TBM <em className="font-serif-italic text-accent">cohort ledger</em></h3>
             </div>
             <div className="text-[10px] uppercase tracking-[0.18em] text-white/40" style={{ fontFamily: MONO }}>All values / annual CTC</div>
@@ -2480,7 +2480,7 @@ function EditorialPlacementData() {
 
         <div className="mt-10 grid border border-white/15 bg-[#0A1712] lg:grid-cols-12">
           <div className="flex flex-col justify-between border-b border-white/15 p-7 md:p-8 lg:col-span-3 lg:border-r lg:border-b-0">
-            <span className="text-[10px] uppercase tracking-[0.22em] text-accent" style={{ fontFamily: MONO }}>Distinct programme view</span>
+            <span className="text-[10px] uppercase tracking-[0.22em] text-[#638C75]" style={{ fontFamily: MONO }}>Distinct programme view</span>
             <div className="mt-14 lg:mt-0">
               <h3 className="text-[clamp(1.65rem,3vw,2.6rem)] font-medium leading-tight text-white">PGP TBM <em className="font-serif-italic text-accent">YLC</em></h3>
               <p className="mt-3 text-[0.85rem] leading-relaxed text-white/52">Average, median and highest CTC across five cohorts.</p>
