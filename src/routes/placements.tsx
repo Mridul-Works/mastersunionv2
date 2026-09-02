@@ -1764,7 +1764,7 @@ function HorizontalMetricsStrip({ variant = "light" }: { variant?: "light" | "da
             {/* index */}
             <span
               className={cn(
-                "text-[9px] tabular-nums tracking-[0.28em] transition-colors duration-500 sm:text-[10px]",
+                "text-[10px] tabular-nums tracking-[0.28em] transition-colors duration-500 sm:text-[10px]",
                 isDark ? "text-white/40" : "text-black/40"
               )}
               style={{ fontFamily: MONO }}
@@ -1775,7 +1775,7 @@ function HorizontalMetricsStrip({ variant = "light" }: { variant?: "light" | "da
             {/* number */}
             <span
               className={cn(
-                "text-center text-[clamp(1.1rem,3.2vw,2.6rem)] font-medium leading-none tracking-[-0.04em] transition-colors duration-500",
+                "text-center text-[clamp(1.25rem,3.2vw,2.6rem)] font-medium leading-none tracking-[-0.04em] transition-colors duration-500",
                 isDark ? "text-white" : "text-black"
               )}
             >
@@ -1789,7 +1789,7 @@ function HorizontalMetricsStrip({ variant = "light" }: { variant?: "light" | "da
             <div className="flex flex-col items-center gap-1 text-center sm:gap-1.5">
               <span
                 className={cn(
-                  "text-center text-[9px] font-semibold uppercase tracking-[0.14em] transition-colors duration-500 sm:text-[11px] sm:tracking-[0.16em]",
+                  "text-center text-[10px] font-semibold uppercase tracking-[0.14em] transition-colors duration-500 sm:text-[11px] sm:tracking-[0.16em]",
                   isDark ? "text-white/85" : "text-black/80"
                 )}
                 style={{ fontFamily: MONO }}
@@ -1798,7 +1798,7 @@ function HorizontalMetricsStrip({ variant = "light" }: { variant?: "light" | "da
               </span>
               <p
                 className={cn(
-                  "max-w-[18ch] text-center text-[10px] leading-tight transition-colors duration-500 sm:text-[13px] sm:leading-snug",
+                  "max-w-[18ch] text-center text-[11px] leading-tight transition-colors duration-500 sm:text-[13px] sm:leading-snug",
                   isDark ? "text-white/60" : "text-black/55"
                 )}
               >
