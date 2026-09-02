@@ -1849,7 +1849,7 @@ body::-webkit-scrollbar {
 .salary-viz-segment-1 { stroke: color-mix(in oklab, #ffffff 78%, transparent); }
 .salary-viz-segment-2 { stroke: color-mix(in oklab, #ffffff 43%, transparent); }
 .salary-viz-segment-3 { stroke: color-mix(in oklab, #ffffff 20%, transparent); }
-.salary-viz-segment.is-active { stroke: var(--accent); filter: drop-shadow(0 0 7px color-mix(in oklab, var(--accent) 28%, transparent)); }
+.salary-viz-segment.is-active { stroke: #DAA061; filter: drop-shadow(0 0 7px color-mix(in oklab, #DAA061 28%, transparent)); }
 
 .salary-viz-donut-kicker {
   fill: color-mix(in oklab, #ffffff 40%, transparent);
@@ -1907,10 +1907,15 @@ body::-webkit-scrollbar {
 .salary-viz-legend-detail { color: color-mix(in oklab, #ffffff 42%, transparent); font-size: 0.68rem; }
 .salary-viz-legend-value { color: color-mix(in oklab, #ffffff 68%, transparent); font-size: 0.82rem; font-variant-numeric: tabular-nums; }
 
-.salary-viz-legend-row.is-active .salary-viz-swatch { background: var(--accent); transform: scale(1.25); }
+.salary-viz-legend-row.is-active .salary-viz-swatch { background: #DAA061; transform: scale(1.25); }
 .salary-viz-legend-row.is-active .salary-viz-legend-label,
 .salary-viz-legend-row.is-active .salary-viz-legend-detail,
-.salary-viz-legend-row.is-active .salary-viz-legend-value { color: var(--accent); }
+.salary-viz-legend-row.is-active .salary-viz-legend-value { color: #DAA061; }
+
+.salary-viz-legend-row:hover .salary-viz-swatch { background: #DAA061; transform: scale(1.25); }
+.salary-viz-legend-row:hover .salary-viz-legend-label,
+.salary-viz-legend-row:hover .salary-viz-legend-detail,
+.salary-viz-legend-row:hover .salary-viz-legend-value { color: #DAA061; }
 
 @media (min-width: 768px) {
   .salary-viz-header { grid-template-columns: minmax(0, 1.4fr) minmax(18rem, 0.6fr); }
