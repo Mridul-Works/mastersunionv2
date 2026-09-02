@@ -2406,7 +2406,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
             strokeWidth={1}
             aria-hidden="true"
           />
-          <blockquote className="text-[clamp(1.5rem,3.6vw,2.8rem)] font-medium leading-[1.3] tracking-[-0.015em] placements-dim-white max-md:text-[clamp(0.9rem,4.4vw,1.15rem)] max-md:leading-[1.35]">
+          <blockquote className="text-[clamp(1.5rem,3.6vw,2.8rem)] font-medium leading-[1.3] tracking-[-0.015em] placements-dim-white max-md:text-[clamp(1.1rem,5.5vw,1.45rem)] max-md:leading-[1.4]">
             {TYPOGRAPHY_ITEMS.map((item, i) => {
               if (item.type === "attribution") return null;
               const isLastWord = item.type === "word" && i === TYPOGRAPHY_ITEMS.length - 3;
@@ -2434,7 +2434,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
                 ref={(n) => {
                   wordRefs.current[i] = n;
                 }}
-                className="mt-8 max-md:mt-3 text-[10px] max-md:text-[9px] uppercase tracking-[0.2em] placements-dim-white"
+                className="mt-8 max-md:mt-3 text-[10px] max-md:text-[11px] uppercase tracking-[0.2em] placements-dim-white"
                 style={{ fontFamily: MONO, opacity: animated ? 0.18 : 1, willChange: "opacity" }}
               >
                 {item.text}
