@@ -991,29 +991,49 @@ function CareerTransitionList({ transition }: { transition: (typeof TRANSITIONS)
   const isLaunch = transition.columns.length === 3;
 
   React.useEffect(() => {
-    const compute = () => {
-      const list = listRef.current;
-      if (!list) return;
-      const focus = window.innerHeight * 0.45;
-      let activeRow: string | null = null;
-      list.querySelectorAll<HTMLElement>("[data-row-key]").forEach((node) => {
+    const list = listRef.current;
+    if (!list) return;
+
+    // Row geometry is measured once (and on resize) into document-space offsets.
+    // Reading getBoundingClientRect() for every row on every scroll event forced
+    // a full layout per frame per list — the main source of the stutter here.
+    let rows: { key: string; top: number; bottom: number }[] = [];
+    const measure = () => {
+      const scrollY = window.scrollY;
+      rows = Array.from(list.querySelectorAll<HTMLElement>("[data-row-key]")).map((node) => {
         const rect = node.getBoundingClientRect();
-        // Only the row crossing the focus line is active — scroll past it and
-        // the highlight clears instead of sticking to the nearest row.
-        if (rect.top <= focus && rect.bottom >= focus) {
-          activeRow = node.dataset.rowKey ?? null;
-        }
+        return {
+          key: node.dataset.rowKey ?? "",
+          top: rect.top + scrollY,
+          bottom: rect.bottom + scrollY,
+        };
       });
-      setScrollKey(activeRow);
     };
-    compute();
-    window.addEventListener("scroll", compute, { passive: true });
-    window.addEventListener("resize", compute);
+
+    let last: string | null = null;
+    const update = ({ y, vh }: { y: number; vh: number }) => {
+      const focus = y + vh * 0.45;
+      let activeRow: string | null = null;
+      for (const row of rows) {
+        if (row.top <= focus && row.bottom >= focus) {
+          activeRow = row.key;
+          break;
+        }
+      }
+      if (activeRow !== last) {
+        last = activeRow;
+        setScrollKey(activeRow);
+      }
+    };
+
+    const offResize = onViewportResize(measure);
+    const offScroll = onScrollFrame(update);
     return () => {
-      window.removeEventListener("scroll", compute);
-      window.removeEventListener("resize", compute);
+      offResize();
+      offScroll();
     };
-  }, []);
+  }, [transition]);
+
 
   return (
     <div
