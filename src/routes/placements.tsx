@@ -1625,8 +1625,8 @@ function PodcastVideoRail({
   };
 
   return (
-    <div className="flex min-w-0 w-full flex-col">
-      <div className="mb-3 flex items-center justify-end gap-2">
+    <div className="flex min-w-0 w-full flex-col pt-6 sm:pt-0">
+      <div className="mb-3 flex items-center justify-end gap-2 pt-4 sm:pt-0">
         <button
           type="button"
           onClick={() => scrollByCard(-1)}
@@ -1667,7 +1667,7 @@ function PodcastVideoRail({
             type="button"
             onClick={() => setVideoModal({ title: item.name, video: item.video, start: 0 })}
             aria-label={`Play conversation with ${item.name}`}
-            className="group flex w-[calc(100vw-3rem)] shrink-0 snap-start flex-col pt-4 text-left sm:w-[min(260px,78vw)] sm:pt-0"
+            className="group flex w-[calc(100vw-3rem)] shrink-0 snap-start flex-col pt-8 text-left sm:w-[min(260px,78vw)] sm:pt-0"
           >
 
             <span className="relative block aspect-video w-full overflow-hidden rounded-md bg-black/10">
