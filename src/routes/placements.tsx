@@ -2379,6 +2379,12 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
             willChange: animated ? "opacity, transform" : undefined,
           }}
         >
+          {/* Mobile-only dark overlay behind the quote text for readability. */}
+          <div
+            className="absolute inset-0 -m-3 rounded-xl bg-black/55 md:hidden"
+            style={{ zIndex: -1 }}
+          />
+
           <Quote
             className="absolute -left-1 -top-2 size-10 text-white/15 md:-top-4 md:size-16 max-md:size-6 max-md:-top-1"
             strokeWidth={1}
