@@ -1572,6 +1572,8 @@ body::-webkit-scrollbar {
 @media (max-width: 767px) {
   .placement-ledger-card-rail {
     gap: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     overscroll-behavior-inline: contain;
     scroll-padding-inline: 0;
     scroll-snap-type: x mandatory;
@@ -1583,6 +1585,12 @@ body::-webkit-scrollbar {
     scroll-snap-align: start;
     scroll-snap-stop: always;
     border-radius: 16px;
+    text-align: center;
+  }
+
+  .placement-ledger-card > div,
+  .placement-ledger-card dl {
+    justify-items: center;
   }
 
   .placement-ledger-row:hover {
