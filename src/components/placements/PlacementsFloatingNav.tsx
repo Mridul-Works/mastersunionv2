@@ -200,7 +200,7 @@ export function PlacementsFloatingNav() {
         />
 
         <div className="flex min-w-0 items-center gap-2 overflow-hidden sm:gap-3">
-          <a href="#top" className="flex shrink-0 items-center gap-2.5" aria-label={brand.homeAriaLabel}>
+          <a href="#top" className="placements-floating-logo flex w-auto shrink-0 items-center gap-2.5" aria-label={brand.homeAriaLabel}>
             <img
               src={brand.logoUrl}
               alt={brand.logoAlt}
@@ -208,7 +208,7 @@ export function PlacementsFloatingNav() {
               height={168}
               decoding="async"
               loading="eager"
-              className="h-4 w-auto brightness-0 invert sm:h-5 lg:h-6"
+              className="block h-4 w-auto max-w-[5.5rem] brightness-0 invert sm:h-5 sm:max-w-[7rem] lg:h-6 lg:max-w-[8rem]"
             />
           </a>
           {applicationWindow.isLive && (
