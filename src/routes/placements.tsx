@@ -1665,7 +1665,7 @@ function PodcastVideoRail({
 
   return (
     <div className="flex min-w-0 w-full flex-col">
-      <div className="flex items-center justify-end gap-2">
+      <div className="mb-2 flex items-center justify-end gap-2">
         <ScrollNav onPrev={() => scrollByCard(-1)} onNext={() => scrollByCard(1)} />
       </div>
       <div
