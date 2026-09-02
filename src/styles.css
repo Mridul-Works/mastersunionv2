@@ -2966,6 +2966,9 @@ body::-webkit-scrollbar {
 
 .career-guidance-card {
   position: relative;
+  contain: layout paint style;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 320px;
   display: flex;
   width: 100%;
   height: 100%;
@@ -3438,6 +3441,15 @@ body::-webkit-scrollbar {
     transform 1.1s cubic-bezier(0.22, 1, 0.36, 1),
     filter 1.1s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform, filter;
+}
+
+/* Tall sections: no blur filter — cheap opacity/transform reveal only. */
+.sd-reveal.sd-reveal--light {
+  filter: none;
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
 }
 
 .sd-reveal[data-visible="true"] {
