@@ -2379,14 +2379,14 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
 
       <div className="page-x relative w-full" style={{ zIndex: 3 }}>
         {/* Mobile-only bottom overlay behind the quote and button for readability.
-            It extends to the bottom edge of the section so it touches the margin. */}
+            It sits as a bottom band that the quote rests on, and fades to transparent at the top. */}
         <div
           className="pointer-events-none absolute inset-x-0 md:hidden"
           style={{
             zIndex: 1,
             bottom: "-1rem",
-            height: "calc(100% + 1rem)",
-            background: "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.78) 35%, rgba(0,0,0,0.45) 70%, transparent 100%)",
+            height: "65%",
+            background: "linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.42) 42%, rgba(0,0,0,0.12) 76%, transparent 100%)",
           }}
         />
 
