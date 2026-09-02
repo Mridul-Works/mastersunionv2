@@ -153,4 +153,4 @@
 - Salone Sehgal: added portrait
 - [x] Set background button color to #131618 for the hero "Placement report" button and the proven "Download placement report" button
 
-- Term 4 Interview preparations: replaced inline iframe with YouTube thumbnail + play-button overlay (same pattern as Leadership guidance)
+- Term 4 Interview preparations: replaced inline iframe with YouTube thumbnail + play-button overlay (same pattern as Leadership guidance)- [x] Change Student voice card background color to #638C75 with white text

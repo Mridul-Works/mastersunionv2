@@ -2732,14 +2732,16 @@ body::-webkit-scrollbar {
   border-radius: 999px;
   background: transparent;
   color: var(--foreground);
-  transition: transform 350ms ease, border-color 350ms ease, color 350ms ease;
+  transition: transform 350ms ease, border-color 350ms ease, color 350ms ease, background-color 350ms ease, box-shadow 350ms ease;
 }
 .career-story-arrows button:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: #638C75;
+  background: #638C75;
+  color: #ffffff;
+  box-shadow: 0 0 28px -6px color-mix(in oklab, #638C75 60%, transparent);
 }
-.career-story-arrows button:first-child:hover { transform: translateX(-2px); }
-.career-story-arrows button:last-child:hover { transform: translateX(2px); }
+.career-story-arrows button:first-child:hover { transform: translateX(-2px) translateY(-1px); }
+.career-story-arrows button:last-child:hover { transform: translateX(2px) translateY(-1px); }
 
 
 .career-story-stage {
@@ -2844,8 +2846,8 @@ body::-webkit-scrollbar {
   min-height: 9.5rem;
   align-content: end;
   padding: 1.5rem;
-  background: var(--accent);
-  color: var(--accent-foreground);
+  background: #638C75;
+  color: #ffffff;
 }
 .career-story-accent span {
   font-family: var(--font-mono-tech);
