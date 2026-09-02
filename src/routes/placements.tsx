@@ -804,7 +804,13 @@ function CinematicHero() {
     ro.observe(section);
     const offResize = onViewportResize(measure);
 
-    const off = onScrollFrame(({ y }) => {
+    const off = onScrollFrame(() => {
+      // The sticky wrapper is positioned by the browser from the REAL scroll
+      // offset, so the hero's transforms must read the same value. Using the
+      // smooth-scroll library's interpolated value instead makes the pinned
+      // layers drift a few pixels against the sticky box every frame — that is
+      // the up/down stutter at the top of the page.
+      const y = window.scrollY;
       // 0 at rest, 1 once the second section has taken over
       const p = Math.min(1, Math.max(0, (y - docTop) / track));
       if (p === lastP) return;
@@ -851,9 +857,9 @@ function CinematicHero() {
         ref={sectionRef}
         data-no-reveal
         className="relative z-0 bg-[#0a0a0a]"
-        style={{ height: reduced ? "100svh" : "200svh" }}
+        style={{ height: reduced ? "100svh" : "200svh", overflowAnchor: "none" }}
       >
-       <div className="sticky top-0 h-[100svh] overflow-hidden">
+       <div className="sticky top-0 h-[100svh] overflow-hidden" style={{ overflowAnchor: "none", contain: "paint" }}>
         {/* Photograph — full bleed, full fidelity */}
         <div ref={imgWrapRef} aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden" style={{ willChange: "transform" }}>
           <img
