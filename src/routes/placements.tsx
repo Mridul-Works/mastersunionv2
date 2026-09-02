@@ -1659,7 +1659,7 @@ function PodcastVideoRail({
             scrollByCard(1);
           }
         }}
-        className="rail-scroll no-scrollbar flex w-full snap-x snap-mandatory items-start gap-4 overflow-x-auto overscroll-x-contain pb-2 focus:outline-none"
+        className="rail-scroll no-scrollbar flex w-full snap-x snap-mandatory items-start gap-4 overflow-x-auto overscroll-x-contain pb-2 focus:outline-none max-sm:px-2"
       >
         {PODCAST_RAIL_VIDEOS.map((item) => (
           <button
@@ -1667,7 +1667,7 @@ function PodcastVideoRail({
             type="button"
             onClick={() => setVideoModal({ title: item.name, video: item.video, start: 0 })}
             aria-label={`Play conversation with ${item.name}`}
-            className="group flex w-[calc(100%-0.5rem)] shrink-0 snap-start flex-col pt-8 text-left sm:w-[min(260px,78vw)] sm:pt-0"
+            className="group flex w-full shrink-0 snap-start flex-col pt-8 text-left sm:w-[min(260px,78vw)] sm:pt-0"
           >
 
             <span className="relative block aspect-video w-full overflow-hidden rounded-md bg-black/10">
@@ -2200,10 +2200,10 @@ function CohortReports() {
               scrollByCard(1);
             }
           }}
-          className="rail-scroll no-scrollbar flex w-full snap-x snap-mandatory items-stretch gap-4 overflow-x-auto overscroll-x-contain pb-2 focus:outline-none"
+          className="rail-scroll no-scrollbar flex w-full snap-x snap-mandatory items-stretch gap-4 overflow-x-auto overscroll-x-contain pb-2 focus:outline-none max-sm:px-2"
         >
           {REPORT_YEARS.map((y, i) => (
-            <Reveal key={y} delay={i * 70} y={16} className="shrink-0 snap-start h-full w-[calc(100%-0.5rem)] sm:w-[min(320px,78vw)]">
+            <Reveal key={y} delay={i * 70} y={16} className="shrink-0 snap-start h-full w-full sm:w-[min(320px,78vw)]">
               <div className="h-full w-full">
                 <CohortReportCard
                   year={`Cohort ${y}`}
@@ -2216,7 +2216,7 @@ function CohortReports() {
         </div>
       </div>
 
-      <div className="mt-10">
+      <div className="mt-10 flex max-sm:justify-center">
           <button
             type="button"
             onClick={reportModal.open}
