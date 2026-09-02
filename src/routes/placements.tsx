@@ -2152,18 +2152,68 @@ function CohortReportCard({ year, href, cover }: { year: string; href: string; c
 
 function CohortReports() {
   const reportModal = useReportModal();
+  const railRef = useRef<HTMLDivElement>(null);
+
+  const scrollByCard = (dir: number) => {
+    const el = railRef.current;
+    if (!el) return;
+    const first = el.querySelector("a") as HTMLElement | null;
+    if (!first) return;
+    const gap = 16;
+    const step = first.offsetWidth + gap;
+    el.scrollBy({ left: dir * step, behavior: "smooth" });
+  };
+
   return (
     <div>
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
-        {REPORT_YEARS.map((y, i) => (
-          <Reveal key={y} delay={i * 70} y={16}>
-            <CohortReportCard
-              year={`Cohort ${y}`}
-              href={PLACEMENT_REPORTS[y].pdf}
-              cover={PLACEMENT_REPORTS[y].cover}
-            />
-          </Reveal>
-        ))}
+      <div className="flex min-w-0 w-full flex-col">
+        <div className="mb-3 flex items-center justify-end gap-2">
+          <button
+            type="button"
+            onClick={() => scrollByCard(-1)}
+            aria-label="Scroll reports left"
+            className="career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black/60 transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)]"
+          >
+            <ChevronLeft className="size-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollByCard(1)}
+            aria-label="Scroll reports right"
+            className="career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black/60 transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)]"
+          >
+            <ChevronRight className="size-4" />
+          </button>
+        </div>
+        <div
+          ref={railRef}
+          tabIndex={0}
+          role="group"
+          aria-label="Placement reports"
+          onKeyDown={(e) => {
+            if (e.key === "ArrowLeft") {
+              e.preventDefault();
+              scrollByCard(-1);
+            }
+            if (e.key === "ArrowRight") {
+              e.preventDefault();
+              scrollByCard(1);
+            }
+          }}
+          className="rail-scroll no-scrollbar flex w-full snap-x snap-mandatory items-stretch gap-4 overflow-x-auto overscroll-x-contain pb-2 focus:outline-none"
+        >
+          {REPORT_YEARS.map((y, i) => (
+            <Reveal key={y} delay={i * 70} y={16} className="shrink-0 snap-start h-full">
+              <div className="h-full w-[calc(100vw-3rem)] sm:w-[min(320px,78vw)]">
+                <CohortReportCard
+                  year={`Cohort ${y}`}
+                  href={PLACEMENT_REPORTS[y].pdf}
+                  cover={PLACEMENT_REPORTS[y].cover}
+                />
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
 
       <div className="mt-10">
