@@ -2471,7 +2471,7 @@ body::-webkit-scrollbar {
 .placement-stats-face-front {
   position: absolute;
   inset: 0;
-  background: color-mix(in oklab, #ffffff 72%, #0b1215);
+  background: #538D22;
   border: 1px solid color-mix(in oklab, #ffffff 18%, transparent);
   transition: background-color 450ms ease, border-color 450ms ease;
 }
@@ -2482,7 +2482,7 @@ body::-webkit-scrollbar {
   right: -0.35rem;
   bottom: 0;
   width: 0.35rem;
-  background: color-mix(in oklab, #ffffff 35%, #0b1215);
+  background: color-mix(in oklab, #538D22 72%, #0b1215);
   transition: background-color 450ms ease;
 }
 
