@@ -1537,7 +1537,7 @@ function PodcastTextBlock() {
             href="https://www.youtube.com/channel/UCaTkVutJ9f-AoE7cz7VLlTw"
             target="_blank"
             rel="noreferrer"
-            className="group mt-5 inline-flex w-full items-center justify-between gap-3 rounded-xl bg-[#1A1F23] px-4 py-3.5 text-[13px] font-bold uppercase tracking-[0.12em] text-[#F2F1EE] ring-1 ring-white/10 transition-all duration-300 hover:scale-[1.02] hover:bg-[#252B30] hover:ring-white/20 active:scale-[0.98]"
+            className="group mt-5 inline-flex w-full items-center justify-between gap-3 rounded-xl bg-[#1A1F23] px-4 py-3.5 text-[13px] font-bold uppercase tracking-[0.12em] text-[#F2F1EE] ring-1 ring-white/10 transition-all duration-300 hover:scale-[1.02] hover:bg-[#638C75] hover:ring-[#638C75] active:scale-[0.98]"
           >
             <span>Subscribe to Masters&apos; Union</span>
             <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#F2F1EE] text-[#0B1215] transition-transform duration-300 group-hover:translate-x-0.5">
