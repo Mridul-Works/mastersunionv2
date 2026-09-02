@@ -1575,14 +1575,16 @@ body::-webkit-scrollbar {
     padding-left: 1rem;
     padding-right: 1rem;
     overscroll-behavior-inline: contain;
-    scroll-padding-inline: 0;
+    scroll-padding-inline: 1rem;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
   }
 
   .placement-ledger-card {
-    width: 100%;
-    scroll-snap-align: start;
+    width: calc(100vw - 2 * var(--page-x) - 3rem);
+    max-width: 100%;
+    margin-inline: auto;
+    scroll-snap-align: center;
     scroll-snap-stop: always;
     border-radius: 16px;
     text-align: center;
@@ -1592,6 +1594,7 @@ body::-webkit-scrollbar {
   .placement-ledger-card dl {
     justify-items: center;
   }
+
 
   .placement-ledger-row:hover {
     background-color: transparent;
