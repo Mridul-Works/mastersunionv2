@@ -2562,6 +2562,11 @@ function EditorialPlacementData() {
             </div>
             <div className="text-[10px] uppercase tracking-[0.18em] text-white/40" style={{ fontFamily: MONO }}>All values / annual CTC</div>
           </div>
+          <div className="flex items-center gap-2 border-b border-white/10 px-5 py-2.5 md:hidden" aria-hidden="true">
+            <ChevronLeft className="h-3.5 w-3.5 text-white/40" />
+            <span className="text-[10px] uppercase tracking-[0.18em] text-white/50" style={{ fontFamily: MONO }}>Slide to view</span>
+            <ChevronRight className="h-3.5 w-3.5 text-white/40" />
+          </div>
           <div className="placement-ledger-scroll overflow-x-auto no-scrollbar">
             <table className="placement-ledger-table w-full border-collapse text-left">
               <thead>
