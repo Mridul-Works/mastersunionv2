@@ -1606,6 +1606,45 @@ const PODCAST_RAIL_VIDEOS = LEADER_GROUPS.flatMap((group) =>
 const ytIdOf = (url: string) => url.split("/").pop()?.split("?")[0] ?? "";
 
 
+function ScrollNav({
+  onPrev,
+  onNext,
+  label = "Scroll",
+}: {
+  onPrev: () => void;
+  onNext: () => void;
+  label?: string;
+}) {
+  return (
+    <div className="flex items-center gap-3">
+      <span className="hidden text-[11px] font-medium uppercase tracking-[0.16em] text-black/50 sm:inline">
+        {label}
+      </span>
+      <span className="inline text-[11px] font-medium uppercase tracking-[0.16em] text-black/50 sm:hidden">
+        Slide
+      </span>
+      <div className="flex items-center gap-2">
+        <button
+          type="button"
+          onClick={onPrev}
+          aria-label="Scroll left"
+          className="career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black/60 transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)]"
+        >
+          <ChevronLeft className="size-4" />
+        </button>
+        <button
+          type="button"
+          onClick={onNext}
+          aria-label="Scroll right"
+          className="career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black/60 transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)]"
+        >
+          <ChevronRight className="size-4" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function PodcastVideoRail({
   setVideoModal,
 }: {
@@ -1627,22 +1666,7 @@ function PodcastVideoRail({
   return (
     <div className="flex min-w-0 w-full flex-col pt-6 sm:pt-0">
       <div className="mb-3 flex items-center justify-end gap-2 pt-4 sm:pt-0">
-        <button
-          type="button"
-          onClick={() => scrollByCard(-1)}
-          aria-label="Scroll conversations left"
-          className="career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black/60 transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)]"
-        >
-          <ChevronLeft className="size-4" />
-        </button>
-        <button
-          type="button"
-          onClick={() => scrollByCard(1)}
-          aria-label="Scroll conversations right"
-          className="career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black/60 transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)]"
-        >
-          <ChevronRight className="size-4" />
-        </button>
+        <ScrollNav onPrev={() => scrollByCard(-1)} onNext={() => scrollByCard(1)} />
       </div>
       <div
         ref={railRef}
