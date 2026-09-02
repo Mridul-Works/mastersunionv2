@@ -1556,8 +1556,8 @@ body::-webkit-scrollbar {
 }
 
 .placement-ledger-row:hover {
-  background-color: var(--accent);
-  box-shadow: 0 0 24px -8px color-mix(in oklab, var(--accent) 45%, transparent);
+  background-color: #638C75;
+  box-shadow: 0 0 24px -8px color-mix(in oklab, #638C75 45%, transparent);
 }
 
 .placement-ledger-row:hover .placement-data-number {
