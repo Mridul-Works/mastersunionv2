@@ -1367,7 +1367,7 @@ body::-webkit-scrollbar {
 }
 
 .placements-ug-v2 .placements-section-shell.podcast-shell {
-  padding-block-end: clamp(0.75rem, 1.8vw, 1.5rem);
+  padding-block-end: clamp(0.35rem, 1vw, 0.85rem);
 }
 
 .placements-ug-v2 .placements-section-shell-light {
