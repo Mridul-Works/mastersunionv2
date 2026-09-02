@@ -128,20 +128,9 @@ export function PlacementsFloatingNav() {
   const activeLabel = navLinks.find((l) => l.id === active)?.label ?? "Overview";
 
   return (
-    <header className="fixed inset-x-0 bottom-0 z-50 px-3 pt-0 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-5 sm:pb-[max(1rem,env(safe-area-inset-bottom))]">
+    <header className="fixed inset-x-0 bottom-0 z-50 hidden px-3 pt-0 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-5 sm:pb-[max(1rem,env(safe-area-inset-bottom))] lg:block">
       {panel === "menu" && (
-        <div className="mx-auto mb-2 max-h-[calc(100dvh-8rem)] max-w-[1320px] overflow-y-auto overscroll-contain rounded-t-2xl border border-border bg-background/95 p-3 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:rounded-2xl sm:p-2">
-          <div className="mb-2 flex items-center justify-between px-1 sm:hidden">
-            <span className="font-tech text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Jump to section</span>
-            <button
-              type="button"
-              onClick={() => setPanel(null)}
-              aria-label="Close menu"
-              className="inline-flex h-8 w-8 items-center justify-center rounded-full text-foreground transition-colors hover:bg-foreground/[0.06]"
-            >
-              <X className="h-4 w-4" />
-            </button>
-          </div>
+        <div className="mx-auto mb-2 max-h-[calc(100dvh-8rem)] max-w-[1320px] overflow-y-auto overscroll-contain rounded-2xl border border-border bg-background/95 p-2 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)] backdrop-blur-xl">
           <nav aria-label="Sections" className="grid gap-1 sm:grid-cols-2 lg:grid-cols-4">
             {navLinks.map((l) => (
               <a
@@ -264,7 +253,7 @@ export function PlacementsFloatingNav() {
             onClick={() => setPanel((p) => (p === "menu" ? null : "menu"))}
             aria-expanded={panel === "menu"}
             aria-label={panel === "menu" ? "Close menu" : "Open menu"}
-            className="inline-flex h-9 items-center gap-1.5 rounded-full border border-border px-2.5 text-[12px] font-medium text-foreground transition-colors hover:bg-foreground/[0.06] sm:px-3.5"
+            className="inline-flex items-center gap-1.5 rounded-full border border-border px-2.5 py-1.5 text-[12px] font-medium text-foreground transition-colors hover:bg-foreground/[0.06] sm:px-3.5"
           >
             {panel === "menu" ? <X className="h-3.5 w-3.5" /> : <Menu className="h-3.5 w-3.5" />}
             <span className="hidden sm:inline">Menu</span>
@@ -277,8 +266,7 @@ export function PlacementsFloatingNav() {
             type="button"
             onClick={() => setPanel((p) => (p === "sage" ? null : "sage"))}
             aria-expanded={panel === "sage"}
-            aria-label={cta.sage.label}
-            className="inline-flex h-9 items-center gap-1.5 rounded-full border border-border px-2.5 text-[12px] font-medium text-foreground transition-colors hover:bg-foreground/[0.06] sm:px-3.5"
+            className="inline-flex items-center gap-1.5 rounded-full border border-border px-2.5 py-1.5 text-[12px] font-medium text-foreground transition-colors hover:bg-foreground/[0.06] sm:px-3.5"
           >
             <Sparkles className="h-3.5 w-3.5 text-teal" strokeWidth={1.75} />
             <span className="hidden sm:inline">{cta.sage.label}</span>
@@ -286,9 +274,9 @@ export function PlacementsFloatingNav() {
 
           <a
             href={cta.nav.href}
-            className="group inline-flex h-9 items-center gap-1.5 rounded-full bg-foreground px-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-background transition hover:bg-foreground/85 sm:px-3.5"
+            className="group inline-flex items-center gap-1.5 rounded-full bg-foreground px-3.5 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-background transition hover:bg-foreground/85"
           >
-            <span className="hidden sm:inline">{cta.nav.label}</span>
+            {cta.nav.label}
             <ArrowUpRight className="h-3 w-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" strokeWidth={2.25} />
           </a>
         </div>
