@@ -288,7 +288,7 @@ export function PlacementsFloatingNav() {
             href={cta.nav.href}
             className="group inline-flex h-9 items-center gap-1.5 rounded-full bg-foreground px-3 text-[10px] font-semibold uppercase tracking-[0.18em] text-background transition hover:bg-foreground/85 sm:px-3.5"
           >
-            <span className="hidden xs:inline">{cta.nav.label}</span>
+            <span className="hidden sm:inline">{cta.nav.label}</span>
             <ArrowUpRight className="h-3 w-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" strokeWidth={2.25} />
           </a>
         </div>
