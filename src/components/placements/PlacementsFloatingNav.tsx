@@ -67,7 +67,7 @@ function useScrollState(barRef: React.RefObject<HTMLElement | null>) {
     };
 
     const offResize = onViewportResize(measure);
-    const offScroll = onScrollFrame(write, measure);
+    const offScroll = onScrollFrame(write);
     return () => {
       offResize();
       offScroll();
