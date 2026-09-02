@@ -4355,6 +4355,7 @@ body::-webkit-scrollbar {
 @media (max-width: 639px) {
   .mobile-padded-rail {
     padding-inline: 1rem;
+    scroll-padding-inline: 1rem;
   }
 
   .mobile-centered-action {
