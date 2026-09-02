@@ -1619,17 +1619,24 @@ function ScrollNav({
   onPrev,
   onNext,
   label = "Scroll",
+  tone = "light",
 }: {
   onPrev: () => void;
   onNext: () => void;
   label?: string;
+  tone?: "light" | "dark";
 }) {
+  const textTone = tone === "dark" ? "text-white/55" : "text-black/50";
+  const buttonTone =
+    tone === "dark"
+      ? "border-white/25 text-white/70"
+      : "border-black/20 text-black/60";
   return (
     <div className="flex items-center gap-3">
-      <span className="hidden text-[11px] font-medium uppercase tracking-[0.16em] text-black/50 xl:inline">
+      <span className={`hidden text-[11px] font-medium uppercase tracking-[0.16em] xl:inline ${textTone}`}>
         {label}
       </span>
-      <span className="inline text-[11px] font-medium uppercase tracking-[0.16em] text-black/50 xl:hidden">
+      <span className={`inline text-[11px] font-medium uppercase tracking-[0.16em] xl:hidden ${textTone}`}>
         Slide
       </span>
       <div className="flex items-center gap-2">
@@ -1637,7 +1644,7 @@ function ScrollNav({
           type="button"
           onClick={onPrev}
           aria-label="Scroll left"
-          className="career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black/60 transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)]"
+          className={`career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)] ${buttonTone}`}
         >
           <ChevronLeft className="size-4" />
         </button>
@@ -1645,7 +1652,7 @@ function ScrollNav({
           type="button"
           onClick={onNext}
           aria-label="Scroll right"
-          className="career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black/60 transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)]"
+          className={`career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)] ${buttonTone}`}
         >
           <ChevronRight className="size-4" />
         </button>
@@ -1653,6 +1660,7 @@ function ScrollNav({
     </div>
   );
 }
+
 
 function PodcastVideoRail({
   setVideoModal,
