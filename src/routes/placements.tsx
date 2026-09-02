@@ -1187,8 +1187,8 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
               <span>{String(featuredStories.length).padStart(2, "0")}</span>
             </div>
             <div className="career-story-arrows">
-              <Button variant="outline" size="icon" onClick={() => moveStory(-1)} aria-label="Previous student story"><ChevronLeft /></Button>
-              <Button variant="outline" size="icon" onClick={() => moveStory(1)} aria-label="Next student story"><ChevronRight /></Button>
+              <Button variant="outline" size="icon" onClick={() => moveStory(-1)} aria-label="Previous student story" className="hover:border-[#638C75] hover:bg-[#638C75] hover:text-black"><ChevronLeft /></Button>
+              <Button variant="outline" size="icon" onClick={() => moveStory(1)} aria-label="Next student story" className="hover:border-[#638C75] hover:bg-[#638C75] hover:text-black"><ChevronRight /></Button>
             </div>
           </div>
 
