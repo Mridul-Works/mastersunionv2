@@ -1,5 +1,6 @@
 import { ArrowUpRight, CalendarClock, Menu, Sparkles, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { onScrollFrame, onViewportResize } from "@/lib/scroll-driver";
 import { cn } from "@/lib/utils";
 import logoAsset from "@/assets/logo-2.png.asset.json";
 
@@ -105,7 +106,8 @@ function useActiveSection(ids: string[]) {
 }
 
 export function PlacementsFloatingNav() {
-  const { scrolled, progress } = useScrollState();
+  const progressRef = useRef<HTMLSpanElement | null>(null);
+  const { scrolled } = useScrollState(progressRef);
   const active = useActiveSection(navLinks.map((l) => l.id));
   const [panel, setPanel] = useState<null | "menu" | "sage">(null);
   const open = panel !== null;
