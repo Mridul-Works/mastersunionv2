@@ -211,14 +211,16 @@ export function PlacementsFloatingNav() {
         )}
       >
         <span
+          ref={progressRef}
           aria-hidden
-          className="pointer-events-none absolute left-0 top-0 h-px origin-left transition-[width] duration-150"
+          className="pointer-events-none absolute left-0 top-0 h-px w-full origin-left will-change-transform"
           style={{
-            width: `${progress * 100}%`,
+            transform: "scaleX(0)",
             background:
               "linear-gradient(90deg, transparent, var(--teal), #F7D544, #E38330, transparent)",
           }}
         />
+
 
         <div className="flex min-w-0 items-center gap-2 overflow-hidden sm:gap-3">
           <a href="#top" className="placements-floating-logo flex w-auto shrink-0 items-center gap-2.5" aria-label={brand.homeAriaLabel}>
