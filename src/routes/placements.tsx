@@ -2519,8 +2519,13 @@ function useScrollBlurReveal(rootRef: React.RefObject<HTMLElement | null>) {
     const targets = Array.from(root.querySelectorAll<HTMLElement>("section")).filter(
       (el) => !el.closest("[data-no-reveal]"),
     );
+    const vh = window.innerHeight || 1;
     targets.forEach((el) => {
       el.classList.add("sd-reveal");
+      // Blurring a very tall subtree (e.g. the 52-card guidance grid) forces the
+      // compositor to re-rasterise a huge layer every frame — that is what makes
+      // scrolling stutter. Tall sections reveal with opacity/transform only.
+      if (el.offsetHeight > vh * 1.4) el.classList.add("sd-reveal--light");
       el.dataset.visible = "false";
     });
 
