@@ -4031,6 +4031,11 @@ body::-webkit-scrollbar {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  /* Mobile: show the metric hover state by default (no hover on touch). */
+  .placements-ug-v2 .placements-metrics-strip .metric-card .placements-metric-accent {
+    width: 100%;
+  }
+
   .placements-metrics-strip .metric-card + .metric-card {
     border-top: 1px solid color-mix(in oklab, #ffffff 10%, transparent);
     border-left: 0;
