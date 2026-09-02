@@ -1569,6 +1569,40 @@ body::-webkit-scrollbar {
   transition: none;
 }
 
+@media (max-width: 767px) {
+  .placement-ledger-scroll {
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .placement-ledger-table {
+    width: max-content;
+    min-width: 920px;
+    table-layout: auto;
+  }
+
+  .placement-ledger-cell {
+    min-width: 128px;
+    padding: 1.35rem 1.5rem;
+    white-space: nowrap;
+    scroll-snap-align: start;
+  }
+
+  .placement-ledger-cell:first-child {
+    min-width: 96px;
+  }
+
+  .placement-ledger-row:hover {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .placement-ledger-row:hover .placement-data-number {
+    color: rgba(255, 255, 255, 0.78);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .placement-data-rule,
   .placement-data-number,

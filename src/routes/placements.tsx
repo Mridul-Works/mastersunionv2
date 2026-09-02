@@ -2552,12 +2552,12 @@ function EditorialPlacementData() {
             </div>
             <div className="text-[10px] uppercase tracking-[0.18em] text-white/40" style={{ fontFamily: MONO }}>All values / annual CTC</div>
           </div>
-          <div className="overflow-x-auto no-scrollbar">
-            <table className="w-full min-w-[980px] table-fixed border-collapse text-left">
+          <div className="placement-ledger-scroll overflow-x-auto no-scrollbar">
+            <table className="placement-ledger-table w-full min-w-[980px] table-fixed border-collapse text-left">
               <thead>
                 <tr>
                   {tbmColumns.map((column, index) => (
-                    <th key={column.key} scope="col" className={`px-5 py-4 text-[9px] font-medium uppercase tracking-[0.18em] text-white/42 md:px-8 ${index === 0 ? "w-[12%]" : ""}`} style={{ fontFamily: MONO }}>
+                    <th key={column.key} scope="col" className={`placement-ledger-cell px-5 py-4 text-[9px] font-medium uppercase tracking-[0.18em] text-white/42 md:px-8 ${index === 0 ? "w-[12%]" : ""}`} style={{ fontFamily: MONO }}>
                       {column.label}
                     </th>
                   ))}
@@ -2567,7 +2567,7 @@ function EditorialPlacementData() {
                 {TBM_TABLE.map((row, rowIndex) => (
                   <tr key={row.cohort} className="placement-ledger-row border-t border-white/12">
                     {tbmColumns.map((column, columnIndex) => (
-                      <td key={column.key} className={`placement-data-number px-5 py-5 tabular-nums md:px-8 ${columnIndex === 0 ? "text-[11px] font-medium tracking-[0.16em]" : "text-[0.98rem]"}`} style={{ transitionDelay: `${rowIndex * 55 + columnIndex * 22}ms`, fontFamily: columnIndex === 0 ? MONO : undefined }}>
+                      <td key={column.key} className={`placement-data-number placement-ledger-cell px-5 py-5 tabular-nums md:px-8 ${columnIndex === 0 ? "text-[11px] font-medium tracking-[0.16em]" : "text-[0.98rem]"}`} style={{ transitionDelay: `${rowIndex * 55 + columnIndex * 22}ms`, fontFamily: columnIndex === 0 ? MONO : undefined }}>
                         {columnIndex === 0 ? row[column.key] : <CountUp value={row[column.key]} delay={rowIndex * 65 + columnIndex * 30} />}
                       </td>
                     ))}
