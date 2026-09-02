@@ -1757,7 +1757,7 @@ body::-webkit-scrollbar {
 
 .salary-viz-face-front {
   inset: 0;
-  background: #DAA061;
+  background: #B48961;
   border: 1px solid color-mix(in oklab, #ffffff 18%, transparent);
 }
 
@@ -1766,7 +1766,7 @@ body::-webkit-scrollbar {
   right: -0.42rem;
   bottom: 0;
   width: 0.42rem;
-  background: color-mix(in oklab, #DAA061 72%, #0b1215);
+  background: color-mix(in oklab, #B48961 72%, #0b1215);
 }
 
 .salary-viz-range {
@@ -1784,7 +1784,7 @@ body::-webkit-scrollbar {
 .salary-viz-column:focus-visible .salary-viz-value,
 .salary-viz-column:hover .salary-viz-range,
 .salary-viz-column:focus-visible .salary-viz-range {
-  color: #DAA061;
+  color: #B48961;
 }
 
 .salary-viz-column:hover .salary-viz-value,
@@ -1794,13 +1794,13 @@ body::-webkit-scrollbar {
 
 .salary-viz-column:hover .salary-viz-face-front,
 .salary-viz-column:focus-visible .salary-viz-face-front {
-  background: color-mix(in oklab, #DAA061 82%, #0b1215);
-  border-color: #DAA061;
+  background: color-mix(in oklab, #B48961 82%, #0b1215);
+  border-color: #B48961;
 }
 
 .salary-viz-column:hover .salary-viz-face-side,
 .salary-viz-column:focus-visible .salary-viz-face-side {
-  background: color-mix(in oklab, #DAA061 45%, #0b1215);
+  background: color-mix(in oklab, #B48961 45%, #0b1215);
 }
 
 @keyframes salary-bar-rise {
@@ -1849,7 +1849,7 @@ body::-webkit-scrollbar {
 .salary-viz-segment-1 { stroke: color-mix(in oklab, #ffffff 78%, transparent); }
 .salary-viz-segment-2 { stroke: color-mix(in oklab, #ffffff 43%, transparent); }
 .salary-viz-segment-3 { stroke: color-mix(in oklab, #ffffff 20%, transparent); }
-.salary-viz-segment.is-active { stroke: #DAA061; filter: drop-shadow(0 0 7px color-mix(in oklab, #DAA061 28%, transparent)); }
+.salary-viz-segment.is-active { stroke: #B48961; filter: drop-shadow(0 0 7px color-mix(in oklab, #B48961 28%, transparent)); }
 
 .salary-viz-donut-kicker {
   fill: color-mix(in oklab, #ffffff 40%, transparent);
@@ -1907,15 +1907,15 @@ body::-webkit-scrollbar {
 .salary-viz-legend-detail { color: color-mix(in oklab, #ffffff 42%, transparent); font-size: 0.68rem; }
 .salary-viz-legend-value { color: color-mix(in oklab, #ffffff 68%, transparent); font-size: 0.82rem; font-variant-numeric: tabular-nums; }
 
-.salary-viz-legend-row.is-active .salary-viz-swatch { background: #DAA061; transform: scale(1.25); }
+.salary-viz-legend-row.is-active .salary-viz-swatch { background: #B48961; transform: scale(1.25); }
 .salary-viz-legend-row.is-active .salary-viz-legend-label,
 .salary-viz-legend-row.is-active .salary-viz-legend-detail,
-.salary-viz-legend-row.is-active .salary-viz-legend-value { color: #DAA061; }
+.salary-viz-legend-row.is-active .salary-viz-legend-value { color: #B48961; }
 
-.salary-viz-legend-row:hover .salary-viz-swatch { background: #DAA061; transform: scale(1.25); }
+.salary-viz-legend-row:hover .salary-viz-swatch { background: #B48961; transform: scale(1.25); }
 .salary-viz-legend-row:hover .salary-viz-legend-label,
 .salary-viz-legend-row:hover .salary-viz-legend-detail,
-.salary-viz-legend-row:hover .salary-viz-legend-value { color: #DAA061; }
+.salary-viz-legend-row:hover .salary-viz-legend-value { color: #B48961; }
 
 @media (min-width: 768px) {
   .salary-viz-header { grid-template-columns: minmax(0, 1.4fr) minmax(18rem, 0.6fr); }
@@ -2476,7 +2476,7 @@ body::-webkit-scrollbar {
 .placement-stats-face-front {
   position: absolute;
   inset: 0;
-  background: #DAA061;
+  background: #B48961;
   border: 1px solid color-mix(in oklab, #ffffff 18%, transparent);
   transition: background-color 450ms ease, border-color 450ms ease;
 }
@@ -2487,7 +2487,7 @@ body::-webkit-scrollbar {
   right: -0.35rem;
   bottom: 0;
   width: 0.35rem;
-  background: color-mix(in oklab, #DAA061 72%, #0b1215);
+  background: color-mix(in oklab, #B48961 72%, #0b1215);
   transition: background-color 450ms ease;
 }
 
@@ -2517,23 +2517,23 @@ body::-webkit-scrollbar {
 .placement-stats-column:focus-visible .placement-stats-extrusion {
   translate: 0 -0.35rem;
   scale: 1.03 1.03;
-  filter: drop-shadow(0 10px 22px color-mix(in oklab, #DAA061 35%, transparent));
+  filter: drop-shadow(0 10px 22px color-mix(in oklab, #B48961 35%, transparent));
 }
 
 .placement-stats-column:hover .placement-stats-face-front,
 .placement-stats-column:focus-visible .placement-stats-face-front {
-  background: color-mix(in oklab, #DAA061 82%, #0b1215);
-  border-color: #DAA061;
+  background: color-mix(in oklab, #B48961 82%, #0b1215);
+  border-color: #B48961;
 }
 
 .placement-stats-column:hover .placement-stats-face-side,
 .placement-stats-column:focus-visible .placement-stats-face-side {
-  background: color-mix(in oklab, #DAA061 45%, #0b1215);
+  background: color-mix(in oklab, #B48961 45%, #0b1215);
 }
 
 .placement-stats-column:hover .placement-stats-value,
 .placement-stats-column:focus-visible .placement-stats-value {
-  color: #DAA061;
+  color: #B48961;
   transform: translateY(-0.15rem) scale(1.05);
 }
 
