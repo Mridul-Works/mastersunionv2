@@ -183,7 +183,7 @@ export function PlacementsFloatingNav() {
 
       <div
         className={cn(
-          "relative mx-auto flex h-10 max-w-[1320px] items-center justify-between gap-2 overflow-hidden rounded-full border px-2.5 transition-all duration-300 sm:gap-3 sm:px-4 lg:h-11",
+          "relative mx-auto grid h-11 max-w-[1320px] grid-cols-[minmax(0,1fr)_auto] items-center gap-2 overflow-hidden rounded-full border px-2.5 transition-all duration-300 sm:gap-3 sm:px-4 lg:h-11",
           scrolled
             ? "border-border bg-background/85 shadow-[0_-14px_40px_-24px_rgba(0,0,0,0.45)] backdrop-blur-xl"
             : "border-border/60 bg-background/80 shadow-[0_-10px_32px_-24px_rgba(0,0,0,0.4)] backdrop-blur-md",
@@ -199,7 +199,7 @@ export function PlacementsFloatingNav() {
           }}
         />
 
-        <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+        <div className="flex min-w-0 items-center gap-2 overflow-hidden sm:gap-3">
           <a href="#top" className="flex shrink-0 items-center gap-2.5" aria-label={brand.homeAriaLabel}>
             <img
               src={brand.logoUrl}
