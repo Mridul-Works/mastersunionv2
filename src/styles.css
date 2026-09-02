@@ -4397,6 +4397,14 @@ body::-webkit-scrollbar {
   }
 }
 
+/* Mobile-only: shift the founder quote portrait so the subject's head and
+   shoulder remain visible alongside the narrower, smaller quote text. */
+@media (max-width: 767px) {
+  .quote-cover-section {
+    background-position: 70% 45% !important;
+  }
+}
+
 /* Final narrow-screen rail overrides: kept last so legacy responsive rules
    cannot collapse the horizontal card tracks back into stacked grids. */
 @media (max-width: 639px) {

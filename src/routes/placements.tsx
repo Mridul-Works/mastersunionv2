@@ -2351,7 +2351,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
   return (
     <section
       ref={hostRef}
-      className="relative flex items-end lg:items-start pt-20 md:pt-24 lg:pt-28 py-14 md:py-16"
+      className="quote-cover-section relative flex items-end lg:items-start pt-20 md:pt-24 lg:pt-28 py-14 md:py-16 max-md:min-h-[80vh]"
       style={{
         backgroundColor: "black",
         backgroundImage: `url(${manojKohliBg.url})`,
@@ -2372,7 +2372,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
       <div className="page-x relative w-full" style={{ zIndex: 3 }}>
         <div
           ref={textRef}
-          className="relative max-w-[56ch]"
+          className="relative max-w-[56ch] max-md:max-w-[28ch]"
           style={{
             opacity: animated ? 0 : 1,
             transform: animated ? "translate3d(0px, 18px, 0px)" : "translate3d(0px, 0px, 0px)",
@@ -2380,11 +2380,11 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
           }}
         >
           <Quote
-            className="absolute -left-1 -top-2 size-10 text-white/15 md:-top-4 md:size-16"
+            className="absolute -left-1 -top-2 size-10 text-white/15 md:-top-4 md:size-16 max-md:size-6 max-md:-top-1"
             strokeWidth={1}
             aria-hidden="true"
           />
-          <blockquote className="text-[clamp(1.5rem,3.6vw,2.8rem)] font-medium leading-[1.3] tracking-[-0.015em] placements-dim-white">
+          <blockquote className="text-[clamp(1.5rem,3.6vw,2.8rem)] font-medium leading-[1.3] tracking-[-0.015em] placements-dim-white max-md:text-[clamp(0.9rem,4.4vw,1.15rem)] max-md:leading-[1.35]">
             {TYPOGRAPHY_ITEMS.map((item, i) => {
               if (item.type === "attribution") return null;
               const isLastWord = item.type === "word" && i === TYPOGRAPHY_ITEMS.length - 3;
@@ -2412,7 +2412,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
                 ref={(n) => {
                   wordRefs.current[i] = n;
                 }}
-                className="mt-8 text-[10px] uppercase tracking-[0.2em] placements-dim-white"
+                className="mt-8 max-md:mt-3 text-[10px] max-md:text-[9px] uppercase tracking-[0.2em] placements-dim-white"
                 style={{ fontFamily: MONO, opacity: animated ? 0.18 : 1, willChange: "opacity" }}
               >
                 {item.text}
