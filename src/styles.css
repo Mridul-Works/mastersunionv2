@@ -3302,6 +3302,27 @@ body::-webkit-scrollbar {
   .career-podcast-media:hover .career-podcast-play { transform: scale(1.1); background: #638C75; border-color: #638C75; color: var(--background); }
 }
 
+@media (max-width: 639px) {
+  .podcast-rail.mobile-padded-rail {
+    padding-inline: 0;
+    scroll-padding-inline: 0;
+  }
+  .podcast-rail-card {
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    border: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
+    overflow: clip;
+  }
+  .podcast-rail-card:hover .career-podcast-play,
+  .podcast-rail-card:focus-visible .career-podcast-play {
+    transform: scale(1.1);
+    background: #638C75;
+    border-color: #638C75;
+    color: var(--background);
+  }
+}
+
+
 .career-closing-section { padding: clamp(0.75rem, 2vw, 1.25rem) 0 clamp(4rem, 8vw, 7rem); background: var(--background); }
 .career-closing-cta { padding: clamp(2rem, 6vw, 5rem); border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent); border-radius: 18px; background: var(--placements-outer-surface); text-align: center; }
 .career-closing-cta h2 { font-size: clamp(2rem, 5vw, 4.25rem); }

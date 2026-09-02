@@ -1683,7 +1683,7 @@ function PodcastVideoRail({
             scrollByCard(1);
           }
         }}
-        className="rail-scroll mobile-padded-rail no-scrollbar flex w-full snap-x snap-mandatory items-start gap-4 overflow-x-auto overscroll-x-contain pb-2 focus:outline-none"
+        className="rail-scroll mobile-padded-rail podcast-rail no-scrollbar flex w-full snap-x snap-mandatory items-start gap-4 overflow-x-auto overscroll-x-contain pb-2 focus:outline-none"
       >
         {PODCAST_RAIL_VIDEOS.map((item) => (
           <button
@@ -1694,7 +1694,7 @@ function PodcastVideoRail({
             className="group flex w-full shrink-0 snap-start flex-col text-left sm:w-[min(260px,78vw)]"
           >
 
-            <span className="relative block aspect-video w-full overflow-hidden rounded-md bg-black/10">
+            <span className="podcast-rail-card relative block aspect-video w-full overflow-hidden rounded-md bg-black/10">
               <img
                 src={`https://img.youtube.com/vi/${ytIdOf(item.video)}/maxresdefault.jpg`}
                 alt={item.name}
@@ -1709,7 +1709,10 @@ function PodcastVideoRail({
                 }}
               />
               <span className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-              <span className="career-podcast-play career-podcast-play--sm">
+              <span className="career-podcast-play sm:hidden">
+                <Play fill="currentColor" />
+              </span>
+              <span className="career-podcast-play--sm hidden sm:grid">
                 <Play fill="currentColor" />
               </span>
             </span>
