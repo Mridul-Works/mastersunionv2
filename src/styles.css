@@ -4031,14 +4031,30 @@ body::-webkit-scrollbar {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  /* Mobile: static black cards with visible green accent lines (no hover on touch). */
+  /* Mobile: obsidian black cards with visible green accent lines and slightly larger type. */
   .placements-ug-v2 .placements-metrics-strip .metric-card,
   .placements-ug-v2 .placements-metrics-strip .metric-card:hover {
-    background-color: #000000;
+    background-color: #0B1215;
   }
 
   .placements-ug-v2 .placements-metrics-strip .metric-card .placements-metric-accent {
     width: 100%;
+  }
+
+  .placements-ug-v2 .placements-metrics-strip .metric-card .metric-index {
+    font-size: 10px;
+  }
+
+  .placements-ug-v2 .placements-metrics-strip .metric-card .metric-value {
+    font-size: clamp(1.4rem, 7.5vw, 2.2rem);
+  }
+
+  .placements-ug-v2 .placements-metrics-strip .metric-card .metric-label {
+    font-size: 11px;
+  }
+
+  .placements-ug-v2 .placements-metrics-strip .metric-card .metric-note {
+    font-size: 12px;
   }
 
   .placements-metrics-strip .metric-card + .metric-card {
