@@ -4048,6 +4048,13 @@ body::-webkit-scrollbar {
     width: 100%;
   }
 
+  /* Mobile metric cards: neutralize typography hover transitions so the text stays static. */
+  .placements-ug-v2 .placements-metrics-strip .metric-card span,
+  .placements-ug-v2 .placements-metrics-strip .metric-card p {
+    transition: none;
+  }
+
+
   .placements-metrics-strip .metric-card + .metric-card {
     border-top: 1px solid color-mix(in oklab, #ffffff 10%, transparent);
     border-left: 0;
