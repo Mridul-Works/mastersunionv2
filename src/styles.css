@@ -4397,11 +4397,11 @@ body::-webkit-scrollbar {
   }
 }
 
-/* Mobile-only: shift the founder quote portrait so the subject's head and
-   shoulder remain visible alongside the narrower, smaller quote text. */
+/* Mobile-only: center the founder quote portrait so the full character
+   image sits in the middle of the viewport. Typography remains unchanged. */
 @media (max-width: 767px) {
   .quote-cover-section {
-    background-position: 70% 45% !important;
+    background-position: center center !important;
   }
 }
 
