@@ -2846,8 +2846,8 @@ body::-webkit-scrollbar {
   min-height: 9.5rem;
   align-content: end;
   padding: 1.5rem;
-  background: var(--accent);
-  color: var(--accent-foreground);
+  background: #638C75;
+  color: #ffffff;
 }
 .career-story-accent span {
   font-family: var(--font-mono-tech);
