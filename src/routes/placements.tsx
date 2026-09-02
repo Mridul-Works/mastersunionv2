@@ -1665,7 +1665,7 @@ function PodcastVideoRail({
 
   return (
     <div className="flex min-w-0 w-full flex-col">
-      <div className="mb-3 flex items-center justify-end gap-2">
+      <div className="mb-2 flex items-center justify-end gap-2 sm:mb-3">
         <ScrollNav onPrev={() => scrollByCard(-1)} onNext={() => scrollByCard(1)} />
       </div>
       <div
@@ -1691,7 +1691,7 @@ function PodcastVideoRail({
             type="button"
             onClick={() => setVideoModal({ title: item.name, video: item.video, start: 0 })}
             aria-label={`Play conversation with ${item.name}`}
-            className="group flex w-full shrink-0 snap-start flex-col pt-3 text-left sm:w-[min(260px,78vw)] sm:pt-0"
+            className="group flex w-full shrink-0 snap-start flex-col text-left sm:w-[min(260px,78vw)]"
           >
 
             <span className="relative block aspect-video w-full overflow-hidden rounded-md bg-black/10">
