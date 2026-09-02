@@ -2492,7 +2492,17 @@ function AuditedOutcomes() {
 
 
 function EditorialPlacementData() {
+  const tbmRailRef = useRef<HTMLDivElement>(null);
+  const ylcRailRef = useRef<HTMLDivElement>(null);
+  const scrollRail = (railRef: React.RefObject<HTMLDivElement | null>, dir: number) => {
+    const el = railRef.current;
+    if (!el) return;
+    const card = el.querySelector("article") as HTMLElement | null;
+    if (!card) return;
+    el.scrollBy({ left: dir * (card.offsetWidth + 16), behavior: "smooth" });
+  };
   const { ref, inView } = useInView<HTMLElement>("0px 0px -10% 0px");
+
   const tbmColumns: Array<{ key: keyof CohortRow; label: string }> = [
     { key: "cohort", label: "Cohort" },
     { key: "avg", label: "Avg. CTC" },
