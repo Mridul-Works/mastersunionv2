@@ -1784,7 +1784,7 @@ body::-webkit-scrollbar {
 .salary-viz-column:focus-visible .salary-viz-value,
 .salary-viz-column:hover .salary-viz-range,
 .salary-viz-column:focus-visible .salary-viz-range {
-  color: var(--accent);
+  color: #DAA061;
 }
 
 .salary-viz-column:hover .salary-viz-value,
@@ -1794,13 +1794,13 @@ body::-webkit-scrollbar {
 
 .salary-viz-column:hover .salary-viz-face-front,
 .salary-viz-column:focus-visible .salary-viz-face-front {
-  background: color-mix(in oklab, var(--accent) 82%, #0b1215);
-  border-color: var(--accent);
+  background: color-mix(in oklab, #DAA061 82%, #0b1215);
+  border-color: #DAA061;
 }
 
 .salary-viz-column:hover .salary-viz-face-side,
 .salary-viz-column:focus-visible .salary-viz-face-side {
-  background: color-mix(in oklab, var(--accent) 45%, #0b1215);
+  background: color-mix(in oklab, #DAA061 45%, #0b1215);
 }
 
 @keyframes salary-bar-rise {
@@ -2512,23 +2512,23 @@ body::-webkit-scrollbar {
 .placement-stats-column:focus-visible .placement-stats-extrusion {
   translate: 0 -0.35rem;
   scale: 1.03 1.03;
-  filter: drop-shadow(0 10px 22px color-mix(in oklab, var(--accent) 35%, transparent));
+  filter: drop-shadow(0 10px 22px color-mix(in oklab, #DAA061 35%, transparent));
 }
 
 .placement-stats-column:hover .placement-stats-face-front,
 .placement-stats-column:focus-visible .placement-stats-face-front {
-  background: color-mix(in oklab, var(--accent) 82%, #0b1215);
-  border-color: var(--accent);
+  background: color-mix(in oklab, #DAA061 82%, #0b1215);
+  border-color: #DAA061;
 }
 
 .placement-stats-column:hover .placement-stats-face-side,
 .placement-stats-column:focus-visible .placement-stats-face-side {
-  background: color-mix(in oklab, var(--accent) 45%, #0b1215);
+  background: color-mix(in oklab, #DAA061 45%, #0b1215);
 }
 
 .placement-stats-column:hover .placement-stats-value,
 .placement-stats-column:focus-visible .placement-stats-value {
-  color: var(--accent);
+  color: #DAA061;
   transform: translateY(-0.15rem) scale(1.05);
 }
 
