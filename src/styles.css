@@ -1280,9 +1280,9 @@ body::-webkit-scrollbar {
 
   .placements-obsidian.placements-ug-v2 .hero-sweep-button.bg-white:hover,
   .placements-ug-v2 .hero-sweep-button:hover {
-    background-color: var(--accent);
-    border-color: var(--accent);
-    box-shadow: 0 0 28px -6px color-mix(in oklab, var(--accent) 60%, transparent);
+    background-color: #638C75;
+    border-color: #638C75;
+    box-shadow: 0 0 28px -6px color-mix(in oklab, #638C75 60%, transparent);
   }
 
   .placements-ug-v2 .placements-pill-accent:hover {
