@@ -1191,7 +1191,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
                 type="button"
                 onClick={() => moveStory(-1)}
                 aria-label="Previous student story"
-                className="career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black/60 transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:-translate-y-px"
+                className="career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black/60 transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white"
               >
                 <ChevronLeft className="size-4" />
               </button>
@@ -1199,7 +1199,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
                 type="button"
                 onClick={() => moveStory(1)}
                 aria-label="Next student story"
-                className="career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black/60 transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:-translate-y-px"
+                className="career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black/60 transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white"
               >
                 <ChevronRight className="size-4" />
               </button>
@@ -1631,7 +1631,7 @@ function PodcastVideoRail({
           type="button"
           onClick={() => scrollByCard(-1)}
           aria-label="Scroll conversations left"
-          className="career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black/60 transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:-translate-y-px hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)]"
+          className="career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black/60 transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)]"
         >
           <ChevronLeft className="size-4" />
         </button>
@@ -1639,7 +1639,7 @@ function PodcastVideoRail({
           type="button"
           onClick={() => scrollByCard(1)}
           aria-label="Scroll conversations right"
-          className="career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black/60 transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:-translate-y-px hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)]"
+          className="career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black/60 transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)]"
         >
           <ChevronRight className="size-4" />
         </button>
