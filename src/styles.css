@@ -1570,27 +1570,18 @@ body::-webkit-scrollbar {
 }
 
 @media (max-width: 767px) {
-  .placement-ledger-scroll {
+  .placement-ledger-card-rail {
+    gap: 0.75rem;
     overscroll-behavior-inline: contain;
-    scroll-snap-type: x proximity;
+    scroll-padding-inline: 1.25rem;
+    scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
   }
 
-  .placement-ledger-scroll .placement-ledger-table {
-    width: max-content;
-    min-width: 920px;
-    table-layout: auto;
-  }
-
-  .placement-ledger-scroll .placement-ledger-cell {
-    min-width: 128px;
-    padding: 1.35rem 1.5rem;
-    white-space: nowrap;
+  .placement-ledger-card {
+    width: min(82vw, 310px);
     scroll-snap-align: start;
-  }
-
-  .placement-ledger-scroll .placement-ledger-cell:first-child {
-    min-width: 96px;
+    scroll-snap-stop: always;
   }
 
   .placement-ledger-row:hover {
