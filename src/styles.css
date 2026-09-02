@@ -4408,9 +4408,10 @@ body::-webkit-scrollbar {
   .quote-cover-section .font-serif-italic {
     color: #062f24;
     font-weight: 700;
-    text-shadow:
-      0 1px 0 rgb(255 255 255 / 85%),
-      0 0 8px rgb(255 255 255 / 70%);
+    background: rgb(237 245 240 / 88%);
+    box-shadow: 0 0 0 2px rgb(237 245 240 / 88%);
+    border-radius: 2px;
+    text-shadow: none;
   }
 }
 
