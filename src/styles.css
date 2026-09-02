@@ -4404,10 +4404,13 @@ body::-webkit-scrollbar {
     background-position: 88% center !important;
   }
 
-  /* Darken the italic highlight on mobile so it stays readable over the
-     lighter areas of the centered portrait. */
+  /* Keep the highlighted phrase legible across both the portrait and overlay. */
   .quote-cover-section .font-serif-italic {
-    color: #003D2B;
+    color: #062f24;
+    font-weight: 700;
+    text-shadow:
+      0 1px 0 rgb(255 255 255 / 85%),
+      0 0 8px rgb(255 255 255 / 70%);
   }
 }
 
