@@ -1514,7 +1514,7 @@ function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal |
       </div>
 
       <EditorialRule />
-      <div className="flex flex-col gap-3 pt-2 pb-4">
+      <div className="flex flex-col gap-2 pt-2 pb-4">
         <Eyebrow>Leadership conversations</Eyebrow>
         <PodcastVideoRail setVideoModal={setVideoModal} />
       </div>
@@ -1664,8 +1664,8 @@ function PodcastVideoRail({
   };
 
   return (
-    <div className="flex min-w-0 w-full flex-col pt-6 sm:pt-0">
-      <div className="mb-3 flex items-center justify-end gap-2 pt-4 sm:pt-0">
+    <div className="flex min-w-0 w-full flex-col">
+      <div className="mb-2 flex items-center justify-end gap-2">
         <ScrollNav onPrev={() => scrollByCard(-1)} onNext={() => scrollByCard(1)} />
       </div>
       <div
