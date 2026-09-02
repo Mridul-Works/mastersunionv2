@@ -2203,8 +2203,8 @@ function CohortReports() {
           className="rail-scroll no-scrollbar flex w-full snap-x snap-mandatory items-stretch gap-4 overflow-x-auto overscroll-x-contain pb-2 focus:outline-none"
         >
           {REPORT_YEARS.map((y, i) => (
-            <Reveal key={y} delay={i * 70} y={16} className="shrink-0 snap-start">
-              <div className="w-[calc(100vw-3rem)] sm:w-[min(320px,78vw)]">
+            <Reveal key={y} delay={i * 70} y={16} className="shrink-0 snap-start h-full">
+              <div className="h-full w-[calc(100vw-3rem)] sm:w-[min(320px,78vw)]">
                 <CohortReportCard
                   year={`Cohort ${y}`}
                   href={PLACEMENT_REPORTS[y].pdf}
