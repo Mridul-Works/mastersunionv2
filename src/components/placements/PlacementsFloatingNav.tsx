@@ -37,27 +37,46 @@ const sageSuggestions = [
   { label: "What does the career pathway look like?", id: "pathway" },
 ];
 
-function useScrollState() {
+/**
+ * Scroll state without per-frame React renders.
+ *
+ * The old version read document.scrollHeight and called setState on every scroll
+ * event, which forced a layout + full nav re-render each frame. Now the progress
+ * bar is written straight to the DOM as a transform, the max scroll distance is
+ * cached on resize, and React state only flips the boolean `scrolled` flag.
+ */
+function useScrollState(barRef: React.RefObject<HTMLElement | null>) {
   const [scrolled, setScrolled] = useState(false);
-  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      setScrolled(window.scrollY > 24);
-      setProgress(max > 0 ? Math.min(1, window.scrollY / max) : 0);
+    let max = 1;
+    const measure = () => {
+      max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
     };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
 
-  return { scrolled, progress };
+    let wasScrolled = false;
+    const write = ({ y }: { y: number }) => {
+      const progress = Math.min(1, Math.max(0, y / max));
+      const bar = barRef.current;
+      if (bar) bar.style.transform = `scaleX(${progress})`;
+      const next = y > 24;
+      if (next !== wasScrolled) {
+        wasScrolled = next;
+        setScrolled(next);
+      }
+    };
+
+    const offResize = onViewportResize(measure);
+    const offScroll = onScrollFrame(write, measure);
+    return () => {
+      offResize();
+      offScroll();
+    };
+  }, [barRef]);
+
+  return { scrolled };
 }
+
 
 function useActiveSection(ids: string[]) {
   const [active, setActive] = useState<string | null>(null);
