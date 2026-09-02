@@ -2449,7 +2449,8 @@ function AuditedOutcomes() {
           <OutcomesAccordion />
 
           {/* cohort reports */}
-          <div className="pt-0">
+          <div className="pt-10 md:pt-12 lg:pt-14">
+            <div className="mb-3 h-px w-10 bg-accent md:mb-4 md:w-12" aria-hidden="true" />
             <div
               className="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-black/50"
               style={{ fontFamily: MONO }}
