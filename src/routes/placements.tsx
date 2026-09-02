@@ -2629,6 +2629,7 @@ function EditorialPlacementData() {
               </tbody>
             </table>
           </div>
+          </div>
         </div>
 
         <OurPlacementStatistics />
