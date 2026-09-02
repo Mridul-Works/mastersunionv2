@@ -2351,7 +2351,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
   return (
     <section
       ref={hostRef}
-      className="quote-cover-section relative flex items-end lg:items-start pt-20 md:pt-24 lg:pt-28 py-14 md:py-16 max-md:min-h-[80vh]"
+      className="quote-cover-section relative flex items-end lg:items-start pt-20 md:pt-24 lg:pt-28 pb-4 md:py-16 max-md:min-h-[80vh]"
       style={{
         backgroundColor: "black",
         backgroundImage: `url(${manojKohliBg.url})`,
@@ -2376,8 +2376,8 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
           className="pointer-events-none absolute inset-x-0 md:hidden"
           style={{
             zIndex: 1,
-            bottom: "-3.5rem",
-            height: "calc(100% + 3.5rem)",
+            bottom: "-1rem",
+            height: "calc(100% + 1rem)",
             background: "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.78) 35%, rgba(0,0,0,0.45) 70%, transparent 100%)",
           }}
         />
