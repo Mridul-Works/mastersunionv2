@@ -1486,7 +1486,6 @@ function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal |
             <div className="flex min-h-0 min-w-0 flex-1 flex-col items-stretch gap-3 pt-5 pb-4">
               <Eyebrow>Leadership conversations</Eyebrow>
               <PodcastVideoRail setVideoModal={setVideoModal} />
-              <SubscribeBox />
             </div>
           </div>
         </div>
@@ -1496,6 +1495,7 @@ function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal |
 }
 
 function PodcastTextBlock() {
+  const id = PODCAST_ID;
   return (
     <div className="flex h-full min-h-0 flex-col pb-4">
       <Reveal>
@@ -1513,28 +1513,25 @@ function PodcastTextBlock() {
           firms shaping the next decade.
         </p>
       </Reveal>
-    </div>
-  );
-}
-
-function SubscribeBox({ className }: { className?: string }) {
-  return (
-    <div className={cn("w-full rounded-md border border-[var(--teal)] bg-[#0B1215] p-5", className)}>
-      <p className="text-[15px] leading-relaxed text-black/80">
-        Inside the <em className="font-serif-italic">placement engine</em> behind the next
-        generation of business leaders.
-      </p>
-      <a
-        href="https://www.youtube.com/channel/UCaTkVutJ9f-AoE7cz7VLlTw"
-        target="_blank"
-        rel="noreferrer"
-        className="group mt-5 inline-flex w-full items-center justify-between gap-3 rounded-xl bg-[#1A1F23] px-4 py-3.5 text-[13px] font-bold uppercase tracking-[0.12em] text-[#F2F1EE] ring-1 ring-white/10 transition-all duration-300 hover:scale-[1.02] hover:bg-[#252B30] hover:ring-white/20 active:scale-[0.98]"
-      >
-        <span>Subscribe to Masters&apos; Union</span>
-        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#F2F1EE] text-[#0B1215] transition-transform duration-300 group-hover:translate-x-0.5">
-          <ArrowUpRight className="size-4" />
-        </span>
-      </a>
+      <Reveal delay={230} className="mt-auto self-start">
+        <div className="max-w-[46ch] rounded-md border border-[var(--teal)] bg-[#0B1215] p-5">
+          <p className="text-[15px] leading-relaxed text-black/80">
+            Inside the <em className="font-serif-italic">placement engine</em> behind the next
+            generation of business leaders.
+          </p>
+          <a
+            href="https://www.youtube.com/channel/UCaTkVutJ9f-AoE7cz7VLlTw"
+            target="_blank"
+            rel="noreferrer"
+            className="group mt-5 inline-flex w-full items-center justify-between gap-3 rounded-xl bg-[#1A1F23] px-4 py-3.5 text-[13px] font-bold uppercase tracking-[0.12em] text-[#F2F1EE] ring-1 ring-white/10 transition-all duration-300 hover:scale-[1.02] hover:bg-[#252B30] hover:ring-white/20 active:scale-[0.98]"
+          >
+            <span>Subscribe to Masters&apos; Union</span>
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#F2F1EE] text-[#0B1215] transition-transform duration-300 group-hover:translate-x-0.5">
+              <ArrowUpRight className="size-4" />
+            </span>
+          </a>
+        </div>
+      </Reveal>
     </div>
   );
 }
