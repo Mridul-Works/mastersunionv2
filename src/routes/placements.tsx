@@ -1631,7 +1631,7 @@ function PodcastVideoRail({
           type="button"
           onClick={() => scrollByCard(-1)}
           aria-label="Scroll conversations left"
-          className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black/60 transition-colors hover:border-[#638C75] hover:bg-[#638C75] hover:text-white"
+          className="career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black/60 transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:-translate-y-px"
         >
           <ChevronLeft className="size-4" />
         </button>
@@ -1639,7 +1639,7 @@ function PodcastVideoRail({
           type="button"
           onClick={() => scrollByCard(1)}
           aria-label="Scroll conversations right"
-          className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black/60 transition-colors hover:border-[#638C75] hover:bg-[#638C75] hover:text-white"
+          className="career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black/60 transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:-translate-y-px"
         >
           <ChevronRight className="size-4" />
         </button>
