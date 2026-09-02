@@ -924,7 +924,7 @@ function CinematicHero() {
                 <button
                   type="button"
                   onClick={reportModal.open}
-                  className="hero-sweep-button dim group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden bg-[#131618] px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:bg-[#638C75] hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)] hover:opacity-100 max-sm:px-5 max-sm:py-3.5"
+                  className="hero-sweep-button dim group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden bg-[#131618] px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:bg-[#638C75] hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)] hover:opacity-100 max-sm:px-3.5 max-sm:py-3.5"
                   style={{ fontFamily: MONO }}
                 >
                   <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
@@ -933,7 +933,7 @@ function CinematicHero() {
                 </button>
               <a
                 href="#recruiters"
-                className="hero-sweep-button group relative inline-flex items-center gap-2 overflow-hidden border border-white/35 px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:border-[#638C75] hover:bg-[#638C75] hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)] max-sm:px-5 max-sm:py-3.5"
+                className="hero-sweep-button group relative inline-flex items-center gap-2 overflow-hidden border border-white/35 px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:border-[#638C75] hover:bg-[#638C75] hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)] max-sm:px-3.5 max-sm:py-3.5"
                 style={{ fontFamily: MONO }}
               >
                 <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
