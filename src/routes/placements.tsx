@@ -1514,7 +1514,7 @@ function PodcastSection({ setVideoModal }: { setVideoModal: (modal: VideoModal |
       </div>
 
       <EditorialRule />
-      <div className="flex flex-col gap-3 pt-2 pb-4">
+      <div className="flex flex-col gap-2 pt-2 pb-4">
         <Eyebrow>Leadership conversations</Eyebrow>
         <PodcastVideoRail setVideoModal={setVideoModal} />
       </div>
