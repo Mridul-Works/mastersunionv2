@@ -2740,8 +2740,8 @@ body::-webkit-scrollbar {
   color: #ffffff;
   box-shadow: 0 0 28px -6px color-mix(in oklab, #638C75 60%, transparent);
 }
-.career-story-arrows button:first-child:hover { transform: translateX(-2px) translateY(-1px); }
-.career-story-arrows button:last-child:hover { transform: translateX(2px) translateY(-1px); }
+.career-story-arrows button:first-child:hover,
+.career-story-arrows button:last-child:hover { transform: none; }
 
 
 .career-story-stage {
