@@ -2421,11 +2421,11 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
           })}
           <button
             type="button"
-            className="hero-sweep-button quote-readmore-button group relative mt-8 inline-flex items-center gap-2 overflow-hidden border border-white/35 px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:border-[#638C75] hover:bg-[#638C75] hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)]"
+            className="hero-sweep-button quote-readmore-button group relative mt-8 inline-flex items-center gap-2 overflow-hidden border border-white/35 px-5 py-3 text-[10px] uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:border-[#638C75] hover:bg-[#638C75] hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)] md:px-8 md:py-4.5 md:text-[11px]"
             style={{ fontFamily: MONO }}
           >
             <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
-              Read more <ArrowUpRight className="size-3.5 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" strokeWidth={2} />
+              Read more <ArrowUpRight className="size-3 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 md:size-3.5" strokeWidth={2} />
             </span>
           </button>
         </div>
