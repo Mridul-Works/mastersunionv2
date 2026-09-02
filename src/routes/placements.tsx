@@ -1659,7 +1659,7 @@ function PodcastVideoRail({
             scrollByCard(1);
           }
         }}
-        className="rail-scroll no-scrollbar flex w-full snap-x snap-mandatory items-start gap-4 overflow-x-auto overscroll-x-contain pb-2 focus:outline-none max-sm:px-2"
+        className="rail-scroll mobile-padded-rail no-scrollbar flex w-full snap-x snap-mandatory items-start gap-4 overflow-x-auto overscroll-x-contain pb-2 focus:outline-none"
       >
         {PODCAST_RAIL_VIDEOS.map((item) => (
           <button
@@ -2200,7 +2200,7 @@ function CohortReports() {
               scrollByCard(1);
             }
           }}
-          className="rail-scroll no-scrollbar flex w-full snap-x snap-mandatory items-stretch gap-4 overflow-x-auto overscroll-x-contain pb-2 focus:outline-none max-sm:px-2"
+          className="rail-scroll mobile-padded-rail no-scrollbar flex w-full snap-x snap-mandatory items-stretch gap-4 overflow-x-auto overscroll-x-contain pb-2 focus:outline-none"
         >
           {REPORT_YEARS.map((y, i) => (
             <Reveal key={y} delay={i * 70} y={16} className="shrink-0 snap-start h-full w-full sm:w-[min(320px,78vw)]">
@@ -2216,7 +2216,7 @@ function CohortReports() {
         </div>
       </div>
 
-      <div className="mt-10 flex max-sm:justify-center">
+      <div className="mt-10 mobile-centered-action">
           <button
             type="button"
             onClick={reportModal.open}
