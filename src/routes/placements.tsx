@@ -2578,7 +2578,7 @@ function EditorialPlacementData() {
                   <tr key={row.cohort} className="placement-ledger-row border-t border-white/12">
                     {tbmColumns.map((column, columnIndex) => (
                       <td key={column.key} className={`placement-data-number placement-ledger-cell px-5 py-5 tabular-nums ${columnIndex === 0 ? "text-[11px] font-medium tracking-[0.16em]" : "text-[0.98rem]"}`} style={{ transitionDelay: `${rowIndex * 55 + columnIndex * 22}ms`, fontFamily: columnIndex === 0 ? MONO : undefined }}>
-                        {columnIndex === 0 ? row[column.key] : <CountUp value={row[column.key]} delay={rowIndex * 65 + columnIndex * 30} />}
+                        {columnIndex === 0 ? row[column.key] : <LedgerValue value={row[column.key]} delay={rowIndex * 65 + columnIndex * 30} />}
                       </td>
                     ))}
                   </tr>
@@ -2610,7 +2610,7 @@ function EditorialPlacementData() {
                   <tr key={row.cohort} className="placement-ledger-row border-t border-white/12">
                     {ylcColumns.map((column, columnIndex) => (
                       <td key={column.key} className={`placement-data-number placement-ledger-cell px-5 py-5 tabular-nums ${columnIndex === 0 ? "text-[11px] font-medium tracking-[0.16em]" : "text-[0.98rem]"}`} style={{ transitionDelay: `${320 + rowIndex * 55 + columnIndex * 22}ms`, fontFamily: columnIndex === 0 ? MONO : undefined }}>
-                        {columnIndex === 0 ? row[column.key] : <CountUp value={row[column.key]} delay={rowIndex * 65 + columnIndex * 30} />}
+                        {columnIndex === 0 ? row[column.key] : <LedgerValue value={row[column.key]} delay={rowIndex * 65 + columnIndex * 30} />}
                       </td>
                     ))}
                   </tr>
