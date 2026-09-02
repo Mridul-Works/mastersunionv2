@@ -1274,9 +1274,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
 
         <a
           className="career-contact-strip mt-10"
-          href="https://outlook.office.com/mail/deeplink/compose?to=careerservices@mastersunion.org"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="mailto:careerservices@mastersunion.org"
         >
           <Mail aria-hidden="true" /> Reach out to our team at <span>careerservices@mastersunion.org</span><ArrowUpRight aria-hidden="true" />
         </a>
