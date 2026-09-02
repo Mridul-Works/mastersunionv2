@@ -3171,7 +3171,7 @@ body::-webkit-scrollbar {
 .career-roadmap-visual .career-roadmap-play { position: absolute; inset: 0; z-index: 3; display: grid; place-items: center; pointer-events: none; }
 .career-roadmap-visual .career-roadmap-play > span { display: grid; place-items: center; width: 3.5rem; height: 3.5rem; border: 1px solid color-mix(in oklab, var(--foreground) 35%, transparent); border-radius: 50%; background: color-mix(in oklab, var(--background) 60%, transparent); color: var(--foreground); transition: transform 300ms ease, background 300ms ease, border-color 300ms ease; }
 .career-roadmap-visual .career-roadmap-play svg { width: 1rem; height: 1rem; }
-.career-roadmap-visual.has-video:hover .career-roadmap-play > span { transform: scale(1.1); background: var(--accent); border-color: var(--accent); color: var(--background); }
+.career-roadmap-visual.has-video:hover .career-roadmap-play > span { transform: scale(1.1); background: #638C75; border-color: #638C75; color: var(--background); }
 .career-roadmap-items { display: grid; gap: 0.5rem; align-content: start; grid-template-columns: 1fr; }
 .career-roadmap-items li {
   display: flex;
@@ -3288,7 +3288,7 @@ body::-webkit-scrollbar {
 .career-podcast-media .career-podcast-play { position: absolute; inset: 0; display: grid; width: 3.5rem; height: 3.5rem; margin: auto; place-items: center; border: 1px solid color-mix(in oklab, var(--foreground) 35%, transparent); border-radius: 50%; background: color-mix(in oklab, var(--background) 60%, transparent); color: var(--foreground); transition: transform 300ms ease, background 300ms ease, border-color 300ms ease, color 300ms ease; }
 .career-podcast-media .career-podcast-play svg { width: 0.9rem; }
 @media (hover: hover) and (pointer: fine) {
-  .career-podcast-media:hover .career-podcast-play { transform: scale(1.1); background: var(--accent); border-color: var(--accent); color: var(--background); }
+  .career-podcast-media:hover .career-podcast-play { transform: scale(1.1); background: #638C75; border-color: #638C75; color: var(--background); }
 }
 
 .career-closing-section { padding: clamp(0.75rem, 2vw, 1.25rem) 0 clamp(4rem, 8vw, 7rem); background: var(--background); }
@@ -3312,7 +3312,7 @@ body::-webkit-scrollbar {
     border-color: color-mix(in oklab, var(--accent) 34%, transparent);
     box-shadow: 0 22px 52px -34px color-mix(in oklab, var(--accent) 58%, transparent);
   }
-  .career-leader-card.has-video:hover .career-leader-media > span { transform: scale(1.1); background: var(--accent); border-color: var(--accent); color: var(--background); }
+  .career-leader-card.has-video:hover .career-leader-media > span { transform: scale(1.1); background: #638C75; border-color: #638C75; color: var(--background); }
   .career-guidance-card:hover {
     background: color-mix(in oklab, var(--placements-inner-surface) 94%, var(--accent));
   }
@@ -3474,7 +3474,7 @@ body::-webkit-scrollbar {
 .career-podcast-play--sm { position: absolute; inset: 0; display: grid; width: 2.5rem; height: 2.5rem; margin: auto; place-items: center; border: 1px solid color-mix(in oklab, var(--foreground) 35%, transparent); border-radius: 50%; background: color-mix(in oklab, var(--background) 65%, transparent); color: var(--foreground); transition: transform 300ms ease, background 300ms ease, border-color 300ms ease, color 300ms ease; }
 .career-podcast-play--sm svg { width: 0.75rem; }
 @media (hover: hover) {
-  .group:hover .career-podcast-play--sm { transform: scale(1.1); background: var(--accent); border-color: var(--accent); color: var(--background); }
+  .group:hover .career-podcast-play--sm { transform: scale(1.1); background: #638C75; border-color: #638C75; color: var(--background); }
 }
 
 /* ============================================================
