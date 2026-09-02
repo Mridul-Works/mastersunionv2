@@ -1619,17 +1619,24 @@ function ScrollNav({
   onPrev,
   onNext,
   label = "Scroll",
+  tone = "light",
 }: {
   onPrev: () => void;
   onNext: () => void;
   label?: string;
+  tone?: "light" | "dark";
 }) {
+  const textTone = tone === "dark" ? "text-white/55" : "text-black/50";
+  const buttonTone =
+    tone === "dark"
+      ? "border-white/25 text-white/70"
+      : "border-black/20 text-black/60";
   return (
     <div className="flex items-center gap-3">
-      <span className="hidden text-[11px] font-medium uppercase tracking-[0.16em] text-black/50 xl:inline">
+      <span className={`hidden text-[11px] font-medium uppercase tracking-[0.16em] xl:inline ${textTone}`}>
         {label}
       </span>
-      <span className="inline text-[11px] font-medium uppercase tracking-[0.16em] text-black/50 xl:hidden">
+      <span className={`inline text-[11px] font-medium uppercase tracking-[0.16em] xl:hidden ${textTone}`}>
         Slide
       </span>
       <div className="flex items-center gap-2">
@@ -1637,7 +1644,7 @@ function ScrollNav({
           type="button"
           onClick={onPrev}
           aria-label="Scroll left"
-          className="career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black/60 transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)]"
+          className={`career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)] ${buttonTone}`}
         >
           <ChevronLeft className="size-4" />
         </button>
@@ -1645,7 +1652,7 @@ function ScrollNav({
           type="button"
           onClick={onNext}
           aria-label="Scroll right"
-          className="career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/20 text-black/60 transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)]"
+          className={`career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)] ${buttonTone}`}
         >
           <ChevronRight className="size-4" />
         </button>
@@ -1653,6 +1660,7 @@ function ScrollNav({
     </div>
   );
 }
+
 
 function PodcastVideoRail({
   setVideoModal,
@@ -2484,7 +2492,17 @@ function AuditedOutcomes() {
 
 
 function EditorialPlacementData() {
+  const tbmRailRef = useRef<HTMLDivElement>(null);
+  const ylcRailRef = useRef<HTMLDivElement>(null);
+  const scrollRail = (railRef: React.RefObject<HTMLDivElement | null>, dir: number) => {
+    const el = railRef.current;
+    if (!el) return;
+    const card = el.querySelector("article") as HTMLElement | null;
+    if (!card) return;
+    el.scrollBy({ left: dir * (card.offsetWidth + 16), behavior: "smooth" });
+  };
   const { ref, inView } = useInView<HTMLElement>("0px 0px -10% 0px");
+
   const tbmColumns: Array<{ key: keyof CohortRow; label: string }> = [
     { key: "cohort", label: "Cohort" },
     { key: "avg", label: "Avg. CTC" },
@@ -2553,12 +2571,11 @@ function EditorialPlacementData() {
             </div>
             <div className="text-[10px] uppercase tracking-[0.18em] text-white/40" style={{ fontFamily: MONO }}>All values / annual CTC</div>
           </div>
-          <div className="flex items-center gap-2 border-b border-white/10 px-5 py-2.5 md:hidden" aria-hidden="true">
-            <ChevronLeft className="h-3.5 w-3.5 text-white/40" />
-            <span className="text-[10px] uppercase tracking-[0.18em] text-white/50" style={{ fontFamily: MONO }}>Slide to view</span>
-            <ChevronRight className="h-3.5 w-3.5 text-white/40" />
+          <div className="flex items-center justify-end gap-2 border-b border-white/10 px-5 py-3 md:hidden">
+            <ScrollNav tone="dark" label="Slide" onPrev={() => scrollRail(tbmRailRef, -1)} onNext={() => scrollRail(tbmRailRef, 1)} />
           </div>
-          <div className="placement-ledger-card-rail no-scrollbar flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain py-5 md:hidden" role="region" aria-label="PGP TBM cohort cards">
+          <div ref={tbmRailRef} className="placement-ledger-card-rail no-scrollbar flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain py-5 md:hidden" role="region" aria-label="PGP TBM cohort cards">
+
             {TBM_TABLE.map((row) => (
               <article key={row.cohort} className="placement-ledger-card shrink-0 snap-start border border-white/15 bg-white/[0.035] p-5">
                 <div className="border-b border-white/12 pb-4">
@@ -2611,12 +2628,11 @@ function EditorialPlacementData() {
             </div>
           </div>
           <div className="lg:col-span-9">
-            <div className="flex items-center justify-end gap-2 border-b border-white/10 px-5 py-2.5 md:hidden" aria-hidden="true">
-              <ChevronLeft className="h-3.5 w-3.5 text-white/40" />
-              <span className="text-[10px] uppercase tracking-[0.18em] text-white/50" style={{ fontFamily: MONO }}>Slide to view</span>
-              <ChevronRight className="h-3.5 w-3.5 text-white/40" />
+            <div className="flex items-center justify-end gap-2 border-b border-white/10 px-5 py-3 md:hidden">
+              <ScrollNav tone="dark" label="Slide" onPrev={() => scrollRail(ylcRailRef, -1)} onNext={() => scrollRail(ylcRailRef, 1)} />
             </div>
-            <div className="placement-ledger-card-rail no-scrollbar flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain py-5 md:hidden" role="region" aria-label="PGP TBM YLC cohort cards">
+            <div ref={ylcRailRef} className="placement-ledger-card-rail no-scrollbar flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain py-5 md:hidden" role="region" aria-label="PGP TBM YLC cohort cards">
+
               {YLC_TABLE.map((row) => (
                 <article key={row.cohort} className="placement-ledger-card shrink-0 snap-start border border-white/15 bg-white/[0.035] p-5">
                   <div className="border-b border-white/12 pb-4">
