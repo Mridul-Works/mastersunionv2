@@ -857,9 +857,9 @@ function CinematicHero() {
         ref={sectionRef}
         data-no-reveal
         className="relative z-0 bg-[#0a0a0a]"
-        style={{ height: reduced ? "100svh" : "200svh" }}
+        style={{ height: reduced ? "100svh" : "200svh", overflowAnchor: "none" }}
       >
-       <div className="sticky top-0 h-[100svh] overflow-hidden">
+       <div className="sticky top-0 h-[100svh] overflow-hidden" style={{ overflowAnchor: "none", contain: "paint" }}>
         {/* Photograph — full bleed, full fidelity */}
         <div ref={imgWrapRef} aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden" style={{ willChange: "transform" }}>
           <img
