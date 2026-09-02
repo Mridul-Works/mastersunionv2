@@ -4,12 +4,6 @@ import * as React from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
-  Home,
-  BarChart3,
-  TrendingUp,
-  Briefcase,
-  Users,
-  Route as RouteIcon,
   Download,
 
   Mail,
@@ -26,7 +20,7 @@ import {
   X,
 } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
+import PlacementsFloatingNav from "@/components/placements/PlacementsFloatingNav";
 import heroBg from "@/assets/placement-hero.webp.asset.json";
 import careerJT1Img from "@/assets/placements/careerJT1.webp.asset.json";
 import cd2Img from "@/assets/placements/cd2.webp.asset.json";
@@ -205,15 +199,6 @@ const LOGOS: Record<string, string> = Object.fromEntries(
     mod.default.url,
   ]),
 );
-
-const NAV: BottomNavItem[] = [
-  { id: "top", label: "Top", icon: Home },
-  { id: "outcomes", label: "Outcomes", icon: BarChart3 },
-  { id: "cohorts", label: "Cohorts", icon: TrendingUp },
-  { id: "recruiters", label: "Recruiters", icon: Briefcase },
-  { id: "stories", label: "Stories", icon: Users },
-  { id: "pathway", label: "Pathway", icon: RouteIcon },
-];
 
 /* ---------------------------------- data --------------------------------- */
 
@@ -2567,8 +2552,8 @@ function Page() {
     <main ref={pageRef} className="placements-obsidian placements-ug-v2 ink-scope min-h-screen overflow-x-clip bg-[#0B1215] pb-16 text-foreground md:pb-18" style={{ fontFamily: INTER }}>
       <ScrollProgress />
 
-      {/* Floating bottom section navigation */}
-      <BottomNav items={NAV} applyHref="#contact" />
+      {/* Floating bottom navigation (UG v2.0) */}
+      <PlacementsFloatingNav />
 
 
 
