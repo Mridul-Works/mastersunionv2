@@ -1571,9 +1571,9 @@ body::-webkit-scrollbar {
 
 @media (max-width: 767px) {
   .placement-ledger-card-rail {
-    gap: 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    gap: 3rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
     overscroll-behavior-inline: contain;
     scroll-padding-inline: 1rem;
     scroll-snap-type: x mandatory;
