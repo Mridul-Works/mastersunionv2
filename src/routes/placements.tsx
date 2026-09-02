@@ -2567,15 +2567,8 @@ function Page() {
     <main ref={pageRef} className="placements-obsidian placements-ug-v2 ink-scope min-h-screen overflow-x-clip bg-[#0B1215] pb-16 text-foreground md:pb-18" style={{ fontFamily: INTER }}>
       <ScrollProgress />
 
-      {/* Global top navigation — fixed, hides on scroll down, reveals on scroll up */}
-      <BottomNav
-        items={NAV}
-        applyHref="#contact"
-        className="!fixed !inset-x-0 !top-0 !bottom-auto z-50 justify-center px-3 pt-0 pb-3 lg:flex"
-        innerClassName="!max-w-none"
-        compact
-        hideOnScroll
-      />
+      {/* Floating bottom section navigation */}
+      <BottomNav items={NAV} applyHref="#contact" />
 
 
 
