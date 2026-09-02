@@ -1,5 +1,6 @@
 # Roadmap
 
+- [ ] Mobile-only: adjust the quote section typography and Read More button so the background portrait (head and shoulders) remains visible, without changing desktop layout
 - [x] Restructure the Placements mobile layout with clean horizontal rails for long card collections while preserving tablet and desktop layouts
 - [x] Complete a full responsive optimization pass for the Placements page across 320–1920px while preserving the desktop design
 - [x] Validate every Placements section, floating navigation, video dialog, and placement-report modal for overflow, clipping, and interaction regressions
