@@ -4403,6 +4403,12 @@ body::-webkit-scrollbar {
   .quote-cover-section {
     background-position: 88% center !important;
   }
+
+  /* Darken the italic highlight on mobile so it stays readable over the
+     lighter areas of the centered portrait. */
+  .quote-cover-section .font-serif-italic {
+    color: #003D2B;
+  }
 }
 
 /* Final narrow-screen rail overrides: kept last so legacy responsive rules

@@ -1,5 +1,6 @@
 # Roadmap
 
+- [x] Mobile-only: darken the highlighted quote phrase to a darker green so it stays readable over the centered portrait, without changing desktop
 - [x] Mobile-only: widen the founder quote typography to fill the empty space on the right side, without changing desktop layout or typography styling
 - [x] Mobile-only: center the person in the founder quote background without changing typography or desktop framing
 
