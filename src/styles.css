@@ -1576,20 +1576,20 @@ body::-webkit-scrollbar {
     -webkit-overflow-scrolling: touch;
   }
 
-  .placement-ledger-table {
+  .placement-ledger-scroll .placement-ledger-table {
     width: max-content;
     min-width: 920px;
     table-layout: auto;
   }
 
-  .placement-ledger-cell {
+  .placement-ledger-scroll .placement-ledger-cell {
     min-width: 128px;
     padding: 1.35rem 1.5rem;
     white-space: nowrap;
     scroll-snap-align: start;
   }
 
-  .placement-ledger-cell:first-child {
+  .placement-ledger-scroll .placement-ledger-cell:first-child {
     min-width: 96px;
   }
 

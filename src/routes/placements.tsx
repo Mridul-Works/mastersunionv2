@@ -2484,7 +2484,7 @@ function AuditedOutcomes() {
 
 
 function EditorialPlacementData() {
-  const { ref, inView } = useInView<HTMLDivElement>("0px 0px -10% 0px");
+  const { ref, inView } = useInView<HTMLElement>("0px 0px -10% 0px");
   const tbmColumns: Array<{ key: keyof CohortRow; label: string }> = [
     { key: "cohort", label: "Cohort" },
     { key: "avg", label: "Avg. CTC" },
@@ -2503,6 +2503,7 @@ function EditorialPlacementData() {
 
   return (
     <section
+      ref={ref}
       id="cohorts"
       data-in-view={inView}
       className="placement-data-section section-edge relative bg-[#0B1215]"
@@ -2510,7 +2511,7 @@ function EditorialPlacementData() {
     >
       <div className="page-x py-16 md:py-24">
         <div className="placements-section-shell placements-section-shell-dark">
-        <div ref={ref} className="placement-data-bento grid overflow-hidden border border-white/15 lg:grid-cols-12">
+        <div className="placement-data-bento grid overflow-hidden border border-white/15 lg:grid-cols-12">
           <header className="flex min-h-[260px] flex-col justify-between border-b border-white/15 p-7 md:p-10 lg:col-span-7 lg:border-r lg:border-b-0">
             <div className="flex items-center justify-between gap-6">
               <span className="text-[10px] font-medium uppercase tracking-[0.22em] text-white/50" style={{ fontFamily: MONO }}>
@@ -2553,11 +2554,11 @@ function EditorialPlacementData() {
             <div className="text-[10px] uppercase tracking-[0.18em] text-white/40" style={{ fontFamily: MONO }}>All values / annual CTC</div>
           </div>
           <div className="placement-ledger-scroll overflow-x-auto no-scrollbar">
-            <table className="placement-ledger-table w-full min-w-[980px] table-fixed border-collapse text-left">
+            <table className="placement-ledger-table w-full border-collapse text-left">
               <thead>
                 <tr>
                   {tbmColumns.map((column, index) => (
-                    <th key={column.key} scope="col" className={`placement-ledger-cell px-5 py-4 text-[9px] font-medium uppercase tracking-[0.18em] text-white/42 md:px-8 ${index === 0 ? "w-[12%]" : ""}`} style={{ fontFamily: MONO }}>
+                    <th key={column.key} scope="col" className={`placement-ledger-cell px-5 py-5 text-[9px] font-medium uppercase tracking-[0.18em] text-white/42 ${index === 0 ? "w-[12%]" : ""}`} style={{ fontFamily: MONO }}>
                       {column.label}
                     </th>
                   ))}
@@ -2567,7 +2568,7 @@ function EditorialPlacementData() {
                 {TBM_TABLE.map((row, rowIndex) => (
                   <tr key={row.cohort} className="placement-ledger-row border-t border-white/12">
                     {tbmColumns.map((column, columnIndex) => (
-                      <td key={column.key} className={`placement-data-number placement-ledger-cell px-5 py-5 tabular-nums md:px-8 ${columnIndex === 0 ? "text-[11px] font-medium tracking-[0.16em]" : "text-[0.98rem]"}`} style={{ transitionDelay: `${rowIndex * 55 + columnIndex * 22}ms`, fontFamily: columnIndex === 0 ? MONO : undefined }}>
+                      <td key={column.key} className={`placement-data-number placement-ledger-cell px-5 py-5 tabular-nums ${columnIndex === 0 ? "text-[11px] font-medium tracking-[0.16em]" : "text-[0.98rem]"}`} style={{ transitionDelay: `${rowIndex * 55 + columnIndex * 22}ms`, fontFamily: columnIndex === 0 ? MONO : undefined }}>
                         {columnIndex === 0 ? row[column.key] : <CountUp value={row[column.key]} delay={rowIndex * 65 + columnIndex * 30} />}
                       </td>
                     ))}
@@ -2586,12 +2587,12 @@ function EditorialPlacementData() {
               <p className="mt-3 text-[0.85rem] leading-relaxed text-white/52">Average, median and highest CTC across five cohorts.</p>
             </div>
           </div>
-          <div className="overflow-x-auto no-scrollbar lg:col-span-9">
-            <table className="w-full min-w-[620px] table-fixed border-collapse text-left">
+          <div className="placement-ledger-scroll overflow-x-auto no-scrollbar lg:col-span-9">
+            <table className="placement-ledger-table w-full border-collapse text-left">
               <thead>
                 <tr>
                   {ylcColumns.map((column) => (
-                    <th key={column.key} scope="col" className="px-5 py-4 text-[9px] font-medium uppercase tracking-[0.18em] text-white/42 md:px-8" style={{ fontFamily: MONO }}>{column.label}</th>
+                    <th key={column.key} scope="col" className="placement-ledger-cell px-5 py-5 text-[9px] font-medium uppercase tracking-[0.18em] text-white/42" style={{ fontFamily: MONO }}>{column.label}</th>
                   ))}
                 </tr>
               </thead>
@@ -2599,7 +2600,7 @@ function EditorialPlacementData() {
                 {YLC_TABLE.map((row, rowIndex) => (
                   <tr key={row.cohort} className="placement-ledger-row border-t border-white/12">
                     {ylcColumns.map((column, columnIndex) => (
-                      <td key={column.key} className={`placement-data-number px-5 py-4 tabular-nums md:px-8 ${columnIndex === 0 ? "text-[11px] font-medium tracking-[0.16em]" : "text-[0.98rem]"}`} style={{ transitionDelay: `${320 + rowIndex * 55 + columnIndex * 22}ms`, fontFamily: columnIndex === 0 ? MONO : undefined }}>
+                      <td key={column.key} className={`placement-data-number placement-ledger-cell px-5 py-5 tabular-nums ${columnIndex === 0 ? "text-[11px] font-medium tracking-[0.16em]" : "text-[0.98rem]"}`} style={{ transitionDelay: `${320 + rowIndex * 55 + columnIndex * 22}ms`, fontFamily: columnIndex === 0 ? MONO : undefined }}>
                         {columnIndex === 0 ? row[column.key] : <CountUp value={row[column.key]} delay={rowIndex * 65 + columnIndex * 30} />}
                       </td>
                     ))}
