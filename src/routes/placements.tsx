@@ -2501,6 +2501,15 @@ function EditorialPlacementData() {
     { key: "highest", label: "Highest CTC" },
   ] as const;
 
+  function LedgerValue({ value, delay }: { value: string; delay: number }) {
+    return (
+      <>
+        <span className="hidden md:inline"><CountUp value={value} delay={delay} /></span>
+        <span className="md:hidden">{value}</span>
+      </>
+    );
+  }
+
   return (
     <section
       ref={ref}
