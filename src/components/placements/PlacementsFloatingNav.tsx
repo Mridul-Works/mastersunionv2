@@ -128,9 +128,20 @@ export function PlacementsFloatingNav() {
   const activeLabel = navLinks.find((l) => l.id === active)?.label ?? "Overview";
 
   return (
-    <header className="fixed inset-x-0 bottom-0 z-50 hidden px-3 pt-0 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-5 sm:pb-[max(1rem,env(safe-area-inset-bottom))] lg:block">
+    <header className="fixed inset-x-0 bottom-0 z-50 px-3 pt-0 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-5 sm:pb-[max(1rem,env(safe-area-inset-bottom))]">
       {panel === "menu" && (
-        <div className="mx-auto mb-2 max-h-[calc(100dvh-8rem)] max-w-[1320px] overflow-y-auto overscroll-contain rounded-2xl border border-border bg-background/95 p-2 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+        <div className="mx-auto mb-2 max-h-[calc(100dvh-8rem)] max-w-[1320px] overflow-y-auto overscroll-contain rounded-t-2xl border border-border bg-background/95 p-3 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)] backdrop-blur-xl sm:rounded-2xl sm:p-2">
+          <div className="mb-2 flex items-center justify-between px-1 sm:hidden">
+            <span className="font-tech text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Jump to section</span>
+            <button
+              type="button"
+              onClick={() => setPanel(null)}
+              aria-label="Close menu"
+              className="inline-flex h-8 w-8 items-center justify-center rounded-full text-foreground transition-colors hover:bg-foreground/[0.06]"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
           <nav aria-label="Sections" className="grid gap-1 sm:grid-cols-2 lg:grid-cols-4">
             {navLinks.map((l) => (
               <a
