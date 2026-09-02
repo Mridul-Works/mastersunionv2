@@ -882,7 +882,7 @@ function CinematicHero() {
 
 
         {/* Editorial composition */}
-        <div className="page-x relative z-10 flex h-full flex-col pb-28 pt-24 md:pb-24 md:pt-28">
+        <div className="placements-hero-content page-x relative z-10 flex h-full min-w-0 flex-col pb-28 pt-24 md:pb-24 md:pt-28">
 
           {/* top: careers eyebrow */}
           <div style={step(450, 16)}>
@@ -907,14 +907,14 @@ function CinematicHero() {
           </div>
 
           {/* left/middle: supporting copy + CTA directly under headline */}
-          <div ref={copyRef} className="mt-8 max-w-[600px] md:mt-14" style={{ willChange: "transform, opacity" }}>
+          <div ref={copyRef} className="placements-hero-copy mt-8 max-w-[600px] md:mt-14" style={{ willChange: "transform, opacity" }}>
             <p
-              className="text-[25px] leading-relaxed font-normal text-[#FFFFFF]"
+              className="placements-hero-supporting text-[25px] leading-relaxed font-normal text-[#FFFFFF]"
               style={step(700, 22)}
             >
               Benefit from an exceptional track record of our graduates&apos; success — audited, published, and repeated across five cohorts.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3 md:mt-14" style={step(860, 18)}>
+            <div className="placements-hero-actions mt-8 flex flex-wrap gap-3 md:mt-14" style={step(860, 18)}>
                 <button
                   type="button"
                   onClick={reportModal.open}
@@ -1631,7 +1631,7 @@ function PodcastVideoRail({
             scrollByCard(1);
           }
         }}
-        className="rail-scroll no-scrollbar flex w-full items-stretch gap-4 overflow-x-auto pb-2 focus:outline-none"
+        className="rail-scroll no-scrollbar flex w-full snap-x snap-mandatory items-stretch gap-4 overflow-x-auto overscroll-x-contain pb-2 focus:outline-none"
       >
         {PODCAST_RAIL_VIDEOS.map((item) => (
           <button
@@ -1639,7 +1639,7 @@ function PodcastVideoRail({
             type="button"
             onClick={() => setVideoModal({ title: item.name, video: item.video, start: 0 })}
             aria-label={`Play conversation with ${item.name}`}
-            className="group flex min-w-[240px] flex-1 basis-[240px] flex-col text-left"
+            className="group flex min-w-[min(240px,82vw)] flex-1 basis-[240px] snap-start flex-col text-left"
           >
             <span className="relative block aspect-video w-full overflow-hidden rounded-md bg-black/10">
               <img
@@ -1710,7 +1710,7 @@ function HorizontalMetricsStrip({ variant = "light" }: { variant?: "light" | "da
             {/* number */}
             <span
               className={cn(
-                "whitespace-nowrap text-center text-[clamp(1.7rem,3.6vw,2.6rem)] font-medium leading-none tracking-[-0.04em] transition-colors duration-500",
+                "text-center text-[clamp(1.7rem,3.6vw,2.6rem)] font-medium leading-none tracking-[-0.04em] transition-colors duration-500",
                 isDark ? "text-white" : "text-black"
               )}
             >
@@ -1724,7 +1724,7 @@ function HorizontalMetricsStrip({ variant = "light" }: { variant?: "light" | "da
             <div className="flex flex-col items-center gap-1.5 text-center">
               <span
                 className={cn(
-                  "whitespace-nowrap text-center text-[11px] font-semibold uppercase tracking-[0.16em] transition-colors duration-500",
+                  "text-center text-[11px] font-semibold uppercase tracking-[0.16em] transition-colors duration-500",
                   isDark ? "text-white/85" : "text-black/80"
                 )}
                 style={{ fontFamily: MONO }}

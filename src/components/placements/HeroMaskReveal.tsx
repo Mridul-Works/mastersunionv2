@@ -100,9 +100,12 @@ export function HeroMaskReveal() {
   const [go, setGo] = React.useState(false);
   const [done, setDone] = React.useState(false);
 
-  // choose the arrangement once, before first paint of the overlay
+  // Keep the mask geometry aligned if the viewport changes during its short reveal.
   React.useEffect(() => {
-    setBlocks(pickSet(window.innerWidth));
+    const updateBlocks = () => setBlocks(pickSet(window.innerWidth));
+    updateBlocks();
+    window.addEventListener("resize", updateBlocks);
+    return () => window.removeEventListener("resize", updateBlocks);
   }, []);
 
   React.useEffect(() => {

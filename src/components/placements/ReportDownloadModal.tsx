@@ -238,7 +238,7 @@ function ReportModal({ onClose }: { onClose: () => void }) {
       role="dialog"
       aria-modal="true"
       aria-label="Download placement report"
-      className={`placements-ug-v2 fixed inset-0 z-[100] flex items-center justify-center p-4 transition-opacity duration-300 ease-out md:p-8 ${
+      className={`placements-ug-v2 fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto overscroll-contain p-3 transition-opacity duration-300 ease-out sm:p-4 md:p-8 ${
         visible ? "opacity-100" : "opacity-0"
       }`}
     >
@@ -251,12 +251,12 @@ function ReportModal({ onClose }: { onClose: () => void }) {
 
       {/* panel */}
       <div
-        className={`report-modal-outer relative w-full max-w-[880px] overflow-hidden transition-all duration-300 ease-out ${
+        className={`report-modal-outer relative my-auto max-h-[calc(100dvh-1.5rem)] w-full max-w-[880px] overflow-x-hidden overflow-y-auto transition-all duration-300 ease-out sm:max-h-[calc(100dvh-2rem)] md:max-h-[calc(100dvh-4rem)] ${
           visible ? "translate-y-0 scale-100 opacity-100" : "translate-y-3 scale-[0.97] opacity-0"
         }`}
         style={{ fontFamily: INTER }}
       >
-        <div className="grid grid-cols-1 gap-[clamp(1rem,2.5vw,2rem)] p-[clamp(1rem,2.5vw,2rem)] md:grid-cols-[minmax(0,38fr)_minmax(0,62fr)]">
+        <div className="report-modal-grid grid min-w-0 grid-cols-1 gap-[clamp(0.75rem,2.5vw,2rem)] p-[clamp(0.75rem,2.5vw,2rem)] md:grid-cols-[minmax(0,38fr)_minmax(0,62fr)]">
           {/* left: image area */}
           <div className="report-modal-inner report-modal-image relative hidden min-h-[420px] overflow-hidden md:block">
           <img
@@ -280,7 +280,7 @@ function ReportModal({ onClose }: { onClose: () => void }) {
           </div>
 
           {/* right: form */}
-          <div className="report-modal-inner relative p-6">
+          <div className="report-modal-inner relative min-w-0 p-[clamp(1rem,4vw,1.5rem)]">
             {/* close */}
             <button
               onClick={requestClose}
