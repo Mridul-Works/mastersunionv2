@@ -2599,7 +2599,7 @@ function Page() {
       <div className="relative z-20 -mt-[100svh] motion-reduce:mt-0">
         <section className="relative bg-[#0B1215] py-16 md:py-20 lg:py-24">
           <div className="page-x">
-            <div className="placements-section-shell placements-section-shell-dark relative flex w-full flex-col gap-10 lg:gap-14">
+            <div className="placements-section-shell placements-section-shell-dark podcast-shell relative flex w-full flex-col gap-10 lg:gap-14">
               <PodcastSection setVideoModal={setVideoModal} />
               <div className="mt-6 md:mt-8 lg:mt-10">
                 <EditorialRule />
