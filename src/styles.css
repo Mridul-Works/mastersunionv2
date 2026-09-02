@@ -4353,6 +4353,17 @@ body::-webkit-scrollbar {
 /* Final narrow-screen rail overrides: kept last so legacy responsive rules
    cannot collapse the horizontal card tracks back into stacked grids. */
 @media (max-width: 639px) {
+  .mobile-padded-rail {
+    padding-inline: 1rem;
+    scroll-padding-inline: 1rem;
+  }
+
+  .mobile-centered-action {
+    display: flex;
+    justify-content: center;
+  }
+
+
   .career-transition-story {
     display: flex;
     margin-inline: 0;
