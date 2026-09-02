@@ -2351,7 +2351,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
   return (
     <section
       ref={hostRef}
-      className="quote-cover-section relative flex items-end lg:items-start pt-20 md:pt-24 lg:pt-28 py-14 md:py-16 max-md:min-h-[80vh]"
+      className="quote-cover-section relative flex items-end lg:items-start pt-20 md:pt-24 lg:pt-28 pb-4 md:py-16 max-md:min-h-[80vh]"
       style={{
         backgroundColor: "black",
         backgroundImage: `url(${manojKohliBg.url})`,
