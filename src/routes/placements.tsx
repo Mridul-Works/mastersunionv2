@@ -1617,10 +1617,10 @@ function ScrollNav({
 }) {
   return (
     <div className="flex items-center gap-3">
-      <span className="hidden text-[11px] font-medium uppercase tracking-[0.16em] text-black/50 sm:inline">
+      <span className="hidden text-[11px] font-medium uppercase tracking-[0.16em] text-black/50 xl:inline">
         {label}
       </span>
-      <span className="inline text-[11px] font-medium uppercase tracking-[0.16em] text-black/50 sm:hidden">
+      <span className="inline text-[11px] font-medium uppercase tracking-[0.16em] text-black/50 xl:hidden">
         Slide
       </span>
       <div className="flex items-center gap-2">
