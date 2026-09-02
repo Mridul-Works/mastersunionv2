@@ -1599,6 +1599,20 @@ function PodcastVideoRail({
     el.scrollBy({ left: dir * step, behavior: "smooth" });
   };
 
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        scrollByCard(-1);
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        scrollByCard(1);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   return (
     <div className="flex min-w-0 w-full flex-col">
       <div className="mb-3 flex items-center justify-end gap-2">
