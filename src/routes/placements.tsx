@@ -2410,7 +2410,6 @@ function EditorialPlacementData() {
               <span className="text-[10px] font-medium uppercase tracking-[0.22em] text-white/50" style={{ fontFamily: MONO }}>
                 Financial performance / 2021—2025
               </span>
-              <span className="h-px w-10 origin-left bg-accent placement-data-rule" aria-hidden />
             </div>
             <div>
               <h2 id="placement-data-title" className="placements-section-title max-w-[20ch] text-white">
