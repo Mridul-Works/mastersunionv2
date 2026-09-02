@@ -1104,7 +1104,7 @@ function PortraitPlaceholder({ name, imageSrc, className = "" }: { name: string;
   if (imageSrc) {
     return (
       <div className={`career-portrait-placeholder career-portrait-image ${className}`}>
-        <img src={imageSrc} alt={`${name} portrait`} loading="lazy" />
+        <img src={imageSrc} alt={`${name} portrait`} loading="lazy" decoding="async" />
       </div>
     );
   }
