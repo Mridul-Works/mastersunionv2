@@ -2434,7 +2434,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
                 ref={(n) => {
                   wordRefs.current[i] = n;
                 }}
-                className="mt-8 max-md:mt-3 text-[10px] max-md:text-[9px] uppercase tracking-[0.2em] placements-dim-white"
+                className="mt-8 max-md:mt-3 text-[10px] max-md:text-[11px] uppercase tracking-[0.2em] placements-dim-white"
                 style={{ fontFamily: MONO, opacity: animated ? 0.18 : 1, willChange: "opacity" }}
               >
                 {item.text}
