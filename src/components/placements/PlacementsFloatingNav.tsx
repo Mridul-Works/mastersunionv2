@@ -128,7 +128,7 @@ export function PlacementsFloatingNav() {
   const activeLabel = navLinks.find((l) => l.id === active)?.label ?? "Overview";
 
   return (
-    <header className="fixed inset-x-0 bottom-0 z-50 px-3 pt-0 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-5 sm:pb-[max(1rem,env(safe-area-inset-bottom))]">
+    <header className="fixed inset-x-0 bottom-0 z-50 hidden px-3 pt-0 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-5 sm:pb-[max(1rem,env(safe-area-inset-bottom))] lg:block">
       {panel === "menu" && (
         <div className="mx-auto mb-2 max-h-[calc(100dvh-8rem)] max-w-[1320px] overflow-y-auto overscroll-contain rounded-2xl border border-border bg-background/95 p-2 shadow-[0_24px_60px_-30px_rgba(0,0,0,0.35)] backdrop-blur-xl">
           <nav aria-label="Sections" className="grid gap-1 sm:grid-cols-2 lg:grid-cols-4">
