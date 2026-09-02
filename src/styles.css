@@ -3352,11 +3352,327 @@ body::-webkit-scrollbar {
 }
 
 @media (max-width: 520px) {
-  .career-guidance-grid { grid-template-columns: 1fr; }
   .career-contact-strip { align-items: flex-start; border-radius: 12px; }
   .career-contact-strip span { overflow-wrap: anywhere; }
   .career-pathway-content ul { grid-template-columns: 1fr; }
-  .career-leader-cards { grid-template-columns: 1fr; }
+}
+
+/* Placements mobile composition — compact vertical rhythm with horizontal
+   rails for long collections. All larger breakpoints retain their layout. */
+@media (max-width: 639px) {
+  .placements-ug-v2 .page-x {
+    padding-inline: 1rem;
+  }
+
+  .placements-ug-v2 .page-x.py-16,
+  .placements-ug-v2 .page-x[class*="py-"] {
+    padding-top: 2.75rem;
+    padding-bottom: 2.75rem;
+  }
+
+  .placements-ug-v2 .placements-section-shell,
+  .placements-ug-v2 .career-transitions-section .placements-section-shell {
+    border-radius: 12px;
+    padding: 1.15rem;
+  }
+
+  .career-area-title,
+  .career-story-heading h2,
+  .career-closing-cta h2,
+  .salary-viz-title,
+  .placement-stats-title,
+  .placements-section-title {
+    font-size: 1.85rem;
+    line-height: 1.08;
+  }
+
+  .career-area-intro,
+  .placements-section-intro {
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .career-section-number {
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .career-featured-story {
+    margin-top: 1.75rem;
+  }
+
+  .career-story-arrows {
+    margin-right: 0;
+  }
+
+  .career-story-stage {
+    min-height: 0;
+  }
+
+  .career-story-visual .career-featured-portrait {
+    min-height: 15rem;
+    aspect-ratio: 4 / 3;
+  }
+
+  .career-story-accent {
+    min-height: 6.75rem;
+    padding: 1rem;
+  }
+
+  .career-featured-copy {
+    min-height: 0;
+    gap: 1.75rem;
+    padding: 1.35rem;
+  }
+
+  .career-featured-copy h3 {
+    margin-top: 0.75rem;
+    font-size: 2.25rem;
+  }
+
+  .career-featured-copy blockquote {
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .career-story-tabs {
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .career-story-tabs::-webkit-scrollbar,
+  .career-transition-story::-webkit-scrollbar,
+  .career-guidance-grid::-webkit-scrollbar,
+  .career-roadmap-rail::-webkit-scrollbar,
+  .career-roadmap-items::-webkit-scrollbar,
+  .career-coach-tabs::-webkit-scrollbar,
+  .career-coach-panel-people::-webkit-scrollbar,
+  .career-leader-selector::-webkit-scrollbar,
+  .career-leader-cards::-webkit-scrollbar {
+    display: none;
+  }
+
+  .career-story-tabs button {
+    flex: 0 0 2.75rem;
+    scroll-snap-align: start;
+  }
+
+  .career-transition-story {
+    display: grid;
+    grid-auto-columns: min(84vw, 20rem);
+    grid-auto-flow: column;
+    gap: 0.75rem;
+    margin-inline: -1.15rem;
+    padding-inline: 1.15rem;
+    padding-bottom: 0.5rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .placements-obsidian .career-transition-chapter {
+    min-width: 0;
+    padding: 1.25rem;
+    scroll-snap-align: start;
+  }
+
+  .placements-obsidian .career-transition-chapter + .career-transition-chapter {
+    border-top: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent);
+  }
+
+  .career-transition-category {
+    margin-bottom: 1rem;
+  }
+
+  .career-transition-row,
+  .career-transition-row-launch {
+    padding-block: 0.9rem;
+  }
+
+  .career-guidance-heading {
+    gap: 1.5rem;
+  }
+
+  .career-guidance-heading .career-area-title {
+    white-space: normal;
+  }
+
+  .career-guidance-count {
+    margin-top: 1rem;
+  }
+
+  .career-guidance-count span {
+    font-size: 2.75rem;
+  }
+
+  .career-guidance-grid {
+    display: grid;
+    grid-auto-columns: min(76vw, 17rem);
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    gap: 0.75rem;
+    margin-inline: -1.15rem;
+    padding-inline: 1.15rem;
+    padding-bottom: 0.5rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .career-guidance-card {
+    min-width: 0;
+    height: auto;
+    scroll-snap-align: start;
+  }
+
+  .career-guidance-portrait > .career-portrait-placeholder {
+    aspect-ratio: 4 / 3;
+  }
+
+  .career-guidance-copy small {
+    min-height: 4.25rem;
+  }
+
+  .career-contact-strip {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 0.65rem;
+    padding: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .career-contact-strip span {
+    grid-column: 2;
+  }
+
+  .career-roadmap-rail,
+  .career-coach-tabs,
+  .career-leader-selector {
+    display: flex;
+    gap: 0.6rem;
+    margin-inline: -1.15rem;
+    padding-inline: 1.15rem;
+    padding-bottom: 0.35rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .career-roadmap-rail-item {
+    flex: 0 0 min(72vw, 16rem);
+    min-height: 4.5rem;
+    scroll-snap-align: start;
+  }
+
+  .career-roadmap-panel {
+    padding: 1rem;
+  }
+
+  .career-roadmap-ghost {
+    font-size: 2.75rem;
+  }
+
+  .career-roadmap-visual {
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
+
+  .career-roadmap-items {
+    display: grid;
+    grid-auto-columns: min(70vw, 15rem);
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .career-roadmap-items li {
+    align-items: flex-start;
+    min-height: 5.5rem;
+    scroll-snap-align: start;
+  }
+
+  .career-coach-tab {
+    flex: 0 0 auto;
+    min-width: 10rem;
+    scroll-snap-align: start;
+  }
+
+  .career-coach-panel {
+    padding: 1rem;
+  }
+
+  .career-coach-panel-people {
+    display: grid;
+    grid-auto-columns: min(68vw, 15rem);
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .career-coach-card {
+    scroll-snap-align: start;
+  }
+
+  .career-leader-selector {
+    align-items: stretch;
+  }
+
+  .career-leader-selector button {
+    flex: 0 0 auto;
+    justify-content: center;
+    min-width: max-content;
+    border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent);
+    border-radius: 999px;
+    padding: 0.7rem 1rem;
+    scroll-snap-align: start;
+  }
+
+  .career-leader-cards {
+    display: grid;
+    grid-auto-columns: min(78vw, 18rem);
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    padding-bottom: 0.5rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .career-leader-card {
+    min-width: 0;
+    padding-bottom: 1.25rem;
+    scroll-snap-align: start;
+  }
+
+  .career-closing-cta {
+    padding: 1.5rem 1rem;
+  }
+
+  .career-closing-cta nav {
+    display: flex;
+    gap: 0.65rem;
+    margin-top: 1.5rem;
+    padding-bottom: 0.35rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+  }
+
+  .career-closing-cta nav > * {
+    flex: 0 0 12rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
