@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useRouter } from "@tanstack/react-router";
 import Lenis from "lenis";
-import { invalidateScroll, setLenisSource } from "@/lib/scroll-driver";
+import { runScrollFrameNow, setLenisSource } from "@/lib/scroll-driver";
 
 /**
  * Smooth-scroll layer.
