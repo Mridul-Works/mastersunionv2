@@ -1667,7 +1667,7 @@ function PodcastVideoRail({
             type="button"
             onClick={() => setVideoModal({ title: item.name, video: item.video, start: 0 })}
             aria-label={`Play conversation with ${item.name}`}
-            className="group flex w-[calc(100vw-3rem)] shrink-0 snap-start flex-col text-left sm:w-[min(260px,78vw)]"
+            className="group flex w-[calc(100vw-3rem)] shrink-0 snap-start flex-col pt-4 text-left sm:w-[min(260px,78vw)] sm:pt-0"
           >
 
             <span className="relative block aspect-video w-full overflow-hidden rounded-md bg-black/10">
