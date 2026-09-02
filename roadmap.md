@@ -1,5 +1,6 @@
 # Roadmap
 
+- [x] Mobile-only: widen the founder quote typography to fill the empty space on the right side, without changing desktop layout or typography styling
 - [x] Mobile-only: center the person in the founder quote background without changing typography or desktop framing
 
 - [x] Mobile-only: adjust the quote section typography and Read More button so the background portrait (head and shoulders) remains visible, without changing desktop layout

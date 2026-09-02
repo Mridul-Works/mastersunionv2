@@ -2372,7 +2372,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
       <div className="page-x relative w-full" style={{ zIndex: 3 }}>
         <div
           ref={textRef}
-          className="relative max-w-[56ch] max-md:max-w-[28ch]"
+          className="relative max-w-[56ch] max-md:max-w-[48ch]"
           style={{
             opacity: animated ? 0 : 1,
             transform: animated ? "translate3d(0px, 18px, 0px)" : "translate3d(0px, 0px, 0px)",
