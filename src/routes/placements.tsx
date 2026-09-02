@@ -2033,7 +2033,7 @@ function OurPlacementStatistics() {
         <div className="placement-stats-grid">
           <article className="placement-stats-panel" aria-labelledby="placement-stats-ylc-heading">
             <div className="placement-stats-panel-heading">
-              <span style={{ fontFamily: MONO, color: "#538D22" }}>01 / PGP TBM YLC</span>
+              <span style={{ fontFamily: MONO }}>01 / PGP TBM YLC</span>
               <h3 id="placement-stats-ylc-heading">
                 PGP TBM <em className="font-serif-italic" style={{ color: "var(--teal)" }}>YLC</em>
               </h3>
