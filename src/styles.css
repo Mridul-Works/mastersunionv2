@@ -4397,11 +4397,11 @@ body::-webkit-scrollbar {
   }
 }
 
-/* Mobile-only: center the founder quote portrait so the full character
-   image sits in the middle of the viewport. Typography remains unchanged. */
+/* Mobile-only: the source portrait places the person near its right edge.
+   Focus that subject—not the image canvas—in the middle of the viewport. */
 @media (max-width: 767px) {
   .quote-cover-section {
-    background-position: center center !important;
+    background-position: 88% center !important;
   }
 }
 

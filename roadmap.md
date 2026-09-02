@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Mobile-only: center the person in the founder quote background without changing typography or desktop framing
+- [x] Mobile-only: center the person in the founder quote background without changing typography or desktop framing
 
 - [x] Mobile-only: adjust the quote section typography and Read More button so the background portrait (head and shoulders) remains visible, without changing desktop layout
 - [x] Restructure the Placements mobile layout with clean horizontal rails for long card collections while preserving tablet and desktop layouts
