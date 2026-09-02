@@ -804,13 +804,13 @@ function CinematicHero() {
     ro.observe(section);
     const offResize = onViewportResize(measure);
 
-    const off = onScrollFrame(() => {
-      // The sticky wrapper is positioned by the browser from the REAL scroll
-      // offset, so the hero's transforms must read the same value. Using the
-      // smooth-scroll library's interpolated value instead makes the pinned
-      // layers drift a few pixels against the sticky box every frame — that is
-      // the up/down stutter at the top of the page.
-      const y = window.scrollY;
+    const off = onScrollFrame((s) => {
+      // Read the driver's scroll value (the smooth-scroll layer's own offset,
+      // flushed inside the same tick that writes the document scroll). Sampling
+      // window.scrollY here instead reads a value from a different loop, so the
+      // pinned layers fight the sticky box by a pixel or two each frame — that
+      // is the up/down stutter at the top of the page.
+      const y = s.y;
       // 0 at rest, 1 once the second section has taken over
       const p = Math.min(1, Math.max(0, (y - docTop) / track));
       if (p === lastP) return;

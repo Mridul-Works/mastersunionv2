@@ -101,6 +101,22 @@ export function invalidateScroll() {
   schedule();
 }
 
+/**
+ * Runs the read/write phases immediately, in the caller's frame.
+ *
+ * The smooth-scroll layer calls this from inside its own rAF tick (right after
+ * it has written the new scroll offset), so scroll-linked transforms land in the
+ * exact same frame the browser lays out sticky/pinned elements for. Two separate
+ * rAF loops would otherwise commit in an unpredictable order and pinned layers
+ * would oscillate a pixel or two against the sticky box — the scroll stutter.
+ */
+export function runScrollFrameNow() {
+  if (typeof window === "undefined") return;
+  dirty = true;
+  runFrame();
+}
+
+
 /** Cached viewport metrics — safe to read inside a write callback. */
 export function viewport(): ScrollState {
   if (!state.vh && typeof window !== "undefined") syncViewport();

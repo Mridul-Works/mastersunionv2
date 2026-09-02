@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useRouter } from "@tanstack/react-router";
 import Lenis from "lenis";
-import { invalidateScroll, setLenisSource } from "@/lib/scroll-driver";
+import { runScrollFrameNow, setLenisSource } from "@/lib/scroll-driver";
 
 /**
  * Smooth-scroll layer.
@@ -39,8 +39,11 @@ export default function SmoothScroll() {
     setLenisSource(lenis);
 
     // Feed Lenis's smoothed scroll value into the shared driver so every
-    // scroll-linked transform stays locked to the same source of truth.
-    const offScroll = lenis.on("scroll", () => invalidateScroll());
+    // scroll-linked transform stays locked to the same source of truth, and
+    // flush the driver synchronously inside Lenis's own tick so transforms and
+    // native sticky layout commit together (no cross-loop pixel oscillation).
+    const offScroll = lenis.on("scroll", () => runScrollFrameNow());
+
 
     let raf = 0;
     const loop = (time: number) => {
