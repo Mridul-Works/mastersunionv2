@@ -304,7 +304,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-color: var(--accent);
+  background-color: #638C75;
   opacity: 0;
   transform: scale(0.96);
   transition: opacity 300ms ease, transform 300ms ease;
@@ -329,7 +329,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .recruiter-category-button:hover {
-    box-shadow: 0 0 26px -6px color-mix(in oklab, var(--accent) 55%, transparent);
+    box-shadow: 0 0 26px -6px color-mix(in oklab, #638C75 55%, transparent);
   }
 }
 
