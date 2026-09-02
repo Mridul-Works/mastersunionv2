@@ -1,5 +1,8 @@
 # Roadmap
 
+- [ ] Complete a full responsive optimization pass for the Placements page across 320–1920px while preserving the desktop design
+- [ ] Validate every Placements section, floating navigation, video dialog, and placement-report modal for overflow, clipping, and interaction regressions
+
 - [x] Leadership guidance: CEO & MDs section should have 11 cards with dummy placeholders for missing cards
 - [x] Leadership guidance: CHROs section should have 7 cards with dummy placeholders for missing cards
 - [x] Leadership guidance: Unicorn Founders section should have 6 cards with dummy placeholders for missing cards
