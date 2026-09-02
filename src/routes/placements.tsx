@@ -1541,24 +1541,8 @@ function PodcastTextBlock() {
           firms shaping the next decade.
         </p>
       </Reveal>
-      <Reveal delay={230} className="self-start pt-5">
-        <div className="max-w-[46ch] rounded-md border border-[var(--teal)] bg-[#0B1215] p-5">
-          <p className="text-[15px] leading-relaxed text-black/80">
-            Inside the <em className="font-serif-italic">placement engine</em> behind the next
-            generation of business leaders.
-          </p>
-          <a
-            href="https://www.youtube.com/channel/UCaTkVutJ9f-AoE7cz7VLlTw"
-            target="_blank"
-            rel="noreferrer"
-            className="group mt-5 inline-flex w-full items-center justify-between gap-3 rounded-xl bg-[#1A1F23] px-4 py-3.5 text-[13px] font-bold uppercase tracking-[0.12em] text-[#F2F1EE] ring-1 ring-white/10 transition-all duration-300 hover:scale-[1.02] hover:bg-[#638C75] hover:ring-[#638C75] active:scale-[0.98]"
-          >
-            <span>Subscribe to Masters&apos; Union</span>
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#F2F1EE] text-[#0B1215] transition-transform duration-300 group-hover:translate-x-0.5">
-              <ArrowUpRight className="size-4" />
-            </span>
-          </a>
-        </div>
+      <Reveal delay={230} className="self-start hidden pt-5 sm:block">
+        <SubscribeBox />
       </Reveal>
     </div>
   );
