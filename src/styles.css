@@ -4345,3 +4345,126 @@ body::-webkit-scrollbar {
     min-height: 2.75rem;
   }
 }
+
+/* Final narrow-screen rail overrides: kept last so legacy responsive rules
+   cannot collapse the horizontal card tracks back into stacked grids. */
+@media (max-width: 639px) {
+  .career-transition-story {
+    display: flex;
+    margin-inline: 0;
+    padding-inline: 0;
+    overflow: visible;
+  }
+
+  .placements-obsidian .career-transition-chapter {
+    width: 100%;
+    padding: 1.25rem;
+  }
+
+  .career-transition-list {
+    display: grid;
+    grid-auto-columns: min(76vw, 17rem);
+    grid-auto-flow: column;
+    gap: 0.65rem;
+    margin-inline: -1.25rem;
+    padding-inline: 1.25rem;
+    padding-bottom: 0.35rem;
+    overflow-x: auto !important;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .career-transition-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .career-transition-row,
+  .career-transition-row-launch {
+    align-content: center;
+    min-height: 8.5rem;
+    border: 1px solid color-mix(in oklab, #ffffff 10%, transparent);
+    border-radius: 8px;
+    scroll-snap-align: start;
+  }
+
+  .career-transition-row-launch {
+    min-height: 11rem;
+  }
+
+  .career-transition-category {
+    margin-bottom: 1.25rem;
+  }
+
+  .career-transition-category-rule {
+    margin-top: 1rem;
+  }
+
+  .career-coach-tabs,
+  .career-leader-selector {
+    display: flex;
+    grid-template-columns: none;
+    align-items: stretch;
+  }
+
+  .career-coach-panel-people {
+    display: grid;
+    grid-auto-columns: min(72vw, 15rem);
+    grid-auto-flow: column;
+    grid-template-columns: none;
+  }
+
+  .career-coach-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .career-coach-card .career-portrait-placeholder {
+    width: 100%;
+    max-height: none;
+    aspect-ratio: 4 / 5;
+  }
+
+  .career-leader-selector {
+    margin-inline: -1.15rem;
+    padding-inline: 1.15rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .career-leader-selector button {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: max-content;
+    border-radius: 999px;
+    padding-inline: 1rem;
+    scroll-snap-align: start;
+  }
+
+  .career-leader-cards {
+    display: grid;
+    grid-auto-columns: min(78vw, 18rem);
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    align-items: start;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .career-leader-card {
+    width: auto;
+    min-width: 0;
+    min-height: 15rem;
+    overflow-wrap: normal;
+  }
+
+  .career-leader-card h3,
+  .career-leader-card p {
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+}
