@@ -2370,20 +2370,26 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
       />
 
       <div className="page-x relative w-full" style={{ zIndex: 3 }}>
+        {/* Mobile-only bottom overlay behind the quote and button for readability. */}
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 md:hidden"
+          style={{
+            zIndex: 1,
+            height: "100%",
+            background: "linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.78) 35%, rgba(0,0,0,0.45) 70%, transparent 100%)",
+          }}
+        />
+
         <div
           ref={textRef}
-          className="relative max-w-[56ch] max-md:max-w-[48ch]"
+          className="relative z-10 max-w-[56ch] max-md:max-w-[48ch]"
           style={{
             opacity: animated ? 0 : 1,
             transform: animated ? "translate3d(0px, 18px, 0px)" : "translate3d(0px, 0px, 0px)",
             willChange: animated ? "opacity, transform" : undefined,
           }}
         >
-          {/* Mobile-only dark overlay behind the quote text for readability. */}
-          <div
-            className="absolute inset-0 -m-3 rounded-xl bg-black/55 md:hidden"
-            style={{ zIndex: -1 }}
-          />
+
 
           <Quote
             className="absolute -left-1 -top-2 size-10 text-white/15 md:-top-4 md:size-16 max-md:size-6 max-md:-top-1"
