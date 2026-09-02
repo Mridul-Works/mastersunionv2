@@ -2726,7 +2726,7 @@ body::-webkit-scrollbar {
   transition: width 500ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.career-story-arrows { gap: 0.5rem; }
+.career-story-arrows { gap: 0.5rem; margin-right: 1.5rem; }
 .career-story-arrows button {
   border-color: color-mix(in oklab, var(--foreground) 18%, transparent);
   border-radius: 999px;
