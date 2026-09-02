@@ -3298,6 +3298,7 @@ body::-webkit-scrollbar {
 .career-closing-cta h2 { font-size: clamp(2rem, 5vw, 4.25rem); }
 .career-closing-cta nav { display: grid; gap: 0.65rem; max-width: 42rem; margin: 2.5rem auto 0; }
 .career-closing-cta nav > * { display: flex; align-items: center; justify-content: space-between; border: 1px solid color-mix(in oklab, var(--foreground) 18%, transparent); border-radius: 999px; padding: 0.9rem 1.2rem; color: var(--foreground); font-family: var(--font-serif); font-size: 0.85rem; font-style: italic; transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1), border-color 450ms ease, box-shadow 450ms ease; }
+.career-closing-cta nav > * svg { width: 0.9rem; }
 
 @keyframes career-panel-in {
   from { opacity: 0; transform: translateY(0.75rem); }
