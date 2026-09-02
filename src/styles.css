@@ -1846,9 +1846,9 @@ body::-webkit-scrollbar {
   transition: stroke-dasharray 950ms cubic-bezier(0.16, 0.84, 0.24, 1), stroke 450ms cubic-bezier(0.16, 0.84, 0.24, 1), filter 450ms cubic-bezier(0.16, 0.84, 0.24, 1);
 }
 
-.salary-viz-segment-1 { stroke: color-mix(in oklab, #ffffff 78%, transparent); }
-.salary-viz-segment-2 { stroke: color-mix(in oklab, #ffffff 43%, transparent); }
-.salary-viz-segment-3 { stroke: color-mix(in oklab, #ffffff 20%, transparent); }
+.salary-viz-segment-1 { stroke: #B48961; }
+.salary-viz-segment-2 { stroke: color-mix(in oklab, #B48961 65%, #ffffff); }
+.salary-viz-segment-3 { stroke: color-mix(in oklab, #B48961 65%, #000000); }
 .salary-viz-segment.is-active { stroke: #B48961; filter: drop-shadow(0 0 7px color-mix(in oklab, #B48961 28%, transparent)); }
 
 .salary-viz-donut-kicker {
@@ -1886,9 +1886,9 @@ body::-webkit-scrollbar {
   transition: background-color 450ms cubic-bezier(0.16, 0.84, 0.24, 1), transform 450ms cubic-bezier(0.16, 0.84, 0.24, 1);
 }
 
-.salary-viz-swatch-1 { background: color-mix(in oklab, #ffffff 78%, transparent); }
-.salary-viz-swatch-2 { background: color-mix(in oklab, #ffffff 43%, transparent); }
-.salary-viz-swatch-3 { background: color-mix(in oklab, #ffffff 20%, transparent); }
+.salary-viz-swatch-1 { background: #B48961; }
+.salary-viz-swatch-2 { background: color-mix(in oklab, #B48961 65%, #ffffff); }
+.salary-viz-swatch-3 { background: color-mix(in oklab, #B48961 65%, #000000); }
 
 .salary-viz-legend-copy {
   display: flex;
