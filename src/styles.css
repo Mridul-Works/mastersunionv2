@@ -2539,7 +2539,7 @@ body::-webkit-scrollbar {
 
 .placement-stats-column:hover .placement-stats-label,
 .placement-stats-column:focus-visible .placement-stats-label {
-  color: var(--accent);
+  color: #B48961;
 }
 
 @media (min-width: 768px) {
