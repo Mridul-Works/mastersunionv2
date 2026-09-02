@@ -3821,7 +3821,7 @@ body::-webkit-scrollbar {
 }
 
 /* Playable video card rail under the podcast episode line */
-.career-podcast-play--sm { position: absolute; inset: 0; display: grid; width: 2.5rem; height: 2.5rem; margin: auto; place-items: center; border: 1px solid color-mix(in oklab, var(--foreground) 35%, transparent); border-radius: 50%; background: color-mix(in oklab, var(--background) 65%, transparent); color: var(--foreground); transition: transform 300ms ease, background 300ms ease, border-color 300ms ease, color 300ms ease; }
+.career-podcast-play--sm { position: absolute; inset: 0; width: 2.5rem; height: 2.5rem; margin: auto; place-items: center; border: 1px solid color-mix(in oklab, var(--foreground) 35%, transparent); border-radius: 50%; background: color-mix(in oklab, var(--background) 65%, transparent); color: var(--foreground); transition: transform 300ms ease, background 300ms ease, border-color 300ms ease, color 300ms ease; }
 .career-podcast-play--sm svg { width: 0.75rem; }
 @media (hover: hover) {
   .group:hover .career-podcast-play--sm { transform: scale(1.1); background: #638C75; border-color: #638C75; color: var(--background); }
