@@ -1709,11 +1709,11 @@ function HorizontalMetricsStrip({ variant = "light" }: { variant?: "light" | "da
   return (
     <div
       className={cn(
-        "placements-metrics-strip grid grid-cols-1 overflow-hidden border-y lg:grid-cols-3",
+        "placements-metrics-strip grid grid-cols-3 overflow-hidden border-y",
         isDark
-          ? "border-[#131618] bg-[#131618] lg:divide-x lg:divide-white/10"
-          : "border-foreground/10 bg-foreground/10 lg:divide-x lg:divide-black/10",
-        "gap-px lg:gap-0"
+          ? "border-[#131618] bg-[#131618] divide-x divide-white/10"
+          : "border-foreground/10 bg-foreground/10 divide-x divide-black/10",
+        "gap-0"
       )}
     >
       {AUDIT_STATS.map((stat, i) => (
@@ -1724,11 +1724,11 @@ function HorizontalMetricsStrip({ variant = "light" }: { variant?: "light" | "da
             isDark ? "bg-[#131618]" : "bg-background"
           )}
         >
-          <div className="relative z-10 flex flex-col items-center justify-center gap-4 px-5 py-6 md:px-7 md:py-7 lg:px-8 lg:py-8">
+          <div className="relative z-10 flex flex-col items-center justify-center gap-2 px-2 py-4 sm:gap-4 sm:px-5 sm:py-6 md:px-7 md:py-7 lg:px-8 lg:py-8">
             {/* index */}
             <span
               className={cn(
-                "text-[10px] tabular-nums tracking-[0.28em] transition-colors duration-500",
+                "text-[9px] tabular-nums tracking-[0.28em] transition-colors duration-500 sm:text-[10px]",
                 isDark ? "text-white/40" : "text-black/40"
               )}
               style={{ fontFamily: MONO }}
@@ -1739,7 +1739,7 @@ function HorizontalMetricsStrip({ variant = "light" }: { variant?: "light" | "da
             {/* number */}
             <span
               className={cn(
-                "text-center text-[clamp(1.7rem,3.6vw,2.6rem)] font-medium leading-none tracking-[-0.04em] transition-colors duration-500",
+                "text-center text-[clamp(1.1rem,3.2vw,2.6rem)] font-medium leading-none tracking-[-0.04em] transition-colors duration-500",
                 isDark ? "text-white" : "text-black"
               )}
             >
@@ -1747,13 +1747,13 @@ function HorizontalMetricsStrip({ variant = "light" }: { variant?: "light" | "da
             </span>
 
             {/* divider */}
-            <div className={cn("h-px w-20 transition-colors duration-500", isDark ? "bg-white/20" : "bg-border")} />
+            <div className={cn("h-px w-12 transition-colors duration-500 sm:w-20", isDark ? "bg-white/20" : "bg-border")} />
 
             {/* label + description */}
-            <div className="flex flex-col items-center gap-1.5 text-center">
+            <div className="flex flex-col items-center gap-1 text-center sm:gap-1.5">
               <span
                 className={cn(
-                  "text-center text-[11px] font-semibold uppercase tracking-[0.16em] transition-colors duration-500",
+                  "text-center text-[9px] font-semibold uppercase tracking-[0.14em] transition-colors duration-500 sm:text-[11px] sm:tracking-[0.16em]",
                   isDark ? "text-white/85" : "text-black/80"
                 )}
                 style={{ fontFamily: MONO }}
@@ -1762,7 +1762,7 @@ function HorizontalMetricsStrip({ variant = "light" }: { variant?: "light" | "da
               </span>
               <p
                 className={cn(
-                  "max-w-[26ch] text-center text-[13px] leading-snug transition-colors duration-500",
+                  "max-w-[18ch] text-center text-[10px] leading-tight transition-colors duration-500 sm:text-[13px] sm:leading-snug",
                   isDark ? "text-white/60" : "text-black/55"
                 )}
               >
