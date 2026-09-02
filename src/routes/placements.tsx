@@ -2501,15 +2501,6 @@ function EditorialPlacementData() {
     { key: "highest", label: "Highest CTC" },
   ] as const;
 
-  function LedgerValue({ value, delay }: { value: string; delay: number }) {
-    return (
-      <>
-        <span className="hidden md:inline"><CountUp value={value} delay={delay} /></span>
-        <span className="md:hidden">{value}</span>
-      </>
-    );
-  }
-
   return (
     <section
       ref={ref}
@@ -2567,8 +2558,26 @@ function EditorialPlacementData() {
             <span className="text-[10px] uppercase tracking-[0.18em] text-white/50" style={{ fontFamily: MONO }}>Slide to view</span>
             <ChevronRight className="h-3.5 w-3.5 text-white/40" />
           </div>
-          <div className="placement-ledger-scroll overflow-x-auto no-scrollbar">
-            <table className="placement-ledger-table w-full border-collapse text-left">
+          <div className="placement-ledger-card-rail no-scrollbar flex overflow-x-auto px-5 py-5 md:hidden" role="region" aria-label="PGP TBM cohort cards">
+            {TBM_TABLE.map((row) => (
+              <article key={row.cohort} className="placement-ledger-card shrink-0 border border-white/15 bg-white/[0.035] p-5">
+                <div className="border-b border-white/12 pb-4">
+                  <span className="text-[9px] uppercase tracking-[0.18em] text-white/42" style={{ fontFamily: MONO }}>Cohort</span>
+                  <p className="mt-1 text-[1.2rem] font-medium text-white" style={{ fontFamily: MONO }}>{row.cohort}</p>
+                </div>
+                <dl className="mt-5 grid grid-cols-2 gap-x-5 gap-y-6">
+                  {tbmColumns.slice(1).map((column) => (
+                    <div key={column.key} className="min-w-0">
+                      <dt className="text-[9px] uppercase tracking-[0.14em] text-white/42" style={{ fontFamily: MONO }}>{column.label}</dt>
+                      <dd className="mt-1.5 whitespace-nowrap text-[0.98rem] font-medium tabular-nums text-white/80">{row[column.key]}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </article>
+            ))}
+          </div>
+          <div className="hidden overflow-x-auto no-scrollbar md:block">
+            <table className="w-full border-collapse text-left">
               <thead>
                 <tr>
                   {tbmColumns.map((column, index) => (
@@ -2583,7 +2592,7 @@ function EditorialPlacementData() {
                   <tr key={row.cohort} className="placement-ledger-row border-t border-white/12">
                     {tbmColumns.map((column, columnIndex) => (
                       <td key={column.key} className={`placement-data-number placement-ledger-cell px-5 py-5 tabular-nums ${columnIndex === 0 ? "text-[11px] font-medium tracking-[0.16em]" : "text-[0.98rem]"}`} style={{ transitionDelay: `${rowIndex * 55 + columnIndex * 22}ms`, fontFamily: columnIndex === 0 ? MONO : undefined }}>
-                        {columnIndex === 0 ? row[column.key] : <LedgerValue value={row[column.key]} delay={rowIndex * 65 + columnIndex * 30} />}
+                        {columnIndex === 0 ? row[column.key] : <CountUp value={row[column.key]} delay={rowIndex * 65 + columnIndex * 30} />}
                       </td>
                     ))}
                   </tr>
@@ -2607,8 +2616,26 @@ function EditorialPlacementData() {
               <span className="text-[10px] uppercase tracking-[0.18em] text-white/50" style={{ fontFamily: MONO }}>Slide to view</span>
               <ChevronRight className="h-3.5 w-3.5 text-white/40" />
             </div>
-            <div className="placement-ledger-scroll overflow-x-auto no-scrollbar">
-            <table className="placement-ledger-table w-full border-collapse text-left">
+            <div className="placement-ledger-card-rail no-scrollbar flex overflow-x-auto px-5 py-5 md:hidden" role="region" aria-label="PGP TBM YLC cohort cards">
+              {YLC_TABLE.map((row) => (
+                <article key={row.cohort} className="placement-ledger-card shrink-0 border border-white/15 bg-white/[0.035] p-5">
+                  <div className="border-b border-white/12 pb-4">
+                    <span className="text-[9px] uppercase tracking-[0.18em] text-white/42" style={{ fontFamily: MONO }}>Cohort</span>
+                    <p className="mt-1 text-[1.2rem] font-medium text-white" style={{ fontFamily: MONO }}>{row.cohort}</p>
+                  </div>
+                  <dl className="mt-5 grid grid-cols-2 gap-x-5 gap-y-6">
+                    {ylcColumns.slice(1).map((column) => (
+                      <div key={column.key} className="min-w-0">
+                        <dt className="text-[9px] uppercase tracking-[0.14em] text-white/42" style={{ fontFamily: MONO }}>{column.label}</dt>
+                        <dd className="mt-1.5 whitespace-nowrap text-[0.98rem] font-medium tabular-nums text-white/80">{row[column.key]}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </article>
+              ))}
+            </div>
+            <div className="hidden overflow-x-auto no-scrollbar md:block">
+            <table className="w-full border-collapse text-left">
               <thead>
                 <tr>
                   {ylcColumns.map((column) => (
@@ -2621,7 +2648,7 @@ function EditorialPlacementData() {
                   <tr key={row.cohort} className="placement-ledger-row border-t border-white/12">
                     {ylcColumns.map((column, columnIndex) => (
                       <td key={column.key} className={`placement-data-number placement-ledger-cell px-5 py-5 tabular-nums ${columnIndex === 0 ? "text-[11px] font-medium tracking-[0.16em]" : "text-[0.98rem]"}`} style={{ transitionDelay: `${320 + rowIndex * 55 + columnIndex * 22}ms`, fontFamily: columnIndex === 0 ? MONO : undefined }}>
-                        {columnIndex === 0 ? row[column.key] : <LedgerValue value={row[column.key]} delay={rowIndex * 65 + columnIndex * 30} />}
+                        {columnIndex === 0 ? row[column.key] : <CountUp value={row[column.key]} delay={rowIndex * 65 + columnIndex * 30} />}
                       </td>
                     ))}
                   </tr>

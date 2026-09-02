@@ -160,3 +160,4 @@
 
 - Term 4 Interview preparations: replaced inline iframe with YouTube thumbnail + play-button overlay (same pattern as Leadership guidance)- [x] Change Student voice card background color to #638C75 with white text
 - [x] Mobile-only: improve PGP TBM cohort ledger row spacing and enable smooth horizontal scrolling
+- [x] Mobile-only: present each PGP TBM and PGP TBM YLC ledger row as an individually swipeable card
