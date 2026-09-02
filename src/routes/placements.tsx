@@ -2561,12 +2561,11 @@ function EditorialPlacementData() {
             </div>
             <div className="text-[10px] uppercase tracking-[0.18em] text-white/40" style={{ fontFamily: MONO }}>All values / annual CTC</div>
           </div>
-          <div className="flex items-center gap-2 border-b border-white/10 px-5 py-2.5 md:hidden" aria-hidden="true">
-            <ChevronLeft className="h-3.5 w-3.5 text-white/40" />
-            <span className="text-[10px] uppercase tracking-[0.18em] text-white/50" style={{ fontFamily: MONO }}>Slide to view</span>
-            <ChevronRight className="h-3.5 w-3.5 text-white/40" />
+          <div className="flex items-center justify-end gap-2 border-b border-white/10 px-5 py-3 md:hidden">
+            <ScrollNav tone="dark" label="Slide" onPrev={() => scrollRail(tbmRailRef, -1)} onNext={() => scrollRail(tbmRailRef, 1)} />
           </div>
-          <div className="placement-ledger-card-rail no-scrollbar flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain py-5 md:hidden" role="region" aria-label="PGP TBM cohort cards">
+          <div ref={tbmRailRef} className="placement-ledger-card-rail no-scrollbar flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain py-5 md:hidden" role="region" aria-label="PGP TBM cohort cards">
+
             {TBM_TABLE.map((row) => (
               <article key={row.cohort} className="placement-ledger-card shrink-0 snap-start border border-white/15 bg-white/[0.035] p-5">
                 <div className="border-b border-white/12 pb-4">
