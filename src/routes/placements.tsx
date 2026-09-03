@@ -1132,6 +1132,7 @@ function CareerTransitionsSection() {
   };
 
   const touchRef = React.useRef<{ x: number; y: number } | null>(null);
+  const storyRef = React.useRef<HTMLDivElement>(null);
 
   const onTouchStart = (e: React.TouchEvent) => {
     const t = e.touches[0];
@@ -1149,6 +1150,30 @@ function CareerTransitionsSection() {
     showAdjacentChapter(dx < 0 ? 1 : -1);
   };
 
+  // Trackpad horizontal two-finger swipe (mobile viewport only)
+  React.useEffect(() => {
+    const el = storyRef.current;
+    if (!el) return;
+    let accum = 0;
+    let lockedUntil = 0;
+    const onWheel = (e: WheelEvent) => {
+      if (window.innerWidth >= 640) return;
+      const dx = e.deltaX * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? 100 : 1);
+      const dy = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? 100 : 1);
+      if (Math.abs(dx) < Math.abs(dy) * 1.2) return;
+      e.preventDefault();
+      const now = Date.now();
+      if (now < lockedUntil) return;
+      accum += dx;
+      if (Math.abs(accum) < 60) return;
+      showAdjacentChapter(accum < 0 ? -1 : 1);
+      accum = 0;
+      lockedUntil = now + 500;
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, []);
+
   return (
     <Band tone="white" className="career-transitions-section">
       <Reveal>
@@ -1165,10 +1190,12 @@ function CareerTransitionsSection() {
       </div>
 
       <div
+        ref={storyRef}
         className="career-transition-story mt-14"
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
+
         {TRANSITIONS.map((transition, transitionIndex) => (
           <section
             key={transition.title}
