@@ -3179,6 +3179,8 @@ body::-webkit-scrollbar {
 .career-pathway-media iframe { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .career-pathway-media img { filter: grayscale(1) brightness(0.65); }
 .career-pathway-media::after { position: absolute; inset: 0; width: 100%; height: 100%; background: linear-gradient(to top, var(--placements-inner-surface), transparent 60%); content: ""; pointer-events: none; }
+.career-roadmap-visual .career-pathway-media img { filter: none; }
+.career-roadmap-visual .career-pathway-media::after { background: none; }
 .career-roadmap-visual:hover .career-pathway-media { transform: scale(1.04); }
 .career-pathway-media iframe { z-index: 1; pointer-events: auto; }
 .career-roadmap-counter { position: absolute; z-index: 2; right: 1rem; bottom: 1rem; color: var(--foreground); font-family: var(--font-mono-tech); font-size: 0.65rem; }
