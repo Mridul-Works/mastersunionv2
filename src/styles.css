@@ -3601,8 +3601,9 @@ body::-webkit-scrollbar {
     grid-template-columns: none;
     gap: 0;
     margin-inline: 0;
+    margin-block-start: 0;
     padding-inline: 0;
-    padding-top: 1rem;
+    padding-top: 1.5rem;
     padding-bottom: 0.5rem;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
@@ -4736,5 +4737,10 @@ body::-webkit-scrollbar {
 @media (max-width: 639px) {
   .career-guidance-mobile-nav {
     display: flex;
+  }
+
+  .career-guidance-grid {
+    margin-block-start: 0;
+    padding-block-start: 1.5rem;
   }
 }
