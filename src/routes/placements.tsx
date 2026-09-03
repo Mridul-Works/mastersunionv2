@@ -1479,10 +1479,10 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
           <div className="career-closing-cta">
             <h2>Explore <em className="font-serif-italic">Masters' Union</em></h2>
             <nav aria-label="Explore Masters' Union">
-              <span>Student Life <ArrowUpRight /></span>
-              <span>Explore Careers <ArrowUpRight /></span>
-              <span>Book a Visit <ArrowUpRight /></span>
-              <span>Explore Events <ArrowUpRight /></span>
+              <Link to="/life-at-mu">Student Life <ArrowUpRight /></Link>
+              <Link to="/placements">Explore Careers <ArrowUpRight /></Link>
+              <a href="mailto:admissions@mastersunion.org">Book a Visit <ArrowUpRight /></a>
+              <Link to="/life-at-mu">Explore Events <ArrowUpRight /></Link>
             </nav>
           </div>
         </div>
