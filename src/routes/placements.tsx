@@ -1732,7 +1732,22 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
         <Reveal><Eyebrow>Dedicated career coaches</Eyebrow></Reveal>
         <Reveal delay={100}><h2 className="career-area-title">Making You <em className="font-serif-italic">Industry Ready</em></h2></Reveal>
         <div className="career-coach-shell mt-12">
-          <div className="career-coach-tabs" role="tablist">
+          <div className="career-coach-mobile-nav">
+            <ScrollNav tone="light" label="Slide" onPrev={() => moveCoachTrack(-1)} onNext={() => moveCoachTrack(1)} />
+          </div>
+          <div
+            ref={coachTabsRef}
+            className="career-coach-tabs"
+            role="tablist"
+            aria-label="Career coaching tracks"
+            onTouchStart={onCoachTouchStart}
+            onTouchMove={onCoachTouchMove}
+            onTouchEnd={() => { coachTouchRef.current = null; }}
+            onKeyDown={(event) => {
+              if (event.key === "ArrowLeft") moveCoachTrack(-1);
+              if (event.key === "ArrowRight") moveCoachTrack(1);
+            }}
+          >
             {COACH_TRACKS.map((track, i) => (
               <button
                 type="button"
@@ -1749,6 +1764,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
           </div>
 
           <div className="career-coach-panel" key={coachTrack}>
+
             <div className="career-coach-panel-copy">
               <div className="career-coach-icon">{coachTrack === 0 ? <Mic2 /> : coachTrack === 1 ? <BadgeCheck /> : <Compass />}</div>
               <h3>{COACH_TRACKS[coachTrack].title} Coach</h3>
