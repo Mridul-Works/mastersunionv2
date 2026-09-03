@@ -1479,7 +1479,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
           ))}
         </div>
 
-        <div className="career-guidance-view-more mt-10 flex justify-center">
+        <div className="career-guidance-view-more mt-10 hidden justify-center sm:flex">
           <button
             type="button"
             onClick={() => setShowAllGuidance((s) => !s)}
