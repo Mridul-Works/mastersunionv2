@@ -1256,6 +1256,50 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
     setStory((current) => (current + direction + featuredStories.length) % featuredStories.length);
   };
 
+  const storyStageRef = React.useRef<HTMLDivElement>(null);
+  const storyTouchRef = React.useRef<{ x: number; y: number } | null>(null);
+
+  const onStoryTouchStart = (event: React.TouchEvent) => {
+    const touch = event.touches[0];
+    if (touch) storyTouchRef.current = { x: touch.clientX, y: touch.clientY };
+  };
+
+  const onStoryTouchEnd = (event: React.TouchEvent) => {
+    const start = storyTouchRef.current;
+    storyTouchRef.current = null;
+    if (!start || window.innerWidth >= 640) return;
+    const touch = event.changedTouches[0];
+    if (!touch) return;
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    if (Math.abs(dx) < 45 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+    moveStory(dx < 0 ? 1 : -1);
+  };
+
+  React.useEffect(() => {
+    const node = storyStageRef.current;
+    if (!node) return;
+    let accum = 0;
+    let lockedUntil = 0;
+    const onWheel = (event: WheelEvent) => {
+      if (window.innerWidth >= 640) return;
+      const dx = event.deltaX;
+      const dy = event.deltaY;
+      if (Math.abs(dx) < Math.abs(dy) * 1.2) return;
+      event.preventDefault();
+      const now = Date.now();
+      if (now < lockedUntil) return;
+      accum += dx;
+      if (Math.abs(accum) < 60) return;
+      moveStory(accum < 0 ? -1 : 1);
+      accum = 0;
+      lockedUntil = now + 500;
+    };
+    node.addEventListener("wheel", onWheel, { passive: false });
+    return () => node.removeEventListener("wheel", onWheel);
+  }, [featuredStories.length]);
+
+
   return (
     <div className="career-experience-area">
       <Band id="stories" tone="paper">
@@ -1273,6 +1317,9 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
           aria-roledescription="carousel"
           aria-label="Student placement stories"
           tabIndex={0}
+          ref={storyStageRef}
+          onTouchStart={onStoryTouchStart}
+          onTouchEnd={onStoryTouchEnd}
           onKeyDown={(event) => {
             if (event.key === "ArrowLeft") moveStory(-1);
             if (event.key === "ArrowRight") moveStory(1);
