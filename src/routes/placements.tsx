@@ -1304,7 +1304,6 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
     let idleTimer: ReturnType<typeof setTimeout> | undefined;
 
     const onWheel = (event: WheelEvent) => {
-      if (window.innerWidth >= 640) return;
       const dx = event.deltaX;
       const dy = event.deltaY;
       if (Math.abs(dx) < Math.abs(dy) * 1.2) return;
