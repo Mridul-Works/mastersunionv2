@@ -4738,4 +4738,9 @@ body::-webkit-scrollbar {
   .career-guidance-mobile-nav {
     display: flex;
   }
+
+  .career-guidance-grid {
+    margin-block-start: 0;
+    padding-block-start: 1.5rem;
+  }
 }
