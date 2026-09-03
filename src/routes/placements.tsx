@@ -1124,6 +1124,49 @@ function CareerTransitionList({ transition }: { transition: (typeof TRANSITIONS)
 
 function CareerTransitionsSection() {
   const storyRef = React.useRef<HTMLDivElement | null>(null);
+  const [mobileRailHeight, setMobileRailHeight] = React.useState<number>();
+
+  React.useLayoutEffect(() => {
+    const rail = storyRef.current;
+    if (!rail) return;
+
+    let frame = 0;
+    const measureActiveChapter = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        if (!window.matchMedia("(max-width: 639px)").matches) {
+          setMobileRailHeight(undefined);
+          return;
+        }
+
+        const chapters = Array.from(rail.querySelectorAll<HTMLElement>(".career-transition-chapter"));
+        const activeChapter = chapters.reduce<HTMLElement | null>((nearest, chapter) => {
+          if (!nearest) return chapter;
+          return Math.abs(chapter.offsetLeft - rail.scrollLeft) < Math.abs(nearest.offsetLeft - rail.scrollLeft)
+            ? chapter
+            : nearest;
+        }, null);
+        if (!activeChapter) return;
+
+        const styles = window.getComputedStyle(rail);
+        const railPadding = Number.parseFloat(styles.paddingTop) + Number.parseFloat(styles.paddingBottom);
+        setMobileRailHeight(activeChapter.scrollHeight + railPadding);
+      });
+    };
+
+    const observer = new ResizeObserver(measureActiveChapter);
+    rail.querySelectorAll(".career-transition-chapter").forEach((chapter) => observer.observe(chapter));
+    rail.addEventListener("scroll", measureActiveChapter, { passive: true });
+    window.addEventListener("resize", measureActiveChapter);
+    measureActiveChapter();
+
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      rail.removeEventListener("scroll", measureActiveChapter);
+      window.removeEventListener("resize", measureActiveChapter);
+    };
+  }, []);
 
   const scrollByChapter = (dir: number) => {
     const el = storyRef.current;
@@ -1149,7 +1192,11 @@ function CareerTransitionsSection() {
         <ScrollNav tone="dark" label="Slide" onPrev={() => scrollByChapter(-1)} onNext={() => scrollByChapter(1)} />
       </div>
 
-      <div className="career-transition-story mt-14" ref={storyRef}>
+      <div
+        className="career-transition-story mt-14"
+        ref={storyRef}
+        style={mobileRailHeight ? { height: mobileRailHeight } : undefined}
+      >
         {TRANSITIONS.map((transition, transitionIndex) => (
           <section key={transition.title} className="career-transition-chapter">
             <div className="career-transition-sticky">
