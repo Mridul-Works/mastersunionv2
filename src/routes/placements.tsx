@@ -1245,6 +1245,9 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
   const [leaderGroup, setLeaderGroup] = useState(0);
   const [showAllGuidance, setShowAllGuidance] = useState(false);
   const [coachTrack, setCoachTrack] = useState(0);
+  const guidanceRailRef = useRef<HTMLDivElement>(null);
+
+
 
   const featuredStories = TESTIMONIALS;
   const currentStory = featuredStories[story];
