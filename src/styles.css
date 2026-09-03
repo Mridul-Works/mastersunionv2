@@ -1589,6 +1589,14 @@ body::-webkit-scrollbar {
     border-radius: 16px;
     text-align: center;
     background-color: #0E1113;
+    transform: translateY(-3px);
+    border-color: color-mix(in oklab, var(--accent) 48%, transparent);
+    background: color-mix(in oklab, var(--foreground) 8%, transparent);
+    box-shadow: 0 18px 38px -24px color-mix(in oklab, var(--accent) 75%, transparent);
+    transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 350ms cubic-bezier(0.22, 1, 0.36, 1),
+                border-color 350ms ease,
+                background-color 350ms ease;
   }
 
   .placement-ledger-card > div,
