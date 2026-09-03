@@ -4868,8 +4868,7 @@ body::-webkit-scrollbar {
 
   .career-leader-mobile-nav {
     display: flex;
-    margin-block-start: 0;
-    padding-block-end: 0.25rem;
+    padding-block: 0.5rem;
   }
 
   .career-leader-cards {
