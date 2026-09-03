@@ -1131,6 +1131,24 @@ function CareerTransitionsSection() {
     );
   };
 
+  const touchRef = React.useRef<{ x: number; y: number } | null>(null);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    const t = e.touches[0];
+    touchRef.current = { x: t.clientX, y: t.clientY };
+  };
+
+  const onTouchEnd = (e: React.TouchEvent) => {
+    const start = touchRef.current;
+    touchRef.current = null;
+    if (!start) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - start.x;
+    const dy = t.clientY - start.y;
+    if (Math.abs(dx) < 45 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+    showAdjacentChapter(dx < 0 ? 1 : -1);
+  };
+
   return (
     <Band tone="white" className="career-transitions-section">
       <Reveal>
@@ -1146,7 +1164,11 @@ function CareerTransitionsSection() {
         <ScrollNav tone="dark" label="Slide" onPrev={() => showAdjacentChapter(-1)} onNext={() => showAdjacentChapter(1)} />
       </div>
 
-      <div className="career-transition-story mt-14">
+      <div
+        className="career-transition-story mt-14"
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
         {TRANSITIONS.map((transition, transitionIndex) => (
           <section
             key={transition.title}
