@@ -2065,6 +2065,10 @@ body::-webkit-scrollbar {
   background: transparent;
 }
 
+.career-transition-mobile-nav {
+  display: none;
+}
+
 .career-transition-sticky {
   min-width: 0;
 }
@@ -4486,11 +4490,20 @@ body::-webkit-scrollbar {
     padding: 1.25rem;
   }
 
+  .career-transition-mobile-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid color-mix(in oklab, #ffffff 10%, transparent);
+  }
+
   .career-transition-list {
     display: grid;
-    grid-auto-columns: min(76vw, 17rem);
+    grid-auto-columns: 100%;
     grid-auto-flow: column;
-    gap: 0.65rem;
+    gap: 1rem;
     margin-inline: -1.25rem;
     padding-inline: 1.25rem;
     padding-bottom: 0.35rem;
