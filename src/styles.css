@@ -4664,3 +4664,54 @@ body::-webkit-scrollbar {
     word-break: normal;
   }
 }
+
+/* ------------------------------------------------------------------
+   Hover-lift clipping fix
+   Cards translate up ~3px on hover. When they sit inside a container
+   with `overflow: clip/hidden` or a horizontal scroll rail, the lifted
+   top border gets sliced off. Give clipped containers a clip margin and
+   scroll rails a little top breathing room (compensated with a negative
+   margin so layout is unchanged).
+   ------------------------------------------------------------------ */
+.placements-ug-v2 .placements-section-shell,
+.placements-ug-v2 .career-transitions-section .placements-section-shell,
+.placements-obsidian .career-transition-chapter,
+.career-leader-media,
+.career-podcast-media,
+.career-roadmap-visual {
+  overflow-clip-margin: 8px;
+}
+
+.career-story-tabs,
+.career-transition-story,
+.career-guidance-grid,
+.career-roadmap-rail,
+.career-roadmap-items,
+.career-coach-tabs,
+.career-coach-panel-people,
+.career-leader-selector,
+.career-leader-cards,
+.career-closing-cta nav,
+.podcast-rail,
+.placement-ledger-card-rail,
+[data-rail] {
+  scroll-padding-block-start: 0.5rem;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .career-story-tabs,
+  .career-transition-story,
+  .career-guidance-grid,
+  .career-roadmap-rail,
+  .career-roadmap-items,
+  .career-coach-tabs,
+  .career-coach-panel-people,
+  .career-leader-selector,
+  .career-leader-cards,
+  .career-closing-cta nav,
+  .podcast-rail,
+  [data-rail] {
+    margin-block-start: -0.5rem;
+    padding-block-start: 0.5rem;
+  }
+}
