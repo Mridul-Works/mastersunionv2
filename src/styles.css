@@ -4497,30 +4497,21 @@ body::-webkit-scrollbar {
   }
 
   .career-transition-story {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 100%;
-    align-items: start;
-    gap: 0;
-    margin-inline: -1.25rem;
-    padding-inline: 1.25rem;
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: 1rem;
-    scrollbar-width: none;
-  }
-
-  .career-transition-story::-webkit-scrollbar {
-    display: none;
+    display: block;
+    margin-inline: 0;
+    padding: 0;
+    overflow: visible;
   }
 
   .placements-obsidian .career-transition-chapter {
+    display: none;
     width: 100%;
     min-width: 0;
     padding: 1.25rem 1.25rem 0;
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
+  }
+
+  .placements-obsidian .career-transition-chapter[data-mobile-active="true"] {
+    display: block;
   }
 
   .career-transition-sticky {
