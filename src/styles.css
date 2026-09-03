@@ -1640,6 +1640,10 @@ body::-webkit-scrollbar {
   text-transform: uppercase;
 }
 
+.salary-viz-kicker {
+  padding-left: 0.25em;
+}
+
 .salary-viz-title {
   max-width: 16ch;
   margin-top: 1rem;
