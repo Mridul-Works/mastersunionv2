@@ -1272,6 +1272,18 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
     if (touch) storyTouchRef.current = { x: touch.clientX, y: touch.clientY };
   };
 
+  const onStoryTouchMove = (event: React.TouchEvent) => {
+    const start = storyTouchRef.current;
+    if (!start || window.innerWidth >= 640) return;
+    const touch = event.touches[0];
+    if (!touch) return;
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    if (Math.abs(dx) < 24 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+    storyTouchRef.current = null;
+    tryMoveStory(dx < 0 ? 1 : -1);
+  };
+
   const onStoryTouchEnd = (event: React.TouchEvent) => {
     const start = storyTouchRef.current;
     storyTouchRef.current = null;
@@ -1340,6 +1352,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
           tabIndex={0}
           ref={storyStageRef}
           onTouchStart={onStoryTouchStart}
+          onTouchMove={onStoryTouchMove}
           onTouchEnd={onStoryTouchEnd}
           onKeyDown={(event) => {
             if (event.key === "ArrowLeft") moveStory(-1);
