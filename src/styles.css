@@ -2037,7 +2037,7 @@ body::-webkit-scrollbar {
 }
 
 .placements-obsidian .career-transition-chapter + .career-transition-chapter {
-  margin-top: -1px;
+  border-top: 0;
 }
 
 @media (hover: hover) and (pointer: fine) {
