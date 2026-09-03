@@ -1801,7 +1801,21 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
               <Button key={group.label} variant="ghost" role="tab" aria-selected={leaderGroup === index} className={leaderGroup === index ? "is-active" : ""} onClick={() => setLeaderGroup(index)}>{group.label}</Button>
             ))}
           </div>
-          <div className="career-leader-cards" key={currentLeaders.label}>
+          <div className="career-leader-mobile-nav flex justify-end">
+            <ScrollNav
+              tone="light"
+              label="Slide"
+              onPrev={() => {
+                const el = leaderRailRef.current;
+                if (el) el.scrollBy({ left: -el.clientWidth, behavior: "smooth" });
+              }}
+              onNext={() => {
+                const el = leaderRailRef.current;
+                if (el) el.scrollBy({ left: el.clientWidth, behavior: "smooth" });
+              }}
+            />
+          </div>
+          <div ref={leaderRailRef} className="career-leader-cards" key={currentLeaders.label}>
             {currentLeaders.people.map((leader, index) => (
               <article
                 className={`career-leader-card${(leader as any).video ? " has-video" : ""}`}
