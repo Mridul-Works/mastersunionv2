@@ -2546,9 +2546,9 @@ function EditorialPlacementData() {
             </div>
           </header>
 
-          <div className="relative flex min-h-[260px] flex-col items-center justify-center overflow-hidden px-7 pb-7 pt-5 md:p-10 lg:col-span-5">
+          <div className="relative flex min-h-[260px] flex-col items-center justify-center overflow-hidden px-7 pb-7 pt-3 md:p-10 lg:col-span-5">
             <div className="placement-data-grid absolute inset-0 opacity-25" aria-hidden />
-            <span className="absolute left-7 top-5 text-[10px] font-medium uppercase tracking-[0.22em] text-white/45 md:left-10 md:top-10" style={{ fontFamily: MONO }}>
+            <span className="absolute left-7 top-3 text-[10px] font-medium uppercase tracking-[0.22em] text-white/45 md:left-10 md:top-10" style={{ fontFamily: MONO }}>
               Latest cohort / PGP TBM
             </span>
             <div className="relative flex flex-col items-center text-center">
