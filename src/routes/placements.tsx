@@ -3044,7 +3044,7 @@ function EditorialPlacementData() {
 
         <OurPlacementStatistics />
 
-        <p className="mt-6 text-[10px] uppercase tracking-[0.16em] text-white/38" style={{ fontFamily: MONO }}>
+        <p className="mt-6 text-center text-[10px] uppercase tracking-[0.16em] text-white/38" style={{ fontFamily: MONO }}>
           *Please note that the YLC numbers have been taken from the students having 0–1 years of experience from PGP TBM cohort.
         </p>
         </div>
