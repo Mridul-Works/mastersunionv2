@@ -3261,7 +3261,9 @@ body::-webkit-scrollbar {
 
 
 .career-coach-shell { display: grid; gap: 0.75rem; }
+.career-coach-mobile-nav { display: none; }
 .career-coach-tabs { display: grid; gap: 0.5rem; grid-template-columns: 1fr; }
+
 .career-coach-tab {
   display: flex;
   gap: 0.6rem;
@@ -3711,10 +3713,33 @@ body::-webkit-scrollbar {
     border-bottom: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
   }
 
+  .career-coach-mobile-nav {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 1rem;
+  }
+
+  .career-coach-tabs {
+    display: flex;
+    gap: 0;
+    margin-inline: -1.15rem;
+    padding-inline: 1.15rem;
+    padding-bottom: 0.35rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
   .career-coach-tab {
-    flex: 0 0 auto;
-    min-width: 10rem;
-    scroll-snap-align: start;
+    flex: 0 0 calc(100vw - 2 * 1.15rem);
+    min-width: 0;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  .career-coach-tab + .career-coach-tab {
+    margin-left: 1rem;
   }
 
   .career-coach-panel {
@@ -3723,18 +3748,17 @@ body::-webkit-scrollbar {
 
   .career-coach-panel-people {
     display: grid;
-    grid-auto-columns: min(68vw, 15rem);
-    grid-auto-flow: column;
-    grid-template-columns: none;
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
+    grid-template-columns: 1fr;
+    grid-auto-columns: unset;
+    grid-auto-flow: unset;
+    overflow-x: visible;
+    scroll-snap-type: none;
   }
 
   .career-coach-card {
-    scroll-snap-align: start;
+    scroll-snap-align: none;
   }
+
 
   .career-leader-selector {
     align-items: stretch;
@@ -4788,4 +4812,47 @@ body::-webkit-scrollbar {
     animation-duration: 220ms;
     touch-action: pan-y;
   }
+
+  .career-coach-mobile-nav {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 1rem;
+  }
+
+  .career-coach-tabs {
+    display: flex;
+    gap: 0;
+    margin-inline: -1.15rem;
+    padding-inline: 1.15rem;
+    padding-bottom: 0.35rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .career-coach-tab {
+    flex: 0 0 calc(100vw - 2 * 1.15rem);
+    min-width: 0;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  .career-coach-tab + .career-coach-tab {
+    margin-left: 1rem;
+  }
+
+  .career-coach-panel-people {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-columns: unset;
+    grid-auto-flow: unset;
+    overflow-x: visible;
+    scroll-snap-type: none;
+  }
+
+  .career-coach-card {
+    scroll-snap-align: none;
+  }
 }
+
