@@ -1273,6 +1273,39 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
     setTerm((current) => (current + direction + TERMS.length) % TERMS.length);
   };
 
+  const moveCoachTrack = (direction: number) => {
+    const now = Date.now();
+    if (now < coachGestureLock.current) return;
+    coachGestureLock.current = now + 220;
+    setCoachTrack((current) => (current + direction + COACH_TRACKS.length) % COACH_TRACKS.length);
+  };
+
+  React.useEffect(() => {
+    const rail = coachTabsRef.current;
+    if (!rail || window.innerWidth >= 640) return;
+    const tab = rail.children[coachTrack] as HTMLElement | undefined;
+    if (tab) tab.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+  }, [coachTrack]);
+
+  const onCoachTouchStart = (event: React.TouchEvent) => {
+    if (window.innerWidth >= 640) return;
+    const touch = event.touches[0];
+    if (touch) coachTouchRef.current = { x: touch.clientX, y: touch.clientY };
+  };
+
+  const onCoachTouchMove = (event: React.TouchEvent) => {
+    const start = coachTouchRef.current;
+    if (!start || window.innerWidth >= 640) return;
+    const touch = event.touches[0];
+    if (!touch) return;
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    if (Math.abs(dx) < 24 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+    coachTouchRef.current = null;
+    moveCoachTrack(dx < 0 ? 1 : -1);
+  };
+
+
   const onRoadmapTouchStart = (event: React.TouchEvent) => {
     if (window.innerWidth >= 640) return;
     const touch = event.touches[0];
