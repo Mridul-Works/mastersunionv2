@@ -4514,6 +4514,15 @@ body::-webkit-scrollbar {
     display: block;
   }
 
+  .placements-obsidian .career-transition-chapter,
+  .placements-obsidian .career-transition-chapter:hover {
+    transform: none;
+    transition: none;
+    box-shadow: none;
+    border-color: color-mix(in oklab, var(--foreground) 12%, transparent);
+  }
+
+
   .career-transition-sticky {
     position: static;
   }
