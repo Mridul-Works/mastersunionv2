@@ -169,3 +169,5 @@
 - [x] Mobile-only: decrease top padding above Dedicated career coaches arrow buttons / card to match other sections
 
 
+- [x] Student placement experience: replaced custom arrows with the shared ScrollNav slide hint + arrows
+- [ ] Mobile responsiveness pass 320-639px (recruiter category chips clipping, career transition from/to rows cramped)
