@@ -1102,13 +1102,20 @@ function CareerTransitionList({ transition }: { transition: (typeof TRANSITIONS)
         })}
       </div>
       {hasMoreRows ? (
-        <button
-          type="button"
-          className={`career-transition-view-more mobile-only-view-more ${mobileExpanded ? "career-transition-view-less" : ""}`}
-          onClick={() => setMobileExpanded((v) => !v)}
-        >
-          {mobileExpanded ? "View Less" : "View More"}
-        </button>
+        <div className="career-transition-view-more">
+          <button
+            type="button"
+            onClick={() => setMobileExpanded((s) => !s)}
+            aria-expanded={mobileExpanded}
+            className="hero-sweep-button group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden border border-white/35 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:border-[#638C75] hover:bg-[#638C75] hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)]"
+            style={{ fontFamily: MONO }}
+          >
+            <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
+              {mobileExpanded ? "View less" : "View more"}
+              <ChevronDown className={`size-3.5 transition-transform duration-300 ${mobileExpanded ? "rotate-180" : ""}`} aria-hidden="true" />
+            </span>
+          </button>
+        </div>
       ) : null}
     </div>
   );
