@@ -991,10 +991,12 @@ function CareerTransitionList({ transition }: { transition: (typeof TRANSITIONS)
   const [scrollKey, setScrollKey] = React.useState<string | null>(null);
   const [hoverKey, setHoverKey] = React.useState<string | null>(null);
   const [hovering, setHovering] = React.useState(false);
+  const [mobileExpanded, setMobileExpanded] = React.useState(false);
   // Hover always wins while the pointer is inside the list; scroll only
   // highlights the row that actually sits on the focus line.
   const activeKey = hovering ? hoverKey : scrollKey;
   const isLaunch = transition.columns.length === 3;
+  const hasMoreRows = transition.rows.length > 3;
 
   React.useEffect(() => {
     const list = listRef.current;
@@ -1066,13 +1068,14 @@ function CareerTransitionList({ transition }: { transition: (typeof TRANSITIONS)
         <div className={`career-transition-columns ${isLaunch ? "career-transition-columns-launch" : ""}`}>
           {transition.columns.map((column) => <span key={column}>{column}</span>)}
         </div>
-        {transition.rows.map((row) => {
+        {transition.rows.map((row, rowIndex) => {
           const key = row.join("-");
+          const collapsedOnMobile = rowIndex >= 3 && !mobileExpanded;
           return (
             <div
               key={key}
               data-row-key={key}
-              className={`career-transition-row group ${isLaunch ? "career-transition-row-launch" : ""}`}
+              className={`career-transition-row group ${isLaunch ? "career-transition-row-launch" : ""} ${collapsedOnMobile ? "mobile-collapsed-row" : ""}`}
               data-active={activeKey === key ? "true" : "false"}
               onMouseEnter={() => {
                 setHovering(true);
@@ -1098,6 +1101,15 @@ function CareerTransitionList({ transition }: { transition: (typeof TRANSITIONS)
           );
         })}
       </div>
+      {!mobileExpanded && hasMoreRows ? (
+        <button
+          type="button"
+          className="career-transition-view-more mobile-only-view-more"
+          onClick={() => setMobileExpanded(true)}
+        >
+          View More
+        </button>
+      ) : null}
     </div>
   );
 }
