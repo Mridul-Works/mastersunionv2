@@ -4907,8 +4907,8 @@ body::-webkit-scrollbar {
   .placements-ug-v2 .recruiter-category-grid-mobile .recruiter-category-button,
   .recruiter-category-grid-mobile button {
     padding-inline: 0.25rem;
-    font-size: 9px;
-    letter-spacing: 0.06em;
+    font-size: 9px !important;
+    letter-spacing: 0.06em !important;
     word-break: break-word;
   }
 }
