@@ -4568,7 +4568,7 @@ body::-webkit-scrollbar {
   .career-transition-view-more {
     display: flex;
     justify-content: center;
-    margin-top: 0.75rem;
+    margin-top: 1.5rem;
   }
 
   .career-transition-columns {
