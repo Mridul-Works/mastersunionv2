@@ -4837,5 +4837,10 @@ body::-webkit-scrollbar {
   .career-coach-card {
     scroll-snap-align: none;
   }
+
+  .career-leader-selector {
+    margin-block-start: 0;
+    padding-block-start: 0;
+  }
 }
 
