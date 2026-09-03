@@ -2531,7 +2531,7 @@ function EditorialPlacementData() {
         <div className="placements-section-shell placements-section-shell-dark">
         <div className="placement-data-bento grid overflow-hidden border border-white/15 lg:grid-cols-12">
           <header className="flex min-h-[260px] flex-col justify-between border-b border-white/15 p-7 md:p-10 lg:col-span-7 lg:border-r lg:border-b-0">
-            <div className="flex items-center justify-between gap-6">
+            <div className="flex items-center justify-between gap-6 pb-3 md:pb-0">
               <span className="text-[10px] font-medium uppercase tracking-[0.22em] text-white/50" style={{ fontFamily: MONO }}>
                 Financial performance / 2021—2025
               </span>
