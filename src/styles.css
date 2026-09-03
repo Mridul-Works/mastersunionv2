@@ -2065,6 +2065,14 @@ body::-webkit-scrollbar {
   background: transparent;
 }
 
+.career-transition-mobile-nav {
+  display: none;
+}
+
+.career-transitions-header-nav {
+  display: none;
+}
+
 .career-transition-sticky {
   min-width: 0;
 }
@@ -4474,51 +4482,83 @@ body::-webkit-scrollbar {
   }
 
 
+  .career-transitions-header-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid color-mix(in oklab, #ffffff 10%, transparent);
+  }
+
   .career-transition-story {
     display: flex;
-    margin-inline: 0;
-    padding-inline: 0;
-    overflow: visible;
-  }
-
-  .placements-obsidian .career-transition-chapter {
-    width: 100%;
-    padding: 1.25rem;
-  }
-
-  .career-transition-list {
-    display: grid;
-    grid-auto-columns: min(76vw, 17rem);
-    grid-auto-flow: column;
-    gap: 0.65rem;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1rem;
     margin-inline: -1.25rem;
     padding-inline: 1.25rem;
-    padding-bottom: 0.35rem;
-    overflow-x: auto !important;
+    overflow-x: auto;
     overscroll-behavior-inline: contain;
     scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1rem;
     scrollbar-width: none;
   }
 
-  .career-transition-list::-webkit-scrollbar {
+  .career-transition-story::-webkit-scrollbar {
     display: none;
+  }
+
+  .placements-obsidian .career-transition-chapter {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 0;
+    padding: 1.25rem;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+
+  .career-transition-sticky {
+    position: static;
+  }
+
+  .career-transition-category {
+    position: static;
+    margin-bottom: 1.25rem;
+    padding-right: 0;
+  }
+
+  .career-transition-mobile-nav {
+    display: none;
+  }
+
+  .career-transition-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-inline: 0;
+    padding-inline: 0;
+    padding-bottom: 0;
+    overflow: visible;
+    scroll-snap-type: none;
   }
 
   .career-transition-row,
   .career-transition-row-launch {
     align-content: center;
-    min-height: 8.5rem;
+    min-height: 7.5rem;
     border: 1px solid color-mix(in oklab, #ffffff 10%, transparent);
     border-radius: 8px;
-    scroll-snap-align: start;
+    scroll-snap-align: none;
   }
 
   .career-transition-row-launch {
-    min-height: 11rem;
+    min-height: 9.5rem;
   }
 
-  .career-transition-category {
-    margin-bottom: 1.25rem;
+  .career-transition-columns {
+    display: none;
   }
 
   .career-transition-category-rule {

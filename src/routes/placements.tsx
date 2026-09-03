@@ -1041,55 +1041,80 @@ function CareerTransitionList({ transition }: { transition: (typeof TRANSITIONS)
   }, [transition]);
 
 
+  const scrollByCard = (dir: number) => {
+    const el = listRef.current;
+    if (!el) return;
+    const card = el.querySelector(".career-transition-row") as HTMLElement | null;
+    if (!card) return;
+    const gap = 16;
+    el.scrollBy({ left: dir * (card.offsetWidth + gap), behavior: "smooth" });
+  };
+
   return (
-    <div
-      className="career-transition-list"
-      ref={listRef}
-      onMouseLeave={() => {
-        setHovering(false);
-        setHoverKey(null);
-      }}
-    >
-      <div className={`career-transition-columns ${isLaunch ? "career-transition-columns-launch" : ""}`}>
-        {transition.columns.map((column) => <span key={column}>{column}</span>)}
+    <div className="career-transition-wrapper">
+      <div className="career-transition-mobile-nav">
+        <ScrollNav tone="dark" label="Slide" onPrev={() => scrollByCard(-1)} onNext={() => scrollByCard(1)} />
       </div>
-      {transition.rows.map((row) => {
-        const key = row.join("-");
-        return (
-          <div
-            key={key}
-            data-row-key={key}
-            className={`career-transition-row group ${isLaunch ? "career-transition-row-launch" : ""}`}
-            data-active={activeKey === key ? "true" : "false"}
-            onMouseEnter={() => {
-              setHovering(true);
-              setHoverKey(key);
-            }}
-            onMouseLeave={() => setHoverKey(null)}
-          >
-            {row.map((value, index) => (
-              <React.Fragment key={`${value}-${index}`}>
-                <div className="career-transition-cell">
-                  <span className="career-transition-mobile-label">{transition.columns[index]}</span>
-                  <span>{value}</span>
-                </div>
-                {!isLaunch && index === 0 ? (
-                  <div className="career-transition-arrow" aria-hidden="true">
-                    <span />
-                    <ArrowUpRight className="size-4 rotate-45" />
+      <div
+        className="career-transition-list"
+        ref={listRef}
+        onMouseLeave={() => {
+          setHovering(false);
+          setHoverKey(null);
+        }}
+      >
+        <div className={`career-transition-columns ${isLaunch ? "career-transition-columns-launch" : ""}`}>
+          {transition.columns.map((column) => <span key={column}>{column}</span>)}
+        </div>
+        {transition.rows.map((row) => {
+          const key = row.join("-");
+          return (
+            <div
+              key={key}
+              data-row-key={key}
+              className={`career-transition-row group ${isLaunch ? "career-transition-row-launch" : ""}`}
+              data-active={activeKey === key ? "true" : "false"}
+              onMouseEnter={() => {
+                setHovering(true);
+                setHoverKey(key);
+              }}
+              onMouseLeave={() => setHoverKey(null)}
+            >
+              {row.map((value, index) => (
+                <React.Fragment key={`${value}-${index}`}>
+                  <div className="career-transition-cell">
+                    <span className="career-transition-mobile-label">{transition.columns[index]}</span>
+                    <span>{value}</span>
                   </div>
-                ) : null}
-              </React.Fragment>
-            ))}
-          </div>
-        );
-      })}
+                  {!isLaunch && index === 0 ? (
+                    <div className="career-transition-arrow" aria-hidden="true">
+                      <span />
+                      <ArrowUpRight className="size-4 rotate-45" />
+                    </div>
+                  ) : null}
+                </React.Fragment>
+              ))}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
 
 
 function CareerTransitionsSection() {
+  const storyRef = React.useRef<HTMLDivElement | null>(null);
+
+  const scrollByChapter = (dir: number) => {
+    const el = storyRef.current;
+    if (!el) return;
+    const chapter = el.querySelector(".career-transition-chapter") as HTMLElement | null;
+    if (!chapter) return;
+    const gap = 16;
+    el.scrollBy({ left: dir * (chapter.offsetWidth + gap), behavior: "smooth" });
+  };
+
   return (
     <Band tone="white" className="career-transitions-section">
       <Reveal>
@@ -1101,7 +1126,11 @@ function CareerTransitionsSection() {
         </h2>
       </Reveal>
 
-      <div className="career-transition-story mt-14">
+      <div className="career-transitions-header-nav">
+        <ScrollNav tone="dark" label="Slide" onPrev={() => scrollByChapter(-1)} onNext={() => scrollByChapter(1)} />
+      </div>
+
+      <div className="career-transition-story mt-14" ref={storyRef}>
         {TRANSITIONS.map((transition, transitionIndex) => (
           <section key={transition.title} className="career-transition-chapter">
             <div className="career-transition-sticky">
