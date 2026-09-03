@@ -1348,32 +1348,32 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
     };
   }, []);
 
+  const coachWheelAccum = useRef(0);
+  const coachWheelDone = useRef(false);
+  const coachWheelIdleTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
   React.useEffect(() => {
     const node = coachPanelRef.current;
     if (!node) return;
-    let accumulatedX = 0;
-    let gestureDone = false;
-    let idleTimer: ReturnType<typeof setTimeout> | undefined;
 
     const onWheel = (event: WheelEvent) => {
       if (window.innerWidth >= 640 || Math.abs(event.deltaX) < Math.abs(event.deltaY) * 1.2) return;
       event.preventDefault();
-      if (idleTimer) clearTimeout(idleTimer);
-      idleTimer = setTimeout(() => {
-        accumulatedX = 0;
-        gestureDone = false;
-      }, 140);
-      if (gestureDone) return;
-      accumulatedX += event.deltaX;
-      if (Math.abs(accumulatedX) < 18) return;
-      gestureDone = true;
-      moveCoachTrack(accumulatedX < 0 ? 1 : -1);
+      if (coachWheelIdleTimer.current) clearTimeout(coachWheelIdleTimer.current);
+      coachWheelIdleTimer.current = setTimeout(() => {
+        coachWheelAccum.current = 0;
+        coachWheelDone.current = false;
+      }, 160);
+      if (coachWheelDone.current) return;
+      coachWheelAccum.current += event.deltaX;
+      if (Math.abs(coachWheelAccum.current) < 18) return;
+      coachWheelDone.current = true;
+      moveCoachTrack(coachWheelAccum.current < 0 ? 1 : -1);
     };
 
     node.addEventListener("wheel", onWheel, { passive: false });
     return () => {
       node.removeEventListener("wheel", onWheel);
-      if (idleTimer) clearTimeout(idleTimer);
     };
   }, [coachTrack]);
 
@@ -1726,7 +1726,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
         <div className="career-section-number">04</div>
         <Reveal><Eyebrow>Dedicated career coaches</Eyebrow></Reveal>
         <Reveal delay={100}><h2 className="career-area-title">Making You <em className="font-serif-italic">Industry Ready</em></h2></Reveal>
-        <div className="career-coach-shell mt-12">
+        <div className="career-coach-shell mt-6 sm:mt-12">
           <div className="career-coach-mobile-nav">
             <ScrollNav tone="light" label="Slide" onPrev={() => moveCoachTrack(-1)} onNext={() => moveCoachTrack(1)} />
           </div>
