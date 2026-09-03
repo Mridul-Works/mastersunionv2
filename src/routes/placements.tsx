@@ -1567,14 +1567,16 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
               <span className="career-roadmap-counter">{String(term + 1).padStart(2, "0")} / {String(TERMS.length).padStart(2, "0")}</span>
             </div>
 
-              <ul className="career-roadmap-items">
-                {currentTerm.items.map((item, itemIndex) => (
-                  <li key={item}>
-                    <span className="career-roadmap-item-num">{String(itemIndex + 1).padStart(2, "0")}</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="career-roadmap-items-card">
+                <ul className="career-roadmap-items">
+                  {currentTerm.items.map((item, itemIndex) => (
+                    <li key={item}>
+                      <span className="career-roadmap-item-num">{String(itemIndex + 1).padStart(2, "0")}</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
