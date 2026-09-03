@@ -1317,6 +1317,9 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
           aria-roledescription="carousel"
           aria-label="Student placement stories"
           tabIndex={0}
+          ref={storyStageRef}
+          onTouchStart={onStoryTouchStart}
+          onTouchEnd={onStoryTouchEnd}
           onKeyDown={(event) => {
             if (event.key === "ArrowLeft") moveStory(-1);
             if (event.key === "ArrowRight") moveStory(1);
