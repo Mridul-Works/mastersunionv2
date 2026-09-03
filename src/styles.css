@@ -4844,3 +4844,38 @@ body::-webkit-scrollbar {
   }
 }
 
+
+/* Leadership guidance: mobile-only single-card rail + slide hint */
+.career-leader-mobile-nav {
+  display: none;
+}
+
+@media (max-width: 639px) {
+  .career-leader-mobile-nav {
+    display: flex;
+    margin-block-start: 1.5rem;
+  }
+
+  .career-leader-cards {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    grid-template-columns: none;
+    gap: 0;
+    margin-inline: 0;
+    padding-inline: 0;
+    margin-block-start: 0;
+    padding-block-start: 1.25rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .career-leader-card {
+    width: 100%;
+    min-width: 0;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+  }
+}
