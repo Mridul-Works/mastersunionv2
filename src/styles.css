@@ -3565,7 +3565,7 @@ body::-webkit-scrollbar {
   }
 
   .placements-obsidian .career-transition-chapter + .career-transition-chapter {
-    border-top: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent);
+    border-top: 0;
   }
 
   .career-transition-category {
@@ -4563,6 +4563,29 @@ body::-webkit-scrollbar {
 
   .career-transition-row.mobile-collapsed-row {
     display: none;
+  }
+
+  .career-transition-row[data-active="true"],
+  .career-transition-row-launch[data-active="true"] {
+    color: color-mix(in oklab, #ffffff 62%, transparent);
+    background: transparent;
+    border-color: color-mix(in oklab, #ffffff 10%, transparent);
+  }
+
+  .career-transition-row[data-active="true"]::before {
+    transform: scaleY(0);
+  }
+
+  .career-transition-row[data-active="true"] .career-transition-arrow {
+    color: color-mix(in oklab, var(--teal) 72%, transparent);
+    transform: none;
+  }
+
+  .career-transition-row,
+  .career-transition-row-launch,
+  .career-transition-row::before,
+  .career-transition-arrow {
+    transition: none;
   }
 
   .career-transition-view-more {
