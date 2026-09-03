@@ -1490,7 +1490,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
             <div className="career-story-arrows">
               <ScrollNav
                 tone="light"
-                label="Slide"
+                label="Scroll"
                 onPrev={() => moveStory(-1)}
                 onNext={() => moveStory(1)}
               />
