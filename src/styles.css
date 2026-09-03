@@ -4587,6 +4587,14 @@ body::-webkit-scrollbar {
     background: color-mix(in oklab, #ffffff 10%, transparent);
   }
 
+  .career-transition-view-less {
+    background: color-mix(in oklab, #ffffff 10%, transparent);
+  }
+
+  .career-transition-view-less:hover {
+    background: color-mix(in oklab, #ffffff 15%, transparent);
+  }
+
   .career-transition-columns {
     display: none;
   }

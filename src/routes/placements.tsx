@@ -1101,13 +1101,13 @@ function CareerTransitionList({ transition }: { transition: (typeof TRANSITIONS)
           );
         })}
       </div>
-      {!mobileExpanded && hasMoreRows ? (
+      {hasMoreRows ? (
         <button
           type="button"
-          className="career-transition-view-more mobile-only-view-more"
-          onClick={() => setMobileExpanded(true)}
+          className={`career-transition-view-more mobile-only-view-more ${mobileExpanded ? "career-transition-view-less" : ""}`}
+          onClick={() => setMobileExpanded((v) => !v)}
         >
-          View More
+          {mobileExpanded ? "View Less" : "View More"}
         </button>
       ) : null}
     </div>
