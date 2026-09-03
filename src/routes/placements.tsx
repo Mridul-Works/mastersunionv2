@@ -1621,8 +1621,8 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
               onClick={() => currentTerm.video ? setVideoModal({ title: currentTerm.title, video: currentTerm.video }) : undefined}
               onKeyDown={(e) => { if (currentTerm.video && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); setVideoModal({ title: currentTerm.title, video: currentTerm.video }); }}}
             >
-              {currentTerm.video ? (
-                <>
+              <div className="career-pathway-media no-img-zoom">
+                {currentTerm.video ? (
                   <img
                     src={`https://img.youtube.com/vi/${currentTerm.video.split("/").pop()?.split("?")[0]}/maxresdefault.jpg`}
                     alt={`${currentTerm.title} video thumbnail`}
@@ -1632,12 +1632,14 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
                       if (!img.dataset.fallback) { img.dataset.fallback = "1"; img.src = img.src.replace("maxresdefault", "mqdefault"); }
                     }}
                   />
-                  <span className="career-roadmap-play" aria-hidden="true">
-                    <span><Play fill="currentColor" /></span>
-                  </span>
-                </>
-              ) : (
-                <img src={currentTerm.image || heroBg.url} alt="Masters' Union students in a career preparation session" loading="lazy" />
+                ) : (
+                  <img src={currentTerm.image || heroBg.url} alt="Masters' Union students in a career preparation session" loading="lazy" />
+                )}
+              </div>
+              {currentTerm.video && (
+                <span className="career-roadmap-play" aria-hidden="true">
+                  <span><Play fill="currentColor" /></span>
+                </span>
               )}
               <span className="career-roadmap-counter">{String(term + 1).padStart(2, "0")} / {String(TERMS.length).padStart(2, "0")}</span>
             </div>
