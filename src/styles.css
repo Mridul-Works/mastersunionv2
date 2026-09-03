@@ -3261,7 +3261,9 @@ body::-webkit-scrollbar {
 
 
 .career-coach-shell { display: grid; gap: 0.75rem; }
+.career-coach-mobile-nav { display: none; }
 .career-coach-tabs { display: grid; gap: 0.5rem; grid-template-columns: 1fr; }
+
 .career-coach-tab {
   display: flex;
   gap: 0.6rem;
