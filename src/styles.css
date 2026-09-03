@@ -4338,6 +4338,15 @@ body::-webkit-scrollbar {
     gap: 1rem;
   }
 
+  .placement-stats-headline {
+    align-items: center;
+    text-align: center;
+  }
+
+  .placement-stats-headline-label {
+    text-align: center;
+  }
+
   .placement-stats-headline-divider {
     width: 100%;
     height: 1px;
