@@ -3237,7 +3237,7 @@ function Page() {
             </h2>
           </Reveal>
           <Reveal delay={280}>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4 md:justify-start">
               <a href="mailto:careerservices@mastersunion.org" className="placements-pill-accent group inline-flex items-center gap-2 px-7 py-3.5 text-[13px] font-medium" style={{ fontFamily: INTER }}>
                 <Mail className="size-3.5 transition-transform duration-500 group-hover:-translate-y-0.5" /> careerservices@mastersunion.org
               </a>
