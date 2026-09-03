@@ -1249,6 +1249,10 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
   const roadmapStageRef = useRef<HTMLDivElement>(null);
   const roadmapTouchRef = useRef<{ x: number; y: number } | null>(null);
   const roadmapGestureLock = useRef(0);
+  const coachTabsRef = useRef<HTMLDivElement>(null);
+  const coachTouchRef = useRef<{ x: number; y: number } | null>(null);
+  const coachGestureLock = useRef(0);
+
 
 
 
