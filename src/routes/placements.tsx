@@ -3141,8 +3141,7 @@ function Page() {
             emphasis="One hiring calendar."
           />
         </Reveal>
-        <div className="mt-10 flex flex-wrap gap-2">
-
+        <div className="mt-10 hidden flex-wrap gap-2 md:flex">
           {RECRUITER_GROUPS.map((g, i) => {
             const isActive = recruiterTab === g.category;
             return (
@@ -3159,6 +3158,26 @@ function Page() {
                   <span>{g.category}</span>
                 </button>
               </Reveal>
+            );
+          })}
+        </div>
+        {/* Mobile: two-row grid, short-name categories first, long names second/third */}
+        <div className="recruiter-category-grid-mobile mt-10 grid grid-cols-[auto_1fr_1fr] grid-rows-2 gap-2 md:hidden">
+          {RECRUITER_GROUPS.map((g) => {
+            const isActive = recruiterTab === g.category;
+            return (
+              <button
+                key={g.category}
+                onClick={() => setRecruiterTab(g.category)}
+                className={`recruiter-category-button h-full w-full items-center justify-center whitespace-normal px-2 py-2 text-center text-[10px] leading-tight uppercase tracking-[0.12em] ${
+                  isActive
+                    ? "is-active bg-accent text-accent-foreground"
+                    : "border border-black/15 text-black/65"
+                }`}
+                style={{ fontFamily: MONO }}
+              >
+                <span>{g.category}</span>
+              </button>
             );
           })}
         </div>
