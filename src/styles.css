@@ -4813,16 +4813,26 @@ body::-webkit-scrollbar {
   .career-coach-mobile-nav {
     display: flex;
     justify-content: flex-end;
-    padding-bottom: 1rem;
+    padding-bottom: 0.25rem;
   }
 
   .career-coach-tabs {
     display: none;
   }
 
+  .career-coach-shell {
+    gap: 0.25rem;
+  }
+
   .career-coach-panel {
+    padding: 0.5rem;
+    padding-bottom: 1rem;
     animation-duration: 220ms;
     touch-action: pan-y;
+  }
+
+  .career-coach-panel-copy h3 {
+    margin-top: 0.75rem;
   }
 
   .career-coach-panel-people {
@@ -4833,6 +4843,7 @@ body::-webkit-scrollbar {
     overflow-x: visible;
     scroll-snap-type: none;
   }
+
 
   .career-coach-card {
     scroll-snap-align: none;
@@ -4851,9 +4862,14 @@ body::-webkit-scrollbar {
 }
 
 @media (max-width: 639px) {
+  .career-leader-layout {
+    gap: 0.25rem;
+  }
+
   .career-leader-mobile-nav {
     display: flex;
-    margin-block-start: 0.75rem;
+    margin-block-start: 0;
+    padding-block-end: 0.25rem;
   }
 
   .career-leader-cards {
@@ -4865,12 +4881,15 @@ body::-webkit-scrollbar {
     margin-inline: 0;
     padding-inline: 0;
     margin-block-start: 0;
-    padding-block-start: 0.5rem;
+    padding-block-start: 0;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
   }
+
+
+
 
   .career-leader-card {
     width: 100%;

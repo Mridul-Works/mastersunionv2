@@ -158,8 +158,14 @@
 - Salone Sehgal: added portrait
 - [x] Set background button color to #131618 for the hero "Placement report" button and the proven "Download placement report" button
 
-- Term 4 Interview preparations: replaced inline iframe with YouTube thumbnail + play-button overlay (same pattern as Leadership guidance)- [x] Change Student voice card background color to #638C75 with white text
+- [x] Term 4 Interview preparations: replaced inline iframe with YouTube thumbnail + play-button overlay (same pattern as Leadership guidance)
+- [x] Change Student voice card background color to #638C75 with white text
+
 - [x] Mobile-only: improve PGP TBM cohort ledger row spacing and enable smooth horizontal scrolling
 - [x] Mobile-only: present each PGP TBM and PGP TBM YLC ledger row as an individually swipeable card
 - [x] Fix coach cards swipe skipping to card 3 on mobile (wheel gesture state reset on panel remount)
 - [x] Decrease bottom padding under "Making You Industry Ready" on mobile only
+- [x] Mobile-only: decrease top padding above Leadership guidance video card to match other arrow-button card sections
+- [x] Mobile-only: decrease top padding above Dedicated career coaches arrow buttons / card to match other sections
+
+
