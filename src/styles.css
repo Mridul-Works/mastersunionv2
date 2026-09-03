@@ -4898,3 +4898,16 @@ body::-webkit-scrollbar {
     scroll-snap-stop: always;
   }
 }
+
+/* Narrow phones (≤359px): keep recruiter category chip labels fully readable. */
+@media (max-width: 359px) {
+  .recruiter-category-grid-mobile {
+    gap: 0.375rem;
+  }
+  .recruiter-category-grid-mobile button {
+    padding-inline: 0.25rem;
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    word-break: break-word;
+  }
+}
