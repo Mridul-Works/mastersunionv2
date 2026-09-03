@@ -4726,3 +4726,14 @@ body::-webkit-scrollbar {
     padding-block-start: 0.5rem;
   }
 }
+
+/* Professional guidance: mobile-only slide hint */
+.career-guidance-mobile-nav {
+  display: none;
+}
+
+@media (max-width: 639px) {
+  .career-guidance-mobile-nav {
+    display: flex;
+  }
+}
