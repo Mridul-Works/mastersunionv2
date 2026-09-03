@@ -1263,7 +1263,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
   const tryMoveStory = (direction: number) => {
     const now = Date.now();
     if (now < storyGestureLock.current) return;
-    storyGestureLock.current = now + 450;
+    storyGestureLock.current = now + 220;
     moveStory(direction);
   };
 
@@ -1280,7 +1280,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
     if (!touch) return;
     const dx = touch.clientX - start.x;
     const dy = touch.clientY - start.y;
-    if (Math.abs(dx) < 45 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+    if (Math.abs(dx) < 24 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
     tryMoveStory(dx < 0 ? 1 : -1);
   };
 
@@ -1308,7 +1308,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
 
       if (gestureDone) return;
       accum += dx;
-      if (Math.abs(accum) < 50) return;
+      if (Math.abs(accum) < 18) return;
       gestureDone = true;
       tryMoveStory(accum < 0 ? -1 : 1);
     };
