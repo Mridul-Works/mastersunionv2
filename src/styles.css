@@ -4813,16 +4813,26 @@ body::-webkit-scrollbar {
   .career-coach-mobile-nav {
     display: flex;
     justify-content: flex-end;
-    padding-bottom: 1rem;
+    padding-bottom: 0.25rem;
   }
 
   .career-coach-tabs {
     display: none;
   }
 
+  .career-coach-shell {
+    gap: 0.25rem;
+  }
+
   .career-coach-panel {
+    padding: 0.5rem;
+    padding-bottom: 1rem;
     animation-duration: 220ms;
     touch-action: pan-y;
+  }
+
+  .career-coach-panel-copy h3 {
+    margin-top: 0.75rem;
   }
 
   .career-coach-panel-people {
@@ -4833,6 +4843,7 @@ body::-webkit-scrollbar {
     overflow-x: visible;
     scroll-snap-type: none;
   }
+
 
   .career-coach-card {
     scroll-snap-align: none;
