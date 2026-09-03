@@ -1258,6 +1258,14 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
 
   const storyStageRef = React.useRef<HTMLDivElement>(null);
   const storyTouchRef = React.useRef<{ x: number; y: number } | null>(null);
+  const storyGestureLock = React.useRef(0);
+
+  const tryMoveStory = (direction: number) => {
+    const now = Date.now();
+    if (now < storyGestureLock.current) return;
+    storyGestureLock.current = now + 450;
+    moveStory(direction);
+  };
 
   const onStoryTouchStart = (event: React.TouchEvent) => {
     const touch = event.touches[0];
@@ -1273,30 +1281,43 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
     const dx = touch.clientX - start.x;
     const dy = touch.clientY - start.y;
     if (Math.abs(dx) < 45 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
-    moveStory(dx < 0 ? 1 : -1);
+    tryMoveStory(dx < 0 ? 1 : -1);
   };
 
   React.useEffect(() => {
     const node = storyStageRef.current;
     if (!node) return;
     let accum = 0;
-    let lockedUntil = 0;
+    let gestureDone = false;
+    let idleTimer: ReturnType<typeof setTimeout> | undefined;
+
     const onWheel = (event: WheelEvent) => {
       if (window.innerWidth >= 640) return;
       const dx = event.deltaX;
       const dy = event.deltaY;
       if (Math.abs(dx) < Math.abs(dy) * 1.2) return;
       event.preventDefault();
-      const now = Date.now();
-      if (now < lockedUntil) return;
+
+      // A single trackpad flick emits a long stream of wheel events (incl.
+      // inertia). Treat everything until ~140ms of silence as one gesture.
+      if (idleTimer) clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => {
+        accum = 0;
+        gestureDone = false;
+      }, 140);
+
+      if (gestureDone) return;
       accum += dx;
-      if (Math.abs(accum) < 60) return;
-      moveStory(accum < 0 ? -1 : 1);
-      accum = 0;
-      lockedUntil = now + 500;
+      if (Math.abs(accum) < 50) return;
+      gestureDone = true;
+      tryMoveStory(accum < 0 ? -1 : 1);
     };
+
     node.addEventListener("wheel", onWheel, { passive: false });
-    return () => node.removeEventListener("wheel", onWheel);
+    return () => {
+      node.removeEventListener("wheel", onWheel);
+      if (idleTimer) clearTimeout(idleTimer);
+    };
   }, [featuredStories.length]);
 
 
