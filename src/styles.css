@@ -3602,6 +3602,7 @@ body::-webkit-scrollbar {
     gap: 0;
     margin-inline: 0;
     padding-inline: 0;
+    padding-top: 1rem;
     padding-bottom: 0.5rem;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
