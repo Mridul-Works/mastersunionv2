@@ -2622,7 +2622,7 @@ function EditorialPlacementData() {
         <div className="mt-10 grid border border-white/15 bg-[#0A1712] lg:grid-cols-12">
           <div className="flex flex-col justify-between border-b border-white/15 p-7 pb-5 md:p-8 lg:col-span-3 lg:border-r lg:border-b-0">
             <span className="text-[10px] uppercase tracking-[0.22em] text-accent" style={{ fontFamily: MONO }}>Distinct programme view</span>
-            <div className="mt-14 lg:mt-0">
+            <div className="mt-5 md:mt-14 lg:mt-0">
               <h3 className="text-[clamp(1.65rem,3vw,2.6rem)] font-medium leading-tight text-white">PGP TBM <em className="font-serif-italic text-accent">YLC</em></h3>
               <p className="mt-3 text-[0.85rem] leading-relaxed text-white/52">Average, median and highest CTC across five cohorts.</p>
             </div>
