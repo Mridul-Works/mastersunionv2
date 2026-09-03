@@ -1173,8 +1173,7 @@ function CareerTransitionsSection() {
     if (!el) return;
     const chapter = el.querySelector(".career-transition-chapter") as HTMLElement | null;
     if (!chapter) return;
-    const gap = 16;
-    el.scrollBy({ left: dir * (chapter.offsetWidth + gap), behavior: "smooth" });
+    el.scrollBy({ left: dir * chapter.offsetWidth, behavior: "smooth" });
   };
 
   return (
