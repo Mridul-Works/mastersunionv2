@@ -1796,7 +1796,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
         <div className="career-section-number">05</div>
         <Reveal><Eyebrow>Leadership guidance</Eyebrow></Reveal>
         <Reveal delay={100}><h2 className="career-area-title">Your Future Recruiters <em className="font-serif-italic">on Campus</em></h2></Reveal>
-        <div className="career-leader-layout mt-12">
+        <div className="career-leader-layout mt-6 sm:mt-12">
           <div className="career-leader-selector" role="tablist" aria-label="Recruiter leadership categories">
             {LEADER_GROUPS.map((group, index) => (
               <Button key={group.label} variant="ghost" role="tab" aria-selected={leaderGroup === index} className={leaderGroup === index ? "is-active" : ""} onClick={() => setLeaderGroup(index)}>{group.label}</Button>

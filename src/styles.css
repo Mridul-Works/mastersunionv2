@@ -4853,7 +4853,7 @@ body::-webkit-scrollbar {
 @media (max-width: 639px) {
   .career-leader-mobile-nav {
     display: flex;
-    margin-block-start: 1.5rem;
+    margin-block-start: 0.75rem;
   }
 
   .career-leader-cards {
@@ -4865,7 +4865,7 @@ body::-webkit-scrollbar {
     margin-inline: 0;
     padding-inline: 0;
     margin-block-start: 0;
-    padding-block-start: 1.25rem;
+    padding-block-start: 0.5rem;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
     scroll-snap-type: x mandatory;
