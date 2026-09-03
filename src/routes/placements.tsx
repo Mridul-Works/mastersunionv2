@@ -1353,7 +1353,37 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
     };
   }, []);
 
+  React.useEffect(() => {
+    const node = coachTabsRef.current;
+    if (!node) return;
+    let accumulatedX = 0;
+    let gestureDone = false;
+    let idleTimer: ReturnType<typeof setTimeout> | undefined;
+
+    const onWheel = (event: WheelEvent) => {
+      if (window.innerWidth >= 640 || Math.abs(event.deltaX) < Math.abs(event.deltaY) * 1.2) return;
+      event.preventDefault();
+      if (idleTimer) clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => {
+        accumulatedX = 0;
+        gestureDone = false;
+      }, 140);
+      if (gestureDone) return;
+      accumulatedX += event.deltaX;
+      if (Math.abs(accumulatedX) < 18) return;
+      gestureDone = true;
+      moveCoachTrack(accumulatedX < 0 ? 1 : -1);
+    };
+
+    node.addEventListener("wheel", onWheel, { passive: false });
+    return () => {
+      node.removeEventListener("wheel", onWheel);
+      if (idleTimer) clearTimeout(idleTimer);
+    };
+  }, []);
+
   const storyStageRef = React.useRef<HTMLDivElement>(null);
+
   const storyTouchRef = React.useRef<{ x: number; y: number } | null>(null);
   const storyGestureLock = React.useRef(0);
 
