@@ -4518,7 +4518,7 @@ body::-webkit-scrollbar {
     flex: 0 0 100%;
     width: 100%;
     min-width: 0;
-    padding: 1.25rem;
+    padding: 1.25rem 1.25rem 0.5rem;
     scroll-snap-align: center;
     scroll-snap-stop: always;
   }
