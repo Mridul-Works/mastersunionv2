@@ -4752,6 +4752,10 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+.career-roadmap-mobile-nav {
+  display: none;
+}
+
 @media (max-width: 639px) {
   .career-guidance-mobile-nav {
     display: flex;
@@ -4760,5 +4764,24 @@ body::-webkit-scrollbar {
   .career-guidance-grid {
     margin-block-start: 0;
     padding-block-start: 1.5rem;
+  }
+
+  .career-roadmap-layout {
+    display: block;
+  }
+
+  .career-roadmap-mobile-nav {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 1.25rem;
+  }
+
+  .career-roadmap-rail {
+    display: none;
+  }
+
+  .career-roadmap-panel {
+    animation-duration: 220ms;
+    touch-action: pan-y;
   }
 }
