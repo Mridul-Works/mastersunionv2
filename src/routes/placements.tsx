@@ -1246,6 +1246,9 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
   const [showAllGuidance, setShowAllGuidance] = useState(false);
   const [coachTrack, setCoachTrack] = useState(0);
   const guidanceRailRef = useRef<HTMLDivElement>(null);
+  const roadmapStageRef = useRef<HTMLDivElement>(null);
+  const roadmapTouchRef = useRef<{ x: number; y: number } | null>(null);
+  const roadmapGestureLock = useRef(0);
 
 
 
@@ -1258,6 +1261,60 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
   const moveStory = (direction: number) => {
     setStory((current) => (current + direction + featuredStories.length) % featuredStories.length);
   };
+
+  const moveRoadmap = (direction: number) => {
+    const now = Date.now();
+    if (now < roadmapGestureLock.current) return;
+    roadmapGestureLock.current = now + 220;
+    setTerm((current) => (current + direction + TERMS.length) % TERMS.length);
+  };
+
+  const onRoadmapTouchStart = (event: React.TouchEvent) => {
+    if (window.innerWidth >= 640) return;
+    const touch = event.touches[0];
+    if (touch) roadmapTouchRef.current = { x: touch.clientX, y: touch.clientY };
+  };
+
+  const onRoadmapTouchMove = (event: React.TouchEvent) => {
+    const start = roadmapTouchRef.current;
+    if (!start || window.innerWidth >= 640) return;
+    const touch = event.touches[0];
+    if (!touch) return;
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    if (Math.abs(dx) < 24 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+    roadmapTouchRef.current = null;
+    moveRoadmap(dx < 0 ? 1 : -1);
+  };
+
+  React.useEffect(() => {
+    const node = roadmapStageRef.current;
+    if (!node) return;
+    let accumulatedX = 0;
+    let gestureDone = false;
+    let idleTimer: ReturnType<typeof setTimeout> | undefined;
+
+    const onWheel = (event: WheelEvent) => {
+      if (window.innerWidth >= 640 || Math.abs(event.deltaX) < Math.abs(event.deltaY) * 1.2) return;
+      event.preventDefault();
+      if (idleTimer) clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => {
+        accumulatedX = 0;
+        gestureDone = false;
+      }, 140);
+      if (gestureDone) return;
+      accumulatedX += event.deltaX;
+      if (Math.abs(accumulatedX) < 18) return;
+      gestureDone = true;
+      moveRoadmap(accumulatedX < 0 ? -1 : 1);
+    };
+
+    node.addEventListener("wheel", onWheel, { passive: false });
+    return () => {
+      node.removeEventListener("wheel", onWheel);
+      if (idleTimer) clearTimeout(idleTimer);
+    };
+  }, []);
 
   const storyStageRef = React.useRef<HTMLDivElement>(null);
   const storyTouchRef = React.useRef<{ x: number; y: number } | null>(null);
@@ -1510,6 +1567,9 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
           <p className="career-area-intro">Leverage the opportunity to engage in workshops, training, panel discussions, counselling sessions, and personalised career progression plans.</p>
         </Reveal>
         <div className="career-roadmap-layout mt-10">
+          <div className="career-roadmap-mobile-nav">
+            <ScrollNav tone="light" label="Slide" onPrev={() => moveRoadmap(-1)} onNext={() => moveRoadmap(1)} />
+          </div>
           <nav className="career-roadmap-rail" aria-label="Career pathway terms">
             {TERMS.map((item, index) => (
               <button
@@ -1528,7 +1588,22 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
             ))}
           </nav>
 
-          <div className="career-roadmap-panel" key={currentTerm.term}>
+          <div
+            ref={roadmapStageRef}
+            className="career-roadmap-panel"
+            key={currentTerm.term}
+            role="region"
+            aria-roledescription="carousel"
+            aria-label={`Career pathway ${currentTerm.term}`}
+            tabIndex={0}
+            onTouchStart={onRoadmapTouchStart}
+            onTouchMove={onRoadmapTouchMove}
+            onTouchEnd={() => { roadmapTouchRef.current = null; }}
+            onKeyDown={(event) => {
+              if (event.key === "ArrowLeft") moveRoadmap(-1);
+              if (event.key === "ArrowRight") moveRoadmap(1);
+            }}
+          >
             <header className="career-roadmap-panel-head">
               <div>
                 <p className="career-kicker">{currentTerm.term} · {currentTerm.items.length} activities</p>
