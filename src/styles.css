@@ -4440,7 +4440,7 @@ body::-webkit-scrollbar {
    Focus that subject—not the image canvas—in the middle of the viewport. */
 @media (max-width: 767px) {
   .quote-cover-section {
-    background-position: 88% center !important;
+    background-position: calc(88% + 20px) center !important;
   }
 }
 
