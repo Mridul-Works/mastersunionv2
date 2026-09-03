@@ -1588,6 +1588,7 @@ body::-webkit-scrollbar {
     scroll-snap-stop: always;
     border-radius: 16px;
     text-align: center;
+    background-color: #0B1215;
   }
 
   .placement-ledger-card > div,
