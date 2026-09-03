@@ -4851,9 +4851,14 @@ body::-webkit-scrollbar {
 }
 
 @media (max-width: 639px) {
+  .career-leader-layout {
+    gap: 0.75rem;
+  }
+
   .career-leader-mobile-nav {
     display: flex;
-    margin-block-start: 0.75rem;
+    margin-block-start: 0;
+    padding-block-end: 0.25rem;
   }
 
   .career-leader-cards {
@@ -4865,12 +4870,13 @@ body::-webkit-scrollbar {
     margin-inline: 0;
     padding-inline: 0;
     margin-block-start: 0;
-    padding-block-start: 0.5rem;
+    padding-block-start: 0.25rem;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
   }
+
 
   .career-leader-card {
     width: 100%;
