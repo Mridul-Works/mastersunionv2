@@ -163,6 +163,7 @@
 - [x] Mobile-only: present each PGP TBM and PGP TBM YLC ledger row as an individually swipeable card
 - [x] Fix coach cards swipe skipping to card 3 on mobile (wheel gesture state reset on panel remount)
 - [x] Decrease bottom padding under "Making You Industry Ready" on mobile only
-- [ ] Mobile-only: decrease top padding above Leadership guidance video card to match other arrow-button card sections
-- [ ] Mobile-only: decrease top padding above Dedicated career coaches arrow buttons / card to match other sections
+- [x] Mobile-only: decrease top padding above Leadership guidance video card to match other arrow-button card sections
+- [x] Mobile-only: decrease top padding above Dedicated career coaches arrow buttons / card to match other sections
+
 
