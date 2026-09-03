@@ -3779,6 +3779,10 @@ body::-webkit-scrollbar {
     padding: 1.5rem 1rem;
   }
 
+  .career-closing-cta h2 {
+    padding-bottom: 1.25rem;
+  }
+
   .career-closing-cta nav {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
