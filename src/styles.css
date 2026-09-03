@@ -3240,6 +3240,7 @@ body::-webkit-scrollbar {
 .career-roadmap-visual .career-roadmap-play svg { width: 1rem; height: 1rem; }
 .career-roadmap-visual.has-video:hover .career-roadmap-play > span { transform: scale(1.1); background: #638C75; border-color: #638C75; color: var(--background); }
 .career-roadmap-items { display: grid; gap: 0.5rem; align-content: start; grid-template-columns: 1fr; }
+.career-roadmap-items-card { display: block; }
 .career-roadmap-items li {
   display: flex;
   gap: 0.6rem;
@@ -3672,21 +3673,38 @@ body::-webkit-scrollbar {
     aspect-ratio: 16 / 9;
   }
 
+  .career-roadmap-items-card {
+    padding: 0.85rem 1rem;
+    border: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
+    border-radius: 12px;
+    background: var(--placements-inner-surface);
+  }
+
   .career-roadmap-items {
-    display: grid;
-    grid-auto-columns: min(70vw, 15rem);
-    grid-auto-flow: column;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    grid-auto-columns: none;
+    grid-auto-flow: unset;
     grid-template-columns: none;
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
+    overflow-x: visible;
+    overscroll-behavior-inline: auto;
+    scroll-snap-type: none;
+    scrollbar-width: auto;
   }
 
   .career-roadmap-items li {
     align-items: flex-start;
-    min-height: 5.5rem;
-    scroll-snap-align: start;
+    min-height: 0;
+    padding: 0.55rem 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    scroll-snap-align: none;
+  }
+
+  .career-roadmap-items li:not(:last-child) {
+    border-bottom: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
   }
 
   .career-coach-tab {
