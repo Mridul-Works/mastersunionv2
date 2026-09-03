@@ -1250,6 +1250,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
   const roadmapTouchRef = useRef<{ x: number; y: number } | null>(null);
   const roadmapGestureLock = useRef(0);
   const coachTabsRef = useRef<HTMLDivElement>(null);
+  const coachPanelRef = useRef<HTMLDivElement>(null);
   const coachTouchRef = useRef<{ x: number; y: number } | null>(null);
   const coachGestureLock = useRef(0);
 
@@ -1280,12 +1281,6 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
     setCoachTrack((current) => (current + direction + COACH_TRACKS.length) % COACH_TRACKS.length);
   };
 
-  React.useEffect(() => {
-    const rail = coachTabsRef.current;
-    if (!rail || window.innerWidth >= 640) return;
-    const tab = rail.children[coachTrack] as HTMLElement | undefined;
-    if (tab) tab.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-  }, [coachTrack]);
 
   const onCoachTouchStart = (event: React.TouchEvent) => {
     if (window.innerWidth >= 640) return;
@@ -1354,7 +1349,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
   }, []);
 
   React.useEffect(() => {
-    const node = coachTabsRef.current;
+    const node = coachPanelRef.current;
     if (!node) return;
     let accumulatedX = 0;
     let gestureDone = false;
@@ -1380,7 +1375,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
       node.removeEventListener("wheel", onWheel);
       if (idleTimer) clearTimeout(idleTimer);
     };
-  }, []);
+  }, [coachTrack]);
 
   const storyStageRef = React.useRef<HTMLDivElement>(null);
 
@@ -1740,13 +1735,6 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
             className="career-coach-tabs"
             role="tablist"
             aria-label="Career coaching tracks"
-            onTouchStart={onCoachTouchStart}
-            onTouchMove={onCoachTouchMove}
-            onTouchEnd={() => { coachTouchRef.current = null; }}
-            onKeyDown={(event) => {
-              if (event.key === "ArrowLeft") moveCoachTrack(-1);
-              if (event.key === "ArrowRight") moveCoachTrack(1);
-            }}
           >
             {COACH_TRACKS.map((track, i) => (
               <button
@@ -1763,7 +1751,22 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
             ))}
           </div>
 
-          <div className="career-coach-panel" key={coachTrack}>
+          <div
+            ref={coachPanelRef}
+            className="career-coach-panel"
+            key={coachTrack}
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="Career coaching track"
+            tabIndex={0}
+            onTouchStart={onCoachTouchStart}
+            onTouchMove={onCoachTouchMove}
+            onTouchEnd={() => { coachTouchRef.current = null; }}
+            onKeyDown={(event) => {
+              if (event.key === "ArrowLeft") moveCoachTrack(-1);
+              if (event.key === "ArrowRight") moveCoachTrack(1);
+            }}
+          >
 
             <div className="career-coach-panel-copy">
               <div className="career-coach-icon">{coachTrack === 0 ? <Mic2 /> : coachTrack === 1 ? <BadgeCheck /> : <Compass />}</div>

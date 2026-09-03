@@ -3720,30 +3720,13 @@ body::-webkit-scrollbar {
   }
 
   .career-coach-tabs {
-    display: flex;
-    gap: 0;
-    margin-inline: -1.15rem;
-    padding-inline: 1.15rem;
-    padding-bottom: 0.35rem;
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-  }
-
-  .career-coach-tab {
-    flex: 0 0 calc(100vw - 2 * 1.15rem);
-    min-width: 0;
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
-  }
-
-  .career-coach-tab + .career-coach-tab {
-    margin-left: 1rem;
+    display: none;
   }
 
   .career-coach-panel {
     padding: 1rem;
+    animation-duration: 220ms;
+    touch-action: pan-y;
   }
 
   .career-coach-panel-people {
@@ -4820,26 +4803,12 @@ body::-webkit-scrollbar {
   }
 
   .career-coach-tabs {
-    display: flex;
-    gap: 0;
-    margin-inline: -1.15rem;
-    padding-inline: 1.15rem;
-    padding-bottom: 0.35rem;
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
+    display: none;
   }
 
-  .career-coach-tab {
-    flex: 0 0 calc(100vw - 2 * 1.15rem);
-    min-width: 0;
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
-  }
-
-  .career-coach-tab + .career-coach-tab {
-    margin-left: 1rem;
+  .career-coach-panel {
+    animation-duration: 220ms;
+    touch-action: pan-y;
   }
 
   .career-coach-panel-people {
