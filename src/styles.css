@@ -4569,6 +4569,7 @@ body::-webkit-scrollbar {
     display: flex;
     justify-content: center;
     margin-top: 1.5rem;
+    padding-bottom: 0.75rem;
   }
 
   .career-transition-columns {
