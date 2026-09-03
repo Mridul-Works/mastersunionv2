@@ -2069,6 +2069,10 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+.career-transition-view-more {
+  display: none;
+}
+
 .career-transitions-header-nav {
   display: none;
 }
