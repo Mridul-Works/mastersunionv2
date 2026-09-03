@@ -4592,7 +4592,7 @@ body::-webkit-scrollbar {
   }
 
   .career-transition-category-rule {
-    margin-top: 1rem;
+    display: none;
   }
 
   .career-coach-tabs,
