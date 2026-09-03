@@ -4870,12 +4870,13 @@ body::-webkit-scrollbar {
     margin-inline: 0;
     padding-inline: 0;
     margin-block-start: 0;
-    padding-block-start: 0.25rem;
+    padding-block-start: 0;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
   }
+
 
 
   .career-leader-card {
