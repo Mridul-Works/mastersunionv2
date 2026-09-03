@@ -4866,7 +4866,6 @@ body::-webkit-scrollbar {
     gap: 0.25rem;
   }
 
-
   .career-leader-mobile-nav {
     display: flex;
     margin-block-start: 0;
@@ -4888,6 +4887,7 @@ body::-webkit-scrollbar {
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
   }
+
 
 
 
