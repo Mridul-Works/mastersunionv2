@@ -1245,6 +1245,9 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
   const [leaderGroup, setLeaderGroup] = useState(0);
   const [showAllGuidance, setShowAllGuidance] = useState(false);
   const [coachTrack, setCoachTrack] = useState(0);
+  const guidanceRailRef = useRef<HTMLDivElement>(null);
+
+
 
   const featuredStories = TESTIMONIALS;
   const currentStory = featuredStories[story];
@@ -1439,7 +1442,23 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
           </Reveal>
         </div>
 
-        <div className="career-guidance-grid mt-12" aria-label={`Professional guidance team, ${visibleGuidance.length} of 52 profiles shown`}>
+        <div className="career-guidance-mobile-nav mt-8 flex justify-end">
+          <ScrollNav
+            tone="light"
+            label="Slide"
+            onPrev={() => {
+              const el = guidanceRailRef.current;
+              if (el) el.scrollBy({ left: -el.clientWidth, behavior: "smooth" });
+            }}
+            onNext={() => {
+              const el = guidanceRailRef.current;
+              if (el) el.scrollBy({ left: el.clientWidth, behavior: "smooth" });
+            }}
+          />
+        </div>
+
+        <div ref={guidanceRailRef} className="career-guidance-grid mt-12" aria-label={`Professional guidance team, ${visibleGuidance.length} of 52 profiles shown`}>
+
           {visibleGuidance.map((member) => (
             <article
               className={`career-guidance-card${member.isPlaceholder ? " is-placeholder" : ""}`}

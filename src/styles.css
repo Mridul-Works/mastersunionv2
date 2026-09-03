@@ -3596,12 +3596,12 @@ body::-webkit-scrollbar {
 
   .career-guidance-grid {
     display: grid;
-    grid-auto-columns: min(76vw, 17rem);
+    grid-auto-columns: 100%;
     grid-auto-flow: column;
     grid-template-columns: none;
-    gap: 0.75rem;
-    margin-inline: -1.15rem;
-    padding-inline: 1.15rem;
+    gap: 0;
+    margin-inline: 0;
+    padding-inline: 0;
     padding-bottom: 0.5rem;
     overflow-x: auto;
     overscroll-behavior-inline: contain;
@@ -3612,8 +3612,10 @@ body::-webkit-scrollbar {
   .career-guidance-card {
     min-width: 0;
     height: auto;
-    scroll-snap-align: start;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
   }
+
 
   .career-guidance-portrait > .career-portrait-placeholder {
     aspect-ratio: 4 / 3;
@@ -4722,5 +4724,16 @@ body::-webkit-scrollbar {
   [data-rail] {
     margin-block-start: -0.5rem;
     padding-block-start: 0.5rem;
+  }
+}
+
+/* Professional guidance: mobile-only slide hint */
+.career-guidance-mobile-nav {
+  display: none;
+}
+
+@media (max-width: 639px) {
+  .career-guidance-mobile-nav {
+    display: flex;
   }
 }
