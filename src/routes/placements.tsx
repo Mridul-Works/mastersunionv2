@@ -1263,13 +1263,25 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
   const tryMoveStory = (direction: number) => {
     const now = Date.now();
     if (now < storyGestureLock.current) return;
-    storyGestureLock.current = now + 450;
+    storyGestureLock.current = now + 220;
     moveStory(direction);
   };
 
   const onStoryTouchStart = (event: React.TouchEvent) => {
     const touch = event.touches[0];
     if (touch) storyTouchRef.current = { x: touch.clientX, y: touch.clientY };
+  };
+
+  const onStoryTouchMove = (event: React.TouchEvent) => {
+    const start = storyTouchRef.current;
+    if (!start || window.innerWidth >= 640) return;
+    const touch = event.touches[0];
+    if (!touch) return;
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    if (Math.abs(dx) < 24 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+    storyTouchRef.current = null;
+    tryMoveStory(dx < 0 ? 1 : -1);
   };
 
   const onStoryTouchEnd = (event: React.TouchEvent) => {
@@ -1280,7 +1292,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
     if (!touch) return;
     const dx = touch.clientX - start.x;
     const dy = touch.clientY - start.y;
-    if (Math.abs(dx) < 45 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+    if (Math.abs(dx) < 24 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
     tryMoveStory(dx < 0 ? 1 : -1);
   };
 
@@ -1308,7 +1320,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
 
       if (gestureDone) return;
       accum += dx;
-      if (Math.abs(accum) < 50) return;
+      if (Math.abs(accum) < 18) return;
       gestureDone = true;
       tryMoveStory(accum < 0 ? -1 : 1);
     };
@@ -1340,6 +1352,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
           tabIndex={0}
           ref={storyStageRef}
           onTouchStart={onStoryTouchStart}
+          onTouchMove={onStoryTouchMove}
           onTouchEnd={onStoryTouchEnd}
           onKeyDown={(event) => {
             if (event.key === "ArrowLeft") moveStory(-1);

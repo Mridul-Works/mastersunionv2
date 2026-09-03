@@ -3492,6 +3492,7 @@ body::-webkit-scrollbar {
 
   .career-story-stage {
     min-height: 0;
+    animation-duration: 220ms;
   }
 
   .career-story-visual .career-featured-portrait {
