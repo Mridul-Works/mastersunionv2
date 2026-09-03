@@ -4904,6 +4904,7 @@ body::-webkit-scrollbar {
   .recruiter-category-grid-mobile {
     gap: 0.375rem;
   }
+  .placements-ug-v2 .recruiter-category-grid-mobile .recruiter-category-button,
   .recruiter-category-grid-mobile button {
     padding-inline: 0.25rem;
     font-size: 9px;
