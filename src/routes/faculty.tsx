@@ -523,7 +523,7 @@ function FacultyPage() {
 
 
       {/* INDUSTRY PRACTITIONERS */}
-      <section id="practitioners" className="screen-section border-y border-white/10 bg-ink">
+      <section id="practitioners" className="screen-section min-h-[140svh] border-y border-white/10 bg-ink">
         <div className="page-shell screen-y">
           <PractitionerModel
             groups={[
