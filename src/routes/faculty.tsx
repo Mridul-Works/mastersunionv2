@@ -531,16 +531,11 @@ function FacultyPage() {
             intro="Half of the faculty are CEOs, MDs, founders and investors — bringing this week's decisions into the classroom, not last decade's case studies."
           />
           <SectionDivider inset="none" className="my-[clamp(1.5rem,4vh,2.5rem)]" />
-          <EditorialGrid
-            gallery
-            cardStats
-            dark
-            sectionLabel="Industry Practitioners"
-            pct="50%"
-            tagline="Half of the faculty are active operators — CEOs, MDs, founders and investors bringing this week's decisions into the classroom."
-            stats={[
-              { v: "250+", l: "Active practitioners on roster" },
-              { v: "40+", l: "CXOs & Managing Directors" },
+          <PractitionerModel
+            mix={[
+              { pct: "50", label: "Industry Practitioners", note: "Operators bringing this week's decisions into class", active: true },
+              { pct: "30", label: "Full-Time Faculty", note: "PhD educators shaping the core curriculum" },
+              { pct: "20", label: "Visiting Faculty", note: "Professors from Harvard, Stanford and Wharton" },
             ]}
             items={PRACTITIONERS.map((p) => ({
               name: p.name,
