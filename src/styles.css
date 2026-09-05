@@ -5405,3 +5405,217 @@ body::-webkit-scrollbar {
     word-break: break-word;
   }
 }
+
+/* ── Faculty · Industry Practitioner model (rail + horizontal cards) ───────── */
+.faculty-redesign .faculty-model {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(1.75rem, 4vw, 4rem);
+  padding-block: clamp(1.5rem, 4vw, 3rem);
+}
+
+.faculty-redesign .faculty-model-rail {
+  position: sticky;
+  top: clamp(4rem, 12vh, 8rem);
+  align-self: start;
+}
+
+.faculty-redesign .faculty-model-rail-kicker {
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--faculty-silver, #cacfd1) 62%, transparent);
+}
+
+.faculty-redesign .faculty-model-mix {
+  margin-top: clamp(1.25rem, 3vw, 2rem);
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 2.75rem);
+  border-left: 1px solid color-mix(in oklab, var(--faculty-silver, #cacfd1) 14%, transparent);
+  padding-left: clamp(1rem, 2.5vw, 1.75rem);
+}
+
+.faculty-redesign .faculty-model-mix-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  align-items: start;
+  transition: opacity 400ms ease;
+  opacity: 0.72;
+}
+
+.faculty-redesign .faculty-model-mix-row[data-active="true"],
+.faculty-redesign .faculty-model-mix-row:hover {
+  opacity: 1;
+}
+
+.faculty-redesign .faculty-model-mix-figure {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+
+.faculty-redesign .faculty-model-mix-pct {
+  font-family: var(--faculty-font-display, "Instrument Serif", serif);
+  font-size: clamp(2.6rem, 6vw, 4.25rem);
+  line-height: 0.82;
+  letter-spacing: -0.03em;
+  color: var(--foreground);
+}
+
+.faculty-redesign .faculty-model-mix-row[data-active="true"] .faculty-model-mix-pct {
+  color: var(--faculty-vermilion, #b94f3d);
+}
+
+.faculty-redesign .faculty-model-mix-unit {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: color-mix(in oklab, var(--faculty-silver, #cacfd1) 60%, transparent);
+}
+
+.faculty-redesign .faculty-model-mix-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.faculty-redesign .faculty-model-mix-note {
+  margin-top: 0.35rem;
+  max-width: 26ch;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: color-mix(in oklab, var(--foreground) 62%, transparent);
+}
+
+.faculty-redesign .faculty-model-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.85rem, 2vw, 1.35rem);
+}
+
+.faculty-redesign .faculty-model-card {
+  display: grid;
+  grid-template-columns: clamp(88px, 9vw, 132px) minmax(0, 1fr);
+  gap: clamp(0.85rem, 1.6vw, 1.25rem);
+  border: 1px solid color-mix(in oklab, var(--faculty-silver, #cacfd1) 13%, transparent);
+  background: color-mix(in oklab, var(--faculty-panel, #1a2025) 70%, transparent);
+  padding: clamp(0.85rem, 1.6vw, 1.15rem);
+  transition:
+    border-color 400ms ease,
+    background 400ms ease,
+    transform 400ms ease;
+}
+
+.faculty-redesign .faculty-model-card:hover {
+  border-color: color-mix(in oklab, var(--faculty-vermilion, #b94f3d) 55%, transparent);
+  background: color-mix(in oklab, var(--faculty-panel, #1a2025) 92%, transparent);
+  transform: translateY(-3px);
+}
+
+.faculty-redesign .faculty-model-card-photo {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: color-mix(in oklab, var(--faculty-silver, #cacfd1) 8%, transparent);
+}
+
+.faculty-redesign .faculty-model-card:hover .faculty-model-card-photo img {
+  transform: scale(1.05);
+}
+
+.faculty-redesign .faculty-model-card-name {
+  font-family: var(--faculty-font-display, "Instrument Serif", serif);
+  font-size: clamp(1.02rem, 1.35vw, 1.28rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.faculty-redesign .faculty-model-card-role {
+  margin-top: 0.5rem;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--foreground) 66%, transparent);
+}
+
+.faculty-redesign .faculty-model-card-company {
+  margin-top: 0.55rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid color-mix(in oklab, var(--faculty-silver, #cacfd1) 13%, transparent);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--faculty-vermilion, #b94f3d);
+}
+
+.faculty-redesign .faculty-model-card-blurb {
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: color-mix(in oklab, var(--foreground) 60%, transparent);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.faculty-redesign .faculty-model-more {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  padding-top: clamp(0.5rem, 1.5vw, 1rem);
+}
+
+.faculty-redesign .faculty-model-more-btn {
+  border: 1px solid color-mix(in oklab, var(--faculty-silver, #cacfd1) 22%, transparent);
+  padding: 0.7rem 1.5rem;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--foreground);
+  transition:
+    border-color 350ms ease,
+    color 350ms ease,
+    background 350ms ease;
+}
+
+.faculty-redesign .faculty-model-more-btn:hover {
+  border-color: var(--faculty-vermilion, #b94f3d);
+  color: var(--faculty-vermilion, #b94f3d);
+}
+
+@media (max-width: 1023px) {
+  .faculty-redesign .faculty-model {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(1.5rem, 4vw, 2.25rem);
+  }
+  .faculty-redesign .faculty-model-rail {
+    position: static;
+  }
+  .faculty-redesign .faculty-model-mix {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: grid;
+  }
+  .faculty-redesign .faculty-model-mix-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 639px) {
+  .faculty-redesign .faculty-model-mix {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .faculty-redesign .faculty-model-mix-row {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .faculty-redesign .faculty-model-cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faculty-redesign .faculty-model-card,
+  .faculty-redesign .faculty-model-card-photo img {
+    transition: none;
+  }
+}
