@@ -76,8 +76,8 @@ export default function PractitionerModel({
   const visible = (active?.items ?? []).slice(0, limit);
 
   return (
-    <div className="faculty-model" ref={wrapRef}>
-      <header className="faculty-model-header" ref={headerRef}>
+    <div className="faculty-model">
+      <header className="faculty-model-header">
         <div className="faculty-model-heading">
           <p className="faculty-model-rail-kicker" style={{ fontFamily: MONO }}>
             Academic excellence
