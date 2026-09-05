@@ -1394,12 +1394,16 @@ body::-webkit-scrollbar {
   color: var(--faculty-silver);
 }
 
-.faculty-redesign .faculty-profile:nth-child(3n + 2) [data-faculty-reveal] {
+.faculty-redesign .faculty-profile:nth-child(4n + 2) [data-faculty-reveal] {
   transition-delay: 80ms;
 }
 
-.faculty-redesign .faculty-profile:nth-child(3n) [data-faculty-reveal] {
+.faculty-redesign .faculty-profile:nth-child(4n + 3) [data-faculty-reveal] {
   transition-delay: 160ms;
+}
+
+.faculty-redesign .faculty-profile:nth-child(4n + 4) [data-faculty-reveal] {
+  transition-delay: 240ms;
 }
 
 .faculty-redesign .mv-section > div > div,
