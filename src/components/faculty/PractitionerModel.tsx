@@ -139,11 +139,22 @@ export default function PractitionerModel({
                   {title}
                 </p>
                 {company ? (
-                  <p className="faculty-model-card-company" style={{ fontFamily: MONO }}>
-                    {company}
-                  </p>
+                  <div className="faculty-model-card-company">
+                    {orgLogoUrl(company) ? (
+                      <img
+                        src={orgLogoUrl(company)}
+                        alt={company}
+                        loading="lazy"
+                        decoding="async"
+                        className="faculty-model-card-logo"
+                      />
+                    ) : (
+                      <span className="faculty-model-card-org" style={{ fontFamily: MONO }}>
+                        {company}
+                      </span>
+                    )}
+                  </div>
                 ) : null}
-                {p.blurb ? <p className="faculty-model-card-blurb">{p.blurb}</p> : null}
               </div>
             </article>
           );
