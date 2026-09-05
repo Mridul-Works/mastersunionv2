@@ -269,7 +269,7 @@ export default function MastersVideos({
                 >
                   {/* frame is sized by height so the full portrait poster stays intact */}
                   <div
-                    className={`relative overflow-hidden rounded-[clamp(14px,1.6vw,22px)] border ${line} bg-black`}
+                    className={`faculty-video-frame relative overflow-hidden rounded-[clamp(14px,1.6vw,22px)] border ${line} bg-black`}
                     style={{
                       aspectRatio: "223/398",
                       height: "clamp(360px, 62vh, 720px)",
@@ -285,7 +285,7 @@ export default function MastersVideos({
                       decoding="async"
                       loading="eager"
                       fetchPriority="high"
-                      className="h-full w-full object-contain grayscale contrast-[0.95] saturate-[0.75] transition-all duration-[350ms] ease-out group-hover:grayscale-0 group-hover:contrast-100 group-hover:saturate-100 data-[touch-color-active]:grayscale-0 data-[touch-color-active]:contrast-100 data-[touch-color-active]:saturate-100"
+                      className="faculty-video-image h-full w-full object-contain transition-all duration-[350ms] ease-out"
                       style={{
                         opacity: phase === "in" ? 1 : 0,
                         transform:
@@ -305,15 +305,15 @@ export default function MastersVideos({
 
               {/* editorial information panel */}
               <div className="order-2 flex min-w-0 flex-1 flex-col justify-center lg:max-w-[640px]">
-                <p className="mv-reveal font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-[#B89146]">
+                <p className="faculty-video-kicker mv-reveal font-mono text-[11px] font-semibold uppercase tracking-[0.28em]">
                   500+ Masters · Masterclass
                 </p>
                 <h2
-                  className={`mv-reveal mt-[clamp(0.65rem,1.5vh,1.05rem)] text-[clamp(1.7rem,3.2vw,3rem)] font-bold not-italic leading-[1.08] tracking-[-0.025em] ${heading}`}
-                  style={{ fontFamily: SANS_H, transitionDelay: "200ms" }}
+                  className={`faculty-video-title mv-reveal mt-[clamp(0.65rem,1.5vh,1.05rem)] text-[clamp(2.5rem,5.6vw,5rem)] font-normal leading-[0.98] ${heading}`}
+                  style={{ fontFamily: "var(--faculty-font-display, 'Instrument Serif', Georgia, serif)", transitionDelay: "200ms" }}
                 >
                   Built by Scholars, Led by{" "}
-                  <span className="font-light italic text-white/[0.14]" style={{ fontFamily: SERIF_IT }}>
+                  <span className="faculty-heading-accent font-normal italic" style={{ fontFamily: SERIF_IT }}>
                     Industry Practitioners
                   </span>
                 </h2>
@@ -387,7 +387,7 @@ export default function MastersVideos({
                       onClick={() => goTo(i)}
                       aria-label={v.title}
                       aria-current={i === active}
-                      className={`group relative h-[clamp(96px,14vh,148px)] shrink-0 overflow-hidden rounded-[14px] border bg-black transition duration-300 ${
+                      className={`faculty-video-thumb group relative h-[clamp(96px,14vh,148px)] shrink-0 overflow-hidden rounded-[14px] border bg-black transition duration-300 ${
                         i === active
                           ? dark
                             ? "border-white/70"
@@ -402,7 +402,7 @@ export default function MastersVideos({
                         loading="eager"
                         fetchPriority={i < MASTER_VIDEO_PRIORITY_COUNT ? "high" : "auto"}
                         decoding="async"
-                        className="h-full w-full object-contain grayscale contrast-[0.95] saturate-[0.75] transition-all duration-[350ms] ease-out group-hover:grayscale-0 group-hover:contrast-100 group-hover:saturate-100 data-[touch-color-active]:grayscale-0 data-[touch-color-active]:contrast-100 data-[touch-color-active]:saturate-100"
+                        className="faculty-video-image h-full w-full object-contain transition-all duration-[350ms] ease-out"
                       />
                     </button>
                   ))}

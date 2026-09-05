@@ -1298,6 +1298,63 @@ body::-webkit-scrollbar {
   background: color-mix(in oklab, var(--faculty-panel) 46%, transparent);
 }
 
+.faculty-redesign .faculty-video-kicker {
+  color: var(--faculty-vermilion);
+  letter-spacing: 0.24em;
+}
+
+.faculty-redesign .faculty-video-title {
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.faculty-redesign .faculty-video-frame,
+.faculty-redesign .faculty-video-thumb {
+  isolation: isolate;
+  border-color: color-mix(in oklab, var(--faculty-silver) 14%, transparent);
+  box-shadow: inset 0 0 0 0 var(--faculty-vermilion);
+  transition: border-color 450ms ease, box-shadow 450ms ease;
+}
+
+.faculty-redesign .faculty-video-frame::after,
+.faculty-redesign .faculty-video-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(to top, color-mix(in oklab, var(--faculty-vermilion) 38%, transparent), transparent 48%);
+  opacity: 0;
+  transition: opacity 450ms ease;
+}
+
+.faculty-redesign .faculty-video-frame:hover,
+.faculty-redesign .faculty-video-thumb:hover,
+.faculty-redesign .faculty-video-thumb[aria-current="true"] {
+  border-color: color-mix(in oklab, var(--faculty-vermilion) 76%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--faculty-vermilion) 36%, transparent), 0 24px 58px -38px color-mix(in oklab, var(--faculty-vermilion) 62%, transparent);
+}
+
+.faculty-redesign .faculty-video-frame:hover::after,
+.faculty-redesign .faculty-video-thumb:hover::after,
+.faculty-redesign .faculty-video-thumb[aria-current="true"]::after {
+  opacity: 0.72;
+}
+
+.faculty-redesign .faculty-video-image {
+  filter: none;
+  opacity: 1;
+}
+
+.faculty-redesign .faculty-video-frame:hover .faculty-video-image,
+.faculty-redesign .faculty-video-thumb:hover .faculty-video-image {
+  transform: scale(1.035) !important;
+}
+
+.faculty-redesign .faculty-video-frame > span {
+  z-index: 2;
+}
+
 .faculty-redesign .mu-info-row {
   border-radius: 0;
   border-color: color-mix(in oklab, var(--faculty-silver) 12%, transparent);

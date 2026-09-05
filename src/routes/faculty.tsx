@@ -660,15 +660,15 @@ function FacultyPage() {
       {/* THE NUMBER */}
       <section className="group relative flex min-h-[calc(110svh-var(--nav-reserve,0px))] flex-col items-center justify-center overflow-hidden border-y border-white/10 bg-ink py-[clamp(4rem,10vh,8rem)] text-white">
         <div className="page-shell-narrow relative z-10 mt-[clamp(2rem,7svh,4rem)] text-center md:mt-0">
-          <div className="text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO }}>
+          <div className="faculty-section-kicker text-[11px] font-semibold uppercase tracking-[0.3em]" style={{ fontFamily: MONO }}>
             The number that matters
           </div>
 
           <div className="mt-[clamp(1.25rem,3.5vh,2rem)]">
-            <div className="relative z-10 text-[clamp(6rem,17vw,14rem)] font-extrabold leading-[0.85] tracking-[-0.04em]">
+            <div className="relative z-10 text-[clamp(6rem,17vw,14rem)] font-normal leading-[0.85]" style={{ fontFamily: "var(--faculty-font-display)" }}>
               500+
             </div>
-            <div className="relative z-0 -mt-[clamp(2rem,5vh,3.5rem)] text-[clamp(4rem,11vw,9rem)] font-bold leading-[0.85] tracking-[-0.03em] text-white/[0.14] transition-colors duration-500 group-hover:text-cream/85">
+            <div className="faculty-heading-accent relative z-0 -mt-[clamp(2rem,5vh,3.5rem)] text-[clamp(4rem,11vw,9rem)] font-normal italic leading-[0.85] transition-colors duration-500" style={{ fontFamily: "var(--faculty-font-display)" }}>
               DOERS
             </div>
           </div>
