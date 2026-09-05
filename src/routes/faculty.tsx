@@ -528,6 +528,7 @@ function FacultyPage() {
           <SectionIntro
             index="01"
             eyebrow="Industry Practitioners"
+            align="left"
             title={<>The people who teach here are not between jobs. They are <Accent>active</Accent>.</>}
             intro="Half of the faculty are CEOs, MDs, founders and investors — bringing this week's decisions into the classroom, not last decade's case studies."
           />
