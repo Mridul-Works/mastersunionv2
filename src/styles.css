@@ -5418,6 +5418,7 @@ body::-webkit-scrollbar {
 .faculty-redesign .faculty-model-header {
   position: sticky;
   top: clamp(5rem, 10vh, 7rem);
+  align-self: start;
   display: flex;
   flex-direction: column;
   gap: clamp(1.75rem, 3vw, 2.75rem);
