@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 
 const MONO = "'JetBrains Mono', ui-monospace, monospace";
-const SANS = "var(--faculty-font-body, 'Work Sans', system-ui, sans-serif)";
 const SERIF_IT = "var(--faculty-font-display, 'Instrument Serif', Georgia, serif)";
 
 const HERO_IMAGE = "https://images.mastersunion.link/uploads/03032026/v1/Frame2043683361.webp";

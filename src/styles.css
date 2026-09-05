@@ -1104,6 +1104,254 @@ body::-webkit-scrollbar {
   --teal: #4FBF9A;
 }
 
+/* Faculty — dark editorial grid
+   Palette and typographic direction selected for the 2026 Faculty redesign. */
+.faculty-redesign {
+  --faculty-obsidian: #0C1014;
+  --faculty-panel: #1A2025;
+  --faculty-vermilion: #B94F3D;
+  --faculty-silver: #CACFD1;
+  --faculty-paper: #F2F1EC;
+  --faculty-font-display: "Instrument Serif", Georgia, ui-serif, serif;
+  --faculty-font-body: "Work Sans", system-ui, sans-serif;
+
+  --background: var(--faculty-obsidian);
+  --foreground: var(--faculty-paper);
+  --card: var(--faculty-panel);
+  --card-foreground: var(--faculty-paper);
+  --primary: var(--faculty-vermilion);
+  --primary-foreground: var(--faculty-paper);
+  --secondary: color-mix(in oklab, var(--faculty-panel) 82%, var(--faculty-obsidian));
+  --secondary-foreground: var(--faculty-paper);
+  --muted: var(--faculty-panel);
+  --muted-foreground: color-mix(in oklab, var(--faculty-silver) 68%, transparent);
+  --border: color-mix(in oklab, var(--faculty-silver) 16%, transparent);
+  --ring: var(--faculty-vermilion);
+  --ink: var(--faculty-obsidian);
+  --cream: var(--faculty-paper);
+  --teal: var(--faculty-vermilion);
+
+  overflow: clip;
+  background: var(--faculty-obsidian);
+  color: var(--faculty-paper);
+  font-family: var(--faculty-font-body);
+}
+
+.faculty-redesign .page-shell,
+.faculty-redesign .page-gutter,
+.faculty-redesign .page-shell-narrow {
+  width: min(100%, 1320px);
+  padding-inline: clamp(1rem, 3vw, 2.5rem);
+}
+
+.faculty-redesign section,
+.faculty-redesign footer,
+.faculty-redesign [class*="bg-ink"] {
+  background-color: var(--faculty-obsidian);
+}
+
+.faculty-redesign section {
+  border-color: color-mix(in oklab, var(--faculty-silver) 13%, transparent);
+}
+
+.faculty-heading-accent,
+.faculty-redesign .font-serif-italic {
+  color: var(--faculty-vermilion);
+}
+
+.faculty-section-kicker,
+.faculty-caption-kicker {
+  color: var(--faculty-vermilion);
+  letter-spacing: 0.24em;
+}
+
+.faculty-caption-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.faculty-redesign .faculty-section-title,
+.faculty-redesign .faculty-caption h3,
+.faculty-redesign blockquote {
+  letter-spacing: 0;
+}
+
+.faculty-redesign .faculty-section-title {
+  text-wrap: balance;
+}
+
+.faculty-redesign .faculty-magazine-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(2.75rem, 6vw, 6.5rem) clamp(1rem, 2.5vw, 2rem);
+  padding-block: clamp(2rem, 5vw, 5rem);
+}
+
+.faculty-redesign .faculty-profile {
+  grid-column: span 3;
+  min-width: 0;
+  opacity: 0;
+  transform: translateY(34px);
+  filter: blur(8px);
+  transition:
+    opacity 850ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 850ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 850ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.faculty-redesign .faculty-profile[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+.faculty-redesign .faculty-profile:nth-child(8n + 1),
+.faculty-redesign .faculty-profile:nth-child(8n + 6) {
+  grid-column: span 4;
+}
+
+.faculty-redesign .faculty-profile:nth-child(8n + 2),
+.faculty-redesign .faculty-profile:nth-child(8n + 3),
+.faculty-redesign .faculty-profile:nth-child(8n + 5),
+.faculty-redesign .faculty-profile:nth-child(8n + 8) {
+  grid-column: span 4;
+  margin-top: clamp(2rem, 6vw, 6rem);
+}
+
+.faculty-redesign .faculty-profile:nth-child(8n + 4),
+.faculty-redesign .faculty-profile:nth-child(8n + 7) {
+  grid-column: span 4;
+}
+
+.faculty-redesign .faculty-portrait-frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border: 1px solid color-mix(in oklab, var(--faculty-silver) 12%, transparent);
+  background: var(--faculty-panel);
+  isolation: isolate;
+  transition:
+    border-color 500ms ease,
+    box-shadow 500ms ease;
+}
+
+.faculty-redesign .faculty-portrait-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(to top, color-mix(in oklab, var(--faculty-obsidian) 68%, transparent), transparent 48%);
+  opacity: 0.55;
+  transition: opacity 500ms ease;
+}
+
+.faculty-redesign .faculty-portrait {
+  transform: scale(1.002);
+  transform-origin: center 20%;
+}
+
+.faculty-redesign .faculty-caption {
+  padding-top: 1.25rem;
+  border-top: 1px solid transparent;
+  transition: border-color 450ms ease, transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.faculty-redesign .faculty-profile:hover .faculty-portrait-frame {
+  border-color: color-mix(in oklab, var(--faculty-vermilion) 58%, transparent);
+  box-shadow: 0 28px 70px -42px color-mix(in oklab, var(--faculty-vermilion) 48%, transparent);
+}
+
+.faculty-redesign .faculty-profile:hover .faculty-portrait-frame::after {
+  opacity: 0.18;
+}
+
+.faculty-redesign .faculty-profile:hover .faculty-portrait {
+  transform: scale(1.045) !important;
+}
+
+.faculty-redesign .faculty-profile:hover .faculty-caption {
+  border-color: color-mix(in oklab, var(--faculty-vermilion) 66%, transparent);
+  transform: translateY(-3px);
+}
+
+.faculty-redesign .faculty-profile:hover .faculty-caption h3 {
+  color: var(--faculty-silver);
+}
+
+.faculty-redesign .faculty-profile:nth-child(3n + 2) [data-faculty-reveal] {
+  transition-delay: 80ms;
+}
+
+.faculty-redesign .faculty-profile:nth-child(3n) [data-faculty-reveal] {
+  transition-delay: 160ms;
+}
+
+.faculty-redesign .mv-section > div > div,
+.faculty-redesign .mv-section [data-touch-gallery] {
+  border-radius: 0;
+}
+
+.faculty-redesign .mv-section [data-touch-gallery] {
+  border-color: color-mix(in oklab, var(--faculty-silver) 14%, transparent);
+  background: color-mix(in oklab, var(--faculty-panel) 46%, transparent);
+}
+
+.faculty-redesign .mu-info-row {
+  border-radius: 0;
+  border-color: color-mix(in oklab, var(--faculty-silver) 12%, transparent);
+  background: color-mix(in oklab, var(--faculty-panel) 62%, transparent);
+}
+
+.faculty-redesign .mu-info-row::before {
+  background: linear-gradient(100deg, transparent, color-mix(in oklab, var(--faculty-vermilion) 12%, transparent), transparent);
+}
+
+.faculty-redesign .marquee-hover .animate-marquee-slow span:hover,
+.faculty-redesign .marquee-hover .animate-marquee-slow span:focus-visible {
+  color: var(--faculty-vermilion);
+}
+
+@media (max-width: 1023px) {
+  .faculty-redesign .faculty-profile,
+  .faculty-redesign .faculty-profile:nth-child(n) {
+    grid-column: span 6;
+    margin-top: 0;
+  }
+
+  .faculty-redesign .faculty-profile:nth-child(4n + 2),
+  .faculty-redesign .faculty-profile:nth-child(4n + 3) {
+    margin-top: 3rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .faculty-redesign .faculty-magazine-grid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .faculty-redesign .faculty-profile,
+  .faculty-redesign .faculty-profile:nth-child(n) {
+    grid-column: 1;
+    margin-top: 0;
+  }
+
+  .faculty-redesign .faculty-portrait-frame {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faculty-redesign .faculty-profile {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
+
 /* Route-level obsidian treatment for the placements editorial page. */
 .placements-obsidian {
   --placements-page-surface: #050708;
