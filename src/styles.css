@@ -1508,15 +1508,15 @@ body::-webkit-scrollbar {
     min-height: min(68vw, 620px);
   }
 
-  .faculty-redesign .faculty-profile,
-  .faculty-redesign .faculty-profile:nth-child(n) {
-    grid-column: span 6;
-    margin-top: 0;
+  .faculty-redesign .faculty-aligned-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.5rem 1.5rem;
   }
 
-  .faculty-redesign .faculty-profile:nth-child(4n + 2),
-  .faculty-redesign .faculty-profile:nth-child(4n + 3) {
-    margin-top: 3rem;
+  .faculty-redesign .faculty-profile,
+  .faculty-redesign .faculty-profile:nth-child(n) {
+    grid-column: auto;
+    margin-top: 0;
   }
 }
 
