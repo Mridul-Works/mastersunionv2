@@ -60,6 +60,7 @@ import vfVishnu from "@/assets/faculty/visiting/vishnuprasad-n.png.asset.json";
 import vfRajesh from "@/assets/faculty/visiting/rajesh-bhargave.png.asset.json";
 import SchoolsScrollPanel from "@/components/faculty/SchoolsScrollPanel";
 import PedigreeScrollPanel from "@/components/faculty/PedigreeScrollPanel";
+import PractitionerModel from "@/components/faculty/PractitionerModel";
 import { SectionDivider } from "@/components/patterns/section-divider";
 import { LogoMarquee } from "@/components/patterns/logo-marquee";
 
