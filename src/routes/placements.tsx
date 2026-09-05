@@ -1245,6 +1245,14 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
   const [leaderGroup, setLeaderGroup] = useState(0);
   const leaderRailRef = useRef<HTMLDivElement>(null);
   const [showAllGuidance, setShowAllGuidance] = useState(false);
+  const [isGuidanceMobile, setIsGuidanceMobile] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 639px)");
+    const update = () => setIsGuidanceMobile(mql.matches);
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, []);
   const [coachTrack, setCoachTrack] = useState(0);
   const guidanceRailRef = useRef<HTMLDivElement>(null);
   const roadmapStageRef = useRef<HTMLDivElement>(null);
