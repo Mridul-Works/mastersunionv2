@@ -18,6 +18,28 @@ export type MixGroup = {
   items: PractitionerCard[];
 };
 
+function OrgMark({ company }: { company: string }) {
+  const src = orgLogoUrl(company);
+  const [failed, setFailed] = useState(false);
+  if (!src || failed) {
+    return (
+      <span className="faculty-model-card-org" style={{ fontFamily: MONO }}>
+        {company}
+      </span>
+    );
+  }
+  return (
+    <img
+      src={src}
+      alt={company}
+      loading="lazy"
+      decoding="async"
+      className="faculty-model-card-logo"
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
 function splitRole(role: string) {
   const i = role.indexOf(", ");
   if (i === -1) return { title: role, company: "" };
