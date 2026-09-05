@@ -1,5 +1,7 @@
 # Roadmap
 
+- [x] Redesign the Faculty page as a dark editorial magazine gallery using the selected Midnight & Vermilion palette, Instrument Serif typography, and refined scroll/image transitions
+
 - [x] Mobile-only: widen the founder quote typography to fill the empty space on the right side, without changing desktop layout or typography styling
 - [x] Mobile-only: center the person in the founder quote background without changing typography or desktop framing
 

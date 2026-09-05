@@ -13,8 +13,6 @@ import StackReveal from "@/components/StackReveal";
 import FacultyStatsCard from "@/components/FacultyStatsCard";
 import { buildFacultyStats, statsRefreshedLabel } from "@/lib/faculty-stats";
 
-import PractitionerGallery from "@/components/PractitionerGallery";
-
 import { FULL_TIME_FACULTY } from "@/lib/full-time-faculty";
 import { INDUSTRY_PRACTITIONERS, INDUSTRY_PHOTOS } from "@/lib/industry-practitioners";
 import manojAsset from "@/assets/faculty/manoj.png.asset.json";
@@ -210,14 +208,14 @@ type EditorialItem = {
 
 function Portrait({ item, aspect = "aspect-[4/5]", dark = false }: { item: EditorialItem; aspect?: string; dark?: boolean }) {
   return (
-    <div className={`w-full overflow-hidden ${dark ? "bg-[#1a1a1a]" : "bg-[#ececec]"} ${aspect}`}>
+    <div className={`faculty-portrait-frame w-full overflow-hidden ${dark ? "bg-card" : "bg-secondary"} ${aspect}`}>
       {item.img ? (
         <TouchColorImg
           src={item.img}
           alt={item.name}
           loading="lazy"
           decoding="async"
-          className="h-full w-full object-cover grayscale transition duration-500 hover:grayscale-0 data-[touch-color-active]:grayscale-0"
+          className="faculty-portrait h-full w-full object-cover grayscale transition duration-700 hover:grayscale-0 data-[touch-color-active]:grayscale-0"
         />
       ) : (
         <Initials name={item.name} dark={dark} />
@@ -228,22 +226,23 @@ function Portrait({ item, aspect = "aspect-[4/5]", dark = false }: { item: Edito
 
 function EditorialCaption({ item, dark = false }: { item: EditorialItem; dark?: boolean }) {
   return (
-    <>
-      <h3 className={`mt-4 text-[1rem] font-medium leading-[1.2] tracking-[-0.005em] ${dark ? "text-white" : "text-black"}`}>
+    <div className="faculty-caption">
+      <p className="faculty-caption-kicker">Faculty</p>
+      <h3 className={`mt-3 text-[clamp(1.35rem,2vw,2rem)] font-normal leading-[1.05] ${dark ? "text-foreground" : "text-foreground"}`} style={{ fontFamily: SERIF }}>
         {item.name}
       </h3>
-      <div className={`mt-1.5 text-[10.5px] uppercase leading-snug tracking-[0.14em] ${dark ? "text-white/55" : "text-black/55"}`} style={{ fontFamily: MONO }}>
+      <div className="mt-2 text-[10px] uppercase leading-relaxed text-muted-foreground" style={{ fontFamily: MONO, letterSpacing: "0.14em" }}>
         {item.role}
       </div>
       {item.sub ? (
-        <div className={`mt-0.5 text-[10.5px] uppercase leading-snug tracking-[0.14em] ${dark ? "text-white/40" : "text-black/40"}`} style={{ fontFamily: MONO }}>
+        <div className="mt-1 text-[10px] uppercase leading-relaxed text-muted-foreground/70" style={{ fontFamily: MONO, letterSpacing: "0.14em" }}>
           {item.sub}
         </div>
       ) : null}
       {item.blurb ? (
-        <p className={`mt-3 text-[13px] leading-[1.55] ${dark ? "text-white/70" : "text-black/70"}`}>{item.blurb}</p>
+        <p className="mt-4 text-[13px] leading-[1.65] text-foreground/68">{item.blurb}</p>
       ) : null}
-    </>
+    </div>
   );
 }
 
@@ -324,20 +323,17 @@ function EditorialGrid({
         </div>
       )}
 
-      {gallery ? (
-        <div className={`border-b py-[clamp(1.5rem,4vh,3rem)] ${dark ? "border-white/15" : "border-black/15"}`}>
-          <PractitionerGallery items={items} />
-        </div>
-      ) : (
-        <div data-touch-gallery className={`scene-scroll grid grid-cols-2 divide-x divide-y border-b sm:grid-cols-3 md:grid-cols-4 ${dark ? "divide-white/10 border-white/15" : "divide-black/10 border-black/15"}`}>
+      <div
+        data-touch-gallery
+        className={`${gallery ? "faculty-magazine-grid" : "scene-scroll grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4"} border-b ${dark ? "border-white/15" : "border-black/15"}`}
+      >
           {items.map((item) => (
-            <article key={item.name} className="p-5 md:p-6">
+            <article key={item.name} className="faculty-profile" data-faculty-reveal>
               <Portrait item={item} dark={dark} />
               <EditorialCaption item={item} dark={dark} />
             </article>
           ))}
-        </div>
-      )}
+      </div>
     </div>
   );
 }
@@ -452,10 +448,24 @@ function FacultyPage() {
       }
       window.scrollTo(0, 0);
     }
+
+    const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-faculty-reveal]"));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          (entry.target as HTMLElement).dataset["visible"] = "true";
+          observer.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px 0px -8%", threshold: 0.08 },
+    );
+    nodes.forEach((node) => observer.observe(node));
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <main className="ink-scope min-h-screen bg-ink pb-24 text-white sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
+    <main className="ink-scope faculty-redesign min-h-screen bg-ink pb-24 text-foreground sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
       <SectionNav items={NAV} applyHref="#cta" />
 
       <StackReveal
