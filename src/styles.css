@@ -5418,6 +5418,7 @@ body::-webkit-scrollbar {
 .faculty-redesign .faculty-model-header {
   position: sticky;
   top: clamp(5rem, 10vh, 7rem);
+  align-self: start;
   display: flex;
   flex-direction: column;
   gap: clamp(1.75rem, 3vw, 2.75rem);
@@ -5521,6 +5522,9 @@ body::-webkit-scrollbar {
 }
 
 .faculty-redesign .faculty-model-cards {
+  position: sticky;
+  top: clamp(5rem, 10vh, 7rem);
+  align-self: start;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: clamp(0.75rem, 1.5vw, 1.25rem);
