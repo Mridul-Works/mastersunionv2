@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { TouchColorImg } from "@/components/TouchColorImg";
+import { orgLogoUrl } from "@/lib/org-logos";
 
 const MONO = "var(--font-mono)";
 
