@@ -42,13 +42,12 @@ function Initials({ name }: { name: string }) {
 
 export default function PractitionerModel({
   groups,
-  initial = 8,
+  limit = 6,
 }: {
   groups: MixGroup[];
-  initial?: number;
+  limit?: number;
 }) {
   const [stage, setStage] = useState(0);
-  const [expanded, setExpanded] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
 
   // Scroll through the section to move between the three faculty groups.
@@ -79,11 +78,8 @@ export default function PractitionerModel({
     };
   }, [groups.length]);
 
-  useEffect(() => setExpanded(false), [stage]);
-
   const active = groups[Math.min(stage, groups.length - 1)];
-  const items = active?.items ?? [];
-  const visible = expanded ? items : items.slice(0, initial);
+  const visible = (active?.items ?? []).slice(0, limit);
 
   return (
     <div className="faculty-model" ref={wrapRef}>
@@ -153,18 +149,6 @@ export default function PractitionerModel({
           );
         })}
 
-        {items.length > initial ? (
-          <div className="faculty-model-more">
-            <button
-              type="button"
-              onClick={() => setExpanded((v) => !v)}
-              className="faculty-model-more-btn"
-              style={{ fontFamily: MONO }}
-            >
-              {expanded ? "Show fewer" : `View all ${items.length} — ${active.label}`}
-            </button>
-          </div>
-        ) : null}
       </div>
     </div>
   );
