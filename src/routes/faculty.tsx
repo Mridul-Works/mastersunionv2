@@ -525,14 +525,6 @@ function FacultyPage() {
       {/* INDUSTRY PRACTITIONERS */}
       <section id="practitioners" className="screen-section border-y border-white/10 bg-ink">
         <div className="page-shell screen-y">
-          <SectionIntro
-            index="01"
-            eyebrow="Industry Practitioners"
-            align="left"
-            title={<>The people who teach here are not between jobs. They are <Accent>active</Accent>.</>}
-            intro="Half of the faculty are CEOs, MDs, founders and investors — bringing this week's decisions into the classroom, not last decade's case studies."
-          />
-          <SectionDivider inset="none" className="my-[clamp(1.5rem,4vh,2.5rem)]" />
           <PractitionerModel
             groups={[
               {
