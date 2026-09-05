@@ -1339,23 +1339,6 @@ body::-webkit-scrollbar {
   filter: blur(0);
 }
 
-.faculty-redesign .faculty-profile:nth-child(8n + 1),
-.faculty-redesign .faculty-profile:nth-child(8n + 6) {
-  grid-column: span 4;
-}
-
-.faculty-redesign .faculty-profile:nth-child(8n + 2),
-.faculty-redesign .faculty-profile:nth-child(8n + 3),
-.faculty-redesign .faculty-profile:nth-child(8n + 5),
-.faculty-redesign .faculty-profile:nth-child(8n + 8) {
-  grid-column: span 4;
-  margin-top: clamp(2rem, 6vw, 6rem);
-}
-
-.faculty-redesign .faculty-profile:nth-child(8n + 4),
-.faculty-redesign .faculty-profile:nth-child(8n + 7) {
-  grid-column: span 4;
-}
 
 .faculty-redesign .faculty-portrait-frame {
   position: relative;
