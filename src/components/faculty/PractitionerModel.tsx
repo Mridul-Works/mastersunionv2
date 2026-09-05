@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { TouchColorImg } from "@/components/TouchColorImg";
 import { orgLogoUrl } from "@/lib/org-logos";
 
@@ -71,55 +71,13 @@ export default function PractitionerModel({
   limit?: number;
 }) {
   const [stage, setStage] = useState(0);
-  const wrapRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLElement>(null);
-
-  // Scroll through the section to move between the three faculty groups,
-  // but only after the section header is pinned at the top of the viewport.
-  useEffect(() => {
-    const el = wrapRef.current;
-    if (!el) return;
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const rect = el.getBoundingClientRect();
-      const vh = window.innerHeight || 1;
-      const header = headerRef.current;
-      const stickyTop = header
-        ? parseFloat(window.getComputedStyle(header).top || "0") || 0
-        : 0;
-      // Distance scrolled past the moment the header locks to the top.
-      const travelled = stickyTop - rect.top;
-      if (travelled <= 0) {
-        setStage((prev) => (prev === 0 ? prev : 0));
-        return;
-      }
-      const span = Math.max(rect.height - (vh - stickyTop) * 0.85, 1);
-      const progress = Math.min(Math.max(travelled / span, 0), 0.999);
-      const next = Math.min(groups.length - 1, Math.floor(progress * groups.length));
-      setStage((prev) => (prev === next ? prev : next));
-    };
-
-    const onScroll = () => {
-      if (!frame) frame = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      if (frame) cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, [groups.length]);
-
 
   const active = groups[Math.min(stage, groups.length - 1)];
   const visible = (active?.items ?? []).slice(0, limit);
 
   return (
-    <div className="faculty-model" ref={wrapRef}>
-      <header className="faculty-model-header" ref={headerRef}>
+    <div className="faculty-model">
+      <header className="faculty-model-header">
         <div className="faculty-model-heading">
           <p className="faculty-model-rail-kicker" style={{ fontFamily: MONO }}>
             Academic excellence
