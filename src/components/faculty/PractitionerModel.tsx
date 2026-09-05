@@ -72,6 +72,7 @@ export default function PractitionerModel({
 }) {
   const [stage, setStage] = useState(0);
   const wrapRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
 
   // Scroll through the section to move between the three faculty groups,
   // but only after the section header is pinned at the top of the viewport.
@@ -118,7 +119,7 @@ export default function PractitionerModel({
 
   return (
     <div className="faculty-model" ref={wrapRef}>
-      <header className="faculty-model-header">
+      <header className="faculty-model-header" ref={headerRef}>
         <div className="faculty-model-heading">
           <p className="faculty-model-rail-kicker" style={{ fontFamily: MONO }}>
             Academic excellence
