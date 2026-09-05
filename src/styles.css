@@ -1561,14 +1561,14 @@ body::-webkit-scrollbar {
     background: linear-gradient(to bottom, var(--faculty-obsidian), transparent 16%);
   }
 
-  .faculty-redesign .faculty-magazine-grid {
+  .faculty-redesign .faculty-aligned-grid {
     grid-template-columns: 1fr;
-    gap: 3.5rem;
+    gap: 2.5rem;
   }
 
   .faculty-redesign .faculty-profile,
   .faculty-redesign .faculty-profile:nth-child(n) {
-    grid-column: 1;
+    grid-column: auto;
     margin-top: 0;
   }
 
