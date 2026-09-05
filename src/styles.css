@@ -5544,6 +5544,11 @@ body::-webkit-scrollbar {
   margin-bottom: 0.7rem;
   border: 1px solid color-mix(in oklab, var(--faculty-silver) 13%, transparent);
   background: color-mix(in oklab, var(--faculty-silver) 8%, transparent);
+  transition: border-color 0.35s ease;
+}
+
+.faculty-redesign .faculty-model-card:hover .faculty-model-card-photo {
+  border-color: var(--faculty-vermilion);
 }
 
 .faculty-redesign .faculty-model-card:hover .faculty-model-card-photo img {
