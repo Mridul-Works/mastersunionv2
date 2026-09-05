@@ -228,7 +228,7 @@ function EditorialCaption({ item, dark = false }: { item: EditorialItem; dark?: 
   return (
     <div className="faculty-caption">
       <p className="faculty-caption-kicker">Faculty</p>
-      <h3 className={`mt-3 text-[clamp(1.05rem,1.4vw,1.35rem)] font-bold uppercase leading-[1.1] tracking-[-0.02em] ${dark ? "text-foreground" : "text-foreground"}`} style={{ fontFamily: SANS }}>
+      <h3 className={`mt-3 text-[clamp(1.05rem,1.4vw,1.35rem)] font-bold uppercase leading-[1.1] tracking-[-0.02em] ${dark ? "text-foreground" : "text-foreground"}`} style={{ fontFamily: INTER }}>
         {item.name}
       </h3>
       <div className="mt-3 border-b border-white/10 pb-3">
