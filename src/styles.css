@@ -1104,6 +1104,319 @@ body::-webkit-scrollbar {
   --teal: #4FBF9A;
 }
 
+/* ------------------------------------------------------------------
+   Faculty / Modernist Academic Grid
+   Scoped below the preserved hero. Obsidian + sage tokens and the
+   section rhythm are adapted from the selected UG v2.0 direction.
+   ------------------------------------------------------------------ */
+.faculty-modern-grid {
+  --faculty-obsidian: oklch(0.19 0.008 180);
+  --faculty-obsidian-deep: oklch(0.145 0.008 180);
+  --faculty-paper: oklch(0.955 0.018 95);
+  --faculty-paper-ink: oklch(0.2 0.012 170);
+  --faculty-sage: oklch(0.62 0.075 155);
+  --faculty-gold: oklch(0.72 0.09 75);
+  --faculty-rule: color-mix(in oklab, var(--faculty-paper) 13%, transparent);
+}
+
+.faculty-redesign-start,
+.faculty-modern-grid .faculty-chapter,
+.faculty-modern-grid .faculty-number,
+.faculty-modern-grid .faculty-closing {
+  font-family: "Figtree", var(--font-sans);
+}
+
+.faculty-modern-grid .faculty-masters {
+  background: var(--faculty-obsidian-deep);
+  border-color: var(--faculty-rule);
+}
+
+.faculty-modern-grid .faculty-masters > div > div > div {
+  border-radius: 8px;
+  background-color: color-mix(in oklab, var(--faculty-paper) 4%, transparent);
+}
+
+.faculty-modern-grid .faculty-masters h2,
+.faculty-modern-grid .faculty-masters h3,
+.faculty-modern-grid .faculty-section-intro h2,
+.faculty-modern-grid .faculty-roster-name,
+.faculty-modern-grid .faculty-number {
+  font-family: "Outfit", var(--font-display);
+  letter-spacing: 0;
+}
+
+.faculty-modern-grid .faculty-chapter {
+  position: relative;
+  isolation: isolate;
+  padding-block: clamp(4rem, 8vw, 8rem);
+}
+
+.faculty-modern-grid .faculty-chapter::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--faculty-paper) 4%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--faculty-paper) 4%, transparent) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, transparent, black 14%, black 86%, transparent);
+}
+
+.faculty-modern-grid .faculty-chapter-dark,
+.faculty-modern-grid .faculty-voices {
+  background-color: var(--faculty-obsidian);
+}
+
+.faculty-modern-grid .faculty-chapter-paper {
+  background-color: var(--faculty-paper);
+  color: var(--faculty-paper-ink);
+}
+
+.faculty-modern-grid .faculty-chapter-paper::before {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--faculty-paper-ink) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--faculty-paper-ink) 6%, transparent) 1px, transparent 1px);
+}
+
+.faculty-modern-grid .faculty-section-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 2.2fr);
+  align-items: start;
+  column-gap: clamp(2rem, 7vw, 8rem);
+  text-align: left;
+}
+
+.faculty-modern-grid .faculty-section-intro > p:first-child {
+  justify-content: flex-start;
+  padding-top: 0.65rem;
+  color: var(--faculty-gold);
+}
+
+.faculty-modern-grid .faculty-section-intro h2 {
+  max-width: 20ch;
+  margin: 0;
+  font-size: clamp(2.5rem, 5vw, 5.6rem);
+  font-weight: 600;
+  line-height: 0.96;
+  color: var(--faculty-paper);
+}
+
+.faculty-modern-grid .faculty-section-intro > p:nth-of-type(2) {
+  grid-column: 2;
+  max-width: 58ch;
+  margin-inline: 0;
+  color: color-mix(in oklab, var(--faculty-paper) 62%, transparent);
+}
+
+.faculty-modern-grid .faculty-accent {
+  color: var(--faculty-sage);
+  font-family: "Outfit", var(--font-display) !important;
+  font-style: normal;
+  font-weight: 300;
+}
+
+.faculty-modern-grid .faculty-chapter-paper .faculty-section-intro h2,
+.faculty-modern-grid .faculty-chapter-paper .faculty-roster-name {
+  color: var(--faculty-paper-ink);
+}
+
+.faculty-modern-grid .faculty-chapter-paper .faculty-section-intro > p:nth-of-type(2) {
+  color: color-mix(in oklab, var(--faculty-paper-ink) 62%, transparent);
+}
+
+.faculty-modern-grid .faculty-chapter-paper .faculty-accent {
+  color: oklch(0.46 0.09 155);
+}
+
+.faculty-modern-grid .faculty-roster {
+  border-color: var(--faculty-rule);
+}
+
+.faculty-modern-grid .faculty-roster > div:first-child {
+  padding-block: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.faculty-modern-grid .faculty-roster > div:first-child > div {
+  border-radius: 8px;
+  border-color: color-mix(in oklab, var(--faculty-sage) 28%, transparent);
+  background: color-mix(in oklab, var(--faculty-paper) 4%, transparent);
+  box-shadow: none;
+}
+
+.faculty-modern-grid .faculty-roster-window {
+  max-height: min(78svh, 860px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: var(--faculty-sage) transparent;
+  scrollbar-width: thin;
+}
+
+.faculty-modern-grid .faculty-roster-grid {
+  align-items: stretch;
+}
+
+.faculty-modern-grid .faculty-roster-card {
+  min-width: 0;
+  transition: background-color 260ms ease, transform 260ms ease;
+}
+
+.faculty-modern-grid .faculty-roster-card:hover {
+  background-color: color-mix(in oklab, var(--faculty-sage) 12%, var(--faculty-obsidian));
+}
+
+.faculty-modern-grid .faculty-roster-portrait {
+  position: relative;
+  border-radius: 6px;
+}
+
+.faculty-modern-grid .faculty-roster-portrait::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  border: 1px solid color-mix(in oklab, var(--faculty-paper) 12%, transparent);
+}
+
+.faculty-modern-grid .faculty-roster-portrait img {
+  transform: scale(1.001);
+  transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1), filter 450ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .faculty-modern-grid .faculty-roster-card:hover .faculty-roster-portrait img {
+    transform: scale(1.045) !important;
+  }
+}
+
+.faculty-modern-grid .faculty-chapter-paper .faculty-roster > div:first-child > div {
+  border-color: color-mix(in oklab, var(--faculty-paper-ink) 14%, transparent);
+  background: color-mix(in oklab, white 38%, transparent);
+}
+
+.faculty-modern-grid .faculty-chapter-paper .faculty-roster-grid {
+  background: color-mix(in oklab, var(--faculty-paper-ink) 10%, transparent);
+}
+
+.faculty-modern-grid .faculty-chapter-paper .faculty-roster-card {
+  background-color: color-mix(in oklab, var(--faculty-paper) 94%, white);
+}
+
+.faculty-modern-grid .faculty-chapter-paper .faculty-roster-card:hover {
+  background-color: color-mix(in oklab, var(--faculty-sage) 13%, var(--faculty-paper));
+}
+
+.faculty-modern-grid .faculty-chapter-paper [class*="border-white"] {
+  border-color: color-mix(in oklab, var(--faculty-paper-ink) 14%, transparent);
+}
+
+.faculty-modern-grid .faculty-chapter-paper [class*="bg-white"] {
+  background-color: color-mix(in oklab, white 32%, transparent);
+}
+
+.faculty-modern-grid .faculty-chapter-paper [class*="text-white"] {
+  color: color-mix(in oklab, var(--faculty-paper-ink) 72%, transparent);
+}
+
+.faculty-modern-grid .faculty-chapter-paper [class*="text-white/"] {
+  color: color-mix(in oklab, var(--faculty-paper-ink) 64%, transparent);
+}
+
+.faculty-modern-grid .faculty-chapter-paper .faculty-roster-name,
+.faculty-modern-grid .faculty-chapter-paper [class*="font-bold"] {
+  color: var(--faculty-paper-ink);
+}
+
+.faculty-modern-grid .faculty-teach {
+  background-color: oklch(0.3 0.06 155);
+}
+
+.faculty-modern-grid .faculty-teach::before {
+  background-size: 54px 54px;
+  opacity: 0.55;
+}
+
+.faculty-modern-grid .faculty-teach .faculty-accent {
+  color: var(--faculty-paper);
+}
+
+.faculty-modern-grid .faculty-number {
+  background-color: var(--faculty-paper);
+  color: var(--faculty-paper-ink);
+}
+
+.faculty-modern-grid .faculty-number [class*="text-white"] {
+  color: var(--faculty-paper-ink);
+}
+
+.faculty-modern-grid .faculty-number [class*="text-white/"] {
+  color: color-mix(in oklab, var(--faculty-paper-ink) 62%, transparent);
+}
+
+.faculty-modern-grid .faculty-number > div > div:nth-child(2) > div:last-child {
+  color: color-mix(in oklab, var(--faculty-sage) 36%, transparent);
+}
+
+.faculty-modern-grid .faculty-closing {
+  background-color: var(--faculty-obsidian-deep);
+}
+
+@media (max-width: 767px) {
+  .faculty-modern-grid .faculty-chapter {
+    padding-block: 3.5rem;
+  }
+
+  .faculty-modern-grid .faculty-section-intro {
+    grid-template-columns: 1fr;
+    row-gap: 1.25rem;
+  }
+
+  .faculty-modern-grid .faculty-section-intro h2,
+  .faculty-modern-grid .faculty-section-intro > p:nth-of-type(2) {
+    grid-column: 1;
+  }
+
+  .faculty-modern-grid .faculty-section-intro h2 {
+    font-size: clamp(2.15rem, 11vw, 3.65rem);
+  }
+
+  .faculty-modern-grid .faculty-roster-window {
+    max-height: none;
+    margin-inline: calc(clamp(20px, 4vw, 64px) * -1);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-padding-inline: clamp(20px, 4vw, 64px);
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .faculty-modern-grid .faculty-roster-window::-webkit-scrollbar {
+    display: none;
+  }
+
+  .faculty-modern-grid .faculty-roster-grid {
+    display: grid;
+    grid-auto-columns: min(84vw, 340px);
+    grid-auto-flow: column;
+    grid-template-columns: none;
+    gap: 1px;
+    width: max-content;
+    padding-inline: clamp(20px, 4vw, 64px);
+  }
+
+  .faculty-modern-grid .faculty-roster-card {
+    scroll-snap-align: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faculty-modern-grid .faculty-roster-card,
+  .faculty-modern-grid .faculty-roster-portrait img {
+    transition: none;
+  }
+}
+
 /* Route-level obsidian treatment for the placements editorial page. */
 .placements-obsidian {
   --placements-page-surface: #050708;

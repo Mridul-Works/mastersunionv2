@@ -240,7 +240,7 @@ export default function MastersVideos({
       onMouseLeave={() => (activeRef.current = false)}
       onFocusCapture={() => (activeRef.current = true)}
       onBlurCapture={() => (activeRef.current = false)}
-      className={`mv-section ${revealed ? "is-revealed" : ""} relative flex w-full min-h-[calc(100svh-var(--nav-reserve,0px))] flex-col overflow-x-hidden border-t ${line} ${bg}`}
+      className={`mv-section faculty-masters ${revealed ? "is-revealed" : ""} relative flex w-full min-h-[calc(100svh-var(--nav-reserve,0px))] flex-col overflow-x-hidden border-t ${line} ${bg}`}
       style={{
         paddingTop: "clamp(0.75rem, 2vh, 1.75rem)",
         paddingBottom: "clamp(2rem, 4vh, 3rem)",

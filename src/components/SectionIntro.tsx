@@ -10,7 +10,7 @@ const SERIF = "'Fraunces', Georgia, serif";
  */
 export function Accent({ children }: { children: ReactNode }) {
   return (
-    <span className="font-light italic text-white/[0.14]" style={{ fontFamily: SERIF }}>
+    <span className="faculty-accent font-light italic text-white/[0.14]" style={{ fontFamily: SERIF }}>
       {children}
     </span>
   );
@@ -40,7 +40,7 @@ export function SectionIntro({
   className?: string;
 }) {
   return (
-    <header className={`mx-auto w-full text-center ${className}`}>
+    <header className={`faculty-section-intro mx-auto w-full text-center ${className}`}>
       <p
         className="flex justify-center gap-3 text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]"
         style={{ fontFamily: MONO }}
