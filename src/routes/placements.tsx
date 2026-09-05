@@ -1270,7 +1270,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
   const currentStory = featuredStories[story];
   const currentTerm = TERMS[term];
   const currentLeaders = LEADER_GROUPS[leaderGroup];
-  const visibleGuidance = showAllGuidance ? GUIDANCE_PROFILES : GUIDANCE_PROFILES.slice(0, 26);
+  const visibleGuidance = showAllGuidance || isGuidanceMobile ? GUIDANCE_PROFILES : GUIDANCE_PROFILES.slice(0, 26);
 
   const moveStory = (direction: number) => {
     setStory((current) => (current + direction + featuredStories.length) % featuredStories.length);
