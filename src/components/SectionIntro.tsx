@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
-const SANS = "'Inter', system-ui, sans-serif";
-const SERIF = "'Fraunces', Georgia, serif";
+const SANS = "var(--faculty-font-body, 'Work Sans', system-ui, sans-serif)";
+const SERIF = "var(--faculty-font-display, 'Instrument Serif', Georgia, serif)";
 
 /**
  * Serif-italic editorial accent — use for a word or short phrase inside an
@@ -10,7 +10,7 @@ const SERIF = "'Fraunces', Georgia, serif";
  */
 export function Accent({ children }: { children: ReactNode }) {
   return (
-    <span className="font-light italic text-white/[0.14]" style={{ fontFamily: SERIF }}>
+    <span className="faculty-heading-accent font-normal italic" style={{ fontFamily: SERIF }}>
       {children}
     </span>
   );
@@ -42,19 +42,19 @@ export function SectionIntro({
   return (
     <header className={`mx-auto w-full text-center ${className}`}>
       <p
-        className="flex justify-center gap-3 text-[10px] font-semibold uppercase tracking-[0.28em] text-[#B89146]"
+        className="faculty-section-kicker flex justify-center gap-3 text-[10px] font-semibold uppercase"
         style={{ fontFamily: MONO }}
       >
         <span>{index}</span>
-        <span aria-hidden className="text-[#B89146]/50">
+        <span aria-hidden className="opacity-50">
           /
         </span>
         <span>{eyebrow}</span>
       </p>
 
       <h2
-        className="mx-auto mt-[clamp(1.25rem,3.5vh,2.25rem)] max-w-[min(100%,26ch)] text-balance text-[clamp(1.75rem,4.4vw,3.4rem)] font-bold not-italic leading-[1.06] tracking-[-0.025em] text-white"
-        style={{ fontFamily: SANS }}
+        className="faculty-section-title mx-auto mt-[clamp(1.25rem,3.5vh,2.25rem)] max-w-[min(100%,22ch)] text-balance text-[clamp(2.5rem,5.6vw,5rem)] font-normal leading-[0.98] text-foreground"
+        style={{ fontFamily: SERIF }}
       >
 
         {title}

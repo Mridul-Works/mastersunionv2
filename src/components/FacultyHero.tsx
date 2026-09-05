@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 
 const MONO = "'JetBrains Mono', ui-monospace, monospace";
-const SANS = "'Inter', system-ui, sans-serif";
-const SERIF_IT = "'Fraunces', Georgia, serif";
+const SERIF_IT = "var(--faculty-font-display, 'Instrument Serif', Georgia, serif)";
+const SANS = "var(--faculty-font-body, 'Work Sans', system-ui, sans-serif)";
 
 const HERO_IMAGE = "https://images.mastersunion.link/uploads/03032026/v1/Frame2043683361.webp";
 
@@ -218,7 +218,7 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
     <section
       ref={sectionRef}
       id="top"
-      className="relative w-full overflow-hidden bg-[#0a0a0a] text-white"
+      className="faculty-redesign-hero relative w-full overflow-hidden bg-background text-foreground"
       style={{ ["--recede" as string]: "0" }}
     >
       <div
@@ -265,8 +265,8 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
                 style={{ fontSize: "clamp(1.95rem, 3.5vw, 3.4rem)" }}
               >
                 <h1
-                  className="text-[1em] font-semibold leading-[1.02] tracking-[-0.025em] text-white [text-wrap:balance]"
-                  style={{ fontFamily: SANS }}
+                  className="faculty-hero-title text-[1em] font-normal leading-[0.94] text-foreground [text-wrap:balance]"
+                  style={{ fontFamily: SERIF_IT }}
                 >
                   {HEADLINE}
                 </h1>
