@@ -5408,17 +5408,20 @@ body::-webkit-scrollbar {
 
 /* ── Faculty · dark editorial model ────────────────────────────────────────── */
 .faculty-redesign .faculty-model {
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.72fr) minmax(0, 2.28fr);
+  align-items: start;
+  gap: clamp(2rem, 4vw, 4.5rem);
   padding-block: clamp(1.5rem, 4vw, 3.75rem);
 }
 
 .faculty-redesign .faculty-model-header {
-  display: grid;
-  grid-template-columns: minmax(18rem, 0.8fr) minmax(32rem, 1.2fr);
-  align-items: end;
-  gap: clamp(2rem, 6vw, 6rem);
-  margin-bottom: clamp(2.75rem, 6vw, 5rem);
-  padding-bottom: clamp(1.5rem, 3vw, 2.25rem);
-  border-bottom: 1px solid color-mix(in oklab, var(--faculty-silver) 15%, transparent);
+  position: sticky;
+  top: clamp(5rem, 10vh, 7rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.75rem, 3vw, 2.75rem);
+  min-width: 0;
 }
 
 .faculty-redesign .faculty-model-rail-kicker {
@@ -5431,7 +5434,7 @@ body::-webkit-scrollbar {
 .faculty-redesign .faculty-model-title {
   margin-top: 0.9rem;
   font-family: var(--faculty-font-display, "Instrument Serif", serif);
-  font-size: clamp(2.8rem, 5vw, 5.5rem);
+  font-size: clamp(2.6rem, 4vw, 4.5rem);
   line-height: 0.92;
 }
 
@@ -5444,17 +5447,17 @@ body::-webkit-scrollbar {
 }
 
 .faculty-redesign .faculty-model-mix {
-  display: grid;
-  grid-template-columns: 1.25fr 1fr 1fr;
-  gap: clamp(0.75rem, 2vw, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid color-mix(in oklab, var(--faculty-silver) 18%, transparent);
 }
 
 .faculty-redesign .faculty-model-mix-row {
-  min-height: 7.4rem;
+  min-height: 0;
   border-bottom: 1px solid color-mix(in oklab, var(--faculty-silver) 22%, transparent);
-  padding: 0 0 0.8rem;
+  padding: 0.9rem 0;
   opacity: 0.42;
-  transition: opacity 350ms ease, border-color 350ms ease;
+  transition: opacity 350ms ease, border-color 350ms ease, padding-left 350ms ease;
 }
 
 .faculty-redesign .faculty-model-mix-row[data-active="true"],
@@ -5463,7 +5466,8 @@ body::-webkit-scrollbar {
 }
 
 .faculty-redesign .faculty-model-mix-row[data-active="true"] {
-  border-bottom: 2px solid var(--faculty-vermilion);
+  border-bottom-color: var(--faculty-vermilion);
+  padding-left: 0.65rem;
 }
 
 .faculty-redesign .faculty-model-mix-topline {
@@ -5488,7 +5492,7 @@ body::-webkit-scrollbar {
 
 .faculty-redesign .faculty-model-mix-pct {
   font-family: var(--faculty-font-display, "Instrument Serif", serif);
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-size: clamp(1.65rem, 2.4vw, 2.25rem);
   line-height: 0.9;
   color: var(--foreground);
 }
@@ -5503,15 +5507,15 @@ body::-webkit-scrollbar {
 }
 
 .faculty-redesign .faculty-model-mix-label {
-  margin-top: 0.65rem;
-  font-size: 0.8rem;
+  margin-top: 0.35rem;
+  font-size: 0.74rem;
   font-weight: 600;
 }
 
 .faculty-redesign .faculty-model-mix-note {
-  margin-top: 0.25rem;
+  margin-top: 0.15rem;
   max-width: 24ch;
-  font-size: 0.7rem;
+  font-size: 0.64rem;
   line-height: 1.45;
   color: color-mix(in oklab, var(--foreground) 62%, transparent);
 }
@@ -5519,8 +5523,8 @@ body::-webkit-scrollbar {
 .faculty-redesign .faculty-model-cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  column-gap: clamp(1rem, 2.5vw, 2rem);
-  row-gap: clamp(2.25rem, 5vw, 4.5rem);
+  column-gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  row-gap: clamp(1.25rem, 2.5vw, 2rem);
   animation: faculty-model-enter 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -5536,8 +5540,8 @@ body::-webkit-scrollbar {
 .faculty-redesign .faculty-model-card-photo {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 4 / 5;
-  margin-bottom: 1.15rem;
+  aspect-ratio: 4 / 4.35;
+  margin-bottom: 0.7rem;
   border: 1px solid color-mix(in oklab, var(--faculty-silver) 13%, transparent);
   background: color-mix(in oklab, var(--faculty-silver) 8%, transparent);
 }
@@ -5555,7 +5559,7 @@ body::-webkit-scrollbar {
 
 .faculty-redesign .faculty-model-card-name {
   font-family: var(--faculty-font-display, "Instrument Serif", serif);
-  font-size: clamp(1.35rem, 2vw, 2rem);
+  font-size: clamp(1.05rem, 1.45vw, 1.4rem);
   font-style: italic;
   line-height: 1.05;
 }
@@ -5567,9 +5571,9 @@ body::-webkit-scrollbar {
 }
 
 .faculty-redesign .faculty-model-card-role {
-  margin-top: 0.55rem;
-  font-size: 9px;
-  letter-spacing: 0.16em;
+  margin-top: 0.35rem;
+  font-size: 8px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: color-mix(in oklab, var(--foreground) 56%, transparent);
 }
@@ -5611,12 +5615,12 @@ body::-webkit-scrollbar {
 }
 
 @media (max-width: 1023px) {
-  .faculty-redesign .faculty-model-header {
-    grid-template-columns: minmax(0, 1fr);
+  .faculty-redesign .faculty-model {
+    grid-template-columns: minmax(12rem, 0.7fr) minmax(0, 1.7fr);
     gap: 2rem;
   }
-  .faculty-redesign .faculty-model-mix {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .faculty-redesign .faculty-model-header {
+    top: 4.5rem;
   }
   .faculty-redesign .faculty-model-cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -5624,14 +5628,25 @@ body::-webkit-scrollbar {
 }
 
 @media (max-width: 639px) {
+  .faculty-redesign .faculty-model {
+    display: block;
+  }
   .faculty-redesign .faculty-model-header {
+    position: static;
     margin-bottom: 2.25rem;
   }
   .faculty-redesign .faculty-model-mix {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.45rem;
+    border-top: 0;
   }
   .faculty-redesign .faculty-model-mix-row {
     min-height: 5.2rem;
+    padding: 0 0 0.8rem;
+  }
+  .faculty-redesign .faculty-model-mix-row[data-active="true"] {
+    padding-left: 0;
   }
   .faculty-redesign .faculty-model-mix-short {
     font-size: 7px;
