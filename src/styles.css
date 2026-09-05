@@ -5539,14 +5539,35 @@ body::-webkit-scrollbar {
 }
 
 .faculty-redesign .faculty-model-card-company {
-  margin-top: 0.55rem;
-  padding-top: 0.55rem;
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
   border-top: 1px solid color-mix(in oklab, var(--faculty-silver, #cacfd1) 13%, transparent);
+  display: flex;
+  align-items: center;
+  min-height: 34px;
+}
+
+.faculty-redesign .faculty-model-card-logo {
+  height: clamp(18px, 2vw, 26px);
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  opacity: 0.82;
+  filter: brightness(0) invert(1);
+  transition: opacity 0.4s ease;
+}
+
+.faculty-redesign .faculty-model-card:hover .faculty-model-card-logo {
+  opacity: 1;
+}
+
+.faculty-redesign .faculty-model-card-org {
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--faculty-vermilion, #b94f3d);
 }
+
 
 .faculty-redesign .faculty-model-card-blurb {
   margin-top: 0.6rem;
