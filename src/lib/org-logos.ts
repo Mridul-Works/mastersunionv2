@@ -78,7 +78,9 @@ export function orgLogoUrl(org?: string, size = 128): string | undefined {
     size: String(size),
     format: "png",
     retina: "true",
-    theme: "dark",
+    // Return an HTTP error instead of a generic letter monogram so the UI can
+    // fall back to a typographic wordmark for brands Logo.dev doesn't have.
+    fallback: "404",
   });
   return `https://img.logo.dev/${DOMAINS[key]}?${params.toString()}`;
 }
