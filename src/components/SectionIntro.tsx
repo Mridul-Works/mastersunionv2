@@ -31,6 +31,7 @@ export function SectionIntro({
   intro,
   children,
   className = "",
+  align = "center",
 }: {
   index: string;
   eyebrow: string;
@@ -38,11 +39,13 @@ export function SectionIntro({
   intro?: ReactNode;
   children?: ReactNode;
   className?: string;
+  align?: "left" | "center";
 }) {
+  const isLeft = align === "left";
   return (
-    <header className={`mx-auto w-full text-center ${className}`}>
+    <header className={`w-full ${isLeft ? "text-left" : "mx-auto text-center"} ${className}`}>
       <p
-        className="faculty-section-kicker flex justify-center gap-3 text-[10px] font-semibold uppercase"
+        className={`faculty-section-kicker flex gap-3 text-[10px] font-semibold uppercase ${isLeft ? "justify-start" : "justify-center"}`}
         style={{ fontFamily: MONO }}
       >
         <span>{index}</span>
@@ -53,7 +56,7 @@ export function SectionIntro({
       </p>
 
       <h2
-        className="faculty-section-title mx-auto mt-[clamp(1.25rem,3.5vh,2.25rem)] max-w-[min(100%,22ch)] text-balance text-[clamp(2.5rem,5.6vw,5rem)] font-normal leading-[0.98] text-foreground"
+        className={`faculty-section-title mt-[clamp(1.25rem,3.5vh,2.25rem)] max-w-[min(100%,${isLeft ? "26ch" : "22ch"})] text-balance text-[clamp(2.5rem,5.6vw,5rem)] font-normal leading-[0.98] text-foreground ${isLeft ? "" : "mx-auto"}`}
         style={{ fontFamily: SERIF }}
       >
 
@@ -61,7 +64,7 @@ export function SectionIntro({
       </h2>
 
       {intro ? (
-        <p className="mx-auto mt-[clamp(1.1rem,3vh,1.75rem)] max-w-[min(100%,58ch)] text-[0.98rem] leading-[1.6] text-white/60">
+        <p className={`mt-[clamp(1.1rem,3vh,1.75rem)] max-w-[min(100%,58ch)] text-[0.98rem] leading-[1.6] text-white/60 ${isLeft ? "" : "mx-auto"}`}>
           {intro}
         </p>
       ) : null}
