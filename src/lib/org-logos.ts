@@ -9,8 +9,6 @@ const LOGO_TOKEN = import.meta.env['VITE_LOVABLE_CONNECTOR_LOGO_DEV_API_KEY'] as
 
 /** keyword (lowercase) -> logo domain. First match wins, longest keywords first. */
 const DOMAINS: Record<string, string> = {
-  "hero electric": "heroelectric.in",
-  "v3 ventures": "v3ventures.in",
   "dr. vaidya": "drvaidyas.com",
   "arthur d. little": "adlittle.com",
   nasa: "nasa.gov",
