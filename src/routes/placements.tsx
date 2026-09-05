@@ -1245,6 +1245,14 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
   const [leaderGroup, setLeaderGroup] = useState(0);
   const leaderRailRef = useRef<HTMLDivElement>(null);
   const [showAllGuidance, setShowAllGuidance] = useState(false);
+  const [isGuidanceMobile, setIsGuidanceMobile] = useState(false);
+  useEffect(() => {
+    const mql = window.matchMedia("(max-width: 639px)");
+    const update = () => setIsGuidanceMobile(mql.matches);
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, []);
   const [coachTrack, setCoachTrack] = useState(0);
   const guidanceRailRef = useRef<HTMLDivElement>(null);
   const roadmapStageRef = useRef<HTMLDivElement>(null);
@@ -1262,7 +1270,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
   const currentStory = featuredStories[story];
   const currentTerm = TERMS[term];
   const currentLeaders = LEADER_GROUPS[leaderGroup];
-  const visibleGuidance = showAllGuidance ? GUIDANCE_PROFILES : GUIDANCE_PROFILES.slice(0, 26);
+  const visibleGuidance = showAllGuidance || isGuidanceMobile ? GUIDANCE_PROFILES : GUIDANCE_PROFILES.slice(0, 26);
 
   const moveStory = (direction: number) => {
     setStory((current) => (current + direction + featuredStories.length) % featuredStories.length);
