@@ -106,11 +106,17 @@ export default function PractitionerModel({
 
   return (
     <div className="faculty-model" ref={wrapRef}>
-      {/* LEFT — the mix rail */}
-      <aside className="faculty-model-rail">
-        <p className="faculty-model-rail-kicker" style={{ fontFamily: MONO }}>
-          The Faculty Model
-        </p>
+      <header className="faculty-model-header">
+        <div className="faculty-model-heading">
+          <p className="faculty-model-rail-kicker" style={{ fontFamily: MONO }}>
+            Academic excellence
+          </p>
+          <h2 className="faculty-model-title">Our Faculty Model</h2>
+          <p className="faculty-model-deck">
+            A deliberate composition of practitioners and academics, bridging
+            rigorous thinking with real-world leadership.
+          </p>
+        </div>
         <ul className="faculty-model-mix">
           {groups.map((m, i) => (
             <li key={m.label}>
@@ -121,10 +127,15 @@ export default function PractitionerModel({
                 className="faculty-model-mix-row w-full text-left"
                 data-active={i === stage ? "true" : undefined}
               >
-                <div className="faculty-model-mix-figure">
-                  <span className="faculty-model-mix-pct">{m.pct}</span>
-                  <span className="faculty-model-mix-unit" style={{ fontFamily: MONO }}>
-                    %
+                <div className="faculty-model-mix-topline">
+                  <span className="faculty-model-mix-short" style={{ fontFamily: MONO }}>
+                    {i === 0 ? "Industry" : i === 1 ? "Full-time" : "Visiting"}
+                  </span>
+                  <span className="faculty-model-mix-figure">
+                    <span className="faculty-model-mix-pct">{m.pct}</span>
+                    <span className="faculty-model-mix-unit" style={{ fontFamily: MONO }}>
+                      %
+                    </span>
                   </span>
                 </div>
                 <div className="faculty-model-mix-body">
@@ -135,11 +146,10 @@ export default function PractitionerModel({
             </li>
           ))}
         </ul>
-      </aside>
+      </header>
 
-      {/* RIGHT — horizontal cards for the active group */}
-      <div className="faculty-model-cards" key={active?.label}>
-        {visible.map((p) => {
+      <div className="faculty-model-cards" key={active?.label} aria-live="polite">
+        {visible.map((p, index) => {
           const { title, company } = splitRole(p.role);
           return (
             <article key={p.name} className="faculty-model-card">
@@ -155,22 +165,26 @@ export default function PractitionerModel({
                 ) : (
                   <Initials name={p.name} />
                 )}
-              </div>
-              <div className="faculty-model-card-body">
-                <h3 className="faculty-model-card-name">{p.name}</h3>
-                <p className="faculty-model-card-role" style={{ fontFamily: MONO }}>
-                  {title}
-                </p>
                 {company ? (
                   <div className="faculty-model-card-company">
                     <OrgMark company={company} />
                   </div>
                 ) : null}
               </div>
+              <div className="faculty-model-card-body">
+                <div className="faculty-model-card-heading">
+                  <h3 className="faculty-model-card-name">{p.name}</h3>
+                  <span className="faculty-model-card-index" style={{ fontFamily: MONO }}>
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <p className="faculty-model-card-role" style={{ fontFamily: MONO }}>
+                  {title}
+                </p>
+              </div>
             </article>
           );
         })}
-
       </div>
     </div>
   );
