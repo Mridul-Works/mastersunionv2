@@ -141,19 +141,7 @@ export default function PractitionerModel({
                 </p>
                 {company ? (
                   <div className="faculty-model-card-company">
-                    {orgLogoUrl(company) ? (
-                      <img
-                        src={orgLogoUrl(company)}
-                        alt={company}
-                        loading="lazy"
-                        decoding="async"
-                        className="faculty-model-card-logo"
-                      />
-                    ) : (
-                      <span className="faculty-model-card-org" style={{ fontFamily: MONO }}>
-                        {company}
-                      </span>
-                    )}
+                    <OrgMark company={company} />
                   </div>
                 ) : null}
               </div>
