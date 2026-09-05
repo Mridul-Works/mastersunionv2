@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TouchColorImg } from "@/components/TouchColorImg";
 
 const MONO = "var(--font-mono)";
@@ -10,7 +10,12 @@ export type PractitionerCard = {
   img?: string;
 };
 
-type MixRow = { pct: string; label: string; note: string; active?: boolean };
+export type MixGroup = {
+  pct: string;
+  label: string;
+  note: string;
+  items: PractitionerCard[];
+};
 
 function splitRole(role: string) {
   const i = role.indexOf(", ");
@@ -36,44 +41,85 @@ function Initials({ name }: { name: string }) {
 }
 
 export default function PractitionerModel({
-  items,
-  mix,
+  groups,
   initial = 8,
 }: {
-  items: PractitionerCard[];
-  mix: MixRow[];
+  groups: MixGroup[];
   initial?: number;
 }) {
+  const [stage, setStage] = useState(0);
   const [expanded, setExpanded] = useState(false);
+  const wrapRef = useRef<HTMLDivElement>(null);
+
+  // Scroll through the section to move between the three faculty groups.
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight || 1;
+      const span = rect.height - vh * 0.55;
+      if (span <= 0) return;
+      const progress = Math.min(Math.max((vh * 0.45 - rect.top) / span, 0), 0.999);
+      const next = Math.min(groups.length - 1, Math.floor(progress * groups.length));
+      setStage((prev) => (prev === next ? prev : next));
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [groups.length]);
+
+  useEffect(() => setExpanded(false), [stage]);
+
+  const active = groups[Math.min(stage, groups.length - 1)];
+  const items = active?.items ?? [];
   const visible = expanded ? items : items.slice(0, initial);
 
   return (
-    <div className="faculty-model">
+    <div className="faculty-model" ref={wrapRef}>
       {/* LEFT — the mix rail */}
       <aside className="faculty-model-rail">
         <p className="faculty-model-rail-kicker" style={{ fontFamily: MONO }}>
           The Faculty Model
         </p>
         <ul className="faculty-model-mix">
-          {mix.map((m) => (
-            <li key={m.label} className="faculty-model-mix-row" data-active={m.active ? "true" : undefined}>
-              <div className="faculty-model-mix-figure">
-                <span className="faculty-model-mix-pct">{m.pct}</span>
-                <span className="faculty-model-mix-unit" style={{ fontFamily: MONO }}>
-                  %
-                </span>
-              </div>
-              <div className="faculty-model-mix-body">
-                <p className="faculty-model-mix-label">{m.label}</p>
-                <p className="faculty-model-mix-note">{m.note}</p>
-              </div>
+          {groups.map((m, i) => (
+            <li key={m.label}>
+              <button
+                type="button"
+                onClick={() => setStage(i)}
+                aria-pressed={i === stage}
+                className="faculty-model-mix-row w-full text-left"
+                data-active={i === stage ? "true" : undefined}
+              >
+                <div className="faculty-model-mix-figure">
+                  <span className="faculty-model-mix-pct">{m.pct}</span>
+                  <span className="faculty-model-mix-unit" style={{ fontFamily: MONO }}>
+                    %
+                  </span>
+                </div>
+                <div className="faculty-model-mix-body">
+                  <p className="faculty-model-mix-label">{m.label}</p>
+                  <p className="faculty-model-mix-note">{m.note}</p>
+                </div>
+              </button>
             </li>
           ))}
         </ul>
       </aside>
 
-      {/* RIGHT — horizontal practitioner cards */}
-      <div className="faculty-model-cards">
+      {/* RIGHT — horizontal cards for the active group */}
+      <div className="faculty-model-cards" key={active?.label}>
         {visible.map((p) => {
           const { title, company } = splitRole(p.role);
           return (
@@ -109,8 +155,13 @@ export default function PractitionerModel({
 
         {items.length > initial ? (
           <div className="faculty-model-more">
-            <button type="button" onClick={() => setExpanded((v) => !v)} className="faculty-model-more-btn" style={{ fontFamily: MONO }}>
-              {expanded ? "Show fewer" : `View all ${items.length} practitioners`}
+            <button
+              type="button"
+              onClick={() => setExpanded((v) => !v)}
+              className="faculty-model-more-btn"
+              style={{ fontFamily: MONO }}
+            >
+              {expanded ? "Show fewer" : `View all ${items.length} — ${active.label}`}
             </button>
           </div>
         ) : null}

@@ -533,17 +533,35 @@ function FacultyPage() {
           />
           <SectionDivider inset="none" className="my-[clamp(1.5rem,4vh,2.5rem)]" />
           <PractitionerModel
-            mix={[
-              { pct: "50", label: "Industry Practitioners", note: "Operators bringing this week's decisions into class", active: true },
-              { pct: "30", label: "Full-Time Faculty", note: "PhD educators shaping the core curriculum" },
-              { pct: "20", label: "Visiting Faculty", note: "Professors from Harvard, Stanford and Wharton" },
+            groups={[
+              {
+                pct: "40",
+                label: "Industry Practitioners",
+                note: "Operators bringing this week's decisions into class",
+                items: PRACTITIONERS.map((p) => ({
+                  name: p.name,
+                  role: p.role,
+                  blurb: p.blurb,
+                  img: PRACTITIONER_PHOTOS[p.name],
+                })),
+              },
+              {
+                pct: "30",
+                label: "Full-Time Faculty",
+                note: "PhD educators shaping the core curriculum",
+                items: FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img })),
+              },
+              {
+                pct: "30",
+                label: "Visiting Faculty",
+                note: "Professors from Harvard, Stanford and Wharton",
+                items: VISITING.map((v) => ({
+                  name: v.name,
+                  role: `${v.role}, ${v.school}`,
+                  img: v.img,
+                })),
+              },
             ]}
-            items={PRACTITIONERS.map((p) => ({
-              name: p.name,
-              role: p.role,
-              blurb: p.blurb,
-              img: PRACTITIONER_PHOTOS[p.name],
-            }))}
           />
         </div>
       </section>
