@@ -228,19 +228,23 @@ function EditorialCaption({ item, dark = false }: { item: EditorialItem; dark?: 
   return (
     <div className="faculty-caption">
       <p className="faculty-caption-kicker">Faculty</p>
-      <h3 className={`mt-3 text-[clamp(1.35rem,2vw,2rem)] font-normal leading-[1.05] ${dark ? "text-foreground" : "text-foreground"}`} style={{ fontFamily: SERIF }}>
+      <h3 className={`mt-3 text-[clamp(1.05rem,1.4vw,1.35rem)] font-bold uppercase leading-[1.1] tracking-[-0.02em] ${dark ? "text-foreground" : "text-foreground"}`} style={{ fontFamily: INTER }}>
         {item.name}
       </h3>
-      <div className="mt-2 text-[10px] uppercase leading-relaxed text-muted-foreground" style={{ fontFamily: MONO, letterSpacing: "0.14em" }}>
-        {item.role}
-      </div>
-      {item.sub ? (
-        <div className="mt-1 text-[10px] uppercase leading-relaxed text-muted-foreground/70" style={{ fontFamily: MONO, letterSpacing: "0.14em" }}>
-          {item.sub}
+      <div className="mt-3 border-b border-white/10 pb-3">
+        <div className="text-[11px] font-medium uppercase leading-relaxed text-muted-foreground" style={{ fontFamily: MONO, letterSpacing: "0.14em" }}>
+          {item.role}
         </div>
-      ) : null}
+      </div>
+      <div className="mt-3 min-h-[1.25em]">
+        {item.sub ? (
+          <div className="text-[10px] uppercase leading-relaxed text-muted-foreground/70" style={{ fontFamily: MONO, letterSpacing: "0.14em" }}>
+            {item.sub}
+          </div>
+        ) : null}
+      </div>
       {item.blurb ? (
-        <p className="mt-4 text-[13px] leading-[1.65] text-foreground/68">{item.blurb}</p>
+        <p className="mt-3 text-[13px] leading-[1.65] text-foreground/68">{item.blurb}</p>
       ) : null}
     </div>
   );
@@ -325,7 +329,7 @@ function EditorialGrid({
 
       <div
         data-touch-gallery
-        className={`${gallery ? "faculty-magazine-grid" : "scene-scroll grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4"} border-b ${dark ? "border-white/15" : "border-black/15"}`}
+        className={`${gallery ? "faculty-aligned-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" : "scene-scroll grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4"} border-b ${dark ? "border-white/15" : "border-black/15"}`}
       >
           {items.map((item) => (
             <article key={item.name} className="faculty-profile" data-faculty-reveal>
