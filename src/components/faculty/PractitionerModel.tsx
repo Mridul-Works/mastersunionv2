@@ -73,7 +73,8 @@ export default function PractitionerModel({
   const [stage, setStage] = useState(0);
   const wrapRef = useRef<HTMLDivElement>(null);
 
-  // Scroll through the section to move between the three faculty groups.
+  // Scroll through the section to move between the three faculty groups,
+  // but only after the section header is pinned at the top of the viewport.
   useEffect(() => {
     const el = wrapRef.current;
     if (!el) return;
@@ -82,15 +83,17 @@ export default function PractitionerModel({
       frame = 0;
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight || 1;
-      // Only start switching groups once the section header has reached the top.
-      const startOffset = Math.min(112, vh * 0.1);
-      const span = rect.height - vh * 0.9;
-      if (span <= 0) return;
-      const travelled = startOffset - rect.top;
+      const header = headerRef.current;
+      const stickyTop = header
+        ? parseFloat(window.getComputedStyle(header).top || "0") || 0
+        : 0;
+      // Distance scrolled past the moment the header locks to the top.
+      const travelled = stickyTop - rect.top;
       if (travelled <= 0) {
         setStage((prev) => (prev === 0 ? prev : 0));
         return;
       }
+      const span = Math.max(rect.height - (vh - stickyTop) * 0.85, 1);
       const progress = Math.min(Math.max(travelled / span, 0), 0.999);
       const next = Math.min(groups.length - 1, Math.floor(progress * groups.length));
       setStage((prev) => (prev === next ? prev : next));
@@ -108,6 +111,7 @@ export default function PractitionerModel({
       window.removeEventListener("resize", onScroll);
     };
   }, [groups.length]);
+
 
   const active = groups[Math.min(stage, groups.length - 1)];
   const visible = (active?.items ?? []).slice(0, limit);
