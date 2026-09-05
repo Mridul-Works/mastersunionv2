@@ -9,8 +9,6 @@ const LOGO_TOKEN = import.meta.env['VITE_LOVABLE_CONNECTOR_LOGO_DEV_API_KEY'] as
 
 /** keyword (lowercase) -> logo domain. First match wins, longest keywords first. */
 const DOMAINS: Record<string, string> = {
-  "hero electric": "heroelectric.in",
-  "v3 ventures": "v3ventures.in",
   "dr. vaidya": "drvaidyas.com",
   "arthur d. little": "adlittle.com",
   nasa: "nasa.gov",
@@ -78,7 +76,9 @@ export function orgLogoUrl(org?: string, size = 128): string | undefined {
     size: String(size),
     format: "png",
     retina: "true",
-    theme: "dark",
+    // Return an HTTP error instead of a generic letter monogram so the UI can
+    // fall back to a typographic wordmark for brands Logo.dev doesn't have.
+    fallback: "404",
   });
   return `https://img.logo.dev/${DOMAINS[key]}?${params.toString()}`;
 }
