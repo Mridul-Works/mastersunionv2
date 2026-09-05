@@ -15,11 +15,11 @@ const PHOTO_CLASS =
 const HEADLINE = (
   <>
     At most B-schools, faculty{" "}
-    <span className="font-light italic text-white/[0.14]" style={{ fontFamily: SERIF_IT }}>
+    <span className="faculty-hero-word font-light italic" style={{ fontFamily: SERIF_IT }}>
       study
     </span>{" "}
     companies. Here, they{" "}
-    <span className="font-light italic text-white/[0.14]" style={{ fontFamily: SERIF_IT }}>
+    <span className="faculty-hero-word font-light italic" style={{ fontFamily: SERIF_IT }}>
       ran
     </span>{" "}
     them and most still do.
@@ -221,12 +221,9 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
       className="faculty-redesign-hero relative w-full overflow-hidden bg-background text-foreground"
       style={{ ["--recede" as string]: "0" }}
     >
-      <div
-        className="page-gutter relative z-10 mx-auto grid w-full max-w-[1440px] grid-cols-1 items-stretch gap-0 lg:grid-cols-12"
-        style={{ minHeight: "clamp(560px, calc(100svh - 150px), 1000px)", paddingBottom: "clamp(2rem,6vh,4.5rem)" }}
-      >
+      <div className="faculty-hero-grid page-gutter relative z-10 mx-auto grid w-full grid-cols-1 items-stretch gap-0 lg:grid-cols-12">
         {/* Left content column: architectural black space */}
-        <div className="relative flex flex-col justify-center pt-[max(0.75rem,env(safe-area-inset-top))] pb-[clamp(1.25rem,3.2vh,2.25rem)] lg:col-span-7 lg:py-[clamp(1.25rem,3.2vh,2.25rem)] lg:pr-10">
+        <div className="faculty-hero-copy relative flex flex-col justify-center lg:col-span-7">
           {/* Typography — demo's staggered Framer Motion entrance system */}
           <motion.div
             className="relative z-10"
@@ -235,14 +232,14 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
             initial={noMotion ? "visible" : "hidden"}
             animate="visible"
           >
-            <motion.div variants={itemFromLeft} className="mt-0 lg:-mt-7">
-              <div className="flex items-center gap-3 sm:gap-4">
-                <span className="h-px w-6 shrink-0 bg-white/30 sm:w-8" aria-hidden />
+            <motion.div variants={itemFromLeft}>
+              <div className="faculty-hero-kicker flex items-center gap-3 sm:gap-4">
+                <span className="h-px w-6 shrink-0 sm:w-8" aria-hidden />
                 <div
-                  className="min-w-0 text-[clamp(9px,2vw,10px)] uppercase tracking-[0.28em] text-white/55 sm:tracking-[0.3em]"
+                  className="min-w-0 text-[clamp(9px,2vw,10px)] uppercase tracking-[0.28em] sm:tracking-[0.3em]"
                   style={{ fontFamily: MONO }}
                 >
-                  Faculty at Masters&apos; Union
+                  Faculty / Masters&apos; Union
                 </div>
               </div>
             </motion.div>
@@ -250,12 +247,8 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
             {/* Headline + paragraph: shared background watermark */}
             <div className="relative mt-[clamp(0.85rem,2.2vh,1.5rem)] w-full max-w-[850px]">
               {/* MU watermark — spans the combined height of headline + paragraph */}
-              <div
-                className={`pointer-events-none absolute -left-[4%] -top-[12%] z-0 flex h-[140%] items-center select-none font-black uppercase leading-none text-white/[0.09] ${muClass}`}
-                style={{ fontFamily: SANS, fontSize: "clamp(15rem, 28vw, 34rem)" }}
-                aria-hidden
-              >
-                MU
+              <div className={`faculty-hero-watermark pointer-events-none absolute z-0 select-none ${muClass}`} aria-hidden>
+                01
               </div>
 
               {/* Headline: fills the left column, never the photo zone */}
@@ -275,12 +268,12 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
               {/* Paragraph with visiting-faculty overlay treatment */}
               <motion.div
                 variants={itemFromBelow}
-                className="relative z-10 mt-[clamp(0.9rem,2.4vh,1.7rem)] faculty-editorial-text border-l-2 border-white/80 bg-white/[0.04]"
+                className="faculty-hero-summary relative z-10 mt-[clamp(1.25rem,3vh,2rem)]"
               >
-                <p className="max-w-[70ch] text-[0.98rem] leading-[1.5] text-white/75">
+                <p className="max-w-[62ch] text-[0.98rem] leading-[1.6]">
                   500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered
                   by{" "}
-                  <span className="font-medium text-white" style={{ fontFamily: SERIF_IT }}>
+                  <span className="font-medium" style={{ fontFamily: SERIF_IT }}>
                     Ivy League academics and global business leaders
                   </span>{" "}
                   — from Harvard to McKinsey, from Wharton to Google. They don&apos;t just teach the
@@ -294,9 +287,9 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
         </div>
 
         {/* Right portrait column */}
-        <div className="relative h-[min(420px,55vh)] bg-[#0a0a0a] lg:col-span-5 lg:h-auto">
+        <div className="faculty-hero-photo-column relative h-[min(460px,58vh)] lg:col-span-5 lg:h-auto">
           <div
-            className="pointer-events-none absolute inset-y-0 left-0 right-0 z-0 bg-[#0a0a0a]"
+            className="faculty-hero-photo-stage pointer-events-none absolute inset-y-0 left-0 right-0 z-0"
             style={{
               right: "calc(-1 * (clamp(20px, 4vw, 64px) + max(0px, (100vw - 1440px) / 2)))",
               opacity: "clamp(0.45, calc(1 - var(--recede) * 0.55), 1)",
@@ -348,11 +341,7 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
 
             {/* Very narrow, subtle left-edge falloff so the text column and image panel read as one scene */}
             <div
-              className="absolute inset-0 z-10"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to right, #0a0a0a 0%, rgba(10,10,10,0.55) 4%, rgba(10,10,10,0.15) 10%, rgba(10,10,10,0) 16%)",
-              }}
+              className="faculty-hero-photo-falloff absolute inset-0 z-10"
             />
           </div>
         </div>
@@ -370,7 +359,7 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
               window.scrollTo({ top: target, behavior: "smooth" });
             }
           }}
-          className="group absolute inset-x-0 bottom-[clamp(4.5rem,7vh,6rem)] z-20 flex cursor-pointer justify-center rounded-sm border border-transparent p-3 text-white/45 transition-colors hover:text-white/70 focus-visible:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white/40"
+          className="faculty-hero-scroll group absolute inset-x-0 z-20 flex cursor-pointer justify-center rounded-sm border border-transparent p-3 transition-colors focus-visible:outline-none focus-visible:ring-1"
           style={{ opacity: "clamp(0, calc(1 - var(--recede) * 2), 1)" }}
         >
           <div className="flex flex-col items-center gap-2">
@@ -381,10 +370,10 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
               Scroll
             </span>
             <div className="relative h-10 w-3" aria-hidden>
-              <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-gradient-to-b from-white/40 to-white/10" />
+              <div className="faculty-hero-scroll-line absolute left-1/2 top-0 h-full w-px -translate-x-1/2" />
               <div
                 data-scroll-dot
-                className="absolute inset-x-0 top-0 mx-auto h-[5px] w-[5px] rounded-full bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.35)] transition-none group-hover:bg-white group-hover:shadow-[0_0_10px_rgba(255,255,255,0.55)]"
+                className="faculty-hero-scroll-dot absolute inset-x-0 top-0 mx-auto h-[5px] w-[5px] rounded-full transition-none"
                 style={{ marginTop: "calc(var(--recede) * 32px)" }}
               />
             </div>

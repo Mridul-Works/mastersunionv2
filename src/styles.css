@@ -1154,6 +1154,139 @@ body::-webkit-scrollbar {
   border-color: color-mix(in oklab, var(--faculty-silver) 13%, transparent);
 }
 
+.faculty-redesign .faculty-redesign-hero {
+  position: relative;
+  border-bottom: 1px solid color-mix(in oklab, var(--faculty-silver) 13%, transparent);
+  background: var(--faculty-obsidian);
+}
+
+.faculty-redesign .faculty-redesign-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--faculty-silver) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--faculty-silver) 4%, transparent) 1px, transparent 1px);
+  background-size: calc(100% / 12) 100%, 100% 25%;
+  mask-image: linear-gradient(to bottom, black, transparent 88%);
+  opacity: 0.3;
+}
+
+.faculty-redesign .faculty-hero-grid {
+  min-height: clamp(620px, calc(100svh - 96px), 920px);
+  padding-bottom: clamp(3rem, 7vh, 5.5rem);
+}
+
+.faculty-redesign .faculty-hero-copy {
+  padding-block: clamp(3rem, 8vh, 7rem);
+  padding-right: clamp(2rem, 5vw, 5.5rem);
+}
+
+.faculty-redesign .faculty-hero-kicker {
+  color: var(--faculty-vermilion);
+}
+
+.faculty-redesign .faculty-hero-kicker > span {
+  background: var(--faculty-vermilion);
+}
+
+.faculty-redesign .faculty-hero-title {
+  max-width: 15ch;
+  color: var(--faculty-paper);
+  font-size: clamp(3.25rem, 5.7vw, 6.5rem);
+  line-height: 0.88;
+  letter-spacing: 0;
+}
+
+.faculty-redesign .faculty-hero-word {
+  color: var(--faculty-vermilion);
+}
+
+.faculty-redesign .faculty-hero-watermark {
+  right: 0;
+  top: -0.45em;
+  color: color-mix(in oklab, var(--faculty-silver) 7%, transparent);
+  font-family: var(--faculty-font-display);
+  font-size: clamp(13rem, 24vw, 28rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.faculty-redesign .faculty-hero-summary {
+  display: grid;
+  grid-template-columns: 3px minmax(0, 1fr);
+  gap: 1.25rem;
+  color: color-mix(in oklab, var(--faculty-silver) 78%, transparent);
+}
+
+.faculty-redesign .faculty-hero-summary::before {
+  content: "";
+  width: 3px;
+  height: 100%;
+  background: var(--faculty-vermilion);
+}
+
+.faculty-redesign .faculty-hero-summary span {
+  color: var(--faculty-paper);
+  font-size: 1.08em;
+}
+
+.faculty-redesign .faculty-hero-photo-column,
+.faculty-redesign .faculty-hero-photo-stage {
+  background: var(--faculty-panel);
+}
+
+.faculty-redesign .faculty-hero-photo-column::before {
+  content: "PORTRAIT / 2026";
+  position: absolute;
+  z-index: 20;
+  top: 1.25rem;
+  right: 1.25rem;
+  color: color-mix(in oklab, var(--faculty-paper) 70%, transparent);
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.22em;
+}
+
+.faculty-redesign .faculty-hero-photo-column::after {
+  content: "";
+  position: absolute;
+  z-index: 20;
+  inset: 0;
+  pointer-events: none;
+  border: 1px solid color-mix(in oklab, var(--faculty-silver) 14%, transparent);
+  box-shadow: inset 0 -120px 100px -80px color-mix(in oklab, var(--faculty-obsidian) 92%, transparent);
+}
+
+.faculty-redesign .faculty-hero-photo-falloff {
+  background: linear-gradient(to right, var(--faculty-obsidian) 0%, color-mix(in oklab, var(--faculty-obsidian) 58%, transparent) 6%, transparent 18%);
+}
+
+.faculty-redesign .faculty-hero-scroll {
+  bottom: clamp(1.25rem, 3vh, 2rem);
+  color: color-mix(in oklab, var(--faculty-silver) 58%, transparent);
+}
+
+.faculty-redesign .faculty-hero-scroll:hover {
+  color: var(--faculty-paper);
+}
+
+.faculty-redesign .faculty-hero-scroll:focus-visible {
+  color: var(--faculty-paper);
+  --tw-ring-color: color-mix(in oklab, var(--faculty-vermilion) 70%, transparent);
+}
+
+.faculty-redesign .faculty-hero-scroll-line {
+  background: linear-gradient(to bottom, var(--faculty-vermilion), color-mix(in oklab, var(--faculty-vermilion) 8%, transparent));
+}
+
+.faculty-redesign .faculty-hero-scroll-dot {
+  background: var(--faculty-vermilion);
+  box-shadow: 0 0 10px color-mix(in oklab, var(--faculty-vermilion) 55%, transparent);
+}
+
 .faculty-heading-accent,
 .faculty-redesign .font-serif-italic {
   color: var(--faculty-vermilion);
@@ -1371,6 +1504,25 @@ body::-webkit-scrollbar {
 }
 
 @media (max-width: 1023px) {
+  .faculty-redesign .faculty-hero-grid {
+    min-height: auto;
+    padding-bottom: 4.5rem;
+  }
+
+  .faculty-redesign .faculty-hero-copy {
+    padding-block: clamp(3.5rem, 9vw, 6rem) clamp(2.5rem, 6vw, 4rem);
+    padding-right: 0;
+  }
+
+  .faculty-redesign .faculty-hero-title {
+    max-width: 16ch;
+    font-size: clamp(3.25rem, 8.5vw, 6rem);
+  }
+
+  .faculty-redesign .faculty-hero-photo-column {
+    min-height: min(68vw, 620px);
+  }
+
   .faculty-redesign .faculty-profile,
   .faculty-redesign .faculty-profile:nth-child(n) {
     grid-column: span 6;
@@ -1384,6 +1536,46 @@ body::-webkit-scrollbar {
 }
 
 @media (max-width: 639px) {
+  .faculty-redesign .faculty-redesign-hero::before {
+    background-size: 25% 100%, 100% 20%;
+  }
+
+  .faculty-redesign .faculty-hero-grid {
+    padding-bottom: 4rem;
+  }
+
+  .faculty-redesign .faculty-hero-copy {
+    padding-block: 2.75rem 2rem;
+  }
+
+  .faculty-redesign .faculty-hero-title {
+    max-width: 13ch;
+    font-size: clamp(3rem, 15.5vw, 4.75rem);
+    line-height: 0.9;
+  }
+
+  .faculty-redesign .faculty-hero-watermark {
+    top: -0.2em;
+    font-size: 14rem;
+  }
+
+  .faculty-redesign .faculty-hero-summary {
+    gap: 0.9rem;
+  }
+
+  .faculty-redesign .faculty-hero-summary p {
+    font-size: 0.92rem;
+  }
+
+  .faculty-redesign .faculty-hero-photo-column {
+    height: min(118vw, 520px);
+    min-height: 390px;
+  }
+
+  .faculty-redesign .faculty-hero-photo-falloff {
+    background: linear-gradient(to bottom, var(--faculty-obsidian), transparent 16%);
+  }
+
   .faculty-redesign .faculty-magazine-grid {
     grid-template-columns: 1fr;
     gap: 3.5rem;
@@ -1401,6 +1593,11 @@ body::-webkit-scrollbar {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .faculty-redesign .faculty-hero-photo-column *,
+  .faculty-redesign .faculty-hero-copy * {
+    transition: none !important;
+  }
+
   .faculty-redesign .faculty-profile {
     opacity: 1;
     transform: none;
