@@ -215,7 +215,7 @@ function Portrait({ item, aspect = "aspect-[4/5]", dark = false }: { item: Edito
           alt={item.name}
           loading="lazy"
           decoding="async"
-          className="faculty-portrait h-full w-full object-cover grayscale transition duration-700 hover:grayscale-0 data-[touch-color-active]:grayscale-0"
+          className="faculty-portrait h-full w-full object-cover transition duration-700"
         />
       ) : (
         <Initials name={item.name} dark={dark} />
@@ -770,7 +770,7 @@ function FacultyPage() {
                 alt="Masters' Union campus life"
                 loading="lazy"
                 decoding="async"
-                className="h-full w-full object-cover object-[56%_40%] opacity-60 grayscale-[0.25]"
+                className="h-full w-full object-cover object-[56%_40%] opacity-60"
               />
               <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-transparent to-[#0a0a0a]" />
               <div aria-hidden className="absolute inset-0 bg-ink/25" />

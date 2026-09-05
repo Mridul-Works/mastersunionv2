@@ -326,7 +326,7 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
                 aria-hidden
                 loading="eager"
                 decoding="async"
-                className={`${PHOTO_CLASS} relative saturate-0`}
+                className={`${PHOTO_CLASS} relative`}
                 style={
                   reveal.s > 0.002
                     ? {
