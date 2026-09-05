@@ -1322,7 +1322,6 @@ body::-webkit-scrollbar {
 }
 
 .faculty-redesign .faculty-profile {
-  grid-column: span 3;
   min-width: 0;
   opacity: 0;
   transform: translateY(34px);
