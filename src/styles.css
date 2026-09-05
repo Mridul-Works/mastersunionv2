@@ -1256,7 +1256,6 @@ body::-webkit-scrollbar {
   z-index: 20;
   inset: 0;
   pointer-events: none;
-  border: 1px solid color-mix(in oklab, var(--faculty-silver) 14%, transparent);
   box-shadow: inset 0 -120px 100px -80px color-mix(in oklab, var(--faculty-obsidian) 92%, transparent);
 }
 
