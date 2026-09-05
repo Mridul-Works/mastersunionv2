@@ -13,7 +13,6 @@ import StackReveal from "@/components/StackReveal";
 import FacultyStatsCard from "@/components/FacultyStatsCard";
 import { buildFacultyStats, statsRefreshedLabel } from "@/lib/faculty-stats";
 
-import PractitionerGallery from "@/components/PractitionerGallery";
 
 import { FULL_TIME_FACULTY } from "@/lib/full-time-faculty";
 import { INDUSTRY_PRACTITIONERS, INDUSTRY_PHOTOS } from "@/lib/industry-practitioners";
@@ -210,7 +209,7 @@ type EditorialItem = {
 
 function Portrait({ item, aspect = "aspect-[4/5]", dark = false }: { item: EditorialItem; aspect?: string; dark?: boolean }) {
   return (
-    <div className={`w-full overflow-hidden ${dark ? "bg-[#1a1a1a]" : "bg-[#ececec]"} ${aspect}`}>
+    <div className={`faculty-roster-portrait w-full overflow-hidden ${dark ? "bg-[#1a1a1a]" : "bg-[#ececec]"} ${aspect}`}>
       {item.img ? (
         <TouchColorImg
           src={item.img}
@@ -229,7 +228,7 @@ function Portrait({ item, aspect = "aspect-[4/5]", dark = false }: { item: Edito
 function EditorialCaption({ item, dark = false }: { item: EditorialItem; dark?: boolean }) {
   return (
     <>
-      <h3 className={`mt-4 text-[1rem] font-medium leading-[1.2] tracking-[-0.005em] ${dark ? "text-white" : "text-black"}`}>
+      <h3 className={`faculty-roster-name mt-4 text-[1rem] font-medium leading-[1.2] ${dark ? "text-white" : "text-black"}`}>
         {item.name}
       </h3>
       <div className={`mt-1.5 text-[10.5px] uppercase leading-snug tracking-[0.14em] ${dark ? "text-white/55" : "text-black/55"}`} style={{ fontFamily: MONO }}>
@@ -269,7 +268,7 @@ function EditorialGrid({
   dark?: boolean;
 }) {
   return (
-    <div className={`mt-[clamp(1rem,2.5vh,2rem)] border-t ${dark ? "border-white/15" : "border-black/15"}`}>
+    <div className={`faculty-roster mt-[clamp(1rem,2.5vh,2rem)] border-t ${dark ? "border-white/15" : "border-black/15"}`}>
       {/* STATS HERO — card style (matches Section 2) */}
     {cardStats ? (
         <div className={`border-b py-[clamp(0.85rem,2vh,1.5rem)] ${dark ? "border-white/15" : "border-black/15"}`}>
@@ -324,20 +323,16 @@ function EditorialGrid({
         </div>
       )}
 
-      {gallery ? (
-        <div className={`border-b py-[clamp(1.5rem,4vh,3rem)] ${dark ? "border-white/15" : "border-black/15"}`}>
-          <PractitionerGallery items={items} />
-        </div>
-      ) : (
-        <div data-touch-gallery className={`scene-scroll grid grid-cols-2 divide-x divide-y border-b sm:grid-cols-3 md:grid-cols-4 ${dark ? "divide-white/10 border-white/15" : "divide-black/10 border-black/15"}`}>
+      <div className={`faculty-roster-window border-b ${dark ? "border-white/15" : "border-black/15"}`}>
+        <div data-touch-gallery className={`faculty-roster-grid grid grid-cols-2 gap-px sm:grid-cols-3 lg:grid-cols-4 ${dark ? "bg-white/10" : "bg-black/10"}`}>
           {items.map((item) => (
-            <article key={item.name} className="p-5 md:p-6">
+            <article key={item.name} className={`faculty-roster-card group p-4 sm:p-5 md:p-6 ${dark ? "bg-[#141719]" : "bg-[#F4F1E8]"}`}>
               <Portrait item={item} dark={dark} />
               <EditorialCaption item={item} dark={dark} />
             </article>
           ))}
         </div>
-      )}
+      </div>
     </div>
   );
 }
@@ -455,7 +450,7 @@ function FacultyPage() {
   }, []);
 
   return (
-    <main className="ink-scope min-h-screen bg-ink pb-24 text-white sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
+    <main className="ink-scope faculty-modern-grid min-h-screen bg-ink pb-24 text-white sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
       <SectionNav items={NAV} applyHref="#cta" />
 
       <StackReveal
@@ -504,11 +499,13 @@ function FacultyPage() {
 
 
       {/* SECTION 2 — MASTERS: Built by Scholars, Led by Industry Practitioners */}
-      <MastersVideos dark bg="bg-ink" />
+      <div className="faculty-redesign-start">
+        <MastersVideos dark bg="bg-ink" />
+      </div>
 
 
       {/* INDUSTRY PRACTITIONERS */}
-      <section id="practitioners" className="screen-section border-y border-white/10 bg-ink">
+      <section id="practitioners" className="faculty-chapter faculty-chapter-dark screen-section border-y border-white/10 bg-ink">
         <div className="page-shell screen-y">
           <SectionIntro
             index="01"
@@ -539,7 +536,7 @@ function FacultyPage() {
       </section>
 
       {/* FULL-TIME FACULTY */}
-      <section id="full-time" className="screen-section border-y border-white/10 bg-ink">
+      <section id="full-time" className="faculty-chapter faculty-chapter-paper screen-section border-y border-white/10 bg-ink">
         <div className="page-shell screen-y">
           <SectionIntro
             index="02"
@@ -567,7 +564,7 @@ function FacultyPage() {
       </section>
 
       {/* VISITING */}
-      <section id="visiting" className="screen-section border-y border-white/10 bg-ink">
+      <section id="visiting" className="faculty-chapter faculty-chapter-dark screen-section border-y border-white/10 bg-ink">
         <div className="page-shell screen-y">
           <SectionIntro
             index="03"
@@ -602,7 +599,7 @@ function FacultyPage() {
       </section>
 
       {/* TESTIMONIALS */}
-        <section className="screen-section border-y border-white/10 bg-ink">
+        <section className="faculty-chapter faculty-voices screen-section border-y border-white/10 bg-ink">
         <div className="page-shell screen-y">
           <SectionIntro
             index="04"
@@ -616,7 +613,7 @@ function FacultyPage() {
       </section>
 
       {/* BECOME A MASTER */}
-      <section className="screen-section border-y border-white/10 bg-ink text-white">
+      <section className="faculty-chapter faculty-teach screen-section border-y border-white/10 bg-ink text-white">
         <div className="screen-y flex w-full flex-col items-center justify-center">
           <div className="page-shell w-full">
             <SectionIntro
@@ -648,7 +645,7 @@ function FacultyPage() {
 
 
       {/* THE NUMBER */}
-      <section className="group relative flex min-h-[calc(110svh-var(--nav-reserve,0px))] flex-col items-center justify-center overflow-hidden border-y border-white/10 bg-ink py-[clamp(4rem,10vh,8rem)] text-white">
+      <section className="faculty-number group relative flex min-h-[calc(110svh-var(--nav-reserve,0px))] flex-col items-center justify-center overflow-hidden border-y border-white/10 bg-ink py-[clamp(4rem,10vh,8rem)] text-white">
         <div className="page-shell-narrow relative z-10 mt-[clamp(2rem,7svh,4rem)] text-center md:mt-0">
           <div className="text-[11px] uppercase tracking-[0.3em] text-white/50" style={{ fontFamily: MONO }}>
             The number that matters
@@ -680,7 +677,7 @@ function FacultyPage() {
 
 
       {/* CTA / CLOSING FOOTER */}
-      <footer id="cta" className="relative min-h-[calc(100svh-var(--nav-reserve,0px))] overflow-x-hidden bg-ink text-white">
+      <footer id="cta" className="faculty-closing relative min-h-[calc(100svh-var(--nav-reserve,0px))] overflow-x-hidden bg-ink text-white">
         <div className="flex min-h-[calc(100svh-var(--nav-reserve,0px))] flex-col justify-between pt-[clamp(4rem,14vh,10rem)]">
           {/* Top CTA */}
           <div className="page-shell-narrow text-center">
