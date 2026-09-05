@@ -1314,10 +1314,10 @@ body::-webkit-scrollbar {
   text-wrap: balance;
 }
 
-.faculty-redesign .faculty-magazine-grid {
+.faculty-redesign .faculty-aligned-grid {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: clamp(2.75rem, 6vw, 6.5rem) clamp(1rem, 2.5vw, 2rem);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(2rem, 4vw, 3.5rem) clamp(1.25rem, 2.5vw, 2rem);
   padding-block: clamp(2rem, 5vw, 5rem);
 }
 
