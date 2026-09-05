@@ -82,12 +82,20 @@ export default function PractitionerModel({
       frame = 0;
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight || 1;
-      const span = rect.height - vh * 0.55;
+      // Only start switching groups once the section header has reached the top.
+      const startOffset = Math.min(112, vh * 0.1);
+      const span = rect.height - vh * 0.9;
       if (span <= 0) return;
-      const progress = Math.min(Math.max((vh * 0.45 - rect.top) / span, 0), 0.999);
+      const travelled = startOffset - rect.top;
+      if (travelled <= 0) {
+        setStage((prev) => (prev === 0 ? prev : 0));
+        return;
+      }
+      const progress = Math.min(Math.max(travelled / span, 0), 0.999);
       const next = Math.min(groups.length - 1, Math.floor(progress * groups.length));
       setStage((prev) => (prev === next ? prev : next));
     };
+
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
     };
