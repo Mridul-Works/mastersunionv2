@@ -56,8 +56,8 @@ export function SectionIntro({
       </p>
 
       <h2
-        className={`faculty-section-title mt-[clamp(1.25rem,3.5vh,2.25rem)] max-w-[min(100%,${isLeft ? "26ch" : "22ch"})] text-balance text-[clamp(2.5rem,5.6vw,5rem)] font-normal leading-[0.98] text-foreground ${isLeft ? "" : "mx-auto"}`}
-        style={{ fontFamily: SERIF }}
+        className={`faculty-section-title mt-[clamp(1.25rem,3.5vh,2.25rem)] text-balance text-[clamp(2.5rem,5.6vw,5rem)] font-normal leading-[0.98] text-foreground ${isLeft ? "" : "mx-auto"}`}
+        style={{ fontFamily: SERIF, maxWidth: `min(100%, ${isLeft ? "26ch" : "22ch"})` }}
       >
 
         {title}
