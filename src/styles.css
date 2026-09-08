@@ -304,7 +304,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-color: #638C75;
+  background-color: #CACFD1;
   opacity: 0;
   transform: scale(0.96);
   transition: opacity 300ms ease, transform 300ms ease;
@@ -329,7 +329,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .recruiter-category-button:hover {
-    box-shadow: 0 0 26px -6px color-mix(in oklab, #638C75 55%, transparent);
+    box-shadow: 0 0 26px -6px color-mix(in oklab, #CACFD1 55%, transparent);
   }
 }
 
@@ -491,7 +491,7 @@
 .hero-scroll-mouse {
   width: 26px;
   height: 40px;
-  border: 2px solid #387554;
+  border: 2px solid #CACFD1;
   border-radius: 13px;
   position: relative;
 }
@@ -499,7 +499,7 @@
 .hero-scroll-wheel {
   width: 6px;
   height: 6px;
-  background: #387554;
+  background: #CACFD1;
   border-radius: 50%;
   position: absolute;
   left: 50%;
@@ -513,7 +513,7 @@
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: #387554;
+  color: #CACFD1;
   animation: hero-scroll-breathe 2.4s ease-in-out infinite;
 }
 
@@ -1774,9 +1774,9 @@ body::-webkit-scrollbar {
 
   .placements-obsidian.placements-ug-v2 .hero-sweep-button.bg-white:hover,
   .placements-ug-v2 .hero-sweep-button:hover {
-    background-color: #638C75;
-    border-color: #638C75;
-    box-shadow: 0 0 28px -6px color-mix(in oklab, #638C75 60%, transparent);
+    background-color: #CACFD1;
+    border-color: #CACFD1;
+    box-shadow: 0 0 28px -6px color-mix(in oklab, #CACFD1 60%, transparent);
   }
 
   .placements-ug-v2 .placements-pill-accent:hover {
@@ -2054,8 +2054,8 @@ body::-webkit-scrollbar {
 }
 
 .placement-ledger-row:hover {
-  background-color: #638C75;
-  box-shadow: 0 0 24px -8px color-mix(in oklab, #638C75 45%, transparent);
+  background-color: #CACFD1;
+  box-shadow: 0 0 24px -8px color-mix(in oklab, #CACFD1 45%, transparent);
 }
 
 .placement-ledger-row:hover .placement-data-number {
@@ -3294,10 +3294,10 @@ body::-webkit-scrollbar {
   transition: transform 350ms ease, border-color 350ms ease, color 350ms ease, background-color 350ms ease, box-shadow 350ms ease;
 }
 .career-story-arrows button:hover {
-  border-color: #638C75;
-  background: #638C75;
+  border-color: #CACFD1;
+  background: #CACFD1;
   color: #ffffff;
-  box-shadow: 0 0 28px -6px color-mix(in oklab, #638C75 60%, transparent);
+  box-shadow: 0 0 28px -6px color-mix(in oklab, #CACFD1 60%, transparent);
 }
 .career-story-arrows button:first-child:hover,
 .career-story-arrows button:last-child:hover { transform: none; }
@@ -3736,7 +3736,7 @@ body::-webkit-scrollbar {
 .career-roadmap-visual .career-roadmap-play { position: absolute; inset: 0; z-index: 3; display: grid; place-items: center; pointer-events: none; }
 .career-roadmap-visual .career-roadmap-play > span { display: grid; place-items: center; width: 3.5rem; height: 3.5rem; border: 1px solid color-mix(in oklab, var(--foreground) 35%, transparent); border-radius: 50%; background: color-mix(in oklab, var(--background) 60%, transparent); color: var(--foreground); transition: transform 300ms ease, background 300ms ease, border-color 300ms ease; }
 .career-roadmap-visual .career-roadmap-play svg { width: 1rem; height: 1rem; }
-.career-roadmap-visual.has-video:hover .career-roadmap-play > span { transform: scale(1.1); background: #638C75; border-color: #638C75; color: var(--background); }
+.career-roadmap-visual.has-video:hover .career-roadmap-play > span { transform: scale(1.1); background: #CACFD1; border-color: #CACFD1; color: var(--background); }
 .career-roadmap-items { display: grid; gap: 0.5rem; align-content: start; grid-template-columns: 1fr; }
 .career-roadmap-items-card { display: block; }
 .career-roadmap-items li {
@@ -3860,7 +3860,7 @@ body::-webkit-scrollbar {
   .podcast-rail-card .career-podcast-play svg { width: 0.9rem; }
 }
 @media (hover: hover) and (pointer: fine) {
-  .career-podcast-media:hover .career-podcast-play { transform: scale(1.1); background: #638C75; border-color: #638C75; color: var(--background); }
+  .career-podcast-media:hover .career-podcast-play { transform: scale(1.1); background: #CACFD1; border-color: #CACFD1; color: var(--background); }
 }
 
 @media (max-width: 639px) {
@@ -3877,8 +3877,8 @@ body::-webkit-scrollbar {
   .podcast-rail-card:hover .career-podcast-play,
   .podcast-rail-card:focus-visible .career-podcast-play {
     transform: scale(1.1);
-    background: #638C75;
-    border-color: #638C75;
+    background: #CACFD1;
+    border-color: #CACFD1;
     color: var(--background);
   }
 }
@@ -3905,7 +3905,7 @@ body::-webkit-scrollbar {
     border-color: color-mix(in oklab, var(--accent) 34%, transparent);
     box-shadow: 0 22px 52px -34px color-mix(in oklab, var(--accent) 58%, transparent);
   }
-  .career-leader-card.has-video:hover .career-leader-media > span { transform: scale(1.1); background: #638C75; border-color: #638C75; color: var(--background); }
+  .career-leader-card.has-video:hover .career-leader-media > span { transform: scale(1.1); background: #CACFD1; border-color: #CACFD1; color: var(--background); }
   .career-guidance-card:hover {
     background: color-mix(in oklab, var(--placements-inner-surface) 94%, var(--accent));
   }
@@ -4420,7 +4420,7 @@ body::-webkit-scrollbar {
 .career-podcast-play--sm { position: absolute; inset: 0; width: 2.5rem; height: 2.5rem; margin: auto; place-items: center; border: 1px solid color-mix(in oklab, var(--foreground) 35%, transparent); border-radius: 50%; background: color-mix(in oklab, var(--background) 65%, transparent); color: var(--foreground); transition: transform 300ms ease, background 300ms ease, border-color 300ms ease, color 300ms ease; }
 .career-podcast-play--sm svg { width: 0.75rem; }
 @media (hover: hover) {
-  .group:hover .career-podcast-play--sm { transform: scale(1.1); background: #638C75; border-color: #638C75; color: var(--background); }
+  .group:hover .career-podcast-play--sm { transform: scale(1.1); background: #CACFD1; border-color: #CACFD1; color: var(--background); }
 }
 
 /* ============================================================
