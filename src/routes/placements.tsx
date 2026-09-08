@@ -904,8 +904,6 @@ function CinematicHero() {
           </div>
         </div>
 
-        {/* Editorial block reveal — runs once on first load */}
-        <HeroMaskReveal />
         <ScrollIndicator />
        </div>
       </section>
