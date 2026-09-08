@@ -305,15 +305,20 @@ export default function MastersVideos({
 
               {/* editorial information panel */}
               <div className="order-2 flex min-w-0 flex-1 flex-col justify-center lg:max-w-[640px]">
-                <p className="faculty-video-kicker mv-reveal font-mono text-[11px] font-semibold uppercase tracking-[0.28em]">
+                <p className={`${dark ? "faculty-video-kicker" : faint} mv-reveal font-mono text-[11px] font-semibold uppercase tracking-[0.28em]`}>
                   500+ Masters · Masterclass
                 </p>
                 <h2
-                  className={`faculty-video-title mv-reveal mt-[clamp(0.65rem,1.5vh,1.05rem)] text-[clamp(2.5rem,5.6vw,5rem)] font-normal leading-[0.98] ${heading}`}
-                  style={{ fontFamily: "var(--faculty-font-display, 'Instrument Serif', Georgia, serif)", transitionDelay: "200ms" }}
+                  className={`${dark ? "faculty-video-title text-[clamp(2.5rem,5.6vw,5rem)] leading-[0.98]" : "text-[clamp(1.7rem,3.2vw,3rem)] leading-[1.05]"} mv-reveal mt-[clamp(0.65rem,1.5vh,1.05rem)] font-normal ${heading}`}
+                  style={{
+                    fontFamily: dark
+                      ? "var(--faculty-font-display, 'Instrument Serif', Georgia, serif)"
+                      : SANS_H,
+                    transitionDelay: "200ms",
+                  }}
                 >
                   Built by Scholars, Led by{" "}
-                  <span className="faculty-heading-accent font-normal italic" style={{ fontFamily: SERIF_IT }}>
+                  <span className={`${dark ? "faculty-heading-accent " : ""}font-normal italic`} style={{ fontFamily: SERIF_IT }}>
                     Industry Practitioners
                   </span>
                 </h2>
