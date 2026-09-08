@@ -755,10 +755,8 @@ function ScrollIndicator() {
 }
 
 /**
- * Full-bleed editorial hero: the graduation photograph fills the viewport at
- * full fidelity, the existing copy sits as quiet metadata, and the existing
- * headline anchors the lower third as oversized typography.
- * Content is unchanged — composition, scale, layering and motion only.
+ * Placements hero: dark editorial background with headline, supporting copy,
+ * and CTAs. No photograph, no entry puzzle transition.
  */
 function CinematicHero() {
   const sectionRef = useRef<HTMLElement | null>(null);
