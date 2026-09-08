@@ -18,7 +18,12 @@ import {
   Maximize2,
   Minimize2,
   X,
+  Instagram,
+  Linkedin,
+  Youtube,
+  Twitter,
 } from "lucide-react";
+import logoWhite from "@/assets/logo-2.png.asset.json";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import PlacementsFloatingNav from "@/components/placements/PlacementsFloatingNav";
 import heroBg from "@/assets/placement-hero.webp.asset.json";
