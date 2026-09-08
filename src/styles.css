@@ -3296,7 +3296,7 @@ body::-webkit-scrollbar {
 .career-story-arrows button:hover {
   border-color: #CACFD1;
   background: #CACFD1;
-  color: #ffffff;
+  color: #000000;
   box-shadow: 0 0 28px -6px color-mix(in oklab, #CACFD1 60%, transparent);
 }
 .career-story-arrows button:first-child:hover,
