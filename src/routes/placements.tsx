@@ -161,9 +161,8 @@ import {
   useInView,
   useReducedMotion,
 } from "@/components/placements/motion";
-import { HeroMaskReveal } from "@/components/placements/HeroMaskReveal";
 import { onScrollFrame, onViewportResize, invalidateScroll } from "@/lib/scroll-driver";
-import { bakeImageFilter } from "@/lib/bake-image-filter";
+
 
 
 import { SectionHeading } from "@/components/patterns/section-heading";
