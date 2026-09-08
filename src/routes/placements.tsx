@@ -762,8 +762,6 @@ function ScrollIndicator() {
  */
 function CinematicHero() {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const imgRef = useRef<HTMLImageElement | null>(null);
-  const imgWrapRef = useRef<HTMLDivElement | null>(null);
   const copyRef = useRef<HTMLDivElement | null>(null);
   const headlineRef = useRef<HTMLDivElement | null>(null);
   const [entered, setEntered] = useState(false);
@@ -776,13 +774,7 @@ function CinematicHero() {
     return () => cancelAnimationFrame(id);
   }, []);
 
-  // Bake the hero tone into the bitmap so the parallax frames stay
-  // compositor-only (a live CSS filter on a transformed layer re-runs per frame).
-  useEffect(() => {
-    const img = imgRef.current;
-    if (!img) return;
-    return bakeImageFilter(img, "contrast(1.06) saturate(1.02)");
-  }, []);
+
 
 
   useEffect(() => {
