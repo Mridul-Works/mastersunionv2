@@ -887,7 +887,7 @@ function CinematicHero() {
                 <button
                   type="button"
                   onClick={reportModal.open}
-                  className="hero-sweep-button dim group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden bg-[#131618] px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:bg-[#638C75] hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)] hover:opacity-100 max-sm:px-3.5 max-sm:py-3.5"
+                  className="hero-sweep-button dim group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden bg-[#131618] px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:bg-[#CACFD1] hover:shadow-[0_0_28px_-6px_rgba(202,207,209,0.6)] hover:opacity-100 max-sm:px-3.5 max-sm:py-3.5"
                   style={{ fontFamily: MONO }}
                 >
                   <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
@@ -896,7 +896,7 @@ function CinematicHero() {
                 </button>
               <a
                 href="#recruiters"
-                className="hero-sweep-button group relative inline-flex items-center gap-2 overflow-hidden border border-white/35 px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:border-[#638C75] hover:bg-[#638C75] hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)] max-sm:px-3.5 max-sm:py-3.5"
+                className="hero-sweep-button group relative inline-flex items-center gap-2 overflow-hidden border border-white/35 px-8 py-4.5 text-[11px] uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:border-[#CACFD1] hover:bg-[#CACFD1] hover:shadow-[0_0_28px_-6px_rgba(202,207,209,0.6)] max-sm:px-3.5 max-sm:py-3.5"
                 style={{ fontFamily: MONO }}
               >
                 <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
@@ -1068,7 +1068,7 @@ function CareerTransitionList({ transition }: { transition: (typeof TRANSITIONS)
             type="button"
             onClick={() => setMobileExpanded((s) => !s)}
             aria-expanded={mobileExpanded}
-            className="hero-sweep-button group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden border border-white/35 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:border-[#638C75] hover:bg-[#638C75] hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)]"
+            className="hero-sweep-button group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden border border-white/35 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:border-[#CACFD1] hover:bg-[#CACFD1] hover:shadow-[0_0_28px_-6px_rgba(202,207,209,0.6)]"
             style={{ fontFamily: MONO }}
           >
             <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
@@ -1563,7 +1563,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
             type="button"
             onClick={() => setShowAllGuidance((s) => !s)}
             aria-expanded={showAllGuidance}
-            className="hero-sweep-button group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden border border-white/35 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:border-[#638C75] hover:bg-[#638C75] hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)]"
+            className="hero-sweep-button group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden border border-white/35 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:border-[#CACFD1] hover:bg-[#CACFD1] hover:shadow-[0_0_28px_-6px_rgba(202,207,209,0.6)]"
             style={{ fontFamily: MONO }}
           >
             <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
@@ -1898,7 +1898,7 @@ function SubscribeBox() {
         href="https://www.youtube.com/channel/UCaTkVutJ9f-AoE7cz7VLlTw"
         target="_blank"
         rel="noreferrer"
-        className="group mt-5 inline-flex w-full items-center justify-between gap-3 rounded-xl bg-[#1A1F23] px-4 py-3.5 text-[13px] font-bold uppercase tracking-[0.12em] text-[#F2F1EE] ring-1 ring-white/10 transition-all duration-300 hover:scale-[1.02] hover:bg-[#638C75] hover:ring-[#638C75] active:scale-[0.98]"
+        className="group mt-5 inline-flex w-full items-center justify-between gap-3 rounded-xl bg-[#1A1F23] px-4 py-3.5 text-[13px] font-bold uppercase tracking-[0.12em] text-[#F2F1EE] ring-1 ring-white/10 transition-all duration-300 hover:scale-[1.02] hover:bg-[#CACFD1] hover:ring-[#CACFD1] hover:text-black active:scale-[0.98]"
       >
         <span>Subscribe to Masters&apos; Union</span>
         <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#F2F1EE] text-[#0B1215] transition-transform duration-300 group-hover:translate-x-0.5">
@@ -1980,7 +1980,7 @@ function ScrollNav({
           type="button"
           onClick={onPrev}
           aria-label="Scroll left"
-          className={`career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)] ${buttonTone}`}
+          className={`career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border transition-all hover:border-[#CACFD1] hover:bg-[#CACFD1] hover:text-black hover:shadow-[0_0_28px_-6px_rgba(202,207,209,0.6)] ${buttonTone}`}
         >
           <ChevronLeft className="size-4" />
         </button>
@@ -1988,7 +1988,7 @@ function ScrollNav({
           type="button"
           onClick={onNext}
           aria-label="Scroll right"
-          className={`career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border transition-all hover:border-[#638C75] hover:bg-[#638C75] hover:text-white hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)] ${buttonTone}`}
+          className={`career-nav-arrow inline-flex h-8 w-8 items-center justify-center rounded-full border transition-all hover:border-[#CACFD1] hover:bg-[#CACFD1] hover:text-black hover:shadow-[0_0_28px_-6px_rgba(202,207,209,0.6)] ${buttonTone}`}
         >
           <ChevronRight className="size-4" />
         </button>
@@ -2585,7 +2585,7 @@ function CohortReports() {
           <button
             type="button"
             onClick={reportModal.open}
-            className="hero-sweep-button dim group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden bg-[#131618] px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:bg-[#638C75] hover:border-[#638C75] hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)]"
+            className="hero-sweep-button dim group relative inline-flex cursor-pointer items-center gap-2 overflow-hidden bg-[#131618] px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:bg-[#CACFD1] hover:border-[#CACFD1] hover:shadow-[0_0_28px_-6px_rgba(202,207,209,0.6)]"
             style={{ fontFamily: MONO }}
           >
             <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
@@ -2779,7 +2779,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
           })}
           <button
             type="button"
-            className="hero-sweep-button quote-readmore-button group relative mt-8 inline-flex items-center gap-2 overflow-hidden border border-white/35 px-5 py-3 text-[10px] uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:border-[#638C75] hover:bg-[#638C75] hover:shadow-[0_0_28px_-6px_rgba(99,140,117,0.6)] md:px-8 md:py-4.5 md:text-[11px]"
+            className="hero-sweep-button quote-readmore-button group relative mt-8 inline-flex items-center gap-2 overflow-hidden border border-white/35 px-5 py-3 text-[10px] uppercase tracking-[0.22em] text-white transition-all duration-300 ease-out hover:border-[#CACFD1] hover:bg-[#CACFD1] hover:shadow-[0_0_28px_-6px_rgba(202,207,209,0.6)] md:px-8 md:py-4.5 md:text-[11px]"
             style={{ fontFamily: MONO }}
           >
             <span className="hero-sweep-button-content relative z-10 inline-flex items-center gap-2 transition-colors duration-300">
