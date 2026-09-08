@@ -269,7 +269,7 @@ export default function MastersVideos({
                 >
                   {/* frame is sized by height so the full portrait poster stays intact */}
                   <div
-                    className={`faculty-video-frame relative overflow-hidden rounded-[clamp(14px,1.6vw,22px)] border ${line} bg-black`}
+                    className={`${dark ? "faculty-video-frame" : ""} relative overflow-hidden rounded-[clamp(14px,1.6vw,22px)] border ${line} bg-black`}
                     style={{
                       aspectRatio: "223/398",
                       height: "clamp(360px, 62vh, 720px)",
@@ -285,7 +285,7 @@ export default function MastersVideos({
                       decoding="async"
                       loading="eager"
                       fetchPriority="high"
-                      className="faculty-video-image h-full w-full object-contain transition-all duration-[350ms] ease-out"
+                      className={`${dark ? "faculty-video-image" : "grayscale saturate-0 contrast-[1.05] group-hover:grayscale-0 group-hover:saturate-100"} h-full w-full object-contain transition-all duration-[350ms] ease-out`}
                       style={{
                         opacity: phase === "in" ? 1 : 0,
                         transform:
@@ -392,7 +392,7 @@ export default function MastersVideos({
                       onClick={() => goTo(i)}
                       aria-label={v.title}
                       aria-current={i === active}
-                      className={`faculty-video-thumb group relative h-[clamp(96px,14vh,148px)] shrink-0 overflow-hidden rounded-[14px] border bg-black transition duration-300 ${
+                      className={`${dark ? "faculty-video-thumb" : ""} group relative h-[clamp(96px,14vh,148px)] shrink-0 overflow-hidden rounded-[14px] border bg-black transition duration-300 ${
                         i === active
                           ? dark
                             ? "border-white/70"
@@ -407,7 +407,7 @@ export default function MastersVideos({
                         loading="eager"
                         fetchPriority={i < MASTER_VIDEO_PRIORITY_COUNT ? "high" : "auto"}
                         decoding="async"
-                        className="faculty-video-image h-full w-full object-contain transition-all duration-[350ms] ease-out"
+                        className={`${dark ? "faculty-video-image" : "grayscale saturate-0 contrast-[1.05] group-hover:grayscale-0 group-hover:saturate-100"} h-full w-full object-contain transition-all duration-[350ms] ease-out`}
                       />
                     </button>
                   ))}
