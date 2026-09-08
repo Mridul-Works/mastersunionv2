@@ -1157,7 +1157,7 @@ body::-webkit-scrollbar {
 .faculty-redesign .faculty-redesign-hero {
   position: relative;
   border-bottom: 1px solid color-mix(in oklab, var(--faculty-silver) 13%, transparent);
-  background: var(--faculty-obsidian);
+  background: #000000;
 }
 
 .faculty-redesign .faculty-redesign-hero::before {
