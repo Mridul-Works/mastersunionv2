@@ -845,33 +845,7 @@ function CinematicHero() {
         className="relative z-0 bg-[#0a0a0a]"
         style={{ height: reduced ? "100svh" : "200svh", overflowAnchor: "none" }}
       >
-       <div className="sticky top-0 h-[100svh] overflow-hidden" style={{ overflowAnchor: "none", contain: "paint" }}>
-        {/* Photograph — full bleed, full fidelity */}
-        <div ref={imgWrapRef} aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden" style={{ willChange: "transform" }}>
-          <img
-            ref={imgRef}
-            src={heroBg.url}
-            alt=""
-            className="no-img-zoom h-full w-full object-cover object-[58%_46%] md:object-[60%_38%]"
-            style={{
-              filter: "contrast(1.06) saturate(1.02)",
-               transform: on ? "translate3d(0,0,0) scale(1.005)" : "translate3d(0,0,0) scale(1.035)",
-              transition: reduced ? "none" : `transform 1700ms ${HERO_EASE} 120ms`,
-              willChange: "transform",
-            }}
-            decoding="async"
-            fetchPriority="high"
-          />
-          {/* Localized readability gradients only — no panel, no wash */}
-          <div className="absolute inset-x-0 bottom-0 h-[58%] bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
-          <div className="absolute inset-y-0 left-0 w-[70%] bg-gradient-to-r from-black/35 via-black/10 to-transparent lg:w-[52%]" />
-          {/* Very subtle transparent black overlay over the entire image */}
-          <div className="absolute inset-0 bg-black/[0.13]" aria-hidden />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-black/5 to-transparent lg:w-[65%]" aria-hidden />
-        </div>
-
-
-
+         <div className="sticky top-0 h-[100svh] overflow-hidden" style={{ overflowAnchor: "none", contain: "paint" }}>
 
         {/* Editorial composition */}
         <div className="placements-hero-content page-x relative z-10 flex h-full min-w-0 flex-col pb-28 pt-24 md:pb-24 md:pt-28">
