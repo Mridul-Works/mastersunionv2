@@ -1668,10 +1668,11 @@ body::-webkit-scrollbar {
 
 /* Careers & Placements — UG v2.0 visual-system scope. */
 .placements-ug-v2 {
-  --accent: oklch(0.47 0.09 158);
-  --accent-foreground: oklch(0.98 0.01 145);
-  --teal: oklch(0.47 0.09 158);
+  --accent: #CACFD1;
+  --accent-foreground: #050708;
+  --teal: #CACFD1;
   --font-display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+
   --page-x: clamp(0.75rem, 2.2vw, 1.25rem);
   --placements-rule: linear-gradient(
     to right,
