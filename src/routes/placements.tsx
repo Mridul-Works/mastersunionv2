@@ -3353,3 +3353,18 @@ export const Route = createFileRoute("/placements")({
   }),
   component: Page,
 });
+
+function FooterCol({ title, links }: { title: string; links: string[] }) {
+  return (
+    <div className="min-w-0 md:col-span-2 lg:col-span-2">
+      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white sm:text-[11px] sm:tracking-[0.22em]">{title}</p>
+      <ul className="mt-4 space-y-2.5 sm:mt-5 sm:space-y-3">
+        {links.map((l) => (
+          <li key={l}>
+            <a href="#" className="block text-[12px] leading-snug text-white/70 transition-colors hover:text-white sm:text-[13px]">{l}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
