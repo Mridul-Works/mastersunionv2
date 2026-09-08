@@ -806,11 +806,6 @@ function CinematicHero() {
       const p = Math.min(1, Math.max(0, (y - docTop) / track));
       if (p === lastP) return;
       lastP = p;
-      if (imgWrapRef.current) {
-        // the photograph drifts upward behind the pinned copy; it never fades —
-        // the second section physically slides over it instead
-        imgWrapRef.current.style.transform = `translate3d(0, ${(-p * 22).toFixed(2)}%, 0)`;
-      }
       if (copyRef.current) {
         // stays put, then eases out only at the very end of the pin
         const cp = Math.min(1, Math.max(0, (p - 0.68) / 0.32));
