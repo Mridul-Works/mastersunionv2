@@ -161,9 +161,8 @@ import {
   useInView,
   useReducedMotion,
 } from "@/components/placements/motion";
-import { HeroMaskReveal } from "@/components/placements/HeroMaskReveal";
 import { onScrollFrame, onViewportResize, invalidateScroll } from "@/lib/scroll-driver";
-import { bakeImageFilter } from "@/lib/bake-image-filter";
+
 
 
 import { SectionHeading } from "@/components/patterns/section-heading";
@@ -756,15 +755,11 @@ function ScrollIndicator() {
 }
 
 /**
- * Full-bleed editorial hero: the graduation photograph fills the viewport at
- * full fidelity, the existing copy sits as quiet metadata, and the existing
- * headline anchors the lower third as oversized typography.
- * Content is unchanged — composition, scale, layering and motion only.
+ * Placements hero: dark editorial background with headline, supporting copy,
+ * and CTAs. No photograph, no entry puzzle transition.
  */
 function CinematicHero() {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const imgRef = useRef<HTMLImageElement | null>(null);
-  const imgWrapRef = useRef<HTMLDivElement | null>(null);
   const copyRef = useRef<HTMLDivElement | null>(null);
   const headlineRef = useRef<HTMLDivElement | null>(null);
   const [entered, setEntered] = useState(false);
@@ -777,13 +772,7 @@ function CinematicHero() {
     return () => cancelAnimationFrame(id);
   }, []);
 
-  // Bake the hero tone into the bitmap so the parallax frames stay
-  // compositor-only (a live CSS filter on a transformed layer re-runs per frame).
-  useEffect(() => {
-    const img = imgRef.current;
-    if (!img) return;
-    return bakeImageFilter(img, "contrast(1.06) saturate(1.02)");
-  }, []);
+
 
 
   useEffect(() => {
@@ -815,11 +804,6 @@ function CinematicHero() {
       const p = Math.min(1, Math.max(0, (y - docTop) / track));
       if (p === lastP) return;
       lastP = p;
-      if (imgWrapRef.current) {
-        // the photograph drifts upward behind the pinned copy; it never fades —
-        // the second section physically slides over it instead
-        imgWrapRef.current.style.transform = `translate3d(0, ${(-p * 22).toFixed(2)}%, 0)`;
-      }
       if (copyRef.current) {
         // stays put, then eases out only at the very end of the pin
         const cp = Math.min(1, Math.max(0, (p - 0.68) / 0.32));
@@ -859,33 +843,7 @@ function CinematicHero() {
         className="relative z-0 bg-[#0a0a0a]"
         style={{ height: reduced ? "100svh" : "200svh", overflowAnchor: "none" }}
       >
-       <div className="sticky top-0 h-[100svh] overflow-hidden" style={{ overflowAnchor: "none", contain: "paint" }}>
-        {/* Photograph — full bleed, full fidelity */}
-        <div ref={imgWrapRef} aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden" style={{ willChange: "transform" }}>
-          <img
-            ref={imgRef}
-            src={heroBg.url}
-            alt=""
-            className="no-img-zoom h-full w-full object-cover object-[58%_46%] md:object-[60%_38%]"
-            style={{
-              filter: "contrast(1.06) saturate(1.02)",
-               transform: on ? "translate3d(0,0,0) scale(1.005)" : "translate3d(0,0,0) scale(1.035)",
-              transition: reduced ? "none" : `transform 1700ms ${HERO_EASE} 120ms`,
-              willChange: "transform",
-            }}
-            decoding="async"
-            fetchPriority="high"
-          />
-          {/* Localized readability gradients only — no panel, no wash */}
-          <div className="absolute inset-x-0 bottom-0 h-[58%] bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
-          <div className="absolute inset-y-0 left-0 w-[70%] bg-gradient-to-r from-black/35 via-black/10 to-transparent lg:w-[52%]" />
-          {/* Very subtle transparent black overlay over the entire image */}
-          <div className="absolute inset-0 bg-black/[0.13]" aria-hidden />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-black/5 to-transparent lg:w-[65%]" aria-hidden />
-        </div>
-
-
-
+         <div className="sticky top-0 h-[100svh] overflow-hidden" style={{ overflowAnchor: "none", contain: "paint" }}>
 
         {/* Editorial composition */}
         <div className="placements-hero-content page-x relative z-10 flex h-full min-w-0 flex-col pb-28 pt-24 md:pb-24 md:pt-28">
@@ -944,8 +902,6 @@ function CinematicHero() {
           </div>
         </div>
 
-        {/* Editorial block reveal — runs once on first load */}
-        <HeroMaskReveal />
         <ScrollIndicator />
        </div>
       </section>
