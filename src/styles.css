@@ -4393,7 +4393,8 @@ body::-webkit-scrollbar {
 }
 
 /* Observer-driven blur reveal for page sections (works everywhere) */
-.sd-reveal {
+.sd-reveal,
+[data-sd-reveal="true"] {
   opacity: 0;
   transform: translateY(48px) scale(0.99);
   filter: blur(12px);
@@ -4405,7 +4406,8 @@ body::-webkit-scrollbar {
 }
 
 /* Tall sections: no blur filter — cheap opacity/transform reveal only. */
-.sd-reveal.sd-reveal--light {
+.sd-reveal.sd-reveal--light,
+[data-sd-reveal-light="true"] {
   filter: none;
   transition:
     opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
@@ -4413,7 +4415,8 @@ body::-webkit-scrollbar {
   will-change: opacity, transform;
 }
 
-.sd-reveal[data-visible="true"] {
+.sd-reveal[data-visible="true"],
+[data-sd-reveal="true"][data-visible="true"] {
   opacity: 1;
   transform: none;
   filter: blur(0);
@@ -4421,7 +4424,8 @@ body::-webkit-scrollbar {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sd-reveal {
+  .sd-reveal,
+  [data-sd-reveal="true"] {
     opacity: 1;
     transform: none;
     filter: none;
