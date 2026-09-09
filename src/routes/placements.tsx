@@ -1869,7 +1869,7 @@ function PodcastTextBlock() {
         <Eyebrow>Podcast</Eyebrow>
       </Reveal>
       <Reveal delay={90}>
-        <h3 className="placements-section-title mt-4 max-w-[21ch]">
+        <h3 className="placements-section-title mt-4 max-w-[21ch] pb-5">
           How Masters&apos; Union <em className="font-serif-italic">prepares students for top 1% placements</em>
         </h3>
       </Reveal>
