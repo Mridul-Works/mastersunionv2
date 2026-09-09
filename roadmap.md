@@ -1,5 +1,7 @@
 # Roadmap
 
+- [x] Recompose the Placements founder quote as a thin reference-inspired strip while preserving its image and content
+
 - [x] Match the Placements page font family to the reference Masters Union homepage
 
 - [x] Remove all accent colors from the Faculty page and use neutral silver/white treatments throughout
@@ -176,5 +178,5 @@
 
 
 - [x] Student placement experience: replaced custom arrows with the shared ScrollNav slide hint + arrows
-- [ ] Mobile responsiveness pass 320-639px (recruiter category chips clipping, career transition from/to rows cramped)
+- [x] Mobile responsiveness pass 320-639px (recruiter category chips and career transition rows)
 - [x] Mobile responsiveness: no horizontal overflow at 320/360/375/390/414/430/480/540/639; recruiter chips fixed for <=359px
