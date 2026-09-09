@@ -1,5 +1,7 @@
 # Roadmap
 
+- [x] Match the Placements page font family to the reference Masters Union homepage
+
 - [x] Remove all accent colors from the Faculty page and use neutral silver/white treatments throughout
 
 - [x] Redesign the Faculty page as a dark editorial magazine gallery using the selected Midnight & Vermilion palette, Instrument Serif typography, and refined scroll/image transitions
