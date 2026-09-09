@@ -218,7 +218,7 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
     <section
       ref={sectionRef}
       id="top"
-      className="faculty-redesign-hero relative w-full overflow-hidden bg-background text-foreground"
+      className="faculty-redesign-hero relative flex h-full w-full flex-col overflow-hidden bg-background text-foreground"
       style={{ ["--recede" as string]: "0" }}
     >
       <div className="faculty-hero-grid page-gutter relative z-10 mx-auto grid w-full grid-cols-1 items-stretch gap-0 lg:grid-cols-12">
