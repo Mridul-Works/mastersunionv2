@@ -1510,7 +1510,6 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
           <Reveal>
             <div>
               <Eyebrow>Professional guidance</Eyebrow>
-              <p className="career-guidance-count pb-4"><span>52</span> professionals<br />in your corner</p>
             </div>
           </Reveal>
           <Reveal delay={100}>
@@ -1520,6 +1519,8 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
             </div>
           </Reveal>
         </div>
+
+        <p className="career-guidance-count pb-4"><span>52</span> professionals<br />in your corner</p>
 
         <div className="career-guidance-mobile-nav mt-8 flex justify-end">
           <ScrollNav
