@@ -4,7 +4,6 @@ import { TouchColorImg } from "@/components/TouchColorImg";
 import { ArrowUpRight } from "lucide-react";
 import StudentTestimonials from "@/components/StudentTestimonials";
 import { Accent, SectionIntro } from "@/components/SectionIntro";
-import SectionNav, { type SectionNavItem } from "@/components/SectionNav";
 import MastersVideos, { MASTER_VIDEO_PRELOAD } from "@/components/MastersVideos";
 import FacultyHero from "@/components/FacultyHero";
 import HeroFadeOut from "@/components/HeroFadeOut";
@@ -74,14 +73,6 @@ const INTER = "var(--font-sans)";
 const MONO = "var(--font-mono)";
 const SERIF = "var(--font-serif)";
 
-
-const NAV: SectionNavItem[] = [
-  { id: "top", label: "Overview" },
-  { id: "masters", label: "Masters" },
-  { id: "practitioners", label: "Industry" },
-  { id: "full-time", label: "Full-time" },
-  { id: "visiting", label: "Visiting" },
-];
 
 type Practitioner = { name: string; role: string; blurb: string };
 
@@ -456,8 +447,6 @@ function FacultyPage() {
 
   return (
     <main className="ink-scope faculty-redesign min-h-screen bg-ink pb-24 text-foreground sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
-      <SectionNav items={NAV} applyHref="#cta" />
-
       <StackReveal
         coverMultipliers={[
           1, // Hero — unchanged
