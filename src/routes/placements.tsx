@@ -1516,7 +1516,7 @@ function CareerExperienceArea({ setVideoModal }: { setVideoModal: (modal: VideoM
           <Reveal delay={100}>
             <div className="career-guidance-title-wrap">
               <h2 className="career-area-title">Guidance shaped by <em className="font-serif-italic">experience</em></h2>
-              <p className="career-area-intro">A multidisciplinary team helps students sharpen their story, prepare with intent, and navigate every step from first conversation to final offer.</p>
+              <p className="career-area-intro pb-6">A multidisciplinary team helps students sharpen their story, prepare with intent, and navigate every step from first conversation to final offer.</p>
             </div>
           </Reveal>
         </div>
