@@ -2286,9 +2286,9 @@ function SalaryComponentsDonut() {
 
 function SalaryVisualizations() {
   return (
-    <section className="salary-viz-section section-edge placements-band-dark" aria-labelledby="salary-viz-title">
+    <section className="salary-viz-section section-edge placements-band-light placements-band-paper" aria-labelledby="salary-viz-title">
       <div className="page-x py-10 md:py-14">
-        <div className="placements-section-shell placements-section-shell-dark">
+        <div className="placements-section-shell placements-section-shell-paper">
         <header className="salary-viz-header">
           <div>
             <span className="salary-viz-kicker" style={{ fontFamily: MONO }}>Compensation anatomy / Cohort 2025</span>
