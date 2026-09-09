@@ -10,7 +10,7 @@ const HERO_IMAGE = "https://images.mastersunion.link/uploads/03032026/v1/Frame20
 // Shared geometry for both photo layers so colour + monochrome stay pixel-aligned.
 // One single composition across every breakpoint: same object-position, same scale.
 const PHOTO_CLASS =
-  "h-full w-full origin-center object-cover object-[55%_54%] contrast-[1.05] will-change-transform";
+  "h-full w-full origin-center object-cover object-[50%_54%] contrast-[1.05] will-change-transform";
 
 const HEADLINE = <>Faculty at Masters&apos; Union</>;
 
@@ -211,7 +211,7 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
     >
       <div className="faculty-hero-grid page-gutter relative z-10 mx-auto grid w-full grid-cols-1 items-stretch gap-0 lg:grid-cols-12">
         {/* Left content column: architectural black space */}
-        <div className="faculty-hero-copy relative flex flex-col justify-start lg:col-span-6">
+        <div className="faculty-hero-copy relative flex flex-col justify-center lg:col-span-7">
           {/* Typography — demo's staggered Framer Motion entrance system */}
           <motion.div
             className="relative z-10"
@@ -269,10 +269,11 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
         </div>
 
         {/* Right portrait column */}
-        <div className="faculty-hero-photo-column relative h-[min(460px,58vh)] lg:col-span-6 lg:h-auto">
+        <div className="faculty-hero-photo-column relative h-[min(460px,58vh)] lg:col-span-5 lg:h-auto">
           <div
             className="faculty-hero-photo-stage pointer-events-none absolute inset-y-0 left-0 right-0 z-0"
             style={{
+              right: "calc(-1 * (clamp(20px, 4vw, 64px) + max(0px, (100vw - 1440px) / 2)))",
               opacity: "clamp(0.45, calc(1 - var(--recede) * 0.55), 1)",
               transform: "translate3d(0, calc(var(--recede) * -18px), 0)",
             }}
@@ -281,8 +282,16 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
             <motion.div
               ref={photoRef}
               className="absolute inset-0 z-0"
+              initial={noMotion ? false : { clipPath: CLIP_HIDDEN }}
+              animate={noMotion ? { clipPath: CLIP_REVEAL } : { clipPath: [CLIP_HIDDEN, CLIP_REVEAL] }}
+              transition={
+                noMotion
+                  ? { duration: 0 }
+                  : { duration: 1.2, ease: "circOut", times: [0, 1] }
+              }
               style={{
-                clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+                clipPath: CLIP_REVEAL,
+                willChange: "clip-path",
               }}
             >
               <img
