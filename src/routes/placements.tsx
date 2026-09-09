@@ -2286,7 +2286,7 @@ function SalaryComponentsDonut() {
 
 function SalaryVisualizations() {
   return (
-    <section className="salary-viz-section section-edge bg-[#0B1215]" aria-labelledby="salary-viz-title">
+    <section className="salary-viz-section section-edge placements-band-dark" aria-labelledby="salary-viz-title">
       <div className="page-x py-10 md:py-14">
         <div className="placements-section-shell placements-section-shell-dark">
         <header className="salary-viz-header">
@@ -2815,7 +2815,7 @@ function AuditedOutcomes() {
   return (
     <section
       id="outcomes"
-      className="relative flex flex-col justify-between bg-white py-8 md:py-10 lg:py-12"
+      className="relative flex flex-col justify-between placements-band-light placements-band-white py-8 md:py-10 lg:py-12"
     >
       <div className="page-x">
         <div className="placements-section-shell placements-section-shell-light">
@@ -2876,7 +2876,7 @@ function EditorialPlacementData() {
       ref={ref}
       id="cohorts"
       data-in-view={inView}
-      className="placement-data-section section-edge relative bg-[#0B1215]"
+      className="placement-data-section section-edge relative placements-band-light placements-band-white"
       aria-labelledby="placement-data-title"
     >
       <div className="page-x py-16 md:py-24">
@@ -3100,9 +3100,9 @@ function Page() {
 
       {/* Podcast section — natural flow, no forced viewport fit */}
       <div className="relative z-20 -mt-[100svh] motion-reduce:mt-0">
-        <section className="relative bg-[#0B1215] py-16 md:py-20 lg:py-24">
+        <section className="relative placements-band-light placements-band-paper py-16 md:py-20 lg:py-24">
           <div className="page-x">
-            <div className="placements-section-shell placements-section-shell-dark podcast-shell relative flex w-full flex-col gap-10 lg:gap-14">
+            <div className="placements-section-shell placements-section-shell-paper podcast-shell relative flex w-full flex-col gap-10 lg:gap-14">
               <PodcastSection setVideoModal={setVideoModal} />
               <div className="mt-6 md:mt-8 lg:mt-10">
                 <EditorialRule />
