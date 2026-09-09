@@ -1285,7 +1285,7 @@ body::-webkit-scrollbar {
 }
 
 .faculty-redesign .faculty-hero-photo-falloff {
-  background: linear-gradient(to right, var(--faculty-obsidian) 0%, color-mix(in oklab, var(--faculty-obsidian) 58%, transparent) 14%, transparent 40%);
+  background: linear-gradient(to right, var(--faculty-obsidian) 0%, color-mix(in oklab, var(--faculty-obsidian) 58%, transparent) 6%, transparent 18%);
 }
 
 .faculty-redesign .faculty-hero-scroll {
