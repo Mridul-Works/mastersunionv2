@@ -1260,7 +1260,7 @@ body::-webkit-scrollbar {
 
 .faculty-redesign .faculty-hero-photo-column,
 .faculty-redesign .faculty-hero-photo-stage {
-  background: var(--faculty-panel);
+  background: var(--faculty-obsidian);
 }
 
 .faculty-redesign .faculty-hero-photo-column::before {
@@ -1278,10 +1278,6 @@ body::-webkit-scrollbar {
 .faculty-redesign .faculty-hero-photo-overlay {
   pointer-events: none;
   box-shadow: inset 0 -120px 100px -80px color-mix(in oklab, var(--faculty-obsidian) 92%, transparent);
-}
-
-.faculty-redesign .faculty-hero-photo-falloff {
-  background: linear-gradient(to right, var(--faculty-obsidian) 0%, color-mix(in oklab, var(--faculty-obsidian) 58%, transparent) 6%, transparent 18%);
 }
 
 .faculty-redesign .faculty-hero-scroll {
@@ -1581,10 +1577,6 @@ body::-webkit-scrollbar {
   .faculty-redesign .faculty-hero-photo-column {
     height: min(118vw, 520px);
     min-height: 390px;
-  }
-
-  .faculty-redesign .faculty-hero-photo-falloff {
-    background: linear-gradient(to bottom, var(--faculty-obsidian), transparent 16%);
   }
 
   .faculty-redesign .faculty-aligned-grid {
