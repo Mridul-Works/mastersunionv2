@@ -5787,3 +5787,19 @@ body::-webkit-scrollbar {
 .placements-obsidian .placements-band-light .hero-sweep-button:hover .hero-sweep-button-content svg {
   color: #ffffff;
 }
+
+/* Career transition ledger inside a light band. */
+.placements-obsidian .placements-band-light .career-transition-row {
+  border-bottom-color: rgba(10, 12, 14, 0.12);
+  color: rgba(20, 24, 26, 0.62);
+}
+
+.placements-obsidian .placements-band-light .career-transition-row[data-active="true"] {
+  color: rgba(20, 24, 26, 0.95);
+  background: rgba(10, 12, 14, 0.05);
+  border-color: rgba(10, 12, 14, 0.28);
+}
+
+.placements-obsidian .placements-band-light .career-transition-row:not(.career-transition-row-launch) .career-transition-cell:last-child {
+  color: rgba(20, 24, 26, 0.92);
+}
