@@ -5694,3 +5694,112 @@ body::-webkit-scrollbar {
     transition: none;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Placements: light/dark band alternation matching the Masters' Union homepage
+   (white, warm paper #F5F3EE / #F1EFE7, black). Hero, quote, careers team and
+   footer are not Bands and keep their dark treatment.
+--------------------------------------------------------------------------- */
+.placements-obsidian .placements-band-light {
+  --placements-page-surface: #ffffff;
+  --placements-inner-surface: #ffffff;
+  --placements-outer-surface: rgba(255, 255, 255, 0.55);
+  --background: #ffffff;
+  --foreground: #14181a;
+  --card: rgba(255, 255, 255, 0.65);
+  --accent: #14181a;
+  --accent-foreground: #ffffff;
+  --teal: #14181a;
+  color: #14181a;
+}
+
+.placements-obsidian .placements-band-white {
+  background-color: #ffffff;
+}
+
+.placements-obsidian .placements-band-paper {
+  --placements-page-surface: #f5f3ee;
+  --background: #f5f3ee;
+  background-color: #f5f3ee;
+}
+
+.placements-obsidian .placements-band-warm {
+  --placements-page-surface: #f1efe7;
+  --background: #f1efe7;
+  background-color: #f1efe7;
+}
+
+.placements-obsidian .placements-band-dark {
+  background-color: #0a0a0a;
+}
+
+.placements-obsidian .placements-band-light .placements-section-shell-paper {
+  border-color: rgba(10, 12, 14, 0.1);
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 24px 60px -44px rgba(10, 12, 14, 0.45);
+}
+
+/* Literal Tailwind colour utilities can't follow the tokens, so flip them. */
+.placements-obsidian .placements-band-light [class*="text-white"] {
+  color: #14181a;
+}
+
+.placements-obsidian .placements-band-light [class*="text-white/7"],
+.placements-obsidian .placements-band-light [class*="text-white/6"] {
+  color: rgba(20, 24, 26, 0.72);
+}
+
+.placements-obsidian .placements-band-light [class*="text-white/5"],
+.placements-obsidian .placements-band-light [class*="text-white/4"] {
+  color: rgba(20, 24, 26, 0.56);
+}
+
+.placements-obsidian .placements-band-light [class*="text-white/3"],
+.placements-obsidian .placements-band-light [class*="text-white/2"] {
+  color: rgba(20, 24, 26, 0.44);
+}
+
+.placements-obsidian .placements-band-light [class*="text-black"] {
+  color: rgba(20, 24, 26, 0.75);
+}
+
+.placements-obsidian .placements-band-light [class*="border-white"],
+.placements-obsidian .placements-band-light [class*="border-black"] {
+  border-color: rgba(10, 12, 14, 0.14);
+}
+
+.placements-obsidian .placements-band-light [class*="bg-white/"] {
+  background-color: rgba(10, 12, 14, 0.05);
+}
+
+.placements-obsidian .placements-band-light [class*="bg-[#0B1215]"],
+.placements-obsidian .placements-band-light [class*="bg-[#0A1712]"],
+.placements-obsidian .placements-band-light [class*="bg-[#131618]"] {
+  background-color: #ffffff;
+}
+
+.placements-obsidian .placements-band-light .hero-sweep-button .hero-sweep-button-content,
+.placements-obsidian .placements-band-light .hero-sweep-button .hero-sweep-button-content svg {
+  color: #14181a;
+}
+
+.placements-obsidian .placements-band-light .hero-sweep-button:hover .hero-sweep-button-content,
+.placements-obsidian .placements-band-light .hero-sweep-button:hover .hero-sweep-button-content svg {
+  color: #ffffff;
+}
+
+/* Career transition ledger inside a light band. */
+.placements-obsidian .placements-band-light .career-transition-row {
+  border-bottom-color: rgba(10, 12, 14, 0.12);
+  color: rgba(20, 24, 26, 0.62);
+}
+
+.placements-obsidian .placements-band-light .career-transition-row[data-active="true"] {
+  color: rgba(20, 24, 26, 0.95);
+  background: rgba(10, 12, 14, 0.05);
+  border-color: rgba(10, 12, 14, 0.28);
+}
+
+.placements-obsidian .placements-band-light .career-transition-row:not(.career-transition-row-launch) .career-transition-cell:last-child {
+  color: rgba(20, 24, 26, 0.92);
+}

@@ -924,19 +924,35 @@ function Band({
   children,
 }: {
   id?: string;
-  tone?: "white" | "paper" | "grey";
+  tone?: "white" | "paper" | "grey" | "dark";
   className?: string;
   children: React.ReactNode;
 }) {
-  const bg = "bg-[#0B1215]";
+  const isLight = tone !== "dark";
+  const toneClass =
+    tone === "paper"
+      ? "placements-band-paper"
+      : tone === "grey"
+        ? "placements-band-warm"
+        : tone === "dark"
+          ? "placements-band-dark"
+          : "placements-band-white";
   return (
-    <section id={id} className={`section-edge relative ${bg} ${className}`}>
+    <section
+      id={id}
+      className={`section-edge relative ${toneClass} ${isLight ? "placements-band-light" : ""} ${className}`}
+    >
       <div className="page-x py-16 md:py-28">
-        <div className="placements-section-shell placements-section-shell-light">{children}</div>
+        <div
+          className={`placements-section-shell ${isLight ? "placements-section-shell-paper" : "placements-section-shell-light"}`}
+        >
+          {children}
+        </div>
       </div>
     </section>
   );
 }
+
 
 /** Sticky editorial column: heading holds while the data scrolls beside it. */
 function StickyHead({ children }: { children: React.ReactNode }) {
@@ -3106,7 +3122,7 @@ function Page() {
       <SalaryVisualizations />
 
       {/* RECRUITERS */}
-      <Band id="recruiters" tone="grey" className="border-y border-black/10">
+      <Band id="recruiters" tone="dark" className="border-y border-white/10">
         <Reveal>
           <SectionHeading
             size="md"
