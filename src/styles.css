@@ -1260,7 +1260,7 @@ body::-webkit-scrollbar {
 
 .faculty-redesign .faculty-hero-photo-column,
 .faculty-redesign .faculty-hero-photo-stage {
-  background: var(--faculty-panel);
+  background: var(--faculty-obsidian);
 }
 
 .faculty-redesign .faculty-hero-photo-column::before {
