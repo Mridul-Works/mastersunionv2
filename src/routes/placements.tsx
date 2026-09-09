@@ -1141,7 +1141,7 @@ function CareerTransitionsSection() {
         <Eyebrow>Career transitions</Eyebrow>
       </Reveal>
       <Reveal delay={120}>
-        <h2 className="placements-section-title mt-6 max-w-[21ch]">
+        <h2 className="placements-section-title mt-6 pb-6 max-w-[21ch]">
           Where students come from, <em className="font-serif-italic">and where they go.</em>
         </h2>
       </Reveal>
