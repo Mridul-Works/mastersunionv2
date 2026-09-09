@@ -269,7 +269,7 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
         </div>
 
         {/* Right portrait column */}
-        <div className="faculty-hero-photo-column relative h-[min(460px,58vh)] lg:col-span-5 lg:h-auto">
+        <div className="faculty-hero-photo-column relative h-[min(460px,58vh)] lg:col-span-6 lg:h-auto">
           <div
             className="faculty-hero-photo-stage pointer-events-none absolute inset-y-0 left-0 right-0 z-0"
             style={{
