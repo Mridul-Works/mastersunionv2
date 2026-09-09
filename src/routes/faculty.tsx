@@ -470,32 +470,10 @@ function FacultyPage() {
           1, // Footer (last panel — no cover-up)
         ]}
       >
-      {/* HERO — first pinned layer of the stack (hero content + image + By the numbers panel) */}
+      {/* HERO — first pinned layer of the stack (hero content + image) */}
       <div className="flex min-h-[calc(100svh-var(--nav-reserve,0px))] flex-col bg-ink md:min-h-screen md:pb-0">
         <HeroFadeOut>
           <FacultyHero />
-          {/* By the numbers — attached to the hero's bottom edge, moves with the hero */}
-          <div
-            className="page-shell w-full bg-ink pb-[clamp(1.25rem,3vh,2.25rem)]"
-            style={{ marginTop: "calc(-1 * clamp(2rem, 6vh, 4.5rem) + clamp(1.25rem, 2.5vh, 1.75rem))" }}
-          >
-            <FacultyStatsCard
-              dark
-              stats={HERO_STATS}
-              refreshed={statsRefreshedLabel()}
-              universities={[
-                "Harvard",
-                "Wharton",
-                "Stanford",
-                "Kellogg",
-                "Cornell",
-                "NYU",
-                "Columbia",
-                "USC",
-                "Imperial",
-              ]}
-            />
-          </div>
         </HeroFadeOut>
       </div>
 
