@@ -5803,3 +5803,62 @@ body::-webkit-scrollbar {
 .placements-obsidian .placements-band-light .career-transition-row:not(.career-transition-row-launch) .career-transition-cell:last-child {
   color: rgba(20, 24, 26, 0.92);
 }
+
+/* Ledger / data numbers inside a light band. */
+.placements-obsidian .placements-band-light .placement-data-number,
+.placements-obsidian .placements-band-light .placements-dim-white {
+  color: rgba(20, 24, 26, 0.8);
+}
+
+.placements-obsidian .placements-band-light .placement-ledger-row:hover {
+  background-color: rgba(10, 12, 14, 0.06);
+  box-shadow: none;
+}
+
+.placements-obsidian .placements-band-light .placement-ledger-row:hover .placement-data-number {
+  color: #000000;
+}
+
+/* Placement statistics panel inside a light band. */
+.placements-obsidian .placements-band-light .placement-stats-header,
+.placements-obsidian .placements-band-light .placement-stats-headline-divider,
+.placements-obsidian .placements-band-light .placement-stats-grid,
+.placements-obsidian .placements-band-light .placement-stats-panel + .placement-stats-panel {
+  border-color: rgba(10, 12, 14, 0.14);
+  background-color: transparent;
+}
+
+.placements-obsidian .placements-band-light .placement-stats-headline-divider,
+.placements-obsidian .placements-band-light .placement-stats-columns::after {
+  background: rgba(10, 12, 14, 0.18);
+}
+
+.placements-obsidian .placements-band-light .placement-stats-panel {
+  background: #ffffff;
+}
+
+.placements-obsidian .placements-band-light .placement-stats-title,
+.placements-obsidian .placements-band-light .placement-stats-headline-value,
+.placements-obsidian .placements-band-light .placement-stats-panel-heading h3,
+.placements-obsidian .placements-band-light .placement-stats-column {
+  color: #14181a;
+}
+
+.placements-obsidian .placements-band-light .placement-stats-kicker,
+.placements-obsidian .placements-band-light .placement-stats-headline-label,
+.placements-obsidian .placements-band-light .placement-stats-panel-heading > span,
+.placements-obsidian .placements-band-light .placement-stats-label {
+  color: rgba(20, 24, 26, 0.58);
+}
+
+.placements-obsidian .placements-band-light .placement-stats-scale {
+  color: rgba(20, 24, 26, 0.45);
+}
+
+.placements-obsidian .placements-band-light .placement-stats-value {
+  color: rgba(20, 24, 26, 0.9);
+}
+
+.placements-obsidian .placements-band-light .placement-stats-face-front {
+  border-color: rgba(10, 12, 14, 0.18);
+}
