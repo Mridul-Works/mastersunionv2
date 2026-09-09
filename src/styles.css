@@ -5015,32 +5015,27 @@ body::-webkit-scrollbar {
   }
 }
 
-/* Compact founder quote strip: retain the original portrait and copy while
-   matching the shallow editorial proportion of the reference composition. */
+/* Compact founder quote strip for tablets and larger screens.
+   Mobile retains the previous tall quote-cover layout. */
 .placements-ug-v2 .quote-cover-section {
-  min-height: clamp(23rem, 32vw, 27rem);
   box-sizing: border-box;
   overflow: hidden;
 }
 
-.placements-ug-v2 .quote-cover-copy blockquote {
-  font-size: clamp(1.35rem, 2.25vw, 2.1rem);
-  line-height: 1.24;
+@media (min-width: 768px) {
+  .placements-ug-v2 .quote-cover-section {
+    min-height: clamp(23rem, 32vw, 27rem);
+  }
+
+  .placements-ug-v2 .quote-cover-copy blockquote {
+    font-size: clamp(1.35rem, 2.25vw, 2.1rem);
+    line-height: 1.24;
+  }
 }
 
 @media (max-width: 767px) {
   .placements-ug-v2 .quote-cover-section {
-    min-height: clamp(24rem, 72vw, 28rem);
     background-position: calc(88% + 70px) center !important;
-  }
-
-  .placements-ug-v2 .quote-cover-inner {
-    align-self: center;
-  }
-
-  .placements-ug-v2 .quote-cover-copy blockquote {
-    font-size: clamp(1.05rem, 5vw, 1.35rem);
-    line-height: 1.36;
   }
 }
 
