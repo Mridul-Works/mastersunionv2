@@ -1671,7 +1671,8 @@ body::-webkit-scrollbar {
   --accent: #CACFD1;
   --accent-foreground: #050708;
   --teal: #CACFD1;
-  --font-display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+  --font-display: "Inter", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
 
   --page-x: clamp(0.75rem, 2.2vw, 1.25rem);
   --placements-rule: linear-gradient(
