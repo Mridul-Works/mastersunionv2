@@ -10,9 +10,6 @@ import FacultyHero from "@/components/FacultyHero";
 import HeroFadeOut from "@/components/HeroFadeOut";
 import StackReveal from "@/components/StackReveal";
 
-import FacultyStatsCard from "@/components/FacultyStatsCard";
-import { buildFacultyStats, statsRefreshedLabel } from "@/lib/faculty-stats";
-
 import { FULL_TIME_FACULTY } from "@/lib/full-time-faculty";
 import { INDUSTRY_PRACTITIONERS, INDUSTRY_PHOTOS } from "@/lib/industry-practitioners";
 import manojAsset from "@/assets/faculty/manoj.png.asset.json";
