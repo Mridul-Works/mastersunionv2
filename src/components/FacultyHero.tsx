@@ -12,19 +12,7 @@ const HERO_IMAGE = "https://images.mastersunion.link/uploads/03032026/v1/Frame20
 const PHOTO_CLASS =
   "h-full w-full origin-center object-cover object-[50%_54%] contrast-[1.05] will-change-transform";
 
-const HEADLINE = (
-  <>
-    At most B-schools, faculty{" "}
-    <span className="faculty-hero-word font-light italic" style={{ fontFamily: SERIF_IT }}>
-      study
-    </span>{" "}
-    companies. Here, they{" "}
-    <span className="faculty-hero-word font-light italic" style={{ fontFamily: SERIF_IT }}>
-      ran
-    </span>{" "}
-    them and most still do.
-  </>
-);
+const HEADLINE = <>Faculty at Masters&apos; Union</>;
 
 
 
@@ -271,13 +259,7 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
                 className="faculty-hero-summary relative z-10 mt-[clamp(1.25rem,3vh,2rem)]"
               >
                 <p className="max-w-[62ch] text-[0.98rem] leading-[1.6]">
-                  500+ Masters. Built by scholars. Led by industry practitioners. Your classroom is powered
-                  by{" "}
-                  <span className="font-medium" style={{ fontFamily: SERIF_IT }}>
-                    Ivy League academics and global business leaders
-                  </span>{" "}
-                  — from Harvard to McKinsey, from Wharton to Google. They don&apos;t just teach the
-                  playbook. They wrote it.
+                  A Faculty Model Designed for Real-World Mastery.
                 </p>
               </motion.div>
             </div>
