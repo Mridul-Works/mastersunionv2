@@ -195,9 +195,8 @@ export default function FacultyHero() {
     };
   }, []);
 
-  // The photograph entrance is now handled by the clip-path reveal on its wrapper,
-  // so the image layers themselves stay in their final composition (no transform).
-  const imageEntranceStyle = { opacity: 1, transform: "none" } as const;
+  // Scale the photo down slightly so more of the original frame (left/right edges) stays visible.
+  const imageEntranceStyle = { opacity: 1, transform: "scale(0.92)" } as const;
 
 const CLIP_HIDDEN = "polygon(100% 0, 100% 0, 100% 100%, 100% 100%)";
 const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
