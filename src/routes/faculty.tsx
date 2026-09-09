@@ -9,9 +9,7 @@ import MastersVideos, { MASTER_VIDEO_PRELOAD } from "@/components/MastersVideos"
 import FacultyHero from "@/components/FacultyHero";
 import HeroFadeOut from "@/components/HeroFadeOut";
 import StackReveal from "@/components/StackReveal";
-
 import FacultyStatsCard from "@/components/FacultyStatsCard";
-import { buildFacultyStats, statsRefreshedLabel } from "@/lib/faculty-stats";
 
 import { FULL_TIME_FACULTY } from "@/lib/full-time-faculty";
 import { INDUSTRY_PRACTITIONERS, INDUSTRY_PHOTOS } from "@/lib/industry-practitioners";
@@ -170,19 +168,6 @@ const VISITING: Visiting[] = [
 const VISITING_SCHOOLS = Array.from(new Set(VISITING.map((v) => v.school))).filter(
   (s) => s !== "Masters' Union",
 );
-
-/**
- * Live "By the numbers" figures, derived from the rosters above (practitioners,
- * full-time PhD faculty, visiting faculty and their universities). Recomputed
- * on every render, so preview/demo and production always show current data,
- * with a month stamp that rolls over automatically.
- */
-const HERO_STATS = buildFacultyStats({
-  practitioners: PRACTITIONERS,
-  fullTime: FULLTIME,
-  visiting: VISITING,
-  rosterTotal: 500,
-});
 
 const TESTIMONIALS = [
   { q: "I met and learned from 50+ CXOs and MDs on the Masters' Union campus. That gave me confidence and exposure that nothing else could have.", a: "Priyansh Sharma", r: "Manager Strategy, Talabat Dubai" },
@@ -486,32 +471,10 @@ function FacultyPage() {
           1, // Footer (last panel — no cover-up)
         ]}
       >
-      {/* HERO — first pinned layer of the stack (hero content + image + By the numbers panel) */}
+      {/* HERO — first pinned layer of the stack (hero content + image) */}
       <div className="flex min-h-[calc(100svh-var(--nav-reserve,0px))] flex-col bg-ink md:min-h-screen md:pb-0">
         <HeroFadeOut>
           <FacultyHero />
-          {/* By the numbers — attached to the hero's bottom edge, moves with the hero */}
-          <div
-            className="page-shell w-full bg-ink pb-[clamp(1.25rem,3vh,2.25rem)]"
-            style={{ marginTop: "calc(-1 * clamp(2rem, 6vh, 4.5rem) + clamp(1.25rem, 2.5vh, 1.75rem))" }}
-          >
-            <FacultyStatsCard
-              dark
-              stats={HERO_STATS}
-              refreshed={statsRefreshedLabel()}
-              universities={[
-                "Harvard",
-                "Wharton",
-                "Stanford",
-                "Kellogg",
-                "Cornell",
-                "NYU",
-                "Columbia",
-                "USC",
-                "Imperial",
-              ]}
-            />
-          </div>
         </HeroFadeOut>
       </div>
 
