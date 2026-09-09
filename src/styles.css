@@ -5862,3 +5862,75 @@ body::-webkit-scrollbar {
 .placements-obsidian .placements-band-light .placement-stats-face-front {
   border-color: rgba(10, 12, 14, 0.18);
 }
+
+/* Compensation anatomy panel inside a light band. */
+.placements-obsidian .placements-band-light.salary-viz-section {
+  color: #14181a;
+  border-top-color: rgba(10, 12, 14, 0.12);
+}
+
+.placements-obsidian .placements-band-light .salary-viz-header,
+.placements-obsidian .placements-band-light .salary-viz-grid,
+.placements-obsidian .placements-band-light .salary-viz-panel + .salary-viz-panel,
+.placements-obsidian .placements-band-light .salary-viz-legend,
+.placements-obsidian .placements-band-light .salary-viz-legend-row {
+  border-color: rgba(10, 12, 14, 0.14);
+}
+
+.placements-obsidian .placements-band-light .salary-viz-kicker,
+.placements-obsidian .placements-band-light .salary-viz-panel-heading > span {
+  color: rgba(20, 24, 26, 0.55);
+}
+
+.placements-obsidian .placements-band-light .salary-viz-title,
+.placements-obsidian .placements-band-light .salary-viz-panel-heading h3,
+.placements-obsidian .placements-band-light .salary-viz-columns .salary-viz-column,
+.placements-obsidian .placements-band-light .salary-viz-legend-row {
+  color: #14181a;
+}
+
+.placements-obsidian .placements-band-light .salary-viz-distribution-intro {
+  background: #ffffff;
+  border-color: rgba(10, 12, 14, 0.16);
+}
+
+.placements-obsidian .placements-band-light .salary-viz-distribution-intro p {
+  color: rgba(20, 24, 26, 0.75);
+}
+
+.placements-obsidian .placements-band-light .salary-viz-scale-row {
+  color: rgba(20, 24, 26, 0.42);
+}
+
+.placements-obsidian .placements-band-light .salary-viz-scale-row i {
+  background: rgba(10, 12, 14, 0.12);
+}
+
+.placements-obsidian .placements-band-light .salary-viz-value {
+  color: rgba(20, 24, 26, 0.72);
+}
+
+.placements-obsidian .placements-band-light .salary-viz-range,
+.placements-obsidian .placements-band-light .salary-viz-legend-value {
+  color: rgba(20, 24, 26, 0.66);
+}
+
+.placements-obsidian .placements-band-light .salary-viz-legend-detail {
+  color: rgba(20, 24, 26, 0.48);
+}
+
+.placements-obsidian .placements-band-light .salary-viz-face-front {
+  border-color: rgba(10, 12, 14, 0.16);
+}
+
+.placements-obsidian .placements-band-light .salary-viz-donut-track {
+  stroke: rgba(10, 12, 14, 0.1);
+}
+
+.placements-obsidian .placements-band-light .salary-viz-donut-kicker {
+  fill: rgba(20, 24, 26, 0.5);
+}
+
+.placements-obsidian .placements-band-light .salary-viz-donut-total {
+  fill: #14181a;
+}
