@@ -211,7 +211,7 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
     >
       <div className="faculty-hero-grid page-gutter relative z-10 mx-auto grid w-full grid-cols-1 items-stretch gap-0 lg:grid-cols-12">
         {/* Left content column: architectural black space */}
-        <div className="faculty-hero-copy relative flex flex-col justify-center lg:col-span-7">
+        <div className="faculty-hero-copy relative flex flex-col justify-center lg:col-span-6">
           {/* Typography — demo's staggered Framer Motion entrance system */}
           <motion.div
             className="relative z-10"
