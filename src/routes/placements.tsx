@@ -924,35 +924,19 @@ function Band({
   children,
 }: {
   id?: string;
-  tone?: "white" | "paper" | "grey" | "dark";
+  tone?: "white" | "paper" | "grey";
   className?: string;
   children: React.ReactNode;
 }) {
-  const isLight = tone !== "dark";
-  const toneClass =
-    tone === "paper"
-      ? "placements-band-paper"
-      : tone === "grey"
-        ? "placements-band-warm"
-        : tone === "dark"
-          ? "placements-band-dark"
-          : "placements-band-white";
+  const bg = "bg-[#0B1215]";
   return (
-    <section
-      id={id}
-      className={`section-edge relative ${toneClass} ${isLight ? "placements-band-light" : ""} ${className}`}
-    >
+    <section id={id} className={`section-edge relative ${bg} ${className}`}>
       <div className="page-x py-16 md:py-28">
-        <div
-          className={`placements-section-shell ${isLight ? "placements-section-shell-paper" : "placements-section-shell-light"}`}
-        >
-          {children}
-        </div>
+        <div className="placements-section-shell placements-section-shell-light">{children}</div>
       </div>
     </section>
   );
 }
-
 
 /** Sticky editorial column: heading holds while the data scrolls beside it. */
 function StickyHead({ children }: { children: React.ReactNode }) {
@@ -2286,9 +2270,9 @@ function SalaryComponentsDonut() {
 
 function SalaryVisualizations() {
   return (
-    <section className="salary-viz-section section-edge placements-band-light placements-band-paper" aria-labelledby="salary-viz-title">
+    <section className="salary-viz-section section-edge bg-[#0B1215]" aria-labelledby="salary-viz-title">
       <div className="page-x py-10 md:py-14">
-        <div className="placements-section-shell placements-section-shell-paper">
+        <div className="placements-section-shell placements-section-shell-dark">
         <header className="salary-viz-header">
           <div>
             <span className="salary-viz-kicker" style={{ fontFamily: MONO }}>Compensation anatomy / Cohort 2025</span>
@@ -2399,7 +2383,7 @@ const PLACEMENT_STATS = {
 function OurPlacementStatistics() {
   return (
     <div className="mt-10" aria-labelledby="placement-stats-title">
-      <div className="placements-section-shell placements-section-shell-paper">
+      <div className="placements-section-shell placements-section-shell-dark">
         <header className="placement-stats-header">
           <div>
             <span className="placement-stats-kicker" style={{ fontFamily: MONO }}>
@@ -2815,7 +2799,7 @@ function AuditedOutcomes() {
   return (
     <section
       id="outcomes"
-      className="relative flex flex-col justify-between placements-band-light placements-band-white py-8 md:py-10 lg:py-12"
+      className="relative flex flex-col justify-between bg-white py-8 md:py-10 lg:py-12"
     >
       <div className="page-x">
         <div className="placements-section-shell placements-section-shell-light">
@@ -2876,11 +2860,11 @@ function EditorialPlacementData() {
       ref={ref}
       id="cohorts"
       data-in-view={inView}
-      className="placement-data-section section-edge relative placements-band-light placements-band-white"
+      className="placement-data-section section-edge relative bg-[#0B1215]"
       aria-labelledby="placement-data-title"
     >
       <div className="page-x py-16 md:py-24">
-        <div className="placements-section-shell placements-section-shell-paper">
+        <div className="placements-section-shell placements-section-shell-dark">
         <div className="placement-data-bento grid overflow-hidden border border-white/15 lg:grid-cols-12">
           <header className="flex min-h-[260px] flex-col justify-between border-b border-white/15 p-7 md:p-10 lg:col-span-7 lg:border-r lg:border-b-0">
             <div className="flex items-center justify-between gap-6 pb-3 md:pb-0">
@@ -3100,9 +3084,9 @@ function Page() {
 
       {/* Podcast section — natural flow, no forced viewport fit */}
       <div className="relative z-20 -mt-[100svh] motion-reduce:mt-0">
-        <section className="relative placements-band-light placements-band-paper py-16 md:py-20 lg:py-24">
+        <section className="relative bg-[#0B1215] py-16 md:py-20 lg:py-24">
           <div className="page-x">
-            <div className="placements-section-shell placements-section-shell-paper podcast-shell relative flex w-full flex-col gap-10 lg:gap-14">
+            <div className="placements-section-shell placements-section-shell-dark podcast-shell relative flex w-full flex-col gap-10 lg:gap-14">
               <PodcastSection setVideoModal={setVideoModal} />
               <div className="mt-6 md:mt-8 lg:mt-10">
                 <EditorialRule />
@@ -3122,7 +3106,7 @@ function Page() {
       <SalaryVisualizations />
 
       {/* RECRUITERS */}
-      <Band id="recruiters" tone="dark" className="border-y border-white/10">
+      <Band id="recruiters" tone="grey" className="border-y border-black/10">
         <Reveal>
           <SectionHeading
             size="md"
