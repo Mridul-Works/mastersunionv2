@@ -326,39 +326,12 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
           </div>
         </div>
 
-        {/* Scroll cue — vertical line with a dot that travels down as the hero scrolls away */}
-        <button
-          type="button"
-          aria-label="Scroll to next section"
-          onClick={() => {
-            const lenis = (window as any).__lenis;
-            const target = window.innerHeight * 0.85;
-            if (lenis?.scrollTo) {
-              lenis.scrollTo(target, { duration: 1.2 });
-            } else {
-              window.scrollTo({ top: target, behavior: "smooth" });
-            }
-          }}
-          className="faculty-hero-scroll group absolute inset-x-0 z-20 flex cursor-pointer justify-center rounded-sm border border-transparent p-3 transition-colors focus-visible:outline-none focus-visible:ring-1"
-          style={{ opacity: "clamp(0, calc(1 - var(--recede) * 2), 1)" }}
-        >
-          <div className="flex flex-col items-center gap-2">
-            <span
-              className="text-[9px] uppercase tracking-[0.28em]"
-              style={{ fontFamily: MONO }}
-            >
-              Scroll
-            </span>
-            <div className="relative h-10 w-3" aria-hidden>
-              <div className="faculty-hero-scroll-line absolute left-1/2 top-0 h-full w-px -translate-x-1/2" />
-              <div
-                data-scroll-dot
-                className="faculty-hero-scroll-dot absolute inset-x-0 top-0 mx-auto h-[5px] w-[5px] rounded-full transition-none"
-                style={{ marginTop: "calc(var(--recede) * 32px)" }}
-              />
-            </div>
+        <div className="hero-scroll-indicator" aria-hidden="true">
+          <div className="hero-scroll-mouse">
+            <div className="hero-scroll-wheel" />
           </div>
-        </button>
+          <span className="hero-scroll-label">Scroll Down</span>
+        </div>
       </div>
 
     </section>
