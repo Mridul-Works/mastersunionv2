@@ -200,7 +200,7 @@ export default function FacultyHero() {
   const imageEntranceStyle = { opacity: 1, transform: "none" } as const;
 
 const CLIP_HIDDEN = "polygon(100% 0, 100% 0, 100% 100%, 100% 100%)";
-const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
+const CLIP_REVEAL = "polygon(15% 0, 100% 0, 100% 100%, -5% 100%)";
 
   return (
     <section
