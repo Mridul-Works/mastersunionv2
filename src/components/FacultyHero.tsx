@@ -321,6 +321,9 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
               />
             </motion.div>
 
+            {/* Bottom overlay — spans the full bleed width of the stage so the right edge is covered too */}
+            <div className="faculty-hero-photo-overlay absolute inset-0 z-10" aria-hidden />
+
             {/* Very narrow, subtle left-edge falloff so the text column and image panel read as one scene */}
             <div
               className="faculty-hero-photo-falloff absolute inset-0 z-10"
