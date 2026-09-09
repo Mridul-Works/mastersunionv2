@@ -1204,7 +1204,7 @@ body::-webkit-scrollbar {
 }
 
 .faculty-redesign .faculty-hero-copy {
-  padding-block: clamp(1.75rem, 5vh, 5rem) 0;
+  padding-block: clamp(1rem, 3vh, 2.5rem) 0;
   padding-right: clamp(2rem, 5vw, 5.5rem);
 }
 
@@ -1525,7 +1525,7 @@ body::-webkit-scrollbar {
   }
 
   .faculty-redesign .faculty-hero-copy {
-    padding-block: clamp(3.5rem, 9vw, 6rem) 0;
+    padding-block: clamp(2rem, 6vw, 4rem) 0;
     padding-right: 0;
   }
 
@@ -1560,7 +1560,7 @@ body::-webkit-scrollbar {
   }
 
   .faculty-redesign .faculty-hero-copy {
-    padding-block: 2.75rem 0;
+    padding-block: 1.75rem 0;
   }
 
   .faculty-redesign .faculty-hero-title {
