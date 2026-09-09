@@ -12,8 +12,8 @@ import { runScrollFrameNow, setLenisSource } from "@/lib/scroll-driver";
  * trackpad without allowing one gesture to skip several sections. Single
  * instance on window.__lenis for nav/anchor scrollTo.
  *
- * The /placements page uses a lower-sensitivity Lenis config so the page
- * scrolls more gently, while the scroll driver reads Lenis's smoothed value
+ * The /placements and /faculty pages use a lower-sensitivity Lenis config so
+ * they scroll more gently, while the scroll driver reads Lenis's smoothed value
  * directly to keep scroll-linked transforms in sync and avoid the stutter
  * that comes from two independent animation loops.
  */
@@ -23,14 +23,14 @@ export default function SmoothScroll() {
   const lenisRef = useRef<Lenis | undefined>(undefined);
 
   useEffect(() => {
-    const isPlacements = pathname === "/placements";
+    const usesEditorialScroll = pathname === "/placements" || pathname === "/faculty";
 
-    // Lower input sensitivity on the placements page so one gesture doesn't
+    // Lower input sensitivity on editorial pages so one gesture doesn't
     // cover too much ground. A slightly stronger lerp keeps the glide smooth.
     const lenis = new Lenis({
-      lerp: isPlacements ? 0.06 : 0.085,
-      wheelMultiplier: isPlacements ? 0.18 : 0.24,
-      touchMultiplier: isPlacements ? 0.25 : 0.35,
+      lerp: usesEditorialScroll ? 0.06 : 0.085,
+      wheelMultiplier: usesEditorialScroll ? 0.18 : 0.24,
+      touchMultiplier: usesEditorialScroll ? 0.25 : 0.35,
       smoothWheel: true,
       syncTouch: false,
     });

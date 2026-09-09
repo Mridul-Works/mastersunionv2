@@ -206,6 +206,7 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
     <section
       ref={sectionRef}
       id="top"
+      data-no-reveal
       className="faculty-redesign-hero relative flex h-full w-full flex-col overflow-hidden bg-background text-foreground"
       style={{ ["--recede" as string]: "0" }}
     >

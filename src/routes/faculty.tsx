@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { TouchColorImg } from "@/components/TouchColorImg";
 import { ArrowUpRight } from "lucide-react";
@@ -422,6 +422,8 @@ export const Route = createFileRoute("/faculty")({
 });
 
 function FacultyPage() {
+  const pageRef = useRef<HTMLElement | null>(null);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       if ("scrollRestoration" in window.history) {
@@ -445,8 +447,41 @@ function FacultyPage() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const root = pageRef.current;
+    if (!root || typeof IntersectionObserver === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const targets = Array.from(root.querySelectorAll<HTMLElement>("section")).filter(
+      (element) => !element.closest("[data-no-reveal]"),
+    );
+    const viewportHeight = window.innerHeight || 1;
+
+    targets.forEach((element) => {
+      element.classList.add("sd-reveal");
+      if (element.offsetHeight > viewportHeight * 1.4) {
+        element.classList.add("sd-reveal--light");
+      }
+      element.dataset.visible = "false";
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          (entry.target as HTMLElement).dataset.visible = "true";
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -8% 0px" },
+    );
+
+    targets.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <main className="ink-scope faculty-redesign min-h-screen bg-ink pb-24 text-foreground sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
+    <main ref={pageRef} className="ink-scope faculty-redesign min-h-screen bg-ink pb-24 text-foreground sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
       <StackReveal
         coverMultipliers={[
           1, // Hero — unchanged
