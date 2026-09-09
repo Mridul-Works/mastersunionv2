@@ -178,5 +178,5 @@
 
 
 - [x] Student placement experience: replaced custom arrows with the shared ScrollNav slide hint + arrows
-- [ ] Mobile responsiveness pass 320-639px (recruiter category chips clipping, career transition from/to rows cramped)
+- [x] Mobile responsiveness pass 320-639px (recruiter category chips and career transition rows)
 - [x] Mobile responsiveness: no horizontal overflow at 320/360/375/390/414/430/480/540/639; recruiter chips fixed for <=359px
