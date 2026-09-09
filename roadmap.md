@@ -1,5 +1,7 @@
 # Roadmap
 
+- [x] Recompose the Placements founder quote as a thin reference-inspired strip while preserving its image and content
+
 - [x] Match the Placements page font family to the reference Masters Union homepage
 
 - [x] Remove all accent colors from the Faculty page and use neutral silver/white treatments throughout

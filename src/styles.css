@@ -5018,12 +5018,13 @@ body::-webkit-scrollbar {
 /* Compact founder quote strip: retain the original portrait and copy while
    matching the shallow editorial proportion of the reference composition. */
 .placements-ug-v2 .quote-cover-section {
-  min-height: clamp(25rem, 38vw, 31rem);
+  min-height: clamp(23rem, 32vw, 27rem);
+  box-sizing: border-box;
   overflow: hidden;
 }
 
 .placements-ug-v2 .quote-cover-copy blockquote {
-  font-size: clamp(1.45rem, 2.7vw, 2.55rem);
+  font-size: clamp(1.35rem, 2.25vw, 2.1rem);
   line-height: 1.24;
 }
 
