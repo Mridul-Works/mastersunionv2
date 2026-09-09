@@ -1556,11 +1556,11 @@ body::-webkit-scrollbar {
   }
 
   .faculty-redesign .faculty-hero-grid {
-    padding-bottom: 4rem;
+    padding-bottom: 0;
   }
 
   .faculty-redesign .faculty-hero-copy {
-    padding-block: 2.75rem 2rem;
+    padding-block: 2.75rem 0;
   }
 
   .faculty-redesign .faculty-hero-title {
