@@ -5030,12 +5030,12 @@ body::-webkit-scrollbar {
 
 @media (max-width: 767px) {
   .placements-ug-v2 .quote-cover-section {
-    min-height: clamp(29rem, 132vw, 34rem);
+    min-height: clamp(24rem, 72vw, 28rem);
     background-position: calc(88% + 70px) center !important;
   }
 
   .placements-ug-v2 .quote-cover-inner {
-    align-self: flex-end;
+    align-self: center;
   }
 
   .placements-ug-v2 .quote-cover-copy blockquote {
