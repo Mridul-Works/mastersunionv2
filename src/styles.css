@@ -1112,8 +1112,8 @@ body::-webkit-scrollbar {
   --faculty-silver: #CACFD1;
   --faculty-vermilion: var(--faculty-silver);
   --faculty-paper: #F2F1EC;
-  --faculty-font-display: "Instrument Serif", Georgia, ui-serif, serif;
-  --faculty-font-body: "Work Sans", system-ui, sans-serif;
+  --faculty-font-display: "Inter", system-ui, sans-serif;
+  --faculty-font-body: "Inter", system-ui, sans-serif;
 
   --background: var(--faculty-obsidian);
   --foreground: var(--faculty-paper);
