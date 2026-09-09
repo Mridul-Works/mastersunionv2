@@ -3122,7 +3122,7 @@ function Page() {
       <SalaryVisualizations />
 
       {/* RECRUITERS */}
-      <Band id="recruiters" tone="grey" className="border-y border-black/10">
+      <Band id="recruiters" tone="dark" className="border-y border-white/10">
         <Reveal>
           <SectionHeading
             size="md"
