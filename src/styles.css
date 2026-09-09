@@ -5803,3 +5803,18 @@ body::-webkit-scrollbar {
 .placements-obsidian .placements-band-light .career-transition-row:not(.career-transition-row-launch) .career-transition-cell:last-child {
   color: rgba(20, 24, 26, 0.92);
 }
+
+/* Ledger / data numbers inside a light band. */
+.placements-obsidian .placements-band-light .placement-data-number,
+.placements-obsidian .placements-band-light .placements-dim-white {
+  color: rgba(20, 24, 26, 0.8);
+}
+
+.placements-obsidian .placements-band-light .placement-ledger-row:hover {
+  background-color: rgba(10, 12, 14, 0.06);
+  box-shadow: none;
+}
+
+.placements-obsidian .placements-band-light .placement-ledger-row:hover .placement-data-number {
+  color: #000000;
+}
