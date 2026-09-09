@@ -405,9 +405,9 @@ export const Route = createFileRoute("/faculty")({
   head: () => ({
     meta: [
       { title: "Faculty — Masters' Union" },
-      { name: "description", content: "500+ Masters. Built by scholars. Led by industry practitioners. Ivy League academics and global business leaders — from Harvard to McKinsey, from Wharton to Google." },
+      { name: "description", content: "Faculty at Masters' Union. A Faculty Model Designed for Real-World Mastery." },
       { property: "og:title", content: "Faculty — Masters' Union" },
-      { property: "og:description", content: "500+ Masters. 50% active industry practitioners. Real operators, not retired ones." },
+      { property: "og:description", content: "Faculty at Masters' Union. A Faculty Model Designed for Real-World Mastery." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
