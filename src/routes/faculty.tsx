@@ -791,7 +791,7 @@ function FacultyPage() {
               <div className="page-shell flex flex-wrap items-center justify-between gap-2 py-4 pb-[clamp(4.5rem,8vh,6rem)] text-[10px] uppercase tracking-[0.22em] text-white/40" style={{ fontFamily: MONO }}>
                 <span>© 2026 Masters&apos; Union</span>
                 <span className="text-white/30">
-                  Faculty · <span className="text-[#d8b45f]/70">Practitioners over professors</span>
+                  Faculty · <span className="text-white/70">Practitioners over professors</span>
                 </span>
               </div>
             </div>

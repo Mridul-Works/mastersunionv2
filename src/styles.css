@@ -1109,8 +1109,8 @@ body::-webkit-scrollbar {
 .faculty-redesign {
   --faculty-obsidian: #0C1014;
   --faculty-panel: #1A2025;
-  --faculty-vermilion: #B94F3D;
   --faculty-silver: #CACFD1;
+  --faculty-vermilion: var(--faculty-silver);
   --faculty-paper: #F2F1EC;
   --faculty-font-display: "Instrument Serif", Georgia, ui-serif, serif;
   --faculty-font-body: "Work Sans", system-ui, sans-serif;
