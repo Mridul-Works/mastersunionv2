@@ -9,6 +9,7 @@ import MastersVideos, { MASTER_VIDEO_PRELOAD } from "@/components/MastersVideos"
 import FacultyHero from "@/components/FacultyHero";
 import HeroFadeOut from "@/components/HeroFadeOut";
 import StackReveal from "@/components/StackReveal";
+import FacultyStatsCard from "@/components/FacultyStatsCard";
 
 import { FULL_TIME_FACULTY } from "@/lib/full-time-faculty";
 import { INDUSTRY_PRACTITIONERS, INDUSTRY_PHOTOS } from "@/lib/industry-practitioners";
