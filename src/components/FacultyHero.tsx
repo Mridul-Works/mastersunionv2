@@ -10,7 +10,7 @@ const HERO_IMAGE = "https://images.mastersunion.link/uploads/03032026/v1/Frame20
 // Shared geometry for both photo layers so colour + monochrome stay pixel-aligned.
 // One single composition across every breakpoint: same object-position, same scale.
 const PHOTO_CLASS =
-  "h-full w-full origin-center object-cover object-[35%_54%] contrast-[1.05] will-change-transform";
+  "h-full w-full origin-center object-cover object-[25%_54%] contrast-[1.05] will-change-transform";
 
 const HEADLINE = <>Faculty at Masters&apos; Union</>;
 
