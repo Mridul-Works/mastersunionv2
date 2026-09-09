@@ -1199,8 +1199,9 @@ body::-webkit-scrollbar {
 }
 
 .faculty-redesign .faculty-hero-grid {
-  min-height: clamp(620px, calc(100svh - 96px), 920px);
-  padding-bottom: clamp(3rem, 7vh, 5.5rem);
+  height: 100%;
+  min-height: 0;
+  padding-bottom: clamp(2rem, 5vh, 4rem);
 }
 
 .faculty-redesign .faculty-hero-copy {
