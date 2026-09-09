@@ -1201,11 +1201,10 @@ body::-webkit-scrollbar {
 .faculty-redesign .faculty-hero-grid {
   height: 100%;
   min-height: 0;
-  padding-bottom: clamp(2rem, 5vh, 4rem);
 }
 
 .faculty-redesign .faculty-hero-copy {
-  padding-block: clamp(1.75rem, 5vh, 5rem);
+  padding-block: clamp(1.75rem, 5vh, 5rem) 0;
   padding-right: clamp(2rem, 5vw, 5.5rem);
 }
 
@@ -1523,11 +1522,10 @@ body::-webkit-scrollbar {
 @media (max-width: 1023px) {
   .faculty-redesign .faculty-hero-grid {
     min-height: auto;
-    padding-bottom: 4.5rem;
   }
 
   .faculty-redesign .faculty-hero-copy {
-    padding-block: clamp(3.5rem, 9vw, 6rem) clamp(2.5rem, 6vw, 4rem);
+    padding-block: clamp(3.5rem, 9vw, 6rem) 0;
     padding-right: 0;
   }
 
@@ -1558,11 +1556,11 @@ body::-webkit-scrollbar {
   }
 
   .faculty-redesign .faculty-hero-grid {
-    padding-bottom: 4rem;
+    padding-bottom: 0;
   }
 
   .faculty-redesign .faculty-hero-copy {
-    padding-block: 2.75rem 2rem;
+    padding-block: 2.75rem 0;
   }
 
   .faculty-redesign .faculty-hero-title {

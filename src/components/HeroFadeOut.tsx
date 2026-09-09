@@ -17,8 +17,9 @@ export default function HeroFadeOut({ children }: { children: ReactNode }) {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.99]);
 
   return (
-    <div ref={ref} className="relative isolate bg-[#0a0a0a]">
+    <div ref={ref} className="relative isolate h-full bg-[#0a0a0a]">
       <motion.div
+        className="h-full"
         style={
           reduce
             ? undefined
