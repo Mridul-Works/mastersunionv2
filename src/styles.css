@@ -5697,18 +5697,35 @@ body::-webkit-scrollbar {
 
 /* ---------------------------------------------------------------------------
    Placements: light/dark band alternation matching the Masters' Union homepage
-   (white, warm paper #F5F3EE / #F1EFE7, and black). Hero, quote, careers team
-   and footer keep their own dark treatment and are not Bands.
+   (white, warm paper #F5F3EE / #F1EFE7, black). Hero, quote, careers team and
+   footer are not Bands and keep their dark treatment.
 --------------------------------------------------------------------------- */
+.placements-obsidian .placements-band-light {
+  --placements-page-surface: #ffffff;
+  --placements-inner-surface: #ffffff;
+  --placements-outer-surface: rgba(255, 255, 255, 0.55);
+  --background: #ffffff;
+  --foreground: #14181a;
+  --card: rgba(255, 255, 255, 0.65);
+  --accent: #14181a;
+  --accent-foreground: #ffffff;
+  --teal: #14181a;
+  color: #14181a;
+}
+
 .placements-obsidian .placements-band-white {
   background-color: #ffffff;
 }
 
 .placements-obsidian .placements-band-paper {
+  --placements-page-surface: #f5f3ee;
+  --background: #f5f3ee;
   background-color: #f5f3ee;
 }
 
 .placements-obsidian .placements-band-warm {
+  --placements-page-surface: #f1efe7;
+  --background: #f1efe7;
   background-color: #f1efe7;
 }
 
@@ -5716,66 +5733,34 @@ body::-webkit-scrollbar {
   background-color: #0a0a0a;
 }
 
-.placements-obsidian .placements-band-light,
-.placements-obsidian .placements-band-light .placements-section-shell {
-  color: #14181a;
-}
-
-/* Inner surfaces inside a light band must stay light too. */
 .placements-obsidian .placements-band-light .placements-section-shell-paper {
-  background: rgba(255, 255, 255, 0.62);
   border-color: rgba(10, 12, 14, 0.1);
-  box-shadow: 0 24px 60px -40px rgba(10, 12, 14, 0.35);
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: 0 24px 60px -44px rgba(10, 12, 14, 0.45);
 }
 
-.placements-obsidian .placements-band-light .placements-section-shell .placements-section-shell,
-.placements-obsidian .placements-band-light .placements-section-shell > .placement-data-bento,
-.placements-obsidian .placements-band-light .placements-section-shell > .salary-viz-grid,
-.placements-obsidian .placements-band-light .placements-section-shell .recruiter-logo-panel,
-.placements-obsidian .placements-band-light .placements-section-shell .recruiter-marquee-panel,
-.placements-obsidian .placements-band-light .placements-section-shell .recruiter-logo-tile,
-.placements-obsidian .placements-band-light .placements-section-shell .recruiter-logo-marquee li,
-.placements-obsidian .placements-band-light [class*="bg-[#0B1215]"],
-.placements-obsidian .placements-band-light [class*="bg-[#0A1712]"],
-.placements-obsidian .placements-band-light [class*="bg-[#131618]"] {
-  background: #ffffff;
-}
-
-/* Type and rules flip to ink inside light bands. */
-.placements-obsidian .placements-band-light h1,
-.placements-obsidian .placements-band-light h2,
-.placements-obsidian .placements-band-light h3,
-.placements-obsidian .placements-band-light h4,
-.placements-obsidian .placements-band-light p,
-.placements-obsidian .placements-band-light li,
-.placements-obsidian .placements-band-light span,
-.placements-obsidian .placements-band-light dt,
-.placements-obsidian .placements-band-light dd,
-.placements-obsidian .placements-band-light a {
-  color: inherit;
-}
-
+/* Literal Tailwind colour utilities can't follow the tokens, so flip them. */
 .placements-obsidian .placements-band-light [class*="text-white"] {
   color: #14181a;
 }
 
-.placements-obsidian .placements-band-light [class*="text-white/6"],
-.placements-obsidian .placements-band-light [class*="text-white/7"] {
+.placements-obsidian .placements-band-light [class*="text-white/7"],
+.placements-obsidian .placements-band-light [class*="text-white/6"] {
   color: rgba(20, 24, 26, 0.72);
 }
 
-.placements-obsidian .placements-band-light [class*="text-white/4"],
-.placements-obsidian .placements-band-light [class*="text-white/5"] {
-  color: rgba(20, 24, 26, 0.58);
+.placements-obsidian .placements-band-light [class*="text-white/5"],
+.placements-obsidian .placements-band-light [class*="text-white/4"] {
+  color: rgba(20, 24, 26, 0.56);
 }
 
 .placements-obsidian .placements-band-light [class*="text-white/3"],
 .placements-obsidian .placements-band-light [class*="text-white/2"] {
-  color: rgba(20, 24, 26, 0.45);
+  color: rgba(20, 24, 26, 0.44);
 }
 
 .placements-obsidian .placements-band-light [class*="text-black"] {
-  color: rgba(20, 24, 26, 0.72);
+  color: rgba(20, 24, 26, 0.75);
 }
 
 .placements-obsidian .placements-band-light [class*="border-white"],
@@ -5787,19 +5772,18 @@ body::-webkit-scrollbar {
   background-color: rgba(10, 12, 14, 0.05);
 }
 
-/* Buttons and pills need dark-on-light contrast inside light bands. */
+.placements-obsidian .placements-band-light [class*="bg-[#0B1215]"],
+.placements-obsidian .placements-band-light [class*="bg-[#0A1712]"],
+.placements-obsidian .placements-band-light [class*="bg-[#131618]"] {
+  background-color: #ffffff;
+}
+
 .placements-obsidian .placements-band-light .hero-sweep-button .hero-sweep-button-content,
-.placements-obsidian .placements-band-light .hero-sweep-button .hero-sweep-button-content svg,
-.placements-obsidian .placements-band-light .placements-pill-ghost {
+.placements-obsidian .placements-band-light .hero-sweep-button .hero-sweep-button-content svg {
   color: #14181a;
 }
 
 .placements-obsidian .placements-band-light .hero-sweep-button:hover .hero-sweep-button-content,
 .placements-obsidian .placements-band-light .hero-sweep-button:hover .hero-sweep-button-content svg {
   color: #ffffff;
-}
-
-.placements-obsidian .placements-band-light .scroll-nav,
-.placements-obsidian .placements-band-light .scroll-nav * {
-  color: #14181a;
 }
