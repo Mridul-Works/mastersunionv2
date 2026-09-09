@@ -5015,11 +5015,31 @@ body::-webkit-scrollbar {
   }
 }
 
-/* Mobile-only: the source portrait places the person near its right edge.
-   Focus that subject—not the image canvas—in the middle of the viewport. */
+/* Compact founder quote strip: retain the original portrait and copy while
+   matching the shallow editorial proportion of the reference composition. */
+.placements-ug-v2 .quote-cover-section {
+  min-height: clamp(25rem, 38vw, 31rem);
+  overflow: hidden;
+}
+
+.placements-ug-v2 .quote-cover-copy blockquote {
+  font-size: clamp(1.45rem, 2.7vw, 2.55rem);
+  line-height: 1.24;
+}
+
 @media (max-width: 767px) {
-  .quote-cover-section {
+  .placements-ug-v2 .quote-cover-section {
+    min-height: clamp(29rem, 132vw, 34rem);
     background-position: calc(88% + 70px) center !important;
+  }
+
+  .placements-ug-v2 .quote-cover-inner {
+    align-self: flex-end;
+  }
+
+  .placements-ug-v2 .quote-cover-copy blockquote {
+    font-size: clamp(1.05rem, 5vw, 1.35rem);
+    line-height: 1.36;
   }
 }
 

@@ -2597,7 +2597,7 @@ function CohortReports() {
   );
 }
 
-/* ---------------------- quote: bottom-to-top cover ------------------------ */
+/* --------------------------- founder quote strip -------------------------- */
 
 /* Single continuous progress channel, written once per frame without React re-renders. */
 type QuoteCoverSub = (p: number) => void;
@@ -2695,7 +2695,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
   return (
     <section
       ref={hostRef}
-      className="quote-cover-section relative flex items-end lg:items-start pt-20 md:pt-24 lg:pt-28 pb-4 md:py-16 max-md:min-h-[80vh]"
+      className="quote-cover-section relative flex items-center py-10 md:py-12 lg:py-14"
       style={{
         backgroundColor: "black",
         backgroundImage: `url(${manojKohliBg.url})`,
@@ -2713,7 +2713,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
         style={{ zIndex: 2 }}
       />
 
-      <div className="page-x relative w-full" style={{ zIndex: 3 }}>
+      <div className="quote-cover-inner page-x relative w-full" style={{ zIndex: 3 }}>
         {/* Mobile-only bottom overlay behind the quote and button for readability.
             It sits as a bottom band that the quote rests on, and fades to transparent at the top. */}
         <div
@@ -2728,7 +2728,7 @@ function FounderQuoteSection({ animated = false }: { animated?: boolean }) {
 
         <div
           ref={textRef}
-          className="relative z-10 max-w-[56ch] max-md:max-w-[48ch]"
+          className="quote-cover-copy relative z-10 max-w-[56ch] max-md:max-w-[48ch]"
           style={{
             opacity: animated ? 0 : 1,
             transform: animated ? "translate3d(0px, 18px, 0px)" : "translate3d(0px, 0px, 0px)",
