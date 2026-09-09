@@ -1710,7 +1710,7 @@ body::-webkit-scrollbar {
 .placements-ug-v2 h3,
 .placements-ug-v2 h4 {
   font-family: var(--font-display);
-  font-weight: 300;
+  font-weight: 500;
   letter-spacing: -0.03em;
 }
 
@@ -1727,7 +1727,7 @@ body::-webkit-scrollbar {
   color: color-mix(in oklab, var(--accent) 92%, white);
   font-family: var(--font-serif);
   font-style: italic;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: -0.02em;
 }
 
