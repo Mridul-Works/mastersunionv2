@@ -458,9 +458,9 @@ function FacultyPage() {
     const viewportHeight = window.innerHeight || 1;
 
     targets.forEach((element) => {
-      element.classList.add("sd-reveal");
+      element.dataset.sdReveal = "true";
       if (element.offsetHeight > viewportHeight * 1.4) {
-        element.classList.add("sd-reveal--light");
+        element.dataset.sdRevealLight = "true";
       }
       element.dataset.visible = "false";
     });
