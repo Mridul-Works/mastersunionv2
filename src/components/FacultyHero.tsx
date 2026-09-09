@@ -195,9 +195,8 @@ export default function FacultyHero() {
     };
   }, []);
 
-  // The photograph entrance is now handled by the clip-path reveal on its wrapper,
-  // so the image layers themselves stay in their final composition (no transform).
-  const imageEntranceStyle = { opacity: 1, transform: "none" } as const;
+  // Scale the photo down slightly so more of the original frame (left/right edges) stays visible.
+  const imageEntranceStyle = { opacity: 1, transform: "scale(0.92)" } as const;
 
 const CLIP_HIDDEN = "polygon(100% 0, 100% 0, 100% 100%, 100% 100%)";
 const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
@@ -273,6 +272,7 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
           <div
             className="faculty-hero-photo-stage pointer-events-none absolute inset-y-0 left-0 right-0 z-0"
             style={{
+              right: "calc(-1 * (clamp(20px, 4vw, 64px) + max(0px, (100vw - 1440px) / 2)))",
               opacity: "clamp(0.45, calc(1 - var(--recede) * 0.55), 1)",
               transform: "translate3d(0, calc(var(--recede) * -18px), 0)",
             }}
