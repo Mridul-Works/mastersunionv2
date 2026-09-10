@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { TouchColorImg } from "@/components/TouchColorImg";
-import { orgLogoUrl } from "@/lib/org-logos";
 
 const MONO = "var(--font-mono)";
 
@@ -17,34 +16,6 @@ export type MixGroup = {
   note: string;
   items: PractitionerCard[];
 };
-
-function OrgMark({ company }: { company: string }) {
-  const src = orgLogoUrl(company);
-  const [failed, setFailed] = useState(false);
-  if (!src || failed) {
-    return (
-      <span className="faculty-model-card-org" style={{ fontFamily: MONO }}>
-        {company}
-      </span>
-    );
-  }
-  return (
-    <img
-      src={src}
-      alt={company}
-      loading="lazy"
-      decoding="async"
-      className="faculty-model-card-logo"
-      onError={() => setFailed(true)}
-    />
-  );
-}
-
-function splitRole(role: string) {
-  const i = role.indexOf(", ");
-  if (i === -1) return { title: role, company: "" };
-  return { title: role.slice(0, i), company: role.slice(i + 2) };
-}
 
 function Initials({ name }: { name: string }) {
   const initials = name
@@ -120,9 +91,7 @@ export default function PractitionerModel({
       </header>
 
       <div className="faculty-model-cards" key={active?.label} aria-live="polite">
-        {visible.map((p, index) => {
-          const { title, company } = splitRole(p.role);
-          return (
+        {visible.map((p, index) => (
             <article key={p.name} className="faculty-model-card">
               <div className="faculty-model-card-photo">
                 {p.img ? (
@@ -136,11 +105,6 @@ export default function PractitionerModel({
                 ) : (
                   <Initials name={p.name} />
                 )}
-                {company ? (
-                  <div className="faculty-model-card-company">
-                    <OrgMark company={company} />
-                  </div>
-                ) : null}
               </div>
               <div className="faculty-model-card-body">
                 <div className="faculty-model-card-heading">
@@ -154,8 +118,7 @@ export default function PractitionerModel({
                 </p>
               </div>
             </article>
-          );
-        })}
+          ))}
       </div>
     </div>
   );
