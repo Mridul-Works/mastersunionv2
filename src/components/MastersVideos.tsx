@@ -139,7 +139,8 @@ function VideoModal({ video, onClose }: { video: MasterVideo; onClose: () => voi
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 
