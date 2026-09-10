@@ -3,16 +3,49 @@
 // company or school string so messy roster text ("Star Bazaar (Trent · Tata)")
 // still maps to a real brand.
 
-import heroElectricIcon from "@/assets/logos/hero-electric-icon.png.asset.json";
+// Official marks used by Masters' Union on its own faculty page.
+import heroElectric from "@/assets/faculty/orgs/heroElectric.webp";
+import drVaidyas from "@/assets/faculty/orgs/vaidhyaLogo.webp";
+import morganStanley from "@/assets/faculty/orgs/stanley.webp";
+import softbankLogo from "@/assets/faculty/orgs/softbank.webp";
+import relianceLogo from "@/assets/faculty/orgs/reliance.webp";
+import swiggyLogo from "@/assets/faculty/orgs/swiggy.webp";
+import iimLogo from "@/assets/faculty/orgs/IIM.webp";
+import iimA from "@/assets/faculty/orgs/IIMAhmedabad.webp";
+import iimB from "@/assets/faculty/orgs/IIMBanglore.webp";
+import iimC from "@/assets/faculty/orgs/IIMCalcuta.webp";
+import harvardLogo from "@/assets/faculty/orgs/harvard.webp";
+import cornellLogo from "@/assets/faculty/orgs/cornell.webp";
+import columbiaLogo from "@/assets/faculty/orgs/columbia.webp";
+import mitLogo from "@/assets/faculty/orgs/MIT.webp";
+import nyuShanghaiLogo from "@/assets/faculty/orgs/shangai.webp";
+import imperialLogo from "@/assets/faculty/orgs/imperial.webp";
 
 const LOGO_TOKEN = import.meta.env['VITE_LOVABLE_CONNECTOR_LOGO_DEV_API_KEY'] as
   | string
   | undefined;
 
-/** keyword (lowercase) -> bundled logo asset. Used when Logo.dev serves a wrong
- *  or missing mark for the brand. Checked before domain lookup. */
+/** keyword (lowercase) -> bundled logo asset, taken from the official Masters'
+ *  Union faculty page. Checked before the Logo.dev domain lookup. */
 const STATIC_LOGOS: Record<string, string> = {
-  "hero electric": heroElectricIcon.url,
+  "hero electric": heroElectric,
+  "dr. vaidya": drVaidyas,
+  "morgan stanley": morganStanley,
+  softbank: softbankLogo,
+  reliance: relianceLogo,
+  swiggy: swiggyLogo,
+  "iim calcutta": iimC,
+  "iim bangalore": iimB,
+  "iim ahmedabad": iimA,
+  iim: iimLogo,
+  "harvard kennedy": harvardLogo,
+  harvard: harvardLogo,
+  cornell: cornellLogo,
+  columbia: columbiaLogo,
+  mit: mitLogo,
+  "nyu stern": nyuShanghaiLogo,
+  nyu: nyuShanghaiLogo,
+  imperial: imperialLogo,
 };
 
 /** keyword (lowercase) -> logo domain. First match wins, longest keywords first. */
