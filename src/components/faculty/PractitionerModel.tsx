@@ -42,7 +42,7 @@ function OrgLogo({ org }: { org: string }) {
   const url = orgLogoUrl(org, 128);
   return (
     <div className="faculty-model-card-logo">
-      {url && !failed ? (
+      {url && !failed && (
         <img
           src={url}
           alt={`${org} logo`}
@@ -50,9 +50,8 @@ function OrgLogo({ org }: { org: string }) {
           decoding="async"
           onError={() => setFailed(true)}
         />
-      ) : (
-        <span className="faculty-model-card-logo-text">{org}</span>
       )}
+      <span className="faculty-model-card-logo-text">{org}</span>
     </div>
   );
 }
