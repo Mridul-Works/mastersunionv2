@@ -69,7 +69,7 @@ export const INDUSTRY_PRACTITIONERS: IndustryPractitioner[] = [
   {
     name: "Mr. Rohit Kapoor",
     role: "CEO",
-    company: "Food Marketplace",
+    company: "",
     img: rohitK.url,
     blurb: "",
   },
