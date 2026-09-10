@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { TouchColorImg } from "@/components/TouchColorImg";
 
 export type MasterVideo = {
@@ -102,7 +103,9 @@ function VideoModal({ video, onClose }: { video: MasterVideo; onClose: () => voi
     };
   }, [onClose]);
 
-  return (
+  // portal to <body>: a section with `filter: blur(0)` (scroll-reveal) is a
+  // containing block for `position: fixed`, which would trap the overlay
+  return createPortal(
     <div
       className="fixed inset-0 z-[120] grid place-items-center bg-black/85 p-4 backdrop-blur-sm"
       onClick={onClose}
@@ -136,7 +139,8 @@ function VideoModal({ video, onClose }: { video: MasterVideo; onClose: () => voi
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 
