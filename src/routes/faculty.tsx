@@ -74,13 +74,14 @@ const MONO = "var(--font-mono)";
 const SERIF = "var(--font-serif)";
 
 
-type Practitioner = { name: string; role: string; blurb: string };
+type Practitioner = { name: string; role: string; blurb: string; company?: string };
 
 const PRACTITIONERS: Practitioner[] = [
   ...INDUSTRY_PRACTITIONERS.map((p) => ({
     name: p.name,
-    role: p.company ? `${p.role}, ${p.company}` : p.role,
+    role: p.name === "Mr. Rohit Kapoor" ? "CEO, Food Marketplace" : p.role,
     blurb: p.blurb,
+    company: p.company || undefined,
   })),
   { name: "Rajat Mathur", role: "Former Managing Director, Morgan Stanley", blurb: "Teaches people management through interactive debates, games, and live case studies. Rated among the most popular faculty at Masters' Union. Was in a board meeting before your class started." },
   { name: "Rohit Kapoor", role: "CEO, Food Marketplace, Swiggy", blurb: "Teaches growth, marketplace dynamics, and P&L management from the front seat of one of India's most complex consumer businesses." },
