@@ -5627,12 +5627,13 @@ body::-webkit-scrollbar {
 
 .faculty-redesign .faculty-model-card-logo img {
   display: block;
-  height: 18px;
-  width: 18px;
+  height: 26px;
+  width: auto;
+  max-width: 150px;
   flex: none;
   object-fit: contain;
-  border-radius: 4px;
-  opacity: 0.92;
+  object-position: left center;
+  opacity: 0.95;
 }
 
 .faculty-redesign .faculty-model-card-logo-text {
