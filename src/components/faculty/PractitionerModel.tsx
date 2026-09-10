@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { TouchColorImg } from "@/components/TouchColorImg";
-import { orgLogoUrl } from "@/lib/org-logos";
 
 const MONO = "var(--font-mono)";
 
@@ -17,34 +16,6 @@ export type MixGroup = {
   note: string;
   items: PractitionerCard[];
 };
-
-function OrgMark({ company }: { company: string }) {
-  const src = orgLogoUrl(company);
-  const [failed, setFailed] = useState(false);
-  if (!src || failed) {
-    return (
-      <span className="faculty-model-card-org" style={{ fontFamily: MONO }}>
-        {company}
-      </span>
-    );
-  }
-  return (
-    <img
-      src={src}
-      alt={company}
-      loading="lazy"
-      decoding="async"
-      className="faculty-model-card-logo"
-      onError={() => setFailed(true)}
-    />
-  );
-}
-
-function splitRole(role: string) {
-  const i = role.indexOf(", ");
-  if (i === -1) return { title: role, company: "" };
-  return { title: role.slice(0, i), company: role.slice(i + 2) };
-}
 
 function Initials({ name }: { name: string }) {
   const initials = name
