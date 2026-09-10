@@ -14,7 +14,7 @@ import thomas from "@/assets/industry/thomas-kuruvilla.png.asset.json";
 import nitinG from "@/assets/industry/nitin-gaur.png.asset.json";
 import jadhav from "@/assets/industry/narendra-jadhav.png.asset.json";
 import avantika from "@/assets/industry/avantika-tomar.png.asset.json";
-import arjunV from "@/assets/industry/arjun-vaidya.png.asset.json";
+import arjunV from "@/assets/faculty/arjun-vaidya.webp.asset.json";
 import edward from "@/assets/industry/edward-rogers.png.asset.json";
 
 export type IndustryPractitioner = {
@@ -35,7 +35,7 @@ export const INDUSTRY_PRACTITIONERS: IndustryPractitioner[] = [
       "Teaches the business of electric vehicles — strategy, supply chains and category creation — from the front seat of India's EV transition.",
   },
   {
-    name: "Arjun Vaidya",
+    name: "Mr. Arjun Vaidya",
     role: "Founder",
     company: "Dr. Vaidya's · V3 Ventures",
     img: arjunV.url,
