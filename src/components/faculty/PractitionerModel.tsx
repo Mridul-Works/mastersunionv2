@@ -40,9 +40,10 @@ function Initials({ name }: { name: string }) {
 function OrgLogo({ org }: { org: string }) {
   const [failed, setFailed] = useState(false);
   const url = orgLogoUrl(org, 128);
+  const showLogo = Boolean(url) && !failed;
   return (
     <div className="faculty-model-card-logo">
-      {url && !failed && (
+      {showLogo ? (
         <img
           src={url}
           alt={`${org} logo`}
@@ -50,8 +51,9 @@ function OrgLogo({ org }: { org: string }) {
           decoding="async"
           onError={() => setFailed(true)}
         />
+      ) : (
+        <span className="faculty-model-card-logo-text">{org}</span>
       )}
-      <span className="faculty-model-card-logo-text">{org}</span>
     </div>
   );
 }
