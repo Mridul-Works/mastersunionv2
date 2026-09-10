@@ -150,7 +150,7 @@ export default function PractitionerModel({
                   </span>
                 </div>
                 <p className="faculty-model-card-role" style={{ fontFamily: MONO }}>
-                  {title}
+                  {p.role}
                 </p>
               </div>
             </article>
