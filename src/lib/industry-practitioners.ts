@@ -32,7 +32,7 @@ export const INDUSTRY_PRACTITIONERS: IndustryPractitioner[] = [
   {
     name: "Mr. Naveen Munjal",
     role: "Managing Director",
-    company: "Hero Electric",
+    company: "",
     img: naveen.url,
     blurb:
       "Teaches the business of electric vehicles — strategy, supply chains and category creation — from the front seat of India's EV transition.",
