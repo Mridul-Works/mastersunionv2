@@ -15,6 +15,7 @@ import nitinG from "@/assets/industry/nitin-gaur.png.asset.json";
 import jadhav from "@/assets/industry/narendra-jadhav.png.asset.json";
 import avantika from "@/assets/industry/avantika-tomar.png.asset.json";
 import arjunV from "@/assets/faculty/arjun-vaidya.webp.asset.json";
+import rajatM from "@/assets/faculty/rajat-mathur.webp.asset.json";
 import edward from "@/assets/industry/edward-rogers.png.asset.json";
 
 export type IndustryPractitioner = {
@@ -43,12 +44,11 @@ export const INDUSTRY_PRACTITIONERS: IndustryPractitioner[] = [
       "Teaches D2C brand building and consumer psychology. Built and exited a modern ayurveda brand to a Fortune 500 group in his early thirties.",
   },
   {
-    name: "Thomas Kuruvilla",
-    role: "Managing Partner",
-    company: "Arthur D. Little, Middle East",
-    img: thomas.url,
-    blurb:
-      "Teaches management and strategy as a Master-in-Residence, drawing on global consulting mandates across the Gulf and Europe.",
+    name: "Mr. Rajat Mathur",
+    role: "Managing Director",
+    company: "",
+    img: rajatM.url,
+    blurb: "",
   },
   {
     name: "Dr Edward W. Rogers",
