@@ -5619,6 +5619,7 @@ body::-webkit-scrollbar {
 .faculty-redesign .faculty-model-card-logo {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
   min-height: 2.4rem;
   margin-top: auto;
   padding-top: 0.85rem;
@@ -5626,15 +5627,16 @@ body::-webkit-scrollbar {
 
 .faculty-redesign .faculty-model-card-logo img {
   display: block;
-  height: 26px;
-  width: auto;
-  max-width: 75%;
+  height: 18px;
+  width: 18px;
+  flex: none;
   object-fit: contain;
+  border-radius: 4px;
   opacity: 0.92;
 }
 
 .faculty-redesign .faculty-model-card-logo-text {
-  font-size: 1.15rem;
+  font-size: 0.95rem;
   font-weight: 500;
   letter-spacing: 0.01em;
   color: color-mix(in oklab, var(--foreground) 88%, transparent);
