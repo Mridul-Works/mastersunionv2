@@ -4,7 +4,7 @@
 
 import gurneesh from "@/assets/industry/gurneesh-khurana.png.asset.json";
 import barkha from "@/assets/industry/barkha-dutt.png.asset.json";
-import satish from "@/assets/industry/satish-krishnan.png.asset.json";
+
 import naveen from "@/assets/faculty/naveen-munjal.webp.asset.json";
 import jamshed from "@/assets/industry/jamshed-daboo.png.asset.json";
 import subhonil from "@/assets/industry/subhonil-ghoshal.png.asset.json";
@@ -17,6 +17,7 @@ import avantika from "@/assets/industry/avantika-tomar.png.asset.json";
 import arjunV from "@/assets/faculty/arjun-vaidya.webp.asset.json";
 import rajatM from "@/assets/faculty/rajat-mathur.webp.asset.json";
 import manojK from "@/assets/faculty/manoj-kohli.webp.asset.json";
+import raghuR from "@/assets/faculty/raghu-raman-portrait.webp.asset.json";
 import edward from "@/assets/industry/edward-rogers.png.asset.json";
 
 export type IndustryPractitioner = {
@@ -59,12 +60,11 @@ export const INDUSTRY_PRACTITIONERS: IndustryPractitioner[] = [
     blurb: "",
   },
   {
-    name: "Satish Krishnan",
-    role: "Former Managing Director",
-    company: "Standard Chartered",
-    img: satish.url,
-    blurb:
-      "Teaches derivatives and structured products from two decades on global banking and markets desks.",
+    name: "Captain Raghu Raman",
+    role: "Former President",
+    company: "",
+    img: raghuR.url,
+    blurb: "",
   },
   {
     name: "Nitin Gaur",
