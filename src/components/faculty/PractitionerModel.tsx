@@ -118,8 +118,7 @@ export default function PractitionerModel({
                 </p>
               </div>
             </article>
-          );
-        })}
+          ))}
       </div>
     </div>
   );
