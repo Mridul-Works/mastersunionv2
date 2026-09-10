@@ -77,6 +77,8 @@ export function orgLogoUrl(org?: string, size = 128): string | undefined {
     size: String(size),
     format: "png",
     retina: "true",
+    // Logos render on near-black cards, so request the dark-theme variant.
+    theme: "dark",
     // Return an HTTP error instead of a generic letter monogram so the UI can
     // fall back to a typographic wordmark for brands Logo.dev doesn't have.
     fallback: "404",

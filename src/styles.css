@@ -5630,8 +5630,7 @@ body::-webkit-scrollbar {
   width: auto;
   max-width: 70%;
   object-fit: contain;
-  filter: brightness(0) invert(1);
-  opacity: 0.9;
+  opacity: 0.92;
 }
 
 .faculty-redesign .faculty-model-card-logo-text {
