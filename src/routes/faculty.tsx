@@ -79,7 +79,7 @@ type Practitioner = { name: string; role: string; blurb: string };
 const PRACTITIONERS: Practitioner[] = [
   ...INDUSTRY_PRACTITIONERS.map((p) => ({
     name: p.name,
-    role: `${p.role}, ${p.company}`,
+    role: p.company ? `${p.role}, ${p.company}` : p.role,
     blurb: p.blurb,
   })),
   { name: "Rajat Mathur", role: "Former Managing Director, Morgan Stanley", blurb: "Teaches people management through interactive debates, games, and live case studies. Rated among the most popular faculty at Masters' Union. Was in a board meeting before your class started." },
