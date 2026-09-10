@@ -523,13 +523,19 @@ function FacultyPage() {
                   role: p.role,
                   blurb: p.blurb,
                   img: PRACTITIONER_PHOTOS[p.name],
+                  org: p.company || undefined,
                 })),
               },
               {
                 pct: "30",
                 label: "Full-Time Faculty",
                 note: "PhD educators shaping the core curriculum",
-                items: FULLTIME.map((f) => ({ name: f.name, role: "Ph.D", img: f.img })),
+                items: FULLTIME.map((f) => ({
+                  name: f.name,
+                  role: "Ph.D",
+                  img: f.img,
+                  org: "Masters' Union",
+                })),
               },
               {
                 pct: "30",
@@ -539,6 +545,7 @@ function FacultyPage() {
                   name: v.name,
                   role: `${v.role}, ${v.school}`,
                   img: v.img,
+                  org: v.school,
                 })),
               },
             ]}

@@ -32,7 +32,7 @@ export const INDUSTRY_PRACTITIONERS: IndustryPractitioner[] = [
   {
     name: "Mr. Naveen Munjal",
     role: "Managing Director",
-    company: "",
+    company: "Hero Electric",
     img: naveen.url,
     blurb:
       "Teaches the business of electric vehicles — strategy, supply chains and category creation — from the front seat of India's EV transition.",
@@ -40,7 +40,7 @@ export const INDUSTRY_PRACTITIONERS: IndustryPractitioner[] = [
   {
     name: "Mr. Arjun Vaidya",
     role: "Founder",
-    company: "",
+    company: "Dr. Vaidya's",
     img: arjunV.url,
     blurb:
       "Teaches D2C brand building and consumer psychology. Built and exited a modern ayurveda brand to a Fortune 500 group in his early thirties.",
@@ -48,28 +48,28 @@ export const INDUSTRY_PRACTITIONERS: IndustryPractitioner[] = [
   {
     name: "Mr. Rajat Mathur",
     role: "Managing Director",
-    company: "",
+    company: "Morgan Stanley",
     img: rajatM.url,
     blurb: "",
   },
   {
     name: "Mr. Manoj Kohli",
     role: "Former Country Head",
-    company: "",
+    company: "SoftBank India",
     img: manojK.url,
     blurb: "",
   },
   {
     name: "Captain Raghu Raman",
     role: "Former President",
-    company: "",
+    company: "Reliance Industries",
     img: raghuR.url,
     blurb: "",
   },
   {
     name: "Mr. Rohit Kapoor",
     role: "CEO",
-    company: "",
+    company: "Swiggy",
     img: rohitK.url,
     blurb: "",
   },
