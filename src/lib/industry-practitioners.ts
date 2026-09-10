@@ -5,7 +5,7 @@
 import gurneesh from "@/assets/industry/gurneesh-khurana.png.asset.json";
 import barkha from "@/assets/industry/barkha-dutt.png.asset.json";
 import satish from "@/assets/industry/satish-krishnan.png.asset.json";
-import naveen from "@/assets/industry/naveen-munjal.png.asset.json";
+import naveen from "@/assets/faculty/naveen-munjal.webp.asset.json";
 import jamshed from "@/assets/industry/jamshed-daboo.png.asset.json";
 import subhonil from "@/assets/industry/subhonil-ghoshal.png.asset.json";
 import rahulW from "@/assets/industry/rahul-wadhawan.png.asset.json";
@@ -27,7 +27,7 @@ export type IndustryPractitioner = {
 
 export const INDUSTRY_PRACTITIONERS: IndustryPractitioner[] = [
   {
-    name: "Naveen Munjal",
+    name: "Mr. Naveen Munjal",
     role: "Managing Director",
     company: "Hero Electric",
     img: naveen.url,
