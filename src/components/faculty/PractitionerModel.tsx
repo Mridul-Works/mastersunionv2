@@ -91,9 +91,7 @@ export default function PractitionerModel({
       </header>
 
       <div className="faculty-model-cards" key={active?.label} aria-live="polite">
-        {visible.map((p, index) => {
-          const { title, company } = splitRole(p.role);
-          return (
+        {visible.map((p, index) => (
             <article key={p.name} className="faculty-model-card">
               <div className="faculty-model-card-photo">
                 {p.img ? (
@@ -107,11 +105,6 @@ export default function PractitionerModel({
                 ) : (
                   <Initials name={p.name} />
                 )}
-                {company ? (
-                  <div className="faculty-model-card-company">
-                    <OrgMark company={company} />
-                  </div>
-                ) : null}
               </div>
               <div className="faculty-model-card-body">
                 <div className="faculty-model-card-heading">
