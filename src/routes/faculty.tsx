@@ -113,7 +113,7 @@ const PRACTITIONER_PHOTOS: Record<string, string> = {
   "Parikshit Khanna": parikshitAsset.url,
   "Karmanya Suri": karmanyaAsset.url,
   "Gaurav Arora": gauravAAsset.url,
-  "Captain Raghu Raman": raghuAsset.url,
+  
   "Nitin Gaur": nitinAsset.url,
 };
 
