@@ -5626,15 +5626,15 @@ body::-webkit-scrollbar {
 
 .faculty-redesign .faculty-model-card-logo img {
   display: block;
-  height: 22px;
+  height: 26px;
   width: auto;
-  max-width: 70%;
+  max-width: 75%;
   object-fit: contain;
   opacity: 0.92;
 }
 
 .faculty-redesign .faculty-model-card-logo-text {
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-weight: 500;
   letter-spacing: 0.01em;
   color: color-mix(in oklab, var(--foreground) 88%, transparent);
