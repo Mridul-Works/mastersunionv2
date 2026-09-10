@@ -5564,6 +5564,17 @@ body::-webkit-scrollbar {
 
 .faculty-redesign .faculty-model-card {
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 14px;
+  border: 1px solid color-mix(in oklab, var(--faculty-silver) 14%, transparent);
+  background: #0b0d0e;
+  transition: border-color 0.35s ease;
+}
+
+.faculty-redesign .faculty-model-card:hover {
+  border-color: var(--faculty-vermilion);
 }
 
 @keyframes faculty-model-enter {
@@ -5574,47 +5585,60 @@ body::-webkit-scrollbar {
 .faculty-redesign .faculty-model-card-photo {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 4 / 4.35;
-  margin-bottom: 0.7rem;
-  border: 1px solid color-mix(in oklab, var(--faculty-silver) 13%, transparent);
+  aspect-ratio: 1 / 1;
+  border-radius: 9px;
   background: color-mix(in oklab, var(--faculty-silver) 8%, transparent);
-  transition: border-color 0.35s ease;
-}
-
-.faculty-redesign .faculty-model-card:hover .faculty-model-card-photo {
-  border-color: var(--faculty-vermilion);
 }
 
 .faculty-redesign .faculty-model-card:hover .faculty-model-card-photo img {
   transform: scale(1.05);
 }
 
-.faculty-redesign .faculty-model-card-heading {
+.faculty-redesign .faculty-model-card-body {
   display: flex;
-  align-items: start;
-  justify-content: space-between;
-  gap: 1rem;
+  flex: 1;
+  flex-direction: column;
+  padding: 0.85rem 0.35rem 0.45rem;
 }
 
 .faculty-redesign .faculty-model-card-name {
-  font-family: var(--faculty-font-display, "Instrument Serif", serif);
-  font-size: clamp(1.05rem, 1.45vw, 1.4rem);
-  font-style: italic;
-  line-height: 1.05;
-}
-
-.faculty-redesign .faculty-model-card-index {
-  padding-top: 0.25rem;
-  font-size: 9px;
-  color: color-mix(in oklab, var(--faculty-silver) 38%, transparent);
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--foreground);
 }
 
 .faculty-redesign .faculty-model-card-role {
-  margin-top: 0.35rem;
-  font-size: 8px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: color-mix(in oklab, var(--foreground) 56%, transparent);
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 300;
+  line-height: 1.35;
+  color: color-mix(in oklab, var(--foreground) 62%, transparent);
+}
+
+.faculty-redesign .faculty-model-card-logo {
+  display: flex;
+  align-items: center;
+  min-height: 2.4rem;
+  margin-top: auto;
+  padding-top: 0.85rem;
+}
+
+.faculty-redesign .faculty-model-card-logo img {
+  display: block;
+  height: 22px;
+  width: auto;
+  max-width: 70%;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+.faculty-redesign .faculty-model-card-logo-text {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: color-mix(in oklab, var(--foreground) 88%, transparent);
 }
 
 
