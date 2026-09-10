@@ -529,7 +529,7 @@ function FacultyPage() {
                 pct: "30",
                 label: "Full-Time Faculty",
                 note: "PhD educators shaping the core curriculum",
-                items: FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img })),
+                items: FULLTIME.map((f) => ({ name: f.name, role: "Ph.D", img: f.img })),
               },
               {
                 pct: "30",
