@@ -4,7 +4,7 @@
 
 import gurneesh from "@/assets/industry/gurneesh-khurana.png.asset.json";
 import barkha from "@/assets/industry/barkha-dutt.png.asset.json";
-import satish from "@/assets/industry/satish-krishnan.png.asset.json";
+
 import naveen from "@/assets/faculty/naveen-munjal.webp.asset.json";
 import jamshed from "@/assets/industry/jamshed-daboo.png.asset.json";
 import subhonil from "@/assets/industry/subhonil-ghoshal.png.asset.json";
