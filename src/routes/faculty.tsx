@@ -535,7 +535,7 @@ function FacultyPage() {
                   name: f.name,
                   role: "Ph.D",
                   img: f.img,
-                  org: "Masters' Union",
+                  org: FULLTIME_ALMA_MATER[f.name] ?? "Masters' Union",
                 })),
               },
               {
