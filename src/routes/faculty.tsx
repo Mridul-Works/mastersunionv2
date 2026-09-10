@@ -125,6 +125,23 @@ const FULLTIME: FullTimer[] = FULL_TIME_FACULTY.map((f) => ({
   img: f.img,
 }));
 
+/** Doctoral institution shown as a logo on each full-time faculty card,
+ *  matching the official Masters' Union faculty page. Keyed by surname. */
+const ALMA_MATER_BY_SURNAME: Record<string, string> = {
+  Manoharan: "IIM Calcutta",
+  Seth: "IIM Bangalore",
+  Chaklader: "IIM Bangalore",
+  Sreekumar: "IIM Calcutta",
+  Sud: "IIM Ahmedabad",
+  Prasad: "IIM",
+};
+const FULLTIME_ALMA_MATER: Record<string, string> = Object.fromEntries(
+  FULLTIME.map((f) => {
+    const surname = f.name.trim().split(/\s+/).pop() ?? "";
+    return [f.name, ALMA_MATER_BY_SURNAME[surname] ?? "Masters' Union"];
+  }),
+);
+
 type Visiting = { name: string; role: string; school: string; img?: string };
 const VISITING: Visiting[] = [
   { name: "Dr Zal Phiroz", role: "Adjunct Professor, Supply Chain & Operations", school: "Harvard University", img: vfZal.url },
