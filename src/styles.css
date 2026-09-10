@@ -5617,41 +5617,6 @@ body::-webkit-scrollbar {
   color: color-mix(in oklab, var(--foreground) 56%, transparent);
 }
 
-.faculty-redesign .faculty-model-card-company {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  min-height: 44px;
-  max-width: calc(100% - 1rem);
-  padding: 0.55rem 0.75rem;
-  border-top: 1px solid color-mix(in oklab, var(--faculty-silver) 14%, transparent);
-  border-right: 1px solid color-mix(in oklab, var(--faculty-silver) 14%, transparent);
-  background: color-mix(in oklab, var(--faculty-obsidian) 86%, transparent);
-  backdrop-filter: blur(10px);
-}
-
-.faculty-redesign .faculty-model-card-logo {
-  height: clamp(20px, 2vw, 28px);
-  width: auto;
-  max-width: min(130px, 100%);
-  object-fit: contain;
-  border-radius: 5px;
-  opacity: 0.92;
-  transition: opacity 0.4s ease;
-}
-
-.faculty-redesign .faculty-model-card:hover .faculty-model-card-logo {
-  opacity: 1;
-}
-
-.faculty-redesign .faculty-model-card-org {
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--faculty-vermilion);
-}
 
 @media (max-width: 1023px) {
   .faculty-redesign .faculty-model {
