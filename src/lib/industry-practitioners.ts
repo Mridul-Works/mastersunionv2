@@ -40,7 +40,7 @@ export const INDUSTRY_PRACTITIONERS: IndustryPractitioner[] = [
   {
     name: "Mr. Arjun Vaidya",
     role: "Founder",
-    company: "Dr. Vaidya's · V3 Ventures",
+    company: "",
     img: arjunV.url,
     blurb:
       "Teaches D2C brand building and consumer psychology. Built and exited a modern ayurveda brand to a Fortune 500 group in his early thirties.",
