@@ -16,6 +16,7 @@ import jadhav from "@/assets/industry/narendra-jadhav.png.asset.json";
 import avantika from "@/assets/industry/avantika-tomar.png.asset.json";
 import arjunV from "@/assets/faculty/arjun-vaidya.webp.asset.json";
 import rajatM from "@/assets/faculty/rajat-mathur.webp.asset.json";
+import manojK from "@/assets/faculty/manoj-kohli.webp.asset.json";
 import edward from "@/assets/industry/edward-rogers.png.asset.json";
 
 export type IndustryPractitioner = {
@@ -51,12 +52,11 @@ export const INDUSTRY_PRACTITIONERS: IndustryPractitioner[] = [
     blurb: "",
   },
   {
-    name: "Dr Edward W. Rogers",
-    role: "Former Chief Knowledge Officer",
-    company: "NASA",
-    img: edward.url,
-    blurb:
-      "Teaches the art of managing complexity, innovation systems and organisational learning. His previous employer sent people to space.",
+    name: "Mr. Manoj Kohli",
+    role: "Former Country Head",
+    company: "",
+    img: manojK.url,
+    blurb: "",
   },
   {
     name: "Satish Krishnan",
