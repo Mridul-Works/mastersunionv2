@@ -37,6 +37,26 @@ function Initials({ name }: { name: string }) {
   );
 }
 
+function OrgLogo({ org }: { org: string }) {
+  const [failed, setFailed] = useState(false);
+  const url = orgLogoUrl(org, 128);
+  return (
+    <div className="faculty-model-card-logo">
+      {url && !failed ? (
+        <img
+          src={url}
+          alt={`${org} logo`}
+          loading="lazy"
+          decoding="async"
+          onError={() => setFailed(true)}
+        />
+      ) : (
+        <span className="faculty-model-card-logo-text">{org}</span>
+      )}
+    </div>
+  );
+}
+
 export default function PractitionerModel({
   groups,
   limit = 6,
