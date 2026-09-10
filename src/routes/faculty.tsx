@@ -120,7 +120,7 @@ const PRACTITIONER_PHOTOS: Record<string, string> = {
 type FullTimer = { name: string; note: string; img?: string };
 const FULLTIME: FullTimer[] = FULL_TIME_FACULTY.map((f) => ({
   name: f.name,
-  note: `${f.credential} · ${f.role}`,
+  note: f.name === "Dr. Garima Chaklader" ? f.credential : `${f.credential} · ${f.role}`,
   img: f.img,
 }));
 
