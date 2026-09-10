@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { TouchColorImg } from "@/components/TouchColorImg";
+import { orgLogoUrl } from "@/lib/org-logos";
 
 const MONO = "var(--font-mono)";
 
@@ -8,6 +9,8 @@ export type PractitionerCard = {
   role: string;
   blurb?: string;
   img?: string;
+  /** Company / school shown as a logo at the bottom of the card. */
+  org?: string;
 };
 
 export type MixGroup = {
@@ -30,6 +33,26 @@ function Initials({ name }: { name: string }) {
       style={{ fontFamily: MONO }}
     >
       {initials}
+    </div>
+  );
+}
+
+function OrgLogo({ org }: { org: string }) {
+  const [failed, setFailed] = useState(false);
+  const url = orgLogoUrl(org, 128);
+  return (
+    <div className="faculty-model-card-logo">
+      {url && !failed ? (
+        <img
+          src={url}
+          alt={`${org} logo`}
+          loading="lazy"
+          decoding="async"
+          onError={() => setFailed(true)}
+        />
+      ) : (
+        <span className="faculty-model-card-logo-text">{org}</span>
+      )}
     </div>
   );
 }
@@ -91,7 +114,7 @@ export default function PractitionerModel({
       </header>
 
       <div className="faculty-model-cards" key={active?.label} aria-live="polite">
-        {visible.map((p, index) => (
+        {visible.map((p) => (
             <article key={p.name} className="faculty-model-card">
               <div className="faculty-model-card-photo">
                 {p.img ? (
@@ -107,15 +130,9 @@ export default function PractitionerModel({
                 )}
               </div>
               <div className="faculty-model-card-body">
-                <div className="faculty-model-card-heading">
-                  <h3 className="faculty-model-card-name">{p.name}</h3>
-                  <span className="faculty-model-card-index" style={{ fontFamily: MONO }}>
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                </div>
-                <p className="faculty-model-card-role" style={{ fontFamily: MONO }}>
-                  {p.role}
-                </p>
+                <h3 className="faculty-model-card-name">{p.name}</h3>
+                <p className="faculty-model-card-role">{p.role}</p>
+                {p.org ? <OrgLogo org={p.org} /> : null}
               </div>
             </article>
           ))}
