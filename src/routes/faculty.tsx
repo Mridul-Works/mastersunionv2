@@ -17,7 +17,7 @@ import bhupeshAsset from "@/assets/faculty/bhupesh.png.asset.json";
 import nandiniAsset from "@/assets/faculty/nandini.png.asset.json";
 import garimaAsset from "@/assets/faculty/garima.png.asset.json";
 import daveLewisAsset from "@/assets/faculty/dave-lewis.png.asset.json";
-import raghuAsset from "@/assets/faculty/raghu-raman.png.asset.json";
+
 import nitinAsset from "@/assets/faculty/nitin-gaur.png.asset.json";
 import havishAsset from "@/assets/faculty/havish-madhvapaty.png.asset.json";
 import ekhlaqueAsset from "@/assets/faculty/ekhlaque-bari.png.asset.json";
