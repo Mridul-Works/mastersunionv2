@@ -17,7 +17,7 @@ import avantika from "@/assets/industry/avantika-tomar.png.asset.json";
 import arjunV from "@/assets/faculty/arjun-vaidya.webp.asset.json";
 import rajatM from "@/assets/faculty/rajat-mathur.webp.asset.json";
 import manojK from "@/assets/faculty/manoj-kohli.webp.asset.json";
-import raghuR from "@/assets/faculty/raghu-raman-portrait.webp.asset.json";
+import raghuR from "@/assets/faculty/raghu-raman-2.webp.asset.json";
 import edward from "@/assets/industry/edward-rogers.png.asset.json";
 
 export type IndustryPractitioner = {
