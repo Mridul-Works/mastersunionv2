@@ -47,7 +47,7 @@ export type FullTimeFaculty = {
 export const FULL_TIME_FACULTY: FullTimeFaculty[] = [
   { name: "Dr Bhupesh Manoharan", role: "Dean", credential: "Ph.D., IIM Calcutta", img: ftBhupeshManoharan.url },
   { name: "Dr Nandini Seth", role: "Assistant Professor, Quantitative Methods & Decision Sciences", credential: "Ph.D., IIM Bangalore", img: ftNandiniSeth.url },
-  { name: "Dr Garima Chaklader", role: "Assistant Professor, Economics", credential: "Ph.D., IIM Bangalore", img: ftGarimaChaklader.url },
+  { name: "Dr. Garima Chaklader", role: "Assistant Professor, Economics", credential: "Ph.D.", img: ftGarimaChaklader.url },
   { name: "Dr Vipin Sreekumar", role: "Assistant Professor, Strategic Management", credential: "Ph.D., IIM Calcutta", img: ftVipinSreekumar.url },
   { name: "Dr Kashika Sud", role: "Assistant Professor, Organisational Behaviour", credential: "Ph.D., IIM Ahmedabad", img: ftKashikaSud.url },
   { name: "Dr Manu Prasad", role: "Assistant Professor, Organisational Behaviour & HRM", credential: "Ph.D., IIM Tiruchirappalli", img: ftManuPrasad.url },
