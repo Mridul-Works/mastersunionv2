@@ -11,7 +11,7 @@ import subhonil from "@/assets/industry/subhonil-ghoshal.png.asset.json";
 import rahulW from "@/assets/industry/rahul-wadhawan.png.asset.json";
 import monica from "@/assets/industry/monica-jasuja.png.asset.json";
 import thomas from "@/assets/industry/thomas-kuruvilla.png.asset.json";
-import nitinG from "@/assets/industry/nitin-gaur.png.asset.json";
+import rohitK from "@/assets/faculty/rohit-kapoor.webp.asset.json";
 import jadhav from "@/assets/industry/narendra-jadhav.png.asset.json";
 import avantika from "@/assets/industry/avantika-tomar.png.asset.json";
 import arjunV from "@/assets/faculty/arjun-vaidya.webp.asset.json";
@@ -67,12 +67,11 @@ export const INDUSTRY_PRACTITIONERS: IndustryPractitioner[] = [
     blurb: "",
   },
   {
-    name: "Nitin Gaur",
-    role: "Former Director, Financial Sciences & Digital Assets",
-    company: "IBM",
-    img: nitinG.url,
-    blurb:
-      "Teaches DeFi, digital assets and blockchain architecture from the team that built IBM's digital currency research division.",
+    name: "Mr. Rohit Kapoor",
+    role: "CEO",
+    company: "Food Marketplace",
+    img: rohitK.url,
+    blurb: "",
   },
   {
     name: "Barkha Dutt",
