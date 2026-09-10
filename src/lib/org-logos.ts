@@ -3,14 +3,21 @@
 // company or school string so messy roster text ("Star Bazaar (Trent · Tata)")
 // still maps to a real brand.
 
+import heroElectricIcon from "@/assets/logos/hero-electric-icon.png.asset.json";
+
 const LOGO_TOKEN = import.meta.env['VITE_LOVABLE_CONNECTOR_LOGO_DEV_API_KEY'] as
   | string
   | undefined;
 
+/** keyword (lowercase) -> bundled logo asset. Used when Logo.dev serves a wrong
+ *  or missing mark for the brand. Checked before domain lookup. */
+const STATIC_LOGOS: Record<string, string> = {
+  "hero electric": heroElectricIcon.url,
+};
+
 /** keyword (lowercase) -> logo domain. First match wins, longest keywords first. */
 const DOMAINS: Record<string, string> = {
   "dr. vaidya": "drvaidyas.com",
-  "hero electric": "heroelectric.in",
   "arthur d. little": "adlittle.com",
   nasa: "nasa.gov",
   "standard chartered": "sc.com",
@@ -67,9 +74,14 @@ const DOMAINS: Record<string, string> = {
 
 const KEYS = Object.keys(DOMAINS).sort((a, b) => b.length - a.length);
 
+const STATIC_KEYS = Object.keys(STATIC_LOGOS).sort((a, b) => b.length - a.length);
+
 export function orgLogoUrl(org?: string, size = 128): string | undefined {
-  if (!org || !LOGO_TOKEN) return undefined;
+  if (!org) return undefined;
   const hay = org.toLowerCase();
+  const staticKey = STATIC_KEYS.find((k) => hay.includes(k));
+  if (staticKey) return STATIC_LOGOS[staticKey];
+  if (!LOGO_TOKEN) return undefined;
   const key = KEYS.find((k) => hay.includes(k));
   if (!key) return undefined;
   const params = new URLSearchParams({
