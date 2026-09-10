@@ -60,12 +60,11 @@ export const INDUSTRY_PRACTITIONERS: IndustryPractitioner[] = [
     blurb: "",
   },
   {
-    name: "Satish Krishnan",
-    role: "Former Managing Director",
-    company: "Standard Chartered",
-    img: satish.url,
-    blurb:
-      "Teaches derivatives and structured products from two decades on global banking and markets desks.",
+    name: "Captain Raghu Raman",
+    role: "Former President",
+    company: "",
+    img: raghuR.url,
+    blurb: "",
   },
   {
     name: "Nitin Gaur",
