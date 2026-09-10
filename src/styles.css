@@ -5633,7 +5633,9 @@ body::-webkit-scrollbar {
   flex: none;
   object-fit: contain;
   object-position: left center;
-  opacity: 0.95;
+  /* Source marks are dark artwork; render them as clean white on the dark card. */
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
 }
 
 .faculty-redesign .faculty-model-card-logo-text {
