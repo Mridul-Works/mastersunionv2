@@ -27,7 +27,7 @@ export type IndustryPractitioner = {
 
 export const INDUSTRY_PRACTITIONERS: IndustryPractitioner[] = [
   {
-    name: "Naveen Munjal",
+    name: "Mr. Naveen Munjal",
     role: "Managing Director",
     company: "Hero Electric",
     img: naveen.url,
