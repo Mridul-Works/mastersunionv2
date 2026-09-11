@@ -5671,7 +5671,7 @@ body::-webkit-scrollbar {
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 0.5rem 0 0;
+  padding: 0;
 }
 
 .faculty-redesign .faculty-model-card-info {
