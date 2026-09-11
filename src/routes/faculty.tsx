@@ -561,7 +561,7 @@ function FacultyPage() {
                 note: "Professors from Harvard, Stanford and Wharton",
                 items: VISITING.map((v) => ({
                   name: v.name,
-                  role: `${v.role}, ${v.school}`,
+                  role: v.school ? `${v.role}, ${v.school}` : v.role,
                   img: v.img,
                   org: v.school,
                 })),
