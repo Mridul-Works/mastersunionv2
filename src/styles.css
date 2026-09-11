@@ -5730,6 +5730,9 @@ body::-webkit-scrollbar {
 
 /* Mobile */
 @media (max-width: 767px) {
+  .faculty-redesign .faculty-model {
+    min-height: auto;
+  }
   .faculty-redesign .faculty-model-body {
     display: flex;
     flex-direction: column;
@@ -5737,6 +5740,9 @@ body::-webkit-scrollbar {
   .faculty-redesign .faculty-model-axis {
     position: static;
     align-items: stretch;
+  }
+  .faculty-redesign .faculty-model-rail-wrap {
+    position: static;
   }
   .faculty-redesign .faculty-model-header {
     margin-bottom: 1.5rem;
