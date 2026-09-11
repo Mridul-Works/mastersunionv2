@@ -177,7 +177,7 @@ export default function PractitionerModel({
               <button
                 key={g.label}
                 type="button"
-                onClick={() => setStage(i)}
+                onClick={() => goToStage(i)}
                 aria-pressed={i === stage}
                 className="faculty-model-nav-row"
                 data-active={i === stage ? "true" : undefined}
