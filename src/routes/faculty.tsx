@@ -45,7 +45,7 @@ import vfSundar from "@/assets/faculty/visiting/sundar-venkatesh.png.asset.json"
 import vfDaniel from "@/assets/faculty/visiting/daniel-vandervliet.webp.asset.json";
 import vfKrishanu from "@/assets/faculty/visiting/krishanu-rakshit.png.asset.json";
 import vfLanMa from "@/assets/faculty/visiting/lan-ma.webp.asset.json";
-import vfRajat from "@/assets/faculty/visiting/rajat-baijal.png.asset.json";
+import vfRajat from "@/assets/faculty/visiting/rajat.webp.asset.json";
 import vfBenjamin from "@/assets/faculty/visiting/benjamin-dunford.png.asset.json";
 import vfMeenakshi from "@/assets/faculty/visiting/meenakshi-rishi.png.asset.json";
 import vfVijaya from "@/assets/faculty/visiting/vijaya-marisetty.png.asset.json";
@@ -149,7 +149,7 @@ const VISITING: Visiting[] = [
   { name: "Dr Lan Ma", role: "Adjunct Professor of Business", school: "", org: "NYU Stern", img: vfLanMa.url },
   { name: "Dr Shad Morris", role: "Adjunct Professor, Management", school: "", org: "Brigham Young University", img: vfShad.url },
   { name: "Dr Rajesh Bhargave", role: "Associate Professor of Marketing", school: "", org: "Imperial College London", img: vfRajesh.url },
-  { name: "Rajat Baijal", role: "Adjunct Professor, Enterprise Risk Management", school: "Columbia University", img: vfRajat.url },
+  { name: "Mr. Rajat Baijal", role: "Adjunct Professor, Enterprise Risk Management", school: "", org: "Columbia University", img: vfRajat.url },
   { name: "Dr Shad Morris", role: "Professor of Global Strategy", school: "Brigham Young University", img: vfShad.url },
   { name: "Meenakshi Rishi", role: "Professor of Economics", school: "Seattle University", img: vfMeenakshi.url },
   { name: "Dr Alireza Kabirian", role: "Professor of Data Sciences", school: "USC", img: vfAlireza.url },
