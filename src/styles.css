@@ -5447,9 +5447,9 @@ body::-webkit-scrollbar {
 
 .faculty-redesign .faculty-model-body {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(14rem, 18rem) minmax(0, 1fr);
   align-items: start;
-  gap: clamp(1.5rem, 3vw, 3rem);
+  gap: clamp(1rem, 2vw, 2rem);
 }
 
 /* Center axis: header + vertical selector */
