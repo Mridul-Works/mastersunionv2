@@ -433,7 +433,7 @@ export const Route = createFileRoute("/faculty")({
       rel: "preload" as const,
       as: "image" as const,
       href,
-      fetchpriority: i < 5 ? "high" : "auto",
+      fetchPriority: i < 5 ? "high" : "auto",
     })),
   }),
   component: FacultyPage,

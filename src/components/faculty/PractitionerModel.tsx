@@ -107,6 +107,7 @@ export default function PractitionerModel({
   const railRef = useRef<HTMLDivElement>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const metrics = useRef({ top: 0, height: 0 });
+  const selectedStageRef = useRef<number | null>(null);
 
   const active = groups[Math.min(stage, groups.length - 1)];
 
@@ -152,6 +153,13 @@ export default function PractitionerModel({
       if (travel <= 0) return;
       const progress = Math.min(1, Math.max(0, (y - top) / travel));
       const next = Math.min(count - 1, Math.floor(progress * count));
+      // A selector click also repositions the pinned scroll range. Keep the
+      // requested rail stable while that movement completes instead of
+      // briefly replaying every intermediate group.
+      if (selectedStageRef.current !== null) {
+        if (next === selectedStageRef.current) selectedStageRef.current = null;
+        else return;
+      }
       setStage((prev) => (prev === next ? prev : next));
     };
 
@@ -170,9 +178,14 @@ export default function PractitionerModel({
     const travel = rect.height - window.innerHeight;
     if (travel <= 0) return;
     const target = top + (travel * (i + 0.5)) / groups.length;
-    const lenis = (window as unknown as { __lenis?: { scrollTo: (t: number) => void } }).__lenis;
-    if (lenis) lenis.scrollTo(target);
-    else window.scrollTo({ top: target, behavior: "smooth" });
+    selectedStageRef.current = i;
+    const lenis = (window as unknown as {
+      __lenis?: { scrollTo: (t: number, options?: { immediate?: boolean }) => void };
+    }).__lenis;
+    // Jump within the already-pinned section. A smooth animated jump traverses
+    // the other stage thresholds and was the main source of visible flicker.
+    if (lenis) lenis.scrollTo(target, { immediate: true });
+    else window.scrollTo({ top: target, behavior: "auto" });
   };
 
   return (
