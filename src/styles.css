@@ -5793,8 +5793,7 @@ body::-webkit-scrollbar {
 @media (prefers-reduced-motion: reduce) {
   .faculty-redesign .faculty-model-rail,
   .faculty-redesign .faculty-model-card,
-  .faculty-redesign .faculty-model-card-photo img,
-  .faculty-redesign .faculty-model-card-photo-shadow {
+  .faculty-redesign .faculty-model-card-photo img {
     animation: none;
     transition: none;
   }
