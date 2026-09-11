@@ -5662,13 +5662,6 @@ body::-webkit-scrollbar {
   margin-block: 0.4rem;
 }
 
-.faculty-redesign .faculty-model-rail[data-group="visiting-faculty"] .faculty-model-card-logo {
-  min-height: 1.45rem;
-}
-
-.faculty-redesign .faculty-model-rail[data-group="visiting-faculty"] .faculty-model-card-logo img {
-  height: 24px;
-}
 
 
 
