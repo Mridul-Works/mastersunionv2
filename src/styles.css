@@ -5764,6 +5764,14 @@ body::-webkit-scrollbar {
     max-height: none;
     overflow: visible;
   }
+  .faculty-redesign .faculty-model-rail {
+    height: auto;
+    grid-auto-rows: auto;
+  }
+  .faculty-redesign .faculty-model-card-photo-frame {
+    height: auto;
+    aspect-ratio: 3 / 4;
+  }
 
   .faculty-redesign .faculty-model-header {
     margin-bottom: 1.5rem;
