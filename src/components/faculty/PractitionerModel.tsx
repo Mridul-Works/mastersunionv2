@@ -123,8 +123,40 @@ export default function PractitionerModel({
 
 
 
+  // Scroll-driven group switching while the section is pinned. Each group gets
+  // one viewport of scroll travel; clicking the selector still works.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const count = groups.length;
+    if (count < 2) return;
+
+    const measure = () => {
+      const el = rootRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      metrics.current.top = rect.top + window.scrollY;
+      metrics.current.height = rect.height;
+    };
+
+    const write = ({ y, vh, vw }: ScrollState) => {
+      if (vw < 768) return;
+      const { top, height } = metrics.current;
+      const travel = height - vh;
+      if (travel <= 0) return;
+      const progress = Math.min(1, Math.max(0, (y - top) / travel));
+      const next = Math.min(count - 1, Math.floor(progress * count));
+      setStage((prev) => (prev === next ? prev : next));
+    };
+
+    return onScrollFrame(write, measure);
+  }, [groups.length]);
+
   return (
-    <div className="faculty-model">
+    <div
+      className="faculty-model"
+      ref={rootRef}
+      style={{ ["--faculty-model-stages" as string]: groups.length }}
+    >
       <div className="faculty-model-body">
         {/* LEFT COLUMN: sticky header + group selector + rail nav */}
         <div className="faculty-model-axis">
