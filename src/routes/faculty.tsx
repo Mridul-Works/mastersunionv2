@@ -44,7 +44,7 @@ import vfAlireza from "@/assets/faculty/visiting/alireza-kabirian.png.asset.json
 import vfSundar from "@/assets/faculty/visiting/sundar-venkatesh.png.asset.json";
 import vfDaniel from "@/assets/faculty/visiting/daniel-vandervliet.webp.asset.json";
 import vfKrishanu from "@/assets/faculty/visiting/krishanu-rakshit.png.asset.json";
-import vfLanMa from "@/assets/faculty/visiting/lan-ma.png.asset.json";
+import vfLanMa from "@/assets/faculty/visiting/lan-ma.webp.asset.json";
 import vfRajat from "@/assets/faculty/visiting/rajat-baijal.png.asset.json";
 import vfBenjamin from "@/assets/faculty/visiting/benjamin-dunford.png.asset.json";
 import vfMeenakshi from "@/assets/faculty/visiting/meenakshi-rishi.png.asset.json";
