@@ -5443,19 +5443,23 @@ body::-webkit-scrollbar {
 /* ── Faculty · dark editorial model (left-anchored carousel) ──────────────── */
 .faculty-redesign .faculty-model {
   min-height: 200vh;
-  padding-block: clamp(2.5rem, 6vw, 5rem);
+  padding-block: 0;
 }
 
 .faculty-redesign .faculty-model-body {
   position: sticky;
-  top: clamp(3rem, 8vh, 5rem);
+  top: 0;
   display: grid;
   grid-template-columns: minmax(16rem, 26rem) minmax(0, 1fr);
-  align-items: start;
+  align-items: center;
+  align-content: center;
   gap: clamp(2rem, 4vw, 4rem);
-  max-height: calc(100vh - clamp(3rem, 8vh, 5rem));
+  height: 100vh;
+  max-height: 100vh;
+  padding-block: clamp(1.5rem, 4vh, 3rem);
   overflow: hidden;
 }
+
 
 /* Left axis: header + vertical selector + rail controls */
 .faculty-redesign .faculty-model-axis {
