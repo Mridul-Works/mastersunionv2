@@ -50,7 +50,7 @@ import vfBenjamin from "@/assets/faculty/visiting/benjamin-dunford.png.asset.jso
 import vfMeenakshi from "@/assets/faculty/visiting/meenakshi-rishi.png.asset.json";
 import vfVijaya from "@/assets/faculty/visiting/vijaya-marisetty.png.asset.json";
 import vfShad from "@/assets/faculty/visiting/shad-morris.png.asset.json";
-import vfZal from "@/assets/faculty/visiting/zal-phiroz.png.asset.json";
+import vfZal from "@/assets/faculty/visiting/zal-phiroz-new.webp.asset.json";
 import vfGarrick from "@/assets/faculty/visiting/garrick-hileman.png.asset.json";
 import vfJyotsna from "@/assets/faculty/visiting/jyotsna-bhatnagar.png.asset.json";
 import vfVishnu from "@/assets/faculty/visiting/vishnuprasad-n.png.asset.json";
@@ -144,7 +144,7 @@ const FULLTIME_ALMA_MATER: Record<string, string> = Object.fromEntries(
 
 type Visiting = { name: string; role: string; school: string; img?: string };
 const VISITING: Visiting[] = [
-  { name: "Dr Zal Phiroz", role: "Adjunct Professor, Supply Chain & Operations", school: "Harvard University", img: vfZal.url },
+  { name: "Dr Zal Phiroz", role: "Adjunct Professor, Supply Chain & Operations", school: "", img: vfZal.url },
   { name: "Daniel G. Van Der Vliet", role: "Executive Director, Family Business", school: "Cornell University", img: vfDaniel.url },
   { name: "Dr Lan Ma", role: "Adjunct Professor of Business", school: "NYU Stern", img: vfLanMa.url },
   { name: "Mihir Mankad", role: "Senior Lecturer", school: "Harvard Kennedy School", img: vfMihir.url },
@@ -561,7 +561,7 @@ function FacultyPage() {
                 note: "Professors from Harvard, Stanford and Wharton",
                 items: VISITING.map((v) => ({
                   name: v.name,
-                  role: `${v.role}, ${v.school}`,
+                  role: v.school ? `${v.role}, ${v.school}` : v.role,
                   img: v.img,
                   org: v.school,
                 })),
