@@ -5755,8 +5755,8 @@ body::-webkit-scrollbar {
 /* Tablet */
 @media (max-width: 1023px) {
   .faculty-redesign .faculty-model-body {
-    grid-template-columns: minmax(14rem, 18rem) minmax(0, 1fr);
-    gap: 1.5rem;
+    grid-template-columns: minmax(12rem, 15rem) minmax(0, 1fr);
+    gap: 1.25rem;
   }
   .faculty-redesign .faculty-model-axis {
     top: 4.5rem;
