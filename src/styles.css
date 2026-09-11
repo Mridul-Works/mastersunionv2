@@ -5442,6 +5442,7 @@ body::-webkit-scrollbar {
 
 /* ── Faculty · dark editorial model (left-anchored carousel) ──────────────── */
 .faculty-redesign .faculty-model {
+  min-height: 100vh;
   padding-block: clamp(2.5rem, 6vw, 5rem);
 }
 
