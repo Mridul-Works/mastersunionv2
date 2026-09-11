@@ -167,31 +167,9 @@ export default function PractitionerModel({
             ))}
           </nav>
 
-          <div className="faculty-model-rail-controls">
-            <button
-              type="button"
-              aria-label="Scroll cards left"
-              onClick={() => scrollRail("left")}
-              className="faculty-model-rail-arrow"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button
-              type="button"
-              aria-label="Scroll cards right"
-              onClick={() => scrollRail("right")}
-              className="faculty-model-rail-arrow"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
         </div>
 
-        {/* RIGHT COLUMN: horizontal filmstrip */}
+        {/* RIGHT COLUMN: static six-card grid */}
         <div className="faculty-model-rail-wrap">
           <div className="faculty-model-rail" ref={railRef} aria-live="polite" key={`rail-${active?.label}`}>
             {visible.map((p, idx) => (
@@ -199,6 +177,7 @@ export default function PractitionerModel({
             ))}
           </div>
         </div>
+
       </div>
     </div>
   );
