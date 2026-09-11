@@ -142,10 +142,10 @@ const FULLTIME_ALMA_MATER: Record<string, string> = Object.fromEntries(
   }),
 );
 
-type Visiting = { name: string; role: string; school: string; img?: string };
+type Visiting = { name: string; role: string; school: string; org?: string; img?: string };
 const VISITING: Visiting[] = [
-  { name: "Dr Zal Phiroz", role: "Adjunct Professor, Supply Chain & Operations", school: "", img: vfZal.url },
-  { name: "Mr. Daniel Garett Van Der Vliet", role: "Executive Director", school: "", img: vfDaniel.url },
+  { name: "Dr Zal Phiroz", role: "Adjunct Professor, Supply Chain & Operations", school: "", org: "Harvard University", img: vfZal.url },
+  { name: "Mr. Daniel Garett Van Der Vliet", role: "Executive Director", school: "", org: "Cornell University", img: vfDaniel.url },
   { name: "Dr Lan Ma", role: "Adjunct Professor of Business", school: "NYU Stern", img: vfLanMa.url },
   { name: "Mihir Mankad", role: "Senior Lecturer", school: "Harvard Kennedy School", img: vfMihir.url },
   { name: "Dr Rajesh Bhargave", role: "Associate Professor of Marketing", school: "Imperial College London", img: vfRajesh.url },
@@ -563,7 +563,7 @@ function FacultyPage() {
                   name: v.name,
                   role: v.school ? `${v.role}, ${v.school}` : v.role,
                   img: v.img,
-                  org: v.school,
+                  org: v.org ?? v.school,
                 })),
               },
             ]}
