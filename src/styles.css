@@ -5442,6 +5442,7 @@ body::-webkit-scrollbar {
 
 /* ── Faculty · dark editorial model (left-anchored carousel) ──────────────── */
 .faculty-redesign .faculty-model {
+  min-height: 100vh;
   padding-block: clamp(2.5rem, 6vw, 5rem);
 }
 
@@ -5592,8 +5593,11 @@ body::-webkit-scrollbar {
   color: var(--foreground);
 }
 
-/* Right column: static grid of all six cards */
+/* Right column: static grid of all six cards, pinned alongside the left axis */
 .faculty-redesign .faculty-model-rail-wrap {
+  position: sticky;
+  top: clamp(5rem, 10vh, 7rem);
+  align-self: start;
   min-width: 0;
 }
 
@@ -5726,6 +5730,9 @@ body::-webkit-scrollbar {
 
 /* Mobile */
 @media (max-width: 767px) {
+  .faculty-redesign .faculty-model {
+    min-height: auto;
+  }
   .faculty-redesign .faculty-model-body {
     display: flex;
     flex-direction: column;
@@ -5733,6 +5740,9 @@ body::-webkit-scrollbar {
   .faculty-redesign .faculty-model-axis {
     position: static;
     align-items: stretch;
+  }
+  .faculty-redesign .faculty-model-rail-wrap {
+    position: static;
   }
   .faculty-redesign .faculty-model-header {
     margin-bottom: 1.5rem;
