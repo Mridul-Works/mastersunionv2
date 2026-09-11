@@ -5771,14 +5771,12 @@ body::-webkit-scrollbar {
     display: none;
   }
   .faculty-redesign .faculty-model-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
     padding-inline: 1rem;
     padding-bottom: 1.5rem;
   }
-  .faculty-redesign .faculty-model-card {
-    width: 82vw;
-    max-width: 320px;
-  }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
