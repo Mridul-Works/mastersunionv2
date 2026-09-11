@@ -18,6 +18,7 @@ import harvardLogo from "@/assets/faculty/orgs/harvard.webp";
 import cornellLogo from "@/assets/faculty/orgs/cornell.webp";
 import columbiaLogo from "@/assets/faculty/orgs/columbia.webp";
 import mitLogo from "@/assets/faculty/orgs/MIT.webp";
+import mitSloan from "@/assets/logos/mit-sloan-wordmark.png.asset.json";
 import nyuShanghaiLogo from "@/assets/faculty/orgs/shangai.webp";
 import imperialLogo from "@/assets/faculty/orgs/imperial.webp";
 
@@ -43,6 +44,7 @@ const STATIC_LOGOS: Record<string, string> = {
   cornell: cornellLogo,
   columbia: columbiaLogo,
   mit: mitLogo,
+  "brigham young": mitSloan.url,
   "nyu stern": nyuShanghaiLogo,
   nyu: nyuShanghaiLogo,
   imperial: imperialLogo,
