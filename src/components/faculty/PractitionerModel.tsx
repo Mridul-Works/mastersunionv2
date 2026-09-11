@@ -64,9 +64,7 @@ function FacultyCard({ p, index }: { p: PractitionerCard; index: number }) {
   return (
     <article key={p.name} className="faculty-model-card" style={{ ["--card-index" as string]: index }}>
       <div className="faculty-model-card-photo">
-        <div className="faculty-model-card-photo-shadow" aria-hidden="true" />
         <div className="faculty-model-card-photo-frame">
-          <div className="faculty-model-card-photo-gradient" aria-hidden="true" />
           {p.img ? (
             <TouchColorImg
               src={p.img}
