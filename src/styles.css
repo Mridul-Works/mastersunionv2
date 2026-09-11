@@ -5622,7 +5622,7 @@ body::-webkit-scrollbar {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-content: start;
-  gap: clamp(0.75rem, 1.25vw, 1.25rem);
+  gap: clamp(0.5rem, 0.9vw, 0.875rem);
   animation: faculty-model-enter 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
