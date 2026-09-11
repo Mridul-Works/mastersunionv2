@@ -5593,8 +5593,11 @@ body::-webkit-scrollbar {
   color: var(--foreground);
 }
 
-/* Right column: static grid of all six cards */
+/* Right column: static grid of all six cards, pinned alongside the left axis */
 .faculty-redesign .faculty-model-rail-wrap {
+  position: sticky;
+  top: clamp(5rem, 10vh, 7rem);
+  align-self: start;
   min-width: 0;
 }
 
