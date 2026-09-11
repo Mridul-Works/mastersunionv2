@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TouchColorImg } from "@/components/TouchColorImg";
 import { orgLogoUrl } from "@/lib/org-logos";
 
@@ -70,6 +70,23 @@ export default function PractitionerModel({
 
   const active = groups[Math.min(stage, groups.length - 1)];
   const visible = (active?.items ?? []).slice(0, limit);
+
+  // Preload every group's portraits and logos so switching sections is instant.
+  useEffect(() => {
+    for (const g of groups) {
+      for (const item of g.items.slice(0, limit)) {
+        if (item.img) {
+          const im = new Image();
+          im.src = item.img;
+        }
+        const logo = item.org ? orgLogoUrl(item.org, 128) : null;
+        if (logo) {
+          const im = new Image();
+          im.src = logo;
+        }
+      }
+    }
+  }, [groups, limit]);
 
   return (
     <div className="faculty-model">
