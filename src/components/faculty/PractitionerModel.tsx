@@ -60,6 +60,36 @@ function OrgLogo({ org }: { org: string }) {
   );
 }
 
+function FacultyCard({ p, index }: { p: PractitionerCard; index: number }) {
+  return (
+    <article key={p.name} className="faculty-model-card" style={{ ["--card-index" as string]: index }}>
+      <div className="faculty-model-card-photo">
+        <div className="faculty-model-card-photo-shadow" aria-hidden="true" />
+        <div className="faculty-model-card-photo-frame">
+          <div className="faculty-model-card-photo-gradient" aria-hidden="true" />
+          {p.img ? (
+            <TouchColorImg
+              src={p.img}
+              alt={p.name}
+              loading="eager"
+              decoding="sync"
+              fetchPriority="high"
+              className="h-full w-full object-cover object-top transition duration-700"
+            />
+          ) : (
+            <Initials name={p.name} />
+          )}
+        </div>
+      </div>
+      <div className="faculty-model-card-body">
+        <h3 className="faculty-model-card-name">{p.name}</h3>
+        <p className="faculty-model-card-role">{p.role}</p>
+        {p.org ? <OrgLogo org={p.org} /> : null}
+      </div>
+    </article>
+  );
+}
+
 export default function PractitionerModel({
   groups,
   limit = 6,
@@ -71,6 +101,8 @@ export default function PractitionerModel({
 
   const active = groups[Math.min(stage, groups.length - 1)];
   const visible = (active?.items ?? []).slice(0, limit);
+  const leftCards = visible.slice(0, 3);
+  const rightCards = visible.slice(3, 6);
 
   // Preload every group's portraits and logos so switching sections is instant.
   useEffect(() => {
@@ -91,76 +123,52 @@ export default function PractitionerModel({
 
   return (
     <div className="faculty-model">
-      <header className="faculty-model-header">
-        <div className="faculty-model-heading">
-          <p className="faculty-model-rail-kicker" style={{ fontFamily: MONO }}>
-            Academic excellence
-          </p>
-          <h2 className="faculty-model-title">Our Faculty Model</h2>
-          <p className="faculty-model-deck">
-            A deliberate composition of practitioners and academics, bridging
-            rigorous thinking with real-world leadership.
-          </p>
-        </div>
-      </header>
-
       <div className="faculty-model-body">
-        <nav className="faculty-model-nav" aria-label="Faculty groups">
-          <div className="faculty-model-nav-line" aria-hidden="true" />
-          {groups.map((g, i) => (
-            <button
-              key={g.label}
-              type="button"
-              onClick={() => setStage(i)}
-              aria-pressed={i === stage}
-              className="faculty-model-nav-row"
-              data-active={i === stage ? "true" : undefined}
-              data-pct={`${g.pct}%`}
-            >
-              <span className="faculty-model-nav-pct">{g.pct}%</span>
-              <span className="faculty-model-nav-label">{g.label}</span>
-              <span className="faculty-model-nav-note">{g.note}</span>
-            </button>
+        {/* LEFT WING */}
+        <div className="faculty-model-wing faculty-model-wing--left" aria-live="polite" key={`left-${active?.label}`}>
+          {leftCards.map((p, idx) => (
+            <FacultyCard key={p.name} p={p} index={idx} />
           ))}
-        </nav>
+        </div>
 
-        <div
-          className="faculty-model-cards"
-          key={active?.label}
-          aria-live="polite"
-        >
-          {visible.map((p, idx) => {
-            const offset = idx === 1 || idx === 4;
-            return (
-              <article
-                key={p.name}
-                className={`faculty-model-card${offset ? " faculty-model-card--offset" : ""}`}
+        {/* CENTER AXIS: header + group selector */}
+        <div className="faculty-model-axis">
+          <header className="faculty-model-header">
+            <p className="faculty-model-rail-kicker" style={{ fontFamily: MONO }}>
+              Academic excellence
+            </p>
+            <h2 className="faculty-model-title">Our Faculty Model</h2>
+            <p className="faculty-model-deck">
+              A deliberate composition of practitioners and academics, bridging
+              rigorous thinking with real-world leadership.
+            </p>
+          </header>
+
+          <nav className="faculty-model-nav" aria-label="Faculty groups">
+            <div className="faculty-model-nav-line" aria-hidden="true" />
+            {groups.map((g, i) => (
+              <button
+                key={g.label}
+                type="button"
+                onClick={() => setStage(i)}
+                aria-pressed={i === stage}
+                className="faculty-model-nav-row"
+                data-active={i === stage ? "true" : undefined}
+                data-pct={`${g.pct}%`}
               >
-                <div className="faculty-model-card-photo">
-                  <div className="faculty-model-card-photo-shadow" aria-hidden="true" />
-                  <div className="faculty-model-card-photo-frame">
-                    <div className="faculty-model-card-photo-gradient" aria-hidden="true" />
-                    {p.img ? (
-                      <TouchColorImg
-                        src={p.img}
-                        alt={p.name}
-                        loading="lazy"
-                        decoding="async"
-                        className="h-full w-full object-cover object-top transition duration-700"
-                      />
-                    ) : (
-                      <Initials name={p.name} />
-                    )}
-                  </div>
-                </div>
-                <div className="faculty-model-card-body">
-                  <h3 className="faculty-model-card-name">{p.name}</h3>
-                  <p className="faculty-model-card-role">{p.role}</p>
-                  {p.org ? <OrgLogo org={p.org} /> : null}
-                </div>
-              </article>
-            );
-          })}
+                <span className="faculty-model-nav-index">{String(i + 1).padStart(2, "0")}</span>
+                <span className="faculty-model-nav-label">{g.label}</span>
+                <span className="faculty-model-nav-note">{g.note}</span>
+              </button>
+            ))}
+          </nav>
+        </div>
+
+        {/* RIGHT WING */}
+        <div className="faculty-model-wing faculty-model-wing--right" aria-live="polite" key={`right-${active?.label}`}>
+          {rightCards.map((p, idx) => (
+            <FacultyCard key={p.name} p={p} index={idx + 3} />
+          ))}
         </div>
       </div>
     </div>
