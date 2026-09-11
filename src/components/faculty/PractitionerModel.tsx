@@ -250,6 +250,7 @@ export default function PractitionerModel({
               className="faculty-model-rail"
               aria-hidden={g.label !== active?.label}
               data-active={g.label === active?.label ? "true" : undefined}
+              data-group={g.label.toLowerCase().replace(/\s+/g, "-")}
             >
               {g.items.slice(0, limit).map((p, idx) => (
                 <FacultyCard key={`${gi}-${p.name}`} p={p} index={idx} />
