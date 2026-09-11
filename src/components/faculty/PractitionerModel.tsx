@@ -47,8 +47,9 @@ function OrgLogo({ org }: { org: string }) {
         <img
           src={url}
           alt={`${org} logo`}
-          loading="lazy"
-          decoding="async"
+          loading="eager"
+          decoding="sync"
+          fetchPriority="high"
           onError={() => setFailed(true)}
         />
       ) : (
