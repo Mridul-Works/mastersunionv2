@@ -207,8 +207,10 @@ export default function PractitionerModel({
                 data-active={i === stage ? "true" : undefined}
               >
                 <span className="faculty-model-nav-pct">{g.pct}%</span>
-                <span className="faculty-model-nav-label">{g.label}</span>
-                <span className="faculty-model-nav-note">{g.note}</span>
+                <span className="faculty-model-nav-content">
+                  <span className="faculty-model-nav-label">{g.label}</span>
+                  <span className="faculty-model-nav-note">{g.note}</span>
+                </span>
               </button>
             ))}
           </nav>
