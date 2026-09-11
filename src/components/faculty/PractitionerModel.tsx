@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { TouchColorImg } from "@/components/TouchColorImg";
 import { orgLogoUrl } from "@/lib/org-logos";
+import { onScrollFrame, type ScrollState } from "@/lib/scroll-driver";
 
 const MONO = "var(--font-mono)";
 const SANS = "var(--font-sans)";
@@ -97,6 +98,8 @@ export default function PractitionerModel({
 }) {
   const [stage, setStage] = useState(0);
   const railRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const metrics = useRef({ top: 0, height: 0 });
 
   const active = groups[Math.min(stage, groups.length - 1)];
   const visible = (active?.items ?? []).slice(0, limit);
@@ -121,8 +124,57 @@ export default function PractitionerModel({
 
 
 
+  // Scroll-driven group switching while the section is pinned. Each group gets
+  // one viewport of scroll travel; clicking the selector still works.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const count = groups.length;
+    if (count < 2) return;
+
+    const measure = () => {
+      const el = rootRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      metrics.current.top = rect.top + window.scrollY;
+      metrics.current.height = rect.height;
+    };
+
+    const write = ({ y, vh, vw }: ScrollState) => {
+      if (vw < 768) return;
+      const { top, height } = metrics.current;
+      const travel = height - vh;
+      if (travel <= 0) return;
+      const progress = Math.min(1, Math.max(0, (y - top) / travel));
+      const next = Math.min(count - 1, Math.floor(progress * count));
+      setStage((prev) => (prev === next ? prev : next));
+    };
+
+    return onScrollFrame(write, measure);
+  }, [groups.length]);
+
+  // Clicking a group scrolls to that group's slice of the pinned range on
+  // desktop, so scroll position and the visible group stay in agreement.
+  const goToStage = (i: number) => {
+    setStage(i);
+    if (typeof window === "undefined" || window.innerWidth < 768) return;
+    const el = rootRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const top = rect.top + window.scrollY;
+    const travel = rect.height - window.innerHeight;
+    if (travel <= 0) return;
+    const target = top + (travel * (i + 0.5)) / groups.length;
+    const lenis = (window as unknown as { __lenis?: { scrollTo: (t: number) => void } }).__lenis;
+    if (lenis) lenis.scrollTo(target);
+    else window.scrollTo({ top: target, behavior: "smooth" });
+  };
+
   return (
-    <div className="faculty-model">
+    <div
+      className="faculty-model"
+      ref={rootRef}
+      style={{ ["--faculty-model-stages" as string]: groups.length }}
+    >
       <div className="faculty-model-body">
         {/* LEFT COLUMN: sticky header + group selector + rail nav */}
         <div className="faculty-model-axis">
@@ -142,7 +194,7 @@ export default function PractitionerModel({
               <button
                 key={g.label}
                 type="button"
-                onClick={() => setStage(i)}
+                onClick={() => goToStage(i)}
                 aria-pressed={i === stage}
                 className="faculty-model-nav-row"
                 data-active={i === stage ? "true" : undefined}

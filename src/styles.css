@@ -5442,7 +5442,9 @@ body::-webkit-scrollbar {
 
 /* ── Faculty · dark editorial model (left-anchored carousel) ──────────────── */
 .faculty-redesign .faculty-model {
-  min-height: 200vh;
+  /* One extra viewport of scroll travel per group so the pinned section can
+     advance Industry → Full-Time → Visiting as the user scrolls. */
+  min-height: calc(100vh * var(--faculty-model-stages, 3));
   padding-block: 0;
 }
 
