@@ -5715,9 +5715,10 @@ body::-webkit-scrollbar {
   .faculty-redesign .faculty-model-nav-note {
     display: none;
   }
-  .faculty-redesign .faculty-model-card {
-    width: clamp(220px, 28vw, 260px);
+  .faculty-redesign .faculty-model-rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
   .faculty-redesign .faculty-model-card-name {
     font-size: clamp(1.05rem, 1.6vw, 1.35rem);
   }
