@@ -81,9 +81,11 @@ function FacultyCard({ p, index }: { p: PractitionerCard; index: number }) {
         </div>
       </div>
       <div className="faculty-model-card-body">
-        <h3 className="faculty-model-card-name">{p.name}</h3>
-        <p className="faculty-model-card-role">{p.role}</p>
-        {p.org ? <OrgLogo org={p.org} /> : null}
+        <div className="faculty-model-card-info">
+          <h3 className="faculty-model-card-name">{p.name}</h3>
+          <p className="faculty-model-card-role">{p.role}</p>
+          {p.org ? <OrgLogo org={p.org} /> : null}
+        </div>
       </div>
     </article>
   );
