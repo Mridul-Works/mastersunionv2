@@ -5738,8 +5738,11 @@ body::-webkit-scrollbar {
     min-height: auto;
   }
   .faculty-redesign .faculty-model-body {
+    position: static;
     display: flex;
     flex-direction: column;
+    max-height: none;
+    overflow: visible;
   }
   .faculty-redesign .faculty-model-axis {
     position: static;
@@ -5747,7 +5750,10 @@ body::-webkit-scrollbar {
   }
   .faculty-redesign .faculty-model-rail-wrap {
     position: static;
+    max-height: none;
+    overflow: visible;
   }
+
   .faculty-redesign .faculty-model-header {
     margin-bottom: 1.5rem;
     padding-left: 1rem;
