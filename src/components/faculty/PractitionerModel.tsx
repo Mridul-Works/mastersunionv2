@@ -3,6 +3,7 @@ import { TouchColorImg } from "@/components/TouchColorImg";
 import { orgLogoUrl } from "@/lib/org-logos";
 
 const MONO = "var(--font-mono)";
+const SANS = "var(--font-sans)";
 
 export type PractitionerCard = {
   name: string;
@@ -22,7 +23,7 @@ export type MixGroup = {
 
 function Initials({ name }: { name: string }) {
   const initials = name
-    .replace(/^(Dr|Captain|Mr|Mrs|Ms)\.?\s+/i, "")
+    .replace(/^(Dr|Captain|Mr|Mrs|Ms|Prof)\.?\s+/i, "")
     .split(/\s+/)
     .map((w) => w[0])
     .slice(0, 2)
@@ -101,60 +102,66 @@ export default function PractitionerModel({
             rigorous thinking with real-world leadership.
           </p>
         </div>
-        <ul className="faculty-model-mix">
-          {groups.map((m, i) => (
-            <li key={m.label}>
-              <button
-                type="button"
-                onClick={() => setStage(i)}
-                aria-pressed={i === stage}
-                className="faculty-model-mix-row w-full text-left"
-                data-active={i === stage ? "true" : undefined}
-              >
-                <div className="faculty-model-mix-topline">
-                  <span className="faculty-model-mix-short" style={{ fontFamily: MONO }}>
-                    {i === 0 ? "Industry" : i === 1 ? "Full-time" : "Visiting"}
-                  </span>
-                  <span className="faculty-model-mix-figure">
-                    <span className="faculty-model-mix-pct">{m.pct}</span>
-                    <span className="faculty-model-mix-unit" style={{ fontFamily: MONO }}>
-                      %
-                    </span>
-                  </span>
-                </div>
-                <div className="faculty-model-mix-body">
-                  <p className="faculty-model-mix-label">{m.label}</p>
-                  <p className="faculty-model-mix-note">{m.note}</p>
-                </div>
-              </button>
-            </li>
-          ))}
-        </ul>
       </header>
 
-      <div className="faculty-model-cards" key={active?.label} aria-live="polite">
-        {visible.map((p) => (
-            <article key={p.name} className="faculty-model-card">
-              <div className="faculty-model-card-photo">
-                {p.img ? (
-                  <TouchColorImg
-                    src={p.img}
-                    alt={p.name}
-                    loading="lazy"
-                    decoding="async"
-                    className="h-full w-full object-cover object-top transition duration-700"
-                  />
-                ) : (
-                  <Initials name={p.name} />
-                )}
-              </div>
-              <div className="faculty-model-card-body">
-                <h3 className="faculty-model-card-name">{p.name}</h3>
-                <p className="faculty-model-card-role">{p.role}</p>
-                {p.org ? <OrgLogo org={p.org} /> : null}
-              </div>
-            </article>
+      <div className="faculty-model-body">
+        <nav className="faculty-model-nav" aria-label="Faculty groups">
+          <div className="faculty-model-nav-line" aria-hidden="true" />
+          {groups.map((g, i) => (
+            <button
+              key={g.label}
+              type="button"
+              onClick={() => setStage(i)}
+              aria-pressed={i === stage}
+              className="faculty-model-nav-row"
+              data-active={i === stage ? "true" : undefined}
+              data-pct={`${g.pct}%`}
+            >
+              <span className="faculty-model-nav-pct">{g.pct}%</span>
+              <span className="faculty-model-nav-label">{g.label}</span>
+              <span className="faculty-model-nav-note">{g.note}</span>
+            </button>
           ))}
+        </nav>
+
+        <div
+          className="faculty-model-cards"
+          key={active?.label}
+          aria-live="polite"
+        >
+          {visible.map((p, idx) => {
+            const offset = idx === 1 || idx === 4;
+            return (
+              <article
+                key={p.name}
+                className={`faculty-model-card${offset ? " faculty-model-card--offset" : ""}`}
+              >
+                <div className="faculty-model-card-photo">
+                  <div className="faculty-model-card-photo-shadow" aria-hidden="true" />
+                  <div className="faculty-model-card-photo-frame">
+                    <div className="faculty-model-card-photo-gradient" aria-hidden="true" />
+                    {p.img ? (
+                      <TouchColorImg
+                        src={p.img}
+                        alt={p.name}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover object-top transition duration-700"
+                      />
+                    ) : (
+                      <Initials name={p.name} />
+                    )}
+                  </div>
+                </div>
+                <div className="faculty-model-card-body">
+                  <h3 className="faculty-model-card-name">{p.name}</h3>
+                  <p className="faculty-model-card-role">{p.role}</p>
+                  {p.org ? <OrgLogo org={p.org} /> : null}
+                </div>
+              </article>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

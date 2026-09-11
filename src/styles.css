@@ -5440,124 +5440,133 @@ body::-webkit-scrollbar {
   }
 }
 
-/* ── Faculty · dark editorial model ────────────────────────────────────────── */
+/* ── Faculty · dark editorial model (architectural offset grid) ─────────────── */
 .faculty-redesign .faculty-model {
-  display: grid;
-  grid-template-columns: minmax(15rem, 0.72fr) minmax(0, 2.28fr);
-  align-items: start;
-  gap: clamp(2rem, 4vw, 4.5rem);
-  padding-block: clamp(1.5rem, 4vw, 3.75rem);
+  padding-block: clamp(2.5rem, 6vw, 5rem);
 }
 
 .faculty-redesign .faculty-model-header {
-  position: sticky;
-  top: clamp(5rem, 10vh, 7rem);
-  display: flex;
-  flex-direction: column;
-  gap: clamp(1.75rem, 3vw, 2.75rem);
-  min-width: 0;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--faculty-silver);
 }
 
 .faculty-redesign .faculty-model-rail-kicker {
   font-size: 10px;
-  letter-spacing: 0.26em;
+  font-weight: 600;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--faculty-vermilion);
+  color: var(--faculty-silver);
 }
 
 .faculty-redesign .faculty-model-title {
-  margin-top: 0.9rem;
-  font-family: var(--faculty-font-display, "Instrument Serif", serif);
-  font-size: clamp(2.6rem, 4vw, 4.5rem);
-  line-height: 0.92;
-}
-
-.faculty-redesign .faculty-model-deck {
-  max-width: 42ch;
-  margin-top: 1.15rem;
-  font-size: clamp(0.92rem, 1.2vw, 1.05rem);
-  line-height: 1.65;
-  color: color-mix(in oklab, var(--foreground) 62%, transparent);
-}
-
-.faculty-redesign .faculty-model-mix {
-  display: flex;
-  flex-direction: column;
-  border-top: 1px solid color-mix(in oklab, var(--faculty-silver) 18%, transparent);
-}
-
-.faculty-redesign .faculty-model-mix-row {
-  min-height: 0;
-  border-bottom: 1px solid color-mix(in oklab, var(--faculty-silver) 22%, transparent);
-  padding: 0.9rem 0;
-  opacity: 0.42;
-  transition: opacity 350ms ease, border-color 350ms ease, padding-left 350ms ease;
-}
-
-.faculty-redesign .faculty-model-mix-row[data-active="true"],
-.faculty-redesign .faculty-model-mix-row:hover {
-  opacity: 1;
-}
-
-.faculty-redesign .faculty-model-mix-row[data-active="true"] {
-  border-bottom-color: var(--faculty-vermilion);
-  padding-left: 0.65rem;
-}
-
-.faculty-redesign .faculty-model-mix-topline {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 0.75rem;
-}
-
-.faculty-redesign .faculty-model-mix-short {
-  padding-bottom: 0.3rem;
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.faculty-redesign .faculty-model-mix-figure {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.1rem;
-}
-
-.faculty-redesign .faculty-model-mix-pct {
-  font-family: var(--faculty-font-display, "Instrument Serif", serif);
-  font-size: clamp(1.65rem, 2.4vw, 2.25rem);
-  line-height: 0.9;
+  margin-top: 0.6rem;
+  font-family: var(--faculty-font-display, "Inter", sans-serif);
+  font-size: clamp(2.25rem, 4.5vw, 4.25rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
   color: var(--foreground);
 }
 
-.faculty-redesign .faculty-model-mix-row[data-active="true"] .faculty-model-mix-pct {
-  color: var(--faculty-vermilion, #b94f3d);
-}
-
-.faculty-redesign .faculty-model-mix-unit {
-  font-size: 9px;
-  color: color-mix(in oklab, var(--faculty-silver) 60%, transparent);
-}
-
-.faculty-redesign .faculty-model-mix-label {
-  margin-top: 0.35rem;
-  font-size: 0.74rem;
-  font-weight: 600;
-}
-
-.faculty-redesign .faculty-model-mix-note {
-  margin-top: 0.15rem;
-  max-width: 24ch;
-  font-size: 0.64rem;
-  line-height: 1.45;
+.faculty-redesign .faculty-model-deck {
+  max-width: 44ch;
+  margin-top: 1rem;
+  font-size: clamp(0.92rem, 1.15vw, 1.05rem);
+  line-height: 1.6;
   color: color-mix(in oklab, var(--foreground) 62%, transparent);
 }
 
+.faculty-redesign .faculty-model-body {
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.85fr) minmax(0, 2.15fr);
+  align-items: start;
+  gap: clamp(2rem, 4vw, 4.5rem);
+}
+
+/* Left navigation rail */
+.faculty-redesign .faculty-model-nav {
+  position: sticky;
+  top: clamp(5rem, 10vh, 7rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vh, 3rem);
+  padding-left: 1.25rem;
+}
+
+.faculty-redesign .faculty-model-nav-line {
+  position: absolute;
+  left: calc(1.25rem + 19px);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: color-mix(in oklab, var(--faculty-silver) 12%, transparent);
+}
+
+.faculty-redesign .faculty-model-nav-row {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-left: calc(38px + 1.25rem);
+  text-align: left;
+  opacity: 0.4;
+  transition: opacity 350ms ease;
+}
+
+.faculty-redesign .faculty-model-nav-row[data-active="true"],
+.faculty-redesign .faculty-model-nav-row:hover {
+  opacity: 1;
+}
+
+.faculty-redesign .faculty-model-nav-row::before {
+  content: attr(data-pct);
+  position: absolute;
+  left: 0;
+  top: -0.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--foreground);
+  background: color-mix(in oklab, var(--faculty-silver) 18%, transparent);
+  box-shadow: 0 0 0 8px var(--faculty-obsidian);
+  transition: background 350ms ease, color 350ms ease;
+}
+
+.faculty-redesign .faculty-model-nav-row[data-active="true"]::before {
+  background: var(--faculty-silver);
+  color: var(--faculty-obsidian);
+}
+
+.faculty-redesign .faculty-model-nav-pct {
+  display: none;
+}
+
+.faculty-redesign .faculty-model-nav-label {
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--foreground);
+}
+
+.faculty-redesign .faculty-model-nav-note {
+  max-width: 26ch;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--foreground) 58%, transparent);
+}
+
+/* Right card grid */
 .faculty-redesign .faculty-model-cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  column-gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  column-gap: clamp(0.9rem, 1.6vw, 1.35rem);
   row-gap: clamp(1.25rem, 2.5vw, 2rem);
   animation: faculty-model-enter 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
@@ -5566,15 +5575,10 @@ body::-webkit-scrollbar {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  border-radius: 14px;
-  border: 1px solid color-mix(in oklab, var(--faculty-silver) 14%, transparent);
-  background: #0b0d0e;
-  transition: border-color 0.35s ease;
 }
 
-.faculty-redesign .faculty-model-card:hover {
-  border-color: var(--faculty-vermilion);
+.faculty-redesign .faculty-model-card--offset {
+  margin-top: 2.5rem;
 }
 
 @keyframes faculty-model-enter {
@@ -5584,35 +5588,80 @@ body::-webkit-scrollbar {
 
 .faculty-redesign .faculty-model-card-photo {
   position: relative;
+  padding: 0 12px 12px 0;
+}
+
+.faculty-redesign .faculty-model-card-photo-frame {
+  position: relative;
   overflow: hidden;
-  aspect-ratio: 1 / 1;
-  border-radius: 9px;
+  aspect-ratio: 4 / 5;
+  border-radius: 12px;
   background: color-mix(in oklab, var(--faculty-silver) 8%, transparent);
 }
 
-.faculty-redesign .faculty-model-card:hover .faculty-model-card-photo img {
+.faculty-redesign .faculty-model-card-photo-shadow {
+  position: absolute;
+  inset: 12px 0 0 12px;
+  background: color-mix(in oklab, var(--faculty-silver) 14%, transparent);
+  border-radius: 12px;
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 0;
+}
+
+.faculty-redesign .faculty-model-card:hover .faculty-model-card-photo-shadow {
+  transform: translate(-6px, -6px);
+}
+
+.faculty-redesign .faculty-model-card-photo-frame > img,
+.faculty-redesign .faculty-model-card-photo-frame > .touch-color-img,
+.faculty-redesign .faculty-model-card-photo-frame > div:not(.faculty-model-card-photo-gradient) {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+.faculty-redesign .faculty-model-card-photo-frame img {
+  filter: grayscale(100%);
+  transform: scale(1);
+  transition: filter 700ms ease, transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.faculty-redesign .faculty-model-card:hover .faculty-model-card-photo-frame img {
+  filter: grayscale(0%);
   transform: scale(1.05);
+}
+
+.faculty-redesign .faculty-model-card-photo-gradient {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 45%;
+  background: linear-gradient(to top, color-mix(in oklab, var(--faculty-obsidian) 85%, transparent), transparent);
+  pointer-events: none;
+  z-index: 2;
 }
 
 .faculty-redesign .faculty-model-card-body {
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 0.85rem 0.35rem 0.45rem;
+  padding: 1.1rem 0.25rem 0;
 }
 
 .faculty-redesign .faculty-model-card-name {
-  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  font-size: clamp(0.95rem, 1.15vw, 1.15rem);
   font-weight: 600;
   line-height: 1.2;
   color: var(--foreground);
 }
 
 .faculty-redesign .faculty-model-card-role {
-  margin-top: 0.25rem;
-  font-size: 0.8rem;
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
   font-weight: 300;
-  line-height: 1.35;
+  line-height: 1.4;
   color: color-mix(in oklab, var(--foreground) 62%, transparent);
 }
 
@@ -5620,16 +5669,17 @@ body::-webkit-scrollbar {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  min-height: 2.4rem;
+  min-height: 2.2rem;
   margin-top: auto;
   padding-top: 0.85rem;
+  border-top: 1px solid color-mix(in oklab, var(--faculty-silver) 10%, transparent);
 }
 
 .faculty-redesign .faculty-model-card-logo img {
   display: block;
-  height: 26px;
+  height: 24px;
   width: auto;
-  max-width: 150px;
+  max-width: 140px;
   flex: none;
   object-fit: contain;
   object-position: left center;
@@ -5637,70 +5687,82 @@ body::-webkit-scrollbar {
 }
 
 .faculty-redesign .faculty-model-card-logo-text {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   font-weight: 500;
   letter-spacing: 0.01em;
-  color: color-mix(in oklab, var(--foreground) 88%, transparent);
+  color: color-mix(in oklab, var(--foreground) 80%, transparent);
 }
 
-
 @media (max-width: 1023px) {
-  .faculty-redesign .faculty-model {
-    grid-template-columns: minmax(12rem, 0.7fr) minmax(0, 1.7fr);
+  .faculty-redesign .faculty-model-body {
+    grid-template-columns: minmax(12rem, 0.75fr) minmax(0, 1.75fr);
     gap: 2rem;
   }
-  .faculty-redesign .faculty-model-header {
+  .faculty-redesign .faculty-model-nav {
     top: 4.5rem;
   }
   .faculty-redesign .faculty-model-cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  .faculty-redesign .faculty-model-card--offset {
+    margin-top: 0;
+  }
 }
 
-@media (max-width: 639px) {
-  .faculty-redesign .faculty-model {
+@media (max-width: 767px) {
+  .faculty-redesign .faculty-model-header {
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+  }
+  .faculty-redesign .faculty-model-title {
+    font-size: clamp(1.9rem, 8vw, 2.6rem);
+  }
+  .faculty-redesign .faculty-model-body {
     display: block;
   }
-  .faculty-redesign .faculty-model-header {
+  .faculty-redesign .faculty-model-nav {
     position: static;
-    margin-bottom: 2.25rem;
-  }
-  .faculty-redesign .faculty-model-mix {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.45rem;
-    border-top: 0;
-  }
-  .faculty-redesign .faculty-model-mix-row {
-    min-height: 5.2rem;
-    padding: 0 0 0.8rem;
-  }
-  .faculty-redesign .faculty-model-mix-row[data-active="true"] {
+    gap: 0.5rem;
     padding-left: 0;
+    margin-bottom: 2.25rem;
   }
-  .faculty-redesign .faculty-model-mix-short {
-    font-size: 7px;
-    letter-spacing: 0.08em;
+  .faculty-redesign .faculty-model-nav-line {
+    display: none;
   }
-  .faculty-redesign .faculty-model-mix-pct {
-    font-size: 1.65rem;
+  .faculty-redesign .faculty-model-nav-row {
+    padding-left: 0;
+    padding-top: calc(34px + 0.65rem);
+    text-align: center;
+    opacity: 0.55;
   }
-  .faculty-redesign .faculty-model-mix-label {
-    font-size: 0.64rem;
+  .faculty-redesign .faculty-model-nav-row::before {
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 34px;
+    height: 34px;
+    font-size: 9px;
   }
-  .faculty-redesign .faculty-model-mix-note {
+  .faculty-redesign .faculty-model-nav-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.02em;
+  }
+  .faculty-redesign .faculty-model-nav-note {
     display: none;
   }
   .faculty-redesign .faculty-model-cards {
     grid-template-columns: minmax(0, 1fr);
-    row-gap: 2.5rem;
+    row-gap: 2rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .faculty-redesign .faculty-model-cards,
   .faculty-redesign .faculty-model-card,
-  .faculty-redesign .faculty-model-card-photo img {
+  .faculty-redesign .faculty-model-card-photo img,
+  .faculty-redesign .faculty-model-card-photo-shadow {
     animation: none;
     transition: none;
   }
