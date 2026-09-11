@@ -5598,11 +5598,12 @@ body::-webkit-scrollbar {
 
 /* Right column: static grid of all six cards, pinned alongside the left axis */
 .faculty-redesign .faculty-model-rail-wrap {
-  position: sticky;
-  top: clamp(5rem, 10vh, 7rem);
   align-self: start;
   min-width: 0;
+  max-height: 100%;
+  overflow: hidden;
 }
+
 
 .faculty-redesign .faculty-model-rail {
   display: grid;
