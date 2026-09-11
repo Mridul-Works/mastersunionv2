@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TouchColorImg } from "@/components/TouchColorImg";
 import { orgLogoUrl } from "@/lib/org-logos";
 
