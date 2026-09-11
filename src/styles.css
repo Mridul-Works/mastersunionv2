@@ -5721,6 +5721,7 @@ body::-webkit-scrollbar {
 .faculty-redesign .faculty-model-card-logo {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   min-height: 2.2rem;
   padding-inline: 0.85rem;
