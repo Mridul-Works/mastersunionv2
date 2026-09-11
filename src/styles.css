@@ -5477,9 +5477,9 @@ body::-webkit-scrollbar {
 .faculty-redesign .faculty-model-title {
   margin-top: 0.6rem;
   font-family: var(--faculty-font-display, "Inter", sans-serif);
-  font-size: clamp(2.25rem, 4vw, 3.75rem);
+  font-size: clamp(2.25rem, 4.5vw, 4.25rem);
   font-weight: 500;
-  line-height: 1.05;
+  line-height: 1;
   letter-spacing: -0.03em;
   color: var(--foreground);
 }
