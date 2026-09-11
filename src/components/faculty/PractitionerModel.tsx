@@ -152,6 +152,23 @@ export default function PractitionerModel({
     return onScrollFrame(write, measure);
   }, [groups.length]);
 
+  // Clicking a group scrolls to that group's slice of the pinned range on
+  // desktop, so scroll position and the visible group stay in agreement.
+  const goToStage = (i: number) => {
+    setStage(i);
+    if (typeof window === "undefined" || window.innerWidth < 768) return;
+    const el = rootRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const top = rect.top + window.scrollY;
+    const travel = rect.height - window.innerHeight;
+    if (travel <= 0) return;
+    const target = top + (travel * (i + 0.5)) / groups.length;
+    const lenis = (window as unknown as { __lenis?: { scrollTo: (t: number) => void } }).__lenis;
+    if (lenis) lenis.scrollTo(target);
+    else window.scrollTo({ top: target, behavior: "smooth" });
+  };
+
   return (
     <div
       className="faculty-model"
