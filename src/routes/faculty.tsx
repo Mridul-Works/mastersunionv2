@@ -148,7 +148,7 @@ const VISITING: Visiting[] = [
   { name: "Mr. Daniel Garett Van Der Vliet", role: "Executive Director", school: "", org: "Cornell University", img: vfDaniel.url },
   { name: "Dr Lan Ma", role: "Adjunct Professor of Business", school: "", org: "NYU Stern", img: vfLanMa.url },
   { name: "Dr Shad Morris", role: "Adjunct Professor, Management", school: "", org: "Brigham Young University", img: vfShad.url },
-  { name: "Dr Rajesh Bhargave", role: "Associate Professor of Marketing", school: "Imperial College London", img: vfRajesh.url },
+  { name: "Dr Rajesh Bhargave", role: "Associate Professor of Marketing", school: "", org: "Imperial College London", img: vfRajesh.url },
   { name: "Rajat Baijal", role: "Adjunct Professor, Enterprise Risk Management", school: "Columbia University", img: vfRajat.url },
   { name: "Dr Shad Morris", role: "Professor of Global Strategy", school: "Brigham Young University", img: vfShad.url },
   { name: "Meenakshi Rishi", role: "Professor of Economics", school: "Seattle University", img: vfMeenakshi.url },
