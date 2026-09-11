@@ -146,7 +146,7 @@ type Visiting = { name: string; role: string; school: string; org?: string; img?
 const VISITING: Visiting[] = [
   { name: "Dr Zal Phiroz", role: "Adjunct Professor, Supply Chain & Operations", school: "", org: "Harvard University", img: vfZal.url },
   { name: "Mr. Daniel Garett Van Der Vliet", role: "Executive Director", school: "", org: "Cornell University", img: vfDaniel.url },
-  { name: "Dr Lan Ma", role: "Adjunct Professor of Business", school: "NYU Stern", img: vfLanMa.url },
+  { name: "Dr Lan Ma", role: "Adjunct Professor of Business", school: "", org: "NYU Stern", img: vfLanMa.url },
   { name: "Mihir Mankad", role: "Senior Lecturer", school: "Harvard Kennedy School", img: vfMihir.url },
   { name: "Dr Rajesh Bhargave", role: "Associate Professor of Marketing", school: "Imperial College London", img: vfRajesh.url },
   { name: "Rajat Baijal", role: "Adjunct Professor, Enterprise Risk Management", school: "Columbia University", img: vfRajat.url },
