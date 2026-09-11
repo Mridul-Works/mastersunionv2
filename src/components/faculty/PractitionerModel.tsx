@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { TouchColorImg } from "@/components/TouchColorImg";
 import { orgLogoUrl } from "@/lib/org-logos";
-import { onScrollFrame, type ScrollState } from "@/lib/scroll-driver";
+import { onScrollFrame, onViewportResize, type ScrollState } from "@/lib/scroll-driver";
 
 const MONO = "var(--font-mono)";
 const SANS = "var(--font-sans)";
@@ -160,10 +160,23 @@ export default function PractitionerModel({
         if (next === selectedStageRef.current) selectedStageRef.current = null;
         else return;
       }
-      setStage((prev) => (prev === next ? prev : next));
+      setStage((prev) => {
+        if (prev === next) return prev;
+        const position = progress * count;
+        const deadZone = 0.06;
+        if (next > prev && position < prev + 1 + deadZone) return prev;
+        if (next < prev && position > prev - deadZone) return prev;
+        return next;
+      });
     };
 
-    return onScrollFrame(write, measure);
+    measure();
+    const offScroll = onScrollFrame(write);
+    const offResize = onViewportResize(measure);
+    return () => {
+      offScroll();
+      offResize();
+    };
   }, [groups.length]);
 
   // Clicking a group scrolls to that group's slice of the pinned range on

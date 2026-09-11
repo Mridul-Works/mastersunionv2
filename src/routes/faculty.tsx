@@ -326,8 +326,8 @@ function EditorialGrid({
         data-touch-gallery
         className={`${gallery ? "faculty-aligned-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" : "scene-scroll grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4"} border-b ${dark ? "border-white/15" : "border-black/15"}`}
       >
-          {items.map((item) => (
-            <article key={item.name} className="faculty-profile" data-faculty-reveal>
+          {items.map((item, index) => (
+            <article key={`${item.name}-${index}`} className="faculty-profile" data-faculty-reveal>
               <Portrait item={item} dark={dark} />
               <EditorialCaption item={item} dark={dark} />
             </article>
