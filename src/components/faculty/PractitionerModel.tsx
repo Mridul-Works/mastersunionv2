@@ -115,6 +115,7 @@ export default function PractitionerModel({
               aria-pressed={i === stage}
               className="faculty-model-nav-row"
               data-active={i === stage ? "true" : undefined}
+              data-pct={`${g.pct}%`}
             >
               <span className="faculty-model-nav-pct">{g.pct}%</span>
               <span className="faculty-model-nav-label">{g.label}</span>
