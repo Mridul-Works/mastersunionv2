@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { TouchColorImg } from "@/components/TouchColorImg";
 import { orgLogoUrl } from "@/lib/org-logos";
 
@@ -98,11 +98,10 @@ export default function PractitionerModel({
   limit?: number;
 }) {
   const [stage, setStage] = useState(0);
+  const railRef = useRef<HTMLDivElement>(null);
 
   const active = groups[Math.min(stage, groups.length - 1)];
   const visible = (active?.items ?? []).slice(0, limit);
-  const leftCards = visible.slice(0, 3);
-  const rightCards = visible.slice(3, 6);
 
   // Preload every group's portraits and logos so switching sections is instant.
   useEffect(() => {
@@ -121,17 +120,26 @@ export default function PractitionerModel({
     }
   }, [groups, limit]);
 
+  // Reset rail scroll when group changes.
+  useEffect(() => {
+    if (railRef.current) {
+      railRef.current.scrollTo({ left: 0, behavior: "auto" });
+    }
+  }, [stage]);
+
+  const scrollRail = (dir: "left" | "right") => {
+    const rail = railRef.current;
+    if (!rail) return;
+    const cardWidth = rail.firstElementChild?.getBoundingClientRect().width ?? 320;
+    const gap = 24;
+    const delta = (cardWidth + gap) * (dir === "left" ? -1 : 1);
+    rail.scrollBy({ left: delta, behavior: "smooth" });
+  };
+
   return (
     <div className="faculty-model">
       <div className="faculty-model-body">
-        {/* LEFT WING */}
-        <div className="faculty-model-wing faculty-model-wing--left" aria-live="polite" key={`left-${active?.label}`}>
-          {leftCards.map((p, idx) => (
-            <FacultyCard key={p.name} p={p} index={idx} />
-          ))}
-        </div>
-
-        {/* CENTER AXIS: header + group selector */}
+        {/* LEFT COLUMN: sticky header + group selector + rail nav */}
         <div className="faculty-model-axis">
           <header className="faculty-model-header">
             <p className="faculty-model-rail-kicker" style={{ fontFamily: MONO }}>
@@ -145,7 +153,6 @@ export default function PractitionerModel({
           </header>
 
           <nav className="faculty-model-nav" aria-label="Faculty groups">
-            <div className="faculty-model-nav-line" aria-hidden="true" />
             {groups.map((g, i) => (
               <button
                 key={g.label}
@@ -154,21 +161,45 @@ export default function PractitionerModel({
                 aria-pressed={i === stage}
                 className="faculty-model-nav-row"
                 data-active={i === stage ? "true" : undefined}
-                data-pct={`${g.pct}%`}
               >
-                <span className="faculty-model-nav-index">{String(i + 1).padStart(2, "0")}</span>
+                <span className="faculty-model-nav-pct">{g.pct}%</span>
                 <span className="faculty-model-nav-label">{g.label}</span>
                 <span className="faculty-model-nav-note">{g.note}</span>
               </button>
             ))}
           </nav>
+
+          <div className="faculty-model-rail-controls">
+            <button
+              type="button"
+              aria-label="Scroll cards left"
+              onClick={() => scrollRail("left")}
+              className="faculty-model-rail-arrow"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              aria-label="Scroll cards right"
+              onClick={() => scrollRail("right")}
+              className="faculty-model-rail-arrow"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
         </div>
 
-        {/* RIGHT WING */}
-        <div className="faculty-model-wing faculty-model-wing--right" aria-live="polite" key={`right-${active?.label}`}>
-          {rightCards.map((p, idx) => (
-            <FacultyCard key={p.name} p={p} index={idx + 3} />
-          ))}
+        {/* RIGHT COLUMN: horizontal filmstrip */}
+        <div className="faculty-model-rail-wrap">
+          <div className="faculty-model-rail" ref={railRef} aria-live="polite" key={`rail-${active?.label}`}>
+            {visible.map((p, idx) => (
+              <FacultyCard key={p.name} p={p} index={idx} />
+            ))}
+          </div>
         </div>
       </div>
     </div>
