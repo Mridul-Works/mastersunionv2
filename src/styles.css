@@ -5712,6 +5712,11 @@ body::-webkit-scrollbar {
   color: color-mix(in oklab, var(--foreground) 62%, transparent);
 }
 
+.faculty-redesign .faculty-model-card-divider {
+  height: 1px;
+  margin-block: 0.85rem;
+  background: color-mix(in oklab, var(--faculty-silver) 10%, transparent);
+}
 
 .faculty-redesign .faculty-model-card-logo {
   display: flex;
