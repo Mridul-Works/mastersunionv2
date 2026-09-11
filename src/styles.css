@@ -5720,7 +5720,7 @@ body::-webkit-scrollbar {
   }
 
   .faculty-redesign .faculty-model-card-name {
-    font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+    font-size: clamp(0.95rem, 1.4vw, 1.15rem);
   }
 }
 
