@@ -5728,9 +5728,9 @@ body::-webkit-scrollbar {
 
 .faculty-redesign .faculty-model-card-logo img {
   display: block;
-  height: 30px;
+  height: 36px;
   width: auto;
-  max-width: 200px;
+  max-width: 260px;
   flex: none;
   object-fit: contain;
   object-position: left center;
