@@ -5447,7 +5447,7 @@ body::-webkit-scrollbar {
 
 .faculty-redesign .faculty-model-body {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(14rem, 18rem) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(13rem, 17rem) minmax(0, 1fr);
   align-items: start;
   gap: clamp(1rem, 2vw, 2rem);
 }
@@ -5460,7 +5460,7 @@ body::-webkit-scrollbar {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding-top: clamp(1rem, 3vh, 2rem);
+  padding-top: 0;
 }
 
 .faculty-redesign .faculty-model-header {
