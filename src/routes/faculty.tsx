@@ -42,7 +42,7 @@ import vfMihir from "@/assets/faculty/visiting/mihir-mankad.png.asset.json";
 import vfShruti from "@/assets/faculty/visiting/shruti-mantri.png.asset.json";
 import vfAlireza from "@/assets/faculty/visiting/alireza-kabirian.png.asset.json";
 import vfSundar from "@/assets/faculty/visiting/sundar-venkatesh.png.asset.json";
-import vfDaniel from "@/assets/faculty/visiting/daniel-vandervliet.png.asset.json";
+import vfDaniel from "@/assets/faculty/visiting/daniel-vandervliet.webp.asset.json";
 import vfKrishanu from "@/assets/faculty/visiting/krishanu-rakshit.png.asset.json";
 import vfLanMa from "@/assets/faculty/visiting/lan-ma.png.asset.json";
 import vfRajat from "@/assets/faculty/visiting/rajat-baijal.png.asset.json";
@@ -145,7 +145,7 @@ const FULLTIME_ALMA_MATER: Record<string, string> = Object.fromEntries(
 type Visiting = { name: string; role: string; school: string; img?: string };
 const VISITING: Visiting[] = [
   { name: "Dr Zal Phiroz", role: "Adjunct Professor, Supply Chain & Operations", school: "", img: vfZal.url },
-  { name: "Daniel G. Van Der Vliet", role: "Executive Director, Family Business", school: "Cornell University", img: vfDaniel.url },
+  { name: "Mr. Daniel Garett Van Der Vliet", role: "Executive Director", school: "", img: vfDaniel.url },
   { name: "Dr Lan Ma", role: "Adjunct Professor of Business", school: "NYU Stern", img: vfLanMa.url },
   { name: "Mihir Mankad", role: "Senior Lecturer", school: "Harvard Kennedy School", img: vfMihir.url },
   { name: "Dr Rajesh Bhargave", role: "Associate Professor of Marketing", school: "Imperial College London", img: vfRajesh.url },
