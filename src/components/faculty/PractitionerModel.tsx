@@ -109,7 +109,6 @@ export default function PractitionerModel({
   const metrics = useRef({ top: 0, height: 0 });
 
   const active = groups[Math.min(stage, groups.length - 1)];
-  const visible = (active?.items ?? []).slice(0, limit);
 
   // Preload every group's portraits and logos so switching sections is instant.
   useEffect(() => {
