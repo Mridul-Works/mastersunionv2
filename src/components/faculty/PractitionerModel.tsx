@@ -138,18 +138,20 @@ export default function PractitionerModel({
               >
                 <div className="faculty-model-card-photo">
                   <div className="faculty-model-card-photo-shadow" aria-hidden="true" />
-                  <div className="faculty-model-card-photo-gradient" aria-hidden="true" />
-                  {p.img ? (
-                    <TouchColorImg
-                      src={p.img}
-                      alt={p.name}
-                      loading="lazy"
-                      decoding="async"
-                      className="h-full w-full object-cover object-top transition duration-700"
-                    />
-                  ) : (
-                    <Initials name={p.name} />
-                  )}
+                  <div className="faculty-model-card-photo-frame">
+                    <div className="faculty-model-card-photo-gradient" aria-hidden="true" />
+                    {p.img ? (
+                      <TouchColorImg
+                        src={p.img}
+                        alt={p.name}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover object-top transition duration-700"
+                      />
+                    ) : (
+                      <Initials name={p.name} />
+                    )}
+                  </div>
                 </div>
                 <div className="faculty-model-card-body">
                   <h3 className="faculty-model-card-name">{p.name}</h3>
