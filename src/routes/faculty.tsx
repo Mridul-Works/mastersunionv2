@@ -459,7 +459,7 @@ function FacultyPage() {
           observer.unobserve(entry.target);
         });
       },
-      { rootMargin: "0px 0px -8%", threshold: 0.08 },
+      { rootMargin: "0px 0px -8%", threshold: 0 },
     );
     nodes.forEach((node) => observer.observe(node));
     return () => observer.disconnect();
@@ -491,7 +491,10 @@ function FacultyPage() {
           observer.unobserve(entry.target);
         });
       },
-      { threshold: 0.08, rootMargin: "0px 0px -8% 0px" },
+      // Threshold must stay near zero: several sections are far taller than the
+      // viewport, so a fractional threshold can never be satisfied and the
+      // section would stay hidden forever.
+      { threshold: 0, rootMargin: "0px 0px -8% 0px" },
     );
 
     targets.forEach((element) => observer.observe(element));
