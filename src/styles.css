@@ -5643,6 +5643,42 @@ body::-webkit-scrollbar {
   transition: opacity 180ms ease-out, visibility 0s linear 0s;
 }
 
+/* Visiting Faculty rail: the third group has longer role/school text, so it
+   needs a more compact treatment to stay screen-fit without affecting the
+   Industry Practitioners or Full-Time Faculty rails. */
+.faculty-redesign .faculty-model-rail[data-group="visiting-faculty"] {
+  gap: clamp(0.35rem, 0.65vw, 0.7rem);
+}
+
+.faculty-redesign .faculty-model-rail[data-group="visiting-faculty"] .faculty-model-card-photo-frame {
+  aspect-ratio: 4 / 3;
+}
+
+.faculty-redesign .faculty-model-rail[data-group="visiting-faculty"] .faculty-model-card-info {
+  padding: 0.45rem 0 0.55rem;
+}
+
+.faculty-redesign .faculty-model-rail[data-group="visiting-faculty"] .faculty-model-card-name {
+  font-size: clamp(0.78rem, 0.95vw, 1rem);
+}
+
+.faculty-redesign .faculty-model-rail[data-group="visiting-faculty"] .faculty-model-card-role {
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+.faculty-redesign .faculty-model-rail[data-group="visiting-faculty"] .faculty-model-card-divider {
+  margin-block: 0.45rem;
+}
+
+.faculty-redesign .faculty-model-rail[data-group="visiting-faculty"] .faculty-model-card-logo {
+  min-height: 1.55rem;
+}
+
+.faculty-redesign .faculty-model-rail[data-group="visiting-faculty"] .faculty-model-card-logo img {
+  height: 26px;
+}
+
 .faculty-redesign .faculty-model-card {
   width: 100%;
   min-height: 0;
