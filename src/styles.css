@@ -5622,7 +5622,7 @@ body::-webkit-scrollbar {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-content: start;
-  gap: clamp(0.75rem, 1.25vw, 1.25rem);
+  gap: clamp(0.5rem, 0.9vw, 0.875rem);
   animation: faculty-model-enter 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -5686,7 +5686,7 @@ body::-webkit-scrollbar {
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-  padding: 0.75rem 0 0.85rem;
+  padding: 0.6rem 0 0.7rem;
   border: 1px solid color-mix(in oklab, var(--faculty-silver) 22%, transparent);
   border-top: none;
 }
@@ -5706,22 +5706,22 @@ body::-webkit-scrollbar {
   font-size: clamp(0.9rem, 1.2vw, 1.2rem);
   font-weight: 400;
   line-height: 1.15;
-  padding-inline: 0.85rem;
+  padding-inline: 0.75rem;
   color: var(--foreground);
 }
 
 .faculty-redesign .faculty-model-card-role {
-  margin-top: 0.45rem;
+  margin-top: 0.35rem;
   font-size: 0.8rem;
   font-weight: 400;
   line-height: 1.4;
-  padding-inline: 0.85rem;
+  padding-inline: 0.75rem;
   color: color-mix(in oklab, var(--foreground) 62%, transparent);
 }
 
 .faculty-redesign .faculty-model-card-divider {
   height: 1px;
-  margin-block: 0.85rem;
+  margin-block: 0.65rem;
   background: color-mix(in oklab, var(--faculty-silver) 10%, transparent);
 }
 
@@ -5730,13 +5730,13 @@ body::-webkit-scrollbar {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  min-height: 2.2rem;
-  padding-inline: 0.85rem;
+  min-height: 1.8rem;
+  padding-inline: 0.75rem;
 }
 
 .faculty-redesign .faculty-model-card-logo img {
   display: block;
-  height: 36px;
+  height: 32px;
   width: auto;
   max-width: 100%;
   flex: none;
