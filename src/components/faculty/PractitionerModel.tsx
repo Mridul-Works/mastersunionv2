@@ -97,6 +97,8 @@ export default function PractitionerModel({
 }) {
   const [stage, setStage] = useState(0);
   const railRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const metrics = useRef({ top: 0, height: 0 });
 
   const active = groups[Math.min(stage, groups.length - 1)];
   const visible = (active?.items ?? []).slice(0, limit);
