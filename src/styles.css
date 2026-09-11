@@ -5752,7 +5752,9 @@ body::-webkit-scrollbar {
     position: static;
     display: flex;
     flex-direction: column;
+    height: auto;
     max-height: none;
+    padding-block: clamp(2.5rem, 6vw, 4rem);
     overflow: visible;
   }
   .faculty-redesign .faculty-model-axis {
