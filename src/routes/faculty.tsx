@@ -142,7 +142,7 @@ const FULLTIME_ALMA_MATER: Record<string, string> = Object.fromEntries(
   }),
 );
 
-type Visiting = { name: string; role: string; school: string; img?: string };
+type Visiting = { name: string; role: string; school: string; org?: string; img?: string };
 const VISITING: Visiting[] = [
   { name: "Dr Zal Phiroz", role: "Adjunct Professor, Supply Chain & Operations", school: "", org: "Harvard University", img: vfZal.url },
   { name: "Mr. Daniel Garett Van Der Vliet", role: "Executive Director", school: "", org: "Cornell University", img: vfDaniel.url },
