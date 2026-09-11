@@ -5534,7 +5534,7 @@ body::-webkit-scrollbar {
   font-weight: 700;
   color: var(--foreground);
   background: color-mix(in oklab, var(--faculty-silver) 18%, transparent);
-  ring: 8px var(--faculty-obsidian);
+  box-shadow: 0 0 0 8px var(--faculty-obsidian);
   transition: background 350ms ease, color 350ms ease;
 }
 
