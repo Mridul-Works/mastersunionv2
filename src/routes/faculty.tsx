@@ -563,7 +563,7 @@ function FacultyPage() {
                   name: v.name,
                   role: v.school ? `${v.role}, ${v.school}` : v.role,
                   img: v.img,
-                  org: v.school,
+                  org: v.org ?? v.school,
                 })),
               },
             ]}
