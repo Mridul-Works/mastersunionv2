@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { TouchColorImg } from "@/components/TouchColorImg";
 import { orgLogoUrl } from "@/lib/org-logos";
+import { onScrollFrame, type ScrollState } from "@/lib/scroll-driver";
 
 const MONO = "var(--font-mono)";
 const SANS = "var(--font-sans)";
