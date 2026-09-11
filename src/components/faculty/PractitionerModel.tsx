@@ -118,21 +118,8 @@ export default function PractitionerModel({
     }
   }, [groups, limit]);
 
-  // Reset rail scroll when group changes.
-  useEffect(() => {
-    if (railRef.current) {
-      railRef.current.scrollTo({ left: 0, behavior: "auto" });
-    }
-  }, [stage]);
 
-  const scrollRail = (dir: "left" | "right") => {
-    const rail = railRef.current;
-    if (!rail) return;
-    const cardWidth = rail.firstElementChild?.getBoundingClientRect().width ?? 320;
-    const gap = 24;
-    const delta = (cardWidth + gap) * (dir === "left" ? -1 : 1);
-    rail.scrollBy({ left: delta, behavior: "smooth" });
-  };
+
 
   return (
     <div className="faculty-model">
