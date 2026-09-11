@@ -81,16 +81,15 @@ function FacultyCard({ p, index }: { p: PractitionerCard; index: number }) {
         </div>
       </div>
       <div className="faculty-model-card-body">
-        <div className="faculty-model-card-info">
-          <div className="faculty-model-card-top">
-            <h3 className="faculty-model-card-name">{p.name}</h3>
-            <p className="faculty-model-card-role">{p.role}</p>
+          <div className="faculty-model-card-info">
+            <div className="faculty-model-card-top">
+              <h3 className="faculty-model-card-name">{p.name}</h3>
+              <p className="faculty-model-card-role">{p.role}</p>
+            </div>
+            <div className="faculty-model-card-bottom">
+              {p.org ? <OrgLogo org={p.org} /> : null}
+            </div>
           </div>
-          <div className="faculty-model-card-bottom">
-            <div className="faculty-model-card-divider" aria-hidden="true" />
-            {p.org ? <OrgLogo org={p.org} /> : null}
-          </div>
-        </div>
       </div>
     </article>
   );
