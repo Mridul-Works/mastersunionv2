@@ -5522,8 +5522,7 @@ body::-webkit-scrollbar {
 
 .faculty-redesign .faculty-model-nav-row {
   position: relative;
-  display: grid;
-  grid-template-columns: 44px 1fr;
+  display: flex;
   align-items: center;
   gap: 0.85rem;
   width: 100%;
@@ -5545,6 +5544,7 @@ body::-webkit-scrollbar {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: none;
   width: 44px;
   height: 44px;
   border-radius: 9999px;
@@ -5560,6 +5560,14 @@ body::-webkit-scrollbar {
   color: var(--faculty-obsidian);
 }
 
+.faculty-redesign .faculty-model-nav-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
 .faculty-redesign .faculty-model-nav-label {
   font-size: clamp(0.78rem, 0.9vw, 0.9rem);
   font-weight: 600;
@@ -5569,7 +5577,6 @@ body::-webkit-scrollbar {
 }
 
 .faculty-redesign .faculty-model-nav-note {
-  grid-column: 2;
   max-width: 30ch;
   font-size: 0.75rem;
   line-height: 1.45;
