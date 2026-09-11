@@ -5618,7 +5618,7 @@ body::-webkit-scrollbar {
 .faculty-redesign .faculty-model-card-photo-frame {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 1 / 1;
   border-radius: 12px;
   background: color-mix(in oklab, var(--faculty-silver) 8%, transparent);
 }
