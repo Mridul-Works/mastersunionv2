@@ -5587,16 +5587,16 @@ body::-webkit-scrollbar {
 .faculty-redesign .faculty-model-wing {
   display: flex;
   flex-direction: column;
-  gap: clamp(1.5rem, 3vh, 2.5rem);
+  gap: clamp(1rem, 2vh, 1.75rem);
   animation: faculty-model-enter 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .faculty-redesign .faculty-model-wing--left {
-  padding-top: clamp(4rem, 10vh, 8rem);
+  padding-top: clamp(3rem, 7vh, 6rem);
 }
 
 .faculty-redesign .faculty-model-wing--right {
-  padding-top: clamp(1.5rem, 4vh, 3rem);
+  padding-top: clamp(1rem, 3vh, 2rem);
 }
 
 @keyframes faculty-model-enter {
