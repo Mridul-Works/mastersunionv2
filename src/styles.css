@@ -5734,7 +5734,7 @@ body::-webkit-scrollbar {
   max-width: 260px;
   flex: none;
   object-fit: contain;
-  object-position: left center;
+  object-position: center center;
   opacity: 0.95;
 }
 
