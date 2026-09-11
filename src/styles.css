@@ -5829,11 +5829,14 @@ body::-webkit-scrollbar {
     margin-bottom: 1.5rem;
   }
   .faculty-redesign .faculty-model-nav-row {
-    grid-template-columns: 1fr;
-    justify-items: center;
+    flex-direction: column;
+    align-items: center;
     gap: 0.4rem;
     padding: 0.65rem 0.25rem;
     text-align: center;
+  }
+  .faculty-redesign .faculty-model-nav-content {
+    align-items: center;
   }
   .faculty-redesign .faculty-model-nav-pct {
     width: 34px;
