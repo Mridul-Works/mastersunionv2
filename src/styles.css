@@ -5643,6 +5643,34 @@ body::-webkit-scrollbar {
   transition: opacity 180ms ease-out, visibility 0s linear 0s;
 }
 
+/* Visiting Faculty: keep the image frame the same 1:1 size as the other
+   groups, but compact the metadata area so the overall card still fits. */
+.faculty-redesign .faculty-model-rail[data-group="visiting-faculty"] .faculty-model-card-info {
+  padding: 0.45rem 0 0.5rem;
+}
+
+.faculty-redesign .faculty-model-rail[data-group="visiting-faculty"] .faculty-model-card-name {
+  font-size: clamp(0.78rem, 0.95vw, 1rem);
+}
+
+.faculty-redesign .faculty-model-rail[data-group="visiting-faculty"] .faculty-model-card-role {
+  font-size: 0.72rem;
+  line-height: 1.3;
+}
+
+.faculty-redesign .faculty-model-rail[data-group="visiting-faculty"] .faculty-model-card-divider {
+  margin-block: 0.4rem;
+}
+
+.faculty-redesign .faculty-model-rail[data-group="visiting-faculty"] .faculty-model-card-logo {
+  min-height: 1.45rem;
+}
+
+.faculty-redesign .faculty-model-rail[data-group="visiting-faculty"] .faculty-model-card-logo img {
+  height: 24px;
+}
+
+
 
 .faculty-redesign .faculty-model-card {
   width: 100%;
