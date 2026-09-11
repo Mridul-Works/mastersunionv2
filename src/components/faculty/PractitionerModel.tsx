@@ -218,12 +218,19 @@ export default function PractitionerModel({
         </div>
 
         {/* RIGHT COLUMN: static six-card grid */}
-        <div className="faculty-model-rail-wrap">
-          <div className="faculty-model-rail" ref={railRef} aria-live="polite" key={`rail-${active?.label}`}>
-            {visible.map((p, idx) => (
-              <FacultyCard key={p.name} p={p} index={idx} />
-            ))}
-          </div>
+        <div className="faculty-model-rail-wrap" ref={railRef}>
+          {groups.map((g, gi) => (
+            <div
+              key={g.label}
+              className="faculty-model-rail"
+              aria-hidden={g.label !== active?.label}
+              data-active={g.label === active?.label ? "true" : undefined}
+            >
+              {g.items.slice(0, limit).map((p, idx) => (
+                <FacultyCard key={`${gi}-${p.name}`} p={p} index={idx} />
+              ))}
+            </div>
+          ))}
         </div>
 
       </div>
