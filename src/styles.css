@@ -5692,7 +5692,7 @@ body::-webkit-scrollbar {
 
 .faculty-redesign .faculty-model-card-name {
   font-family: var(--faculty-font-display, "Inter", sans-serif);
-  font-size: clamp(1.25rem, 1.6vw, 1.75rem);
+  font-size: clamp(1.35rem, 2vw, 2rem);
   font-weight: 600;
   line-height: 1.1;
   color: var(--foreground);
