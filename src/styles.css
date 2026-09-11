@@ -5612,7 +5612,7 @@ body::-webkit-scrollbar {
 
 .faculty-redesign .faculty-model-card-photo {
   position: relative;
-  padding: 0 12px 12px 0;
+  padding: 0 8px 8px 0;
 }
 
 .faculty-redesign .faculty-model-card-photo-frame {
@@ -5625,7 +5625,7 @@ body::-webkit-scrollbar {
 
 .faculty-redesign .faculty-model-card-photo-shadow {
   position: absolute;
-  inset: 12px 0 0 12px;
+  inset: 8px 0 0 8px;
   background: color-mix(in oklab, var(--faculty-silver) 14%, transparent);
   border-radius: 12px;
   transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
