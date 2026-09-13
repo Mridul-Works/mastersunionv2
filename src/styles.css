@@ -5612,6 +5612,8 @@ body::-webkit-scrollbar {
 /* Right column: static grid of all six cards, pinned alongside the left axis */
 .faculty-redesign .faculty-model-rail-wrap {
   align-self: start;
+  justify-self: end;
+  width: min(100%, 44rem);
   min-width: 0;
   max-height: 100%;
   overflow: hidden;
