@@ -186,3 +186,4 @@
 - [x] Apply Placements smooth-scroll rules and section blur reveals to the Faculty page
 
 - [x] Redesign Guiding Minds layout: sticky clickable category index + stacked scrollable category sections (fonts, sizes, cards unchanged)
+- [ ] Fix Guiding Minds card bottom-border clipping/overlap (all sections, desktop + mobile); verify 320–1920px.
