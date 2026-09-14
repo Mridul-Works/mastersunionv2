@@ -61,6 +61,13 @@ export default function MeetMastersGallery() {
   const facultyCard = active === "Masters-in-Residence" || active === "Visiting Faculty" || active === "Practitioners";
 
   useEffect(() => {
+    const savedCategory = window.sessionStorage.getItem("newMastersActiveTab");
+    if (MASTER_CATEGORIES.includes(savedCategory as MasterCategory)) {
+      setActive(savedCategory as MasterCategory);
+    }
+  }, []);
+
+  useEffect(() => {
     setExpanded(false);
     activeTabRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
   }, [active]);
@@ -83,7 +90,10 @@ export default function MeetMastersGallery() {
               aria-selected={category === active}
               className="meet-masters-tab"
               data-active={category === active ? "true" : undefined}
-              onClick={() => setActive(category)}
+              onClick={() => {
+                window.sessionStorage.setItem("newMastersActiveTab", category);
+                setActive(category);
+              }}
             >
               {category}
             </Button>
