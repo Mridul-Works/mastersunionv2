@@ -73,8 +73,28 @@ function CategorySection({
   registerRef: (category: MasterCategory, node: HTMLElement | null) => void;
 }) {
   const [expanded, setExpanded] = useState(false);
+  const [collapseButtonTop, setCollapseButtonTop] = useState<number | null>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const cards = MEET_THE_MASTERS[category];
   const facultyCard = FACULTY_CARD_CATEGORIES.includes(category);
+
+  useEffect(() => {
+    if (!expanded && collapseButtonTop !== null && buttonRef.current) {
+      const currentTop = buttonRef.current.getBoundingClientRect().top;
+      const delta = collapseButtonTop - currentTop;
+      if (Math.abs(delta) > 1) {
+        window.scrollBy({ top: delta, behavior: "auto" });
+      }
+      setCollapseButtonTop(null);
+    }
+  }, [expanded, collapseButtonTop]);
+
+  const handleToggle = () => {
+    if (expanded && buttonRef.current) {
+      setCollapseButtonTop(buttonRef.current.getBoundingClientRect().top);
+    }
+    setExpanded((value) => !value);
+  };
 
   return (
     <section
@@ -103,10 +123,11 @@ function CategorySection({
 
       {cards.length > PREVIEW_LIMIT ? (
         <Button
+          ref={buttonRef}
           type="button"
           variant="outline"
           className="meet-masters-show-more"
-          onClick={() => setExpanded((value) => !value)}
+          onClick={handleToggle}
         >
           {expanded ? "View Less" : `View More (${cards.length - PREVIEW_LIMIT})`}
         </Button>
