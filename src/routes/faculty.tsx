@@ -547,7 +547,7 @@ function FacultyPage() {
 
 
       {/* SECTION 2 — MASTERS: Built by Scholars, Led by Industry Practitioners */}
-      <MastersVideos dark bg="bg-ink" />
+      <MastersVideos dark bg="bg-ink" bottomBorder />
       </StackReveal>
 
 

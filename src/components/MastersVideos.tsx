@@ -148,10 +148,12 @@ export default function MastersVideos({
   bg = "bg-[#F5F3EE]",
   statsSlot,
   dark = false,
+  bottomBorder = false,
 }: {
   bg?: string;
   statsSlot?: React.ReactNode;
   dark?: boolean;
+  bottomBorder?: boolean;
 }) {
   const [open, setOpen] = useState<MasterVideo | null>(null);
   const [active, setActive] = useState(0);
@@ -244,7 +246,7 @@ export default function MastersVideos({
       onMouseLeave={() => (activeRef.current = false)}
       onFocusCapture={() => (activeRef.current = true)}
       onBlurCapture={() => (activeRef.current = false)}
-      className={`mv-section ${revealed ? "is-revealed" : ""} relative flex w-full min-h-[calc(100svh-var(--nav-reserve,0px))] flex-col overflow-x-hidden border-t ${line} ${bg}`}
+      className={`mv-section ${revealed ? "is-revealed" : ""} relative flex w-full min-h-[calc(100svh-var(--nav-reserve,0px))] flex-col overflow-x-hidden border-t ${line} ${bottomBorder ? `border-b ${line}` : ""} ${bg}`}
       style={{
         paddingTop: "clamp(0.75rem, 2vh, 1.75rem)",
         paddingBottom: "clamp(2rem, 4vh, 3rem)",
