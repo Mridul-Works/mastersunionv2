@@ -1878,6 +1878,7 @@ body::-webkit-scrollbar {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  background: color-mix(in oklab, var(--placements-outer-surface) 52%, transparent) !important;
 }
 
 .faculty-placement-closing-kicker {
@@ -1895,15 +1896,15 @@ body::-webkit-scrollbar {
 
 .faculty-placement-closing-word {
   position: absolute;
-  inset-inline: 0;
-  bottom: -0.09em;
+  inset-inline: var(--page-x);
+  bottom: 1.25rem;
   z-index: 0;
   white-space: nowrap;
   text-align: center;
   font-family: var(--font-sans);
-  font-size: clamp(5.2rem, 13.8vw, 16.5rem);
+  font-size: clamp(5.2rem, 11.25vw, 13.5rem);
   font-weight: 650;
-  line-height: 0.75;
+  line-height: 0.82;
   color: color-mix(in oklab, white 70%, transparent);
   pointer-events: none;
   user-select: none;
@@ -1919,10 +1920,11 @@ body::-webkit-scrollbar {
   }
 
   .faculty-placement-closing-word {
-    bottom: 0.15em;
+    inset-inline: 0.75rem;
+    bottom: 2rem;
     white-space: normal;
-    font-size: clamp(4.6rem, 24vw, 7rem);
-    line-height: 0.72;
+    font-size: clamp(4rem, 20vw, 6rem);
+    line-height: 0.78;
   }
 }
 

@@ -63,6 +63,7 @@ import PlacementsFloatingNav, {
   type FloatingNavLink,
   type FloatingNavSuggestion,
 } from "@/components/placements/PlacementsFloatingNav";
+import { Parallax } from "@/components/placements/motion";
 
 
 
@@ -681,9 +682,11 @@ function FacultyPage() {
 
       {/* CTA / CLOSING — exact Placements contact/footer composition */}
       <section id="cta" className="faculty-placement-closing placements-obsidian placements-ug-v2 relative overflow-hidden border-t border-white/10 text-white">
-        <div aria-hidden className="faculty-placement-closing-word">JOIN THE UNION</div>
+        <div aria-hidden className="faculty-placement-closing-word">
+          <Parallax strength={60}>JOIN THE UNION</Parallax>
+        </div>
         <div className="page-x relative z-10 py-10 sm:py-12 md:py-14">
-          <div className="placements-section-shell placements-section-shell-dark faculty-placement-closing-panel">
+          <div className="placements-section-shell placements-section-shell-light faculty-placement-closing-panel">
             <p className="eyebrow faculty-placement-closing-kicker text-white/55">
               <span aria-hidden />
               Become a Master
