@@ -6052,24 +6052,25 @@ body::-webkit-scrollbar {
 
 .faculty-redesign .meet-master-card {
   position: relative;
-  height: 100%;
+  width: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
-  border: 1px solid var(--master-line);
   border-radius: 0;
-  background: color-mix(in oklab, var(--faculty-panel) 88%, var(--faculty-obsidian));
-  transition: border-color 300ms ease, transform 300ms ease;
+  background: transparent;
+  transition: transform 300ms ease;
 }
 
 .faculty-redesign .meet-master-card:hover {
-  border-color: color-mix(in oklab, var(--faculty-silver) 62%, transparent);
   transform: translateY(-4px);
 }
 
 .faculty-redesign .meet-master-avatar {
-  aspect-ratio: 1 / 1.08;
+  position: relative;
   overflow: hidden;
-  border-bottom: 1px solid var(--master-line);
-  background: var(--faculty-obsidian);
+  aspect-ratio: 1 / 1;
+  background: color-mix(in oklab, var(--faculty-silver) 8%, transparent);
 }
 
 .faculty-redesign .meet-master-avatar img {
@@ -6087,9 +6088,12 @@ body::-webkit-scrollbar {
 
 .faculty-redesign .meet-master-info {
   display: flex;
-  min-height: 9.5rem;
+  flex: 1;
   flex-direction: column;
-  padding: 0.75rem;
+  justify-content: space-between;
+  padding: 0.45rem 0 0.5rem;
+  border: 1px solid color-mix(in oklab, var(--faculty-silver) 22%, transparent);
+  border-top: none;
 }
 
 .faculty-redesign .meet-master-heading {
