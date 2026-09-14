@@ -10,7 +10,7 @@ const brand = {
   homeAriaLabel: "Masters' Union home",
 };
 
-const cta = {
+const defaultCta = {
   nav: { label: "Apply", href: "#contact" },
   sage: { label: "S.A.G.E", href: "#sage" },
 };
@@ -22,7 +22,10 @@ const applicationWindow = {
   deadline: "30 September 2026",
 };
 
-const navLinks = [
+export type FloatingNavLink = { label: string; id: string; index: string };
+export type FloatingNavSuggestion = { label: string; id: string };
+
+const defaultNavLinks: FloatingNavLink[] = [
   { label: "Outcomes", id: "outcomes", index: "01" },
   { label: "Cohorts", id: "cohorts", index: "02" },
   { label: "Recruiters", id: "recruiters", index: "03" },
@@ -31,7 +34,7 @@ const navLinks = [
   { label: "Contact", id: "contact", index: "06" },
 ];
 
-const sageSuggestions = [
+const defaultSageSuggestions: FloatingNavSuggestion[] = [
   { label: "What are the placement outcomes?", id: "outcomes" },
   { label: "Which companies recruit here?", id: "recruiters" },
   { label: "How do students describe the process?", id: "stories" },
@@ -105,7 +108,19 @@ function useActiveSection(ids: string[]) {
   return active;
 }
 
-export function PlacementsFloatingNav() {
+export function PlacementsFloatingNav({
+  navLinks = defaultNavLinks,
+  sageSuggestions = defaultSageSuggestions,
+  applyHref = defaultCta.nav.href,
+  sageTitle = "Ask anything about placements",
+  sageDescription = "Pick a starting point and S.A.G.E takes you straight to the answer on this page.",
+}: {
+  navLinks?: FloatingNavLink[];
+  sageSuggestions?: FloatingNavSuggestion[];
+  applyHref?: string;
+  sageTitle?: string;
+  sageDescription?: string;
+} = {}) {
   const progressRef = useRef<HTMLSpanElement | null>(null);
   const { scrolled } = useScrollState(progressRef);
   const active = useActiveSection(navLinks.map((l) => l.id));
@@ -170,10 +185,10 @@ export function PlacementsFloatingNav() {
                 S.A.G.E · AI help
               </p>
               <h2 className="mt-2 font-display text-[clamp(1.1rem,2.2vw,1.5rem)] font-normal leading-snug">
-                Ask anything about placements
+                {sageTitle}
               </h2>
               <p className="mt-2 max-w-xl text-[13px] leading-relaxed text-muted-foreground">
-                Pick a starting point and S.A.G.E takes you straight to the answer on this page.
+                {sageDescription}
               </p>
             </div>
             <button
@@ -269,14 +284,14 @@ export function PlacementsFloatingNav() {
             className="inline-flex items-center gap-1.5 rounded-full border border-border px-2.5 py-1.5 text-[12px] font-medium text-foreground transition-colors hover:bg-foreground/[0.06] sm:px-3.5"
           >
             <Sparkles className="h-3.5 w-3.5 text-teal" strokeWidth={1.75} />
-            <span className="hidden sm:inline">{cta.sage.label}</span>
+             <span className="hidden sm:inline">{defaultCta.sage.label}</span>
           </button>
 
           <a
-            href={cta.nav.href}
+             href={applyHref}
             className="group inline-flex items-center gap-1.5 rounded-full bg-foreground px-3.5 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-background transition hover:bg-foreground/85"
           >
-            {cta.nav.label}
+             {defaultCta.nav.label}
             <ArrowUpRight className="h-3 w-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" strokeWidth={2.25} />
           </a>
         </div>
