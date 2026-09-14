@@ -6270,8 +6270,11 @@ body::-webkit-scrollbar {
   }
 
   .faculty-redesign .meet-master-info {
-    min-height: 8.75rem;
-    padding: 0.65rem;
+    padding: 0.4rem 0 0.45rem;
+  }
+
+  .faculty-redesign .meet-master-heading {
+    padding-inline: 0.65rem;
   }
 
   .faculty-redesign .meet-master-heading h3 {
@@ -6279,6 +6282,7 @@ body::-webkit-scrollbar {
   }
 
   .faculty-redesign .meet-master-designation {
+    padding-inline: 0.65rem;
     font-size: 0.66rem;
   }
 
@@ -6292,18 +6296,22 @@ body::-webkit-scrollbar {
     height: 0.65rem;
   }
 
+  .faculty-redesign .meet-master-divider {
+    margin-block: 0.4rem;
+  }
+
   .faculty-redesign .meet-master-logo {
-    min-height: 2rem;
-    padding-top: 0.4rem;
+    min-height: 1.8rem;
+    padding-inline: 0.65rem;
   }
 
   .faculty-redesign .meet-master-logo img {
-    height: 32px;
+    height: 28px;
   }
 
   .faculty-redesign .meet-master-detail {
-    margin-top: 0.4rem;
-    padding-top: 0.4rem;
+    margin-top: 0.3rem;
+    padding-inline: 0.65rem;
     font-size: 0.65rem;
   }
 
