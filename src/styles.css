@@ -1866,6 +1866,66 @@ body::-webkit-scrollbar {
   background: var(--placements-outer-surface);
 }
 
+/* Faculty closing stage mirrors the Placements contact/footer composition. */
+.faculty-placement-closing {
+  min-height: clamp(31rem, 45vw, 42rem);
+  background: var(--placements-page-surface);
+}
+
+.faculty-placement-closing-panel {
+  min-height: clamp(22rem, 29vw, 27rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.faculty-placement-closing-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-transform: uppercase;
+}
+
+.faculty-placement-closing-kicker > span {
+  width: 1.5rem;
+  height: 1px;
+  background: color-mix(in oklab, white 18%, transparent);
+}
+
+.faculty-placement-closing-word {
+  position: absolute;
+  inset-inline: 0;
+  bottom: -0.09em;
+  z-index: 0;
+  white-space: nowrap;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: clamp(5.2rem, 13.8vw, 16.5rem);
+  font-weight: 650;
+  line-height: 0.75;
+  color: color-mix(in oklab, white 70%, transparent);
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (max-width: 639px) {
+  .faculty-placement-closing {
+    min-height: 38rem;
+  }
+
+  .faculty-placement-closing-panel {
+    min-height: 29rem;
+  }
+
+  .faculty-placement-closing-word {
+    bottom: 0.15em;
+    white-space: normal;
+    font-size: clamp(4.6rem, 24vw, 7rem);
+    line-height: 0.72;
+  }
+}
+
 .placements-ug-v2 .placements-section-shell .placements-section-shell,
 .placements-ug-v2 .placements-section-shell > .placement-data-bento,
 .placements-ug-v2 .placements-section-shell > .salary-viz-grid,
