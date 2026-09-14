@@ -5942,10 +5942,12 @@ body::-webkit-scrollbar {
   align-items: start;
 }
 
-.faculty-redesign .meet-masters-rail-inner {
+.faculty-redesign .meet-masters-rail {
   position: sticky;
   top: clamp(3rem, 8vh, 6rem);
+  align-self: start;
 }
+
 
 .faculty-redesign .meet-masters-rail .meet-masters-title {
   margin-bottom: clamp(1.5rem, 2.5vw, 2.5rem);
@@ -6181,9 +6183,10 @@ body::-webkit-scrollbar {
     gap: 2rem;
   }
 
-  .faculty-redesign .meet-masters-rail-inner {
+  .faculty-redesign .meet-masters-rail {
     position: static;
   }
+
 
   .faculty-redesign .meet-masters-index {
     flex-direction: row;
