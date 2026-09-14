@@ -81,7 +81,7 @@ function CategorySection({
   useEffect(() => {
     if (!expanded && collapseButtonTop !== null && buttonRef.current) {
       const currentTop = buttonRef.current.getBoundingClientRect().top;
-      const delta = collapseButtonTop - currentTop;
+      const delta = currentTop - collapseButtonTop;
       if (Math.abs(delta) > 1) {
         window.scrollBy({ top: delta, behavior: "auto" });
       }
