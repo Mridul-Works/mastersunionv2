@@ -6139,20 +6139,22 @@ body::-webkit-scrollbar {
 
 .faculty-redesign .meet-master-logo {
   display: flex;
-  height: 2.25rem;
+  min-height: 2.25rem;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   margin-top: auto;
   padding-top: 0.5rem;
 }
 
 .faculty-redesign .meet-master-logo img {
+  display: block;
+  height: 32px;
   width: auto;
-  max-width: 70%;
-  height: auto;
-  max-height: 1.55rem;
+  max-width: 100%;
+  flex: none;
   object-fit: contain;
-  object-position: left center;
+  object-position: center center;
+  opacity: 0.95;
 }
 
 .faculty-redesign .meet-master-detail {
