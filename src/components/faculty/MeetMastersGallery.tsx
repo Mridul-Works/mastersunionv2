@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import { Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -73,33 +74,36 @@ function CategorySection({
   registerRef: (category: MasterCategory, node: HTMLElement | null) => void;
 }) {
   const [expanded, setExpanded] = useState(false);
-  const [collapseButtonTop, setCollapseButtonTop] = useState<number | null>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const cards = MEET_THE_MASTERS[category];
   const facultyCard = FACULTY_CARD_CATEGORIES.includes(category);
 
-  useEffect(() => {
-    if (!expanded && collapseButtonTop !== null && buttonRef.current) {
-      const currentTop = buttonRef.current.getBoundingClientRect().top;
-      const delta = currentTop - collapseButtonTop;
-      if (Math.abs(delta) > 1) {
-        window.scrollBy({ top: delta, behavior: "auto" });
-      }
-      setCollapseButtonTop(null);
-    }
-  }, [expanded, collapseButtonTop]);
-
   const handleToggle = () => {
-    if (expanded && buttonRef.current) {
-      setCollapseButtonTop(buttonRef.current.getBoundingClientRect().top);
+    if (!expanded) {
+      setExpanded(true);
+      return;
     }
-    setExpanded((value) => !value);
+
+    buttonRef.current?.blur();
+    flushSync(() => setExpanded(false));
+
+    const section = sectionRef.current;
+    if (!section) return;
+
+    section.scrollIntoView({ behavior: "auto", block: "start" });
+    requestAnimationFrame(() => {
+      section.scrollIntoView({ behavior: "auto", block: "start" });
+    });
   };
 
   return (
     <section
       id={slugify(category)}
-      ref={(node) => registerRef(category, node)}
+      ref={(node) => {
+        sectionRef.current = node;
+        registerRef(category, node);
+      }}
       className="meet-masters-section"
       data-category={category}
       aria-label={category}
