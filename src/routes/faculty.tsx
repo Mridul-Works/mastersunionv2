@@ -534,13 +534,6 @@ function FacultyPage() {
         coverMultipliers={[
           1, // Hero — unchanged
           1, // Masters · Masterclass
-          1.75, // 01 Industry Practitioners — slower cover-up
-          1.75, // 02 Full-time Faculty
-          1.75, // 03 Visiting Faculty
-          1, // 04 What students say
-          1, // 05 Become a Master
-          1, // The Number · 500+ DOERS
-          1, // Footer (last panel — no cover-up)
         ]}
       >
       {/* HERO — first pinned layer of the stack (hero content + image) */}
@@ -555,6 +548,7 @@ function FacultyPage() {
 
       {/* SECTION 2 — MASTERS: Built by Scholars, Led by Industry Practitioners */}
       <MastersVideos dark bg="bg-ink" />
+      </StackReveal>
 
 
       {/* INDUSTRY PRACTITIONERS */}
@@ -783,7 +777,6 @@ function FacultyPage() {
           </div>
         </div>
       </footer>
-      </StackReveal>
     </main>
 
   );
