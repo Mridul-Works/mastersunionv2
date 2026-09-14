@@ -33,32 +33,37 @@ function MasterProfileCard({ master, facultyCard }: { master: MasterCard; facult
         />
       </div>
       <div className="meet-master-info">
-        <div className="meet-master-heading">
-          <h3>{master.name}</h3>
-          {master.linkedin ? (
-            <a
-              href={master.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`${master.name} on LinkedIn`}
-              className="meet-master-linkedin"
-            >
-              <Linkedin aria-hidden="true" />
-            </a>
+        <div className="meet-master-top">
+          <div className="meet-master-heading">
+            <h3>{master.name}</h3>
+            {master.linkedin ? (
+              <a
+                href={master.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`${master.name} on LinkedIn`}
+                className="meet-master-linkedin"
+              >
+                <Linkedin aria-hidden="true" />
+              </a>
+            ) : null}
+          </div>
+          <p className="meet-master-designation">{master.designation}</p>
+        </div>
+        <div className="meet-master-bottom">
+          <div className="meet-master-divider" aria-hidden="true" />
+          {master.logo ? (
+            <div className="meet-master-logo">
+              <img src={master.logo} alt="" loading="lazy" decoding="async" />
+            </div>
+          ) : null}
+          {facultyCard && (master.post || master.department) ? (
+            <div className="meet-master-detail">
+              {master.post ? <span>{master.post}</span> : null}
+              {master.department ? <span>{master.department}</span> : null}
+            </div>
           ) : null}
         </div>
-        <p className="meet-master-designation">{master.designation}</p>
-        {master.logo ? (
-          <div className="meet-master-logo">
-            <img src={master.logo} alt="" loading="lazy" decoding="async" />
-          </div>
-        ) : null}
-        {facultyCard && (master.post || master.department) ? (
-          <div className="meet-master-detail">
-            {master.post ? <span>{master.post}</span> : null}
-            {master.department ? <span>{master.department}</span> : null}
-          </div>
-        ) : null}
       </div>
     </article>
   );
