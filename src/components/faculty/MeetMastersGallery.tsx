@@ -58,10 +58,12 @@ function MasterProfileCard({ master, facultyCard }: { master: MasterCard; facult
             </div>
           ) : null}
           {facultyCard && (master.post || master.department) ? (
-            <div className="meet-master-detail">
-              {master.post ? <span>{master.post}</span> : null}
-              {master.department ? <span>{master.department}</span> : null}
-            </div>
+            <>
+              <div className="meet-master-divider" aria-hidden="true" />
+              <div className="meet-master-detail">
+                {[master.post, master.department].filter(Boolean).join(" · ")}
+              </div>
+            </>
           ) : null}
         </div>
       </div>
