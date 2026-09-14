@@ -5903,3 +5903,284 @@ body::-webkit-scrollbar {
     transition: none;
   }
 }
+
+/* Meet the Masters — reference gallery used only for Faculty sections 02/03 */
+.faculty-redesign .meet-masters-shell {
+  --master-line: color-mix(in oklab, var(--faculty-silver) 24%, transparent);
+  width: 100%;
+  color: var(--faculty-silver);
+}
+
+.faculty-redesign .meet-masters-title {
+  margin: 0 0 clamp(2rem, 4vw, 4rem);
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 6vw, 6rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: 0;
+}
+
+.faculty-redesign .meet-masters-title em {
+  font-family: var(--font-serif);
+  font-weight: 300;
+}
+
+.faculty-redesign .meet-masters-tabs-wrap {
+  margin-bottom: clamp(2rem, 4vw, 3.75rem);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.faculty-redesign .meet-masters-tabs-wrap::-webkit-scrollbar {
+  display: none;
+}
+
+.faculty-redesign .meet-masters-tabs {
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+  border-bottom: 1px solid var(--master-line);
+}
+
+.faculty-redesign .meet-masters-tab {
+  position: relative;
+  min-width: max-content;
+  height: auto;
+  padding: 0.9rem clamp(1rem, 2.2vw, 2rem) 1.15rem;
+  border-radius: 0;
+  color: color-mix(in oklab, var(--faculty-silver) 54%, transparent);
+  background: transparent;
+  box-shadow: none;
+  font-size: clamp(0.75rem, 1vw, 0.9rem);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.faculty-redesign .meet-masters-tab:hover,
+.faculty-redesign .meet-masters-tab[data-active="true"] {
+  color: var(--faculty-silver);
+  background: transparent;
+}
+
+.faculty-redesign .meet-masters-tab::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  background: var(--faculty-silver);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 280ms ease;
+}
+
+.faculty-redesign .meet-masters-tab[data-active="true"]::after {
+  transform: scaleX(1);
+}
+
+.faculty-redesign .meet-masters-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 1.8vw, 1.75rem);
+  animation: masters-grid-in 420ms ease both;
+}
+
+.faculty-redesign .meet-master-card {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--master-line);
+  border-radius: 0;
+  background: color-mix(in oklab, var(--faculty-panel) 88%, var(--faculty-obsidian));
+  transition: border-color 300ms ease, transform 300ms ease;
+}
+
+.faculty-redesign .meet-master-card:hover {
+  border-color: color-mix(in oklab, var(--faculty-silver) 62%, transparent);
+  transform: translateY(-4px);
+}
+
+.faculty-redesign .meet-master-avatar {
+  aspect-ratio: 1 / 1.08;
+  overflow: hidden;
+  border-bottom: 1px solid var(--master-line);
+  background: var(--faculty-obsidian);
+}
+
+.faculty-redesign .meet-master-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: none;
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.faculty-redesign .meet-master-card:hover .meet-master-avatar img {
+  transform: scale(1.035);
+}
+
+.faculty-redesign .meet-master-info {
+  display: flex;
+  min-height: 11.25rem;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.faculty-redesign .meet-master-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.faculty-redesign .meet-master-heading h3 {
+  margin: 0;
+  font-size: clamp(0.9rem, 1.15vw, 1.05rem);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.faculty-redesign .meet-master-linkedin {
+  display: grid;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--master-line);
+  color: var(--faculty-silver);
+  transition: background 200ms ease, color 200ms ease;
+}
+
+.faculty-redesign .meet-master-linkedin:hover {
+  background: var(--faculty-silver);
+  color: var(--faculty-obsidian);
+}
+
+.faculty-redesign .meet-master-linkedin svg {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.faculty-redesign .meet-master-designation {
+  min-height: 2.5em;
+  margin: 0.5rem 0 0;
+  color: color-mix(in oklab, var(--faculty-silver) 62%, transparent);
+  font-size: clamp(0.7rem, 0.85vw, 0.78rem);
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.faculty-redesign .meet-master-logo {
+  display: flex;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: auto;
+  padding-top: 0.75rem;
+}
+
+.faculty-redesign .meet-master-logo img {
+  width: auto;
+  max-width: 70%;
+  height: auto;
+  max-height: 1.75rem;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.faculty-redesign .meet-master-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--master-line);
+  color: color-mix(in oklab, var(--faculty-silver) 74%, transparent);
+  font-size: 0.7rem;
+  font-weight: 300;
+  line-height: 1.35;
+}
+
+.faculty-redesign .meet-masters-show-more {
+  display: none;
+}
+
+@keyframes masters-grid-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 1024px) {
+  .faculty-redesign .meet-masters-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .faculty-redesign .meet-masters-title {
+    margin-bottom: 1.75rem;
+    font-size: clamp(2.45rem, 13vw, 4.25rem);
+  }
+
+  .faculty-redesign .meet-masters-tabs-wrap {
+    margin-right: calc(var(--page-gutter, 1.25rem) * -1);
+    margin-bottom: 1.75rem;
+  }
+
+  .faculty-redesign .meet-masters-tabs {
+    padding-right: var(--page-gutter, 1.25rem);
+  }
+
+  .faculty-redesign .meet-masters-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+
+  .faculty-redesign .meet-master-info {
+    min-height: 10.25rem;
+    padding: 0.8rem;
+  }
+
+  .faculty-redesign .meet-master-heading h3 {
+    font-size: 0.82rem;
+  }
+
+  .faculty-redesign .meet-master-designation {
+    font-size: 0.66rem;
+  }
+
+  .faculty-redesign .meet-master-mobile-hidden {
+    display: none;
+  }
+
+  .faculty-redesign .meet-masters-show-more {
+    display: flex;
+    height: auto;
+    margin: 1.5rem auto 0;
+    padding: 0.7rem 1.4rem;
+    border-color: var(--master-line);
+    border-radius: 999px;
+    color: var(--faculty-silver);
+    background: transparent;
+    box-shadow: none;
+    font-weight: 400;
+  }
+}
+
+@media (max-width: 359px) {
+  .faculty-redesign .meet-masters-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faculty-redesign .meet-masters-grid,
+  .faculty-redesign .meet-master-card,
+  .faculty-redesign .meet-master-avatar img {
+    animation: none;
+    transition: none;
+  }
+}

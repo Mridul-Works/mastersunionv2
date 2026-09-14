@@ -1,4 +1,4 @@
-- [ ] Replace Faculty sections 02 and 03 with one shared, exact Meet the Masters tabbed gallery using all five reference categories, portraits, and logos
+- [x] Replace Faculty sections 02 and 03 with one shared, exact Meet the Masters tabbed gallery using all five reference categories, portraits, and logos
 
 # Roadmap
 
