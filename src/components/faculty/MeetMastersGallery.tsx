@@ -85,16 +85,38 @@ function CategorySection({
       return;
     }
 
-    buttonRef.current?.blur();
+    // Anchor the View Less button's screen position so collapsing never
+    // throws the user to another part of the page.
+    const button = buttonRef.current;
+    const anchorTop = button?.getBoundingClientRect().top ?? null;
+
+    button?.blur();
     flushSync(() => setExpanded(false));
 
     const section = sectionRef.current;
     if (!section) return;
 
-    section.scrollIntoView({ behavior: "auto", block: "start" });
-    requestAnimationFrame(() => {
-      section.scrollIntoView({ behavior: "auto", block: "start" });
-    });
+    const restore = () => {
+      if (button && anchorTop !== null && button.isConnected) {
+        const delta = button.getBoundingClientRect().top - anchorTop;
+        if (Math.abs(delta) > 1) {
+          window.scrollBy(0, delta);
+          return;
+        }
+      }
+      const head = section.querySelector(".meet-masters-section-head");
+      const top = section.getBoundingClientRect().top + window.scrollY;
+      const headHeight = head ? head.getBoundingClientRect().height : 0;
+      if (window.scrollY > top + headHeight) {
+        section.scrollIntoView({ behavior: "auto", block: "start" });
+      }
+    };
+
+    restore();
+    requestAnimationFrame(restore);
+    requestAnimationFrame(() => requestAnimationFrame(restore));
+    window.setTimeout(restore, 120);
+    window.setTimeout(restore, 300);
   };
 
   return (
