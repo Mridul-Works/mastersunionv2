@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { TouchColorImg } from "@/components/TouchColorImg";
 import { ArrowUpRight } from "lucide-react";
 import StudentTestimonials from "@/components/StudentTestimonials";
@@ -37,7 +37,6 @@ import vfPratap from "@/assets/faculty/visiting/pratap-giri.png.asset.json";
 import vfPradeep from "@/assets/faculty/visiting/pradeep-hota.png.asset.json";
 import vfHarshali from "@/assets/faculty/visiting/harshali-damle.png.asset.json";
 import vfAmit from "@/assets/faculty/visiting/amit-shrivastava.png.asset.json";
-import footerStripAsset from "@/assets/widget/widget-campus-life.jpg.asset.json";
 import vfMihir from "@/assets/faculty/visiting/mihir-mankad.png.asset.json";
 import vfShruti from "@/assets/faculty/visiting/shruti-mantri.png.asset.json";
 import vfAlireza from "@/assets/faculty/visiting/alireza-kabirian.png.asset.json";
@@ -59,6 +58,7 @@ import vfRajesh from "@/assets/faculty/visiting/rajesh.webp.asset.json";
 import PractitionerModel from "@/components/faculty/PractitionerModel";
 import MeetMastersGallery from "@/components/faculty/MeetMastersGallery";
 import { SectionDivider } from "@/components/patterns/section-divider";
+import PlacementsFooter from "@/components/placements/PlacementsFooter";
 import PlacementsFloatingNav, {
   type FloatingNavLink,
   type FloatingNavSuggestion,
@@ -679,96 +679,8 @@ function FacultyPage() {
 
 
 
-      {/* CTA / CLOSING FOOTER */}
-      <footer id="cta" className="relative min-h-[calc(100svh-var(--nav-reserve,0px))] overflow-x-hidden bg-ink text-white">
-        <div className="flex min-h-[calc(100svh-var(--nav-reserve,0px))] flex-col justify-between pt-[clamp(4rem,14vh,10rem)]">
-          {/* Top CTA */}
-          <div className="page-shell-narrow text-center">
-            <p className="text-balance text-[0.98rem] not-italic leading-[1.35] text-white/85">
-              Learn from the people doing it — not just studying it.
-            </p>
-            <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-              <Link to="/applications_center" className="inline-flex items-center gap-2 bg-white px-4 py-2.5 text-[10px] uppercase tracking-[0.22em] text-black transition-opacity hover:opacity-80" style={{ fontFamily: MONO }}>
-                Apply to Masters&apos; Union <ArrowUpRight className="size-3" />
-              </Link>
-              <a href="https://mastersunion.org/become-a-master" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-white/20 px-4 py-2.5 text-[10px] uppercase tracking-[0.22em] text-white/85 transition-colors hover:bg-white/10" style={{ fontFamily: MONO }}>
-                Or join them <ArrowUpRight className="size-3" />
-              </a>
-            </div>
-          </div>
-
-          {/* Giant type + strip + utility row */}
-          <div className="mt-[clamp(40px,8vh,86px)]">
-
-            <div className="px-[clamp(1rem,2.5vw,2.5rem)]">
-              <h2 className="sr-only">Join the Union</h2>
-              {/* Fluid full-width display type: SVG auto-fits the container at any width */}
-              <div className="text-white/[0.14] transition-colors duration-500 hover:text-cream/85">
-                <svg
-                  aria-hidden
-                  viewBox="0 0 1200 168"
-                  className="hidden h-auto w-full sm:block"
-                  preserveAspectRatio="xMidYMid meet"
-                >
-                  <text
-                    x="600"
-                    y="132"
-                    textAnchor="middle"
-                    textLength="1188"
-                    lengthAdjust="spacingAndGlyphs"
-                    fill="currentColor"
-                    fontSize="170"
-                    fontWeight="700"
-                    style={{ fontFamily: "Inter, system-ui, sans-serif", letterSpacing: "-0.04em" }}
-                  >
-                    JOIN THE UNION
-                  </text>
-                </svg>
-                <div className="sm:hidden">
-                  {["JOIN THE", "UNION"].map((line) => (
-                    <svg
-                      key={line}
-                      aria-hidden
-                      viewBox="0 0 600 120"
-                      className="h-auto w-full"
-                      preserveAspectRatio="xMidYMid meet"
-                    >
-                      <text
-                        x="300"
-                        y="98"
-                        textAnchor="middle"
-                        textLength="592"
-                        lengthAdjust="spacingAndGlyphs"
-                        fill="currentColor"
-                        fontSize="120"
-                        fontWeight="700"
-                        style={{ fontFamily: "Inter, system-ui, sans-serif", letterSpacing: "-0.04em" }}
-                      >
-                        {line}
-                      </text>
-                    </svg>
-                  ))}
-                </div>
-              </div>
-
-            </div>
-
-
-            <div className="relative mt-[clamp(1.5rem,4vh,3rem)] h-[clamp(209px,41.8vh,437px)] w-full">
-              <img
-                src={footerStripAsset.url}
-                alt="Masters' Union campus life"
-                loading="lazy"
-                decoding="async"
-                className="h-full w-full object-cover object-[56%_40%] opacity-60"
-              />
-              <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-transparent to-[#0a0a0a]" />
-              <div aria-hidden className="absolute inset-0 bg-ink/25" />
-            </div>
-
-          </div>
-        </div>
-      </footer>
+      {/* FOOTER */}
+      <PlacementsFooter />
     </main>
 
   );
