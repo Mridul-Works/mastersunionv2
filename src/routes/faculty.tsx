@@ -57,8 +57,8 @@ import vfVishnu from "@/assets/faculty/visiting/vishnuprasad-n.png.asset.json";
 import vfRajesh from "@/assets/faculty/visiting/rajesh.webp.asset.json";
 
 import PractitionerModel from "@/components/faculty/PractitionerModel";
+import MeetMastersGallery from "@/components/faculty/MeetMastersGallery";
 import { SectionDivider } from "@/components/patterns/section-divider";
-import { LogoMarquee } from "@/components/patterns/logo-marquee";
 
 
 
@@ -575,55 +575,11 @@ function FacultyPage() {
         </div>
       </section>
 
-      {/* FULL-TIME FACULTY */}
-      <section id="full-time" className="screen-section border-y border-white/10 bg-ink">
-        <div className="page-shell screen-y">
-          <SectionIntro
-            index="02"
-            eyebrow="Full-time Faculty"
-            title={<>{FULLTIME.length} PhD faculty. Active researchers. Published where the <Accent>best B-schools read</Accent>.</>}
-            intro="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing in FT50 and A* journals."
-          />
-          <SectionDivider inset="none" className="my-[clamp(1.5rem,4vh,2.5rem)]" />
-          <EditorialGrid
-            gallery
-            dark
-            sectionLabel="Full-time Faculty"
-            pct="30%"
-            tagline="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing where the best B-schools read."
-            items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
-          />
-
-
-        </div>
-      </section>
-
-      {/* VISITING */}
-      <section id="visiting" className="screen-section border-y border-white/10 bg-ink">
-        <div className="page-shell screen-y">
-          <SectionIntro
-            index="03"
-            eyebrow="Visiting Faculty"
-            title={<>Professors who teach here because they <Accent>believe</Accent> in what Masters&apos; Union is building.</>}
-            intro="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
-          />
-          <SectionDivider inset="none" className="my-[clamp(1.5rem,4vh,2.5rem)]" />
-          <EditorialGrid
-            gallery
-            dark
-            sectionLabel="Visiting Faculty"
-            pct="20%"
-            tagline="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
-            items={VISITING.map((v) => ({ name: v.name, role: v.role, sub: v.school, img: v.img }))}
-          />
-          <LogoMarquee
-            variant="banded"
-            speed="slow"
-            className="mt-[clamp(1.25rem,3vh,2rem)]"
-            label="Schools our visiting faculty teach at"
-            items={VISITING_SCHOOLS.map((name) => ({ name }))}
-          />
-
+      {/* SECTIONS 02 + 03 — MEET THE MASTERS */}
+      <section id="full-time" className="border-y border-white/10 bg-ink" aria-label="Full-time and visiting faculty">
+        <span id="visiting" className="sr-only" aria-hidden="true" />
+        <div className="page-shell py-[clamp(3.5rem,8vh,7rem)]">
+          <MeetMastersGallery />
         </div>
       </section>
 
