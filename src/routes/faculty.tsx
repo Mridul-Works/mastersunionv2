@@ -588,15 +588,10 @@ function FacultyPage() {
           <SectionDivider inset="none" className="my-[clamp(1.5rem,4vh,2.5rem)]" />
           <EditorialGrid
             gallery
-            cardStats
             dark
             sectionLabel="Full-time Faculty"
             pct="30%"
             tagline="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing where the best B-schools read."
-            stats={[
-              { v: String(FULLTIME.length), l: "Full-time faculty" },
-              { v: "50+", l: "FT50 / A* publications" },
-            ]}
             items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
           />
           <PedigreeScrollPanel />
