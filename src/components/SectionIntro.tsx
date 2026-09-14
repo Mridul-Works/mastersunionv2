@@ -33,7 +33,7 @@ export function SectionIntro({
   className = "",
   align = "center",
 }: {
-  index: string;
+  index?: string;
   eyebrow: string;
   title: ReactNode;
   intro?: ReactNode;
@@ -48,10 +48,14 @@ export function SectionIntro({
         className={`faculty-section-kicker flex gap-3 text-[10px] font-semibold uppercase ${isLeft ? "justify-start" : "justify-center"}`}
         style={{ fontFamily: MONO }}
       >
-        <span>{index}</span>
-        <span aria-hidden className="opacity-50">
-          /
-        </span>
+        {index ? (
+          <>
+            <span>{index}</span>
+            <span aria-hidden className="opacity-50">
+              /
+            </span>
+          </>
+        ) : null}
         <span>{eyebrow}</span>
       </p>
 
