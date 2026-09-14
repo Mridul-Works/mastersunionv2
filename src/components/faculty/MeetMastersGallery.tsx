@@ -74,6 +74,7 @@ export default function MeetMastersGallery() {
 
   return (
     <div className="meet-masters-shell">
+      <p className="meet-masters-kicker">Academic Excellence</p>
       <h2 className="meet-masters-title">
         Meet <em>The Masters</em>
       </h2>
