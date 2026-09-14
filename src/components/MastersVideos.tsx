@@ -148,10 +148,12 @@ export default function MastersVideos({
   bg = "bg-[#F5F3EE]",
   statsSlot,
   dark = false,
+  bottomBorder = false,
 }: {
   bg?: string;
   statsSlot?: React.ReactNode;
   dark?: boolean;
+  bottomBorder?: boolean;
 }) {
   const [open, setOpen] = useState<MasterVideo | null>(null);
   const [active, setActive] = useState(0);
