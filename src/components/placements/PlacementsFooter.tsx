@@ -31,7 +31,7 @@ export function PlacementsFooter() {
               loading="lazy"
               src={logoWhite.url}
               alt="Masters' Union"
-              className="h-8 w-auto brightness-0 invert sm:h-10 md:h-12"
+              className="placements-footer-logo h-8 w-auto brightness-0 invert sm:h-10 md:h-12"
             />
             <p className="mt-5 max-w-sm text-[12px] leading-relaxed text-white/55 sm:mt-6 sm:text-[13px]">
               DLF Cyberpark, Phase III
