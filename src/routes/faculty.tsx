@@ -587,7 +587,6 @@ function FacultyPage() {
         <section className="screen-section border-y border-white/10 bg-ink">
         <div className="page-shell screen-y">
           <SectionIntro
-            index="04"
             eyebrow="What students say"
             title={<>Learning from operators, <Accent>in their own words</Accent>.</>}
           />
