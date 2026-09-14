@@ -6310,7 +6310,8 @@ body::-webkit-scrollbar {
   }
 
   .faculty-redesign .meet-master-detail {
-    margin-top: 0.3rem;
+    min-height: calc(0.65rem * 1.35 * 2);
+    max-height: calc(0.65rem * 1.35 * 2);
     padding-inline: 0.65rem;
     font-size: 0.65rem;
   }
