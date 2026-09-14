@@ -6273,12 +6273,12 @@ body::-webkit-scrollbar {
   }
 
   .faculty-redesign .meet-master-logo {
-    height: 2rem;
+    min-height: 2rem;
     padding-top: 0.4rem;
   }
 
   .faculty-redesign .meet-master-logo img {
-    max-height: 1.4rem;
+    height: 28px;
   }
 
   .faculty-redesign .meet-master-detail {
