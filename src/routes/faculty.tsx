@@ -59,6 +59,10 @@ import vfRajesh from "@/assets/faculty/visiting/rajesh.webp.asset.json";
 import PractitionerModel from "@/components/faculty/PractitionerModel";
 import MeetMastersGallery from "@/components/faculty/MeetMastersGallery";
 import { SectionDivider } from "@/components/patterns/section-divider";
+import PlacementsFloatingNav, {
+  type FloatingNavLink,
+  type FloatingNavSuggestion,
+} from "@/components/placements/PlacementsFloatingNav";
 
 
 
@@ -71,6 +75,21 @@ const garimaImg = garimaAsset.url;
 const INTER = "var(--font-sans)";
 const MONO = "var(--font-mono)";
 const SERIF = "var(--font-serif)";
+
+const FACULTY_NAV_LINKS: FloatingNavLink[] = [
+  { label: "Masterclass", id: "masters", index: "01" },
+  { label: "Academic Excellence", id: "practitioners", index: "02" },
+  { label: "Guiding Minds", id: "full-time", index: "03" },
+  { label: "Student Stories", id: "student-stories", index: "04" },
+  { label: "Become a Master", id: "become-a-master", index: "05" },
+];
+
+const FACULTY_SAGE_SUGGESTIONS: FloatingNavSuggestion[] = [
+  { label: "Watch faculty masterclasses", id: "masters" },
+  { label: "Explore the faculty model", id: "practitioners" },
+  { label: "Meet the Guiding Minds", id: "full-time" },
+  { label: "Hear from students", id: "student-stories" },
+];
 
 
 type Practitioner = { name: string; role: string; blurb: string; company?: string };
@@ -504,6 +523,13 @@ function FacultyPage() {
 
   return (
     <main ref={pageRef} className="ink-scope faculty-redesign min-h-screen bg-ink pb-24 text-foreground sm:pb-[clamp(4.5rem,7vw,6rem)]" style={{ fontFamily: INTER }}>
+      <PlacementsFloatingNav
+        navLinks={FACULTY_NAV_LINKS}
+        sageSuggestions={FACULTY_SAGE_SUGGESTIONS}
+        applyHref="/applications_center"
+        sageTitle="Ask anything about the faculty"
+        sageDescription="Pick a starting point and S.A.G.E takes you straight to the answer on this page."
+      />
       <StackReveal
         coverMultipliers={[
           1, // Hero — unchanged
@@ -584,7 +610,7 @@ function FacultyPage() {
       </section>
 
       {/* TESTIMONIALS */}
-        <section className="screen-section border-y border-white/10 bg-ink">
+        <section id="student-stories" className="screen-section border-y border-white/10 bg-ink">
         <div className="page-shell screen-y">
           <SectionIntro
             eyebrow="What students say"
@@ -597,7 +623,7 @@ function FacultyPage() {
       </section>
 
       {/* BECOME A MASTER */}
-      <section className="screen-section border-y border-white/10 bg-ink text-white">
+      <section id="become-a-master" className="screen-section border-y border-white/10 bg-ink text-white">
         <div className="screen-y flex w-full flex-col items-center justify-center">
           <div className="page-shell w-full">
             <SectionIntro
