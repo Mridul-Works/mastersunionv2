@@ -184,3 +184,5 @@
 - [x] Mobile responsiveness: no horizontal overflow at 320/360/375/390/414/430/480/540/639; recruiter chips fixed for <=359px
 
 - [x] Apply Placements smooth-scroll rules and section blur reveals to the Faculty page
+
+- [x] Redesign Guiding Minds layout: sticky clickable category index + stacked scrollable category sections (fonts, sizes, cards unchanged)
