@@ -56,7 +56,6 @@ import vfJyotsna from "@/assets/faculty/visiting/jyotsna-bhatnagar.png.asset.jso
 import vfVishnu from "@/assets/faculty/visiting/vishnuprasad-n.png.asset.json";
 import vfRajesh from "@/assets/faculty/visiting/rajesh.webp.asset.json";
 import SchoolsScrollPanel from "@/components/faculty/SchoolsScrollPanel";
-import PedigreeScrollPanel from "@/components/faculty/PedigreeScrollPanel";
 import PractitionerModel from "@/components/faculty/PractitionerModel";
 import { SectionDivider } from "@/components/patterns/section-divider";
 import { LogoMarquee } from "@/components/patterns/logo-marquee";
@@ -594,7 +593,7 @@ function FacultyPage() {
             tagline="A core of PhD faculty from India's and the world's top institutions — shaping curriculum and publishing where the best B-schools read."
             items={FULLTIME.map((f) => ({ name: f.name, role: f.note, img: f.img }))}
           />
-          <PedigreeScrollPanel />
+
 
         </div>
       </section>
