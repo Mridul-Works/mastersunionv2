@@ -5904,7 +5904,7 @@ body::-webkit-scrollbar {
   }
 }
 
-/* Meet the Masters — reference gallery used only for Faculty sections 02/03 */
+/* Meet the Masters — Guiding Minds lookbook gallery (Faculty sections 02/03) */
 .faculty-redesign .meet-masters-shell {
   --master-line: color-mix(in oklab, var(--faculty-silver) 24%, transparent);
   width: 100%;
@@ -5922,7 +5922,7 @@ body::-webkit-scrollbar {
 }
 
 .faculty-redesign .meet-masters-title {
-  margin: 0 0 clamp(2rem, 4vw, 4rem);
+  margin: 0;
   font-family: var(--faculty-font-display);
   font-size: clamp(2.25rem, 4.5vw, 4.25rem);
   font-weight: 500;
@@ -5935,70 +5935,77 @@ body::-webkit-scrollbar {
   font-weight: 300;
 }
 
-.faculty-redesign .meet-masters-tabs-wrap {
-  margin-bottom: clamp(2rem, 4vw, 3.75rem);
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.faculty-redesign .meet-masters-tabs-wrap::-webkit-scrollbar {
-  display: none;
-}
-
-.faculty-redesign .meet-masters-tabs {
+.faculty-redesign .meet-masters-header {
   display: flex;
-  width: max-content;
-  min-width: 100%;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  margin-bottom: clamp(3.5rem, 7vw, 6rem);
+  padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
   border-bottom: 1px solid var(--master-line);
 }
 
-.faculty-redesign .meet-masters-tab {
-  position: relative;
-  min-width: max-content;
-  height: auto;
-  padding: 0.9rem clamp(1rem, 2.2vw, 2rem) 1.15rem;
-  border-radius: 0;
-  color: color-mix(in oklab, var(--faculty-silver) 54%, transparent);
-  background: transparent;
-  box-shadow: none;
-  font-size: clamp(0.75rem, 1vw, 0.9rem);
-  font-weight: 400;
-  letter-spacing: 0;
+.faculty-redesign .meet-masters-lead {
+  max-width: 22rem;
+  margin: 0;
+  color: color-mix(in oklab, var(--faculty-silver) 62%, transparent);
+  font-family: var(--faculty-font-body);
+  font-size: clamp(0.75rem, 0.95vw, 0.9rem);
+  font-weight: 300;
+  line-height: 1.6;
+  font-style: italic;
 }
 
-.faculty-redesign .meet-masters-tab:hover,
-.faculty-redesign .meet-masters-tab[data-active="true"] {
+.faculty-redesign .meet-masters-sections {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4rem, 8vw, 7rem);
+}
+
+.faculty-redesign .meet-masters-section {
+  animation: masters-section-in 520ms ease both;
+}
+
+.faculty-redesign .meet-masters-section-header {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.faculty-redesign .meet-masters-section-number {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3vw, 3.5rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1;
+  color: color-mix(in oklab, var(--faculty-silver) 18%, transparent);
+}
+
+.faculty-redesign .meet-masters-section-title {
+  margin: 0;
+  font-family: var(--faculty-font-display);
+  font-size: clamp(0.7rem, 0.85vw, 0.8rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   color: var(--faculty-silver);
-  background: transparent;
+  white-space: nowrap;
 }
 
-.faculty-redesign .meet-masters-tab::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: -1px;
-  left: 0;
-  height: 2px;
-  background: var(--faculty-silver);
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 280ms ease;
+.faculty-redesign .meet-masters-section-rule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--faculty-silver) 28%, transparent) 0%,
+    transparent 100%
+  );
 }
 
-.faculty-redesign .meet-masters-tab[data-active="true"]::after {
-  transform: scaleX(1);
-}
-
-.faculty-redesign .meet-masters-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(1rem, 1.8vw, 1.75rem);
-  animation: masters-grid-in 420ms ease both;
-}
-
+/* Base card */
 .faculty-redesign .meet-master-card {
   position: relative;
-  height: 100%;
   overflow: hidden;
   border: 1px solid var(--master-line);
   border-radius: 0;
@@ -6012,9 +6019,7 @@ body::-webkit-scrollbar {
 }
 
 .faculty-redesign .meet-master-avatar {
-  aspect-ratio: 1 / 1.08;
   overflow: hidden;
-  border-bottom: 1px solid var(--master-line);
   background: var(--faculty-obsidian);
 }
 
@@ -6033,7 +6038,6 @@ body::-webkit-scrollbar {
 
 .faculty-redesign .meet-master-info {
   display: flex;
-  min-height: 9.5rem;
   flex-direction: column;
   padding: 0.75rem;
 }
@@ -6075,7 +6079,6 @@ body::-webkit-scrollbar {
 }
 
 .faculty-redesign .meet-master-designation {
-  min-height: 2.5em;
   margin: 0.35rem 0 0;
   color: color-mix(in oklab, var(--faculty-silver) 62%, transparent);
   font-size: clamp(0.7rem, 0.85vw, 0.78rem);
@@ -6114,47 +6117,171 @@ body::-webkit-scrollbar {
   line-height: 1.35;
 }
 
+/* Featured layout — Board of Governors */
+.faculty-redesign .meet-masters-featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 2rem);
+}
+
+.faculty-redesign .meet-master-card--featured .meet-master-avatar {
+  aspect-ratio: 3 / 4;
+}
+
+.faculty-redesign .meet-master-card--featured .meet-master-info--featured {
+  min-height: 8rem;
+}
+
+.faculty-redesign .meet-master-card--featured .meet-master-heading--featured h3 {
+  font-size: clamp(1.1rem, 1.5vw, 1.45rem);
+}
+
+/* Compact grids — Masters-in-Residence / Visiting Faculty / Practitioners */
+.faculty-redesign .meet-masters-compact-grid {
+  display: grid;
+  gap: clamp(0.75rem, 1.4vw, 1.25rem);
+}
+
+.faculty-redesign .meet-masters-compact-grid--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.faculty-redesign .meet-masters-compact-grid--5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.faculty-redesign .meet-master-card--compact .meet-master-avatar {
+  aspect-ratio: 1 / 1.08;
+}
+
+.faculty-redesign .meet-master-card--compact .meet-master-info--compact {
+  min-height: 8.5rem;
+}
+
+/* Horizontal layout — CXOs */
+.faculty-redesign .meet-masters-horizontal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 2rem);
+}
+
+.faculty-redesign .meet-master-card--horizontal {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.faculty-redesign .meet-master-card--horizontal .meet-master-avatar {
+  aspect-ratio: 1 / 1;
+  width: 6.5rem;
+  height: 6.5rem;
+  border-radius: 0;
+}
+
+.faculty-redesign .meet-master-card--horizontal .meet-master-info--horizontal {
+  padding: 0;
+  min-height: auto;
+}
+
+.faculty-redesign .meet-master-card--horizontal .meet-master-logo {
+  margin-top: 0.75rem;
+  padding-top: 0.5rem;
+  height: 1.75rem;
+}
+
+.faculty-redesign .meet-master-card--horizontal .meet-master-logo img {
+  max-height: 1.25rem;
+}
+
+/* Show more */
 .faculty-redesign .meet-masters-show-more {
   display: none;
 }
 
-@keyframes masters-grid-in {
-  from { opacity: 0; transform: translateY(10px); }
+@keyframes masters-section-in {
+  from { opacity: 0; transform: translateY(14px); }
   to { opacity: 1; transform: none; }
 }
 
+@media (max-width: 1100px) {
+  .faculty-redesign .meet-masters-compact-grid--5 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 1024px) {
-  .faculty-redesign .meet-masters-grid {
+  .faculty-redesign .meet-masters-featured-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .faculty-redesign .meet-masters-compact-grid--4,
+  .faculty-redesign .meet-masters-compact-grid--5 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .faculty-redesign .meet-masters-horizontal-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 767px) {
+  .faculty-redesign .meet-masters-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
   .faculty-redesign .meet-masters-title {
-    margin-bottom: 1.75rem;
     font-size: clamp(2.45rem, 13vw, 4.25rem);
   }
 
-  .faculty-redesign .meet-masters-tabs-wrap {
-    margin-right: calc(var(--page-gutter, 1.25rem) * -1);
-    margin-bottom: 1.75rem;
+  .faculty-redesign .meet-masters-lead {
+    max-width: 100%;
+    font-size: 0.8rem;
   }
 
-  .faculty-redesign .meet-masters-tabs {
-    padding-right: var(--page-gutter, 1.25rem);
+  .faculty-redesign .meet-masters-sections {
+    gap: 3.5rem;
   }
 
-  .faculty-redesign .meet-masters-grid {
+  .faculty-redesign .meet-masters-section-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .faculty-redesign .meet-masters-featured-grid,
+  .faculty-redesign .meet-masters-compact-grid--4,
+  .faculty-redesign .meet-masters-compact-grid--5 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.8rem;
   }
 
+  .faculty-redesign .meet-masters-horizontal-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .faculty-redesign .meet-master-card--horizontal {
+    grid-template-columns: 5rem 1fr;
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  .faculty-redesign .meet-master-card--horizontal .meet-master-avatar {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .faculty-redesign .meet-master-card--featured .meet-master-info--featured,
+  .faculty-redesign .meet-master-card--compact .meet-master-info--compact,
   .faculty-redesign .meet-master-info {
     min-height: 8.75rem;
     padding: 0.65rem;
   }
 
-  .faculty-redesign .meet-master-heading h3 {
+  .faculty-redesign .meet-master-heading h3,
+  .faculty-redesign .meet-master-card--featured .meet-master-heading--featured h3 {
     font-size: 0.82rem;
   }
 
@@ -6187,10 +6314,6 @@ body::-webkit-scrollbar {
     font-size: 0.65rem;
   }
 
-  .faculty-redesign .meet-master-mobile-hidden {
-    display: none;
-  }
-
   .faculty-redesign .meet-masters-show-more {
     display: flex;
     height: auto;
@@ -6206,13 +6329,15 @@ body::-webkit-scrollbar {
 }
 
 @media (max-width: 359px) {
-  .faculty-redesign .meet-masters-grid {
+  .faculty-redesign .meet-masters-featured-grid,
+  .faculty-redesign .meet-masters-compact-grid--4,
+  .faculty-redesign .meet-masters-compact-grid--5 {
     grid-template-columns: 1fr;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .faculty-redesign .meet-masters-grid,
+  .faculty-redesign .meet-masters-section,
   .faculty-redesign .meet-master-card,
   .faculty-redesign .meet-master-avatar img {
     animation: none;

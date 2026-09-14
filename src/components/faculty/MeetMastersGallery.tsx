@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,108 +10,186 @@ import {
 
 const MOBILE_LIMIT = 10;
 
-function MasterProfileCard({ master, facultyCard }: { master: MasterCard; facultyCard: boolean }) {
+const SECTION_META: Record<
+  MasterCategory,
+  { number: string; layout: "featured" | "compact-4" | "compact-5" | "horizontal" | "compact-4-wide" }
+> = {
+  "Board of Governors": { number: "01", layout: "featured" },
+  "Masters-in-Residence": { number: "02", layout: "compact-4" },
+  "Visiting Faculty": { number: "03", layout: "compact-5" },
+  CXOs: { number: "04", layout: "horizontal" },
+  Practitioners: { number: "05", layout: "compact-4-wide" },
+};
+
+function SectionHeader({ number, title }: { number: string; title: string }) {
   return (
-    <article className="meet-master-card">
+    <div className="meet-masters-section-header">
+      <span className="meet-masters-section-number">{number}</span>
+      <h3 className="meet-masters-section-title">{title}</h3>
+      <div className="meet-masters-section-rule" />
+    </div>
+  );
+}
+
+function MasterLogo({ master }: { master: MasterCard }) {
+  if (!master.logo) return null;
+  return (
+    <div className="meet-master-logo">
+      <img src={master.logo} alt="" loading="lazy" decoding="async" />
+    </div>
+  );
+}
+
+function MasterLinkedIn({ master }: { master: MasterCard }) {
+  if (!master.linkedin) return null;
+  return (
+    <a
+      href={master.linkedin}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={`${master.name} on LinkedIn`}
+      className="meet-master-linkedin"
+    >
+      <Linkedin aria-hidden="true" />
+    </a>
+  );
+}
+
+function FeaturedCard({ master }: { master: MasterCard }) {
+  return (
+    <article className="meet-master-card meet-master-card--featured">
       <div className="meet-master-avatar">
-        <img
-          src={master.image}
-          alt={master.name}
-          loading="lazy"
-          decoding="async"
-        />
+        <img src={master.image} alt={master.name} loading="lazy" decoding="async" />
       </div>
-      <div className="meet-master-info">
-        <div className="meet-master-heading">
+      <div className="meet-master-info meet-master-info--featured">
+        <div className="meet-master-heading meet-master-heading--featured">
           <h3>{master.name}</h3>
-          {master.linkedin ? (
-            <a
-              href={master.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={`${master.name} on LinkedIn`}
-              className="meet-master-linkedin"
-            >
-              <Linkedin aria-hidden="true" />
-            </a>
-          ) : null}
+          <MasterLinkedIn master={master} />
         </div>
         <p className="meet-master-designation">{master.designation}</p>
-        {master.logo ? (
-          <div className="meet-master-logo">
-            <img src={master.logo} alt="" loading="lazy" decoding="async" />
-          </div>
-        ) : null}
+        <MasterLogo master={master} />
+      </div>
+    </article>
+  );
+}
+
+function CompactCard({
+  master,
+  facultyCard,
+}: {
+  master: MasterCard;
+  facultyCard: boolean;
+}) {
+  return (
+    <article className="meet-master-card meet-master-card--compact">
+      <div className="meet-master-avatar">
+        <img src={master.image} alt={master.name} loading="lazy" decoding="async" />
+      </div>
+      <div className="meet-master-info meet-master-info--compact">
+        <div className="meet-master-heading">
+          <h3>{master.name}</h3>
+          <MasterLinkedIn master={master} />
+        </div>
+        <p className="meet-master-designation">{master.designation}</p>
         {facultyCard && (master.post || master.department) ? (
           <div className="meet-master-detail">
             {master.post ? <span>{master.post}</span> : null}
             {master.department ? <span>{master.department}</span> : null}
           </div>
         ) : null}
+        <MasterLogo master={master} />
       </div>
     </article>
   );
 }
 
-export default function MeetMastersGallery() {
-  const [active, setActive] = useState<MasterCategory>(MASTER_CATEGORIES[0]);
+function HorizontalCard({ master }: { master: MasterCard }) {
+  return (
+    <article className="meet-master-card meet-master-card--horizontal">
+      <div className="meet-master-avatar">
+        <img src={master.image} alt={master.name} loading="lazy" decoding="async" />
+      </div>
+      <div className="meet-master-info meet-master-info--horizontal">
+        <div className="meet-master-heading">
+          <h3>{master.name}</h3>
+          <MasterLinkedIn master={master} />
+        </div>
+        <p className="meet-master-designation">{master.designation}</p>
+        <MasterLogo master={master} />
+      </div>
+    </article>
+  );
+}
+
+function CategorySection({ category }: { category: MasterCategory }) {
   const [expanded, setExpanded] = useState(false);
-  const activeTabRef = useRef<HTMLButtonElement | null>(null);
-  const cards = MEET_THE_MASTERS[active];
-  const facultyCard = active === "Masters-in-Residence" || active === "Visiting Faculty" || active === "Practitioners";
+  const meta = SECTION_META[category];
+  const cards = MEET_THE_MASTERS[category];
+  const facultyCard =
+    category === "Masters-in-Residence" ||
+    category === "Visiting Faculty" ||
+    category === "Practitioners";
 
-  useEffect(() => {
-    const savedCategory = window.sessionStorage.getItem("newMastersActiveTab");
-    if (MASTER_CATEGORIES.includes(savedCategory as MasterCategory)) {
-      setActive(savedCategory as MasterCategory);
-    }
-  }, []);
-
-  useEffect(() => {
-    setExpanded(false);
-    activeTabRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
-  }, [active]);
+  const visibleCards =
+    cards.length > MOBILE_LIMIT && !expanded
+      ? cards.slice(0, MOBILE_LIMIT)
+      : cards;
 
   return (
-    <div className="meet-masters-shell">
-      <p className="meet-masters-kicker">Guiding Minds</p>
-      <h2 className="meet-masters-title">
-        Meet <em>The Masters</em>
-      </h2>
+    <section className="meet-masters-section">
+      <SectionHeader number={meta.number} title={category} />
 
-      <div className="meet-masters-tabs-wrap">
-        <div className="meet-masters-tabs" role="tablist" aria-label="Meet the Masters categories">
-          {MASTER_CATEGORIES.map((category) => (
-            <Button
-              key={category}
-              ref={category === active ? activeTabRef : undefined}
-              type="button"
-              variant="ghost"
-              role="tab"
-              aria-selected={category === active}
-              className="meet-masters-tab"
-              data-active={category === active ? "true" : undefined}
-              onClick={() => {
-                window.sessionStorage.setItem("newMastersActiveTab", category);
-                setActive(category);
-              }}
-            >
-              {category}
-            </Button>
+      {meta.layout === "featured" ? (
+        <div className="meet-masters-featured-grid">
+          {visibleCards.map((master, index) => (
+            <FeaturedCard key={`${category}-${master.name}-${index}`} master={master} />
           ))}
         </div>
-      </div>
+      ) : null}
 
-      <div className="meet-masters-grid" role="tabpanel" aria-label={active} key={active}>
-        {cards.map((master, index) => (
-          <div
-            key={`${active}-${master.name}-${index}`}
-            className={index >= MOBILE_LIMIT && !expanded ? "meet-master-mobile-hidden" : undefined}
-          >
-            <MasterProfileCard master={master} facultyCard={facultyCard} />
-          </div>
-        ))}
-      </div>
+      {meta.layout === "compact-4" ? (
+        <div className="meet-masters-compact-grid meet-masters-compact-grid--4">
+          {visibleCards.map((master, index) => (
+            <CompactCard
+              key={`${category}-${master.name}-${index}`}
+              master={master}
+              facultyCard={facultyCard}
+            />
+          ))}
+        </div>
+      ) : null}
+
+      {meta.layout === "compact-5" ? (
+        <div className="meet-masters-compact-grid meet-masters-compact-grid--5">
+          {visibleCards.map((master, index) => (
+            <CompactCard
+              key={`${category}-${master.name}-${index}`}
+              master={master}
+              facultyCard={facultyCard}
+            />
+          ))}
+        </div>
+      ) : null}
+
+      {meta.layout === "horizontal" ? (
+        <div className="meet-masters-horizontal-grid">
+          {visibleCards.map((master, index) => (
+            <HorizontalCard key={`${category}-${master.name}-${index}`} master={master} />
+          ))}
+        </div>
+      ) : null}
+
+      {meta.layout === "compact-4-wide" ? (
+        <div className="meet-masters-compact-grid meet-masters-compact-grid--4 meet-masters-compact-grid--text">
+          {visibleCards.map((master, index) => (
+            <CompactCard
+              key={`${category}-${master.name}-${index}`}
+              master={master}
+              facultyCard={facultyCard}
+            />
+          ))}
+        </div>
+      ) : null}
 
       {cards.length > MOBILE_LIMIT ? (
         <Button
@@ -123,6 +201,31 @@ export default function MeetMastersGallery() {
           {expanded ? "Show Less" : `Show More (${cards.length - MOBILE_LIMIT})`}
         </Button>
       ) : null}
+    </section>
+  );
+}
+
+export default function MeetMastersGallery() {
+  return (
+    <div className="meet-masters-shell">
+      <header className="meet-masters-header">
+        <div>
+          <p className="meet-masters-kicker">Guiding Minds</p>
+          <h2 className="meet-masters-title">
+            Meet <em>The Masters</em>
+          </h2>
+        </div>
+        <p className="meet-masters-lead">
+          A collective of global visionaries, industry leaders, and academic pioneers
+          shaping the future of business education.
+        </p>
+      </header>
+
+      <div className="meet-masters-sections">
+        {MASTER_CATEGORIES.map((category) => (
+          <CategorySection key={category} category={category} />
+        ))}
+      </div>
     </div>
   );
 }
