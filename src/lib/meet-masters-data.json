@@ -1,0 +1,2055 @@
+{
+  "Board of Governors": [
+    {
+      "name": "Manoj Kohli",
+      "designation": "Former CEO & MD",
+      "post": "",
+      "department": "",
+      "linkedin": "",
+      "imageAsset": "000-image.webp",
+      "logoAsset": "001-logo.webp"
+    },
+    {
+      "name": "Pankaj Bansal",
+      "designation": "Founder",
+      "post": "",
+      "department": "",
+      "linkedin": "",
+      "imageAsset": "002-image.webp",
+      "logoAsset": "003-logo.webp"
+    },
+    {
+      "name": "Vivek Gambhir",
+      "designation": "Former CEO",
+      "post": "",
+      "department": "",
+      "linkedin": "",
+      "imageAsset": "004-image.webp",
+      "logoAsset": "005-logo.webp"
+    }
+  ],
+  "Masters-in-Residence": [
+    {
+      "name": "Dr Bhupesh Manoharan",
+      "designation": "Ph.D.,IIM Calcutta",
+      "post": "Dean",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/bhupesh-manoharan-44651756/",
+      "imageAsset": "006-image.webp",
+      "logoAsset": "007-logo.webp"
+    },
+    {
+      "name": "Dr Nandini Seth",
+      "designation": "Ph.D.,IIM Bangalore",
+      "post": "Assistant Professor,",
+      "department": "Quantitative Methods & Decision Sciences",
+      "linkedin": "https://www.linkedin.com/in/nandini-seth-iimb/",
+      "imageAsset": "008-image.webp",
+      "logoAsset": "009-logo.webp"
+    },
+    {
+      "name": "Dr Garima Chaklader",
+      "designation": "Ph.D.,IIM Bangalore",
+      "post": "Assistant Professor,",
+      "department": "Economics",
+      "linkedin": "https://www.linkedin.com/in/garima-chaklader-55619072/",
+      "imageAsset": "010-image.webp",
+      "logoAsset": "011-logo.webp"
+    },
+    {
+      "name": "Dr Vipin Sreekumar",
+      "designation": "Ph.D.,IIM Calcutta",
+      "post": "Assistant Professor,",
+      "department": "Strategic Management",
+      "linkedin": "https://www.linkedin.com/in/vipinsreekumar/",
+      "imageAsset": "012-image.webp",
+      "logoAsset": "013-logo.webp"
+    },
+    {
+      "name": "Dr Kashika Sud",
+      "designation": "Ph.D.,IIM Ahmedabad",
+      "post": "Assistant Professor,",
+      "department": "Organisational Behaviour",
+      "linkedin": "https://www.linkedin.com/in/kashika-sud-7581806/",
+      "imageAsset": "014-image.webp",
+      "logoAsset": "015-logo.webp"
+    },
+    {
+      "name": "Dr Manu Prasad",
+      "designation": "Ph.D.,IIM Tiruchirappalli",
+      "post": "Assistant Professor,",
+      "department": "Organisational Behaviour & HRM",
+      "linkedin": "https://www.linkedin.com/in/manu-prasad/",
+      "imageAsset": "016-image.webp",
+      "logoAsset": "017-logo.webp"
+    },
+    {
+      "name": "Dr Nimisha Bora",
+      "designation": "Ph.D.,Xavier Institute of Management",
+      "post": "Assistant Professor,",
+      "department": "Accounting & Finance",
+      "linkedin": "https://www.linkedin.com/in/nimisha-bora2015/",
+      "imageAsset": "018-image.webp",
+      "logoAsset": "019-logo.webp"
+    },
+    {
+      "name": "Dr Aarti Sharma",
+      "designation": "Ph.D.,Shiv Nadar University Delhi",
+      "post": "Assistant Professor,",
+      "department": "Management Finance",
+      "linkedin": "https://www.linkedin.com/in/aartisharma2089/",
+      "imageAsset": "020-image.webp",
+      "logoAsset": "021-logo.webp"
+    },
+    {
+      "name": "Dr Rinku Mahindru",
+      "designation": "Ph.D.,Delhi University",
+      "post": "Assistant Professor,",
+      "department": "Organisational Behaviour",
+      "linkedin": "https://www.linkedin.com/in/dr-rinku-mahindru/:",
+      "imageAsset": "022-image.webp",
+      "logoAsset": "023-logo.webp"
+    },
+    {
+      "name": "Dr Anushree Poddar",
+      "designation": "Ph.D.,TERI School of Advanced Studies",
+      "post": "Assistant Professor,",
+      "department": "Business Sustainability & Marketing",
+      "linkedin": "https://www.linkedin.com/in/dr-anushree-poddar-a8977858/",
+      "imageAsset": "024-image.webp",
+      "logoAsset": "025-logo.webp"
+    },
+    {
+      "name": "Dr Ashish Bhandari",
+      "designation": "Ph.D.,IIM Bangalore",
+      "post": "Assistant Professor,",
+      "department": "Production & Operations Management",
+      "linkedin": "https://www.linkedin.com/in/ashishbhandari-asb",
+      "imageAsset": "026-image.webp",
+      "logoAsset": "027-logo.webp"
+    },
+    {
+      "name": "Dr Shivangi Rajora",
+      "designation": "Ph.D.,IIM Bangalore",
+      "post": "Assistant Professor,",
+      "department": "Public Policies",
+      "linkedin": "https://www.linkedin.com/in/shivangirajora92/",
+      "imageAsset": "028-image.webp",
+      "logoAsset": "029-logo.webp"
+    },
+    {
+      "name": "Dr Bhasker Malu",
+      "designation": "Ph.D.,Christ University",
+      "post": "Assistant Professor,",
+      "department": "Psychology",
+      "linkedin": "https://www.linkedin.com/in/bhasker-malu-phd-3141b2138/",
+      "imageAsset": "030-image.webp",
+      "logoAsset": "031-logo.webp"
+    },
+    {
+      "name": "Dr Ajith Babu",
+      "designation": "Ph.D.,IIM Calcutta",
+      "post": "Assistant Professor,",
+      "department": "Operations Management",
+      "linkedin": "https://www.linkedin.com/in/ajith-b-20a77664",
+      "imageAsset": "032-image.webp",
+      "logoAsset": "033-logo.webp"
+    },
+    {
+      "name": "Rajat Mathur",
+      "designation": "Former MD",
+      "post": "Professor of Practice",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/rajat-mathur-47a65b/",
+      "imageAsset": "034-image.webp",
+      "logoAsset": "035-logo.webp"
+    },
+    {
+      "name": "Ankur Kulshrestha",
+      "designation": "Educator",
+      "post": "Financial Accounting & Analysis",
+      "department": "",
+      "linkedin": "https://in.linkedin.com/in/ankurkul",
+      "imageAsset": "036-image.webp",
+      "logoAsset": "037-logo.webp"
+    },
+    {
+      "name": "Dr Muneer Kalliyil",
+      "designation": "Ph.D.,IIM Bangalore",
+      "post": "Assistant Professor,",
+      "department": "Economics",
+      "linkedin": "https://www.linkedin.com/in/muneer-kalliyil-65231b4a/",
+      "imageAsset": "038-image.webp",
+      "logoAsset": "039-logo.webp"
+    },
+    {
+      "name": "Dr Antra",
+      "designation": "Ph.D.,IIM Bangalore",
+      "post": "Assistant Professor,",
+      "department": "Decision Sciences",
+      "linkedin": "https://www.linkedin.com/in/antra-20383a104/",
+      "imageAsset": "040-image.webp",
+      "logoAsset": "041-logo.webp"
+    },
+    {
+      "name": "Prof. Aditya Kulashri",
+      "designation": "Ph.D.,IIM Calcutta",
+      "post": "Assistant Professor,",
+      "department": "Organisational Behaviour",
+      "linkedin": "https://www.linkedin.com/in/adikul/",
+      "imageAsset": "042-image.webp",
+      "logoAsset": "043-logo.webp"
+    },
+    {
+      "name": "Prof. Devprio Ray",
+      "designation": "Ph.D., IIM Ahmedabad",
+      "post": "Assistant Professor,",
+      "department": "Operations Research",
+      "linkedin": "",
+      "imageAsset": "044-image.webp",
+      "logoAsset": "045-logo.webp"
+    },
+    {
+      "name": "Dr Tanya Jain",
+      "designation": "Ph.D., IIM Bangalore",
+      "post": "Assistant Professor,",
+      "department": "Economics",
+      "linkedin": "",
+      "imageAsset": "046-image.webp",
+      "logoAsset": "047-logo.webp"
+    },
+    {
+      "name": "Dr Naina Duggal",
+      "designation": "Ph.D., IIT Bombay",
+      "post": "Assistant Professor,",
+      "department": "Economics",
+      "linkedin": "http://linkedin.com/in/naina-duggal-29a57617",
+      "imageAsset": "048-image.webp",
+      "logoAsset": "049-logo.webp"
+    },
+    {
+      "name": "Dr Harish Shetty",
+      "designation": "Ph.D., University of Bath UK",
+      "post": "Assistant Professor,",
+      "department": "Organizational Behaviour",
+      "linkedin": "http://linkedin.com/in/harish-shetty-bandsale-phd-75ab4860",
+      "imageAsset": "050-image.webp",
+      "logoAsset": "051-logo.webp"
+    },
+    {
+      "name": "Dr Meera Simon",
+      "designation": "Ph.D., IIM Kozhikode",
+      "post": "Assistant Professor,",
+      "department": "Quantitative Techniques",
+      "linkedin": "http://linkedin.com/in/dr-meera-simon-c-900710b9",
+      "imageAsset": "052-image.webp",
+      "logoAsset": "053-logo.webp"
+    },
+    {
+      "name": "Dr Abhishek Vashisht",
+      "designation": "Ph.D., IIM Tiruchirappalli",
+      "post": "Associate Professor,",
+      "department": "Quantitative Methods and Decision Sciences",
+      "linkedin": "",
+      "imageAsset": "054-image.webp",
+      "logoAsset": "055-logo.webp"
+    },
+    {
+      "name": "Dr Shiril Saju",
+      "designation": "Ph.D., IIM Bangalore",
+      "post": "Assistant Professor,",
+      "department": "Operations Management",
+      "linkedin": "",
+      "imageAsset": "056-image.webp",
+      "logoAsset": "057-logo.webp"
+    },
+    {
+      "name": "Dr Satyajit Roy",
+      "designation": "Ph.D., IIM Bangalore",
+      "post": "Assistant Professor,",
+      "department": "Operations Management",
+      "linkedin": "",
+      "imageAsset": "058-image.webp",
+      "logoAsset": "059-logo.webp"
+    },
+    {
+      "name": "Sharukh Moin Khan",
+      "designation": "PGDM, IIM Calcutta",
+      "post": "Associate Professor of Practice,",
+      "department": "Finance & Accounting",
+      "linkedin": "http://linkedin.com/in/shahrukhmoinkhan",
+      "imageAsset": "060-image.webp",
+      "logoAsset": "061-logo.webp"
+    },
+    {
+      "name": "Sumit Shukla",
+      "designation": "M.Sc., IIT Kanpur",
+      "post": "Associate Professor of Practice,",
+      "department": "Artificial Intelligence/Machine Learning",
+      "linkedin": "http://linkedin.com/in/ssumitshukla",
+      "imageAsset": "062-image.webp",
+      "logoAsset": "063-logo.webp"
+    },
+    {
+      "name": "Prof Shreyansh Chaurasiya",
+      "designation": "Ph.D., IIM Bangalore",
+      "post": "Assistant Professor,",
+      "department": "Finance & Accounting",
+      "linkedin": "",
+      "imageAsset": "064-image.webp",
+      "logoAsset": "065-logo.webp"
+    },
+    {
+      "name": "Prof Akshay Dhuria",
+      "designation": "Ph.D., IIM Bangalore",
+      "post": "Assistant Professor,",
+      "department": "Finance & Accounting",
+      "linkedin": "",
+      "imageAsset": "066-image.webp",
+      "logoAsset": "067-logo.webp"
+    },
+    {
+      "name": "Prof Arindam B.",
+      "designation": "Ph.D., IIM Calcutta",
+      "post": "Assistant Professor,",
+      "department": "Organizational Behaviour",
+      "linkedin": "",
+      "imageAsset": "068-image.webp",
+      "logoAsset": "069-logo.webp"
+    },
+    {
+      "name": "Dr Tathagata Bhowmik",
+      "designation": "Ph.D., CWRU",
+      "post": "Assistant Professor,",
+      "department": "Organizational Behaviour",
+      "linkedin": "https://www.linkedin.com/in/tathagata-bhowmik-phd-932031119/",
+      "imageAsset": "070-image.webp",
+      "logoAsset": "071-logo.webp"
+    },
+    {
+      "name": "Anubha Shokhand",
+      "designation": "Ph.D., IIM Bangalore",
+      "post": "Assistant Professor,",
+      "department": "Strategic Management",
+      "linkedin": "https://www.linkedin.com/in/anubhashokhand/",
+      "imageAsset": "072-image.webp",
+      "logoAsset": "073-logo.webp"
+    },
+    {
+      "name": "Prof. Shikhar Bharadwaj",
+      "designation": "Ph.D., IIM Ahmedabad",
+      "post": "Assistant Professor,",
+      "department": "Strategic Management",
+      "linkedin": "",
+      "imageAsset": "074-image.webp",
+      "logoAsset": "075-logo.webp"
+    },
+    {
+      "name": "Prof. Sukanya Roy",
+      "designation": "Ph.D., IIM Bangalore",
+      "post": "Assistant Professor,",
+      "department": "Strategic Management",
+      "linkedin": "",
+      "imageAsset": "076-image.webp",
+      "logoAsset": "077-logo.webp"
+    },
+    {
+      "name": "Prof. Kunal Biswas",
+      "designation": "Ph.D., IIM Bangalore",
+      "post": "Assistant Professor,",
+      "department": "Economics",
+      "linkedin": "",
+      "imageAsset": "078-image.webp",
+      "logoAsset": "079-logo.webp"
+    },
+    {
+      "name": "Prof. Rochak Khandelwal",
+      "designation": "Ph.D., IIM Bangalore",
+      "post": "Assistant Professor,",
+      "department": "Marketing",
+      "linkedin": "",
+      "imageAsset": "080-image.webp",
+      "logoAsset": "081-logo.webp"
+    }
+  ],
+  "Visiting Faculty": [
+    {
+      "name": "Dr Zal Phiroz",
+      "designation": "Adjunct Professor, Supply Chain & Ops",
+      "post": "Operations Management",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/zphiroz/",
+      "imageAsset": "082-image.webp",
+      "logoAsset": "083-logo.webp"
+    },
+    {
+      "name": "Daniel G. Van Der Vliet",
+      "designation": "Executive Director, Family Business",
+      "post": "Strategic Leadership for Family Business",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/dannvdv/",
+      "imageAsset": "084-image.webp",
+      "logoAsset": "085-logo.webp"
+    },
+    {
+      "name": "Benjamin Dunford",
+      "designation": "Professor of Management",
+      "post": "Strategic Negotiations",
+      "department": "",
+      "linkedin": "",
+      "imageAsset": "086-image.webp",
+      "logoAsset": "087-logo.webp"
+    },
+    {
+      "name": "Dr Shad Morris",
+      "designation": "Executive Director",
+      "post": "The Science of Building Effective Teams",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/shad-morris-9b84b93/",
+      "imageAsset": "088-image.webp",
+      "logoAsset": "089-logo.webp"
+    },
+    {
+      "name": "Dr Garrick Hileman",
+      "designation": "Professor of Economics",
+      "post": "Tech in Finance",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/hileman/",
+      "imageAsset": "090-image.webp",
+      "logoAsset": "091-logo.webp"
+    },
+    {
+      "name": "Dr Lan Ma",
+      "designation": "Adjunct Professor of Business",
+      "post": "Strategic Leadership",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/lan-ma-42a4781a/",
+      "imageAsset": "092-image.webp",
+      "logoAsset": "093-logo.webp"
+    },
+    {
+      "name": "Meenakshi Rishi",
+      "designation": "Professor of Economics",
+      "post": "Global Macroeconomics",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/meenakshi-rishi-6411627/",
+      "imageAsset": "094-image.webp",
+      "logoAsset": "095-logo.webp"
+    },
+    {
+      "name": "Rajat Baijal",
+      "designation": "Adjunct Professor, Enterprise Risk Mgmt",
+      "post": "Redefining Risk Management",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/rajatbaijal/",
+      "imageAsset": "096-image.webp",
+      "logoAsset": "097-logo.webp"
+    },
+    {
+      "name": "Dr Alireza Kabirian",
+      "designation": "Professor of Data Sciences",
+      "post": "Supply Chain Analytics",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/alireza-kabirian-86297aab/",
+      "imageAsset": "098-image.webp",
+      "logoAsset": "099-logo.webp"
+    },
+    {
+      "name": "Dr Rajesh Bhargave",
+      "designation": "Associate Professor of Marketing",
+      "post": "AI for Marketing",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/rajesh-bhargave-1601263/",
+      "imageAsset": "100-image.webp",
+      "logoAsset": "101-logo.webp"
+    },
+    {
+      "name": "Dr Vishnuprasad N.",
+      "designation": "Former Dean",
+      "post": "Understanding Statistics for Business",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/vishnuprasad-nagadevara-04a3a844/?originalSubdomain=in",
+      "imageAsset": "102-image.webp",
+      "logoAsset": "103-logo.webp"
+    },
+    {
+      "name": "Dr Krishanu Rakshit",
+      "designation": "Former Associate Professor",
+      "post": "How to Build Successful Brands",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/krishanurakshit/",
+      "imageAsset": "104-image.webp",
+      "logoAsset": "105-logo.webp"
+    },
+    {
+      "name": "Vijaya Bhaskar Marisetty",
+      "designation": "Former Senior Lecturer",
+      "post": "Modern Financial Accounting",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/vijaya-marisetty-689988179/",
+      "imageAsset": "106-image.webp",
+      "logoAsset": "107-logo.webp"
+    },
+    {
+      "name": "Pradeep Hota",
+      "designation": "Faculty in Business Policy & Strategy",
+      "post": "Managerial Accounting",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/pradeep-hota-phd-62161923/?originalSubdomain=au",
+      "imageAsset": "108-image.webp",
+      "logoAsset": "109-logo.webp"
+    },
+    {
+      "name": "Shruti Mantri",
+      "designation": "Associate Director",
+      "post": "Cloud Computing & Architecture",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/dr-shruti-mantri-ab473111/",
+      "imageAsset": "110-image.webp",
+      "logoAsset": "111-logo.webp"
+    },
+    {
+      "name": "Amit Shrivastava",
+      "designation": "Former Adjunct Professor",
+      "post": "Financial Accounting & Analysis",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/amit-shrivastava-ph-d-6b16a916/",
+      "imageAsset": "112-image.webp",
+      "logoAsset": "113-logo.webp"
+    },
+    {
+      "name": "Akash Krishnan",
+      "designation": "Director - Data & Analytics Research",
+      "post": "Managerial Economics",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/akash-krishnan/",
+      "imageAsset": "114-image.webp",
+      "logoAsset": "115-logo.webp"
+    },
+    {
+      "name": "Souvik Dutta",
+      "designation": "Former Assistant Professor",
+      "post": "Managerial Economics",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/souvik-dutta-a4b7463b/?originalSubdomain=in",
+      "imageAsset": "116-image.webp",
+      "logoAsset": "117-logo.webp"
+    },
+    {
+      "name": "Radhika Narayanan",
+      "designation": "Former Director",
+      "post": "Negotiations",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/narayananradhika/",
+      "imageAsset": "118-image.webp",
+      "logoAsset": "119-logo.webp"
+    },
+    {
+      "name": "Kaushal Kumar Bhagat",
+      "designation": "Assistant Professor",
+      "post": "Gaming and AR, VR Development",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/kaushal-kumar-bhagat-80a65627/",
+      "imageAsset": "120-image.webp",
+      "logoAsset": "121-logo.webp"
+    }
+  ],
+  "CXOs": [
+    {
+      "name": "Sanjeev Bikhchandani",
+      "designation": "Co-founder",
+      "post": "",
+      "department": "",
+      "linkedin": "",
+      "imageAsset": "122-image.webp",
+      "logoAsset": "123-logo.webp"
+    },
+    {
+      "name": "Nithin Kamath",
+      "designation": "Founder & CEO",
+      "post": "",
+      "department": "",
+      "linkedin": "",
+      "imageAsset": "124-image.webp",
+      "logoAsset": "125-logo.webp"
+    },
+    {
+      "name": "Peyush Bansal",
+      "designation": "Co-founder & CEO",
+      "post": "",
+      "department": "",
+      "linkedin": "",
+      "imageAsset": "126-image.webp",
+      "logoAsset": "127-logo.webp"
+    },
+    {
+      "name": "Pramod Bhasin",
+      "designation": "Former President & CEO",
+      "post": "",
+      "department": "",
+      "linkedin": "",
+      "imageAsset": "128-image.webp",
+      "logoAsset": "129-logo.webp"
+    },
+    {
+      "name": "Ravi Kant",
+      "designation": "Former MD & Vice Chairman",
+      "post": "",
+      "department": "",
+      "linkedin": "",
+      "imageAsset": "130-image.webp",
+      "logoAsset": "131-logo.webp"
+    },
+    {
+      "name": "Shiv ShivaKumar",
+      "designation": "Former Chairman & CEO",
+      "post": "",
+      "department": "",
+      "linkedin": "",
+      "imageAsset": "132-image.webp",
+      "logoAsset": "133-logo.webp"
+    },
+    {
+      "name": "Deep Kalra",
+      "designation": "Founder & CEO",
+      "post": "",
+      "department": "",
+      "linkedin": "",
+      "imageAsset": "134-image.webp",
+      "logoAsset": "135-logo.webp"
+    },
+    {
+      "name": "Bikram Singh Bedi",
+      "designation": "Vice President & Country MD",
+      "post": "",
+      "department": "",
+      "linkedin": "",
+      "imageAsset": "136-image.webp",
+      "logoAsset": "137-logo.webp"
+    },
+    {
+      "name": "Ghazal Alagh",
+      "designation": "Co-founder & Chief Innovation Officer",
+      "post": "",
+      "department": "",
+      "linkedin": "",
+      "imageAsset": "138-image.webp",
+      "logoAsset": "139-logo.webp"
+    },
+    {
+      "name": "Kavin Bharti Mittal",
+      "designation": "Founder & CEO",
+      "post": "",
+      "department": "",
+      "linkedin": "",
+      "imageAsset": "140-image.webp",
+      "logoAsset": "141-logo.webp"
+    },
+    {
+      "name": "Ankur Warikoo",
+      "designation": "Founder",
+      "post": "",
+      "department": "",
+      "linkedin": "",
+      "imageAsset": "142-image.webp",
+      "logoAsset": "143-logo.webp"
+    },
+    {
+      "name": "Karan Johar",
+      "designation": "Director",
+      "post": "",
+      "department": "",
+      "linkedin": "",
+      "imageAsset": "144-image.webp",
+      "logoAsset": "145-logo.webp"
+    },
+    {
+      "name": "Rohit Kapoor",
+      "designation": "CEO",
+      "post": "",
+      "department": "",
+      "linkedin": "",
+      "imageAsset": "146-image.webp",
+      "logoAsset": "147-logo.webp"
+    },
+    {
+      "name": "Aakash Gupta",
+      "designation": "Leader",
+      "post": "",
+      "department": "",
+      "linkedin": "",
+      "imageAsset": "148-image.webp",
+      "logoAsset": "149-logo.webp"
+    }
+  ],
+  "Practitioners": [
+    {
+      "name": "Dr Edward W Rogers",
+      "designation": "Former Chief Knowledge Officer",
+      "post": "Art of Managing Complexities",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/edwrogers/",
+      "imageAsset": "150-image.webp",
+      "logoAsset": "151-logo.webp"
+    },
+    {
+      "name": "Naveen Munjal",
+      "designation": "Managing Director",
+      "post": "Business of Electric Vehicles",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/nmunjal/",
+      "imageAsset": "152-image.webp",
+      "logoAsset": "153-logo.webp"
+    },
+    {
+      "name": "Dr Narendra Jadhav",
+      "designation": "Former MP & Chief Economist",
+      "post": "Macroeconomics",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/narendra-jadhav-07a58689/?originalSubdomain=in",
+      "imageAsset": "154-image.webp",
+      "logoAsset": "155-logo.webp"
+    },
+    {
+      "name": "Satish Krishnan",
+      "designation": "Former MD",
+      "post": "How Do Financial Markets Work",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/satish-krishnan-7ab6054b/",
+      "imageAsset": "156-image.webp",
+      "logoAsset": "157-logo.webp"
+    },
+    {
+      "name": "Barkha Dutt",
+      "designation": "Former Editor",
+      "post": "Women in Leadership",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/barkha-dutt-538b7110/",
+      "imageAsset": "158-image.webp",
+      "logoAsset": "159-logo.webp"
+    },
+    {
+      "name": "Nitin Gaur",
+      "designation": "Former Director",
+      "post": "Digital Assets & Cryptocurrencies in the New Era of the Digital Economy",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/nitin-gaur-75571a9/",
+      "imageAsset": "160-image.webp",
+      "logoAsset": "161-logo.webp"
+    },
+    {
+      "name": "Avantika Tomar",
+      "designation": "Partner",
+      "post": "Strategic HRM",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/dr-avantika-tomar-339291b/",
+      "imageAsset": "162-image.webp",
+      "logoAsset": "163-logo.webp"
+    },
+    {
+      "name": "Rahul Wadhawan",
+      "designation": "Partner",
+      "post": "Digital Marketing",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/rahulwadhawan/",
+      "imageAsset": "164-image.webp",
+      "logoAsset": "165-logo.webp"
+    },
+    {
+      "name": "Arjun Vaidya",
+      "designation": "Founder",
+      "post": "Growing & Scaling a D2C Business",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/arjunvaidya/",
+      "imageAsset": "166-image.webp",
+      "logoAsset": "167-logo.webp"
+    },
+    {
+      "name": "Thomas Kuruvilla",
+      "designation": "Managing Partner",
+      "post": "Management Strategy",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/kuruvillathomas/?originalSubdomain=ae",
+      "imageAsset": "168-image.webp",
+      "logoAsset": "169-logo.webp"
+    },
+    {
+      "name": "Jamshed K Daboo",
+      "designation": "Former MD",
+      "post": "In and Out of Retail & Omni-Channel Management",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/jamshed-k-daboo-b4ba1116/",
+      "imageAsset": "170-image.webp",
+      "logoAsset": "171-logo.webp"
+    },
+    {
+      "name": "Monica Jasuja",
+      "designation": "Former Head",
+      "post": "",
+      "department": "Break into Product Management",
+      "linkedin": "https://www.linkedin.com/in/jasuja/details/experience/",
+      "imageAsset": "172-image.webp",
+      "logoAsset": "173-logo.webp"
+    },
+    {
+      "name": "Gurneesh Khurana",
+      "designation": "Former Director Sales",
+      "post": "Mastering Sales Strategies",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/gurneesh-khurana-a7a2387/?originalSubdomain=in",
+      "imageAsset": "174-image.webp",
+      "logoAsset": "175-logo.webp"
+    },
+    {
+      "name": "Subhonil Ghoshal",
+      "designation": "Former MD",
+      "post": "Operations Management",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/subhonilghoshal/",
+      "imageAsset": "176-image.webp",
+      "logoAsset": "177-logo.webp"
+    },
+    {
+      "name": "Revant Bhate",
+      "designation": "CEO",
+      "post": "How to Build Tech-Enabled Startups",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/revant/?originalSubdomain=in",
+      "imageAsset": "178-image.webp",
+      "logoAsset": "179-logo.webp"
+    },
+    {
+      "name": "Rajeev Soni",
+      "designation": "Director - Product Management",
+      "post": "Product Analytics, Metrics and AB Testing",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/rajsoni/",
+      "imageAsset": "180-image.webp",
+      "logoAsset": "181-logo.webp"
+    },
+    {
+      "name": "Anshu Prasher",
+      "designation": "Partner",
+      "post": "Startup Fundraising",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/anshuprasher/?originalSubdomain=in",
+      "imageAsset": "182-image.webp",
+      "logoAsset": "183-logo.webp"
+    },
+    {
+      "name": "Vani Gupta Dandia",
+      "designation": "Former Category Director",
+      "post": "Building Successful Brands",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/vanidandia/",
+      "imageAsset": "184-image.webp",
+      "logoAsset": "185-logo.webp"
+    },
+    {
+      "name": "Vaibhav Jain",
+      "designation": "Former Partner",
+      "post": "M&As",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/vaibhavjain87/",
+      "imageAsset": "186-image.webp",
+      "logoAsset": "187-logo.webp"
+    },
+    {
+      "name": "Freda Liu",
+      "designation": "Former Broadcast Producer",
+      "post": "Art of Communication",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/thefredaliu/",
+      "imageAsset": "188-image.webp",
+      "logoAsset": "189-logo.webp"
+    },
+    {
+      "name": "Dr Tathagata Dasgupta",
+      "designation": "Chief Data & Analytics Officer",
+      "post": "New Age Supply Chains",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/drdas/",
+      "imageAsset": "190-image.webp",
+      "logoAsset": "191-logo.webp"
+    },
+    {
+      "name": "Arun Malhotra",
+      "designation": "Former MD",
+      "post": "How External Forces Impact an Industry/Organisation",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/arunmalhotra710/",
+      "imageAsset": "192-image.webp",
+      "logoAsset": "193-logo.webp"
+    },
+    {
+      "name": "Dr James Oldroyd",
+      "designation": "Assistant Professor",
+      "post": "Science of Building Effective Teams",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/jamesoldroyd/",
+      "imageAsset": "194-image.webp",
+      "logoAsset": "195-logo.webp"
+    },
+    {
+      "name": "Dr Arvind Mayaram",
+      "designation": "Former Finance Secretary of India",
+      "post": "Managerial Economics",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/arvind-mayaram-3a476b23/",
+      "imageAsset": "196-image.webp",
+      "logoAsset": "197-logo.webp"
+    },
+    {
+      "name": "Kevyn Eva Norton",
+      "designation": "Former Technology Strategist",
+      "post": "Gamification & Behavioral Design",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/kevyneva/",
+      "imageAsset": "198-image.webp",
+      "logoAsset": "199-logo.webp"
+    },
+    {
+      "name": "Annaswamy Vaideesh",
+      "designation": "Former MD",
+      "post": "Secrets of Consumer Healthcare Business",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/annaswamy-vaidheesh-191082262/",
+      "imageAsset": "200-image.webp",
+      "logoAsset": "201-logo.webp"
+    },
+    {
+      "name": "Siddarth Menon",
+      "designation": "Former CMO",
+      "post": "Community Driven Brands & Marketing",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/siddarthmenon/",
+      "imageAsset": "202-image.webp",
+      "logoAsset": "203-logo.webp"
+    },
+    {
+      "name": "Sarthak Ahuja",
+      "designation": "Director",
+      "post": "M&A and Corporate Restructuring",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/casarthakahuja/?originalSubdomain=in",
+      "imageAsset": "204-image.webp",
+      "logoAsset": "205-logo.webp"
+    },
+    {
+      "name": "Martin Lockstrom",
+      "designation": "Former Professor",
+      "post": "Operations Management",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/dr-martin-lockstrom-802502/",
+      "imageAsset": "206-image.webp",
+      "logoAsset": "207-logo.webp"
+    },
+    {
+      "name": "Ravish Bhatia",
+      "designation": "Head of Product",
+      "post": "Starting with Product Management",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/ravish--bhatia/?originalSubdomain=in",
+      "imageAsset": "208-image.webp",
+      "logoAsset": "209-logo.webp"
+    },
+    {
+      "name": "Elkana Ezekiel",
+      "designation": "Former CMO",
+      "post": "Building Marketing Strategies",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/elkanaezekiel/",
+      "imageAsset": "210-image.webp",
+      "logoAsset": "211-logo.webp"
+    },
+    {
+      "name": "Divij Bajaj",
+      "designation": "Data Scientist",
+      "post": "Build Your Own AI Chatbot with ChatGPT",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/divij-bajaj/",
+      "imageAsset": "212-image.webp",
+      "logoAsset": "213-logo.webp"
+    },
+    {
+      "name": "Viral Raval",
+      "designation": "MD - Technology Consulting",
+      "post": "Information Systems for Business Leaders",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/viralraval1/",
+      "imageAsset": "214-image.webp",
+      "logoAsset": "215-logo.webp"
+    },
+    {
+      "name": "Vineeta Tikekar",
+      "designation": "Former Head of Marketing",
+      "post": "Corporate Communications",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/vineeta-tikekar-314b41/",
+      "imageAsset": "216-image.webp",
+      "logoAsset": "217-logo.webp"
+    },
+    {
+      "name": "Bhanu Potta",
+      "designation": "Former Global Product Leader",
+      "post": "Product Analytics, Metrics, & AB Testing",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/bhanupotta/",
+      "imageAsset": "218-image.webp",
+      "logoAsset": "219-logo.webp"
+    },
+    {
+      "name": "Jishnu Changkakoti",
+      "designation": "Former Director",
+      "post": "Pricing Strategies",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/jishnuchangkakoti/?originalSubdomain=in",
+      "imageAsset": "220-image.webp",
+      "logoAsset": "221-logo.webp"
+    },
+    {
+      "name": "Trisha Rajani Vaidya",
+      "designation": "Former COO",
+      "post": "Growing & Scaling a D2C business",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/trisha-rajani-vaidya-8a89a890",
+      "imageAsset": "222-image.webp",
+      "logoAsset": "223-logo.webp"
+    },
+    {
+      "name": "Debesh Sharma",
+      "designation": "Former Director",
+      "post": "Decoding Innovation",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/debeshsharma/",
+      "imageAsset": "224-image.webp",
+      "logoAsset": "225-logo.webp"
+    },
+    {
+      "name": "Siddhartha Rastogi",
+      "designation": "MD",
+      "post": "Raising Money, Changing Destiny (Asset Management)",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/siddhartharastogi/",
+      "imageAsset": "226-image.webp",
+      "logoAsset": "227-logo.webp"
+    },
+    {
+      "name": "Biju Dominic",
+      "designation": "Chief Evangelist",
+      "post": "Behavioural Economics",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/biju-dominic-5a08764/",
+      "imageAsset": "228-image.webp",
+      "logoAsset": "229-logo.webp"
+    },
+    {
+      "name": "Malthi Satish",
+      "designation": "Former Director of PM",
+      "post": "Product Engineering, Execution, and Automation",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/malthis/",
+      "imageAsset": "230-image.webp",
+      "logoAsset": "231-logo.webp"
+    },
+    {
+      "name": "Raghu Raman",
+      "designation": "Former President",
+      "post": "Leadership and Strategic Planning",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/ramanraghu/",
+      "imageAsset": "232-image.webp",
+      "logoAsset": "233-logo.webp"
+    },
+    {
+      "name": "Rajnish Virmani",
+      "designation": "Former CEO- AGS",
+      "post": "Leadership",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/rajnishvirmani/",
+      "imageAsset": "234-image.webp",
+      "logoAsset": "235-logo.webp"
+    },
+    {
+      "name": "AJ Boelens",
+      "designation": "Former Director",
+      "post": "Fundamentals of Design Thinking",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/ajboelens/",
+      "imageAsset": "236-image.webp",
+      "logoAsset": "237-logo.webp"
+    },
+    {
+      "name": "Shalini Chhabra",
+      "designation": "Former Managing Partner",
+      "post": "Redefining Risk Management",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/shalinichhabra/",
+      "imageAsset": "238-image.webp",
+      "logoAsset": "239-logo.webp"
+    },
+    {
+      "name": "Shiv Mehta",
+      "designation": "Former Sr Analyst",
+      "post": "Crypto Entrepreneurship",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/shivmehta/",
+      "imageAsset": "240-image.webp",
+      "logoAsset": "241-logo.webp"
+    },
+    {
+      "name": "Raghavshyam R.",
+      "designation": "Adjunct Faculty",
+      "post": "Marketing & Retail Analytics (Using KNIME)",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/shaam/",
+      "imageAsset": "242-image.webp",
+      "logoAsset": "243-logo.webp"
+    },
+    {
+      "name": "Siddarth Padmanabhan",
+      "designation": "Former Partner Manager",
+      "post": "Digital & Social Media Marketing - I",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/sidp88/",
+      "imageAsset": "244-image.webp",
+      "logoAsset": "245-logo.webp"
+    },
+    {
+      "name": "Dr Rakshita Shharma",
+      "designation": "Former CPO",
+      "post": "Understanding Organisational Behaviour",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/dr-rakshita-shharma-6b3391/",
+      "imageAsset": "246-image.webp",
+      "logoAsset": "247-logo.webp"
+    },
+    {
+      "name": "Sidharth Balakrishna",
+      "designation": "Former Group Strategy Head",
+      "post": "Tech Tools for Managers",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/sidharth-balakrishna-86100a8/",
+      "imageAsset": "248-image.webp",
+      "logoAsset": "249-logo.webp"
+    },
+    {
+      "name": "Gaurav Mittal",
+      "designation": "Former PM Director",
+      "post": "Product Strategy & Innovation",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/gaurav-mittal-3668896/?originalSubdomain=in",
+      "imageAsset": "250-image.webp",
+      "logoAsset": "251-logo.webp"
+    },
+    {
+      "name": "Ujjyaini Mitra",
+      "designation": "Former CDO",
+      "post": "Unsupervised Learning Models in Business",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/ujjyainimitra/",
+      "imageAsset": "252-image.webp",
+      "logoAsset": "253-logo.webp"
+    },
+    {
+      "name": "Shrikant Patil",
+      "designation": "Former Associate Partner",
+      "post": "Tech in Finance",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/shrikant-patil-digital-innov/?originalSubdomain=sg",
+      "imageAsset": "254-image.webp",
+      "logoAsset": "255-logo.webp"
+    },
+    {
+      "name": "Subodh Kar",
+      "designation": "Former Business Analyst-Team Leader",
+      "post": "Fundamentals of Prototyping",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/subodh-kar/",
+      "imageAsset": "256-image.webp",
+      "logoAsset": "257-logo.webp"
+    },
+    {
+      "name": "Vivek Singh",
+      "designation": "Former OSD to Finance Minister",
+      "post": "Public Policy & Advocacy",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/vivek-singh-04b744258/",
+      "imageAsset": "258-image.webp",
+      "logoAsset": "259-logo.webp"
+    },
+    {
+      "name": "Payal Jain",
+      "designation": "Partner",
+      "post": "Valuations",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/payalj316/",
+      "imageAsset": "260-image.webp",
+      "logoAsset": "261-logo.webp"
+    },
+    {
+      "name": "Harish Bijoor",
+      "designation": "Former VP",
+      "post": "Sales & Distribution Management",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/harish-bijoor-3bb2a5/",
+      "imageAsset": "262-image.webp",
+      "logoAsset": "263-logo.webp"
+    },
+    {
+      "name": "Ajay Jamuar",
+      "designation": "COO",
+      "post": "Fundamentals of Corporate Finance",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/ajay-jamuar-a2736b/",
+      "imageAsset": "264-image.webp",
+      "logoAsset": "265-logo.webp"
+    },
+    {
+      "name": "Dr Avik Sarkar",
+      "designation": "Former Head, Data Analytics Cell",
+      "post": "Artificial Intelligence in Business & Society",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/aviksarkar/",
+      "imageAsset": "266-image.webp",
+      "logoAsset": "267-logo.webp"
+    },
+    {
+      "name": "Anjan Banerjee",
+      "designation": "Former Director, Local Businesses",
+      "post": "Global eServices - Landscape & Scope",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/anjan-banerjee-4275601/",
+      "imageAsset": "268-image.webp",
+      "logoAsset": "269-logo.webp"
+    },
+    {
+      "name": "Vikram Pandya",
+      "designation": "Former Strategic Advisor",
+      "post": "Tech in Finance",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/vikrampandya/?originalSubdomain=in",
+      "imageAsset": "270-image.webp",
+      "logoAsset": "271-logo.webp"
+    },
+    {
+      "name": "Pradeep Saxena",
+      "designation": "Former Country Head",
+      "post": "How to Conduct Market Research",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/pradeep-saxena-6a41a12/",
+      "imageAsset": "272-image.webp",
+      "logoAsset": "273-logo.webp"
+    },
+    {
+      "name": "Malavika Harita",
+      "designation": "Former CEO",
+      "post": "Integrated Marketing Communications",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/malavika-r-harita/",
+      "imageAsset": "274-image.webp",
+      "logoAsset": "275-logo.webp"
+    },
+    {
+      "name": "Rakesh Kumar",
+      "designation": "Former Sr Director, Supply Chain",
+      "post": "Essentials in Operations",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/rakesh-kumar-87a8498/",
+      "imageAsset": "276-image.webp",
+      "logoAsset": "277-logo.webp"
+    },
+    {
+      "name": "Sorabh Bajaj",
+      "designation": "Former VP",
+      "post": "Designing the Future of Work",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/sorabhbajaj/",
+      "imageAsset": "278-image.webp",
+      "logoAsset": "279-logo.webp"
+    },
+    {
+      "name": "Ashank Bhandari",
+      "designation": "Former VP PM",
+      "post": "Product Management Practicum",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/ashankbhandari/",
+      "imageAsset": "280-image.webp",
+      "logoAsset": "281-logo.webp"
+    },
+    {
+      "name": "Srijith Mohanan",
+      "designation": "Former COO",
+      "post": "Applied Corporate Finance",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/srijith-mohanan-6532ba9/?originalSubdomain=in",
+      "imageAsset": "282-image.webp",
+      "logoAsset": "283-logo.webp"
+    },
+    {
+      "name": "Anuj Kumar Garg",
+      "designation": "VP - Blockchain",
+      "post": "Blockchain Bootcamp",
+      "department": "Blockchains & Digital Assets",
+      "linkedin": "https://www.linkedin.com/in/anujkgarg/",
+      "imageAsset": "284-image.webp",
+      "logoAsset": "285-logo.webp"
+    },
+    {
+      "name": "Shravan Tickoo",
+      "designation": "Former Principal PM",
+      "post": "Starting with Product Management (Competitive Positioning)",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/shravantickoo/",
+      "imageAsset": "286-image.webp",
+      "logoAsset": "287-logo.webp"
+    },
+    {
+      "name": "Manish Vashist",
+      "designation": "Former Program Director",
+      "post": "Design & Psychology",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/manishvashist/",
+      "imageAsset": "288-image.webp",
+      "logoAsset": "289-logo.webp"
+    },
+    {
+      "name": "Piyush Sharma",
+      "designation": "Former CEO India",
+      "post": "Ignite a Thinking Bootcamp",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/piyush01/",
+      "imageAsset": "290-image.webp",
+      "logoAsset": "291-logo.webp"
+    },
+    {
+      "name": "Raj Kapoor",
+      "designation": "Consultant",
+      "post": "Blockchains & Digital Assets",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/indieblock/",
+      "imageAsset": "292-image.webp",
+      "logoAsset": "293-logo.webp"
+    },
+    {
+      "name": "Himanshu Jain",
+      "designation": "Former Research Analyst",
+      "post": "Securities Analysis & Portfolio Theory",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/cahimanshujain/",
+      "imageAsset": "294-image.webp",
+      "logoAsset": "295-logo.webp"
+    },
+    {
+      "name": "Mayank Nagpal",
+      "designation": "Founder",
+      "post": "Building an App - No Code Practicum",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/nocodeguy/?originalSubdomain=in",
+      "imageAsset": "296-image.webp",
+      "logoAsset": "297-logo.webp"
+    },
+    {
+      "name": "Vaibhav Gupta",
+      "designation": "Senior PM",
+      "post": "Product Engineering, Execution and Automation",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/vaibhavgupta17/",
+      "imageAsset": "298-image.webp",
+      "logoAsset": "299-logo.webp"
+    },
+    {
+      "name": "Arun Sreelalan Iyer",
+      "designation": "Former Dy National Head Products",
+      "post": "Design Principles for Prototyping",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/arun-sreelalan-iyer/",
+      "imageAsset": "300-image.webp",
+      "logoAsset": "301-logo.webp"
+    },
+    {
+      "name": "Rahul Mohandas",
+      "designation": "Former Principal Consultant",
+      "post": "Break Into Product Management",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/rahulmd/",
+      "imageAsset": "302-image.webp",
+      "logoAsset": "303-logo.webp"
+    },
+    {
+      "name": "Abhishek Gupta",
+      "designation": "Former Director",
+      "post": "Options, Futures & Derivatives",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/abhishek-gupta-b447353/",
+      "imageAsset": "304-image.webp",
+      "logoAsset": "305-logo.webp"
+    },
+    {
+      "name": "Manoj Goel",
+      "designation": "Co-founder & Director",
+      "post": "Investment Banking and Valuation",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/manoj-goel/",
+      "imageAsset": "306-image.webp",
+      "logoAsset": "307-logo.webp"
+    },
+    {
+      "name": "Dipayan Sarkar",
+      "designation": "Former Senior Data Scientist",
+      "post": "Introduction to Big Data & Cloud Computing & Python Bootcamp",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/dipayans/",
+      "imageAsset": "308-image.webp",
+      "logoAsset": "309-logo.webp"
+    },
+    {
+      "name": "Ritesh Bhatia",
+      "designation": "Director",
+      "post": "Cybersecurity",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/v4web/",
+      "imageAsset": "310-image.webp",
+      "logoAsset": "311-logo.webp"
+    },
+    {
+      "name": "Aditya Kulkarni",
+      "designation": "Co-founder & CEO",
+      "post": "Structured Thinking Workshop",
+      "department": "Building Your MVP",
+      "linkedin": "https://www.linkedin.com/in/aditya-kulkarni-9452423b/",
+      "imageAsset": "312-image.webp",
+      "logoAsset": "313-logo.webp"
+    },
+    {
+      "name": "Jatinder Bedi",
+      "designation": "Former Data Science Leader",
+      "post": "Statistics for Business",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/analyticswithjatin/",
+      "imageAsset": "314-image.webp",
+      "logoAsset": "315-logo.webp"
+    },
+    {
+      "name": "Asim Mehta",
+      "designation": "VP - North America Head",
+      "post": "Optimisation for Decision Making",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/asim-mehta-43501516/?originalSubdomain=in",
+      "imageAsset": "316-image.webp",
+      "logoAsset": "317-logo.webp"
+    },
+    {
+      "name": "Sandeep Kochhar",
+      "designation": "Former CTO",
+      "post": "Business Storytelling",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/sandeepkochhar/",
+      "imageAsset": "318-image.webp",
+      "logoAsset": "319-logo.webp"
+    },
+    {
+      "name": "Gavin Remedios",
+      "designation": "Experience Design Practice Leader",
+      "post": "Gamification & Behavioral Design",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/gavinremedios/",
+      "imageAsset": "320-image.webp",
+      "logoAsset": "321-logo.webp"
+    },
+    {
+      "name": "Dr Nishant Chadha",
+      "designation": "Director",
+      "post": "Economics of Platforms",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/nishant-chadha-82846538/",
+      "imageAsset": "322-image.webp",
+      "logoAsset": "323-logo.webp"
+    },
+    {
+      "name": "Prof Chandradeep Mitra",
+      "designation": "Founder & CEO",
+      "post": "Building Successful Brands",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/cdmitra/",
+      "imageAsset": "324-image.webp",
+      "logoAsset": "325-logo.webp"
+    },
+    {
+      "name": "Parijat Garg",
+      "designation": "Former Senior VP",
+      "post": "Tech in Finance",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/parijat-garg/?originalSubdomain=in",
+      "imageAsset": "326-image.webp",
+      "logoAsset": "327-logo.webp"
+    },
+    {
+      "name": "Tushar Jaruhar",
+      "designation": "Former Pricing Actuary",
+      "post": "Business Analytics Using Python",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/tushar-jaruhar-9362959/",
+      "imageAsset": "328-image.webp",
+      "logoAsset": "329-logo.webp"
+    },
+    {
+      "name": "Khanjan Desai",
+      "designation": "Product Manager",
+      "post": "Starting with Product Management (Competitive Positioning)",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/khanjandesai8/",
+      "imageAsset": "330-image.webp",
+      "logoAsset": "331-logo.webp"
+    },
+    {
+      "name": "Vijay Agarwal",
+      "designation": "Partner",
+      "post": "Programming, Logic Building, & Web Development",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/agrawalvijay/",
+      "imageAsset": "332-image.webp",
+      "logoAsset": "333-logo.webp"
+    },
+    {
+      "name": "Tushar Sharma",
+      "designation": "Former Assistant VP",
+      "post": "Fundamentals of R Programming",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/tushar-sharma-voksedigital/overlay/photo/",
+      "imageAsset": "334-image.webp",
+      "logoAsset": "335-logo.webp"
+    },
+    {
+      "name": "Barkha Chhabra",
+      "designation": "Former Deputy GM, M&A",
+      "post": "Investment Banking",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/barkha-chhabra-7ab7207/",
+      "imageAsset": "336-image.webp",
+      "logoAsset": "337-logo.webp"
+    },
+    {
+      "name": "Vipin Chaudhary",
+      "designation": "Executive Director",
+      "post": "Investment Analysis & Portfolio Management",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/vipin-chaudhary-4685b1a/",
+      "imageAsset": "338-image.webp",
+      "logoAsset": "339-logo.webp"
+    },
+    {
+      "name": "Ashay Saxena",
+      "designation": "Product Owner",
+      "post": "Break into Product Management",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/dr-ashay-saxena/",
+      "imageAsset": "340-image.webp",
+      "logoAsset": "341-logo.webp"
+    },
+    {
+      "name": "Maansi Gupta",
+      "designation": "Former Head",
+      "post": "Integrated Marketing Communication",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/maansi-gupta/",
+      "imageAsset": "342-image.webp",
+      "logoAsset": "343-logo.webp"
+    },
+    {
+      "name": "Ritesh Chandra",
+      "designation": "Former Credit Head",
+      "post": "Financial Accounting & Analysis",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/ritesh-chandra-cfa/",
+      "imageAsset": "344-image.webp",
+      "logoAsset": "345-logo.webp"
+    },
+    {
+      "name": "Taruna Manchanda",
+      "designation": "Principal Product Manager",
+      "post": "Break into Product Management",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/taruna2309/",
+      "imageAsset": "346-image.webp",
+      "logoAsset": "347-logo.webp"
+    },
+    {
+      "name": "Vivek Shah",
+      "designation": "Former Assistant VP",
+      "post": "Digital Marketing",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/vivekshah83/",
+      "imageAsset": "348-image.webp",
+      "logoAsset": "349-logo.webp"
+    },
+    {
+      "name": "Shashi Bhushan",
+      "designation": "CFO",
+      "post": "Investment Banking",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/shasbhus321/",
+      "imageAsset": "350-image.webp",
+      "logoAsset": "351-logo.webp"
+    },
+    {
+      "name": "Rahul Malik",
+      "designation": "Former Digital Strategist",
+      "post": "Content Marketing",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/vellatechie/",
+      "imageAsset": "352-image.webp",
+      "logoAsset": "353-logo.webp"
+    },
+    {
+      "name": "Vipin Grover",
+      "designation": "Country Lead",
+      "post": "Digital Marketing Bundle",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/vipin-grover-digital-marketing/",
+      "imageAsset": "354-image.webp",
+      "logoAsset": "355-logo.webp"
+    },
+    {
+      "name": "Dr Keith D\u2019Souza",
+      "designation": "Former Director",
+      "post": "Organisational Theory & Design",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/dr-keith-c-d-souza-15538613/",
+      "imageAsset": "356-image.webp",
+      "logoAsset": "357-logo.webp"
+    },
+    {
+      "name": "Vatsalya Srivastava",
+      "designation": "Former Lead",
+      "post": "Managerial Economics",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/vatsalya-srivastava-1063026/",
+      "imageAsset": "358-image.webp",
+      "logoAsset": "359-logo.webp"
+    },
+    {
+      "name": "Aashraya Sachdeva",
+      "designation": "Former Lead Engineer",
+      "post": "Unsupervised Learning Models in Business",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/aashsach/",
+      "imageAsset": "360-image.webp",
+      "logoAsset": "361-logo.webp"
+    },
+    {
+      "name": "Havish Madvapathy",
+      "designation": "Master Trainer",
+      "post": "Basic & Advanced Excel",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/havishm/",
+      "imageAsset": "362-image.webp",
+      "logoAsset": "363-logo.webp"
+    },
+    {
+      "name": "Anurag Singhal",
+      "designation": "Former AGM, Strategy & BD",
+      "post": "Financial Modelling using Excel",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/anuragsingal/",
+      "imageAsset": "364-image.webp",
+      "logoAsset": "365-logo.webp"
+    },
+    {
+      "name": "Dr Amit Nagpal",
+      "designation": "Advisor & Community Builder",
+      "post": "Business & Data Storytelling",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/businessstoryteller/",
+      "imageAsset": "366-image.webp",
+      "logoAsset": "367-logo.webp"
+    },
+    {
+      "name": "Prithvi Dhingra",
+      "designation": "Sr Manager, Special Engagements",
+      "post": "Supervised Learning Models in Business",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/prithvi-dhingra-17225564/",
+      "imageAsset": "368-image.webp",
+      "logoAsset": "369-logo.webp"
+    },
+    {
+      "name": "Arnab Ghosh",
+      "designation": "Former India Lead",
+      "post": "Managerial Accounting",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/arnab~ghosh/",
+      "imageAsset": "370-image.webp",
+      "logoAsset": "371-logo.webp"
+    },
+    {
+      "name": "Garvitraj Pandey",
+      "designation": "Senior UI/UX Designer",
+      "post": "Building an App Using No Code",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/garvitraj-pandey/",
+      "imageAsset": "372-image.webp",
+      "logoAsset": "373-logo.webp"
+    },
+    {
+      "name": "Dr Amar Saxena",
+      "designation": "Former Consultant",
+      "post": "How to Conduct Business Research",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/amarsaxenaanalytics/",
+      "imageAsset": "374-image.webp",
+      "logoAsset": "375-logo.webp"
+    },
+    {
+      "name": "Aswini Bajaj",
+      "designation": "CEO",
+      "post": "Personal Finance",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/aswinibajaj/?originalSubdomain=in",
+      "imageAsset": "376-image.webp",
+      "logoAsset": "377-logo.webp"
+    },
+    {
+      "name": "Dr Francis Rebello",
+      "designation": "Former Head - HR",
+      "post": "Foundations of Managerial BehaviourManaging Self & Others",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/francisrebello/",
+      "imageAsset": "378-image.webp",
+      "logoAsset": "379-logo.webp"
+    },
+    {
+      "name": "Rajesh Madhavan",
+      "designation": "Advisor",
+      "post": "Private Equity & Venture Capital",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/rajesh-madhavan-81873ab/",
+      "imageAsset": "380-image.webp",
+      "logoAsset": "381-logo.webp"
+    },
+    {
+      "name": "Kiran Kumar KV",
+      "designation": "Former Associate Vice President",
+      "post": "Financial Engineering Analytics",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/kirankvk/",
+      "imageAsset": "382-image.webp",
+      "logoAsset": "383-logo.webp"
+    },
+    {
+      "name": "Divanshu Thakral",
+      "designation": "Co-founder & Director",
+      "post": "Supervised Learning Models in Business",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/divanshuthakral/",
+      "imageAsset": "384-image.webp",
+      "logoAsset": "385-logo.webp"
+    },
+    {
+      "name": "Manik Arora",
+      "designation": "Co-founder & Director",
+      "post": "Fundamentals of Design Thinking",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/manik314/?originalSubdomain=in",
+      "imageAsset": "386-image.webp",
+      "logoAsset": "387-logo.webp"
+    },
+    {
+      "name": "William Fernandes",
+      "designation": "Sr Functional Consultant & Partner Enablement",
+      "post": "Cloud Computing & Big Data",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/willfdes31/?originalSubdomain=in",
+      "imageAsset": "388-image.webp",
+      "logoAsset": "389-logo.webp"
+    },
+    {
+      "name": "Dr Soumik Bhusan",
+      "designation": "Former Head Customer Strategy",
+      "post": "Financial & Cost Accounting",
+      "department": "",
+      "linkedin": "",
+      "imageAsset": "390-image.webp",
+      "logoAsset": "391-logo.webp"
+    },
+    {
+      "name": "Dr Atul Mehta",
+      "designation": "Former Senior VP Sales",
+      "post": "Tech in Finance",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/atulmehta07/",
+      "imageAsset": "392-image.webp",
+      "logoAsset": "393-logo.webp"
+    },
+    {
+      "name": "Pavan Lalwani",
+      "designation": "Master Trainer",
+      "post": "Mastering Data Visualisation",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/pavanlalwani/",
+      "imageAsset": "394-image.webp",
+      "logoAsset": "395-logo.webp"
+    },
+    {
+      "name": "Tanay Kedia",
+      "designation": "Product Manager II",
+      "post": "Product Analytics, Metrics & AB Testing",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/tanay-kedia/",
+      "imageAsset": "396-image.webp",
+      "logoAsset": "397-logo.webp"
+    },
+    {
+      "name": "Archit Lohia",
+      "designation": "Former Deputy Manager",
+      "post": "Alternative Investments",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/archit-lohia-cfa-ca-llb-caia-5b15b617/",
+      "imageAsset": "398-image.webp",
+      "logoAsset": "399-logo.webp"
+    },
+    {
+      "name": "Atul Panday",
+      "designation": "Former Director",
+      "post": "Private Equity & Venture Capital",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/atulpanday/",
+      "imageAsset": "400-image.webp",
+      "logoAsset": "401-logo.webp"
+    },
+    {
+      "name": "Ramkumar Raja C.",
+      "designation": "Former Head",
+      "post": "Financial Negotiations & Deal Structure",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/ramkumarrajachidambaram/",
+      "imageAsset": "402-image.webp",
+      "logoAsset": "403-logo.webp"
+    },
+    {
+      "name": "Shubhashish Biswas",
+      "designation": "Former Digital Head",
+      "post": "Building and Leading Technology Teams",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/sbiswas-1/",
+      "imageAsset": "404-image.webp",
+      "logoAsset": "405-logo.webp"
+    },
+    {
+      "name": "Chandrashekar R.",
+      "designation": "Former Senior VP",
+      "post": "Text Mining & Natural Language Processing",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/chandrashekarram/",
+      "imageAsset": "406-image.webp",
+      "logoAsset": "407-logo.webp"
+    },
+    {
+      "name": "Amardeep Singh",
+      "designation": "Former Consultant",
+      "post": "Excel for Managers",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/amardeepsingh/",
+      "imageAsset": "408-image.webp",
+      "logoAsset": "409-logo.webp"
+    },
+    {
+      "name": "Aquib Ajani",
+      "designation": "Lead Instructor",
+      "post": "Programming, Logic Building, & Web Development",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/codewithaquib/",
+      "imageAsset": "410-image.webp",
+      "logoAsset": "411-logo.webp"
+    },
+    {
+      "name": "Dr Shashank Shekhar S.",
+      "designation": "Former Principal Consultant",
+      "post": "Econometrics",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/shashankshekharsharmaexpedify/",
+      "imageAsset": "412-image.webp",
+      "logoAsset": "413-logo.webp"
+    },
+    {
+      "name": "Devi Prasad Choudhury",
+      "designation": "Associate Director",
+      "post": "Blockchains & Digital Assets",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/deviprasadchoudhury/",
+      "imageAsset": "414-image.webp",
+      "logoAsset": "415-logo.webp"
+    },
+    {
+      "name": "Gagan Sawhney",
+      "designation": "Former Design Principal",
+      "post": "Fundamentals of Design Thinking",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/gagan-sahni/",
+      "imageAsset": "416-image.webp",
+      "logoAsset": "417-logo.webp"
+    },
+    {
+      "name": "Rukmum Vatsalya",
+      "designation": "Product Design Manager",
+      "post": "Fundamentals of Design Thinking",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/rukmum-vatsalya-89287568/",
+      "imageAsset": "418-image.webp",
+      "logoAsset": "419-logo.webp"
+    },
+    {
+      "name": "Gurumoorthy P.",
+      "designation": "Former Principal AI Consultant",
+      "post": "Computer Vision & Its Application",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/gurumoorthyp/",
+      "imageAsset": "420-image.webp",
+      "logoAsset": "421-logo.webp"
+    },
+    {
+      "name": "Rashmi Malik",
+      "designation": "Faculty Member",
+      "post": "Fundamentals of Design Thinking",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/rashmi-malik-4821159b/?originalSubdomain=in",
+      "imageAsset": "422-image.webp",
+      "logoAsset": "423-logo.webp"
+    },
+    {
+      "name": "Shubhranil Kundu",
+      "designation": "Former Associate Researcher",
+      "post": "Introduction to Programming and Logic Building",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/shubhranil-kundu-11811b205/?originalSubdomain=in",
+      "imageAsset": "424-image.webp",
+      "logoAsset": "425-logo.webp"
+    },
+    {
+      "name": "Abhishek Srivastava",
+      "designation": "Former Head - Enterprise Strategy",
+      "post": "Corporate Communication",
+      "department": "",
+      "linkedin": "",
+      "imageAsset": "426-image.webp",
+      "logoAsset": "427-logo.webp"
+    },
+    {
+      "name": "Jay Kishan Singh",
+      "designation": "Assistant Manager",
+      "post": "Web Development",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/jaykishansingh/",
+      "imageAsset": "428-image.webp",
+      "logoAsset": "429-logo.webp"
+    },
+    {
+      "name": "Tridib Ghosh",
+      "designation": "Founder & CEO",
+      "post": "User Experience",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/tridibghosh/",
+      "imageAsset": "430-image.webp",
+      "logoAsset": "431-logo.webp"
+    },
+    {
+      "name": "Pushkar Sarkar",
+      "designation": "Deputy Manager",
+      "post": "Fundamentals of R Programming",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/pushkar-sarkar-2304ab97/",
+      "imageAsset": "432-image.webp",
+      "logoAsset": "433-logo.webp"
+    },
+    {
+      "name": "Shreya Malhotra",
+      "designation": "Co-founder",
+      "post": "User Interface Design",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/shreya-malhotra-00532b156/",
+      "imageAsset": "434-image.webp",
+      "logoAsset": "435-logo.webp"
+    },
+    {
+      "name": "Manaranjan Pradhan",
+      "designation": "Former Technical Architect",
+      "post": "Learning Python",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/manaranjanpradhan/",
+      "imageAsset": "436-image.webp",
+      "logoAsset": "437-logo.webp"
+    },
+    {
+      "name": "Sumant Malhotra",
+      "designation": "Former Senior PM",
+      "post": "Mastering Data Visualisation (Using PowerBI)",
+      "department": "",
+      "linkedin": "",
+      "imageAsset": "438-image.webp",
+      "logoAsset": "439-logo.webp"
+    },
+    {
+      "name": "Saurabh Kango",
+      "designation": "Insights Program Manager",
+      "post": "Learning Data Query",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/saurabhkango/",
+      "imageAsset": "440-image.webp",
+      "logoAsset": "441-logo.webp"
+    },
+    {
+      "name": "Sundeep Teki",
+      "designation": "Former AI Research Scientist",
+      "post": "Deep End of Machine Learning",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/sundeepteki/",
+      "imageAsset": "442-image.webp",
+      "logoAsset": "443-logo.webp"
+    },
+    {
+      "name": "Tinniam V Ganesh",
+      "designation": "Former Associate Director",
+      "post": "Introduction to Big Data and Hadoop",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/tinniam-v-ganesh-tv-0223817/",
+      "imageAsset": "444-image.webp",
+      "logoAsset": "445-logo.webp"
+    },
+    {
+      "name": "Rutvik Acharya",
+      "designation": "Former Senior Data Scientist",
+      "post": "Text Mining & Natural Language Processing",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/rutvikacharya/",
+      "imageAsset": "446-image.webp",
+      "logoAsset": "447-logo.webp"
+    },
+    {
+      "name": "Ashray Ohri",
+      "designation": "Senior Lead",
+      "post": "Macroeconomics",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/ashray-ohri-95762865/",
+      "imageAsset": "448-image.webp",
+      "logoAsset": "449-logo.webp"
+    },
+    {
+      "name": "Pranay Jindal",
+      "designation": "Former Director",
+      "post": "Marketplace Fundamentals",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/prjindal/",
+      "imageAsset": "450-image.webp",
+      "logoAsset": "451-logo.webp"
+    },
+    {
+      "name": "Ashish Sadekar",
+      "designation": "Former Practice Lead",
+      "post": "Project Management",
+      "department": "",
+      "linkedin": "https://www.linkedin.com/in/ashish-sadekar12/",
+      "imageAsset": "452-image.webp",
+      "logoAsset": "453-logo.webp"
+    }
+  ]
+}
