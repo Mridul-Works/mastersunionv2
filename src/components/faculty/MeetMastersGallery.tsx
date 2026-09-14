@@ -8,7 +8,7 @@ import {
   type MasterCategory,
 } from "@/lib/meet-masters";
 
-const MOBILE_LIMIT = 10;
+const PREVIEW_LIMIT = 3;
 
 const FACULTY_CARD_CATEGORIES: MasterCategory[] = [
   "Masters-in-Residence",
