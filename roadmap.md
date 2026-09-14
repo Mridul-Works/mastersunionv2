@@ -189,3 +189,4 @@
 - [x] Fix Guiding Minds card bottom-border clipping/overlap: removed overflow:hidden + fixed height on .meet-master-card (min-height:100%), verified 0 clipped cards across all 227 cards at 320/390/800/1920, build OK.
 - [x] Reuse the Placements floating navigation on Faculty with faculty-specific section links and S.A.G.E prompts.
 - [x] Match the Faculty closing glass panel, oversized Join the Union backdrop, and footer composition to Placements.
+- [x] Match the Placements closing parallax/transparency on Faculty and keep Join the Union fully within every viewport.
