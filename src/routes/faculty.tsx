@@ -610,15 +610,10 @@ function FacultyPage() {
           <SectionDivider inset="none" className="my-[clamp(1.5rem,4vh,2.5rem)]" />
           <EditorialGrid
             gallery
-            cardStats
             dark
             sectionLabel="Visiting Faculty"
             pct="20%"
             tagline="Professors from Ivy League and global top schools bringing international rigour and perspective to Gurugram — every term."
-            stats={[
-              { v: "40+", l: "Visiting professors annually" },
-              { v: "12", l: "Countries represented" },
-            ]}
             items={VISITING.map((v) => ({ name: v.name, role: v.role, sub: v.school, img: v.img }))}
           />
           <LogoMarquee
