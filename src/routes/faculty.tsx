@@ -55,7 +55,7 @@ import vfGarrick from "@/assets/faculty/visiting/garrick-hileman.png.asset.json"
 import vfJyotsna from "@/assets/faculty/visiting/jyotsna-bhatnagar.png.asset.json";
 import vfVishnu from "@/assets/faculty/visiting/vishnuprasad-n.png.asset.json";
 import vfRajesh from "@/assets/faculty/visiting/rajesh.webp.asset.json";
-import SchoolsScrollPanel from "@/components/faculty/SchoolsScrollPanel";
+
 import PractitionerModel from "@/components/faculty/PractitionerModel";
 import { SectionDivider } from "@/components/patterns/section-divider";
 import { LogoMarquee } from "@/components/patterns/logo-marquee";
@@ -628,7 +628,6 @@ function FacultyPage() {
             label="Schools our visiting faculty teach at"
             items={VISITING_SCHOOLS.map((name) => ({ name }))}
           />
-          <SchoolsScrollPanel />
 
         </div>
       </section>
