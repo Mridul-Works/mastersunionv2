@@ -6169,8 +6169,18 @@ body::-webkit-scrollbar {
 }
 
 .faculty-redesign .meet-masters-show-more {
-  display: none;
+  display: flex;
+  height: auto;
+  margin: 1.75rem auto 0;
+  padding: 0.7rem 1.5rem;
+  border-color: var(--master-line);
+  border-radius: 999px;
+  color: var(--faculty-silver);
+  background: transparent;
+  box-shadow: none;
+  font-weight: 400;
 }
+
 
 @keyframes masters-grid-in {
   from { opacity: 0; transform: translateY(10px); }
