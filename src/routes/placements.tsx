@@ -2884,7 +2884,7 @@ function EditorialPlacementData() {
               Latest cohort / PGP TBM
             </span>
             <div className="relative flex flex-col items-center text-center">
-              <div className="placement-data-number text-[clamp(2.4rem,7vw,3.8rem)] font-medium leading-none text-white md:text-[clamp(2.9rem,5.2vw,4.6rem)]">
+              <div className="placement-data-number text-[clamp(3.5rem,7vw,4.2rem)] font-medium leading-none text-white md:text-[clamp(3.4rem,5.2vw,4.4rem)]">
                 <CountUp value="₹33.39 L" />
               </div>
               <div className="mt-3 flex items-center justify-center gap-3">
