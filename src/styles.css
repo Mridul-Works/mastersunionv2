@@ -6096,11 +6096,22 @@ body::-webkit-scrollbar {
   border-top: none;
 }
 
+.faculty-redesign .meet-master-top {
+  display: flex;
+  flex-direction: column;
+}
+
+.faculty-redesign .meet-master-bottom {
+  display: flex;
+  flex-direction: column;
+}
+
 .faculty-redesign .meet-master-heading {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 0.5rem;
+  padding-inline: 0.75rem;
 }
 
 .faculty-redesign .meet-master-heading h3 {
@@ -6109,6 +6120,7 @@ body::-webkit-scrollbar {
   font-weight: 400;
   line-height: 1.25;
   letter-spacing: 0;
+  color: var(--foreground);
 }
 
 .faculty-redesign .meet-master-linkedin {
@@ -6133,21 +6145,26 @@ body::-webkit-scrollbar {
 }
 
 .faculty-redesign .meet-master-designation {
-  min-height: 2.5em;
   margin: 0.35rem 0 0;
-  color: color-mix(in oklab, var(--faculty-silver) 62%, transparent);
+  padding-inline: 0.75rem;
+  color: color-mix(in oklab, var(--foreground) 62%, transparent);
   font-size: clamp(0.7rem, 0.85vw, 0.78rem);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.4;
+}
+
+.faculty-redesign .meet-master-divider {
+  height: 1px;
+  margin-block: 0.45rem;
+  background: color-mix(in oklab, var(--faculty-silver) 10%, transparent);
 }
 
 .faculty-redesign .meet-master-logo {
   display: flex;
-  min-height: 2.25rem;
+  min-height: 1.8rem;
   align-items: center;
   justify-content: center;
-  margin-top: auto;
-  padding-top: 0.5rem;
+  padding-inline: 0.75rem;
 }
 
 .faculty-redesign .meet-master-logo img {
@@ -6165,9 +6182,8 @@ body::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
-  margin-top: 0.5rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid var(--master-line);
+  margin-top: 0.35rem;
+  padding-inline: 0.75rem;
   color: color-mix(in oklab, var(--faculty-silver) 74%, transparent);
   font-size: 0.7rem;
   font-weight: 300;
