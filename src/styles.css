@@ -6150,8 +6150,8 @@ body::-webkit-scrollbar {
   }
 
   .faculty-redesign .meet-master-info {
-    min-height: 10.25rem;
-    padding: 0.8rem;
+    min-height: 8.75rem;
+    padding: 0.65rem;
   }
 
   .faculty-redesign .meet-master-heading h3 {
@@ -6160,6 +6160,31 @@ body::-webkit-scrollbar {
 
   .faculty-redesign .meet-master-designation {
     font-size: 0.66rem;
+  }
+
+  .faculty-redesign .meet-master-linkedin {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .faculty-redesign .meet-master-linkedin svg {
+    width: 0.65rem;
+    height: 0.65rem;
+  }
+
+  .faculty-redesign .meet-master-logo {
+    height: 2rem;
+    padding-top: 0.4rem;
+  }
+
+  .faculty-redesign .meet-master-logo img {
+    max-height: 1.4rem;
+  }
+
+  .faculty-redesign .meet-master-detail {
+    margin-top: 0.4rem;
+    padding-top: 0.4rem;
+    font-size: 0.65rem;
   }
 
   .faculty-redesign .meet-master-mobile-hidden {
