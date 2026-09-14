@@ -766,14 +766,6 @@ function FacultyPage() {
               <div aria-hidden className="absolute inset-0 bg-ink/25" />
             </div>
 
-            <div className="border-t border-white/10">
-              <div className="page-shell flex flex-wrap items-center justify-between gap-2 py-4 pb-[clamp(4.5rem,8vh,6rem)] text-[10px] uppercase tracking-[0.22em] text-white/40" style={{ fontFamily: MONO }}>
-                <span>© 2026 Masters&apos; Union</span>
-                <span className="text-white/30">
-                  Faculty · <span className="text-white/70">Practitioners over professors</span>
-                </span>
-              </div>
-            </div>
           </div>
         </div>
       </footer>
