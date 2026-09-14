@@ -4504,6 +4504,24 @@ body::-webkit-scrollbar {
   height: auto;
 }
 
+/* Preserve the shared Faculty footer logo scale inside the Placements scope. */
+.placements-ug-v2 .placements-footer-logo {
+  height: 2rem;
+  width: auto;
+}
+
+@media (min-width: 640px) {
+  .placements-ug-v2 .placements-footer-logo {
+    height: 2.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .placements-ug-v2 .placements-footer-logo {
+    height: 3rem;
+  }
+}
+
 .placements-ug-v2 .career-portrait-image img,
 .placements-ug-v2 .career-podcast-media img,
 .placements-ug-v2 .career-leader-media img,
