@@ -6175,10 +6175,14 @@ body::-webkit-scrollbar {
 }
 
 .faculty-redesign .meet-master-detail {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-  margin-top: 0.35rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: calc(0.7rem * 1.35 * 2);
+  max-height: calc(0.7rem * 1.35 * 2);
+  margin-top: 0;
   padding-inline: 0.75rem;
   color: color-mix(in oklab, var(--faculty-silver) 74%, transparent);
   font-size: 0.7rem;
