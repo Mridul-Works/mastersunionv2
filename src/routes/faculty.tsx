@@ -601,7 +601,6 @@ function FacultyPage() {
         <div className="screen-y flex w-full flex-col items-center justify-center">
           <div className="page-shell w-full">
             <SectionIntro
-              index="05"
               eyebrow="Become a Master"
               title={<>We&apos;re always looking for practitioners who want to <Accent>teach what they know</Accent>.</>}
               intro={<>If you have built something, led something, invested in something, or shaped something — and you believe the best way to teach business is to have done it — we want to hear from you.</>}
