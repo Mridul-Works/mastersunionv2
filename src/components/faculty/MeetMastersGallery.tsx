@@ -94,26 +94,24 @@ function CategorySection({
       </header>
 
       <div className="meet-masters-grid">
-        {cards.map((master, cardIndex) => (
-          <div
-            key={`${category}-${master.name}-${cardIndex}`}
-            className={cardIndex >= MOBILE_LIMIT && !expanded ? "meet-master-mobile-hidden" : undefined}
-          >
+        {(expanded ? cards : cards.slice(0, PREVIEW_LIMIT)).map((master, cardIndex) => (
+          <div key={`${category}-${master.name}-${cardIndex}`}>
             <MasterProfileCard master={master} facultyCard={facultyCard} />
           </div>
         ))}
       </div>
 
-      {cards.length > MOBILE_LIMIT ? (
+      {cards.length > PREVIEW_LIMIT ? (
         <Button
           type="button"
           variant="outline"
           className="meet-masters-show-more"
           onClick={() => setExpanded((value) => !value)}
         >
-          {expanded ? "Show Less" : `Show More (${cards.length - MOBILE_LIMIT})`}
+          {expanded ? "View Less" : `View More (${cards.length - PREVIEW_LIMIT})`}
         </Button>
       ) : null}
+
     </section>
   );
 }
