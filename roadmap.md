@@ -1,3 +1,5 @@
+- [ ] Replace Faculty sections 02 and 03 with one shared, exact Meet the Masters tabbed gallery using all five reference categories, portraits, and logos
+
 # Roadmap
 
 - [x] Recompose the Placements founder quote as a thin reference-inspired strip while preserving its image and content
