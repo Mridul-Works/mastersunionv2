@@ -89,8 +89,8 @@ export const MASTER_VIDEO_PRIORITY_COUNT = 5;
 /** every masterclass thumbnail is preloaded eagerly (deduped, finite set) */
 export const MASTER_VIDEO_PRELOAD = Array.from(new Set(MASTER_VIDEOS.map((v) => v.thumb)));
 
-const SERIF_IT = "'Fraunces', Georgia, serif";
-const SANS_H = "'Inter', system-ui, sans-serif";
+const SERIF_IT = "var(--font-serif)";
+const SANS_H = "var(--font-sans)";
 
 function VideoModal({ video, onClose }: { video: MasterVideo; onClose: () => void }) {
   useEffect(() => {
@@ -315,11 +315,9 @@ export default function MastersVideos({
                   500+ Masters · Masterclass
                 </p>
                 <h2
-                  className={`${dark ? "faculty-video-title text-[clamp(2.5rem,5.6vw,5rem)] leading-[0.98]" : "text-[clamp(1.7rem,3.2vw,3rem)] leading-[1.05]"} mv-reveal mt-[clamp(0.65rem,1.5vh,1.05rem)] font-normal ${heading}`}
+                  className={`${dark ? "faculty-video-title" : "text-[clamp(1.7rem,3.2vw,3rem)] leading-[1.05]"} mv-reveal mt-[clamp(0.65rem,1.5vh,1.05rem)] ${heading}`}
                   style={{
-                    fontFamily: dark
-                      ? "var(--faculty-font-display, 'Instrument Serif', Georgia, serif)"
-                      : SANS_H,
+                    fontFamily: SANS_H,
                     transitionDelay: "200ms",
                   }}
                 >

@@ -1,8 +1,7 @@
 import type { ReactNode } from "react";
 
-const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
-const SANS = "var(--faculty-font-body, 'Work Sans', system-ui, sans-serif)";
-const SERIF = "var(--faculty-font-display, 'Instrument Serif', Georgia, serif)";
+const MONO = "var(--font-mono)";
+const SERIF = "var(--font-serif)";
 
 /**
  * Serif-italic editorial accent — use for a word or short phrase inside an
@@ -60,8 +59,8 @@ export function SectionIntro({
       </p>
 
       <h2
-        className={`faculty-section-title mt-[clamp(1.25rem,3.5vh,2.25rem)] text-balance text-[clamp(2.5rem,5.6vw,5rem)] font-normal leading-[0.98] text-foreground ${isLeft ? "" : "mx-auto"}`}
-        style={{ fontFamily: SERIF, maxWidth: `min(100%, ${isLeft ? "26ch" : "22ch"})` }}
+        className={`faculty-section-title mt-[clamp(1rem,2.5vh,1.5rem)] text-balance text-foreground ${isLeft ? "" : "mx-auto"}`}
+        style={{ maxWidth: `min(100%, ${isLeft ? "26ch" : "22ch"})` }}
       >
 
         {title}
