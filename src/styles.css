@@ -5871,9 +5871,6 @@ body::-webkit-scrollbar {
   .faculty-redesign .faculty-model-axis {
     top: 4.5rem;
   }
-  .faculty-redesign .faculty-model-title {
-    font-size: clamp(1.8rem, 3.5vw, 2.75rem);
-  }
   .faculty-redesign .faculty-model-deck {
     font-size: 0.85rem;
   }
@@ -5925,9 +5922,6 @@ body::-webkit-scrollbar {
     margin-bottom: 1.5rem;
     padding-left: 1rem;
     text-align: left;
-  }
-  .faculty-redesign .faculty-model-title {
-    font-size: clamp(1.9rem, 8vw, 2.6rem);
   }
   .faculty-redesign .faculty-model-deck {
     max-width: 44ch;
@@ -6334,7 +6328,6 @@ body::-webkit-scrollbar {
 @media (max-width: 767px) {
   .faculty-redesign .meet-masters-title {
     margin-bottom: 1.75rem;
-    font-size: clamp(1.75rem, 9vw, 3.25rem);
   }
 
   .faculty-redesign .meet-masters-index {
