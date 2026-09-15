@@ -6307,6 +6307,11 @@ body::-webkit-scrollbar {
     padding-left: 0;
   }
 
+  .faculty-redesign .meet-masters-index-count,
+  .faculty-redesign .meet-masters-section-count {
+    display: none;
+  }
+
   .faculty-redesign .meet-masters-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
