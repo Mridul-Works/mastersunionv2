@@ -1,9 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 
-const MONO = "'JetBrains Mono', ui-monospace, monospace";
-const SERIF_IT = "var(--faculty-font-display, 'Instrument Serif', Georgia, serif)";
-const SANS = "var(--faculty-font-body, 'Work Sans', system-ui, sans-serif)";
+const MONO = "var(--font-mono)";
 
 const HERO_IMAGE = "https://images.mastersunion.link/uploads/03032026/v1/Frame2043683361.webp";
 
@@ -241,14 +239,9 @@ const CLIP_REVEAL = "polygon(25% 0, 100% 0, 100% 100%, 0% 100%)";
               </div>
 
               {/* Headline: fills the left column, never the photo zone */}
-              <motion.div
-                variants={itemFromBelow}
-                className="relative z-10 w-full"
-                style={{ fontSize: "clamp(1.95rem, 3.5vw, 3.4rem)" }}
-              >
+              <motion.div variants={itemFromBelow} className="relative z-10 w-full">
                 <h1
-                  className="faculty-hero-title text-[1em] font-normal leading-[0.94] text-foreground [text-wrap:balance]"
-                  style={{ fontFamily: SERIF_IT }}
+                  className="faculty-hero-title text-foreground [text-wrap:balance]"
                 >
                   {HEADLINE}
                 </h1>
