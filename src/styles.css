@@ -6167,7 +6167,9 @@ body::-webkit-scrollbar {
   .faculty-redesign .faculty-model-card:hover,
   .faculty-redesign .meet-master-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 22px 52px -34px color-mix(in oklab, var(--faculty-silver) 58%, transparent);
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--faculty-silver) 34%, transparent),
+      0 22px 52px -34px color-mix(in oklab, var(--faculty-silver) 58%, transparent);
   }
 
   .faculty-redesign .faculty-profile:hover .faculty-portrait-frame,
@@ -6187,6 +6189,10 @@ body::-webkit-scrollbar {
   .faculty-redesign .faculty-profile:hover .faculty-caption {
     border-color: color-mix(in oklab, var(--faculty-silver) 34%, transparent);
     transform: none;
+  }
+
+  .faculty-redesign .faculty-profile:hover .faculty-portrait-frame {
+    box-shadow: none;
   }
 }
 
