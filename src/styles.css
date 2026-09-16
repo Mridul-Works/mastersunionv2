@@ -5964,9 +5964,12 @@ body::-webkit-scrollbar {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .faculty-redesign .faculty-profile,
   .faculty-redesign .faculty-model-rail,
   .faculty-redesign .faculty-model-card,
-  .faculty-redesign .faculty-model-card-photo img {
+  .faculty-redesign .faculty-model-card-photo img,
+  .faculty-redesign .meet-master-card,
+  .faculty-redesign .meet-master-avatar img {
     animation: none;
     transition: none;
   }
@@ -6148,6 +6151,49 @@ body::-webkit-scrollbar {
 
 .faculty-redesign .meet-master-card:hover .meet-master-avatar img {
   transform: scale(1.05);
+}
+
+/* Match the Placements portrait-card interaction across Faculty galleries. */
+@media (hover: hover) and (pointer: fine) {
+  .faculty-redesign .faculty-profile,
+  .faculty-redesign .faculty-model-card,
+  .faculty-redesign .meet-master-card {
+    transition:
+      transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 500ms ease;
+  }
+
+  .faculty-redesign .faculty-profile:hover,
+  .faculty-redesign .faculty-model-card:hover,
+  .faculty-redesign .meet-master-card:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--faculty-silver) 34%, transparent),
+      0 22px 52px -34px color-mix(in oklab, var(--faculty-silver) 58%, transparent);
+  }
+
+  .faculty-redesign .faculty-profile:hover .faculty-portrait-frame,
+  .faculty-redesign .faculty-model-card:hover .faculty-model-card-photo-frame,
+  .faculty-redesign .faculty-model-card:hover .faculty-model-card-info,
+  .faculty-redesign .meet-master-card:hover .meet-master-avatar,
+  .faculty-redesign .meet-master-card:hover .meet-master-info {
+    border-color: color-mix(in oklab, var(--faculty-silver) 34%, transparent);
+  }
+
+  .faculty-redesign .faculty-profile:hover .faculty-portrait,
+  .faculty-redesign .faculty-model-card:hover .faculty-model-card-photo-frame img,
+  .faculty-redesign .meet-master-card:hover .meet-master-avatar img {
+    transform: scale(1.035) !important;
+  }
+
+  .faculty-redesign .faculty-profile:hover .faculty-caption {
+    border-color: color-mix(in oklab, var(--faculty-silver) 34%, transparent);
+    transform: none;
+  }
+
+  .faculty-redesign .faculty-profile:hover .faculty-portrait-frame {
+    box-shadow: none;
+  }
 }
 
 .faculty-redesign .meet-master-info {
