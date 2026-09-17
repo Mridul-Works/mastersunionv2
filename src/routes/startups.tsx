@@ -1,138 +1,557 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useRef, useState } from "react";
-import { ArrowUpRight, Home, Quote, BarChart3, Building2, Trophy } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  BarChart3,
+  Flag,
+  Home,
+  Image as ImageIcon,
+  Play,
+  Trophy,
+  Users,
+} from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
-import venturesFilm from "@/assets/ventures-film.mp4.asset.json";
-
-function VenturesFilm() {
-  const [playing, setPlaying] = useState(false);
-  const ref = useRef<HTMLVideoElement>(null);
-
-  const start = () => {
-    setPlaying(true);
-    void ref.current?.play();
-  };
-
-  return (
-    <div className="relative aspect-video w-full max-w-[620px] overflow-hidden rounded-[12px] bg-black shadow-[0_14px_34px_-24px_rgba(0,0,0,0.5)]">
-      <video
-        ref={ref}
-        src={venturesFilm.url}
-        className="h-full w-full object-cover"
-        controls={playing}
-        playsInline
-        preload="metadata"
-      />
-      {!playing && (
-        <button
-          type="button"
-          onClick={start}
-          aria-label="Play entrepreneurship film"
-          className="group absolute inset-0 grid place-items-center bg-gradient-to-t from-black/65 via-black/15 to-transparent"
-        >
-          <span className="grid size-14 place-items-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md transition group-hover:scale-105 group-hover:bg-white/25">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </span>
-          <span className="absolute bottom-5 left-5 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/90">
-            Entrepreneurship at Masters&apos; Union
-          </span>
-        </button>
-      )}
-    </div>
-  );
-}
-
 
 const INTER = "'Inter', system-ui, sans-serif";
 const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
 
 const NAV: BottomNavItem[] = [
   { id: "top", label: "Top", icon: Home },
-  { id: "stats", label: "Stats", icon: BarChart3 },
-  { id: "infra", label: "Infra", icon: Building2 },
+  { id: "journey", label: "Journey", icon: Flag },
+  { id: "eight", label: "Stories", icon: Users },
+  { id: "scale", label: "Scale", icon: BarChart3 },
   { id: "portfolio", label: "Portfolio", icon: Trophy },
-  { id: "closing", label: "Apply", icon: Quote },
 ];
 
-const STATS = [
-  { value: "₹593 Cr", label: "Total portfolio valuation" },
-  { value: "₹480 Cr", label: "Projected revenue across portfolio, FY26" },
-  { value: "6", label: "Student startups on Shark Tank India" },
-  { value: "180+", label: "Jobs created by student founders" },
-  { value: "30+", label: "Startups incubated inside Masters' Union" },
-  { value: "₹1.2 Cr", label: "In grants disbursed to student founders" },
+/* ---------------------------------- Data ---------------------------------- */
+
+const SPARK_EXAMPLES = [
+  {
+    name: "Nivara",
+    founder: "Vikas Kabra",
+    body: "Vikas Kabra didn't set out to build a diamond company. A personal milestone made him ask why lab-grown diamond jewellery felt neither modern nor accessible — and Nivara was born from that question.",
+  },
+  {
+    name: "Yango",
+    founder: "Sakshi Tuteja",
+    body: "Sakshi Tuteja overheard a mother ask, in a product meeting at GNC, “Why don't we have healthier options for kids?” She couldn't shake the question. Yango is the answer.",
+  },
+  {
+    name: "TrueBrands",
+    founder: "Mukund Gupta",
+    body: "Mukund Gupta watched brand-new, unsold clothes pile up in a Delhi warehouse and asked the obvious question nobody was solving: why do brands burn inventory while people can't afford the same brands?",
+  },
+  {
+    name: "SeedsAI",
+    founder: "Shubham Khatri & Vansh Miglani",
+    body: "Shubham Khatri and Vansh Miglani didn't start with a business plan. They started by shadowing NBFC call-center agents and noticing how much time was wasted on manual review.",
+  },
 ];
 
-const INFRA = [
+type Stage = { n: string; name: string; grant: string | null; body: string; culmination?: boolean };
+
+const VIP_STAGES: Stage[] = [
   {
-    name: "The MU Fund",
-    tag: "₹5 Cr · student-managed",
-    body: "A ₹5 Cr student-managed investment fund. Students source deals, conduct due diligence, and make real investment decisions alongside real VCs — not in a simulation, but with actual capital. The fund has consistently beaten public markets by 20–25%. Students manage it. Students own the outcome.",
+    n: "01",
+    name: "Pre-Seed",
+    grant: "₹15–20L",
+    body: "Bust the myths, find a real problem worth solving, pick the right co-founders, learn to talk to customers — validated in front of founders, VCs, and alumni.",
   },
   {
-    name: "MU Grants",
-    tag: "₹1.2 Cr disbursed",
-    body: "₹1.2 Cr disbursed to date to student founders who show early traction. No equity taken. No strings attached. A bet on you before the market has made one. Applications are reviewed by the MU Ventures team and decided quickly — because founders should be building, not waiting.",
+    n: "02",
+    name: "MVP",
+    grant: "₹15–20L",
+    body: "Build the smallest real version of the idea, prove customer centricity, ship on no-to-low-code tools, and defend it at MVP Demo Day.",
   },
   {
+    n: "03",
+    name: "Go-to-Market",
+    grant: "₹20L",
+    body: "Learn the marketing playbook and understand your funnel — turning a working product into a repeatable one.",
+  },
+  {
+    n: "04",
+    name: "Product-Market Fit",
+    grant: "₹25L",
+    body: "One final dry run, then Demo Day.",
+  },
+  {
+    n: "05",
     name: "Demo Day",
-    tag: "100+ VCs · every year",
-    body: "100+ VCs in the room, every year. Sequoia, Nexus, Antler, InfoEdge — and dozens more. Students pitch live ventures to real investors who write real cheques. Some deals close in the room. Some close in the follow-up email sent before leaving the building. Demo Day is not a showcase. It is a fundraising event.",
-  },
-  {
-    name: "Founder's Fellowship",
-    tag: "₹50,000/mo · 12 months",
-    body: "₹50,000 per month for one year post-graduation — for every student who chooses to build over placing. Unlimited fellowships per cohort. No equity taken. No conditions. And if the venture doesn't work out, you can still sit for placements with the next batch. So choosing to build costs you nothing except the courage to try.",
-  },
-  {
-    name: "Get Prepped — Mentor Union",
-    tag: "500+ mentors · <1 hr",
-    body: "500+ mentors on call. Fundraising advice, product feedback, market research, legal guidance — available in under an hour. Not a once-a-semester guest lecture. An actual hotline to the people who have already solved the problem you are facing right now.",
+    grant: null,
+    body: "150+ venture capitalists and angel investors in the room, assessing student startups for real funding.",
+    culmination: true,
   },
 ];
 
-const PORTFOLIO = [
+type Beat = { stage: string; body: string };
+
+const EIGHT_BEATS: Beat[] = [
   {
-    name: "Eight.Network",
-    meta: "Co'21 · $3.1M raised · ~$5M ARR",
-    body: "Indian audio streaming platform backed by Kae Capital and Venture Highway. Built by MU's very first cohort. Eight.Network has crossed $5M in annual recurring revenue — one of the few student-founded ventures in India to reach that scale within a few years of graduating. They were students here when they started. The market decided the rest.",
+    stage: "Idea",
+    body: "At a Masters' Union cafeteria table, Mohit Paliwal, Mohit Goswami, and Yugal Tamang realized something the internet was missing: not everyone wants to be seen, but everyone has a story worth telling.",
   },
   {
-    name: "Dharmil Bavishi — Bullspree",
-    meta: "PGP '22 · $1.88M seed raised",
-    body: "Sports gaming platform. Appeared on Shark Tank India, backed by Aman Gupta and Peyush Bansal, with additional investment from IVY Growth Associates and Desai Ventures. Started as an OutClass venture in Term 1.",
+    stage: "Early Build",
+    body: "While their cohort chased summer placements, the trio used the Startup VIP program and their own engineering favors to get a live-audio prototype off the ground — whiteboards, wireframes, and cafeteria debates.",
   },
   {
-    name: "Nikhil Gaur — Hive School",
-    meta: "PGP '25 · ₹2 Cr revenue run rate",
-    body: "India's first dedicated sales school. Three cohorts completed. Shark Tank India appearance. Backed by MU grants. Built entirely while Nikhil was still a student at Masters' Union.",
+    stage: "Testing",
+    body: "They launched inside their own 60-member batch first. No frills. Users tuned in, shows got made, feedback was instant.",
   },
   {
-    name: "Reyansh Juneja — MemoTag",
-    meta: "UG '28 · Bootstrapped · Shark Tank India",
-    body: "A dementia care wearable built by a first-year undergraduate. Reyansh had not completed his first year when he appeared on national television pitching to India's most prominent investors. He is still enrolled.",
+    stage: "Traction",
+    body: "Venture Highway came in with a $400K seed round. EIGHT scaled to 5M+ downloads, 750K+ monthly active users, and 80,000+ paying subscribers.",
+  },
+  {
+    stage: "Pivot",
+    body: "In early 2025, they read the shift in Gen Z attention toward short-form video — and pivoted from live audio to microdrama. In 14 weeks: 20 original series, 500K+ users, $1M+ ARR.",
+  },
+  {
+    stage: "Outcome",
+    body: "₹13Cr+ ARR today, ₹27Cr raised to date, ₹43.7Cr+ projected for FY26, 20 employees — India's storytelling powerhouse, still writing its next act.",
+  },
+];
+
+const BAMBAII_BEATS: Beat[] = [
+  {
+    stage: "First Experiment",
+    body: "During the Dropshipping Challenge, Gaurav Dasgupta and his group combined nuts, seeds, and condiments into a homemade snack mix — priced at ₹60. It flopped.",
+  },
+  {
+    stage: "Early Sales",
+    body: "They dropped the price to ₹50. The first 100-pack batch sold out in an hour, generating over ₹60,000 in sales during the challenge alone.",
+  },
+  {
+    stage: "Failure / Realisation",
+    body: "Despite the sales, Gaurav's own verdict was blunt: “The product was still... for the lack of a better word... shit.” The team disbanded amicably.",
+  },
+  {
+    stage: "Iteration",
+    body: "Months later, stuck for a new idea in Jaisalmer, a call from his mother reminded him of her business advice — sell with one hand, take the money with the other. He found leftover bottles from the old challenge and, in eight days (Jan 7–15), fixed the taste, texture, and size, and rebranded it — naming it Bambaii Foods last-minute, as the label printer was about to close.",
+  },
+  {
+    stage: "Product-Market Traction",
+    body: "The relaunched Piri Piri Chiwda became a hit — winning the MVP grant and earning Gaurav a spot on Demo Day. Today: ₹50L ARR, ₹1.2Cr projected revenue, 5,000+ customers, retail presence in Kolkata and Kathmandu.",
+  },
+];
+
+const EATATLAS_BEATS: Beat[] = [
+  {
+    stage: "Problem",
+    body: "In a Deloitte canteen, Ishita Gupta grew frustrated with how little the snacking industry had evolved. The question stuck with her even after she moved on to Sleepy Owl.",
+  },
+  {
+    stage: "Research",
+    body: "At Masters' Union, she teamed up with her brother Anshul Gupta (food systems, supply chain expertise from EY and the Ministry of Agriculture) and hostel neighbor Mayuresh Jadhav (branding). Together they had product thinking, operational depth, and brand instinct.",
+  },
+  {
+    stage: "Testing",
+    body: "Over 45 days, they tested across campuses, events, and food courts, narrowing down to three flavors based on adaptability, virality, and supply-chain feasibility.",
+  },
+  {
+    stage: "Product",
+    body: "Global-cuisine-inspired dips, packaged like boarding passes — snacks designed to “travel through taste.”",
+  },
+  {
+    stage: "Launch",
+    body: "Official marketplace launch in January 2025, backed by 50+ pop-ups across Delhi NCR to test pin-code-specific trends — including a viral, unplanned moment at a Coldplay concert.",
+  },
+  {
+    stage: "Traction",
+    body: "The only consumer brand to make the Top 3 at Demo Day, backed by Masters' Union grants and the Founder Fellowship. Now incubated at IIM Bangalore, IIT Kozhikode, BITS Pilani, and NIFTEM. Current: ₹80L ARR, ₹15L raised, ₹2Cr projected FY26.",
+  },
+];
+
+const PATTERN_STEPS = ["Question", "Experiment", "Product", "Customer", "Iteration", "Traction"];
+
+const ECOSYSTEM_STATS = [
+  { value: "30+", label: "Startups launched" },
+  { value: "₹593.10 Cr", label: "Total valuation" },
+  { value: "₹480 Cr", label: "Projected revenue, FY26" },
+  { value: "₹319.8 Cr", label: "Annualised revenue" },
+  { value: "₹5.7 Cr", label: "Grants given by Masters' Union" },
+  { value: "10,000+", label: "1:1 mentorship hours" },
+  { value: "14.7x", label: "Capital efficiency" },
+  { value: "500+", label: "Jobs created" },
+];
+
+const TESTIMONIALS = [
+  {
+    quote:
+      "I came in expecting good ideas, but what I saw were real businesses. Students with traction, customers, and actual revenues. The ambition in that room was electric. This is what business education should be.",
+    name: "Divya Gupta",
+    role: "Director, Aavishkar Capital",
+  },
+  {
+    quote:
+      "This journey was more than just building a brand — it was about finding purpose and passion in every step... It wasn't just business; it became a home for our grit and growth.",
+    name: "Sarthak Khanna",
+    role: "Founder, Monarque",
+  },
+  {
+    quote:
+      "Masters' Union provided the environment and mentorship to transform a simple question into a meaningful product.",
+    name: "Sakshi Tuteja",
+    role: "Founder, Yango",
+  },
+  {
+    quote:
+      "I found some of the problem statements genuinely compelling, especially those being tackled by Cryptique, Guardex, and Spawnright.",
+    name: "Sahil Dhingra",
+    role: "VP, Info Edge Ventures",
+  },
+];
+
+const NEXT_GEN = [
+  {
+    name: "Meta Fashion",
+    pitch: "A phygital fashion house building trend-driven digital wearables and virtual-world drops.",
+  },
+  {
+    name: "MemoTag",
+    pitch:
+      "An AI companion that engages patients in clinically structured phone conversations, turning them into graded reports for doctors.",
+  },
+  {
+    name: "Zenmo",
+    pitch: "An automotive-lifestyle apparel brand blending motorsport culture with streetwear.",
+  },
+  {
+    name: "Internet Human Co.",
+    pitch: "AI agents built as tireless “digital employees,” managed like remote team members.",
+  },
+  {
+    name: "Angry Toast",
+    pitch: "A content-first sock and footwear brand for Gen Z, built on creator-led community.",
+  },
+  {
+    name: "AceCard",
+    pitch: "A smart NFC business card that turns a single tap into a full CRM-synced digital profile.",
+  },
+];
+
+type Company = {
+  name: string;
+  founder: string;
+  category: string;
+  metric: string;
+  description: string;
+};
+
+const PORTFOLIO: Company[] = [
+  {
+    name: "Eight",
+    founder: "Yugal Tamang, Mohit Paliwal, Mohit Goswami",
+    category: "Tech & Media",
+    metric: "5M+ downloads",
+    description: "Audio-to-microdrama storytelling platform.",
+  },
+  {
+    name: "Nivara",
+    founder: "Vikas Kabra",
+    category: "D2C",
+    metric: "₹15Cr ARR, bootstrapped",
+    description: "Lab-grown diamond jewellery, profitable with zero outside capital.",
+  },
+  {
+    name: "Bullspree",
+    founder: "Dharmil Bavishi",
+    category: "Fintech",
+    metric: "10L+ registered users",
+    description: "Experiential investing platform for India's retail traders.",
   },
   {
     name: "PlaySuper",
-    meta: "Co'24 · $1.5M raised",
-    body: "India's first gaming commerce startup. Backed by 100X.VC and IAN Fund. The founders raised institutional capital before graduating.",
+    founder: "Upamanyu Chatterjee, Shouradeep Chakraborty",
+    category: "Gaming",
+    metric: "₹83.5Cr last valuation",
+    description: "Rewards platform helping gaming studios fix retention.",
   },
   {
-    name: "Lexi's Gourmet Sandwiches",
-    meta: "Co'24 · ₹1 Cr+ ARR",
-    body: "Cloud kitchen, gourmet sandwiches. Rated 4.5+/5 on Swiggy and Zomato within three months of launch. Started in the Masters' Union Food Lab. Now expanding from Gurgaon to Delhi.",
+    name: "Lexi's",
+    founder: "Naveen Balaji, Rhea Melwani, Alex Puthusserry, Ayush Melwani",
+    category: "F&B",
+    metric: "₹1.5Cr+ ARR",
+    description: "Gurgaon's top-rated gourmet sandwich brand.",
+  },
+  {
+    name: "Cryptique",
+    founder: "Parth Agarwal, Akshit Varsani",
+    category: "Web3",
+    metric: "30+ project waitlist in 3 days",
+    description: "An AI-native intelligence layer for Web3 marketing ROI.",
+  },
+  {
+    name: "JustMyRoots",
+    founder: "Karan Sachdeva",
+    category: "Logistics / F&B",
+    metric: "₹500Cr last valuation",
+    description: "Regional food delivery grown into a national logistics backbone.",
+  },
+  {
+    name: "Bambaii Foods",
+    founder: "Gaurav Dasgupta",
+    category: "F&B",
+    metric: "5,000+ customers",
+    description: "Guilt-free snacking, reborn from a failed first batch.",
+  },
+  {
+    name: "Eat Atlas",
+    founder: "Ishita Gupta, Anshul Gupta, Mayuresh Jadhav",
+    category: "F&B",
+    metric: "Top 3, Demo Day",
+    description: "Global-flavor dips in boarding-pass packaging.",
   },
 ];
 
+const REALITY_EXAMPLES = [
+  {
+    name: "Bambaii Foods",
+    body: "A ₹60 snack mix that flopped, a founder who called his own product “shit,” a team that disbanded before the real version got built.",
+  },
+  {
+    name: "EIGHT",
+    body: "A full pivot from live audio to microdrama when the founders read that the format itself was aging out.",
+  },
+  {
+    name: "Woody's Pizzeria",
+    body: "Kanav Rishi Kumar's first weekend of full orders came with an early 1-star review before the rating climbed to 4.7 across 3,000+ orders.",
+  },
+  {
+    name: "TrueBrands",
+    body: "Three months in, both the co-founder and tech lead walked away. Mukund Gupta kept going alone until two new interns joined.",
+  },
+  {
+    name: "PlaySuper",
+    body: "Its founders' previous venture, CollegeShala, was acquired — then the 2023 edtech crash forced layoffs at the company that acquired it, before PlaySuper was even an idea.",
+  },
+];
+
+/* ------------------------------- Components -------------------------------- */
+
+function Reveal({
+  children,
+  delay = 0,
+  y = 24,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  y?: number;
+  className?: string;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function Eyebrow({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
+  return (
+    <div
+      className={`text-[11px] font-semibold uppercase tracking-[0.3em] ${dark ? "text-white/55" : "text-black/55"}`}
+      style={{ fontFamily: MONO }}
+    >
+      {children}
+    </div>
+  );
+}
+
+function Section({
+  id,
+  tone = "light",
+  container = "max-w-6xl",
+  children,
+}: {
+  id?: string;
+  tone?: "light" | "dark" | "paper";
+  container?: string;
+  children: React.ReactNode;
+}) {
+  const toneClass =
+    tone === "dark" ? "bg-black text-white" : tone === "paper" ? "bg-neutral-50 text-black" : "bg-white text-black";
+  return (
+    <section id={id} className={toneClass}>
+      <div className={`mx-auto ${container} px-5 py-16 md:px-10 md:py-24`}>{children}</div>
+    </section>
+  );
+}
+
+function Placeholder({
+  kind,
+  aspect,
+  dark = false,
+  note,
+  className = "",
+}: {
+  kind: "image" | "video";
+  aspect: string;
+  dark?: boolean;
+  note?: string;
+  className?: string;
+}) {
+  const Icon = kind === "video" ? Play : ImageIcon;
+  return (
+    <div
+      className={`relative w-full overflow-hidden ${aspect} ${className} ${
+        dark ? "border border-white/15 bg-white/[0.03]" : "border border-black/10 bg-black/[0.03]"
+      }`}
+    >
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-60"
+        style={{
+          backgroundImage: `repeating-linear-gradient(135deg, ${
+            dark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)"
+          } 0px, ${dark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)"} 1px, transparent 1px, transparent 14px)`,
+        }}
+      />
+      <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
+        <span
+          className={`flex size-11 items-center justify-center rounded-full border ${
+            dark ? "border-white/25 text-white/60" : "border-black/20 text-black/45"
+          }`}
+        >
+          <Icon className="size-4" strokeWidth={1.5} />
+        </span>
+        <span
+          className={`text-[10px] font-semibold uppercase tracking-[0.24em] ${dark ? "text-white/50" : "text-black/45"}`}
+          style={{ fontFamily: MONO }}
+        >
+          {kind === "video" ? "Video Placeholder" : "Image Placeholder"}
+        </span>
+        {note && (
+          <span
+            className={`text-[10px] uppercase tracking-[0.18em] ${dark ? "text-white/30" : "text-black/30"}`}
+            style={{ fontFamily: MONO }}
+          >
+            {note}
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function StoryBeats({ beats, dark = false }: { beats: Beat[]; dark?: boolean }) {
+  return (
+    <ol className="mt-2 space-y-8">
+      {beats.map((b, i) => (
+        <Reveal key={b.stage} delay={i * 0.05}>
+          <li
+            className={`flex gap-5 border-t pt-6 first:border-t-0 first:pt-0 ${
+              dark ? "border-white/10" : "border-black/10"
+            }`}
+          >
+            <span
+              className={`shrink-0 text-[11px] font-semibold uppercase tracking-[0.2em] ${
+                dark ? "text-white/50" : "text-black/50"
+              }`}
+              style={{ fontFamily: MONO }}
+            >
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <div>
+              <div
+                className={`text-[11px] font-semibold uppercase tracking-[0.22em] ${
+                  dark ? "text-white/70" : "text-black/70"
+                }`}
+                style={{ fontFamily: MONO }}
+              >
+                {b.stage}
+              </div>
+              <p className={`mt-2 text-[1.02rem] leading-[1.7] ${dark ? "text-white/80" : "text-black/75"}`}>
+                {b.body}
+              </p>
+            </div>
+          </li>
+        </Reveal>
+      ))}
+    </ol>
+  );
+}
+
+function JourneyStages({ stages }: { stages: Stage[] }) {
+  return (
+    <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-5">
+      {stages.map((s, i) => (
+        <Reveal key={s.name} delay={i * 0.06} className="h-full">
+          <div
+            className={`flex h-full flex-col justify-between p-6 md:p-7 ${
+              s.culmination ? "bg-black text-white" : "bg-white text-black"
+            }`}
+          >
+            <div>
+              <div
+                className={`text-[11px] font-semibold uppercase tracking-[0.22em] ${
+                  s.culmination ? "text-white/55" : "text-black/50"
+                }`}
+                style={{ fontFamily: MONO }}
+              >
+                {s.n}
+              </div>
+              <h3 className="mt-3 text-[1.15rem] font-medium leading-tight">{s.name}</h3>
+              {s.grant && (
+                <div
+                  className={`mt-3 inline-block text-[10px] uppercase tracking-[0.18em] ${
+                    s.culmination ? "text-white/60" : "text-black/55"
+                  }`}
+                  style={{ fontFamily: MONO }}
+                >
+                  Grant · {s.grant}
+                </div>
+              )}
+            </div>
+            <p className={`mt-5 text-[0.92rem] leading-[1.6] ${s.culmination ? "text-white/80" : "text-black/70"}`}>
+              {s.body}
+            </p>
+          </div>
+        </Reveal>
+      ))}
+    </div>
+  );
+}
+
+function PortfolioCard({ company, delay = 0 }: { company: Company; delay?: number }) {
+  return (
+    <Reveal delay={delay}>
+      <article className="group h-full bg-white p-7 transition-transform duration-300 hover:-translate-y-1">
+        <div className="flex items-start justify-between gap-3">
+          <h3 className="text-[1.1rem] font-medium leading-tight">{company.name}</h3>
+          <span
+            className="shrink-0 text-[10px] uppercase tracking-[0.18em] text-black/45"
+            style={{ fontFamily: MONO }}
+          >
+            {company.category}
+          </span>
+        </div>
+        <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-black/50" style={{ fontFamily: MONO }}>
+          {company.founder}
+        </div>
+        <div className="mt-4 text-[1.15rem] font-medium tracking-[-0.02em]">{company.metric}</div>
+        <p className="mt-3 text-[0.92rem] leading-[1.6] text-black/70">{company.description}</p>
+      </article>
+    </Reveal>
+  );
+}
+
+/* ---------------------------------- Page ----------------------------------- */
+
 function StartupsPage() {
   return (
-    <main className="min-h-screen bg-white pb-16 text-black md:pb-18" style={{ fontFamily: INTER }}>
-      <BottomNav items={NAV} applyHref="#closing" />
+    <main className="min-h-screen bg-white text-black" style={{ fontFamily: INTER }}>
+      <BottomNav items={NAV} applyHref="#cta" />
 
-      {/* Chapter marker */}
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 pt-6 md:px-10 md:pt-8">
+      <div className="mx-auto flex max-w-6xl items-center justify-between bg-white px-5 pt-6 md:px-10 md:pt-8">
         <Link
           to="/"
           className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-black/70 transition-colors hover:text-black"
@@ -145,158 +564,433 @@ function StartupsPage() {
         </div>
       </div>
 
-      {/* HERO */}
-      <section id="top" className="mx-auto max-w-6xl px-5 pb-10 pt-10 md:px-10 md:pt-14">
-        <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
-          Entrepreneurship
+      {/* 1. HERO */}
+      <header id="top" className="relative overflow-hidden bg-black pb-16 pt-10 text-white md:pb-24 md:pt-14">
+        <div className="mx-auto max-w-6xl px-5 md:px-10">
+          <Reveal>
+            <Eyebrow dark>Entrepreneurship at Masters&apos; Union</Eyebrow>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <h1 className="mt-6 max-w-[20ch] text-balance text-[clamp(2.6rem,7.5vw,6.5rem)] font-medium leading-[0.95] tracking-[-0.02em]">
+              Some of our students don&apos;t graduate into jobs. They graduate into companies.
+            </h1>
+          </Reveal>
+          <Reveal delay={0.16}>
+            <p className="mt-7 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-white/75">
+              30+ startups. ₹593 Cr in combined valuation. Built by students who turned a cafeteria
+              question, a canteen frustration, or a failed first batch into a real business — while still
+              enrolled.
+            </p>
+          </Reveal>
+          <Reveal delay={0.24}>
+            <Link
+              to="/"
+              className="group mt-9 inline-flex items-center gap-2 bg-white px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-black transition-opacity hover:opacity-85"
+              style={{ fontFamily: MONO }}
+            >
+              Start Building
+              <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
+          </Reveal>
+          <Reveal delay={0.32} className="mt-14">
+            <Placeholder
+              kind="video"
+              aspect="aspect-video md:aspect-[21/9]"
+              dark
+              note="Full-bleed campus / founder reel"
+            />
+          </Reveal>
         </div>
-        <h1 className="mt-6 max-w-[22ch] text-balance text-[clamp(2.4rem,7vw,6rem)] font-medium leading-[0.95] tracking-[-0.02em] text-black">
-          A school that incubates startups is still just a school. We are building a portfolio.
-        </h1>
-        <p className="mt-7 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-black/70">
-          30+ student startups. ₹593 Cr in total valuation. Six appearances on Shark Tank India —
-          including one by a first-year undergraduate who hadn&apos;t finished his first semester.
-          We don&apos;t wait for students to graduate before calling them founders. The portfolio
-          starts on day one.
-        </p>
-      </section>
+      </header>
 
-      {/* FILM */}
-      <section className="mx-auto max-w-6xl px-5 pb-10 md:px-10">
-        <VenturesFilm />
-      </section>
-
-
-
-      {/* STATS — 6-up grid */}
-      <section id="stats" className="mx-auto max-w-6xl px-5 md:px-10">
-        <div className="grid grid-cols-2 gap-px bg-black/10 md:grid-cols-3">
-          {STATS.map((s) => (
-            <div key={s.label} className="bg-white px-5 py-7">
-              <div className="text-[clamp(1.8rem,3.2vw,2.8rem)] leading-none tracking-[-0.03em] text-black">
-                {s.value}
-              </div>
-              <div
-                className="mt-4 text-[10px] uppercase tracking-[0.2em] text-black/60"
-                style={{ fontFamily: MONO }}
-              >
-                {s.label}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* THE INFRASTRUCTURE */}
-      <section id="infra" className="mx-auto max-w-6xl px-5 pt-14 md:px-10 md:pt-18">
-        <div className="text-[11px] uppercase tracking-[0.3em] text-black/55" style={{ fontFamily: MONO }}>
-          The Infrastructure
-        </div>
-        <h2 className="mt-5 max-w-[28ch] text-[clamp(1.8rem,3.6vw,3rem)] font-medium leading-[1.05] tracking-[-0.015em]">
-          Most schools give you a pitch competition. We give you a fund, a grant, and a room full
-          of VCs.
-        </h2>
-        <p className="mt-8 max-w-[68ch] text-[1.05rem] leading-[1.65] text-black/70">
-          Entrepreneurship at Masters&apos; Union is not a track you opt into. It is built into
-          every semester. Every student runs a real venture from Term 1 — a live e-commerce
-          business, a personal brand, a company pitched to 100 VCs. By the time you reach the
-          Venture Initiation Programme, you are not preparing to be a founder. You already are one.
-        </p>
-
-        <div className="mt-9 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2">
-          {INFRA.map((i) => (
-            <article key={i.name} className="flex flex-col bg-white p-8 md:p-10">
-              <div
-                className="text-[10px] uppercase tracking-[0.24em] text-black/55"
-                style={{ fontFamily: MONO }}
-              >
-                {i.tag}
-              </div>
-              <h3 className="mt-4 text-[clamp(1.3rem,2vw,1.7rem)] font-medium leading-tight text-black">
-                {i.name}
-              </h3>
-              <p className="mt-5 text-[1rem] leading-[1.7] text-black/75">{i.body}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* THE PORTFOLIO */}
-      <section
-        id="portfolio"
-        className="mt-14 border-t border-black/10 bg-neutral-50 md:mt-18"
-      >
-        <div className="mx-auto max-w-6xl px-5 py-12 md:px-10 md:py-16">
-          <div
-            className="text-[11px] uppercase tracking-[0.3em] text-black/55"
-            style={{ fontFamily: MONO }}
-          >
-            The Portfolio
-          </div>
-          <h2 className="mt-5 max-w-[32ch] text-[clamp(1.8rem,3.6vw,3rem)] font-medium leading-[1.05] tracking-[-0.015em]">
-            Six startups on Shark Tank India. One founder was in his first year of undergrad.
+      {/* 2. WHERE IDEAS BEGIN */}
+      <Section id="spark" tone="light">
+        <Reveal>
+          <Eyebrow>The Spark</Eyebrow>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+            Nobody sits down to “found a startup.” They notice something first.
           </h2>
-          <p className="mt-6 max-w-[68ch] text-[1.05rem] leading-[1.65] text-black/70">
-            These are not alumni success stories from a decade ago. These are students who built
-            while enrolled — and the market noticed.
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p className="mt-7 max-w-[68ch] text-[1.05rem] leading-[1.7] text-black/70">
+            Some ideas start with a question nobody else was asking. Some start with a frustration nobody
+            else was naming. A few start as a homework assignment nobody meant to turn into a business. At
+            Masters&apos; Union, that first spark is treated as the beginning of something real — not an
+            extracurricular.
           </p>
+        </Reveal>
 
-          <div className="mt-8 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2 lg:grid-cols-3">
-            {PORTFOLIO.map((p) => (
-              <article key={p.name} className="flex flex-col bg-white p-7">
-                <h3 className="text-[1.15rem] font-medium leading-tight text-black">{p.name}</h3>
-                <div
-                  className="mt-2 text-[10px] uppercase tracking-[0.22em] text-black/60"
-                  style={{ fontFamily: MONO }}
-                >
-                  {p.meta}
-                </div>
-                <p className="mt-5 text-[0.95rem] leading-[1.65] text-black/75">{p.body}</p>
-              </article>
+        <div className="mt-12 grid grid-cols-1 gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-start">
+          <div className="grid grid-cols-1 gap-px bg-black/10 sm:grid-cols-2">
+            {SPARK_EXAMPLES.map((e, i) => (
+              <Reveal key={e.name} delay={i * 0.05}>
+                <article className="h-full bg-white p-7">
+                  <h3 className="text-[1.05rem] font-medium">{e.name}</h3>
+                  <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-black/50" style={{ fontFamily: MONO }}>
+                    {e.founder}
+                  </div>
+                  <p className="mt-4 text-[0.95rem] leading-[1.65] text-black/75">{e.body}</p>
+                </article>
+              </Reveal>
             ))}
           </div>
+          <Reveal delay={0.15}>
+            <Placeholder kind="image" aspect="aspect-[4/5]" note="Editorial portrait grid" />
+          </Reveal>
         </div>
-      </section>
+      </Section>
 
-      {/* PULL QUOTE + CLOSING */}
-      <section id="closing" className="mx-auto max-w-5xl px-5 py-14 md:px-10 md:py-18">
-        <blockquote className="text-balance text-[clamp(1.6rem,3.6vw,3rem)] italic leading-[1.15] tracking-[-0.01em] text-black">
-          &ldquo;A school that incubates startups is still just a school. We are building a
-          portfolio.&rdquo;
-        </blockquote>
-        <div className="mt-7 space-y-5 text-[1.05rem] leading-[1.7] text-black/75">
-          <p>
-            Most institutions add entrepreneurship as a feature. An incubation cell here. A pitch
-            night there. A certificate if you show up. We built Masters&apos; Union around the
-            opposite assumption: that the only way to learn to build is to build, and the only way
-            to build is to have real stakes — real customers, real money, real consequences when it
-            doesn&apos;t work.
+      {/* 3. ENTREPRENEURSHIP BY DOING */}
+      <Section id="doing" tone="paper">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-center">
+          <div>
+            <Reveal>
+              <Eyebrow>The Outclass</Eyebrow>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="mt-5 max-w-[22ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+                Half the curriculum doesn&apos;t happen in a classroom.
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="mt-7 max-w-[56ch] text-[1.05rem] leading-[1.7] text-black/70">
+                At Masters&apos; Union, real growth doesn&apos;t come from case studies — it comes from
+                taking risks, testing ideas, and putting something into the world. That&apos;s what the
+                Outclass is: half the curriculum happens outside the classroom, where students run
+                dropshipping stores, launch content brands, and start companies from scratch, from day one.
+              </p>
+            </Reveal>
+          </div>
+          <Reveal delay={0.15}>
+            <Placeholder kind="video" aspect="aspect-video" note="Documentary-style, students building" />
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* 4. THE VENTURE JOURNEY */}
+      <Section id="journey" tone="light">
+        <Reveal>
+          <Eyebrow>The Venture Initiation Programme (VIP)</Eyebrow>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+            Nearly half the MBA. Four stages. One Demo Day.
+          </h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p className="mt-7 max-w-[64ch] text-[1.05rem] leading-[1.7] text-black/70">
+            The VIP is a structured track — not an elective — that takes an idea through four defined
+            stages, each backed by a grant and mentorship from founders, CXOs, and investors.
           </p>
-          <p>
-            The result is not a programme. It is a portfolio of companies, built by people in their
-            twenties, that collectively employ 180+ people and are projected to generate ₹480 Cr in
-            revenue this financial year. That number will be larger next year. Because the next
-            cohort is already building.
+        </Reveal>
+        <JourneyStages stages={VIP_STAGES} />
+      </Section>
+
+      {/* 5. FOUNDER STORY - EIGHT */}
+      <Section id="eight" tone="dark">
+        <Reveal>
+          <Eyebrow dark>Chapter 01 · MU Whiteboards to 5M+ Downloads</Eyebrow>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(2rem,4.2vw,3.6rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+            What if the next big creator wasn&apos;t on camera?
+          </h2>
+        </Reveal>
+        <div className="mt-12 grid grid-cols-1 gap-12 md:grid-cols-[1fr_0.85fr] md:items-start">
+          <StoryBeats beats={EIGHT_BEATS} dark />
+          <Reveal delay={0.1}>
+            <Placeholder kind="image" aspect="aspect-[3/2]" dark note="Founder portrait / product still" />
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* 6. FOUNDER STORY - BAMBAII FOODS */}
+      <Section id="bambaii" tone="light">
+        <Reveal>
+          <Eyebrow>Chapter 20 · From Dorm Room Experiment to India&apos;s Favorite Guilt-Free Snack</Eyebrow>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="mt-5 max-w-[28ch] text-balance text-[clamp(2rem,4.2vw,3.6rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+            &ldquo;Ek haath se becho, dusre haath se paise lo.&rdquo;
+          </h2>
+        </Reveal>
+        <div className="mt-12 grid grid-cols-1 gap-12 md:grid-cols-[1fr_0.85fr] md:items-start">
+          <StoryBeats beats={BAMBAII_BEATS} />
+          <Reveal delay={0.1}>
+            <Placeholder kind="image" aspect="aspect-square" note="Product / process photography" />
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* 7. FOUNDER STORY - EAT ATLAS */}
+      <Section id="eat-atlas" tone="dark">
+        <Reveal>
+          <Eyebrow dark>Chapter 27 · From Bland Chips to Bold Global Dips</Eyebrow>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(2rem,4.2vw,3.6rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+            One bland chip. Three founders who couldn&apos;t stop thinking about it.
+          </h2>
+        </Reveal>
+        <div className="mt-12 grid grid-cols-1 gap-12 md:grid-cols-[1fr_0.85fr] md:items-start">
+          <StoryBeats beats={EATATLAS_BEATS} dark />
+          <Reveal delay={0.1}>
+            <Placeholder kind="image" aspect="aspect-[3/2]" dark note="Product photography / pop-up event" />
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* 8. THE COMMON PATTERN */}
+      <Section id="pattern" tone="paper">
+        <Reveal>
+          <Eyebrow>Zoom Out</Eyebrow>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+            Different founders. Different products. The same six moves.
+          </h2>
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <div className="mt-12 flex flex-wrap items-center gap-x-3 gap-y-4">
+            {PATTERN_STEPS.map((step, i) => (
+              <div key={step} className="flex items-center gap-3">
+                <span
+                  className="bg-black px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white"
+                  style={{ fontFamily: MONO }}
+                >
+                  {step}
+                </span>
+                {i < PATTERN_STEPS.length - 1 && (
+                  <ArrowRight className="size-3.5 text-black/30" aria-hidden />
+                )}
+              </div>
+            ))}
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.15}>
+          <p className="mt-10 max-w-[68ch] text-[1.05rem] leading-[1.7] text-black/70">
+            A cafeteria question about who gets to be a creator. A canteen complaint about boring chips. A
+            ₹60 snack mix nobody wanted, repriced to ₹50 and sold out in an hour. None of these
+            started as a business plan — they started as a small, cheap experiment that either worked or
+            told the founder something true. The ones that became companies are the ones where the founder
+            actually listened to that answer, and did it again.
           </p>
+        </Reveal>
+      </Section>
+
+      {/* 9. THE SCALE OF THE ECOSYSTEM */}
+      <Section id="scale" tone="dark">
+        <Reveal>
+          <Eyebrow dark>By the Numbers</Eyebrow>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+            This isn&apos;t three stories. It&apos;s a portfolio.
+          </h2>
+        </Reveal>
+
+        <div className="mt-12 grid grid-cols-2 gap-px bg-white/10 md:grid-cols-4">
+          {ECOSYSTEM_STATS.map((s, i) => (
+            <Reveal key={s.label} delay={i * 0.04}>
+              <div className="h-full bg-black px-5 py-8">
+                <div className="text-[clamp(1.7rem,3vw,2.6rem)] leading-none tracking-[-0.03em]">{s.value}</div>
+                <div
+                  className="mt-4 text-[10px] uppercase leading-relaxed tracking-[0.18em] text-white/55"
+                  style={{ fontFamily: MONO }}
+                >
+                  {s.label}
+                </div>
+              </div>
+            </Reveal>
+          ))}
         </div>
 
-        <div className="mt-8 flex flex-wrap items-center gap-4">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 rounded-none bg-black px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-white transition-opacity hover:opacity-80"
-            style={{ fontFamily: MONO }}
-          >
-            If you&apos;re going to build something, build it here <ArrowUpRight className="size-3.5" />
-          </Link>
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 rounded-none border border-black/15 px-5 py-3 text-[11px] uppercase tracking-[0.22em] text-black transition-colors hover:bg-black/[0.04]"
-            style={{ fontFamily: MONO }}
-          >
-            ← Back to all 10 things
-          </Link>
+        <Reveal delay={0.2}>
+          <p className="mt-10 max-w-[68ch] text-[1.02rem] leading-[1.7] text-white/70">
+            More than half of these startups have raised over $1 million. Four have pitched on Shark Tank
+            India. And when a startup doesn&apos;t make it, the founder walks away with sharper skills, real
+            experience, and often, an incredible job offer anyway.
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.25} className="mt-10">
+          <Placeholder kind="image" aspect="aspect-[16/7]" dark note="Demo Day crowd / data visualization" />
+        </Reveal>
+      </Section>
+
+      {/* 10. THE PEOPLE AROUND FOUNDERS */}
+      <Section id="people" tone="light">
+        <Reveal>
+          <Eyebrow>Mentors, VCs, and Believers</Eyebrow>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+            Behind every founder is a room full of people who&apos;ve already done it.
+          </h2>
+        </Reveal>
+
+        <div className="mt-12 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2">
+          {TESTIMONIALS.map((t, i) => (
+            <Reveal key={t.name} delay={i * 0.06}>
+              <figure className="h-full bg-white p-8 md:p-10">
+                <blockquote className="text-[clamp(1.02rem,1.5vw,1.2rem)] italic leading-[1.55] text-black/85">
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+                <figcaption className="mt-6 text-[11px] uppercase tracking-[0.2em] text-black/55" style={{ fontFamily: MONO }}>
+                  {t.name} · {t.role}
+                </figcaption>
+              </figure>
+            </Reveal>
+          ))}
         </div>
-      </section>
+      </Section>
+
+      {/* 11. FOUNDER FELLOWSHIP */}
+      <Section id="fellowship" tone="dark">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-[0.8fr_1.2fr] md:items-center">
+          <Reveal>
+            <div className="text-[clamp(3rem,7vw,5.5rem)] font-medium leading-none tracking-[-0.03em]">
+              ₹50,000
+            </div>
+            <div className="mt-2 text-[11px] uppercase tracking-[0.22em] text-white/55" style={{ fontFamily: MONO }}>
+              per month, no equity taken
+            </div>
+          </Reveal>
+          <div>
+            <Reveal>
+              <Eyebrow dark>For Those Going All In</Eyebrow>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="mt-5 max-w-[20ch] text-[clamp(1.9rem,3.8vw,3rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+                No placements. No backup plan. Just a runway.
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="mt-7 max-w-[56ch] text-[1.02rem] leading-[1.7] text-white/75">
+                For students who want to build instead of interview, Masters&apos; Union offers the Founder
+                Fellowship: ₹50,000 a month in grants, mentorship from industry veterans, and active
+                help with fundraising — no placements, no backup plans. Right now, 40+ fellows are using
+                that runway to build their companies full-time.
+              </p>
+            </Reveal>
+            <Reveal delay={0.15} className="mt-9">
+              <Placeholder kind="image" aspect="aspect-[4/5]" dark note="Founder-at-work portrait" className="max-w-sm" />
+            </Reveal>
+          </div>
+        </div>
+      </Section>
+
+      {/* 12. THE NEXT GENERATION */}
+      <Section id="next-gen" tone="light">
+        <Reveal>
+          <Eyebrow>The UG Ecosystem, 2025–26</Eyebrow>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+            The founders below aren&apos;t waiting for an MBA to start.
+          </h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p className="mt-7 max-w-[66ch] text-[1.05rem] leading-[1.7] text-black/70">
+            Masters&apos; Union&apos;s undergraduate cohort has its own entrepreneurship track — and its
+            own portfolio. In the 2025–26 cycle alone, UG founders have been granted ₹75L+ and
+            generated ₹14Cr+ in revenue, with two startups earning Shark Tank India pitches.
+          </p>
+        </Reveal>
+
+        <div className="mt-12 grid grid-cols-1 gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
+          {NEXT_GEN.map((v, i) => (
+            <Reveal key={v.name} delay={i * 0.04}>
+              <article className="h-full bg-white p-7">
+                <h3 className="text-[1.05rem] font-medium">{v.name}</h3>
+                <p className="mt-3 text-[0.92rem] leading-[1.6] text-black/70">{v.pitch}</p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      {/* 13. PORTFOLIO */}
+      <Section id="portfolio" tone="paper">
+        <Reveal>
+          <Eyebrow>Selected Companies</Eyebrow>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="mt-5 max-w-[22ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+            Portfolio
+          </h2>
+        </Reveal>
+
+        <div className="mt-12 grid grid-cols-1 gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
+          {PORTFOLIO.map((p, i) => (
+            <PortfolioCard key={p.name} company={p} delay={i * 0.03} />
+          ))}
+        </div>
+      </Section>
+
+      {/* 14. THE REALITY OF BUILDING */}
+      <Section id="reality" tone="dark">
+        <Reveal>
+          <Eyebrow dark>Not a Straight Line</Eyebrow>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+            For every launch, there&apos;s a version that didn&apos;t work first.
+          </h2>
+        </Reveal>
+
+        <ul className="mt-12 space-y-8">
+          {REALITY_EXAMPLES.map((r, i) => (
+            <Reveal key={r.name} delay={i * 0.05}>
+              <li className="border-t border-white/10 pt-6 first:border-t-0 first:pt-0">
+                <span
+                  className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/55"
+                  style={{ fontFamily: MONO }}
+                >
+                  {r.name}
+                </span>
+                <p className="mt-2 max-w-[70ch] text-[1rem] leading-[1.7] text-white/80">{r.body}</p>
+              </li>
+            </Reveal>
+          ))}
+        </ul>
+
+        <Reveal delay={0.2} className="mt-12">
+          <Placeholder kind="video" aspect="aspect-video" dark note="Founder-interview, talking-head" />
+        </Reveal>
+      </Section>
+
+      {/* 15. FINAL CTA */}
+      <Section id="cta" tone="dark" container="max-w-4xl">
+        <div className="pb-4 pt-4 text-center md:pb-8 md:pt-8">
+          <Reveal>
+            <h2 className="text-balance text-[clamp(2.4rem,7vw,5.5rem)] font-semibold leading-[0.98] tracking-[-0.02em]">
+              WHAT WILL YOU BUILD?
+            </h2>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <p className="mx-auto mt-8 max-w-[56ch] text-[1.05rem] leading-[1.7] text-white/75">
+              Every company on this page started the same way every company starts: as nothing. A question.
+              A bad first batch. A frustration nobody else was naming. The only difference between an idea
+              and a startup is whether someone builds it.
+            </p>
+          </Reveal>
+          <Reveal delay={0.16}>
+            <Link
+              to="/"
+              className="group mt-10 inline-flex items-center gap-2 bg-white px-7 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-black transition-opacity hover:opacity-85"
+              style={{ fontFamily: MONO }}
+            >
+              Apply to Masters&apos; Union
+              <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
+          </Reveal>
+        </div>
+      </Section>
     </main>
   );
 }
@@ -308,7 +1002,7 @@ export const Route = createFileRoute("/startups")({
       {
         name: "description",
         content:
-          "30+ student startups. ₹593 Cr valuation. 6 on Shark Tank India. ₹480 Cr projected FY26 revenue. The portfolio starts on day one.",
+          "30+ student startups. ₹593 Cr valuation. From a cafeteria question to a $400K seed round: how Masters' Union founders build, test, fail, iterate, and scale real companies.",
       },
     ],
   }),
