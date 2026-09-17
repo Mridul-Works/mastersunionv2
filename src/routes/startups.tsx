@@ -1,14 +1,17 @@
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpRight,
-  BarChart3,
   Flag,
+  GraduationCap,
   Home,
   Image as ImageIcon,
+  LayoutGrid,
   Play,
   Trophy,
+  Tv,
   Users,
 } from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
@@ -17,11 +20,14 @@ const NAV: BottomNavItem[] = [
   { id: "top", label: "Top", icon: Home },
   { id: "journey", label: "Journey", icon: Flag },
   { id: "eight", label: "Stories", icon: Users },
-  { id: "scale", label: "Scale", icon: BarChart3 },
-  { id: "portfolio", label: "Portfolio", icon: Trophy },
+  { id: "sharktank", label: "Shark Tank", icon: Trophy },
+  { id: "portfolio", label: "Portfolio", icon: LayoutGrid },
 ];
 
 /* ---------------------------------- Data ---------------------------------- */
+/* Sources: [R1] Entrepreneurship Report 2021-25, [R2] UG Entrepreneurship Report
+   2025-26, [LIVE] mastersunion.org (student-entrepreneurship / challenges /
+   innovation-student-startups / events/ug-hssl), as audited. No invented facts. */
 
 const SPARK_EXAMPLES = [
   {
@@ -46,8 +52,24 @@ const SPARK_EXAMPLES = [
   },
 ];
 
+// [LIVE — student-entrepreneurship, current edition]
+const DROPSHIPPING_STATS = [
+  { value: "500+", label: "Students participated" },
+  { value: "150+", label: "Businesses built" },
+  { value: "₹10Cr+", label: "Revenue generated" },
+];
+
+// [LIVE — innovation-student-startups, Dropshipping Report top performers]
+const DROPSHIPPING_TOP = [
+  { name: "Zeller Crystals", revenue: "₹14.17L", body: "India's first crystal couture brand." },
+  { name: "The Frenzie Store", revenue: "₹14L", body: "A hair-care brand built around frizz-free, shiny, smooth results." },
+  { name: "Khareedo.shop", revenue: "₹11.8L", body: "Drones, home decor, and orthopaedic pillows under one storefront." },
+  { name: "ThriftFly", revenue: "₹11.3L", body: "A travel-discounts platform built as a student side hustle." },
+];
+
 type Stage = { n: string; name: string; grant: string | null; body: string; culmination?: boolean };
 
+// [R1 — Venture Initiation Program]
 const VIP_STAGES: Stage[] = [
   {
     n: "01",
@@ -82,8 +104,32 @@ const VIP_STAGES: Stage[] = [
   },
 ];
 
+type Episode = { label: string; body: string; culmination?: boolean };
+
+// [LIVE — innovation-student-startups: "The Startup Challenge"]
+const STARTUP_CHALLENGE_EPISODES: Episode[] = [
+  {
+    label: "Episode 1",
+    body: "Founders of 73 Boston, NOVA School, and Samarpana take leading Indian investors through the journey of their market research.",
+  },
+  {
+    label: "Episode 2",
+    body: "Fundee, Buzzinga, and Zwel's founders pitch to over 100 venture capitalists to show why their ideas are worth investing in.",
+  },
+  {
+    label: "Episode 3",
+    body: "Crispee, Soul Gappa, and Modulus showcase their startup ideas, vying for mentorship and funding from key investors.",
+  },
+  {
+    label: "Grand Finale",
+    body: "The top three startups secure funding worth over ₹30 lakh, plus exclusive 1:1 mentorship from India's biggest investors.",
+    culmination: true,
+  },
+];
+
 type Beat = { stage: string; body: string };
 
+// [R1 — Chapter 1: Eight]
 const EIGHT_BEATS: Beat[] = [
   {
     stage: "Idea",
@@ -111,6 +157,7 @@ const EIGHT_BEATS: Beat[] = [
   },
 ];
 
+// [R1 — Chapter 20: Bambaii Foods]
 const BAMBAII_BEATS: Beat[] = [
   {
     stage: "First Experiment",
@@ -134,6 +181,7 @@ const BAMBAII_BEATS: Beat[] = [
   },
 ];
 
+// [R1 — Chapter 27: Eat Atlas]
 const EATATLAS_BEATS: Beat[] = [
   {
     stage: "Problem",
@@ -161,8 +209,44 @@ const EATATLAS_BEATS: Beat[] = [
   },
 ];
 
-const PATTERN_STEPS = ["Question", "Experiment", "Product", "Customer", "Iteration", "Traction"];
+const PATTERN_STEPS = ["Question", "Experiment", "First Customer", "Failure", "Iteration", "Traction", "Pitch", "Scale"];
 
+// [LIVE — student-entrepreneurship: "Our Students on Shark Tank"]
+type SharkTankEntry = { company: string; founder: string; cohort: string; season: string; description: string };
+const SHARK_TANK: SharkTankEntry[] = [
+  {
+    company: "Bullspree",
+    founder: "Dharmil Bavishi",
+    cohort: "PGP TBM Co'21",
+    season: "Season 2",
+    description: "Bullspree is building India's favourite stock market playground for learning & investing.",
+  },
+  {
+    company: "HiveSchool",
+    founder: "Nikhil Gaur",
+    cohort: "PGP TBM Co'24",
+    season: "Season 4",
+    description: "HiveSchool is building India's first Sales School.",
+  },
+  {
+    company: "MemoTag",
+    founder: "Reyansh Juneja",
+    cohort: "UG TBM Co'28",
+    season: "Season 4",
+    description: "MemoTag is building an AI-driven wearable for dementia care.",
+  },
+];
+
+// [LIVE — student-entrepreneurship: High School Startup League]
+const HSSL_STATS = [
+  { value: "10,000+", label: "Applications" },
+  { value: "500+", label: "Schools participated" },
+  { value: "15+", label: "States represented" },
+  { value: "₹20L+", label: "Cash prize / funding pool" },
+];
+const HSSL_STAGES = ["Ideation", "MVP Showdown", "Investor Pitch"];
+
+// [R1 — Key Highlights]
 const ECOSYSTEM_STATS = [
   { value: "30+", label: "Startups launched" },
   { value: "₹593.10 Cr", label: "Total valuation" },
@@ -171,9 +255,10 @@ const ECOSYSTEM_STATS = [
   { value: "₹5.7 Cr", label: "Grants given by Masters' Union" },
   { value: "10,000+", label: "1:1 mentorship hours" },
   { value: "14.7x", label: "Capital efficiency" },
-  { value: "500+", label: "Jobs created" },
+  { value: "180+", label: "Number of employees" },
 ];
 
+// [R1 — Testimonials]
 const TESTIMONIALS = [
   {
     quote:
@@ -201,6 +286,7 @@ const TESTIMONIALS = [
   },
 ];
 
+// [R2 — UG Report 2025-26: descriptions verified, per-company stats/founders excluded (garbled source)]
 const NEXT_GEN = [
   {
     name: "Meta Fashion",
@@ -237,7 +323,8 @@ type Company = {
   description: string;
 };
 
-const PORTFOLIO: Company[] = [
+// [R1 — individual chapters, verbatim figures]
+const PORTFOLIO_PRIMARY: Company[] = [
   {
     name: "Eight",
     founder: "Yugal Tamang, Mohit Paliwal, Mohit Goswami",
@@ -280,6 +367,9 @@ const PORTFOLIO: Company[] = [
     metric: "30+ project waitlist in 3 days",
     description: "An AI-native intelligence layer for Web3 marketing ROI.",
   },
+];
+
+const PORTFOLIO_MORE: Company[] = [
   {
     name: "JustMyRoots",
     founder: "Karan Sachdeva",
@@ -301,8 +391,51 @@ const PORTFOLIO: Company[] = [
     metric: "Top 3, Demo Day",
     description: "Global-flavor dips in boarding-pass packaging.",
   },
+  {
+    name: "Woody's Pizzeria",
+    founder: "Kanav Rishi Kumar",
+    category: "F&B",
+    metric: "4.7★ across 3,000+ orders",
+    description: "South Delhi's highest-rated vegetarian pizzeria.",
+  },
+  {
+    name: "SeedsAI",
+    founder: "Vansh Miglani, Shubham Khatri",
+    category: "AI / Fintech",
+    metric: "₹60L ARR (FY25)",
+    description: "AI voice intelligence for NBFC collections and compliance.",
+  },
+  {
+    name: "Blue Brew",
+    founder: "Aditya Rathi",
+    category: "D2C / Fashion",
+    metric: "₹3.6Cr ARR",
+    description: "Fit-first denim and streetwear, profitable and bootstrapped.",
+  },
+  {
+    name: "Flourish Foods",
+    founder: "Sonam Sharma, Nikhil Sharma",
+    category: "F&B",
+    metric: "15x more iron than regular atta",
+    description: "Functional attas engineered for diabetes, iron deficiency, and low energy.",
+  },
+  {
+    name: "Monarque",
+    founder: "Sarthak Khanna",
+    category: "D2C / Perfumes",
+    metric: "₹24L+ ARR",
+    description: "Long-lasting, accessible luxury fragrances.",
+  },
+  {
+    name: "Guardex",
+    founder: "Naman Jain",
+    category: "DeepTech",
+    metric: "Piloted across 5 factories",
+    description: "Turns passive CCTV into AI-powered factory safety monitoring.",
+  },
 ];
 
+// [R1 — verbatim, chapters as cited]
 const REALITY_EXAMPLES = [
   {
     name: "Bambaii Foods",
@@ -489,6 +622,75 @@ function JourneyStages({ stages }: { stages: Stage[] }) {
   );
 }
 
+function EpisodeStrip({ episodes }: { episodes: Episode[] }) {
+  return (
+    <div className="mt-10 grid grid-cols-1 gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
+      {episodes.map((e, i) => (
+        <Reveal key={e.label} delay={i * 0.05} className="h-full">
+          <div
+            className={`flex h-full flex-col gap-4 p-6 ${
+              e.culmination ? "bg-foreground text-background" : "bg-background text-foreground"
+            }`}
+          >
+            <Placeholder kind="video" aspect="aspect-video" dark={e.culmination} note={e.label} />
+            <div>
+              <div className={`eyebrow ${e.culmination ? "text-background/70" : "text-foreground/60"}`}>{e.label}</div>
+              <p className={`mt-2 text-[0.88rem] leading-[1.55] ${e.culmination ? "text-background/85" : "text-foreground/70"}`}>
+                {e.body}
+              </p>
+            </div>
+          </div>
+        </Reveal>
+      ))}
+    </div>
+  );
+}
+
+function StatTiles({
+  stats,
+  tone = "light",
+  cols = "md:grid-cols-4",
+}: {
+  stats: { value: string; label: string }[];
+  tone?: "light" | "dark" | "accent";
+  cols?: string;
+}) {
+  const cellClass =
+    tone === "dark" ? "bg-foreground text-background" : tone === "accent" ? "bg-accent text-accent-foreground" : "bg-background text-foreground";
+  const gapClass = tone === "dark" ? "bg-background/10" : tone === "accent" ? "bg-accent-foreground/10" : "bg-border";
+  const labelOpacity =
+    tone === "dark" ? "text-background/55" : tone === "accent" ? "text-accent-foreground/65" : "text-foreground/55";
+  return (
+    <div className={`mt-12 grid grid-cols-2 gap-px ${gapClass} ${cols}`}>
+      {stats.map((s, i) => (
+        <Reveal key={s.label} delay={i * 0.04}>
+          <div className={`h-full px-5 py-8 ${cellClass}`}>
+            <div className="text-[clamp(1.7rem,3vw,2.6rem)] leading-none tracking-[-0.03em]">{s.value}</div>
+            <div className={`mt-4 text-[10px] uppercase leading-relaxed tracking-[0.18em] ${labelOpacity}`}>{s.label}</div>
+          </div>
+        </Reveal>
+      ))}
+    </div>
+  );
+}
+
+function SharkTankCard({ f, delay = 0 }: { f: SharkTankEntry; delay?: number }) {
+  return (
+    <Reveal delay={delay}>
+      <article className="h-full bg-background p-7">
+        <div className="flex items-center justify-between gap-3">
+          <h3 className="text-[1.15rem] font-medium">{f.company}</h3>
+          <span className="eyebrow text-foreground/45">{f.season}</span>
+        </div>
+        <div className="mt-1 text-[11px] uppercase tracking-[0.18em] text-foreground/50">
+          {f.founder} · {f.cohort}
+        </div>
+        <p className="mt-4 text-[0.95rem] leading-[1.65] text-foreground/75">{f.description}</p>
+      </article>
+    </Reveal>
+  );
+}
+
 function PortfolioCard({ company, delay = 0 }: { company: Company; delay?: number }) {
   return (
     <Reveal delay={delay}>
@@ -528,6 +730,8 @@ function CtaButton({ children, dark = false }: { children: React.ReactNode; dark
 /* ---------------------------------- Page ----------------------------------- */
 
 function StartupsPage() {
+  const [showMorePortfolio, setShowMorePortfolio] = useState(false);
+
   return (
     <main className="min-h-screen bg-background text-foreground">
       <BottomNav items={NAV} applyHref="#cta" />
@@ -543,7 +747,7 @@ function StartupsPage() {
       </div>
 
       {/* 1. HERO */}
-      <header id="top" className="relative overflow-hidden bg-foreground pb-16 pt-10 text-background md:pb-24 md:pt-14">
+      <header id="top" className="relative overflow-hidden bg-foreground pb-14 pt-10 text-background md:pb-20 md:pt-14">
         <div className="mx-auto max-w-[1440px] px-5 md:px-10">
           <Reveal>
             <Eyebrow dark>Entrepreneurship at Masters&apos; Union</Eyebrow>
@@ -572,7 +776,7 @@ function StartupsPage() {
               <CtaButton dark>Start Building</CtaButton>
             </div>
           </Reveal>
-          <Reveal delay={0.32} className="mt-14">
+          <Reveal delay={0.32} className="mt-12">
             <Placeholder
               kind="video"
               aspect="aspect-video md:aspect-[21/9]"
@@ -647,8 +851,47 @@ function StartupsPage() {
         </div>
       </Section>
 
-      {/* 4. THE VENTURE JOURNEY */}
-      <Section id="journey" tone="light">
+      {/* 4. DROPSHIPPING CHALLENGE */}
+      <Section id="dropshipping" tone="light">
+        <Reveal>
+          <Eyebrow>Dropshipping Challenge</Eyebrow>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="mt-5 max-w-[22ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+            Build, Launch & Sell
+          </h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p className="mt-7 max-w-[66ch] text-[1.05rem] leading-[1.7] text-foreground/70">
+            From idea to sales: students build profitable D2C businesses in under four months — running
+            their own marketing campaigns, sourcing, supply chains, customers, and sales, start to finish.
+          </p>
+        </Reveal>
+
+        <StatTiles stats={DROPSHIPPING_STATS} tone="light" cols="md:grid-cols-3" />
+
+        <Reveal delay={0.15} className="mt-14">
+          <Placeholder kind="video" aspect="aspect-video" note="Dropshipping Challenge highlight reel" />
+        </Reveal>
+
+        <Reveal delay={0.2} className="mt-14">
+          <div className="eyebrow text-foreground/55">Top performers, this edition</div>
+        </Reveal>
+        <div className="mt-6 grid grid-cols-1 gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
+          {DROPSHIPPING_TOP.map((d, i) => (
+            <Reveal key={d.name} delay={i * 0.04}>
+              <article className="h-full bg-background p-6">
+                <h3 className="text-[1rem] font-medium">{d.name}</h3>
+                <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-foreground/50">{d.revenue} revenue</div>
+                <p className="mt-3 text-[0.88rem] leading-[1.55] text-foreground/70">{d.body}</p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      {/* 5. VENTURE INITIATION PROGRAMME / THE VENTURE JOURNEY */}
+      <Section id="journey" tone="paper">
         <Reveal>
           <Eyebrow>The Venture Initiation Programme (VIP)</Eyebrow>
         </Reveal>
@@ -659,14 +902,26 @@ function StartupsPage() {
         </Reveal>
         <Reveal delay={0.1}>
           <p className="mt-7 max-w-[64ch] text-[1.05rem] leading-[1.7] text-foreground/70">
-            The VIP is a structured track — not an elective — that takes an idea through four defined
-            stages, each backed by a grant and mentorship from founders, CXOs, and investors.
+            Students build a business from 0 to 1, working through the real moving parts — pricing,
+            positioning, cash flow — not case studies about someone else's. The VIP is a structured track,
+            not an elective, backed by a grant at every stage and mentorship from founders, CXOs, and
+            investors.
           </p>
         </Reveal>
         <JourneyStages stages={VIP_STAGES} />
+
+        <Reveal delay={0.2} className="mt-16">
+          <Eyebrow>The Startup Challenge</Eyebrow>
+        </Reveal>
+        <Reveal delay={0.24}>
+          <p className="mt-4 max-w-[64ch] text-[1rem] leading-[1.7] text-foreground/70">
+            A four-part video series that tracks student ventures from first pitch to funded company.
+          </p>
+        </Reveal>
+        <EpisodeStrip episodes={STARTUP_CHALLENGE_EPISODES} />
       </Section>
 
-      {/* 5. FOUNDER STORY - EIGHT */}
+      {/* 6. FOUNDER STORY - EIGHT */}
       <Section id="eight" tone="dark">
         <Reveal>
           <Eyebrow dark>Chapter 01 · MU Whiteboards to 5M+ Downloads</Eyebrow>
@@ -684,7 +939,7 @@ function StartupsPage() {
         </div>
       </Section>
 
-      {/* 6. FOUNDER STORY - BAMBAII FOODS */}
+      {/* 7. FOUNDER STORY - BAMBAII FOODS */}
       <Section id="bambaii" tone="light">
         <Reveal>
           <Eyebrow>Chapter 20 · From Dorm Room Experiment to India&apos;s Favorite Guilt-Free Snack</Eyebrow>
@@ -702,7 +957,7 @@ function StartupsPage() {
         </div>
       </Section>
 
-      {/* 7. FOUNDER STORY - EAT ATLAS */}
+      {/* 8. FOUNDER STORY - EAT ATLAS */}
       <Section id="eat-atlas" tone="dark">
         <Reveal>
           <Eyebrow dark>Chapter 27 · From Bland Chips to Bold Global Dips</Eyebrow>
@@ -720,14 +975,14 @@ function StartupsPage() {
         </div>
       </Section>
 
-      {/* 8. THE COMMON PATTERN */}
+      {/* 9. THE COMMON PATTERN */}
       <Section id="pattern" tone="paper">
         <Reveal>
           <Eyebrow>Zoom Out</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
-            Different founders. Different products. The same six moves.
+          <h2 className="mt-5 max-w-[22ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+            The company changes. The pattern doesn&apos;t.
           </h2>
         </Reveal>
 
@@ -745,15 +1000,85 @@ function StartupsPage() {
         <Reveal delay={0.15}>
           <p className="mt-10 max-w-[68ch] text-[1.05rem] leading-[1.7] text-foreground/70">
             A cafeteria question about who gets to be a creator. A canteen complaint about boring chips. A
-            ₹60 snack mix nobody wanted, repriced to ₹50 and sold out in an hour. None of these
-            started as a business plan — they started as a small, cheap experiment that either worked or
-            told the founder something true. The ones that became companies are the ones where the founder
-            actually listened to that answer, and did it again.
+            ₹60 snack mix nobody wanted, repriced to ₹50 and sold out in an hour. None of these started as
+            a business plan — they started as a small, cheap experiment that either worked or told the
+            founder something true. This is an editorial pattern, not a claim that every startup on this
+            page followed the exact same sequence — but it's the shape that shows up again and again.
           </p>
         </Reveal>
       </Section>
 
-      {/* 9. THE SCALE OF THE ECOSYSTEM */}
+      {/* 10. SHARK TANK */}
+      <Section id="sharktank" tone="dark">
+        <Reveal>
+          <div className="flex items-center gap-2">
+            <Tv className="size-4 text-background/55" strokeWidth={1.75} />
+            <Eyebrow dark>On Shark Tank India</Eyebrow>
+          </div>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+            Real founders. Real pitches. National television.
+          </h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p className="mt-7 max-w-[64ch] text-[1.05rem] leading-[1.7] text-background/75">
+            Masters&apos; Union students have pitched on India&apos;s biggest startup stage — not as
+            alumni years removed from campus, but while still building.
+          </p>
+        </Reveal>
+
+        <div className="mt-12 grid grid-cols-1 gap-px bg-background/10 md:grid-cols-3">
+          {SHARK_TANK.map((f, i) => (
+            <SharkTankCard key={f.company} f={f} delay={i * 0.05} />
+          ))}
+        </div>
+
+        <Reveal delay={0.2} className="mt-10">
+          <Placeholder kind="video" aspect="aspect-video md:aspect-[21/9]" dark note="Shark Tank India pitch reel" />
+        </Reveal>
+      </Section>
+
+      {/* 11. HIGH SCHOOL STARTUP LEAGUE */}
+      <Section id="hssl" tone="paper">
+        <Reveal>
+          <div className="flex items-center gap-2">
+            <GraduationCap className="size-4 text-foreground/55" strokeWidth={1.75} />
+            <Eyebrow>High School Startup League</Eyebrow>
+          </div>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+            The founders here haven&apos;t graduated high school yet.
+          </h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p className="mt-7 max-w-[66ch] text-[1.05rem] leading-[1.7] text-foreground/70">
+            A separate pipeline, built for Class IX–XII students, not current Masters&apos; Union
+            enrollees — a launchpad for teen founders to create, pitch, and take their first cheque, with
+            past judges including Ashneer Grover, Ankur Warikoo, Techburner, and Sarthak Ahuja.
+          </p>
+        </Reveal>
+
+        <StatTiles stats={HSSL_STATS} tone="accent" />
+
+        <Reveal delay={0.2} className="mt-14">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-4">
+            {HSSL_STAGES.map((stage, i) => (
+              <div key={stage} className="flex items-center gap-3">
+                <span className="eyebrow rounded-full bg-accent px-4 py-2 text-accent-foreground">{stage}</span>
+                {i < HSSL_STAGES.length - 1 && <ArrowRight className="size-3.5 text-foreground/30" aria-hidden />}
+              </div>
+            ))}
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.25} className="mt-10">
+          <Placeholder kind="video" aspect="aspect-video" note="High School Startup League highlight reel" />
+        </Reveal>
+      </Section>
+
+      {/* 12. THE SCALE OF THE ECOSYSTEM */}
       <Section id="scale" tone="dark">
         <Reveal>
           <Eyebrow dark>By the Numbers</Eyebrow>
@@ -764,24 +1089,13 @@ function StartupsPage() {
           </h2>
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-2 gap-px bg-background/10 md:grid-cols-4">
-          {ECOSYSTEM_STATS.map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.04}>
-              <div className="h-full bg-foreground px-5 py-8">
-                <div className="text-[clamp(1.7rem,3vw,2.6rem)] leading-none tracking-[-0.03em]">{s.value}</div>
-                <div className="mt-4 text-[10px] uppercase leading-relaxed tracking-[0.18em] text-background/55">
-                  {s.label}
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+        <StatTiles stats={ECOSYSTEM_STATS} tone="dark" />
 
         <Reveal delay={0.2}>
           <p className="mt-10 max-w-[68ch] text-[1.02rem] leading-[1.7] text-background/70">
-            More than half of these startups have raised over $1 million. Four have pitched on Shark Tank
-            India. And when a startup doesn&apos;t make it, the founder walks away with sharper skills, real
-            experience, and often, an incredible job offer anyway.
+            More than half of these startups have raised over $1 million. Together, their founders have
+            created 500+ jobs since 2021. And when a startup doesn&apos;t make it, the founder walks away
+            with sharper skills, real experience, and often, an incredible job offer anyway.
           </p>
         </Reveal>
 
@@ -790,7 +1104,7 @@ function StartupsPage() {
         </Reveal>
       </Section>
 
-      {/* 10. THE PEOPLE AROUND FOUNDERS */}
+      {/* 13. THE PEOPLE AROUND FOUNDERS */}
       <Section id="people" tone="light">
         <Reveal>
           <Eyebrow>Mentors, VCs, and Believers</Eyebrow>
@@ -817,7 +1131,7 @@ function StartupsPage() {
         </div>
       </Section>
 
-      {/* 11. FOUNDER FELLOWSHIP */}
+      {/* 14. FOUNDER FELLOWSHIP */}
       <Section id="fellowship" tone="dark">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[0.8fr_1.2fr] md:items-center">
           <Reveal>
@@ -840,9 +1154,9 @@ function StartupsPage() {
             <Reveal delay={0.1}>
               <p className="mt-7 max-w-[56ch] text-[1.02rem] leading-[1.7] text-background/75">
                 For students who want to build instead of interview, Masters&apos; Union offers the Founder
-                Fellowship: ₹50,000 a month in grants, mentorship from industry veterans, and active
-                help with fundraising — no placements, no backup plans. Right now, 40+ fellows are using
-                that runway to build their companies full-time.
+                Fellowship: ₹50,000 a month in grants, mentorship from industry veterans, and active help
+                with fundraising — no placements, no backup plans. As of the 2021–25 report, 40+ fellows
+                had used that runway to build their companies full-time.
               </p>
             </Reveal>
             <Reveal delay={0.15} className="mt-9">
@@ -852,7 +1166,7 @@ function StartupsPage() {
         </div>
       </Section>
 
-      {/* 12. THE NEXT GENERATION */}
+      {/* 15. THE NEXT GENERATION */}
       <Section id="next-gen" tone="light">
         <Reveal>
           <Eyebrow>The UG Ecosystem, 2025–26</Eyebrow>
@@ -865,8 +1179,8 @@ function StartupsPage() {
         <Reveal delay={0.1}>
           <p className="mt-7 max-w-[66ch] text-[1.05rem] leading-[1.7] text-foreground/70">
             Masters&apos; Union&apos;s undergraduate cohort has its own entrepreneurship track — and its
-            own portfolio. In the 2025–26 cycle alone, UG founders have been granted ₹75L+ and
-            generated ₹14Cr+ in revenue, with two startups earning Shark Tank India pitches.
+            own portfolio. In the 2025–26 cycle alone, UG founders have been granted ₹75L+ and generated
+            ₹14Cr+ in revenue, with two startups earning Shark Tank India pitches.
           </p>
         </Reveal>
 
@@ -882,7 +1196,7 @@ function StartupsPage() {
         </div>
       </Section>
 
-      {/* 13. PORTFOLIO */}
+      {/* 16. PORTFOLIO */}
       <Section id="portfolio" tone="paper">
         <Reveal>
           <Eyebrow>Selected Companies</Eyebrow>
@@ -894,13 +1208,26 @@ function StartupsPage() {
         </Reveal>
 
         <div className="mt-12 grid grid-cols-1 gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
-          {PORTFOLIO.map((p, i) => (
+          {PORTFOLIO_PRIMARY.map((p, i) => (
             <PortfolioCard key={p.name} company={p} delay={i * 0.03} />
           ))}
+          {showMorePortfolio &&
+            PORTFOLIO_MORE.map((p, i) => <PortfolioCard key={p.name} company={p} delay={i * 0.03} />)}
         </div>
+
+        <Reveal delay={0.1} className="mt-10 flex justify-center">
+          <button
+            type="button"
+            onClick={() => setShowMorePortfolio((v) => !v)}
+            className="eyebrow inline-flex items-center gap-2 text-foreground/70 transition-colors hover:text-foreground"
+          >
+            {showMorePortfolio ? "Show fewer ventures" : "View all ventures"}
+            <ArrowRight className={`size-3.5 transition-transform ${showMorePortfolio ? "-rotate-90" : "rotate-90"}`} />
+          </button>
+        </Reveal>
       </Section>
 
-      {/* 14. THE REALITY OF BUILDING */}
+      {/* 17. THE REALITY OF BUILDING */}
       <Section id="reality" tone="dark">
         <Reveal>
           <Eyebrow dark>Not a Straight Line</Eyebrow>
@@ -927,7 +1254,7 @@ function StartupsPage() {
         </Reveal>
       </Section>
 
-      {/* 15. FINAL CTA */}
+      {/* 18. FINAL CTA */}
       <Section id="cta" tone="dark" container="max-w-4xl">
         <div className="pb-4 pt-4 text-center md:pb-8 md:pt-8">
           <Reveal>
@@ -960,7 +1287,7 @@ export const Route = createFileRoute("/startups")({
       {
         name: "description",
         content:
-          "30+ student startups. ₹593 Cr valuation. From a cafeteria question to a $400K seed round: how Masters' Union founders build, test, fail, iterate, and scale real companies.",
+          "30+ student startups. ₹593 Cr valuation. From dropshipping to Shark Tank: how Masters' Union founders build, test, fail, iterate, pitch, and scale real companies.",
       },
     ],
   }),
