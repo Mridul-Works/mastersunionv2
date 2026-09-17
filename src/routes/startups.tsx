@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useReducedMotion } from "framer-motion";
 import {
@@ -516,13 +516,13 @@ function Placeholder({
   const Icon = kind === "video" ? Play : ImageIcon;
   return (
     <div
-      className={`relative w-full overflow-hidden ${aspect} ${className} ${
+      className={`group relative w-full overflow-hidden ${aspect} ${className} ${
         dark ? "border border-background/15 bg-background/[0.04]" : "border border-border bg-foreground/[0.03]"
       }`}
     >
       <div
         aria-hidden
-        className="absolute inset-0 opacity-60"
+        className="absolute inset-0 opacity-60 transition-transform duration-500 group-hover:scale-[1.03]"
         style={{
           backgroundImage: `repeating-linear-gradient(135deg, ${
             dark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)"
@@ -531,8 +531,8 @@ function Placeholder({
       />
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
         <span
-          className={`flex size-11 items-center justify-center rounded-full border transition-transform duration-300 group-hover:scale-105 ${
-            dark ? "border-background/25 text-background/60" : "border-border text-foreground/45"
+          className={`flex size-12 items-center justify-center rounded-full border backdrop-blur-md transition-transform duration-300 group-hover:scale-110 ${
+            dark ? "border-background/40 bg-background/10 text-background" : "border-foreground/25 bg-background/50 text-foreground"
           }`}
         >
           <Icon className="size-4" strokeWidth={1.5} />
@@ -617,9 +617,81 @@ function JourneyStages({ stages }: { stages: Stage[] }) {
   );
 }
 
+/** Native scroll-snap carousel with prev/next controls and a live index counter —
+ *  pattern studied from the finished PGP TBM page's TransformationCarousel
+ *  (arrow buttons + "NN / NN" counter synced to scroll position, hidden
+ *  scrollbar), re-skinned with this page's own tokens instead of copying colors. */
+function ScrollCarousel({
+  children,
+  count,
+  dark = false,
+}: {
+  children: React.ReactNode;
+  count: number;
+  dark?: boolean;
+}) {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  const go = (dir: -1 | 1) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const next = (active + dir + count) % count;
+    const card = track.children[next] as HTMLElement | undefined;
+    if (!card) return;
+    setActive(next);
+    track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: "smooth" });
+  };
+
+  return (
+    <div className="mt-10">
+      <div className="mb-4 flex items-center justify-between md:hidden">
+        <span className={`eyebrow ${dark ? "text-background/50" : "text-foreground/50"}`}>
+          {String(active + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
+        </span>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            aria-label="Previous"
+            onClick={() => go(-1)}
+            className={`flex size-9 items-center justify-center border transition-colors ${
+              dark ? "border-background/25 text-background hover:bg-background/10" : "border-border text-foreground hover:bg-muted"
+            }`}
+          >
+            <ArrowRight className="size-3.5 rotate-180" />
+          </button>
+          <button
+            type="button"
+            aria-label="Next"
+            onClick={() => go(1)}
+            className={`flex size-9 items-center justify-center transition-opacity hover:opacity-85 ${
+              dark ? "bg-background text-foreground" : "bg-foreground text-background"
+            }`}
+          >
+            <ArrowRight className="size-3.5" />
+          </button>
+        </div>
+      </div>
+      <div
+        ref={trackRef}
+        onScroll={(event) => {
+          const track = event.currentTarget;
+          const first = track.children[0] as HTMLElement | undefined;
+          if (!first) return;
+          const w = first.offsetWidth + 1;
+          setActive(Math.min(count - 1, Math.max(0, Math.round(track.scrollLeft / w))));
+        }}
+        className="-mx-5 flex snap-x snap-mandatory gap-px overflow-x-auto bg-border px-5 pb-1 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-4 md:overflow-visible md:px-0 [&::-webkit-scrollbar]:hidden"
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+
 function EpisodeStrip({ episodes }: { episodes: Episode[] }) {
   return (
-    <div className="-mx-5 mt-10 flex snap-x snap-mandatory gap-px overflow-x-auto bg-border px-5 pb-1 md:mx-0 md:grid md:grid-cols-4 md:overflow-visible md:px-0">
+    <ScrollCarousel count={episodes.length}>
       {episodes.map((e, i) => (
         <Reveal key={e.label} delay={i * 0.05} className="w-[82%] shrink-0 snap-start sm:w-[55%] md:w-auto">
           <div
@@ -637,7 +709,7 @@ function EpisodeStrip({ episodes }: { episodes: Episode[] }) {
           </div>
         </Reveal>
       ))}
-    </div>
+    </ScrollCarousel>
   );
 }
 
@@ -693,7 +765,7 @@ function StartupsPage() {
   const activeQuote = TESTIMONIALS[selectedQuote];
 
   return (
-    <main className="min-h-screen bg-background pb-24 text-foreground md:pb-28">
+    <main className="min-h-screen bg-background text-foreground">
       <BottomNav items={NAV} applyHref="#cta" />
 
       <div className="mx-auto flex max-w-6xl items-center justify-between bg-background px-5 pt-6 md:px-10 md:pt-8">
@@ -856,7 +928,7 @@ function StartupsPage() {
         <Reveal delay={0.25} className="mt-14">
           <div className="eyebrow text-foreground/55">Top performers, this edition</div>
         </Reveal>
-        <div className="-mx-5 mt-6 flex snap-x snap-mandatory gap-px overflow-x-auto bg-border px-5 pb-1 md:mx-0 md:grid md:grid-cols-4 md:overflow-visible md:px-0">
+        <ScrollCarousel count={DROPSHIPPING_TOP.length}>
           {DROPSHIPPING_TOP.map((d, i) => (
             <Reveal key={d.name} delay={i * 0.04} className="w-[78%] shrink-0 snap-start sm:w-[45%] md:w-auto">
               <article className="h-full bg-background p-6">
@@ -866,7 +938,7 @@ function StartupsPage() {
               </article>
             </Reveal>
           ))}
-        </div>
+        </ScrollCarousel>
       </Section>
 
       {/* 5. VENTURE INITIATION PROGRAMME / THE VENTURE JOURNEY */}
@@ -913,7 +985,7 @@ function StartupsPage() {
         <div className="relative mt-12 grid grid-cols-1 gap-12 md:grid-cols-[1fr_0.85fr] md:items-start">
           <span
             aria-hidden
-            className="pointer-events-none absolute -top-10 left-0 select-none text-[7rem] font-bold leading-none text-background/[0.05] md:text-[10rem]"
+            className="pointer-events-none absolute -top-16 -left-2 select-none text-[6rem] font-bold leading-none text-background/[0.035] md:text-[9rem]"
           >
             01
           </span>
@@ -939,7 +1011,7 @@ function StartupsPage() {
         <div className="relative mt-12 grid grid-cols-1 gap-12 md:grid-cols-[0.85fr_1fr] md:items-start">
           <span
             aria-hidden
-            className="pointer-events-none absolute -top-10 right-0 select-none text-[7rem] font-bold leading-none text-foreground/[0.04] md:text-[10rem]"
+            className="pointer-events-none absolute -top-16 right-0 select-none text-[6rem] font-bold leading-none text-foreground/[0.035] md:text-[9rem]"
           >
             20
           </span>
@@ -960,10 +1032,10 @@ function StartupsPage() {
             One bland chip. Three founders who couldn&apos;t stop thinking about it.
           </h2>
         </Reveal>
-        <Reveal delay={0.1} className="relative mt-10">
+        <Reveal delay={0.1} className="mt-10">
           <span
             aria-hidden
-            className="pointer-events-none absolute left-4 top-4 z-10 select-none text-[5rem] font-bold leading-none text-background/[0.08] md:text-[7rem]"
+            className="mb-3 block select-none text-[3.5rem] font-bold leading-none text-background/15 md:text-[4.5rem]"
           >
             27
           </span>
@@ -1332,7 +1404,7 @@ function StartupsPage() {
 
       {/* 18. FINAL CTA */}
       <Section id="cta" tone="dark" container="max-w-4xl">
-        <div className="pb-8 pt-8 text-center md:pb-12 md:pt-12">
+        <div className="pb-16 pt-8 text-center md:pb-20 md:pt-12">
           <Reveal>
             <h2 className="text-balance text-[clamp(2.4rem,7vw,5.5rem)] font-semibold leading-[0.98] tracking-[-0.02em]">
               WHAT WILL YOU BUILD?
