@@ -13,9 +13,6 @@ import {
 } from "lucide-react";
 import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
 
-const INTER = "'Inter', system-ui, sans-serif";
-const MONO = "ui-monospace, SFMono-Regular, Menlo, monospace";
-
 const NAV: BottomNavItem[] = [
   { id: "top", label: "Top", icon: Home },
   { id: "journey", label: "Journey", icon: Flag },
@@ -334,7 +331,7 @@ const REALITY_EXAMPLES = [
 function Reveal({
   children,
   delay = 0,
-  y = 24,
+  y = 20,
   className = "",
 }: {
   children: React.ReactNode;
@@ -344,10 +341,10 @@ function Reveal({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y, filter: "blur(4px)" }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -356,14 +353,7 @@ function Reveal({
 }
 
 function Eyebrow({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
-  return (
-    <div
-      className={`text-[11px] font-semibold uppercase tracking-[0.3em] ${dark ? "text-white/55" : "text-black/55"}`}
-      style={{ fontFamily: MONO }}
-    >
-      {children}
-    </div>
-  );
+  return <div className={`eyebrow ${dark ? "text-background/60" : "text-foreground/55"}`}>{children}</div>;
 }
 
 function Section({
@@ -378,7 +368,11 @@ function Section({
   children: React.ReactNode;
 }) {
   const toneClass =
-    tone === "dark" ? "bg-black text-white" : tone === "paper" ? "bg-neutral-50 text-black" : "bg-white text-black";
+    tone === "dark"
+      ? "bg-foreground text-background"
+      : tone === "paper"
+        ? "bg-muted text-foreground"
+        : "bg-background text-foreground";
   return (
     <section id={id} className={toneClass}>
       <div className={`mx-auto ${container} px-5 py-16 md:px-10 md:py-24`}>{children}</div>
@@ -403,7 +397,7 @@ function Placeholder({
   return (
     <div
       className={`relative w-full overflow-hidden ${aspect} ${className} ${
-        dark ? "border border-white/15 bg-white/[0.03]" : "border border-black/10 bg-black/[0.03]"
+        dark ? "border border-background/15 bg-background/[0.04]" : "border border-border bg-foreground/[0.03]"
       }`}
     >
       <div
@@ -418,22 +412,16 @@ function Placeholder({
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
         <span
           className={`flex size-11 items-center justify-center rounded-full border ${
-            dark ? "border-white/25 text-white/60" : "border-black/20 text-black/45"
+            dark ? "border-background/25 text-background/60" : "border-border text-foreground/45"
           }`}
         >
           <Icon className="size-4" strokeWidth={1.5} />
         </span>
-        <span
-          className={`text-[10px] font-semibold uppercase tracking-[0.24em] ${dark ? "text-white/50" : "text-black/45"}`}
-          style={{ fontFamily: MONO }}
-        >
+        <span className={`eyebrow ${dark ? "text-background/50" : "text-foreground/45"}`}>
           {kind === "video" ? "Video Placeholder" : "Image Placeholder"}
         </span>
         {note && (
-          <span
-            className={`text-[10px] uppercase tracking-[0.18em] ${dark ? "text-white/30" : "text-black/30"}`}
-            style={{ fontFamily: MONO }}
-          >
+          <span className={`text-[10px] uppercase tracking-[0.18em] ${dark ? "text-background/30" : "text-foreground/30"}`}>
             {note}
           </span>
         )}
@@ -449,27 +437,15 @@ function StoryBeats({ beats, dark = false }: { beats: Beat[]; dark?: boolean }) 
         <Reveal key={b.stage} delay={i * 0.05}>
           <li
             className={`flex gap-5 border-t pt-6 first:border-t-0 first:pt-0 ${
-              dark ? "border-white/10" : "border-black/10"
+              dark ? "border-background/10" : "border-border"
             }`}
           >
-            <span
-              className={`shrink-0 text-[11px] font-semibold uppercase tracking-[0.2em] ${
-                dark ? "text-white/50" : "text-black/50"
-              }`}
-              style={{ fontFamily: MONO }}
-            >
+            <span className={`eyebrow shrink-0 ${dark ? "text-background/50" : "text-foreground/50"}`}>
               {String(i + 1).padStart(2, "0")}
             </span>
             <div>
-              <div
-                className={`text-[11px] font-semibold uppercase tracking-[0.22em] ${
-                  dark ? "text-white/70" : "text-black/70"
-                }`}
-                style={{ fontFamily: MONO }}
-              >
-                {b.stage}
-              </div>
-              <p className={`mt-2 text-[1.02rem] leading-[1.7] ${dark ? "text-white/80" : "text-black/75"}`}>
+              <div className={`eyebrow ${dark ? "text-background/70" : "text-foreground/70"}`}>{b.stage}</div>
+              <p className={`mt-2 text-[1.02rem] leading-[1.7] ${dark ? "text-background/80" : "text-foreground/75"}`}>
                 {b.body}
               </p>
             </div>
@@ -482,36 +458,28 @@ function StoryBeats({ beats, dark = false }: { beats: Beat[]; dark?: boolean }) 
 
 function JourneyStages({ stages }: { stages: Stage[] }) {
   return (
-    <div className="mt-10 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-5">
+    <div className="mt-10 grid grid-cols-1 gap-px bg-border md:grid-cols-5">
       {stages.map((s, i) => (
         <Reveal key={s.name} delay={i * 0.06} className="h-full">
           <div
             className={`flex h-full flex-col justify-between p-6 md:p-7 ${
-              s.culmination ? "bg-black text-white" : "bg-white text-black"
+              s.culmination ? "bg-foreground text-background" : "bg-background text-foreground"
             }`}
           >
             <div>
-              <div
-                className={`text-[11px] font-semibold uppercase tracking-[0.22em] ${
-                  s.culmination ? "text-white/55" : "text-black/50"
-                }`}
-                style={{ fontFamily: MONO }}
-              >
-                {s.n}
-              </div>
+              <div className={`eyebrow ${s.culmination ? "text-background/55" : "text-foreground/50"}`}>{s.n}</div>
               <h3 className="mt-3 text-[1.15rem] font-medium leading-tight">{s.name}</h3>
               {s.grant && (
                 <div
                   className={`mt-3 inline-block text-[10px] uppercase tracking-[0.18em] ${
-                    s.culmination ? "text-white/60" : "text-black/55"
+                    s.culmination ? "text-background/60" : "text-foreground/55"
                   }`}
-                  style={{ fontFamily: MONO }}
                 >
                   Grant · {s.grant}
                 </div>
               )}
             </div>
-            <p className={`mt-5 text-[0.92rem] leading-[1.6] ${s.culmination ? "text-white/80" : "text-black/70"}`}>
+            <p className={`mt-5 text-[0.92rem] leading-[1.6] ${s.culmination ? "text-background/80" : "text-foreground/70"}`}>
               {s.body}
             </p>
           </div>
@@ -524,23 +492,36 @@ function JourneyStages({ stages }: { stages: Stage[] }) {
 function PortfolioCard({ company, delay = 0 }: { company: Company; delay?: number }) {
   return (
     <Reveal delay={delay}>
-      <article className="group h-full bg-white p-7 transition-transform duration-300 hover:-translate-y-1">
+      <article className="group h-full bg-background p-7 transition-transform duration-300 hover:-translate-y-1">
         <div className="flex items-start justify-between gap-3">
           <h3 className="text-[1.1rem] font-medium leading-tight">{company.name}</h3>
-          <span
-            className="shrink-0 text-[10px] uppercase tracking-[0.18em] text-black/45"
-            style={{ fontFamily: MONO }}
-          >
-            {company.category}
-          </span>
+          <span className="eyebrow shrink-0 text-foreground/45">{company.category}</span>
         </div>
-        <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-black/50" style={{ fontFamily: MONO }}>
-          {company.founder}
-        </div>
+        <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-foreground/50">{company.founder}</div>
         <div className="mt-4 text-[1.15rem] font-medium tracking-[-0.02em]">{company.metric}</div>
-        <p className="mt-3 text-[0.92rem] leading-[1.6] text-black/70">{company.description}</p>
+        <p className="mt-3 text-[0.92rem] leading-[1.6] text-foreground/70">{company.description}</p>
       </article>
     </Reveal>
+  );
+}
+
+function CtaButton({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
+  return (
+    <Link
+      to="/"
+      className={`group inline-flex items-center gap-2 rounded-full py-1.5 pl-5 pr-1.5 text-[13px] font-semibold transition-transform hover:-translate-y-px ${
+        dark ? "bg-background text-foreground" : "bg-foreground text-background"
+      }`}
+    >
+      {children}
+      <span
+        className={`inline-flex size-7 items-center justify-center rounded-full transition-transform duration-300 group-hover:rotate-45 ${
+          dark ? "bg-foreground text-background" : "bg-background text-foreground"
+        }`}
+      >
+        <ArrowUpRight className="size-3.5" strokeWidth={2.25} />
+      </span>
+    </Link>
   );
 }
 
@@ -548,49 +529,48 @@ function PortfolioCard({ company, delay = 0 }: { company: Company; delay?: numbe
 
 function StartupsPage() {
   return (
-    <main className="min-h-screen bg-white text-black" style={{ fontFamily: INTER }}>
+    <main className="min-h-screen bg-background text-foreground">
       <BottomNav items={NAV} applyHref="#cta" />
 
-      <div className="mx-auto flex max-w-6xl items-center justify-between bg-white px-5 pt-6 md:px-10 md:pt-8">
+      <div className="mx-auto flex max-w-6xl items-center justify-between bg-background px-5 pt-6 md:px-10 md:pt-8">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-black/70 transition-colors hover:text-black"
-          style={{ fontFamily: MONO }}
+          className="eyebrow inline-flex items-center gap-2 text-foreground/70 transition-colors hover:text-foreground"
         >
           <span aria-hidden>←</span> Masters&apos; Union
         </Link>
-        <div className="text-[11px] uppercase tracking-[0.25em] text-black/55" style={{ fontFamily: MONO }}>
-          Entrepreneurship at Masters&apos; Union
-        </div>
+        <div className="eyebrow text-foreground/55">Entrepreneurship at Masters&apos; Union</div>
       </div>
 
       {/* 1. HERO */}
-      <header id="top" className="relative overflow-hidden bg-black pb-16 pt-10 text-white md:pb-24 md:pt-14">
-        <div className="mx-auto max-w-6xl px-5 md:px-10">
+      <header id="top" className="relative overflow-hidden bg-foreground pb-16 pt-10 text-background md:pb-24 md:pt-14">
+        <div className="mx-auto max-w-[1440px] px-5 md:px-10">
           <Reveal>
             <Eyebrow dark>Entrepreneurship at Masters&apos; Union</Eyebrow>
           </Reveal>
           <Reveal delay={0.08}>
-            <h1 className="mt-6 max-w-[20ch] text-balance text-[clamp(2.6rem,7.5vw,6.5rem)] font-medium leading-[0.95] tracking-[-0.02em]">
-              Some of our students don&apos;t graduate into jobs. They graduate into companies.
+            <h1 className="mt-6 max-w-[22ch] text-balance text-[clamp(2.6rem,7.5vw,6.5rem)] font-medium leading-[0.95] tracking-[-0.02em]">
+              Some of our students don&apos;t graduate into jobs. They graduate into{" "}
+              <em
+                className="not-italic font-serif italic text-background/90"
+                style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+              >
+                companies
+              </em>
+              .
             </h1>
           </Reveal>
           <Reveal delay={0.16}>
-            <p className="mt-7 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-white/75">
+            <p className="mt-7 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-background/75">
               30+ startups. ₹593 Cr in combined valuation. Built by students who turned a cafeteria
               question, a canteen frustration, or a failed first batch into a real business — while still
               enrolled.
             </p>
           </Reveal>
           <Reveal delay={0.24}>
-            <Link
-              to="/"
-              className="group mt-9 inline-flex items-center gap-2 bg-white px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-black transition-opacity hover:opacity-85"
-              style={{ fontFamily: MONO }}
-            >
-              Start Building
-              <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
+            <div className="mt-9">
+              <CtaButton dark>Start Building</CtaButton>
+            </div>
           </Reveal>
           <Reveal delay={0.32} className="mt-14">
             <Placeholder
@@ -614,7 +594,7 @@ function StartupsPage() {
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-7 max-w-[68ch] text-[1.05rem] leading-[1.7] text-black/70">
+          <p className="mt-7 max-w-[68ch] text-[1.05rem] leading-[1.7] text-foreground/70">
             Some ideas start with a question nobody else was asking. Some start with a frustration nobody
             else was naming. A few start as a homework assignment nobody meant to turn into a business. At
             Masters&apos; Union, that first spark is treated as the beginning of something real — not an
@@ -623,15 +603,13 @@ function StartupsPage() {
         </Reveal>
 
         <div className="mt-12 grid grid-cols-1 gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-start">
-          <div className="grid grid-cols-1 gap-px bg-black/10 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-px bg-border sm:grid-cols-2">
             {SPARK_EXAMPLES.map((e, i) => (
               <Reveal key={e.name} delay={i * 0.05}>
-                <article className="h-full bg-white p-7">
+                <article className="h-full bg-background p-7">
                   <h3 className="text-[1.05rem] font-medium">{e.name}</h3>
-                  <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-black/50" style={{ fontFamily: MONO }}>
-                    {e.founder}
-                  </div>
-                  <p className="mt-4 text-[0.95rem] leading-[1.65] text-black/75">{e.body}</p>
+                  <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-foreground/50">{e.founder}</div>
+                  <p className="mt-4 text-[0.95rem] leading-[1.65] text-foreground/75">{e.body}</p>
                 </article>
               </Reveal>
             ))}
@@ -655,7 +633,7 @@ function StartupsPage() {
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="mt-7 max-w-[56ch] text-[1.05rem] leading-[1.7] text-black/70">
+              <p className="mt-7 max-w-[56ch] text-[1.05rem] leading-[1.7] text-foreground/70">
                 At Masters&apos; Union, real growth doesn&apos;t come from case studies — it comes from
                 taking risks, testing ideas, and putting something into the world. That&apos;s what the
                 Outclass is: half the curriculum happens outside the classroom, where students run
@@ -680,7 +658,7 @@ function StartupsPage() {
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-7 max-w-[64ch] text-[1.05rem] leading-[1.7] text-black/70">
+          <p className="mt-7 max-w-[64ch] text-[1.05rem] leading-[1.7] text-foreground/70">
             The VIP is a structured track — not an elective — that takes an idea through four defined
             stages, each backed by a grant and mentorship from founders, CXOs, and investors.
           </p>
@@ -712,7 +690,7 @@ function StartupsPage() {
           <Eyebrow>Chapter 20 · From Dorm Room Experiment to India&apos;s Favorite Guilt-Free Snack</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[28ch] text-balance text-[clamp(2rem,4.2vw,3.6rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+          <h2 className="font-serif-italic mt-5 max-w-[28ch] text-balance text-[clamp(2rem,4.2vw,3.6rem)] leading-[1.05]">
             &ldquo;Ek haath se becho, dusre haath se paise lo.&rdquo;
           </h2>
         </Reveal>
@@ -757,22 +735,15 @@ function StartupsPage() {
           <div className="mt-12 flex flex-wrap items-center gap-x-3 gap-y-4">
             {PATTERN_STEPS.map((step, i) => (
               <div key={step} className="flex items-center gap-3">
-                <span
-                  className="bg-black px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-white"
-                  style={{ fontFamily: MONO }}
-                >
-                  {step}
-                </span>
-                {i < PATTERN_STEPS.length - 1 && (
-                  <ArrowRight className="size-3.5 text-black/30" aria-hidden />
-                )}
+                <span className="eyebrow rounded-full bg-foreground px-4 py-2 text-background">{step}</span>
+                {i < PATTERN_STEPS.length - 1 && <ArrowRight className="size-3.5 text-foreground/30" aria-hidden />}
               </div>
             ))}
           </div>
         </Reveal>
 
         <Reveal delay={0.15}>
-          <p className="mt-10 max-w-[68ch] text-[1.05rem] leading-[1.7] text-black/70">
+          <p className="mt-10 max-w-[68ch] text-[1.05rem] leading-[1.7] text-foreground/70">
             A cafeteria question about who gets to be a creator. A canteen complaint about boring chips. A
             ₹60 snack mix nobody wanted, repriced to ₹50 and sold out in an hour. None of these
             started as a business plan — they started as a small, cheap experiment that either worked or
@@ -793,15 +764,12 @@ function StartupsPage() {
           </h2>
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-2 gap-px bg-white/10 md:grid-cols-4">
+        <div className="mt-12 grid grid-cols-2 gap-px bg-background/10 md:grid-cols-4">
           {ECOSYSTEM_STATS.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.04}>
-              <div className="h-full bg-black px-5 py-8">
+              <div className="h-full bg-foreground px-5 py-8">
                 <div className="text-[clamp(1.7rem,3vw,2.6rem)] leading-none tracking-[-0.03em]">{s.value}</div>
-                <div
-                  className="mt-4 text-[10px] uppercase leading-relaxed tracking-[0.18em] text-white/55"
-                  style={{ fontFamily: MONO }}
-                >
+                <div className="mt-4 text-[10px] uppercase leading-relaxed tracking-[0.18em] text-background/55">
                   {s.label}
                 </div>
               </div>
@@ -810,7 +778,7 @@ function StartupsPage() {
         </div>
 
         <Reveal delay={0.2}>
-          <p className="mt-10 max-w-[68ch] text-[1.02rem] leading-[1.7] text-white/70">
+          <p className="mt-10 max-w-[68ch] text-[1.02rem] leading-[1.7] text-background/70">
             More than half of these startups have raised over $1 million. Four have pitched on Shark Tank
             India. And when a startup doesn&apos;t make it, the founder walks away with sharper skills, real
             experience, and often, an incredible job offer anyway.
@@ -833,14 +801,14 @@ function StartupsPage() {
           </h2>
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-1 gap-px bg-black/10 md:grid-cols-2">
+        <div className="mt-12 grid grid-cols-1 gap-px bg-border md:grid-cols-2">
           {TESTIMONIALS.map((t, i) => (
             <Reveal key={t.name} delay={i * 0.06}>
-              <figure className="h-full bg-white p-8 md:p-10">
-                <blockquote className="text-[clamp(1.02rem,1.5vw,1.2rem)] italic leading-[1.55] text-black/85">
+              <figure className="h-full bg-background p-8 md:p-10">
+                <blockquote className="text-[clamp(1.02rem,1.5vw,1.2rem)] italic leading-[1.55] text-foreground/85">
                   &ldquo;{t.quote}&rdquo;
                 </blockquote>
-                <figcaption className="mt-6 text-[11px] uppercase tracking-[0.2em] text-black/55" style={{ fontFamily: MONO }}>
+                <figcaption className="eyebrow mt-6 text-foreground/55">
                   {t.name} · {t.role}
                 </figcaption>
               </figure>
@@ -856,7 +824,7 @@ function StartupsPage() {
             <div className="text-[clamp(3rem,7vw,5.5rem)] font-medium leading-none tracking-[-0.03em]">
               ₹50,000
             </div>
-            <div className="mt-2 text-[11px] uppercase tracking-[0.22em] text-white/55" style={{ fontFamily: MONO }}>
+            <div className="mt-2 text-[11px] uppercase tracking-[0.22em] text-background/55">
               per month, no equity taken
             </div>
           </Reveal>
@@ -870,7 +838,7 @@ function StartupsPage() {
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="mt-7 max-w-[56ch] text-[1.02rem] leading-[1.7] text-white/75">
+              <p className="mt-7 max-w-[56ch] text-[1.02rem] leading-[1.7] text-background/75">
                 For students who want to build instead of interview, Masters&apos; Union offers the Founder
                 Fellowship: ₹50,000 a month in grants, mentorship from industry veterans, and active
                 help with fundraising — no placements, no backup plans. Right now, 40+ fellows are using
@@ -895,19 +863,19 @@ function StartupsPage() {
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-7 max-w-[66ch] text-[1.05rem] leading-[1.7] text-black/70">
+          <p className="mt-7 max-w-[66ch] text-[1.05rem] leading-[1.7] text-foreground/70">
             Masters&apos; Union&apos;s undergraduate cohort has its own entrepreneurship track — and its
             own portfolio. In the 2025–26 cycle alone, UG founders have been granted ₹75L+ and
             generated ₹14Cr+ in revenue, with two startups earning Shark Tank India pitches.
           </p>
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-1 gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid grid-cols-1 gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
           {NEXT_GEN.map((v, i) => (
             <Reveal key={v.name} delay={i * 0.04}>
-              <article className="h-full bg-white p-7">
+              <article className="h-full bg-background p-7">
                 <h3 className="text-[1.05rem] font-medium">{v.name}</h3>
-                <p className="mt-3 text-[0.92rem] leading-[1.6] text-black/70">{v.pitch}</p>
+                <p className="mt-3 text-[0.92rem] leading-[1.6] text-foreground/70">{v.pitch}</p>
               </article>
             </Reveal>
           ))}
@@ -925,7 +893,7 @@ function StartupsPage() {
           </h2>
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-1 gap-px bg-black/10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid grid-cols-1 gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
           {PORTFOLIO.map((p, i) => (
             <PortfolioCard key={p.name} company={p} delay={i * 0.03} />
           ))}
@@ -946,14 +914,9 @@ function StartupsPage() {
         <ul className="mt-12 space-y-8">
           {REALITY_EXAMPLES.map((r, i) => (
             <Reveal key={r.name} delay={i * 0.05}>
-              <li className="border-t border-white/10 pt-6 first:border-t-0 first:pt-0">
-                <span
-                  className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/55"
-                  style={{ fontFamily: MONO }}
-                >
-                  {r.name}
-                </span>
-                <p className="mt-2 max-w-[70ch] text-[1rem] leading-[1.7] text-white/80">{r.body}</p>
+              <li className="border-t border-background/10 pt-6 first:border-t-0 first:pt-0">
+                <span className="eyebrow text-background/55">{r.name}</span>
+                <p className="mt-2 max-w-[70ch] text-[1rem] leading-[1.7] text-background/80">{r.body}</p>
               </li>
             </Reveal>
           ))}
@@ -973,21 +936,16 @@ function StartupsPage() {
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
-            <p className="mx-auto mt-8 max-w-[56ch] text-[1.05rem] leading-[1.7] text-white/75">
+            <p className="mx-auto mt-8 max-w-[56ch] text-[1.05rem] leading-[1.7] text-background/75">
               Every company on this page started the same way every company starts: as nothing. A question.
               A bad first batch. A frustration nobody else was naming. The only difference between an idea
               and a startup is whether someone builds it.
             </p>
           </Reveal>
           <Reveal delay={0.16}>
-            <Link
-              to="/"
-              className="group mt-10 inline-flex items-center gap-2 bg-white px-7 py-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-black transition-opacity hover:opacity-85"
-              style={{ fontFamily: MONO }}
-            >
-              Apply to Masters&apos; Union
-              <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
+            <div className="mt-10 flex justify-center">
+              <CtaButton dark>Apply to Masters&apos; Union</CtaButton>
+            </div>
           </Reveal>
         </div>
       </Section>
