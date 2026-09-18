@@ -1126,7 +1126,7 @@ function StartupsPage() {
         />
 
         <div className="pointer-events-none absolute inset-x-0 top-0">
-          <div className="mx-auto max-w-[1440px] px-5 pt-10 md:px-10 md:pt-14">
+          <div className="mx-auto max-w-[1440px] px-5 pt-5 md:px-10 md:pt-8">
             <Reveal>
               <div className="pointer-events-auto flex items-start justify-between">
                 <img
@@ -1184,7 +1184,7 @@ function StartupsPage() {
                           className="block whitespace-nowrap text-[clamp(2.1rem,8.5vw,3.4rem)] leading-[0.9] tracking-[-0.03em]"
                           style={wordFontSize ? { fontSize: `${wordFontSize}px` } : undefined}
                         >Entrepreneurship</span>
-                        <span className="mt-8 block text-[clamp(0.95rem,1.4vw,1.25rem)] font-semibold text-background/80">at Masters&apos; Union</span>
+                        <span className="mt-8 block text-[clamp(1.05rem,1.6vw,1.4rem)] font-semibold text-background/80">at Masters&apos; Union</span>
                       </h1>
                     </Reveal>
                   </div>
