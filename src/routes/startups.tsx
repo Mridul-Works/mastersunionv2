@@ -1155,8 +1155,9 @@ function StartupsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2">
                   <div className="relative min-h-[210px] p-6 md:min-h-[250px] md:p-10 lg:min-h-[300px] lg:p-12">
                     <Reveal delay={0.08}>
-                      <h1 className="max-w-[16ch] text-balance break-words text-[clamp(2.2rem,5vw,4.3rem)] font-medium leading-[0.95] tracking-[-0.02em]">
-                        Entrepreneurship at Masters&apos; Union
+                      <h1 className="max-w-[16ch] text-balance break-words font-medium leading-[0.95] tracking-[-0.02em]">
+                        <span className="block text-[clamp(2.6rem,6vw,5.2rem)]">Entrepreneurship</span>
+                        <span className="mt-3 block text-[clamp(1.1rem,2vw,1.8rem)] text-background/70">at Masters&apos; Union</span>
                       </h1>
                     </Reveal>
                   </div>
