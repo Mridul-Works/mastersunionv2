@@ -24,7 +24,7 @@ import seedsaiVentureImg from "@/assets/founders/ventures/seedsai.jpg.asset.json
 import woodysVentureImg from "@/assets/founders/ventures/woodys.jpg.asset.json";
 import sharkTankStageImg from "@/assets/founders/sharktank-stage.jpg.asset.json";
 import muLogoAsset from "@/assets/mu-logo-dark.png.asset.json";
-import heroVideoAsset from "@/assets/mu-student-entrepreneurship-video.mp4.asset.json";
+import heroVideoAsset from "@/assets/hero.mp4.asset.json";
 
 const NAV: BottomNavItem[] = [
   { id: "top", label: "Top", icon: Home },
