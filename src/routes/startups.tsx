@@ -1132,40 +1132,52 @@ function StartupsPage() {
                   </span>
                 </div>
               </Reveal>
-              <div className="grid grid-cols-1 md:grid-cols-2">
-                <div className="relative min-h-[420px] border border-background/15 p-6 md:min-h-[500px] md:p-10 lg:min-h-[600px] lg:p-12">
-                  <span aria-hidden className="absolute -left-[6px] -top-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
-                  <span aria-hidden className="absolute -right-[6px] -top-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
-                  <span aria-hidden className="absolute -left-[6px] -bottom-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
-                  <span aria-hidden className="absolute -right-[6px] -bottom-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
-                  <Reveal delay={0.08}>
-                    <h1 className="max-w-[16ch] text-balance break-words text-[clamp(2.2rem,5vw,4.3rem)] font-medium leading-[0.95] tracking-[-0.02em]">
-                      Entrepreneurship at Masters&apos; Union
-                    </h1>
-                  </Reveal>
-                </div>
-                <div className="relative flex min-h-[420px] flex-col justify-end border border-background/15 p-6 md:min-h-[500px] md:border-l-0 md:p-10 lg:min-h-[600px] lg:p-12">
-                  <span aria-hidden className="absolute -left-[6px] -top-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
-                  <span aria-hidden className="absolute -right-[6px] -top-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
-                  <span aria-hidden className="absolute -left-[6px] -bottom-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
-                  <span aria-hidden className="absolute -right-[6px] -bottom-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
-                  <Reveal delay={0.16}>
-                    <p className="max-w-[46ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-background/75">
-                      Built by students who turned a cafeteria question, a canteen frustration, or a failed
-                      first batch into a real business — while still enrolled.
-                    </p>
-                  </Reveal>
-                  <Reveal delay={0.24}>
-                    <div className="mt-9 flex flex-wrap items-center gap-8">
-                      <CtaButton dark>Start Building</CtaButton>
-                      <div className="flex items-center gap-3">
-                        <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-background/60">Scroll</span>
-                        <div className="relative h-9 w-px overflow-hidden bg-background/20">
-                          <div className="mu-scroll-line absolute left-0 top-0 h-1/2 w-full bg-background" />
+              <div className="relative border border-background/15">
+                {/* 4 outer-corner diamonds */}
+                <span aria-hidden className="absolute -left-[6px] -top-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
+                <span aria-hidden className="absolute -right-[6px] -top-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
+                <span aria-hidden className="absolute -left-[6px] -bottom-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
+                <span aria-hidden className="absolute -right-[6px] -bottom-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
+                {/* 4 edge-midpoint diamonds */}
+                <span aria-hidden className="absolute -top-[6px] left-1/2 hidden size-2 -translate-x-1/2 rotate-45 border border-background/40 md:block" />
+                <span aria-hidden className="absolute -bottom-[6px] left-1/2 hidden size-2 -translate-x-1/2 rotate-45 border border-background/40 md:block" />
+                <span aria-hidden className="absolute -left-[6px] top-1/2 hidden size-2 -translate-y-1/2 rotate-45 border border-background/40 md:block" />
+                <span aria-hidden className="absolute -right-[6px] top-1/2 hidden size-2 -translate-y-1/2 rotate-45 border border-background/40 md:block" />
+                {/* center diamond */}
+                <span aria-hidden className="absolute left-1/2 top-1/2 hidden size-2 -translate-x-1/2 -translate-y-1/2 rotate-45 border border-background/40 md:block" />
+                {/* full cross-divider */}
+                <div aria-hidden className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px bg-background/15 md:block" />
+                <div aria-hidden className="pointer-events-none absolute inset-x-0 top-1/2 hidden h-px bg-background/15 md:block" />
+
+                <div className="grid grid-cols-1 md:grid-cols-2">
+                  <div className="relative min-h-[210px] p-6 md:min-h-[250px] md:p-10 lg:min-h-[300px] lg:p-12">
+                    <Reveal delay={0.08}>
+                      <h1 className="max-w-[16ch] text-balance break-words text-[clamp(2.2rem,5vw,4.3rem)] font-medium leading-[0.95] tracking-[-0.02em]">
+                        Entrepreneurship at Masters&apos; Union
+                      </h1>
+                    </Reveal>
+                  </div>
+                  <div className="relative min-h-[210px] p-6 md:min-h-[250px] md:p-10 lg:min-h-[300px] lg:p-12" />
+                  <div className="relative min-h-[210px] p-6 md:min-h-[250px] md:p-10 lg:min-h-[300px] lg:p-12" />
+                  <div className="relative flex min-h-[210px] flex-col justify-end p-6 md:min-h-[250px] md:p-10 lg:min-h-[300px] lg:p-12">
+                    <Reveal delay={0.16}>
+                      <p className="max-w-[46ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-background/75">
+                        Built by students who turned a cafeteria question, a canteen frustration, or a failed
+                        first batch into a real business — while still enrolled.
+                      </p>
+                    </Reveal>
+                    <Reveal delay={0.24}>
+                      <div className="mt-9 flex flex-wrap items-center gap-8">
+                        <CtaButton dark>Start Building</CtaButton>
+                        <div className="flex items-center gap-3">
+                          <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-background/60">Scroll</span>
+                          <div className="relative h-9 w-px overflow-hidden bg-background/20">
+                            <div className="mu-scroll-line absolute left-0 top-0 h-1/2 w-full bg-background" />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Reveal>
+                    </Reveal>
+                  </div>
                 </div>
               </div>
             </div>
