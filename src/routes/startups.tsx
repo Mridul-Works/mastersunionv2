@@ -1,6 +1,6 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -863,8 +863,19 @@ function StartupsPage() {
   const [showMorePortfolio, setShowMorePortfolio] = useState(false);
   const [selectedShark, setSelectedShark] = useState(0);
   const [selectedQuote, setSelectedQuote] = useState(0);
-  const heroVideoRef = useRef<HTMLVideoElement>(null);
-  const [heroVideoStarted, setHeroVideoStarted] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
+  const [heroControlsVisible, setHeroControlsVisible] = useState(false);
+  const { scrollYProgress: heroScrollProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroTypographyOpacity = useTransform(heroScrollProgress, [0, 0.4], [1, 0]);
+  const heroTypographyY = useTransform(heroScrollProgress, [0, 0.4], [0, -24]);
+
+  useEffect(() => {
+    return heroScrollProgress.on("change", (v) => setHeroControlsVisible(v > 0.4));
+  }, [heroScrollProgress]);
+
   const activeShark = SHARK_TANK[selectedShark];
   const activeQuote = TESTIMONIALS[selectedQuote];
 
@@ -873,11 +884,37 @@ function StartupsPage() {
       <BottomNav items={NAV} applyHref="#cta" />
 
 
-      <header id="top" className="relative overflow-hidden bg-foreground pb-14 pt-10 text-background md:pb-20 md:pt-14">
-        <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-          <Reveal>
-            <div className="flex items-start justify-between">
-              <div className="flex flex-col">
+      <header
+        id="top"
+        ref={heroRef}
+        className="relative h-[100svh] min-h-[600px] overflow-hidden bg-foreground text-background"
+      >
+        <video
+          src={heroVideoAsset.url}
+          autoPlay
+          muted
+          loop
+          playsInline
+          controls={heroControlsVisible}
+          preload="auto"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/60"
+        />
+
+        <motion.div
+          style={{
+            opacity: heroTypographyOpacity,
+            y: heroTypographyY,
+            pointerEvents: heroControlsVisible ? "none" : "auto",
+          }}
+          className="absolute inset-0 flex flex-col"
+        >
+          <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col px-5 md:px-10">
+            <Reveal>
+              <div className="flex items-start justify-between pt-10 md:pt-14">
                 <img
                   decoding="async"
                   loading="eager"
@@ -886,70 +923,40 @@ function StartupsPage() {
                   className="h-8 w-auto md:h-10 brightness-0 invert"
                 />
               </div>
-            </div>
-          </Reveal>
-          <Reveal delay={0.04}>
-            <div className="mt-8 flex justify-center">
-              <span className="eyebrow inline-flex items-center rounded-full border border-background/25 px-4 py-1.5 text-background/70">
-                30+ Startups · ₹593 Cr Valuation
-              </span>
-            </div>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <h1 className="mx-auto mt-6 max-w-[22ch] text-balance text-center text-[clamp(2.6rem,7.5vw,6.5rem)] font-medium leading-[0.95] tracking-[-0.02em]">
-              Entrepreneurship at Masters&apos; Union
-            </h1>
-          </Reveal>
-          <Reveal delay={0.16}>
-            <p className="mx-auto mt-7 max-w-[62ch] text-center text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-background/75">
-              30+ startups. ₹593 Cr in combined valuation. Built by students who turned a cafeteria
-              question, a canteen frustration, or a failed first batch into a real business — while still
-              enrolled.
-            </p>
-          </Reveal>
-          <Reveal delay={0.24}>
-            <div className="mt-9 flex flex-wrap items-center justify-center gap-8">
-              <CtaButton dark>Start Building</CtaButton>
-              <div className="flex items-center gap-3">
-                <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-background/60">Scroll</span>
-                <div className="relative h-9 w-px overflow-hidden bg-background/20">
-                  <div className="mu-scroll-line absolute left-0 top-0 h-1/2 w-full bg-background" />
+            </Reveal>
+
+            <div className="flex flex-1 flex-col items-center justify-center pb-16">
+              <Reveal delay={0.04}>
+                <span className="eyebrow inline-flex items-center rounded-full border border-background/25 px-4 py-1.5 text-background/70">
+                  30+ Startups · ₹593 Cr Valuation
+                </span>
+              </Reveal>
+              <Reveal delay={0.08}>
+                <h1 className="mx-auto mt-6 max-w-[22ch] text-balance text-center text-[clamp(2.6rem,7.5vw,6.5rem)] font-medium leading-[0.95] tracking-[-0.02em]">
+                  Entrepreneurship at Masters&apos; Union
+                </h1>
+              </Reveal>
+              <Reveal delay={0.16}>
+                <p className="mx-auto mt-7 max-w-[62ch] text-center text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-background/75">
+                  30+ startups. ₹593 Cr in combined valuation. Built by students who turned a cafeteria
+                  question, a canteen frustration, or a failed first batch into a real business — while still
+                  enrolled.
+                </p>
+              </Reveal>
+              <Reveal delay={0.24}>
+                <div className="mt-9 flex flex-wrap items-center justify-center gap-8">
+                  <CtaButton dark>Start Building</CtaButton>
+                  <div className="flex items-center gap-3">
+                    <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-background/60">Scroll</span>
+                    <div className="relative h-9 w-px overflow-hidden bg-background/20">
+                      <div className="mu-scroll-line absolute left-0 top-0 h-1/2 w-full bg-background" />
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </Reveal>
             </div>
-          </Reveal>
-          <motion.div
-            initial={{ opacity: 0, y: 40, rotate: -3 }}
-            whileInView={{ opacity: 1, y: 0, rotate: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.8, delay: 0.32, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-12"
-          >
-            <div className="group relative w-full overflow-hidden aspect-video border border-background/15 md:aspect-[21/9]">
-              <video
-                ref={heroVideoRef}
-                src={heroVideoAsset.url}
-                playsInline
-                controls={heroVideoStarted}
-                preload="metadata"
-                onPlay={() => setHeroVideoStarted(true)}
-                className="h-full w-full object-cover"
-              />
-              {!heroVideoStarted && (
-                <button
-                  type="button"
-                  onClick={() => heroVideoRef.current?.play()}
-                  aria-label="Play video"
-                  className="absolute inset-0 flex items-center justify-center bg-black/10 transition-colors duration-300 group-hover:bg-black/25"
-                >
-                  <span className="flex size-14 items-center justify-center rounded-full border border-background/40 bg-background/10 backdrop-blur-md transition-transform duration-300 group-hover:scale-110">
-                    <Play className="size-5 text-background" strokeWidth={1.5} />
-                  </span>
-                </button>
-              )}
-            </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </header>
 
       <Section id="spark" tone="light">
