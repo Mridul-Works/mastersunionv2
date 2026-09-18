@@ -1136,7 +1136,7 @@ function StartupsPage() {
                 {/* outer border — only the top-left and bottom-right edges remain */}
                 <span aria-hidden className="pointer-events-none absolute left-0 top-0 hidden h-px w-1/2 bg-background/15 md:block" />
                 <span aria-hidden className="pointer-events-none absolute bottom-0 right-0 hidden h-px w-1/2 bg-background/15 md:block" />
-                <span aria-hidden className="pointer-events-none absolute left-0 right-1/2 top-0 hidden w-px bg-background/15 md:block" />
+                <span aria-hidden className="pointer-events-none absolute bottom-1/2 left-0 top-0 hidden w-px bg-background/15 md:block" />
                 <span aria-hidden className="pointer-events-none absolute bottom-0 right-0 top-1/2 hidden w-px bg-background/15 md:block" />
                 {/* 4 outer-corner diamonds (top-right and bottom-left corners have no meeting lines — omitted) */}
                 <span aria-hidden className="absolute -left-[6px] -top-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
