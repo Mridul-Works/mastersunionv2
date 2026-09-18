@@ -1155,15 +1155,15 @@ function StartupsPage() {
                 <span aria-hidden className="pointer-events-none absolute bottom-1/2 left-0 top-0 hidden w-px bg-background/15 md:block" />
                 <span aria-hidden className="pointer-events-none absolute bottom-0 right-0 top-1/2 hidden w-px bg-background/15 md:block" />
                 {/* 4 outer-corner diamonds (top-right and bottom-left corners have no meeting lines — omitted) */}
-                <span aria-hidden className="absolute -left-[5px] -top-[5px] hidden size-[10px] rotate-45 rounded-[100%_0_100%_0] bg-background md:block" />
-                <span aria-hidden className="absolute -bottom-[5px] -right-[5px] hidden size-[10px] rotate-45 rounded-[100%_0_100%_0] bg-background md:block" />
+                <span aria-hidden className="absolute -left-[5px] -top-[5px] hidden size-[10px] rotate-45 bg-background md:block" />
+                <span aria-hidden className="absolute -bottom-[5px] -right-[5px] hidden size-[10px] rotate-45 bg-background md:block" />
                 {/* 4 edge-midpoint diamonds */}
-                <span aria-hidden className="absolute -top-[5px] left-1/2 hidden size-[10px] -translate-x-1/2 rotate-45 rounded-[100%_0_100%_0] bg-background md:block" />
-                <span aria-hidden className="absolute -bottom-[5px] left-1/2 hidden size-[10px] -translate-x-1/2 rotate-45 rounded-[100%_0_100%_0] bg-background md:block" />
-                <span aria-hidden className="absolute -left-[5px] top-1/2 hidden size-[10px] -translate-y-1/2 rotate-45 rounded-[100%_0_100%_0] bg-background md:block" />
-                <span aria-hidden className="absolute -right-[5px] top-1/2 hidden size-[10px] -translate-y-1/2 rotate-45 rounded-[100%_0_100%_0] bg-background md:block" />
+                <span aria-hidden className="absolute -top-[5px] left-1/2 hidden size-[10px] -translate-x-1/2 rotate-45 bg-background md:block" />
+                <span aria-hidden className="absolute -bottom-[5px] left-1/2 hidden size-[10px] -translate-x-1/2 rotate-45 bg-background md:block" />
+                <span aria-hidden className="absolute -left-[5px] top-1/2 hidden size-[10px] -translate-y-1/2 rotate-45 bg-background md:block" />
+                <span aria-hidden className="absolute -right-[5px] top-1/2 hidden size-[10px] -translate-y-1/2 rotate-45 bg-background md:block" />
                 {/* center diamond */}
-                <span aria-hidden className="absolute left-1/2 top-1/2 hidden size-[10px] -translate-x-1/2 -translate-y-1/2 rotate-45 rounded-[100%_0_100%_0] bg-background md:block" />
+                <span aria-hidden className="absolute left-1/2 top-1/2 hidden size-[10px] -translate-x-1/2 -translate-y-1/2 rotate-45 bg-background md:block" />
                 {/* full cross-divider */}
                 <div aria-hidden className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px bg-background/15 md:block" />
                 <div aria-hidden className="pointer-events-none absolute inset-x-0 top-1/2 hidden h-px bg-background/15 md:block" />
