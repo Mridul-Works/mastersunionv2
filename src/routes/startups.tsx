@@ -904,17 +904,10 @@ function StartupsPage() {
           className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/60"
         />
 
-        <motion.div
-          style={{
-            opacity: heroTypographyOpacity,
-            y: heroTypographyY,
-            pointerEvents: heroControlsVisible ? "none" : "auto",
-          }}
-          className="absolute inset-0 flex flex-col"
-        >
-          <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col px-5 md:px-10">
+        <div className="pointer-events-none absolute inset-x-0 top-0">
+          <div className="mx-auto max-w-[1440px] px-5 pt-10 md:px-10 md:pt-14">
             <Reveal>
-              <div className="flex items-start justify-between pt-10 md:pt-14">
+              <div className="pointer-events-auto flex items-start justify-between">
                 <img
                   decoding="async"
                   loading="eager"
@@ -924,7 +917,18 @@ function StartupsPage() {
                 />
               </div>
             </Reveal>
+          </div>
+        </div>
 
+        <motion.div
+          style={{
+            opacity: heroTypographyOpacity,
+            y: heroTypographyY,
+            pointerEvents: heroControlsVisible ? "none" : "auto",
+          }}
+          className="absolute inset-0 flex flex-col"
+        >
+          <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col px-5 md:px-10">
             <div className="flex flex-1 flex-col items-center justify-center pb-16">
               <Reveal delay={0.04}>
                 <span className="eyebrow inline-flex items-center rounded-full border border-background/25 px-4 py-1.5 text-background/70">
