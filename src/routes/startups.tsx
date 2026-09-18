@@ -1125,6 +1125,13 @@ function StartupsPage() {
         >
           <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col px-5 md:px-10">
             <div className="flex flex-1 flex-col justify-center pb-16">
+              <Reveal>
+                <div className="mb-8 flex justify-center">
+                  <span className="eyebrow inline-flex items-center rounded-full border border-background/25 px-4 py-1.5 text-background/70">
+                    30+ Startups · ₹593 Cr Valuation
+                  </span>
+                </div>
+              </Reveal>
               <div className="relative mx-auto w-full border border-background/15">
                 <span aria-hidden className="absolute -left-[6px] -top-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
                 <span aria-hidden className="absolute left-1/2 -top-[6px] hidden size-2 -translate-x-1/2 rotate-45 border border-background/40 md:block" />
@@ -1140,16 +1147,13 @@ function StartupsPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2">
                   <div className="p-6 md:p-10 lg:p-12">
-                    <Reveal>
-                      <span className="eyebrow text-background/60">30+ Startups · ₹593 Cr Valuation</span>
-                    </Reveal>
                     <Reveal delay={0.08}>
-                      <h1 className="mt-6 max-w-[16ch] text-balance break-words text-[clamp(2.2rem,5vw,4.3rem)] font-medium leading-[0.95] tracking-[-0.02em]">
+                      <h1 className="max-w-[16ch] text-balance break-words text-[clamp(2.2rem,5vw,4.3rem)] font-medium leading-[0.95] tracking-[-0.02em]">
                         Entrepreneurship at Masters&apos; Union
                       </h1>
                     </Reveal>
                   </div>
-                  <div className="p-6 md:p-10 lg:p-12">
+                  <div className="flex flex-col justify-end p-6 md:p-10 lg:p-12">
                     <Reveal delay={0.16}>
                       <p className="max-w-[46ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-background/75">
                         Built by students who turned a cafeteria question, a canteen frustration, or a failed
