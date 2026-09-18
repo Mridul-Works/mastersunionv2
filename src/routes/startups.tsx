@@ -1179,7 +1179,11 @@ function StartupsPage() {
                   <div className="relative min-h-[210px] p-6 md:min-h-[250px] md:p-10 lg:min-h-[300px] lg:p-12">
                     <Reveal delay={0.08}>
                       <h1 className="w-full overflow-hidden font-medium leading-[0.95] tracking-[-0.02em]">
-                        <span className="block whitespace-nowrap text-[clamp(2.1rem,8.5vw,3.4rem)] leading-[0.9] tracking-[-0.03em] md:text-[clamp(1.9rem,4.7cqw,4.35rem)]">Entrepreneurship</span>
+                        <span
+                          ref={headlineWordRef}
+                          className="block whitespace-nowrap text-[clamp(2.1rem,8.5vw,3.4rem)] leading-[0.9] tracking-[-0.03em]"
+                          style={wordFontSize ? { fontSize: `${wordFontSize}px` } : undefined}
+                        >Entrepreneurship</span>
                         <span className="mt-3 block text-[clamp(0.95rem,1.4vw,1.25rem)] font-semibold text-background/80">at Masters&apos; Union</span>
                       </h1>
                     </Reveal>
