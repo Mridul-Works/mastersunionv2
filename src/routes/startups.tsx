@@ -1124,23 +1124,49 @@ function StartupsPage() {
           }`}
         >
           <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col px-5 md:px-10">
-            <div className="flex flex-1 flex-col items-center justify-center pb-16">
-              <span className="eyebrow inline-flex items-center rounded-full border border-background/25 px-4 py-1.5 text-background/70">
-                30+ Startups · ₹593 Cr Valuation
-              </span>
-              <h1 className="mx-auto mt-6 max-w-[22ch] text-balance text-center text-[clamp(2.6rem,7.5vw,6.5rem)] font-medium leading-[0.95] tracking-[-0.02em]">
-                Entrepreneurship at Masters&apos; Union
-              </h1>
-              <p className="mx-auto mt-7 max-w-[62ch] text-center text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-background/75">
-                Built by students who turned a cafeteria question, a canteen frustration, or a failed first
-                batch into a real business — while still enrolled.
-              </p>
-              <div className="mt-9 flex flex-wrap items-center justify-center gap-8">
-                <CtaButton dark>Start Building</CtaButton>
-                <div className="flex items-center gap-3">
-                  <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-background/60">Scroll</span>
-                  <div className="relative h-9 w-px overflow-hidden bg-background/20">
-                    <div className="mu-scroll-line absolute left-0 top-0 h-1/2 w-full bg-background" />
+            <div className="flex flex-1 flex-col justify-center pb-16">
+              <div className="relative mx-auto w-full max-w-5xl border border-background/25">
+                <span aria-hidden className="absolute -left-[7px] -top-[7px] hidden size-[9px] rotate-45 border border-background/50 md:block" />
+                <span aria-hidden className="absolute left-1/2 -top-[7px] hidden size-[9px] -translate-x-1/2 rotate-45 border border-background/50 md:block" />
+                <span aria-hidden className="absolute -right-[7px] -top-[7px] hidden size-[9px] rotate-45 border border-background/50 md:block" />
+                <span aria-hidden className="absolute -left-[7px] top-1/2 hidden size-[9px] -translate-y-1/2 rotate-45 border border-background/50 md:block" />
+                <span aria-hidden className="absolute left-1/2 top-1/2 hidden size-[9px] -translate-x-1/2 -translate-y-1/2 rotate-45 border border-background/50 md:block" />
+                <span aria-hidden className="absolute -right-[7px] top-1/2 hidden size-[9px] -translate-y-1/2 rotate-45 border border-background/50 md:block" />
+                <span aria-hidden className="absolute -left-[7px] -bottom-[7px] hidden size-[9px] rotate-45 border border-background/50 md:block" />
+                <span aria-hidden className="absolute left-1/2 -bottom-[7px] hidden size-[9px] -translate-x-1/2 rotate-45 border border-background/50 md:block" />
+                <span aria-hidden className="absolute -right-[7px] -bottom-[7px] hidden size-[9px] rotate-45 border border-background/50 md:block" />
+                <div aria-hidden className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px bg-background/25 md:block" />
+                <div aria-hidden className="pointer-events-none absolute inset-x-0 top-1/2 hidden h-px bg-background/25 md:block" />
+
+                <div className="grid grid-cols-1 md:grid-cols-2">
+                  <div className="p-6 md:p-10">
+                    <Reveal>
+                      <span className="eyebrow text-background/60">30+ Startups · ₹593 Cr Valuation</span>
+                    </Reveal>
+                    <Reveal delay={0.08}>
+                      <h1 className="mt-6 max-w-[14ch] text-balance text-[clamp(2.4rem,6.5vw,5.5rem)] font-medium leading-[0.95] tracking-[-0.02em]">
+                        Entrepreneurship at Masters&apos; Union
+                      </h1>
+                    </Reveal>
+                  </div>
+                  <div className="flex flex-col justify-end p-6 md:p-10">
+                    <Reveal delay={0.16}>
+                      <p className="max-w-[46ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-background/75">
+                        Built by students who turned a cafeteria question, a canteen frustration, or a failed
+                        first batch into a real business — while still enrolled.
+                      </p>
+                    </Reveal>
+                    <Reveal delay={0.24}>
+                      <div className="mt-9 flex flex-wrap items-center gap-8">
+                        <CtaButton dark>Start Building</CtaButton>
+                        <div className="flex items-center gap-3">
+                          <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-background/60">Scroll</span>
+                          <div className="relative h-9 w-px overflow-hidden bg-background/20">
+                            <div className="mu-scroll-line absolute left-0 top-0 h-1/2 w-full bg-background" />
+                          </div>
+                        </div>
+                      </div>
+                    </Reveal>
                   </div>
                 </div>
               </div>
