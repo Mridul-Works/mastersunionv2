@@ -1108,6 +1108,7 @@ function StartupsPage() {
         id="top"
         className="relative h-[100svh] min-h-[600px] overflow-hidden bg-foreground text-background supports-[height:100dvh]:h-[100dvh]"
       >
+        <div aria-hidden className="absolute inset-0 bg-black lg:bg-transparent" />
         <video
           src={heroVideoAsset.url}
           autoPlay
