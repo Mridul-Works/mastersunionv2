@@ -1184,7 +1184,7 @@ function StartupsPage() {
                           className="block whitespace-nowrap text-[clamp(2.1rem,8.5vw,3.4rem)] leading-[0.9] tracking-[-0.03em]"
                           style={wordFontSize ? { fontSize: `${wordFontSize}px` } : undefined}
                         >Entrepreneurship</span>
-                        <span className="mt-3 block text-[clamp(0.95rem,1.4vw,1.25rem)] font-semibold text-background/80">at Masters&apos; Union</span>
+                        <span className="mt-8 block text-[clamp(0.95rem,1.4vw,1.25rem)] font-semibold text-background/80">at Masters&apos; Union</span>
                       </h1>
                     </Reveal>
                   </div>
