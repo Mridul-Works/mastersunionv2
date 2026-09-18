@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -863,13 +863,7 @@ function StartupsPage() {
   const [showMorePortfolio, setShowMorePortfolio] = useState(false);
   const [selectedShark, setSelectedShark] = useState(0);
   const [selectedQuote, setSelectedQuote] = useState(0);
-  const heroRef = useRef<HTMLElement>(null);
-  const { scrollYProgress: heroScrollProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const heroTypographyOpacity = useTransform(heroScrollProgress, [0, 0.4], [1, 0]);
-  const heroTypographyY = useTransform(heroScrollProgress, [0, 0.4], [0, -24]);
+  const [heroVideoEnded, setHeroVideoEnded] = useState(false);
 
   const activeShark = SHARK_TANK[selectedShark];
   const activeQuote = TESTIMONIALS[selectedQuote];
@@ -881,17 +875,18 @@ function StartupsPage() {
 
       <header
         id="top"
-        ref={heroRef}
         className="relative h-[100svh] min-h-[600px] overflow-hidden bg-foreground text-background"
       >
         <video
           src={heroVideoAsset.url}
           autoPlay
           muted
-          loop
           playsInline
           preload="auto"
-          className="absolute inset-0 h-full w-full object-cover"
+          onEnded={() => setHeroVideoEnded(true)}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-out ${
+            heroVideoEnded ? "opacity-0" : "opacity-100"
+          }`}
         />
         <div
           aria-hidden
@@ -914,46 +909,36 @@ function StartupsPage() {
           </div>
         </div>
 
-        <motion.div
-          style={{
-            opacity: heroTypographyOpacity,
-            y: heroTypographyY,
-          }}
-          className="absolute inset-0 flex flex-col"
+        <div
+          className={`absolute inset-0 flex flex-col transition-opacity delay-300 duration-1000 ease-out ${
+            heroVideoEnded ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+          }`}
         >
           <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col px-5 md:px-10">
             <div className="flex flex-1 flex-col items-center justify-center pb-16">
-              <Reveal delay={0.04}>
-                <span className="eyebrow inline-flex items-center rounded-full border border-background/25 px-4 py-1.5 text-background/70">
-                  30+ Startups · ₹593 Cr Valuation
-                </span>
-              </Reveal>
-              <Reveal delay={0.08}>
-                <h1 className="mx-auto mt-6 max-w-[22ch] text-balance text-center text-[clamp(2.6rem,7.5vw,6.5rem)] font-medium leading-[0.95] tracking-[-0.02em]">
-                  Entrepreneurship at Masters&apos; Union
-                </h1>
-              </Reveal>
-              <Reveal delay={0.16}>
-                <p className="mx-auto mt-7 max-w-[62ch] text-center text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-background/75">
-                  30+ startups. ₹593 Cr in combined valuation. Built by students who turned a cafeteria
-                  question, a canteen frustration, or a failed first batch into a real business — while still
-                  enrolled.
-                </p>
-              </Reveal>
-              <Reveal delay={0.24}>
-                <div className="mt-9 flex flex-wrap items-center justify-center gap-8">
-                  <CtaButton dark>Start Building</CtaButton>
-                  <div className="flex items-center gap-3">
-                    <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-background/60">Scroll</span>
-                    <div className="relative h-9 w-px overflow-hidden bg-background/20">
-                      <div className="mu-scroll-line absolute left-0 top-0 h-1/2 w-full bg-background" />
-                    </div>
+              <span className="eyebrow inline-flex items-center rounded-full border border-background/25 px-4 py-1.5 text-background/70">
+                30+ Startups · ₹593 Cr Valuation
+              </span>
+              <h1 className="mx-auto mt-6 max-w-[22ch] text-balance text-center text-[clamp(2.6rem,7.5vw,6.5rem)] font-medium leading-[0.95] tracking-[-0.02em]">
+                Entrepreneurship at Masters&apos; Union
+              </h1>
+              <p className="mx-auto mt-7 max-w-[62ch] text-center text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-background/75">
+                30+ startups. ₹593 Cr in combined valuation. Built by students who turned a cafeteria
+                question, a canteen frustration, or a failed first batch into a real business — while still
+                enrolled.
+              </p>
+              <div className="mt-9 flex flex-wrap items-center justify-center gap-8">
+                <CtaButton dark>Start Building</CtaButton>
+                <div className="flex items-center gap-3">
+                  <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-background/60">Scroll</span>
+                  <div className="relative h-9 w-px overflow-hidden bg-background/20">
+                    <div className="mu-scroll-line absolute left-0 top-0 h-1/2 w-full bg-background" />
                   </div>
                 </div>
-              </Reveal>
+              </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </header>
 
       <Section id="spark" tone="light">
