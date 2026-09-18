@@ -1132,8 +1132,8 @@ function StartupsPage() {
                   </span>
                 </div>
               </Reveal>
-              <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                <div className="relative self-start border border-background/15 p-6 md:p-10 lg:p-12">
+              <div className="grid grid-cols-1 md:grid-cols-2">
+                <div className="relative min-h-[420px] border border-background/15 p-6 md:min-h-[500px] md:p-10 lg:min-h-[600px] lg:p-12">
                   <span aria-hidden className="absolute -left-[6px] -top-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
                   <span aria-hidden className="absolute -right-[6px] -top-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
                   <span aria-hidden className="absolute -left-[6px] -bottom-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
@@ -1144,7 +1144,7 @@ function StartupsPage() {
                     </h1>
                   </Reveal>
                 </div>
-                <div className="relative self-end border border-background/15 p-6 md:p-10 lg:p-12">
+                <div className="relative flex min-h-[420px] flex-col justify-end border border-background/15 p-6 md:min-h-[500px] md:border-l-0 md:p-10 lg:min-h-[600px] lg:p-12">
                   <span aria-hidden className="absolute -left-[6px] -top-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
                   <span aria-hidden className="absolute -right-[6px] -top-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
                   <span aria-hidden className="absolute -left-[6px] -bottom-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
