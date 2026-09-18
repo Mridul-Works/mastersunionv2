@@ -866,8 +866,11 @@ function StartupsPage() {
   const [heroVideoEnded, setHeroVideoEnded] = useState(false);
 
   useEffect(() => {
-    document.body.style.overflow = heroVideoEnded ? "" : "hidden";
+    const overflowValue = heroVideoEnded ? "" : "hidden";
+    document.documentElement.style.overflow = overflowValue;
+    document.body.style.overflow = overflowValue;
     return () => {
+      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
     };
   }, [heroVideoEnded]);
