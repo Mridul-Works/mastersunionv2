@@ -1147,7 +1147,7 @@ function StartupsPage() {
           }`}
         >
           <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col px-5 md:px-10">
-            <div className="flex flex-1 flex-col justify-end pb-[108px] md:pb-[148px]">
+            <div className="flex flex-1 flex-col justify-end pb-[92px] md:pb-[108px]">
               <div className="@container relative">
                 {/* outer border — only the top-left and bottom-right edges remain */}
                 <span aria-hidden className="pointer-events-none absolute left-0 top-0 hidden h-px w-1/2 bg-background/15 md:block" />
