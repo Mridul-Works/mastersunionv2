@@ -868,15 +868,6 @@ function StartupsPage() {
     <main className="min-h-screen bg-background text-foreground">
       <BottomNav items={NAV} applyHref="#cta" />
 
-      <div className="mx-auto flex max-w-6xl items-center justify-between bg-background px-5 pt-6 md:px-10 md:pt-8">
-        <Link
-          to="/"
-          className="eyebrow inline-flex items-center gap-2 text-foreground/70 transition-colors hover:text-foreground"
-        >
-          <span aria-hidden>←</span> Masters&apos; Union
-        </Link>
-        <div className="eyebrow text-foreground/55">Entrepreneurship at Masters&apos; Union</div>
-      </div>
 
       <header id="top" className="relative overflow-hidden bg-foreground pb-14 pt-10 text-background md:pb-20 md:pt-14">
         <div className="mx-auto max-w-[1440px] px-5 md:px-10">
