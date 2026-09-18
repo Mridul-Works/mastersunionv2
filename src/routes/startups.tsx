@@ -1179,11 +1179,9 @@ function StartupsPage() {
                         >Entrepreneurship</span>
                         <span className="mt-8 block text-[clamp(1.2rem,1.9vw,1.6rem)] font-semibold text-background/80">-at Masters&apos; Union</span>
                       </h1>
-                      <div className="mt-6 flex justify-center">
-                        <span className="eyebrow inline-flex items-center rounded-full border border-background/25 px-4 py-1.5 text-background/70">
-                          30+ Startups · ₹593 Cr Valuation
-                        </span>
-                      </div>
+                      <span className="eyebrow mt-6 inline-block text-background/70">
+                        30+ Startups · ₹593 Cr Valuation
+                      </span>
                     </Reveal>
                   </div>
                   <div className="relative min-h-[210px] p-6 md:min-h-[250px] md:p-10 lg:min-h-[300px] lg:p-12" />
