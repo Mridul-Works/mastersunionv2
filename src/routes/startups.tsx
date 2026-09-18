@@ -14,7 +14,6 @@ import {
   Tv,
   Users,
 } from "lucide-react";
-import BottomNav, { type BottomNavItem } from "@/components/BottomNav";
 import eightVentureImg from "@/assets/founders/ventures/eight.jpg.asset.json";
 import bullspreeVentureImg from "@/assets/founders/ventures/bullspree.jpg.asset.json";
 import hiveschoolVentureImg from "@/assets/founders/ventures/hiveschool.jpg.asset.json";
@@ -26,12 +25,12 @@ import sharkTankStageImg from "@/assets/founders/sharktank-stage.jpg.asset.json"
 import muLogoAsset from "@/assets/mu-logo-dark.png.asset.json";
 import heroVideoAsset from "@/assets/hero.mp4.asset.json";
 
-const NAV: BottomNavItem[] = [
-  { id: "top", label: "Top", icon: Home },
-  { id: "journey", label: "Journey", icon: Flag },
-  { id: "eight", label: "Stories", icon: Users },
-  { id: "sharktank", label: "Shark Tank", icon: Trophy },
-  { id: "portfolio", label: "Portfolio", icon: LayoutGrid },
+const NAV: { id: string; label: string }[] = [
+  { id: "top", label: "Hero" },
+  { id: "journey", label: "Journey" },
+  { id: "eight", label: "Stories" },
+  { id: "sharktank", label: "Shark Tank" },
+  { id: "portfolio", label: "Portfolio" },
 ];
 
 const VENTURE_IMAGES: Record<string, string> = {
@@ -859,6 +858,197 @@ function CtaButton({ children, dark = false }: { children: React.ReactNode; dark
   );
 }
 
+function useHomeNavScrollState() {
+  const [scrolled, setScrolled] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    let raf = 0;
+    const measure = () => {
+      raf = 0;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setScrolled(window.scrollY > 24);
+      setProgress(max > 0 ? Math.min(1, window.scrollY / max) : 0);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(measure);
+    };
+    measure();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  return { scrolled, progress };
+}
+
+function useHomeNavActiveSection(ids: string[], lockedRef: React.MutableRefObject<number>) {
+  const [active, setActive] = useState<string | null>(null);
+  const key = ids.join("|");
+
+  useEffect(() => {
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => Boolean(el));
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (Date.now() < lockedRef.current) return;
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(visible.target.id);
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: [0, 0.25, 0.5, 1] },
+    );
+
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key]);
+
+  return [active, setActive] as const;
+}
+
+function useHomeNavClock() {
+  const [now, setNow] = useState<Date | null>(null);
+
+  useEffect(() => {
+    setNow(new Date());
+    const t = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(t);
+  }, []);
+
+  if (!now) return "";
+  const date = now.toLocaleDateString("en-GB", { day: "2-digit", month: "short" });
+  const time = now.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false });
+  return `${date} · ${time}`;
+}
+
+function homeNavScrollToId(id: string) {
+  if (typeof window === "undefined") return;
+  const lenis = (window as unknown as { __lenis?: { scrollTo: (target: number, opts?: { duration?: number }) => void } }).__lenis;
+  if (id === "top") {
+    if (lenis?.scrollTo) lenis.scrollTo(0, { duration: 1.2 });
+    else window.scrollTo({ top: 0, behavior: "smooth" });
+    return;
+  }
+  const el = document.getElementById(id);
+  if (!el) return;
+  const y = window.scrollY + el.getBoundingClientRect().top - 12;
+  if (lenis?.scrollTo) lenis.scrollTo(y, { duration: 1.2 });
+  else window.scrollTo({ top: y, behavior: "smooth" });
+}
+
+/**
+ * Floating bottom nav reproducing the finished Masters' Union homepage's
+ * SectionNav design (pill shape, scroll-progress rail, logo + clock, active
+ * section pills, Apply button) — local to this page only. Deliberately
+ * hidden below `lg` (the same breakpoint the previous BottomNav used) so it
+ * never doubles up with the global MobileBottomBar, which already owns
+ * mobile/tablet navigation for every route including this one.
+ */
+function HomepageStyleNav({
+  items,
+  applyHref = "#apply",
+}: {
+  items: { id: string; label: string }[];
+  applyHref?: string;
+}) {
+  const { scrolled, progress } = useHomeNavScrollState();
+  const lockedUntilRef = useRef(0);
+  const [active, setActive] = useHomeNavActiveSection(items.map((i) => i.id), lockedUntilRef);
+  const clock = useHomeNavClock();
+
+  const goTo = (id: string) => {
+    lockedUntilRef.current = Date.now() + 1400;
+    setActive(id);
+    homeNavScrollToId(id);
+  };
+
+  const activeLabel = items.find((l) => l.id === active)?.label ?? "Overview";
+
+  const handleApply = (e: React.MouseEvent) => {
+    if (applyHref.startsWith("#")) {
+      e.preventDefault();
+      homeNavScrollToId(applyHref.slice(1));
+    }
+  };
+
+  return (
+    <header className="fixed inset-x-0 bottom-0 z-[100] hidden px-3 pb-3 sm:px-5 sm:pb-4 lg:block">
+      <div
+        className={
+          "relative mx-auto flex h-10 max-w-[1320px] items-center justify-between gap-2 overflow-hidden rounded-full border px-3 transition-all duration-300 sm:gap-4 sm:px-5 lg:h-11 " +
+          (scrolled
+            ? "border-border bg-background/85 shadow-[0_-18px_50px_-28px_rgba(0,0,0,0.28)] backdrop-blur-xl"
+            : "border-border/60 bg-background/80 shadow-[0_-12px_40px_-30px_rgba(0,0,0,0.25)] backdrop-blur-md")
+        }
+      >
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-[2px] origin-left transition-transform duration-150"
+          style={{
+            transform: `scaleX(${progress})`,
+            backgroundImage: "linear-gradient(91deg, #39B5D7 -6.14%, #F7D544 47.02%, #E38330 99.71%)",
+          }}
+        />
+
+        <a href="/" className="flex min-w-0 shrink-0 items-center gap-3" aria-label="Masters' Union home">
+          <img decoding="async" loading="eager" src={muLogoAsset.url} alt="Masters' Union" className="h-4 w-auto sm:h-5 lg:h-6" />
+          <span className="hidden h-6 w-px bg-border md:block" />
+          <span className="hidden font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground md:block">
+            {clock}
+          </span>
+        </a>
+
+        <nav aria-label="Sections" className="hidden min-w-0 items-center gap-0.5 lg:flex">
+          {items.map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                goTo(item.id);
+              }}
+              className={
+                "whitespace-nowrap rounded-full px-2.5 py-1.5 text-[12px] font-medium transition-[color,background-color] duration-300 ease-out " +
+                (active === item.id
+                  ? "bg-foreground/[0.07] text-foreground"
+                  : "text-foreground/70 hover:bg-foreground/[0.06] hover:text-foreground")
+              }
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="flex shrink-0 items-center gap-2">
+          <span className="hidden font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground xl:inline">
+            {activeLabel}
+          </span>
+
+          <a
+            href={applyHref}
+            onClick={handleApply}
+            className="group inline-flex items-center gap-1.5 rounded-full bg-primary py-0.5 pl-3 pr-0.5 text-[12px] font-semibold text-primary-foreground transition-transform hover:-translate-y-px sm:pl-3.5"
+          >
+            Apply
+            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary-foreground text-primary transition-transform duration-300 group-hover:rotate-45">
+              <ArrowUpRight className="h-3 w-3" strokeWidth={2.25} />
+            </span>
+          </a>
+        </div>
+      </div>
+    </header>
+  );
+}
+
 function StartupsPage() {
   const [showMorePortfolio, setShowMorePortfolio] = useState(false);
   const [selectedShark, setSelectedShark] = useState(0);
@@ -882,7 +1072,7 @@ function StartupsPage() {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <BottomNav items={NAV} applyHref="#cta" />
+      <HomepageStyleNav items={NAV} applyHref="#cta" />
 
 
       <header
