@@ -866,12 +866,24 @@ function StartupsPage() {
   const [heroVideoEnded, setHeroVideoEnded] = useState(false);
 
   useEffect(() => {
-    const overflowValue = heroVideoEnded ? "" : "hidden";
-    document.documentElement.style.overflow = overflowValue;
-    document.body.style.overflow = overflowValue;
+    if (heroVideoEnded) return;
+
+    const preventScroll = (e: Event) => {
+      e.preventDefault();
+    };
+    const preventScrollKeys = (e: KeyboardEvent) => {
+      const scrollKeys = ["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "];
+      if (scrollKeys.includes(e.key)) e.preventDefault();
+    };
+
+    window.addEventListener("wheel", preventScroll, { passive: false });
+    window.addEventListener("touchmove", preventScroll, { passive: false });
+    window.addEventListener("keydown", preventScrollKeys);
+
     return () => {
-      document.documentElement.style.overflow = "";
-      document.body.style.overflow = "";
+      window.removeEventListener("wheel", preventScroll);
+      window.removeEventListener("touchmove", preventScroll);
+      window.removeEventListener("keydown", preventScrollKeys);
     };
   }, [heroVideoEnded]);
 
