@@ -1125,31 +1125,31 @@ function StartupsPage() {
         >
           <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col px-5 md:px-10">
             <div className="flex flex-1 flex-col justify-center pb-16">
-              <div className="relative mx-auto w-full max-w-5xl border border-background/25">
-                <span aria-hidden className="absolute -left-[7px] -top-[7px] hidden size-[9px] rotate-45 border border-background/50 md:block" />
-                <span aria-hidden className="absolute left-1/2 -top-[7px] hidden size-[9px] -translate-x-1/2 rotate-45 border border-background/50 md:block" />
-                <span aria-hidden className="absolute -right-[7px] -top-[7px] hidden size-[9px] rotate-45 border border-background/50 md:block" />
-                <span aria-hidden className="absolute -left-[7px] top-1/2 hidden size-[9px] -translate-y-1/2 rotate-45 border border-background/50 md:block" />
-                <span aria-hidden className="absolute left-1/2 top-1/2 hidden size-[9px] -translate-x-1/2 -translate-y-1/2 rotate-45 border border-background/50 md:block" />
-                <span aria-hidden className="absolute -right-[7px] top-1/2 hidden size-[9px] -translate-y-1/2 rotate-45 border border-background/50 md:block" />
-                <span aria-hidden className="absolute -left-[7px] -bottom-[7px] hidden size-[9px] rotate-45 border border-background/50 md:block" />
-                <span aria-hidden className="absolute left-1/2 -bottom-[7px] hidden size-[9px] -translate-x-1/2 rotate-45 border border-background/50 md:block" />
-                <span aria-hidden className="absolute -right-[7px] -bottom-[7px] hidden size-[9px] rotate-45 border border-background/50 md:block" />
-                <div aria-hidden className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px bg-background/25 md:block" />
-                <div aria-hidden className="pointer-events-none absolute inset-x-0 top-1/2 hidden h-px bg-background/25 md:block" />
+              <div className="relative mx-auto w-full border border-background/15">
+                <span aria-hidden className="absolute -left-[6px] -top-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
+                <span aria-hidden className="absolute left-1/2 -top-[6px] hidden size-2 -translate-x-1/2 rotate-45 border border-background/40 md:block" />
+                <span aria-hidden className="absolute -right-[6px] -top-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
+                <span aria-hidden className="absolute -left-[6px] top-1/2 hidden size-2 -translate-y-1/2 rotate-45 border border-background/40 md:block" />
+                <span aria-hidden className="absolute left-1/2 top-1/2 hidden size-2 -translate-x-1/2 -translate-y-1/2 rotate-45 border border-background/40 md:block" />
+                <span aria-hidden className="absolute -right-[6px] top-1/2 hidden size-2 -translate-y-1/2 rotate-45 border border-background/40 md:block" />
+                <span aria-hidden className="absolute -left-[6px] -bottom-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
+                <span aria-hidden className="absolute left-1/2 -bottom-[6px] hidden size-2 -translate-x-1/2 rotate-45 border border-background/40 md:block" />
+                <span aria-hidden className="absolute -right-[6px] -bottom-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
+                <div aria-hidden className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px bg-background/15 md:block" />
+                <div aria-hidden className="pointer-events-none absolute inset-x-0 top-1/2 hidden h-px bg-background/15 md:block" />
 
                 <div className="grid grid-cols-1 md:grid-cols-2">
-                  <div className="p-6 md:p-10">
+                  <div className="p-6 md:p-10 lg:p-12">
                     <Reveal>
                       <span className="eyebrow text-background/60">30+ Startups · ₹593 Cr Valuation</span>
                     </Reveal>
                     <Reveal delay={0.08}>
-                      <h1 className="mt-6 max-w-[14ch] text-balance text-[clamp(2.4rem,6.5vw,5.5rem)] font-medium leading-[0.95] tracking-[-0.02em]">
+                      <h1 className="mt-6 max-w-[16ch] text-balance text-[clamp(2.6rem,6vw,5.5rem)] font-medium leading-[0.95] tracking-[-0.02em]">
                         Entrepreneurship at Masters&apos; Union
                       </h1>
                     </Reveal>
                   </div>
-                  <div className="flex flex-col justify-end p-6 md:p-10">
+                  <div className="p-6 md:p-10 lg:p-12">
                     <Reveal delay={0.16}>
                       <p className="max-w-[46ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-background/75">
                         Built by students who turned a cafeteria question, a canteen frustration, or a failed
