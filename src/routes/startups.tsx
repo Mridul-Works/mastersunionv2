@@ -863,6 +863,8 @@ function StartupsPage() {
   const [showMorePortfolio, setShowMorePortfolio] = useState(false);
   const [selectedShark, setSelectedShark] = useState(0);
   const [selectedQuote, setSelectedQuote] = useState(0);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const [heroVideoStarted, setHeroVideoStarted] = useState(false);
   const activeShark = SHARK_TANK[selectedShark];
   const activeQuote = TESTIMONIALS[selectedQuote];
 
@@ -916,19 +918,37 @@ function StartupsPage() {
               </div>
             </div>
           </Reveal>
-          <Reveal delay={0.32} className="mt-12">
-            <div className="relative w-full overflow-hidden aspect-video border border-background/15 md:aspect-[21/9]">
+          <motion.div
+            initial={{ opacity: 0, y: 40, rotate: -3 }}
+            whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.8, delay: 0.32, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-12"
+          >
+            <div className="group relative w-full overflow-hidden aspect-video border border-background/15 md:aspect-[21/9]">
               <video
+                ref={heroVideoRef}
                 src={heroVideoAsset.url}
-                autoPlay
-                muted
-                loop
                 playsInline
-                preload="auto"
+                controls={heroVideoStarted}
+                preload="metadata"
+                onPlay={() => setHeroVideoStarted(true)}
                 className="h-full w-full object-cover"
               />
+              {!heroVideoStarted && (
+                <button
+                  type="button"
+                  onClick={() => heroVideoRef.current?.play()}
+                  aria-label="Play video"
+                  className="absolute inset-0 flex items-center justify-center bg-black/10 transition-colors duration-300 group-hover:bg-black/25"
+                >
+                  <span className="flex size-14 items-center justify-center rounded-full border border-background/40 bg-background/10 backdrop-blur-md transition-transform duration-300 group-hover:scale-110">
+                    <Play className="size-5 text-background" strokeWidth={1.5} />
+                  </span>
+                </button>
+              )}
             </div>
-          </Reveal>
+          </motion.div>
         </div>
       </header>
 
