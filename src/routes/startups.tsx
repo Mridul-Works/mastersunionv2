@@ -1132,10 +1132,14 @@ function StartupsPage() {
                   </span>
                 </div>
               </Reveal>
-              <div className="relative border border-background/15">
-                {/* 4 outer-corner diamonds */}
+              <div className="relative">
+                {/* outer border — top edge only over the left half, right edge only over the bottom half */}
+                <span aria-hidden className="pointer-events-none absolute left-0 top-0 hidden h-px w-1/2 bg-background/15 md:block" />
+                <span aria-hidden className="pointer-events-none absolute inset-y-0 left-0 hidden w-px bg-background/15 md:block" />
+                <span aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-px bg-background/15 md:block" />
+                <span aria-hidden className="pointer-events-none absolute bottom-0 right-0 top-1/2 hidden w-px bg-background/15 md:block" />
+                {/* 4 outer-corner diamonds (top-right corner has no meeting lines — omitted) */}
                 <span aria-hidden className="absolute -left-[6px] -top-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
-                <span aria-hidden className="absolute -right-[6px] -top-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
                 <span aria-hidden className="absolute -left-[6px] -bottom-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
                 <span aria-hidden className="absolute -right-[6px] -bottom-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
                 {/* 4 edge-midpoint diamonds */}
