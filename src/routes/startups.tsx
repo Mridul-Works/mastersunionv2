@@ -1116,7 +1116,7 @@ function StartupsPage() {
           preload="auto"
           onEnded={() => setHeroVideoEnded(true)}
           onError={() => setHeroVideoEnded(true)}
-          className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-1000 ease-out ${
+          className={`absolute inset-0 h-full w-full object-contain object-center md:object-cover transition-opacity duration-1000 ease-out ${
             heroVideoEnded ? "opacity-0" : "opacity-100"
           }`}
         />
