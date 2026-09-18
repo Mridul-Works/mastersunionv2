@@ -1132,9 +1132,8 @@ function StartupsPage() {
                 Entrepreneurship at Masters&apos; Union
               </h1>
               <p className="mx-auto mt-7 max-w-[62ch] text-center text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-background/75">
-                30+ startups. ₹593 Cr in combined valuation. Built by students who turned a cafeteria
-                question, a canteen frustration, or a failed first batch into a real business — while still
-                enrolled.
+                Built by students who turned a cafeteria question, a canteen frustration, or a failed first
+                batch into a real business — while still enrolled.
               </p>
               <div className="mt-9 flex flex-wrap items-center justify-center gap-8">
                 <CtaButton dark>Start Building</CtaButton>
