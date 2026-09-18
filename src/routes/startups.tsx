@@ -956,9 +956,11 @@ function homeNavScrollToId(id: string) {
 function HomepageStyleNav({
   items,
   applyHref = "#apply",
+  visible,
 }: {
   items: { id: string; label: string }[];
   applyHref?: string;
+  visible: boolean;
 }) {
   const { scrolled, progress } = useHomeNavScrollState();
   const lockedUntilRef = useRef(0);
@@ -981,7 +983,11 @@ function HomepageStyleNav({
   };
 
   return (
-    <header className="fixed inset-x-0 bottom-0 z-[100] hidden px-3 pb-3 sm:px-5 sm:pb-4 lg:block">
+    <header
+      className={`fixed inset-x-0 bottom-0 z-[100] hidden px-3 pb-3 transition-opacity duration-[2200ms] delay-500 ease-out sm:px-5 sm:pb-4 lg:block ${
+        visible ? "opacity-100" : "pointer-events-none opacity-0"
+      }`}
+    >
       <div
         className={
           "relative mx-auto flex h-10 max-w-[1320px] items-center justify-between gap-2 overflow-hidden rounded-full border px-3 transition-all duration-300 sm:gap-4 sm:px-5 lg:h-11 " +
@@ -1072,7 +1078,7 @@ function StartupsPage() {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <HomepageStyleNav items={NAV} applyHref="#cta" />
+      <HomepageStyleNav items={NAV} applyHref="#cta" visible={heroVideoEnded} />
 
 
       <header
