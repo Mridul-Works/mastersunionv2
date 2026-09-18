@@ -1144,7 +1144,7 @@ function StartupsPage() {
                       <span className="eyebrow text-background/60">30+ Startups · ₹593 Cr Valuation</span>
                     </Reveal>
                     <Reveal delay={0.08}>
-                      <h1 className="mt-6 max-w-[16ch] text-balance text-[clamp(2.6rem,6vw,5.5rem)] font-medium leading-[0.95] tracking-[-0.02em]">
+                      <h1 className="mt-6 max-w-[16ch] text-balance break-words text-[clamp(2.2rem,5vw,4.3rem)] font-medium leading-[0.95] tracking-[-0.02em]">
                         Entrepreneurship at Masters&apos; Union
                       </h1>
                     </Reveal>
