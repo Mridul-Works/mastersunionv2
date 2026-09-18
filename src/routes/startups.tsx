@@ -864,17 +864,12 @@ function StartupsPage() {
   const [selectedShark, setSelectedShark] = useState(0);
   const [selectedQuote, setSelectedQuote] = useState(0);
   const heroRef = useRef<HTMLElement>(null);
-  const [heroControlsVisible, setHeroControlsVisible] = useState(false);
   const { scrollYProgress: heroScrollProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
   });
   const heroTypographyOpacity = useTransform(heroScrollProgress, [0, 0.4], [1, 0]);
   const heroTypographyY = useTransform(heroScrollProgress, [0, 0.4], [0, -24]);
-
-  useEffect(() => {
-    return heroScrollProgress.on("change", (v) => setHeroControlsVisible(v > 0.4));
-  }, [heroScrollProgress]);
 
   const activeShark = SHARK_TANK[selectedShark];
   const activeQuote = TESTIMONIALS[selectedQuote];
@@ -895,7 +890,6 @@ function StartupsPage() {
           muted
           loop
           playsInline
-          controls={heroControlsVisible}
           preload="auto"
           className="absolute inset-0 h-full w-full object-cover"
         />
@@ -924,7 +918,6 @@ function StartupsPage() {
           style={{
             opacity: heroTypographyOpacity,
             y: heroTypographyY,
-            pointerEvents: heroControlsVisible ? "none" : "auto",
           }}
           className="absolute inset-0 flex flex-col"
         >
