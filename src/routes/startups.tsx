@@ -886,20 +886,27 @@ function StartupsPage() {
               </div>
             </div>
           </Reveal>
+          <Reveal delay={0.04}>
+            <div className="mt-8 flex justify-center">
+              <span className="eyebrow inline-flex items-center rounded-full border border-background/25 px-4 py-1.5 text-background/70">
+                30+ Startups · ₹593 Cr Valuation
+              </span>
+            </div>
+          </Reveal>
           <Reveal delay={0.08}>
-            <h1 className="mt-6 max-w-[22ch] text-balance text-[clamp(2.6rem,7.5vw,6.5rem)] font-medium leading-[0.95] tracking-[-0.02em]">
+            <h1 className="mx-auto mt-6 max-w-[22ch] text-balance text-center text-[clamp(2.6rem,7.5vw,6.5rem)] font-medium leading-[0.95] tracking-[-0.02em]">
               Entrepreneurship at Masters&apos; Union
             </h1>
           </Reveal>
           <Reveal delay={0.16}>
-            <p className="mt-7 max-w-[62ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-background/75">
+            <p className="mx-auto mt-7 max-w-[62ch] text-center text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-background/75">
               30+ startups. ₹593 Cr in combined valuation. Built by students who turned a cafeteria
               question, a canteen frustration, or a failed first batch into a real business — while still
               enrolled.
             </p>
           </Reveal>
           <Reveal delay={0.24}>
-            <div className="mt-9 flex flex-wrap items-center gap-8">
+            <div className="mt-9 flex flex-wrap items-center justify-center gap-8">
               <CtaButton dark>Start Building</CtaButton>
               <div className="flex items-center gap-3">
                 <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-background/60">Scroll</span>
