@@ -1169,7 +1169,7 @@ function StartupsPage() {
                 <div aria-hidden className="pointer-events-none absolute inset-x-0 top-1/2 hidden h-px bg-background/15 md:block" />
 
                 <div className="grid grid-cols-1 md:grid-cols-2">
-                  <div className="relative min-h-[210px] p-6 md:min-h-[250px] md:p-10 lg:min-h-[300px] lg:p-12">
+                  <div className="relative flex min-h-[210px] flex-col p-6 md:min-h-[250px] md:p-10 lg:min-h-[300px] lg:p-12">
                     <Reveal delay={0.08}>
                       <h1 className="w-full overflow-hidden font-medium leading-[0.95] tracking-[-0.02em]">
                         <span
@@ -1179,7 +1179,9 @@ function StartupsPage() {
                         >Entrepreneurship</span>
                         <span className="mt-8 block text-[clamp(1.2rem,1.9vw,1.6rem)] font-semibold text-background/80">-at Masters&apos; Union</span>
                       </h1>
-                      <span className="eyebrow mt-6 inline-block text-background/70">
+                    </Reveal>
+                    <Reveal delay={0.16} className="mt-auto">
+                      <span className="eyebrow inline-block text-background/70">
                         30+ Startups · ₹593 Cr Valuation
                       </span>
                     </Reveal>
