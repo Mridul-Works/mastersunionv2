@@ -865,6 +865,13 @@ function StartupsPage() {
   const [selectedQuote, setSelectedQuote] = useState(0);
   const [heroVideoEnded, setHeroVideoEnded] = useState(false);
 
+  useEffect(() => {
+    document.body.style.overflow = heroVideoEnded ? "" : "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [heroVideoEnded]);
+
   const activeShark = SHARK_TANK[selectedShark];
   const activeQuote = TESTIMONIALS[selectedQuote];
 
@@ -884,6 +891,7 @@ function StartupsPage() {
           playsInline
           preload="auto"
           onEnded={() => setHeroVideoEnded(true)}
+          onError={() => setHeroVideoEnded(true)}
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ease-out ${
             heroVideoEnded ? "opacity-0" : "opacity-100"
           }`}
@@ -910,7 +918,7 @@ function StartupsPage() {
         </div>
 
         <div
-          className={`absolute inset-0 flex flex-col transition-opacity delay-300 duration-1000 ease-out ${
+          className={`absolute inset-0 flex flex-col transition-opacity delay-500 duration-[2200ms] ease-out ${
             heroVideoEnded ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
           }`}
         >
