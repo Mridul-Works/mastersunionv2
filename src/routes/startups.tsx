@@ -1148,7 +1148,7 @@ function StartupsPage() {
         >
           <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col px-5 md:px-10">
             <div className="flex flex-1 flex-col justify-end pb-[72px] md:pb-[88px]">
-              <div className="@container relative">
+              <div className="@container relative border border-background/15 md:border-0">
                 {/* outer border — only the top-left and bottom-right edges remain */}
                 <span aria-hidden className="pointer-events-none absolute left-0 top-0 hidden h-px w-1/2 bg-background/15 md:block" />
                 <span aria-hidden className="pointer-events-none absolute bottom-0 right-0 hidden h-px w-1/2 bg-background/15 md:block" />
@@ -1169,7 +1169,7 @@ function StartupsPage() {
                 <div aria-hidden className="pointer-events-none absolute inset-x-0 top-1/2 hidden h-px bg-background/15 md:block" />
 
                 <div className="grid grid-cols-1 md:grid-cols-2">
-                  <div className="relative flex min-h-[210px] flex-col p-6 md:min-h-[250px] md:p-10 lg:min-h-[300px] lg:p-12">
+                  <div className="relative flex min-h-[170px] flex-col p-5 sm:min-h-[200px] sm:p-6 md:min-h-[250px] md:p-10 lg:min-h-[300px] lg:p-12">
                     <Reveal delay={0.08}>
                       <h1 className="w-full overflow-hidden font-medium leading-[0.95] tracking-[-0.02em]">
                         <span
@@ -1177,7 +1177,7 @@ function StartupsPage() {
                           className="block whitespace-nowrap text-[clamp(2.1rem,8.5vw,3.4rem)] leading-[0.9] tracking-[-0.03em]"
                           style={wordFontSize ? { fontSize: `${wordFontSize}px` } : undefined}
                         >Entrepreneurship</span>
-                        <span className="mt-8 block text-[clamp(1.2rem,1.9vw,1.6rem)] font-semibold text-background/80">-at Masters&apos; Union</span>
+                        <span className="mt-4 block text-[clamp(1.05rem,3.5vw,1.6rem)] font-semibold text-background/80 sm:mt-6 md:mt-8">-at Masters&apos; Union</span>
                       </h1>
                     </Reveal>
                     <Reveal delay={0.16} className="mt-auto">
@@ -1186,9 +1186,9 @@ function StartupsPage() {
                       </span>
                     </Reveal>
                   </div>
-                  <div className="relative min-h-[210px] p-6 md:min-h-[250px] md:p-10 lg:min-h-[300px] lg:p-12" />
-                  <div className="relative min-h-[210px] p-6 md:min-h-[250px] md:p-10 lg:min-h-[300px] lg:p-12" />
-                  <div className="relative flex min-h-[210px] flex-col justify-end p-6 md:min-h-[250px] md:p-10 lg:min-h-[300px] lg:p-12">
+                  <div className="relative hidden min-h-[250px] p-10 md:block lg:min-h-[300px] lg:p-12" />
+                  <div className="relative hidden min-h-[250px] p-10 md:block lg:min-h-[300px] lg:p-12" />
+                  <div className="relative flex min-h-[170px] flex-col justify-end border-t border-background/15 p-5 sm:min-h-[200px] sm:p-6 md:min-h-[250px] md:border-t-0 md:p-10 lg:min-h-[300px] lg:p-12">
                     <Reveal delay={0.16}>
                       <p className="max-w-[46ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-background/75">
                         Built by students who turned a cafeteria question, a canteen frustration, or a failed
