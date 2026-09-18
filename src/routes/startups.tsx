@@ -23,6 +23,7 @@ import playsuperVentureImg from "@/assets/founders/ventures/playsuper.jpg.asset.
 import seedsaiVentureImg from "@/assets/founders/ventures/seedsai.jpg.asset.json";
 import woodysVentureImg from "@/assets/founders/ventures/woodys.jpg.asset.json";
 import sharkTankStageImg from "@/assets/founders/sharktank-stage.jpg.asset.json";
+import muLogoAsset from "@/assets/mu-logo-dark.png.asset.json";
 
 const NAV: BottomNavItem[] = [
   { id: "top", label: "Top", icon: Home },
@@ -871,6 +872,19 @@ function StartupsPage() {
 
       <header id="top" className="relative overflow-hidden bg-foreground pb-14 pt-10 text-background md:pb-20 md:pt-14">
         <div className="mx-auto max-w-[1440px] px-5 md:px-10">
+          <Reveal>
+            <div className="flex items-start justify-between">
+              <div className="flex flex-col">
+                <img
+                  decoding="async"
+                  loading="eager"
+                  src={muLogoAsset.url}
+                  alt="Masters' Union"
+                  className="h-8 w-auto md:h-10 brightness-0 invert"
+                />
+              </div>
+            </div>
+          </Reveal>
           <Reveal delay={0.08}>
             <h1 className="mt-6 max-w-[22ch] text-balance text-[clamp(2.6rem,7.5vw,6.5rem)] font-medium leading-[0.95] tracking-[-0.02em]">
               Entrepreneurship at Masters&apos; Union
