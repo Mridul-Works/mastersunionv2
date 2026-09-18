@@ -24,6 +24,7 @@ import seedsaiVentureImg from "@/assets/founders/ventures/seedsai.jpg.asset.json
 import woodysVentureImg from "@/assets/founders/ventures/woodys.jpg.asset.json";
 import sharkTankStageImg from "@/assets/founders/sharktank-stage.jpg.asset.json";
 import muLogoAsset from "@/assets/mu-logo-dark.png.asset.json";
+import heroVideoAsset from "@/assets/mu-student-entrepreneurship-video.mp4.asset.json";
 
 const NAV: BottomNavItem[] = [
   { id: "top", label: "Top", icon: Home },
@@ -909,12 +910,17 @@ function StartupsPage() {
             </div>
           </Reveal>
           <Reveal delay={0.32} className="mt-12">
-            <Placeholder
-              kind="video"
-              aspect="aspect-video md:aspect-[21/9]"
-              dark
-              note="Full-bleed campus / founder reel"
-            />
+            <div className="relative w-full overflow-hidden aspect-video border border-background/15 md:aspect-[21/9]">
+              <video
+                src={heroVideoAsset.url}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                className="h-full w-full object-cover"
+              />
+            </div>
           </Reveal>
         </div>
       </header>
