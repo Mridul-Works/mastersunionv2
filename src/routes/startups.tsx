@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useReducedMotion } from "framer-motion";
 import {
@@ -1060,6 +1060,29 @@ function StartupsPage() {
   const [selectedShark, setSelectedShark] = useState(0);
   const [selectedQuote, setSelectedQuote] = useState(0);
   const [heroVideoEnded, setHeroVideoEnded] = useState(false);
+  const headlineWordRef = useRef<HTMLSpanElement>(null);
+  const [wordFontSize, setWordFontSize] = useState<number | null>(null);
+
+  // Fit "Entrepreneurship" to exactly fill its box width on one line at any screen size.
+  useLayoutEffect(() => {
+    const el = headlineWordRef.current;
+    const holder = el?.parentElement;
+    if (!el || !holder) return;
+    const REF = 100;
+    const measure = () => {
+      const prev = el.style.fontSize;
+      el.style.fontSize = `${REF}px`;
+      const natural = el.scrollWidth;
+      el.style.fontSize = prev;
+      if (!natural || !holder.clientWidth) return;
+      setWordFontSize(((holder.clientWidth / natural) * REF) * 0.99);
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(holder);
+    if (document.fonts?.ready) document.fonts.ready.then(measure).catch(() => {});
+    return () => ro.disconnect();
+  }, []);
 
   useEffect(() => {
     const lenis = (window as unknown as { __lenis?: { stop: () => void; start: () => void } }).__lenis;
