@@ -1134,9 +1134,16 @@ function StartupsPage() {
               </Reveal>
               <div className="relative mx-auto min-h-[420px] w-full border border-background/15 md:min-h-[500px] lg:min-h-[600px]">
                 <span aria-hidden className="absolute -left-[6px] -top-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
+                <span aria-hidden className="absolute left-1/2 -top-[6px] hidden size-2 -translate-x-1/2 rotate-45 border border-background/40 md:block" />
                 <span aria-hidden className="absolute -right-[6px] -top-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
+                <span aria-hidden className="absolute -left-[6px] top-1/2 hidden size-2 -translate-y-1/2 rotate-45 border border-background/40 md:block" />
+                <span aria-hidden className="absolute left-1/2 top-1/2 hidden size-2 -translate-x-1/2 -translate-y-1/2 rotate-45 border border-background/40 md:block" />
+                <span aria-hidden className="absolute -right-[6px] top-1/2 hidden size-2 -translate-y-1/2 rotate-45 border border-background/40 md:block" />
                 <span aria-hidden className="absolute -left-[6px] -bottom-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
+                <span aria-hidden className="absolute left-1/2 -bottom-[6px] hidden size-2 -translate-x-1/2 rotate-45 border border-background/40 md:block" />
                 <span aria-hidden className="absolute -right-[6px] -bottom-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
+                <div aria-hidden className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px bg-background/15 md:block" />
+                <div aria-hidden className="pointer-events-none absolute inset-x-0 top-1/2 hidden h-px bg-background/15 md:block" />
 
                 <div className="grid h-full grid-cols-1 md:grid-cols-2">
                   <div className="p-6 md:p-10 lg:p-12">
