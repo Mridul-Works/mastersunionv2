@@ -880,19 +880,9 @@ function StartupsPage() {
 
       <header id="top" className="relative overflow-hidden bg-foreground pb-14 pt-10 text-background md:pb-20 md:pt-14">
         <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-          <Reveal>
-            <Eyebrow dark>Entrepreneurship at Masters&apos; Union</Eyebrow>
-          </Reveal>
           <Reveal delay={0.08}>
             <h1 className="mt-6 max-w-[22ch] text-balance text-[clamp(2.6rem,7.5vw,6.5rem)] font-medium leading-[0.95] tracking-[-0.02em]">
-              Some of our students don&apos;t graduate into jobs. They graduate into{" "}
-              <em
-                className="not-italic font-serif italic text-background/90"
-                style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-              >
-                companies
-              </em>
-              .
+              Entrepreneurship at Masters&apos; Union
             </h1>
           </Reveal>
           <Reveal delay={0.16}>
