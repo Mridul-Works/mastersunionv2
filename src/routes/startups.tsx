@@ -1125,6 +1125,13 @@ function StartupsPage() {
         >
           <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col px-5 md:px-10">
             <div className="flex flex-1 flex-col justify-center pb-16">
+              <Reveal>
+                <div className="mb-8 flex justify-center">
+                  <span className="eyebrow inline-flex items-center rounded-full border border-background/25 px-4 py-1.5 text-background/70">
+                    30+ Startups · ₹593 Cr Valuation
+                  </span>
+                </div>
+              </Reveal>
               <div className="relative mx-auto w-full border border-background/15">
                 <span aria-hidden className="absolute -left-[6px] -top-[6px] hidden size-2 rotate-45 border border-background/40 md:block" />
                 <span aria-hidden className="absolute left-1/2 -top-[6px] hidden size-2 -translate-x-1/2 rotate-45 border border-background/40 md:block" />
