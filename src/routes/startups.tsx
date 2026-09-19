@@ -1133,8 +1133,9 @@ function StartupsPage() {
 
       <header
         id="top"
-        className="relative h-[100svh] min-h-[600px] overflow-hidden bg-foreground text-background"
+        className="sticky top-0 z-0 h-[100svh] min-h-[600px] overflow-hidden bg-foreground text-background"
       >
+        <div ref={heroFadeRef} className="h-full w-full" style={{ opacity: 1 }}>
         <img
           src={studentEnterHeroAsset.url}
           alt="Masters' Union student presenting on stage"
