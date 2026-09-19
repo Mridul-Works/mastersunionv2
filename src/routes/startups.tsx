@@ -1084,6 +1084,12 @@ function StartupsPage() {
     return () => ro.disconnect();
   }, []);
 
+  // With a static hero image there is no video end — reveal shortly after mount.
+  useEffect(() => {
+    const t = setTimeout(() => setHeroVideoEnded(true), 900);
+    return () => clearTimeout(t);
+  }, []);
+
   useEffect(() => {
     const lenis = (window as unknown as { __lenis?: { stop: () => void; start: () => void } }).__lenis;
     if (heroVideoEnded) {
