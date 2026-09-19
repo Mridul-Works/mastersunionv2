@@ -1098,13 +1098,17 @@ function StartupsPage() {
   }, [heroVideoEnded]);
 
   // 0..1 progress of the Spark section covering the pinned hero (one viewport of scroll).
-  const [heroCover, setHeroCover] = useState(0);
+  // Applied directly to the fade wrapper's style to avoid re-rendering the page on scroll.
+  const heroFadeRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
+    const el = heroFadeRef.current;
+    if (!el) return;
     let raf = 0;
     const update = () => {
       raf = 0;
       const vh = window.innerHeight || 1;
-      setHeroCover(Math.min(1, Math.max(0, window.scrollY / vh)));
+      const p = Math.min(1, Math.max(0, window.scrollY / vh));
+      el.style.opacity = (1 - p).toFixed(3);
     };
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(update);
