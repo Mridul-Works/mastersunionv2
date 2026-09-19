@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpRight,
+  Download,
   Flag,
   GraduationCap,
   Home,
@@ -839,7 +840,15 @@ function PortfolioCard({ company, delay = 0, featured = false }: { company: Comp
   );
 }
 
-function CtaButton({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
+function CtaButton({
+  children,
+  dark = false,
+  icon,
+}: {
+  children: React.ReactNode;
+  dark?: boolean;
+  icon?: React.ReactNode;
+}) {
   return (
     <Link
       to="/"
@@ -853,7 +862,7 @@ function CtaButton({ children, dark = false }: { children: React.ReactNode; dark
           dark ? "bg-foreground text-background" : "bg-background text-foreground"
         }`}
       >
-        <ArrowUpRight className="size-3.5" strokeWidth={2.25} />
+        {icon ?? <ArrowUpRight className="size-3.5" strokeWidth={2.25} />}
       </span>
     </Link>
   );
@@ -1237,7 +1246,7 @@ function StartupsPage() {
                     </Reveal>
                     <Reveal delay={0.24}>
                       <div className="mt-9 flex flex-wrap items-center gap-8">
-                        <CtaButton dark>Start Building</CtaButton>
+                        <CtaButton dark icon={<Download className="size-3.5" strokeWidth={2.25} />}>Download Entrepreneurship Report</CtaButton>
                         <div className="flex items-center gap-3">
                           <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-background/60">Scroll</span>
                           <div className="relative h-9 w-px overflow-hidden bg-background/20">
