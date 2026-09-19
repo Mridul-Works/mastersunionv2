@@ -1136,7 +1136,7 @@ function StartupsPage() {
         />
 
         <div className="pointer-events-none absolute inset-x-0 top-0">
-          <div className="mx-auto max-w-[1440px] px-5 pt-5 md:px-10 md:pt-8">
+          <div className="mx-auto max-w-[1440px] px-5 pt-2 md:px-10 md:pt-3">
             <Reveal>
               <div className="pointer-events-auto flex items-start justify-between">
                 <img
