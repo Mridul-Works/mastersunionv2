@@ -1218,7 +1218,7 @@ function StartupsPage() {
                       </h1>
                     </Reveal>
                     <Reveal delay={0.16} className="mt-auto">
-                      <span className="eyebrow inline-block text-background/70">
+                      <span className="eyebrow inline-block text-[0.875rem] text-background/70 md:text-[1rem]">
                         30+ Startups · ₹593 Cr Valuation
                       </span>
                     </Reveal>
