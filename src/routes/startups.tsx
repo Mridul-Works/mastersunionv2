@@ -1206,9 +1206,9 @@ function StartupsPage() {
       const natural = el.scrollWidth;
       el.style.fontSize = prev;
       if (!natural || !holder.clientWidth) return;
-      // Fit within the holder width with a small safety margin so the
-      // final "p" never overflows the overflow-hidden edge.
-      setWordFontSize(((holder.clientWidth - 6) / natural) * REF);
+      // Fit within the holder width, then shave a few extra pixels so the
+      // final "p" never touches the overflow-hidden edge.
+      setWordFontSize(Math.max(12, ((holder.clientWidth - 6) / natural) * REF - 4));
     };
     measure();
     const ro = new ResizeObserver(measure);
