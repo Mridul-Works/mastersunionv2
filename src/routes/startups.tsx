@@ -1056,41 +1056,31 @@ function HomepageStyleNav({
   );
 }
 
-// Scroll-driven puzzle reveal: the video's left half slides in from the left and
-// the right half from the right as you scroll; once the two halves join, playback starts.
-function PuzzleVideoSection() {
-  const wrapRef = useRef<HTMLDivElement>(null);
-  const leftRef = useRef<HTMLDivElement>(null);
-  const rightRef = useRef<HTMLDivElement>(null);
-  const leftVidRef = useRef<HTMLVideoElement>(null);
-  const rightVidRef = useRef<HTMLVideoElement>(null);
+// Scroll-driven reveal that lives inside the hero itself: as you scroll through
+// the hero's pinned runway, the video slides in from the right side, covering
+// the hero imagery; once it is fully in place, playback starts.
+function PuzzleVideoOverlay({ sectionRef }: { sectionRef: React.RefObject<HTMLElement | null> }) {
+  const panelRef = useRef<HTMLDivElement>(null);
+  const vidRef = useRef<HTMLVideoElement>(null);
   const joinedRef = useRef(false);
 
   useEffect(() => {
-    const wrap = wrapRef.current;
-    if (!wrap) return;
+    const section = sectionRef.current;
+    if (!section) return;
     let raf = 0;
     const update = () => {
       raf = 0;
-      const rect = wrap.getBoundingClientRect();
+      const rect = section.getBoundingClientRect();
       const runway = rect.height - window.innerHeight;
       const p = runway > 0 ? Math.min(1, Math.max(0, -rect.top / runway)) : 1;
       const off = (1 - p) * 100;
-      if (leftRef.current) leftRef.current.style.transform = `translateX(${-off}%)`;
-      if (rightRef.current) rightRef.current.style.transform = `translateX(${off}%)`;
+      if (panelRef.current) panelRef.current.style.transform = `translateX(${off}%)`;
       const joined = p >= 0.985;
       if (joined !== joinedRef.current) {
         joinedRef.current = joined;
-        const lv = leftVidRef.current;
-        const rv = rightVidRef.current;
-        if (joined) {
-          if (lv && rv) rv.currentTime = lv.currentTime;
-          void lv?.play().catch(() => {});
-          void rv?.play().catch(() => {});
-        } else {
-          lv?.pause();
-          rv?.pause();
-        }
+        const vid = vidRef.current;
+        if (joined) void vid?.play().catch(() => {});
+        else vid?.pause();
       }
     };
     const onScroll = () => {
@@ -1104,59 +1094,24 @@ function PuzzleVideoSection() {
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, []);
-
-  // Keep both halves frame-aligned while playing.
-  useEffect(() => {
-    const id = window.setInterval(() => {
-      const lv = leftVidRef.current;
-      const rv = rightVidRef.current;
-      if (lv && rv && joinedRef.current && Math.abs(lv.currentTime - rv.currentTime) > 0.08) {
-        rv.currentTime = lv.currentTime;
-      }
-    }, 500);
-    return () => window.clearInterval(id);
-  }, []);
+  }, [sectionRef]);
 
   return (
-    <section aria-label="Masters' Union in action" className="relative h-[240vh] bg-foreground" ref={wrapRef}>
-      <div className="sticky top-0 h-screen overflow-hidden">
-        <div
-          ref={leftRef}
-          className="absolute inset-y-0 left-0 w-1/2 overflow-hidden will-change-transform"
-          style={{ transform: "translateX(-100%)" }}
-        >
-          <div className="absolute inset-y-0 left-0 w-[200%]">
-            <video
-              ref={leftVidRef}
-              src={heroPuzzleVideo.url}
-              muted
-              loop
-              playsInline
-              preload="auto"
-              className="h-full w-full object-cover"
-            />
-          </div>
-        </div>
-        <div
-          ref={rightRef}
-          className="absolute inset-y-0 right-0 w-1/2 overflow-hidden will-change-transform"
-          style={{ transform: "translateX(100%)" }}
-        >
-          <div className="absolute inset-y-0 right-0 w-[200%]">
-            <video
-              ref={rightVidRef}
-              src={heroPuzzleVideo.url}
-              muted
-              loop
-              playsInline
-              preload="auto"
-              className="h-full w-full object-cover"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
+    <div
+      ref={panelRef}
+      className="absolute inset-y-0 right-0 z-20 w-full overflow-hidden will-change-transform"
+      style={{ transform: "translateX(100%)" }}
+    >
+      <video
+        ref={vidRef}
+        src={heroPuzzleVideo.url}
+        muted
+        loop
+        playsInline
+        preload="auto"
+        className="h-full w-full object-cover"
+      />
+    </div>
   );
 }
 
@@ -1165,6 +1120,7 @@ function StartupsPage() {
   const [selectedShark, setSelectedShark] = useState(0);
   const [selectedQuote, setSelectedQuote] = useState(0);
   const headlineWordRef = useRef<HTMLSpanElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
   const [wordFontSize, setWordFontSize] = useState<number | null>(null);
 
   // Fit "Entrepreneurship" to exactly fill its box width on one line at any screen size.
@@ -1197,8 +1153,12 @@ function StartupsPage() {
 
       <header
         id="top"
-        className="relative h-[100svh] min-h-[600px] overflow-hidden bg-foreground text-background"
+        ref={heroRef}
+        className="relative h-[200svh] bg-foreground text-background"
       >
+        {/* Pinned hero viewport: everything below stays fixed while the puzzle
+            halves slide over it during the hero's scroll runway. */}
+        <div className="sticky top-0 h-[100svh] min-h-[600px] overflow-hidden">
         <img
           aria-hidden
           decoding="async"
@@ -1297,9 +1257,12 @@ function StartupsPage() {
             </div>
           </div>
         </div>
+
+        <PuzzleVideoOverlay sectionRef={heroRef} />
+        </div>
       </header>
 
-      <PuzzleVideoSection />
+
 
       <Section id="spark" tone="light">
         <Reveal>
