@@ -1130,6 +1130,7 @@ function StartupsPage() {
   const [selectedQuote, setSelectedQuote] = useState(0);
   const headlineWordRef = useRef<HTMLSpanElement>(null);
   const heroRef = useRef<HTMLElement>(null);
+  const heroContentRef = useRef<HTMLDivElement>(null);
   const [wordFontSize, setWordFontSize] = useState<number | null>(null);
 
   // Fit "Entrepreneurship" to exactly fill its box width on one line at any screen size.
@@ -1168,6 +1169,7 @@ function StartupsPage() {
         {/* Pinned hero viewport: everything below stays fixed while the puzzle
             halves slide over it during the hero's scroll runway. */}
         <div className="sticky top-0 h-[100svh] min-h-[600px] overflow-hidden">
+        <div ref={heroContentRef} className="absolute inset-0 will-change-[opacity]">
         <img
           aria-hidden
           decoding="async"
@@ -1267,7 +1269,9 @@ function StartupsPage() {
           </div>
         </div>
 
-        <PuzzleVideoOverlay sectionRef={heroRef} />
+        </div>
+
+        <PuzzleVideoOverlay sectionRef={heroRef} contentRef={heroContentRef} />
         </div>
       </header>
 
