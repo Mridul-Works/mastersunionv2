@@ -23,7 +23,6 @@ import seedsaiVentureImg from "@/assets/founders/ventures/seedsai.jpg.asset.json
 import woodysVentureImg from "@/assets/founders/ventures/woodys.jpg.asset.json";
 import sharkTankStageImg from "@/assets/founders/sharktank-stage.jpg.asset.json";
 import muLogoAsset from "@/assets/mu-logo-dark.png.asset.json";
-import heroVideoAsset from "@/assets/hero.mp4.asset.json";
 
 const NAV: { id: string; label: string }[] = [
   { id: "top", label: "Hero" },
@@ -1083,18 +1082,6 @@ function StartupsPage() {
     if (document.fonts?.ready) document.fonts.ready.then(measure).catch(() => {});
     return () => ro.disconnect();
   }, []);
-
-  useEffect(() => {
-    const lenis = (window as unknown as { __lenis?: { stop: () => void; start: () => void } }).__lenis;
-    if (heroVideoEnded) {
-      lenis?.start();
-    } else {
-      lenis?.stop();
-    }
-    return () => {
-      lenis?.start();
-    };
-  }, [heroVideoEnded]);
 
   const activeShark = SHARK_TANK[selectedShark];
   const activeQuote = TESTIMONIALS[selectedQuote];
