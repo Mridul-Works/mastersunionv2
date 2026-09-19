@@ -1097,6 +1097,28 @@ function StartupsPage() {
     };
   }, [heroVideoEnded]);
 
+  // 0..1 progress of the Spark section covering the pinned hero (one viewport of scroll).
+  const [heroCover, setHeroCover] = useState(0);
+  useEffect(() => {
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const vh = window.innerHeight || 1;
+      setHeroCover(Math.min(1, Math.max(0, window.scrollY / vh)));
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
   const activeShark = SHARK_TANK[selectedShark];
   const activeQuote = TESTIMONIALS[selectedQuote];
 
