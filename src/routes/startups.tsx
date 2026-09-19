@@ -1299,6 +1299,8 @@ function StartupsPage() {
         </div>
       </header>
 
+      <PuzzleVideoSection />
+
       <Section id="spark" tone="light">
         <Reveal>
           <Eyebrow>The Spark</Eyebrow>
