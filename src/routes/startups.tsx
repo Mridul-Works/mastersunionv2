@@ -24,6 +24,7 @@ import woodysVentureImg from "@/assets/founders/ventures/woodys.jpg.asset.json";
 import sharkTankStageImg from "@/assets/founders/sharktank-stage.jpg.asset.json";
 import muLogoAsset from "@/assets/mu-logo-dark.png.asset.json";
 import heroVideoAsset from "@/assets/hero.mp4.asset.json";
+import studentEnterHeroAsset from "@/assets/studentEnterHero-3.webp.asset.json";
 
 const NAV: { id: string; label: string }[] = [
   { id: "top", label: "Hero" },
@@ -1108,6 +1109,15 @@ function StartupsPage() {
         id="top"
         className="relative h-[100svh] min-h-[600px] overflow-hidden bg-foreground text-background"
       >
+        <img
+          src={studentEnterHeroAsset.url}
+          alt="Masters' Union student presenting on stage"
+          decoding="async"
+          loading="eager"
+          className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity delay-300 duration-[3200ms] ease-out ${
+            heroVideoEnded ? "opacity-100" : "opacity-0"
+          }`}
+        />
         <video
           src={heroVideoAsset.url}
           autoPlay
@@ -1142,7 +1152,7 @@ function StartupsPage() {
         </div>
 
         <div
-          className={`absolute inset-0 flex flex-col transition-opacity delay-500 duration-[2200ms] ease-out ${
+          className={`absolute inset-0 flex flex-col transition-opacity delay-700 duration-[3200ms] ease-out ${
             heroVideoEnded ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
           }`}
         >
