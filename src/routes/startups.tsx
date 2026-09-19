@@ -26,6 +26,8 @@ import sharkTankStageImg from "@/assets/founders/sharktank-stage.jpg.asset.json"
 import muLogoAsset from "@/assets/mu-logo-dark.png.asset.json";
 import heroVideoAsset from "@/assets/hero.mp4.asset.json";
 import studentEnterHeroAsset from "@/assets/studentEnterHero-3.webp.asset.json";
+import entrepreneurshipReport2021 from "@/assets/entrepreneurship-report-2021-25.pdf.asset.json";
+import entrepreneurshipReportUg from "@/assets/entrepreneurship-report-ug-programmes.pdf.asset.json";
 
 const NAV: { id: string; label: string }[] = [
   { id: "top", label: "Hero" },
@@ -844,18 +846,18 @@ function CtaButton({
   children,
   dark = false,
   icon,
+  onClick,
 }: {
   children: React.ReactNode;
   dark?: boolean;
   icon?: React.ReactNode;
+  onClick?: () => void;
 }) {
-  return (
-    <Link
-      to="/"
-      className={`group inline-flex items-center gap-2 rounded-full py-1.5 pl-5 pr-1.5 text-[13px] font-semibold transition-transform hover:-translate-y-px ${
-        dark ? "bg-background text-foreground" : "bg-foreground text-background"
-      }`}
-    >
+  const classes = `group inline-flex items-center gap-2 rounded-full py-1.5 pl-5 pr-1.5 text-[13px] font-semibold transition-transform hover:-translate-y-px ${
+    dark ? "bg-background text-foreground" : "bg-foreground text-background"
+  }`;
+  const inner = (
+    <>
       {children}
       <span
         className={`inline-flex size-7 items-center justify-center rounded-full transition-transform duration-300 group-hover:rotate-45 ${
@@ -864,7 +866,126 @@ function CtaButton({
       >
         {icon ?? <ArrowUpRight className="size-3.5" strokeWidth={2.25} />}
       </span>
+    </>
+  );
+  if (onClick) {
+    return (
+      <button type="button" onClick={onClick} className={classes}>
+        {inner}
+      </button>
+    );
+  }
+  return (
+    <Link to="/" className={classes}>
+      {inner}
     </Link>
+  );
+}
+
+function triggerFileDownload(href: string, filename: string) {
+  const link = document.createElement("a");
+  link.href = href;
+  link.download = filename;
+  link.rel = "noopener";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}
+
+const ENTREPRENEURSHIP_REPORTS = [
+  {
+    label: "Entrepreneurship Report 2021–25",
+    detail: "Full report · 84 pages",
+    asset: entrepreneurshipReport2021,
+    filename: "Masters-Union-Entrepreneurship-Report-2021-25.pdf",
+  },
+  {
+    label: "UG Programmes — Entrepreneurship Report",
+    detail: "Web edition · 19 pages",
+    asset: entrepreneurshipReportUg,
+    filename: "Masters-Union-Entrepreneurship-Report-UG-Programmes.pdf",
+  },
+] as const;
+
+function HeroReportDownload() {
+  const [open, setOpen] = useState(false);
+  const [busy, setBusy] = useState<string | null>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onPointer = (e: MouseEvent | TouchEvent) => {
+      if (!rootRef.current?.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("mousedown", onPointer);
+    document.addEventListener("touchstart", onPointer);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onPointer);
+      document.removeEventListener("touchstart", onPointer);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  const download = async (item: (typeof ENTREPRENEURSHIP_REPORTS)[number]) => {
+    if (busy) return;
+    setBusy(item.label);
+    try {
+      const response = await fetch(item.asset.url);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const blob = await response.blob();
+      const objectUrl = URL.createObjectURL(blob);
+      triggerFileDownload(objectUrl, item.filename);
+      window.setTimeout(() => URL.revokeObjectURL(objectUrl), 10000);
+    } catch {
+      // Fall back to a direct download from the asset URL.
+      triggerFileDownload(item.asset.url, item.filename);
+    } finally {
+      setBusy(null);
+      setOpen(false);
+    }
+  };
+
+  return (
+    <div ref={rootRef} className="relative">
+      <CtaButton
+        dark
+        onClick={() => setOpen((v) => !v)}
+        icon={<Download className="size-3.5" strokeWidth={2.25} />}
+      >
+        Download Entrepreneurship Report
+      </CtaButton>
+      {open && (
+        <div className="absolute bottom-full left-0 z-30 mb-3 w-[300px] border border-background/15 bg-foreground/95 text-background shadow-[0_24px_60px_rgba(0,0,0,0.4)] backdrop-blur-md sm:w-[320px]">
+          <div className="border-b border-background/10 px-4 py-3">
+            <span className="eyebrow block text-[0.625rem] uppercase tracking-[0.25em] text-background/60">
+              Entrepreneurship Report
+            </span>
+            <span className="mt-1 block text-[12px] text-background/70">Choose an edition to download</span>
+          </div>
+          {ENTREPRENEURSHIP_REPORTS.map((item) => (
+            <button
+              key={item.label}
+              type="button"
+              onClick={() => download(item)}
+              disabled={busy !== null}
+              className="group flex w-full items-start gap-3 border-b border-background/10 px-4 py-3 text-left transition-colors duration-200 last:border-b-0 hover:bg-background/10 disabled:opacity-60"
+            >
+              <Download className="mt-0.5 size-3.5 shrink-0 text-background/60 transition-colors duration-200 group-hover:text-background" />
+              <span className="min-w-0">
+                <span className="block text-[13px] font-semibold leading-snug">{item.label}</span>
+                <span className="mt-0.5 block text-[11px] uppercase tracking-[0.14em] text-background/55">
+                  {busy === item.label ? "Preparing download…" : item.detail}
+                </span>
+              </span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -1246,7 +1367,7 @@ function StartupsPage() {
                     </Reveal>
                     <Reveal delay={0.24}>
                       <div className="mt-9 flex flex-wrap items-center gap-8">
-                        <CtaButton dark icon={<Download className="size-3.5" strokeWidth={2.25} />}>Download Entrepreneurship Report</CtaButton>
+                        <HeroReportDownload />
                         <div className="flex items-center gap-3">
                           <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-background/60">Scroll</span>
                           <div className="relative h-9 w-px overflow-hidden bg-background/20">
