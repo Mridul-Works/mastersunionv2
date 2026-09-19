@@ -1252,8 +1252,10 @@ function StartupsPage() {
             </div>
           </div>
         </div>
+        </div>
       </header>
 
+      <div className="relative z-10">
       <Section id="spark" tone="light">
         <Reveal>
           <Eyebrow>The Spark</Eyebrow>
