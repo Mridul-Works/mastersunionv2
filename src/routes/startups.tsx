@@ -1197,8 +1197,12 @@ function StartupsPage() {
 
       <header
         id="top"
-        className="relative h-[100svh] min-h-[600px] overflow-hidden bg-foreground text-background"
+        ref={heroRef}
+        className="relative h-[200svh] bg-foreground text-background"
       >
+        {/* Pinned hero viewport: everything below stays fixed while the puzzle
+            halves slide over it during the hero's scroll runway. */}
+        <div className="sticky top-0 h-[100svh] min-h-[600px] overflow-hidden">
         <img
           aria-hidden
           decoding="async"
