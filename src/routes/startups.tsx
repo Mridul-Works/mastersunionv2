@@ -1206,7 +1206,9 @@ function StartupsPage() {
       const natural = el.scrollWidth;
       el.style.fontSize = prev;
       if (!natural || !holder.clientWidth) return;
-      setWordFontSize(((holder.clientWidth / natural) * REF) * 0.99 + 3);
+      // Fit within the holder width with a small safety margin so the
+      // final "p" never overflows the overflow-hidden edge.
+      setWordFontSize(((holder.clientWidth - 6) / natural) * REF);
     };
     measure();
     const ro = new ResizeObserver(measure);
@@ -1336,7 +1338,7 @@ function StartupsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2">
                   <div className="relative flex min-h-[170px] flex-col p-5 sm:min-h-[200px] sm:p-6 md:min-h-[250px] md:p-10 lg:min-h-[300px] lg:p-12">
                     <Reveal delay={0.08}>
-                      <h1 className="w-full overflow-hidden font-medium leading-[0.95] tracking-[-0.02em]">
+                      <h1 className="w-full overflow-hidden pb-[0.14em] font-medium leading-[0.95] tracking-[-0.02em]">
                         <span
                           ref={headlineWordRef}
                           className="block whitespace-nowrap text-[clamp(2.2875rem,8.5vw,3.5875rem)] leading-[0.9] tracking-[-0.03em]"
