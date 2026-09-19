@@ -23,6 +23,7 @@ import seedsaiVentureImg from "@/assets/founders/ventures/seedsai.jpg.asset.json
 import woodysVentureImg from "@/assets/founders/ventures/woodys.jpg.asset.json";
 import sharkTankStageImg from "@/assets/founders/sharktank-stage.jpg.asset.json";
 import muLogoAsset from "@/assets/mu-logo-dark.png.asset.json";
+import studentEnterHeroImg from "@/assets/student-enter-hero.webp.asset.json";
 
 const NAV: { id: string; label: string }[] = [
   { id: "top", label: "Hero" },
@@ -1093,6 +1094,14 @@ function StartupsPage() {
         id="top"
         className="relative h-[100svh] min-h-[600px] overflow-hidden bg-foreground text-background"
       >
+        <img
+          aria-hidden
+          decoding="async"
+          loading="eager"
+          src={studentEnterHeroImg.url}
+          alt=""
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
+        />
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/60"
