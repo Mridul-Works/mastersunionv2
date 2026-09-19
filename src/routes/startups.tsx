@@ -1057,9 +1057,15 @@ function HomepageStyleNav({
 }
 
 // Scroll-driven reveal that lives inside the hero itself: as you scroll through
-// the hero's pinned runway, the video slides in from the right side, covering
-// the hero imagery; once it is fully in place, playback starts.
-function PuzzleVideoOverlay({ sectionRef }: { sectionRef: React.RefObject<HTMLElement | null> }) {
+// the hero's pinned runway, the hero content fades out while the video zooms
+// in and fades in over it; once the crossfade completes, playback starts.
+function PuzzleVideoOverlay({
+  sectionRef,
+  contentRef,
+}: {
+  sectionRef: React.RefObject<HTMLElement | null>;
+  contentRef: React.RefObject<HTMLDivElement | null>;
+}) {
   const panelRef = useRef<HTMLDivElement>(null);
   const vidRef = useRef<HTMLVideoElement>(null);
   const joinedRef = useRef(false);
@@ -1073,8 +1079,11 @@ function PuzzleVideoOverlay({ sectionRef }: { sectionRef: React.RefObject<HTMLEl
       const rect = section.getBoundingClientRect();
       const runway = rect.height - window.innerHeight;
       const p = runway > 0 ? Math.min(1, Math.max(0, -rect.top / runway)) : 1;
-      const off = (1 - p) * 100;
-      if (panelRef.current) panelRef.current.style.transform = `translateX(${off}%)`;
+      if (contentRef.current) contentRef.current.style.opacity = String(1 - p);
+      if (panelRef.current) {
+        panelRef.current.style.opacity = String(p);
+        panelRef.current.style.transform = `scale(${1 + 0.15 * p})`;
+      }
       const joined = p >= 0.985;
       if (joined !== joinedRef.current) {
         joinedRef.current = joined;
@@ -1094,13 +1103,13 @@ function PuzzleVideoOverlay({ sectionRef }: { sectionRef: React.RefObject<HTMLEl
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, [sectionRef]);
+  }, [sectionRef, contentRef]);
 
   return (
     <div
       ref={panelRef}
-      className="absolute inset-y-0 right-0 z-20 w-full overflow-hidden will-change-transform"
-      style={{ transform: "translateX(100%)" }}
+      className="absolute inset-0 z-20 overflow-hidden will-change-transform"
+      style={{ opacity: 0 }}
     >
       <video
         ref={vidRef}
