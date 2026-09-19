@@ -23,7 +23,7 @@ import seedsaiVentureImg from "@/assets/founders/ventures/seedsai.jpg.asset.json
 import woodysVentureImg from "@/assets/founders/ventures/woodys.jpg.asset.json";
 import sharkTankStageImg from "@/assets/founders/sharktank-stage.jpg.asset.json";
 import muLogoAsset from "@/assets/mu-logo-dark.png.asset.json";
-import heroVideoAsset from "@/assets/hero.mp4.asset.json";
+import heroImageAsset from "@/assets/studentEnterHero-2.webp.asset.json";
 
 const NAV: { id: string; label: string }[] = [
   { id: "top", label: "Hero" },
@@ -1108,16 +1108,15 @@ function StartupsPage() {
         id="top"
         className="relative h-[100svh] min-h-[600px] overflow-hidden bg-foreground text-background"
       >
-        <video
-          src={heroVideoAsset.url}
-          autoPlay
-          muted
-          playsInline
-          preload="auto"
-          onEnded={() => setHeroVideoEnded(true)}
-          onError={() => setHeroVideoEnded(true)}
-          className={`absolute inset-0 block h-full max-w-full w-full object-contain object-center xl:object-cover transition-opacity duration-1000 ease-out ${
-            heroVideoEnded ? "opacity-0" : "opacity-100"
+        {/* Hero background image — pushed towards the right side */}
+        <img
+          src={heroImageAsset.url}
+          alt=""
+          aria-hidden
+          decoding="async"
+          loading="eager"
+          className={`absolute inset-y-0 left-0 block h-full w-[112%] max-w-none object-cover transition-opacity duration-1000 ease-out ${
+            heroVideoEnded ? "opacity-60" : "opacity-100"
           }`}
         />
         <div
