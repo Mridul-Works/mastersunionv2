@@ -1200,10 +1200,13 @@ function StartupsPage() {
                   <div className="relative hidden min-h-[250px] p-10 md:block lg:min-h-[300px] lg:p-12" />
                   <div className="relative flex min-h-[170px] flex-col justify-end border-t border-background/15 p-5 sm:min-h-[200px] sm:p-6 md:min-h-[250px] md:border-t-0 md:p-10 lg:min-h-[300px] lg:p-12">
                     <Reveal delay={0.16}>
-                      <p className="max-w-[46ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-background/75">
-                        Built by students who turned a cafeteria question, a canteen frustration, or a failed
-                        first batch into a real business — while still enrolled.
-                      </p>
+                      <div className="flex items-stretch gap-5">
+                        <span aria-hidden className="w-px shrink-0 bg-background/30" />
+                        <p className="max-w-[46ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-background/75">
+                          Built by students who turned a cafeteria question, a canteen frustration, or a failed
+                          first batch into a real business — while still enrolled.
+                        </p>
+                      </div>
                     </Reveal>
                     <Reveal delay={0.24}>
                       <div className="mt-9 flex flex-wrap items-center gap-8">
