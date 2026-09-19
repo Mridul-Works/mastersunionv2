@@ -23,7 +23,6 @@ import seedsaiVentureImg from "@/assets/founders/ventures/seedsai.jpg.asset.json
 import woodysVentureImg from "@/assets/founders/ventures/woodys.jpg.asset.json";
 import sharkTankStageImg from "@/assets/founders/sharktank-stage.jpg.asset.json";
 import muLogoAsset from "@/assets/mu-logo-dark.png.asset.json";
-import heroVideoAsset from "@/assets/hero.mp4.asset.json";
 
 const NAV: { id: string; label: string }[] = [
   { id: "top", label: "Hero" },
@@ -1059,7 +1058,6 @@ function StartupsPage() {
   const [showMorePortfolio, setShowMorePortfolio] = useState(false);
   const [selectedShark, setSelectedShark] = useState(0);
   const [selectedQuote, setSelectedQuote] = useState(0);
-  const [heroVideoEnded, setHeroVideoEnded] = useState(false);
   const headlineWordRef = useRef<HTMLSpanElement>(null);
   const [wordFontSize, setWordFontSize] = useState<number | null>(null);
 
@@ -1084,42 +1082,17 @@ function StartupsPage() {
     return () => ro.disconnect();
   }, []);
 
-  useEffect(() => {
-    const lenis = (window as unknown as { __lenis?: { stop: () => void; start: () => void } }).__lenis;
-    if (heroVideoEnded) {
-      lenis?.start();
-    } else {
-      lenis?.stop();
-    }
-    return () => {
-      lenis?.start();
-    };
-  }, [heroVideoEnded]);
-
   const activeShark = SHARK_TANK[selectedShark];
   const activeQuote = TESTIMONIALS[selectedQuote];
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <HomepageStyleNav items={NAV} applyHref="#cta" visible={heroVideoEnded} />
-
+      <HomepageStyleNav items={NAV} applyHref="#cta" visible />
 
       <header
         id="top"
         className="relative h-[100svh] min-h-[600px] overflow-hidden bg-foreground text-background"
       >
-        <video
-          src={heroVideoAsset.url}
-          autoPlay
-          muted
-          playsInline
-          preload="auto"
-          onEnded={() => setHeroVideoEnded(true)}
-          onError={() => setHeroVideoEnded(true)}
-          className={`absolute inset-0 block h-full max-w-full w-full object-contain object-center xl:object-cover transition-opacity duration-1000 ease-out ${
-            heroVideoEnded ? "opacity-0" : "opacity-100"
-          }`}
-        />
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/60"
@@ -1142,9 +1115,7 @@ function StartupsPage() {
         </div>
 
         <div
-          className={`absolute inset-0 flex flex-col transition-opacity delay-500 duration-[2200ms] ease-out ${
-            heroVideoEnded ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
-          }`}
+          className="absolute inset-0 flex flex-col"
         >
           <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col px-5 md:px-10">
             <div className="flex flex-1 flex-col justify-end pb-[72px] md:pb-[88px]">
