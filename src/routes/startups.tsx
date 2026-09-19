@@ -24,6 +24,7 @@ import woodysVentureImg from "@/assets/founders/ventures/woodys.jpg.asset.json";
 import sharkTankStageImg from "@/assets/founders/sharktank-stage.jpg.asset.json";
 import muLogoAsset from "@/assets/mu-logo-dark.png.asset.json";
 import studentEnterHeroImg from "@/assets/student-enter-hero.webp.asset.json";
+import heroPuzzleVideo from "@/assets/hero-2.mp4.asset.json";
 
 const NAV: { id: string; label: string }[] = [
   { id: "top", label: "Hero" },
@@ -1052,6 +1053,110 @@ function HomepageStyleNav({
         </div>
       </div>
     </header>
+  );
+}
+
+// Scroll-driven puzzle reveal: the video's left half slides in from the left and
+// the right half from the right as you scroll; once the two halves join, playback starts.
+function PuzzleVideoSection() {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const leftRef = useRef<HTMLDivElement>(null);
+  const rightRef = useRef<HTMLDivElement>(null);
+  const leftVidRef = useRef<HTMLVideoElement>(null);
+  const rightVidRef = useRef<HTMLVideoElement>(null);
+  const joinedRef = useRef(false);
+
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    if (!wrap) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const rect = wrap.getBoundingClientRect();
+      const runway = rect.height - window.innerHeight;
+      const p = runway > 0 ? Math.min(1, Math.max(0, -rect.top / runway)) : 1;
+      const off = (1 - p) * 100;
+      if (leftRef.current) leftRef.current.style.transform = `translateX(${-off}%)`;
+      if (rightRef.current) rightRef.current.style.transform = `translateX(${off}%)`;
+      const joined = p >= 0.985;
+      if (joined !== joinedRef.current) {
+        joinedRef.current = joined;
+        const lv = leftVidRef.current;
+        const rv = rightVidRef.current;
+        if (joined) {
+          if (lv && rv) rv.currentTime = lv.currentTime;
+          void lv?.play().catch(() => {});
+          void rv?.play().catch(() => {});
+        } else {
+          lv?.pause();
+          rv?.pause();
+        }
+      }
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  // Keep both halves frame-aligned while playing.
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      const lv = leftVidRef.current;
+      const rv = rightVidRef.current;
+      if (lv && rv && joinedRef.current && Math.abs(lv.currentTime - rv.currentTime) > 0.08) {
+        rv.currentTime = lv.currentTime;
+      }
+    }, 500);
+    return () => window.clearInterval(id);
+  }, []);
+
+  return (
+    <section aria-label="Masters' Union in action" className="relative h-[240vh] bg-foreground" ref={wrapRef}>
+      <div className="sticky top-0 h-screen overflow-hidden">
+        <div
+          ref={leftRef}
+          className="absolute inset-y-0 left-0 w-1/2 overflow-hidden will-change-transform"
+          style={{ transform: "translateX(-100%)" }}
+        >
+          <div className="absolute inset-y-0 left-0 w-[200%]">
+            <video
+              ref={leftVidRef}
+              src={heroPuzzleVideo.url}
+              muted
+              loop
+              playsInline
+              preload="auto"
+              className="h-full w-full object-cover"
+            />
+          </div>
+        </div>
+        <div
+          ref={rightRef}
+          className="absolute inset-y-0 right-0 w-1/2 overflow-hidden will-change-transform"
+          style={{ transform: "translateX(100%)" }}
+        >
+          <div className="absolute inset-y-0 right-0 w-[200%]">
+            <video
+              ref={rightVidRef}
+              src={heroPuzzleVideo.url}
+              muted
+              loop
+              playsInline
+              preload="auto"
+              className="h-full w-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
