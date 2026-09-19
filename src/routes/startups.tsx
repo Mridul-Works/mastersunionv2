@@ -1301,9 +1301,12 @@ function StartupsPage() {
             </div>
           </div>
         </div>
+
+        <PuzzleVideoOverlay sectionRef={heroRef} />
+        </div>
       </header>
 
-      <PuzzleVideoSection />
+
 
       <Section id="spark" tone="light">
         <Reveal>
