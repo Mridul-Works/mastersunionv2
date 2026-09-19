@@ -1100,7 +1100,7 @@ function StartupsPage() {
           loading="eager"
           src={studentEnterHeroImg.url}
           alt=""
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-[62%_center]"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-[38%_center]"
         />
         <div
           aria-hidden
