@@ -1056,10 +1056,11 @@ function HomepageStyleNav({
   );
 }
 
-// Scroll-driven puzzle reveal: the video's left half slides in from the left and
-// the right half from the right as you scroll; once the two halves join, playback starts.
-function PuzzleVideoSection() {
-  const wrapRef = useRef<HTMLDivElement>(null);
+// Scroll-driven puzzle reveal that lives inside the hero itself: as you scroll
+// through the hero's pinned runway, the video's left half slides in from the
+// left and the right half from the right, covering the hero imagery; once the
+// two halves join, the video fills the hero and playback starts.
+function PuzzleVideoOverlay({ sectionRef }: { sectionRef: React.RefObject<HTMLElement | null> }) {
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
   const leftVidRef = useRef<HTMLVideoElement>(null);
@@ -1067,12 +1068,12 @@ function PuzzleVideoSection() {
   const joinedRef = useRef(false);
 
   useEffect(() => {
-    const wrap = wrapRef.current;
-    if (!wrap) return;
+    const section = sectionRef.current;
+    if (!section) return;
     let raf = 0;
     const update = () => {
       raf = 0;
-      const rect = wrap.getBoundingClientRect();
+      const rect = section.getBoundingClientRect();
       const runway = rect.height - window.innerHeight;
       const p = runway > 0 ? Math.min(1, Math.max(0, -rect.top / runway)) : 1;
       const off = (1 - p) * 100;
@@ -1104,7 +1105,7 @@ function PuzzleVideoSection() {
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [sectionRef]);
 
   // Keep both halves frame-aligned while playing.
   useEffect(() => {
@@ -1119,44 +1120,42 @@ function PuzzleVideoSection() {
   }, []);
 
   return (
-    <section aria-label="Masters' Union in action" className="relative h-[240vh] bg-foreground" ref={wrapRef}>
-      <div className="sticky top-0 h-screen overflow-hidden">
-        <div
-          ref={leftRef}
-          className="absolute inset-y-0 left-0 w-1/2 overflow-hidden will-change-transform"
-          style={{ transform: "translateX(-100%)" }}
-        >
-          <div className="absolute inset-y-0 left-0 w-[200%]">
-            <video
-              ref={leftVidRef}
-              src={heroPuzzleVideo.url}
-              muted
-              loop
-              playsInline
-              preload="auto"
-              className="h-full w-full object-cover"
-            />
-          </div>
-        </div>
-        <div
-          ref={rightRef}
-          className="absolute inset-y-0 right-0 w-1/2 overflow-hidden will-change-transform"
-          style={{ transform: "translateX(100%)" }}
-        >
-          <div className="absolute inset-y-0 right-0 w-[200%]">
-            <video
-              ref={rightVidRef}
-              src={heroPuzzleVideo.url}
-              muted
-              loop
-              playsInline
-              preload="auto"
-              className="h-full w-full object-cover"
-            />
-          </div>
+    <>
+      <div
+        ref={leftRef}
+        className="absolute inset-y-0 left-0 z-20 w-1/2 overflow-hidden will-change-transform"
+        style={{ transform: "translateX(-100%)" }}
+      >
+        <div className="absolute inset-y-0 left-0 w-[200%]">
+          <video
+            ref={leftVidRef}
+            src={heroPuzzleVideo.url}
+            muted
+            loop
+            playsInline
+            preload="auto"
+            className="h-full w-full object-cover"
+          />
         </div>
       </div>
-    </section>
+      <div
+        ref={rightRef}
+        className="absolute inset-y-0 right-0 z-20 w-1/2 overflow-hidden will-change-transform"
+        style={{ transform: "translateX(100%)" }}
+      >
+        <div className="absolute inset-y-0 right-0 w-[200%]">
+          <video
+            ref={rightVidRef}
+            src={heroPuzzleVideo.url}
+            muted
+            loop
+            playsInline
+            preload="auto"
+            className="h-full w-full object-cover"
+          />
+        </div>
+      </div>
+    </>
   );
 }
 
