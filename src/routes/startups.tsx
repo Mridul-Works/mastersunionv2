@@ -23,8 +23,7 @@ import seedsaiVentureImg from "@/assets/founders/ventures/seedsai.jpg.asset.json
 import woodysVentureImg from "@/assets/founders/ventures/woodys.jpg.asset.json";
 import sharkTankStageImg from "@/assets/founders/sharktank-stage.jpg.asset.json";
 import muLogoAsset from "@/assets/mu-logo-dark.png.asset.json";
-import studentEnterHeroImg from "@/assets/student-enter-hero.webp.asset.json";
-import heroPuzzleVideo from "@/assets/hero-2.mp4.asset.json";
+import heroVideoAsset from "@/assets/hero.mp4.asset.json";
 
 const NAV: { id: string; label: string }[] = [
   { id: "top", label: "Hero" },
@@ -1056,81 +1055,12 @@ function HomepageStyleNav({
   );
 }
 
-// Scroll-driven reveal that lives inside the hero itself: as you scroll through
-// the hero's pinned runway, the hero content fades out while the video zooms
-// in and fades in over it; once the crossfade completes, playback starts.
-function PuzzleVideoOverlay({
-  sectionRef,
-  contentRef,
-}: {
-  sectionRef: React.RefObject<HTMLElement | null>;
-  contentRef: React.RefObject<HTMLDivElement | null>;
-}) {
-  const panelRef = useRef<HTMLDivElement>(null);
-  const vidRef = useRef<HTMLVideoElement>(null);
-  const joinedRef = useRef(false);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      const rect = section.getBoundingClientRect();
-      const runway = rect.height - window.innerHeight;
-      const p = runway > 0 ? Math.min(1, Math.max(0, -rect.top / runway)) : 1;
-      if (contentRef.current) contentRef.current.style.opacity = String(1 - p);
-      if (panelRef.current) {
-        panelRef.current.style.opacity = String(p);
-        panelRef.current.style.transform = `scale(${1 + 0.15 * p})`;
-      }
-      const joined = p >= 0.985;
-      if (joined !== joinedRef.current) {
-        joinedRef.current = joined;
-        const vid = vidRef.current;
-        if (joined) void vid?.play().catch(() => {});
-        else vid?.pause();
-      }
-    };
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, [sectionRef, contentRef]);
-
-  return (
-    <div
-      ref={panelRef}
-      className="absolute inset-0 z-20 overflow-hidden will-change-transform"
-      style={{ opacity: 0 }}
-    >
-      <video
-        ref={vidRef}
-        src={heroPuzzleVideo.url}
-        muted
-        loop
-        playsInline
-        preload="auto"
-        className="h-full w-full object-cover"
-      />
-    </div>
-  );
-}
-
 function StartupsPage() {
   const [showMorePortfolio, setShowMorePortfolio] = useState(false);
   const [selectedShark, setSelectedShark] = useState(0);
   const [selectedQuote, setSelectedQuote] = useState(0);
+  const [heroVideoEnded, setHeroVideoEnded] = useState(false);
   const headlineWordRef = useRef<HTMLSpanElement>(null);
-  const heroRef = useRef<HTMLElement>(null);
-  const heroContentRef = useRef<HTMLDivElement>(null);
   const [wordFontSize, setWordFontSize] = useState<number | null>(null);
 
   // Fit "Entrepreneurship" to exactly fill its box width on one line at any screen size.
@@ -1154,29 +1084,41 @@ function StartupsPage() {
     return () => ro.disconnect();
   }, []);
 
+  useEffect(() => {
+    const lenis = (window as unknown as { __lenis?: { stop: () => void; start: () => void } }).__lenis;
+    if (heroVideoEnded) {
+      lenis?.start();
+    } else {
+      lenis?.stop();
+    }
+    return () => {
+      lenis?.start();
+    };
+  }, [heroVideoEnded]);
+
   const activeShark = SHARK_TANK[selectedShark];
   const activeQuote = TESTIMONIALS[selectedQuote];
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <HomepageStyleNav items={NAV} applyHref="#cta" visible />
+      <HomepageStyleNav items={NAV} applyHref="#cta" visible={heroVideoEnded} />
+
 
       <header
         id="top"
-        ref={heroRef}
-        className="relative h-[200svh] bg-foreground text-background"
+        className="relative h-[100svh] min-h-[600px] overflow-hidden bg-foreground text-background"
       >
-        {/* Pinned hero viewport: everything below stays fixed while the puzzle
-            halves slide over it during the hero's scroll runway. */}
-        <div className="sticky top-0 h-[100svh] min-h-[600px] overflow-hidden">
-        <div ref={heroContentRef} className="absolute inset-0 will-change-[opacity]">
-        <img
-          aria-hidden
-          decoding="async"
-          loading="eager"
-          src={studentEnterHeroImg.url}
-          alt=""
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-[24%_center]"
+        <video
+          src={heroVideoAsset.url}
+          autoPlay
+          muted
+          playsInline
+          preload="auto"
+          onEnded={() => setHeroVideoEnded(true)}
+          onError={() => setHeroVideoEnded(true)}
+          className={`absolute inset-0 block h-full max-w-full w-full object-contain object-center xl:object-cover transition-opacity duration-1000 ease-out ${
+            heroVideoEnded ? "opacity-0" : "opacity-100"
+          }`}
         />
         <div
           aria-hidden
@@ -1200,7 +1142,9 @@ function StartupsPage() {
         </div>
 
         <div
-          className="absolute inset-0 flex flex-col"
+          className={`absolute inset-0 flex flex-col transition-opacity delay-500 duration-[2200ms] ease-out ${
+            heroVideoEnded ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+          }`}
         >
           <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col px-5 md:px-10">
             <div className="flex flex-1 flex-col justify-end pb-[72px] md:pb-[88px]">
@@ -1268,14 +1212,7 @@ function StartupsPage() {
             </div>
           </div>
         </div>
-
-        </div>
-
-        <PuzzleVideoOverlay sectionRef={heroRef} contentRef={heroContentRef} />
-        </div>
       </header>
-
-
 
       <Section id="spark" tone="light">
         <Reveal>
