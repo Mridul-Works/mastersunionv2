@@ -1164,6 +1164,7 @@ function StartupsPage() {
   const [selectedShark, setSelectedShark] = useState(0);
   const [selectedQuote, setSelectedQuote] = useState(0);
   const headlineWordRef = useRef<HTMLSpanElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
   const [wordFontSize, setWordFontSize] = useState<number | null>(null);
 
   // Fit "Entrepreneurship" to exactly fill its box width on one line at any screen size.
