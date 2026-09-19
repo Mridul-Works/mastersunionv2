@@ -1058,7 +1058,6 @@ function StartupsPage() {
   const [showMorePortfolio, setShowMorePortfolio] = useState(false);
   const [selectedShark, setSelectedShark] = useState(0);
   const [selectedQuote, setSelectedQuote] = useState(0);
-  const [heroVideoEnded, setHeroVideoEnded] = useState(false);
   const headlineWordRef = useRef<HTMLSpanElement>(null);
   const [wordFontSize, setWordFontSize] = useState<number | null>(null);
 
@@ -1088,25 +1087,12 @@ function StartupsPage() {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <HomepageStyleNav items={NAV} applyHref="#cta" visible={heroVideoEnded} />
-
+      <HomepageStyleNav items={NAV} applyHref="#cta" visible />
 
       <header
         id="top"
         className="relative h-[100svh] min-h-[600px] overflow-hidden bg-foreground text-background"
       >
-        <video
-          src={heroVideoAsset.url}
-          autoPlay
-          muted
-          playsInline
-          preload="auto"
-          onEnded={() => setHeroVideoEnded(true)}
-          onError={() => setHeroVideoEnded(true)}
-          className={`absolute inset-0 block h-full max-w-full w-full object-contain object-center xl:object-cover transition-opacity duration-1000 ease-out ${
-            heroVideoEnded ? "opacity-0" : "opacity-100"
-          }`}
-        />
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/60"
