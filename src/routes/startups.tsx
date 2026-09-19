@@ -1097,6 +1097,32 @@ function StartupsPage() {
     };
   }, [heroVideoEnded]);
 
+  // 0..1 progress of the Spark section covering the pinned hero (one viewport of scroll).
+  // Applied directly to the fade wrapper's style to avoid re-rendering the page on scroll.
+  const heroFadeRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = heroFadeRef.current;
+    if (!el) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const vh = window.innerHeight || 1;
+      const p = Math.min(1, Math.max(0, window.scrollY / vh));
+      el.style.opacity = (1 - p).toFixed(3);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
   const activeShark = SHARK_TANK[selectedShark];
   const activeQuote = TESTIMONIALS[selectedQuote];
 
@@ -1107,8 +1133,9 @@ function StartupsPage() {
 
       <header
         id="top"
-        className="relative h-[100svh] min-h-[600px] overflow-hidden bg-foreground text-background"
+        className="sticky top-0 z-0 h-[100svh] min-h-[600px] overflow-hidden bg-foreground text-background"
       >
+        <div ref={heroFadeRef} className="h-full w-full" style={{ opacity: 1 }}>
         <img
           src={studentEnterHeroAsset.url}
           alt="Masters' Union student presenting on stage"
@@ -1225,8 +1252,10 @@ function StartupsPage() {
             </div>
           </div>
         </div>
+        </div>
       </header>
 
+      <div className="relative z-10">
       <Section id="spark" tone="light">
         <Reveal>
           <Eyebrow>The Spark</Eyebrow>
@@ -1878,6 +1907,7 @@ function StartupsPage() {
           </Reveal>
         </div>
       </Section>
+      </div>
       <div aria-hidden className="fixed inset-x-0 bottom-0 -z-10 h-28 bg-foreground md:hidden" />
     </main>
   );
