@@ -1114,7 +1114,7 @@ function StartupsPage() {
           alt="Masters' Union student presenting on stage"
           decoding="async"
           loading="eager"
-          className={`absolute inset-0 h-full w-full scale-[1.18] translate-x-[7%] object-cover object-center transition-opacity delay-300 duration-[3200ms] ease-out ${
+          className={`absolute inset-0 h-full w-full scale-[1.18] translate-x-[14%] object-cover object-center transition-opacity delay-300 duration-[3200ms] ease-out ${
             heroVideoEnded ? "opacity-75" : "opacity-0"
           }`}
         />
