@@ -736,6 +736,7 @@ function SparkStory({
 function SparkCarousel({ children, count }: { children: React.ReactNode; count: number }) {
   const [active, setActive] = useState(0);
   const touchStartRef = useRef<number | null>(null);
+  const slides = Array.isArray(children) ? children : [children];
 
   const goTo = (index: number) => {
     const next = Math.min(count - 1, Math.max(0, index));
@@ -787,10 +788,17 @@ function SparkCarousel({ children, count }: { children: React.ReactNode; count: 
             if (start === null || end === undefined || Math.abs(start - end) < 45) return;
             goTo(active + (start > end ? 1 : -1));
           }}
-          className="flex w-full transition-transform duration-700 ease-out motion-reduce:transition-none"
-          style={{ transform: `translate3d(-${active * 100}%, 0, 0)` }}
+          className="w-full"
         >
-          {children}
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.55, ease: [0.7, 0, 0.2, 1] }}
+            className="w-full"
+          >
+            {slides[active]}
+          </motion.div>
         </div>
       </div>
     </div>
