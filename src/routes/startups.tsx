@@ -658,6 +658,81 @@ function Placeholder({
   );
 }
 
+function SparkStory({
+  company,
+  index,
+}: {
+  company: (typeof SPARK_EXAMPLES)[number];
+  index: number;
+}) {
+  const reverse = index % 2 === 1;
+  const frames = [
+    `${company.name} — founder at work`,
+    `${company.name} — product detail`,
+    `${company.name} — customer context`,
+    `${company.name} — building the venture`,
+  ];
+
+  return (
+    <article className="grid grid-cols-1 items-center gap-8 border-t border-border pt-10 md:gap-12 md:pt-14 lg:grid-cols-12 lg:gap-16">
+      <Reveal
+        className={`lg:col-span-5 ${reverse ? "lg:order-2 lg:pl-8" : "lg:order-1"}`}
+      >
+        <div className="flex items-center gap-4">
+          <span className="font-mono text-[12px] font-semibold text-accent">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <span aria-hidden className="h-px w-10 bg-accent" />
+          <span className="eyebrow text-foreground/45">Student venture</span>
+        </div>
+        <h3 className="font-serif-italic mt-4 text-[clamp(2.6rem,5vw,4.8rem)] leading-[0.95]">
+          {company.name === "SeedsAI" ? "SeedsAI / CDI" : company.name}
+        </h3>
+        <div className="mt-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-foreground/50">
+          {company.founder}
+        </div>
+        <p className="mt-6 max-w-[34rem] text-[1rem] leading-[1.75] text-foreground/70 md:text-[1.08rem]">
+          {company.body}
+        </p>
+      </Reveal>
+
+      <Reveal
+        delay={0.08}
+        className={`lg:col-span-7 ${reverse ? "lg:order-1" : "lg:order-2"}`}
+      >
+        <div className="grid h-[430px] grid-cols-6 grid-rows-6 gap-2 sm:h-[520px] sm:gap-3">
+          <Placeholder
+            kind="image"
+            aspect="h-full"
+            note={frames[0]}
+            className={`col-span-4 row-span-4 sm:row-span-6 ${reverse ? "sm:col-start-3" : ""}`}
+          />
+          <Placeholder
+            kind="image"
+            aspect="h-full"
+            note={frames[1]}
+            className={`col-span-2 row-span-2 sm:row-span-3 ${reverse ? "col-start-1 row-start-1" : "col-start-5 row-start-1"}`}
+          />
+          <Placeholder
+            kind="image"
+            aspect="h-full"
+            note={frames[2]}
+            className={`col-span-2 row-span-2 sm:row-span-3 ${reverse ? "col-start-1 row-start-4" : "col-start-5 row-start-4"}`}
+          />
+          <Placeholder
+            kind="image"
+            aspect="h-full"
+            note={frames[3]}
+            className={`col-span-6 row-span-2 sm:col-span-2 sm:row-span-2 ${
+              reverse ? "row-start-5 sm:col-start-5 sm:row-start-5" : "row-start-5 sm:col-start-1 sm:row-start-5"
+            }`}
+          />
+        </div>
+      </Reveal>
+    </article>
+  );
+}
+
 function StoryBeats({ beats, dark = false }: { beats: Beat[]; dark?: boolean }) {
   return (
     <ol className="mt-2 space-y-8">
@@ -1386,39 +1461,35 @@ function StartupsPage() {
       </header>
 
       <div className="relative z-10">
-      <Section id="spark" tone="light">
-        <Reveal>
-          <Eyebrow>The Spark</Eyebrow>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
-            Nobody sits down to “found a startup.” They notice something first.
-          </h2>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <p className="mt-7 max-w-[68ch] text-[1.05rem] leading-[1.7] text-foreground/70">
-            Some ideas start with a question nobody else was asking. Some start with a frustration nobody
-            else was naming. A few start as a homework assignment nobody meant to turn into a business. At
-            Masters&apos; Union, that first spark is treated as the beginning of something real — not an
-            extracurricular.
-          </p>
-        </Reveal>
-
-        <div className="mt-12 grid grid-cols-1 gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-start">
-          <div className="grid grid-cols-1 gap-px bg-border sm:grid-cols-2">
-            {SPARK_EXAMPLES.map((e, i) => (
-              <Reveal key={e.name} delay={i * 0.05}>
-                <article className="h-full border-l-2 border-transparent bg-background p-7 transition-colors duration-300 hover:border-accent hover:bg-muted">
-                  <h3 className="text-[1.05rem] font-medium">{e.name}</h3>
-                  <div className="mt-1 text-[10px] uppercase tracking-[0.2em] text-foreground/50">{e.founder}</div>
-                  <p className="mt-4 text-[0.95rem] leading-[1.65] text-foreground/75">{e.body}</p>
-                </article>
-              </Reveal>
-            ))}
+      <Section id="spark" tone="light" container="max-w-7xl">
+        <div className="grid grid-cols-1 gap-8 border-b border-foreground pb-10 md:grid-cols-12 md:items-end md:gap-12 md:pb-14">
+          <div className="md:col-span-8">
+            <Reveal>
+              <div className="flex items-center gap-4">
+                <span aria-hidden className="h-px w-12 bg-accent" />
+                <Eyebrow>The Spark</Eyebrow>
+              </div>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="mt-5 max-w-[13ch] text-[clamp(3.5rem,9vw,7.5rem)] font-medium leading-[0.88] tracking-[-0.025em]">
+                An idea begins with <span className="font-serif-italic">noticing.</span>
+              </h2>
+            </Reveal>
           </div>
-          <Reveal delay={0.15}>
-            <Placeholder kind="image" aspect="aspect-[4/5]" note="Editorial portrait grid" />
+          <Reveal delay={0.1} className="md:col-span-4">
+            <p className="max-w-[42ch] text-[1rem] leading-[1.7] text-foreground/70">
+              Some ideas start with a question nobody else was asking. Some start with a frustration nobody
+              else was naming. A few start as a homework assignment nobody meant to turn into a business. At
+              Masters&apos; Union, that first spark is treated as the beginning of something real — not an
+              extracurricular.
+            </p>
           </Reveal>
+        </div>
+
+        <div className="mt-16 space-y-24 md:mt-24 md:space-y-36 lg:space-y-44">
+          {SPARK_EXAMPLES.map((company, index) => (
+            <SparkStory key={company.name} company={company} index={index} />
+          ))}
         </div>
       </Section>
 
