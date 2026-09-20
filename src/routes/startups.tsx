@@ -1938,12 +1938,12 @@ function StartupsPage() {
           </div>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.02] tracking-normal">
+          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.08] tracking-normal">
             Real founders. Real pitches. National television.
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-7 max-w-[64ch] text-[1.05rem] leading-[1.7] text-background/75">
+          <p className="mt-6 max-w-[64ch] text-[1.05rem] leading-[1.65] text-background/75 md:mt-7">
             Masters&apos; Union students have pitched on India&apos;s biggest startup stage — not as
             alumni years removed from campus, but while still building.
           </p>
@@ -1960,12 +1960,12 @@ function StartupsPage() {
                 type="button"
                 onClick={() => setSelectedShark(i)}
                 aria-pressed={selectedShark === i}
-                className={`h-full w-full p-7 text-left transition-colors duration-300 ${
+                className={`h-full w-full p-5 text-left transition-colors duration-300 sm:p-6 md:p-7 ${
                   selectedShark === i ? "bg-background/[0.045] text-background" : "bg-foreground text-background hover:bg-background/[0.06]"
                 }`}
               >
-                <div className="flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-3">
+                <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
+                  <div className="flex min-w-0 items-center gap-3">
                     <LogoBadge src={VENTURE_IMAGES[f.company]} alt={`${f.company} logo`} dark={selectedShark !== i} />
                     <h3 className="text-[1.15rem] font-medium">{f.company}</h3>
                   </div>
@@ -2004,12 +2004,12 @@ function StartupsPage() {
           </div>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.02] tracking-normal">
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.08] tracking-normal">
             The founders here haven&apos;t graduated high school yet.
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-7 max-w-[66ch] text-[1.05rem] leading-[1.7] text-background/70">
+          <p className="mt-6 max-w-[66ch] text-[1.05rem] leading-[1.65] text-background/70 md:mt-7">
             A separate pipeline, built for Class IX–XII students, not current Masters&apos; Union
             enrollees — a launchpad for teen founders to create, pitch, and take their first cheque, with
             past judges including Ashneer Grover, Ankur Warikoo, Techburner, and Sarthak Ahuja.
@@ -2054,12 +2054,12 @@ function StartupsPage() {
           <Eyebrow dark>By the Numbers</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.02] tracking-normal">
+          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.08] tracking-normal">
             This isn&apos;t three stories. It&apos;s a portfolio.
           </h2>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-1 gap-10 md:grid-cols-[1fr_1.2fr] md:items-end md:gap-12">
+        <div className="mt-12 grid grid-cols-1 gap-8 md:mt-14 md:grid-cols-[1fr_1.2fr] md:items-end md:gap-12">
           <Reveal delay={0.1}>
             <div className="text-[clamp(3.2rem,8vw,6.5rem)] font-medium leading-[0.92] tracking-[-0.03em]">
               ₹593.10 Cr
@@ -2081,7 +2081,7 @@ function StartupsPage() {
         </div>
 
         <Reveal delay={0.2}>
-          <p className="mt-12 max-w-[68ch] text-[1.02rem] leading-[1.7] text-background/70">
+          <p className="mt-10 max-w-[68ch] text-[1.02rem] leading-[1.65] text-background/70 md:mt-12">
             More than half of these startups have raised over $1 million. Together, their founders have
             created 500+ jobs since 2021. And when a startup doesn&apos;t make it, the founder walks away
             with sharper skills, real experience, and often, an incredible job offer anyway.
@@ -2096,12 +2096,12 @@ function StartupsPage() {
           <Eyebrow>Mentors, VCs, and Believers</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.02] tracking-normal">
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.08] tracking-normal">
             Behind every founder is a room full of people who&apos;ve already done it.
           </h2>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-1 gap-10 md:grid-cols-[1fr_0.55fr] md:items-start">
+        <div className="mt-12 grid grid-cols-1 gap-10 md:mt-14 md:grid-cols-[1fr_0.55fr] md:items-start md:gap-12">
           <Reveal key={selectedQuote}>
             <figure>
               <blockquote className="text-balance text-[clamp(1.3rem,2.6vw,2rem)] italic leading-[1.4] text-background/90">
@@ -2134,7 +2134,7 @@ function StartupsPage() {
       </Section>
 
       <Section id="fellowship" tone="dark">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-[0.8fr_1.2fr] md:items-center">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-[0.8fr_1.2fr] md:items-center md:gap-12">
           <Reveal>
             <div className="text-[clamp(3.5rem,8vw,6.5rem)] font-medium leading-none tracking-[-0.03em]">
               ₹50,000
@@ -2148,12 +2148,12 @@ function StartupsPage() {
               <Eyebrow dark>For Those Going All In</Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="mt-5 max-w-[20ch] text-[clamp(1.9rem,3.8vw,3rem)] font-light leading-[1.02] tracking-normal">
+              <h2 className="mt-5 max-w-[20ch] text-[clamp(1.9rem,3.8vw,3rem)] font-light leading-[1.08] tracking-normal">
                 No placements. No backup plan. Just a runway.
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="mt-7 max-w-[56ch] text-[1.02rem] leading-[1.7] text-background/75">
+              <p className="mt-6 max-w-[56ch] text-[1.02rem] leading-[1.65] text-background/75 md:mt-7">
                 For students who want to build instead of interview, Masters&apos; Union offers the Founder
                 Fellowship: ₹50,000 a month in grants, mentorship from industry veterans, and active help
                 with fundraising — no placements, no backup plans. As of the 2021–25 report, 40+ fellows
@@ -2178,12 +2178,12 @@ function StartupsPage() {
           <Eyebrow>The UG Ecosystem, 2025–26</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.02] tracking-normal">
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.08] tracking-normal">
             The founders below aren&apos;t waiting for an MBA to start.
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-7 max-w-[66ch] text-[1.05rem] leading-[1.7] text-background/70">
+          <p className="mt-6 max-w-[66ch] text-[1.05rem] leading-[1.65] text-background/70 md:mt-7">
             Masters&apos; Union&apos;s undergraduate cohort has its own entrepreneurship track — and its
             own portfolio. In the 2025–26 cycle alone, UG founders have been granted ₹75L+ and generated
             ₹14Cr+ in revenue, with two startups earning Shark Tank India pitches.
@@ -2210,7 +2210,7 @@ function StartupsPage() {
           <Eyebrow>Selected Companies</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[22ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.02] tracking-normal">
+          <h2 className="mt-5 max-w-[22ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.08] tracking-normal">
             Portfolio
           </h2>
         </Reveal>
@@ -2240,7 +2240,7 @@ function StartupsPage() {
           <Eyebrow dark>Not a Straight Line</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.02] tracking-normal">
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.08] tracking-normal">
             For every launch, there&apos;s a version that didn&apos;t work first.
           </h2>
         </Reveal>
@@ -2250,7 +2250,7 @@ function StartupsPage() {
             <Reveal key={r.name} delay={i * 0.05}>
               <li className="h-full border-background/10 p-7 md:p-9">
                 <span className="font-serif-italic text-[1rem]">{r.name}</span>
-                <p className="mt-3 max-w-[70ch] text-[1rem] leading-[1.7] text-background/80">{r.body}</p>
+                <p className="mt-3 max-w-[70ch] text-[1rem] leading-[1.65] text-background/80">{r.body}</p>
               </li>
             </Reveal>
           ))}
@@ -2264,12 +2264,12 @@ function StartupsPage() {
       <Section id="cta" tone="dark" container="max-w-4xl">
         <div className="pb-16 pt-8 text-center md:pb-20 md:pt-12">
           <Reveal>
-            <h2 className="text-balance text-[clamp(2.4rem,7vw,5.5rem)] font-light leading-[0.94] tracking-normal">
+            <h2 className="text-balance text-[clamp(2.4rem,7vw,5.5rem)] font-light leading-[1] tracking-normal">
               WHAT WILL YOU BUILD?
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
-            <p className="mx-auto mt-8 max-w-[56ch] text-[1.05rem] leading-[1.7] text-background/75">
+            <p className="mx-auto mt-7 max-w-[56ch] text-[1.05rem] leading-[1.65] text-background/75 md:mt-8">
               Every company on this page started the same way every company starts: as nothing. A question.
               A bad first batch. A frustration nobody else was naming. The only difference between an idea
               and a startup is whether someone builds it.
