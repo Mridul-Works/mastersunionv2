@@ -759,7 +759,7 @@ function SparkCarousel({ children, count }: { children: React.ReactNode; count: 
             type="button"
             aria-label="Previous startup"
             disabled={active === 0}
-            onClick={() => goTo(active - 1)}
+            onClick={() => setActive((current) => Math.max(0, current - 1))}
             className="flex size-10 items-center justify-center border border-border text-foreground transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-30"
           >
             <ArrowRight className="size-4 rotate-180" />
@@ -768,7 +768,7 @@ function SparkCarousel({ children, count }: { children: React.ReactNode; count: 
             type="button"
             aria-label="Next startup"
             disabled={active === count - 1}
-            onClick={() => goTo(active + 1)}
+            onClick={() => setActive((current) => Math.min(count - 1, current + 1))}
             className="flex size-10 items-center justify-center bg-foreground text-background transition-opacity hover:opacity-85 disabled:cursor-not-allowed disabled:opacity-30"
           >
             <ArrowRight className="size-4" />
