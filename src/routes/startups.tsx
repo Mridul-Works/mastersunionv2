@@ -705,26 +705,26 @@ function SparkStory({
             kind="image"
             aspect="h-full"
             note={frames[0]}
-            className={`col-span-4 row-span-4 sm:row-span-6 ${reverse ? "sm:col-start-3" : ""}`}
+            className={`col-span-4 col-start-1 row-span-4 row-start-1 sm:row-span-6 ${reverse ? "sm:col-start-3" : ""}`}
           />
           <Placeholder
             kind="image"
             aspect="h-full"
             note={frames[1]}
-            className={`col-span-2 row-span-2 sm:row-span-3 ${reverse ? "col-start-1 row-start-1" : "col-start-5 row-start-1"}`}
+            className={`col-span-2 col-start-5 row-span-2 row-start-1 ${reverse ? "sm:col-start-1" : ""}`}
           />
           <Placeholder
             kind="image"
             aspect="h-full"
             note={frames[2]}
-            className={`col-span-2 row-span-2 sm:row-span-3 ${reverse ? "col-start-1 row-start-4" : "col-start-5 row-start-4"}`}
+            className={`col-span-2 col-start-5 row-span-2 row-start-3 ${reverse ? "sm:col-start-1" : ""}`}
           />
           <Placeholder
             kind="image"
             aspect="h-full"
             note={frames[3]}
-            className={`col-span-6 row-span-2 sm:col-span-2 sm:row-span-2 ${
-              reverse ? "row-start-5 sm:col-start-5 sm:row-start-5" : "row-start-5 sm:col-start-1 sm:row-start-5"
+            className={`col-span-6 col-start-1 row-span-2 row-start-5 sm:col-span-2 ${
+              reverse ? "sm:col-start-1" : "sm:col-start-5"
             }`}
           />
         </div>
