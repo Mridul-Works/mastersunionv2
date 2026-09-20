@@ -661,6 +661,70 @@ function Placeholder({
   );
 }
 
+function MediaRail({
+  labels,
+  kind = "image",
+  className = "",
+}: {
+  labels: string[];
+  kind?: "image" | "video";
+  className?: string;
+}) {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  const go = (direction: -1 | 1) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const next = (active + direction + labels.length) % labels.length;
+    const card = track.children[next] as HTMLElement | undefined;
+    if (!card) return;
+    setActive(next);
+    track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: "smooth" });
+  };
+
+  return (
+    <div className={`mt-12 ${className}`}>
+      <div className="mb-5 flex items-center justify-between border-b border-background/15 pb-4">
+        <span className="eyebrow text-background/50">
+          {String(active + 1).padStart(2, "0")} / {String(labels.length).padStart(2, "0")}
+        </span>
+        <div className="flex items-center gap-3">
+          <span className="hidden text-[10px] uppercase tracking-[0.2em] text-background/35 sm:inline">Slide to explore</span>
+          <button type="button" aria-label="Previous media" onClick={() => go(-1)} className="flex size-10 items-center justify-center border border-background/20 text-background transition-colors hover:bg-background/10">
+            <ArrowRight className="size-4 rotate-180" />
+          </button>
+          <button type="button" aria-label="Next media" onClick={() => go(1)} className="flex size-10 items-center justify-center bg-background text-foreground transition-opacity hover:opacity-80">
+            <ArrowRight className="size-4" />
+          </button>
+        </div>
+      </div>
+      <div
+        ref={trackRef}
+        onScroll={(event) => {
+          const track = event.currentTarget;
+          const first = track.children[0] as HTMLElement | undefined;
+          if (!first) return;
+          setActive(Math.min(labels.length - 1, Math.max(0, Math.round(track.scrollLeft / first.offsetWidth))));
+        }}
+        className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 [scrollbar-width:none] md:-mx-10 md:gap-6 md:px-10 [&::-webkit-scrollbar]:hidden"
+      >
+        {labels.map((label, index) => (
+          <Reveal key={label} delay={index * 0.05} className="group w-[84vw] max-w-[32rem] shrink-0 snap-start md:w-[38vw] lg:w-[31vw]">
+            <div className={`transition-transform duration-700 ease-out group-hover:-translate-y-2 ${index % 2 ? "md:mt-14" : ""}`}>
+              <Placeholder kind={kind} aspect="aspect-[4/5] md:aspect-[5/4]" note={label} />
+              <div className="mt-4 flex items-center justify-between border-t border-background/15 pt-4">
+                <span className="font-serif-italic text-xl text-background/85">{label}</span>
+                <span className="font-mono text-[10px] text-accent">{String(index + 1).padStart(2, "0")}</span>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function SparkStory({
   company,
   index,
@@ -944,7 +1008,7 @@ function ScrollCarousel({
           const w = first.offsetWidth + 1;
           setActive(Math.min(count - 1, Math.max(0, Math.round(track.scrollLeft / w))));
         }}
-        className="-mx-5 flex snap-x snap-mandatory gap-px overflow-x-auto bg-border px-5 pb-1 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-4 md:overflow-visible md:px-0 [&::-webkit-scrollbar]:hidden"
+        className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 [scrollbar-width:none] md:-mx-10 md:gap-6 md:px-10 [&::-webkit-scrollbar]:hidden"
       >
         {children}
       </div>
@@ -956,7 +1020,7 @@ function EpisodeStrip({ episodes }: { episodes: Episode[] }) {
   return (
     <ScrollCarousel count={episodes.length}>
       {episodes.map((e, i) => (
-        <Reveal key={e.label} delay={i * 0.05} className="w-[82%] shrink-0 snap-start sm:w-[55%] md:w-auto">
+        <Reveal key={e.label} delay={i * 0.05} className="w-[82%] shrink-0 snap-start sm:w-[55%] md:w-[42%] lg:w-[31%]">
           <div
             className={`flex h-full flex-col gap-4 p-6 ${
               e.culmination ? "bg-foreground text-background" : "bg-background text-foreground"
