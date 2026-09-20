@@ -1541,17 +1541,14 @@ function StartupsPage() {
               </div>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="mt-5 max-w-[13ch] text-[clamp(3.5rem,9vw,7.5rem)] font-medium leading-[0.88] tracking-[-0.025em]">
-                An idea begins with <span className="font-serif-italic">noticing.</span>
+              <h2 className="mt-5 max-w-[18ch] font-display text-[1.875rem] font-normal leading-[1.2] tracking-normal">
+                An idea begins with noticing.
               </h2>
             </Reveal>
           </div>
           <Reveal delay={0.1} className="md:col-span-4">
             <p className="max-w-[42ch] text-[1rem] leading-[1.7] text-foreground/70">
-              Some ideas start with a question nobody else was asking. Some start with a frustration nobody
-              else was naming. A few start as a homework assignment nobody meant to turn into a business. At
-              Masters&apos; Union, that first spark is treated as the beginning of something real — not an
-              extracurricular.
+              At Masters&apos; Union, questions, frustrations, and assignments become real businesses.
             </p>
           </Reveal>
         </div>
