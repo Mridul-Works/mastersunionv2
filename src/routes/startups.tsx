@@ -1665,6 +1665,10 @@ function StartupsPage() {
         <Reveal delay={0.15} className="ml-auto mt-16 max-w-5xl md:w-[88%]">
           <Placeholder kind="video" aspect="aspect-video" note="Documentary-style, students building" />
         </Reveal>
+        <MediaRail
+          kind="video"
+          labels={["The first prototype", "Customer interviews", "Building after class", "The launch room"]}
+        />
       </Section>
 
       <Section id="dropshipping" tone="light">
@@ -1703,6 +1707,10 @@ function StartupsPage() {
         <Reveal delay={0.2} className="mt-14">
           <Placeholder kind="video" aspect="aspect-video" note="Dropshipping Challenge highlight reel" />
         </Reveal>
+
+        <MediaRail
+          labels={["Finding the product", "Supplier negotiations", "Campaign day", "First order shipped"]}
+        />
 
         <Reveal delay={0.25} className="mt-14">
           <div className="eyebrow text-background/55">Top performers, this edition</div>
@@ -1783,6 +1791,10 @@ function StartupsPage() {
             <Reveal delay={0.1}>
               <Placeholder kind="image" src={VENTURE_IMAGES.Eight} alt="Eight" aspect="aspect-[3/2]" dark />
             </Reveal>
+            <MediaRail
+              labels={["The first whiteboard", "Recording the pilot", "The founding team", "Five million downloads"]}
+              className="md:mt-8"
+            />
           </div>
         </div>
         <Reveal delay={0.1} className="mt-12 border-t border-background/10 pt-8">
@@ -1823,7 +1835,13 @@ function StartupsPage() {
             20
           </span>
           <Reveal delay={0.1}>
-            <Placeholder kind="image" aspect="aspect-square" note="Product / process photography" />
+            <div className="grid grid-cols-2 gap-3">
+              {["Dorm-room batch", "Product detail", "Packing orders", "Customer tasting"].map((label, index) => (
+                <div key={label} className={index % 2 ? "translate-y-8" : ""}>
+                  <Placeholder kind="image" aspect="aspect-[4/5]" note={label} />
+                </div>
+              ))}
+            </div>
           </Reveal>
           <StoryBeats beats={BAMBAII_BEATS} />
         </div>
@@ -1865,6 +1883,7 @@ function StartupsPage() {
           </span>
           <Placeholder kind="image" aspect="aspect-[21/9]" dark note="Product photography / pop-up event" />
         </Reveal>
+        <MediaRail labels={["The bland chip", "Flavour trials", "Pop-up counter", "First sold-out batch"]} />
         <div className="mt-12 md:columns-2 md:gap-x-12">
           <StoryBeats beats={EATATLAS_BEATS} dark />
         </div>
@@ -2027,6 +2046,10 @@ function StartupsPage() {
         <Reveal delay={0.25} className="mt-10">
           <Placeholder kind="video" aspect="aspect-video" note="High School Startup League highlight reel" />
         </Reveal>
+        <MediaRail
+          kind="video"
+          labels={["Meet the teen founders", "Prototype lab", "Pitch rehearsal", "The final stage"]}
+        />
       </Section>
 
       <Section id="scale" tone="dark">
@@ -2068,9 +2091,7 @@ function StartupsPage() {
           </p>
         </Reveal>
 
-        <Reveal delay={0.25} className="mt-10">
-          <Placeholder kind="image" aspect="aspect-[16/7]" dark note="Demo Day crowd / data visualization" />
-        </Reveal>
+        <MediaRail labels={["Demo Day crowd", "Pitch room", "Investor conversations", "Founder celebrations"]} />
       </Section>
 
       <Section id="people" tone="light">
@@ -2143,7 +2164,13 @@ function StartupsPage() {
               </p>
             </Reveal>
             <Reveal delay={0.15} className="mt-9">
-              <Placeholder kind="image" aspect="aspect-[4/5]" dark note="Founder-at-work portrait" className="max-w-sm" />
+              <div className="grid max-w-xl grid-cols-2 gap-3">
+                {["Founder at work", "Mentor session", "Product sprint", "Investor room"].map((label, index) => (
+                  <div key={label} className={index === 1 || index === 3 ? "translate-y-7" : ""}>
+                    <Placeholder kind="image" aspect="aspect-[4/5]" dark note={label} />
+                  </div>
+                ))}
+              </div>
             </Reveal>
           </div>
         </div>
