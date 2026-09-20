@@ -1611,7 +1611,7 @@ function StartupsPage() {
 
       <div className="relative z-10 bg-foreground font-display text-background">
       <Section id="spark" tone="light" container="max-w-7xl">
-        <div className="grid grid-cols-1 gap-8 border-b border-background/20 pb-10 md:grid-cols-12 md:items-end md:gap-12 md:pb-14">
+        <div className="grid grid-cols-1 gap-6 border-b border-background/20 pb-10 md:grid-cols-12 md:items-end md:gap-12 md:pb-14">
           <div className="md:col-span-8">
             <Reveal>
               <div className="flex items-center gap-4">
@@ -1626,7 +1626,7 @@ function StartupsPage() {
             </Reveal>
           </div>
           <Reveal delay={0.1} className="md:col-span-4">
-            <p className="max-w-[42ch] text-[1rem] leading-[1.7] text-background/70">
+            <p className="max-w-[42ch] text-[1rem] leading-[1.65] text-background/70 md:ml-auto">
               At Masters&apos; Union, questions, frustrations, and assignments become real businesses.
             </p>
           </Reveal>
@@ -1644,17 +1644,17 @@ function StartupsPage() {
       </Section>
 
       <Section id="doing" tone="paper">
-        <div className="ml-auto max-w-4xl border-l border-accent/70 pl-6 text-left md:pl-12">
+        <div className="ml-auto w-full max-w-4xl border-l border-accent/70 pl-5 text-left sm:pl-6 md:pl-10 lg:pl-12">
           <Reveal>
             <Eyebrow>The Outclass</Eyebrow>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mx-auto mt-6 max-w-[18ch] text-[clamp(2.2rem,5.5vw,4.2rem)] font-medium leading-[1.02] tracking-[-0.02em]">
+            <h2 className="mt-6 max-w-[18ch] text-[clamp(2.2rem,5.5vw,4.2rem)] font-medium leading-[1.08] tracking-[-0.02em]">
               Half the curriculum doesn&apos;t happen in a classroom.
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mx-auto mt-7 max-w-[56ch] text-[1.05rem] leading-[1.7] text-background/70">
+            <p className="mt-6 max-w-[56ch] text-[1.05rem] leading-[1.65] text-background/70 md:mt-7">
               At Masters&apos; Union, real growth doesn&apos;t come from case studies — it comes from
               taking risks, testing ideas, and putting something into the world. That&apos;s what the
               Outclass is: half the curriculum happens outside the classroom, where students run
@@ -1662,7 +1662,7 @@ function StartupsPage() {
             </p>
           </Reveal>
         </div>
-        <Reveal delay={0.15} className="ml-auto mt-16 max-w-5xl md:w-[88%]">
+        <Reveal delay={0.15} className="ml-auto mt-12 w-full max-w-5xl md:mt-16 md:w-[88%]">
           <Placeholder kind="video" aspect="aspect-video" note="Documentary-style, students building" />
         </Reveal>
         <MediaRail
@@ -1676,12 +1676,12 @@ function StartupsPage() {
           <Eyebrow>Dropshipping Challenge</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[22ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.02] tracking-normal">
+          <h2 className="mt-5 max-w-[22ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.08] tracking-normal">
             Build, Launch & Sell
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-7 max-w-[66ch] text-[1.05rem] leading-[1.7] text-background/70">
+          <p className="mt-6 max-w-[66ch] text-[1.05rem] leading-[1.65] text-background/70 md:mt-7">
             From idea to sales: students build profitable D2C businesses in under four months — running
             their own marketing campaigns, sourcing, supply chains, customers, and sales, start to finish.
           </p>
@@ -1689,7 +1689,7 @@ function StartupsPage() {
 
         <Reveal delay={0.15} className="mt-12 grid grid-cols-2 gap-px border-y border-background/15 md:grid-cols-4">
           {DROPSHIPPING_STATS.map((s) => (
-            <div key={s.label} className="min-h-32 border-r border-background/10 p-5 md:p-7">
+            <div key={s.label} className="min-h-32 border-r border-background/10 p-5 last:border-r-0 md:p-7">
               <div
                 className={
                   "dominant" in s && s.dominant
@@ -1736,12 +1736,12 @@ function StartupsPage() {
           <Eyebrow>The Venture Initiation Programme (VIP)</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.02] tracking-normal">
+          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.08] tracking-normal">
             Nearly half the MBA. Four stages. One Demo Day.
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-7 max-w-[64ch] text-[1.05rem] leading-[1.7] text-background/70">
+          <p className="mt-6 max-w-[64ch] text-[1.05rem] leading-[1.65] text-background/70 md:mt-7">
             Students build a business from 0 to 1, working through the real moving parts — pricing,
             positioning, cash flow — not case studies about someone else's. The VIP is a structured track,
             not an elective, backed by a grant at every stage and mentorship from founders, CXOs, and
@@ -1754,7 +1754,7 @@ function StartupsPage() {
           <Eyebrow>The Startup Challenge</Eyebrow>
         </Reveal>
         <Reveal delay={0.24}>
-          <p className="mt-4 max-w-[64ch] text-[1rem] leading-[1.7] text-background/70">
+          <p className="mt-4 max-w-[64ch] text-[1rem] leading-[1.65] text-background/70">
             A four-part video series that tracks student ventures from first pitch to funded company.
           </p>
         </Reveal>
@@ -1772,14 +1772,14 @@ function StartupsPage() {
           </div>
         </Reveal>
         <Reveal delay={0.06}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(2rem,4.2vw,3.6rem)] font-light leading-[1.02] tracking-normal">
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(2rem,4.2vw,3.6rem)] font-light leading-[1.08] tracking-normal">
             What if the next big creator wasn&apos;t on camera?
           </h2>
         </Reveal>
         <Reveal delay={0.09}>
           <ChapterChips labels={EIGHT_BEATS.map((b) => b.stage)} dark />
         </Reveal>
-        <div className="relative mt-12 grid grid-cols-1 gap-12 md:grid-cols-[1fr_0.85fr] md:items-start">
+        <div className="relative mt-10 grid grid-cols-1 gap-10 md:mt-12 md:grid-cols-[1fr_0.85fr] md:items-start md:gap-12">
           <span
             aria-hidden
             className="pointer-events-none absolute -top-16 -left-2 select-none text-[6rem] font-bold leading-none text-background/[0.035] md:text-[9rem]"
@@ -1817,14 +1817,14 @@ function StartupsPage() {
           </div>
         </Reveal>
         <Reveal delay={0.06}>
-          <h2 className="font-serif-italic mt-5 max-w-[28ch] text-balance text-[clamp(2rem,4.2vw,3.6rem)] leading-[1.05]">
+          <h2 className="font-serif-italic mt-5 max-w-[28ch] text-balance text-[clamp(2rem,4.2vw,3.6rem)] leading-[1.08]">
             &ldquo;Ek haath se becho, dusre haath se paise lo.&rdquo;
           </h2>
         </Reveal>
         <Reveal delay={0.09}>
           <ChapterChips labels={BAMBAII_BEATS.map((b) => b.stage)} />
         </Reveal>
-        <div className="relative mt-12 grid grid-cols-1 gap-12 md:grid-cols-[0.85fr_1fr] md:items-start">
+        <div className="relative mt-10 grid grid-cols-1 gap-12 md:mt-12 md:grid-cols-[0.85fr_1fr] md:items-start">
           <span
             aria-hidden
             className="pointer-events-none absolute -top-16 right-0 select-none text-[6rem] font-bold leading-none text-background/[0.035] md:text-[9rem]"
@@ -1864,7 +1864,7 @@ function StartupsPage() {
           </div>
         </Reveal>
         <Reveal delay={0.06}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(2rem,4.2vw,3.6rem)] font-light leading-[1.02] tracking-normal">
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(2rem,4.2vw,3.6rem)] font-light leading-[1.08] tracking-normal">
             One bland chip. Three founders who couldn&apos;t stop thinking about it.
           </h2>
         </Reveal>
@@ -1901,7 +1901,7 @@ function StartupsPage() {
           <Eyebrow>Zoom Out</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[22ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.02] tracking-normal">
+          <h2 className="mt-5 max-w-[22ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.08] tracking-normal">
             The company changes. The pattern doesn&apos;t.
           </h2>
         </Reveal>
@@ -1920,7 +1920,7 @@ function StartupsPage() {
         </div>
 
         <Reveal delay={0.15}>
-          <p className="mt-10 max-w-[68ch] text-[1.05rem] leading-[1.7] text-background/70">
+          <p className="mt-8 max-w-[68ch] text-[1.05rem] leading-[1.65] text-background/70 md:mt-10">
             A cafeteria question about who gets to be a creator. A canteen complaint about boring chips. A
             ₹60 snack mix nobody wanted, repriced to ₹50 and sold out in an hour. None of these started as
             a business plan — they started as a small, cheap experiment that either worked or told the
