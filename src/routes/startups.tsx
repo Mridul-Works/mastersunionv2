@@ -1611,7 +1611,7 @@ function StartupsPage() {
 
       <div className="relative z-10 bg-foreground font-display text-background">
       <Section id="spark" tone="light" container="max-w-7xl">
-        <div className="grid grid-cols-1 gap-6 border-b border-background/20 pb-10 md:grid-cols-12 md:items-end md:gap-12 md:pb-14">
+        <div className="grid grid-cols-1 gap-5 border-b border-background/20 pb-8 sm:gap-6 sm:pb-10 md:grid-cols-12 md:items-end md:gap-10 md:pb-12 lg:gap-12 lg:pb-14">
           <div className="md:col-span-8">
             <Reveal>
               <div className="flex items-center gap-4">
@@ -1626,7 +1626,7 @@ function StartupsPage() {
             </Reveal>
           </div>
           <Reveal delay={0.1} className="md:col-span-4">
-            <p className="max-w-[42ch] text-[1rem] leading-[1.65] text-background/70 md:ml-auto">
+            <p className="max-w-[42ch] text-[0.98rem] leading-[1.6] text-background/70 sm:text-[1rem] md:ml-auto md:leading-[1.65]">
               At Masters&apos; Union, questions, frustrations, and assignments become real businesses.
             </p>
           </Reveal>
@@ -1644,17 +1644,17 @@ function StartupsPage() {
       </Section>
 
       <Section id="doing" tone="paper">
-        <div className="ml-auto w-full max-w-4xl border-l border-accent/70 pl-5 text-left sm:pl-6 md:pl-10 lg:pl-12">
+        <div className="ml-auto w-full max-w-4xl border-l border-accent/70 pl-4 text-left sm:pl-6 md:pl-8 lg:pl-12">
           <Reveal>
             <Eyebrow>The Outclass</Eyebrow>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mt-6 max-w-[18ch] text-[clamp(2.2rem,5.5vw,4.2rem)] font-medium leading-[1.08] tracking-[-0.02em]">
+            <h2 className="mt-5 max-w-[18ch] text-[clamp(2rem,5.5vw,4.2rem)] font-medium leading-[1.1] tracking-[-0.02em] sm:mt-6 md:leading-[1.08]">
               Half the curriculum doesn&apos;t happen in a classroom.
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-6 max-w-[56ch] text-[1.05rem] leading-[1.65] text-background/70 md:mt-7">
+            <p className="mt-5 max-w-[56ch] text-[0.98rem] leading-[1.6] text-background/70 sm:mt-6 sm:text-[1.02rem] md:mt-7 md:text-[1.05rem] md:leading-[1.65]">
               At Masters&apos; Union, real growth doesn&apos;t come from case studies — it comes from
               taking risks, testing ideas, and putting something into the world. That&apos;s what the
               Outclass is: half the curriculum happens outside the classroom, where students run
@@ -1662,7 +1662,7 @@ function StartupsPage() {
             </p>
           </Reveal>
         </div>
-        <Reveal delay={0.15} className="ml-auto mt-12 w-full max-w-5xl md:mt-16 md:w-[88%]">
+        <Reveal delay={0.15} className="ml-auto mt-9 w-full max-w-5xl sm:mt-11 md:mt-14 md:w-[92%] lg:mt-16 lg:w-[88%]">
           <Placeholder kind="video" aspect="aspect-video" note="Documentary-style, students building" />
         </Reveal>
         <MediaRail
@@ -1676,20 +1676,20 @@ function StartupsPage() {
           <Eyebrow>Dropshipping Challenge</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[22ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.08] tracking-normal">
+          <h2 className="mt-4 max-w-[22ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] tracking-normal sm:mt-5 md:leading-[1.08]">
             Build, Launch & Sell
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-6 max-w-[66ch] text-[1.05rem] leading-[1.65] text-background/70 md:mt-7">
+          <p className="mt-5 max-w-[66ch] text-[0.98rem] leading-[1.6] text-background/70 sm:mt-6 sm:text-[1.02rem] md:mt-7 md:text-[1.05rem] md:leading-[1.65]">
             From idea to sales: students build profitable D2C businesses in under four months — running
             their own marketing campaigns, sourcing, supply chains, customers, and sales, start to finish.
           </p>
         </Reveal>
 
-        <Reveal delay={0.15} className="mt-12 grid grid-cols-2 gap-px border-y border-background/15 md:grid-cols-4">
+        <Reveal delay={0.15} className="mt-9 grid grid-cols-2 gap-px border-y border-background/15 sm:mt-11 lg:grid-cols-4">
           {DROPSHIPPING_STATS.map((s) => (
-            <div key={s.label} className="min-h-32 border-r border-background/10 p-5 last:border-r-0 md:p-7">
+            <div key={s.label} className="min-h-28 border-r border-background/10 p-4 sm:min-h-32 sm:p-5 md:p-6 lg:p-7">
               <div
                 className={
                   "dominant" in s && s.dominant
@@ -1704,7 +1704,7 @@ function StartupsPage() {
           ))}
         </Reveal>
 
-        <Reveal delay={0.2} className="mt-14">
+        <Reveal delay={0.2} className="mt-10 sm:mt-12 md:mt-14">
           <Placeholder kind="video" aspect="aspect-video" note="Dropshipping Challenge highlight reel" />
         </Reveal>
 
@@ -1712,7 +1712,7 @@ function StartupsPage() {
           labels={["Finding the product", "Supplier negotiations", "Campaign day", "First order shipped"]}
         />
 
-        <Reveal delay={0.25} className="mt-14">
+        <Reveal delay={0.25} className="mt-10 sm:mt-12 md:mt-14">
           <div className="eyebrow text-background/55">Top performers, this edition</div>
         </Reveal>
         <ScrollCarousel count={DROPSHIPPING_TOP.length}>
@@ -1736,12 +1736,12 @@ function StartupsPage() {
           <Eyebrow>The Venture Initiation Programme (VIP)</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.08] tracking-normal">
+          <h2 className="mt-4 max-w-[24ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] tracking-normal sm:mt-5 md:leading-[1.08]">
             Nearly half the MBA. Four stages. One Demo Day.
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-6 max-w-[64ch] text-[1.05rem] leading-[1.65] text-background/70 md:mt-7">
+          <p className="mt-5 max-w-[64ch] text-[0.98rem] leading-[1.6] text-background/70 sm:mt-6 sm:text-[1.02rem] md:mt-7 md:text-[1.05rem] md:leading-[1.65]">
             Students build a business from 0 to 1, working through the real moving parts — pricing,
             positioning, cash flow — not case studies about someone else's. The VIP is a structured track,
             not an elective, backed by a grant at every stage and mentorship from founders, CXOs, and
@@ -1750,7 +1750,7 @@ function StartupsPage() {
         </Reveal>
         <JourneyStages stages={VIP_STAGES} />
 
-        <Reveal delay={0.2} className="mt-16">
+        <Reveal delay={0.2} className="mt-11 sm:mt-13 md:mt-16">
           <Eyebrow>The Startup Challenge</Eyebrow>
         </Reveal>
         <Reveal delay={0.24}>
