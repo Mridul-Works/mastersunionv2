@@ -12,6 +12,7 @@ Restyle every section below the existing startup hero to match the selected “E
 ## Section treatment
 - Rework Spark into a fitted one-company-at-a-time editorial rail with stronger media hierarchy, keeping arrows and swipe.
 - Restyle challenge results and ecosystem proof as compact rule-based metric bands.
+- Give every section a visibly distinct composition rather than repeating one template: timeline, cinematic split, layered gallery, horizontal ledger, portrait rail, typographic manifesto, and portfolio wall treatments will alternate across the page.
 - Present journey, case studies, Shark Tank, High School League, fellowship, people, portfolio, and failure stories with varied asymmetric layouts while preserving every existing section and all copy.
 - Standardize image galleries and placeholders with dark frames, subtle hover zoom/desaturation shifts, and consistent aspect ratios.
 - Restyle native carousels with visible progress, refined controls, snap behavior, and mobile-safe one-card views.
