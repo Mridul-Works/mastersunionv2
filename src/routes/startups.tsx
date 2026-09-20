@@ -734,17 +734,12 @@ function SparkStory({
 }
 
 function SparkCarousel({ children, count }: { children: React.ReactNode; count: number }) {
-  const trackRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
+  const touchStartRef = useRef<number | null>(null);
 
-  const scrollTo = (index: number) => {
-    const track = trackRef.current;
-    if (!track) return;
+  const goTo = (index: number) => {
     const next = Math.min(count - 1, Math.max(0, index));
-    const slide = track.children[next] as HTMLElement | undefined;
-    if (!slide) return;
     setActive(next);
-    track.scrollTo({ left: slide.offsetLeft - track.offsetLeft, behavior: "smooth" });
   };
 
   return (
@@ -763,7 +758,7 @@ function SparkCarousel({ children, count }: { children: React.ReactNode; count: 
             type="button"
             aria-label="Previous startup"
             disabled={active === 0}
-            onClick={() => scrollTo(active - 1)}
+            onClick={() => goTo(active - 1)}
             className="flex size-10 items-center justify-center border border-border text-foreground transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-30"
           >
             <ArrowRight className="size-4 rotate-180" />
@@ -772,7 +767,7 @@ function SparkCarousel({ children, count }: { children: React.ReactNode; count: 
             type="button"
             aria-label="Next startup"
             disabled={active === count - 1}
-            onClick={() => scrollTo(active + 1)}
+            onClick={() => goTo(active + 1)}
             className="flex size-10 items-center justify-center bg-foreground text-background transition-opacity hover:opacity-85 disabled:cursor-not-allowed disabled:opacity-30"
           >
             <ArrowRight className="size-4" />
@@ -780,24 +775,23 @@ function SparkCarousel({ children, count }: { children: React.ReactNode; count: 
         </div>
       </div>
 
-      <div
-        ref={trackRef}
-        onScroll={(event) => {
-          const track = event.currentTarget;
-          const slides = Array.from(track.children) as HTMLElement[];
-          if (!slides.length) return;
-          const closest = slides.reduce(
-            (best, slide, index) => {
-              const distance = Math.abs(slide.offsetLeft - track.offsetLeft - track.scrollLeft);
-              return distance < best.distance ? { index, distance } : best;
-            },
-            { index: 0, distance: Number.POSITIVE_INFINITY },
-          );
-          setActive(closest.index);
-        }}
-        className="flex snap-x snap-mandatory gap-8 overflow-x-auto overscroll-x-contain pb-5 [scrollbar-width:none] md:gap-12 [&::-webkit-scrollbar]:hidden"
-      >
-        {children}
+      <div className="w-full overflow-hidden">
+        <div
+          onTouchStart={(event) => {
+            touchStartRef.current = event.touches[0]?.clientX ?? null;
+          }}
+          onTouchEnd={(event) => {
+            const start = touchStartRef.current;
+            const end = event.changedTouches[0]?.clientX;
+            touchStartRef.current = null;
+            if (start === null || end === undefined || Math.abs(start - end) < 45) return;
+            goTo(active + (start > end ? 1 : -1));
+          }}
+          className="flex w-full transition-transform duration-700 ease-out motion-reduce:transition-none"
+          style={{ transform: `translate3d(-${active * 100}%, 0, 0)` }}
+        >
+          {children}
+        </div>
       </div>
     </div>
   );
