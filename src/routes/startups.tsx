@@ -489,7 +489,7 @@ function Reveal({
 }
 
 function Eyebrow({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
-  return <div className={`eyebrow ${dark ? "text-background/60" : "text-foreground/55"}`}>{children}</div>;
+  return <div className="eyebrow text-background/55">{children}</div>;
 }
 
 function Section({
@@ -503,27 +503,35 @@ function Section({
   container?: string;
   children: React.ReactNode;
 }) {
-  const toneClass =
-    tone === "dark"
-      ? "bg-foreground text-background"
-      : tone === "paper"
-        ? "bg-muted text-foreground"
-        : "bg-background text-foreground";
+  const surfaceClass =
+    tone === "paper"
+      ? "bg-foreground"
+      : tone === "dark"
+        ? "bg-foreground"
+        : "bg-foreground";
   return (
-    <section id={id} className={toneClass}>
-      <div className={`mx-auto ${container} px-5 py-16 md:px-10 md:py-24`}>{children}</div>
+    <section id={id} className={`relative overflow-hidden border-t border-background/10 text-background ${surfaceClass}`}>
+      {id ? (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute -right-3 top-6 select-none font-display text-[clamp(4.5rem,14vw,12rem)] font-light uppercase leading-none text-background/[0.025] md:right-6 md:top-8"
+        >
+          {id.replace("-", " ")}
+        </span>
+      ) : null}
+      <div className={`relative z-[1] mx-auto ${container} px-5 py-20 md:px-10 md:py-32`}>{children}</div>
     </section>
   );
 }
 
 function LogoBadge({ src, alt, dark = false, size = "size-9" }: { src?: string; alt?: string; dark?: boolean; size?: string }) {
   if (src) {
-    return <img src={src} alt={alt ?? ""} loading="lazy" className={`${size} shrink-0 rounded-full border object-cover ${dark ? "border-background/25" : "border-border"}`} />;
+    return <img src={src} alt={alt ?? ""} loading="lazy" className={`${size} shrink-0 rounded-full border border-background/20 bg-background object-cover`} />;
   }
   return (
     <span
       aria-label="Logo placeholder"
-      className={`flex ${size} shrink-0 items-center justify-center rounded-full border ${dark ? "border-background/25 text-background/30" : "border-border text-foreground/25"}`}
+      className={`flex ${size} shrink-0 items-center justify-center rounded-full border border-background/20 text-background/35`}
     >
       <ImageIcon className="size-3.5" strokeWidth={1.5} />
     </span>
@@ -532,12 +540,12 @@ function LogoBadge({ src, alt, dark = false, size = "size-9" }: { src?: string; 
 
 function PortraitBadge({ src, alt, dark = false, size = "size-14" }: { src?: string; alt?: string; dark?: boolean; size?: string }) {
   if (src) {
-    return <img src={src} alt={alt ?? ""} loading="lazy" className={`${size} shrink-0 rounded-full border object-cover ${dark ? "border-background/25" : "border-border"}`} />;
+    return <img src={src} alt={alt ?? ""} loading="lazy" className={`${size} shrink-0 rounded-full border border-background/20 bg-background object-cover`} />;
   }
   return (
     <span
       aria-label="Founder image placeholder"
-      className={`flex ${size} shrink-0 items-center justify-center rounded-full border ${dark ? "border-background/25 text-background/30" : "border-border text-foreground/25"}`}
+      className={`flex ${size} shrink-0 items-center justify-center rounded-full border border-background/20 text-background/35`}
     >
       <Users className="size-4" strokeWidth={1.5} />
     </span>
@@ -546,7 +554,7 @@ function PortraitBadge({ src, alt, dark = false, size = "size-14" }: { src?: str
 
 function FounderLine({ names, cohort, dark = false }: { names: string; cohort: string; dark?: boolean }) {
   return (
-    <span className={`text-[11px] uppercase tracking-[0.2em] ${dark ? "text-background/60" : "text-foreground/60"}`}>
+    <span className="text-[11px] uppercase tracking-[0.2em] text-background/60">
       {names} · {cohort}
     </span>
   );
@@ -558,11 +566,11 @@ function ChapterChips({ labels, dark = false }: { labels: string[]; dark?: boole
       {labels.map((l, i) => (
         <div key={l} className="flex items-center gap-2">
           <span
-            className={`eyebrow rounded-full px-3 py-1.5 ${dark ? "bg-background/10 text-background/80" : "bg-foreground/[0.06] text-foreground/80"}`}
+            className="eyebrow rounded-full border border-background/15 bg-background/[0.06] px-3 py-1.5 text-background/80"
           >
             {l}
           </span>
-          {i < labels.length - 1 && <ArrowRight className={`size-3 ${dark ? "text-background/25" : "text-foreground/25"}`} aria-hidden />}
+          {i < labels.length - 1 && <ArrowRight className="size-3 text-background/25" aria-hidden />}
         </div>
       ))}
     </div>
@@ -576,12 +584,12 @@ function KeyMetrics({ dominant, supporting, dark = false }: { dominant: Metric; 
     <div className="flex flex-wrap items-end gap-x-10 gap-y-5">
       <div>
         <div className="text-[clamp(2.1rem,4.2vw,3.2rem)] font-medium leading-none tracking-[-0.02em]">{dominant.value}</div>
-        <div className={`mt-2 text-[10px] uppercase tracking-[0.18em] ${dark ? "text-background/55" : "text-foreground/55"}`}>{dominant.label}</div>
+        <div className="mt-2 text-[10px] uppercase tracking-[0.18em] text-background/55">{dominant.label}</div>
       </div>
       {supporting.map((s) => (
         <div key={s.label}>
           <div className="text-[1.25rem] font-medium leading-none tracking-[-0.01em]">{s.value}</div>
-          <div className={`mt-2 text-[9px] uppercase tracking-[0.16em] ${dark ? "text-background/50" : "text-foreground/50"}`}>{s.label}</div>
+          <div className="mt-2 text-[9px] uppercase tracking-[0.16em] text-background/50">{s.label}</div>
         </div>
       ))}
     </div>
@@ -609,7 +617,7 @@ function Placeholder({
     return (
       <div
         className={`group relative w-full overflow-hidden ${aspect} ${className} ${
-          dark ? "border border-background/15" : "border border-border"
+          "border border-background/15"
         }`}
       >
         <img
@@ -625,31 +633,26 @@ function Placeholder({
   return (
     <div
       className={`group relative w-full overflow-hidden ${aspect} ${className} ${
-        dark ? "border border-background/15 bg-background/[0.04]" : "border border-border bg-foreground/[0.03]"
+          "border border-background/15 bg-background/[0.035]"
       }`}
     >
       <div
         aria-hidden
-        className="absolute inset-0 opacity-60 transition-transform duration-500 group-hover:scale-[1.03]"
-        style={{
-          backgroundImage: `repeating-linear-gradient(135deg, ${
-            dark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)"
-          } 0px, ${dark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.04)"} 1px, transparent 1px, transparent 14px)`,
-        }}
+        className="absolute inset-0 bg-background/[0.025] transition-transform duration-700 group-hover:scale-[1.035]"
       />
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
         <span
           className={`flex size-12 items-center justify-center rounded-full border backdrop-blur-md transition-transform duration-300 group-hover:scale-110 ${
-            dark ? "border-background/40 bg-background/10 text-background" : "border-foreground/25 bg-background/50 text-foreground"
+            "border-background/30 bg-background/10 text-background"
           }`}
         >
           <Icon className="size-4" strokeWidth={1.5} />
         </span>
-        <span className={`eyebrow ${dark ? "text-background/50" : "text-foreground/45"}`}>
+        <span className="eyebrow text-background/50">
           {kind === "video" ? "Video Placeholder" : kind === "logo" ? "Logo Placeholder" : "Image Placeholder"}
         </span>
         {note && (
-          <span className={`text-[10px] uppercase tracking-[0.18em] ${dark ? "text-background/30" : "text-foreground/30"}`}>
+          <span className="text-[10px] uppercase tracking-[0.18em] text-background/30">
             {note}
           </span>
         )}
@@ -674,7 +677,7 @@ function SparkStory({
   ];
 
   return (
-    <article className="grid w-full shrink-0 snap-start grid-cols-1 items-center gap-8 border-t border-border pt-10 md:gap-12 md:pt-14 lg:grid-cols-12 lg:gap-16">
+    <article className="grid w-full shrink-0 snap-start grid-cols-1 items-center gap-8 border-t border-background/15 pt-10 md:gap-12 md:pt-14 lg:grid-cols-12 lg:gap-16">
       <Reveal
         className={`lg:col-span-5 ${reverse ? "lg:order-2 lg:pl-8" : "lg:order-1"}`}
       >
@@ -683,15 +686,15 @@ function SparkStory({
             {String(index + 1).padStart(2, "0")}
           </span>
           <span aria-hidden className="h-px w-10 bg-accent" />
-          <span className="eyebrow text-foreground/45">Student venture</span>
+          <span className="eyebrow text-background/45">Student venture</span>
         </div>
         <h3 className="font-serif-italic mt-4 text-[clamp(2.6rem,5vw,4.8rem)] leading-[0.95]">
           {company.name === "SeedsAI" ? "SeedsAI / CDI" : company.name}
         </h3>
-        <div className="mt-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-foreground/50">
+        <div className="mt-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-background/50">
           {company.founder}
         </div>
-        <p className="mt-6 max-w-[34rem] text-[1rem] leading-[1.75] text-foreground/70 md:text-[1.08rem]">
+        <p className="mt-6 max-w-[34rem] text-[1rem] leading-[1.75] text-background/70 md:text-[1.08rem]">
           {company.body}
         </p>
       </Reveal>
@@ -754,12 +757,12 @@ function SparkCarousel({
 
   return (
     <div className="mt-12 md:mt-16">
-      <div className="mb-6 flex items-center justify-between border-b border-border pb-5">
+      <div className="mb-6 flex items-center justify-between border-b border-background/15 pb-5">
         <div className="flex items-center gap-4">
-          <span className="eyebrow text-foreground/55">
+          <span className="eyebrow text-background/55">
             {String(active + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
           </span>
-          <span className="hidden text-[0.72rem] uppercase tracking-[0.18em] text-foreground/40 sm:inline">
+          <span className="hidden text-[0.72rem] uppercase tracking-[0.18em] text-background/40 sm:inline">
             Swipe to explore
           </span>
         </div>
@@ -769,7 +772,7 @@ function SparkCarousel({
             aria-label="Previous startup"
             disabled={active === 0}
             onClick={() => goTo(active - 1)}
-            className="flex size-10 items-center justify-center border border-border text-foreground transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-30"
+            className="flex size-10 items-center justify-center border border-background/20 text-background transition-colors hover:bg-background/10 disabled:cursor-not-allowed disabled:opacity-30"
           >
             <ArrowRight className="size-4 rotate-180" />
           </button>
@@ -778,7 +781,7 @@ function SparkCarousel({
             aria-label="Next startup"
             disabled={active === count - 1}
             onClick={() => goTo(active + 1)}
-            className="flex size-10 items-center justify-center bg-foreground text-background transition-opacity hover:opacity-85 disabled:cursor-not-allowed disabled:opacity-30"
+            className="flex size-10 items-center justify-center bg-background text-foreground transition-opacity hover:opacity-85 disabled:cursor-not-allowed disabled:opacity-30"
           >
             <ArrowRight className="size-4" />
           </button>
@@ -821,15 +824,15 @@ function StoryBeats({ beats, dark = false }: { beats: Beat[]; dark?: boolean }) 
         <Reveal key={b.stage} delay={i * 0.05} className="break-inside-avoid">
           <li
             className={`flex gap-5 border-t pt-6 first:border-t-0 first:pt-0 ${
-              dark ? "border-background/10" : "border-border"
+              "border-background/10"
             }`}
           >
-            <span className={`eyebrow shrink-0 ${dark ? "text-background/50" : "text-foreground/50"}`}>
+            <span className="eyebrow shrink-0 text-background/50">
               {String(i + 1).padStart(2, "0")}
             </span>
             <div>
-              <div className={`eyebrow ${dark ? "text-background/70" : "text-foreground/70"}`}>{b.stage}</div>
-              <p className={`mt-2 text-[1.02rem] leading-[1.7] ${dark ? "text-background/80" : "text-foreground/75"}`}>
+              <div className="eyebrow text-background/70">{b.stage}</div>
+              <p className="mt-2 text-[1.02rem] leading-[1.7] text-background/75">
                 {b.body}
               </p>
             </div>
@@ -842,19 +845,19 @@ function StoryBeats({ beats, dark = false }: { beats: Beat[]; dark?: boolean }) 
 
 function JourneyStages({ stages }: { stages: Stage[] }) {
   return (
-    <div className="mt-10 grid grid-cols-1 gap-px bg-border md:grid-cols-5">
+    <div className="mt-10 grid grid-cols-1 gap-px bg-background/10 md:grid-cols-5">
       {stages.map((s, i) => (
         <Reveal key={s.name} delay={i * 0.06} className="h-full">
           <div
             className={`group flex h-full flex-col justify-between p-6 transition-colors duration-300 md:p-7 ${
-              s.culmination ? "bg-foreground text-background" : "bg-background text-foreground hover:bg-muted"
+              s.culmination ? "bg-accent text-foreground" : "bg-background/[0.045] text-background hover:bg-background/[0.08]"
             }`}
           >
             <div>
-              <div className={`eyebrow flex items-center gap-2 ${s.culmination ? "text-background/55" : "text-foreground/50"}`}>
+              <div className={`eyebrow flex items-center gap-2 ${s.culmination ? "text-foreground/60" : "text-background/50"}`}>
                 <span
                   className={`h-1 w-4 rounded-full transition-all duration-300 ${
-                    s.culmination ? "w-6 bg-background/60" : "bg-accent group-hover:w-6"
+                    s.culmination ? "w-6 bg-foreground/60" : "bg-accent group-hover:w-6"
                   }`}
                   aria-hidden
                 />
@@ -864,14 +867,14 @@ function JourneyStages({ stages }: { stages: Stage[] }) {
               {s.grant && (
                 <div
                   className={`mt-3 inline-block text-[10px] uppercase tracking-[0.18em] ${
-                    s.culmination ? "text-background/60" : "text-foreground/55"
+                    s.culmination ? "text-foreground/60" : "text-background/55"
                   }`}
                 >
                   Grant · {s.grant}
                 </div>
               )}
             </div>
-            <p className={`mt-5 text-[0.92rem] leading-[1.6] ${s.culmination ? "text-background/80" : "text-foreground/70"}`}>
+            <p className={`mt-5 text-[0.92rem] leading-[1.6] ${s.culmination ? "text-foreground/80" : "text-background/70"}`}>
               {s.body}
             </p>
           </div>
@@ -976,7 +979,7 @@ function EpisodeStrip({ episodes }: { episodes: Episode[] }) {
 function PortfolioCard({ company, delay = 0, featured = false }: { company: Company; delay?: number; featured?: boolean }) {
   return (
     <Reveal delay={delay} className={featured ? "md:col-span-2" : undefined}>
-      <article className={`group relative h-full overflow-hidden bg-background p-7 transition-transform duration-300 hover:-translate-y-1 ${featured ? "md:p-10" : ""}`}>
+      <article className={`group relative h-full overflow-hidden border border-background/10 bg-background/[0.045] p-7 text-background transition-all duration-500 hover:-translate-y-1 hover:border-accent/50 ${featured ? "md:p-10" : ""}`}>
         <span
           aria-hidden
           className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100"
@@ -986,11 +989,11 @@ function PortfolioCard({ company, delay = 0, featured = false }: { company: Comp
             <LogoBadge src={VENTURE_IMAGES[company.name]} alt={`${company.name} logo`} size={featured ? "size-11" : "size-9"} />
             <h3 className={`font-medium leading-tight ${featured ? "text-[1.6rem]" : "text-[1.1rem]"}`}>{company.name}</h3>
           </div>
-          <span className="eyebrow shrink-0 text-foreground/45">{company.category}</span>
+          <span className="eyebrow shrink-0 text-background/45">{company.category}</span>
         </div>
-        <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-foreground/50">{company.founder}</div>
+        <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-background/50">{company.founder}</div>
         <div className={`mt-4 font-medium tracking-[-0.02em] ${featured ? "text-[1.6rem]" : "text-[1.15rem]"}`}>{company.metric}</div>
-        <p className={`mt-3 leading-[1.6] text-foreground/70 ${featured ? "max-w-[60ch] text-[1rem]" : "text-[0.92rem]"}`}>
+        <p className={`mt-3 leading-[1.6] text-background/70 ${featured ? "max-w-[60ch] text-[1rem]" : "text-[0.92rem]"}`}>
           {company.description}
         </p>
       </article>
@@ -1542,9 +1545,9 @@ function StartupsPage() {
         </div>
       </header>
 
-      <div className="relative z-10">
+      <div className="relative z-10 bg-foreground font-display text-background">
       <Section id="spark" tone="light" container="max-w-7xl">
-        <div className="grid grid-cols-1 gap-8 border-b border-foreground pb-10 md:grid-cols-12 md:items-end md:gap-12 md:pb-14">
+        <div className="grid grid-cols-1 gap-8 border-b border-background/20 pb-10 md:grid-cols-12 md:items-end md:gap-12 md:pb-14">
           <div className="md:col-span-8">
             <Reveal>
               <div className="flex items-center gap-4">
@@ -1559,7 +1562,7 @@ function StartupsPage() {
             </Reveal>
           </div>
           <Reveal delay={0.1} className="md:col-span-4">
-            <p className="max-w-[42ch] text-[1rem] leading-[1.7] text-foreground/70">
+            <p className="max-w-[42ch] text-[1rem] leading-[1.7] text-background/70">
               At Masters&apos; Union, questions, frustrations, and assignments become real businesses.
             </p>
           </Reveal>
@@ -1577,7 +1580,7 @@ function StartupsPage() {
       </Section>
 
       <Section id="doing" tone="paper">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="ml-auto max-w-4xl border-l border-accent/70 pl-6 text-left md:pl-12">
           <Reveal>
             <Eyebrow>The Outclass</Eyebrow>
           </Reveal>
@@ -1587,7 +1590,7 @@ function StartupsPage() {
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mx-auto mt-7 max-w-[56ch] text-[1.05rem] leading-[1.7] text-foreground/70">
+            <p className="mx-auto mt-7 max-w-[56ch] text-[1.05rem] leading-[1.7] text-background/70">
               At Masters&apos; Union, real growth doesn&apos;t come from case studies — it comes from
               taking risks, testing ideas, and putting something into the world. That&apos;s what the
               Outclass is: half the curriculum happens outside the classroom, where students run
@@ -1595,7 +1598,7 @@ function StartupsPage() {
             </p>
           </Reveal>
         </div>
-        <Reveal delay={0.15} className="mx-auto mt-14 max-w-4xl">
+        <Reveal delay={0.15} className="ml-auto mt-16 max-w-5xl md:w-[88%]">
           <Placeholder kind="video" aspect="aspect-video" note="Documentary-style, students building" />
         </Reveal>
       </Section>
@@ -1605,20 +1608,20 @@ function StartupsPage() {
           <Eyebrow>Dropshipping Challenge</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[22ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+          <h2 className="mt-5 max-w-[22ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.02] tracking-normal">
             Build, Launch & Sell
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-7 max-w-[66ch] text-[1.05rem] leading-[1.7] text-foreground/70">
+          <p className="mt-7 max-w-[66ch] text-[1.05rem] leading-[1.7] text-background/70">
             From idea to sales: students build profitable D2C businesses in under four months — running
             their own marketing campaigns, sourcing, supply chains, customers, and sales, start to finish.
           </p>
         </Reveal>
 
-        <Reveal delay={0.15} className="mt-10 flex flex-col gap-8 sm:flex-row sm:flex-wrap sm:items-end sm:gap-x-12 sm:gap-y-6">
+        <Reveal delay={0.15} className="mt-12 grid grid-cols-2 gap-px border-y border-background/15 md:grid-cols-4">
           {DROPSHIPPING_STATS.map((s) => (
-            <div key={s.label}>
+            <div key={s.label} className="min-h-32 border-r border-background/10 p-5 md:p-7">
               <div
                 className={
                   "dominant" in s && s.dominant
@@ -1628,7 +1631,7 @@ function StartupsPage() {
               >
                 {s.value}
               </div>
-              <div className="mt-2 text-[10px] uppercase tracking-[0.2em] text-foreground/55">{s.label}</div>
+              <div className="mt-2 text-[10px] uppercase tracking-[0.2em] text-background/55">{s.label}</div>
             </div>
           ))}
         </Reveal>
@@ -1638,18 +1641,18 @@ function StartupsPage() {
         </Reveal>
 
         <Reveal delay={0.25} className="mt-14">
-          <div className="eyebrow text-foreground/55">Top performers, this edition</div>
+          <div className="eyebrow text-background/55">Top performers, this edition</div>
         </Reveal>
         <ScrollCarousel count={DROPSHIPPING_TOP.length}>
           {DROPSHIPPING_TOP.map((d, i) => (
             <Reveal key={d.name} delay={i * 0.04} className="w-[78%] shrink-0 snap-start sm:w-[45%] md:w-auto">
-              <article className="h-full bg-background p-6">
+              <article className="h-full bg-background/[0.045] p-6">
                 <div className="flex items-center gap-3">
                   <LogoBadge size="size-8" />
                   <h3 className="text-[1rem] font-medium">{d.name}</h3>
                 </div>
-                <div className="mt-2 text-[10px] uppercase tracking-[0.18em] text-foreground/50">{d.revenue} revenue</div>
-                <p className="mt-3 text-[0.88rem] leading-[1.55] text-foreground/70">{d.body}</p>
+                <div className="mt-2 text-[10px] uppercase tracking-[0.18em] text-background/50">{d.revenue} revenue</div>
+                <p className="mt-3 text-[0.88rem] leading-[1.55] text-background/70">{d.body}</p>
               </article>
             </Reveal>
           ))}
@@ -1661,12 +1664,12 @@ function StartupsPage() {
           <Eyebrow>The Venture Initiation Programme (VIP)</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.02] tracking-normal">
             Nearly half the MBA. Four stages. One Demo Day.
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-7 max-w-[64ch] text-[1.05rem] leading-[1.7] text-foreground/70">
+          <p className="mt-7 max-w-[64ch] text-[1.05rem] leading-[1.7] text-background/70">
             Students build a business from 0 to 1, working through the real moving parts — pricing,
             positioning, cash flow — not case studies about someone else's. The VIP is a structured track,
             not an elective, backed by a grant at every stage and mentorship from founders, CXOs, and
@@ -1679,7 +1682,7 @@ function StartupsPage() {
           <Eyebrow>The Startup Challenge</Eyebrow>
         </Reveal>
         <Reveal delay={0.24}>
-          <p className="mt-4 max-w-[64ch] text-[1rem] leading-[1.7] text-foreground/70">
+          <p className="mt-4 max-w-[64ch] text-[1rem] leading-[1.7] text-background/70">
             A four-part video series that tracks student ventures from first pitch to funded company.
           </p>
         </Reveal>
@@ -1697,7 +1700,7 @@ function StartupsPage() {
           </div>
         </Reveal>
         <Reveal delay={0.06}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(2rem,4.2vw,3.6rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(2rem,4.2vw,3.6rem)] font-light leading-[1.02] tracking-normal">
             What if the next big creator wasn&apos;t on camera?
           </h2>
         </Reveal>
@@ -1751,7 +1754,7 @@ function StartupsPage() {
         <div className="relative mt-12 grid grid-cols-1 gap-12 md:grid-cols-[0.85fr_1fr] md:items-start">
           <span
             aria-hidden
-            className="pointer-events-none absolute -top-16 right-0 select-none text-[6rem] font-bold leading-none text-foreground/[0.035] md:text-[9rem]"
+            className="pointer-events-none absolute -top-16 right-0 select-none text-[6rem] font-bold leading-none text-background/[0.035] md:text-[9rem]"
           >
             20
           </span>
@@ -1760,7 +1763,7 @@ function StartupsPage() {
           </Reveal>
           <StoryBeats beats={BAMBAII_BEATS} />
         </div>
-        <Reveal delay={0.1} className="mt-12 border-t border-border pt-8">
+        <Reveal delay={0.1} className="mt-12 border-t border-background/10 pt-8">
           <KeyMetrics
             dominant={{ value: "₹50L", label: "ARR" }}
             supporting={[
@@ -1782,7 +1785,7 @@ function StartupsPage() {
           </div>
         </Reveal>
         <Reveal delay={0.06}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(2rem,4.2vw,3.6rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(2rem,4.2vw,3.6rem)] font-light leading-[1.02] tracking-normal">
             One bland chip. Three founders who couldn&apos;t stop thinking about it.
           </h2>
         </Reveal>
@@ -1818,26 +1821,26 @@ function StartupsPage() {
           <Eyebrow>Zoom Out</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[22ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+          <h2 className="mt-5 max-w-[22ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.02] tracking-normal">
             The company changes. The pattern doesn&apos;t.
           </h2>
         </Reveal>
 
-        <div className="mt-12 flex flex-wrap items-center gap-x-3 gap-y-4">
+        <div className="mt-14 grid gap-px border border-background/10 sm:grid-cols-2 lg:grid-cols-4">
           {PATTERN_STEPS.map((step, i) => (
             <Reveal key={step} delay={0.05 + i * 0.04}>
-              <div className="flex items-center gap-3">
-                <span className="eyebrow rounded-full bg-foreground px-4 py-2 text-background transition-transform duration-300 hover:-translate-y-0.5">
+              <div className="group flex min-h-20 items-center justify-between border-background/10 p-5">
+                <span className="eyebrow text-background/75 transition-colors group-hover:text-accent">
                   {step}
                 </span>
-                {i < PATTERN_STEPS.length - 1 && <ArrowRight className="size-3.5 text-foreground/30" aria-hidden />}
+                {i < PATTERN_STEPS.length - 1 && <ArrowRight className="size-3.5 text-background/30" aria-hidden />}
               </div>
             </Reveal>
           ))}
         </div>
 
         <Reveal delay={0.15}>
-          <p className="mt-10 max-w-[68ch] text-[1.05rem] leading-[1.7] text-foreground/70">
+          <p className="mt-10 max-w-[68ch] text-[1.05rem] leading-[1.7] text-background/70">
             A cafeteria question about who gets to be a creator. A canteen complaint about boring chips. A
             ₹60 snack mix nobody wanted, repriced to ₹50 and sold out in an hour. None of these started as
             a business plan — they started as a small, cheap experiment that either worked or told the
@@ -1855,7 +1858,7 @@ function StartupsPage() {
           </div>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.02] tracking-normal">
             Real founders. Real pitches. National television.
           </h2>
         </Reveal>
@@ -1878,7 +1881,7 @@ function StartupsPage() {
                 onClick={() => setSelectedShark(i)}
                 aria-pressed={selectedShark === i}
                 className={`h-full w-full p-7 text-left transition-colors duration-300 ${
-                  selectedShark === i ? "bg-background text-foreground" : "bg-foreground text-background hover:bg-background/[0.06]"
+                  selectedShark === i ? "bg-background/[0.045] text-background" : "bg-foreground text-background hover:bg-background/[0.06]"
                 }`}
               >
                 <div className="flex items-center justify-between gap-3">
@@ -1886,16 +1889,16 @@ function StartupsPage() {
                     <LogoBadge src={VENTURE_IMAGES[f.company]} alt={`${f.company} logo`} dark={selectedShark !== i} />
                     <h3 className="text-[1.15rem] font-medium">{f.company}</h3>
                   </div>
-                  <span className={`eyebrow ${selectedShark === i ? "text-foreground/45" : "text-background/45"}`}>{f.season}</span>
+                  <span className={`eyebrow ${selectedShark === i ? "text-background/45" : "text-background/45"}`}>{f.season}</span>
                 </div>
                 <div
                   className={`mt-3 text-[11px] uppercase tracking-[0.18em] ${
-                    selectedShark === i ? "text-foreground/50" : "text-background/50"
+                    selectedShark === i ? "text-background/50" : "text-background/50"
                   }`}
                 >
                   {f.founder} · {f.cohort}
                 </div>
-                <p className={`mt-4 text-[0.95rem] leading-[1.65] ${selectedShark === i ? "text-foreground/75" : "text-background/75"}`}>
+                <p className={`mt-4 text-[0.95rem] leading-[1.65] ${selectedShark === i ? "text-background/75" : "text-background/75"}`}>
                   {f.description}
                 </p>
               </button>
@@ -1916,29 +1919,29 @@ function StartupsPage() {
       <Section id="hssl" tone="paper">
         <Reveal>
           <div className="flex items-center gap-2">
-            <GraduationCap className="size-4 text-foreground/55" strokeWidth={1.75} />
+            <GraduationCap className="size-4 text-background/55" strokeWidth={1.75} />
             <Eyebrow>High School Startup League</Eyebrow>
           </div>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.02] tracking-normal">
             The founders here haven&apos;t graduated high school yet.
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-7 max-w-[66ch] text-[1.05rem] leading-[1.7] text-foreground/70">
+          <p className="mt-7 max-w-[66ch] text-[1.05rem] leading-[1.7] text-background/70">
             A separate pipeline, built for Class IX–XII students, not current Masters&apos; Union
             enrollees — a launchpad for teen founders to create, pitch, and take their first cheque, with
             past judges including Ashneer Grover, Ankur Warikoo, Techburner, and Sarthak Ahuja.
           </p>
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-2 gap-px bg-border md:grid-cols-4">
+        <div className="mt-12 grid grid-cols-2 gap-px bg-background/10 md:grid-cols-4">
           {HSSL_STATS.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.04}>
-              <div className="h-full border-t-2 border-accent bg-background px-5 py-8 transition-colors duration-300 hover:bg-accent/[0.06]">
+              <div className="h-full border-t-2 border-accent bg-background/[0.045] px-5 py-8 transition-colors duration-300 hover:bg-accent/[0.06]">
                 <div className="text-[clamp(1.7rem,3vw,2.6rem)] leading-none tracking-[-0.03em]">{s.value}</div>
-                <div className="mt-4 text-[10px] uppercase leading-relaxed tracking-[0.18em] text-foreground/55">{s.label}</div>
+                <div className="mt-4 text-[10px] uppercase leading-relaxed tracking-[0.18em] text-background/55">{s.label}</div>
               </div>
             </Reveal>
           ))}
@@ -1951,7 +1954,7 @@ function StartupsPage() {
                 <span className="eyebrow rounded-full border border-accent px-4 py-2 text-foreground transition-colors duration-300 hover:bg-accent/10">
                   {stage}
                 </span>
-                {i < HSSL_STAGES.length - 1 && <ArrowRight className="size-3.5 text-foreground/30" aria-hidden />}
+                {i < HSSL_STAGES.length - 1 && <ArrowRight className="size-3.5 text-background/30" aria-hidden />}
               </div>
             ))}
           </div>
@@ -1967,7 +1970,7 @@ function StartupsPage() {
           <Eyebrow dark>By the Numbers</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.02] tracking-normal">
             This isn&apos;t three stories. It&apos;s a portfolio.
           </h2>
         </Reveal>
@@ -2011,7 +2014,7 @@ function StartupsPage() {
           <Eyebrow>Mentors, VCs, and Believers</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.02] tracking-normal">
             Behind every founder is a room full of people who&apos;ve already done it.
           </h2>
         </Reveal>
@@ -2019,12 +2022,12 @@ function StartupsPage() {
         <div className="mt-14 grid grid-cols-1 gap-10 md:grid-cols-[1fr_0.55fr] md:items-start">
           <Reveal key={selectedQuote}>
             <figure>
-              <blockquote className="text-balance text-[clamp(1.3rem,2.6vw,2rem)] italic leading-[1.4] text-foreground/90">
+              <blockquote className="text-balance text-[clamp(1.3rem,2.6vw,2rem)] italic leading-[1.4] text-background/90">
                 &ldquo;{activeQuote.quote}&rdquo;
               </blockquote>
               <div className="mt-8 flex items-center gap-4">
                 <PortraitBadge />
-                <figcaption className="eyebrow text-foreground/55">
+                <figcaption className="eyebrow text-background/55">
                   {activeQuote.name} · {activeQuote.role}
                 </figcaption>
               </div>
@@ -2038,7 +2041,7 @@ function StartupsPage() {
                 onClick={() => setSelectedQuote(i)}
                 aria-pressed={selectedQuote === i}
                 className={`border-l-2 px-4 py-2 text-left text-[0.85rem] transition-colors duration-300 ${
-                  selectedQuote === i ? "border-foreground text-foreground" : "border-border text-foreground/45 hover:text-foreground/70"
+                  selectedQuote === i ? "border-background text-background" : "border-background/10 text-background/45 hover:text-background/70"
                 }`}
               >
                 {t.name}
@@ -2063,7 +2066,7 @@ function StartupsPage() {
               <Eyebrow dark>For Those Going All In</Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="mt-5 max-w-[20ch] text-[clamp(1.9rem,3.8vw,3rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+              <h2 className="mt-5 max-w-[20ch] text-[clamp(1.9rem,3.8vw,3rem)] font-light leading-[1.02] tracking-normal">
                 No placements. No backup plan. Just a runway.
               </h2>
             </Reveal>
@@ -2087,27 +2090,27 @@ function StartupsPage() {
           <Eyebrow>The UG Ecosystem, 2025–26</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.02] tracking-normal">
             The founders below aren&apos;t waiting for an MBA to start.
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-7 max-w-[66ch] text-[1.05rem] leading-[1.7] text-foreground/70">
+          <p className="mt-7 max-w-[66ch] text-[1.05rem] leading-[1.7] text-background/70">
             Masters&apos; Union&apos;s undergraduate cohort has its own entrepreneurship track — and its
             own portfolio. In the 2025–26 cycle alone, UG founders have been granted ₹75L+ and generated
             ₹14Cr+ in revenue, with two startups earning Shark Tank India pitches.
           </p>
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-1 gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid grid-cols-1 gap-px bg-background/10 sm:grid-cols-2 lg:grid-cols-3">
           {NEXT_GEN.map((v, i) => (
             <Reveal key={v.name} delay={i * 0.04}>
-              <article className="group h-full bg-background p-7 transition-colors duration-300 hover:bg-muted">
+              <article className="group h-full bg-background/[0.045] p-7 transition-colors duration-300 hover:bg-background/[0.08]">
                 <div className="flex items-center gap-3">
                   <LogoBadge size="size-8" />
                   <h3 className="text-[1.05rem] font-medium">{v.name}</h3>
                 </div>
-                <p className="mt-3 text-[0.92rem] leading-[1.6] text-foreground/70">{v.pitch}</p>
+                <p className="mt-3 text-[0.92rem] leading-[1.6] text-background/70">{v.pitch}</p>
               </article>
             </Reveal>
           ))}
@@ -2119,12 +2122,12 @@ function StartupsPage() {
           <Eyebrow>Selected Companies</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[22ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+          <h2 className="mt-5 max-w-[22ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.02] tracking-normal">
             Portfolio
           </h2>
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-1 gap-px bg-border sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid grid-cols-1 gap-px bg-background/10 sm:grid-cols-2 lg:grid-cols-3">
           {PORTFOLIO_PRIMARY.map((p, i) => (
             <PortfolioCard key={p.name} company={p} delay={i * 0.03} featured={i === 0} />
           ))}
@@ -2136,7 +2139,7 @@ function StartupsPage() {
           <button
             type="button"
             onClick={() => setShowMorePortfolio((v) => !v)}
-            className="eyebrow inline-flex items-center gap-2 text-foreground/70 transition-colors hover:text-foreground"
+            className="eyebrow inline-flex items-center gap-2 text-background/70 transition-colors hover:text-background"
           >
             {showMorePortfolio ? "Show fewer ventures" : "View all ventures"}
             <ArrowRight className={`size-3.5 transition-transform duration-300 ${showMorePortfolio ? "-rotate-90" : "rotate-90"}`} />
@@ -2149,15 +2152,15 @@ function StartupsPage() {
           <Eyebrow dark>Not a Straight Line</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-medium leading-[1.05] tracking-[-0.015em]">
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.02] tracking-normal">
             For every launch, there&apos;s a version that didn&apos;t work first.
           </h2>
         </Reveal>
 
-        <ul className="mt-14 space-y-12">
+        <ul className="mt-14 grid gap-px border-y border-background/10 md:grid-cols-2">
           {REALITY_EXAMPLES.map((r, i) => (
             <Reveal key={r.name} delay={i * 0.05}>
-              <li className="border-t border-background/10 pt-8 first:border-t-0 first:pt-0">
+              <li className="h-full border-background/10 p-7 md:p-9">
                 <span className="font-serif-italic text-[1rem]">{r.name}</span>
                 <p className="mt-3 max-w-[70ch] text-[1rem] leading-[1.7] text-background/80">{r.body}</p>
               </li>
@@ -2173,7 +2176,7 @@ function StartupsPage() {
       <Section id="cta" tone="dark" container="max-w-4xl">
         <div className="pb-16 pt-8 text-center md:pb-20 md:pt-12">
           <Reveal>
-            <h2 className="text-balance text-[clamp(2.4rem,7vw,5.5rem)] font-semibold leading-[0.98] tracking-[-0.02em]">
+            <h2 className="text-balance text-[clamp(2.4rem,7vw,5.5rem)] font-light leading-[0.94] tracking-normal">
               WHAT WILL YOU BUILD?
             </h2>
           </Reveal>
