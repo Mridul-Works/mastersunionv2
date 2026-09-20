@@ -495,7 +495,7 @@ function Eyebrow({ children, dark = false }: { children: React.ReactNode; dark?:
 function Section({
   id,
   tone = "light",
-  container = "max-w-6xl",
+  container = "max-w-7xl",
   children,
 }: {
   id?: string;
@@ -519,7 +519,7 @@ function Section({
           {id.replace("-", " ")}
         </span>
       ) : null}
-      <div className={`relative z-[1] mx-auto ${container} px-5 py-20 md:px-10 md:py-32`}>{children}</div>
+      <div className={`relative z-[1] mx-auto w-full ${container} px-5 py-18 sm:px-6 sm:py-22 md:px-10 md:py-28 lg:px-12 lg:py-32`}>{children}</div>
     </section>
   );
 }
@@ -581,7 +581,7 @@ type Metric = { value: string; label: string };
 
 function KeyMetrics({ dominant, supporting, dark = false }: { dominant: Metric; supporting: Metric[]; dark?: boolean }) {
   return (
-    <div className="flex flex-wrap items-end gap-x-10 gap-y-5">
+    <div className="grid grid-cols-2 items-end gap-x-6 gap-y-6 sm:flex sm:flex-wrap sm:gap-x-10">
       <div>
         <div className="text-[clamp(2.1rem,4.2vw,3.2rem)] font-medium leading-none tracking-[-0.02em]">{dominant.value}</div>
         <div className="mt-2 text-[10px] uppercase tracking-[0.18em] text-background/55">{dominant.label}</div>
@@ -685,7 +685,7 @@ function MediaRail({
 
   return (
     <div className={`mt-12 ${className}`}>
-      <div className="mb-5 flex items-center justify-between border-b border-background/15 pb-4">
+      <div className="mb-5 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-background/15 pb-4">
         <span className="eyebrow text-background/50">
           {String(active + 1).padStart(2, "0")} / {String(labels.length).padStart(2, "0")}
         </span>
@@ -707,7 +707,7 @@ function MediaRail({
           if (!first) return;
           setActive(Math.min(labels.length - 1, Math.max(0, Math.round(track.scrollLeft / first.offsetWidth))));
         }}
-        className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 [scrollbar-width:none] md:-mx-10 md:gap-6 md:px-10 [&::-webkit-scrollbar]:hidden"
+        className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 [scrollbar-width:none] sm:-mx-6 sm:px-6 md:-mx-10 md:gap-6 md:px-10 lg:-mx-12 lg:px-12 [&::-webkit-scrollbar]:hidden"
       >
         {labels.map((label, index) => (
           <Reveal key={label} delay={index * 0.05} className="group w-[84vw] max-w-[32rem] shrink-0 snap-start md:w-[38vw] lg:w-[31vw]">
@@ -741,7 +741,7 @@ function SparkStory({
   ];
 
   return (
-    <article className="grid w-full shrink-0 snap-start grid-cols-1 items-center gap-8 border-t border-background/15 pt-10 md:gap-12 md:pt-14 lg:grid-cols-12 lg:gap-16">
+    <article className="grid w-full min-w-0 shrink-0 snap-start grid-cols-1 items-center gap-8 border-t border-background/15 pt-8 sm:pt-10 md:gap-12 md:pt-14 lg:grid-cols-12 lg:gap-16">
       <Reveal
         className={`lg:col-span-5 ${reverse ? "lg:order-2 lg:pl-8" : "lg:order-1"}`}
       >
@@ -752,13 +752,13 @@ function SparkStory({
           <span aria-hidden className="h-px w-10 bg-accent" />
           <span className="eyebrow text-background/45">Student venture</span>
         </div>
-        <h3 className="font-serif-italic mt-4 text-[clamp(2.6rem,5vw,4.8rem)] leading-[0.95]">
+        <h3 className="font-serif-italic mt-4 text-[clamp(2.35rem,5vw,4.8rem)] leading-[1]">
           {company.name === "SeedsAI" ? "SeedsAI / CDI" : company.name}
         </h3>
         <div className="mt-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-background/50">
           {company.founder}
         </div>
-        <p className="mt-6 max-w-[34rem] text-[1rem] leading-[1.75] text-background/70 md:text-[1.08rem]">
+        <p className="mt-5 max-w-[34rem] text-[1rem] leading-[1.65] text-background/70 md:mt-6 md:text-[1.08rem]">
           {company.body}
         </p>
       </Reveal>
@@ -767,7 +767,7 @@ function SparkStory({
         delay={0.08}
         className={`lg:col-span-7 ${reverse ? "lg:order-1" : "lg:order-2"}`}
       >
-        <div className="grid h-[430px] grid-cols-6 grid-rows-6 gap-2 sm:h-[520px] sm:gap-3">
+        <div className="grid h-[390px] grid-cols-6 grid-rows-6 gap-2 sm:h-[480px] sm:gap-3 md:h-[520px]">
           <Placeholder
             kind="image"
             aspect="h-full"
@@ -821,8 +821,8 @@ function SparkCarousel({
 
   return (
     <div className="mt-12 md:mt-16">
-      <div className="mb-6 flex items-center justify-between border-b border-background/15 pb-5">
-        <div className="flex items-center gap-4">
+      <div className="mb-6 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-background/15 pb-5">
+        <div className="flex min-w-0 items-center gap-4">
           <span className="eyebrow text-background/55">
             {String(active + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
           </span>
@@ -894,9 +894,9 @@ function StoryBeats({ beats, dark = false }: { beats: Beat[]; dark?: boolean }) 
             <span className="eyebrow shrink-0 text-background/50">
               {String(i + 1).padStart(2, "0")}
             </span>
-            <div>
+            <div className="min-w-0">
               <div className="eyebrow text-background/70">{b.stage}</div>
-              <p className="mt-2 text-[1.02rem] leading-[1.7] text-background/75">
+              <p className="mt-2 text-[1.02rem] leading-[1.65] text-background/75">
                 {b.body}
               </p>
             </div>
@@ -1008,7 +1008,7 @@ function ScrollCarousel({
           const w = first.offsetWidth + 1;
           setActive(Math.min(count - 1, Math.max(0, Math.round(track.scrollLeft / w))));
         }}
-        className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 [scrollbar-width:none] md:-mx-10 md:gap-6 md:px-10 [&::-webkit-scrollbar]:hidden"
+        className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 [scrollbar-width:none] sm:-mx-6 sm:px-6 md:-mx-10 md:gap-6 md:px-10 lg:-mx-12 lg:px-12 [&::-webkit-scrollbar]:hidden"
       >
         {children}
       </div>
@@ -1048,8 +1048,8 @@ function PortfolioCard({ company, delay = 0, featured = false }: { company: Comp
           aria-hidden
           className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100"
         />
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex items-center gap-3">
+        <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
+          <div className="flex min-w-0 items-center gap-3">
             <LogoBadge src={VENTURE_IMAGES[company.name]} alt={`${company.name} logo`} size={featured ? "size-11" : "size-9"} />
             <h3 className={`font-medium leading-tight ${featured ? "text-[1.6rem]" : "text-[1.1rem]"}`}>{company.name}</h3>
           </div>
