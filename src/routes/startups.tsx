@@ -733,14 +733,23 @@ function SparkStory({
   );
 }
 
-function SparkCarousel({ children, count }: { children: React.ReactNode; count: number }) {
-  const [active, setActive] = useState(0);
+function SparkCarousel({
+  children,
+  count,
+  active,
+  onActiveChange,
+}: {
+  children: React.ReactNode;
+  count: number;
+  active: number;
+  onActiveChange: (index: number) => void;
+}) {
   const touchStartRef = useRef<number | null>(null);
   const slides = Array.isArray(children) ? children : [children];
 
   const goTo = (index: number) => {
     const next = Math.min(count - 1, Math.max(0, index));
-    setActive(next);
+    onActiveChange(next);
   };
 
   return (
@@ -759,7 +768,7 @@ function SparkCarousel({ children, count }: { children: React.ReactNode; count: 
             type="button"
             aria-label="Previous startup"
             disabled={active === 0}
-            onClick={() => setActive((current) => Math.max(0, current - 1))}
+            onClick={() => goTo(active - 1)}
             className="flex size-10 items-center justify-center border border-border text-foreground transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-30"
           >
             <ArrowRight className="size-4 rotate-180" />
@@ -768,7 +777,7 @@ function SparkCarousel({ children, count }: { children: React.ReactNode; count: 
             type="button"
             aria-label="Next startup"
             disabled={active === count - 1}
-            onClick={() => setActive((current) => Math.min(count - 1, current + 1))}
+            onClick={() => goTo(active + 1)}
             className="flex size-10 items-center justify-center bg-foreground text-background transition-opacity hover:opacity-85 disabled:cursor-not-allowed disabled:opacity-30"
           >
             <ArrowRight className="size-4" />
@@ -1337,6 +1346,7 @@ function StartupsPage() {
   const [showMorePortfolio, setShowMorePortfolio] = useState(false);
   const [selectedShark, setSelectedShark] = useState(0);
   const [selectedQuote, setSelectedQuote] = useState(0);
+  const [selectedSpark, setSelectedSpark] = useState(0);
   const [heroVideoEnded, setHeroVideoEnded] = useState(false);
   const headlineWordRef = useRef<HTMLSpanElement>(null);
   const [wordFontSize, setWordFontSize] = useState<number | null>(null);
@@ -1555,7 +1565,11 @@ function StartupsPage() {
           </Reveal>
         </div>
 
-        <SparkCarousel count={SPARK_EXAMPLES.length}>
+        <SparkCarousel
+          count={SPARK_EXAMPLES.length}
+          active={selectedSpark}
+          onActiveChange={setSelectedSpark}
+        >
           {SPARK_EXAMPLES.map((company, index) => (
             <SparkStory key={company.name} company={company} index={index} />
           ))}
