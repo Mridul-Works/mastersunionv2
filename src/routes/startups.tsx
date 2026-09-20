@@ -674,7 +674,7 @@ function SparkStory({
   ];
 
   return (
-    <article className="grid grid-cols-1 items-center gap-8 border-t border-border pt-10 md:gap-12 md:pt-14 lg:grid-cols-12 lg:gap-16">
+    <article className="grid w-full shrink-0 snap-start grid-cols-1 items-center gap-8 border-t border-border pt-10 md:gap-12 md:pt-14 lg:grid-cols-12 lg:gap-16">
       <Reveal
         className={`lg:col-span-5 ${reverse ? "lg:order-2 lg:pl-8" : "lg:order-1"}`}
       >
@@ -730,6 +730,76 @@ function SparkStory({
         </div>
       </Reveal>
     </article>
+  );
+}
+
+function SparkCarousel({ children, count }: { children: React.ReactNode; count: number }) {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  const scrollTo = (index: number) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const next = Math.min(count - 1, Math.max(0, index));
+    const slide = track.children[next] as HTMLElement | undefined;
+    if (!slide) return;
+    setActive(next);
+    track.scrollTo({ left: slide.offsetLeft - track.offsetLeft, behavior: "smooth" });
+  };
+
+  return (
+    <div className="mt-12 md:mt-16">
+      <div className="mb-6 flex items-center justify-between border-b border-border pb-5">
+        <div className="flex items-center gap-4">
+          <span className="eyebrow text-foreground/55">
+            {String(active + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
+          </span>
+          <span className="hidden text-[0.72rem] uppercase tracking-[0.18em] text-foreground/40 sm:inline">
+            Swipe to explore
+          </span>
+        </div>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            aria-label="Previous startup"
+            disabled={active === 0}
+            onClick={() => scrollTo(active - 1)}
+            className="flex size-10 items-center justify-center border border-border text-foreground transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-30"
+          >
+            <ArrowRight className="size-4 rotate-180" />
+          </button>
+          <button
+            type="button"
+            aria-label="Next startup"
+            disabled={active === count - 1}
+            onClick={() => scrollTo(active + 1)}
+            className="flex size-10 items-center justify-center bg-foreground text-background transition-opacity hover:opacity-85 disabled:cursor-not-allowed disabled:opacity-30"
+          >
+            <ArrowRight className="size-4" />
+          </button>
+        </div>
+      </div>
+
+      <div
+        ref={trackRef}
+        onScroll={(event) => {
+          const track = event.currentTarget;
+          const slides = Array.from(track.children) as HTMLElement[];
+          if (!slides.length) return;
+          const closest = slides.reduce(
+            (best, slide, index) => {
+              const distance = Math.abs(slide.offsetLeft - track.offsetLeft - track.scrollLeft);
+              return distance < best.distance ? { index, distance } : best;
+            },
+            { index: 0, distance: Number.POSITIVE_INFINITY },
+          );
+          setActive(closest.index);
+        }}
+        className="flex snap-x snap-mandatory gap-8 overflow-x-auto overscroll-x-contain pb-5 [scrollbar-width:none] md:gap-12 [&::-webkit-scrollbar]:hidden"
+      >
+        {children}
+      </div>
+    </div>
   );
 }
 
@@ -1486,11 +1556,11 @@ function StartupsPage() {
           </Reveal>
         </div>
 
-        <div className="mt-16 space-y-24 md:mt-24 md:space-y-36 lg:space-y-44">
+        <SparkCarousel count={SPARK_EXAMPLES.length}>
           {SPARK_EXAMPLES.map((company, index) => (
             <SparkStory key={company.name} company={company} index={index} />
           ))}
-        </div>
+        </SparkCarousel>
       </Section>
 
       <Section id="doing" tone="paper">
