@@ -1791,12 +1791,9 @@ function StartupsPage() {
             <Reveal delay={0.1}>
               <Placeholder kind="image" src={VENTURE_IMAGES.Eight} alt="Eight" aspect="aspect-[3/2]" dark />
             </Reveal>
-            <MediaRail
-              labels={["The first whiteboard", "Recording the pilot", "The founding team", "Five million downloads"]}
-              className="md:mt-8"
-            />
           </div>
         </div>
+        <MediaRail labels={["The first whiteboard", "Recording the pilot", "The founding team", "Five million downloads"]} />
         <Reveal delay={0.1} className="mt-12 border-t border-background/10 pt-8">
           <KeyMetrics
             dark
