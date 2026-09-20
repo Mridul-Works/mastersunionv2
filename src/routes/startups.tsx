@@ -1772,14 +1772,14 @@ function StartupsPage() {
           </div>
         </Reveal>
         <Reveal delay={0.06}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(2rem,4.2vw,3.6rem)] font-light leading-[1.08] tracking-normal">
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.8rem,4.2vw,3.6rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
             What if the next big creator wasn&apos;t on camera?
           </h2>
         </Reveal>
         <Reveal delay={0.09}>
           <ChapterChips labels={EIGHT_BEATS.map((b) => b.stage)} dark />
         </Reveal>
-        <div className="relative mt-10 grid grid-cols-1 gap-10 md:mt-12 md:grid-cols-[1fr_0.85fr] md:items-start md:gap-12">
+        <div className="relative mt-8 grid grid-cols-1 gap-8 sm:mt-10 sm:gap-10 md:mt-12 md:grid-cols-[1fr_0.85fr] md:items-start md:gap-10 lg:gap-12">
           <span
             aria-hidden
             className="pointer-events-none absolute -top-16 -left-2 select-none text-[6rem] font-bold leading-none text-background/[0.035] md:text-[9rem]"
@@ -1817,14 +1817,14 @@ function StartupsPage() {
           </div>
         </Reveal>
         <Reveal delay={0.06}>
-          <h2 className="font-serif-italic mt-5 max-w-[28ch] text-balance text-[clamp(2rem,4.2vw,3.6rem)] leading-[1.08]">
+          <h2 className="font-serif-italic mt-5 max-w-[28ch] text-balance text-[clamp(1.8rem,4.2vw,3.6rem)] leading-[1.12] md:leading-[1.08]">
             &ldquo;Ek haath se becho, dusre haath se paise lo.&rdquo;
           </h2>
         </Reveal>
         <Reveal delay={0.09}>
           <ChapterChips labels={BAMBAII_BEATS.map((b) => b.stage)} />
         </Reveal>
-        <div className="relative mt-10 grid grid-cols-1 gap-12 md:mt-12 md:grid-cols-[0.85fr_1fr] md:items-start">
+        <div className="relative mt-8 grid grid-cols-1 gap-9 sm:mt-10 sm:gap-10 md:mt-12 md:grid-cols-[0.85fr_1fr] md:items-start md:gap-10 lg:gap-12">
           <span
             aria-hidden
             className="pointer-events-none absolute -top-16 right-0 select-none text-[6rem] font-bold leading-none text-background/[0.035] md:text-[9rem]"
@@ -1864,7 +1864,7 @@ function StartupsPage() {
           </div>
         </Reveal>
         <Reveal delay={0.06}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(2rem,4.2vw,3.6rem)] font-light leading-[1.08] tracking-normal">
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.8rem,4.2vw,3.6rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
             One bland chip. Three founders who couldn&apos;t stop thinking about it.
           </h2>
         </Reveal>
@@ -1881,7 +1881,7 @@ function StartupsPage() {
           <Placeholder kind="image" aspect="aspect-[21/9]" dark note="Product photography / pop-up event" />
         </Reveal>
         <MediaRail labels={["The bland chip", "Flavour trials", "Pop-up counter", "First sold-out batch"]} />
-        <div className="mt-12 md:columns-2 md:gap-x-12">
+        <div className="mt-9 sm:mt-11 md:mt-12 md:columns-2 md:gap-x-10 lg:gap-x-12">
           <StoryBeats beats={EATATLAS_BEATS} dark />
         </div>
         <Reveal delay={0.1} className="mt-12 border-t border-background/10 pt-8">
@@ -1901,12 +1901,12 @@ function StartupsPage() {
           <Eyebrow>Zoom Out</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[22ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.08] tracking-normal">
+          <h2 className="mt-5 max-w-[22ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
             The company changes. The pattern doesn&apos;t.
           </h2>
         </Reveal>
 
-        <div className="mt-14 grid gap-px border border-background/10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-px border border-background/10 sm:mt-12 sm:grid-cols-2 md:mt-14 lg:grid-cols-4">
           {PATTERN_STEPS.map((step, i) => (
             <Reveal key={step} delay={0.05 + i * 0.04}>
               <div className="group flex min-h-20 items-center justify-between border-background/10 p-5">
@@ -1938,7 +1938,7 @@ function StartupsPage() {
           </div>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.08] tracking-normal">
+          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
             Real founders. Real pitches. National television.
           </h2>
         </Reveal>
@@ -1953,7 +1953,7 @@ function StartupsPage() {
           <Placeholder kind="image" src={sharkTankStageImg.url} alt="Shark Tank India stage" aspect="aspect-[21/9]" dark />
         </Reveal>
 
-        <div className="mt-px grid grid-cols-1 gap-px bg-background/10 md:grid-cols-3">
+        <div className="mt-px grid grid-cols-1 gap-px bg-background/10 sm:grid-cols-3">
           {SHARK_TANK.map((f, i) => (
             <Reveal key={f.company} delay={i * 0.05}>
               <button
@@ -2004,7 +2004,7 @@ function StartupsPage() {
           </div>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.08] tracking-normal">
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
             The founders here haven&apos;t graduated high school yet.
           </h2>
         </Reveal>
@@ -2016,7 +2016,7 @@ function StartupsPage() {
           </p>
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-2 gap-px bg-background/10 md:grid-cols-4">
+        <div className="mt-9 grid grid-cols-2 gap-px bg-background/10 sm:mt-11 md:mt-12 md:grid-cols-4">
           {HSSL_STATS.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.04}>
               <div className="h-full border-t-2 border-accent bg-background/[0.045] px-5 py-8 transition-colors duration-300 hover:bg-accent/[0.06]">
@@ -2054,12 +2054,12 @@ function StartupsPage() {
           <Eyebrow dark>By the Numbers</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.08] tracking-normal">
+          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
             This isn&apos;t three stories. It&apos;s a portfolio.
           </h2>
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-1 gap-8 md:mt-14 md:grid-cols-[1fr_1.2fr] md:items-end md:gap-12">
+        <div className="mt-9 grid grid-cols-1 gap-7 sm:mt-11 sm:gap-8 md:mt-14 md:grid-cols-[1fr_1.2fr] md:items-end md:gap-10 lg:gap-12">
           <Reveal delay={0.1}>
             <div className="text-[clamp(3.2rem,8vw,6.5rem)] font-medium leading-[0.92] tracking-[-0.03em]">
               ₹593.10 Cr
@@ -2096,12 +2096,12 @@ function StartupsPage() {
           <Eyebrow>Mentors, VCs, and Believers</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.08] tracking-normal">
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
             Behind every founder is a room full of people who&apos;ve already done it.
           </h2>
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-1 gap-10 md:mt-14 md:grid-cols-[1fr_0.55fr] md:items-start md:gap-12">
+        <div className="mt-9 grid grid-cols-1 gap-8 sm:mt-11 sm:gap-10 md:mt-14 md:grid-cols-[1fr_0.55fr] md:items-start md:gap-10 lg:gap-12">
           <Reveal key={selectedQuote}>
             <figure>
               <blockquote className="text-balance text-[clamp(1.3rem,2.6vw,2rem)] italic leading-[1.4] text-background/90">
@@ -2134,7 +2134,7 @@ function StartupsPage() {
       </Section>
 
       <Section id="fellowship" tone="dark">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-[0.8fr_1.2fr] md:items-center md:gap-12">
+        <div className="grid grid-cols-1 gap-8 sm:gap-10 md:grid-cols-[0.8fr_1.2fr] md:items-center md:gap-10 lg:gap-12">
           <Reveal>
             <div className="text-[clamp(3.5rem,8vw,6.5rem)] font-medium leading-none tracking-[-0.03em]">
               ₹50,000
@@ -2148,7 +2148,7 @@ function StartupsPage() {
               <Eyebrow dark>For Those Going All In</Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="mt-5 max-w-[20ch] text-[clamp(1.9rem,3.8vw,3rem)] font-light leading-[1.08] tracking-normal">
+              <h2 className="mt-5 max-w-[20ch] text-[clamp(1.75rem,3.8vw,3rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
                 No placements. No backup plan. Just a runway.
               </h2>
             </Reveal>
@@ -2178,7 +2178,7 @@ function StartupsPage() {
           <Eyebrow>The UG Ecosystem, 2025–26</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.08] tracking-normal">
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
             The founders below aren&apos;t waiting for an MBA to start.
           </h2>
         </Reveal>
@@ -2190,7 +2190,7 @@ function StartupsPage() {
           </p>
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-1 gap-px bg-background/10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-9 grid grid-cols-1 gap-px bg-background/10 sm:mt-11 sm:grid-cols-2 md:mt-12 lg:grid-cols-3">
           {NEXT_GEN.map((v, i) => (
             <Reveal key={v.name} delay={i * 0.04}>
               <article className="group h-full bg-background/[0.045] p-7 transition-colors duration-300 hover:bg-background/[0.08]">
@@ -2210,12 +2210,12 @@ function StartupsPage() {
           <Eyebrow>Selected Companies</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[22ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.08] tracking-normal">
+          <h2 className="mt-5 max-w-[22ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
             Portfolio
           </h2>
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-1 gap-px bg-background/10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-9 grid grid-cols-1 gap-px bg-background/10 sm:mt-11 sm:grid-cols-2 md:mt-12 lg:grid-cols-3">
           {PORTFOLIO_PRIMARY.map((p, i) => (
             <PortfolioCard key={p.name} company={p} delay={i * 0.03} featured={i === 0} />
           ))}
@@ -2240,15 +2240,15 @@ function StartupsPage() {
           <Eyebrow dark>Not a Straight Line</Eyebrow>
         </Reveal>
         <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.9rem,3.8vw,3.2rem)] font-light leading-[1.08] tracking-normal">
+          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
             For every launch, there&apos;s a version that didn&apos;t work first.
           </h2>
         </Reveal>
 
-        <ul className="mt-14 grid gap-px border-y border-background/10 md:grid-cols-2">
+        <ul className="mt-10 grid gap-px border-y border-background/10 sm:mt-12 md:mt-14 md:grid-cols-2">
           {REALITY_EXAMPLES.map((r, i) => (
             <Reveal key={r.name} delay={i * 0.05}>
-              <li className="h-full border-background/10 p-7 md:p-9">
+              <li className="h-full border-background/10 p-5 sm:p-6 md:p-8 lg:p-9">
                 <span className="font-serif-italic text-[1rem]">{r.name}</span>
                 <p className="mt-3 max-w-[70ch] text-[1rem] leading-[1.65] text-background/80">{r.body}</p>
               </li>
@@ -2262,9 +2262,9 @@ function StartupsPage() {
       </Section>
 
       <Section id="cta" tone="dark" container="max-w-4xl">
-        <div className="pb-16 pt-8 text-center md:pb-20 md:pt-12">
+        <div className="pb-10 pt-4 text-center sm:pb-14 sm:pt-6 md:pb-20 md:pt-12">
           <Reveal>
-            <h2 className="text-balance text-[clamp(2.4rem,7vw,5.5rem)] font-light leading-[1] tracking-normal">
+            <h2 className="text-balance text-[clamp(2rem,7vw,5.5rem)] font-light leading-[1.04] md:leading-[1] tracking-normal">
               WHAT WILL YOU BUILD?
             </h2>
           </Reveal>
