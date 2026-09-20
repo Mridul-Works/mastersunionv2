@@ -526,12 +526,12 @@ function Section({
 
 function LogoBadge({ src, alt, dark = false, size = "size-9" }: { src?: string; alt?: string; dark?: boolean; size?: string }) {
   if (src) {
-    return <img src={src} alt={alt ?? ""} loading="lazy" className={`${size} shrink-0 rounded-full border object-cover ${dark ? "border-background/25" : "border-border"}`} />;
+    return <img src={src} alt={alt ?? ""} loading="lazy" className={`${size} shrink-0 rounded-full border border-background/20 bg-background object-cover`} />;
   }
   return (
     <span
       aria-label="Logo placeholder"
-      className={`flex ${size} shrink-0 items-center justify-center rounded-full border ${dark ? "border-background/25 text-background/30" : "border-border text-foreground/25"}`}
+      className={`flex ${size} shrink-0 items-center justify-center rounded-full border border-background/20 text-background/35`}
     >
       <ImageIcon className="size-3.5" strokeWidth={1.5} />
     </span>
@@ -540,12 +540,12 @@ function LogoBadge({ src, alt, dark = false, size = "size-9" }: { src?: string; 
 
 function PortraitBadge({ src, alt, dark = false, size = "size-14" }: { src?: string; alt?: string; dark?: boolean; size?: string }) {
   if (src) {
-    return <img src={src} alt={alt ?? ""} loading="lazy" className={`${size} shrink-0 rounded-full border object-cover ${dark ? "border-background/25" : "border-border"}`} />;
+    return <img src={src} alt={alt ?? ""} loading="lazy" className={`${size} shrink-0 rounded-full border border-background/20 bg-background object-cover`} />;
   }
   return (
     <span
       aria-label="Founder image placeholder"
-      className={`flex ${size} shrink-0 items-center justify-center rounded-full border ${dark ? "border-background/25 text-background/30" : "border-border text-foreground/25"}`}
+      className={`flex ${size} shrink-0 items-center justify-center rounded-full border border-background/20 text-background/35`}
     >
       <Users className="size-4" strokeWidth={1.5} />
     </span>
@@ -554,7 +554,7 @@ function PortraitBadge({ src, alt, dark = false, size = "size-14" }: { src?: str
 
 function FounderLine({ names, cohort, dark = false }: { names: string; cohort: string; dark?: boolean }) {
   return (
-    <span className={`text-[11px] uppercase tracking-[0.2em] ${dark ? "text-background/60" : "text-foreground/60"}`}>
+    <span className="text-[11px] uppercase tracking-[0.2em] text-background/60">
       {names} · {cohort}
     </span>
   );
@@ -566,11 +566,11 @@ function ChapterChips({ labels, dark = false }: { labels: string[]; dark?: boole
       {labels.map((l, i) => (
         <div key={l} className="flex items-center gap-2">
           <span
-            className={`eyebrow rounded-full px-3 py-1.5 ${dark ? "bg-background/10 text-background/80" : "bg-foreground/[0.06] text-foreground/80"}`}
+            className="eyebrow rounded-full border border-background/15 bg-background/[0.06] px-3 py-1.5 text-background/80"
           >
             {l}
           </span>
-          {i < labels.length - 1 && <ArrowRight className={`size-3 ${dark ? "text-background/25" : "text-foreground/25"}`} aria-hidden />}
+          {i < labels.length - 1 && <ArrowRight className="size-3 text-background/25" aria-hidden />}
         </div>
       ))}
     </div>
@@ -584,12 +584,12 @@ function KeyMetrics({ dominant, supporting, dark = false }: { dominant: Metric; 
     <div className="flex flex-wrap items-end gap-x-10 gap-y-5">
       <div>
         <div className="text-[clamp(2.1rem,4.2vw,3.2rem)] font-medium leading-none tracking-[-0.02em]">{dominant.value}</div>
-        <div className={`mt-2 text-[10px] uppercase tracking-[0.18em] ${dark ? "text-background/55" : "text-foreground/55"}`}>{dominant.label}</div>
+        <div className="mt-2 text-[10px] uppercase tracking-[0.18em] text-background/55">{dominant.label}</div>
       </div>
       {supporting.map((s) => (
         <div key={s.label}>
           <div className="text-[1.25rem] font-medium leading-none tracking-[-0.01em]">{s.value}</div>
-          <div className={`mt-2 text-[9px] uppercase tracking-[0.16em] ${dark ? "text-background/50" : "text-foreground/50"}`}>{s.label}</div>
+          <div className="mt-2 text-[9px] uppercase tracking-[0.16em] text-background/50">{s.label}</div>
         </div>
       ))}
     </div>
@@ -617,7 +617,7 @@ function Placeholder({
     return (
       <div
         className={`group relative w-full overflow-hidden ${aspect} ${className} ${
-          dark ? "border border-background/15" : "border border-border"
+          "border border-background/15"
         }`}
       >
         <img
@@ -633,7 +633,7 @@ function Placeholder({
   return (
     <div
       className={`group relative w-full overflow-hidden ${aspect} ${className} ${
-        dark ? "border border-background/15 bg-background/[0.04]" : "border border-border bg-foreground/[0.03]"
+          "border border-background/15 bg-background/[0.035]"
       }`}
     >
       <div
@@ -643,16 +643,16 @@ function Placeholder({
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
         <span
           className={`flex size-12 items-center justify-center rounded-full border backdrop-blur-md transition-transform duration-300 group-hover:scale-110 ${
-            dark ? "border-background/40 bg-background/10 text-background" : "border-foreground/25 bg-background/50 text-foreground"
+            "border-background/30 bg-background/10 text-background"
           }`}
         >
           <Icon className="size-4" strokeWidth={1.5} />
         </span>
-        <span className={`eyebrow ${dark ? "text-background/50" : "text-foreground/45"}`}>
+        <span className="eyebrow text-background/50">
           {kind === "video" ? "Video Placeholder" : kind === "logo" ? "Logo Placeholder" : "Image Placeholder"}
         </span>
         {note && (
-          <span className={`text-[10px] uppercase tracking-[0.18em] ${dark ? "text-background/30" : "text-foreground/30"}`}>
+          <span className="text-[10px] uppercase tracking-[0.18em] text-background/30">
             {note}
           </span>
         )}
@@ -677,7 +677,7 @@ function SparkStory({
   ];
 
   return (
-    <article className="grid w-full shrink-0 snap-start grid-cols-1 items-center gap-8 border-t border-border pt-10 md:gap-12 md:pt-14 lg:grid-cols-12 lg:gap-16">
+    <article className="grid w-full shrink-0 snap-start grid-cols-1 items-center gap-8 border-t border-background/15 pt-10 md:gap-12 md:pt-14 lg:grid-cols-12 lg:gap-16">
       <Reveal
         className={`lg:col-span-5 ${reverse ? "lg:order-2 lg:pl-8" : "lg:order-1"}`}
       >
@@ -686,15 +686,15 @@ function SparkStory({
             {String(index + 1).padStart(2, "0")}
           </span>
           <span aria-hidden className="h-px w-10 bg-accent" />
-          <span className="eyebrow text-foreground/45">Student venture</span>
+          <span className="eyebrow text-background/45">Student venture</span>
         </div>
         <h3 className="font-serif-italic mt-4 text-[clamp(2.6rem,5vw,4.8rem)] leading-[0.95]">
           {company.name === "SeedsAI" ? "SeedsAI / CDI" : company.name}
         </h3>
-        <div className="mt-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-foreground/50">
+        <div className="mt-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-background/50">
           {company.founder}
         </div>
-        <p className="mt-6 max-w-[34rem] text-[1rem] leading-[1.75] text-foreground/70 md:text-[1.08rem]">
+        <p className="mt-6 max-w-[34rem] text-[1rem] leading-[1.75] text-background/70 md:text-[1.08rem]">
           {company.body}
         </p>
       </Reveal>
@@ -757,12 +757,12 @@ function SparkCarousel({
 
   return (
     <div className="mt-12 md:mt-16">
-      <div className="mb-6 flex items-center justify-between border-b border-border pb-5">
+      <div className="mb-6 flex items-center justify-between border-b border-background/15 pb-5">
         <div className="flex items-center gap-4">
-          <span className="eyebrow text-foreground/55">
+          <span className="eyebrow text-background/55">
             {String(active + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
           </span>
-          <span className="hidden text-[0.72rem] uppercase tracking-[0.18em] text-foreground/40 sm:inline">
+          <span className="hidden text-[0.72rem] uppercase tracking-[0.18em] text-background/40 sm:inline">
             Swipe to explore
           </span>
         </div>
@@ -772,7 +772,7 @@ function SparkCarousel({
             aria-label="Previous startup"
             disabled={active === 0}
             onClick={() => goTo(active - 1)}
-            className="flex size-10 items-center justify-center border border-border text-foreground transition-colors hover:bg-muted disabled:cursor-not-allowed disabled:opacity-30"
+            className="flex size-10 items-center justify-center border border-background/20 text-background transition-colors hover:bg-background/10 disabled:cursor-not-allowed disabled:opacity-30"
           >
             <ArrowRight className="size-4 rotate-180" />
           </button>
@@ -781,7 +781,7 @@ function SparkCarousel({
             aria-label="Next startup"
             disabled={active === count - 1}
             onClick={() => goTo(active + 1)}
-            className="flex size-10 items-center justify-center bg-foreground text-background transition-opacity hover:opacity-85 disabled:cursor-not-allowed disabled:opacity-30"
+            className="flex size-10 items-center justify-center bg-background text-foreground transition-opacity hover:opacity-85 disabled:cursor-not-allowed disabled:opacity-30"
           >
             <ArrowRight className="size-4" />
           </button>
@@ -824,15 +824,15 @@ function StoryBeats({ beats, dark = false }: { beats: Beat[]; dark?: boolean }) 
         <Reveal key={b.stage} delay={i * 0.05} className="break-inside-avoid">
           <li
             className={`flex gap-5 border-t pt-6 first:border-t-0 first:pt-0 ${
-              dark ? "border-background/10" : "border-border"
+              "border-background/10"
             }`}
           >
-            <span className={`eyebrow shrink-0 ${dark ? "text-background/50" : "text-foreground/50"}`}>
+            <span className="eyebrow shrink-0 text-background/50">
               {String(i + 1).padStart(2, "0")}
             </span>
             <div>
-              <div className={`eyebrow ${dark ? "text-background/70" : "text-foreground/70"}`}>{b.stage}</div>
-              <p className={`mt-2 text-[1.02rem] leading-[1.7] ${dark ? "text-background/80" : "text-foreground/75"}`}>
+              <div className="eyebrow text-background/70">{b.stage}</div>
+              <p className="mt-2 text-[1.02rem] leading-[1.7] text-background/75">
                 {b.body}
               </p>
             </div>
@@ -845,19 +845,19 @@ function StoryBeats({ beats, dark = false }: { beats: Beat[]; dark?: boolean }) 
 
 function JourneyStages({ stages }: { stages: Stage[] }) {
   return (
-    <div className="mt-10 grid grid-cols-1 gap-px bg-border md:grid-cols-5">
+    <div className="mt-10 grid grid-cols-1 gap-px bg-background/10 md:grid-cols-5">
       {stages.map((s, i) => (
         <Reveal key={s.name} delay={i * 0.06} className="h-full">
           <div
             className={`group flex h-full flex-col justify-between p-6 transition-colors duration-300 md:p-7 ${
-              s.culmination ? "bg-foreground text-background" : "bg-background text-foreground hover:bg-muted"
+              s.culmination ? "bg-accent text-foreground" : "bg-background/[0.045] text-background hover:bg-background/[0.08]"
             }`}
           >
             <div>
-              <div className={`eyebrow flex items-center gap-2 ${s.culmination ? "text-background/55" : "text-foreground/50"}`}>
+              <div className={`eyebrow flex items-center gap-2 ${s.culmination ? "text-foreground/60" : "text-background/50"}`}>
                 <span
                   className={`h-1 w-4 rounded-full transition-all duration-300 ${
-                    s.culmination ? "w-6 bg-background/60" : "bg-accent group-hover:w-6"
+                    s.culmination ? "w-6 bg-foreground/60" : "bg-accent group-hover:w-6"
                   }`}
                   aria-hidden
                 />
@@ -867,14 +867,14 @@ function JourneyStages({ stages }: { stages: Stage[] }) {
               {s.grant && (
                 <div
                   className={`mt-3 inline-block text-[10px] uppercase tracking-[0.18em] ${
-                    s.culmination ? "text-background/60" : "text-foreground/55"
+                    s.culmination ? "text-foreground/60" : "text-background/55"
                   }`}
                 >
                   Grant · {s.grant}
                 </div>
               )}
             </div>
-            <p className={`mt-5 text-[0.92rem] leading-[1.6] ${s.culmination ? "text-background/80" : "text-foreground/70"}`}>
+            <p className={`mt-5 text-[0.92rem] leading-[1.6] ${s.culmination ? "text-foreground/80" : "text-background/70"}`}>
               {s.body}
             </p>
           </div>
@@ -979,7 +979,7 @@ function EpisodeStrip({ episodes }: { episodes: Episode[] }) {
 function PortfolioCard({ company, delay = 0, featured = false }: { company: Company; delay?: number; featured?: boolean }) {
   return (
     <Reveal delay={delay} className={featured ? "md:col-span-2" : undefined}>
-      <article className={`group relative h-full overflow-hidden bg-background p-7 transition-transform duration-300 hover:-translate-y-1 ${featured ? "md:p-10" : ""}`}>
+      <article className={`group relative h-full overflow-hidden border border-background/10 bg-background/[0.045] p-7 text-background transition-all duration-500 hover:-translate-y-1 hover:border-accent/50 ${featured ? "md:p-10" : ""}`}>
         <span
           aria-hidden
           className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100"
@@ -989,11 +989,11 @@ function PortfolioCard({ company, delay = 0, featured = false }: { company: Comp
             <LogoBadge src={VENTURE_IMAGES[company.name]} alt={`${company.name} logo`} size={featured ? "size-11" : "size-9"} />
             <h3 className={`font-medium leading-tight ${featured ? "text-[1.6rem]" : "text-[1.1rem]"}`}>{company.name}</h3>
           </div>
-          <span className="eyebrow shrink-0 text-foreground/45">{company.category}</span>
+          <span className="eyebrow shrink-0 text-background/45">{company.category}</span>
         </div>
-        <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-foreground/50">{company.founder}</div>
+        <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-background/50">{company.founder}</div>
         <div className={`mt-4 font-medium tracking-[-0.02em] ${featured ? "text-[1.6rem]" : "text-[1.15rem]"}`}>{company.metric}</div>
-        <p className={`mt-3 leading-[1.6] text-foreground/70 ${featured ? "max-w-[60ch] text-[1rem]" : "text-[0.92rem]"}`}>
+        <p className={`mt-3 leading-[1.6] text-background/70 ${featured ? "max-w-[60ch] text-[1rem]" : "text-[0.92rem]"}`}>
           {company.description}
         </p>
       </article>
