@@ -519,7 +519,7 @@ function Section({
           {id.replace("-", " ")}
         </span>
       ) : null}
-      <div className={`relative z-[1] mx-auto w-full ${container} px-5 py-18 sm:px-6 sm:py-22 md:px-10 md:py-28 lg:px-12 lg:py-32`}>{children}</div>
+      <div className={`relative z-[1] mx-auto w-full ${container} px-4 py-16 sm:px-7 sm:py-20 md:px-8 md:py-24 lg:px-12 lg:py-32`}>{children}</div>
     </section>
   );
 }
@@ -562,7 +562,7 @@ function FounderLine({ names, cohort, dark = false }: { names: string; cohort: s
 
 function ChapterChips({ labels, dark = false }: { labels: string[]; dark?: boolean }) {
   return (
-    <div className="mt-7 flex flex-wrap items-center gap-x-2 gap-y-3">
+    <div className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-2.5 sm:mt-7 sm:gap-y-3">
       {labels.map((l, i) => (
         <div key={l} className="flex items-center gap-2">
           <span
@@ -581,7 +581,7 @@ type Metric = { value: string; label: string };
 
 function KeyMetrics({ dominant, supporting, dark = false }: { dominant: Metric; supporting: Metric[]; dark?: boolean }) {
   return (
-    <div className="grid grid-cols-2 items-end gap-x-6 gap-y-6 sm:flex sm:flex-wrap sm:gap-x-10">
+    <div className="grid grid-cols-2 items-end gap-x-4 gap-y-5 sm:flex sm:flex-wrap sm:gap-x-8 md:gap-x-10">
       <div>
         <div className="text-[clamp(2.1rem,4.2vw,3.2rem)] font-medium leading-none tracking-[-0.02em]">{dominant.value}</div>
         <div className="mt-2 text-[10px] uppercase tracking-[0.18em] text-background/55">{dominant.label}</div>
@@ -684,7 +684,7 @@ function MediaRail({
   };
 
   return (
-    <div className={`mt-12 ${className}`}>
+    <div className={`mt-9 sm:mt-11 md:mt-12 ${className}`}>
       <div className="mb-5 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-background/15 pb-4">
         <span className="eyebrow text-background/50">
           {String(active + 1).padStart(2, "0")} / {String(labels.length).padStart(2, "0")}
@@ -707,10 +707,10 @@ function MediaRail({
           if (!first) return;
           setActive(Math.min(labels.length - 1, Math.max(0, Math.round(track.scrollLeft / first.offsetWidth))));
         }}
-        className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 [scrollbar-width:none] sm:-mx-6 sm:px-6 md:-mx-10 md:gap-6 md:px-10 lg:-mx-12 lg:px-12 [&::-webkit-scrollbar]:hidden"
+        className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-3 [scrollbar-width:none] sm:-mx-7 sm:gap-4 sm:px-7 md:-mx-8 md:gap-5 md:px-8 lg:-mx-12 lg:gap-6 lg:px-12 [&::-webkit-scrollbar]:hidden"
       >
         {labels.map((label, index) => (
-          <Reveal key={label} delay={index * 0.05} className="group w-[84vw] max-w-[32rem] shrink-0 snap-start md:w-[38vw] lg:w-[31vw]">
+          <Reveal key={label} delay={index * 0.05} className="group w-[calc(100vw-2.5rem)] max-w-[32rem] shrink-0 snap-start sm:w-[72vw] md:w-[54vw] lg:w-[31vw]">
             <div className={`transition-transform duration-700 ease-out group-hover:-translate-y-2 ${index % 2 ? "md:mt-14" : ""}`}>
               <Placeholder kind={kind} aspect="aspect-[4/5] md:aspect-[5/4]" note={label} />
               <div className="mt-4 flex items-center justify-between border-t border-background/15 pt-4">
@@ -741,7 +741,7 @@ function SparkStory({
   ];
 
   return (
-    <article className="grid w-full min-w-0 shrink-0 snap-start grid-cols-1 items-center gap-8 border-t border-background/15 pt-8 sm:pt-10 md:gap-12 md:pt-14 lg:grid-cols-12 lg:gap-16">
+    <article className="grid w-full min-w-0 shrink-0 snap-start grid-cols-1 items-center gap-7 border-t border-background/15 pt-7 sm:gap-9 sm:pt-9 md:gap-10 md:pt-11 lg:grid-cols-12 lg:gap-16 lg:pt-14">
       <Reveal
         className={`lg:col-span-5 ${reverse ? "lg:order-2 lg:pl-8" : "lg:order-1"}`}
       >
@@ -752,13 +752,13 @@ function SparkStory({
           <span aria-hidden className="h-px w-10 bg-accent" />
           <span className="eyebrow text-background/45">Student venture</span>
         </div>
-        <h3 className="font-serif-italic mt-4 text-[clamp(2.35rem,5vw,4.8rem)] leading-[1]">
+        <h3 className="font-serif-italic mt-4 text-[clamp(2.05rem,5vw,4.8rem)] leading-[1.04]">
           {company.name === "SeedsAI" ? "SeedsAI / CDI" : company.name}
         </h3>
         <div className="mt-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-background/50">
           {company.founder}
         </div>
-        <p className="mt-5 max-w-[34rem] text-[1rem] leading-[1.65] text-background/70 md:mt-6 md:text-[1.08rem]">
+        <p className="mt-4 max-w-[34rem] text-[0.98rem] leading-[1.6] text-background/70 sm:mt-5 md:mt-6 md:text-[1.05rem] md:leading-[1.65]">
           {company.body}
         </p>
       </Reveal>
@@ -767,7 +767,7 @@ function SparkStory({
         delay={0.08}
         className={`lg:col-span-7 ${reverse ? "lg:order-1" : "lg:order-2"}`}
       >
-        <div className="grid h-[390px] grid-cols-6 grid-rows-6 gap-2 sm:h-[480px] sm:gap-3 md:h-[520px]">
+        <div className="grid h-[320px] grid-cols-6 grid-rows-6 gap-2 sm:h-[410px] sm:gap-3 md:h-[460px] lg:h-[520px]">
           <Placeholder
             kind="image"
             aspect="h-full"
@@ -820,7 +820,7 @@ function SparkCarousel({
   };
 
   return (
-    <div className="mt-12 md:mt-16">
+    <div className="mt-9 sm:mt-11 md:mt-14 lg:mt-16">
       <div className="mb-6 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-background/15 pb-5">
         <div className="flex min-w-0 items-center gap-4">
           <span className="eyebrow text-background/55">
@@ -883,11 +883,11 @@ function SparkCarousel({
 
 function StoryBeats({ beats, dark = false }: { beats: Beat[]; dark?: boolean }) {
   return (
-    <ol className="mt-2 space-y-8">
+    <ol className="mt-2 space-y-6 sm:space-y-7 md:space-y-8">
       {beats.map((b, i) => (
         <Reveal key={b.stage} delay={i * 0.05} className="break-inside-avoid">
           <li
-            className={`flex gap-5 border-t pt-6 first:border-t-0 first:pt-0 ${
+            className={`flex gap-4 border-t pt-5 first:border-t-0 first:pt-0 sm:gap-5 sm:pt-6 ${
               "border-background/10"
             }`}
           >
@@ -896,7 +896,7 @@ function StoryBeats({ beats, dark = false }: { beats: Beat[]; dark?: boolean }) 
             </span>
             <div className="min-w-0">
               <div className="eyebrow text-background/70">{b.stage}</div>
-              <p className="mt-2 text-[1.02rem] leading-[1.65] text-background/75">
+              <p className="mt-2 text-[0.96rem] leading-[1.6] text-background/75 sm:text-[1rem] md:text-[1.02rem] md:leading-[1.65]">
                 {b.body}
               </p>
             </div>
@@ -909,11 +909,11 @@ function StoryBeats({ beats, dark = false }: { beats: Beat[]; dark?: boolean }) 
 
 function JourneyStages({ stages }: { stages: Stage[] }) {
   return (
-    <div className="mt-10 grid grid-cols-1 gap-px bg-background/10 md:grid-cols-5">
+    <div className="mt-8 grid grid-cols-1 gap-px bg-background/10 sm:mt-10 sm:grid-cols-2 lg:grid-cols-5">
       {stages.map((s, i) => (
         <Reveal key={s.name} delay={i * 0.06} className="h-full">
           <div
-            className={`group flex h-full flex-col justify-between p-6 transition-colors duration-300 md:p-7 ${
+            className={`group flex h-full min-h-0 flex-col justify-between p-5 transition-colors duration-300 sm:min-h-64 sm:p-6 lg:min-h-0 lg:p-7 ${
               s.culmination ? "bg-accent text-foreground" : "bg-background/[0.045] text-background hover:bg-background/[0.08]"
             }`}
           >
@@ -971,7 +971,7 @@ function ScrollCarousel({
   };
 
   return (
-    <div className="mt-10">
+    <div className="mt-8 sm:mt-10">
       <div className="mb-4 flex items-center justify-between md:hidden">
         <span className={`eyebrow ${dark ? "text-background/50" : "text-foreground/50"}`}>
           {String(active + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
@@ -1008,7 +1008,7 @@ function ScrollCarousel({
           const w = first.offsetWidth + 1;
           setActive(Math.min(count - 1, Math.max(0, Math.round(track.scrollLeft / w))));
         }}
-        className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-3 [scrollbar-width:none] sm:-mx-6 sm:px-6 md:-mx-10 md:gap-6 md:px-10 lg:-mx-12 lg:px-12 [&::-webkit-scrollbar]:hidden"
+        className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-3 [scrollbar-width:none] sm:-mx-7 sm:gap-4 sm:px-7 md:-mx-8 md:gap-5 md:px-8 lg:-mx-12 lg:gap-6 lg:px-12 [&::-webkit-scrollbar]:hidden"
       >
         {children}
       </div>
@@ -1020,9 +1020,9 @@ function EpisodeStrip({ episodes }: { episodes: Episode[] }) {
   return (
     <ScrollCarousel count={episodes.length}>
       {episodes.map((e, i) => (
-        <Reveal key={e.label} delay={i * 0.05} className="w-[82%] shrink-0 snap-start sm:w-[55%] md:w-[42%] lg:w-[31%]">
+        <Reveal key={e.label} delay={i * 0.05} className="w-[calc(100vw-2.5rem)] shrink-0 snap-start sm:w-[68%] md:w-[52%] lg:w-[31%]">
           <div
-            className={`flex h-full flex-col gap-4 p-6 ${
+            className={`flex h-full flex-col gap-4 p-5 sm:p-6 ${
               e.culmination ? "bg-foreground text-background" : "bg-background text-foreground"
             }`}
           >
@@ -1043,7 +1043,7 @@ function EpisodeStrip({ episodes }: { episodes: Episode[] }) {
 function PortfolioCard({ company, delay = 0, featured = false }: { company: Company; delay?: number; featured?: boolean }) {
   return (
     <Reveal delay={delay} className={featured ? "md:col-span-2" : undefined}>
-      <article className={`group relative h-full overflow-hidden border border-background/10 bg-background/[0.045] p-7 text-background transition-all duration-500 hover:-translate-y-1 hover:border-accent/50 ${featured ? "md:p-10" : ""}`}>
+      <article className={`group relative h-full overflow-hidden border border-background/10 bg-background/[0.045] p-5 text-background transition-all duration-500 hover:-translate-y-1 hover:border-accent/50 sm:p-6 md:p-7 ${featured ? "md:p-9 lg:p-10" : ""}`}>
         <span
           aria-hidden
           className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100"
