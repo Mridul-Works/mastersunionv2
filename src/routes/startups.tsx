@@ -794,6 +794,29 @@ function SparkCarousel({
     };
   }, [count, onActiveChange]);
 
+  const scrollToCompany = (index: number) => {
+    const story = storyRef.current;
+    if (!story || count <= 1) return;
+
+    lastActiveRef.current = index;
+    onActiveChange(index);
+
+    const viewportHeight = window.innerHeight || 1;
+    const scrollRange = Math.max(1, story.offsetHeight - viewportHeight);
+    const storyTop = story.getBoundingClientRect().top + window.scrollY;
+    const target = storyTop + scrollRange * (index / Math.max(1, count - 1));
+    const lenis = (window as unknown as {
+      __lenis?: { scrollTo?: (target: number, options?: { duration?: number; force?: boolean }) => void };
+    }).__lenis;
+
+    if (lenis?.scrollTo) {
+      lenis.scrollTo(target, { duration: reduceMotion ? 0 : 0.85, force: true });
+      return;
+    }
+
+    window.scrollTo({ top: target, behavior: reduceMotion ? "auto" : "smooth" });
+  };
+
   return (
     <div
       ref={storyRef}
@@ -830,18 +853,18 @@ function SparkCarousel({
                 className="relative z-[2] w-full will-change-transform"
               >
                 {companies.map((item, index) => (
-                <div
-                  key={item.name}
-                  role="listitem"
-                  aria-current={index === active ? "step" : undefined}
-                  className={`flex min-h-[18svh] w-full shrink-0 items-center justify-center px-4 transition-[opacity,transform] duration-500 sm:min-h-[19svh] sm:px-6 md:min-h-[21svh] md:px-8 lg:min-h-[22svh] ${
-                    index === active ? "scale-100 opacity-100" : "scale-[0.82] opacity-20"
-                  }`}
-                >
-                  <span className="pr-[0.08em] font-serif-italic text-[clamp(2.05rem,5vw,4.8rem)] leading-[1.04]">
-                    {item.name}
-                  </span>
-                </div>
+                  <div key={item.name} role="listitem" className="flex min-h-[18svh] w-full shrink-0 items-center justify-center px-4 sm:min-h-[19svh] sm:px-6 md:min-h-[21svh] md:px-8 lg:min-h-[22svh]">
+                    <button
+                      type="button"
+                      aria-current={index === active ? "step" : undefined}
+                      onClick={() => scrollToCompany(index)}
+                      className={`cursor-pointer pr-[0.08em] font-serif-italic text-[clamp(2.05rem,5vw,4.8rem)] leading-[1.04] text-background transition-[opacity,transform] duration-500 hover:opacity-80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60 ${
+                        index === active ? "scale-100 opacity-100" : "scale-[0.82] opacity-20"
+                      }`}
+                    >
+                      {item.name}
+                    </button>
+                  </div>
                 ))}
               </div>
             </div>
