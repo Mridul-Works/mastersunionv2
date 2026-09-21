@@ -1634,7 +1634,7 @@ function StartupsPage() {
       </header>
 
       <div className="relative z-10 bg-foreground font-display text-background">
-        <div className="-mt-8 sm:-mt-10 md:-mt-14 lg:-mt-20">
+        <div className="-mt-14 sm:-mt-16 md:-mt-24 lg:-mt-32">
           <Section id="spark" tone="light" container="max-w-7xl">
             <div className="grid grid-cols-1 gap-5 border-b border-background/20 pb-8 sm:gap-6 sm:pb-10 md:grid-cols-12 md:items-end md:gap-10 md:pb-12 lg:gap-12 lg:pb-14">
               <div className="md:col-span-8">
