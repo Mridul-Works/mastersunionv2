@@ -804,6 +804,7 @@ function SparkCarousel({
 
             <div
               ref={companyRailRef}
+              data-lenis-prevent
               aria-label="Choose a student venture"
               onScroll={(event) => {
                 if (programmaticScrollRef.current) return;
