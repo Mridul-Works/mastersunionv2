@@ -855,7 +855,7 @@ function SparkCarousel({
                   if (closest !== active) onActiveChange(closest);
                 });
               }}
-              className="no-scrollbar flex h-[46svh] snap-y snap-mandatory flex-col overflow-y-auto overscroll-contain py-[14svh] text-center sm:h-[50svh] sm:py-[15.5svh] md:h-[56svh] md:py-[17.5svh] lg:h-[60svh] lg:py-[19svh]"
+              className="no-scrollbar flex h-[46svh] flex-col overflow-hidden py-[14svh] text-center sm:h-[50svh] sm:py-[15.5svh] md:h-[56svh] md:py-[17.5svh] lg:h-[60svh] lg:py-[19svh]"
             >
               {companies.map((item, index) => (
                 <button
