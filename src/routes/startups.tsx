@@ -510,7 +510,7 @@ function Section({
         ? "bg-foreground"
         : "bg-foreground";
   return (
-    <section id={id} className={`relative overflow-hidden border-t border-background/10 text-background ${surfaceClass}`}>
+    <section id={id} className={`relative ${id === "spark" ? "overflow-x-clip overflow-y-visible" : "overflow-hidden"} border-t border-background/10 text-background ${surfaceClass}`}>
       {id ? (
         <span
           aria-hidden
@@ -734,64 +734,80 @@ function SparkCarousel({
   active: number;
   onActiveChange: (index: number) => void;
 }) {
-  const touchStartRef = useRef<number | null>(null);
+  const storyRef = useRef<HTMLDivElement>(null);
   const companyRailRef = useRef<HTMLDivElement>(null);
+  const nameTrackRef = useRef<HTMLDivElement>(null);
   const scrollFrameRef = useRef(0);
-  const programmaticScrollRef = useRef(false);
-  const programmaticScrollTimerRef = useRef<number | null>(null);
+  const lastActiveRef = useRef(active);
+  const lastTrackOffsetRef = useRef<number | null>(null);
+  const reduceMotion = useReducedMotion();
   const count = companies.length;
   const company = companies[active];
 
-  const goTo = (index: number) => {
-    const next = Math.min(count - 1, Math.max(0, index));
-    onActiveChange(next);
-  };
-
   useEffect(() => {
-    const rail = companyRailRef.current;
-    const item = rail?.children[active] as HTMLElement | undefined;
-    if (!rail || !item) return;
-    programmaticScrollRef.current = true;
-    if (programmaticScrollTimerRef.current !== null) window.clearTimeout(programmaticScrollTimerRef.current);
-    rail.scrollTo({
-      top: item.offsetTop - rail.offsetTop - (rail.clientHeight - item.offsetHeight) / 2,
-      behavior: "smooth",
-    });
-    programmaticScrollTimerRef.current = window.setTimeout(() => {
-      programmaticScrollRef.current = false;
-    }, 700);
+    lastActiveRef.current = active;
   }, [active]);
 
-  useEffect(
-    () => () => {
+  useEffect(() => {
+    const story = storyRef.current;
+    if (!story) return;
+
+    const update = () => {
+      scrollFrameRef.current = 0;
+      const rect = story.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || 1;
+      const scrollRange = Math.max(1, rect.height - viewportHeight);
+      const progress = Math.min(1, Math.max(0, -rect.top / scrollRange));
+      const rawIndex = progress * Math.max(1, count - 1);
+      const nextActive = Math.min(count - 1, Math.max(0, Math.round(rawIndex)));
+
+      const rail = companyRailRef.current;
+      const track = nameTrackRef.current;
+      const firstItem = track?.children[0] as HTMLElement | undefined;
+      if (rail && track && firstItem) {
+        const offset = rail.clientHeight / 2 - firstItem.offsetHeight * (rawIndex + 0.5);
+        if (lastTrackOffsetRef.current === null || Math.abs(offset - lastTrackOffsetRef.current) > 0.5) {
+          lastTrackOffsetRef.current = offset;
+          track.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0)`;
+        }
+      }
+
+      if (nextActive !== lastActiveRef.current) {
+        lastActiveRef.current = nextActive;
+        onActiveChange(nextActive);
+      }
+    };
+
+    const schedule = () => {
+      if (!scrollFrameRef.current) scrollFrameRef.current = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule, { passive: true });
+    window.addEventListener("orientationchange", schedule, { passive: true });
+    return () => {
       cancelAnimationFrame(scrollFrameRef.current);
-      if (programmaticScrollTimerRef.current !== null) window.clearTimeout(programmaticScrollTimerRef.current);
-    },
-    [],
-  );
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      window.removeEventListener("orientationchange", schedule);
+    };
+  }, [count, onActiveChange]);
 
   return (
-    <div className="mt-5 sm:mt-7 md:mt-8">
-      <div className="w-full overflow-hidden pt-2 sm:pt-3 md:pt-4">
-        <div
-          onTouchStart={(event) => {
-            touchStartRef.current = event.touches[0]?.clientX ?? null;
-          }}
-          onTouchEnd={(event) => {
-            const start = touchStartRef.current;
-            const end = event.changedTouches[0]?.clientX;
-            touchStartRef.current = null;
-            if (start === null || end === undefined || Math.abs(start - end) < 45) return;
-            goTo(active + (start > end ? 1 : -1));
-          }}
-          className="w-full touch-pan-y"
-        >
-          <div className="grid grid-cols-[minmax(0,1fr)_minmax(88px,0.42fr)_minmax(0,1fr)] items-stretch gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(150px,0.5fr)_minmax(0,1fr)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(210px,0.52fr)_minmax(0,1fr)] md:gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(300px,0.72fr)_minmax(0,1fr)] lg:gap-10">
+    <div
+      ref={storyRef}
+      className="relative mt-5 sm:mt-7 md:mt-8"
+      style={{ height: `${(count + 0.75) * 100}svh` }}
+    >
+      <div className="sticky top-0 flex min-h-[100svh] items-center overflow-hidden py-5 sm:py-7 md:py-9 lg:py-10">
+        <div className="w-full pt-2 sm:pt-3 md:pt-4">
+          <div className="grid grid-cols-[minmax(0,1fr)_minmax(96px,0.46fr)_minmax(0,1fr)] items-stretch gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(165px,0.55fr)_minmax(0,1fr)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(240px,0.6fr)_minmax(0,1fr)] md:gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.76fr)_minmax(0,1fr)] lg:gap-10">
             <motion.div
               key={`left-${active}`}
-              initial={{ opacity: 0, x: -28 }}
+              initial={reduceMotion ? false : { opacity: 0, x: -28, scale: 0.985 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, ease: [0.7, 0, 0.2, 1] }}
+              transition={{ duration: reduceMotion ? 0 : 0.7, ease: [0.7, 0, 0.2, 1] }}
               className="h-[46svh] sm:h-[50svh] md:h-[56svh] lg:h-[60svh]"
             >
               <Placeholder
@@ -804,50 +820,37 @@ function SparkCarousel({
 
             <div
               ref={companyRailRef}
-              aria-label="Choose a student venture"
-              onScroll={(event) => {
-                if (programmaticScrollRef.current) return;
-                const rail = event.currentTarget;
-                cancelAnimationFrame(scrollFrameRef.current);
-                scrollFrameRef.current = requestAnimationFrame(() => {
-                  const center = rail.scrollTop + rail.clientHeight / 2;
-                  const items = Array.from(rail.children) as HTMLElement[];
-                  let closest = active;
-                  let distance = Number.POSITIVE_INFINITY;
-                  items.forEach((item, index) => {
-                    const itemCenter = item.offsetTop - rail.offsetTop + item.offsetHeight / 2;
-                    const nextDistance = Math.abs(center - itemCenter);
-                    if (nextDistance < distance) {
-                      distance = nextDistance;
-                      closest = index;
-                    }
-                  });
-                  if (closest !== active) onActiveChange(closest);
-                });
-              }}
-              className="no-scrollbar flex h-[46svh] snap-y snap-mandatory flex-col overflow-y-auto overscroll-contain py-[14svh] text-center sm:h-[50svh] sm:py-[15.5svh] md:h-[56svh] md:py-[17.5svh] lg:h-[60svh] lg:py-[19svh]"
+              aria-label="Student venture story progression"
+              className="relative h-[46svh] overflow-hidden text-center sm:h-[50svh] md:h-[56svh] lg:h-[60svh]"
             >
-              {companies.map((item, index) => (
-                <button
+              <span aria-hidden className="pointer-events-none absolute inset-x-3 top-1/2 z-[1] h-px -translate-y-1/2 bg-background/15" />
+              <div
+                ref={nameTrackRef}
+                role="list"
+                className="relative z-[2] w-full will-change-transform"
+              >
+                {companies.map((item, index) => (
+                <div
                   key={item.name}
-                  type="button"
-                  onClick={() => goTo(index)}
-                  className={`flex min-h-[18svh] w-full shrink-0 snap-center items-center justify-center px-4 sm:px-6 md:px-8 transition-opacity duration-500 sm:min-h-[19svh] md:min-h-[21svh] lg:min-h-[22svh] ${
-                    index === active ? "opacity-100" : "opacity-15 hover:opacity-45"
+                  role="listitem"
+                  aria-current={index === active ? "step" : undefined}
+                  className={`flex min-h-[18svh] w-full shrink-0 items-center justify-center px-4 transition-[opacity,transform] duration-500 sm:min-h-[19svh] sm:px-6 md:min-h-[21svh] md:px-8 lg:min-h-[22svh] ${
+                    index === active ? "scale-100 opacity-100" : "scale-[0.82] opacity-20"
                   }`}
                 >
-                  <span className="pr-[0.06em] font-serif-italic text-[clamp(2.05rem,5vw,4.8rem)] leading-[1.04]">
+                  <span className="pr-[0.08em] font-serif-italic text-[clamp(2.05rem,5vw,4.8rem)] leading-[1.04]">
                     {item.name}
                   </span>
-                </button>
-              ))}
+                </div>
+                ))}
+              </div>
             </div>
 
             <motion.div
               key={`right-${active}`}
-              initial={{ opacity: 0, x: 28 }}
+              initial={reduceMotion ? false : { opacity: 0, x: 28, scale: 0.985 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, ease: [0.7, 0, 0.2, 1] }}
+              transition={{ duration: reduceMotion ? 0 : 0.7, ease: [0.7, 0, 0.2, 1] }}
               className="h-[46svh] sm:h-[50svh] md:h-[56svh] lg:h-[60svh]"
             >
               <Placeholder
@@ -861,9 +864,9 @@ function SparkCarousel({
 
           <motion.div
             key={`copy-${active}`}
-            initial={{ opacity: 0, y: 16 }}
+            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.12 }}
+            transition={{ duration: reduceMotion ? 0 : 0.6, delay: reduceMotion ? 0 : 0.12 }}
             className="mx-auto mt-6 max-w-5xl border-t border-background/15 pt-5 text-center sm:mt-8 sm:pt-6"
           >
             <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-background/50">
