@@ -772,7 +772,7 @@ function SparkCarousel({
 
   return (
     <div className="mt-9 sm:mt-11 md:mt-14 lg:mt-16">
-      <div className="w-full overflow-hidden border-t border-background/15 pt-5 sm:pt-7 md:pt-9">
+      <div className="w-full overflow-hidden pt-5 sm:pt-7 md:pt-9">
         <div
           onTouchStart={(event) => {
             touchStartRef.current = event.touches[0]?.clientX ?? null;
