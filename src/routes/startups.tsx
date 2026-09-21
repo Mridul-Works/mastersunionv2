@@ -786,7 +786,7 @@ function SparkCarousel({
           }}
           className="w-full touch-pan-y"
         >
-          <div className="relative grid grid-cols-2 items-stretch gap-2 sm:gap-4 md:gap-7 lg:gap-10">
+          <div className="grid grid-cols-[minmax(0,1fr)_minmax(88px,0.42fr)_minmax(0,1fr)] items-stretch gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(150px,0.5fr)_minmax(0,1fr)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(210px,0.52fr)_minmax(0,1fr)] md:gap-7 lg:gap-10">
             <motion.div
               key={`left-${active}`}
               initial={{ opacity: 0, x: -28 }}
@@ -825,18 +825,18 @@ function SparkCarousel({
                   if (closest !== active) onActiveChange(closest);
                 });
               }}
-              className="no-scrollbar absolute inset-0 z-10 flex h-[230px] snap-y snap-mandatory flex-col overflow-y-auto overscroll-contain py-[76px] text-center sm:h-[360px] sm:py-[120px] md:h-[470px] md:py-[157px] lg:h-[560px] lg:py-[187px]"
+              className="no-scrollbar flex h-[230px] snap-y snap-mandatory flex-col overflow-y-auto overscroll-contain py-[76px] text-center sm:h-[360px] sm:py-[120px] md:h-[470px] md:py-[157px] lg:h-[560px] lg:py-[187px]"
             >
               {companies.map((item, index) => (
                 <button
                   key={item.name}
                   type="button"
                   onClick={() => goTo(index)}
-                  className={`flex min-h-[78px] w-full shrink-0 snap-center items-center justify-center px-4 transition-opacity duration-500 sm:min-h-[120px] sm:px-8 md:min-h-[156px] lg:min-h-[186px] ${
+                  className={`flex min-h-[78px] w-full shrink-0 snap-center items-center justify-center px-1 transition-opacity duration-500 sm:min-h-[120px] md:min-h-[156px] lg:min-h-[186px] ${
                     index === active ? "opacity-100" : "opacity-15 hover:opacity-45"
                   }`}
                 >
-                  <span className="whitespace-nowrap font-serif-italic text-[clamp(2.05rem,5vw,4.8rem)] leading-[1.04]">
+                  <span className="font-serif-italic text-[clamp(2.05rem,5vw,4.8rem)] leading-[1.04]">
                     {item.name === "SeedsAI" ? "SeedsAI / CDI" : item.name}
                   </span>
                 </button>
