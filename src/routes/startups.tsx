@@ -772,37 +772,6 @@ function SparkCarousel({
 
   return (
     <div className="mt-9 sm:mt-11 md:mt-14 lg:mt-16">
-      <div className="mb-6 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-background/15 pb-5">
-        <div className="flex min-w-0 items-center gap-4">
-          <span className="eyebrow text-background/55">
-            {String(active + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
-          </span>
-          <span className="hidden text-[0.72rem] uppercase tracking-[0.18em] text-background/40 sm:inline">
-            Swipe to explore
-          </span>
-        </div>
-        <div className="flex gap-2">
-          <button
-            type="button"
-            aria-label="Previous startup"
-            disabled={active === 0}
-            onClick={() => goTo(active - 1)}
-            className="flex size-10 items-center justify-center border border-background/20 text-background transition-colors hover:bg-background/10 disabled:cursor-not-allowed disabled:opacity-30"
-          >
-            <ArrowRight className="size-4 rotate-180" />
-          </button>
-          <button
-            type="button"
-            aria-label="Next startup"
-            disabled={active === count - 1}
-            onClick={() => goTo(active + 1)}
-            className="flex size-10 items-center justify-center bg-background text-foreground transition-opacity hover:opacity-85 disabled:cursor-not-allowed disabled:opacity-30"
-          >
-            <ArrowRight className="size-4" />
-          </button>
-        </div>
-      </div>
-
       <div className="w-full overflow-hidden border-t border-background/15 pt-5 sm:pt-7 md:pt-9">
         <div
           onTouchStart={(event) => {
