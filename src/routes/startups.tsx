@@ -737,6 +737,8 @@ function SparkCarousel({
   const touchStartRef = useRef<number | null>(null);
   const companyRailRef = useRef<HTMLDivElement>(null);
   const scrollFrameRef = useRef(0);
+  const programmaticScrollRef = useRef(false);
+  const programmaticScrollTimerRef = useRef<number | null>(null);
   const count = companies.length;
   const company = companies[active];
 
@@ -749,13 +751,24 @@ function SparkCarousel({
     const rail = companyRailRef.current;
     const item = rail?.children[active] as HTMLElement | undefined;
     if (!rail || !item) return;
+    programmaticScrollRef.current = true;
+    if (programmaticScrollTimerRef.current !== null) window.clearTimeout(programmaticScrollTimerRef.current);
     rail.scrollTo({
       top: item.offsetTop - rail.offsetTop - (rail.clientHeight - item.offsetHeight) / 2,
       behavior: "smooth",
     });
+    programmaticScrollTimerRef.current = window.setTimeout(() => {
+      programmaticScrollRef.current = false;
+    }, 700);
   }, [active]);
 
-  useEffect(() => () => cancelAnimationFrame(scrollFrameRef.current), []);
+  useEffect(
+    () => () => {
+      cancelAnimationFrame(scrollFrameRef.current);
+      if (programmaticScrollTimerRef.current !== null) window.clearTimeout(programmaticScrollTimerRef.current);
+    },
+    [],
+  );
 
   return (
     <div className="mt-9 sm:mt-11 md:mt-14 lg:mt-16">
@@ -823,6 +836,7 @@ function SparkCarousel({
               ref={companyRailRef}
               aria-label="Choose a student venture"
               onScroll={(event) => {
+                if (programmaticScrollRef.current) return;
                 const rail = event.currentTarget;
                 cancelAnimationFrame(scrollFrameRef.current);
                 scrollFrameRef.current = requestAnimationFrame(() => {
