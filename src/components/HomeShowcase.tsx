@@ -14,8 +14,6 @@ import { INDUSTRY_PRACTITIONERS } from "@/lib/industry-practitioners";
 import bhupesh from "@/assets/faculty/bhupesh.png.asset.json";
 import nandini from "@/assets/faculty/nandini.png.asset.json";
 import garima from "@/assets/faculty/garima.png.asset.json";
-import manoj from "@/assets/faculty/manoj.png.asset.json";
-import raghuRaman from "@/assets/faculty/raghu-raman.png.asset.json";
 import havish from "@/assets/faculty/havish-madhvapaty.png.asset.json";
 import ekhlaque from "@/assets/faculty/ekhlaque-bari.png.asset.json";
 import sumit from "@/assets/faculty/sumit-shukla.png.asset.json";
