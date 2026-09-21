@@ -14,8 +14,6 @@ import { INDUSTRY_PRACTITIONERS } from "@/lib/industry-practitioners";
 import bhupesh from "@/assets/faculty/bhupesh.png.asset.json";
 import nandini from "@/assets/faculty/nandini.png.asset.json";
 import garima from "@/assets/faculty/garima.png.asset.json";
-import manoj from "@/assets/faculty/manoj.png.asset.json";
-import raghuRaman from "@/assets/faculty/raghu-raman.png.asset.json";
 import havish from "@/assets/faculty/havish-madhvapaty.png.asset.json";
 import ekhlaque from "@/assets/faculty/ekhlaque-bari.png.asset.json";
 import sumit from "@/assets/faculty/sumit-shukla.png.asset.json";
@@ -208,8 +206,6 @@ const FACULTY_ALL: { name: string; role: string; company: string; img?: string; 
     img: p.img,
     category: "Industry" as const,
   })),
-  { name: "Manoj Kohli", role: "Former CEO & MD", company: "SoftBank India", img: manoj.url, category: "Industry" },
-  { name: "Captain Raghu Raman", role: "Former President", company: "Reliance Industries", img: raghuRaman.url, category: "Industry" },
   { name: "Rajat Mathur", role: "Former Managing Director", company: "Morgan Stanley", category: "Industry" },
   { name: "Rohit Kapoor", role: "CEO, Food Marketplace", company: "Swiggy", category: "Industry" },
   { name: "Malthi Satish", role: "Former Director, Product", company: "PayPal", category: "Industry" },

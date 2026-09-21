@@ -972,7 +972,7 @@ function ScrollCarousel({
 
   return (
     <div className="mt-8 sm:mt-10">
-      <div className="mb-4 flex items-center justify-between md:hidden">
+      <div className="mb-4 flex items-center justify-between">
         <span className={`eyebrow ${dark ? "text-background/50" : "text-foreground/50"}`}>
           {String(active + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
         </span>
@@ -1415,6 +1415,7 @@ function StartupsPage() {
   const [selectedQuote, setSelectedQuote] = useState(0);
   const [selectedSpark, setSelectedSpark] = useState(0);
   const [heroVideoEnded, setHeroVideoEnded] = useState(false);
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
   const headlineWordRef = useRef<HTMLSpanElement>(null);
   const [wordFontSize, setWordFontSize] = useState<number | null>(null);
 
@@ -1450,6 +1451,25 @@ function StartupsPage() {
     }
     return () => {
       lenis?.start();
+    };
+  }, [heroVideoEnded]);
+
+  // Safety unlocks: never leave the page frozen if the intro clip cannot
+  // autoplay, stalls on a slow connection, or takes too long to finish.
+  useEffect(() => {
+    if (heroVideoEnded) return;
+    const video = heroVideoRef.current;
+    video?.play?.().catch(() => setHeroVideoEnded(true));
+    const cap = window.setTimeout(() => setHeroVideoEnded(true), 9000);
+    const onFirstScroll = () => setHeroVideoEnded(true);
+    window.addEventListener("wheel", onFirstScroll, { passive: true });
+    window.addEventListener("touchstart", onFirstScroll, { passive: true });
+    window.addEventListener("keydown", onFirstScroll);
+    return () => {
+      window.clearTimeout(cap);
+      window.removeEventListener("wheel", onFirstScroll);
+      window.removeEventListener("touchstart", onFirstScroll);
+      window.removeEventListener("keydown", onFirstScroll);
     };
   }, [heroVideoEnded]);
 
@@ -1502,6 +1522,7 @@ function StartupsPage() {
           }`}
         />
         <video
+          ref={heroVideoRef}
           src={heroVideoAsset.url}
           autoPlay
           muted
@@ -1509,6 +1530,11 @@ function StartupsPage() {
           preload="auto"
           onEnded={() => setHeroVideoEnded(true)}
           onError={() => setHeroVideoEnded(true)}
+          onStalled={() => setHeroVideoEnded(true)}
+          onSuspend={() => {
+            const v = heroVideoRef.current;
+            if (v && v.paused && v.readyState < 3) setHeroVideoEnded(true);
+          }}
           className={`absolute inset-0 block h-full max-w-full w-full object-contain object-center xl:object-cover transition-opacity duration-1000 ease-out ${
             heroVideoEnded ? "opacity-0" : "opacity-100"
           }`}
@@ -1717,7 +1743,7 @@ function StartupsPage() {
         </Reveal>
         <ScrollCarousel count={DROPSHIPPING_TOP.length}>
           {DROPSHIPPING_TOP.map((d, i) => (
-            <Reveal key={d.name} delay={i * 0.04} className="w-[78%] shrink-0 snap-start sm:w-[45%] md:w-auto">
+            <Reveal key={d.name} delay={i * 0.04} className="w-[78%] shrink-0 snap-start sm:w-[45%] md:w-[38%] lg:w-[28%]">
               <article className="h-full bg-background/[0.045] p-6">
                 <div className="flex items-center gap-3">
                   <LogoBadge size="size-8" />
@@ -2031,7 +2057,7 @@ function StartupsPage() {
           <div className="flex flex-wrap items-center gap-x-3 gap-y-4">
             {HSSL_STAGES.map((stage, i) => (
               <div key={stage} className="flex items-center gap-3">
-                <span className="eyebrow rounded-full border border-accent px-4 py-2 text-foreground transition-colors duration-300 hover:bg-accent/10">
+                <span className="eyebrow rounded-full border border-accent px-4 py-2 text-background transition-colors duration-300 hover:bg-accent/10">
                   {stage}
                 </span>
                 {i < HSSL_STAGES.length - 1 && <ArrowRight className="size-3.5 text-background/30" aria-hidden />}
