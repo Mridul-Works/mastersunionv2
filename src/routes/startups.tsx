@@ -798,6 +798,9 @@ function SparkCarousel({
     const story = storyRef.current;
     if (!story || count <= 1) return;
 
+    lastActiveRef.current = index;
+    onActiveChange(index);
+
     const viewportHeight = window.innerHeight || 1;
     const scrollRange = Math.max(1, story.offsetHeight - viewportHeight);
     const storyTop = story.getBoundingClientRect().top + window.scrollY;
