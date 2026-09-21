@@ -750,7 +750,7 @@ function SparkCarousel({
     const item = rail?.children[active] as HTMLElement | undefined;
     if (!rail || !item) return;
     rail.scrollTo({
-      top: item.offsetTop - (rail.clientHeight - item.offsetHeight) / 2,
+      top: item.offsetTop - rail.offsetTop - (rail.clientHeight - item.offsetHeight) / 2,
       behavior: "smooth",
     });
   }, [active]);
@@ -831,7 +831,7 @@ function SparkCarousel({
                   let closest = active;
                   let distance = Number.POSITIVE_INFINITY;
                   items.forEach((item, index) => {
-                    const itemCenter = item.offsetTop + item.offsetHeight / 2;
+                    const itemCenter = item.offsetTop - rail.offsetTop + item.offsetHeight / 2;
                     const nextDistance = Math.abs(center - itemCenter);
                     if (nextDistance < distance) {
                       distance = nextDistance;
