@@ -1634,30 +1634,32 @@ function StartupsPage() {
       </header>
 
       <div className="relative z-10 bg-foreground font-display text-background">
-      <Section id="spark" tone="light" container="max-w-7xl">
-        <div className="grid grid-cols-1 gap-5 border-b border-background/20 pb-8 sm:gap-6 sm:pb-10 md:grid-cols-12 md:items-end md:gap-10 md:pb-12 lg:gap-12 lg:pb-14">
-          <div className="md:col-span-8">
-            <Reveal>
-              <div className="flex items-center gap-4">
-                <span aria-hidden className="h-px w-12 bg-accent" />
-                <Eyebrow>The Spark</Eyebrow>
+        <div className="-mt-8 sm:-mt-10 md:-mt-14 lg:-mt-20">
+          <Section id="spark" tone="light" container="max-w-7xl">
+            <div className="grid grid-cols-1 gap-5 border-b border-background/20 pb-8 sm:gap-6 sm:pb-10 md:grid-cols-12 md:items-end md:gap-10 md:pb-12 lg:gap-12 lg:pb-14">
+              <div className="md:col-span-8">
+                <Reveal>
+                  <div className="flex items-center gap-4">
+                    <span aria-hidden className="h-px w-12 bg-accent" />
+                    <Eyebrow>The Spark</Eyebrow>
+                  </div>
+                </Reveal>
+                <Reveal delay={0.05}>
+                  <h2 className="mt-5 max-w-[18ch] font-display text-[1.875rem] font-normal leading-[1.2] tracking-normal">
+                    An idea begins with noticing.
+                  </h2>
+                </Reveal>
               </div>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h2 className="mt-5 max-w-[18ch] font-display text-[1.875rem] font-normal leading-[1.2] tracking-normal">
-                An idea begins with noticing.
-              </h2>
-            </Reveal>
-          </div>
-          <Reveal delay={0.1} className="md:col-span-4">
-            <p className="max-w-[42ch] text-[0.98rem] leading-[1.6] text-background/70 sm:text-[1rem] md:ml-auto md:leading-[1.65]">
-              At Masters&apos; Union, questions, frustrations, and assignments become real businesses.
-            </p>
-          </Reveal>
-        </div>
+              <Reveal delay={0.1} className="md:col-span-4">
+                <p className="max-w-[42ch] text-[0.98rem] leading-[1.6] text-background/70 sm:text-[1rem] md:ml-auto md:leading-[1.65]">
+                  At Masters&apos; Union, questions, frustrations, and assignments become real businesses.
+                </p>
+              </Reveal>
+            </div>
 
-        <SparkCarousel companies={SPARK_EXAMPLES} active={selectedSpark} onActiveChange={setSelectedSpark} />
-      </Section>
+            <SparkCarousel companies={SPARK_EXAMPLES} active={selectedSpark} onActiveChange={setSelectedSpark} />
+          </Section>
+        </div>
 
       <Section id="doing" tone="paper">
         <div className="ml-auto w-full max-w-4xl border-l border-accent/70 pl-4 text-left sm:pl-6 md:pl-8 lg:pl-12">
