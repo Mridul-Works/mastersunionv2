@@ -864,12 +864,12 @@ function SparkCarousel({
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.12 }}
-            className="mx-auto mt-6 max-w-3xl border-t border-background/15 pt-5 text-center sm:mt-8 sm:pt-6"
+            className="mx-auto mt-6 max-w-5xl border-t border-background/15 pt-5 text-center sm:mt-8 sm:pt-6"
           >
             <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-background/50">
               {company.founder}
             </div>
-            <p className="mx-auto mt-4 max-w-[52rem] text-[0.98rem] leading-[1.6] text-background/70 sm:mt-5 md:text-[1.05rem] md:leading-[1.65]">
+            <p className="mx-auto mt-4 text-[0.98rem] leading-[1.6] text-background/70 sm:mt-5 md:text-[1.05rem] md:leading-[1.65]">
               {company.body}
             </p>
           </motion.div>
