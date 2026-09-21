@@ -786,16 +786,17 @@ function SparkCarousel({
           }}
           className="w-full touch-pan-y"
         >
-          <div className="grid grid-cols-[minmax(0,1fr)_minmax(88px,0.42fr)_minmax(0,1fr)] items-center gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(150px,0.5fr)_minmax(0,1fr)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(210px,0.52fr)_minmax(0,1fr)] md:gap-7 lg:gap-10">
+          <div className="grid grid-cols-[minmax(0,1fr)_minmax(88px,0.42fr)_minmax(0,1fr)] items-stretch gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(150px,0.5fr)_minmax(0,1fr)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(210px,0.52fr)_minmax(0,1fr)] md:gap-7 lg:gap-10">
             <motion.div
               key={`left-${active}`}
               initial={{ opacity: 0, x: -28 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, ease: [0.7, 0, 0.2, 1] }}
+              className="h-[230px] sm:h-[360px] md:h-[470px] lg:h-[560px]"
             >
               <Placeholder
                 kind="image"
-                aspect="aspect-[3/4] sm:aspect-[4/5] md:aspect-square"
+                aspect="h-full"
                 note={`${company.name} — founder at work`}
                 className="rounded-[6px]"
               />
@@ -847,10 +848,11 @@ function SparkCarousel({
               initial={{ opacity: 0, x: 28 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, ease: [0.7, 0, 0.2, 1] }}
+              className="h-[230px] sm:h-[360px] md:h-[470px] lg:h-[560px]"
             >
               <Placeholder
                 kind="image"
-                aspect="aspect-[3/4] sm:aspect-[4/5] md:aspect-square"
+                aspect="h-full"
                 note={`${company.name} — product detail`}
                 className="rounded-[6px]"
               />
