@@ -208,8 +208,6 @@ const FACULTY_ALL: { name: string; role: string; company: string; img?: string; 
     img: p.img,
     category: "Industry" as const,
   })),
-  { name: "Manoj Kohli", role: "Former CEO & MD", company: "SoftBank India", img: manoj.url, category: "Industry" },
-  { name: "Captain Raghu Raman", role: "Former President", company: "Reliance Industries", img: raghuRaman.url, category: "Industry" },
   { name: "Rajat Mathur", role: "Former Managing Director", company: "Morgan Stanley", category: "Industry" },
   { name: "Rohit Kapoor", role: "CEO, Food Marketplace", company: "Swiggy", category: "Industry" },
   { name: "Malthi Satish", role: "Former Director, Product", company: "PayPal", category: "Industry" },
