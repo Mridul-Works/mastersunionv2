@@ -837,7 +837,7 @@ function SparkCarousel({
                   }`}
                 >
                   <span className="font-serif-italic text-[clamp(2.05rem,5vw,4.8rem)] leading-[1.04]">
-                    {item.name === "SeedsAI" ? "SeedsAI / CDI" : item.name}
+                    {item.name}
                   </span>
                 </button>
               ))}
