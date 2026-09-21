@@ -59,9 +59,9 @@ const SPARK_EXAMPLES = [
     body: "Sakshi Tuteja overheard a mother ask, in a product meeting at GNC, “Why don't we have healthier options for kids?” She couldn't shake the question. Yango is the answer.",
   },
   {
-    name: "TrueBrands",
-    founder: "Mukund Gupta",
-    body: "Mukund Gupta watched brand-new, unsold clothes pile up in a Delhi warehouse and asked the obvious question nobody was solving: why do brands burn inventory while people can't afford the same brands?",
+    name: "Eight",
+    founder: "Mohit Paliwal",
+    body: "Mohit Paliwal, Mohit Goswami, and Yugal Tamang realized at a Masters' Union cafeteria table that not everyone wants to be seen, but everyone has a story worth telling — Eight became the stage for it.",
   },
   {
     name: "SeedsAI",
