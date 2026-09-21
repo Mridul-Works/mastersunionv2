@@ -832,11 +832,11 @@ function SparkCarousel({
                   key={item.name}
                   type="button"
                   onClick={() => goTo(index)}
-                  className={`flex min-h-[78px] w-full shrink-0 snap-center items-center justify-center px-1 transition-opacity duration-500 sm:min-h-[120px] md:min-h-[156px] lg:min-h-[186px] ${
+                  className={`flex min-h-[78px] w-full shrink-0 snap-center items-center justify-center px-4 sm:px-6 md:px-8 transition-opacity duration-500 sm:min-h-[120px] md:min-h-[156px] lg:min-h-[186px] ${
                     index === active ? "opacity-100" : "opacity-15 hover:opacity-45"
                   }`}
                 >
-                  <span className="font-serif-italic text-[clamp(2.05rem,5vw,4.8rem)] leading-[1.04]">
+                  <span className="pr-[0.06em] font-serif-italic text-[clamp(2.05rem,5vw,4.8rem)] leading-[1.04]">
                     {item.name}
                   </span>
                 </button>
