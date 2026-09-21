@@ -786,7 +786,7 @@ function SparkCarousel({
           }}
           className="w-full touch-pan-y"
         >
-          <div className="grid grid-cols-[minmax(0,1fr)_minmax(88px,0.42fr)_minmax(0,1fr)] items-stretch gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(150px,0.5fr)_minmax(0,1fr)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(210px,0.52fr)_minmax(0,1fr)] md:gap-7 lg:gap-10">
+          <div className="grid grid-cols-[minmax(0,1fr)_minmax(88px,0.42fr)_minmax(0,1fr)] items-stretch gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(150px,0.5fr)_minmax(0,1fr)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(210px,0.52fr)_minmax(0,1fr)] md:gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(300px,0.72fr)_minmax(0,1fr)] lg:gap-10">
             <motion.div
               key={`left-${active}`}
               initial={{ opacity: 0, x: -28 }}
