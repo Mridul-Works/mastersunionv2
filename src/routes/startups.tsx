@@ -792,7 +792,7 @@ function SparkCarousel({
               initial={{ opacity: 0, x: -28 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, ease: [0.7, 0, 0.2, 1] }}
-              className="h-[230px] sm:h-[360px] md:h-[470px] lg:h-[560px]"
+              className="h-[46svh] sm:h-[50svh] md:h-[56svh] lg:h-[60svh]"
             >
               <Placeholder
                 kind="image"
@@ -825,14 +825,14 @@ function SparkCarousel({
                   if (closest !== active) onActiveChange(closest);
                 });
               }}
-              className="no-scrollbar flex h-[230px] snap-y snap-mandatory flex-col overflow-y-auto overscroll-contain py-[76px] text-center sm:h-[360px] sm:py-[120px] md:h-[470px] md:py-[157px] lg:h-[560px] lg:py-[187px]"
+              className="no-scrollbar flex h-[46svh] snap-y snap-mandatory flex-col overflow-y-auto overscroll-contain py-[14svh] text-center sm:h-[50svh] sm:py-[15.5svh] md:h-[56svh] md:py-[17.5svh] lg:h-[60svh] lg:py-[19svh]"
             >
               {companies.map((item, index) => (
                 <button
                   key={item.name}
                   type="button"
                   onClick={() => goTo(index)}
-                  className={`flex min-h-[78px] w-full shrink-0 snap-center items-center justify-center px-4 sm:px-6 md:px-8 transition-opacity duration-500 sm:min-h-[120px] md:min-h-[156px] lg:min-h-[186px] ${
+                  className={`flex min-h-[18svh] w-full shrink-0 snap-center items-center justify-center px-4 sm:px-6 md:px-8 transition-opacity duration-500 sm:min-h-[19svh] md:min-h-[21svh] lg:min-h-[22svh] ${
                     index === active ? "opacity-100" : "opacity-15 hover:opacity-45"
                   }`}
                 >
@@ -848,7 +848,7 @@ function SparkCarousel({
               initial={{ opacity: 0, x: 28 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, ease: [0.7, 0, 0.2, 1] }}
-              className="h-[230px] sm:h-[360px] md:h-[470px] lg:h-[560px]"
+              className="h-[46svh] sm:h-[50svh] md:h-[56svh] lg:h-[60svh]"
             >
               <Placeholder
                 kind="image"
