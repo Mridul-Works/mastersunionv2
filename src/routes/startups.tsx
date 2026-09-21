@@ -770,9 +770,39 @@ function SparkCarousel({
     [],
   );
 
+  // Pin the section once it reaches the top of the screen and let page scroll
+  // move through the companies before releasing to the next section.
+  const pinRef = useRef<HTMLDivElement>(null);
+  const pinFrameRef = useRef(0);
+  useEffect(() => {
+    const onScroll = () => {
+      cancelAnimationFrame(pinFrameRef.current);
+      pinFrameRef.current = requestAnimationFrame(() => {
+        const el = pinRef.current;
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const travel = rect.height - window.innerHeight;
+        if (travel <= 0) return;
+        const progress = Math.min(1, Math.max(0, -rect.top / travel));
+        const next = Math.min(count - 1, Math.max(0, Math.round(progress * (count - 1))));
+        if (next !== active) onActiveChange(next);
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(pinFrameRef.current);
+    };
+  }, [active, count, onActiveChange]);
+
   return (
-    <div className="mt-5 sm:mt-7 md:mt-8">
-      <div className="w-full overflow-hidden pt-2 sm:pt-3 md:pt-4">
+    <div
+      ref={pinRef}
+      className="relative mt-5 sm:mt-7 md:mt-8"
+      style={{ height: `calc(${count} * 100svh)` }}
+    >
+      <div className="sticky top-0 flex h-[100svh] w-full flex-col justify-center overflow-hidden pt-2 sm:pt-3 md:pt-4">
         <div
           onTouchStart={(event) => {
             touchStartRef.current = event.touches[0]?.clientX ?? null;
@@ -825,7 +855,7 @@ function SparkCarousel({
                   if (closest !== active) onActiveChange(closest);
                 });
               }}
-              className="no-scrollbar flex h-[46svh] snap-y snap-mandatory flex-col overflow-y-auto overscroll-contain py-[14svh] text-center sm:h-[50svh] sm:py-[15.5svh] md:h-[56svh] md:py-[17.5svh] lg:h-[60svh] lg:py-[19svh]"
+              className="no-scrollbar flex h-[46svh] flex-col overflow-hidden py-[14svh] text-center sm:h-[50svh] sm:py-[15.5svh] md:h-[56svh] md:py-[17.5svh] lg:h-[60svh] lg:py-[19svh]"
             >
               {companies.map((item, index) => (
                 <button
