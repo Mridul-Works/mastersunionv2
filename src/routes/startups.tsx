@@ -725,99 +725,37 @@ function MediaRail({
   );
 }
 
-function SparkStory({
-  company,
-  index,
-}: {
-  company: (typeof SPARK_EXAMPLES)[number];
-  index: number;
-}) {
-  const reverse = index % 2 === 1;
-  const frames = [
-    `${company.name} — founder at work`,
-    `${company.name} — product detail`,
-    `${company.name} — customer context`,
-    `${company.name} — building the venture`,
-  ];
-
-  return (
-    <article className="grid w-full min-w-0 shrink-0 snap-start grid-cols-1 items-center gap-7 border-t border-background/15 pt-7 sm:gap-9 sm:pt-9 md:gap-10 md:pt-11 lg:grid-cols-12 lg:gap-16 lg:pt-14">
-      <Reveal
-        className={`lg:col-span-5 ${reverse ? "lg:order-2 lg:pl-8" : "lg:order-1"}`}
-      >
-        <div className="flex items-center gap-4">
-          <span className="font-mono text-[12px] font-semibold text-accent">
-            {String(index + 1).padStart(2, "0")}
-          </span>
-          <span aria-hidden className="h-px w-10 bg-accent" />
-          <span className="eyebrow text-background/45">Student venture</span>
-        </div>
-        <h3 className="font-serif-italic mt-4 text-[clamp(2.05rem,5vw,4.8rem)] leading-[1.04]">
-          {company.name === "SeedsAI" ? "SeedsAI / CDI" : company.name}
-        </h3>
-        <div className="mt-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-background/50">
-          {company.founder}
-        </div>
-        <p className="mt-4 max-w-[34rem] text-[0.98rem] leading-[1.6] text-background/70 sm:mt-5 md:mt-6 md:text-[1.05rem] md:leading-[1.65]">
-          {company.body}
-        </p>
-      </Reveal>
-
-      <Reveal
-        delay={0.08}
-        className={`lg:col-span-7 ${reverse ? "lg:order-1" : "lg:order-2"}`}
-      >
-        <div className="grid h-[320px] grid-cols-6 grid-rows-6 gap-2 sm:h-[410px] sm:gap-3 md:h-[460px] lg:h-[520px]">
-          <Placeholder
-            kind="image"
-            aspect="h-full"
-            note={frames[0]}
-            className={`col-span-4 col-start-1 row-span-4 row-start-1 sm:row-span-6 ${reverse ? "sm:col-start-3" : ""}`}
-          />
-          <Placeholder
-            kind="image"
-            aspect="h-full"
-            note={frames[1]}
-            className={`col-span-2 col-start-5 row-span-2 row-start-1 ${reverse ? "sm:col-start-1" : ""}`}
-          />
-          <Placeholder
-            kind="image"
-            aspect="h-full"
-            note={frames[2]}
-            className={`col-span-2 col-start-5 row-span-2 row-start-3 ${reverse ? "sm:col-start-1" : ""}`}
-          />
-          <Placeholder
-            kind="image"
-            aspect="h-full"
-            note={frames[3]}
-            className={`col-span-6 col-start-1 row-span-2 row-start-5 sm:col-span-2 ${
-              reverse ? "sm:col-start-1" : "sm:col-start-5"
-            }`}
-          />
-        </div>
-      </Reveal>
-    </article>
-  );
-}
-
 function SparkCarousel({
-  children,
-  count,
+  companies,
   active,
   onActiveChange,
 }: {
-  children: React.ReactNode;
-  count: number;
+  companies: typeof SPARK_EXAMPLES;
   active: number;
   onActiveChange: (index: number) => void;
 }) {
   const touchStartRef = useRef<number | null>(null);
-  const slides = Array.isArray(children) ? children : [children];
+  const companyRailRef = useRef<HTMLDivElement>(null);
+  const scrollFrameRef = useRef(0);
+  const count = companies.length;
+  const company = companies[active];
 
   const goTo = (index: number) => {
     const next = Math.min(count - 1, Math.max(0, index));
     onActiveChange(next);
   };
+
+  useEffect(() => {
+    const rail = companyRailRef.current;
+    const item = rail?.children[active] as HTMLElement | undefined;
+    if (!rail || !item) return;
+    rail.scrollTo({
+      top: item.offsetTop - (rail.clientHeight - item.offsetHeight) / 2,
+      behavior: "smooth",
+    });
+  }, [active]);
+
+  useEffect(() => () => cancelAnimationFrame(scrollFrameRef.current), []);
 
   return (
     <div className="mt-9 sm:mt-11 md:mt-14 lg:mt-16">
@@ -852,7 +790,7 @@ function SparkCarousel({
         </div>
       </div>
 
-      <div className="w-full overflow-hidden">
+      <div className="w-full overflow-hidden border-t border-background/15 pt-5 sm:pt-7 md:pt-9">
         <div
           onTouchStart={(event) => {
             touchStartRef.current = event.touches[0]?.clientX ?? null;
@@ -864,16 +802,91 @@ function SparkCarousel({
             if (start === null || end === undefined || Math.abs(start - end) < 45) return;
             goTo(active + (start > end ? 1 : -1));
           }}
-          className="w-full"
+          className="w-full touch-pan-y"
         >
+          <div className="grid grid-cols-[minmax(0,1fr)_minmax(88px,0.42fr)_minmax(0,1fr)] items-center gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(150px,0.5fr)_minmax(0,1fr)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(210px,0.52fr)_minmax(0,1fr)] md:gap-7 lg:gap-10">
+            <motion.div
+              key={`left-${active}`}
+              initial={{ opacity: 0, x: -28 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, ease: [0.7, 0, 0.2, 1] }}
+            >
+              <Placeholder
+                kind="image"
+                aspect="aspect-[3/4] sm:aspect-[4/5] md:aspect-square"
+                note={`${company.name} — founder at work`}
+                className="rounded-[6px]"
+              />
+            </motion.div>
+
+            <div
+              ref={companyRailRef}
+              aria-label="Choose a student venture"
+              onScroll={(event) => {
+                const rail = event.currentTarget;
+                cancelAnimationFrame(scrollFrameRef.current);
+                scrollFrameRef.current = requestAnimationFrame(() => {
+                  const center = rail.scrollTop + rail.clientHeight / 2;
+                  const items = Array.from(rail.children) as HTMLElement[];
+                  let closest = active;
+                  let distance = Number.POSITIVE_INFINITY;
+                  items.forEach((item, index) => {
+                    const itemCenter = item.offsetTop + item.offsetHeight / 2;
+                    const nextDistance = Math.abs(center - itemCenter);
+                    if (nextDistance < distance) {
+                      distance = nextDistance;
+                      closest = index;
+                    }
+                  });
+                  if (closest !== active) onActiveChange(closest);
+                });
+              }}
+              className="no-scrollbar flex h-[230px] snap-y snap-mandatory flex-col overflow-y-auto overscroll-contain py-[76px] text-center sm:h-[360px] sm:py-[120px] md:h-[470px] md:py-[157px] lg:h-[560px] lg:py-[187px]"
+            >
+              {companies.map((item, index) => (
+                <button
+                  key={item.name}
+                  type="button"
+                  onClick={() => goTo(index)}
+                  className={`flex min-h-[78px] w-full shrink-0 snap-center items-center justify-center px-1 transition-opacity duration-500 sm:min-h-[120px] md:min-h-[156px] lg:min-h-[186px] ${
+                    index === active ? "opacity-100" : "opacity-15 hover:opacity-45"
+                  }`}
+                >
+                  <span className="font-serif-italic text-[clamp(2.05rem,5vw,4.8rem)] leading-[1.04]">
+                    {item.name === "SeedsAI" ? "SeedsAI / CDI" : item.name}
+                  </span>
+                </button>
+              ))}
+            </div>
+
+            <motion.div
+              key={`right-${active}`}
+              initial={{ opacity: 0, x: 28 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, ease: [0.7, 0, 0.2, 1] }}
+            >
+              <Placeholder
+                kind="image"
+                aspect="aspect-[3/4] sm:aspect-[4/5] md:aspect-square"
+                note={`${company.name} — product detail`}
+                className="rounded-[6px]"
+              />
+            </motion.div>
+          </div>
+
           <motion.div
-            key={active}
-            initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.55, ease: [0.7, 0, 0.2, 1] }}
-            className="w-full"
+            key={`copy-${active}`}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.12 }}
+            className="mx-auto mt-6 max-w-3xl border-t border-background/15 pt-5 text-center sm:mt-8 sm:pt-6"
           >
-            {slides[active]}
+            <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-background/50">
+              {company.founder}
+            </div>
+            <p className="mx-auto mt-4 max-w-[52rem] text-[0.98rem] leading-[1.6] text-background/70 sm:mt-5 md:text-[1.05rem] md:leading-[1.65]">
+              {company.body}
+            </p>
           </motion.div>
         </div>
       </div>
@@ -1658,15 +1671,7 @@ function StartupsPage() {
           </Reveal>
         </div>
 
-        <SparkCarousel
-          count={SPARK_EXAMPLES.length}
-          active={selectedSpark}
-          onActiveChange={setSelectedSpark}
-        >
-          {SPARK_EXAMPLES.map((company, index) => (
-            <SparkStory key={company.name} company={company} index={index} />
-          ))}
-        </SparkCarousel>
+        <SparkCarousel companies={SPARK_EXAMPLES} active={selectedSpark} onActiveChange={setSelectedSpark} />
       </Section>
 
       <Section id="doing" tone="paper">
