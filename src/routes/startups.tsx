@@ -1033,6 +1033,19 @@ function SparkCarousel({
                   );
                 })}
             </div>
+            <div
+              aria-label="Student venture journey"
+              className="mx-auto mt-8 flex w-full max-w-4xl flex-wrap items-center justify-center gap-x-3 gap-y-2 sm:mt-10 sm:gap-x-4"
+            >
+              {["Pre-Seed", "MVP", "Go-to-Market", "PMF", "Demo Day"].map((stage, i, arr) => (
+                <div key={stage} className="flex items-center gap-3 sm:gap-4">
+                  <span className="eyebrow text-background/60">{stage}</span>
+                  {i < arr.length - 1 && (
+                    <span aria-hidden="true" className="h-px w-6 bg-background/25 sm:w-8" />
+                  )}
+                </div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>
