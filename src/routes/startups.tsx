@@ -914,13 +914,13 @@ function SparkCarousel({
             <div
               role="separator"
               aria-hidden="true"
-              className="mx-auto mt-5 h-px w-full max-w-2xl bg-background/15 sm:mt-6"
+              className="mx-auto mt-6 h-px w-full max-w-4xl bg-background/15 sm:mt-7"
             />
             <button
               type="button"
               onClick={() => setVideoModalOpen(true)}
               aria-label="Watch the Masters' Union student entrepreneurship video"
-              className="group mx-auto mt-5 block w-full max-w-2xl overflow-hidden rounded-[6px] border border-background/15 text-left transition-transform duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60 sm:mt-6"
+              className="group mx-auto mt-6 block w-full max-w-4xl overflow-hidden rounded-[6px] border border-background/15 text-left transition-transform duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60 sm:mt-7"
             >
               <span className="relative block aspect-video w-full overflow-hidden">
                 <img
@@ -930,23 +930,11 @@ function SparkCarousel({
                   className="block h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                 />
                 <span className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-black/15" />
-                <span className="absolute left-1/2 top-1/2 inline-flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-background/95 text-foreground shadow-lg transition-transform duration-300 group-hover:scale-105 sm:size-16">
-                  <Play className="ml-0.5 size-5 fill-current sm:size-6" strokeWidth={2} />
+                <span className="absolute left-1/2 top-1/2 inline-flex size-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-background/95 text-foreground shadow-lg transition-transform duration-300 group-hover:scale-105 sm:size-20">
+                  <Play className="ml-0.5 size-6 fill-current sm:size-7" strokeWidth={2} />
                 </span>
               </span>
             </button>
-            <div className="mt-5 flex justify-center sm:mt-6">
-              <button
-                type="button"
-                onClick={() => setVideoModalOpen(true)}
-                className="group inline-flex items-center gap-2 rounded-full bg-background py-1.5 pl-5 pr-1.5 text-[13px] font-semibold text-foreground transition-transform hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60"
-              >
-                Watch Video
-                <span className="inline-flex size-7 items-center justify-center rounded-full bg-foreground text-background transition-transform duration-300 group-hover:rotate-45">
-                  <Play className="size-3.5 fill-current" strokeWidth={2.25} />
-                </span>
-              </button>
-            </div>
           </motion.div>
         </div>
       </div>
