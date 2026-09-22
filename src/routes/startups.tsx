@@ -815,8 +815,8 @@ function SparkCarousel({
     lastActiveRef.current = index;
     onActiveChange(index);
 
-    const viewportHeight = window.innerHeight || 1;
-    const scrollRange = Math.max(1, story.offsetHeight - viewportHeight);
+    const stickyHeight = stickyRef.current?.offsetHeight || window.innerHeight || 1;
+    const scrollRange = Math.max(1, story.offsetHeight - stickyHeight);
     const storyTop = story.getBoundingClientRect().top + window.scrollY;
     const target = storyTop + scrollRange * (index / Math.max(1, count - 1));
     const lenis = (window as unknown as {
@@ -837,7 +837,7 @@ function SparkCarousel({
       className="relative mt-5 sm:mt-7 md:mt-8"
       style={{ height: `${(count + 0.75) * 100}svh` }}
     >
-      <div className="sticky top-0 flex min-h-[100svh] items-center overflow-hidden py-5 sm:py-7 md:py-9 lg:py-10">
+      <div ref={stickyRef} className="sticky top-0 flex min-h-[100svh] items-center overflow-hidden py-5 sm:py-7 md:py-9 lg:py-10">
         <div className="w-full pt-2 sm:pt-3 md:pt-4">
           <div className="grid grid-cols-[minmax(0,1fr)_minmax(96px,0.46fr)_minmax(0,1fr)] items-stretch gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(165px,0.55fr)_minmax(0,1fr)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(240px,0.6fr)_minmax(0,1fr)] md:gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.76fr)_minmax(0,1fr)] lg:gap-10">
             <motion.div
