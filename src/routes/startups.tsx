@@ -31,6 +31,22 @@ import entrepreneurshipReport2021 from "@/assets/entrepreneurship-report-2021-25
 import entrepreneurshipReportUg from "@/assets/entrepreneurship-report-ug-programmes.pdf.asset.json";
 import studentEntrepreneurshipVideo from "@/assets/MU_Student_Entreprenuership_Video-2.mp4.asset.json";
 import sparkVideoThumb from "@/assets/spark-video-thumb.jpg";
+import ventureBlueBrew from "@/assets/venture-logos/BlueBrew.png.asset.json";
+import ventureEatAtlas from "@/assets/venture-logos/EatAtlas.png.asset.json";
+import ventureFlourish from "@/assets/venture-logos/FlourishFoods.png.asset.json";
+import ventureMoms from "@/assets/venture-logos/Moms.png.asset.json";
+import ventureWoodys from "@/assets/venture-logos/WoodysPizzeria.png.asset.json";
+import ventureBeyondVeda from "@/assets/venture-logos/BeyondVeda.png.asset.json";
+import ventureSaaha from "@/assets/venture-logos/Saaha.png.asset.json";
+import ventureJustMyRoots from "@/assets/venture-logos/JustMyRoots.png.asset.json";
+import ventureBanaroma from "@/assets/venture-logos/Banaroma.png.asset.json";
+import ventureVinyasa from "@/assets/venture-logos/Vinyasa.png.asset.json";
+import ventureBambaii from "@/assets/venture-logos/Bambaii.png.asset.json";
+import ventureKaze from "@/assets/venture-logos/Kaze.png.asset.json";
+import ventureLexis from "@/assets/venture-logos/Lexis.png.asset.json";
+import ventureMonarque from "@/assets/venture-logos/Monarque.png.asset.json";
+import ventureNivara from "@/assets/venture-logos/Nivara.png.asset.json";
+import ventureFnor from "@/assets/venture-logos/FNOR.png.asset.json";
 
 const NAV: { id: string; label: string }[] = [
   { id: "top", label: "Hero" },
@@ -71,6 +87,25 @@ const SPARK_EXAMPLES = [
     founder: "Shubham Khatri & Vansh Miglani",
     body: "Shubham Khatri and Vansh Miglani didn't start with a business plan. They started by shadowing NBFC call-center agents and noticing how much time was wasted on manual review.",
   },
+];
+
+const SPARK_VENTURE_LOGOS = [
+  ventureBlueBrew,
+  ventureEatAtlas,
+  ventureFlourish,
+  ventureMoms,
+  ventureWoodys,
+  ventureBeyondVeda,
+  ventureSaaha,
+  ventureJustMyRoots,
+  ventureBanaroma,
+  ventureVinyasa,
+  ventureBambaii,
+  ventureKaze,
+  ventureLexis,
+  ventureMonarque,
+  ventureNivara,
+  ventureFnor,
 ];
 
 const DROPSHIPPING_STATS = [
@@ -974,6 +1009,31 @@ function SparkCarousel({
                 </span>
               </span>
             </button>
+            <div className="mx-auto mt-5 w-full max-w-5xl overflow-hidden rounded-[6px] border border-background/15 sm:mt-6">
+              <div className="grid grid-cols-4 sm:grid-cols-8">
+                {SPARK_VENTURE_LOGOS.map((logo, index) => {
+                  const name = logo.original_filename.replace(/\.png$/i, "");
+                  return (
+                    <div
+                      key={logo.url}
+                      className={`flex h-20 items-center justify-center px-3 sm:h-24 md:h-28 md:px-5 ${
+                        index % 4 !== 0 ? "border-l border-background/10" : ""
+                      } ${index >= 4 ? "border-t border-background/10" : ""} ${
+                        index % 8 === 4 ? "sm:border-l-0" : ""
+                      } ${index >= 8 ? "sm:border-t" : "sm:border-t-0"}`}
+                    >
+                      <img
+                        src={logo.url}
+                        alt={name}
+                        title={name}
+                        loading="lazy"
+                        className="no-img-zoom max-h-9 w-auto max-w-[82%] object-contain opacity-90 brightness-0 invert transition-opacity duration-300 hover:opacity-100 sm:max-h-10"
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
