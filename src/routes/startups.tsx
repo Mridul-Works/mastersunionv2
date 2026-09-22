@@ -1009,30 +1009,25 @@ function SparkCarousel({
                 </span>
               </span>
             </button>
-            <div className="mx-auto mt-5 w-full max-w-5xl overflow-hidden rounded-[6px] border border-background/15 sm:mt-6">
-              <div className="grid grid-cols-4 sm:grid-cols-8">
+            <div className="mx-auto mt-5 grid w-full max-w-5xl grid-cols-4 gap-px overflow-hidden rounded-2xl border border-foreground/10 bg-foreground/10 sm:mt-6 md:grid-cols-8">
                 {SPARK_VENTURE_LOGOS.map((logo, index) => {
                   const name = logo.original_filename.replace(/\.png$/i, "");
                   return (
                     <div
                       key={logo.url}
-                      className={`flex h-20 items-center justify-center px-3 sm:h-24 md:h-28 md:px-5 ${
-                        index % 4 !== 0 ? "border-l border-background/10" : ""
-                      } ${index >= 4 ? "border-t border-background/10" : ""} ${
-                        index % 8 === 4 ? "sm:border-l-0" : ""
-                      } ${index >= 8 ? "sm:border-t" : "sm:border-t-0"}`}
+                      className="group flex h-16 items-center justify-center bg-background px-2 transition-colors duration-300 hover:bg-muted sm:h-[92px] sm:px-4"
                     >
                       <img
+                        decoding="async"
                         src={logo.url}
                         alt={name}
                         title={name}
                         loading="lazy"
-                        className="no-img-zoom max-h-9 w-auto max-w-[82%] object-contain opacity-90 brightness-0 invert transition-opacity duration-300 hover:opacity-100 sm:max-h-10"
+                        className="no-img-zoom max-h-9 w-auto max-w-[85%] object-contain opacity-55 grayscale transition duration-300 group-hover:scale-[1.04] group-hover:opacity-100 group-hover:grayscale-0"
                       />
                     </div>
                   );
                 })}
-              </div>
             </div>
           </motion.div>
         </div>
