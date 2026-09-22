@@ -24,7 +24,6 @@ import seedsaiVentureImg from "@/assets/founders/ventures/seedsai.jpg.asset.json
 import woodysVentureImg from "@/assets/founders/ventures/woodys.jpg.asset.json";
 import sharkTankStageImg from "@/assets/founders/sharktank-stage.jpg.asset.json";
 import muLogoAsset from "@/assets/mu-logo-dark.png.asset.json";
-import heroVideoAsset from "@/assets/hero.mp4.asset.json";
 import studentEnterHeroAsset from "@/assets/studentEnterHero-3.webp.asset.json";
 import entrepreneurshipReport2021 from "@/assets/entrepreneurship-report-2021-25.pdf.asset.json";
 import entrepreneurshipReportUg from "@/assets/entrepreneurship-report-ug-programmes.pdf.asset.json";
@@ -1438,8 +1437,6 @@ function StartupsPage() {
   const [selectedShark, setSelectedShark] = useState(0);
   const [selectedQuote, setSelectedQuote] = useState(0);
   const [selectedSpark, setSelectedSpark] = useState(0);
-  const [heroVideoEnded, setHeroVideoEnded] = useState(false);
-  const heroVideoRef = useRef<HTMLVideoElement>(null);
   const headlineWordRef = useRef<HTMLSpanElement>(null);
   const [wordFontSize, setWordFontSize] = useState<number | null>(null);
 
@@ -1465,37 +1462,6 @@ function StartupsPage() {
     if (document.fonts?.ready) document.fonts.ready.then(measure).catch(() => {});
     return () => ro.disconnect();
   }, []);
-
-  useEffect(() => {
-    const lenis = (window as unknown as { __lenis?: { stop: () => void; start: () => void } }).__lenis;
-    if (heroVideoEnded) {
-      lenis?.start();
-    } else {
-      lenis?.stop();
-    }
-    return () => {
-      lenis?.start();
-    };
-  }, [heroVideoEnded]);
-
-  // Safety unlocks: never leave the page frozen if the intro clip cannot
-  // autoplay, stalls on a slow connection, or takes too long to finish.
-  useEffect(() => {
-    if (heroVideoEnded) return;
-    const video = heroVideoRef.current;
-    video?.play?.().catch(() => setHeroVideoEnded(true));
-    const cap = window.setTimeout(() => setHeroVideoEnded(true), 9000);
-    const onFirstScroll = () => setHeroVideoEnded(true);
-    window.addEventListener("wheel", onFirstScroll, { passive: true });
-    window.addEventListener("touchstart", onFirstScroll, { passive: true });
-    window.addEventListener("keydown", onFirstScroll);
-    return () => {
-      window.clearTimeout(cap);
-      window.removeEventListener("wheel", onFirstScroll);
-      window.removeEventListener("touchstart", onFirstScroll);
-      window.removeEventListener("keydown", onFirstScroll);
-    };
-  }, [heroVideoEnded]);
 
   // 0..1 progress of the Spark section covering the pinned hero (one viewport of scroll).
   // Applied directly to the fade wrapper's style to avoid re-rendering the page on scroll.
@@ -1528,7 +1494,7 @@ function StartupsPage() {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <HomepageStyleNav items={NAV} applyHref="#cta" visible={heroVideoEnded} />
+      <HomepageStyleNav items={NAV} applyHref="#cta" visible />
 
 
       <header
@@ -1541,27 +1507,7 @@ function StartupsPage() {
           alt="Masters' Union student presenting on stage"
           decoding="async"
           loading="eager"
-          className={`absolute inset-0 block h-full w-full scale-[1.35] translate-x-[16%] object-cover object-center transition-opacity delay-300 duration-[3200ms] ease-out ${
-            heroVideoEnded ? "opacity-75" : "opacity-0"
-          }`}
-        />
-        <video
-          ref={heroVideoRef}
-          src={heroVideoAsset.url}
-          autoPlay
-          muted
-          playsInline
-          preload="auto"
-          onEnded={() => setHeroVideoEnded(true)}
-          onError={() => setHeroVideoEnded(true)}
-          onStalled={() => setHeroVideoEnded(true)}
-          onSuspend={() => {
-            const v = heroVideoRef.current;
-            if (v && v.paused && v.readyState < 3) setHeroVideoEnded(true);
-          }}
-          className={`absolute inset-0 block h-full max-w-full w-full object-contain object-center xl:object-cover transition-opacity duration-1000 ease-out ${
-            heroVideoEnded ? "opacity-0" : "opacity-100"
-          }`}
+          className="absolute inset-0 block h-full w-full scale-[1.35] translate-x-[16%] object-cover object-center opacity-75"
         />
         <div
           aria-hidden
@@ -1582,11 +1528,7 @@ function StartupsPage() {
           </div>
         </div>
 
-        <div
-          className={`absolute inset-0 flex flex-col transition-opacity delay-700 duration-[3200ms] ease-out ${
-            heroVideoEnded ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
-          }`}
-        >
+        <div className="pointer-events-auto absolute inset-0 flex flex-col">
           <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col px-5 md:px-10">
             <div className="flex flex-1 flex-col justify-end pb-[72px] md:pb-[88px]">
               <div className="@container relative border border-background/15 md:border-0">
