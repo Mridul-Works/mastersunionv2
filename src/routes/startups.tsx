@@ -1031,6 +1031,7 @@ function SparkCarousel({
               onClick={(e) => e.stopPropagation()}
             >
               <video
+                ref={modalVideoRef}
                 aria-label="Masters' Union student entrepreneurship video"
                 controls
                 autoPlay
