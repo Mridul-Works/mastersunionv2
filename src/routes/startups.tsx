@@ -1010,7 +1010,7 @@ function SparkCarousel({
               </span>
             </button>
             <div className="mx-auto mt-5 grid w-full max-w-5xl grid-cols-4 gap-px overflow-hidden rounded-2xl border border-foreground/10 bg-foreground/10 sm:mt-6 md:grid-cols-8">
-                {SPARK_VENTURE_LOGOS.map((logo, index) => {
+                {SPARK_VENTURE_LOGOS.map((logo) => {
                   const name = logo.original_filename.replace(/\.png$/i, "");
                   return (
                     <div
