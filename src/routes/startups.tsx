@@ -1494,7 +1494,7 @@ function StartupsPage() {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <HomepageStyleNav items={NAV} applyHref="#cta" visible={heroVideoEnded} />
+      <HomepageStyleNav items={NAV} applyHref="#cta" visible />
 
 
       <header
@@ -1507,27 +1507,7 @@ function StartupsPage() {
           alt="Masters' Union student presenting on stage"
           decoding="async"
           loading="eager"
-          className={`absolute inset-0 block h-full w-full scale-[1.35] translate-x-[16%] object-cover object-center transition-opacity delay-300 duration-[3200ms] ease-out ${
-            heroVideoEnded ? "opacity-75" : "opacity-0"
-          }`}
-        />
-        <video
-          ref={heroVideoRef}
-          src={heroVideoAsset.url}
-          autoPlay
-          muted
-          playsInline
-          preload="auto"
-          onEnded={() => setHeroVideoEnded(true)}
-          onError={() => setHeroVideoEnded(true)}
-          onStalled={() => setHeroVideoEnded(true)}
-          onSuspend={() => {
-            const v = heroVideoRef.current;
-            if (v && v.paused && v.readyState < 3) setHeroVideoEnded(true);
-          }}
-          className={`absolute inset-0 block h-full max-w-full w-full object-contain object-center xl:object-cover transition-opacity duration-1000 ease-out ${
-            heroVideoEnded ? "opacity-0" : "opacity-100"
-          }`}
+          className="absolute inset-0 block h-full w-full scale-[1.35] translate-x-[16%] object-cover object-center opacity-75"
         />
         <div
           aria-hidden
