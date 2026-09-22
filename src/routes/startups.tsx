@@ -492,7 +492,11 @@ function Reveal({
 }
 
 function Eyebrow({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
-  return <div className="eyebrow text-background/55">{children}</div>;
+  return (
+    <div className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-background/50">
+      {children}
+    </div>
+  );
 }
 
 function Section({
@@ -565,7 +569,7 @@ function PortraitBadge({ src, alt, dark = false, size = "size-14" }: { src?: str
 
 function FounderLine({ names, cohort, dark = false }: { names: string; cohort: string; dark?: boolean }) {
   return (
-    <span className="text-[11px] uppercase tracking-[0.2em] text-background/60">
+    <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-background/60">
       {names} · {cohort}
     </span>
   );
@@ -917,7 +921,7 @@ function SparkCarousel({
               aria-hidden="true"
               className="mx-auto mt-10 h-px w-full max-w-4xl bg-background/15 sm:mt-12"
             />
-            <p className="mx-auto mt-10 max-w-3xl font-serif-italic !text-white text-[clamp(1.15rem,2.2vw,1.6rem)] leading-[1.35] sm:mt-12">
+            <p className="mx-auto mt-10 max-w-3xl font-serif-italic !font-serif !font-light !text-white text-[clamp(1.15rem,2.2vw,1.6rem)] leading-[1.35] sm:mt-12">
               Fueling the next generation of founders, where
               <br />
               ideas turn into ventures &amp;
@@ -1683,13 +1687,13 @@ function StartupsPage() {
         </div>
       </header>
 
-      <div className="relative z-10 bg-foreground font-display text-background">
+      <div className="relative z-10 bg-foreground font-display text-background [&_h2]:!font-display [&_h2]:!font-semibold [&_h2]:!leading-[1.04] [&_h2]:!tracking-normal [&_h3]:!font-display [&_h3]:!font-semibold [&_h3]:!tracking-normal [&_p]:font-display [&_p]:font-normal">
       <Section id="spark" tone="light" container="max-w-7xl">
         <div className="grid grid-cols-1 gap-5 border-b border-background/20 pb-8 sm:gap-6 sm:pb-10 md:grid-cols-12 md:items-end md:gap-10 md:pb-12 lg:gap-12 lg:pb-14">
           <div className="md:col-span-8">
             <Reveal>
               <div className="flex items-center gap-4">
-                <span aria-hidden className="h-px w-12 bg-accent" />
+                <span aria-hidden className="h-px w-12 bg-gradient-to-r from-sky-400 via-yellow-300 to-orange-400" />
                 <Eyebrow>The Spark</Eyebrow>
               </div>
             </Reveal>
@@ -1700,7 +1704,7 @@ function StartupsPage() {
             </Reveal>
           </div>
           <Reveal delay={0.1} className="md:col-span-4">
-            <p className="max-w-[42ch] text-[0.98rem] leading-[1.6] text-background/70 sm:text-[1rem] md:ml-auto md:leading-[1.65]">
+            <p className="max-w-[42ch] text-[13px] leading-[1.6] text-background/70 md:ml-auto md:text-[15px] md:leading-[1.75]">
               At Masters&apos; Union, questions, frustrations, and assignments become real businesses.
             </p>
           </Reveal>
@@ -1720,7 +1724,7 @@ function StartupsPage() {
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-5 max-w-[56ch] text-[0.98rem] leading-[1.6] text-background/70 sm:mt-6 sm:text-[1.02rem] md:mt-7 md:text-[1.05rem] md:leading-[1.65]">
+            <p className="mt-5 max-w-[56ch] text-[13px] leading-[1.6] text-background/70 sm:mt-6 md:mt-7 md:text-[15px] md:leading-[1.75]">
               At Masters&apos; Union, real growth doesn&apos;t come from case studies — it comes from
               taking risks, testing ideas, and putting something into the world. That&apos;s what the
               Outclass is: half the curriculum happens outside the classroom, where students run
@@ -1747,7 +1751,7 @@ function StartupsPage() {
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-5 max-w-[66ch] text-[0.98rem] leading-[1.6] text-background/70 sm:mt-6 sm:text-[1.02rem] md:mt-7 md:text-[1.05rem] md:leading-[1.65]">
+          <p className="mt-5 max-w-[66ch] text-[13px] leading-[1.6] text-background/70 sm:mt-6 md:mt-7 md:text-[15px] md:leading-[1.75]">
             From idea to sales: students build profitable D2C businesses in under four months — running
             their own marketing campaigns, sourcing, supply chains, customers, and sales, start to finish.
           </p>
@@ -1807,7 +1811,7 @@ function StartupsPage() {
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-5 max-w-[64ch] text-[0.98rem] leading-[1.6] text-background/70 sm:mt-6 sm:text-[1.02rem] md:mt-7 md:text-[1.05rem] md:leading-[1.65]">
+          <p className="mt-5 max-w-[64ch] text-[13px] leading-[1.6] text-background/70 sm:mt-6 md:mt-7 md:text-[15px] md:leading-[1.75]">
             Students build a business from 0 to 1, working through the real moving parts — pricing,
             positioning, cash flow — not case studies about someone else's. The VIP is a structured track,
             not an elective, backed by a grant at every stage and mentorship from founders, CXOs, and
@@ -1820,7 +1824,7 @@ function StartupsPage() {
           <Eyebrow>The Startup Challenge</Eyebrow>
         </Reveal>
         <Reveal delay={0.24}>
-          <p className="mt-4 max-w-[64ch] text-[1rem] leading-[1.65] text-background/70">
+          <p className="mt-4 max-w-[64ch] text-[13px] leading-[1.6] text-background/70 md:text-[15px] md:leading-[1.75]">
             A four-part video series that tracks student ventures from first pitch to funded company.
           </p>
         </Reveal>
@@ -1883,7 +1887,7 @@ function StartupsPage() {
           </div>
         </Reveal>
         <Reveal delay={0.06}>
-          <h2 className="font-serif-italic mt-5 max-w-[28ch] text-balance text-[clamp(1.8rem,4.2vw,3.6rem)] leading-[1.12] md:leading-[1.08]">
+          <h2 className="font-serif-italic mt-5 max-w-[28ch] text-balance text-[clamp(1.8rem,4.2vw,3.6rem)] !font-serif !font-light leading-[1.04] !text-transparent" style={{ backgroundImage: "linear-gradient(100deg, oklch(0.75 0.15 215), oklch(0.88 0.18 95) 53%, oklch(0.65 0.22 45))", WebkitBackgroundClip: "text", backgroundClip: "text" }}>
             &ldquo;Ek haath se becho, dusre haath se paise lo.&rdquo;
           </h2>
         </Reveal>
@@ -1986,7 +1990,7 @@ function StartupsPage() {
         </div>
 
         <Reveal delay={0.15}>
-          <p className="mt-8 max-w-[68ch] text-[1.05rem] leading-[1.65] text-background/70 md:mt-10">
+          <p className="mt-8 max-w-[68ch] text-[13px] leading-[1.6] text-background/70 md:text-[15px] md:leading-[1.75] md:mt-10">
             A cafeteria question about who gets to be a creator. A canteen complaint about boring chips. A
             ₹60 snack mix nobody wanted, repriced to ₹50 and sold out in an hour. None of these started as
             a business plan — they started as a small, cheap experiment that either worked or told the
@@ -2009,7 +2013,7 @@ function StartupsPage() {
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-6 max-w-[64ch] text-[1.05rem] leading-[1.65] text-background/75 md:mt-7">
+          <p className="mt-6 max-w-[64ch] text-[13px] leading-[1.6] text-background/75 md:text-[15px] md:leading-[1.75] md:mt-7">
             Masters&apos; Union students have pitched on India&apos;s biggest startup stage — not as
             alumni years removed from campus, but while still building.
           </p>
@@ -2075,7 +2079,7 @@ function StartupsPage() {
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-6 max-w-[66ch] text-[1.05rem] leading-[1.65] text-background/70 md:mt-7">
+          <p className="mt-6 max-w-[66ch] text-[13px] leading-[1.6] text-background/70 md:text-[15px] md:leading-[1.75] md:mt-7">
             A separate pipeline, built for Class IX–XII students, not current Masters&apos; Union
             enrollees — a launchpad for teen founders to create, pitch, and take their first cheque, with
             past judges including Ashneer Grover, Ankur Warikoo, Techburner, and Sarthak Ahuja.
@@ -2147,7 +2151,7 @@ function StartupsPage() {
         </div>
 
         <Reveal delay={0.2}>
-          <p className="mt-10 max-w-[68ch] text-[1.02rem] leading-[1.65] text-background/70 md:mt-12">
+          <p className="mt-10 max-w-[68ch] text-[13px] leading-[1.6] text-background/70 md:text-[15px] md:leading-[1.75] md:mt-12">
             More than half of these startups have raised over $1 million. Together, their founders have
             created 500+ jobs since 2021. And when a startup doesn&apos;t make it, the founder walks away
             with sharper skills, real experience, and often, an incredible job offer anyway.
@@ -2219,7 +2223,7 @@ function StartupsPage() {
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="mt-6 max-w-[56ch] text-[1.02rem] leading-[1.65] text-background/75 md:mt-7">
+              <p className="mt-6 max-w-[56ch] text-[13px] leading-[1.6] text-background/75 md:text-[15px] md:leading-[1.75] md:mt-7">
                 For students who want to build instead of interview, Masters&apos; Union offers the Founder
                 Fellowship: ₹50,000 a month in grants, mentorship from industry veterans, and active help
                 with fundraising — no placements, no backup plans. As of the 2021–25 report, 40+ fellows
@@ -2249,7 +2253,7 @@ function StartupsPage() {
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-6 max-w-[66ch] text-[1.05rem] leading-[1.65] text-background/70 md:mt-7">
+          <p className="mt-6 max-w-[66ch] text-[13px] leading-[1.6] text-background/70 md:text-[15px] md:leading-[1.75] md:mt-7">
             Masters&apos; Union&apos;s undergraduate cohort has its own entrepreneurship track — and its
             own portfolio. In the 2025–26 cycle alone, UG founders have been granted ₹75L+ and generated
             ₹14Cr+ in revenue, with two startups earning Shark Tank India pitches.
@@ -2316,7 +2320,7 @@ function StartupsPage() {
             <Reveal key={r.name} delay={i * 0.05}>
               <li className="h-full border-background/10 p-5 sm:p-6 md:p-8 lg:p-9">
                 <span className="font-serif-italic text-[1rem]">{r.name}</span>
-                <p className="mt-3 max-w-[70ch] text-[1rem] leading-[1.65] text-background/80">{r.body}</p>
+                <p className="mt-3 max-w-[70ch] text-[13px] leading-[1.6] text-background/80 md:text-[15px] md:leading-[1.75]">{r.body}</p>
               </li>
             </Reveal>
           ))}
@@ -2335,7 +2339,7 @@ function StartupsPage() {
             </h2>
           </Reveal>
           <Reveal delay={0.08}>
-            <p className="mx-auto mt-7 max-w-[56ch] text-[1.05rem] leading-[1.65] text-background/75 md:mt-8">
+            <p className="mx-auto mt-7 max-w-[56ch] text-[13px] leading-[1.6] text-background/75 md:text-[15px] md:leading-[1.75] md:mt-8">
               Every company on this page started the same way every company starts: as nothing. A question.
               A bad first batch. A frustration nobody else was naming. The only difference between an idea
               and a startup is whether someone builds it.
