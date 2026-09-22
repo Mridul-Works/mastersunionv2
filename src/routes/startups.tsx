@@ -948,7 +948,7 @@ function SparkCarousel({
                       type="button"
                       aria-current={index === active ? "step" : undefined}
                       onClick={() => scrollToCompany(index)}
-                      className={`cursor-pointer pr-[0.08em] font-serif-italic text-[clamp(2.05rem,5vw,4.8rem)] leading-[1.04] text-background transition-[opacity,transform] duration-500 hover:opacity-80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60 ${
+                      className={`cursor-pointer pr-[0.08em] font-serif-italic text-[clamp(1.5rem,3.4vw,3rem)] leading-[1.04] text-background transition-[opacity,transform] duration-500 hover:opacity-80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60 ${
                         index === active ? "scale-100 opacity-100" : "scale-[0.82] opacity-20"
                       }`}
                     >
