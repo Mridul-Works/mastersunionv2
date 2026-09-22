@@ -924,6 +924,8 @@ function SparkCarousel({
               <Placeholder
                 kind="image"
                 aspect="h-full"
+                src={company.founderImage}
+                alt={company.founderImage ? `${company.founder} — founders of ${company.name}` : undefined}
                 note={`${company.name} — founder at work`}
                 className="rounded-[6px]"
               />
