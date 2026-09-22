@@ -749,9 +749,10 @@ function SparkCarousel({
   const scrollFrameRef = useRef(0);
   const lastActiveRef = useRef(active);
   const lastTrackOffsetRef = useRef<number | null>(null);
-  const videoModalOpen = useState(false);
+  const [videoModalOpen, setVideoModalOpen] = useState(false);
   const reduceMotion = useReducedMotion();
   const count = companies.length;
+  const company = companies[Math.min(active, count - 1)];
 
   useEffect(() => {
     lastActiveRef.current = active;
@@ -767,8 +768,8 @@ function SparkCarousel({
       const viewportHeight = window.innerHeight || 1;
       const scrollRange = Math.max(1, rect.height - viewportHeight);
       const progress = Math.min(1, Math.max(0, -rect.top / scrollRange));
-      const rawIndex = progress * Math.max(1, totalStates - 1);
-      const nextActive = Math.min(totalStates - 1, Math.max(0, Math.round(rawIndex)));
+      const rawIndex = progress * Math.max(1, count - 1);
+      const nextActive = Math.min(count - 1, Math.max(0, Math.round(rawIndex)));
       const companyIndex = Math.min(rawIndex, count - 1);
 
       const rail = companyRailRef.current;
@@ -802,7 +803,7 @@ function SparkCarousel({
       window.removeEventListener("resize", schedule);
       window.removeEventListener("orientationchange", schedule);
     };
-  }, [count, onActiveChange, totalStates]);
+  }, [count, onActiveChange]);
 
   const scrollToCompany = (index: number) => {
     const story = storyRef.current;
@@ -814,7 +815,7 @@ function SparkCarousel({
     const viewportHeight = window.innerHeight || 1;
     const scrollRange = Math.max(1, story.offsetHeight - viewportHeight);
     const storyTop = story.getBoundingClientRect().top + window.scrollY;
-    const target = storyTop + scrollRange * (index / Math.max(1, totalStates - 1));
+    const target = storyTop + scrollRange * (index / Math.max(1, count - 1));
     const lenis = (window as unknown as {
       __lenis?: { scrollTo?: (target: number, options?: { duration?: number; force?: boolean }) => void };
     }).__lenis;
@@ -831,7 +832,7 @@ function SparkCarousel({
     <div
       ref={storyRef}
       className="relative mt-5 sm:mt-7 md:mt-8"
-      style={{ height: `${(totalStates + 0.75) * 100}svh` }}
+      style={{ height: `${(count + 0.75) * 100}svh` }}
     >
       <div className="sticky top-0 flex min-h-[100svh] items-center overflow-hidden py-5 sm:py-7 md:py-9 lg:py-10">
         <div className="w-full pt-2 sm:pt-3 md:pt-4">
