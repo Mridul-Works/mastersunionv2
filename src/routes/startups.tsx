@@ -31,6 +31,8 @@ import entrepreneurshipReport2021 from "@/assets/entrepreneurship-report-2021-25
 import entrepreneurshipReportUg from "@/assets/entrepreneurship-report-ug-programmes.pdf.asset.json";
 import studentEntrepreneurshipVideo from "@/assets/MU_Student_Entreprenuership_Video-2.mp4.asset.json";
 import sparkVideoThumb from "@/assets/spark-video-thumb.jpg";
+import sparkSeedsAiFounders from "@/assets/spark/seedsai-founders.jpg.asset.json";
+import sparkEightFounders from "@/assets/spark/eight-founders.jpg.asset.json";
 import ventureBlueBrew from "@/assets/venture-logos/BlueBrew.png.asset.json";
 import ventureEatAtlas from "@/assets/venture-logos/EatAtlas.png.asset.json";
 import ventureFlourish from "@/assets/venture-logos/FlourishFoods.png.asset.json";
