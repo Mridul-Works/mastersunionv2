@@ -746,6 +746,7 @@ function SparkCarousel({
   onActiveChange: (index: number) => void;
 }) {
   const storyRef = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
   const companyRailRef = useRef<HTMLDivElement>(null);
   const nameTrackRef = useRef<HTMLDivElement>(null);
   const scrollFrameRef = useRef(0);
@@ -767,8 +768,8 @@ function SparkCarousel({
     const update = () => {
       scrollFrameRef.current = 0;
       const rect = story.getBoundingClientRect();
-      const viewportHeight = window.innerHeight || 1;
-      const scrollRange = Math.max(1, rect.height - viewportHeight);
+      const stickyHeight = stickyRef.current?.offsetHeight || window.innerHeight || 1;
+      const scrollRange = Math.max(1, rect.height - stickyHeight);
       const progress = Math.min(1, Math.max(0, -rect.top / scrollRange));
       const rawIndex = progress * Math.max(1, count - 1);
       const nextActive = Math.min(count - 1, Math.max(0, Math.round(rawIndex)));
