@@ -27,6 +27,7 @@ import muLogoAsset from "@/assets/mu-logo-dark.png.asset.json";
 import studentEnterHeroAsset from "@/assets/studentEnterHero-3.webp.asset.json";
 import entrepreneurshipReport2021 from "@/assets/entrepreneurship-report-2021-25.pdf.asset.json";
 import entrepreneurshipReportUg from "@/assets/entrepreneurship-report-ug-programmes.pdf.asset.json";
+import studentEntrepreneurshipVideo from "@/assets/MU_Student_Entreprenuership_Video-2.mp4.asset.json";
 
 const NAV: { id: string; label: string }[] = [
   { id: "top", label: "Hero" },
@@ -1634,6 +1635,26 @@ function StartupsPage() {
 
         <SparkCarousel companies={SPARK_EXAMPLES} active={selectedSpark} onActiveChange={setSelectedSpark} />
       </Section>
+
+      <section
+        aria-label="Student entrepreneurship film"
+        className="relative overflow-hidden bg-foreground px-4 pb-16 pt-5 text-background sm:px-7 sm:pb-20 sm:pt-7 md:px-8 md:pb-24 md:pt-10 lg:px-12 lg:pb-32 lg:pt-14"
+      >
+        <Reveal y={24} className="mx-auto w-full max-w-7xl">
+          <div className="overflow-hidden rounded-[6px] border border-background/15 bg-background/[0.03] shadow-2xl shadow-foreground/30">
+            <video
+              aria-label="Masters' Union student entrepreneurship video"
+              controls
+              playsInline
+              preload="metadata"
+              className="block aspect-video h-auto w-full max-w-full bg-foreground object-contain"
+            >
+              <source src={studentEntrepreneurshipVideo.url} type="video/mp4" />
+              Your browser does not support embedded video.
+            </video>
+          </div>
+        </Reveal>
+      </section>
 
       <Section id="doing" tone="paper">
         <div className="ml-auto w-full max-w-4xl border-l border-accent/70 pl-4 text-left sm:pl-6 md:pl-8 lg:pl-12">
