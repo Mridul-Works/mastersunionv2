@@ -1463,37 +1463,6 @@ function StartupsPage() {
     return () => ro.disconnect();
   }, []);
 
-  useEffect(() => {
-    const lenis = (window as unknown as { __lenis?: { stop: () => void; start: () => void } }).__lenis;
-    if (heroVideoEnded) {
-      lenis?.start();
-    } else {
-      lenis?.stop();
-    }
-    return () => {
-      lenis?.start();
-    };
-  }, [heroVideoEnded]);
-
-  // Safety unlocks: never leave the page frozen if the intro clip cannot
-  // autoplay, stalls on a slow connection, or takes too long to finish.
-  useEffect(() => {
-    if (heroVideoEnded) return;
-    const video = heroVideoRef.current;
-    video?.play?.().catch(() => setHeroVideoEnded(true));
-    const cap = window.setTimeout(() => setHeroVideoEnded(true), 9000);
-    const onFirstScroll = () => setHeroVideoEnded(true);
-    window.addEventListener("wheel", onFirstScroll, { passive: true });
-    window.addEventListener("touchstart", onFirstScroll, { passive: true });
-    window.addEventListener("keydown", onFirstScroll);
-    return () => {
-      window.clearTimeout(cap);
-      window.removeEventListener("wheel", onFirstScroll);
-      window.removeEventListener("touchstart", onFirstScroll);
-      window.removeEventListener("keydown", onFirstScroll);
-    };
-  }, [heroVideoEnded]);
-
   // 0..1 progress of the Spark section covering the pinned hero (one viewport of scroll).
   // Applied directly to the fade wrapper's style to avoid re-rendering the page on scroll.
   const heroFadeRef = useRef<HTMLDivElement>(null);
