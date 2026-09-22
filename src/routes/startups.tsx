@@ -896,24 +896,70 @@ function SparkCarousel({
             </motion.div>
           </div>
 
-          {!isVideoState && (
-            <motion.div
-              key={`copy-${active}`}
-              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reduceMotion ? 0 : 0.6, delay: reduceMotion ? 0 : 0.12 }}
-              className="mx-auto mt-6 max-w-5xl border-t border-background/15 pt-5 text-center sm:mt-8 sm:pt-6"
-            >
-              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-background/50">
-                {company.founder}
-              </div>
-              <p className="mx-auto mt-4 text-[0.98rem] leading-[1.6] text-background/70 sm:mt-5 md:text-[1.05rem] md:leading-[1.65]">
-                {company.body}
-              </p>
-            </motion.div>
-          )}
+          <motion.div
+            key={`copy-${active}`}
+            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: reduceMotion ? 0 : 0.6, delay: reduceMotion ? 0 : 0.12 }}
+            className="mx-auto mt-6 max-w-5xl border-t border-background/15 pt-5 text-center sm:mt-8 sm:pt-6"
+          >
+            <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-background/50">
+              {company.founder}
+            </div>
+            <p className="mx-auto mt-4 text-[0.98rem] leading-[1.6] text-background/70 sm:mt-5 md:text-[1.05rem] md:leading-[1.65]">
+              {company.body}
+            </p>
+            <div className="mt-5 flex justify-center sm:mt-6">
+              <button
+                type="button"
+                onClick={() => setVideoModalOpen(true)}
+                className="group inline-flex items-center gap-2 rounded-full bg-background py-1.5 pl-5 pr-1.5 text-[13px] font-semibold text-foreground transition-transform hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60"
+              >
+                Watch Video
+                <span className="inline-flex size-7 items-center justify-center rounded-full bg-foreground text-background transition-transform duration-300 group-hover:rotate-45">
+                  <Play className="size-3.5 fill-current" strokeWidth={2.25} />
+                </span>
+              </button>
+            </div>
+          </motion.div>
         </div>
       </div>
+      {videoModalOpen &&
+        createPortal(
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Masters' Union student entrepreneurship video"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm sm:p-8"
+            onClick={() => setVideoModalOpen(false)}
+          >
+            <div
+              className="w-full max-w-5xl overflow-hidden rounded-[6px] border border-background/15 shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <video
+                aria-label="Masters' Union student entrepreneurship video"
+                controls
+                autoPlay
+                playsInline
+                preload="metadata"
+                className="block aspect-video h-auto w-full max-w-full bg-black object-contain"
+              >
+                <source src={studentEntrepreneurshipVideo.url} type="video/mp4" />
+                Your browser does not support embedded video.
+              </video>
+            </div>
+            <button
+              type="button"
+              aria-label="Close video"
+              onClick={() => setVideoModalOpen(false)}
+              className="absolute right-4 top-4 inline-flex size-10 items-center justify-center rounded-full border border-white/25 text-white/80 transition-colors hover:bg-white/10 hover:text-white sm:right-6 sm:top-6"
+            >
+              <X className="size-5" strokeWidth={2} />
+            </button>
+          </div>,
+          document.body
+        )}
     </div>
   );
 }
