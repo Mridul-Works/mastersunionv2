@@ -759,6 +759,7 @@ function SparkCarousel({
   const lastTrackOffsetRef = useRef<number | null>(null);
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const [videoOrigin, setVideoOrigin] = useState<DOMRect | null>(null);
+  const modalVideoRef = useRef<HTMLVideoElement>(null);
   const reduceMotion = useReducedMotion();
   const count = companies.length;
   const company = companies[Math.min(active, count - 1)];
@@ -772,6 +773,23 @@ function SparkCarousel({
   useEffect(() => {
     lastActiveRef.current = active;
   }, [active]);
+
+  useEffect(() => {
+    if (!videoModalOpen) return;
+    const el = modalVideoRef.current;
+    if (!el) return;
+    const tryPlay = () => {
+      void el.play().catch(() => {
+        /* browser blocked playback — user can press play manually */
+      });
+    };
+    if (el.readyState >= 3) {
+      tryPlay();
+      return;
+    }
+    el.addEventListener("canplay", tryPlay, { once: true });
+    return () => el.removeEventListener("canplay", tryPlay);
+  }, [videoModalOpen]);
 
   useEffect(() => {
     const story = storyRef.current;
@@ -1013,6 +1031,7 @@ function SparkCarousel({
               onClick={(e) => e.stopPropagation()}
             >
               <video
+                ref={modalVideoRef}
                 aria-label="Masters' Union student entrepreneurship video"
                 controls
                 autoPlay
