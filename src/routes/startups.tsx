@@ -759,6 +759,7 @@ function SparkCarousel({
   const lastTrackOffsetRef = useRef<number | null>(null);
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const [videoOrigin, setVideoOrigin] = useState<DOMRect | null>(null);
+  const modalVideoRef = useRef<HTMLVideoElement>(null);
   const reduceMotion = useReducedMotion();
   const count = companies.length;
   const company = companies[Math.min(active, count - 1)];
