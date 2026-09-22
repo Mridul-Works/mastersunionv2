@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useReducedMotion } from "framer-motion";
 import {
@@ -748,21 +749,13 @@ function SparkCarousel({
   const scrollFrameRef = useRef(0);
   const lastActiveRef = useRef(active);
   const lastTrackOffsetRef = useRef<number | null>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoModalOpen = useState(false);
   const reduceMotion = useReducedMotion();
   const count = companies.length;
-  const totalStates = count + 1;
-  const videoState = count;
-  const isVideoState = active === videoState;
-  const company = companies[Math.min(active, count - 1)];
 
   useEffect(() => {
     lastActiveRef.current = active;
   }, [active]);
-
-  useEffect(() => {
-    if (!isVideoState) videoRef.current?.pause();
-  }, [isVideoState]);
 
   useEffect(() => {
     const story = storyRef.current;
