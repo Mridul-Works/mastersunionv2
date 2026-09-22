@@ -990,9 +990,6 @@ function SparkCarousel({
               <br />
               students become entrepreneurs.
             </p>
-            <p className="mx-auto mt-4 max-w-2xl text-[0.95rem] leading-[1.6] text-background/60 sm:mt-5 md:text-[1rem]">
-              From first experiment to Demo Day, students build, test, launch and learn in the real world.
-            </p>
             <button
               ref={videoCardRef}
               type="button"
