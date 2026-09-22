@@ -914,13 +914,13 @@ function SparkCarousel({
             <div
               role="separator"
               aria-hidden="true"
-              className="mx-auto mt-6 h-px w-full max-w-4xl bg-background/15 sm:mt-7"
+              className="mx-auto mt-10 h-px w-full max-w-4xl bg-background/15 sm:mt-12"
             />
             <button
               type="button"
               onClick={() => setVideoModalOpen(true)}
               aria-label="Watch the Masters' Union student entrepreneurship video"
-              className="group mx-auto mt-6 block w-full max-w-4xl overflow-hidden rounded-[6px] border border-background/15 text-left transition-transform duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60 sm:mt-7"
+              className="group mx-auto mt-10 block w-full max-w-4xl overflow-hidden rounded-[6px] border border-background/15 text-left transition-transform duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60 sm:mt-12"
             >
               <span className="relative block aspect-video w-full overflow-hidden">
                 <img
