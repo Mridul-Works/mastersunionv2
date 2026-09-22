@@ -15,6 +15,7 @@ import {
   Trophy,
   Tv,
   Users,
+  X,
 } from "lucide-react";
 import eightVentureImg from "@/assets/founders/ventures/eight.jpg.asset.json";
 import bullspreeVentureImg from "@/assets/founders/ventures/bullspree.jpg.asset.json";
