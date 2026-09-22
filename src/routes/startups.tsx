@@ -1009,13 +1009,13 @@ function SparkCarousel({
                 </span>
               </span>
             </button>
-            <div className="mx-auto mt-5 grid w-full max-w-5xl grid-cols-4 gap-px overflow-hidden rounded-2xl border border-foreground/10 bg-foreground/10 sm:mt-6 md:grid-cols-8">
+            <div className="mx-auto mt-5 grid w-full max-w-5xl grid-cols-4 gap-px overflow-hidden rounded-2xl border border-background/10 bg-background/10 sm:mt-6 md:grid-cols-8">
                 {SPARK_VENTURE_LOGOS.map((logo) => {
                   const name = logo.original_filename.replace(/\.png$/i, "");
                   return (
                     <div
                       key={logo.url}
-                      className="group flex h-16 items-center justify-center bg-background px-2 transition-colors duration-300 hover:bg-muted sm:h-[92px] sm:px-4"
+                      className="group flex h-16 items-center justify-center bg-foreground px-2 transition-colors duration-300 hover:bg-background/10 sm:h-[92px] sm:px-4"
                     >
                       <img
                         decoding="async"
@@ -1023,7 +1023,7 @@ function SparkCarousel({
                         alt={name}
                         title={name}
                         loading="lazy"
-                        className="no-img-zoom max-h-9 w-auto max-w-[85%] object-contain opacity-55 grayscale transition duration-300 group-hover:scale-[1.04] group-hover:opacity-100 group-hover:grayscale-0"
+                        className="no-img-zoom max-h-9 w-auto max-w-[85%] object-contain opacity-90 brightness-0 invert transition duration-300 group-hover:scale-[1.04] group-hover:opacity-100"
                       />
                     </div>
                   );
