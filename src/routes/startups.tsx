@@ -982,12 +982,16 @@ function SparkCarousel({
               aria-hidden="true"
               className="mx-auto mt-10 h-px w-full max-w-4xl bg-background/15 sm:mt-12"
             />
-            <p className="mx-auto mt-10 max-w-3xl font-serif-italic !font-serif !font-light !text-white text-[clamp(1.15rem,2.2vw,1.6rem)] leading-[1.35] sm:mt-12">
+            <div className="eyebrow mx-auto mt-10 text-background/50 sm:mt-12">The Building Starts Here</div>
+            <p className="mx-auto mt-3 max-w-3xl font-serif-italic !font-serif !font-light !text-white text-[clamp(1.15rem,2.2vw,1.6rem)] leading-[1.35] sm:mt-4">
               Fueling the next generation of founders, where
               <br />
               ideas turn into ventures &amp;
               <br />
               students become entrepreneurs.
+            </p>
+            <p className="mx-auto mt-4 max-w-2xl text-[0.95rem] leading-[1.6] text-background/60 sm:mt-5 md:text-[1rem]">
+              From first experiment to Demo Day, students build, test, launch and learn in the real world.
             </p>
             <button
               ref={videoCardRef}
@@ -1028,6 +1032,19 @@ function SparkCarousel({
                     </div>
                   );
                 })}
+            </div>
+            <div
+              aria-label="Student venture journey"
+              className="mx-auto mt-8 flex w-full max-w-4xl flex-wrap items-center justify-center gap-x-3 gap-y-2 sm:mt-10 sm:gap-x-4"
+            >
+              {["Pre-Seed", "MVP", "Go-to-Market", "PMF", "Demo Day"].map((stage, i, arr) => (
+                <div key={stage} className="flex items-center gap-3 sm:gap-4">
+                  <span className="eyebrow text-background/60">{stage}</span>
+                  {i < arr.length - 1 && (
+                    <span aria-hidden="true" className="h-px w-6 bg-background/25 sm:w-8" />
+                  )}
+                </div>
+              ))}
             </div>
           </motion.div>
         </div>
