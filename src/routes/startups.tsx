@@ -911,6 +911,11 @@ function SparkCarousel({
             <p className="mx-auto mt-4 text-[0.98rem] leading-[1.6] text-background/70 sm:mt-5 md:text-[1.05rem] md:leading-[1.65]">
               {company.body}
             </p>
+            <div
+              role="separator"
+              aria-hidden="true"
+              className="mx-auto mt-5 h-px w-full max-w-2xl bg-background/15 sm:mt-6"
+            />
             <button
               type="button"
               onClick={() => setVideoModalOpen(true)}
