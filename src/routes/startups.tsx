@@ -971,12 +971,14 @@ function SparkCarousel({
             transition={{ duration: reduceMotion ? 0 : 0.6, delay: reduceMotion ? 0 : 0.12 }}
             className="mx-auto mt-6 max-w-5xl border-t border-background/15 pt-5 text-center sm:mt-8 sm:pt-6"
           >
-            <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-background/50">
-              {company.founder}
+            <div className="mx-auto max-w-4xl rounded-[6px] border border-background/15 bg-background/[0.03] px-5 py-6 sm:px-8 sm:py-7">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-background/50">
+                {company.founder}
+              </div>
+              <p className="mx-auto mt-4 text-[0.98rem] leading-[1.6] text-background/70 sm:mt-5 md:text-[1.05rem] md:leading-[1.65]">
+                {company.body}
+              </p>
             </div>
-            <p className="mx-auto mt-4 text-[0.98rem] leading-[1.6] text-background/70 sm:mt-5 md:text-[1.05rem] md:leading-[1.65]">
-              {company.body}
-            </p>
             <div
               role="separator"
               aria-hidden="true"
