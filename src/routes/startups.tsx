@@ -983,7 +983,7 @@ function SparkCarousel({
               className="mx-auto mt-10 h-px w-full max-w-4xl bg-background/15 sm:mt-12"
             />
             <div className="eyebrow mx-auto mt-10 text-background/50 sm:mt-12">The Building Starts Here</div>
-            <p className="mx-auto mt-10 max-w-3xl font-serif-italic !font-serif !font-light !text-white text-[clamp(1.15rem,2.2vw,1.6rem)] leading-[1.35] sm:mt-12">
+            <p className="mx-auto mt-3 max-w-3xl font-serif-italic !font-serif !font-light !text-white text-[clamp(1.15rem,2.2vw,1.6rem)] leading-[1.35] sm:mt-4">
               Fueling the next generation of founders, where
               <br />
               ideas turn into ventures &amp;
