@@ -1012,6 +1012,19 @@ function SparkCarousel({
                 </span>
               </span>
             </button>
+            <div
+              aria-label="Student venture journey"
+              className="mx-auto mt-8 flex w-full max-w-4xl flex-wrap items-center justify-center gap-x-3 gap-y-2 sm:mt-10 sm:gap-x-4"
+            >
+              {["Pre-Seed", "MVP", "Go-to-Market", "PMF", "Demo Day"].map((stage, i, arr) => (
+                <div key={stage} className="flex items-center gap-3 sm:gap-4">
+                  <span className="eyebrow text-background/60">{stage}</span>
+                  {i < arr.length - 1 && (
+                    <span aria-hidden="true" className="h-px w-6 bg-background/25 sm:w-8" />
+                  )}
+                </div>
+              ))}
+            </div>
             <div className="mx-auto mt-10 grid w-full max-w-5xl grid-cols-4 gap-px overflow-hidden rounded-2xl border border-background/10 bg-background/10 sm:mt-12 md:grid-cols-8">
                 {SPARK_VENTURE_LOGOS.map((logo) => {
                   const name = logo.original_filename.replace(/\.png$/i, "");
@@ -1031,19 +1044,6 @@ function SparkCarousel({
                     </div>
                   );
                 })}
-            </div>
-            <div
-              aria-label="Student venture journey"
-              className="mx-auto mt-8 flex w-full max-w-4xl flex-wrap items-center justify-center gap-x-3 gap-y-2 sm:mt-10 sm:gap-x-4"
-            >
-              {["Pre-Seed", "MVP", "Go-to-Market", "PMF", "Demo Day"].map((stage, i, arr) => (
-                <div key={stage} className="flex items-center gap-3 sm:gap-4">
-                  <span className="eyebrow text-background/60">{stage}</span>
-                  {i < arr.length - 1 && (
-                    <span aria-hidden="true" className="h-px w-6 bg-background/25 sm:w-8" />
-                  )}
-                </div>
-              ))}
             </div>
           </motion.div>
         </div>
