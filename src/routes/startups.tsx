@@ -68,7 +68,12 @@ const VENTURE_IMAGES: Record<string, string> = {
   "Woody's Pizzeria": woodysVentureImg.url,
 };
 
-const SPARK_EXAMPLES = [
+const SPARK_EXAMPLES: {
+  name: string;
+  founder: string;
+  body: string;
+  founderImage?: string;
+}[] = [
   {
     name: "Nivara",
     founder: "Vikas Kabra",
@@ -83,11 +88,13 @@ const SPARK_EXAMPLES = [
     name: "Eight",
     founder: "Mohit Paliwal",
     body: "Mohit Paliwal, Mohit Goswami, and Yugal Tamang realized at a Masters' Union cafeteria table that not everyone wants to be seen, but everyone has a story worth telling — Eight became the stage for it.",
+    founderImage: sparkEightFounders.url,
   },
   {
     name: "SeedsAI",
     founder: "Shubham Khatri & Vansh Miglani",
     body: "Shubham Khatri and Vansh Miglani didn't start with a business plan. They started by shadowing NBFC call-center agents and noticing how much time was wasted on manual review.",
+    founderImage: sparkSeedsAiFounders.url,
   },
 ];
 
