@@ -751,7 +751,6 @@ function SparkCarousel({
   const scrollFrameRef = useRef(0);
   const lastActiveRef = useRef(active);
   const lastTrackOffsetRef = useRef<number | null>(null);
-  const [videoModalOpen, setVideoModalOpen] = useState(false);
   const reduceMotion = useReducedMotion();
   const count = companies.length;
   const company = companies[Math.min(active, count - 1)];
@@ -911,40 +910,51 @@ function SparkCarousel({
             <p className="mx-auto mt-4 text-[0.98rem] leading-[1.6] text-background/70 sm:mt-5 md:text-[1.05rem] md:leading-[1.65]">
               {company.body}
             </p>
-            <button
-              type="button"
-              onClick={() => setVideoModalOpen(true)}
-              aria-label="Watch the Masters' Union student entrepreneurship video"
-              className="group mx-auto mt-5 block w-full max-w-2xl overflow-hidden rounded-[6px] border border-background/15 text-left transition-transform duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60 sm:mt-6"
-            >
-              <span className="relative block aspect-video w-full overflow-hidden">
-                <img
-                  src={sparkVideoThumb}
-                  alt="Students presenting on stage at Masters' Union"
-                  loading="lazy"
-                  className="block h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                />
-                <span className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-black/15" />
-                <span className="absolute left-1/2 top-1/2 inline-flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-background/95 text-foreground shadow-lg transition-transform duration-300 group-hover:scale-105 sm:size-16">
-                  <Play className="ml-0.5 size-5 fill-current sm:size-6" strokeWidth={2} />
-                </span>
-              </span>
-            </button>
-            <div className="mt-5 flex justify-center sm:mt-6">
-              <button
-                type="button"
-                onClick={() => setVideoModalOpen(true)}
-                className="group inline-flex items-center gap-2 rounded-full bg-background py-1.5 pl-5 pr-1.5 text-[13px] font-semibold text-foreground transition-transform hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60"
-              >
-                Watch Video
-                <span className="inline-flex size-7 items-center justify-center rounded-full bg-foreground text-background transition-transform duration-300 group-hover:rotate-45">
-                  <Play className="size-3.5 fill-current" strokeWidth={2.25} />
-                </span>
-              </button>
-            </div>
           </motion.div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function SparkVideoFeature() {
+  const [videoModalOpen, setVideoModalOpen] = useState(false);
+
+  return (
+    <>
+      <Reveal y={24} className="mx-auto w-full max-w-5xl">
+        <button
+          type="button"
+          onClick={() => setVideoModalOpen(true)}
+          aria-label="Watch the Masters' Union student entrepreneurship video"
+          className="group block w-full overflow-hidden rounded-[6px] border border-background/15 text-left transition-transform duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60"
+        >
+          <span className="relative block aspect-video w-full overflow-hidden">
+            <img
+              src={sparkVideoThumb}
+              alt="Students presenting on stage at Masters' Union"
+              loading="lazy"
+              className="block h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+            <span className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-black/15" />
+            <span className="absolute left-1/2 top-1/2 inline-flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-background/95 text-foreground shadow-lg transition-transform duration-300 group-hover:scale-105 sm:size-16">
+              <Play className="ml-0.5 size-5 fill-current sm:size-6" strokeWidth={2} />
+            </span>
+          </span>
+        </button>
+        <div className="mt-5 flex justify-center sm:mt-6">
+          <button
+            type="button"
+            onClick={() => setVideoModalOpen(true)}
+            className="group inline-flex items-center gap-2 rounded-full bg-background py-1.5 pl-5 pr-1.5 text-[13px] font-semibold text-foreground transition-transform hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60"
+          >
+            Watch Video
+            <span className="inline-flex size-7 items-center justify-center rounded-full bg-foreground text-background transition-transform duration-300 group-hover:rotate-45">
+              <Play className="size-3.5 fill-current" strokeWidth={2.25} />
+            </span>
+          </button>
+        </div>
+      </Reveal>
       {videoModalOpen &&
         createPortal(
           <div
@@ -981,7 +991,7 @@ function SparkCarousel({
           </div>,
           document.body
         )}
-    </div>
+    </>
   );
 }
 
@@ -1706,6 +1716,10 @@ function StartupsPage() {
         </div>
 
         <SparkCarousel companies={SPARK_EXAMPLES} active={selectedSpark} onActiveChange={setSelectedSpark} />
+      </Section>
+
+      <Section tone="dark" container="max-w-7xl">
+        <SparkVideoFeature />
       </Section>
 
       <Section id="doing" tone="paper">
