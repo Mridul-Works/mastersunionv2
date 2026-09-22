@@ -31,6 +31,8 @@ import entrepreneurshipReport2021 from "@/assets/entrepreneurship-report-2021-25
 import entrepreneurshipReportUg from "@/assets/entrepreneurship-report-ug-programmes.pdf.asset.json";
 import studentEntrepreneurshipVideo from "@/assets/MU_Student_Entreprenuership_Video-2.mp4.asset.json";
 import sparkVideoThumb from "@/assets/spark-video-thumb.jpg";
+import sparkSeedsAiFounders from "@/assets/spark/seedsai-founders.jpg.asset.json";
+import sparkEightFounders from "@/assets/spark/eight-founders.jpg.asset.json";
 import ventureBlueBrew from "@/assets/venture-logos/BlueBrew.png.asset.json";
 import ventureEatAtlas from "@/assets/venture-logos/EatAtlas.png.asset.json";
 import ventureFlourish from "@/assets/venture-logos/FlourishFoods.png.asset.json";
@@ -66,7 +68,12 @@ const VENTURE_IMAGES: Record<string, string> = {
   "Woody's Pizzeria": woodysVentureImg.url,
 };
 
-const SPARK_EXAMPLES = [
+const SPARK_EXAMPLES: {
+  name: string;
+  founder: string;
+  body: string;
+  founderImage?: string;
+}[] = [
   {
     name: "Nivara",
     founder: "Vikas Kabra",
@@ -81,11 +88,13 @@ const SPARK_EXAMPLES = [
     name: "Eight",
     founder: "Mohit Paliwal",
     body: "Mohit Paliwal, Mohit Goswami, and Yugal Tamang realized at a Masters' Union cafeteria table that not everyone wants to be seen, but everyone has a story worth telling — Eight became the stage for it.",
+    founderImage: sparkEightFounders.url,
   },
   {
     name: "SeedsAI",
     founder: "Shubham Khatri & Vansh Miglani",
     body: "Shubham Khatri and Vansh Miglani didn't start with a business plan. They started by shadowing NBFC call-center agents and noticing how much time was wasted on manual review.",
+    founderImage: sparkSeedsAiFounders.url,
   },
 ];
 
@@ -915,6 +924,8 @@ function SparkCarousel({
               <Placeholder
                 kind="image"
                 aspect="h-full"
+                src={company.founderImage}
+                alt={company.founderImage ? `${company.founder} — founders of ${company.name}` : undefined}
                 note={`${company.name} — founder at work`}
                 className="rounded-[6px]"
               />
