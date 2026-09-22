@@ -1528,11 +1528,7 @@ function StartupsPage() {
           </div>
         </div>
 
-        <div
-          className={`absolute inset-0 flex flex-col transition-opacity delay-700 duration-[3200ms] ease-out ${
-            heroVideoEnded ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
-          }`}
-        >
+        <div className="pointer-events-auto absolute inset-0 flex flex-col">
           <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col px-5 md:px-10">
             <div className="flex flex-1 flex-col justify-end pb-[72px] md:pb-[88px]">
               <div className="@container relative border border-background/15 md:border-0">
