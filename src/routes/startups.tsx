@@ -837,30 +837,6 @@ function SparkCarousel({
       <div className="sticky top-0 flex min-h-[100svh] items-center overflow-hidden py-5 sm:py-7 md:py-9 lg:py-10">
         <div className="w-full pt-2 sm:pt-3 md:pt-4">
           <div className="grid grid-cols-[minmax(0,1fr)_minmax(96px,0.46fr)_minmax(0,1fr)] items-stretch gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(165px,0.55fr)_minmax(0,1fr)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(240px,0.6fr)_minmax(0,1fr)] md:gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.76fr)_minmax(0,1fr)] lg:gap-10">
-            {isVideoState ? (
-              <motion.div
-                key="spark-video"
-                initial={reduceMotion ? false : { opacity: 0, y: 24, scale: 0.985 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: reduceMotion ? 0 : 0.75, ease: [0.7, 0, 0.2, 1] }}
-                className="col-span-3 flex h-[46svh] items-center sm:h-[50svh] md:h-[56svh] lg:h-[60svh]"
-              >
-                <div className="mx-auto w-full overflow-hidden rounded-[6px] border border-background/15 bg-background/[0.03] shadow-2xl shadow-foreground/30">
-                  <video
-                    ref={videoRef}
-                    aria-label="Masters' Union student entrepreneurship video"
-                    controls
-                    playsInline
-                    preload="metadata"
-                    className="block h-full max-h-[60svh] w-full max-w-full object-contain"
-                  >
-                    <source src={studentEntrepreneurshipVideo.url} type="video/mp4" />
-                    Your browser does not support embedded video.
-                  </video>
-                </div>
-              </motion.div>
-            ) : (
-              <>
             <motion.div
               key={`left-${active}`}
               initial={reduceMotion ? false : { opacity: 0, x: -28, scale: 0.985 }}
@@ -918,8 +894,6 @@ function SparkCarousel({
                 className="rounded-[6px]"
               />
             </motion.div>
-              </>
-            )}
           </div>
 
           {!isVideoState && (
