@@ -775,6 +775,23 @@ function SparkCarousel({
   }, [active]);
 
   useEffect(() => {
+    if (!videoModalOpen) return;
+    const el = modalVideoRef.current;
+    if (!el) return;
+    const tryPlay = () => {
+      void el.play().catch(() => {
+        /* browser blocked playback — user can press play manually */
+      });
+    };
+    if (el.readyState >= 3) {
+      tryPlay();
+      return;
+    }
+    el.addEventListener("canplay", tryPlay, { once: true });
+    return () => el.removeEventListener("canplay", tryPlay);
+  }, [videoModalOpen]);
+
+  useEffect(() => {
     const story = storyRef.current;
     if (!story) return;
 
