@@ -913,7 +913,7 @@ function SparkCarousel({
     >
       <div ref={stickyRef} className="sticky top-0 flex min-h-[100svh] items-center overflow-hidden pt-5 pb-0 sm:pt-7 sm:pb-1 md:pt-9 md:pb-1 lg:pt-10 lg:pb-2">
         <div className="w-full pt-0 sm:pt-1 md:pt-2">
-          <div className="grid grid-cols-[minmax(0,1fr)_minmax(96px,0.46fr)_minmax(0,1fr)] items-stretch gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(165px,0.55fr)_minmax(0,1fr)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(240px,0.6fr)_minmax(0,1fr)] md:gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.76fr)_minmax(0,1fr)] lg:gap-10">
+          <div className="grid grid-cols-[minmax(0,1fr)_minmax(72px,0.28fr)_minmax(0,1fr)] items-stretch gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(120px,0.3fr)_minmax(0,1fr)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(180px,0.36fr)_minmax(0,1fr)] md:gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(240px,0.4fr)_minmax(0,1fr)] lg:gap-10">
             <motion.div
               key={`left-${active}`}
               initial={reduceMotion ? false : { opacity: 0, x: -28, scale: 0.985 }}
