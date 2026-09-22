@@ -1724,7 +1724,7 @@ function StartupsPage() {
   const activeQuote = TESTIMONIALS[selectedQuote];
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen bg-black text-foreground [--foreground:#000000]">
       <HomepageStyleNav items={NAV} applyHref="#cta" visible />
 
 
