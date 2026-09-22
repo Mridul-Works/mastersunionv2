@@ -919,11 +919,15 @@ function SparkCarousel({
               initial={reduceMotion ? false : { opacity: 0, x: -28, scale: 0.985 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: reduceMotion ? 0 : 0.7, ease: [0.7, 0, 0.2, 1] }}
-              className="h-[46svh] sm:h-[50svh] md:h-[56svh] lg:h-[60svh]"
+              className={
+                company.founderImage
+                  ? "flex items-center"
+                  : "h-[46svh] sm:h-[50svh] md:h-[56svh] lg:h-[60svh]"
+              }
             >
               <Placeholder
                 kind="image"
-                aspect="h-full"
+                aspect={company.founderImage ? "aspect-[1200/896]" : "h-full"}
                 src={company.founderImage}
                 alt={company.founderImage ? `${company.founder} — founders of ${company.name}` : undefined}
                 note={`${company.name} — founder at work`}
