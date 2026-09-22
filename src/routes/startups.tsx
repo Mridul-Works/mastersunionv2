@@ -30,6 +30,7 @@ import studentEnterHeroAsset from "@/assets/studentEnterHero-3.webp.asset.json";
 import entrepreneurshipReport2021 from "@/assets/entrepreneurship-report-2021-25.pdf.asset.json";
 import entrepreneurshipReportUg from "@/assets/entrepreneurship-report-ug-programmes.pdf.asset.json";
 import studentEntrepreneurshipVideo from "@/assets/MU_Student_Entreprenuership_Video-2.mp4.asset.json";
+import sparkVideoThumb from "@/assets/spark-video-thumb.jpg";
 
 const NAV: { id: string; label: string }[] = [
   { id: "top", label: "Hero" },
@@ -910,6 +911,25 @@ function SparkCarousel({
             <p className="mx-auto mt-4 text-[0.98rem] leading-[1.6] text-background/70 sm:mt-5 md:text-[1.05rem] md:leading-[1.65]">
               {company.body}
             </p>
+            <button
+              type="button"
+              onClick={() => setVideoModalOpen(true)}
+              aria-label="Watch the Masters' Union student entrepreneurship video"
+              className="group mx-auto mt-5 block w-full max-w-2xl overflow-hidden rounded-[6px] border border-background/15 text-left transition-transform duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60 sm:mt-6"
+            >
+              <span className="relative block aspect-video w-full overflow-hidden">
+                <img
+                  src={sparkVideoThumb}
+                  alt="Students presenting on stage at Masters' Union"
+                  loading="lazy"
+                  className="block h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                />
+                <span className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-black/15" />
+                <span className="absolute left-1/2 top-1/2 inline-flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-background/95 text-foreground shadow-lg transition-transform duration-300 group-hover:scale-105 sm:size-16">
+                  <Play className="ml-0.5 size-5 fill-current sm:size-6" strokeWidth={2} />
+                </span>
+              </span>
+            </button>
             <div className="mt-5 flex justify-center sm:mt-6">
               <button
                 type="button"
