@@ -1023,7 +1023,7 @@ function SparkCarousel({
                         alt={name}
                         title={name}
                         loading="lazy"
-                        className="no-img-zoom max-h-9 w-auto max-w-[85%] object-contain opacity-90 brightness-0 invert transition duration-300 group-hover:scale-[1.04] group-hover:opacity-100"
+                        className="no-img-zoom max-h-11 w-auto max-w-[92%] object-contain opacity-90 brightness-0 invert transition duration-300 group-hover:scale-[1.04] group-hover:opacity-100"
                       />
                     </div>
                   );
