@@ -903,7 +903,7 @@ function SparkCarousel({
       style={{ height: `${(count + 0.75) * 100}svh` }}
     >
       <div ref={stickyRef} className="sticky top-0 flex min-h-[100svh] items-center overflow-hidden pt-5 pb-0 sm:pt-7 sm:pb-1 md:pt-9 md:pb-1 lg:pt-10 lg:pb-2">
-        <div className="w-full pt-2 sm:pt-3 md:pt-4">
+        <div className="w-full pt-0 sm:pt-1 md:pt-2">
           <div className="grid grid-cols-[minmax(0,1fr)_minmax(96px,0.46fr)_minmax(0,1fr)] items-stretch gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(165px,0.55fr)_minmax(0,1fr)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(240px,0.6fr)_minmax(0,1fr)] md:gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.76fr)_minmax(0,1fr)] lg:gap-10">
             <motion.div
               key={`left-${active}`}
@@ -969,7 +969,7 @@ function SparkCarousel({
             initial={reduceMotion ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduceMotion ? 0 : 0.6, delay: reduceMotion ? 0 : 0.12 }}
-            className="mx-auto mt-6 max-w-5xl border-t border-background/15 pt-5 text-center sm:mt-8 sm:pt-6"
+            className="mx-auto mt-4 max-w-5xl border-t border-background/15 pt-5 text-center sm:mt-6 sm:pt-6"
           >
             <div className="mx-auto max-w-4xl rounded-[6px] border border-background/15 bg-background/[0.03] px-5 py-6 sm:px-8 sm:py-7">
               <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-background/50">
