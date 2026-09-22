@@ -921,7 +921,7 @@ function SparkCarousel({
               aria-hidden="true"
               className="mx-auto mt-10 h-px w-full max-w-4xl bg-background/15 sm:mt-12"
             />
-            <p className="mx-auto mt-10 max-w-3xl font-serif-italic !text-white text-[clamp(1.15rem,2.2vw,1.6rem)] leading-[1.35] sm:mt-12">
+            <p className="mx-auto mt-10 max-w-3xl font-serif-italic !font-serif !font-light !text-white text-[clamp(1.15rem,2.2vw,1.6rem)] leading-[1.35] sm:mt-12">
               Fueling the next generation of founders, where
               <br />
               ideas turn into ventures &amp;
@@ -1887,7 +1887,7 @@ function StartupsPage() {
           </div>
         </Reveal>
         <Reveal delay={0.06}>
-          <h2 className="font-serif-italic mt-5 max-w-[28ch] text-balance text-[clamp(1.8rem,4.2vw,3.6rem)] !font-light leading-[1.04] !text-transparent" style={{ backgroundImage: "linear-gradient(100deg, oklch(0.75 0.15 215), oklch(0.88 0.18 95) 53%, oklch(0.65 0.22 45))", WebkitBackgroundClip: "text", backgroundClip: "text" }}>
+          <h2 className="font-serif-italic mt-5 max-w-[28ch] text-balance text-[clamp(1.8rem,4.2vw,3.6rem)] !font-serif !font-light leading-[1.04] !text-transparent" style={{ backgroundImage: "linear-gradient(100deg, oklch(0.75 0.15 215), oklch(0.88 0.18 95) 53%, oklch(0.65 0.22 45))", WebkitBackgroundClip: "text", backgroundClip: "text" }}>
             &ldquo;Ek haath se becho, dusre haath se paise lo.&rdquo;
           </h2>
         </Reveal>
