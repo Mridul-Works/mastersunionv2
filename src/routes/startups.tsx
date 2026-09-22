@@ -508,8 +508,16 @@ function Section({
       : tone === "dark"
         ? "bg-foreground"
         : "bg-foreground";
+  const FILM_SECTION_RULE =
+    "linear-gradient(to right, transparent, oklch(0.75 0.15 215) 12%, oklch(0.88 0.18 95) 50%, oklch(0.65 0.22 45) 88%, transparent)";
   return (
-    <section id={id} className={`relative ${id === "spark" ? "overflow-x-clip overflow-y-visible" : "overflow-hidden"} border-t border-background/10 text-background ${surfaceClass}`}>
+    <section id={id} className={`relative ${id === "spark" ? "overflow-x-clip overflow-y-visible" : "overflow-hidden"} text-background ${surfaceClass}`}>
+      {/* Homepage section rule — thin inset gradient hairline floating above each section */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-[6%] right-[6%] top-0 z-[1] h-[0.5px]"
+        style={{ background: FILM_SECTION_RULE }}
+      />
       {id ? (
         <span
           aria-hidden
