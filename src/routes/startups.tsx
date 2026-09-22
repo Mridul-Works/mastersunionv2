@@ -748,13 +748,21 @@ function SparkCarousel({
   const scrollFrameRef = useRef(0);
   const lastActiveRef = useRef(active);
   const lastTrackOffsetRef = useRef<number | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const reduceMotion = useReducedMotion();
   const count = companies.length;
-  const company = companies[active];
+  const totalStates = count + 1;
+  const videoState = count;
+  const isVideoState = active === videoState;
+  const company = companies[Math.min(active, count - 1)];
 
   useEffect(() => {
     lastActiveRef.current = active;
   }, [active]);
+
+  useEffect(() => {
+    if (!isVideoState) videoRef.current?.pause();
+  }, [isVideoState]);
 
   useEffect(() => {
     const story = storyRef.current;
@@ -766,14 +774,15 @@ function SparkCarousel({
       const viewportHeight = window.innerHeight || 1;
       const scrollRange = Math.max(1, rect.height - viewportHeight);
       const progress = Math.min(1, Math.max(0, -rect.top / scrollRange));
-      const rawIndex = progress * Math.max(1, count - 1);
-      const nextActive = Math.min(count - 1, Math.max(0, Math.round(rawIndex)));
+      const rawIndex = progress * Math.max(1, totalStates - 1);
+      const nextActive = Math.min(totalStates - 1, Math.max(0, Math.round(rawIndex)));
+      const companyIndex = Math.min(rawIndex, count - 1);
 
       const rail = companyRailRef.current;
       const track = nameTrackRef.current;
       const firstItem = track?.children[0] as HTMLElement | undefined;
       if (rail && track && firstItem) {
-        const offset = rail.clientHeight / 2 - firstItem.offsetHeight * (rawIndex + 0.5);
+        const offset = rail.clientHeight / 2 - firstItem.offsetHeight * (companyIndex + 0.5);
         if (lastTrackOffsetRef.current === null || Math.abs(offset - lastTrackOffsetRef.current) > 0.5) {
           lastTrackOffsetRef.current = offset;
           track.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0)`;
@@ -800,7 +809,7 @@ function SparkCarousel({
       window.removeEventListener("resize", schedule);
       window.removeEventListener("orientationchange", schedule);
     };
-  }, [count, onActiveChange]);
+  }, [count, onActiveChange, totalStates]);
 
   const scrollToCompany = (index: number) => {
     const story = storyRef.current;
@@ -812,7 +821,7 @@ function SparkCarousel({
     const viewportHeight = window.innerHeight || 1;
     const scrollRange = Math.max(1, story.offsetHeight - viewportHeight);
     const storyTop = story.getBoundingClientRect().top + window.scrollY;
-    const target = storyTop + scrollRange * (index / Math.max(1, count - 1));
+    const target = storyTop + scrollRange * (index / Math.max(1, totalStates - 1));
     const lenis = (window as unknown as {
       __lenis?: { scrollTo?: (target: number, options?: { duration?: number; force?: boolean }) => void };
     }).__lenis;
@@ -829,11 +838,35 @@ function SparkCarousel({
     <div
       ref={storyRef}
       className="relative mt-5 sm:mt-7 md:mt-8"
-      style={{ height: `${(count + 0.75) * 100}svh` }}
+      style={{ height: `${(totalStates + 0.75) * 100}svh` }}
     >
       <div className="sticky top-0 flex min-h-[100svh] items-center overflow-hidden py-5 sm:py-7 md:py-9 lg:py-10">
         <div className="w-full pt-2 sm:pt-3 md:pt-4">
           <div className="grid grid-cols-[minmax(0,1fr)_minmax(96px,0.46fr)_minmax(0,1fr)] items-stretch gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(165px,0.55fr)_minmax(0,1fr)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(240px,0.6fr)_minmax(0,1fr)] md:gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.76fr)_minmax(0,1fr)] lg:gap-10">
+            {isVideoState ? (
+              <motion.div
+                key="spark-video"
+                initial={reduceMotion ? false : { opacity: 0, y: 24, scale: 0.985 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: reduceMotion ? 0 : 0.75, ease: [0.7, 0, 0.2, 1] }}
+                className="col-span-3 flex h-[46svh] items-center sm:h-[50svh] md:h-[56svh] lg:h-[60svh]"
+              >
+                <div className="mx-auto w-full overflow-hidden rounded-[6px] border border-background/15 bg-background/[0.03] shadow-2xl shadow-foreground/30">
+                  <video
+                    ref={videoRef}
+                    aria-label="Masters' Union student entrepreneurship video"
+                    controls
+                    playsInline
+                    preload="metadata"
+                    className="block h-full max-h-[60svh] w-full max-w-full object-contain"
+                  >
+                    <source src={studentEntrepreneurshipVideo.url} type="video/mp4" />
+                    Your browser does not support embedded video.
+                  </video>
+                </div>
+              </motion.div>
+            ) : (
+              <>
             <motion.div
               key={`left-${active}`}
               initial={reduceMotion ? false : { opacity: 0, x: -28, scale: 0.985 }}
@@ -891,22 +924,26 @@ function SparkCarousel({
                 className="rounded-[6px]"
               />
             </motion.div>
+              </>
+            )}
           </div>
 
-          <motion.div
-            key={`copy-${active}`}
-            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.6, delay: reduceMotion ? 0 : 0.12 }}
-            className="mx-auto mt-6 max-w-5xl border-t border-background/15 pt-5 text-center sm:mt-8 sm:pt-6"
-          >
-            <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-background/50">
-              {company.founder}
-            </div>
-            <p className="mx-auto mt-4 text-[0.98rem] leading-[1.6] text-background/70 sm:mt-5 md:text-[1.05rem] md:leading-[1.65]">
-              {company.body}
-            </p>
-          </motion.div>
+          {!isVideoState && (
+            <motion.div
+              key={`copy-${active}`}
+              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: reduceMotion ? 0 : 0.6, delay: reduceMotion ? 0 : 0.12 }}
+              className="mx-auto mt-6 max-w-5xl border-t border-background/15 pt-5 text-center sm:mt-8 sm:pt-6"
+            >
+              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-background/50">
+                {company.founder}
+              </div>
+              <p className="mx-auto mt-4 text-[0.98rem] leading-[1.6] text-background/70 sm:mt-5 md:text-[1.05rem] md:leading-[1.65]">
+                {company.body}
+              </p>
+            </motion.div>
+          )}
         </div>
       </div>
     </div>
@@ -1635,26 +1672,6 @@ function StartupsPage() {
 
         <SparkCarousel companies={SPARK_EXAMPLES} active={selectedSpark} onActiveChange={setSelectedSpark} />
       </Section>
-
-      <section
-        aria-label="Student entrepreneurship film"
-        className="relative overflow-hidden bg-foreground px-4 pb-16 pt-5 text-background sm:px-7 sm:pb-20 sm:pt-7 md:px-8 md:pb-24 md:pt-10 lg:px-12 lg:pb-32 lg:pt-14"
-      >
-        <Reveal y={24} className="mx-auto w-full max-w-7xl">
-          <div className="overflow-hidden rounded-[6px] border border-background/15 bg-background/[0.03] shadow-2xl shadow-foreground/30">
-            <video
-              aria-label="Masters' Union student entrepreneurship video"
-              controls
-              playsInline
-              preload="metadata"
-              className="block aspect-video h-auto w-full max-w-full bg-foreground object-contain"
-            >
-              <source src={studentEntrepreneurshipVideo.url} type="video/mp4" />
-              Your browser does not support embedded video.
-            </video>
-          </div>
-        </Reveal>
-      </section>
 
       <Section id="doing" tone="paper">
         <div className="ml-auto w-full max-w-4xl border-l border-accent/70 pl-4 text-left sm:pl-6 md:pl-8 lg:pl-12">
