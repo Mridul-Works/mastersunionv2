@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -753,13 +753,21 @@ function SparkCarousel({
   const stickyRef = useRef<HTMLDivElement>(null);
   const companyRailRef = useRef<HTMLDivElement>(null);
   const nameTrackRef = useRef<HTMLDivElement>(null);
+  const videoCardRef = useRef<HTMLButtonElement>(null);
   const scrollFrameRef = useRef(0);
   const lastActiveRef = useRef(active);
   const lastTrackOffsetRef = useRef<number | null>(null);
   const [videoModalOpen, setVideoModalOpen] = useState(false);
+  const [videoOrigin, setVideoOrigin] = useState<DOMRect | null>(null);
   const reduceMotion = useReducedMotion();
   const count = companies.length;
   const company = companies[Math.min(active, count - 1)];
+
+  const openVideo = () => {
+    const card = videoCardRef.current;
+    if (card) setVideoOrigin(card.getBoundingClientRect());
+    setVideoModalOpen(true);
+  };
 
   useEffect(() => {
     lastActiveRef.current = active;
@@ -929,8 +937,9 @@ function SparkCarousel({
               students become entrepreneurs.
             </p>
             <button
+              ref={videoCardRef}
               type="button"
-              onClick={() => setVideoModalOpen(true)}
+              onClick={openVideo}
               aria-label="Watch the Masters' Union student entrepreneurship video"
               className="group mx-auto mt-10 block w-full max-w-4xl overflow-hidden rounded-[6px] border border-background/15 text-left transition-transform duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60 sm:mt-12"
             >
@@ -950,17 +959,57 @@ function SparkCarousel({
           </motion.div>
         </div>
       </div>
-      {videoModalOpen &&
+      {typeof document !== "undefined" &&
         createPortal(
-          <div
+          <AnimatePresence>
+          {videoModalOpen && (
+          <motion.div
             role="dialog"
             aria-modal="true"
             aria-label="Masters' Union student entrepreneurship video"
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm sm:p-8"
+            initial={reduceMotion ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: reduceMotion ? 0 : 0.3 }}
+            className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-sm"
             onClick={() => setVideoModalOpen(false)}
           >
-            <div
-              className="w-full max-w-5xl overflow-hidden rounded-[6px] border border-background/15 shadow-2xl"
+            <motion.div
+              initial={
+                reduceMotion || !videoOrigin
+                  ? false
+                  : {
+                      left: videoOrigin.left,
+                      top: videoOrigin.top,
+                      width: videoOrigin.width,
+                      height: videoOrigin.height,
+                      borderRadius: 6,
+                    }
+              }
+              animate={{
+                left: "50%",
+                top: "50%",
+                width: "min(calc(100vw - 2rem), 64rem)",
+                height: "auto",
+                x: "-50%",
+                y: "-50%",
+                borderRadius: 6,
+              }}
+              exit={
+                reduceMotion || !videoOrigin
+                  ? { opacity: 0 }
+                  : {
+                      left: videoOrigin.left,
+                      top: videoOrigin.top,
+                      width: videoOrigin.width,
+                      height: videoOrigin.height,
+                      x: 0,
+                      y: 0,
+                      borderRadius: 6,
+                    }
+              }
+              transition={{ duration: reduceMotion ? 0 : 0.55, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed aspect-video overflow-hidden border border-background/15 bg-black shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <video
@@ -974,16 +1023,22 @@ function SparkCarousel({
                 <source src={studentEntrepreneurshipVideo.url} type="video/mp4" />
                 Your browser does not support embedded video.
               </video>
-            </div>
-            <button
+            </motion.div>
+            <motion.button
               type="button"
               aria-label="Close video"
               onClick={() => setVideoModalOpen(false)}
+              initial={reduceMotion ? false : { opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ delay: reduceMotion ? 0 : 0.3, duration: reduceMotion ? 0 : 0.2 }}
               className="absolute right-4 top-4 inline-flex size-10 items-center justify-center rounded-full border border-white/25 text-white/80 transition-colors hover:bg-white/10 hover:text-white sm:right-6 sm:top-6"
             >
               <X className="size-5" strokeWidth={2} />
-            </button>
-          </div>,
+            </motion.button>
+          </motion.div>
+          )}
+          </AnimatePresence>,
           document.body
         )}
     </div>
