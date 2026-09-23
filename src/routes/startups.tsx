@@ -1385,6 +1385,7 @@ function DropshippingSection() {
   const [activeVideo, setActiveVideo] = useState(0);
   const collageRef = useRef<HTMLDivElement | null>(null);
   const videoCardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const counterRef = useRef<HTMLDivElement | null>(null);
   const progressFillRef = useRef<HTMLDivElement | null>(null);
   const prefersReducedMotion = useReducedMotion();
 
@@ -1421,7 +1422,7 @@ function DropshippingSection() {
       }
       // Geometry-driven layout: side cards form an even 2x2 grid flanking card 1,
       // vertically centered on card 1 with identical gaps everywhere.
-      const { w0, ws, hs } = geometry;
+      const { w0, h0, ws, hs } = geometry;
       const containerH = geometry.containerH || vh;
       const gap = Math.min(28, Math.max(12, vw * 0.018));
       const edge = compact ? 12 : Math.min(48, Math.max(20, vw * 0.03));
@@ -1429,6 +1430,18 @@ function DropshippingSection() {
       // bottom margin clears the floating bottom navigation bar.
       const topSafe = compact ? 72 : vw < 1024 ? 84 : 96;
       const bottomSafe = compact ? 88 : vw < 1024 ? 96 : 104;
+      const desktop = vw >= 1024;
+      const counterGap = 24;
+      const counterHeight = counterRef.current?.offsetHeight ?? 61;
+      const mainTop = desktop
+        ? topSafe + Math.max(0, (containerH - topSafe - bottomSafe - h0 - counterGap - counterHeight) / 2)
+        : 0;
+      if (desktop && videoCardRefs.current[0]) {
+        videoCardRefs.current[0].style.top = `${mainTop}px`;
+      }
+      if (desktop && counterRef.current) {
+        counterRef.current.style.top = `${mainTop + h0 + counterGap}px`;
+      }
       // Vertical budget: the two stacked side cards plus their gap must fit
       // between the safe top and bottom margins.
       const availH = Math.max(0, containerH - topSafe - bottomSafe);
@@ -1447,8 +1460,9 @@ function DropshippingSection() {
       // Keep the pair centred on card 1 when possible, but never past the
       // safe top/bottom margins.
       const pairHalf = hs * s + gap / 2;
+      const mainCenter = desktop ? mainTop + h0 / 2 : geometry.center0;
       const center = Math.min(
-        Math.max(geometry.center0, topSafe + pairHalf),
+        Math.max(mainCenter, topSafe + pairHalf),
         containerH - bottomSafe - pairHalf,
       );
       const dy = center - containerH / 2;
@@ -1578,6 +1592,7 @@ function DropshippingSection() {
             </div>
 
             <div
+              ref={counterRef}
               className="pointer-events-none absolute left-1/2 z-20 -translate-x-1/2 text-center top-[calc(clamp(10rem,18svh,11rem)_+_min(76vw,410px)_*_1.25_+_1.5rem)] sm:top-[calc(clamp(10rem,18svh,11rem)_+_min(52vw,430px)_*_1.25_+_1.5rem)] lg:top-[calc(clamp(10rem,18svh,11rem)_+_min(32vw,470px)_*_1.25_+_1.5rem)]"
               data-dropshipping-counter
             >
@@ -1593,7 +1608,7 @@ function DropshippingSection() {
 
             {DROPSHIPPING_VIDEOS.map((video, index) => {
               const sizes = [
-                "aspect-[4/5] w-[min(76vw,410px)] sm:w-[min(52vw,430px)] lg:w-[min(32vw,470px)]",
+                "aspect-[4/5] w-[min(76vw,410px)] sm:w-[min(52vw,430px)] lg:w-[min(32vw,calc((100svh-17.8125rem)/1.25),470px)]",
                 "aspect-[3/4] w-[min(66vw,340px)] sm:w-[min(35vw,360px)]",
                 "aspect-[3/4] w-[min(66vw,340px)] sm:w-[min(35vw,360px)]",
                 "aspect-[3/4] w-[min(66vw,340px)] sm:w-[min(35vw,360px)]",
