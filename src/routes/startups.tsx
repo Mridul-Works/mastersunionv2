@@ -1326,18 +1326,24 @@ function DropshippingSection() {
       </div>
 
       <Reveal delay={0.14} className="mt-9 sm:mt-12 md:mt-14">
-        <div className="overflow-hidden rounded-[6px] border border-background/15 bg-background/[0.035]">
-          <video
-            controls
-            playsInline
-            preload="metadata"
-            poster={sparkVideoThumb}
-            className="block aspect-video h-auto w-full bg-black object-contain"
-            aria-label="Dropshipping Challenge highlight reel"
-          >
-            <source src={studentEntrepreneurshipVideo.url} type="video/mp4" />
-            Your browser does not support embedded video.
-          </video>
+        <div className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:-mx-7 sm:gap-4 sm:px-7 md:-mx-8 md:px-8 lg:mx-0 lg:grid lg:grid-cols-5 lg:gap-4 lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden">
+          {DROPSHIPPING_VIDEOS.map((video, index) => (
+            <Reveal key={video.id} delay={0.04 * index} className="w-[72vw] max-w-[340px] shrink-0 snap-start lg:w-auto lg:max-w-none lg:shrink">
+              <div className="overflow-hidden rounded-[6px] border border-background/15 bg-background/[0.035]">
+                <video
+                  controls
+                  playsInline
+                  preload="metadata"
+                  poster={video.poster}
+                  className="block aspect-video h-auto w-full bg-black object-cover"
+                  aria-label={video.aria}
+                >
+                  <source src={video.src} type="video/mp4" />
+                  Your browser does not support embedded video.
+                </video>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </Reveal>
 
