@@ -2034,7 +2034,7 @@ function StartupsPage() {
   const heroOverlayOpacity = useMotionValue(0.72);
   // The card rests slightly tilted in 3D, like it is floating just above the
   // page; the tilt flattens as the video rises to full screen.
-  const heroCardTilt = useMotionValue(9);
+  const heroCardTilt = useMotionValue(13);
   // The faint light pool under the card dims as the card settles flat.
   const heroLiftOpacity = useMotionValue(0.35);
   const heroLogoOpacity = useMotionValue(1);
@@ -2128,7 +2128,7 @@ function StartupsPage() {
           heroOverlayOpacity.set(0.72 * (1 - overlayProgress));
           // The 3D tilt flattens on the same progress, so the card settles
           // flat exactly as the frost clears.
-          heroCardTilt.set(9 * (1 - overlayProgress));
+          heroCardTilt.set(13 * (1 - overlayProgress));
           heroLiftOpacity.set(0.35 * (1 - overlayProgress));
         }
       },
@@ -2233,7 +2233,7 @@ function StartupsPage() {
 
             <motion.div
               ref={heroVideoRef}
-              className="relative z-20 mx-auto mt-6 w-full sm:mt-8 sm:max-w-3xl md:max-w-4xl lg:max-w-5xl"
+              className="relative z-20 mx-auto mt-6 w-full sm:mt-8 sm:max-w-4xl md:max-w-5xl lg:max-w-6xl"
             >
               {/* Mountain ridgeline: dashed lines rise from the video frame
                   edges into a peaked range that sits below the MU logo and
@@ -2242,7 +2242,7 @@ function StartupsPage() {
                   in lockstep with the pinned copy. */}
               <motion.div
                 aria-hidden="true"
-                className="pointer-events-none absolute bottom-full left-0 right-0"
+                className="pointer-events-none absolute bottom-full left-1/2 w-full max-w-3xl -translate-x-1/2 sm:max-w-3xl md:max-w-4xl lg:max-w-5xl"
                 style={reduceHeroMotion ? { opacity: 1 } : { opacity: heroTextOpacity }}
               >
               <svg
@@ -2297,7 +2297,7 @@ function StartupsPage() {
                   the copy shows the film's top edge, not its bottom. */}
               <motion.div
                 aria-hidden="true"
-                className="pointer-events-none absolute bottom-full left-[9%] right-[9%] h-[132px] overflow-hidden [mask-composite:intersect] [mask-image:linear-gradient(to_top,rgba(0,0,0,0.95),rgba(0,0,0,0.35)_55%,transparent_80%),linear-gradient(to_right,transparent_0%,black_22%,black_78%,transparent_100%)] sm:h-[172px] md:h-[212px]"
+                className="pointer-events-none absolute bottom-full left-1/2 h-[132px] w-full max-w-3xl -translate-x-1/2 overflow-hidden [mask-composite:intersect] [mask-image:linear-gradient(to_top,rgba(0,0,0,0.95),rgba(0,0,0,0.35)_55%,transparent_80%),linear-gradient(to_right,transparent_0%,black_22%,black_78%,transparent_100%)] sm:h-[172px] md:h-[212px]"
                 style={{ opacity: heroReflectionOpacity }}
               >
                 <video
@@ -2348,7 +2348,7 @@ function StartupsPage() {
                     full screen so the film plays fully clear. */}
                 <motion.div
                   aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 rounded-2xl bg-black/55 backdrop-blur-[32px] backdrop-saturate-150"
+                  className="pointer-events-none absolute inset-0 rounded-2xl bg-black/60 backdrop-blur-[48px] backdrop-saturate-150"
                   style={reduceHeroMotion ? { opacity: 0 } : { opacity: heroOverlayOpacity }}
                 />
                 </motion.div>
