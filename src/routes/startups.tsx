@@ -2168,35 +2168,47 @@ function StartupsPage() {
             <motion.div
               ref={heroTextRef}
               className="sticky top-20 z-10 flex w-full flex-col items-center text-center sm:top-24 md:top-28"
-              style={reduceHeroMotion ? { opacity: 1, scale: 1 } : { opacity: heroTextOpacity, scale: heroTextScale }}
+              style={reduceHeroMotion ? { scale: 1 } : { scale: heroTextScale }}
             >
-              <Reveal delay={0.08} className="w-full">
-                <h1 className="mx-auto w-full overflow-hidden pb-[0.14em] font-medium leading-[0.95] tracking-[-0.02em]">
-                  <span
-                    ref={headlineWordRef}
-                    className="block whitespace-nowrap text-[clamp(2.2875rem,8.5vw,3.5875rem)] leading-[0.9] tracking-[-0.03em]"
-                    style={wordFontSize ? { fontSize: `${wordFontSize}px` } : undefined}
-                  >Entrepreneurship</span>
-                  <span className="mb-4 mt-4 block text-[clamp(1.05rem,3.5vw,1.6rem)] font-semibold text-background/80 sm:mb-6 sm:mt-6 md:mb-8 md:mt-8">at Masters&apos; Union</span>
-                </h1>
-              </Reveal>
+              {/* The scroll fade applies to typography only — the CTA and its
+                  dropdown stay fully opaque in both rest and hover states. */}
+              <motion.div
+                className="w-full"
+                style={reduceHeroMotion ? { opacity: 1 } : { opacity: heroTextOpacity }}
+              >
+                <Reveal delay={0.08} className="w-full">
+                  <h1 className="mx-auto w-full overflow-hidden pb-[0.14em] font-medium leading-[0.95] tracking-[-0.02em]">
+                    <span
+                      ref={headlineWordRef}
+                      className="block whitespace-nowrap text-[clamp(2.2875rem,8.5vw,3.5875rem)] leading-[0.9] tracking-[-0.03em]"
+                      style={wordFontSize ? { fontSize: `${wordFontSize}px` } : undefined}
+                    >Entrepreneurship</span>
+                    <span className="mb-4 mt-4 block text-[clamp(1.05rem,3.5vw,1.6rem)] font-semibold text-background/80 sm:mb-6 sm:mt-6 md:mb-8 md:mt-8">at Masters&apos; Union</span>
+                  </h1>
+                </Reveal>
+              </motion.div>
 
               <Reveal delay={0.14}>
                 <HeroReportDownload />
               </Reveal>
 
-              <Reveal delay={0.18}>
-                <span className="eyebrow mt-6 inline-block whitespace-nowrap text-[0.6875rem] text-background/70 md:text-[0.8125rem]">
-                  120+ Startups · ₹593 Cr Valuation
-                </span>
-              </Reveal>
+              <motion.div
+                className="w-full"
+                style={reduceHeroMotion ? { opacity: 1 } : { opacity: heroTextOpacity }}
+              >
+                <Reveal delay={0.18}>
+                  <span className="eyebrow mt-6 inline-block whitespace-nowrap text-[0.6875rem] text-background/70 md:text-[0.8125rem]">
+                    120+ Startups · ₹593 Cr Valuation
+                  </span>
+                </Reveal>
 
-              <Reveal delay={0.22}>
-                <div
-                  aria-hidden="true"
-                  className="mt-7 h-px w-28 bg-gradient-to-r from-transparent via-background/35 to-transparent sm:w-36"
-                />
-              </Reveal>
+                <Reveal delay={0.22}>
+                  <div
+                    aria-hidden="true"
+                    className="mt-7 h-px w-28 bg-gradient-to-r from-transparent via-background/35 to-transparent sm:w-36"
+                  />
+                </Reveal>
+              </motion.div>
             </motion.div>
 
             <motion.div
