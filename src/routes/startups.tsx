@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { AnimatePresence, motion, useMotionValue, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -58,6 +58,7 @@ import ventureLexis from "@/assets/venture-logos/Lexis.png.asset.json";
 import ventureMonarque from "@/assets/venture-logos/Monarque.png.asset.json";
 import ventureNivara from "@/assets/venture-logos/Nivara.png.asset.json";
 import ventureFnor from "@/assets/venture-logos/FNOR.png.asset.json";
+import { onScrollFrame } from "@/lib/scroll-driver";
 
 const NAV: { id: string; label: string }[] = [
   { id: "top", label: "Hero" },
@@ -2006,18 +2007,47 @@ function StartupsPage() {
   const heroVideoRef = useRef<HTMLDivElement>(null);
   const headlineWordRef = useRef<HTMLSpanElement>(null);
   const [wordFontSize, setWordFontSize] = useState<number | null>(null);
-  const { scrollYProgress: heroProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const { scrollYProgress: heroVideoProgress } = useScroll({
-    target: heroVideoRef,
-    offset: ["start end", "start start"],
-  });
-  const heroTextOpacity = useTransform(heroProgress, [0, 0.72, 0.94], [1, 1, 0.7]);
-  const heroTextScale = useTransform(heroProgress, [0, 0.72, 0.94], [1, 1, 0.97]);
-  const heroVideoOpacity = useTransform(heroVideoProgress, [0, 0.72], [0.5, 1]);
-  const heroVideoScale = useTransform(heroVideoProgress, [0, 0.72], [0.96, 1]);
+  const heroTextOpacity = useMotionValue(1);
+  const heroTextScale = useMotionValue(1);
+  const heroVideoOpacity = useMotionValue(reduceHeroMotion ? 1 : 0.5);
+  const heroVideoScale = useMotionValue(reduceHeroMotion ? 1 : 0.96);
+
+  useEffect(() => {
+    if (reduceHeroMotion) {
+      heroTextOpacity.set(1);
+      heroTextScale.set(1);
+      heroVideoOpacity.set(1);
+      heroVideoScale.set(1);
+      return;
+    }
+
+    let heroRect: DOMRect | undefined;
+    let videoRect: DOMRect | undefined;
+    const clamp = (value: number) => Math.min(1, Math.max(0, value));
+
+    return onScrollFrame(
+      ({ vh }) => {
+        if (!heroRect || !videoRect) return;
+
+        // Complete the video reveal when its centre reaches the viewport centre.
+        const videoRange = Math.max(1, (vh + videoRect.height) / 2);
+        const videoProgress = clamp((vh - videoRect.top) / videoRange);
+        heroVideoOpacity.set(0.5 + videoProgress * 0.5);
+        heroVideoScale.set(0.96 + videoProgress * 0.04);
+
+        // Soften the pinned copy only during the final part of the hero handoff.
+        const releaseStart = vh * 0.62;
+        const releaseEnd = vh * 0.18;
+        const releaseProgress = clamp((releaseStart - heroRect.bottom) / Math.max(1, releaseStart - releaseEnd));
+        heroTextOpacity.set(1 - releaseProgress * 0.3);
+        heroTextScale.set(1 - releaseProgress * 0.03);
+      },
+      () => {
+        heroRect = heroRef.current?.getBoundingClientRect();
+        videoRect = heroVideoRef.current?.getBoundingClientRect();
+      },
+    );
+  }, [reduceHeroMotion, heroTextOpacity, heroTextScale, heroVideoOpacity, heroVideoScale]);
 
   // Fit "Entrepreneurship" to exactly fill its box width on one line at any screen size.
   useLayoutEffect(() => {
