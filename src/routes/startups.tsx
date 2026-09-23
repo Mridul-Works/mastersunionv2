@@ -2059,6 +2059,7 @@ function StartupsPage() {
       heroTextOpacity.set(1);
       heroTextScale.set(1);
       heroLogoOpacity.set(1);
+      heroLogoY.set(0);
       return;
     }
 
