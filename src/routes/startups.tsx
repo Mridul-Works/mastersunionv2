@@ -1578,7 +1578,7 @@ function DropshippingSection() {
             </div>
 
             <div
-              className="pointer-events-none absolute left-1/2 z-20 -translate-x-1/2 text-center top-[calc(clamp(10rem,18svh,11rem)_+_min(76vw,410px)_*_1.25_+_1.5rem)] sm:top-[calc(clamp(10rem,18svh,11rem)_+_min(52vw,430px)_*_1.25_+_1.5rem)] lg:top-[calc(6.5rem_+_min(32vw,470px,calc((100svh_-_15rem)_*_0.8))_*_1.25_+_1rem)]"
+              className="pointer-events-none absolute left-1/2 z-20 -translate-x-1/2 text-center top-[calc(clamp(10rem,18svh,11rem)_+_min(76vw,410px)_*_1.25_+_1.5rem)] sm:top-[calc(clamp(10rem,18svh,11rem)_+_min(52vw,430px)_*_1.25_+_1.5rem)] lg:top-[calc(clamp(10rem,18svh,11rem)_+_min(32vw,470px)_*_1.25_+_1.5rem)]"
               data-dropshipping-counter
             >
               <div className="flex items-end justify-center gap-3">
@@ -1593,7 +1593,7 @@ function DropshippingSection() {
 
             {DROPSHIPPING_VIDEOS.map((video, index) => {
               const sizes = [
-                "aspect-[4/5] w-[min(76vw,410px)] sm:w-[min(52vw,430px)] lg:w-[min(32vw,470px,calc((100svh_-_15rem)_*_0.8))]",
+                "aspect-[4/5] w-[min(76vw,410px)] sm:w-[min(52vw,430px)] lg:w-[min(32vw,470px)]",
                 "aspect-[3/4] w-[min(66vw,340px)] sm:w-[min(35vw,360px)]",
                 "aspect-[3/4] w-[min(66vw,340px)] sm:w-[min(35vw,360px)]",
                 "aspect-[3/4] w-[min(66vw,340px)] sm:w-[min(35vw,360px)]",
@@ -1606,7 +1606,7 @@ function DropshippingSection() {
                   ref={(element) => { videoCardRefs.current[index] = element; }}
                   className={`group/card absolute overflow-visible bg-foreground shadow-2xl will-change-transform ${
                     index === 0
-                      ? "left-0 right-0 top-[clamp(10rem,18svh,11rem)] lg:top-[6.5rem] mx-auto"
+                      ? "left-0 right-0 top-[clamp(10rem,18svh,11rem)] mx-auto"
                       : "inset-0 m-auto"
                   } ${sizes[index]}`}
                   style={{
