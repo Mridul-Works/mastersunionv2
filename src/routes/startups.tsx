@@ -1398,17 +1398,17 @@ function DropshippingSection() {
       geometry.top = rect.top;
       geometry.height = rect.height;
       const main = videoCardRefs.current[0];
-      const side = videoCardRefs.current[1];
       if (main) {
         geometry.w0 = main.offsetWidth;
         geometry.h0 = main.offsetHeight;
         geometry.center0 = main.offsetTop + main.offsetHeight / 2;
         geometry.containerH = (main.offsetParent as HTMLElement | null)?.clientHeight ?? 0;
       }
-      if (side) {
-        geometry.ws = side.offsetWidth;
-        geometry.hs = side.offsetHeight;
-      }
+      // Side cards are sized via inline width (never scaled with transforms), so
+      // their base CSS size is derived analytically to stay correct on resize.
+      const ivw = window.innerWidth;
+      geometry.ws = ivw < 640 ? Math.min(ivw * 0.66, 340) : Math.min(ivw * 0.35, 360);
+      geometry.hs = geometry.ws * (4 / 3);
     };
 
     return onScrollFrame(({ vh, vw }) => {
@@ -1510,8 +1510,12 @@ function DropshippingSection() {
         const x = originX + (target.x - originX) * eased;
         const y = originY + (target.y - originY) * eased;
         const scale = startScale + (target.scale - startScale) * eased;
-        card.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale}) rotate(0deg)`;
-        card.style.setProperty("--ep-scale", String(scale));
+        // Sizing is carried by the inline width — never a transform scale — so
+        // everything inside (episode label, play button) renders at its natural
+        // size and is pixel-identical across all five cards.
+        card.style.width = `${ws * scale}px`;
+        card.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(0deg)`;
+        card.style.setProperty("--ep-scale", "1");
         card.style.visibility = local > 0.01 ? "visible" : "hidden";
         card.style.pointerEvents = local > 0.86 ? "auto" : "none";
       });
@@ -1627,9 +1631,9 @@ function DropshippingSection() {
                   } ${sizes[index]}`}
                   style={{
                     zIndex: index === 0 ? 10 : 9 - index,
-                    transform: `scale(${index === 0 ? 0.96 : 0.38}) rotate(0deg)`,
+                    transform: "translate3d(0, 0, 0) rotate(0deg)",
                     visibility: index === 0 ? "visible" : "hidden",
-                    ["--ep-scale" as string]: index === 0 ? "0.96" : "0.38",
+                    ["--ep-scale" as string]: index === 0 ? "0.96" : "1",
                   } as React.CSSProperties}
                 >
                   <div aria-hidden className="pointer-events-none absolute -inset-2 border border-background/10" />
