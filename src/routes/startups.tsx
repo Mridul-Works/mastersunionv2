@@ -1267,7 +1267,7 @@ function OutclassSection() {
       </div>
 
       <div className="mt-10 grid gap-8 sm:mt-12 md:mt-16 lg:grid-cols-[minmax(180px,0.42fr)_minmax(0,1.58fr)] lg:gap-14">
-        <aside className="hidden self-start lg:sticky lg:top-12 lg:flex lg:flex-col">
+        <aside className="hidden self-start lg:sticky lg:top-1/2 lg:flex lg:-translate-y-1/2 lg:flex-col">
           <div className="eyebrow text-background/45">So I started doing something about it.</div>
 
           <ol className="mt-8 border-l border-background/15">
@@ -1294,8 +1294,12 @@ function OutclassSection() {
               style={{ top: `calc(3rem + ${index * 1.25}rem)`, zIndex: index + 1 }}
             >
               <div
-                className="transition-transform duration-500 ease-out"
-                style={{ transformOrigin: "top center", transform: `scale(${1 - depth * 0.018})` }}
+                className="transition-[transform,filter] duration-700 ease-out"
+                style={{
+                  transformOrigin: "top center",
+                  transform: `scale(${1 - depth * 0.018})`,
+                  filter: depth > 0 ? `blur(${Math.min(depth * 4, 10)}px)` : "blur(0px)",
+                }}
               >
                 <motion.article
                   initial={{ opacity: 0, y: 28 }}
