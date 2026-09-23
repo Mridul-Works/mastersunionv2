@@ -2123,7 +2123,10 @@ function StartupsPage() {
           if (videoRect.top > maxVideoTop) maxVideoTop = videoRect.top;
           const travel = Math.max(1, maxVideoTop - vh * 0.08);
           const overlayProgress = clamp((maxVideoTop - videoRect.top) / travel);
-          heroOverlayOpacity.set(0.45 * (1 - overlayProgress));
+          heroOverlayOpacity.set(0.5 * (1 - overlayProgress));
+          // The 3D tilt flattens on the same progress, so the card settles
+          // flat exactly as the frost clears.
+          heroCardTilt.set(5 * (1 - overlayProgress));
         }
       },
       () => {
@@ -2133,7 +2136,7 @@ function StartupsPage() {
         marqueeRect = heroMarqueeRef.current?.getBoundingClientRect();
       },
     );
-  }, [reduceHeroMotion, heroTextOpacity, heroTextScale, heroLogoOpacity, heroLogoY, heroOverlayOpacity]);
+  }, [reduceHeroMotion, heroTextOpacity, heroTextScale, heroLogoOpacity, heroLogoY, heroOverlayOpacity, heroCardTilt]);
 
   // Fit "Entrepreneurship" to exactly fill its box width on one line at any screen size.
   useLayoutEffect(() => {
