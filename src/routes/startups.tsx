@@ -2176,6 +2176,7 @@ function StartupsPage() {
             </motion.div>
 
           <motion.div
+            ref={heroMarqueeRef}
             initial={reduceHeroMotion ? false : { opacity: 0, y: 24 }}
             whileInView={reduceHeroMotion ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.18 }}
