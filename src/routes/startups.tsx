@@ -2004,6 +2004,7 @@ function StartupsPage() {
   const [selectedSpark, setSelectedSpark] = useState(0);
   const reduceHeroMotion = useReducedMotion();
   const heroRef = useRef<HTMLElement>(null);
+  const heroTextRef = useRef<HTMLDivElement>(null);
   const heroVideoRef = useRef<HTMLDivElement>(null);
   const headlineWordRef = useRef<HTMLSpanElement>(null);
   const [wordFontSize, setWordFontSize] = useState<number | null>(null);
@@ -2021,13 +2022,13 @@ function StartupsPage() {
       return;
     }
 
-    let heroRect: DOMRect | undefined;
+    let textRect: DOMRect | undefined;
     let videoRect: DOMRect | undefined;
     const clamp = (value: number) => Math.min(1, Math.max(0, value));
 
     return onScrollFrame(
       ({ vh }) => {
-        if (!heroRect || !videoRect) return;
+        if (!textRect || !videoRect) return;
 
         // Complete the video reveal when its centre reaches the viewport centre.
         const videoRange = Math.max(1, (vh + videoRect.height) / 2);
@@ -2035,15 +2036,20 @@ function StartupsPage() {
         heroVideoOpacity.set(0.5 + videoProgress * 0.5);
         heroVideoScale.set(0.96 + videoProgress * 0.04);
 
-        // Soften the pinned copy only during the final part of the hero handoff.
-        const releaseStart = vh * 0.62;
-        const releaseEnd = vh * 0.18;
-        const releaseProgress = clamp((releaseStart - heroRect.bottom) / Math.max(1, releaseStart - releaseEnd));
-        heroTextOpacity.set(1 - releaseProgress * 0.3);
+        // Tie the copy release to the live gap above the rising video. This
+        // guarantees the copy is gone before the two boxes can intersect.
+        const clearance = videoRect.top - textRect.bottom;
+        const fadeStart = Math.max(180, vh * 0.28);
+        const fadeEnd = Math.max(48, vh * 0.08);
+        const releaseProgress = clamp((fadeStart - clearance) / Math.max(1, fadeStart - fadeEnd));
+        heroTextOpacity.set(1 - releaseProgress);
         heroTextScale.set(1 - releaseProgress * 0.03);
+        if (heroTextRef.current) {
+          heroTextRef.current.style.pointerEvents = releaseProgress >= 0.72 ? "none" : "auto";
+        }
       },
       () => {
-        heroRect = heroRef.current?.getBoundingClientRect();
+        textRect = heroTextRef.current?.getBoundingClientRect();
         videoRect = heroVideoRef.current?.getBoundingClientRect();
       },
     );
@@ -2096,6 +2102,7 @@ function StartupsPage() {
 
           <div className="relative mx-auto mt-16 w-full max-w-6xl sm:mt-20 md:mt-24 lg:mt-28">
             <motion.div
+              ref={heroTextRef}
               className="sticky top-20 z-10 flex w-full flex-col items-center text-center sm:top-24 md:top-28"
               style={reduceHeroMotion ? { opacity: 1, scale: 1 } : { opacity: heroTextOpacity, scale: heroTextScale }}
             >
