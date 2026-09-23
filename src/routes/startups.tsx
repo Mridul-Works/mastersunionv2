@@ -1385,8 +1385,6 @@ function DropshippingSection() {
   const [activeVideo, setActiveVideo] = useState(0);
   const collageRef = useRef<HTMLDivElement | null>(null);
   const videoCardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const counterRef = useRef<HTMLDivElement | null>(null);
-  const progressFillRef = useRef<HTMLDivElement | null>(null);
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
@@ -1417,9 +1415,6 @@ function DropshippingSection() {
       const compact = vw < 768;
       const nextActive = Math.min(4, Math.max(0, Math.floor((progress + 0.09) / 0.19)));
       setActiveVideo((current) => current === nextActive ? current : nextActive);
-      if (progressFillRef.current) {
-        progressFillRef.current.style.transform = `scaleX(${Math.max(0.04, progress)})`;
-      }
       // Geometry-driven layout: side cards form an even 2x2 grid flanking card 1,
       // vertically centered on card 1 with identical gaps everywhere.
       const { w0, h0, ws, hs } = geometry;
@@ -1431,16 +1426,11 @@ function DropshippingSection() {
       const topSafe = compact ? 72 : vw < 1024 ? 84 : 96;
       const bottomSafe = compact ? 88 : vw < 1024 ? 96 : 104;
       const desktop = vw >= 1024;
-      const counterGap = 24;
-      const counterHeight = counterRef.current?.offsetHeight ?? 61;
       const mainTop = desktop
-        ? topSafe + Math.max(0, (containerH - topSafe - bottomSafe - h0 - counterGap - counterHeight) / 2)
+        ? topSafe + Math.max(0, (containerH - topSafe - bottomSafe - h0) / 2)
         : 0;
       if (desktop && videoCardRefs.current[0]) {
         videoCardRefs.current[0].style.top = `${mainTop}px`;
-      }
-      if (desktop && counterRef.current) {
-        counterRef.current.style.top = `${mainTop + h0 + counterGap}px`;
       }
       // Vertical budget: the two stacked side cards plus their gap must fit
       // between the safe top and bottom margins.
@@ -1591,19 +1581,6 @@ function DropshippingSection() {
               </span>
             </div>
 
-            <div
-              ref={counterRef}
-              className="pointer-events-none absolute left-1/2 z-20 -translate-x-1/2 text-center top-[calc(clamp(10rem,18svh,11rem)_+_min(76vw,410px)_*_1.25_+_1.5rem)] sm:top-[calc(clamp(10rem,18svh,11rem)_+_min(52vw,430px)_*_1.25_+_1.5rem)] lg:top-[calc(clamp(10rem,18svh,11rem)_+_min(32vw,470px)_*_1.25_+_1.5rem)]"
-              data-dropshipping-counter
-            >
-              <div className="flex items-end justify-center gap-3">
-                <span className="font-display text-5xl font-semibold leading-none text-background">0{activeVideo + 1}</span>
-                <span className="pb-1 font-mono text-[9px] uppercase tracking-[0.3em] text-background/40">of 05</span>
-              </div>
-              <div className="mx-auto mt-3 h-px w-44 overflow-hidden bg-background/15">
-                <div ref={progressFillRef} className="h-full origin-left scale-x-[0.04] bg-background transition-none" />
-              </div>
-            </div>
 
 
             {DROPSHIPPING_VIDEOS.map((video, index) => {
