@@ -2009,10 +2009,32 @@ function StartupsPage() {
   const heroLogoRef = useRef<HTMLDivElement>(null);
   const heroMarqueeRef = useRef<HTMLDivElement>(null);
   const headlineWordRef = useRef<HTMLSpanElement>(null);
+  const heroVideoElRef = useRef<HTMLVideoElement>(null);
   const [wordFontSize, setWordFontSize] = useState<number | null>(null);
   const heroTextOpacity = useMotionValue(1);
   const heroTextScale = useMotionValue(1);
   const heroLogoOpacity = useMotionValue(1);
+
+  useEffect(() => {
+    const el = heroVideoElRef.current;
+    if (!el) return;
+    el.muted = true;
+    el.defaultMuted = true;
+    el.volume = 0;
+    const tryPlay = () => {
+      void el.play().catch(() => undefined);
+    };
+    tryPlay();
+    el.addEventListener("loadeddata", tryPlay);
+    el.addEventListener("canplay", tryPlay);
+    document.addEventListener("pointerdown", tryPlay, { once: true });
+    return () => {
+      el.removeEventListener("loadeddata", tryPlay);
+      el.removeEventListener("canplay", tryPlay);
+      document.removeEventListener("pointerdown", tryPlay);
+    };
+  }, []);
+
 
   useEffect(() => {
     if (reduceHeroMotion) {
