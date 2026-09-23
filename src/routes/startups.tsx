@@ -2126,7 +2126,7 @@ function StartupsPage() {
             />
           </motion.div>
 
-          <div className="relative mx-auto mt-10 w-full max-w-6xl sm:mt-12 md:mt-14 lg:mt-16">
+          <div className="relative mx-auto mt-2 w-full max-w-6xl sm:mt-3 md:mt-4 lg:mt-5">
             <motion.div
               ref={heroTextRef}
               className="sticky top-20 z-10 flex w-full flex-col items-center text-center sm:top-24 md:top-28"
