@@ -1529,7 +1529,7 @@ function DropshippingSection() {
                   Field Film / 0{activeVideo + 1}
                 </span>
               </div>
-              <div className="absolute left-1/2 top-0 w-[min(60vw,420px)] -translate-x-1/2 text-center">
+              <div className="absolute left-1/2 top-10 w-[min(72vw,420px)] -translate-x-1/2 text-center sm:top-0 sm:w-[min(60vw,420px)]">
                 <p className="font-serif text-[clamp(1.15rem,2.4vw,2.1rem)] italic leading-[1.05] text-background">
                   Commerce,<br className="hidden sm:block" /> in motion.
                 </p>
