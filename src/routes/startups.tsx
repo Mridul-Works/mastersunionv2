@@ -1382,8 +1382,10 @@ function OutclassSection() {
 
 function DropshippingSection() {
   const [ytPlayingId, setYtPlayingId] = useState<string | null>(null);
+  const [activeVideo, setActiveVideo] = useState(0);
   const collageRef = useRef<HTMLDivElement | null>(null);
   const videoCardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const progressFillRef = useRef<HTMLDivElement | null>(null);
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
@@ -1400,27 +1402,33 @@ function DropshippingSection() {
       const travel = Math.max(1, geometry.height - vh);
       const progress = prefersReducedMotion ? 1 : Math.min(1, Math.max(0, -geometry.top / travel));
       const compact = vw < 768;
+      const nextActive = Math.min(4, Math.max(0, Math.floor((progress + 0.09) / 0.19)));
+      setActiveVideo((current) => current === nextActive ? current : nextActive);
+      if (progressFillRef.current) {
+        progressFillRef.current.style.transform = `scaleX(${Math.max(0.04, progress)})`;
+      }
       const targets = compact
         ? [
             { x: 0, y: 0, scale: 1, rotate: 0 },
-            { x: -vw * 0.24, y: -vh * 0.17, scale: 0.62, rotate: -5 },
-            { x: vw * 0.25, y: -vh * 0.14, scale: 0.66, rotate: 5 },
-            { x: -vw * 0.25, y: vh * 0.19, scale: 0.58, rotate: 4 },
-            { x: vw * 0.26, y: vh * 0.2, scale: 0.61, rotate: -4 },
+            { x: -vw * 0.27, y: -vh * 0.18, scale: 0.58, rotate: -4 },
+            { x: vw * 0.27, y: -vh * 0.12, scale: 0.63, rotate: 3 },
+            { x: -vw * 0.28, y: vh * 0.2, scale: 0.54, rotate: 3 },
+            { x: vw * 0.29, y: vh * 0.23, scale: 0.59, rotate: -3 },
           ]
         : [
-            { x: 0, y: 0, scale: 1, rotate: 0 },
-            { x: -Math.min(vw * 0.31, 455), y: -vh * 0.16, scale: 0.82, rotate: -6 },
-            { x: Math.min(vw * 0.32, 470), y: -vh * 0.12, scale: 0.88, rotate: 6 },
-            { x: -Math.min(vw * 0.29, 425), y: vh * 0.2, scale: 0.72, rotate: 5 },
-            { x: Math.min(vw * 0.3, 440), y: vh * 0.22, scale: 0.78, rotate: -5 },
+            { x: vw >= 1024 ? 72 : 0, y: 0, scale: 1, rotate: 0 },
+            { x: -Math.min(vw * 0.33, 485), y: -vh * 0.2, scale: 0.72, rotate: -4 },
+            { x: Math.min(vw * 0.35, 510), y: -vh * 0.11, scale: 0.8, rotate: 3 },
+            { x: -Math.min(vw * 0.31, 455), y: vh * 0.22, scale: 0.63, rotate: 3 },
+            { x: Math.min(vw * 0.33, 480), y: vh * 0.24, scale: 0.7, rotate: -3 },
           ];
 
       videoCardRefs.current.forEach((card, index) => {
         if (!card) return;
         if (index === 0) {
           const settle = Math.min(1, progress / 0.16);
-          card.style.transform = `translate3d(-50%, -50%, 0) scale(${0.96 + settle * 0.04})`;
+          const target = targets[0];
+          card.style.transform = `translate3d(calc(-50% + ${target.x}px), -50%, 0) scale(${0.96 + settle * 0.04})`;
           card.style.visibility = "visible";
           return;
         }
@@ -1513,28 +1521,77 @@ function DropshippingSection() {
 
       <div className="mt-9 sm:mt-12 md:mt-14">
         <div ref={collageRef} data-dropshipping-collage className="relative h-[300svh] overflow-x-clip sm:h-[320svh]">
-          <div className="sticky top-0 h-[100svh] overflow-hidden">
+          <div className="sticky top-0 h-[100svh] overflow-hidden border-y border-background/10">
+            <div className="pointer-events-none absolute inset-x-4 top-6 z-20 flex items-center justify-between sm:inset-x-8 lg:inset-x-12 lg:top-10">
+              <div className="flex items-center gap-3">
+                <span className="h-px w-8 bg-background/40 sm:w-14" />
+                <span className="font-mono text-[9px] uppercase tracking-[0.32em] text-background/55 sm:text-[10px]">
+                  Field Film / 0{activeVideo + 1}
+                </span>
+              </div>
+              <span className="font-mono text-[9px] uppercase tracking-[0.28em] text-background/35 sm:text-[10px]">
+                Build in public
+              </span>
+            </div>
+
+            <aside className="pointer-events-none absolute bottom-[12%] left-8 top-[18%] z-20 hidden w-[18vw] max-w-[230px] flex-col justify-between lg:flex xl:left-12">
+              <div>
+                <div className="mb-6 h-px w-20 bg-background/25" />
+                <p className="font-serif text-[clamp(2rem,3.4vw,3.4rem)] italic leading-[0.96] text-background">
+                  Commerce,<br />in motion.
+                </p>
+                <p className="mt-5 max-w-[21ch] text-[11px] leading-[1.7] text-background/45">
+                  Five films. One challenge. Every decision made in the open.
+                </p>
+              </div>
+              <div>
+                <div className="flex items-end gap-3">
+                  <span className="font-display text-5xl font-semibold leading-none text-background">0{activeVideo + 1}</span>
+                  <span className="pb-1 font-mono text-[9px] uppercase tracking-[0.3em] text-background/40">of 05</span>
+                </div>
+                <div className="mt-4 h-px overflow-hidden bg-background/15">
+                  <div ref={progressFillRef} className="h-full origin-left scale-x-[0.04] bg-background transition-none" />
+                </div>
+              </div>
+            </aside>
+
+            <div aria-hidden className="pointer-events-none absolute bottom-[9%] right-[3%] z-[11] hidden text-right lg:block">
+              <p className="font-display text-[clamp(4.8rem,8vw,8.5rem)] font-semibold uppercase leading-[0.72] text-background">
+                Drop
+              </p>
+              <p className="font-display text-[clamp(4.8rem,8vw,8.5rem)] font-semibold uppercase leading-[0.82] text-transparent [-webkit-text-stroke:1px_var(--background)] opacity-70">
+                Ship
+              </p>
+            </div>
+
             {DROPSHIPPING_VIDEOS.map((video, index) => {
               const sizes = [
-                "aspect-[4/5] w-[min(78vw,420px)] sm:w-[min(56vw,440px)] lg:w-[min(34vw,480px)]",
-                "aspect-[3/4] w-[min(58vw,300px)] sm:w-[min(31vw,320px)]",
-                "aspect-[4/5] w-[min(60vw,320px)] sm:w-[min(34vw,350px)]",
-                "aspect-[2/3] w-[min(50vw,260px)] sm:w-[min(27vw,285px)]",
-                "aspect-[5/6] w-[min(62vw,330px)] sm:w-[min(35vw,365px)]",
+                "aspect-[4/5] w-[min(76vw,410px)] sm:w-[min(52vw,430px)] lg:w-[min(32vw,470px)]",
+                "aspect-[3/4] w-[min(56vw,290px)] sm:w-[min(29vw,305px)]",
+                "aspect-[4/5] w-[min(59vw,310px)] sm:w-[min(32vw,335px)]",
+                "aspect-[2/3] w-[min(48vw,250px)] sm:w-[min(25vw,275px)]",
+                "aspect-[5/6] w-[min(60vw,320px)] sm:w-[min(33vw,350px)]",
               ];
               return (
                 <div
                   key={video.id}
                   data-dropshipping-video={video.id}
                   ref={(element) => { videoCardRefs.current[index] = element; }}
-                  className={`absolute left-1/2 top-1/2 overflow-hidden rounded-2xl border border-background/15 bg-foreground shadow-[0_30px_80px_-32px_rgba(0,0,0,0.9)] will-change-transform ${sizes[index]}`}
+                  className={`group/card absolute left-1/2 top-1/2 overflow-visible bg-foreground shadow-2xl will-change-transform ${sizes[index]}`}
                   style={{
                     zIndex: index === 0 ? 10 : 9 - index,
                     transform: `translate3d(-50%, -50%, 0) scale(${index === 0 ? 0.96 : 0.38})`,
                     visibility: index === 0 ? "visible" : "hidden",
                   }}
                 >
-                  {renderVideo(video)}
+                  <div aria-hidden className="pointer-events-none absolute -inset-2 border border-background/10" />
+                  <div className="relative h-full w-full overflow-hidden border border-background/20 bg-foreground grayscale transition-[filter] duration-700 group-hover/card:grayscale-0">
+                    {renderVideo(video)}
+                    <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between bg-gradient-to-b from-foreground/70 to-transparent px-4 pb-10 pt-4">
+                      <span className="font-mono text-[8px] uppercase tracking-[0.28em] text-background/75">Episode 0{index + 1}</span>
+                      <span className="h-1.5 w-1.5 rounded-full bg-background/80" />
+                    </div>
+                  </div>
                 </div>
               );
             })}
