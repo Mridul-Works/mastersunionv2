@@ -2056,9 +2056,14 @@ function StartupsPage() {
         const releaseProgress = clamp((fadeStart - clearance) / Math.max(1, fadeStart - fadeEnd));
         heroTextOpacity.set(1 - releaseProgress);
         heroTextScale.set(1 - releaseProgress * 0.03);
-        // Fade the pinned logo in step with the copy so it never sits on top
-        // of the venture marquee while that scrolls underneath it.
-        heroLogoOpacity.set(1 - releaseProgress);
+        // Keep the pinned logo solid through the whole hero scroll; fade it
+        // only once the venture marquee rises up to meet it, so it never sits
+        // on top of the passing logos.
+        if (logoRect && marqueeRect) {
+          const gap = marqueeRect.top - logoRect.bottom;
+          const logoRelease = clamp((140 - gap) / 120);
+          heroLogoOpacity.set(1 - logoRelease);
+        }
         if (heroTextRef.current) {
           heroTextRef.current.style.pointerEvents = releaseProgress >= 0.72 ? "none" : "auto";
         }
@@ -2066,6 +2071,8 @@ function StartupsPage() {
       () => {
         textRect = heroTextRef.current?.getBoundingClientRect();
         videoRect = heroVideoRef.current?.getBoundingClientRect();
+        logoRect = heroLogoRef.current?.getBoundingClientRect();
+        marqueeRect = heroMarqueeRef.current?.getBoundingClientRect();
       },
     );
   }, [reduceHeroMotion, heroTextOpacity, heroTextScale, heroLogoOpacity, heroVideoOpacity, heroVideoScale]);
