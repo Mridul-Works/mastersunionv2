@@ -1382,7 +1382,7 @@ function OutclassSection() {
 
 function DropshippingSection() {
   const [ytPlayingId, setYtPlayingId] = useState<string | null>(null);
-  const [activeVideo, setActiveVideo] = useState(0);
+  const [, setActiveVideo] = useState(0);
   const collageRef = useRef<HTMLDivElement | null>(null);
   const videoCardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const prefersReducedMotion = useReducedMotion();
