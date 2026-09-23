@@ -2310,7 +2310,23 @@ function StartupsPage() {
                   <source src={foundersVideoWebm.url} type="video/webm" />
                 </video>
               </motion.div>
-              <div className="relative">
+              <div className="relative" style={{ perspective: "1400px" }}>
+                <motion.div
+                  style={
+                    reduceHeroMotion
+                      ? { rotateX: 0 }
+                      : { rotateX: heroCardTilt, transformStyle: "preserve-3d" }
+                  }
+                  className="relative"
+                >
+                {/* Soft lift light beneath the card: a faint pool of light
+                    that reads as the card floating above the page; it dims on
+                    the same progress as the tilt. */}
+                <motion.div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -bottom-7 left-[6%] right-[6%] h-14 rounded-[100%] bg-white/10 blur-2xl"
+                  style={reduceHeroMotion ? { opacity: 0.35 } : { opacity: heroLiftOpacity }}
+                />
                 <video
                   ref={heroVideoElRef}
                   autoPlay
@@ -2319,18 +2335,20 @@ function StartupsPage() {
                   playsInline
                   preload="auto"
                   aria-label="Masters' Union founders film"
-                  className="block h-auto w-full max-w-full rounded-2xl border border-background/15 bg-black"
+                  className="relative block h-auto w-full max-w-full rounded-2xl border border-background/15 bg-black"
                 >
                   <source src={foundersVideo.url} type="video/mp4" />
                   <source src={foundersVideoWebm.url} type="video/webm" />
                 </video>
-                {/* Dark scrim over the card: full at rest, dissolving slowly
-                    as scrolling brings the card up toward full screen. */}
+                {/* Frosted glass over the card: blurred and dimmed at rest,
+                    dissolving slowly as scrolling brings the card up toward
+                    full screen so the film plays fully clear. */}
                 <motion.div
                   aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 rounded-2xl bg-black"
+                  className="pointer-events-none absolute inset-0 rounded-2xl bg-black/45 backdrop-blur-2xl backdrop-saturate-150"
                   style={reduceHeroMotion ? { opacity: 0 } : { opacity: heroOverlayOpacity }}
                 />
+                </motion.div>
               </div>
             </motion.div>
 
