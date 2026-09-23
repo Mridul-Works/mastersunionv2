@@ -2028,10 +2028,15 @@ function StartupsPage() {
   // The reflection dims in lockstep with the pinned copy: it rides on the same
   // fade value, scaled down to its resting 40% glow.
   const heroReflectionOpacity = useTransform(heroTextOpacity, (v) => v * 0.4);
-  // A dark scrim sits on the video card at rest; as scrolling brings the card
-  // up toward full screen the scrim dissolves so the film plays at full
-  // brightness when it dominates the viewport.
-  const heroOverlayOpacity = useMotionValue(0.45);
+  // A frosted-glass layer sits on the video card at rest; as scrolling brings
+  // the card up toward full screen the frost dissolves so the film plays fully
+  // clear when it dominates the viewport.
+  const heroOverlayOpacity = useMotionValue(0.5);
+  // The card rests slightly tilted in 3D, like it is floating just above the
+  // page; the tilt flattens as the video rises to full screen.
+  const heroCardTilt = useMotionValue(5);
+  // The faint light pool under the card dims as the card settles flat.
+  const heroLiftOpacity = useMotionValue(0.35);
   const heroLogoOpacity = useMotionValue(1);
   // The logo slides upward as it fades, so it drifts out of view instead of
   // dissolving in place; the translation rides on the same fade value.
@@ -2120,7 +2125,11 @@ function StartupsPage() {
           if (videoRect.top > maxVideoTop) maxVideoTop = videoRect.top;
           const travel = Math.max(1, maxVideoTop - vh * 0.08);
           const overlayProgress = clamp((maxVideoTop - videoRect.top) / travel);
-          heroOverlayOpacity.set(0.45 * (1 - overlayProgress));
+          heroOverlayOpacity.set(0.5 * (1 - overlayProgress));
+          // The 3D tilt flattens on the same progress, so the card settles
+          // flat exactly as the frost clears.
+          heroCardTilt.set(5 * (1 - overlayProgress));
+          heroLiftOpacity.set(0.35 * (1 - overlayProgress));
         }
       },
       () => {
@@ -2130,7 +2139,7 @@ function StartupsPage() {
         marqueeRect = heroMarqueeRef.current?.getBoundingClientRect();
       },
     );
-  }, [reduceHeroMotion, heroTextOpacity, heroTextScale, heroLogoOpacity, heroLogoY, heroOverlayOpacity]);
+  }, [reduceHeroMotion, heroTextOpacity, heroTextScale, heroLogoOpacity, heroLogoY, heroOverlayOpacity, heroCardTilt, heroLiftOpacity]);
 
   // Fit "Entrepreneurship" to exactly fill its box width on one line at any screen size.
   useLayoutEffect(() => {
@@ -2304,7 +2313,23 @@ function StartupsPage() {
                   <source src={foundersVideoWebm.url} type="video/webm" />
                 </video>
               </motion.div>
-              <div className="relative">
+              <div className="relative" style={{ perspective: "1400px" }}>
+                <motion.div
+                  style={
+                    reduceHeroMotion
+                      ? { rotateX: 0 }
+                      : { rotateX: heroCardTilt, transformStyle: "preserve-3d" }
+                  }
+                  className="relative"
+                >
+                {/* Soft lift light beneath the card: a faint pool of light
+                    that reads as the card floating above the page; it dims on
+                    the same progress as the tilt. */}
+                <motion.div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -bottom-7 left-[6%] right-[6%] h-14 rounded-[100%] bg-white/10 blur-2xl"
+                  style={reduceHeroMotion ? { opacity: 0.35 } : { opacity: heroLiftOpacity }}
+                />
                 <video
                   ref={heroVideoElRef}
                   autoPlay
@@ -2313,18 +2338,20 @@ function StartupsPage() {
                   playsInline
                   preload="auto"
                   aria-label="Masters' Union founders film"
-                  className="block h-auto w-full max-w-full rounded-2xl border border-background/15 bg-black"
+                  className="relative block h-auto w-full max-w-full rounded-2xl border border-background/15 bg-black"
                 >
                   <source src={foundersVideo.url} type="video/mp4" />
                   <source src={foundersVideoWebm.url} type="video/webm" />
                 </video>
-                {/* Dark scrim over the card: full at rest, dissolving slowly
-                    as scrolling brings the card up toward full screen. */}
+                {/* Frosted glass over the card: blurred and dimmed at rest,
+                    dissolving slowly as scrolling brings the card up toward
+                    full screen so the film plays fully clear. */}
                 <motion.div
                   aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 rounded-2xl bg-black"
+                  className="pointer-events-none absolute inset-0 rounded-2xl bg-black/45 backdrop-blur-2xl backdrop-saturate-150"
                   style={reduceHeroMotion ? { opacity: 0 } : { opacity: heroOverlayOpacity }}
                 />
+                </motion.div>
               </div>
             </motion.div>
 
