@@ -2192,10 +2192,13 @@ function StartupsPage() {
                   loop
                   playsInline
                   preload="auto"
-                  src={foundersVideo.url}
                   aria-label="Masters' Union founders film"
                   className="block h-auto w-full max-w-full rounded-2xl border border-background/15 bg-black"
-                />
+                >
+                  <source src={foundersVideo.url} type="video/mp4" />
+                  <source src={foundersVideoWebm.url} type="video/webm" />
+                </video>
+
 
               </div>
             </motion.div>
