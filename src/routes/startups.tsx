@@ -126,6 +126,14 @@ const SPARK_VENTURE_LOGOS = [
   ventureFnor,
 ];
 
+const DROPSHIPPING_VIDEOS = [
+  { id: "highlight", src: studentEntrepreneurshipVideo.url, poster: posterEntrepreneurship, aria: "Student entrepreneurship film" },
+  { id: "ventures", src: venturesFilmVideo.url, poster: posterVentures, aria: "Student ventures film" },
+  { id: "campus", src: campusFilmVideo.url, poster: posterCampus, aria: "Campus film" },
+  { id: "hero-info", src: heroInfoVideo.url, poster: posterHeroInfo, aria: "Programme information film" },
+  { id: "hero", src: heroVideo.url, poster: posterHero, aria: "Masters' Union hero film" },
+];
+
 const DROPSHIPPING_STATS = [
   { value: "₹10Cr+", label: "Revenue generated", dominant: true },
   { value: "500+", label: "Students participated" },
