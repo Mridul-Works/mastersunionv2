@@ -1486,10 +1486,14 @@ function DropshippingSection() {
           y: pairTarget.y,
           scale: pairTarget.scale,
         };
-        const startX = direction * (vw * 0.72 + 260);
-        const x = startX + (target.x - startX) * eased;
-        const y = target.y + (1 - eased) * vh * 0.1;
-        const scale = 0.38 + (target.scale - 0.38) * eased;
+        // Cards emerge from beneath card 1 (card 1 sits at a higher z-index),
+        // starting small at its centre and expanding as they slide into place.
+        const originX = 0;
+        const originY = mainCenter - containerH / 2;
+        const startScale = target.scale * 0.34;
+        const x = originX + (target.x - originX) * eased;
+        const y = originY + (target.y - originY) * eased;
+        const scale = startScale + (target.scale - startScale) * eased;
         card.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale}) rotate(0deg)`;
         card.style.visibility = local > 0.01 ? "visible" : "hidden";
         card.style.pointerEvents = local > 0.86 ? "auto" : "none";
