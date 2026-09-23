@@ -1389,13 +1389,25 @@ function DropshippingSection() {
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
-    const geometry = { top: 0, height: 1 };
+    const geometry = { top: 0, height: 1, w0: 0, h0: 0, center0: 0, containerH: 0, ws: 0, hs: 0 };
     const measure = () => {
       const collage = collageRef.current;
       if (!collage) return;
       const rect = collage.getBoundingClientRect();
       geometry.top = rect.top;
       geometry.height = rect.height;
+      const main = videoCardRefs.current[0];
+      const side = videoCardRefs.current[1];
+      if (main) {
+        geometry.w0 = main.offsetWidth;
+        geometry.h0 = main.offsetHeight;
+        geometry.center0 = main.offsetTop + main.offsetHeight / 2;
+        geometry.containerH = (main.offsetParent as HTMLElement | null)?.clientHeight ?? 0;
+      }
+      if (side) {
+        geometry.ws = side.offsetWidth;
+        geometry.hs = side.offsetHeight;
+      }
     };
 
     return onScrollFrame(({ vh, vw }) => {
@@ -1407,21 +1419,31 @@ function DropshippingSection() {
       if (progressFillRef.current) {
         progressFillRef.current.style.transform = `scaleX(${Math.max(0.04, progress)})`;
       }
-      const targets = compact
-        ? [
-            { x: 0, y: 0, scale: 1 },
-            { x: -vw * 0.27, y: -vh * 0.18, scale: 0.58 },
-            { x: vw * 0.27, y: -vh * 0.18, scale: 0.58 },
-            { x: -vw * 0.28, y: vh * 0.2, scale: 0.58 },
-            { x: vw * 0.28, y: vh * 0.2, scale: 0.58 },
-          ]
-        : [
-            { x: 0, y: 0, scale: 1 },
-            { x: -Math.min(vw * 0.33, 485), y: -vh * 0.2, scale: 0.72 },
-            { x: Math.min(vw * 0.33, 485), y: -vh * 0.2, scale: 0.72 },
-            { x: -Math.min(vw * 0.31, 455), y: vh * 0.22, scale: 0.72 },
-            { x: Math.min(vw * 0.31, 455), y: vh * 0.22, scale: 0.72 },
-          ];
+      // Geometry-driven layout: side cards form an even 2x2 grid flanking card 1,
+      // vertically centered on card 1 with identical gaps everywhere.
+      const { w0, h0, ws, hs } = geometry;
+      const dy = geometry.center0 - (geometry.containerH || vh) / 2;
+      const gap = Math.min(28, Math.max(12, vw * 0.018));
+      const edge = compact ? 12 : Math.min(48, Math.max(20, vw * 0.03));
+      let s = hs > 0 ? (h0 - gap) / (2 * hs) : 0.6;
+      let x: number;
+      if (compact) {
+        // Narrow screens: side cards tuck partly behind card 1, pinned to the screen edges.
+        s = Math.min(s, 0.55);
+        x = vw / 2 - edge - (ws * s) / 2;
+      } else {
+        const available = vw / 2 - w0 / 2 - gap - edge;
+        s = Math.min(s, ws > 0 ? available / ws : s, 1);
+        x = w0 / 2 + gap + (ws * s) / 2;
+      }
+      const yOff = (hs * s) / 2 + gap / 2;
+      const targets = [
+        { x: 0, y: 0, scale: 1 },
+        { x: -x, y: dy - yOff, scale: s },
+        { x, y: dy - yOff, scale: s },
+        { x: -x, y: dy + yOff, scale: s },
+        { x, y: dy + yOff, scale: s },
+      ];
 
       videoCardRefs.current.forEach((card, index) => {
         if (!card) return;
