@@ -2245,7 +2245,7 @@ function StartupsPage() {
               {/* Live reflection: an upright, masked copy of the video sits
                   directly above the card so the playing film casts a soft
                   light glow upward. */}
-              <div
+              <motion.div
                 aria-hidden="true"
                 className="pointer-events-none absolute bottom-full left-[9%] right-[9%] h-[120px] overflow-hidden [mask-image:linear-gradient(to_top,rgba(0,0,0,0.9),transparent_92%)] sm:h-[160px] md:h-[200px]"
                 style={{ opacity: heroReflectionOpacity }}
@@ -2262,7 +2262,7 @@ function StartupsPage() {
                   <source src={foundersVideo.url} type="video/mp4" />
                   <source src={foundersVideoWebm.url} type="video/webm" />
                 </video>
-              </div>
+              </motion.div>
               <div className="relative">
                 <video
                   ref={heroVideoElRef}
