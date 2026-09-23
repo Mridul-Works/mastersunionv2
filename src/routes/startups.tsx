@@ -40,7 +40,6 @@ import instaVideo4Poster from "@/assets/insta-video-4-poster.jpg.asset.json";
 import heroVideo from "@/assets/hero.mp4.asset.json";
 import sparkVideoThumb from "@/assets/spark-video-thumb.jpg";
 import posterHero from "@/assets/dropshipping-cards/hero.jpg";
-import posterHero from "@/assets/dropshipping-cards/hero.jpg";
 import sparkSeedsAiFounders from "@/assets/spark/seedsai-founders.jpg.asset.json";
 import sparkEightFounders from "@/assets/spark/eight-founders.jpg.asset.json";
 import ventureBlueBrew from "@/assets/venture-logos/BlueBrew.png.asset.json";
