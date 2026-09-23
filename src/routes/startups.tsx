@@ -2025,6 +2025,11 @@ function StartupsPage() {
     let textRect: DOMRect | undefined;
     let videoRect: DOMRect | undefined;
     const clamp = (value: number) => Math.min(1, Math.max(0, value));
+    // Fade thresholds adapt to the real resting gap between the pinned copy
+    // and the video, so the copy is fully opaque at rest on any viewport and
+    // always fully gone before the two boxes can intersect.
+    let fadeStart = 1;
+    let fadeEnd = 0;
 
     return onScrollFrame(
       ({ vh }) => {
@@ -2039,11 +2044,11 @@ function StartupsPage() {
         // Tie the copy release to the live gap above the rising video. This
         // guarantees the copy is gone before the two boxes can intersect.
         const clearance = videoRect.top - textRect.bottom;
-        const fadeStart = Math.max(180, vh * 0.28);
-        const fadeEnd = Math.max(48, vh * 0.08);
+        if (clearance > fadeStart) {
+          fadeStart = clearance * 0.9;
+          fadeEnd = Math.max(28, clearance * 0.18);
+        }
         const releaseProgress = clamp((fadeStart - clearance) / Math.max(1, fadeStart - fadeEnd));
-        heroTextOpacity.set(1 - releaseProgress);
-        heroTextScale.set(1 - releaseProgress * 0.03);
         if (heroTextRef.current) {
           heroTextRef.current.style.pointerEvents = releaseProgress >= 0.72 ? "none" : "auto";
         }
@@ -2100,10 +2105,10 @@ function StartupsPage() {
             className="h-8 w-auto brightness-0 invert md:h-10"
           />
 
-          <div className="relative mx-auto mt-16 w-full max-w-6xl sm:mt-20 md:mt-24 lg:mt-28">
+          <div className="relative mx-auto mt-10 w-full max-w-6xl sm:mt-12 md:mt-14 lg:mt-16">
             <motion.div
               ref={heroTextRef}
-              className="sticky top-1/2 z-10 flex w-full -translate-y-1/2 flex-col items-center text-center"
+              className="sticky top-20 z-10 flex w-full flex-col items-center text-center sm:top-24 md:top-28"
               style={reduceHeroMotion ? { opacity: 1, scale: 1 } : { opacity: heroTextOpacity, scale: heroTextScale }}
             >
               <Reveal delay={0.08} className="w-full">
@@ -2130,7 +2135,7 @@ function StartupsPage() {
 
             <motion.div
               ref={heroVideoRef}
-              className="relative mx-auto mt-[85svh] w-full max-w-[88%] sm:mt-[92svh] sm:max-w-xl md:mt-[98svh] md:max-w-2xl lg:max-w-3xl"
+              className="relative mx-auto mt-[22svh] w-full max-w-[88%] sm:mt-[24svh] sm:max-w-xl md:mt-[26svh] md:max-w-2xl lg:max-w-3xl"
               style={reduceHeroMotion ? { opacity: 1, scale: 1 } : { opacity: heroVideoOpacity, scale: heroVideoScale }}
             >
               <div aria-hidden="true" className="pointer-events-none absolute -bottom-16 -top-16 left-0 right-0 border-x border-dashed border-background/15" />
