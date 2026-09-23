@@ -1086,7 +1086,7 @@ function SparkCarousel({
               type="button"
               onClick={openVideo}
               aria-label="Watch the Masters' Union student entrepreneurship video"
-              className="group mx-auto mt-10 block w-full overflow-hidden rounded-[6px] border border-background/15 text-left transition-transform duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60 sm:mt-12 sm:max-w-4xl md:max-w-5xl lg:max-w-6xl"
+              className="group mx-auto mt-10 block w-full overflow-hidden rounded-2xl border border-background/15 text-left transition-transform duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60 sm:mt-12 sm:max-w-4xl md:max-w-5xl lg:max-w-6xl"
             >
               <span className="relative block aspect-video w-full overflow-hidden">
                 <img
