@@ -622,7 +622,7 @@ function Section({
   const FILM_SECTION_RULE =
     "linear-gradient(to right, transparent, oklch(0.75 0.15 215) 12%, oklch(0.88 0.18 95) 50%, oklch(0.65 0.22 45) 88%, transparent)";
   return (
-    <section id={id} className={`relative ${id === "spark" || id === "doing" ? "overflow-x-clip overflow-y-visible" : "overflow-hidden"} text-background ${surfaceClass}`}>
+    <section id={id} className={`relative ${id === "spark" || id === "doing" || id === "dropshipping" ? "overflow-x-clip overflow-y-visible" : "overflow-hidden"} text-background ${surfaceClass}`}>
       {/* Homepage section rule — thin inset gradient hairline floating above each section */}
       <div
         aria-hidden
@@ -1382,6 +1382,115 @@ function OutclassSection() {
 
 function DropshippingSection() {
   const [ytPlayingId, setYtPlayingId] = useState<string | null>(null);
+  const collageRef = useRef<HTMLDivElement | null>(null);
+  const videoCardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const prefersReducedMotion = useReducedMotion();
+
+  useEffect(() => {
+    const geometry = { top: 0, height: 1 };
+    const measure = () => {
+      const collage = collageRef.current;
+      if (!collage) return;
+      const rect = collage.getBoundingClientRect();
+      geometry.top = rect.top;
+      geometry.height = rect.height;
+    };
+
+    return onScrollFrame(({ vh, vw }) => {
+      const travel = Math.max(1, geometry.height - vh);
+      const progress = prefersReducedMotion ? 1 : Math.min(1, Math.max(0, -geometry.top / travel));
+      const compact = vw < 768;
+      const targets = compact
+        ? [
+            { x: 0, y: 0, scale: 1, rotate: 0 },
+            { x: -vw * 0.24, y: -vh * 0.17, scale: 0.62, rotate: -5 },
+            { x: vw * 0.25, y: -vh * 0.14, scale: 0.66, rotate: 5 },
+            { x: -vw * 0.25, y: vh * 0.19, scale: 0.58, rotate: 4 },
+            { x: vw * 0.26, y: vh * 0.2, scale: 0.61, rotate: -4 },
+          ]
+        : [
+            { x: 0, y: 0, scale: 1, rotate: 0 },
+            { x: -Math.min(vw * 0.31, 455), y: -vh * 0.16, scale: 0.82, rotate: -6 },
+            { x: Math.min(vw * 0.32, 470), y: -vh * 0.12, scale: 0.88, rotate: 6 },
+            { x: -Math.min(vw * 0.29, 425), y: vh * 0.2, scale: 0.72, rotate: 5 },
+            { x: Math.min(vw * 0.3, 440), y: vh * 0.22, scale: 0.78, rotate: -5 },
+          ];
+
+      videoCardRefs.current.forEach((card, index) => {
+        if (!card) return;
+        if (index === 0) {
+          const settle = Math.min(1, progress / 0.16);
+          card.style.transform = `translate3d(-50%, -50%, 0) scale(${0.96 + settle * 0.04})`;
+          card.style.visibility = "visible";
+          return;
+        }
+
+        const start = 0.1 + (index - 1) * 0.19;
+        const local = Math.min(1, Math.max(0, (progress - start) / 0.2));
+        const eased = 1 - Math.pow(1 - local, 3);
+        const target = targets[index];
+        if (!target) return;
+        const direction = index % 2 === 0 ? 1 : -1;
+        const startX = direction * (vw * 0.72 + 260);
+        const x = startX + (target.x - startX) * eased;
+        const y = target.y + (1 - eased) * vh * 0.1;
+        const scale = 0.38 + (target.scale - 0.38) * eased;
+        card.style.transform = `translate3d(calc(-50% + ${x}px), calc(-50% + ${y}px), 0) scale(${scale}) rotate(${target.rotate * eased}deg)`;
+        card.style.visibility = local > 0.01 ? "visible" : "hidden";
+        card.style.pointerEvents = local > 0.86 ? "auto" : "none";
+      });
+    }, measure);
+  }, [prefersReducedMotion]);
+
+  const renderVideo = (video: (typeof DROPSHIPPING_VIDEOS)[number]) => {
+    if (video.yt) {
+      return ytPlayingId === video.id ? (
+        <iframe
+          src={`https://www.youtube.com/embed/${video.yt}?autoplay=1&rel=0`}
+          title={video.aria}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          className="absolute inset-0 h-full w-full bg-black"
+        />
+      ) : (
+        <button
+          type="button"
+          onClick={() => setYtPlayingId(video.id)}
+          aria-label={`Play: ${video.aria}`}
+          className="group absolute inset-0 block h-full w-full overflow-hidden bg-black"
+        >
+          <img
+            src={video.poster}
+            alt=""
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+          />
+          <span aria-hidden className="absolute inset-0 flex items-center justify-center">
+            <span className="flex h-12 w-12 items-center justify-center rounded-full border border-background/40 bg-black/45 backdrop-blur-sm transition-colors duration-300 group-hover:border-background/70 group-hover:bg-black/60 sm:h-14 sm:w-14">
+              <svg viewBox="0 0 24 24" className="ml-[2px] h-4 w-4 fill-background sm:h-5 sm:w-5" aria-hidden>
+                <path d="M8 5.5v13l11-6.5-11-6.5Z" />
+              </svg>
+            </span>
+          </span>
+        </button>
+      );
+    }
+
+    return (
+      <video
+        controls
+        playsInline
+        preload="metadata"
+        poster={video.poster}
+        className="absolute inset-0 h-full w-full bg-black object-cover"
+        aria-label={video.aria}
+      >
+        <source src={video.src} type="video/mp4" />
+        Your browser does not support embedded video.
+      </video>
+    );
+  };
+
   return (
     <Section id="dropshipping" tone="light">
       <div aria-hidden className="spectrum-rule pointer-events-none absolute left-[6%] right-[6%] top-0 z-[2] h-px" />
@@ -1402,60 +1511,36 @@ function DropshippingSection() {
         </Reveal>
       </div>
 
-      <Reveal delay={0.14} className="mt-9 sm:mt-12 md:mt-14">
-        <div className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:-mx-7 sm:gap-4 sm:px-7 md:-mx-8 md:px-8 lg:mx-0 lg:grid lg:grid-cols-5 lg:gap-4 lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden">
-          {DROPSHIPPING_VIDEOS.map((video, index) => (
-            <Reveal key={video.id} delay={0.04 * index} className="w-[82vw] max-w-[400px] shrink-0 snap-start sm:w-[50vw] lg:w-auto lg:max-w-none lg:shrink">
-              <div className="overflow-hidden rounded-[6px] border border-background/15 bg-background/[0.035]">
-                {video.yt ? (
-                  ytPlayingId === video.id ? (
-                    <iframe
-                      src={`https://www.youtube.com/embed/${video.yt}?autoplay=1&rel=0`}
-                      title={video.aria}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      className="block aspect-[4/5] h-auto w-full bg-black"
-                    />
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={() => setYtPlayingId(video.id)}
-                      aria-label={`Play: ${video.aria}`}
-                      className="group relative block aspect-[4/5] w-full overflow-hidden bg-black"
-                    >
-                      <img
-                        src={video.poster}
-                        alt=""
-                        loading="lazy"
-                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                      />
-                      <span aria-hidden className="absolute inset-0 flex items-center justify-center">
-                        <span className="flex h-12 w-12 items-center justify-center rounded-full border border-background/40 bg-black/45 backdrop-blur-sm transition-colors duration-300 group-hover:border-background/70 group-hover:bg-black/60 sm:h-14 sm:w-14">
-                          <svg viewBox="0 0 24 24" className="ml-[2px] h-4 w-4 fill-background sm:h-5 sm:w-5" aria-hidden>
-                            <path d="M8 5.5v13l11-6.5-11-6.5Z" />
-                          </svg>
-                        </span>
-                      </span>
-                    </button>
-                  )
-                ) : (
-                  <video
-                    controls
-                    playsInline
-                    preload="metadata"
-                    poster={video.poster}
-                    className="block aspect-[4/5] h-auto w-full bg-black object-cover"
-                    aria-label={video.aria}
-                  >
-                    <source src={video.src} type="video/mp4" />
-                    Your browser does not support embedded video.
-                  </video>
-                )}
-              </div>
-            </Reveal>
-          ))}
+      <div className="mt-9 sm:mt-12 md:mt-14">
+        <div ref={collageRef} data-dropshipping-collage className="relative h-[300svh] overflow-x-clip sm:h-[320svh]">
+          <div className="sticky top-0 h-[100svh] overflow-hidden">
+            {DROPSHIPPING_VIDEOS.map((video, index) => {
+              const sizes = [
+                "aspect-[4/5] w-[min(78vw,420px)] sm:w-[min(56vw,440px)] lg:w-[min(34vw,480px)]",
+                "aspect-[3/4] w-[min(58vw,300px)] sm:w-[min(31vw,320px)]",
+                "aspect-[4/5] w-[min(60vw,320px)] sm:w-[min(34vw,350px)]",
+                "aspect-[2/3] w-[min(50vw,260px)] sm:w-[min(27vw,285px)]",
+                "aspect-[5/6] w-[min(62vw,330px)] sm:w-[min(35vw,365px)]",
+              ];
+              return (
+                <div
+                  key={video.id}
+                  data-dropshipping-video={video.id}
+                  ref={(element) => { videoCardRefs.current[index] = element; }}
+                  className={`absolute left-1/2 top-1/2 overflow-hidden rounded-2xl border border-background/15 bg-foreground shadow-[0_30px_80px_-32px_rgba(0,0,0,0.9)] will-change-transform ${sizes[index]}`}
+                  style={{
+                    zIndex: index === 0 ? 10 : 9 - index,
+                    transform: `translate3d(-50%, -50%, 0) scale(${index === 0 ? 0.96 : 0.38})`,
+                    visibility: index === 0 ? "visible" : "hidden",
+                  }}
+                >
+                  {renderVideo(video)}
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </Reveal>
+      </div>
 
       <Reveal delay={0.18} className="mt-7 border-y border-background/15 sm:mt-9">
         <div className="grid grid-cols-2 lg:grid-cols-[1.35fr_0.8fr_0.8fr]">
