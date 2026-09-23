@@ -2031,10 +2031,10 @@ function StartupsPage() {
   // A frosted-glass layer sits on the video card at rest; as scrolling brings
   // the card up toward full screen the frost dissolves so the film plays fully
   // clear when it dominates the viewport.
-  const heroOverlayOpacity = useMotionValue(0.5);
+  const heroOverlayOpacity = useMotionValue(0.72);
   // The card rests slightly tilted in 3D, like it is floating just above the
   // page; the tilt flattens as the video rises to full screen.
-  const heroCardTilt = useMotionValue(5);
+  const heroCardTilt = useMotionValue(9);
   // The faint light pool under the card dims as the card settles flat.
   const heroLiftOpacity = useMotionValue(0.35);
   const heroLogoOpacity = useMotionValue(1);
@@ -2125,10 +2125,10 @@ function StartupsPage() {
           if (videoRect.top > maxVideoTop) maxVideoTop = videoRect.top;
           const travel = Math.max(1, maxVideoTop - vh * 0.08);
           const overlayProgress = clamp((maxVideoTop - videoRect.top) / travel);
-          heroOverlayOpacity.set(0.5 * (1 - overlayProgress));
+          heroOverlayOpacity.set(0.72 * (1 - overlayProgress));
           // The 3D tilt flattens on the same progress, so the card settles
           // flat exactly as the frost clears.
-          heroCardTilt.set(5 * (1 - overlayProgress));
+          heroCardTilt.set(9 * (1 - overlayProgress));
           heroLiftOpacity.set(0.35 * (1 - overlayProgress));
         }
       },
@@ -2348,7 +2348,7 @@ function StartupsPage() {
                     full screen so the film plays fully clear. */}
                 <motion.div
                   aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 rounded-2xl bg-black/45 backdrop-blur-2xl backdrop-saturate-150"
+                  className="pointer-events-none absolute inset-0 rounded-2xl bg-black/55 backdrop-blur-[32px] backdrop-saturate-150"
                   style={reduceHeroMotion ? { opacity: 0 } : { opacity: heroOverlayOpacity }}
                 />
                 </motion.div>
