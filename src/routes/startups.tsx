@@ -2343,14 +2343,29 @@ function StartupsPage() {
                   <source src={foundersVideo.url} type="video/mp4" />
                   <source src={foundersVideoWebm.url} type="video/webm" />
                 </video>
-                {/* Frosted glass over the card: blurred and dimmed at rest,
-                    dissolving slowly as scrolling brings the card up toward
-                    full screen so the film plays fully clear. */}
+                {/* Frosted glass over the card, styled like dark smoked
+                    glassmorphism: a blurred dimmed base with soft light blobs
+                    refracting through, a faint diagonal sheen, and a thin
+                    polished edge highlight — all dissolving slowly as
+                    scrolling brings the card up toward full screen so the
+                    film plays fully clear. */}
                 <motion.div
                   aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 rounded-2xl bg-black/60 backdrop-blur-[48px] backdrop-saturate-150"
+                  className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl"
                   style={reduceHeroMotion ? { opacity: 0 } : { opacity: heroOverlayOpacity }}
-                />
+                >
+                  {/* Dark tinted glass base */}
+                  <div className="absolute inset-0 rounded-2xl bg-black/55 backdrop-blur-[48px] backdrop-saturate-150" />
+                  {/* Soft light sources bleeding through the smoked glass */}
+                  <div className="absolute -left-[14%] top-[4%] h-[75%] w-[46%] rounded-full bg-white/45 blur-[72px]" />
+                  <div className="absolute -right-[12%] -top-[18%] h-[85%] w-[42%] rounded-full bg-white/30 blur-[84px]" />
+                  <div className="absolute -bottom-[28%] left-[28%] h-[75%] w-[38%] rounded-full bg-white/20 blur-[76px]" />
+                  {/* Faint diagonal sheen across the pane */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent" />
+                  {/* Thin polished edge highlight */}
+                  <div className="absolute inset-0 rounded-2xl border border-white/20" />
+                  <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+                </motion.div>
                 </motion.div>
               </div>
             </motion.div>
