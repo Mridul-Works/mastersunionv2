@@ -2105,7 +2105,6 @@ function StartupsPage() {
                 className="block h-auto w-full max-w-full rounded-[6px] border border-background/15 bg-black"
               />
             </motion.div>
-          </div>
 
           <motion.div
             initial={reduceHeroMotion ? false : { opacity: 0, y: 24 }}
@@ -2139,6 +2138,7 @@ function StartupsPage() {
                 })}
               </motion.div>
           </motion.div>
+          </div>
         </div>
       </header>
 
