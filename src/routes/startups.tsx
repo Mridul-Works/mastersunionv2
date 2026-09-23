@@ -1530,8 +1530,8 @@ function DropshippingSection() {
                 </span>
               </div>
               <div className="absolute left-1/2 top-10 w-[min(72vw,420px)] -translate-x-1/2 text-center sm:top-0 sm:w-[min(60vw,420px)]">
-                <p className="font-serif text-[clamp(1.15rem,2.4vw,2.1rem)] italic leading-[1.05] text-background">
-                  Commerce,<br className="hidden sm:block" /> in motion.
+                <p className="whitespace-nowrap font-serif text-[clamp(1.15rem,2.4vw,2.1rem)] italic leading-[1.05] text-background">
+                  Commerce, in motion.
                 </p>
                 <p className="mx-auto mt-2 max-w-[30ch] text-[9px] leading-[1.6] text-background/45 sm:text-[10px] sm:leading-[1.7]">
                   Five films. One challenge. Every decision made in the open.
