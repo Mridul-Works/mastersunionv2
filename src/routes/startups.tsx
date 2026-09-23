@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -2002,8 +2002,22 @@ function StartupsPage() {
   const [selectedQuote, setSelectedQuote] = useState(0);
   const [selectedSpark, setSelectedSpark] = useState(0);
   const reduceHeroMotion = useReducedMotion();
+  const heroRef = useRef<HTMLElement>(null);
+  const heroVideoRef = useRef<HTMLDivElement>(null);
   const headlineWordRef = useRef<HTMLSpanElement>(null);
   const [wordFontSize, setWordFontSize] = useState<number | null>(null);
+  const { scrollYProgress: heroProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const { scrollYProgress: heroVideoProgress } = useScroll({
+    target: heroVideoRef,
+    offset: ["start end", "start start"],
+  });
+  const heroTextOpacity = useTransform(heroProgress, [0, 0.72, 0.94], [1, 1, 0.7]);
+  const heroTextScale = useTransform(heroProgress, [0, 0.72, 0.94], [1, 1, 0.97]);
+  const heroVideoOpacity = useTransform(heroVideoProgress, [0, 0.72], [0.5, 1]);
+  const heroVideoScale = useTransform(heroVideoProgress, [0, 0.72], [0.96, 1]);
 
   // Fit "Entrepreneurship" to exactly fill its box width on one line at any screen size.
   useLayoutEffect(() => {
@@ -2037,8 +2051,9 @@ function StartupsPage() {
 
 
       <header
+        ref={heroRef}
         id="top"
-        className="relative z-0 overflow-hidden bg-foreground text-background"
+        className="relative z-0 overflow-x-clip bg-foreground text-background"
       >
         <div className="mx-auto w-full max-w-[1440px] px-5 pb-12 pt-2 sm:pb-14 md:px-10 md:pb-16 md:pt-3 lg:pb-20">
           <img
@@ -2049,29 +2064,38 @@ function StartupsPage() {
             className="h-8 w-auto brightness-0 invert md:h-10"
           />
 
-          <div className="mx-auto mt-16 flex w-full max-w-6xl flex-col items-center text-center sm:mt-20 md:mt-24 lg:mt-28">
-            <Reveal delay={0.08} className="w-full">
-              <h1 className="mx-auto w-full overflow-hidden pb-[0.14em] font-medium leading-[0.95] tracking-[-0.02em]">
-                <span
-                  ref={headlineWordRef}
-                  className="block whitespace-nowrap text-[clamp(2.2875rem,8.5vw,3.5875rem)] leading-[0.9] tracking-[-0.03em]"
-                  style={wordFontSize ? { fontSize: `${wordFontSize}px` } : undefined}
-                >Entrepreneurship</span>
-                <span className="mt-4 block text-[clamp(1.05rem,3.5vw,1.6rem)] font-semibold text-background/80 sm:mt-6 md:mt-8">at Masters&apos; Union</span>
-              </h1>
-            </Reveal>
+          <div className="relative mx-auto mt-16 w-full max-w-6xl sm:mt-20 md:mt-24 lg:mt-28">
+            <motion.div
+              className="sticky top-20 z-10 flex w-full flex-col items-center text-center sm:top-24 md:top-28"
+              style={reduceHeroMotion ? { opacity: 1, scale: 1 } : { opacity: heroTextOpacity, scale: heroTextScale }}
+            >
+              <Reveal delay={0.08} className="w-full">
+                <h1 className="mx-auto w-full overflow-hidden pb-[0.14em] font-medium leading-[0.95] tracking-[-0.02em]">
+                  <span
+                    ref={headlineWordRef}
+                    className="block whitespace-nowrap text-[clamp(2.2875rem,8.5vw,3.5875rem)] leading-[0.9] tracking-[-0.03em]"
+                    style={wordFontSize ? { fontSize: `${wordFontSize}px` } : undefined}
+                  >Entrepreneurship</span>
+                  <span className="mt-4 block text-[clamp(1.05rem,3.5vw,1.6rem)] font-semibold text-background/80 sm:mt-6 md:mt-8">at Masters&apos; Union</span>
+                </h1>
+              </Reveal>
 
-            <Reveal delay={0.14}>
-              <HeroReportDownload />
-            </Reveal>
+              <Reveal delay={0.14}>
+                <HeroReportDownload />
+              </Reveal>
 
-            <Reveal delay={0.18}>
-              <span className="eyebrow mt-6 inline-block whitespace-nowrap text-[0.6875rem] text-background/70 md:text-[0.8125rem]">
-                120+ Startups · ₹593 Cr Valuation
-              </span>
-            </Reveal>
+              <Reveal delay={0.18}>
+                <span className="eyebrow mt-6 inline-block whitespace-nowrap text-[0.6875rem] text-background/70 md:text-[0.8125rem]">
+                  120+ Startups · ₹593 Cr Valuation
+                </span>
+              </Reveal>
+            </motion.div>
 
-            <Reveal delay={0.22} className="mt-10 w-full sm:mt-12 md:mt-14">
+            <motion.div
+              ref={heroVideoRef}
+              className="mt-[46svh] w-full sm:mt-[50svh] md:mt-[54svh]"
+              style={reduceHeroMotion ? { opacity: 1, scale: 1 } : { opacity: heroVideoOpacity, scale: heroVideoScale }}
+            >
               <video
                 controls
                 playsInline
@@ -2080,34 +2104,40 @@ function StartupsPage() {
                 aria-label="Masters' Union founders film"
                 className="block h-auto w-full max-w-full rounded-[6px] border border-background/15 bg-black"
               />
-            </Reveal>
-          </div>
-
-          <div className="mx-auto mt-8 w-full max-w-6xl overflow-hidden border-y border-background/10 py-5 sm:mt-10 sm:py-6 md:mt-12">
-            <motion.div
-              className="flex w-max items-center"
-              animate={reduceHeroMotion ? undefined : { x: ["0%", "-50%"] }}
-              transition={reduceHeroMotion ? undefined : { duration: 48, ease: "linear", repeat: Infinity }}
-            >
-              {[...SPARK_VENTURE_LOGOS, ...SPARK_VENTURE_LOGOS].map((logo, index) => {
-                const name = logo.original_filename.replace(/\.png$/i, "");
-                return (
-                  <div
-                    key={`${logo.url}-${index}`}
-                    aria-hidden={index >= SPARK_VENTURE_LOGOS.length}
-                    className="flex h-12 w-32 shrink-0 items-center justify-center px-5 sm:h-14 sm:w-40 sm:px-7 md:w-44"
-                  >
-                    <img
-                      decoding="async"
-                      src={logo.url}
-                      alt={index >= SPARK_VENTURE_LOGOS.length ? "" : name}
-                      loading="lazy"
-                      className="no-img-zoom max-h-9 w-auto max-w-full object-contain opacity-75 brightness-0 invert sm:max-h-10"
-                    />
-                  </div>
-                );
-              })}
             </motion.div>
+
+          <motion.div
+            initial={reduceHeroMotion ? false : { opacity: 0, y: 24 }}
+            whileInView={reduceHeroMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.18 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="mx-auto mt-8 w-full max-w-6xl overflow-hidden border-y border-background/10 py-5 sm:mt-10 sm:py-6 md:mt-12"
+          >
+              <motion.div
+                className="flex w-max items-center"
+                animate={reduceHeroMotion ? undefined : { x: ["0%", "-50%"] }}
+                transition={reduceHeroMotion ? undefined : { duration: 48, ease: "linear", repeat: Infinity }}
+              >
+                {[...SPARK_VENTURE_LOGOS, ...SPARK_VENTURE_LOGOS].map((logo, index) => {
+                  const name = logo.original_filename.replace(/\.png$/i, "");
+                  return (
+                    <div
+                      key={`${logo.url}-${index}`}
+                      aria-hidden={index >= SPARK_VENTURE_LOGOS.length}
+                      className="flex h-12 w-32 shrink-0 items-center justify-center px-5 sm:h-14 sm:w-40 sm:px-7 md:w-44"
+                    >
+                      <img
+                        decoding="async"
+                        src={logo.url}
+                        alt={index >= SPARK_VENTURE_LOGOS.length ? "" : name}
+                        loading="lazy"
+                        className="no-img-zoom max-h-9 w-auto max-w-full object-contain opacity-75 brightness-0 invert sm:max-h-10"
+                      />
+                    </div>
+                  );
+                })}
+              </motion.div>
+          </motion.div>
           </div>
         </div>
       </header>
