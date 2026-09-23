@@ -1285,18 +1285,33 @@ function OutclassSection() {
         </aside>
 
         <div className="relative pb-16 sm:pb-20 lg:pb-[26svh]">
-          {OUTCLASS_MOMENTS.map((moment, index) => (
+          {OUTCLASS_MOMENTS.map((moment, index) => {
+            const depth = Math.max(0, Math.min(active - index, 3));
+            return (
             <div
               key={moment.n}
               className="sticky mb-8 last:mb-0 sm:mb-10 lg:mb-14"
-              style={{ top: `calc(3rem + ${index * 1.5}rem)` }}
+              style={{ top: `calc(3rem + ${index * 1.25}rem)`, zIndex: index + 1 }}
             >
               <div
-                className={`transition-all duration-500 ease-out ${
-                  index < active ? "scale-[0.96] opacity-55" : "scale-100 opacity-100"
-                }`}
-                style={{ transformOrigin: "top center" }}
+                className="transition-transform duration-500 ease-out"
+                style={{ transformOrigin: "top center", transform: `scale(${1 - depth * 0.018})` }}
               >
+                <motion.article
+                  onViewportEnter={() => setActive(index)}
+                  viewport={{ amount: 0.52, margin: "-12% 0px -28% 0px" }}
+                  initial={{ opacity: 0, y: 28 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative overflow-hidden rounded-2xl border border-background/15 bg-foreground shadow-[0_-18px_40px_-28px_rgba(0,0,0,0.85),0_30px_70px_-35px_rgba(0,0,0,0.9)]"
+                >
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 z-[3] bg-foreground transition-opacity duration-500"
+                    style={{ opacity: depth * 0.16 }}
+                  />
+                  <div aria-hidden className="pointer-events-none absolute inset-0 bg-background/[0.04]" />
+
                 <motion.article
                   onViewportEnter={() => setActive(index)}
                   viewport={{ amount: 0.52, margin: "-12% 0px -28% 0px" }}
