@@ -2191,14 +2191,14 @@ function StartupsPage() {
                 fill="none"
               >
                 <path
-                  d="M1.5 100 L1.5 16 L50 1.5"
+                  d="M1.5 100 L1.5 20 C 54 20, 54 20, 50 1.5"
                   stroke="currentColor"
                   strokeWidth="3"
                   strokeDasharray="6 6"
                   vectorEffect="non-scaling-stroke"
                 />
                 <path
-                  d="M98.5 100 L98.5 16 L50 1.5"
+                  d="M98.5 100 L98.5 20 C 46 20, 46 20, 50 1.5"
                   stroke="currentColor"
                   strokeWidth="3"
                   strokeDasharray="6 6"
