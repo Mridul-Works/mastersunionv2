@@ -2099,13 +2099,15 @@ function StartupsPage() {
         className="relative z-0 overflow-x-clip bg-foreground text-background"
       >
         <div className="mx-auto w-full max-w-[1440px] px-5 pb-12 pt-2 sm:pb-14 md:px-10 md:pb-16 md:pt-3 lg:pb-20">
-          <img
-            decoding="async"
-            loading="eager"
-            src={muLogoAsset.url}
-            alt="Masters' Union"
-            className="h-8 w-auto brightness-0 invert md:h-10"
-          />
+          <div className="sticky top-3 z-20 -mx-1 inline-block bg-foreground/90 px-1 py-2 backdrop-blur-sm md:top-4">
+            <img
+              decoding="async"
+              loading="eager"
+              src={muLogoAsset.url}
+              alt="Masters' Union"
+              className="block h-8 w-auto brightness-0 invert md:h-10"
+            />
+          </div>
 
           <div className="relative mx-auto mt-10 w-full max-w-6xl sm:mt-12 md:mt-14 lg:mt-16">
             <motion.div
