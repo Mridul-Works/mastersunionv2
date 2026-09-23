@@ -1653,7 +1653,7 @@ function DropshippingSection() {
                   <div aria-hidden className="pointer-events-none absolute -inset-2 border border-background/10" />
                   <div className="relative h-full w-full overflow-hidden border border-background/20 bg-foreground">
                     {renderVideo(video)}
-                    <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between bg-gradient-to-b from-foreground/70 to-transparent px-4 pb-10 pt-4">
+                    <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 z-10 flex items-center justify-between bg-gradient-to-b from-foreground/90 via-foreground/45 to-transparent px-4 pb-14 pt-4">
                       <span
                         className="font-mono font-medium uppercase tracking-[0.28em] text-background"
                         style={{ fontSize: "calc(11px / var(--ep-scale, 1))" }}
