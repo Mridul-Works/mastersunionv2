@@ -968,8 +968,11 @@ function SparkCarousel({
               initial={reduceMotion ? false : { opacity: 0, x: -28, scale: 0.985 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: reduceMotion ? 0 : 0.7, ease: [0.7, 0, 0.2, 1] }}
-              className="flex items-center"
+              className="flex flex-col justify-center"
             >
+              <div className="eyebrow mb-2 text-background/45 sm:mb-3">
+                {company.cohort}
+              </div>
               <Placeholder
                 kind="image"
                 aspect="aspect-[1200/896]"
