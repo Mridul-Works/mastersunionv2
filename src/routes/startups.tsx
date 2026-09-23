@@ -2019,6 +2019,7 @@ function StartupsPage() {
     if (reduceHeroMotion) {
       heroTextOpacity.set(1);
       heroTextScale.set(1);
+      heroLogoOpacity.set(1);
       heroVideoOpacity.set(1);
       heroVideoScale.set(1);
       return;
