@@ -32,13 +32,13 @@ import entrepreneurshipReport2021 from "@/assets/entrepreneurship-report-2021-25
 import entrepreneurshipReportUg from "@/assets/entrepreneurship-report-ug-programmes.pdf.asset.json";
 import studentEntrepreneurshipVideo from "@/assets/MU_Student_Entreprenuership_Video-2.mp4.asset.json";
 import instaVideo1 from "@/assets/insta-video-1.mp4.asset.json";
-import instaVideoPoster from "@/assets/insta-video-poster.jpg.asset.json";
+import instaVideo1Poster from "@/assets/insta-video-1-frame.jpg.asset.json";
 import instaVideo2 from "@/assets/insta-video-2.mp4.asset.json";
-import instaVideo2Poster from "@/assets/insta-video-2-poster.jpg.asset.json";
+import instaVideo2Poster from "@/assets/insta-video-2-frame.jpg.asset.json";
 import instaVideo4 from "@/assets/insta-video-4.mp4.asset.json";
-import instaVideo4Poster from "@/assets/insta-video-4-poster.jpg.asset.json";
+import instaVideo4Poster from "@/assets/insta-video-4-frame.jpg.asset.json";
 import instaVideo5 from "@/assets/insta-video-5.mp4.asset.json";
-import instaVideo5Poster from "@/assets/insta-video-5-poster.jpg.asset.json";
+import instaVideo5Poster from "@/assets/insta-video-5-frame.jpg.asset.json";
 import sparkVideoThumb from "@/assets/spark-video-thumb.jpg";
 
 import sparkSeedsAiFounders from "@/assets/spark/seedsai-founders.jpg.asset.json";
@@ -145,7 +145,7 @@ const DROPSHIPPING_VIDEOS: {
   poster: string;
   aria: string;
 }[] = [
-  { id: "highlight", src: instaVideo1.url, poster: instaVideoPoster.url, aria: "Student entrepreneurship film" },
+  { id: "highlight", src: instaVideo1.url, poster: instaVideo1Poster.url, aria: "Student entrepreneurship film" },
   { id: "ventures", src: instaVideo2.url, poster: instaVideo2Poster.url, aria: "Student ventures film" },
   { id: "campus", yt: "vLUvx_QOBys", poster: "https://img.youtube.com/vi/vLUvx_QOBys/maxresdefault.jpg", aria: "Campus film" },
   { id: "hero-info", src: instaVideo4.url, poster: instaVideo4Poster.url, aria: "Student programme film" },
