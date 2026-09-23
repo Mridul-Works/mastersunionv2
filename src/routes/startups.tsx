@@ -1244,6 +1244,30 @@ function StoryBeats({ beats, dark = false }: { beats: Beat[]; dark?: boolean }) 
 
 function OutclassSection() {
   const [active, setActive] = useState(0);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    let next = 0;
+    return onScrollFrame(
+      () => {
+        if (next !== active) setActive(next);
+      },
+      () => {
+        const vh = window.innerHeight || 1;
+        // A card becomes "active" once its top has reached the pin line.
+        const line = vh * 0.34;
+        let found = 0;
+        cardRefs.current.forEach((el, i) => {
+          if (!el) return;
+          const top = el.getBoundingClientRect().top;
+          if (top <= line + 4) found = Math.max(found, i);
+        });
+        next = found;
+      },
+    );
+  }, [active]);
+
+
 
   return (
     <Section id="doing" tone="paper">
