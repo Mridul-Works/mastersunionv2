@@ -1412,8 +1412,14 @@ function DropshippingSection() {
     };
 
     return onScrollFrame(({ vh, vw }) => {
-      const travel = Math.max(1, geometry.height - vh);
-      const progress = prefersReducedMotion ? 1 : Math.min(1, Math.max(0, -geometry.top / travel));
+      // Reveal while the section enters the viewport, without pinning the
+      // collage or adding a scroll runway. The latch below keeps the reveal
+      // complete when the user scrolls back up.
+      const entryStart = vh * 0.72;
+      const entryDistance = Math.max(1, vh * 0.32);
+      const progress = prefersReducedMotion
+        ? 1
+        : Math.min(1, Math.max(0, (entryStart - geometry.top) / entryDistance));
       const compact = vw < 768;
       const revealProgress = Math.min(1, Math.max(0, (progress - 0.05) / 0.7));
       activeLatch = Math.max(activeLatch, Math.min(4, Math.floor(revealProgress * 5)));
@@ -1577,8 +1583,8 @@ function DropshippingSection() {
       </div>
 
       <div className="mt-9 sm:mt-12 md:mt-14">
-        <div ref={collageRef} data-dropshipping-collage className="relative h-[120svh] overflow-x-clip">
-          <div className="sticky top-0 h-[100svh] overflow-hidden border-y border-background/10">
+        <div ref={collageRef} data-dropshipping-collage className="relative h-[100svh] overflow-x-clip">
+          <div className="relative h-full overflow-hidden border-y border-background/10">
             <div className="pointer-events-none absolute inset-x-4 top-5 z-20 flex items-start justify-between sm:inset-x-8 lg:inset-x-12 lg:top-9">
               <div className="flex items-center gap-3 pt-1.5 sm:pt-2.5">
                 <span className="h-px w-8 bg-background/40 sm:w-14" />
