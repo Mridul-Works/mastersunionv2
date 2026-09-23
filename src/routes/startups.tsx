@@ -2028,10 +2028,13 @@ function StartupsPage() {
   // The reflection dims in lockstep with the pinned copy: it rides on the same
   // fade value, scaled down to its resting 40% glow.
   const heroReflectionOpacity = useTransform(heroTextOpacity, (v) => v * 0.4);
-  // A dark scrim sits on the video card at rest; as scrolling brings the card
-  // up toward full screen the scrim dissolves so the film plays at full
-  // brightness when it dominates the viewport.
-  const heroOverlayOpacity = useMotionValue(0.45);
+  // A frosted-glass layer sits on the video card at rest; as scrolling brings
+  // the card up toward full screen the frost dissolves so the film plays fully
+  // clear when it dominates the viewport.
+  const heroOverlayOpacity = useMotionValue(0.5);
+  // The card rests slightly tilted in 3D, like it is floating just above the
+  // page; the tilt flattens as the video rises to full screen.
+  const heroCardTilt = useMotionValue(5);
   const heroLogoOpacity = useMotionValue(1);
   // The logo slides upward as it fades, so it drifts out of view instead of
   // dissolving in place; the translation rides on the same fade value.
