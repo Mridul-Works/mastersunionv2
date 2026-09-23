@@ -1782,7 +1782,7 @@ function HeroReportDownload() {
         </CtaButton>
       </span>
       {open && (
-        <div className="absolute bottom-full left-0 z-30 mb-3 w-[300px] border border-background/15 bg-foreground/95 text-background shadow-[0_24px_60px_rgba(0,0,0,0.4)] backdrop-blur-md sm:w-[320px]">
+        <div className="absolute bottom-full left-1/2 z-30 mb-3 w-[300px] -translate-x-1/2 border border-background/15 bg-foreground text-background shadow-[0_24px_60px_rgba(0,0,0,0.4)] sm:w-[320px]">
           <div className="border-b border-background/10 px-4 py-3">
             <span className="eyebrow block text-[0.625rem] uppercase tracking-[0.25em] text-background/60">
               Entrepreneurship Report
@@ -1795,7 +1795,7 @@ function HeroReportDownload() {
               type="button"
               onClick={() => download(item)}
               disabled={busy !== null}
-              className="group flex w-full items-start gap-3 border-b border-background/10 px-4 py-3 text-left transition-colors duration-200 last:border-b-0 hover:bg-background/10 disabled:opacity-60"
+              className="group flex w-full items-start gap-3 border-b border-background/10 px-4 py-3 text-left transition-colors duration-200 last:border-b-0 hover:bg-background/15 disabled:opacity-60"
             >
               <Download className="mt-0.5 size-3.5 shrink-0 text-background/60 transition-colors duration-200 group-hover:text-background" />
               <span className="min-w-0">
