@@ -2103,7 +2103,7 @@ function StartupsPage() {
           <div className="relative mx-auto mt-16 w-full max-w-6xl sm:mt-20 md:mt-24 lg:mt-28">
             <motion.div
               ref={heroTextRef}
-              className="sticky top-20 z-10 flex w-full flex-col items-center text-center sm:top-24 md:top-28"
+              className="sticky top-1/2 z-10 flex w-full -translate-y-1/2 flex-col items-center text-center"
               style={reduceHeroMotion ? { opacity: 1, scale: 1 } : { opacity: heroTextOpacity, scale: heroTextScale }}
             >
               <Reveal delay={0.08} className="w-full">
@@ -2130,17 +2130,20 @@ function StartupsPage() {
 
             <motion.div
               ref={heroVideoRef}
-              className="mt-[46svh] w-full sm:mt-[50svh] md:mt-[54svh]"
+              className="relative mx-auto mt-[85svh] w-full max-w-[88%] sm:mt-[92svh] sm:max-w-xl md:mt-[98svh] md:max-w-2xl lg:max-w-3xl"
               style={reduceHeroMotion ? { opacity: 1, scale: 1 } : { opacity: heroVideoOpacity, scale: heroVideoScale }}
             >
-              <video
-                controls
-                playsInline
-                preload="metadata"
-                src={foundersVideo.url}
-                aria-label="Masters' Union founders film"
-                className="block h-auto w-full max-w-full rounded-[6px] border border-background/15 bg-black"
-              />
+              <div aria-hidden="true" className="pointer-events-none absolute -bottom-16 -top-16 left-0 right-0 border-x border-dashed border-background/15" />
+              <div className="relative rounded-2xl border border-dashed border-background/25 p-2.5 sm:p-3.5">
+                <video
+                  controls
+                  playsInline
+                  preload="metadata"
+                  src={foundersVideo.url}
+                  aria-label="Masters' Union founders film"
+                  className="block h-auto w-full max-w-full rounded-xl border border-background/15 bg-black sm:rounded-2xl"
+                />
+              </div>
             </motion.div>
 
           <motion.div
