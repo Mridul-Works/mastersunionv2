@@ -2006,10 +2006,13 @@ function StartupsPage() {
   const heroRef = useRef<HTMLElement>(null);
   const heroTextRef = useRef<HTMLDivElement>(null);
   const heroVideoRef = useRef<HTMLDivElement>(null);
+  const heroLogoRef = useRef<HTMLDivElement>(null);
+  const heroMarqueeRef = useRef<HTMLDivElement>(null);
   const headlineWordRef = useRef<HTMLSpanElement>(null);
   const [wordFontSize, setWordFontSize] = useState<number | null>(null);
   const heroTextOpacity = useMotionValue(1);
   const heroTextScale = useMotionValue(1);
+  const heroLogoOpacity = useMotionValue(1);
   const heroVideoOpacity = useMotionValue(reduceHeroMotion ? 1 : 0.5);
   const heroVideoScale = useMotionValue(reduceHeroMotion ? 1 : 0.96);
 
@@ -2017,6 +2020,7 @@ function StartupsPage() {
     if (reduceHeroMotion) {
       heroTextOpacity.set(1);
       heroTextScale.set(1);
+      heroLogoOpacity.set(1);
       heroVideoOpacity.set(1);
       heroVideoScale.set(1);
       return;
@@ -2024,6 +2028,8 @@ function StartupsPage() {
 
     let textRect: DOMRect | undefined;
     let videoRect: DOMRect | undefined;
+    let logoRect: DOMRect | undefined;
+    let marqueeRect: DOMRect | undefined;
     const clamp = (value: number) => Math.min(1, Math.max(0, value));
     // Fade thresholds adapt to the real resting gap between the pinned copy
     // and the video, so the copy is fully opaque at rest on any viewport and
@@ -2051,6 +2057,14 @@ function StartupsPage() {
         const releaseProgress = clamp((fadeStart - clearance) / Math.max(1, fadeStart - fadeEnd));
         heroTextOpacity.set(1 - releaseProgress);
         heroTextScale.set(1 - releaseProgress * 0.03);
+        // Keep the pinned logo solid through the whole hero scroll; fade it
+        // only once the venture marquee rises up to meet it, so it never sits
+        // on top of the passing logos.
+        if (logoRect && marqueeRect) {
+          const gap = marqueeRect.top - logoRect.bottom;
+          const logoRelease = clamp((140 - gap) / 120);
+          heroLogoOpacity.set(1 - logoRelease);
+        }
         if (heroTextRef.current) {
           heroTextRef.current.style.pointerEvents = releaseProgress >= 0.72 ? "none" : "auto";
         }
@@ -2058,9 +2072,11 @@ function StartupsPage() {
       () => {
         textRect = heroTextRef.current?.getBoundingClientRect();
         videoRect = heroVideoRef.current?.getBoundingClientRect();
+        logoRect = heroLogoRef.current?.getBoundingClientRect();
+        marqueeRect = heroMarqueeRef.current?.getBoundingClientRect();
       },
     );
-  }, [reduceHeroMotion, heroTextOpacity, heroTextScale, heroVideoOpacity, heroVideoScale]);
+  }, [reduceHeroMotion, heroTextOpacity, heroTextScale, heroLogoOpacity, heroVideoOpacity, heroVideoScale]);
 
   // Fit "Entrepreneurship" to exactly fill its box width on one line at any screen size.
   useLayoutEffect(() => {
@@ -2099,13 +2115,19 @@ function StartupsPage() {
         className="relative z-0 overflow-x-clip bg-foreground text-background"
       >
         <div className="mx-auto w-full max-w-[1440px] px-5 pb-12 pt-2 sm:pb-14 md:px-10 md:pb-16 md:pt-3 lg:pb-20">
-          <img
-            decoding="async"
-            loading="eager"
-            src={muLogoAsset.url}
-            alt="Masters' Union"
-            className="h-8 w-auto brightness-0 invert md:h-10"
-          />
+          <motion.div
+            ref={heroLogoRef}
+            className="sticky top-3 z-20 -mx-1 inline-block bg-foreground/90 px-1 py-2 backdrop-blur-sm md:top-4"
+            style={reduceHeroMotion ? { opacity: 1 } : { opacity: heroLogoOpacity }}
+          >
+            <img
+              decoding="async"
+              loading="eager"
+              src={muLogoAsset.url}
+              alt="Masters' Union"
+              className="block h-8 w-auto brightness-0 invert md:h-10"
+            />
+          </motion.div>
 
           <div className="relative mx-auto mt-10 w-full max-w-6xl sm:mt-12 md:mt-14 lg:mt-16">
             <motion.div
@@ -2120,7 +2142,7 @@ function StartupsPage() {
                     className="block whitespace-nowrap text-[clamp(2.2875rem,8.5vw,3.5875rem)] leading-[0.9] tracking-[-0.03em]"
                     style={wordFontSize ? { fontSize: `${wordFontSize}px` } : undefined}
                   >Entrepreneurship</span>
-                  <span className="mt-4 block text-[clamp(1.05rem,3.5vw,1.6rem)] font-semibold text-background/80 sm:mt-6 md:mt-8">at Masters&apos; Union</span>
+                  <span className="mb-4 mt-4 block text-[clamp(1.05rem,3.5vw,1.6rem)] font-semibold text-background/80 sm:mb-6 sm:mt-6 md:mb-8 md:mt-8">at Masters&apos; Union</span>
                 </h1>
               </Reveal>
 
@@ -2154,6 +2176,7 @@ function StartupsPage() {
             </motion.div>
 
           <motion.div
+            ref={heroMarqueeRef}
             initial={reduceHeroMotion ? false : { opacity: 0, y: 24 }}
             whileInView={reduceHeroMotion ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.18 }}
