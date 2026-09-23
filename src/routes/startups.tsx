@@ -2031,11 +2031,9 @@ function StartupsPage() {
     let logoRect: DOMRect | undefined;
     let marqueeRect: DOMRect | undefined;
     const clamp = (value: number) => Math.min(1, Math.max(0, value));
-    // Fade thresholds adapt to the real resting gap between the pinned copy
-    // and the video, so the copy is fully opaque at rest on any viewport and
-    // always fully gone before the two boxes can intersect.
-    let fadeStart = 1;
-    let fadeEnd = 0;
+    // The copy stays pinned while the video rises over it: the fade begins just
+    // before the video reaches the copy and completes as it covers it.
+
 
     return onScrollFrame(
       ({ vh }) => {
