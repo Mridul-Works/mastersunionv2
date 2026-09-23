@@ -2045,13 +2045,12 @@ function StartupsPage() {
         heroVideoOpacity.set(0.5 + videoProgress * 0.5);
         heroVideoScale.set(0.96 + videoProgress * 0.04);
 
-        // Tie the copy release to the live gap above the rising video. This
-        // guarantees the copy is gone before the two boxes can intersect.
+        // Tie the copy release to the live gap above the rising video, so the
+        // copy dims as the video slides up and covers it.
         const clearance = videoRect.top - textRect.bottom;
-        if (clearance > fadeStart) {
-          fadeStart = clearance * 0.9;
-          fadeEnd = Math.max(28, clearance * 0.18);
-        }
+        const fadeStart = Math.min(160, vh * 0.16);
+        const fadeEnd = -textRect.height * 0.55;
+
         const releaseProgress = clamp((fadeStart - clearance) / Math.max(1, fadeStart - fadeEnd));
         heroTextOpacity.set(1 - releaseProgress);
         heroTextScale.set(1 - releaseProgress * 0.03);
