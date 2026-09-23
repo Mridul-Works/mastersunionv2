@@ -1334,7 +1334,9 @@ function OutclassSection() {
                 </motion.article>
               </div>
             </div>
-          ))}
+            );
+          })}
+
         </div>
       </div>
     </Section>
