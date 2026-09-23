@@ -2074,9 +2074,13 @@ function StartupsPage() {
         heroTextOpacity.set(1 - releaseProgress);
         heroTextScale.set(1 - releaseProgress * 0.03);
 
-        // Keep the pinned logo solid through the whole hero scroll; fade it
-        // only once the venture marquee rises up to meet it, so it never sits
-        // on top of the passing logos.
+        // Slide the pinned logo up and out of view the moment scrolling
+        // begins; also keep the marquee-proximity fade so it never sits on
+        // top of the passing logos when restored.
+        const slideRange = 100;
+        const slideProgress = clamp(window.scrollY / slideRange);
+        const logoTravel = (logoRect?.height ?? 40) + 32;
+        heroLogoY.set(-slideProgress * logoTravel);
         if (logoRect && marqueeRect) {
           const gap = marqueeRect.top - logoRect.bottom;
           const logoRelease = clamp((140 - gap) / 120);
@@ -2093,7 +2097,7 @@ function StartupsPage() {
         marqueeRect = heroMarqueeRef.current?.getBoundingClientRect();
       },
     );
-  }, [reduceHeroMotion, heroTextOpacity, heroTextScale, heroLogoOpacity]);
+  }, [reduceHeroMotion, heroTextOpacity, heroTextScale, heroLogoOpacity, heroLogoY]);
 
   // Fit "Entrepreneurship" to exactly fill its box width on one line at any screen size.
   useLayoutEffect(() => {
