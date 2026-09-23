@@ -2062,19 +2062,7 @@ function StartupsPage() {
             </Reveal>
 
             <Reveal delay={0.14}>
-              <a
-                href="#cta"
-                onClick={(event) => {
-                  event.preventDefault();
-                  homeNavScrollToId("cta");
-                }}
-                className="group mt-7 inline-flex items-center gap-2 rounded-full bg-background py-1.5 pl-5 pr-1.5 text-[13px] font-semibold text-foreground transition-transform hover:-translate-y-px sm:mt-8"
-              >
-                Start Building
-                <span className="inline-flex size-7 items-center justify-center rounded-full bg-foreground text-background transition-transform duration-300 group-hover:rotate-45">
-                  <ArrowUpRight className="size-3.5" strokeWidth={2.25} />
-                </span>
-              </a>
+              <HeroReportDownload />
             </Reveal>
 
             <Reveal delay={0.18}>
