@@ -2029,6 +2029,9 @@ function StartupsPage() {
   // fade value, scaled down to its resting 40% glow.
   const heroReflectionOpacity = useTransform(heroTextOpacity, (v) => v * 0.4);
   const heroLogoOpacity = useMotionValue(1);
+  // The logo slides upward as it fades, so it drifts out of view instead of
+  // dissolving in place; the translation rides on the same fade value.
+  const heroLogoY = useMotionValue(0);
 
   useEffect(() => {
     const el = heroVideoElRef.current;
@@ -2056,6 +2059,7 @@ function StartupsPage() {
       heroTextOpacity.set(1);
       heroTextScale.set(1);
       heroLogoOpacity.set(1);
+      heroLogoY.set(0);
       return;
     }
 
@@ -2096,6 +2100,9 @@ function StartupsPage() {
           logoFade = Math.max(logoFade, clamp((140 - gap) / 120));
         }
         heroLogoOpacity.set(1 - logoFade);
+        // Slide the logo up in lockstep with its fade: fully faded = one logo
+        // height of travel, restored to zero on scroll back.
+        heroLogoY.set(-logoFade * 48);
         if (heroTextRef.current) {
           heroTextRef.current.style.pointerEvents = releaseProgress >= 0.72 ? "none" : "auto";
         }
@@ -2107,7 +2114,7 @@ function StartupsPage() {
         marqueeRect = heroMarqueeRef.current?.getBoundingClientRect();
       },
     );
-  }, [reduceHeroMotion, heroTextOpacity, heroTextScale, heroLogoOpacity]);
+  }, [reduceHeroMotion, heroTextOpacity, heroTextScale, heroLogoOpacity, heroLogoY]);
 
   // Fit "Entrepreneurship" to exactly fill its box width on one line at any screen size.
   useLayoutEffect(() => {
@@ -2149,7 +2156,11 @@ function StartupsPage() {
           <motion.div
             ref={heroLogoRef}
             className="sticky top-3 z-20 -mx-1 inline-block bg-foreground/90 px-1 py-2 backdrop-blur-sm md:top-4"
-            style={reduceHeroMotion ? { opacity: 1 } : { opacity: heroLogoOpacity }}
+            style={
+              reduceHeroMotion
+                ? { opacity: 1, y: 0 }
+                : { opacity: heroLogoOpacity, y: heroLogoY }
+            }
           >
             <img
               decoding="async"
