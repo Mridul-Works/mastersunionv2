@@ -1436,9 +1436,15 @@ function DropshippingSection() {
         const start = 0.1 + Math.floor((index - 1) / 2) * 0.38;
         const local = Math.min(1, Math.max(0, (progress - start) / 0.2));
         const eased = 1 - Math.pow(1 - local, 3);
-        const target = targets[index];
-        if (!target) return;
+        const pairIndex = index % 2 === 0 ? index - 1 : index;
+        const pairTarget = targets[pairIndex];
+        if (!pairTarget) return;
         const direction = index % 2 === 0 ? 1 : -1;
+        const target = {
+          x: direction * Math.abs(pairTarget.x),
+          y: pairTarget.y,
+          scale: pairTarget.scale,
+        };
         const startX = direction * (vw * 0.72 + 260);
         const x = startX + (target.x - startX) * eased;
         const y = target.y + (1 - eased) * vh * 0.1;
