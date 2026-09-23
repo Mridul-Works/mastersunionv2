@@ -2190,15 +2190,32 @@ function StartupsPage() {
                 preserveAspectRatio="none"
                 fill="none"
               >
+                {/* Torii gate: pillars rise from the video frame; kasagi (top
+                    beam) + shimaki (second beam) sit below the MU logo and
+                    above the headline. */}
                 <path
-                  d="M1.5 100 L1.5 20 C 54 20, 54 20, 50 1.5"
+                  d="M1.5 100 L1.5 17"
                   stroke="currentColor"
                   strokeWidth="3"
                   strokeDasharray="6 6"
                   vectorEffect="non-scaling-stroke"
                 />
                 <path
-                  d="M98.5 100 L98.5 20 C 46 20, 46 20, 50 1.5"
+                  d="M98.5 100 L98.5 17"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeDasharray="6 6"
+                  vectorEffect="non-scaling-stroke"
+                />
+                <path
+                  d="M0 17 L100 17"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeDasharray="6 6"
+                  vectorEffect="non-scaling-stroke"
+                />
+                <path
+                  d="M2.5 21.5 L97.5 21.5"
                   stroke="currentColor"
                   strokeWidth="3"
                   strokeDasharray="6 6"
