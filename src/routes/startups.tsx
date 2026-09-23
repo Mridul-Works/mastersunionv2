@@ -82,28 +82,33 @@ const VENTURE_IMAGES: Record<string, string> = {
 const SPARK_EXAMPLES: {
   name: string;
   founder: string;
+  cohort: string;
   body: string;
   founderImage?: string;
 }[] = [
   {
     name: "Nivara",
     founder: "Vikas Kabra",
+    cohort: "PGP TBM 2021",
     body: "Vikas Kabra didn't set out to build a diamond company. A personal milestone made him ask why lab-grown diamond jewellery felt neither modern nor accessible — and Nivara was born from that question.",
   },
   {
     name: "Yango",
     founder: "Sakshi Tuteja",
+    cohort: "PGP TBM 2025",
     body: "Sakshi Tuteja overheard a mother ask, in a product meeting at GNC, “Why don't we have healthier options for kids?” She couldn't shake the question. Yango is the answer.",
   },
   {
     name: "Eight",
     founder: "Mohit Paliwal",
+    cohort: "PGP TBM 2021",
     body: "Mohit Paliwal, Mohit Goswami, and Yugal Tamang realized at a Masters' Union cafeteria table that not everyone wants to be seen, but everyone has a story worth telling — Eight became the stage for it.",
     founderImage: sparkEightFounders.url,
   },
   {
     name: "SeedsAI",
     founder: "Shubham Khatri & Vansh Miglani",
+    cohort: "PGP TBM 2024",
     body: "Shubham Khatri and Vansh Miglani didn't start with a business plan. They started by shadowing NBFC call-center agents and noticing how much time was wasted on manual review.",
     founderImage: sparkSeedsAiFounders.url,
   },
@@ -963,8 +968,11 @@ function SparkCarousel({
               initial={reduceMotion ? false : { opacity: 0, x: -28, scale: 0.985 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: reduceMotion ? 0 : 0.7, ease: [0.7, 0, 0.2, 1] }}
-              className="flex items-center"
+              className="flex flex-col justify-center"
             >
+              <div className="eyebrow mb-2 text-background/45 sm:mb-3">
+                {company.cohort}
+              </div>
               <Placeholder
                 kind="image"
                 aspect="aspect-[1200/896]"
@@ -1008,8 +1016,11 @@ function SparkCarousel({
               initial={reduceMotion ? false : { opacity: 0, x: 28, scale: 0.985 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: reduceMotion ? 0 : 0.7, ease: [0.7, 0, 0.2, 1] }}
-              className="flex items-center"
+              className="flex flex-col justify-center"
             >
+              <div className="eyebrow mb-2 text-right text-background/45 sm:mb-3">
+                The Product
+              </div>
               <Placeholder
                 kind="image"
                 aspect="aspect-[1200/896]"
