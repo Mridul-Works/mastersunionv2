@@ -1283,38 +1283,51 @@ function OutclassSection() {
           </ol>
         </aside>
 
-        <div>
+        <div className="relative pb-16 sm:pb-20 lg:pb-[26svh]">
           {OUTCLASS_MOMENTS.map((moment, index) => (
-            <motion.article
+            <div
               key={moment.n}
-              onViewportEnter={() => setActive(index)}
-              viewport={{ amount: 0.52, margin: "-12% 0px -28% 0px" }}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-              className={`grid min-h-0 gap-7 border-t border-background/15 py-10 transition-opacity duration-500 first:border-t-0 first:pt-0 sm:gap-9 sm:py-14 md:grid-cols-12 md:items-center lg:min-h-[72svh] lg:py-16 ${
-                index === active ? "opacity-100" : "opacity-55"
-              }`}
+              className="sticky mb-8 last:mb-0 sm:mb-10 lg:mb-14"
+              style={{ top: `calc(3rem + ${index * 1.5}rem)` }}
             >
-              <div className="md:col-span-5">
-                <span className="block font-display text-[clamp(4rem,10vw,8.5rem)] font-light leading-[0.82] text-background/12">
-                  {moment.n}
-                </span>
-                <div className="mt-5 flex items-center gap-3">
-                  <span aria-hidden className="h-px w-9 bg-accent" />
-                  <span className="eyebrow text-background/65">{moment.action}</span>
-                </div>
-                <h3 className="mt-4 max-w-[15ch] text-[clamp(1.5rem,3.2vw,2.65rem)] font-medium leading-[1.05]">
-                  {moment.label}
-                </h3>
-                <p className="mt-4 max-w-[34ch] text-[13px] leading-[1.65] text-background/65 md:text-[15px] md:leading-[1.75]">
-                  {moment.body}
-                </p>
+              <div
+                className={`transition-all duration-500 ease-out ${
+                  index < active ? "scale-[0.96] opacity-55" : "scale-100 opacity-100"
+                }`}
+                style={{ transformOrigin: "top center" }}
+              >
+                <motion.article
+                  onViewportEnter={() => setActive(index)}
+                  viewport={{ amount: 0.52, margin: "-12% 0px -28% 0px" }}
+                  initial={{ opacity: 0, y: 28 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative overflow-hidden rounded-2xl border border-background/15 bg-foreground shadow-[0_30px_70px_-35px_rgba(0,0,0,0.9)]"
+                >
+                  <div aria-hidden className="pointer-events-none absolute inset-0 bg-background/[0.04]" />
+                  <div className="relative grid gap-7 p-6 sm:gap-9 sm:p-9 md:grid-cols-12 md:items-center md:gap-8 md:p-10 lg:p-12">
+                    <div className="md:col-span-5">
+                      <span className="block font-display text-[clamp(4rem,10vw,8.5rem)] font-light leading-[0.82] text-background/12">
+                        {moment.n}
+                      </span>
+                      <div className="mt-5 flex items-center gap-3">
+                        <span aria-hidden className="h-px w-9 bg-accent" />
+                        <span className="eyebrow text-background/65">{moment.action}</span>
+                      </div>
+                      <h3 className="mt-4 max-w-[15ch] text-[clamp(1.5rem,3.2vw,2.65rem)] font-medium leading-[1.05]">
+                        {moment.label}
+                      </h3>
+                      <p className="mt-4 max-w-[34ch] text-[13px] leading-[1.65] text-background/65 md:text-[15px] md:leading-[1.75]">
+                        {moment.body}
+                      </p>
+                    </div>
+                    <div className="md:col-span-7">
+                      <Placeholder kind="image" aspect="aspect-[16/10]" note={moment.media} className="rounded-[6px]" />
+                    </div>
+                  </div>
+                </motion.article>
               </div>
-              <div className="md:col-span-7">
-                <Placeholder kind="image" aspect="aspect-[16/10]" note={moment.media} className="rounded-[6px]" />
-              </div>
-            </motion.article>
+            </div>
           ))}
         </div>
       </div>
