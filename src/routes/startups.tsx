@@ -2183,7 +2183,29 @@ function StartupsPage() {
               ref={heroVideoRef}
               className="relative z-20 mx-auto mt-6 w-full max-w-[92%] sm:mt-8 sm:max-w-2xl md:mt-8 md:max-w-3xl lg:max-w-4xl"
             >
-              <div aria-hidden="true" className="pointer-events-none absolute -bottom-16 -top-16 left-0 right-0 border-x-[3px] border-dashed border-background/15" />
+              <svg
+                aria-hidden="true"
+                className="pointer-events-none absolute bottom-full left-0 right-0 h-[180px] w-full text-background/25 sm:h-[240px] md:h-[300px] lg:h-[340px]"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+                fill="none"
+              >
+                <path
+                  d="M1.5 100 L1.5 26 L50 1.5"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeDasharray="6 6"
+                  vectorEffect="non-scaling-stroke"
+                />
+                <path
+                  d="M98.5 100 L98.5 26 L50 1.5"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeDasharray="6 6"
+                  vectorEffect="non-scaling-stroke"
+                />
+              </svg>
+              <div aria-hidden="true" className="pointer-events-none absolute -bottom-16 left-0 right-0 top-full border-x-[3px] border-dashed border-background/25" />
               <div className="relative border-[3px] border-dashed border-background/25">
                 <video
                   ref={heroVideoElRef}
