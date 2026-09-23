@@ -2183,42 +2183,53 @@ function StartupsPage() {
               ref={heroVideoRef}
               className="relative z-20 mx-auto mt-6 w-full sm:mt-8 sm:max-w-3xl md:max-w-4xl lg:max-w-5xl"
             >
+              {/* Mountain ridgeline: dashed lines rise from the video frame
+                  edges into a peaked range that sits below the MU logo and
+                  above the headline. Mobile uses a shallower range because the
+                  band between logo and headline is tighter. */}
               <svg
                 aria-hidden="true"
-                className="pointer-events-none absolute bottom-full left-0 right-0 h-[280px] w-full text-background/25 sm:h-[330px] md:h-[380px] lg:h-[410px]"
+                className="pointer-events-none absolute bottom-full left-0 right-0 h-[280px] w-full text-background/25 sm:hidden"
                 viewBox="0 0 100 100"
                 preserveAspectRatio="none"
                 fill="none"
               >
-                {/* Torii gate: pillars rise from the video frame; kasagi (top
-                    beam) + shimaki (second beam) sit below the MU logo and
-                    above the headline. */}
                 <path
-                  d="M1.5 100 L1.5 17"
+                  d="M1.5 100 L1.5 24 L12 19 L25 23.5 L38 20 L50 17.5 L62 20 L75 23.5 L88 19 L98.5 24 L98.5 100"
                   stroke="currentColor"
                   strokeWidth="3"
                   strokeDasharray="6 6"
                   vectorEffect="non-scaling-stroke"
                 />
                 <path
-                  d="M98.5 100 L98.5 17"
+                  className="text-background/10"
+                  d="M1.5 24 L14 20.5 L27 23.8 L40 21 L50 19 L60 21 L73 23.8 L86 20.5 L98.5 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeDasharray="4 4"
+                  vectorEffect="non-scaling-stroke"
+                />
+              </svg>
+              <svg
+                aria-hidden="true"
+                className="pointer-events-none absolute bottom-full left-0 right-0 hidden w-full text-background/25 sm:block sm:h-[330px] md:h-[380px] lg:h-[410px]"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+                fill="none"
+              >
+                <path
+                  d="M1.5 100 L1.5 21 L14 15 L26 20 L38 10.5 L50 4.5 L62 10.5 L74 20 L86 15 L98.5 21 L98.5 100"
                   stroke="currentColor"
                   strokeWidth="3"
                   strokeDasharray="6 6"
                   vectorEffect="non-scaling-stroke"
                 />
                 <path
-                  d="M0 17 L100 17"
+                  className="text-background/10"
+                  d="M8 21 L20 16.5 L32 21 L44 11.5 L50 8 L56 11.5 L68 21 L80 16.5 L92 21"
                   stroke="currentColor"
-                  strokeWidth="3"
-                  strokeDasharray="6 6"
-                  vectorEffect="non-scaling-stroke"
-                />
-                <path
-                  d="M2.5 21.5 L97.5 21.5"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeDasharray="6 6"
+                  strokeWidth="2"
+                  strokeDasharray="4 4"
                   vectorEffect="non-scaling-stroke"
                 />
               </svg>
