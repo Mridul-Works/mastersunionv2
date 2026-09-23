@@ -39,7 +39,6 @@ import instaVideo4 from "@/assets/insta-video-4.mp4.asset.json";
 import instaVideo4Poster from "@/assets/insta-video-4-poster.jpg.asset.json";
 import instaVideo5 from "@/assets/insta-video-5.mp4.asset.json";
 import instaVideo5Poster from "@/assets/insta-video-5-poster.jpg.asset.json";
-import heroVideo from "@/assets/hero.mp4.asset.json";
 import sparkVideoThumb from "@/assets/spark-video-thumb.jpg";
 
 import sparkSeedsAiFounders from "@/assets/spark/seedsai-founders.jpg.asset.json";
