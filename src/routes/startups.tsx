@@ -1433,7 +1433,7 @@ function DropshippingSection() {
           return;
         }
 
-        const start = 0.1 + (index - 1) * 0.19;
+        const start = 0.1 + Math.floor((index - 1) / 2) * 0.38;
         const local = Math.min(1, Math.max(0, (progress - start) / 0.2));
         const eased = 1 - Math.pow(1 - local, 3);
         const target = targets[index];
