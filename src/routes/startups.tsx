@@ -2218,7 +2218,7 @@ function StartupsPage() {
                 fill="none"
               >
                 <path
-                  d="M1.5 100 L1.5 22 L14 16 L26 21 L38 11 L50 5 L62 11 L74 21 L86 16 L98.5 22 L98.5 100"
+                  d="M1.5 100 L1.5 21 L14 15 L26 20 L38 10.5 L50 4.5 L62 10.5 L74 20 L86 15 L98.5 21 L98.5 100"
                   stroke="currentColor"
                   strokeWidth="3"
                   strokeDasharray="6 6"
@@ -2226,7 +2226,7 @@ function StartupsPage() {
                 />
                 <path
                   className="text-background/10"
-                  d="M8 22 L20 17.5 L32 22 L44 12 L50 8.5 L56 12 L68 22 L80 17.5 L92 22"
+                  d="M8 21 L20 16.5 L32 21 L44 11.5 L50 8 L56 11.5 L68 21 L80 16.5 L92 21"
                   stroke="currentColor"
                   strokeWidth="2"
                   strokeDasharray="4 4"
