@@ -1334,13 +1334,8 @@ function OutclassSection() {
                   transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
                   className="relative overflow-hidden rounded-2xl border border-background/15 bg-foreground shadow-[0_-18px_40px_-28px_rgba(0,0,0,0.85),0_30px_70px_-35px_rgba(0,0,0,0.9)]"
                 >
-                  <motion.div
-                    aria-hidden
-                    className="pointer-events-none absolute inset-0"
-                    onViewportEnter={() => setActive(index)}
-                    viewport={{ amount: 0.52, margin: "-12% 0px -28% 0px" }}
-                  />
                   <div
+
                     aria-hidden
                     className="pointer-events-none absolute inset-0 z-[3] bg-foreground transition-opacity duration-500"
                     style={{ opacity: depth * 0.16 }}
