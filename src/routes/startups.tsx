@@ -2366,17 +2366,17 @@ function StartupsPage() {
                     playsInline
                     preload="auto"
                     tabIndex={-1}
-                    className="absolute inset-0 h-full w-full scale-[1.15] object-cover blur-[30px]"
+                    className="absolute inset-0 h-full w-full scale-[1.15] object-cover opacity-45 blur-[30px]"
                   >
                     <source src={foundersVideo.url} type="video/mp4" />
                     <source src={foundersVideoWebm.url} type="video/webm" />
                   </video>
-                  {/* Dark tinted glass base */}
-                  <div className="absolute inset-0 rounded-2xl bg-black/50 backdrop-blur-[48px] backdrop-saturate-150" />
+                  {/* Dark tinted smoked-glass base */}
+                  <div className="absolute inset-0 rounded-2xl bg-black/75 backdrop-blur-[48px] backdrop-saturate-150" />
                   {/* Soft light sources bleeding through the smoked glass */}
-                  <div className="absolute -left-[14%] top-[4%] h-[75%] w-[46%] rounded-full bg-white/45 blur-[72px]" />
-                  <div className="absolute -right-[12%] -top-[18%] h-[85%] w-[42%] rounded-full bg-white/30 blur-[84px]" />
-                  <div className="absolute -bottom-[28%] left-[28%] h-[75%] w-[38%] rounded-full bg-white/20 blur-[76px]" />
+                  <div className="absolute -left-[14%] top-[4%] h-[75%] w-[46%] rounded-full bg-white/40 blur-[72px]" />
+                  <div className="absolute -right-[12%] -top-[18%] h-[85%] w-[42%] rounded-full bg-white/25 blur-[84px]" />
+                  <div className="absolute -bottom-[28%] left-[28%] h-[75%] w-[38%] rounded-full bg-white/15 blur-[76px]" />
                   {/* Faint diagonal sheen across the pane */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent" />
                   {/* Thin polished edge highlight */}
