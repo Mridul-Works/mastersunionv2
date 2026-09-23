@@ -2054,6 +2054,9 @@ function StartupsPage() {
         const releaseProgress = clamp((fadeStart - clearance) / Math.max(1, fadeStart - fadeEnd));
         heroTextOpacity.set(1 - releaseProgress);
         heroTextScale.set(1 - releaseProgress * 0.03);
+        // Fade the pinned logo in step with the copy so it never sits on top
+        // of the venture marquee while that scrolls underneath it.
+        heroLogoOpacity.set(1 - releaseProgress);
         if (heroTextRef.current) {
           heroTextRef.current.style.pointerEvents = releaseProgress >= 0.72 ? "none" : "auto";
         }
@@ -2063,7 +2066,7 @@ function StartupsPage() {
         videoRect = heroVideoRef.current?.getBoundingClientRect();
       },
     );
-  }, [reduceHeroMotion, heroTextOpacity, heroTextScale, heroVideoOpacity, heroVideoScale]);
+  }, [reduceHeroMotion, heroTextOpacity, heroTextScale, heroLogoOpacity, heroVideoOpacity, heroVideoScale]);
 
   // Fit "Entrepreneurship" to exactly fill its box width on one line at any screen size.
   useLayoutEffect(() => {
