@@ -2013,16 +2013,12 @@ function StartupsPage() {
   const heroTextOpacity = useMotionValue(1);
   const heroTextScale = useMotionValue(1);
   const heroLogoOpacity = useMotionValue(1);
-  const heroVideoOpacity = useMotionValue(reduceHeroMotion ? 1 : 0.5);
-  const heroVideoScale = useMotionValue(reduceHeroMotion ? 1 : 0.96);
 
   useEffect(() => {
     if (reduceHeroMotion) {
       heroTextOpacity.set(1);
       heroTextScale.set(1);
       heroLogoOpacity.set(1);
-      heroVideoOpacity.set(1);
-      heroVideoScale.set(1);
       return;
     }
 
@@ -2030,6 +2026,7 @@ function StartupsPage() {
     let videoRect: DOMRect | undefined;
     let logoRect: DOMRect | undefined;
     let marqueeRect: DOMRect | undefined;
+    let maxClearance = 0;
     const clamp = (value: number) => Math.min(1, Math.max(0, value));
     // The copy stays pinned while the video rises over it: the fade begins just
     // before the video reaches the copy and completes as it covers it.
@@ -2039,21 +2036,19 @@ function StartupsPage() {
       ({ vh }) => {
         if (!textRect || !videoRect) return;
 
-        // Complete the video reveal when its centre reaches the viewport centre.
-        const videoRange = Math.max(1, (vh + videoRect.height) / 2);
-        const videoProgress = clamp((vh - videoRect.top) / videoRange);
-        heroVideoOpacity.set(0.5 + videoProgress * 0.5);
-        heroVideoScale.set(0.96 + videoProgress * 0.04);
-
         // Tie the copy release to the live gap above the rising video, so the
-        // copy dims as the video slides up and covers it.
+        // copy dims as the video slides up and covers it. maxClearance captures
+        // the largest gap seen (the video's resting position), so the fade is
+        // anchored to this layout instead of a hardcoded threshold.
         const clearance = videoRect.top - textRect.bottom;
-        const fadeStart = Math.min(160, vh * 0.16);
+        if (clearance > maxClearance) maxClearance = clearance;
+        const fadeStart = Math.max(24, maxClearance * 0.75);
         const fadeEnd = -textRect.height * 0.55;
 
         const releaseProgress = clamp((fadeStart - clearance) / Math.max(1, fadeStart - fadeEnd));
         heroTextOpacity.set(1 - releaseProgress);
         heroTextScale.set(1 - releaseProgress * 0.03);
+
         // Keep the pinned logo solid through the whole hero scroll; fade it
         // only once the venture marquee rises up to meet it, so it never sits
         // on top of the passing logos.
@@ -2073,7 +2068,7 @@ function StartupsPage() {
         marqueeRect = heroMarqueeRef.current?.getBoundingClientRect();
       },
     );
-  }, [reduceHeroMotion, heroTextOpacity, heroTextScale, heroLogoOpacity, heroVideoOpacity, heroVideoScale]);
+  }, [reduceHeroMotion, heroTextOpacity, heroTextScale, heroLogoOpacity]);
 
   // Fit "Entrepreneurship" to exactly fill its box width on one line at any screen size.
   useLayoutEffect(() => {
@@ -2163,8 +2158,7 @@ function StartupsPage() {
 
             <motion.div
               ref={heroVideoRef}
-              className="relative z-20 mx-auto mt-[95svh] w-full max-w-[88%] sm:mt-[100svh] sm:max-w-xl md:mt-[105svh] md:max-w-2xl lg:max-w-3xl"
-              style={reduceHeroMotion ? { opacity: 1, scale: 1 } : { opacity: heroVideoOpacity, scale: heroVideoScale }}
+              className="relative z-20 mx-auto mt-10 w-full max-w-[88%] sm:mt-12 sm:max-w-xl md:mt-14 md:max-w-2xl lg:max-w-3xl"
             >
               <div aria-hidden="true" className="pointer-events-none absolute -bottom-16 -top-16 left-0 right-0 border-x border-dashed border-background/15" />
               <div className="relative rounded-2xl border border-dashed border-background/25 p-2.5 sm:p-3.5">
