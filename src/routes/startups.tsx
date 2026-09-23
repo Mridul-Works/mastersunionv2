@@ -26,7 +26,7 @@ import seedsaiVentureImg from "@/assets/founders/ventures/seedsai.jpg.asset.json
 import woodysVentureImg from "@/assets/founders/ventures/woodys.jpg.asset.json";
 import sharkTankStageImg from "@/assets/founders/sharktank-stage.jpg.asset.json";
 import muLogoAsset from "@/assets/mu-logo-dark.png.asset.json";
-import studentEnterHeroAsset from "@/assets/studentEnterHero-3.webp.asset.json";
+import foundersVideo from "@/assets/founders.mp4.asset.json";
 import entrepreneurshipReport2021 from "@/assets/entrepreneurship-report-2021-25.pdf.asset.json";
 import entrepreneurshipReportUg from "@/assets/entrepreneurship-report-ug-programmes.pdf.asset.json";
 import studentEntrepreneurshipVideo from "@/assets/MU_Student_Entreprenuership_Video-2.mp4.asset.json";
@@ -2001,6 +2001,7 @@ function StartupsPage() {
   const [selectedShark, setSelectedShark] = useState(0);
   const [selectedQuote, setSelectedQuote] = useState(0);
   const [selectedSpark, setSelectedSpark] = useState(0);
+  const reduceHeroMotion = useReducedMotion();
   const headlineWordRef = useRef<HTMLSpanElement>(null);
   const [wordFontSize, setWordFontSize] = useState<number | null>(null);
 
@@ -2027,32 +2028,6 @@ function StartupsPage() {
     return () => ro.disconnect();
   }, []);
 
-  // 0..1 progress of the Spark section covering the pinned hero (one viewport of scroll).
-  // Applied directly to the fade wrapper's style to avoid re-rendering the page on scroll.
-  const heroFadeRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = heroFadeRef.current;
-    if (!el) return;
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      const vh = window.innerHeight || 1;
-      const p = Math.min(1, Math.max(0, window.scrollY / vh));
-      el.style.opacity = (1 - p).toFixed(3);
-    };
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      if (raf) cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
-
   const activeShark = SHARK_TANK[selectedShark];
   const activeQuote = TESTIMONIALS[selectedQuote];
 
@@ -2063,105 +2038,89 @@ function StartupsPage() {
 
       <header
         id="top"
-        className="sticky top-0 z-0 h-[100svh] min-h-[600px] overflow-hidden bg-foreground text-background"
+        className="relative z-0 overflow-hidden bg-foreground text-background"
       >
-        <div ref={heroFadeRef} className="h-full w-full" style={{ opacity: 1 }}>
-        <img
-          src={studentEnterHeroAsset.url}
-          alt="Masters' Union student presenting on stage"
-          decoding="async"
-          loading="eager"
-          className="absolute inset-0 block h-full w-full scale-[1.35] translate-x-[16%] object-cover object-center opacity-75"
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/60"
-        />
+        <div className="mx-auto w-full max-w-[1440px] px-5 pb-12 pt-2 sm:pb-14 md:px-10 md:pb-16 md:pt-3 lg:pb-20">
+          <img
+            decoding="async"
+            loading="eager"
+            src={muLogoAsset.url}
+            alt="Masters' Union"
+            className="h-8 w-auto brightness-0 invert md:h-10"
+          />
 
-        <div className="pointer-events-none absolute inset-x-0 top-0">
-          <div className="mx-auto max-w-[1440px] px-5 pt-2 md:px-10 md:pt-3">
-            <div className="pointer-events-auto flex items-start justify-between">
-              <img
-                decoding="async"
-                loading="eager"
-                src={muLogoAsset.url}
-                alt="Masters' Union"
-                className="h-8 w-auto md:h-10 brightness-0 invert"
+          <div className="mx-auto mt-16 flex w-full max-w-6xl flex-col items-center text-center sm:mt-20 md:mt-24 lg:mt-28">
+            <Reveal delay={0.08} className="w-full">
+              <h1 className="mx-auto w-full overflow-hidden pb-[0.14em] font-medium leading-[0.95] tracking-[-0.02em]">
+                <span
+                  ref={headlineWordRef}
+                  className="block whitespace-nowrap text-[clamp(2.2875rem,8.5vw,3.5875rem)] leading-[0.9] tracking-[-0.03em]"
+                  style={wordFontSize ? { fontSize: `${wordFontSize}px` } : undefined}
+                >Entrepreneurship</span>
+                <span className="mt-4 block text-[clamp(1.05rem,3.5vw,1.6rem)] font-semibold text-background/80 sm:mt-6 md:mt-8">at Masters&apos; Union</span>
+              </h1>
+            </Reveal>
+
+            <Reveal delay={0.14}>
+              <a
+                href="#cta"
+                onClick={(event) => {
+                  event.preventDefault();
+                  homeNavScrollToId("cta");
+                }}
+                className="group mt-7 inline-flex items-center gap-2 rounded-full bg-background py-1.5 pl-5 pr-1.5 text-[13px] font-semibold text-foreground transition-transform hover:-translate-y-px sm:mt-8"
+              >
+                Start Building
+                <span className="inline-flex size-7 items-center justify-center rounded-full bg-foreground text-background transition-transform duration-300 group-hover:rotate-45">
+                  <ArrowUpRight className="size-3.5" strokeWidth={2.25} />
+                </span>
+              </a>
+            </Reveal>
+
+            <Reveal delay={0.18}>
+              <span className="eyebrow mt-6 inline-block whitespace-nowrap text-[0.6875rem] text-background/70 md:text-[0.8125rem]">
+                120+ Startups · ₹593 Cr Valuation
+              </span>
+            </Reveal>
+
+            <Reveal delay={0.22} className="mt-10 w-full sm:mt-12 md:mt-14">
+              <video
+                controls
+                playsInline
+                preload="metadata"
+                src={foundersVideo.url}
+                aria-label="Masters' Union founders film"
+                className="block h-auto w-full max-w-full rounded-[6px] border border-background/15 bg-black"
               />
-            </div>
+            </Reveal>
           </div>
-        </div>
 
-        <div className="pointer-events-auto absolute inset-0 flex flex-col">
-          <div className="mx-auto flex h-full w-full max-w-[1440px] flex-col px-5 md:px-10">
-            <div className="flex flex-1 flex-col justify-end pb-[72px] md:pb-[88px]">
-              <div className="@container relative border border-background/15 md:border-0">
-                {/* outer border — only the top-left and bottom-right edges remain */}
-                <span aria-hidden className="pointer-events-none absolute left-0 top-0 hidden h-px w-1/2 bg-background/15 md:block" />
-                <span aria-hidden className="pointer-events-none absolute bottom-0 right-0 hidden h-px w-1/2 bg-background/15 md:block" />
-                <span aria-hidden className="pointer-events-none absolute bottom-1/2 left-0 top-0 hidden w-px bg-background/15 md:block" />
-                <span aria-hidden className="pointer-events-none absolute bottom-0 right-0 top-1/2 hidden w-px bg-background/15 md:block" />
-                {/* 4 outer-corner diamonds (top-right and bottom-left corners have no meeting lines — omitted) */}
-                <span aria-hidden className="absolute -left-[4.5px] -top-[4.5px] hidden size-[9px] rotate-45 bg-background md:block" />
-                <span aria-hidden className="absolute -bottom-[4.5px] -right-[4.5px] hidden size-[9px] rotate-45 bg-background md:block" />
-                {/* 4 edge-midpoint diamonds */}
-                <span aria-hidden className="absolute -top-[4.5px] left-1/2 hidden size-[9px] -translate-x-1/2 rotate-45 bg-background md:block" />
-                <span aria-hidden className="absolute -bottom-[4.5px] left-1/2 hidden size-[9px] -translate-x-1/2 rotate-45 bg-background md:block" />
-                <span aria-hidden className="absolute -left-[4.5px] top-1/2 hidden size-[9px] -translate-y-1/2 rotate-45 bg-background md:block" />
-                <span aria-hidden className="absolute -right-[4.5px] top-1/2 hidden size-[9px] -translate-y-1/2 rotate-45 bg-background md:block" />
-                {/* center diamond */}
-                <span aria-hidden className="absolute left-1/2 top-1/2 hidden size-[9px] -translate-x-1/2 -translate-y-1/2 rotate-45 bg-background md:block" />
-                {/* full cross-divider */}
-                <div aria-hidden className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px bg-background/15 md:block" />
-                <div aria-hidden className="pointer-events-none absolute inset-x-0 top-1/2 hidden h-px bg-background/15 md:block" />
-
-                <div className="grid grid-cols-1 md:grid-cols-2">
-                  <div className="relative flex min-h-[170px] flex-col p-5 sm:min-h-[200px] sm:p-6 md:min-h-[250px] md:p-10 lg:min-h-[300px] lg:p-12">
-                    <Reveal delay={0.08}>
-                      <h1 className="w-full overflow-hidden pb-[0.14em] font-medium leading-[0.95] tracking-[-0.02em]">
-                        <span
-                          ref={headlineWordRef}
-                          className="block whitespace-nowrap text-[clamp(2.2875rem,8.5vw,3.5875rem)] leading-[0.9] tracking-[-0.03em]"
-                          style={wordFontSize ? { fontSize: `${wordFontSize}px` } : undefined}
-                        >Entrepreneurship</span>
-                        <span className="mt-4 block text-[clamp(1.05rem,3.5vw,1.6rem)] font-semibold text-background/80 sm:mt-6 md:mt-8">-at Masters&apos; Union</span>
-                      </h1>
-                    </Reveal>
-                    <Reveal delay={0.16} className="mt-auto">
-                      <span className="eyebrow inline-block whitespace-nowrap text-[0.6875rem] text-background/70 md:text-[0.8125rem]">
-                        120+ Startups · ₹593 Cr Valuation
-                      </span>
-                    </Reveal>
+          <div className="mx-auto mt-8 w-full max-w-6xl overflow-hidden border-y border-background/10 py-5 sm:mt-10 sm:py-6 md:mt-12">
+            <motion.div
+              className="flex w-max items-center"
+              animate={reduceHeroMotion ? undefined : { x: ["0%", "-50%"] }}
+              transition={reduceHeroMotion ? undefined : { duration: 48, ease: "linear", repeat: Infinity }}
+            >
+              {[...SPARK_VENTURE_LOGOS, ...SPARK_VENTURE_LOGOS].map((logo, index) => {
+                const name = logo.original_filename.replace(/\.png$/i, "");
+                return (
+                  <div
+                    key={`${logo.url}-${index}`}
+                    aria-hidden={index >= SPARK_VENTURE_LOGOS.length}
+                    className="flex h-12 w-32 shrink-0 items-center justify-center px-5 sm:h-14 sm:w-40 sm:px-7 md:w-44"
+                  >
+                    <img
+                      decoding="async"
+                      src={logo.url}
+                      alt={index >= SPARK_VENTURE_LOGOS.length ? "" : name}
+                      loading="lazy"
+                      className="no-img-zoom max-h-9 w-auto max-w-full object-contain opacity-75 brightness-0 invert sm:max-h-10"
+                    />
                   </div>
-                  <div className="relative hidden min-h-[250px] p-10 md:block lg:min-h-[300px] lg:p-12" />
-                  <div className="relative hidden min-h-[250px] p-10 md:block lg:min-h-[300px] lg:p-12" />
-                  <div className="relative flex min-h-[170px] flex-col justify-end border-t border-background/15 p-5 sm:min-h-[200px] sm:p-6 md:min-h-[250px] md:border-t-0 md:p-10 lg:min-h-[300px] lg:p-12">
-                    <Reveal delay={0.16}>
-                      <div className="flex items-stretch gap-5">
-                        <span aria-hidden className="w-px shrink-0 bg-background/30" />
-                        <p className="max-w-[46ch] text-[clamp(1.05rem,1.6vw,1.4rem)] leading-[1.55] text-background/75">
-                          Built by students who turned a cafeteria question, a canteen frustration, or a failed
-                          first batch into a real business — while still enrolled.
-                        </p>
-                      </div>
-                    </Reveal>
-                    <Reveal delay={0.24}>
-                      <div className="mt-9 flex flex-wrap items-center gap-8">
-                        <HeroReportDownload />
-                        <div className="flex items-center gap-3">
-                          <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-background/60">Scroll</span>
-                          <div className="relative h-9 w-px overflow-hidden bg-background/20">
-                            <div className="mu-scroll-line absolute left-0 top-0 h-1/2 w-full bg-background" />
-                          </div>
-                        </div>
-                      </div>
-                    </Reveal>
-                  </div>
-                </div>
-              </div>
-            </div>
+                );
+              })}
+            </motion.div>
           </div>
-        </div>
         </div>
       </header>
 
