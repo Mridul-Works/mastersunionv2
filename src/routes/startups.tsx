@@ -2029,6 +2029,9 @@ function StartupsPage() {
   // fade value, scaled down to its resting 40% glow.
   const heroReflectionOpacity = useTransform(heroTextOpacity, (v) => v * 0.4);
   const heroLogoOpacity = useMotionValue(1);
+  // The logo slides upward as it fades, so it drifts out of view instead of
+  // dissolving in place; the translation rides on the same fade value.
+  const heroLogoY = useMotionValue(0);
 
   useEffect(() => {
     const el = heroVideoElRef.current;
