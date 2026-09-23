@@ -2100,6 +2100,9 @@ function StartupsPage() {
           logoFade = Math.max(logoFade, clamp((140 - gap) / 120));
         }
         heroLogoOpacity.set(1 - logoFade);
+        // Slide the logo up in lockstep with its fade: fully faded = one logo
+        // height of travel, restored to zero on scroll back.
+        heroLogoY.set(-logoFade * 48);
         if (heroTextRef.current) {
           heroTextRef.current.style.pointerEvents = releaseProgress >= 0.72 ? "none" : "auto";
         }
@@ -2111,7 +2114,7 @@ function StartupsPage() {
         marqueeRect = heroMarqueeRef.current?.getBoundingClientRect();
       },
     );
-  }, [reduceHeroMotion, heroTextOpacity, heroTextScale, heroLogoOpacity]);
+  }, [reduceHeroMotion, heroTextOpacity, heroTextScale, heroLogoOpacity, heroLogoY]);
 
   // Fit "Entrepreneurship" to exactly fill its box width on one line at any screen size.
   useLayoutEffect(() => {
