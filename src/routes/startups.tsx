@@ -27,6 +27,7 @@ import woodysVentureImg from "@/assets/founders/ventures/woodys.jpg.asset.json";
 import sharkTankStageImg from "@/assets/founders/sharktank-stage.jpg.asset.json";
 import muLogoAsset from "@/assets/mu-logo-dark.png.asset.json";
 import foundersVideo from "@/assets/founders-hero.mp4.asset.json";
+import foundersVideoWebm from "@/assets/founders-hero.webm.asset.json";
 import entrepreneurshipReport2021 from "@/assets/entrepreneurship-report-2021-25.pdf.asset.json";
 import entrepreneurshipReportUg from "@/assets/entrepreneurship-report-ug-programmes.pdf.asset.json";
 import studentEntrepreneurshipVideo from "@/assets/MU_Student_Entreprenuership_Video-2.mp4.asset.json";
