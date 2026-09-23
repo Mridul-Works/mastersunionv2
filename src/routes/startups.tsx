@@ -1412,10 +1412,10 @@ function DropshippingSection() {
     };
 
     return onScrollFrame(({ vh, vw }) => {
-      // Reveal while the section enters the viewport, without pinning the
-      // collage or adding a scroll runway. The latch below keeps the reveal
-      // complete when the user scrolls back up.
-      const entryStart = vh * 0.14;
+      // Reveal only once the section has risen at least 80% of the way to the
+      // top of the screen (its top edge at ~20% of the viewport height). The
+      // latch below keeps the reveal complete when the user scrolls back up.
+      const entryStart = vh * 0.2;
       // Slower reveal: the rise now plays out over roughly twice the scroll
       // distance so the cards drift into place instead of snapping.
       const entryDistance = Math.max(1, vh * 0.6);
