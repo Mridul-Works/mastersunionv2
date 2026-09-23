@@ -1382,6 +1382,13 @@ function OutclassSection() {
 
 function DropshippingSection() {
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
+  const modalVideo = DROPSHIPPING_VIDEOS.find((v) => v.id === activeVideoId) ?? null;
+  useEffect(() => {
+    if (!activeVideoId) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setActiveVideoId(null); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [activeVideoId]);
   const [, setActiveVideo] = useState(0);
   const collageRef = useRef<HTMLDivElement | null>(null);
   const videoCardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -1546,32 +1553,7 @@ function DropshippingSection() {
       </button>
     );
 
-    if (video.yt) {
-      return activeVideoId === video.id ? (
-        <iframe
-          src={`https://www.youtube.com/embed/${video.yt}?autoplay=1&rel=0`}
-          title={video.aria}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          className="absolute inset-0 h-full w-full bg-black"
-        />
-      ) : playButton;
-    }
-
-    return activeVideoId === video.id ? (
-      <video
-        autoPlay
-        playsInline
-        preload="auto"
-        poster={video.poster}
-        ref={(element) => { if (element) element.play().catch(() => {}); }}
-        className="absolute inset-0 h-full w-full bg-black object-cover"
-        aria-label={video.aria}
-      >
-        <source src={video.src} type="video/mp4" />
-        Your browser does not support embedded video.
-      </video>
-    ) : playButton;
+    return playButton;
   };
 
   return (
@@ -1706,6 +1688,72 @@ function DropshippingSection() {
           </Reveal>
         ))}
       </div>
+      {typeof document !== "undefined" &&
+        createPortal(
+          <AnimatePresence>
+            {modalVideo && (
+              <motion.div
+                role="dialog"
+                aria-modal="true"
+                aria-label={modalVideo.aria}
+                initial={prefersReducedMotion ? false : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: prefersReducedMotion ? 0 : 0.3 }}
+                className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm"
+                onClick={() => setActiveVideoId(null)}
+              >
+                <motion.div
+                  initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.92, y: 24 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.94, y: 16 }}
+                  transition={{ duration: prefersReducedMotion ? 0 : 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className={`overflow-hidden rounded-[6px] border border-background/15 bg-black shadow-2xl ${
+                    modalVideo.yt ? "aspect-video w-[min(calc(100vw-2rem),64rem)]" : "aspect-[9/16] h-[min(calc(100svh-6rem),52rem)] max-w-[calc(100vw-2rem)]"
+                  }`}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  {modalVideo.yt ? (
+                    <iframe
+                      src={`https://www.youtube.com/embed/${modalVideo.yt}?autoplay=1&rel=0`}
+                      title={modalVideo.aria}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      className="block h-full w-full bg-black"
+                    />
+                  ) : (
+                    <video
+                      controls
+                      autoPlay
+                      playsInline
+                      preload="auto"
+                      poster={modalVideo.poster}
+                      ref={(element) => { if (element) element.play().catch(() => {}); }}
+                      className="block h-full w-full bg-black object-contain"
+                      aria-label={modalVideo.aria}
+                    >
+                      <source src={modalVideo.src} type="video/mp4" />
+                      Your browser does not support embedded video.
+                    </video>
+                  )}
+                </motion.div>
+                <motion.button
+                  type="button"
+                  aria-label="Close video"
+                  onClick={() => setActiveVideoId(null)}
+                  initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ delay: prefersReducedMotion ? 0 : 0.3, duration: prefersReducedMotion ? 0 : 0.2 }}
+                  className="absolute right-4 top-4 inline-flex size-10 items-center justify-center rounded-full border border-white/25 text-white/80 transition-colors hover:bg-white/10 hover:text-white sm:right-6 sm:top-6"
+                >
+                  <X className="size-5" strokeWidth={2} />
+                </motion.button>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body
+        )}
     </Section>
   );
 }
