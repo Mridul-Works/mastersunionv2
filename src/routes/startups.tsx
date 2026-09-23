@@ -1535,14 +1535,6 @@ function DropshippingSection() {
                   Field Film / 0{activeVideo + 1}
                 </span>
               </div>
-              <div className="absolute left-1/2 top-10 w-[min(72vw,420px)] -translate-x-1/2 text-center sm:top-0 sm:w-[min(60vw,420px)]">
-                <p className="whitespace-nowrap font-serif text-[clamp(1.15rem,2.4vw,2.1rem)] italic leading-[1.05] text-background">
-                  Commerce, in motion.
-                </p>
-                <p className="mx-auto mt-2 max-w-[30ch] text-[9px] leading-[1.6] text-background/45 sm:text-[10px] sm:leading-[1.7]">
-                  Five films. One challenge. Every decision made in the open.
-                </p>
-              </div>
               <span className="pt-1.5 font-mono text-[9px] uppercase tracking-[0.28em] text-background/35 sm:pt-2.5 sm:text-[10px]">
                 Build in public
               </span>
@@ -1587,7 +1579,7 @@ function DropshippingSection() {
                   }}
                 >
                   <div aria-hidden className="pointer-events-none absolute -inset-2 border border-background/10" />
-                  <div className="relative h-full w-full overflow-hidden border border-background/20 bg-foreground grayscale transition-[filter] duration-700 group-hover/card:grayscale-0">
+                  <div className="relative h-full w-full overflow-hidden border border-background/20 bg-foreground">
                     {renderVideo(video)}
                     <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between bg-gradient-to-b from-foreground/70 to-transparent px-4 pb-10 pt-4">
                       <span className="font-mono text-[8px] uppercase tracking-[0.28em] text-background/75">Episode 0{index + 1}</span>
