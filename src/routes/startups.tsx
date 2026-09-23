@@ -2035,6 +2035,8 @@ function StartupsPage() {
   // The card rests slightly tilted in 3D, like it is floating just above the
   // page; the tilt flattens as the video rises to full screen.
   const heroCardTilt = useMotionValue(5);
+  // The faint light pool under the card dims as the card settles flat.
+  const heroLiftOpacity = useMotionValue(0.35);
   const heroLogoOpacity = useMotionValue(1);
   // The logo slides upward as it fades, so it drifts out of view instead of
   // dissolving in place; the translation rides on the same fade value.
@@ -2127,6 +2129,7 @@ function StartupsPage() {
           // The 3D tilt flattens on the same progress, so the card settles
           // flat exactly as the frost clears.
           heroCardTilt.set(5 * (1 - overlayProgress));
+          heroLiftOpacity.set(0.35 * (1 - overlayProgress));
         }
       },
       () => {
