@@ -1421,6 +1421,7 @@ function DropshippingSection() {
         if (index === 0) {
           const settle = Math.min(1, progress / 0.16);
           card.style.transform = `translate3d(-50%, -50%, 0) scale(${0.96 + settle * 0.04})`;
+          card.style.visibility = "visible";
           return;
         }
 
@@ -1435,6 +1436,7 @@ function DropshippingSection() {
         const y = target.y + (1 - eased) * vh * 0.1;
         const scale = 0.38 + (target.scale - 0.38) * eased;
         card.style.transform = `translate3d(calc(-50% + ${x}px), calc(-50% + ${y}px), 0) scale(${scale}) rotate(${target.rotate * eased}deg)`;
+        card.style.visibility = local > 0.01 ? "visible" : "hidden";
         card.style.pointerEvents = local > 0.86 ? "auto" : "none";
       });
     }, measure);
@@ -1526,7 +1528,11 @@ function DropshippingSection() {
                   data-dropshipping-video={video.id}
                   ref={(element) => { videoCardRefs.current[index] = element; }}
                   className={`absolute left-1/2 top-1/2 overflow-hidden rounded-2xl border border-background/15 bg-foreground shadow-[0_30px_80px_-32px_rgba(0,0,0,0.9)] will-change-transform ${sizes[index]}`}
-                  style={{ zIndex: index === 0 ? 10 : 9 - index, transform: "translate3d(-50%, -50%, 0) scale(0.38)" }}
+                  style={{
+                    zIndex: index === 0 ? 10 : 9 - index,
+                    transform: "translate3d(-50%, -50%, 0) scale(0.38)",
+                    visibility: index === 0 ? "visible" : "hidden",
+                  }}
                 >
                   {renderVideo(video)}
                 </div>
