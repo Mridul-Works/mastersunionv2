@@ -26,7 +26,8 @@ import seedsaiVentureImg from "@/assets/founders/ventures/seedsai.jpg.asset.json
 import woodysVentureImg from "@/assets/founders/ventures/woodys.jpg.asset.json";
 import sharkTankStageImg from "@/assets/founders/sharktank-stage.jpg.asset.json";
 import muLogoAsset from "@/assets/mu-logo-dark.png.asset.json";
-import foundersVideo from "@/assets/founders.mp4.asset.json";
+import foundersVideo from "@/assets/founders-hero.mp4.asset.json";
+import foundersVideoWebm from "@/assets/founders-hero.webm.asset.json";
 import entrepreneurshipReport2021 from "@/assets/entrepreneurship-report-2021-25.pdf.asset.json";
 import entrepreneurshipReportUg from "@/assets/entrepreneurship-report-ug-programmes.pdf.asset.json";
 import studentEntrepreneurshipVideo from "@/assets/MU_Student_Entreprenuership_Video-2.mp4.asset.json";
@@ -2009,10 +2010,32 @@ function StartupsPage() {
   const heroLogoRef = useRef<HTMLDivElement>(null);
   const heroMarqueeRef = useRef<HTMLDivElement>(null);
   const headlineWordRef = useRef<HTMLSpanElement>(null);
+  const heroVideoElRef = useRef<HTMLVideoElement>(null);
   const [wordFontSize, setWordFontSize] = useState<number | null>(null);
   const heroTextOpacity = useMotionValue(1);
   const heroTextScale = useMotionValue(1);
   const heroLogoOpacity = useMotionValue(1);
+
+  useEffect(() => {
+    const el = heroVideoElRef.current;
+    if (!el) return;
+    el.muted = true;
+    el.defaultMuted = true;
+    el.volume = 0;
+    const tryPlay = () => {
+      void el.play().catch(() => undefined);
+    };
+    tryPlay();
+    el.addEventListener("loadeddata", tryPlay);
+    el.addEventListener("canplay", tryPlay);
+    document.addEventListener("pointerdown", tryPlay, { once: true });
+    return () => {
+      el.removeEventListener("loadeddata", tryPlay);
+      el.removeEventListener("canplay", tryPlay);
+      document.removeEventListener("pointerdown", tryPlay);
+    };
+  }, []);
+
 
   useEffect(() => {
     if (reduceHeroMotion) {
@@ -2163,15 +2186,20 @@ function StartupsPage() {
               <div aria-hidden="true" className="pointer-events-none absolute -bottom-16 -top-16 left-0 right-0 border-x border-dashed border-background/15" />
               <div className="relative border border-dashed border-background/25">
                 <video
+                  ref={heroVideoElRef}
                   autoPlay
                   muted
                   loop
                   playsInline
                   preload="auto"
-                  src={foundersVideo.url}
                   aria-label="Masters' Union founders film"
                   className="block h-auto w-full max-w-full rounded-2xl border border-background/15 bg-black"
-                />
+                >
+                  <source src={foundersVideo.url} type="video/mp4" />
+                  <source src={foundersVideoWebm.url} type="video/webm" />
+                </video>
+
+
               </div>
             </motion.div>
 
