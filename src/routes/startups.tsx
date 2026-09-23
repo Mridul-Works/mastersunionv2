@@ -2354,8 +2354,25 @@ function StartupsPage() {
                   className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl"
                   style={reduceHeroMotion ? { opacity: 0 } : { opacity: heroOverlayOpacity }}
                 >
+                  {/* A blurred copy of the film as the glass base: a real
+                      backdrop-filter cannot sample the backdrop from inside
+                      the card's 3D tilt context, so the glass blurs a live
+                      duplicate of the video instead — same frosted result,
+                      reliable in every browser. */}
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    tabIndex={-1}
+                    className="absolute inset-0 h-full w-full scale-[1.15] object-cover blur-[30px]"
+                  >
+                    <source src={foundersVideo.url} type="video/mp4" />
+                    <source src={foundersVideoWebm.url} type="video/webm" />
+                  </video>
                   {/* Dark tinted glass base */}
-                  <div className="absolute inset-0 rounded-2xl bg-black/55 backdrop-blur-[48px] backdrop-saturate-150" />
+                  <div className="absolute inset-0 rounded-2xl bg-black/50 backdrop-blur-[48px] backdrop-saturate-150" />
                   {/* Soft light sources bleeding through the smoked glass */}
                   <div className="absolute -left-[14%] top-[4%] h-[75%] w-[46%] rounded-full bg-white/45 blur-[72px]" />
                   <div className="absolute -right-[12%] -top-[18%] h-[85%] w-[42%] rounded-full bg-white/30 blur-[84px]" />
