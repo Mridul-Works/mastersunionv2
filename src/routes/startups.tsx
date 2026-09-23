@@ -1637,14 +1637,14 @@ function DropshippingSection() {
                     {renderVideo(video)}
                     <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between bg-gradient-to-b from-foreground/70 to-transparent px-4 pb-10 pt-4">
                       <span
-                        className="font-mono uppercase tracking-[0.28em] text-background/75"
-                        style={{ fontSize: "calc(8px / var(--ep-scale, 1))" }}
+                        className="font-mono font-medium uppercase tracking-[0.28em] text-background"
+                        style={{ fontSize: "calc(11px / var(--ep-scale, 1))" }}
                       >
                         Episode 0{index + 1}
                       </span>
                       <span
                         className="rounded-full bg-background/80"
-                        style={{ width: "calc(6px / var(--ep-scale, 1))", height: "calc(6px / var(--ep-scale, 1))" }}
+                        style={{ width: "calc(7px / var(--ep-scale, 1))", height: "calc(7px / var(--ep-scale, 1))" }}
                       />
                     </div>
                   </div>
