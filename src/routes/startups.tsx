@@ -1567,8 +1567,8 @@ function DropshippingSection() {
                 "aspect-[4/5] w-[min(76vw,410px)] sm:w-[min(52vw,430px)] lg:w-[min(32vw,470px)]",
                 "aspect-[3/4] w-[min(66vw,340px)] sm:w-[min(35vw,360px)]",
                 "aspect-[3/4] w-[min(66vw,340px)] sm:w-[min(35vw,360px)]",
-                "aspect-[2/3] w-[min(59vw,305px)] sm:w-[min(31vw,330px)]",
-                "aspect-[2/3] w-[min(59vw,305px)] sm:w-[min(31vw,330px)]",
+                "aspect-[3/4] w-[min(66vw,340px)] sm:w-[min(35vw,360px)]",
+                "aspect-[3/4] w-[min(66vw,340px)] sm:w-[min(35vw,360px)]",
               ];
               return (
                 <div
