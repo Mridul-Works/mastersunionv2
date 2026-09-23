@@ -2158,10 +2158,10 @@ function StartupsPage() {
 
             <motion.div
               ref={heroVideoRef}
-              className="relative z-20 mx-auto mt-6 w-full max-w-[88%] sm:mt-8 sm:max-w-xl md:mt-8 md:max-w-2xl lg:max-w-3xl"
+              className="relative z-20 mx-auto mt-6 w-full max-w-[92%] sm:mt-8 sm:max-w-2xl md:mt-8 md:max-w-3xl lg:max-w-4xl"
             >
               <div aria-hidden="true" className="pointer-events-none absolute -bottom-16 -top-16 left-0 right-0 border-x border-dashed border-background/15" />
-              <div className="relative rounded-2xl border border-dashed border-background/25 p-2.5 sm:p-3.5">
+              <div className="relative border border-dashed border-background/25">
                 <video
                   controls
                   playsInline
