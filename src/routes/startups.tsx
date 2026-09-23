@@ -2049,6 +2049,8 @@ function StartupsPage() {
           fadeEnd = Math.max(28, clearance * 0.18);
         }
         const releaseProgress = clamp((fadeStart - clearance) / Math.max(1, fadeStart - fadeEnd));
+        heroTextOpacity.set(1 - releaseProgress);
+        heroTextScale.set(1 - releaseProgress * 0.03);
         if (heroTextRef.current) {
           heroTextRef.current.style.pointerEvents = releaseProgress >= 0.72 ? "none" : "auto";
         }
