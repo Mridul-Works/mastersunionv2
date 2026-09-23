@@ -1428,7 +1428,7 @@ function DropshippingSection() {
         if (index === 0) {
           const settle = Math.min(1, progress / 0.16);
           const target = targets[0];
-          card.style.transform = `translate3d(calc(-50% + ${target.x}px), -50%, 0) scale(${0.96 + settle * 0.04})`;
+          card.style.transform = `translate3d(-50%, -50%, 0) scale(${0.96 + settle * 0.04}) rotate(0deg)`;
           card.style.visibility = "visible";
           return;
         }
@@ -1443,7 +1443,7 @@ function DropshippingSection() {
         const x = startX + (target.x - startX) * eased;
         const y = target.y + (1 - eased) * vh * 0.1;
         const scale = 0.38 + (target.scale - 0.38) * eased;
-        card.style.transform = `translate3d(calc(-50% + ${x}px), calc(-50% + ${y}px), 0) scale(${scale})`;
+        card.style.transform = `translate3d(calc(-50% + ${x}px), calc(-50% + ${y}px), 0) scale(${scale}) rotate(0deg)`;
         card.style.visibility = local > 0.01 ? "visible" : "hidden";
         card.style.pointerEvents = local > 0.86 ? "auto" : "none";
       });
@@ -1567,10 +1567,10 @@ function DropshippingSection() {
             {DROPSHIPPING_VIDEOS.map((video, index) => {
               const sizes = [
                 "aspect-[4/5] w-[min(76vw,410px)] sm:w-[min(52vw,430px)] lg:w-[min(32vw,470px)]",
-                "aspect-[3/4] w-[min(56vw,290px)] sm:w-[min(29vw,305px)]",
-                "aspect-[4/5] w-[min(59vw,310px)] sm:w-[min(32vw,335px)]",
-                "aspect-[2/3] w-[min(48vw,250px)] sm:w-[min(25vw,275px)]",
-                "aspect-[5/6] w-[min(60vw,320px)] sm:w-[min(33vw,350px)]",
+                "aspect-[3/4] w-[min(66vw,340px)] sm:w-[min(35vw,360px)]",
+                "aspect-[4/5] w-[min(68vw,355px)] sm:w-[min(38vw,385px)]",
+                "aspect-[2/3] w-[min(59vw,305px)] sm:w-[min(31vw,330px)]",
+                "aspect-[5/6] w-[min(69vw,365px)] sm:w-[min(39vw,400px)]",
               ];
               return (
                 <div
@@ -1580,7 +1580,7 @@ function DropshippingSection() {
                   className={`group/card absolute left-1/2 top-1/2 overflow-visible bg-foreground shadow-2xl will-change-transform ${sizes[index]}`}
                   style={{
                     zIndex: index === 0 ? 10 : 9 - index,
-                    transform: `translate3d(-50%, -50%, 0) scale(${index === 0 ? 0.96 : 0.38})`,
+                    transform: `translate3d(-50%, -50%, 0) scale(${index === 0 ? 0.96 : 0.38}) rotate(0deg)`,
                     visibility: index === 0 ? "visible" : "hidden",
                   }}
                 >
