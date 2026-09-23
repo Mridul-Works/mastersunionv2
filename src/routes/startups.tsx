@@ -30,7 +30,6 @@ import studentEnterHeroAsset from "@/assets/studentEnterHero-3.webp.asset.json";
 import entrepreneurshipReport2021 from "@/assets/entrepreneurship-report-2021-25.pdf.asset.json";
 import entrepreneurshipReportUg from "@/assets/entrepreneurship-report-ug-programmes.pdf.asset.json";
 import studentEntrepreneurshipVideo from "@/assets/MU_Student_Entreprenuership_Video-2.mp4.asset.json";
-import venturesFilm from "@/assets/ventures-film.mp4.asset.json";
 import sparkVideoThumb from "@/assets/spark-video-thumb.jpg";
 import sparkSeedsAiFounders from "@/assets/spark/seedsai-founders.jpg.asset.json";
 import sparkEightFounders from "@/assets/spark/eight-founders.jpg.asset.json";
@@ -1305,7 +1304,7 @@ function DropshippingSection() {
             className="block aspect-video h-auto w-full bg-black object-contain"
             aria-label="Dropshipping Challenge highlight reel"
           >
-            <source src={venturesFilm.url} type="video/mp4" />
+            <source src={studentEntrepreneurshipVideo.url} type="video/mp4" />
             Your browser does not support embedded video.
           </video>
         </div>
