@@ -149,7 +149,7 @@ const DROPSHIPPING_VIDEOS: {
   { id: "ventures", src: instaVideo2.url, poster: instaVideo2Poster.url, aria: "Student ventures film" },
   { id: "campus", yt: "vLUvx_QOBys", poster: "https://img.youtube.com/vi/vLUvx_QOBys/maxresdefault.jpg", aria: "Campus film" },
   { id: "hero-info", src: instaVideo4.url, poster: instaVideo4Poster.url, aria: "Student programme film" },
-  { id: "hero", src: heroVideo.url, poster: posterHero, aria: "Masters' Union hero film" },
+  { id: "hero", src: instaVideo5.url, poster: instaVideo5Poster.url, aria: "Student venture film" },
 ];
 
 const DROPSHIPPING_STATS = [
