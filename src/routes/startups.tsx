@@ -587,7 +587,7 @@ function Section({
   const FILM_SECTION_RULE =
     "linear-gradient(to right, transparent, oklch(0.75 0.15 215) 12%, oklch(0.88 0.18 95) 50%, oklch(0.65 0.22 45) 88%, transparent)";
   return (
-    <section id={id} className={`relative ${id === "spark" ? "overflow-x-clip overflow-y-visible" : "overflow-hidden"} text-background ${surfaceClass}`}>
+    <section id={id} className={`relative ${id === "spark" || id === "doing" ? "overflow-x-clip overflow-y-visible" : "overflow-hidden"} text-background ${surfaceClass}`}>
       {/* Homepage section rule — thin inset gradient hairline floating above each section */}
       <div
         aria-hidden
@@ -1232,7 +1232,7 @@ function OutclassSection() {
       </div>
 
       <div className="mt-10 grid gap-8 sm:mt-12 md:mt-16 lg:grid-cols-[minmax(180px,0.42fr)_minmax(0,1.58fr)] lg:gap-14">
-        <aside className="hidden self-start lg:sticky lg:top-28 lg:block">
+        <aside className="hidden self-start lg:sticky lg:top-0 lg:flex lg:min-h-[100svh] lg:flex-col lg:justify-center">
           <div className="eyebrow text-background/45">So I started doing something about it.</div>
           <ol className="mt-8 border-l border-background/15">
             {OUTCLASS_MOMENTS.map((moment, index) => (
