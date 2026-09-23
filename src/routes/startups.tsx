@@ -1522,29 +1522,29 @@ function DropshippingSection() {
       <div className="mt-9 sm:mt-12 md:mt-14">
         <div ref={collageRef} data-dropshipping-collage className="relative h-[300svh] overflow-x-clip sm:h-[320svh]">
           <div className="sticky top-0 h-[100svh] overflow-hidden border-y border-background/10">
-            <div className="pointer-events-none absolute inset-x-4 top-6 z-20 flex items-center justify-between sm:inset-x-8 lg:inset-x-12 lg:top-10">
-              <div className="flex items-center gap-3">
+            <div className="pointer-events-none absolute inset-x-4 top-5 z-20 flex items-start justify-between sm:inset-x-8 lg:inset-x-12 lg:top-9">
+              <div className="flex items-center gap-3 pt-1.5 sm:pt-2.5">
                 <span className="h-px w-8 bg-background/40 sm:w-14" />
                 <span className="font-mono text-[9px] uppercase tracking-[0.32em] text-background/55 sm:text-[10px]">
                   Field Film / 0{activeVideo + 1}
                 </span>
               </div>
-              <span className="font-mono text-[9px] uppercase tracking-[0.28em] text-background/35 sm:text-[10px]">
+              <div className="absolute left-1/2 top-0 w-[min(60vw,420px)] -translate-x-1/2 text-center">
+                <p className="font-serif text-[clamp(1.15rem,2.4vw,2.1rem)] italic leading-[1.05] text-background">
+                  Commerce,<br className="hidden sm:block" /> in motion.
+                </p>
+                <p className="mx-auto mt-2 max-w-[30ch] text-[9px] leading-[1.6] text-background/45 sm:text-[10px] sm:leading-[1.7]">
+                  Five films. One challenge. Every decision made in the open.
+                </p>
+              </div>
+              <span className="pt-1.5 font-mono text-[9px] uppercase tracking-[0.28em] text-background/35 sm:pt-2.5 sm:text-[10px]">
                 Build in public
               </span>
             </div>
 
-            <aside className="pointer-events-none absolute bottom-[12%] left-8 top-[18%] z-20 hidden w-[18vw] max-w-[230px] flex-col justify-between lg:flex xl:left-12">
+            <aside className="pointer-events-none absolute bottom-[12%] left-8 top-[18%] z-20 hidden w-[18vw] max-w-[230px] flex-col justify-end lg:flex xl:left-12">
               <div>
                 <div className="mb-6 h-px w-20 bg-background/25" />
-                <p className="font-serif text-[clamp(2rem,3.4vw,3.4rem)] italic leading-[0.96] text-background">
-                  Commerce,<br />in motion.
-                </p>
-                <p className="mt-5 max-w-[21ch] text-[11px] leading-[1.7] text-background/45">
-                  Five films. One challenge. Every decision made in the open.
-                </p>
-              </div>
-              <div>
                 <div className="flex items-end gap-3">
                   <span className="font-display text-5xl font-semibold leading-none text-background">0{activeVideo + 1}</span>
                   <span className="pb-1 font-mono text-[9px] uppercase tracking-[0.3em] text-background/40">of 05</span>
