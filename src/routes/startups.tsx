@@ -2181,7 +2181,7 @@ function StartupsPage() {
 
             <motion.div
               ref={heroVideoRef}
-              className="relative z-20 mx-auto mt-6 w-full sm:mt-8 sm:max-w-2xl md:max-w-3xl lg:max-w-4xl"
+              className="relative z-20 mx-auto mt-6 w-full sm:mt-8 sm:max-w-3xl md:max-w-4xl lg:max-w-5xl"
             >
               <svg
                 aria-hidden="true"
