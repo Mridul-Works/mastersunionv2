@@ -2028,6 +2028,10 @@ function StartupsPage() {
   // The reflection dims in lockstep with the pinned copy: it rides on the same
   // fade value, scaled down to its resting 40% glow.
   const heroReflectionOpacity = useTransform(heroTextOpacity, (v) => v * 0.4);
+  // A dark scrim sits on the video card at rest; as scrolling brings the card
+  // up toward full screen the scrim dissolves so the film plays at full
+  // brightness when it dominates the viewport.
+  const heroOverlayOpacity = useMotionValue(0.45);
   const heroLogoOpacity = useMotionValue(1);
   // The logo slides upward as it fades, so it drifts out of view instead of
   // dissolving in place; the translation rides on the same fade value.
@@ -2060,6 +2064,7 @@ function StartupsPage() {
       heroTextScale.set(1);
       heroLogoOpacity.set(1);
       heroLogoY.set(0);
+      heroOverlayOpacity.set(0);
       return;
     }
 
@@ -2068,6 +2073,7 @@ function StartupsPage() {
     let logoRect: DOMRect | undefined;
     let marqueeRect: DOMRect | undefined;
     let maxClearance = 0;
+    let maxVideoTop = 0;
     const clamp = (value: number) => Math.min(1, Math.max(0, value));
     // The copy stays pinned while the video rises over it: the fade begins just
     // before the video reaches the copy and completes as it covers it.
@@ -2106,6 +2112,16 @@ function StartupsPage() {
         if (heroTextRef.current) {
           heroTextRef.current.style.pointerEvents = releaseProgress >= 0.72 ? "none" : "auto";
         }
+
+        // The scrim on the video card dissolves slowly as scrolling brings the
+        // card up toward full screen: anchored to the card's resting position,
+        // fully gone once its top nears the viewport top.
+        if (videoRect) {
+          if (videoRect.top > maxVideoTop) maxVideoTop = videoRect.top;
+          const travel = Math.max(1, maxVideoTop - vh * 0.08);
+          const overlayProgress = clamp((maxVideoTop - videoRect.top) / travel);
+          heroOverlayOpacity.set(0.45 * (1 - overlayProgress));
+        }
       },
       () => {
         textRect = heroTextRef.current?.getBoundingClientRect();
@@ -2114,7 +2130,7 @@ function StartupsPage() {
         marqueeRect = heroMarqueeRef.current?.getBoundingClientRect();
       },
     );
-  }, [reduceHeroMotion, heroTextOpacity, heroTextScale, heroLogoOpacity, heroLogoY]);
+  }, [reduceHeroMotion, heroTextOpacity, heroTextScale, heroLogoOpacity, heroLogoY, heroOverlayOpacity]);
 
   // Fit "Entrepreneurship" to exactly fill its box width on one line at any screen size.
   useLayoutEffect(() => {
@@ -2302,8 +2318,13 @@ function StartupsPage() {
                   <source src={foundersVideo.url} type="video/mp4" />
                   <source src={foundersVideoWebm.url} type="video/webm" />
                 </video>
-
-
+                {/* Dark scrim over the card: full at rest, dissolving slowly
+                    as scrolling brings the card up toward full screen. */}
+                <motion.div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 rounded-2xl bg-black"
+                  style={reduceHeroMotion ? { opacity: 0 } : { opacity: heroOverlayOpacity }}
+                />
               </div>
             </motion.div>
 
