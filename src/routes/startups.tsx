@@ -1449,9 +1449,9 @@ function DropshippingSection() {
 
       <div className="-mx-4 mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-3 sm:-mx-7 sm:px-7 md:-mx-8 md:px-8 lg:-mx-12 lg:px-12 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {DROPSHIPPING_TOP.map((venture, index) => (
-          <Reveal key={venture.name} delay={index * 0.04} className="w-[82vw] max-w-[370px] shrink-0 snap-start sm:w-[46vw] lg:w-[30vw]">
+          <Reveal key={venture.name} delay={index * 0.04} className="w-[82vw] max-w-[400px] shrink-0 snap-start sm:w-[50vw] lg:w-[33vw]">
             <article className="group h-full border-t border-background/20 pt-4">
-              <Placeholder kind="image" aspect="aspect-[4/3]" note={`${venture.name} — product detail`} className="rounded-[6px]" />
+              <Placeholder kind="image" aspect="aspect-[4/5]" note={`${venture.name} — product detail`} className="rounded-[6px]" />
               <div className="mt-5 flex items-start gap-3">
                 <LogoBadge size="size-9" />
                 <div className="min-w-0">
