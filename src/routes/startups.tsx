@@ -1389,6 +1389,7 @@ function DropshippingSection() {
 
   useEffect(() => {
     const geometry = { top: 0, height: 1, w0: 0, h0: 0, center0: 0, containerH: 0, ws: 0, hs: 0 };
+    let riseLatch = 0;
     const measure = () => {
       const collage = collageRef.current;
       if (!collage) return;
@@ -1474,8 +1475,11 @@ function DropshippingSection() {
           return;
         }
 
-        const start = 0.1 + Math.floor((index - 1) / 2) * 0.38;
-        const local = Math.min(1, Math.max(0, (progress - start) / 0.2));
+        // All four side cards rise together, once per page load: progress is
+        // latched so scrolling back never tucks them under card 1 again.
+        const raw = Math.min(1, Math.max(0, (progress - 0.06) / 0.22));
+        if (index === 1) riseLatch = Math.max(riseLatch, raw);
+        const local = riseLatch;
         const eased = 1 - Math.pow(1 - local, 3);
         const pairIndex = index % 2 === 0 ? index - 1 : index;
         const pairTarget = targets[pairIndex];
