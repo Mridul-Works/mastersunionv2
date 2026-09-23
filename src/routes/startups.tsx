@@ -2156,7 +2156,7 @@ function StartupsPage() {
 
             <motion.div
               ref={heroVideoRef}
-              className="relative mx-auto mt-[22svh] w-full max-w-[88%] sm:mt-[24svh] sm:max-w-xl md:mt-[26svh] md:max-w-2xl lg:max-w-3xl"
+              className="relative z-20 mx-auto mt-[22svh] w-full max-w-[88%] sm:mt-[24svh] sm:max-w-xl md:mt-[26svh] md:max-w-2xl lg:max-w-3xl"
               style={reduceHeroMotion ? { opacity: 1, scale: 1 } : { opacity: heroVideoOpacity, scale: heroVideoScale }}
             >
               <div aria-hidden="true" className="pointer-events-none absolute -bottom-16 -top-16 left-0 right-0 border-x border-dashed border-background/15" />
