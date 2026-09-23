@@ -1415,8 +1415,8 @@ function DropshippingSection() {
       // Reveal while the section enters the viewport, without pinning the
       // collage or adding a scroll runway. The latch below keeps the reveal
       // complete when the user scrolls back up.
-      const entryStart = vh * 0.72;
-      const entryDistance = Math.max(1, vh * 0.32);
+      const entryStart = vh * 0.14;
+      const entryDistance = Math.max(1, vh * 0.3);
       const progress = prefersReducedMotion
         ? 1
         : Math.min(1, Math.max(0, (entryStart - geometry.top) / entryDistance));
