@@ -1414,7 +1414,7 @@ function DropshippingSection() {
       const travel = Math.max(1, geometry.height - vh);
       const progress = prefersReducedMotion ? 1 : Math.min(1, Math.max(0, -geometry.top / travel));
       const compact = vw < 768;
-      const nextActive = Math.min(4, Math.max(0, Math.floor((progress + 0.09) / 0.19)));
+      const nextActive = Math.min(4, Math.max(0, Math.floor(progress * 5)));
       setActiveVideo((current) => current === nextActive ? current : nextActive);
       // Geometry-driven layout: side cards form an even 2x2 grid flanking card 1,
       // vertically centered on card 1 with identical gaps everywhere.
@@ -1468,7 +1468,7 @@ function DropshippingSection() {
       videoCardRefs.current.forEach((card, index) => {
         if (!card) return;
         if (index === 0) {
-          const settle = Math.min(1, progress / 0.16);
+          const settle = Math.min(1, progress / 0.12);
           const target = targets[0];
           card.style.transform = `scale(${0.96 + settle * 0.04}) rotate(0deg)`;
           card.style.visibility = "visible";
@@ -1477,7 +1477,7 @@ function DropshippingSection() {
 
         // All four side cards rise together, once per page load: progress is
         // latched so scrolling back never tucks them under card 1 again.
-        const raw = Math.min(1, Math.max(0, (progress - 0.06) / 0.22));
+        const raw = Math.min(1, Math.max(0, (progress - 0.05) / 0.7));
         if (index === 1) riseLatch = Math.max(riseLatch, raw);
         const local = riseLatch;
         const eased = 1 - Math.pow(1 - local, 3);
@@ -1575,7 +1575,7 @@ function DropshippingSection() {
       </div>
 
       <div className="mt-9 sm:mt-12 md:mt-14">
-        <div ref={collageRef} data-dropshipping-collage className="relative h-[300svh] overflow-x-clip sm:h-[320svh]">
+        <div ref={collageRef} data-dropshipping-collage className="relative h-[155svh] overflow-x-clip sm:h-[160svh]">
           <div className="sticky top-0 h-[100svh] overflow-hidden border-y border-background/10">
             <div className="pointer-events-none absolute inset-x-4 top-5 z-20 flex items-start justify-between sm:inset-x-8 lg:inset-x-12 lg:top-9">
               <div className="flex items-center gap-3 pt-1.5 sm:pt-2.5">
