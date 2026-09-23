@@ -2185,20 +2185,20 @@ function StartupsPage() {
             >
               <svg
                 aria-hidden="true"
-                className="pointer-events-none absolute bottom-full left-0 right-0 h-[260px] w-full text-background/25 sm:h-[310px] md:h-[360px] lg:h-[390px]"
+                className="pointer-events-none absolute bottom-full left-0 right-0 h-[280px] w-full text-background/25 sm:h-[330px] md:h-[380px] lg:h-[410px]"
                 viewBox="0 0 100 100"
                 preserveAspectRatio="none"
                 fill="none"
               >
                 <path
-                  d="M1.5 100 L1.5 12 L50 1.5"
+                  d="M1.5 100 L1.5 16 L50 1.5"
                   stroke="currentColor"
                   strokeWidth="3"
                   strokeDasharray="6 6"
                   vectorEffect="non-scaling-stroke"
                 />
                 <path
-                  d="M98.5 100 L98.5 12 L50 1.5"
+                  d="M98.5 100 L98.5 16 L50 1.5"
                   stroke="currentColor"
                   strokeWidth="3"
                   strokeDasharray="6 6"
