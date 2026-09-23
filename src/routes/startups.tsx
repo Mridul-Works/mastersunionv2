@@ -30,6 +30,7 @@ import studentEnterHeroAsset from "@/assets/studentEnterHero-3.webp.asset.json";
 import entrepreneurshipReport2021 from "@/assets/entrepreneurship-report-2021-25.pdf.asset.json";
 import entrepreneurshipReportUg from "@/assets/entrepreneurship-report-ug-programmes.pdf.asset.json";
 import studentEntrepreneurshipVideo from "@/assets/MU_Student_Entreprenuership_Video-2.mp4.asset.json";
+import venturesFilm from "@/assets/ventures-film.mp4.asset.json";
 import sparkVideoThumb from "@/assets/spark-video-thumb.jpg";
 import sparkSeedsAiFounders from "@/assets/spark/seedsai-founders.jpg.asset.json";
 import sparkEightFounders from "@/assets/spark/eight-founders.jpg.asset.json";
@@ -128,6 +129,30 @@ const DROPSHIPPING_TOP = [
   { name: "The Frenzie Store", revenue: "₹14L", body: "A hair-care brand built around frizz-free, shiny, smooth results." },
   { name: "Khareedo.shop", revenue: "₹11.8L", body: "Drones, home decor, and orthopaedic pillows under one storefront." },
   { name: "ThriftFly", revenue: "₹11.3L", body: "A travel-discounts platform built as a student side hustle." },
+];
+
+const OUTCLASS_MOMENTS = [
+  {
+    n: "01",
+    action: "Run",
+    label: "Dropshipping stores",
+    body: "Taking risks, testing ideas, and putting something into the world.",
+    media: "Students running a live storefront",
+  },
+  {
+    n: "02",
+    action: "Launch",
+    label: "Content brands",
+    body: "Real growth doesn’t come from case studies.",
+    media: "A student content brand going live",
+  },
+  {
+    n: "03",
+    action: "Build",
+    label: "Start companies from scratch",
+    body: "Half the curriculum happens outside the classroom, from day one.",
+    media: "Students building a company after class",
+  },
 ];
 
 type Stage = { n: string; name: string; grant: string | null; body: string; culmination?: boolean };
@@ -1172,44 +1197,305 @@ function StoryBeats({ beats, dark = false }: { beats: Beat[]; dark?: boolean }) 
   );
 }
 
-function JourneyStages({ stages }: { stages: Stage[] }) {
+function OutclassSection() {
+  const [active, setActive] = useState(0);
+
   return (
-    <div className="mt-8 grid grid-cols-1 gap-px bg-background/10 sm:mt-10 sm:grid-cols-2 lg:grid-cols-5">
-      {stages.map((s, i) => (
-        <Reveal key={s.name} delay={i * 0.06} className="h-full">
-          <div
-            className={`group flex h-full min-h-0 flex-col justify-between p-5 transition-colors duration-300 sm:min-h-64 sm:p-6 lg:min-h-0 lg:p-7 ${
-              s.culmination ? "bg-accent text-foreground" : "bg-background/[0.045] text-background hover:bg-background/[0.08]"
-            }`}
-          >
-            <div>
-              <div className={`eyebrow flex items-center gap-2 ${s.culmination ? "text-foreground/60" : "text-background/50"}`}>
-                <span
-                  className={`h-1 w-4 rounded-full transition-all duration-300 ${
-                    s.culmination ? "w-6 bg-foreground/60" : "bg-accent group-hover:w-6"
-                  }`}
-                  aria-hidden
-                />
-                {s.n}
-              </div>
-              <h3 className="mt-3 text-[1.15rem] font-medium leading-tight">{s.name}</h3>
-              {s.grant && (
-                <div
-                  className={`mt-3 inline-block text-[10px] uppercase tracking-[0.18em] ${
-                    s.culmination ? "text-foreground/60" : "text-background/55"
-                  }`}
-                >
-                  Grant · {s.grant}
+    <Section id="doing" tone="paper">
+      <div className="grid gap-8 border-b border-background/15 pb-10 sm:gap-10 sm:pb-12 lg:grid-cols-12 lg:items-end lg:pb-16">
+        <div className="lg:col-span-8">
+          <Reveal><Eyebrow>The Outclass</Eyebrow></Reveal>
+          <Reveal delay={0.05}>
+            <h2 className="mt-5 max-w-[18ch] text-[clamp(2rem,5.5vw,4.2rem)] font-medium leading-[1.1] tracking-[-0.02em] sm:mt-6 md:leading-[1.08]">
+              Half the curriculum doesn&apos;t happen in a classroom.
+            </h2>
+          </Reveal>
+        </div>
+        <Reveal delay={0.1} className="lg:col-span-4">
+          <p className="max-w-[42ch] text-[13px] leading-[1.6] text-background/70 md:ml-auto md:text-[15px] md:leading-[1.75]">
+            At Masters&apos; Union, real growth doesn&apos;t come from case studies — it comes from taking risks,
+            testing ideas, and putting something into the world.
+          </p>
+        </Reveal>
+      </div>
+
+      <div className="mt-10 grid gap-8 sm:mt-12 md:mt-16 lg:grid-cols-[minmax(180px,0.42fr)_minmax(0,1.58fr)] lg:gap-14">
+        <aside className="hidden self-start lg:sticky lg:top-28 lg:block">
+          <div className="eyebrow text-background/45">So I started doing something about it.</div>
+          <ol className="mt-8 border-l border-background/15">
+            {OUTCLASS_MOMENTS.map((moment, index) => (
+              <li
+                key={moment.n}
+                className={`relative border-l py-3 pl-5 transition-all duration-500 ${
+                  index === active ? "-ml-px border-accent text-background" : "border-transparent text-background/35"
+                }`}
+              >
+                <span className="font-mono text-[10px] uppercase tracking-[0.2em]">{moment.n} — {moment.action}</span>
+              </li>
+            ))}
+          </ol>
+        </aside>
+
+        <div>
+          {OUTCLASS_MOMENTS.map((moment, index) => (
+            <motion.article
+              key={moment.n}
+              onViewportEnter={() => setActive(index)}
+              viewport={{ amount: 0.52, margin: "-12% 0px -28% 0px" }}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              className={`grid min-h-0 gap-7 border-t border-background/15 py-10 transition-opacity duration-500 first:border-t-0 first:pt-0 sm:gap-9 sm:py-14 md:grid-cols-12 md:items-center lg:min-h-[72svh] lg:py-16 ${
+                index === active ? "opacity-100" : "opacity-55"
+              }`}
+            >
+              <div className="md:col-span-5">
+                <span className="block font-display text-[clamp(4rem,10vw,8.5rem)] font-light leading-[0.82] text-background/12">
+                  {moment.n}
+                </span>
+                <div className="mt-5 flex items-center gap-3">
+                  <span aria-hidden className="h-px w-9 bg-accent" />
+                  <span className="eyebrow text-background/65">{moment.action}</span>
                 </div>
-              )}
+                <h3 className="mt-4 max-w-[15ch] text-[clamp(1.5rem,3.2vw,2.65rem)] font-medium leading-[1.05]">
+                  {moment.label}
+                </h3>
+                <p className="mt-4 max-w-[34ch] text-[13px] leading-[1.65] text-background/65 md:text-[15px] md:leading-[1.75]">
+                  {moment.body}
+                </p>
+              </div>
+              <div className="md:col-span-7">
+                <Placeholder kind="image" aspect="aspect-[16/10]" note={moment.media} className="rounded-[6px]" />
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+function DropshippingSection() {
+  return (
+    <Section id="dropshipping" tone="light">
+      <div className="grid gap-8 sm:gap-10 lg:grid-cols-12 lg:items-end">
+        <div className="lg:col-span-7">
+          <Reveal><Eyebrow>Dropshipping Challenge</Eyebrow></Reveal>
+          <Reveal delay={0.05}>
+            <h2 className="mt-4 max-w-[16ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] tracking-normal sm:mt-5 md:leading-[1.08]">
+              Build. Launch. Sell.
+            </h2>
+          </Reveal>
+        </div>
+        <Reveal delay={0.1} className="lg:col-span-5">
+          <p className="max-w-[52ch] text-[13px] leading-[1.6] text-background/70 lg:ml-auto md:text-[15px] md:leading-[1.75]">
+            From idea to sales: students build profitable D2C businesses in under four months — running
+            their own marketing campaigns, sourcing, supply chains, customers, and sales, start to finish.
+          </p>
+        </Reveal>
+      </div>
+
+      <Reveal delay={0.14} className="mt-9 sm:mt-12 md:mt-14">
+        <div className="overflow-hidden rounded-[6px] border border-background/15 bg-background/[0.035]">
+          <video
+            controls
+            playsInline
+            preload="metadata"
+            poster={sparkVideoThumb}
+            className="block aspect-video h-auto w-full bg-black object-contain"
+            aria-label="Dropshipping Challenge highlight reel"
+          >
+            <source src={venturesFilm.url} type="video/mp4" />
+            Your browser does not support embedded video.
+          </video>
+        </div>
+      </Reveal>
+
+      <Reveal delay={0.18} className="mt-7 border-y border-background/15 sm:mt-9">
+        <div className="grid grid-cols-2 lg:grid-cols-[1.35fr_0.8fr_0.8fr]">
+          {DROPSHIPPING_STATS.map((stat, index) => (
+            <div
+              key={stat.label}
+              className={`flex min-h-32 flex-col justify-end border-background/15 px-4 py-6 sm:min-h-40 sm:px-7 sm:py-8 ${
+                index === 0 ? "col-span-2 border-b lg:col-span-1 lg:border-b-0 lg:border-r" : index === 1 ? "border-r" : ""
+              }`}
+            >
+              <div className={index === 0 ? "text-[clamp(3.4rem,8vw,6.8rem)] font-medium leading-[0.84]" : "text-[clamp(2rem,4vw,3.3rem)] font-medium leading-none"}>
+                {stat.value}
+              </div>
+              <div className="mt-3 font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-background/50 sm:text-[10px]">
+                {stat.label}
+              </div>
             </div>
-            <p className={`mt-5 text-[0.92rem] leading-[1.6] ${s.culmination ? "text-foreground/80" : "text-background/70"}`}>
-              {s.body}
-            </p>
+          ))}
+        </div>
+      </Reveal>
+
+      <div className="mt-12 flex items-end justify-between gap-4 sm:mt-14">
+        <Reveal>
+          <div>
+            <div className="eyebrow text-background/55">Then I put it in front of real people.</div>
+            <h3 className="mt-3 text-[clamp(1.4rem,2.8vw,2.2rem)] font-medium">Selected student ventures</h3>
           </div>
         </Reveal>
-      ))}
-    </div>
+        <span className="hidden font-mono text-[9px] uppercase tracking-[0.2em] text-background/35 sm:block">Swipe to explore</span>
+      </div>
+
+      <div className="-mx-4 mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-3 sm:-mx-7 sm:px-7 md:-mx-8 md:px-8 lg:-mx-12 lg:px-12 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {DROPSHIPPING_TOP.map((venture, index) => (
+          <Reveal key={venture.name} delay={index * 0.04} className="w-[82vw] max-w-[370px] shrink-0 snap-start sm:w-[46vw] lg:w-[30vw]">
+            <article className="group h-full border-t border-background/20 pt-4">
+              <Placeholder kind="image" aspect="aspect-[4/3]" note={`${venture.name} — product detail`} className="rounded-[6px]" />
+              <div className="mt-5 flex items-start gap-3">
+                <LogoBadge size="size-9" />
+                <div className="min-w-0">
+                  <h3 className="text-[1rem] font-medium">{venture.name}</h3>
+                  <div className="mt-1 font-mono text-[9px] uppercase tracking-[0.18em] text-background/50">{venture.revenue} revenue</div>
+                  <p className="mt-3 text-[0.88rem] leading-[1.6] text-background/68">{venture.body}</p>
+                </div>
+              </div>
+            </article>
+          </Reveal>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function VipJourney({ stages }: { stages: Stage[] }) {
+  const storyRef = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const story = storyRef.current;
+    if (!story || reduceMotion) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      if (!window.matchMedia("(min-width: 1024px)").matches) return;
+      const rect = story.getBoundingClientRect();
+      const stickyHeight = stickyRef.current?.offsetHeight ?? window.innerHeight;
+      const range = Math.max(1, rect.height - stickyHeight);
+      const progress = Math.min(1, Math.max(0, -rect.top / range));
+      setActive(Math.min(stages.length - 1, Math.round(progress * (stages.length - 1))));
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [reduceMotion, stages.length]);
+
+  return (
+    <>
+      <div ref={storyRef} className="relative hidden h-[340svh] lg:block">
+        <div ref={stickyRef} className="sticky top-0 flex min-h-[100svh] items-center py-14">
+          <div className="w-full">
+            <div className="relative grid grid-cols-5 border-y border-background/15 py-6">
+              <div aria-hidden className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-background/12" />
+              <motion.div
+                aria-hidden
+                className="absolute left-0 top-1/2 h-px -translate-y-1/2 bg-accent"
+                animate={{ width: `${(active / Math.max(1, stages.length - 1)) * 100}%` }}
+                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              />
+              {stages.map((stage, index) => (
+                <div key={stage.name} className="relative z-[1] flex flex-col items-center px-2 text-center">
+                  <span className={`size-3 rounded-full border transition-colors duration-500 ${index <= active ? "border-accent bg-accent" : "border-background/35 bg-foreground"}`} />
+                  <span className={`mt-4 font-mono text-[9px] font-semibold uppercase tracking-[0.18em] transition-colors duration-500 ${index === active ? "text-background" : index < active ? "text-background/55" : "text-background/30"}`}>
+                    {stage.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={stages[active].name}
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.35 }}
+                className="mt-10 grid grid-cols-12 items-center gap-12"
+              >
+                <div className="col-span-5">
+                  <div className="eyebrow text-background/45">Stage {stages[active].n}</div>
+                  <h3 className="mt-4 max-w-[12ch] text-[clamp(2.4rem,4.4vw,4.8rem)] font-medium leading-[0.98]">{stages[active].name}</h3>
+                  {stages[active].grant && <div className="mt-5 font-mono text-[10px] uppercase tracking-[0.2em] text-background/50">Grant · {stages[active].grant}</div>}
+                  <p className="mt-6 max-w-[44ch] text-[15px] leading-[1.75] text-background/70">{stages[active].body}</p>
+                </div>
+                <div className="col-span-7">
+                  <Placeholder kind="image" aspect="aspect-[16/10]" note={`${stages[active].name} — venture journey`} className="rounded-[6px]" />
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-10 lg:hidden">
+        {stages.map((stage, index) => (
+          <Reveal key={stage.name} delay={index * 0.04}>
+            <article className="relative border-l border-background/20 pb-10 pl-7 last:pb-0 sm:grid sm:grid-cols-12 sm:gap-7 sm:pl-9">
+              <span aria-hidden className={`absolute -left-[5px] top-0 size-[9px] rounded-full ${stage.culmination ? "bg-accent" : "border border-accent bg-foreground"}`} />
+              <div className="sm:col-span-5">
+                <div className="eyebrow text-background/45">{stage.n}</div>
+                <h3 className="mt-2 text-[clamp(1.45rem,4vw,2.1rem)] font-medium leading-tight">{stage.name}</h3>
+                {stage.grant && <div className="mt-3 font-mono text-[9px] uppercase tracking-[0.18em] text-background/50">Grant · {stage.grant}</div>}
+              </div>
+              <div className="mt-4 sm:col-span-7 sm:mt-0">
+                <p className="text-[13px] leading-[1.65] text-background/70 sm:text-[14px]">{stage.body}</p>
+              </div>
+            </article>
+          </Reveal>
+        ))}
+      </div>
+    </>
+  );
+}
+
+function VipSection() {
+  return (
+    <Section id="journey" tone="paper">
+      <div className="grid gap-8 sm:gap-10 lg:grid-cols-12 lg:items-end">
+        <div className="lg:col-span-7">
+          <Reveal><Eyebrow>The Venture Initiation Programme (VIP)</Eyebrow></Reveal>
+          <Reveal delay={0.05}>
+            <h2 className="mt-4 max-w-[18ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] tracking-normal sm:mt-5 md:leading-[1.08]">
+              From Idea to Demo Day
+            </h2>
+          </Reveal>
+        </div>
+        <Reveal delay={0.1} className="lg:col-span-5">
+          <div className="eyebrow mb-4 text-background/45">Then I decided to build it properly.</div>
+          <p className="max-w-[56ch] text-[13px] leading-[1.6] text-background/70 lg:ml-auto md:text-[15px] md:leading-[1.75]">
+            Students build a business from 0 to 1, working through the real moving parts — pricing,
+            positioning, cash flow — not case studies about someone else&apos;s. The VIP is a structured track,
+            not an elective, backed by a grant at every stage and mentorship from founders, CXOs, and investors.
+          </p>
+        </Reveal>
+      </div>
+
+      <VipJourney stages={VIP_STAGES} />
+
+      <Reveal delay={0.2} className="mt-12 border-t border-background/15 pt-10 sm:mt-14 sm:pt-12 md:mt-16">
+        <Eyebrow>The Startup Challenge</Eyebrow>
+      </Reveal>
+      <Reveal delay={0.24}>
+        <p className="mt-4 max-w-[64ch] text-[13px] leading-[1.6] text-background/70 md:text-[15px] md:leading-[1.75]">
+          A four-part video series that tracks student ventures from first pitch to funded company.
+        </p>
+      </Reveal>
+      <EpisodeStrip episodes={STARTUP_CHALLENGE_EPISODES} />
+    </Section>
   );
 }
 
@@ -1869,123 +2155,9 @@ function StartupsPage() {
         <SparkCarousel companies={SPARK_EXAMPLES} active={selectedSpark} onActiveChange={setSelectedSpark} />
       </Section>
 
-      <Section id="doing" tone="paper">
-        <div className="ml-auto w-full max-w-4xl border-l border-accent/70 pl-4 text-left sm:pl-6 md:pl-8 lg:pl-12">
-          <Reveal>
-            <Eyebrow>The Outclass</Eyebrow>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <h2 className="mt-5 max-w-[18ch] text-[clamp(2rem,5.5vw,4.2rem)] font-medium leading-[1.1] tracking-[-0.02em] sm:mt-6 md:leading-[1.08]">
-              Half the curriculum doesn&apos;t happen in a classroom.
-            </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="mt-5 max-w-[56ch] text-[13px] leading-[1.6] text-background/70 sm:mt-6 md:mt-7 md:text-[15px] md:leading-[1.75]">
-              At Masters&apos; Union, real growth doesn&apos;t come from case studies — it comes from
-              taking risks, testing ideas, and putting something into the world. That&apos;s what the
-              Outclass is: half the curriculum happens outside the classroom, where students run
-              dropshipping stores, launch content brands, and start companies from scratch, from day one.
-            </p>
-          </Reveal>
-        </div>
-        <Reveal delay={0.15} className="ml-auto mt-9 w-full max-w-5xl sm:mt-11 md:mt-14 md:w-[92%] lg:mt-16 lg:w-[88%]">
-          <Placeholder kind="video" aspect="aspect-video" note="Documentary-style, students building" />
-        </Reveal>
-        <MediaRail
-          kind="video"
-          labels={["The first prototype", "Customer interviews", "Building after class", "The launch room"]}
-        />
-      </Section>
-
-      <Section id="dropshipping" tone="light">
-        <Reveal>
-          <Eyebrow>Dropshipping Challenge</Eyebrow>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="mt-4 max-w-[22ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] tracking-normal sm:mt-5 md:leading-[1.08]">
-            Build, Launch & Sell
-          </h2>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <p className="mt-5 max-w-[66ch] text-[13px] leading-[1.6] text-background/70 sm:mt-6 md:mt-7 md:text-[15px] md:leading-[1.75]">
-            From idea to sales: students build profitable D2C businesses in under four months — running
-            their own marketing campaigns, sourcing, supply chains, customers, and sales, start to finish.
-          </p>
-        </Reveal>
-
-        <Reveal delay={0.15} className="mt-9 grid grid-cols-2 gap-px border-y border-background/15 sm:mt-11 lg:grid-cols-4">
-          {DROPSHIPPING_STATS.map((s) => (
-            <div key={s.label} className="min-h-28 border-r border-background/10 p-4 sm:min-h-32 sm:p-5 md:p-6 lg:p-7">
-              <div
-                className={
-                  "dominant" in s && s.dominant
-                    ? "text-[clamp(3rem,7vw,5rem)] font-medium leading-[0.9] tracking-[-0.03em]"
-                    : "text-[1.7rem] font-medium leading-none tracking-[-0.02em]"
-                }
-              >
-                {s.value}
-              </div>
-              <div className="mt-2 text-[10px] uppercase tracking-[0.2em] text-background/55">{s.label}</div>
-            </div>
-          ))}
-        </Reveal>
-
-        <Reveal delay={0.2} className="mt-10 sm:mt-12 md:mt-14">
-          <Placeholder kind="video" aspect="aspect-video" note="Dropshipping Challenge highlight reel" />
-        </Reveal>
-
-        <MediaRail
-          labels={["Finding the product", "Supplier negotiations", "Campaign day", "First order shipped"]}
-        />
-
-        <Reveal delay={0.25} className="mt-10 sm:mt-12 md:mt-14">
-          <div className="eyebrow text-background/55">Top performers, this edition</div>
-        </Reveal>
-        <ScrollCarousel count={DROPSHIPPING_TOP.length}>
-          {DROPSHIPPING_TOP.map((d, i) => (
-            <Reveal key={d.name} delay={i * 0.04} className="w-[78%] shrink-0 snap-start sm:w-[45%] md:w-[38%] lg:w-[28%]">
-              <article className="h-full bg-background/[0.045] p-6">
-                <div className="flex items-center gap-3">
-                  <LogoBadge size="size-8" />
-                  <h3 className="text-[1rem] font-medium">{d.name}</h3>
-                </div>
-                <div className="mt-2 text-[10px] uppercase tracking-[0.18em] text-background/50">{d.revenue} revenue</div>
-                <p className="mt-3 text-[0.88rem] leading-[1.55] text-background/70">{d.body}</p>
-              </article>
-            </Reveal>
-          ))}
-        </ScrollCarousel>
-      </Section>
-
-      <Section id="journey" tone="paper">
-        <Reveal>
-          <Eyebrow>The Venture Initiation Programme (VIP)</Eyebrow>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="mt-4 max-w-[24ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] tracking-normal sm:mt-5 md:leading-[1.08]">
-            Nearly half the MBA. Four stages. One Demo Day.
-          </h2>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <p className="mt-5 max-w-[64ch] text-[13px] leading-[1.6] text-background/70 sm:mt-6 md:mt-7 md:text-[15px] md:leading-[1.75]">
-            Students build a business from 0 to 1, working through the real moving parts — pricing,
-            positioning, cash flow — not case studies about someone else's. The VIP is a structured track,
-            not an elective, backed by a grant at every stage and mentorship from founders, CXOs, and
-            investors.
-          </p>
-        </Reveal>
-        <JourneyStages stages={VIP_STAGES} />
-
-        <Reveal delay={0.2} className="mt-11 sm:mt-13 md:mt-16">
-          <Eyebrow>The Startup Challenge</Eyebrow>
-        </Reveal>
-        <Reveal delay={0.24}>
-          <p className="mt-4 max-w-[64ch] text-[13px] leading-[1.6] text-background/70 md:text-[15px] md:leading-[1.75]">
-            A four-part video series that tracks student ventures from first pitch to funded company.
-          </p>
-        </Reveal>
-        <EpisodeStrip episodes={STARTUP_CHALLENGE_EPISODES} />
-      </Section>
+      <OutclassSection />
+      <DropshippingSection />
+      <VipSection />
 
       <Section id="eight" tone="dark">
         <Reveal>
