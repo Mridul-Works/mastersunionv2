@@ -1018,6 +1018,7 @@ function SparkCarousel({
           </motion.div>
         </div>
       </div>
+      </div>
 
       <motion.div
         initial={reduceMotion ? false : { opacity: 0, y: 24 }}
