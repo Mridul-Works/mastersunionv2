@@ -1212,6 +1212,8 @@ function OutclassSection() {
 
   return (
     <Section id="doing" tone="paper">
+      {/* Main divider rule above the section */}
+      <div aria-hidden className="spectrum-rule pointer-events-none absolute left-[6%] right-[6%] top-0 z-[2] h-px" />
       <div className="grid gap-8 border-b border-background/15 pb-10 sm:gap-10 sm:pb-12 lg:grid-cols-12 lg:items-end lg:pb-16">
         <div className="lg:col-span-8">
           <Reveal><Eyebrow>The Outclass</Eyebrow></Reveal>
