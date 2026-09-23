@@ -2139,7 +2139,7 @@ function StartupsPage() {
           <motion.div
             ref={heroLogoRef}
             className="sticky top-3 z-20 -mx-1 inline-block bg-foreground/90 px-1 py-2 backdrop-blur-sm md:top-4"
-            style={reduceHeroMotion ? { opacity: 1 } : { opacity: heroLogoOpacity }}
+            style={reduceHeroMotion ? { opacity: 1 } : { opacity: heroLogoOpacity, y: heroLogoY }}
           >
             <img
               decoding="async"
