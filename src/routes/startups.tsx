@@ -1530,7 +1530,7 @@ function DropshippingSection() {
                   className={`absolute left-1/2 top-1/2 overflow-hidden rounded-2xl border border-background/15 bg-foreground shadow-[0_30px_80px_-32px_rgba(0,0,0,0.9)] will-change-transform ${sizes[index]}`}
                   style={{
                     zIndex: index === 0 ? 10 : 9 - index,
-                    transform: "translate3d(-50%, -50%, 0) scale(0.38)",
+                    transform: `translate3d(-50%, -50%, 0) scale(${index === 0 ? 0.96 : 0.38})`,
                     visibility: index === 0 ? "visible" : "hidden",
                   }}
                 >
