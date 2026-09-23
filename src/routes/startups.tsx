@@ -33,6 +33,8 @@ import entrepreneurshipReportUg from "@/assets/entrepreneurship-report-ug-progra
 import studentEntrepreneurshipVideo from "@/assets/MU_Student_Entreprenuership_Video-2.mp4.asset.json";
 import instaVideo1 from "@/assets/insta-video-1.mp4.asset.json";
 import instaVideoPoster from "@/assets/insta-video-poster.jpg.asset.json";
+import instaVideo2 from "@/assets/insta-video-2.mp4.asset.json";
+import instaVideo2Poster from "@/assets/insta-video-2-poster.jpg.asset.json";
 import venturesFilmVideo from "@/assets/ventures-film.mp4.asset.json";
 import campusFilmVideo from "@/assets/campusFilm.mp4.asset.json";
 import heroInfoVideo from "@/assets/hero-info-video.mp4.asset.json";
