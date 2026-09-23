@@ -2205,7 +2205,6 @@ function StartupsPage() {
                   vectorEffect="non-scaling-stroke"
                 />
               </svg>
-              <div aria-hidden="true" className="pointer-events-none absolute -bottom-16 left-0 right-0 top-full border-x-[3px] border-dashed border-background/25" />
               <div className="relative">
                 <video
                   ref={heroVideoElRef}
