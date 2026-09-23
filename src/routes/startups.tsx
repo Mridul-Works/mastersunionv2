@@ -2006,10 +2006,12 @@ function StartupsPage() {
   const heroRef = useRef<HTMLElement>(null);
   const heroTextRef = useRef<HTMLDivElement>(null);
   const heroVideoRef = useRef<HTMLDivElement>(null);
+  const heroLogoRef = useRef<HTMLDivElement>(null);
   const headlineWordRef = useRef<HTMLSpanElement>(null);
   const [wordFontSize, setWordFontSize] = useState<number | null>(null);
   const heroTextOpacity = useMotionValue(1);
   const heroTextScale = useMotionValue(1);
+  const heroLogoOpacity = useMotionValue(1);
   const heroVideoOpacity = useMotionValue(reduceHeroMotion ? 1 : 0.5);
   const heroVideoScale = useMotionValue(reduceHeroMotion ? 1 : 0.96);
 
