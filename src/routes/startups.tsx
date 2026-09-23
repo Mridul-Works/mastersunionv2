@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { AnimatePresence, motion, useMotionValue, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useMotionValue, useReducedMotion, useTransform } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -2014,6 +2014,9 @@ function StartupsPage() {
   const [wordFontSize, setWordFontSize] = useState<number | null>(null);
   const heroTextOpacity = useMotionValue(1);
   const heroTextScale = useMotionValue(1);
+  // The reflection dims in lockstep with the pinned copy: it rides on the same
+  // fade value, scaled down to its resting 40% glow.
+  const heroReflectionOpacity = useTransform(heroTextOpacity, (v) => v * 0.4);
   const heroLogoOpacity = useMotionValue(1);
   const heroLogoY = useMotionValue(0);
 
@@ -2244,7 +2247,8 @@ function StartupsPage() {
                   light glow upward. */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute bottom-full left-0 right-0 h-[120px] overflow-hidden opacity-40 [mask-image:linear-gradient(to_top,rgba(0,0,0,0.9),transparent_92%)] sm:h-[160px] md:h-[200px]"
+                className="pointer-events-none absolute bottom-full left-[9%] right-[9%] h-[120px] overflow-hidden [mask-image:linear-gradient(to_top,rgba(0,0,0,0.9),transparent_92%)] sm:h-[160px] md:h-[200px]"
+                style={{ opacity: heroReflectionOpacity }}
               >
                 <video
                   autoPlay
