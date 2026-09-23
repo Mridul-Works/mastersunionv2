@@ -1425,10 +1425,13 @@ function DropshippingSection() {
       const containerH = geometry.containerH || vh;
       const gap = Math.min(28, Math.max(12, vw * 0.018));
       const edge = compact ? 12 : Math.min(48, Math.max(20, vw * 0.03));
-      const edgeY = compact ? 14 : 24;
+      // Top margin clears the "Field Film / Build in public" label row;
+      // bottom margin clears the floating bottom navigation bar.
+      const topSafe = compact ? 72 : vw < 1024 ? 84 : 96;
+      const bottomSafe = compact ? 88 : vw < 1024 ? 96 : 104;
       // Vertical budget: the two stacked side cards plus their gap must fit
-      // inside the pinned container with a safe top/bottom margin.
-      const availH = Math.max(0, containerH - 2 * edgeY);
+      // between the safe top and bottom margins.
+      const availH = Math.max(0, containerH - topSafe - bottomSafe);
       let s = hs > 0 ? (availH - gap) / (2 * hs) : 0.6;
       let x: number;
       if (compact) {
@@ -1442,11 +1445,11 @@ function DropshippingSection() {
       }
       const yOff = (hs * s) / 2 + gap / 2;
       // Keep the pair centred on card 1 when possible, but never past the
-      // container's top/bottom margins.
+      // safe top/bottom margins.
       const pairHalf = hs * s + gap / 2;
       const center = Math.min(
-        Math.max(geometry.center0, edgeY + pairHalf),
-        containerH - edgeY - pairHalf,
+        Math.max(geometry.center0, topSafe + pairHalf),
+        containerH - bottomSafe - pairHalf,
       );
       const dy = center - containerH / 2;
       const targets = [
