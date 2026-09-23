@@ -1218,7 +1218,7 @@ function OutclassSection() {
         <div className="lg:col-span-8">
           <Reveal><Eyebrow>The Outclass</Eyebrow></Reveal>
           <Reveal delay={0.05}>
-            <h2 className="mt-5 max-w-[18ch] text-[clamp(2rem,5.5vw,4.2rem)] font-medium leading-[1.1] tracking-[-0.02em] sm:mt-6 md:leading-[1.08]">
+            <h2 className="mt-5 max-w-[18ch] text-[clamp(1.6rem,3.4vw,2.8rem)] font-medium leading-[1.12] tracking-[-0.02em] sm:mt-6 md:leading-[1.08]">
               Half the curriculum doesn&apos;t happen in a classroom.
             </h2>
           </Reveal>
