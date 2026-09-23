@@ -1530,10 +1530,27 @@ function DropshippingSection() {
   }, [prefersReducedMotion]);
 
   const renderVideo = (video: (typeof DROPSHIPPING_VIDEOS)[number]) => {
+    let previewEl: HTMLVideoElement | null = null;
+
+    const startPreview = () => {
+      if (!previewEl) return;
+      previewEl.muted = true;
+      void previewEl.play().catch(() => {});
+    };
+    const stopPreview = () => {
+      if (!previewEl) return;
+      previewEl.pause();
+      previewEl.currentTime = 0;
+    };
+
     const playButton = (
       <button
         type="button"
         onClick={() => setActiveVideoId(video.id)}
+        onMouseEnter={startPreview}
+        onMouseLeave={stopPreview}
+        onFocus={startPreview}
+        onBlur={stopPreview}
         aria-label={`Play: ${video.aria}`}
         className="group absolute inset-0 block h-full w-full overflow-hidden bg-black"
       >
@@ -1543,6 +1560,21 @@ function DropshippingSection() {
           loading="lazy"
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
         />
+        {video.src ? (
+          <video
+            ref={(el) => {
+              previewEl = el;
+            }}
+            src={video.src}
+            muted
+            loop
+            playsInline
+            preload="none"
+            tabIndex={-1}
+            aria-hidden
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100"
+          />
+        ) : null}
         <span aria-hidden className="absolute inset-0 flex items-center justify-center">
           <span className="flex h-[calc(48px/var(--ep-scale,1))] w-[calc(48px/var(--ep-scale,1))] items-center justify-center rounded-full border border-background/40 bg-black/45 backdrop-blur-sm transition-colors duration-300 group-hover:border-background/70 group-hover:bg-black/60 sm:h-[calc(56px/var(--ep-scale,1))] sm:w-[calc(56px/var(--ep-scale,1))]">
             <svg viewBox="0 0 24 24" className="ml-[calc(2px/var(--ep-scale,1))] h-[calc(16px/var(--ep-scale,1))] w-[calc(16px/var(--ep-scale,1))] fill-background sm:h-[calc(20px/var(--ep-scale,1))] sm:w-[calc(20px/var(--ep-scale,1))]" aria-hidden>
