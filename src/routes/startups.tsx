@@ -2015,6 +2015,7 @@ function StartupsPage() {
   const heroTextOpacity = useMotionValue(1);
   const heroTextScale = useMotionValue(1);
   const heroLogoOpacity = useMotionValue(1);
+  const heroLogoY = useMotionValue(0);
 
   useEffect(() => {
     const el = heroVideoElRef.current;
@@ -2042,6 +2043,7 @@ function StartupsPage() {
       heroTextOpacity.set(1);
       heroTextScale.set(1);
       heroLogoOpacity.set(1);
+      heroLogoY.set(0);
       return;
     }
 
