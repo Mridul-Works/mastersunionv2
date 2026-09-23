@@ -1390,6 +1390,7 @@ function DropshippingSection() {
   useEffect(() => {
     const geometry = { top: 0, height: 1, w0: 0, h0: 0, center0: 0, containerH: 0, ws: 0, hs: 0 };
     let riseLatch = 0;
+    let activeLatch = 0;
     const measure = () => {
       const collage = collageRef.current;
       if (!collage) return;
@@ -1414,8 +1415,9 @@ function DropshippingSection() {
       const travel = Math.max(1, geometry.height - vh);
       const progress = prefersReducedMotion ? 1 : Math.min(1, Math.max(0, -geometry.top / travel));
       const compact = vw < 768;
-      const nextActive = Math.min(4, Math.max(0, Math.floor(progress * 5)));
-      setActiveVideo((current) => current === nextActive ? current : nextActive);
+      const revealProgress = Math.min(1, Math.max(0, (progress - 0.05) / 0.7));
+      activeLatch = Math.max(activeLatch, Math.min(4, Math.floor(revealProgress * 5)));
+      setActiveVideo((current) => current === activeLatch ? current : activeLatch);
       // Geometry-driven layout: side cards form an even 2x2 grid flanking card 1,
       // vertically centered on card 1 with identical gaps everywhere.
       const { w0, h0, ws, hs } = geometry;
@@ -1477,7 +1479,7 @@ function DropshippingSection() {
 
         // All four side cards rise together, once per page load: progress is
         // latched so scrolling back never tucks them under card 1 again.
-        const raw = Math.min(1, Math.max(0, (progress - 0.05) / 0.7));
+        const raw = revealProgress;
         if (index === 1) riseLatch = Math.max(riseLatch, raw);
         const local = riseLatch;
         const eased = 1 - Math.pow(1 - local, 3);
@@ -1575,7 +1577,7 @@ function DropshippingSection() {
       </div>
 
       <div className="mt-9 sm:mt-12 md:mt-14">
-        <div ref={collageRef} data-dropshipping-collage className="relative h-[155svh] overflow-x-clip sm:h-[160svh]">
+        <div ref={collageRef} data-dropshipping-collage className="relative h-[120svh] overflow-x-clip">
           <div className="sticky top-0 h-[100svh] overflow-hidden border-y border-background/10">
             <div className="pointer-events-none absolute inset-x-4 top-5 z-20 flex items-start justify-between sm:inset-x-8 lg:inset-x-12 lg:top-9">
               <div className="flex items-center gap-3 pt-1.5 sm:pt-2.5">
