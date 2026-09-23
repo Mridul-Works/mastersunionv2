@@ -1412,15 +1412,15 @@ function DropshippingSection() {
             { x: 0, y: 0, scale: 1 },
             { x: -vw * 0.27, y: -vh * 0.18, scale: 0.58 },
             { x: vw * 0.27, y: -vh * 0.18, scale: 0.58 },
-            { x: -vw * 0.28, y: vh * 0.2, scale: 0.54 },
-            { x: vw * 0.28, y: vh * 0.2, scale: 0.54 },
+            { x: -vw * 0.28, y: vh * 0.2, scale: 0.58 },
+            { x: vw * 0.28, y: vh * 0.2, scale: 0.58 },
           ]
         : [
             { x: 0, y: 0, scale: 1 },
             { x: -Math.min(vw * 0.33, 485), y: -vh * 0.2, scale: 0.72 },
             { x: Math.min(vw * 0.33, 485), y: -vh * 0.2, scale: 0.72 },
-            { x: -Math.min(vw * 0.31, 455), y: vh * 0.22, scale: 0.63 },
-            { x: Math.min(vw * 0.31, 455), y: vh * 0.22, scale: 0.63 },
+            { x: -Math.min(vw * 0.31, 455), y: vh * 0.22, scale: 0.72 },
+            { x: Math.min(vw * 0.31, 455), y: vh * 0.22, scale: 0.72 },
           ];
 
       videoCardRefs.current.forEach((card, index) => {
