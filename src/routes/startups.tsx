@@ -2130,7 +2130,7 @@ function StartupsPage() {
         marqueeRect = heroMarqueeRef.current?.getBoundingClientRect();
       },
     );
-  }, [reduceHeroMotion, heroTextOpacity, heroTextScale, heroLogoOpacity, heroLogoY]);
+  }, [reduceHeroMotion, heroTextOpacity, heroTextScale, heroLogoOpacity, heroLogoY, heroOverlayOpacity]);
 
   // Fit "Entrepreneurship" to exactly fill its box width on one line at any screen size.
   useLayoutEffect(() => {
@@ -2318,8 +2318,13 @@ function StartupsPage() {
                   <source src={foundersVideo.url} type="video/mp4" />
                   <source src={foundersVideoWebm.url} type="video/webm" />
                 </video>
-
-
+                {/* Dark scrim over the card: full at rest, dissolving slowly
+                    as scrolling brings the card up toward full screen. */}
+                <motion.div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 rounded-2xl bg-black"
+                  style={reduceHeroMotion ? { opacity: 0 } : { opacity: heroOverlayOpacity }}
+                />
               </div>
             </motion.div>
 
