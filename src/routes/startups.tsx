@@ -2152,6 +2152,13 @@ function StartupsPage() {
                   120+ Startups · ₹593 Cr Valuation
                 </span>
               </Reveal>
+
+              <Reveal delay={0.22}>
+                <div
+                  aria-hidden="true"
+                  className="mt-7 h-px w-28 bg-gradient-to-r from-transparent via-background/35 to-transparent sm:w-36"
+                />
+              </Reveal>
             </motion.div>
 
             <motion.div
