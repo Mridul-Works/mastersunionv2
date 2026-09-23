@@ -1267,8 +1267,9 @@ function OutclassSection() {
       </div>
 
       <div className="mt-10 grid gap-8 sm:mt-12 md:mt-16 lg:grid-cols-[minmax(180px,0.42fr)_minmax(0,1.58fr)] lg:gap-14">
-        <aside className="hidden self-start lg:sticky lg:top-0 lg:flex lg:min-h-[100svh] lg:flex-col lg:justify-center">
+        <aside className="hidden self-start lg:sticky lg:top-12 lg:flex lg:flex-col">
           <div className="eyebrow text-background/45">So I started doing something about it.</div>
+
           <ol className="mt-8 border-l border-background/15">
             {OUTCLASS_MOMENTS.map((moment, index) => (
               <li
