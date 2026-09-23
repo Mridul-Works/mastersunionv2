@@ -37,9 +37,10 @@ import instaVideo2 from "@/assets/insta-video-2.mp4.asset.json";
 import instaVideo2Poster from "@/assets/insta-video-2-poster.jpg.asset.json";
 import instaVideo4 from "@/assets/insta-video-4.mp4.asset.json";
 import instaVideo4Poster from "@/assets/insta-video-4-poster.jpg.asset.json";
-import heroVideo from "@/assets/hero.mp4.asset.json";
+import instaVideo5 from "@/assets/insta-video-5.mp4.asset.json";
+import instaVideo5Poster from "@/assets/insta-video-5-poster.jpg.asset.json";
 import sparkVideoThumb from "@/assets/spark-video-thumb.jpg";
-import posterHero from "@/assets/dropshipping-cards/hero.jpg";
+
 import sparkSeedsAiFounders from "@/assets/spark/seedsai-founders.jpg.asset.json";
 import sparkEightFounders from "@/assets/spark/eight-founders.jpg.asset.json";
 import ventureBlueBrew from "@/assets/venture-logos/BlueBrew.png.asset.json";
@@ -148,7 +149,7 @@ const DROPSHIPPING_VIDEOS: {
   { id: "ventures", src: instaVideo2.url, poster: instaVideo2Poster.url, aria: "Student ventures film" },
   { id: "campus", yt: "vLUvx_QOBys", poster: "https://img.youtube.com/vi/vLUvx_QOBys/maxresdefault.jpg", aria: "Campus film" },
   { id: "hero-info", src: instaVideo4.url, poster: instaVideo4Poster.url, aria: "Student programme film" },
-  { id: "hero", src: heroVideo.url, poster: posterHero, aria: "Masters' Union hero film" },
+  { id: "hero", src: instaVideo5.url, poster: instaVideo5Poster.url, aria: "Student venture film" },
 ];
 
 const DROPSHIPPING_STATS = [
