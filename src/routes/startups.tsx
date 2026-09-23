@@ -971,7 +971,7 @@ function SparkCarousel({
               className="flex flex-col justify-center"
             >
               <div className="eyebrow mb-2 text-background/45 sm:mb-3">
-                {company.name} — {company.founder} — {company.cohort}
+                {company.founder} — {company.cohort}
               </div>
               <Placeholder
                 kind="image"
