@@ -1583,7 +1583,7 @@ function DropshippingSection() {
               <div className="flex items-center gap-3 pt-1.5 sm:pt-2.5">
                 <span className="h-px w-8 bg-background/40 sm:w-14" />
                 <span className="font-mono text-[9px] uppercase tracking-[0.32em] text-background/55 sm:text-[10px]">
-                  Field Film / 0{activeVideo + 1}
+                  Field Film
                 </span>
               </div>
               <span className="pt-1.5 font-mono text-[9px] uppercase tracking-[0.28em] text-background/35 sm:pt-2.5 sm:text-[10px]">
