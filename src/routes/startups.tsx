@@ -2190,35 +2190,22 @@ function StartupsPage() {
                 preserveAspectRatio="none"
                 fill="none"
               >
-                {/* Torii gate: pillars rise from the video frame; kasagi (top
-                    beam) + shimaki (second beam) sit below the MU logo and
-                    above the headline. */}
+                {/* Mountain ridgeline: dashed lines rise from the video frame
+                    edges into a peaked range that sits below the MU logo and
+                    above the headline, with a fainter secondary ridge. */}
                 <path
-                  d="M1.5 100 L1.5 17"
+                  d="M1.5 100 L1.5 24 L12 19 L25 23.5 L38 20 L50 17.5 L62 20 L75 23.5 L88 19 L98.5 24 L98.5 100"
                   stroke="currentColor"
                   strokeWidth="3"
                   strokeDasharray="6 6"
                   vectorEffect="non-scaling-stroke"
                 />
                 <path
-                  d="M98.5 100 L98.5 17"
+                  className="text-background/10"
+                  d="M1.5 24 L14 20.5 L27 23.8 L40 21 L50 19 L60 21 L73 23.8 L86 20.5 L98.5 24"
                   stroke="currentColor"
-                  strokeWidth="3"
-                  strokeDasharray="6 6"
-                  vectorEffect="non-scaling-stroke"
-                />
-                <path
-                  d="M0 17 L100 17"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeDasharray="6 6"
-                  vectorEffect="non-scaling-stroke"
-                />
-                <path
-                  d="M2.5 21.5 L97.5 21.5"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeDasharray="6 6"
+                  strokeWidth="2"
+                  strokeDasharray="4 4"
                   vectorEffect="non-scaling-stroke"
                 />
               </svg>
