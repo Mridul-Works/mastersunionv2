@@ -37,9 +37,11 @@ import instaVideo2 from "@/assets/insta-video-2.mp4.asset.json";
 import instaVideo2Poster from "@/assets/insta-video-2-poster.jpg.asset.json";
 import instaVideo4 from "@/assets/insta-video-4.mp4.asset.json";
 import instaVideo4Poster from "@/assets/insta-video-4-poster.jpg.asset.json";
+import instaVideo5 from "@/assets/insta-video-5.mp4.asset.json";
+import instaVideo5Poster from "@/assets/insta-video-5-poster.jpg.asset.json";
 import heroVideo from "@/assets/hero.mp4.asset.json";
 import sparkVideoThumb from "@/assets/spark-video-thumb.jpg";
-import posterHero from "@/assets/dropshipping-cards/hero.jpg";
+
 import sparkSeedsAiFounders from "@/assets/spark/seedsai-founders.jpg.asset.json";
 import sparkEightFounders from "@/assets/spark/eight-founders.jpg.asset.json";
 import ventureBlueBrew from "@/assets/venture-logos/BlueBrew.png.asset.json";
