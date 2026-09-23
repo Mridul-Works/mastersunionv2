@@ -2239,6 +2239,26 @@ function StartupsPage() {
                   vectorEffect="non-scaling-stroke"
                 />
               </svg>
+              {/* Live reflection: a flipped, masked copy of the video sits
+                  directly above the card so the playing film casts a soft
+                  light reflection upward. */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute bottom-full left-0 right-0 h-[120px] overflow-hidden opacity-40 [mask-image:linear-gradient(to_top,rgba(0,0,0,0.9),transparent_92%)] sm:h-[160px] md:h-[200px]"
+              >
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                  tabIndex={-1}
+                  className="absolute bottom-0 left-0 block h-auto w-full max-w-full -scale-y-100 rounded-2xl blur-[2px]"
+                >
+                  <source src={foundersVideo.url} type="video/mp4" />
+                  <source src={foundersVideoWebm.url} type="video/webm" />
+                </video>
+              </div>
               <div className="relative">
                 <video
                   ref={heroVideoElRef}
