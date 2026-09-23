@@ -1298,19 +1298,25 @@ function OutclassSection() {
                 style={{ transformOrigin: "top center", transform: `scale(${1 - depth * 0.018})` }}
               >
                 <motion.article
-                  onViewportEnter={() => setActive(index)}
-                  viewport={{ amount: 0.52, margin: "-12% 0px -28% 0px" }}
                   initial={{ opacity: 0, y: 28 }}
                   whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
                   transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
                   className="relative overflow-hidden rounded-2xl border border-background/15 bg-foreground shadow-[0_-18px_40px_-28px_rgba(0,0,0,0.85),0_30px_70px_-35px_rgba(0,0,0,0.9)]"
                 >
+                  <motion.div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0"
+                    onViewportEnter={() => setActive(index)}
+                    viewport={{ amount: 0.52, margin: "-12% 0px -28% 0px" }}
+                  />
                   <div
                     aria-hidden
                     className="pointer-events-none absolute inset-0 z-[3] bg-foreground transition-opacity duration-500"
                     style={{ opacity: depth * 0.16 }}
                   />
                   <div aria-hidden className="pointer-events-none absolute inset-0 bg-background/[0.04]" />
+
                   <div className="relative grid gap-7 p-6 sm:gap-9 sm:p-9 md:grid-cols-12 md:items-center md:gap-8 md:p-10 lg:p-12">
                     <div className="md:col-span-5">
                       <span className="block font-display text-[clamp(4rem,10vw,8.5rem)] font-light leading-[0.82] text-background/12">
