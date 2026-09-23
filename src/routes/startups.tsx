@@ -1555,14 +1555,6 @@ function DropshippingSection() {
               </div>
             </div>
 
-            <div aria-hidden className="pointer-events-none absolute bottom-[9%] right-[3%] z-[11] hidden text-right lg:block">
-              <p className="font-display text-[clamp(4.8rem,8vw,8.5rem)] font-semibold uppercase leading-[0.72] text-background">
-                Drop
-              </p>
-              <p className="font-display text-[clamp(4.8rem,8vw,8.5rem)] font-semibold uppercase leading-[0.82] text-transparent [-webkit-text-stroke:1px_var(--background)] opacity-70">
-                Ship
-              </p>
-            </div>
 
             {DROPSHIPPING_VIDEOS.map((video, index) => {
               const sizes = [
