@@ -2042,7 +2042,7 @@ function StartupsPage() {
         // anchored to this layout instead of a hardcoded threshold.
         const clearance = videoRect.top - textRect.bottom;
         if (clearance > maxClearance) maxClearance = clearance;
-        const fadeStart = Math.max(24, maxClearance * 0.75);
+        const fadeStart = maxClearance * 0.75;
         const fadeEnd = -textRect.height * 0.55;
 
         const releaseProgress = clamp((fadeStart - clearance) / Math.max(1, fadeStart - fadeEnd));
