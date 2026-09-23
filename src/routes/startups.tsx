@@ -2194,14 +2194,14 @@ function StartupsPage() {
                   d="M1.5 100 L1.5 16 L50 1.5"
                   stroke="currentColor"
                   strokeWidth="3"
-                  strokeDasharray="4 4"
+                  strokeDasharray="6 6"
                   vectorEffect="non-scaling-stroke"
                 />
                 <path
                   d="M98.5 100 L98.5 16 L50 1.5"
                   stroke="currentColor"
                   strokeWidth="3"
-                  strokeDasharray="4 4"
+                  strokeDasharray="6 6"
                   vectorEffect="non-scaling-stroke"
                 />
               </svg>
