@@ -2199,7 +2199,7 @@ function StartupsPage() {
           <div className="relative mx-auto mt-2 w-full max-w-6xl sm:mt-3 md:mt-4 lg:mt-5">
             <motion.div
               ref={heroTextRef}
-              className="sticky top-20 z-10 flex w-full flex-col items-center text-center sm:top-24 md:top-28"
+              className="sticky top-24 z-10 flex w-full flex-col items-center text-center sm:top-28 md:top-32 lg:top-28"
               style={reduceHeroMotion ? { opacity: 1, scale: 1 } : { opacity: heroTextOpacity, scale: heroTextScale }}
             >
               <Reveal delay={0.08} className="w-full">
@@ -2233,7 +2233,7 @@ function StartupsPage() {
 
             <motion.div
               ref={heroVideoRef}
-              className="relative z-20 mx-auto mt-6 w-full sm:mt-8 sm:max-w-4xl md:max-w-5xl lg:max-w-6xl"
+              className="relative z-20 mx-auto mt-10 w-full sm:mt-12 lg:mt-8 sm:max-w-4xl md:max-w-5xl lg:max-w-6xl"
             >
               {/* Mountain ridgeline: dashed lines rise from the video frame
                   edges into a peaked range that sits below the MU logo and
@@ -2246,7 +2246,7 @@ function StartupsPage() {
                 style={reduceHeroMotion ? { opacity: 1 } : { opacity: heroTextOpacity }}
               >
               <svg
-                className="pointer-events-none absolute bottom-0 left-0 h-[280px] w-full text-background/25 sm:hidden"
+                className="pointer-events-none absolute bottom-0 left-0 h-[310px] w-full text-background/25 sm:hidden"
                 viewBox="0 0 100 100"
                 preserveAspectRatio="none"
                 fill="none"
@@ -2268,7 +2268,7 @@ function StartupsPage() {
                 />
               </svg>
               <svg
-                className="pointer-events-none absolute bottom-0 left-0 hidden w-full text-background/25 sm:block sm:h-[330px] md:h-[380px] lg:h-[410px]"
+                className="pointer-events-none absolute bottom-0 left-0 hidden w-full text-background/25 sm:block sm:h-[352px] md:h-[400px] lg:h-[410px]"
                 viewBox="0 0 100 100"
                 preserveAspectRatio="none"
                 fill="none"
