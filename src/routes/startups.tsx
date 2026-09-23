@@ -2185,6 +2185,7 @@ function StartupsPage() {
               <div aria-hidden="true" className="pointer-events-none absolute -bottom-16 -top-16 left-0 right-0 border-x border-dashed border-background/15" />
               <div className="relative border border-dashed border-background/25">
                 <video
+                  ref={heroVideoElRef}
                   autoPlay
                   muted
                   loop
@@ -2194,6 +2195,7 @@ function StartupsPage() {
                   aria-label="Masters' Union founders film"
                   className="block h-auto w-full max-w-full rounded-2xl border border-background/15 bg-black"
                 />
+
               </div>
             </motion.div>
 
