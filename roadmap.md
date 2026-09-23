@@ -7,4 +7,4 @@
 - [x] Standardize startup page alignment, responsive spacing, screen fit, and line spacing from 320px to 1920px
 - [x] Refine tablet and mobile side padding, margins, spacing, line height, and responsive fit
 - [x] Redesign the OutClass, Dropshipping Challenge, and VIP sections as one responsive editorial story
-- [ ] Fix Spark video card and logo bar reachability after the pinned story
+- [x] Fix Spark video card and logo bar reachability after the pinned story
