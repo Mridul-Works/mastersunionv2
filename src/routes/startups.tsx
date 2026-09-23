@@ -140,7 +140,7 @@ const SPARK_VENTURE_LOGOS = [
 ];
 
 const DROPSHIPPING_VIDEOS = [
-  { id: "highlight", src: instaVideo1.url, poster: instaVideoPoster, aria: "Student entrepreneurship film" },
+  { id: "highlight", src: instaVideo1.url, poster: instaVideoPoster.url, aria: "Student entrepreneurship film" },
   { id: "ventures", src: venturesFilmVideo.url, poster: posterVentures, aria: "Student ventures film" },
   { id: "campus", src: campusFilmVideo.url, poster: posterCampus, aria: "Campus film" },
   { id: "hero-info", src: heroInfoVideo.url, poster: posterHeroInfo, aria: "Programme information film" },
