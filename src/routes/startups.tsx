@@ -30,7 +30,16 @@ import studentEnterHeroAsset from "@/assets/studentEnterHero-3.webp.asset.json";
 import entrepreneurshipReport2021 from "@/assets/entrepreneurship-report-2021-25.pdf.asset.json";
 import entrepreneurshipReportUg from "@/assets/entrepreneurship-report-ug-programmes.pdf.asset.json";
 import studentEntrepreneurshipVideo from "@/assets/MU_Student_Entreprenuership_Video-2.mp4.asset.json";
+import venturesFilmVideo from "@/assets/ventures-film.mp4.asset.json";
+import campusFilmVideo from "@/assets/campusFilm.mp4.asset.json";
+import heroInfoVideo from "@/assets/hero-info-video.mp4.asset.json";
+import heroVideo from "@/assets/hero.mp4.asset.json";
 import sparkVideoThumb from "@/assets/spark-video-thumb.jpg";
+import posterEntrepreneurship from "@/assets/dropshipping-cards/entrepreneurship.jpg";
+import posterVentures from "@/assets/dropshipping-cards/ventures.jpg";
+import posterCampus from "@/assets/dropshipping-cards/campus.jpg";
+import posterHeroInfo from "@/assets/dropshipping-cards/hero-info.jpg";
+import posterHero from "@/assets/dropshipping-cards/hero.jpg";
 import sparkSeedsAiFounders from "@/assets/spark/seedsai-founders.jpg.asset.json";
 import sparkEightFounders from "@/assets/spark/eight-founders.jpg.asset.json";
 import ventureBlueBrew from "@/assets/venture-logos/BlueBrew.png.asset.json";
@@ -115,6 +124,14 @@ const SPARK_VENTURE_LOGOS = [
   ventureMonarque,
   ventureNivara,
   ventureFnor,
+];
+
+const DROPSHIPPING_VIDEOS = [
+  { id: "highlight", src: studentEntrepreneurshipVideo.url, poster: posterEntrepreneurship, aria: "Student entrepreneurship film" },
+  { id: "ventures", src: venturesFilmVideo.url, poster: posterVentures, aria: "Student ventures film" },
+  { id: "campus", src: campusFilmVideo.url, poster: posterCampus, aria: "Campus film" },
+  { id: "hero-info", src: heroInfoVideo.url, poster: posterHeroInfo, aria: "Programme information film" },
+  { id: "hero", src: heroVideo.url, poster: posterHero, aria: "Masters' Union hero film" },
 ];
 
 const DROPSHIPPING_STATS = [
@@ -1309,18 +1326,24 @@ function DropshippingSection() {
       </div>
 
       <Reveal delay={0.14} className="mt-9 sm:mt-12 md:mt-14">
-        <div className="overflow-hidden rounded-[6px] border border-background/15 bg-background/[0.035]">
-          <video
-            controls
-            playsInline
-            preload="metadata"
-            poster={sparkVideoThumb}
-            className="block aspect-video h-auto w-full bg-black object-contain"
-            aria-label="Dropshipping Challenge highlight reel"
-          >
-            <source src={studentEntrepreneurshipVideo.url} type="video/mp4" />
-            Your browser does not support embedded video.
-          </video>
+        <div className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 [scrollbar-width:none] sm:-mx-7 sm:gap-4 sm:px-7 md:-mx-8 md:px-8 lg:mx-0 lg:grid lg:grid-cols-5 lg:gap-4 lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden">
+          {DROPSHIPPING_VIDEOS.map((video, index) => (
+            <Reveal key={video.id} delay={0.04 * index} className="w-[72vw] max-w-[340px] shrink-0 snap-start lg:w-auto lg:max-w-none lg:shrink">
+              <div className="overflow-hidden rounded-[6px] border border-background/15 bg-background/[0.035]">
+                <video
+                  controls
+                  playsInline
+                  preload="metadata"
+                  poster={video.poster}
+                  className="block aspect-video h-auto w-full bg-black object-cover"
+                  aria-label={video.aria}
+                >
+                  <source src={video.src} type="video/mp4" />
+                  Your browser does not support embedded video.
+                </video>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </Reveal>
 
