@@ -1421,15 +1421,19 @@ function DropshippingSection() {
       }
       // Geometry-driven layout: side cards form an even 2x2 grid flanking card 1,
       // vertically centered on card 1 with identical gaps everywhere.
-      const { w0, h0, ws, hs } = geometry;
-      const dy = geometry.center0 - (geometry.containerH || vh) / 2;
+      const { w0, ws, hs } = geometry;
+      const containerH = geometry.containerH || vh;
       const gap = Math.min(28, Math.max(12, vw * 0.018));
       const edge = compact ? 12 : Math.min(48, Math.max(20, vw * 0.03));
-      let s = hs > 0 ? (h0 - gap) / (2 * hs) : 0.6;
+      const edgeY = compact ? 14 : 24;
+      // Vertical budget: the two stacked side cards plus their gap must fit
+      // inside the pinned container with a safe top/bottom margin.
+      const availH = Math.max(0, containerH - 2 * edgeY);
+      let s = hs > 0 ? (availH - gap) / (2 * hs) : 0.6;
       let x: number;
       if (compact) {
         // Narrow screens: side cards tuck partly behind card 1, pinned to the screen edges.
-        s = Math.min(s, 0.55);
+        s = Math.min(s, 0.62);
         x = vw / 2 - edge - (ws * s) / 2;
       } else {
         const available = vw / 2 - w0 / 2 - gap - edge;
@@ -1437,6 +1441,14 @@ function DropshippingSection() {
         x = w0 / 2 + gap + (ws * s) / 2;
       }
       const yOff = (hs * s) / 2 + gap / 2;
+      // Keep the pair centred on card 1 when possible, but never past the
+      // container's top/bottom margins.
+      const pairHalf = hs * s + gap / 2;
+      const center = Math.min(
+        Math.max(geometry.center0, edgeY + pairHalf),
+        containerH - edgeY - pairHalf,
+      );
+      const dy = center - containerH / 2;
       const targets = [
         { x: 0, y: 0, scale: 1 },
         { x: -x, y: dy - yOff, scale: s },
