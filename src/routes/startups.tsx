@@ -2073,6 +2073,7 @@ function StartupsPage() {
     let logoRect: DOMRect | undefined;
     let marqueeRect: DOMRect | undefined;
     let maxClearance = 0;
+    let maxVideoTop = 0;
     const clamp = (value: number) => Math.min(1, Math.max(0, value));
     // The copy stays pinned while the video rises over it: the fade begins just
     // before the video reaches the copy and completes as it covers it.
@@ -2110,6 +2111,16 @@ function StartupsPage() {
         heroLogoY.set(-logoFade * 48);
         if (heroTextRef.current) {
           heroTextRef.current.style.pointerEvents = releaseProgress >= 0.72 ? "none" : "auto";
+        }
+
+        // The scrim on the video card dissolves slowly as scrolling brings the
+        // card up toward full screen: anchored to the card's resting position,
+        // fully gone once its top nears the viewport top.
+        if (videoRect) {
+          if (videoRect.top > maxVideoTop) maxVideoTop = videoRect.top;
+          const travel = Math.max(1, maxVideoTop - vh * 0.08);
+          const overlayProgress = clamp((maxVideoTop - videoRect.top) / travel);
+          heroOverlayOpacity.set(0.45 * (1 - overlayProgress));
         }
       },
       () => {
