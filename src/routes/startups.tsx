@@ -1659,15 +1659,17 @@ function CtaButton({
   dark = false,
   icon,
   onClick,
+  className = "",
 }: {
   children: React.ReactNode;
   dark?: boolean;
   icon?: React.ReactNode;
   onClick?: () => void;
+  className?: string;
 }) {
   const classes = `group inline-flex items-center gap-2 rounded-full py-1.5 pl-5 pr-1.5 text-[13px] font-semibold transition-transform hover:-translate-y-px ${
     dark ? "bg-background text-foreground" : "bg-foreground text-background"
-  }`;
+  } ${className}`.trim();
   const inner = (
     <>
       {children}
@@ -1763,13 +1765,22 @@ function HeroReportDownload() {
 
   return (
     <div ref={rootRef} className="relative">
-      <CtaButton
-        dark
-        onClick={() => setOpen((v) => !v)}
-        icon={<Download className="size-3.5" strokeWidth={2.25} />}
-      >
-        Download Entrepreneurship Report
-      </CtaButton>
+      <span className="group/frame relative isolate inline-flex rounded-full border border-background/35 p-[5px]">
+        {/* Hover fill: white bleeds outward until it reaches the outer
+            capsule border, while the inner pill stays fully opaque. */}
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-background opacity-0 transition-opacity duration-300 group-hover/frame:opacity-100"
+        />
+        <CtaButton
+          dark
+          className="relative"
+          onClick={() => setOpen((v) => !v)}
+          icon={<Download className="size-3.5" strokeWidth={2.25} />}
+        >
+          Download Entrepreneurship Report
+        </CtaButton>
+      </span>
       {open && (
         <div className="absolute bottom-full left-0 z-30 mb-3 w-[300px] border border-background/15 bg-foreground/95 text-background shadow-[0_24px_60px_rgba(0,0,0,0.4)] backdrop-blur-md sm:w-[320px]">
           <div className="border-b border-background/10 px-4 py-3">
