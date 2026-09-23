@@ -1511,7 +1511,7 @@ function DropshippingSection() {
         </Reveal>
       </div>
 
-      <Reveal delay={0.14} className="mt-9 sm:mt-12 md:mt-14">
+      <div className="mt-9 sm:mt-12 md:mt-14">
         <div ref={collageRef} data-dropshipping-collage className="relative h-[300svh] overflow-x-clip sm:h-[320svh]">
           <div className="sticky top-0 h-[100svh] overflow-hidden">
             {DROPSHIPPING_VIDEOS.map((video, index) => {
@@ -1540,7 +1540,7 @@ function DropshippingSection() {
             })}
           </div>
         </div>
-      </Reveal>
+      </div>
 
       <Reveal delay={0.18} className="mt-7 border-y border-background/15 sm:mt-9">
         <div className="grid grid-cols-2 lg:grid-cols-[1.35fr_0.8fr_0.8fr]">
