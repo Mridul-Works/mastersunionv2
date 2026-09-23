@@ -1267,8 +1267,9 @@ function OutclassSection() {
       </div>
 
       <div className="mt-10 grid gap-8 sm:mt-12 md:mt-16 lg:grid-cols-[minmax(180px,0.42fr)_minmax(0,1.58fr)] lg:gap-14">
-        <aside className="hidden self-start lg:sticky lg:top-0 lg:flex lg:min-h-[100svh] lg:flex-col lg:justify-center">
+        <aside className="hidden self-start lg:sticky lg:top-12 lg:flex lg:flex-col">
           <div className="eyebrow text-background/45">So I started doing something about it.</div>
+
           <ol className="mt-8 border-l border-background/15">
             {OUTCLASS_MOMENTS.map((moment, index) => (
               <li
@@ -1284,27 +1285,38 @@ function OutclassSection() {
         </aside>
 
         <div className="relative pb-16 sm:pb-20 lg:pb-[26svh]">
-          {OUTCLASS_MOMENTS.map((moment, index) => (
+          {OUTCLASS_MOMENTS.map((moment, index) => {
+            const depth = Math.max(0, Math.min(active - index, 3));
+            return (
             <div
               key={moment.n}
               className="sticky mb-8 last:mb-0 sm:mb-10 lg:mb-14"
-              style={{ top: `calc(3rem + ${index * 1.5}rem)` }}
+              style={{ top: `calc(3rem + ${index * 1.25}rem)`, zIndex: index + 1 }}
             >
               <div
-                className={`transition-all duration-500 ease-out ${
-                  index < active ? "scale-[0.96] opacity-55" : "scale-100 opacity-100"
-                }`}
-                style={{ transformOrigin: "top center" }}
+                className="transition-transform duration-500 ease-out"
+                style={{ transformOrigin: "top center", transform: `scale(${1 - depth * 0.018})` }}
               >
                 <motion.article
-                  onViewportEnter={() => setActive(index)}
-                  viewport={{ amount: 0.52, margin: "-12% 0px -28% 0px" }}
                   initial={{ opacity: 0, y: 28 }}
                   whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
                   transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative overflow-hidden rounded-2xl border border-background/15 bg-foreground shadow-[0_30px_70px_-35px_rgba(0,0,0,0.9)]"
+                  className="relative overflow-hidden rounded-2xl border border-background/15 bg-foreground shadow-[0_-18px_40px_-28px_rgba(0,0,0,0.85),0_30px_70px_-35px_rgba(0,0,0,0.9)]"
                 >
+                  <motion.div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0"
+                    onViewportEnter={() => setActive(index)}
+                    viewport={{ amount: 0.52, margin: "-12% 0px -28% 0px" }}
+                  />
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 z-[3] bg-foreground transition-opacity duration-500"
+                    style={{ opacity: depth * 0.16 }}
+                  />
                   <div aria-hidden className="pointer-events-none absolute inset-0 bg-background/[0.04]" />
+
                   <div className="relative grid gap-7 p-6 sm:gap-9 sm:p-9 md:grid-cols-12 md:items-center md:gap-8 md:p-10 lg:p-12">
                     <div className="md:col-span-5">
                       <span className="block font-display text-[clamp(4rem,10vw,8.5rem)] font-light leading-[0.82] text-background/12">
@@ -1328,7 +1340,9 @@ function OutclassSection() {
                 </motion.article>
               </div>
             </div>
-          ))}
+            );
+          })}
+
         </div>
       </div>
     </Section>
