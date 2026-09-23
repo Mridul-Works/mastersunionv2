@@ -2195,10 +2195,15 @@ function StartupsPage() {
               {/* Mountain ridgeline: dashed lines rise from the video frame
                   edges into a peaked range that sits below the MU logo and
                   above the headline. Mobile uses a shallower range because the
-                  band between logo and headline is tighter. */}
-              <svg
+                  band between logo and headline is tighter. The ridgeline dims
+                  in lockstep with the pinned copy. */}
+              <motion.div
                 aria-hidden="true"
-                className="pointer-events-none absolute bottom-full left-0 right-0 h-[280px] w-full text-background/25 sm:hidden"
+                className="pointer-events-none absolute bottom-full left-0 right-0"
+                style={reduceHeroMotion ? { opacity: 1 } : { opacity: heroTextOpacity }}
+              >
+              <svg
+                className="pointer-events-none absolute bottom-0 left-0 h-[280px] w-full text-background/25 sm:hidden"
                 viewBox="0 0 100 100"
                 preserveAspectRatio="none"
                 fill="none"
@@ -2220,8 +2225,7 @@ function StartupsPage() {
                 />
               </svg>
               <svg
-                aria-hidden="true"
-                className="pointer-events-none absolute bottom-full left-0 right-0 hidden w-full text-background/25 sm:block sm:h-[330px] md:h-[380px] lg:h-[410px]"
+                className="pointer-events-none absolute bottom-0 left-0 hidden w-full text-background/25 sm:block sm:h-[330px] md:h-[380px] lg:h-[410px]"
                 viewBox="0 0 100 100"
                 preserveAspectRatio="none"
                 fill="none"
@@ -2242,12 +2246,15 @@ function StartupsPage() {
                   vectorEffect="non-scaling-stroke"
                 />
               </svg>
+              </motion.div>
               {/* Live reflection: an upright, masked copy of the video sits
                   directly above the card so the playing film casts a soft
-                  light glow upward. */}
+                  light glow upward. The mask fades the top edge and tucks the
+                  side edges into the dark background so no border shows, and
+                  the copy shows the film's top edge, not its bottom. */}
               <motion.div
                 aria-hidden="true"
-                className="pointer-events-none absolute bottom-full left-[9%] right-[9%] h-[120px] overflow-hidden [mask-image:linear-gradient(to_top,rgba(0,0,0,0.9),transparent_92%)] sm:h-[160px] md:h-[200px]"
+                className="pointer-events-none absolute bottom-full left-[9%] right-[9%] h-[120px] overflow-hidden [mask-composite:intersect] [mask-image:linear-gradient(to_top,rgba(0,0,0,0.9),transparent_92%),linear-gradient(to_right,transparent_0%,black_22%,black_78%,transparent_100%)] sm:h-[160px] md:h-[200px]"
                 style={{ opacity: heroReflectionOpacity }}
               >
                 <video
@@ -2257,7 +2264,7 @@ function StartupsPage() {
                   playsInline
                   preload="auto"
                   tabIndex={-1}
-                  className="absolute bottom-0 left-0 block h-auto w-full max-w-full rounded-2xl blur-[2px]"
+                  className="absolute left-0 top-0 block h-auto w-full max-w-full rounded-2xl blur-[2px]"
                 >
                   <source src={foundersVideo.url} type="video/mp4" />
                   <source src={foundersVideoWebm.url} type="video/webm" />
