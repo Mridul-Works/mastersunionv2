@@ -11,3 +11,4 @@
 
 - [x] Redesign only the Startups hero with founders video, venture marquee, and existing Start Building CTA; verify 1440/1024/768/390
 - [ ] Dropshipping cards: shared round play button, no native controls, equal episode text — text bump to equal larger size in progress
+- [ ] Dropshipping cards: replace posters with real frames extracted from each card's own video
