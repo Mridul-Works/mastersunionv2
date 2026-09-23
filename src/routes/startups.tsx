@@ -33,12 +33,12 @@ import entrepreneurshipReportUg from "@/assets/entrepreneurship-report-ug-progra
 import studentEntrepreneurshipVideo from "@/assets/MU_Student_Entreprenuership_Video-2.mp4.asset.json";
 import instaVideo1 from "@/assets/insta-video-1.mp4.asset.json";
 import instaVideoPoster from "@/assets/insta-video-poster.jpg.asset.json";
-import venturesFilmVideo from "@/assets/ventures-film.mp4.asset.json";
+import instaVideo2 from "@/assets/insta-video-2.mp4.asset.json";
+import instaVideo2Poster from "@/assets/insta-video-2-poster.jpg.asset.json";
 import campusFilmVideo from "@/assets/campusFilm.mp4.asset.json";
 import heroInfoVideo from "@/assets/hero-info-video.mp4.asset.json";
 import heroVideo from "@/assets/hero.mp4.asset.json";
 import sparkVideoThumb from "@/assets/spark-video-thumb.jpg";
-import posterVentures from "@/assets/dropshipping-cards/ventures.jpg";
 import posterCampus from "@/assets/dropshipping-cards/campus.jpg";
 import posterHeroInfo from "@/assets/dropshipping-cards/hero-info.jpg";
 import posterHero from "@/assets/dropshipping-cards/hero.jpg";
@@ -141,7 +141,7 @@ const SPARK_VENTURE_LOGOS = [
 
 const DROPSHIPPING_VIDEOS = [
   { id: "highlight", src: instaVideo1.url, poster: instaVideoPoster.url, aria: "Student entrepreneurship film" },
-  { id: "ventures", src: venturesFilmVideo.url, poster: posterVentures, aria: "Student ventures film" },
+  { id: "ventures", src: instaVideo2.url, poster: instaVideo2Poster.url, aria: "Student ventures film" },
   { id: "campus", src: campusFilmVideo.url, poster: posterCampus, aria: "Campus film" },
   { id: "hero-info", src: heroInfoVideo.url, poster: posterHeroInfo, aria: "Programme information film" },
   { id: "hero", src: heroVideo.url, poster: posterHero, aria: "Masters' Union hero film" },
