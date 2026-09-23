@@ -2141,7 +2141,7 @@ function StartupsPage() {
                   preload="metadata"
                   src={foundersVideo.url}
                   aria-label="Masters' Union founders film"
-                  className="block h-auto w-full max-w-full rounded-xl border border-background/15 bg-black sm:rounded-2xl"
+                  className="block h-auto w-full max-w-full rounded-2xl border border-background/15 bg-black"
                 />
               </div>
             </motion.div>
