@@ -1510,7 +1510,7 @@ function DropshippingSection() {
       </div>
 
       <Reveal delay={0.14} className="mt-9 sm:mt-12 md:mt-14">
-        <div ref={collageRef} className="relative h-[300svh] overflow-x-clip sm:h-[320svh]">
+        <div ref={collageRef} data-dropshipping-collage className="relative h-[300svh] overflow-x-clip sm:h-[320svh]">
           <div className="sticky top-0 h-[100svh] overflow-hidden">
             {DROPSHIPPING_VIDEOS.map((video, index) => {
               const sizes = [
@@ -1523,6 +1523,7 @@ function DropshippingSection() {
               return (
                 <div
                   key={video.id}
+                  data-dropshipping-video={video.id}
                   ref={(element) => { videoCardRefs.current[index] = element; }}
                   className={`absolute left-1/2 top-1/2 overflow-hidden rounded-2xl border border-background/15 bg-foreground shadow-[0_30px_80px_-32px_rgba(0,0,0,0.9)] will-change-transform ${sizes[index]}`}
                   style={{ zIndex: index === 0 ? 10 : 9 - index, transform: "translate3d(-50%, -50%, 0) scale(0.38)" }}
