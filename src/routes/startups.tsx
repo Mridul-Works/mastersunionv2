@@ -35,11 +35,9 @@ import instaVideo1 from "@/assets/insta-video-1.mp4.asset.json";
 import instaVideoPoster from "@/assets/insta-video-poster.jpg.asset.json";
 import instaVideo2 from "@/assets/insta-video-2.mp4.asset.json";
 import instaVideo2Poster from "@/assets/insta-video-2-poster.jpg.asset.json";
-import campusFilmVideo from "@/assets/campusFilm.mp4.asset.json";
 import heroInfoVideo from "@/assets/hero-info-video.mp4.asset.json";
 import heroVideo from "@/assets/hero.mp4.asset.json";
 import sparkVideoThumb from "@/assets/spark-video-thumb.jpg";
-import posterCampus from "@/assets/dropshipping-cards/campus.jpg";
 import posterHeroInfo from "@/assets/dropshipping-cards/hero-info.jpg";
 import posterHero from "@/assets/dropshipping-cards/hero.jpg";
 import sparkSeedsAiFounders from "@/assets/spark/seedsai-founders.jpg.asset.json";
@@ -139,10 +137,16 @@ const SPARK_VENTURE_LOGOS = [
   ventureFnor,
 ];
 
-const DROPSHIPPING_VIDEOS = [
+const DROPSHIPPING_VIDEOS: {
+  id: string;
+  src?: string;
+  yt?: string;
+  poster: string;
+  aria: string;
+}[] = [
   { id: "highlight", src: instaVideo1.url, poster: instaVideoPoster.url, aria: "Student entrepreneurship film" },
   { id: "ventures", src: instaVideo2.url, poster: instaVideo2Poster.url, aria: "Student ventures film" },
-  { id: "campus", src: campusFilmVideo.url, poster: posterCampus, aria: "Campus film" },
+  { id: "campus", yt: "vLUvx_QOBys", poster: "https://img.youtube.com/vi/vLUvx_QOBys/maxresdefault.jpg", aria: "Campus film" },
   { id: "hero-info", src: heroInfoVideo.url, poster: posterHeroInfo, aria: "Programme information film" },
   { id: "hero", src: heroVideo.url, poster: posterHero, aria: "Masters' Union hero film" },
 ];
@@ -1376,6 +1380,7 @@ function OutclassSection() {
 }
 
 function DropshippingSection() {
+  const [ytPlayingId, setYtPlayingId] = useState<string | null>(null);
   return (
     <Section id="dropshipping" tone="light">
       <div aria-hidden className="spectrum-rule pointer-events-none absolute left-[6%] right-[6%] top-0 z-[2] h-px" />
@@ -1401,17 +1406,50 @@ function DropshippingSection() {
           {DROPSHIPPING_VIDEOS.map((video, index) => (
             <Reveal key={video.id} delay={0.04 * index} className="w-[82vw] max-w-[400px] shrink-0 snap-start sm:w-[50vw] lg:w-auto lg:max-w-none lg:shrink">
               <div className="overflow-hidden rounded-[6px] border border-background/15 bg-background/[0.035]">
-                <video
-                  controls
-                  playsInline
-                  preload="metadata"
-                  poster={video.poster}
-                  className="block aspect-[4/5] h-auto w-full bg-black object-cover"
-                  aria-label={video.aria}
-                >
-                  <source src={video.src} type="video/mp4" />
-                  Your browser does not support embedded video.
-                </video>
+                {video.yt ? (
+                  ytPlayingId === video.id ? (
+                    <iframe
+                      src={`https://www.youtube.com/embed/${video.yt}?autoplay=1&rel=0`}
+                      title={video.aria}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      className="block aspect-[4/5] h-auto w-full bg-black"
+                    />
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setYtPlayingId(video.id)}
+                      aria-label={`Play: ${video.aria}`}
+                      className="group relative block aspect-[4/5] w-full overflow-hidden bg-black"
+                    >
+                      <img
+                        src={video.poster}
+                        alt=""
+                        loading="lazy"
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                      />
+                      <span aria-hidden className="absolute inset-0 flex items-center justify-center">
+                        <span className="flex h-12 w-12 items-center justify-center rounded-full border border-background/40 bg-black/45 backdrop-blur-sm transition-colors duration-300 group-hover:border-background/70 group-hover:bg-black/60 sm:h-14 sm:w-14">
+                          <svg viewBox="0 0 24 24" className="ml-[2px] h-4 w-4 fill-background sm:h-5 sm:w-5" aria-hidden>
+                            <path d="M8 5.5v13l11-6.5-11-6.5Z" />
+                          </svg>
+                        </span>
+                      </span>
+                    </button>
+                  )
+                ) : (
+                  <video
+                    controls
+                    playsInline
+                    preload="metadata"
+                    poster={video.poster}
+                    className="block aspect-[4/5] h-auto w-full bg-black object-cover"
+                    aria-label={video.aria}
+                  >
+                    <source src={video.src} type="video/mp4" />
+                    Your browser does not support embedded video.
+                  </video>
+                )}
               </div>
             </Reveal>
           ))}
