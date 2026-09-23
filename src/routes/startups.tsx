@@ -1577,7 +1577,11 @@ function DropshippingSection() {
                   key={video.id}
                   data-dropshipping-video={video.id}
                   ref={(element) => { videoCardRefs.current[index] = element; }}
-                  className={`group/card absolute inset-0 m-auto overflow-visible bg-foreground shadow-2xl will-change-transform ${sizes[index]}`}
+                  className={`group/card absolute overflow-visible bg-foreground shadow-2xl will-change-transform ${
+                    index === 0
+                      ? "left-0 right-0 top-[clamp(10rem,18svh,11rem)] mx-auto"
+                      : "inset-0 m-auto"
+                  } ${sizes[index]}`}
                   style={{
                     zIndex: index === 0 ? 10 : 9 - index,
                     transform: `scale(${index === 0 ? 0.96 : 0.38}) rotate(0deg)`,
