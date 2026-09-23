@@ -1314,9 +1314,11 @@ function OutclassSection() {
             return (
             <div
               key={moment.n}
+              ref={(el) => { cardRefs.current[index] = el; }}
               className="sticky mb-8 last:mb-0 sm:mb-10 lg:mb-14"
               style={{ top: `calc(3rem + ${index * 1.25}rem)`, zIndex: index + 1 }}
             >
+
               <div
                 className="transition-[transform,filter] duration-700 ease-out"
                 style={{
