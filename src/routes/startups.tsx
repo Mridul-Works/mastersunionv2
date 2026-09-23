@@ -31,6 +31,8 @@ import foundersVideoWebm from "@/assets/hero-3.webm.asset.json";
 import entrepreneurshipReport2021 from "@/assets/entrepreneurship-report-2021-25.pdf.asset.json";
 import entrepreneurshipReportUg from "@/assets/entrepreneurship-report-ug-programmes.pdf.asset.json";
 import studentEntrepreneurshipVideo from "@/assets/MU_Student_Entreprenuership_Video-2.mp4.asset.json";
+import instaVideo1 from "@/assets/insta-video-1.mp4.asset.json";
+import instaVideoPoster from "@/assets/insta-video-poster.jpg.asset.json";
 import venturesFilmVideo from "@/assets/ventures-film.mp4.asset.json";
 import campusFilmVideo from "@/assets/campusFilm.mp4.asset.json";
 import heroInfoVideo from "@/assets/hero-info-video.mp4.asset.json";
@@ -139,7 +141,7 @@ const SPARK_VENTURE_LOGOS = [
 ];
 
 const DROPSHIPPING_VIDEOS = [
-  { id: "highlight", src: studentEntrepreneurshipVideo.url, poster: posterEntrepreneurship, aria: "Student entrepreneurship film" },
+  { id: "highlight", src: instaVideo1.url, poster: instaVideoPoster, aria: "Student entrepreneurship film" },
   { id: "ventures", src: venturesFilmVideo.url, poster: posterVentures, aria: "Student ventures film" },
   { id: "campus", src: campusFilmVideo.url, poster: posterCampus, aria: "Campus film" },
   { id: "hero-info", src: heroInfoVideo.url, poster: posterHeroInfo, aria: "Programme information film" },
