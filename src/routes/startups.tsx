@@ -38,7 +38,6 @@ import campusFilmVideo from "@/assets/campusFilm.mp4.asset.json";
 import heroInfoVideo from "@/assets/hero-info-video.mp4.asset.json";
 import heroVideo from "@/assets/hero.mp4.asset.json";
 import sparkVideoThumb from "@/assets/spark-video-thumb.jpg";
-import posterEntrepreneurship from "@/assets/dropshipping-cards/entrepreneurship.jpg";
 import posterVentures from "@/assets/dropshipping-cards/ventures.jpg";
 import posterCampus from "@/assets/dropshipping-cards/campus.jpg";
 import posterHeroInfo from "@/assets/dropshipping-cards/hero-info.jpg";
