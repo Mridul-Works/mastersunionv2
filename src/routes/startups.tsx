@@ -1040,7 +1040,7 @@ function SparkCarousel({
             initial={reduceMotion ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reduceMotion ? 0 : 0.6, delay: reduceMotion ? 0 : 0.12 }}
-            className="mx-auto mt-2.5 max-w-5xl border-t border-background/15 pt-3 text-center sm:mt-4 sm:pt-4"
+            className="mx-auto mt-2.5 max-w-5xl border-t border-background/15 pt-8 text-center sm:mt-4 sm:pt-10"
           >
             <div className="mx-auto max-w-4xl rounded-[6px] border border-background/15 bg-background/[0.03] px-5 py-4 sm:px-8 sm:py-5">
               <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-background/50">
