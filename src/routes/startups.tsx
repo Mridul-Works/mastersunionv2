@@ -32,13 +32,13 @@ import entrepreneurshipReport2021 from "@/assets/entrepreneurship-report-2021-25
 import entrepreneurshipReportUg from "@/assets/entrepreneurship-report-ug-programmes.pdf.asset.json";
 import studentEntrepreneurshipVideo from "@/assets/MU_Student_Entreprenuership_Video-2.mp4.asset.json";
 import instaVideo1 from "@/assets/insta-video-1.mp4.asset.json";
-import instaVideoPoster from "@/assets/insta-video-poster.jpg.asset.json";
+import instaVideo1Poster from "@/assets/insta-video-1-frame.jpg.asset.json";
 import instaVideo2 from "@/assets/insta-video-2.mp4.asset.json";
-import instaVideo2Poster from "@/assets/insta-video-2-poster.jpg.asset.json";
+import instaVideo2Poster from "@/assets/insta-video-2-frame.jpg.asset.json";
 import instaVideo4 from "@/assets/insta-video-4.mp4.asset.json";
-import instaVideo4Poster from "@/assets/insta-video-4-poster.jpg.asset.json";
+import instaVideo4Poster from "@/assets/insta-video-4-frame.jpg.asset.json";
 import instaVideo5 from "@/assets/insta-video-5.mp4.asset.json";
-import instaVideo5Poster from "@/assets/insta-video-5-poster.jpg.asset.json";
+import instaVideo5Poster from "@/assets/insta-video-5-frame.jpg.asset.json";
 import sparkVideoThumb from "@/assets/spark-video-thumb.jpg";
 
 import sparkSeedsAiFounders from "@/assets/spark/seedsai-founders.jpg.asset.json";
@@ -145,7 +145,7 @@ const DROPSHIPPING_VIDEOS: {
   poster: string;
   aria: string;
 }[] = [
-  { id: "highlight", src: instaVideo1.url, poster: instaVideoPoster.url, aria: "Student entrepreneurship film" },
+  { id: "highlight", src: instaVideo1.url, poster: instaVideo1Poster.url, aria: "Student entrepreneurship film" },
   { id: "ventures", src: instaVideo2.url, poster: instaVideo2Poster.url, aria: "Student ventures film" },
   { id: "campus", yt: "vLUvx_QOBys", poster: "https://img.youtube.com/vi/vLUvx_QOBys/maxresdefault.jpg", aria: "Campus film" },
   { id: "hero-info", src: instaVideo4.url, poster: instaVideo4Poster.url, aria: "Student programme film" },
@@ -1381,7 +1381,7 @@ function OutclassSection() {
 }
 
 function DropshippingSection() {
-  const [ytPlayingId, setYtPlayingId] = useState<string | null>(null);
+  const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
   const [, setActiveVideo] = useState(0);
   const collageRef = useRef<HTMLDivElement | null>(null);
   const videoCardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -1398,17 +1398,17 @@ function DropshippingSection() {
       geometry.top = rect.top;
       geometry.height = rect.height;
       const main = videoCardRefs.current[0];
-      const side = videoCardRefs.current[1];
       if (main) {
         geometry.w0 = main.offsetWidth;
         geometry.h0 = main.offsetHeight;
         geometry.center0 = main.offsetTop + main.offsetHeight / 2;
         geometry.containerH = (main.offsetParent as HTMLElement | null)?.clientHeight ?? 0;
       }
-      if (side) {
-        geometry.ws = side.offsetWidth;
-        geometry.hs = side.offsetHeight;
-      }
+      // Side cards are sized via inline width (never scaled with transforms), so
+      // their base CSS size is derived analytically to stay correct on resize.
+      const ivw = window.innerWidth;
+      geometry.ws = ivw < 640 ? Math.min(ivw * 0.66, 340) : Math.min(ivw * 0.35, 360);
+      geometry.hs = geometry.ws * (4 / 3);
     };
 
     return onScrollFrame(({ vh, vw }) => {
@@ -1480,7 +1480,9 @@ function DropshippingSection() {
         if (index === 0) {
           const settle = Math.min(1, progress / 0.12);
           const target = targets[0];
-          card.style.transform = `scale(${0.96 + settle * 0.04}) rotate(0deg)`;
+          const scale0 = 0.96 + settle * 0.04;
+          card.style.transform = `scale(${scale0}) rotate(0deg)`;
+          card.style.setProperty("--ep-scale", String(scale0));
           card.style.visibility = "visible";
           return;
         }
@@ -1508,7 +1510,12 @@ function DropshippingSection() {
         const x = originX + (target.x - originX) * eased;
         const y = originY + (target.y - originY) * eased;
         const scale = startScale + (target.scale - startScale) * eased;
-        card.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale}) rotate(0deg)`;
+        // Sizing is carried by the inline width — never a transform scale — so
+        // everything inside (episode label, play button) renders at its natural
+        // size and is pixel-identical across all five cards.
+        card.style.width = `${ws * scale}px`;
+        card.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(0deg)`;
+        card.style.setProperty("--ep-scale", "1");
         card.style.visibility = local > 0.01 ? "visible" : "hidden";
         card.style.pointerEvents = local > 0.86 ? "auto" : "none";
       });
@@ -1516,8 +1523,31 @@ function DropshippingSection() {
   }, [prefersReducedMotion]);
 
   const renderVideo = (video: (typeof DROPSHIPPING_VIDEOS)[number]) => {
+    const playButton = (
+      <button
+        type="button"
+        onClick={() => setActiveVideoId(video.id)}
+        aria-label={`Play: ${video.aria}`}
+        className="group absolute inset-0 block h-full w-full overflow-hidden bg-black"
+      >
+        <img
+          src={video.poster}
+          alt=""
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+        />
+        <span aria-hidden className="absolute inset-0 flex items-center justify-center">
+          <span className="flex h-[calc(48px/var(--ep-scale,1))] w-[calc(48px/var(--ep-scale,1))] items-center justify-center rounded-full border border-background/40 bg-black/45 backdrop-blur-sm transition-colors duration-300 group-hover:border-background/70 group-hover:bg-black/60 sm:h-[calc(56px/var(--ep-scale,1))] sm:w-[calc(56px/var(--ep-scale,1))]">
+            <svg viewBox="0 0 24 24" className="ml-[calc(2px/var(--ep-scale,1))] h-[calc(16px/var(--ep-scale,1))] w-[calc(16px/var(--ep-scale,1))] fill-background sm:h-[calc(20px/var(--ep-scale,1))] sm:w-[calc(20px/var(--ep-scale,1))]" aria-hidden>
+              <path d="M8 5.5v13l11-6.5-11-6.5Z" />
+            </svg>
+          </span>
+        </span>
+      </button>
+    );
+
     if (video.yt) {
-      return ytPlayingId === video.id ? (
+      return activeVideoId === video.id ? (
         <iframe
           src={`https://www.youtube.com/embed/${video.yt}?autoplay=1&rel=0`}
           title={video.aria}
@@ -1525,43 +1555,23 @@ function DropshippingSection() {
           allowFullScreen
           className="absolute inset-0 h-full w-full bg-black"
         />
-      ) : (
-        <button
-          type="button"
-          onClick={() => setYtPlayingId(video.id)}
-          aria-label={`Play: ${video.aria}`}
-          className="group absolute inset-0 block h-full w-full overflow-hidden bg-black"
-        >
-          <img
-            src={video.poster}
-            alt=""
-            loading="lazy"
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-          />
-          <span aria-hidden className="absolute inset-0 flex items-center justify-center">
-            <span className="flex h-12 w-12 items-center justify-center rounded-full border border-background/40 bg-black/45 backdrop-blur-sm transition-colors duration-300 group-hover:border-background/70 group-hover:bg-black/60 sm:h-14 sm:w-14">
-              <svg viewBox="0 0 24 24" className="ml-[2px] h-4 w-4 fill-background sm:h-5 sm:w-5" aria-hidden>
-                <path d="M8 5.5v13l11-6.5-11-6.5Z" />
-              </svg>
-            </span>
-          </span>
-        </button>
-      );
+      ) : playButton;
     }
 
-    return (
+    return activeVideoId === video.id ? (
       <video
-        controls
+        autoPlay
         playsInline
-        preload="metadata"
+        preload="auto"
         poster={video.poster}
+        ref={(element) => { if (element) element.play().catch(() => {}); }}
         className="absolute inset-0 h-full w-full bg-black object-cover"
         aria-label={video.aria}
       >
         <source src={video.src} type="video/mp4" />
         Your browser does not support embedded video.
       </video>
-    );
+    ) : playButton;
   };
 
   return (
@@ -1621,16 +1631,25 @@ function DropshippingSection() {
                   } ${sizes[index]}`}
                   style={{
                     zIndex: index === 0 ? 10 : 9 - index,
-                    transform: `scale(${index === 0 ? 0.96 : 0.38}) rotate(0deg)`,
+                    transform: "translate3d(0, 0, 0) rotate(0deg)",
                     visibility: index === 0 ? "visible" : "hidden",
-                  }}
+                    ["--ep-scale" as string]: index === 0 ? "0.96" : "1",
+                  } as React.CSSProperties}
                 >
                   <div aria-hidden className="pointer-events-none absolute -inset-2 border border-background/10" />
                   <div className="relative h-full w-full overflow-hidden border border-background/20 bg-foreground">
                     {renderVideo(video)}
                     <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between bg-gradient-to-b from-foreground/70 to-transparent px-4 pb-10 pt-4">
-                      <span className="font-mono text-[8px] uppercase tracking-[0.28em] text-background/75">Episode 0{index + 1}</span>
-                      <span className="h-1.5 w-1.5 rounded-full bg-background/80" />
+                      <span
+                        className="font-mono font-medium uppercase tracking-[0.28em] text-background"
+                        style={{ fontSize: "calc(11px / var(--ep-scale, 1))" }}
+                      >
+                        Episode 0{index + 1}
+                      </span>
+                      <span
+                        className="rounded-full bg-background/80"
+                        style={{ width: "calc(7px / var(--ep-scale, 1))", height: "calc(7px / var(--ep-scale, 1))" }}
+                      />
                     </div>
                   </div>
                 </div>
