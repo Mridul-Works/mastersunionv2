@@ -2031,11 +2031,9 @@ function StartupsPage() {
     let logoRect: DOMRect | undefined;
     let marqueeRect: DOMRect | undefined;
     const clamp = (value: number) => Math.min(1, Math.max(0, value));
-    // Fade thresholds adapt to the real resting gap between the pinned copy
-    // and the video, so the copy is fully opaque at rest on any viewport and
-    // always fully gone before the two boxes can intersect.
-    let fadeStart = 1;
-    let fadeEnd = 0;
+    // The copy stays pinned while the video rises over it: the fade begins just
+    // before the video reaches the copy and completes as it covers it.
+
 
     return onScrollFrame(
       ({ vh }) => {
@@ -2047,13 +2045,12 @@ function StartupsPage() {
         heroVideoOpacity.set(0.5 + videoProgress * 0.5);
         heroVideoScale.set(0.96 + videoProgress * 0.04);
 
-        // Tie the copy release to the live gap above the rising video. This
-        // guarantees the copy is gone before the two boxes can intersect.
+        // Tie the copy release to the live gap above the rising video, so the
+        // copy dims as the video slides up and covers it.
         const clearance = videoRect.top - textRect.bottom;
-        if (clearance > fadeStart) {
-          fadeStart = clearance * 0.9;
-          fadeEnd = Math.max(28, clearance * 0.18);
-        }
+        const fadeStart = Math.min(160, vh * 0.16);
+        const fadeEnd = -textRect.height * 0.55;
+
         const releaseProgress = clamp((fadeStart - clearance) / Math.max(1, fadeStart - fadeEnd));
         heroTextOpacity.set(1 - releaseProgress);
         heroTextScale.set(1 - releaseProgress * 0.03);
@@ -2159,7 +2156,7 @@ function StartupsPage() {
 
             <motion.div
               ref={heroVideoRef}
-              className="relative mx-auto mt-[22svh] w-full max-w-[88%] sm:mt-[24svh] sm:max-w-xl md:mt-[26svh] md:max-w-2xl lg:max-w-3xl"
+              className="relative z-20 mx-auto mt-[22svh] w-full max-w-[88%] sm:mt-[24svh] sm:max-w-xl md:mt-[26svh] md:max-w-2xl lg:max-w-3xl"
               style={reduceHeroMotion ? { opacity: 1, scale: 1 } : { opacity: heroVideoOpacity, scale: heroVideoScale }}
             >
               <div aria-hidden="true" className="pointer-events-none absolute -bottom-16 -top-16 left-0 right-0 border-x border-dashed border-background/15" />
