@@ -8,3 +8,5 @@
 - [x] Refine tablet and mobile side padding, margins, spacing, line height, and responsive fit
 - [x] Redesign the OutClass, Dropshipping Challenge, and VIP sections as one responsive editorial story
 - [x] Fix Spark video card and logo bar reachability after the pinned story
+
+- [ ] Redesign only the Startups hero with founders video, venture marquee, and existing Start Building CTA; verify 1440/1024/768/390
