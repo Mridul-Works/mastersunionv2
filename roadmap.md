@@ -9,4 +9,4 @@
 - [x] Redesign the OutClass, Dropshipping Challenge, and VIP sections as one responsive editorial story
 - [x] Fix Spark video card and logo bar reachability after the pinned story
 
-- [ ] Redesign only the Startups hero with founders video, venture marquee, and existing Start Building CTA; verify 1440/1024/768/390
+- [x] Redesign only the Startups hero with founders video, venture marquee, and existing Start Building CTA; verify 1440/1024/768/390
