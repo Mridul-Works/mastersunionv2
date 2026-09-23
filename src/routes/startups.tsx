@@ -1411,16 +1411,16 @@ function DropshippingSection() {
         ? [
             { x: 0, y: 0, scale: 1 },
             { x: -vw * 0.27, y: -vh * 0.18, scale: 0.58 },
-            { x: vw * 0.27, y: -vh * 0.12, scale: 0.63 },
+            { x: vw * 0.27, y: -vh * 0.18, scale: 0.58 },
             { x: -vw * 0.28, y: vh * 0.2, scale: 0.54 },
-            { x: vw * 0.29, y: vh * 0.23, scale: 0.59 },
+            { x: vw * 0.28, y: vh * 0.2, scale: 0.54 },
           ]
         : [
             { x: 0, y: 0, scale: 1 },
             { x: -Math.min(vw * 0.33, 485), y: -vh * 0.2, scale: 0.72 },
-            { x: Math.min(vw * 0.35, 510), y: -vh * 0.11, scale: 0.8 },
+            { x: Math.min(vw * 0.33, 485), y: -vh * 0.2, scale: 0.72 },
             { x: -Math.min(vw * 0.31, 455), y: vh * 0.22, scale: 0.63 },
-            { x: Math.min(vw * 0.33, 480), y: vh * 0.24, scale: 0.7 },
+            { x: Math.min(vw * 0.31, 455), y: vh * 0.22, scale: 0.63 },
           ];
 
       videoCardRefs.current.forEach((card, index) => {
@@ -1568,9 +1568,9 @@ function DropshippingSection() {
               const sizes = [
                 "aspect-[4/5] w-[min(76vw,410px)] sm:w-[min(52vw,430px)] lg:w-[min(32vw,470px)]",
                 "aspect-[3/4] w-[min(66vw,340px)] sm:w-[min(35vw,360px)]",
-                "aspect-[4/5] w-[min(68vw,355px)] sm:w-[min(38vw,385px)]",
+                "aspect-[3/4] w-[min(66vw,340px)] sm:w-[min(35vw,360px)]",
                 "aspect-[2/3] w-[min(59vw,305px)] sm:w-[min(31vw,330px)]",
-                "aspect-[5/6] w-[min(69vw,365px)] sm:w-[min(39vw,400px)]",
+                "aspect-[2/3] w-[min(59vw,305px)] sm:w-[min(31vw,330px)]",
               ];
               return (
                 <div
