@@ -2183,16 +2183,17 @@ function StartupsPage() {
               ref={heroVideoRef}
               className="relative z-20 mx-auto mt-6 w-full sm:mt-8 sm:max-w-3xl md:max-w-4xl lg:max-w-5xl"
             >
+              {/* Mountain ridgeline: dashed lines rise from the video frame
+                  edges into a peaked range that sits below the MU logo and
+                  above the headline. Mobile uses a shallower range because the
+                  band between logo and headline is tighter. */}
               <svg
                 aria-hidden="true"
-                className="pointer-events-none absolute bottom-full left-0 right-0 h-[280px] w-full text-background/25 sm:h-[330px] md:h-[380px] lg:h-[410px]"
+                className="pointer-events-none absolute bottom-full left-0 right-0 h-[280px] w-full text-background/25 sm:hidden"
                 viewBox="0 0 100 100"
                 preserveAspectRatio="none"
                 fill="none"
               >
-                {/* Mountain ridgeline: dashed lines rise from the video frame
-                    edges into a peaked range that sits below the MU logo and
-                    above the headline, with a fainter secondary ridge. */}
                 <path
                   d="M1.5 100 L1.5 24 L12 19 L25 23.5 L38 20 L50 17.5 L62 20 L75 23.5 L88 19 L98.5 24 L98.5 100"
                   stroke="currentColor"
@@ -2203,6 +2204,29 @@ function StartupsPage() {
                 <path
                   className="text-background/10"
                   d="M1.5 24 L14 20.5 L27 23.8 L40 21 L50 19 L60 21 L73 23.8 L86 20.5 L98.5 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeDasharray="4 4"
+                  vectorEffect="non-scaling-stroke"
+                />
+              </svg>
+              <svg
+                aria-hidden="true"
+                className="pointer-events-none absolute bottom-full left-0 right-0 hidden w-full text-background/25 sm:block sm:h-[330px] md:h-[380px] lg:h-[410px]"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+                fill="none"
+              >
+                <path
+                  d="M1.5 100 L1.5 22 L14 16 L26 21 L38 11 L50 5 L62 11 L74 21 L86 16 L98.5 22 L98.5 100"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeDasharray="6 6"
+                  vectorEffect="non-scaling-stroke"
+                />
+                <path
+                  className="text-background/10"
+                  d="M8 22 L20 17.5 L32 22 L44 12 L50 8.5 L56 12 L68 22 L80 17.5 L92 22"
                   stroke="currentColor"
                   strokeWidth="2"
                   strokeDasharray="4 4"
