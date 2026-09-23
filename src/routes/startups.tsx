@@ -1409,18 +1409,18 @@ function DropshippingSection() {
       }
       const targets = compact
         ? [
-            { x: 0, y: 0, scale: 1, rotate: 0 },
-            { x: -vw * 0.27, y: -vh * 0.18, scale: 0.58, rotate: -4 },
-            { x: vw * 0.27, y: -vh * 0.12, scale: 0.63, rotate: 3 },
-            { x: -vw * 0.28, y: vh * 0.2, scale: 0.54, rotate: 3 },
-            { x: vw * 0.29, y: vh * 0.23, scale: 0.59, rotate: -3 },
+            { x: 0, y: 0, scale: 1 },
+            { x: -vw * 0.27, y: -vh * 0.18, scale: 0.58 },
+            { x: vw * 0.27, y: -vh * 0.12, scale: 0.63 },
+            { x: -vw * 0.28, y: vh * 0.2, scale: 0.54 },
+            { x: vw * 0.29, y: vh * 0.23, scale: 0.59 },
           ]
         : [
-            { x: vw >= 1024 ? 72 : 0, y: 0, scale: 1, rotate: 0 },
-            { x: -Math.min(vw * 0.33, 485), y: -vh * 0.2, scale: 0.72, rotate: -4 },
-            { x: Math.min(vw * 0.35, 510), y: -vh * 0.11, scale: 0.8, rotate: 3 },
-            { x: -Math.min(vw * 0.31, 455), y: vh * 0.22, scale: 0.63, rotate: 3 },
-            { x: Math.min(vw * 0.33, 480), y: vh * 0.24, scale: 0.7, rotate: -3 },
+            { x: 0, y: 0, scale: 1 },
+            { x: -Math.min(vw * 0.33, 485), y: -vh * 0.2, scale: 0.72 },
+            { x: Math.min(vw * 0.35, 510), y: -vh * 0.11, scale: 0.8 },
+            { x: -Math.min(vw * 0.31, 455), y: vh * 0.22, scale: 0.63 },
+            { x: Math.min(vw * 0.33, 480), y: vh * 0.24, scale: 0.7 },
           ];
 
       videoCardRefs.current.forEach((card, index) => {
@@ -1443,7 +1443,7 @@ function DropshippingSection() {
         const x = startX + (target.x - startX) * eased;
         const y = target.y + (1 - eased) * vh * 0.1;
         const scale = 0.38 + (target.scale - 0.38) * eased;
-        card.style.transform = `translate3d(calc(-50% + ${x}px), calc(-50% + ${y}px), 0) scale(${scale}) rotate(${target.rotate * eased}deg)`;
+        card.style.transform = `translate3d(calc(-50% + ${x}px), calc(-50% + ${y}px), 0) scale(${scale})`;
         card.style.visibility = local > 0.01 ? "visible" : "hidden";
         card.style.pointerEvents = local > 0.86 ? "auto" : "none";
       });
