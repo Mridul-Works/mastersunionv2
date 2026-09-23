@@ -2265,7 +2265,7 @@ function StartupsPage() {
                   the copy shows the film's top edge, not its bottom. */}
               <motion.div
                 aria-hidden="true"
-                className="pointer-events-none absolute bottom-full left-[9%] right-[9%] h-[120px] -translate-y-4 overflow-hidden [mask-composite:intersect] [mask-image:linear-gradient(to_top,rgba(0,0,0,0.85),rgba(0,0,0,0.3)_55%,transparent_78%),linear-gradient(to_right,transparent_0%,black_22%,black_78%,transparent_100%)] sm:h-[160px] md:h-[200px]"
+                className="pointer-events-none absolute bottom-full left-[9%] right-[9%] h-[132px] overflow-hidden [mask-composite:intersect] [mask-image:linear-gradient(to_top,rgba(0,0,0,0.95),rgba(0,0,0,0.35)_55%,transparent_80%),linear-gradient(to_right,transparent_0%,black_22%,black_78%,transparent_100%)] sm:h-[172px] md:h-[212px]"
                 style={{ opacity: heroReflectionOpacity }}
               >
                 <video
