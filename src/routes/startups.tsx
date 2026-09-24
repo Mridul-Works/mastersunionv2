@@ -2037,9 +2037,11 @@ function DropshippingSection() {
                 <div className="mt-2.5 font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-background/60 sm:text-[10px]">
                   {stat.label}
                 </div>
-                <div className="mt-1 text-[11px] leading-snug text-background/45 sm:text-[12px]">
-                  {stat.sub}
-                </div>
+                {stat.sub ? (
+                  <div className="mt-1 text-[11px] leading-snug text-background/45 sm:text-[12px]">
+                    {stat.sub}
+                  </div>
+                ) : null}
               </div>
             ))}
           </div>
