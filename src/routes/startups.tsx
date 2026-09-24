@@ -33,6 +33,7 @@ import entrepreneurshipReport2021 from "@/assets/entrepreneurship-report-2021-25
 import entrepreneurshipReportUg from "@/assets/entrepreneurship-report-ug-programmes.pdf.asset.json";
 import studentEntrepreneurshipVideo from "@/assets/MU_Student_Entreprenuership_Video-2.mp4.asset.json";
 import bsHighlightVideo from "@/assets/bs-highlight.mp4";
+import bsHighlightVideoWebm from "@/assets/bs-highlight.webm";
 import instaVideo1 from "@/assets/insta-video-1.mp4.asset.json";
 import instaVideo1Poster from "@/assets/insta-video-1-frame.jpg.asset.json";
 import instaVideo2 from "@/assets/insta-video-2.mp4.asset.json";
@@ -1415,7 +1416,6 @@ function SparkCarousel({
                   />
                 ) : (
                   <video
-                    src={bsHighlightVideo}
                     poster={sparkVideoThumb}
                     autoPlay
                     muted
@@ -1425,7 +1425,10 @@ function SparkCarousel({
                     tabIndex={-1}
                     aria-hidden="true"
                     className="pointer-events-none absolute inset-0 block h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                  />
+                  >
+                    <source src={bsHighlightVideo} type="video/mp4" />
+                    <source src={bsHighlightVideoWebm} type="video/webm" />
+                  </video>
                 )}
                 <span className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-black/15" />
                 <span className="absolute left-1/2 top-1/2 inline-flex size-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-background/95 text-foreground shadow-lg transition-transform duration-300 group-hover:scale-105 sm:size-20">
