@@ -35,6 +35,8 @@ import instaVideo1 from "@/assets/insta-video-1.mp4.asset.json";
 import instaVideo1Poster from "@/assets/insta-video-1-frame.jpg.asset.json";
 import instaVideo2 from "@/assets/insta-video-2.mp4.asset.json";
 import instaVideo2Poster from "@/assets/insta-video-2-frame.jpg.asset.json";
+import instaVideo3 from "@/assets/insta-video-3.mp4.asset.json";
+import instaVideo3Poster from "@/assets/insta-video-3-frame.jpg.asset.json";
 import instaVideo4 from "@/assets/insta-video-4.mp4.asset.json";
 import instaVideo4Poster from "@/assets/insta-video-4-frame.jpg.asset.json";
 import instaVideo5 from "@/assets/insta-video-5.mp4.asset.json";
@@ -147,7 +149,7 @@ const DROPSHIPPING_VIDEOS: {
 }[] = [
   { id: "highlight", src: instaVideo1.url, poster: instaVideo1Poster.url, aria: "Student entrepreneurship film" },
   { id: "ventures", src: instaVideo2.url, poster: instaVideo2Poster.url, aria: "Student ventures film" },
-  { id: "campus", yt: "vLUvx_QOBys", poster: "https://img.youtube.com/vi/vLUvx_QOBys/maxresdefault.jpg", aria: "Campus film" },
+  { id: "campus", src: instaVideo3.url, poster: instaVideo3Poster.url, aria: "Campus film" },
   { id: "hero-info", src: instaVideo4.url, poster: instaVideo4Poster.url, aria: "Student programme film" },
   { id: "hero", src: instaVideo5.url, poster: instaVideo5Poster.url, aria: "Student venture film" },
 ];
