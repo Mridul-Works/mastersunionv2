@@ -1502,7 +1502,7 @@ function FounderStoriesChapters() {
           }}
           className="relative border-t border-background/10"
         >
-          <div className="flex min-h-[100svh] flex-col justify-start pt-[14vh] pb-[7.5rem] sm:pt-[15vh] md:pb-[6.5rem]">
+          <div className="flex min-h-[100svh] flex-col justify-start pt-[11vh] pb-[7.5rem] sm:pt-[12vh] md:pb-[6.5rem]">
             <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 xl:pr-[17rem]">
               <div className={i % 2 === 1 ? "lg:flex lg:flex-col lg:items-end lg:text-right" : undefined}>
                 <div className="flex items-center gap-4">
@@ -1523,11 +1523,11 @@ function FounderStoriesChapters() {
                     ))}
                   </span>
                 </h3>
-                <p className="mt-9 max-w-2xl text-[clamp(1.05rem,1.6vw,1.4rem)] font-light leading-[1.5] text-background/70">
+                <p className="mt-8 max-w-2xl text-[clamp(1.05rem,1.6vw,1.4rem)] font-light leading-[1.5] text-background/70">
                   {chapter.lede}
                 </p>
               </div>
-              <div className="mt-12">
+              <div className="mt-10">
                 <Reveal y={28}>
                   <ChapterVisual chapter={chapter} />
                 </Reveal>
