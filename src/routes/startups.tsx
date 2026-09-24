@@ -851,8 +851,13 @@ function Section({
         : "px-4 py-16 sm:px-7 sm:py-20 md:px-8 md:py-24 lg:px-12 lg:py-32";
   return (
     <section id={id} className={`relative ${id === "spark" || id === "doing" || id === "dropshipping" ? "overflow-x-clip overflow-y-visible" : "overflow-hidden"} text-background ${surfaceClass}`}>
-      {/* Homepage section rule — thin inset gradient hairline floating above each section */}
-      {id !== "journey" ? (
+      {/* Homepage section rule — thin inset hairline floating above each section */}
+      {id === "ventures" ? (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-[6%] right-[6%] top-0 z-[1] h-px bg-background/15"
+        />
+      ) : id !== "journey" ? (
         <div
           aria-hidden
           className="pointer-events-none absolute left-[6%] right-[6%] top-0 z-[1] h-[0.5px]"
@@ -2066,6 +2071,11 @@ function DropshippingSection() {
           </div>
         </div>
       </div>
+
+      {/* Divider rule under the dropshipping section */}
+      <div aria-hidden className="spectrum-rule pointer-events-none mt-14 h-px w-full sm:mt-16" />
+
+
 
       {typeof document !== "undefined" &&
         createPortal(
