@@ -888,12 +888,7 @@ function Section({
   return (
     <section id={id} className={`relative ${id === "spark" || id === "doing" || id === "dropshipping" ? "overflow-x-clip overflow-y-visible" : "overflow-hidden"} text-background ${surfaceClass}`}>
       {/* Homepage section rule — thin inset hairline floating above each section */}
-      {id === "ventures" ? (
-        <div
-          aria-hidden
-          className="pointer-events-none absolute left-[6%] right-[6%] top-0 z-[1] h-px bg-background/15"
-        />
-      ) : id !== "journey" ? (
+      {id !== "journey" && id !== "ventures" ? (
         <div
           aria-hidden
           className="pointer-events-none absolute left-[6%] right-[6%] top-0 z-[1] h-[0.5px]"
