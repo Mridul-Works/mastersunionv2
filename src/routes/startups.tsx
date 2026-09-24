@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import eightVentureImg from "@/assets/founders/ventures/eight.jpg.asset.json";
 import bullspreeVentureImg from "@/assets/founders/ventures/bullspree.jpg.asset.json";
+import outclassDropshippingImg from "@/assets/outclass-dropshipping.jpg.asset.json";
 import hiveschoolVentureImg from "@/assets/founders/ventures/hiveschool.jpg.asset.json";
 import lexisVentureImg from "@/assets/founders/ventures/lexis.jpg.asset.json";
 import playsuperVentureImg from "@/assets/founders/ventures/playsuper.jpg.asset.json";
@@ -401,6 +402,7 @@ const OUTCLASS_MOMENTS = [
     label: "Dropshipping stores",
     body: "Taking risks, testing ideas, and putting something into the world.",
     media: "Students running a live storefront",
+    image: outclassDropshippingImg.url,
   },
   {
     n: "02",
@@ -408,6 +410,7 @@ const OUTCLASS_MOMENTS = [
     label: "Content brands",
     body: "Real growth doesn’t come from case studies.",
     media: "A student content brand going live",
+    image: null,
   },
   {
     n: "03",
@@ -415,6 +418,7 @@ const OUTCLASS_MOMENTS = [
     label: "Start companies from scratch",
     body: "Half the curriculum happens outside the classroom, from day one.",
     media: "Students building a company after class",
+    image: null,
   },
 ];
 
@@ -1612,7 +1616,20 @@ function OutclassSection() {
                       </p>
                     </div>
                     <div className="md:col-span-7">
-                      <Placeholder kind="image" aspect="aspect-[16/10]" note={moment.media} className="rounded-[6px]" />
+                      {moment.image ? (
+                        <div className="relative aspect-[16/10] overflow-hidden rounded-[6px]">
+                          <img
+                            src={moment.image}
+                            alt={moment.media}
+                            loading="lazy"
+                            decoding="async"
+                            draggable={false}
+                            className="absolute inset-0 size-full object-cover"
+                          />
+                        </div>
+                      ) : (
+                        <Placeholder kind="image" aspect="aspect-[16/10]" note={moment.media} className="rounded-[6px]" />
+                      )}
                     </div>
                   </div>
                 </motion.article>
