@@ -347,8 +347,8 @@ const FOUNDER_STATS: StatTile[] = [
 const FOUNDER_CTA: CtaTile = {
   kind: "cta",
   headline: "Build here",
-  body: "Explore the full portfolio of student-led ventures, grants and founder support.",
-  cta: "See all startups",
+  body: "Launch your own venture with campus funding, mentors and founder support.",
+  cta: "Apply to Masters' Union",
   to: "#cta",
   bg: "#FFFFFF",
   fg: BOTTLE_GREEN,
@@ -2098,12 +2098,6 @@ function DropshippingSection() {
               <em className="font-serif-italic font-light">in the making</em>
             </h3>
           </div>
-          <a
-            href="#portfolio"
-            className="inline-flex items-center gap-2 rounded-full border border-background/20 px-3 py-1.5 text-[10px] font-semibold tracking-[0.02em] text-background/85 transition-colors hover:bg-background hover:text-foreground"
-          >
-            See All Ventures <ArrowRight className="size-3" />
-          </a>
         </div>
 
         <div ref={foundersGridRef}>
