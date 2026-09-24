@@ -2025,7 +2025,7 @@ function DropshippingSection() {
       <div className="mt-8 sm:mt-10 md:mt-12">
         <div ref={collageRef} data-dropshipping-collage className="relative h-[100svh] overflow-x-clip">
           <div className="relative h-full overflow-hidden border-t border-background/10">
-            <div className="pointer-events-none absolute inset-x-4 top-20 z-20 flex items-start justify-between sm:inset-x-8 lg:inset-x-12 lg:top-[5.5rem]">
+            <div className="pointer-events-none absolute inset-x-4 top-10 z-20 flex items-start justify-between sm:inset-x-8 lg:inset-x-12 lg:top-12">
               <div className="flex items-center gap-3 pt-1.5 sm:pt-2.5">
                 <span className="h-px w-8 bg-background/40 sm:w-14" />
                 <span className="font-mono text-[9px] uppercase tracking-[0.32em] text-background/55 sm:text-[10px]">
