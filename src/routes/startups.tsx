@@ -61,6 +61,22 @@ import ventureLexis from "@/assets/venture-logos/Lexis.png.asset.json";
 import ventureMonarque from "@/assets/venture-logos/Monarque.png.asset.json";
 import ventureNivara from "@/assets/venture-logos/Nivara.png.asset.json";
 import ventureFnor from "@/assets/venture-logos/FNOR.png.asset.json";
+import ventureEightLogo from "@/assets/venture-logos/EIGHT.png.asset.json";
+import ventureBullspreeLogo from "@/assets/venture-logos/Bullspree.png.asset.json";
+import ventureHiveschoolLogo from "@/assets/venture-logos/Hiveschool.png.asset.json";
+import venturePlaysuperLogo from "@/assets/venture-logos/Playsuper.png.asset.json";
+import ventureSeedsAILogo from "@/assets/venture-logos/SeedsAI.png.asset.json";
+import sharkMemoTagLogo from "@/assets/sharktank/MemoTag.png.asset.json";
+import sharkMetaFashionLogo from "@/assets/sharktank/MetaFashion.png.asset.json";
+import brandPhotoEight from "@/assets/founders/brand/eight.jpg";
+import brandPhotoBullspree from "@/assets/founders/brand/bullspree.jpg";
+import brandPhotoHiveschool from "@/assets/founders/brand/hiveschool.jpg";
+import brandPhotoLexis from "@/assets/founders/brand/lexis.jpg";
+import brandPhotoMemotag from "@/assets/founders/brand/memotag.jpg";
+import brandPhotoMetafashion from "@/assets/founders/brand/metafashion.jpg";
+import brandPhotoPlaysuper from "@/assets/founders/brand/playsuper.jpg";
+import brandPhotoSeedsai from "@/assets/founders/brand/seedsai.jpg";
+import brandPhotoWoodys from "@/assets/founders/brand/woodys.jpg";
 import { onScrollFrame } from "@/lib/scroll-driver";
 
 const NAV: { id: string; label: string }[] = [
