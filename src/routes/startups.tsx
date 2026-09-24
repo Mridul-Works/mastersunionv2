@@ -1424,6 +1424,9 @@ function SparkCarousel({
                     preload="auto"
                     tabIndex={-1}
                     aria-hidden="true"
+                    onCanPlay={(e) => {
+                      void e.currentTarget.play().catch(() => {});
+                    }}
                     className="pointer-events-none absolute inset-0 block h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                   >
                     <source src={bsHighlightVideo} type="video/mp4" />
