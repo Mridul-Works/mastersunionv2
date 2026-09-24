@@ -580,7 +580,6 @@ const EATATLAS_BEATS: Beat[] = [
   },
 ];
 
-const PATTERN_STEPS = ["Question", "Experiment", "First Customer", "Failure", "Iteration", "Traction", "Pitch", "Scale"];
 
 type SharkTankEntry = { company: string; founder: string; cohort: string; season: string; description: string };
 const SHARK_TANK: SharkTankEntry[] = [
@@ -3525,40 +3524,6 @@ function StartupsPage() {
               { value: "₹2Cr", label: "Projected FY26" },
             ]}
           />
-        </Reveal>
-      </Section>
-
-      <Section id="pattern" tone="paper">
-        <Reveal>
-          <Eyebrow>Zoom Out</Eyebrow>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[22ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
-            The company changes. The pattern doesn&apos;t.
-          </h2>
-        </Reveal>
-
-        <div className="mt-10 grid gap-px border border-background/10 sm:mt-12 sm:grid-cols-2 md:mt-14 lg:grid-cols-4">
-          {PATTERN_STEPS.map((step, i) => (
-            <Reveal key={step} delay={0.05 + i * 0.04}>
-              <div className="group flex min-h-20 items-center justify-between border-background/10 p-5">
-                <span className="eyebrow text-background/75 transition-colors group-hover:text-accent">
-                  {step}
-                </span>
-                {i < PATTERN_STEPS.length - 1 && <ArrowRight className="size-3.5 text-background/30" aria-hidden />}
-              </div>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal delay={0.15}>
-          <p className="mt-8 max-w-[68ch] text-[13px] leading-[1.6] text-background/70 md:text-[15px] md:leading-[1.75] md:mt-10">
-            A cafeteria question about who gets to be a creator. A canteen complaint about boring chips. A
-            ₹60 snack mix nobody wanted, repriced to ₹50 and sold out in an hour. None of these started as
-            a business plan — they started as a small, cheap experiment that either worked or told the
-            founder something true. This is an editorial pattern, not a claim that every startup on this
-            page followed the exact same sequence — but it's the shape that shows up again and again.
-          </p>
         </Reveal>
       </Section>
 
