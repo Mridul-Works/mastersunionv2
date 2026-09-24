@@ -18,6 +18,7 @@ import {
   X,
 } from "lucide-react";
 import eightVentureImg from "@/assets/founders/ventures/eight.jpg.asset.json";
+import bullspreeVentureImg from "@/assets/founders/ventures/bullspree.jpg.asset.json";
 import outclassDropshippingImg from "@/assets/outclass-dropshipping.jpg.asset.json";
 import hiveschoolVentureImg from "@/assets/founders/ventures/hiveschool.jpg.asset.json";
 import lexisVentureImg from "@/assets/founders/ventures/lexis.jpg.asset.json";
