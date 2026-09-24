@@ -2095,7 +2095,7 @@ function DropshippingSection() {
             </p>
             <h3 className="mb-3 mt-1.5 font-display text-[clamp(1.7rem,4vw,2.9rem)] font-medium leading-[1.02] tracking-[-0.03em] sm:mb-5 sm:mt-2">
               Then I put it in front of{" "}
-              <em className="font-serif-italic font-light text-background">real people</em>
+              <em className="font-serif-italic font-light !text-background">real people</em>
             </h3>
           </div>
         </div>
