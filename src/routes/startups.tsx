@@ -1835,7 +1835,7 @@ function DropshippingSection() {
       const edge = compact ? 12 : Math.min(48, Math.max(20, vw * 0.03));
       // Top margin clears the "Field Film / Build in public" label row;
       // bottom margin clears the floating bottom navigation bar.
-      const topSafe = compact ? 72 : vw < 1024 ? 84 : 96;
+      const topSafe = compact ? 104 : vw < 1024 ? 116 : 140;
       const bottomSafe = compact ? 88 : vw < 1024 ? 96 : 104;
       const desktop = vw >= 1024;
       const mainTop = desktop
@@ -2054,7 +2054,7 @@ function DropshippingSection() {
                   ref={(element) => { videoCardRefs.current[index] = element; }}
                   className={`group/card absolute overflow-visible bg-foreground shadow-2xl will-change-transform ${
                     index === 0
-                      ? "left-0 right-0 top-[clamp(10rem,18svh,11rem)] mx-auto"
+                      ? "left-0 right-0 top-[clamp(11.5rem,20svh,12.5rem)] mx-auto"
                       : "inset-0 m-auto"
                   } ${sizes[index]}`}
                   style={{
