@@ -834,11 +834,15 @@ function Section({
   id,
   tone = "light",
   container = "max-w-7xl",
+  tightTop = false,
+  tightBottom = false,
   children,
 }: {
   id?: string;
   tone?: "light" | "dark" | "paper";
   container?: string;
+  tightTop?: boolean;
+  tightBottom?: boolean;
   children: React.ReactNode;
 }) {
   const surfaceClass =
@@ -849,6 +853,13 @@ function Section({
         : "bg-foreground";
   const FILM_SECTION_RULE =
     "linear-gradient(to right, transparent, oklch(0.75 0.15 215) 12%, oklch(0.88 0.18 95) 50%, oklch(0.65 0.22 45) 88%, transparent)";
+  const padClass = tightTop && tightBottom
+    ? "px-4 pt-10 pb-12 sm:px-7 sm:pt-12 sm:pb-16 md:px-8 md:pt-14 md:pb-20 lg:px-12 lg:pt-16 lg:pb-24"
+    : tightTop
+      ? "px-4 pt-10 pb-16 sm:px-7 sm:pt-12 sm:pb-20 md:px-8 md:pt-14 md:pb-24 lg:px-12 lg:pt-16 lg:pb-32"
+      : tightBottom
+        ? "px-4 pt-16 pb-12 sm:px-7 sm:pt-20 sm:pb-16 md:px-8 md:pt-24 md:pb-20 lg:px-12 lg:pt-32 lg:pb-24"
+        : "px-4 py-16 sm:px-7 sm:py-20 md:px-8 md:py-24 lg:px-12 lg:py-32";
   return (
     <section id={id} className={`relative ${id === "spark" || id === "doing" || id === "dropshipping" ? "overflow-x-clip overflow-y-visible" : "overflow-hidden"} text-background ${surfaceClass}`}>
       {/* Homepage section rule — thin inset gradient hairline floating above each section */}
@@ -867,7 +878,7 @@ function Section({
           {id.replace("-", " ")}
         </span>
       ) : null}
-      <div className={`relative z-[1] mx-auto w-full ${container} px-4 py-16 sm:px-7 sm:py-20 md:px-8 md:py-24 lg:px-12 lg:py-32`}>{children}</div>
+      <div className={`relative z-[1] mx-auto w-full ${container} ${padClass}`}>{children}</div>
     </section>
   );
 }
@@ -1990,7 +2001,7 @@ function DropshippingSection() {
   };
 
   return (
-    <Section id="dropshipping" tone="light">
+    <Section id="dropshipping" tone="light" tightBottom>
       <div aria-hidden className="spectrum-rule pointer-events-none absolute left-[6%] right-[6%] top-0 z-[2] h-px" />
       <div className="grid gap-8 sm:gap-10 lg:grid-cols-12 lg:items-end">
         <div className="lg:col-span-7">
@@ -2367,7 +2378,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
 
 function VipSection() {
   return (
-    <Section id="journey" tone="paper">
+    <Section id="journey" tone="paper" tightTop>
       <div className="grid gap-6 sm:gap-8 lg:grid-cols-12 lg:items-end">
         <div className="lg:col-span-7">
           <Reveal><Eyebrow>The Venture Initiation Programme (VIP)</Eyebrow></Reveal>
