@@ -980,6 +980,151 @@ function KeyMetrics({ dominant, supporting, dark = false }: { dominant: Metric; 
   );
 }
 
+const STORY_MEDIA: Record<string, { image?: string; logo?: string }> = {
+  Eight: { image: eightVentureImg.url, logo: ventureEightLogo.url },
+  Bullspree: { image: bullspreeVentureImg.url, logo: ventureBullspreeLogo.url },
+  PlaySuper: { image: playsuperVentureImg.url, logo: venturePlaysuperLogo.url },
+  "Hive School": { image: hiveschoolVentureImg.url, logo: ventureHiveschoolLogo.url },
+  SeedsAI: { image: seedsaiVentureImg.url, logo: ventureSeedsAILogo.url },
+  MemoTag: { logo: sharkMemoTagLogo.url },
+  "Meta Fashion": { logo: sharkMetaFashionLogo.url },
+};
+
+function FounderStoriesGallery() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
+  const total = SPARK_EXAMPLES.length;
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const update = () => {
+      const max = el.scrollWidth - el.clientWidth;
+      setProgress(max > 0 ? el.scrollLeft / max : 0);
+      setAtStart(el.scrollLeft <= 4);
+      setAtEnd(el.scrollLeft >= max - 4);
+    };
+    update();
+    el.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      el.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  const step = (dir: 1 | -1) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-story-card]");
+    const amount = card ? card.offsetWidth + 20 : el.clientWidth * 0.8;
+    el.scrollBy({ left: dir * amount, behavior: "smooth" });
+  };
+
+  return (
+    <section id="founder-stories" className="relative overflow-x-clip bg-foreground py-20 text-background sm:py-24 md:py-28">
+      <span aria-hidden className="absolute left-[6%] right-[6%] top-0 h-px bg-background/15" />
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <Reveal>
+              <Eyebrow>Founder Stories · {String(total).padStart(2, "0")} Ventures</Eyebrow>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="mt-5 max-w-[20ch] text-[clamp(1.8rem,4.2vw,3.6rem)] font-light leading-[1.08]">
+                Nine founders.{" "}
+                <span className="font-serif-italic !font-serif !font-light text-background/80">Nine first moves.</span>
+              </h2>
+            </Reveal>
+          </div>
+          <Reveal delay={0.1} className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => step(-1)}
+              disabled={atStart}
+              aria-label="Previous story"
+              className="flex size-12 items-center justify-center rounded-full border border-background/25 text-background transition-colors hover:bg-background hover:text-foreground disabled:pointer-events-none disabled:opacity-30"
+            >
+              <ArrowLeft className="size-4" strokeWidth={1.5} />
+            </button>
+            <button
+              type="button"
+              onClick={() => step(1)}
+              disabled={atEnd}
+              aria-label="Next story"
+              className="flex size-12 items-center justify-center rounded-full border border-background/25 text-background transition-colors hover:bg-background hover:text-foreground disabled:pointer-events-none disabled:opacity-30"
+            >
+              <ArrowRight className="size-4" strokeWidth={1.5} />
+            </button>
+          </Reveal>
+        </div>
+      </div>
+
+      <div
+        ref={trackRef}
+        tabIndex={0}
+        aria-label="Founder stories"
+        className="mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-5 pb-6 [scrollbar-width:none] sm:mt-12 sm:px-8 md:mt-14 [&::-webkit-scrollbar]:hidden lg:px-[max(2rem,calc((100vw-80rem)/2+2rem))]"
+      >
+        {SPARK_EXAMPLES.map((story, i) => {
+          const media = STORY_MEDIA[story.name] ?? {};
+          const image = media.image ?? story.founderImage;
+          return (
+            <article
+              key={story.name}
+              data-story-card
+              className="group relative flex w-[82vw] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-background/15 bg-background/[0.03] sm:w-[360px] lg:w-[400px]"
+            >
+              <div className="relative aspect-[4/5] overflow-hidden">
+                {image ? (
+                  <img
+                    src={image}
+                    alt={`${story.name} — ${story.founder}`}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
+                ) : (
+                  <Placeholder kind="image" aspect="h-full" note={story.name} className="!border-0" />
+                )}
+                <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/30 to-transparent" />
+                <span className="absolute left-5 top-5 font-mono text-[11px] tracking-[0.28em] text-background/70">
+                  {String(i + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+                </span>
+                {media.logo && (
+                  <span className="absolute right-5 top-5 flex size-11 items-center justify-center overflow-hidden rounded-full bg-background p-1.5">
+                    <img src={media.logo} alt={`${story.name} logo`} className="h-full w-full object-contain" />
+                  </span>
+                )}
+                <div className="absolute inset-x-5 bottom-5">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-background/60">{story.product}</p>
+                  <h3 className="mt-2 text-[1.75rem] leading-none">{story.name}</h3>
+                </div>
+              </div>
+              <div className="flex flex-1 flex-col gap-5 p-5 sm:p-6">
+                <p className="text-[14px] leading-[1.65] text-background/75">{story.body}</p>
+                <p className="mt-auto border-t border-background/10 pt-4 text-[12px] text-background/55">
+                  {story.founder} <span className="text-background/30">—</span> {story.cohort}
+                </p>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      <div className="mx-auto mt-6 max-w-7xl px-5 sm:px-8">
+        <div className="h-px w-full bg-background/10">
+          <div
+            className="h-px bg-gradient-to-r from-sky-400 via-yellow-300 to-orange-400 transition-[width] duration-150"
+            style={{ width: `${Math.max(8, progress * 100)}%` }}
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Placeholder({
   kind,
   aspect,
@@ -3333,7 +3478,7 @@ function StartupsPage() {
       <VenturesMosaicSection />
 
       <FounderStoriesGallery />
-      <span aria-hidden className="block h-0" data-removed-chapters="eight bambaii eat-atlas" />
+
 
       <Section id="sharktank" tone="dark">
         <Reveal>
