@@ -1379,20 +1379,17 @@ function SparkCarousel({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: reduceMotion ? 0.2 : 0.65, ease: [0.22, 1, 0.36, 1] }}
-        className="mx-auto w-full text-center"
+        className="w-full"
       >
             <div
               role="separator"
               aria-hidden="true"
-              className="mx-auto mt-10 h-px w-full max-w-4xl bg-background/15 sm:mt-12"
+              className="mt-10 h-px w-full bg-background/15 sm:mt-12"
             />
-            <div className="eyebrow mx-auto mt-10 text-background/50 sm:mt-12">The Building Starts Here</div>
-            <p className="mx-auto mt-3 max-w-3xl font-serif-italic !font-serif !font-light !text-white text-[clamp(1.15rem,2.2vw,1.6rem)] leading-[1.35] sm:mt-4">
-              Fueling the next generation of founders, where
-              <br />
-              ideas turn into ventures &amp;
-              <br />
-              students become entrepreneurs.
+            <Eyebrow>The Building Starts Here</Eyebrow>
+            <p className="mt-4 max-w-[34ch] font-serif-italic !font-serif !font-light !text-white text-[clamp(1.15rem,2.2vw,1.6rem)] leading-[1.35] sm:mt-5">
+              Fueling the next generation of founders, where ideas turn into ventures &amp; students become
+              entrepreneurs.
             </p>
             <div ref={bsVideoScaleRef} className="will-change-transform" style={{ transformOrigin: "center center" }}>
             <button
