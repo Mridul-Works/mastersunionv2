@@ -835,12 +835,14 @@ function Section({
   tone = "light",
   container = "max-w-7xl",
   tightTop = false,
+  tightBottom = false,
   children,
 }: {
   id?: string;
   tone?: "light" | "dark" | "paper";
   container?: string;
   tightTop?: boolean;
+  tightBottom?: boolean;
   children: React.ReactNode;
 }) {
   const surfaceClass =
@@ -851,9 +853,16 @@ function Section({
         : "bg-foreground";
   const FILM_SECTION_RULE =
     "linear-gradient(to right, transparent, oklch(0.75 0.15 215) 12%, oklch(0.88 0.18 95) 50%, oklch(0.65 0.22 45) 88%, transparent)";
-  const padClass = tightTop
-    ? "px-4 pb-16 pt-10 sm:px-7 sm:pb-20 sm:pt-12 md:px-8 md:pb-24 md:pt-14 lg:px-12 lg:pb-32 lg:pt-16"
-    : "px-4 py-16 sm:px-7 sm:py-20 md:px-8 md:py-24 lg:px-12 lg:py-32";
+  const topClass = tightTop
+    ? "pt-10 sm:pt-12 md:pt-14 lg:pt-16"
+    : "py-16 sm:py-20 md:py-24 lg:py-32";
+  const bottomClass = tightBottom
+    ? "pb-12 sm:pb-16 md:pb-20 lg:pb-24"
+    : "py-16 sm:py-20 md:py-24 lg:py-32";
+  const padClass = `px-4 ${topClass} ${bottomClass}`.replace(
+    /py-16 sm:py-20 md:py-24 lg:py-32/,
+    "",
+  ).trim();
   return (
     <section id={id} className={`relative ${id === "spark" || id === "doing" || id === "dropshipping" ? "overflow-x-clip overflow-y-visible" : "overflow-hidden"} text-background ${surfaceClass}`}>
       {/* Homepage section rule — thin inset gradient hairline floating above each section */}
