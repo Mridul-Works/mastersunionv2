@@ -2137,6 +2137,127 @@ function DropshippingSection() {
   );
 }
 
+function VenturesMosaicSection() {
+  const foundersGridRef = useRef<HTMLDivElement | null>(null);
+  const prefersReducedMotion = useReducedMotion();
+
+  // One observer on the founders mosaic drives a single staggered reveal.
+  useEffect(() => {
+    const grid = foundersGridRef.current;
+    if (!grid) return;
+    const tiles = Array.from(grid.querySelectorAll<HTMLElement>("[data-tile]"));
+    if (tiles.length === 0) return;
+
+    if (prefersReducedMotion || typeof IntersectionObserver === "undefined") return;
+
+    let cancelled = false;
+    let ctx: { revert: () => void } | null = null;
+
+    void import("gsap").then(({ gsap }) => {
+      if (cancelled) return;
+      ctx = gsap.context(() => {
+        gsap.set(tiles, { autoAlpha: 0, y: 26 });
+        const io = new IntersectionObserver(
+          (entries) => {
+            if (!entries.some((e) => e.isIntersecting)) return;
+            io.disconnect();
+            gsap.to(tiles, {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.75,
+              ease: "power3.out",
+              stagger: { each: 0.055 },
+              clearProps: "transform,opacity,visibility",
+            });
+          },
+          { threshold: 0.08, rootMargin: "0px 0px -6% 0px" },
+        );
+        io.observe(grid);
+      }, grid);
+    });
+
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
+  }, [prefersReducedMotion]);
+
+  return (
+    <Section id="ventures" tone="light">
+      <div className="mb-4 flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+        <div>
+          <p className="font-mono text-[9px] uppercase tracking-[0.28em] text-background/40 sm:text-[10px]">
+            Selected student ventures
+          </p>
+          <h3 className="mb-3 mt-1.5 font-display text-[clamp(1.7rem,4vw,2.9rem)] font-medium leading-[1.02] tracking-[-0.03em] sm:mb-5 sm:mt-2">
+            Then I put it in front of{" "}
+            <em className="font-serif-italic font-light !text-background">real people</em>
+          </h3>
+        </div>
+      </div>
+
+      <div ref={foundersGridRef}>
+        {/* Mobile + tablet masonry keeps variable-height cards tightly packed. */}
+        <div className="columns-3 gap-[3px] sm:columns-4 xl:hidden">
+          {FOUNDER_TILES.map((t, i) => {
+            const ratio = MOSAIC_RATIOS[i % MOSAIC_RATIOS.length];
+            if ("kind" in t && t.kind === "cta") {
+              return (
+                <div key="cta-startups-mobile" data-tile className="mb-[3px] inline-block w-full break-inside-avoid align-top">
+                  <VentureCtaTile t={t} ratio={ratio} />
+                </div>
+              );
+            }
+            if ("kind" in t) {
+              return (
+                <div key={`mobile-stat-${t.value}`} data-tile className="mb-[3px] inline-block w-full break-inside-avoid align-top">
+                  <StatPoster s={t} ratio={ratio} />
+                </div>
+              );
+            }
+            return (
+              <div key={`mobile-${t.company}`} data-tile className="mb-[3px] inline-block w-full break-inside-avoid align-top">
+                <FounderPoster v={t} ratio={ratio} />
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Desktop brand mosaic — explicit equal-width columns fill the row edge to edge. */}
+        <div className="hidden grid-cols-5 gap-[3px] xl:grid">
+          {FOUNDER_COLUMNS.map((col, c) => (
+            <div key={c} className="flex flex-col gap-[3px]">
+              {col.map(({ tile: t, index: i }) => {
+                const ratio = MOSAIC_RATIOS[(i + c) % MOSAIC_RATIOS.length];
+                if ("kind" in t && t.kind === "cta") {
+                  return (
+                    <div key="cta-startups" data-tile>
+                      <VentureCtaTile t={t} ratio={ratio} />
+                    </div>
+                  );
+                }
+                if ("kind" in t) {
+                  return (
+                    <div key={`stat-${t.value}`} data-tile>
+                      <StatPoster s={t} ratio={ratio} />
+                    </div>
+                  );
+                }
+                return (
+                  <div key={t.company} data-tile>
+                    <FounderPoster v={t} ratio={ratio} />
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div aria-hidden className="spectrum-rule pointer-events-none mt-14 h-px w-full sm:mt-16" />
+    </Section>
+  );
+}
+
 function VipJourney({ stages }: { stages: Stage[] }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const pointerStartRef = useRef<number | null>(null);
@@ -3136,6 +3257,7 @@ function StartupsPage() {
       <OutclassSection />
       <DropshippingSection />
       <VipSection />
+      <VenturesMosaicSection />
 
       <Section id="eight" tone="dark">
         <Reveal>
