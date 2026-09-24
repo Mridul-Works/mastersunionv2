@@ -388,6 +388,13 @@ const FOUNDER_COLUMNS: Array<Array<{ tile: VentureTile | StatTile | CtaTile; ind
   return cols;
 })();
 
+const DROPSHIPPING_TOP = [
+  { name: "Zeller Crystals", revenue: "₹14.17L", body: "India's first crystal couture brand." },
+  { name: "The Frenzie Store", revenue: "₹14L", body: "A hair-care brand built around frizz-free, shiny, smooth results." },
+  { name: "Khareedo.shop", revenue: "₹11.8L", body: "Drones, home decor, and orthopaedic pillows under one storefront." },
+  { name: "ThriftFly", revenue: "₹11.3L", body: "A travel-discounts platform built as a student side hustle." },
+];
+
 const OUTCLASS_MOMENTS = [
   {
     n: "01",
@@ -2098,6 +2105,18 @@ function DropshippingSection() {
               <em className="font-serif-italic font-light !text-background">real people</em>
             </h3>
           </div>
+        </div>
+
+        <div className="mb-8 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-background/15 bg-background/10 sm:mb-10 sm:grid-cols-2 lg:grid-cols-4">
+          {DROPSHIPPING_TOP.map((venture) => (
+            <article key={venture.name} className="flex flex-col bg-foreground px-5 py-5 sm:px-6">
+              <div className="flex items-baseline justify-between gap-3">
+                <h4 className="text-[1rem] font-medium text-background">{venture.name}</h4>
+                <span className="shrink-0 font-mono text-[9px] uppercase tracking-[0.18em] text-background/50">{venture.revenue} revenue</span>
+              </div>
+              <p className="mt-2 text-[0.85rem] leading-[1.55] text-background/65">{venture.body}</p>
+            </article>
+          ))}
         </div>
 
         <div ref={foundersGridRef}>
