@@ -1036,7 +1036,7 @@ function FounderStoriesGallery() {
             <Reveal delay={0.05}>
               <h2 className="mt-5 max-w-[20ch] text-[clamp(1.8rem,4.2vw,3.6rem)] font-light leading-[1.08]">
                 Nine founders.{" "}
-                <span className="font-serif-italic !font-serif !font-light text-background/80">Nine first moves.</span>
+                <span className="font-serif-italic !font-serif !font-light !text-background/70">Nine first moves.</span>
               </h2>
             </Reveal>
           </div>
@@ -1067,7 +1067,8 @@ function FounderStoriesGallery() {
         ref={trackRef}
         tabIndex={0}
         aria-label="Founder stories"
-        className="mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth px-5 pb-6 [scrollbar-width:none] sm:mt-12 sm:px-8 md:mt-14 [&::-webkit-scrollbar]:hidden lg:px-[max(2rem,calc((100vw-80rem)/2+2rem))]"
+        className="mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-6 [scrollbar-width:none] sm:mt-12 md:mt-14 [&::-webkit-scrollbar]:hidden"
+        style={{ paddingInline: "max(1.25rem, calc((100vw - 80rem) / 2 + 2rem))", scrollPaddingInline: "max(1.25rem, calc((100vw - 80rem) / 2 + 2rem))" }}
       >
         {SPARK_EXAMPLES.map((story, i) => {
           const media = STORY_MEDIA[story.name] ?? {};
