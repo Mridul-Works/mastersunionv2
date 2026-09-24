@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AnimatePresence, motion, useMotionValue, useReducedMotion, useTransform } from "framer-motion";
 import {
+  ArrowLeft,
   ArrowRight,
   ArrowUpRight,
   Download,
@@ -977,6 +978,152 @@ function KeyMetrics({ dominant, supporting, dark = false }: { dominant: Metric; 
         </div>
       ))}
     </div>
+  );
+}
+
+const STORY_MEDIA: Record<string, { image?: string; logo?: string }> = {
+  Eight: { image: eightVentureImg.url, logo: ventureEightLogo.url },
+  Bullspree: { image: bullspreeVentureImg.url, logo: ventureBullspreeLogo.url },
+  PlaySuper: { image: playsuperVentureImg.url, logo: venturePlaysuperLogo.url },
+  "Hive School": { image: hiveschoolVentureImg.url, logo: ventureHiveschoolLogo.url },
+  SeedsAI: { image: seedsaiVentureImg.url, logo: ventureSeedsAILogo.url },
+  MemoTag: { logo: sharkMemoTagLogo.url },
+  "Meta Fashion": { logo: sharkMetaFashionLogo.url },
+};
+
+function FounderStoriesGallery() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
+  const total = SPARK_EXAMPLES.length;
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const update = () => {
+      const max = el.scrollWidth - el.clientWidth;
+      setProgress(max > 0 ? el.scrollLeft / max : 0);
+      setAtStart(el.scrollLeft <= 4);
+      setAtEnd(el.scrollLeft >= max - 4);
+    };
+    update();
+    el.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      el.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  const step = (dir: 1 | -1) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-story-card]");
+    const amount = card ? card.offsetWidth + 20 : el.clientWidth * 0.8;
+    el.scrollBy({ left: dir * amount, behavior: "smooth" });
+  };
+
+  return (
+    <section id="founder-stories" className="relative overflow-x-clip bg-foreground py-20 text-background sm:py-24 md:py-28">
+      <span aria-hidden className="absolute left-[6%] right-[6%] top-0 h-px bg-background/15" />
+      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <Reveal>
+              <Eyebrow>Founder Stories · {String(total).padStart(2, "0")} Ventures</Eyebrow>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="mt-5 max-w-[20ch] text-[clamp(1.8rem,4.2vw,3.6rem)] font-light leading-[1.08]">
+                Nine founders.{" "}
+                <span className="font-serif-italic !font-serif !font-light !text-background/70">Nine first moves.</span>
+              </h2>
+            </Reveal>
+          </div>
+          <Reveal delay={0.1} className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => step(-1)}
+              disabled={atStart}
+              aria-label="Previous story"
+              className="flex size-12 items-center justify-center rounded-full border border-background/25 text-background transition-colors hover:bg-background hover:text-foreground disabled:pointer-events-none disabled:opacity-30"
+            >
+              <ArrowLeft className="size-4" strokeWidth={1.5} />
+            </button>
+            <button
+              type="button"
+              onClick={() => step(1)}
+              disabled={atEnd}
+              aria-label="Next story"
+              className="flex size-12 items-center justify-center rounded-full border border-background/25 text-background transition-colors hover:bg-background hover:text-foreground disabled:pointer-events-none disabled:opacity-30"
+            >
+              <ArrowRight className="size-4" strokeWidth={1.5} />
+            </button>
+          </Reveal>
+        </div>
+      </div>
+
+      <div
+        ref={trackRef}
+        tabIndex={0}
+        aria-label="Founder stories"
+        className="mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-6 [scrollbar-width:none] sm:mt-12 md:mt-14 [&::-webkit-scrollbar]:hidden"
+        style={{ paddingInline: "max(1.25rem, calc((100vw - 80rem) / 2 + 2rem))", scrollPaddingInline: "max(1.25rem, calc((100vw - 80rem) / 2 + 2rem))" }}
+      >
+        {SPARK_EXAMPLES.map((story, i) => {
+          const media = STORY_MEDIA[story.name] ?? {};
+          const image = media.image ?? story.founderImage;
+          return (
+            <article
+              key={story.name}
+              data-story-card
+              className="group relative flex w-[82vw] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-background/15 bg-background/[0.03] sm:w-[360px] lg:w-[400px]"
+            >
+              <div className="relative aspect-[4/5] overflow-hidden">
+                {image ? (
+                  <img
+                    src={image}
+                    alt={`${story.name} — ${story.founder}`}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
+                ) : (
+                  <Placeholder kind="image" aspect="h-full" note={story.name} className="!border-0" />
+                )}
+                <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/30 to-transparent" />
+                <span className="absolute left-5 top-5 font-mono text-[11px] tracking-[0.28em] text-background/70">
+                  {String(i + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+                </span>
+                {media.logo && (
+                  <span className="absolute right-5 top-5 flex size-11 items-center justify-center overflow-hidden rounded-full bg-background p-1.5">
+                    <img src={media.logo} alt={`${story.name} logo`} className="h-full w-full object-contain" />
+                  </span>
+                )}
+                <div className="absolute inset-x-5 bottom-5">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-background/60">{story.product}</p>
+                  <h3 className="mt-2 text-[1.75rem] leading-none">{story.name}</h3>
+                </div>
+              </div>
+              <div className="flex flex-1 flex-col gap-5 p-5 sm:p-6">
+                <p className="text-[14px] leading-[1.65] text-background/75">{story.body}</p>
+                <p className="mt-auto border-t border-background/10 pt-4 text-[12px] text-background/55">
+                  {story.founder} <span className="text-background/30">—</span> {story.cohort}
+                </p>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      <div className="mx-auto mt-6 max-w-7xl px-5 sm:px-8">
+        <div className="h-px w-full bg-background/10">
+          <div
+            className="h-px bg-gradient-to-r from-sky-400 via-yellow-300 to-orange-400 transition-[width] duration-150"
+            style={{ width: `${Math.max(8, progress * 100)}%` }}
+          />
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -3332,140 +3479,8 @@ function StartupsPage() {
       <VipSection />
       <VenturesMosaicSection />
 
-      <Section id="eight" tone="dark">
-        <Reveal>
-          <Eyebrow dark>Chapter 01 · MU Whiteboards to 5M+ Downloads</Eyebrow>
-        </Reveal>
-        <Reveal delay={0.04}>
-          <div className="mt-4 flex items-center gap-3">
-            <LogoBadge src={VENTURE_IMAGES.Eight} alt="Eight logo" dark />
-            <FounderLine names="Mohit Paliwal · Mohit Goswami · Yugal Tamang" cohort="PGP TBM 2021" dark />
-          </div>
-        </Reveal>
-        <Reveal delay={0.06}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.8rem,4.2vw,3.6rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
-            What if the next big creator wasn&apos;t on camera?
-          </h2>
-        </Reveal>
-        <Reveal delay={0.09}>
-          <ChapterChips labels={EIGHT_BEATS.map((b) => b.stage)} dark />
-        </Reveal>
-        <div className="relative mt-8 grid grid-cols-1 gap-8 sm:mt-10 sm:gap-10 md:mt-12 md:grid-cols-[1fr_0.85fr] md:items-start md:gap-10 lg:gap-12">
-          <span
-            aria-hidden
-            className="pointer-events-none absolute -top-16 -left-2 select-none text-[6rem] font-bold leading-none text-background/[0.035] md:text-[9rem]"
-          >
-            01
-          </span>
-          <StoryBeats beats={EIGHT_BEATS} dark />
-          <div className="md:sticky md:top-24">
-            <Reveal delay={0.1}>
-              <Placeholder kind="image" src={VENTURE_IMAGES.Eight} alt="Eight" aspect="aspect-[3/2]" dark />
-            </Reveal>
-          </div>
-        </div>
-        <MediaRail labels={["The first whiteboard", "Recording the pilot", "The founding team", "Five million downloads"]} />
-        <Reveal delay={0.1} className="mt-12 border-t border-background/10 pt-8">
-          <KeyMetrics
-            dark
-            dominant={{ value: "5M+", label: "Downloads" }}
-            supporting={[
-              { value: "750K+", label: "Monthly active users" },
-              { value: "80,000+", label: "Paid subscribers" },
-            ]}
-          />
-        </Reveal>
-      </Section>
+      <FounderStoriesGallery />
 
-      <Section id="bambaii" tone="light">
-        <Reveal>
-          <Eyebrow>Chapter 20 · From Dorm Room Experiment to India&apos;s Favorite Guilt-Free Snack</Eyebrow>
-        </Reveal>
-        <Reveal delay={0.04}>
-          <div className="mt-4 flex items-center gap-3">
-            <LogoBadge />
-            <FounderLine names="Gaurav Dasgupta" cohort="PGP TBM 2025" />
-          </div>
-        </Reveal>
-        <Reveal delay={0.06}>
-          <h2 className="font-serif-italic mt-5 max-w-[28ch] text-balance text-[clamp(1.8rem,4.2vw,3.6rem)] !font-serif !font-light leading-[1.04] !text-transparent" style={{ backgroundImage: "linear-gradient(100deg, oklch(0.75 0.15 215), oklch(0.88 0.18 95) 53%, oklch(0.65 0.22 45))", WebkitBackgroundClip: "text", backgroundClip: "text" }}>
-            &ldquo;Ek haath se becho, dusre haath se paise lo.&rdquo;
-          </h2>
-        </Reveal>
-        <Reveal delay={0.09}>
-          <ChapterChips labels={BAMBAII_BEATS.map((b) => b.stage)} />
-        </Reveal>
-        <div className="relative mt-8 grid grid-cols-1 gap-9 sm:mt-10 sm:gap-10 md:mt-12 md:grid-cols-[0.85fr_1fr] md:items-start md:gap-10 lg:gap-12">
-          <span
-            aria-hidden
-            className="pointer-events-none absolute -top-16 right-0 select-none text-[6rem] font-bold leading-none text-background/[0.035] md:text-[9rem]"
-          >
-            20
-          </span>
-          <Reveal delay={0.1}>
-            <div className="grid grid-cols-2 gap-3">
-              {["Dorm-room batch", "Product detail", "Packing orders", "Customer tasting"].map((label, index) => (
-                <div key={label} className={index % 2 ? "translate-y-8" : ""}>
-                  <Placeholder kind="image" aspect="aspect-[4/5]" note={label} />
-                </div>
-              ))}
-            </div>
-          </Reveal>
-          <StoryBeats beats={BAMBAII_BEATS} />
-        </div>
-        <Reveal delay={0.1} className="mt-12 border-t border-background/10 pt-8">
-          <KeyMetrics
-            dominant={{ value: "₹50L", label: "ARR" }}
-            supporting={[
-              { value: "5,000+", label: "Customers" },
-              { value: "₹1.2Cr", label: "Projected revenue" },
-            ]}
-          />
-        </Reveal>
-      </Section>
-
-      <Section id="eat-atlas" tone="dark">
-        <Reveal>
-          <Eyebrow dark>Chapter 27 · From Bland Chips to Bold Global Dips</Eyebrow>
-        </Reveal>
-        <Reveal delay={0.04}>
-          <div className="mt-4 flex items-center gap-3">
-            <LogoBadge dark />
-            <FounderLine names="Ishita Gupta · Anshul Gupta · Mayuresh Jadhav" cohort="PGP TBM 2024" dark />
-          </div>
-        </Reveal>
-        <Reveal delay={0.06}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.8rem,4.2vw,3.6rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
-            One bland chip. Three founders who couldn&apos;t stop thinking about it.
-          </h2>
-        </Reveal>
-        <Reveal delay={0.09}>
-          <ChapterChips labels={EATATLAS_BEATS.map((b) => b.stage)} dark />
-        </Reveal>
-        <Reveal delay={0.1} className="mt-10">
-          <span
-            aria-hidden
-            className="mb-3 block select-none text-[3.5rem] font-bold leading-none text-background/15 md:text-[4.5rem]"
-          >
-            27
-          </span>
-          <Placeholder kind="image" aspect="aspect-[21/9]" dark note="Product photography / pop-up event" />
-        </Reveal>
-        <MediaRail labels={["The bland chip", "Flavour trials", "Pop-up counter", "First sold-out batch"]} />
-        <div className="mt-9 sm:mt-11 md:mt-12 md:columns-2 md:gap-x-10 lg:gap-x-12">
-          <StoryBeats beats={EATATLAS_BEATS} dark />
-        </div>
-        <Reveal delay={0.1} className="mt-12 border-t border-background/10 pt-8">
-          <KeyMetrics
-            dark
-            dominant={{ value: "₹80L", label: "ARR" }}
-            supporting={[
-              { value: "₹15L", label: "Raised" },
-              { value: "₹2Cr", label: "Projected FY26" },
-            ]}
-          />
-        </Reveal>
-      </Section>
 
       <Section id="sharktank" tone="dark">
         <Reveal>
