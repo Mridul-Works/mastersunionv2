@@ -1245,8 +1245,12 @@ function SparkCarousel({
         <div className="-mt-12 w-full pt-0 sm:-mt-20 sm:pt-1 md:-mt-28 md:pt-2 lg:-mt-40">
           <div className="grid grid-cols-[minmax(0,1fr)_minmax(72px,0.28fr)_minmax(0,1fr)] items-stretch gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(120px,0.3fr)_minmax(0,1fr)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(180px,0.36fr)_minmax(0,1fr)] md:gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(240px,0.4fr)_minmax(0,1fr)] lg:gap-10">
             <div className="flex flex-col justify-center">
-              <div className="eyebrow mb-2 text-center text-background/45 sm:mb-3">
-                {company.founder} — {company.cohort}
+              <div className="eyebrow mb-2 grid text-center text-background/45 sm:mb-3">
+                {companies.map((item, index) => (
+                  <span key={item.name} aria-hidden={index !== active} className={`col-start-1 row-start-1 self-end ${index === active ? "visible" : "invisible"}`}>
+                    {item.founder} — {item.cohort}
+                  </span>
+                ))}
               </div>
               <div className="relative overflow-hidden rounded-[6px]">
                 <motion.div
@@ -1296,8 +1300,12 @@ function SparkCarousel({
             </div>
 
             <div className="flex flex-col justify-center">
-              <div className="eyebrow mb-2 text-center text-background/45 sm:mb-3">
-                {company.product}
+              <div className="eyebrow mb-2 grid text-center text-background/45 sm:mb-3">
+                {companies.map((item, index) => (
+                  <span key={item.name} aria-hidden={index !== active} className={`col-start-1 row-start-1 self-end ${index === active ? "visible" : "invisible"}`}>
+                    {item.product}
+                  </span>
+                ))}
               </div>
               <div className="relative overflow-hidden rounded-[6px]">
                 <motion.div
@@ -1318,13 +1326,21 @@ function SparkCarousel({
           </div>
 
           <div className="mx-auto mt-2.5 max-w-5xl border-t border-background/15 pt-8 text-center sm:mt-4 sm:pt-10">
-            <div className="mx-auto max-w-4xl rounded-[6px] border border-background/15 bg-background/[0.03] px-5 py-4 sm:px-8 sm:py-5">
-              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-background/50">
-                {company.founder}
-              </div>
-              <p className="mx-auto mt-2.5 text-[0.98rem] leading-[1.6] text-background/70 sm:mt-3 md:text-[1.05rem] md:leading-[1.65]">
-                {company.body}
-              </p>
+            <div className="mx-auto grid max-w-4xl rounded-[6px] border border-background/15 bg-background/[0.03] px-5 py-4 sm:px-8 sm:py-5">
+              {companies.map((item, index) => (
+                <div
+                  key={item.name}
+                  aria-hidden={index !== active}
+                  className={`col-start-1 row-start-1 flex flex-col justify-center ${index === active ? "visible" : "invisible"}`}
+                >
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-background/50">
+                    {item.founder}
+                  </div>
+                  <p className="mx-auto mt-2.5 text-[0.98rem] leading-[1.6] text-background/70 sm:mt-3 md:text-[1.05rem] md:leading-[1.65]">
+                    {item.body}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
