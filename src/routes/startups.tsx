@@ -2303,7 +2303,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
           initial={reduceMotion ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: reduceMotion ? 0 : 0.55, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: reduceMotion ? 0 : 0.28, ease: [0.22, 1, 0.36, 1] }}
           className="absolute inset-0 grid md:grid-cols-[minmax(0,1.7fr)_minmax(19rem,0.8fr)]"
         >
           <div className="relative min-h-0 overflow-hidden">
@@ -2314,7 +2314,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
               initial={reduceMotion ? false : { scale: 1.08, x: direction * 28 }}
               animate={{ scale: 1, x: 0 }}
               exit={reduceMotion ? undefined : { scale: 1.03, x: direction * -18 }}
-              transition={{ duration: reduceMotion ? 0 : 0.9, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: reduceMotion ? 0 : 0.55, ease: [0.22, 1, 0.36, 1] }}
             />
             <div aria-hidden className="absolute inset-0 bg-linear-to-t from-foreground/90 via-foreground/10 to-foreground/35 md:bg-linear-to-r md:from-foreground/20 md:via-transparent md:to-foreground/35" />
             <div className="absolute inset-x-5 top-5 flex items-start justify-between text-background sm:inset-x-7 sm:top-7 lg:inset-x-10 lg:top-9">
@@ -2329,7 +2329,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
               className="absolute bottom-1 left-3 font-serif-italic text-[clamp(9rem,22vw,20rem)] leading-none text-background/12 sm:left-6"
               initial={reduceMotion ? false : { opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reduceMotion ? 0 : 0.75 }}
+              transition={{ duration: reduceMotion ? 0 : 0.45 }}
             >
               {stage.n}
             </motion.span>
@@ -2339,7 +2339,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
             <motion.div
               initial={reduceMotion ? false : { opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reduceMotion ? 0 : 0.55, delay: reduceMotion ? 0 : 0.12 }}
+              transition={{ duration: reduceMotion ? 0 : 0.35, delay: reduceMotion ? 0 : 0.08 }}
             >
               <div className="flex items-center gap-2 font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-foreground/55">
                 <span className={`size-1.5 rounded-full ${stage.culmination ? "bg-accent" : "bg-primary"}`} />
