@@ -1146,6 +1146,28 @@ function SparkCarousel({
     setVideoModalOpen(true);
   };
 
+  // "Building Starts Here" muted highlight loop: mirror the hero video's
+  // play-readiness handling so autoplay survives browser policy quirks.
+  const bsHighlightRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const el = bsHighlightRef.current;
+    if (!el) return;
+    el.muted = true;
+    el.defaultMuted = true;
+    const tryPlay = () => {
+      void el.play().catch(() => {});
+    };
+    tryPlay();
+    el.addEventListener("loadeddata", tryPlay);
+    el.addEventListener("canplay", tryPlay);
+    document.addEventListener("pointerdown", tryPlay, { once: true });
+    return () => {
+      el.removeEventListener("loadeddata", tryPlay);
+      el.removeEventListener("canplay", tryPlay);
+      document.removeEventListener("pointerdown", tryPlay);
+    };
+  }, []);
+
   useEffect(() => {
     lastActiveRef.current = active;
   }, [active]);
@@ -1424,9 +1446,7 @@ function SparkCarousel({
                     preload="auto"
                     tabIndex={-1}
                     aria-hidden="true"
-                    onCanPlay={(e) => {
-                      void e.currentTarget.play().catch(() => {});
-                    }}
+                    ref={bsHighlightRef}
                     className="pointer-events-none absolute inset-0 block h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                   >
                     <source src={bsHighlightVideo} type="video/mp4" />
