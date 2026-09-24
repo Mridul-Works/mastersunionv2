@@ -2001,7 +2001,7 @@ function DropshippingSection() {
   };
 
   return (
-    <Section id="dropshipping" tone="light">
+    <Section id="dropshipping" tone="light" tightBottom>
       <div aria-hidden className="spectrum-rule pointer-events-none absolute left-[6%] right-[6%] top-0 z-[2] h-px" />
       <div className="grid gap-8 sm:gap-10 lg:grid-cols-12 lg:items-end">
         <div className="lg:col-span-7">
