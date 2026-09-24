@@ -155,9 +155,9 @@ const DROPSHIPPING_VIDEOS: {
 ];
 
 const DROPSHIPPING_STATS = [
-  { value: "₹10Cr+", label: "Revenue generated", dominant: true },
-  { value: "500+", label: "Students participated" },
-  { value: "150+", label: "Businesses built" },
+  { value: "₹10Cr+", label: "Revenue generated", sub: "By student-run ventures" },
+  { value: "500+", label: "Students participated", sub: "Across the challenge" },
+  { value: "150+", label: "Businesses built", sub: "From first sale to scale" },
 ];
 
 const DROPSHIPPING_TOP = [
