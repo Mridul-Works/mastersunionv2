@@ -2336,17 +2336,9 @@ function VipJourney({ stages }: { stages: Stage[] }) {
               </div>
               <h3 className="mt-5 max-w-[9ch] font-serif-italic text-[clamp(2.8rem,5vw,5.7rem)] font-light leading-[0.88] text-foreground">{stage.name}</h3>
               <p className="mt-6 max-w-[34ch] text-[13px] leading-[1.65] text-foreground/65 sm:text-[14px] lg:mt-8 lg:text-[15px] lg:leading-[1.75]">{stage.body}</p>
-              <div className="mt-7 flex min-h-10 items-end gap-8 border-t border-foreground/15 pt-4 lg:mt-9">
-                <div>
-                  <span className="block font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/40">Milestone</span>
-                  <span className="mt-1 block text-[13px] font-medium text-foreground">{stage.culmination ? "Investor showcase" : "Stage validation"}</span>
-                </div>
-                {stage.grant ? (
-                  <div>
-                    <span className="block font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/40">Grant</span>
-                    <span className="mt-1 block text-[13px] font-medium text-foreground">{stage.grant}</span>
-                  </div>
-                ) : null}
+              <div className="mt-7 min-h-10 border-t border-foreground/15 pt-4 lg:mt-9">
+                <span className="block font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/40">{stage.grant ? "Grant" : "Investors in the room"}</span>
+                <span className="mt-1 block text-[13px] font-medium text-foreground">{stage.grant ?? "150+"}</span>
               </div>
             </motion.div>
 
