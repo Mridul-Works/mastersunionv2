@@ -1245,7 +1245,7 @@ function SparkCarousel({
         <div className="-mt-12 w-full pt-0 sm:-mt-20 sm:pt-1 md:-mt-28 md:pt-2 lg:-mt-40">
           <div className="grid grid-cols-[minmax(0,1fr)_minmax(72px,0.28fr)_minmax(0,1fr)] items-stretch gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(120px,0.3fr)_minmax(0,1fr)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(180px,0.36fr)_minmax(0,1fr)] md:gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(240px,0.4fr)_minmax(0,1fr)] lg:gap-10">
             <div className="flex flex-col justify-center">
-              <div className="eyebrow mb-2 grid text-center text-background/45 sm:mb-3">
+              <div className="eyebrow mb-2 grid min-h-[2.75rem] text-center text-background/45 sm:mb-3 sm:min-h-[3rem]">
                 {companies.map((item, index) => (
                   <span key={item.name} aria-hidden={index !== active} className={`col-start-1 row-start-1 self-end ${index === active ? "visible" : "invisible"}`}>
                     {item.founder} — {item.cohort}
@@ -1300,7 +1300,7 @@ function SparkCarousel({
             </div>
 
             <div className="flex flex-col justify-center">
-              <div className="eyebrow mb-2 grid text-center text-background/45 sm:mb-3">
+              <div className="eyebrow mb-2 grid min-h-[2.75rem] text-center text-background/45 sm:mb-3 sm:min-h-[3rem]">
                 {companies.map((item, index) => (
                   <span key={item.name} aria-hidden={index !== active} className={`col-start-1 row-start-1 self-end ${index === active ? "visible" : "invisible"}`}>
                     {item.product}
