@@ -2067,26 +2067,6 @@ function DropshippingSection() {
         </div>
       </div>
 
-      <Reveal delay={0.18} className="mt-7 sm:mt-9">
-        <div className="overflow-hidden rounded-2xl border border-background/15 bg-background/[0.03]">
-          <div className="grid grid-cols-1 divide-y divide-background/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-            {DROPSHIPPING_STATS.map((stat) => (
-              <div key={stat.label} className="min-h-[7.5rem] px-5 py-6 sm:min-h-[8.5rem] sm:px-8 sm:py-7">
-                <div className="font-display text-[clamp(1.9rem,3vw,2.6rem)] font-normal leading-none tracking-[-0.01em]">
-                  {stat.value}
-                </div>
-                <div className="mt-3 font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-background/60 sm:text-[10px]">
-                  {stat.label}
-                </div>
-                <div className="mt-1.5 text-[11px] leading-snug text-background/45 sm:text-[12px]">
-                  {stat.sub}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </Reveal>
-
       <div className="mt-12 border-t border-background/10 pt-8 sm:mt-16">
         <div className="mb-4 flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
           <div>
