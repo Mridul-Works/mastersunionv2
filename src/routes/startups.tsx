@@ -1268,7 +1268,7 @@ function SparkCarousel({
         className="relative mt-5 sm:mt-7 md:mt-8"
         style={{ height: `${count * 100}svh` }}
       >
-        <div ref={stickyRef} className="sticky top-0 flex min-h-[100svh] items-center overflow-hidden pt-4 pb-5 md:pt-5 md:pb-6 lg:pt-8 lg:pb-8">
+        <div ref={stickyRef} className="sticky top-0 flex min-h-[100svh] items-end overflow-hidden pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+72px)] md:pt-5 md:pb-[76px] lg:pt-8 lg:pb-[76px]">
         <div className="w-full pt-0 sm:pt-1 md:pt-2 lg:pt-0">
           <div className="grid grid-cols-[minmax(0,1fr)_minmax(72px,0.28fr)_minmax(0,1fr)] items-stretch gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(120px,0.3fr)_minmax(0,1fr)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(180px,0.36fr)_minmax(0,1fr)] md:gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(240px,0.4fr)_minmax(0,1fr)] lg:gap-10">
             <div className="flex flex-col justify-center">
