@@ -1743,7 +1743,50 @@ function DropshippingSection() {
   const [, setActiveVideo] = useState(0);
   const collageRef = useRef<HTMLDivElement | null>(null);
   const videoCardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const foundersGridRef = useRef<HTMLDivElement | null>(null);
   const prefersReducedMotion = useReducedMotion();
+
+  // One observer on the founders mosaic drives a single staggered reveal.
+  useEffect(() => {
+    const grid = foundersGridRef.current;
+    if (!grid) return;
+    const tiles = Array.from(grid.querySelectorAll<HTMLElement>("[data-tile]"));
+    if (tiles.length === 0) return;
+
+    if (prefersReducedMotion || typeof IntersectionObserver === "undefined") return;
+
+    let cancelled = false;
+    let ctx: { revert: () => void } | null = null;
+
+    void import("gsap").then(({ gsap }) => {
+      if (cancelled) return;
+      ctx = gsap.context(() => {
+        gsap.set(tiles, { autoAlpha: 0, y: 26 });
+        const io = new IntersectionObserver(
+          (entries) => {
+            if (!entries.some((e) => e.isIntersecting)) return;
+            io.disconnect();
+            gsap.to(tiles, {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.75,
+              ease: "power3.out",
+              stagger: { each: 0.055 },
+              clearProps: "transform,opacity,visibility",
+            });
+          },
+          { threshold: 0.08, rootMargin: "0px 0px -6% 0px" },
+        );
+        io.observe(grid);
+      }, grid);
+    });
+
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
+  }, [prefersReducedMotion]);
+
 
   useEffect(() => {
     const geometry = { top: 0, height: 1, w0: 0, h0: 0, center0: 0, containerH: 0, ws: 0, hs: 0 };
@@ -2044,32 +2087,82 @@ function DropshippingSection() {
         </div>
       </Reveal>
 
-      <div className="mt-12 flex items-end justify-between gap-4 sm:mt-14">
-        <Reveal>
+      <div className="mt-12 border-t border-background/10 pt-8 sm:mt-16">
+        <div className="mb-4 flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
           <div>
-            <div className="eyebrow text-background/55">Then I put it in front of real people.</div>
-            <h3 className="mt-3 text-[clamp(1.4rem,2.8vw,2.2rem)] font-medium">Selected student ventures</h3>
+            <p className="font-mono text-[9px] uppercase tracking-[0.28em] text-background/40 sm:text-[10px]">
+              Student ventures · funding board
+            </p>
+            <h3 className="mb-3 mt-1.5 font-display text-[clamp(1.7rem,4vw,2.9rem)] font-medium leading-[1.02] tracking-[-0.03em] sm:mb-5 sm:mt-2">
+              Founders{" "}
+              <em className="font-serif-italic font-light">in the making</em>
+            </h3>
           </div>
-        </Reveal>
-        <span className="hidden font-mono text-[9px] uppercase tracking-[0.2em] text-background/35 sm:block">Swipe to explore</span>
-      </div>
+          <a
+            href="#portfolio"
+            className="inline-flex items-center gap-2 rounded-full border border-background/20 px-3 py-1.5 text-[10px] font-semibold tracking-[0.02em] text-background/85 transition-colors hover:bg-background hover:text-foreground"
+          >
+            See All Ventures <ArrowRight className="size-3" />
+          </a>
+        </div>
 
-      <div className="-mx-4 mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-3 sm:-mx-7 sm:px-7 md:-mx-8 md:px-8 lg:-mx-12 lg:px-12 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {DROPSHIPPING_TOP.map((venture, index) => (
-          <Reveal key={venture.name} delay={index * 0.04} className="w-[82vw] max-w-[400px] shrink-0 snap-start sm:w-[50vw] lg:w-[33vw]">
-            <article className="group h-full border-t border-background/20 pt-4">
-              <Placeholder kind="image" aspect="aspect-[4/5]" note={`${venture.name} — product detail`} className="rounded-[6px]" />
-              <div className="mt-5 flex items-start gap-3">
-                <LogoBadge size="size-9" />
-                <div className="min-w-0">
-                  <h3 className="text-[1rem] font-medium">{venture.name}</h3>
-                  <div className="mt-1 font-mono text-[9px] uppercase tracking-[0.18em] text-background/50">{venture.revenue} revenue</div>
-                  <p className="mt-3 text-[0.88rem] leading-[1.6] text-background/68">{venture.body}</p>
+        <div ref={foundersGridRef}>
+          {/* Mobile + tablet masonry keeps variable-height cards tightly packed. */}
+          <div className="columns-3 gap-[3px] sm:columns-4 xl:hidden">
+            {FOUNDER_TILES.map((t, i) => {
+              const ratio = MOSAIC_RATIOS[i % MOSAIC_RATIOS.length];
+              if ("kind" in t && t.kind === "cta") {
+                return (
+                  <div key="cta-startups-mobile" data-tile className="mb-[3px] inline-block w-full break-inside-avoid align-top">
+                    <VentureCtaTile t={t} ratio={ratio} />
+                  </div>
+                );
+              }
+              if ("kind" in t) {
+                return (
+                  <div key={`mobile-stat-${t.value}`} data-tile className="mb-[3px] inline-block w-full break-inside-avoid align-top">
+                    <StatPoster s={t} ratio={ratio} />
+                  </div>
+                );
+              }
+              return (
+                <div key={`mobile-${t.company}`} data-tile className="mb-[3px] inline-block w-full break-inside-avoid align-top">
+                  <FounderPoster v={t} ratio={ratio} />
                 </div>
+              );
+            })}
+          </div>
+
+          {/* Desktop brand mosaic — explicit equal-width columns fill the row edge to edge. */}
+          <div className="hidden grid-cols-5 gap-[3px] xl:grid">
+            {FOUNDER_COLUMNS.map((col, c) => (
+              <div key={c} className="flex flex-col gap-[3px]">
+                {col.map(({ tile: t, index: i }) => {
+                  const ratio = MOSAIC_RATIOS[(i + c) % MOSAIC_RATIOS.length];
+                  if ("kind" in t && t.kind === "cta") {
+                    return (
+                      <div key="cta-startups" data-tile>
+                        <VentureCtaTile t={t} ratio={ratio} />
+                      </div>
+                    );
+                  }
+                  if ("kind" in t) {
+                    return (
+                      <div key={`stat-${t.value}`} data-tile>
+                        <StatPoster s={t} ratio={ratio} />
+                      </div>
+                    );
+                  }
+                  return (
+                    <div key={t.company} data-tile>
+                      <FounderPoster v={t} ratio={ratio} />
+                    </div>
+                  );
+                })}
               </div>
-            </article>
-          </Reveal>
-        ))}
+            ))}
+          </div>
+        </div>
       </div>
       {typeof document !== "undefined" &&
         createPortal(
