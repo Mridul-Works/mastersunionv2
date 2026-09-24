@@ -2156,6 +2156,9 @@ function DropshippingSection() {
               </div>
             ))}
           </div>
+
+          {/* Main divider rule under the ventures collage */}
+          <div aria-hidden className="spectrum-rule pointer-events-none mx-[6%] mt-16 h-px sm:mt-20 lg:mt-24" />
         </div>
       </div>
       {typeof document !== "undefined" &&
