@@ -981,146 +981,613 @@ function KeyMetrics({ dominant, supporting, dark = false }: { dominant: Metric; 
   );
 }
 
-const STORY_MEDIA: Record<string, { image?: string; logo?: string }> = {
-  Eight: { image: eightVentureImg.url, logo: ventureEightLogo.url },
-  Bullspree: { image: bullspreeVentureImg.url, logo: ventureBullspreeLogo.url },
-  PlaySuper: { image: playsuperVentureImg.url, logo: venturePlaysuperLogo.url },
-  "Hive School": { image: hiveschoolVentureImg.url, logo: ventureHiveschoolLogo.url },
-  SeedsAI: { image: seedsaiVentureImg.url, logo: ventureSeedsAILogo.url },
-  MemoTag: { logo: sharkMemoTagLogo.url },
-  "Meta Fashion": { logo: sharkMetaFashionLogo.url },
+
+type StoryBeat = { stage: string; body: string };
+
+type FounderChapter = {
+  name: string;
+  lines: string[];
+  product: string;
+  founder: string;
+  cohort: string;
+  lede: string;
+  beats: StoryBeat[];
+  metric: Metric;
+  supporting: Metric[];
+  image?: string;
+  logo?: string;
 };
 
-function FounderStoriesGallery() {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] = useState(0);
-  const [atStart, setAtStart] = useState(true);
-  const [atEnd, setAtEnd] = useState(false);
-  const total = SPARK_EXAMPLES.length;
+const FOUNDER_CHAPTERS: FounderChapter[] = [
+  {
+    name: "Eight",
+    lines: ["Eight"],
+    product: "The Stage for Stories",
+    founder: "Mohit Paliwal, Mohit Goswami & Yugal Tamang",
+    cohort: "PGP TBM 2021",
+    lede: "A live-audio platform for people with stories and no interest in being seen — rebuilt, twice, into a microdrama studio.",
+    beats: [
+      {
+        stage: "Idea",
+        body: "It started at a long cafeteria table at Masters' Union with a question rather than a business plan: what if the next big creator wasn't on camera? Yugal Tamang, Mohit Paliwal and Mohit Goswami had noticed that not everyone wants to be seen, but everyone has a story worth telling.",
+      },
+      {
+        stage: "Early Build",
+        body: "While the rest of their cohort chased summer placements, the trio pulled engineering favours from their undergrad networks and used MU's Startup VIP programme to get a prototype off the ground — whiteboards, wireframes and cafeteria debates.",
+      },
+      {
+        stage: "Testing",
+        body: "They launched inside their own 60-member batch: no frills, just a product built on conviction. Users tuned in, shows got made, feedback arrived instantly, and audio felt social and live for the first time.",
+      },
+      {
+        stage: "Traction",
+        body: "Venture Highway came in with a $400K seed round and the side hustle became a startup, run out of an eight-by-eight-foot coworking space in Bangalore. The platform grew to 5M+ downloads, 750K+ monthly active users and 80,000+ subscribers paying ₹99 a month.",
+      },
+      {
+        stage: "Pivot",
+        body: "In early 2025 Gen Z attention had moved to one-minute episodic stories built for the scroll. In 14 weeks the team shipped 20 original microdrama series, brought in 500K+ users and crossed $1M+ ARR.",
+      },
+      {
+        stage: "Outcome",
+        body: "Eight is now a mobile-first storytelling company with a creator ecosystem behind it: ₹13 Cr+ ARR, ₹27 Cr raised, 20 employees and ₹43.7 Cr+ projected for FY26. The belief that never changed is that authentic stories find an audience.",
+      },
+    ],
+    metric: { value: "₹13 Cr+", label: "Annual recurring revenue" },
+    supporting: [
+      { value: "₹27 Cr", label: "Raised to date" },
+      { value: "5M+", label: "Downloads" },
+      { value: "750K+", label: "Monthly actives" },
+    ],
+    image: eightVentureImg.url,
+    logo: ventureEightLogo.url,
+  },
+  {
+    name: "Sanyark Space",
+    lines: ["Sanyark", "Space"],
+    product: "LEO Nav-Com Satellites",
+    founder: "Raghava Kundrapu & Akhileshwar Reddy",
+    cohort: "PGP TBM 2023",
+    lede: "Two ISRO veterans building India's own navigation-and-communications constellation.",
+    beats: [
+      {
+        stage: "Before",
+        body: "Raghava Kundrapu spent eight years as an ISRO scientist working across launch-vehicle integration, testing and launch operations for more than forty missions — PSLV, GSLV Mk II and Mk III, Chandrayaan-2, the human-spaceflight pad abort test and the reusable launch vehicle demonstrator.",
+      },
+      {
+        stage: "The Gap",
+        body: "After ISRO he spent three years advising on the space sector from Deloitte. A satellite-based tolling project showed him the ceiling of what exists today: metre-level accuracy from GPS or NavIC is simply not enough for machines that have to act on position.",
+      },
+      {
+        stage: "Co-founder",
+        body: "Akhileshwar Reddy brought the other half of the problem. An IIT Madras electrical engineer with close to fourteen years on GNSS receiver hardware, he had worked on NavIC at ISRO's Space Applications Centre — acquisition and tracking algorithms, interference mitigation, a NavIC L5-band RF ASIC, and standardisation work that carried NavIC into 3GPP and BIS.",
+      },
+      {
+        stage: "Build",
+        body: "Sanyark Space launched in November 2025 from T-Hub in Hyderabad: a constellation of software-defined LEO satellites that fuse positioning, navigation and timing with machine-to-machine communications on one payload, with phased-array antennas and on-board edge AI so the satellites can adapt in orbit.",
+      },
+      {
+        stage: "Testing",
+        body: "The first step is Mission Dhrona-1, unveiled on Independence Day 2026 as a technology-demonstration satellite: chip-scale atomic clocks from several vendors, both payloads flying on a single bus, and proof that the whole thing interoperates with existing GNSS. Testing opened in September 2026, with a launch on ISRO's SSLV targeted for early 2027.",
+      },
+      {
+        stage: "Backing",
+        body: "AUM Ventures wrote the first cheque of its India DeepSpark deeptech initiative — $500K, part of a $2M pre-seed round. The plan is forty satellites first, then two hundred and forty for global coverage.",
+      },
+    ],
+    metric: { value: "40", label: "Satellites in the first constellation" },
+    supporting: [
+      { value: "$2M", label: "Pre-seed round" },
+      { value: "240", label: "Planned at full scale" },
+      { value: "40+", label: "ISRO missions, co-founder" },
+    ],
+    logo: undefined,
+  },
+  {
+    name: "Mandrake Bio",
+    lines: ["Mandrake", "Bio"],
+    product: "AI-Designed Gene-Editing Enzymes",
+    founder: "Tanay Lohia",
+    cohort: "PGP TBM 2022",
+    lede: "Teaching a model to invent the enzymes that CRISPR never had.",
+    beats: [
+      {
+        stage: "Idea",
+        body: "Tanay Lohia calls himself a curious generalist. At Masters' Union he finished top three on the Dean's List and ran the student-run investment fund on a ₹5 crore corpus, while following a private obsession: he went down the rabbit hole of gene editing and proteins, and decided to build hypercompact editors from scratch.",
+      },
+      {
+        stage: "The Problem",
+        body: "Today's gene editors are borrowed from bacteria. They cut DNA with precision but are too large to deliver inside the body, and they can't perform the more complex edits — inserting a healthy gene, for instance — that most genetic disease actually needs. The cures that do exist work for a handful of conditions, cost a fortune, and only work by editing cells outside the body.",
+      },
+      {
+        stage: "Approach",
+        body: "Mandrake designs enzymes from first principles instead: protein language models fine-tuned on the company's own metagenomic database, an AI shortlist of candidate proteins, and a design-build-test-learn loop run in an in-house wet lab, with Dr Kutubuddin Molla, an ICAR plant-genome engineer, as scientific co-founder.",
+      },
+      {
+        stage: "Validation",
+        body: "The company entered a global protein-binder design competition run by GEM and Adaptyv as a stress test of its pipeline. Three internal teams submitted 21 designs, all 21 were selected for wet-lab validation, 20 expressed cleanly, and one bound its target at KD = 26 nM — the only design rated Strong across 322 experimentally tested entries.",
+      },
+      {
+        stage: "Funding",
+        body: "In July 2026 Mandrake raised ₹16 crore, about $1.9M, in a pre-seed round co-led by Activate and Antler India, with Spectrum Impact, DeVC and angels including biotech veteran Dr Vijay Chandru and Paras Chopra.",
+      },
+      {
+        stage: "Outcome",
+        body: "It is a ten-person company licensing designed enzymes to seed companies and genetic-therapy developers rather than building end products itself. The founder's framing for this stage: the chapter where they start writing biology, not just reading it.",
+      },
+    ],
+    metric: { value: "₹16 Cr", label: "Pre-seed, Activate & Antler India" },
+    supporting: [
+      { value: "26 nM", label: "Best binder affinity" },
+      { value: "21 / 21", label: "Designs sent to validation" },
+      { value: "10", label: "People" },
+    ],
+  },
+  {
+    name: "PlaySuper",
+    lines: ["PlaySuper"],
+    product: "Rewards for Casual Gamers",
+    founder: "Upamanyu Chatterjee & Shouradeep Chakraborty",
+    cohort: "PGP TBM 2024",
+    lede: "Two childhood friends, one broken retention metric, and a rewards layer for casual games.",
+    beats: [
+      {
+        stage: "Origin",
+        body: "Upamanyu Chatterjee and Shouradeep Chakraborty have been friends since kindergarten in Kolkata. At sixteen they built Mail Bloggi, an anonymous microblogging site for teenagers that reached 100K users and never made a rupee.",
+      },
+      {
+        stage: "First Exit",
+        body: "Upamanyu went on to a patented plastic-waste construction startup that exited at ₹15 crore turnover. Together the two built CollegeShala, an education platform for B.Com students that grew to 100K users, raised $250K in Singapore and was acquired by LectureNotes — after which the pair ran a 120-member team that included IIM and IIT veterans.",
+      },
+      {
+        stage: "Reset",
+        body: "The 2023 edtech crash forced layoffs. They arrived at Masters' Union with no next idea, only the certainty that they weren't finished building.",
+      },
+      {
+        stage: "Idea",
+        body: "They researched three spaces — domestic help, influencer marketing, gaming — and the numbers picked gaming for them. India had 438M casual gamers and Ludo King's 98% churn rate showed exactly how broken retention was.",
+      },
+      {
+        stage: "Build",
+        body: "PlaySuper pays players real-world incentives so studios can keep them without leaning on intrusive ads. The first validation arrived as a cold message to Ludo King's CMO, who now advises the company.",
+      },
+      {
+        stage: "Traction",
+        body: "The product launched in April 2024; $200K came in by June and $350K more in November. The company works with 14 gaming studios and 300+ brands from an eleven-person team that includes an ex-Microsoft, ex-TikTok CTO.",
+      },
+    ],
+    metric: { value: "300+", label: "Brand partners" },
+    supporting: [
+      { value: "14", label: "Gaming studios" },
+      { value: "$550K", label: "Raised" },
+      { value: "11", label: "Team members" },
+    ],
+    image: playsuperVentureImg.url,
+    logo: venturePlaysuperLogo.url,
+  },
+  {
+    name: "Bullspree",
+    lines: ["Bullspree"],
+    product: "The Stock Market Playground",
+    founder: "Dharmil Bavishi & co.",
+    cohort: "PGP TBM 2021",
+    lede: "Turning a country's curiosity about markets into actual financial confidence.",
+    beats: [
+      {
+        stage: "Before",
+        body: "Dharmil Bavishi joined Infibeam Avenues in 2016 as a supply-chain analyst and ended up in the CEO's office, running pilots with Amul and Adani across Ahmedabad and Gandhinagar. Three and a half years gave him a view of logistics, growth, partnerships and P&L at once — that is where he understood how the digital economy really runs.",
+      },
+      {
+        stage: "The Spark",
+        body: "Months before Masters' Union he kept seeing the same pattern: Indians were deeply curious about the stock market but had no structured knowledge, relying on random tips and paying for it in losses. Markets are expensive to operate and need real understanding, and people had only advice, not education.",
+      },
+      {
+        stage: "Co-thinker",
+        body: "In Ahmedabad his friend Harsh Dhanawat shared the fascination. Countless arguments about GDP, industry growth and financial empowerment shaped the early vision; Harsh chose a different path, but the thinking stuck.",
+      },
+      {
+        stage: "MU",
+        body: "He had never been an entrepreneur before and did not know how to make a pitch deck. Long sessions with a mentor on investor mindsets and storytelling, prototyping through the Venture Initiation Programme, and an early win in the VIP competition turned an idea into a product.",
+      },
+      {
+        stage: "Traction",
+        body: "Bullspree counts 10 lakh+ registered users, a 30-member team and ₹10 crore ARR within reach, live on the Play Store, the App Store and bullspree.com.",
+      },
+      {
+        stage: "Mission",
+        body: "The road ahead is 50 lakh users in two years and 5 crore in five. The ambition is not another trading app but a community where people learn together and become better versions of themselves as investors.",
+      },
+    ],
+    metric: { value: "10L+", label: "Registered users" },
+    supporting: [
+      { value: "₹10 Cr", label: "ARR within reach" },
+      { value: "30", label: "Team members" },
+      { value: "5 Cr", label: "Five-year user goal" },
+    ],
+    image: bullspreeVentureImg.url,
+    logo: ventureBullspreeLogo.url,
+  },
+  {
+    name: "MemoTag",
+    lines: ["MemoTag"],
+    product: "AI for Dementia Care",
+    founder: "Reyansh Juneja",
+    cohort: "UG TBM 2028",
+    lede: "A grandfather's illness, a national television rejection, and a rebuild.",
+    beats: [
+      {
+        stage: "Origin",
+        body: "Reyansh Juneja started MemoTag because of his grandfather's battle with dementia — a caregiving problem seen from inside a family rather than from a market map.",
+      },
+      {
+        stage: "First Build",
+        body: "The first answer was hardware: a wearable combining GPS tracking and geo-fencing, fall detection and spoken reminders, with voice analysis meant to flag a change in a patient's condition before a caregiver notices it.",
+      },
+      {
+        stage: "Rejection",
+        body: "On Shark Tank India Season 4 the sharks asked for a live demonstration. The unit on the table could not show its features working, the pitch was rated the most disappointing of the season, and it ended with no deal — publicly, and without a cushion.",
+      },
+      {
+        stage: "Rebuild",
+        body: "MemoTag was reframed around what caregivers and clinicians actually need day to day: an AI companion that calls patients and holds clinically structured conversations, then turns them into reports a doctor can use.",
+      },
+      {
+        stage: "Support",
+        body: "Along the way the company collected ₹15 lakh in grants and a ₹40 lakh pre-seed, both reported by the founder, and moved through programmes including NSRCELL-IIMB, Google, Microsoft for Startups, WF Liftoff and Youth CoLabs.",
+      },
+      {
+        stage: "Lesson",
+        body: "Hardware in healthcare is R&D, compliance and regulatory drag long before it is revenue. This chapter stays in the list because the rejection was real, and because rebuilding after it is what a school is for.",
+      },
+    ],
+    metric: { value: "No deal", label: "Shark Tank India, Season 4" },
+    supporting: [
+      { value: "₹40 L", label: "Pre-seed, reported" },
+      { value: "₹15 L", label: "Grants, reported" },
+    ],
+    logo: sharkMemoTagLogo.url,
+  },
+  {
+    name: "Hive School",
+    lines: ["Hive", "School"],
+    product: "India's First Sales School",
+    founder: "Nikhil Gaur",
+    cohort: "PGP TBM 2024",
+    lede: "Sales is the most in-demand job in the country, and nobody teaches it.",
+    beats: [
+      {
+        stage: "Before",
+        body: "Nikhil Gaur had already built an edtech MVP that failed at go-to-market, then spent years in growth roles at Camp K12 and in Kraftshala's founder's office, scaling communities into the tens of thousands and working close to how revenue actually gets made.",
+      },
+      {
+        stage: "The Question",
+        body: "His thesis was blunt: sales is the most in-demand and highest-paying role in industry today, companies still struggle to hire good salespeople, and nobody teaches the job. Ever heard of a sales B-school?",
+      },
+      {
+        stage: "Launch",
+        body: "He launched HiveSchool on 3 January 2024 while still a student, and won Masters' Union's MVP Challenge that March with his founding cohort.",
+      },
+      {
+        stage: "Product",
+        body: "It began as a four-month hybrid programme in B2B and SaaS sales, thirty-five candidates per cohort, eighty per cent online and twenty per cent in person. It has since become a nine-month residential PGP in Revenue, AI & Entrepreneurship in Gurugram, admitting fewer than seven per cent of applicants.",
+      },
+      {
+        stage: "Rejection",
+        body: "Shark Tank India Season 4 turned it down. He asked for ₹60 lakh for five per cent; Anupam Mittal's verdict was that you cannot teach sales without experience. No deal.",
+      },
+      {
+        stage: "Proof",
+        body: "Placements answered it instead. Year one: 33 students placed across 38 offers, a ₹14.76 LPA average and a ₹30 LPA highest, with over 70% of roles at US-facing B2B startups. Year two averaged ₹16.47 LPA with 100+ hiring partners behind it.",
+      },
+    ],
+    metric: { value: "₹14.76 LPA", label: "Year-one average CTC" },
+    supporting: [
+      { value: "33", label: "Placed in year one" },
+      { value: "₹30 LPA", label: "Highest package" },
+      { value: "100+", label: "Hiring partners" },
+    ],
+    image: hiveschoolVentureImg.url,
+    logo: ventureHiveschoolLogo.url,
+  },
+  {
+    name: "Meta Fashion",
+    lines: ["Meta", "Fashion"],
+    product: "Phygital Fashion Commerce",
+    founder: "Arjun Goel",
+    cohort: "UG TBM 2028",
+    lede: "A theatre kid who became one of the first Indians designing clothes inside a game.",
+    beats: [
+      {
+        stage: "Origin",
+        body: "Arjun Goel came to virtual fashion sideways, through theatre and the way people dress a version of themselves. During COVID, at fifteen, he started building on Roblox because there was nothing else to do.",
+      },
+      {
+        stage: "Early",
+        body: "On 24 August 2022 he joined Roblox's UGC creator programme, among the first Indians accepted, and shipped early items — a kawaii hairstyle first — through collaborations with established creators.",
+      },
+      {
+        stage: "Product",
+        body: "Meta Fashion turned that into a studio: trend-led digital wearables for online worlds, with Glam Girls as its flagship world, and the most popular designs scaled into physical merchandise through in-game experiences and brand partnerships.",
+      },
+      {
+        stage: "Traction",
+        body: "The catalogue has moved 2.5 million+ virtual products and ₹2.5 crore+ in revenue, with a ₹5 lakh Masters' Union grant backing the early build.",
+      },
+      {
+        stage: "Funding",
+        body: "Lumikai, the gaming fund, led a pre-seed round after a Shark Tank India Season 5 appearance put the company in front of investors who already understood the category — around $400K raised in total.",
+      },
+      {
+        stage: "Now",
+        body: "The company is active and he is still an undergraduate, part of the class of 2028, which is the plainest argument for why any of this works.",
+      },
+    ],
+    metric: { value: "2.5M+", label: "Virtual products sold" },
+    supporting: [
+      { value: "$400K", label: "Raised to date" },
+      { value: "₹2.5 Cr", label: "Revenue" },
+      { value: "15", label: "Age when it started" },
+    ],
+    logo: sharkMetaFashionLogo.url,
+  },
+  {
+    name: "SeedsAI",
+    lines: ["SeedsAI"],
+    product: "Voice AI for NBFCs",
+    founder: "Shubham Khatri & Vansh Miglani",
+    cohort: "PGP TBM 2024",
+    lede: "They started by listening to other people's phone calls.",
+    beats: [
+      {
+        stage: "Before",
+        body: "Shubham Khatri, an Ashoka University graduate, had tried consulting and a string of ventures that never quite clicked. Vansh Miglani, a self-starter from Ganganagar, had already launched and closed an e-commerce enabler called Dropstocks while still in college.",
+      },
+      {
+        stage: "Meeting",
+        body: "Both came to Masters' Union for the curriculum and the company of other builders, and they did not meet over a business plan — they met over classroom proxies and shared snacks, then kept talking about the same thing: how inefficient NBFC operations were.",
+      },
+      {
+        stage: "The Insight",
+        body: "The idea came from shadowing call-centre agents and studying workflows. Companies were spending enormous time and money manually reviewing customer calls, and collection heads told the pair what they actually needed was not transcripts but intelligence.",
+      },
+      {
+        stage: "First Build",
+        body: "The MVP analysed calls and flagged compliance breaches, missed upselling moments and customer frustration. The answer from NBFCs was immediate — this is exactly what we have been looking for — and it pushed them further, into an AI voice agent that handles interactions end to end through Indian accents, noisy recordings and the full complexity of lending workflows.",
+      },
+      {
+        stage: "Results",
+        body: "A 70% reduction in auditing time, a 10% improvement in collections and higher agent productivity brought $200K in pre-seed funding. They also proved the tech at home, automating the evaluation of more than 300 hours of student interview recordings with a model trained on faculty feedback.",
+      },
+      {
+        stage: "Pivot",
+        body: "Then they did the counter-intuitive thing: from 35-40 smaller NBFCs to a handful of high-value clients, trading volume for impact. Revenue went up, delivery got simpler, and the company is now building the AI infrastructure behind India's next generation of financial services.",
+      },
+    ],
+    metric: { value: "70%", label: "Less time spent auditing calls" },
+    supporting: [
+      { value: "10%", label: "Improvement in collections" },
+      { value: "$200K", label: "Pre-seed raised" },
+      { value: "300 hrs", label: "Interviews graded at MU" },
+    ],
+    image: seedsaiVentureImg.url,
+    logo: ventureSeedsAILogo.url,
+  },
+];
+
+function ChapterVisual({ chapter }: { chapter: FounderChapter }) {
+  if (chapter.image) {
+    return (
+      <div className="group relative overflow-hidden rounded-sm border border-background/12">
+        <img
+          src={chapter.image}
+          alt={`${chapter.name} — ${chapter.founder}`}
+          loading="lazy"
+          className="aspect-[16/10] w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.03] sm:aspect-[21/9]"
+        />
+        <span aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-foreground/65 via-transparent to-transparent" />
+      </div>
+    );
+  }
+  return (
+    <div className="relative overflow-hidden rounded-sm border border-dashed border-background/25 bg-background/[0.02]">
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-[0.14]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, var(--background) 1px, transparent 1px), linear-gradient(to bottom, var(--background) 1px, transparent 1px)",
+          backgroundSize: "clamp(48px, 5vw, 76px) clamp(48px, 5vw, 76px)",
+        }}
+      />
+      <div className="relative flex aspect-[16/10] flex-col items-center justify-center gap-4 px-6 text-center sm:aspect-[21/9]">
+        <span className="eyebrow text-background/40">Visual archive pending</span>
+        <span className="max-w-lg font-serif-italic text-[clamp(1rem,1.7vw,1.35rem)] leading-snug text-background/55">
+          {chapter.lede}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function FounderStoriesChapters() {
+  const total = FOUNDER_CHAPTERS.length;
+  const [active, setActive] = useState(0);
+  const chapterRefs = useRef<(HTMLElement | null)[]>([]);
 
   useEffect(() => {
-    const el = trackRef.current;
-    if (!el) return;
-    const update = () => {
-      const max = el.scrollWidth - el.clientWidth;
-      setProgress(max > 0 ? el.scrollLeft / max : 0);
-      setAtStart(el.scrollLeft <= 4);
-      setAtEnd(el.scrollLeft >= max - 4);
-    };
-    update();
-    el.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    return () => {
-      el.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
-    };
+    const tops: number[] = [];
+    return onScrollFrame(
+      ({ vh }) => {
+        let next = 0;
+        for (let i = 0; i < tops.length; i++) if (tops[i] <= vh * 0.45) next = i;
+        setActive((prev) => (prev === next ? prev : next));
+      },
+      () => {
+        const refs = chapterRefs.current;
+        for (let i = 0; i < refs.length; i++) {
+          const el = refs[i];
+          tops[i] = el ? el.getBoundingClientRect().top : Number.POSITIVE_INFINITY;
+        }
+      }
+    );
   }, []);
 
-  const step = (dir: 1 | -1) => {
-    const el = trackRef.current;
-    if (!el) return;
-    const card = el.querySelector<HTMLElement>("[data-story-card]");
-    const amount = card ? card.offsetWidth + 20 : el.clientWidth * 0.8;
-    el.scrollBy({ left: dir * amount, behavior: "smooth" });
-  };
-
   return (
-    <section id="founder-stories" className="relative overflow-x-clip bg-foreground py-20 text-background sm:py-24 md:py-28">
-      <span aria-hidden className="absolute left-[6%] right-[6%] top-0 h-px bg-background/15" />
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <Reveal>
-              <Eyebrow>Founder Stories · {String(total).padStart(2, "0")} Ventures</Eyebrow>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h2 className="mt-5 max-w-[20ch] text-[clamp(1.8rem,4.2vw,3.6rem)] font-light leading-[1.08]">
-                Nine founders.{" "}
-                <span className="font-serif-italic !font-serif !font-light !text-background/70">Nine first moves.</span>
-              </h2>
-            </Reveal>
-          </div>
-          <Reveal delay={0.1} className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => step(-1)}
-              disabled={atStart}
-              aria-label="Previous story"
-              className="flex size-12 items-center justify-center rounded-full border border-background/25 text-background transition-colors hover:bg-background hover:text-foreground disabled:pointer-events-none disabled:opacity-30"
-            >
-              <ArrowLeft className="size-4" strokeWidth={1.5} />
-            </button>
-            <button
-              type="button"
-              onClick={() => step(1)}
-              disabled={atEnd}
-              aria-label="Next story"
-              className="flex size-12 items-center justify-center rounded-full border border-background/25 text-background transition-colors hover:bg-background hover:text-foreground disabled:pointer-events-none disabled:opacity-30"
-            >
-              <ArrowRight className="size-4" strokeWidth={1.5} />
-            </button>
-          </Reveal>
-        </div>
+    <section id="founder-stories" className="relative overflow-x-clip bg-foreground text-background">
+      <span aria-hidden className="pointer-events-none absolute left-[6%] right-[6%] top-0 z-[1] h-px bg-background/15" />
+
+      <div className="relative z-[2] mx-auto w-full max-w-7xl px-5 pb-12 pt-20 sm:px-8 sm:pb-16 sm:pt-28 xl:pr-[17rem]">
+        <Reveal>
+          <Eyebrow>Founder Stories · {String(total).padStart(2, "0")} Chapters</Eyebrow>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <h2 className="mt-6 max-w-[18ch] text-[clamp(2rem,5.2vw,4.4rem)] font-light leading-[1.03] tracking-[-0.02em]">
+            Nine founders.{" "}
+            <span className="font-serif-italic !font-serif !font-light !text-background/70">Nine first moves.</span>
+          </h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p className="mt-7 max-w-xl text-[0.95rem] leading-[1.75] text-background/60">
+            Every company here started inside the programme — a cafeteria argument, a cold message, a pitch that went
+            wrong on national television. Read them in order, or jump straight to one.
+          </p>
+        </Reveal>
+        <Reveal delay={0.15}>
+          <nav aria-label="Founder story chapters" className="mt-11 flex flex-wrap gap-2.5">
+            {FOUNDER_CHAPTERS.map((c, i) => (
+              <button
+                key={c.name}
+                type="button"
+                onClick={() => homeNavScrollToId(`story-${i + 1}`)}
+                className={`flex items-center gap-2 rounded-full border px-3.5 py-2 transition-colors ${
+                  i === active
+                    ? "border-background/45 bg-background/10 text-background"
+                    : "border-background/15 text-background/70 hover:border-background/35 hover:text-background"
+                }`}
+              >
+                <span className="font-mono text-[10px] text-background/45">{String(i + 1).padStart(2, "0")}</span>
+                <span className="text-[12px]">{c.name}</span>
+              </button>
+            ))}
+          </nav>
+        </Reveal>
       </div>
 
-      <div
-        ref={trackRef}
-        tabIndex={0}
-        aria-label="Founder stories"
-        className="mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-6 [scrollbar-width:none] sm:mt-12 md:mt-14 [&::-webkit-scrollbar]:hidden"
-        style={{ paddingInline: "max(1.25rem, calc((100vw - 80rem) / 2 + 2rem))", scrollPaddingInline: "max(1.25rem, calc((100vw - 80rem) / 2 + 2rem))" }}
-      >
-        {SPARK_EXAMPLES.map((story, i) => {
-          const media = STORY_MEDIA[story.name] ?? {};
-          const image = media.image ?? story.founderImage;
-          return (
-            <article
-              key={story.name}
-              data-story-card
-              className="group relative flex w-[82vw] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-background/15 bg-background/[0.03] sm:w-[360px] lg:w-[400px]"
-            >
-              <div className="relative aspect-[4/5] overflow-hidden">
-                {image ? (
-                  <img
-                    src={image}
-                    alt={`${story.name} — ${story.founder}`}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                  />
-                ) : (
-                  <Placeholder kind="image" aspect="h-full" note={story.name} className="!border-0" />
-                )}
-                <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/30 to-transparent" />
-                <span className="absolute left-5 top-5 font-mono text-[11px] tracking-[0.28em] text-background/70">
-                  {String(i + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-                </span>
-                {media.logo && (
-                  <span className="absolute right-5 top-5 flex size-11 items-center justify-center overflow-hidden rounded-full bg-background p-1.5">
-                    <img src={media.logo} alt={`${story.name} logo`} className="h-full w-full object-contain" />
-                  </span>
-                )}
-                <div className="absolute inset-x-5 bottom-5">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-background/60">{story.product}</p>
-                  <h3 className="mt-2 text-[1.75rem] leading-none">{story.name}</h3>
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-[90] hidden w-[16rem] xl:block">
+        <nav aria-label="Chapter progress" className="sticky top-1/2 -translate-y-1/2 pr-8 text-right">
+          <ol className="space-y-2">
+            {FOUNDER_CHAPTERS.map((c, i) => (
+              <li key={c.name} className="pointer-events-auto">
+                <button
+                  type="button"
+                  onClick={() => homeNavScrollToId(`story-${i + 1}`)}
+                  aria-current={i === active ? "true" : undefined}
+                  className={`font-mono text-[10px] uppercase tracking-[0.22em] transition-colors ${
+                    i === active ? "text-background" : "text-background/25 hover:text-background/60"
+                  }`}
+                >
+                  {String(i + 1).padStart(2, "0")} {c.name}
+                </button>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      </div>
+
+      {FOUNDER_CHAPTERS.map((chapter, i) => (
+        <article
+          key={chapter.name}
+          id={`story-${i + 1}`}
+          ref={(el) => {
+            chapterRefs.current[i] = el;
+          }}
+          className="relative border-t border-background/10"
+        >
+          <div className="flex min-h-[100svh] flex-col justify-start pt-[8vh] pb-[7.5rem] sm:pt-[9vh] md:pb-[6.5rem]">
+            <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 xl:pr-[17rem]">
+              <div className={i % 2 === 1 ? "lg:flex lg:flex-col lg:items-end lg:text-right" : undefined}>
+                <div className="flex items-center gap-4">
+                  <span aria-hidden className="h-px w-10 bg-background/25" />
+                  <Eyebrow>Chapter {String(i + 1).padStart(2, "0")}<span className="hidden sm:inline"> · {chapter.product}</span></Eyebrow>
+                  {chapter.logo && (
+                    <span className="flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-background p-1.5">
+                      <img src={chapter.logo} alt={`${chapter.name} logo`} className="h-full w-full object-contain" />
+                    </span>
+                  )}
                 </div>
-              </div>
-              <div className="flex flex-1 flex-col gap-5 p-5 sm:p-6">
-                <p className="text-[14px] leading-[1.65] text-background/75">{story.body}</p>
-                <p className="mt-auto border-t border-background/10 pt-4 text-[12px] text-background/55">
-                  {story.founder} <span className="text-background/30">—</span> {story.cohort}
+                <h3 className="mt-7">
+                  <span className="block font-serif-italic !font-serif !font-light text-[clamp(3.2rem,11vw,9rem)] leading-[0.86] tracking-[-0.03em]">
+                    {chapter.lines.map((line) => (
+                      <span key={line} className="block">
+                        {line}
+                      </span>
+                    ))}
+                  </span>
+                </h3>
+                <p className="mt-8 max-w-2xl text-[clamp(1.05rem,1.6vw,1.4rem)] font-light leading-[1.5] text-background/70">
+                  {chapter.lede}
                 </p>
               </div>
-            </article>
-          );
-        })}
-      </div>
+              <div className="mt-10">
+                <Reveal y={28}>
+                  <ChapterVisual chapter={chapter} />
+                </Reveal>
+              </div>
+            </div>
+          </div>
 
-      <div className="mx-auto mt-6 max-w-7xl px-5 sm:px-8">
-        <div className="h-px w-full bg-background/10">
-          <div
-            className="h-px bg-gradient-to-r from-sky-400 via-yellow-300 to-orange-400 transition-[width] duration-150"
-            style={{ width: `${Math.max(8, progress * 100)}%` }}
-          />
+          <div className="mx-auto w-full max-w-7xl px-5 pb-20 sm:px-8 sm:pb-28 xl:pr-[17rem]">
+            <div className="grid gap-12 lg:grid-cols-12 lg:gap-x-16">
+              <div className="lg:col-span-7 lg:col-start-4">
+                <ol className="space-y-9 sm:space-y-11">
+                  {chapter.beats.map((beat, j) => (
+                    <Reveal key={beat.stage} delay={Math.min(j * 0.04, 0.16)}>
+                      <li className="border-t border-background/10 pt-6">
+                        <div className="flex items-baseline gap-4">
+                          <span className="font-mono text-[10px] text-background/35">
+                            {String(j + 1).padStart(2, "0")}
+                          </span>
+                          <span className="eyebrow text-background/60">{beat.stage}</span>
+                        </div>
+                        <p className="mt-4 max-w-[68ch] text-[clamp(1rem,1.15vw,1.12rem)] leading-[1.75] text-background/80">
+                          {beat.body}
+                        </p>
+                      </li>
+                    </Reveal>
+                  ))}
+                </ol>
+              </div>
+              <aside className="lg:col-span-3 lg:col-start-10">
+                <div className="space-y-8 lg:sticky lg:top-28">
+                  <div>
+                    <div className="text-[clamp(2.2rem,4.4vw,3.4rem)] font-light leading-none tracking-[-0.03em] text-cream">
+                      {chapter.metric.value}
+                    </div>
+                    <div className="mt-3 eyebrow text-background/45">{chapter.metric.label}</div>
+                  </div>
+                  <div className="space-y-5 border-t border-background/10 pt-6">
+                    {chapter.supporting.map((s) => (
+                      <div key={s.label}>
+                        <div className="text-[1.15rem] font-medium leading-none tracking-[-0.01em]">{s.value}</div>
+                        <div className="mt-2 text-[9.5px] uppercase tracking-[0.16em] text-background/45">{s.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="border-t border-background/10 pt-5">
+                    <FounderLine names={chapter.founder} cohort={chapter.cohort} />
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </article>
+      ))}
+
+      <div className="mx-auto w-full max-w-7xl px-5 pb-24 sm:px-8">
+        <div className="flex flex-col gap-6 border-t border-background/10 pt-10 sm:flex-row sm:items-center sm:justify-between">
+          <span className="eyebrow text-background/45">{String(total).padStart(2, "0")} chapters · end of file</span>
+          <span className="max-w-md font-serif-italic text-[clamp(1.05rem,1.6vw,1.3rem)] leading-snug text-background/70">
+            The next one starts with an application.
+          </span>
         </div>
       </div>
     </section>
@@ -3479,7 +3946,7 @@ function StartupsPage() {
       <VipSection />
       <VenturesMosaicSection />
 
-      <FounderStoriesGallery />
+      <FounderStoriesChapters />
 
 
       <Section id="sharktank" tone="dark">
