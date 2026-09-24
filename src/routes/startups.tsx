@@ -1835,7 +1835,7 @@ function DropshippingSection() {
       const edge = compact ? 12 : Math.min(48, Math.max(20, vw * 0.03));
       // Top margin clears the "Field Film / Build in public" label row;
       // bottom margin clears the floating bottom navigation bar.
-      const topSafe = compact ? 104 : vw < 1024 ? 116 : 140;
+      const topSafe = compact ? 104 : vw < 1024 ? 128 : 140;
       const bottomSafe = compact ? 88 : vw < 1024 ? 96 : 104;
       const desktop = vw >= 1024;
       const mainTop = desktop
@@ -2025,7 +2025,7 @@ function DropshippingSection() {
       <div className="mt-8 sm:mt-10 md:mt-12">
         <div ref={collageRef} data-dropshipping-collage className="relative h-[100svh] overflow-x-clip">
           <div className="relative h-full overflow-hidden border-t border-background/10">
-            <div className="pointer-events-none absolute inset-x-4 top-5 z-20 flex items-start justify-between sm:inset-x-8 lg:inset-x-12 lg:top-9">
+            <div className="pointer-events-none absolute inset-x-4 top-24 z-20 flex items-start justify-between sm:inset-x-8 lg:inset-x-12 lg:top-[6.5rem]">
               <div className="flex items-center gap-3 pt-1.5 sm:pt-2.5">
                 <span className="h-px w-8 bg-background/40 sm:w-14" />
                 <span className="font-mono text-[9px] uppercase tracking-[0.32em] text-background/55 sm:text-[10px]">
@@ -2054,7 +2054,7 @@ function DropshippingSection() {
                   ref={(element) => { videoCardRefs.current[index] = element; }}
                   className={`group/card absolute overflow-visible bg-foreground shadow-2xl will-change-transform ${
                     index === 0
-                      ? "left-0 right-0 top-[clamp(11.5rem,20svh,12.5rem)] mx-auto"
+                      ? "left-0 right-0 top-[clamp(11.5rem,40svh,25rem)] sm:top-[clamp(13rem,42svh,27rem)] mx-auto"
                       : "inset-0 m-auto"
                   } ${sizes[index]}`}
                   style={{
@@ -2087,7 +2087,7 @@ function DropshippingSection() {
         </div>
       </div>
 
-      <div className="mt-12 border-t border-background/10 pt-8 sm:mt-16">
+      <div className="border-t border-background/10 pt-8">
         <div className="mb-4 flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
           <div>
             <p className="font-mono text-[9px] uppercase tracking-[0.28em] text-background/40 sm:text-[10px]">
