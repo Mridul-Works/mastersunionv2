@@ -1502,7 +1502,7 @@ function FounderStoriesChapters() {
           }}
           className="relative border-t border-background/10"
         >
-          <div className="flex min-h-[100svh] flex-col justify-center py-14 pb-[7.5rem] sm:py-20 md:pb-[6.5rem]">
+          <div className="flex min-h-[100svh] flex-col justify-start pt-[14vh] pb-[7.5rem] sm:pt-[15vh] md:pb-[6.5rem]">
             <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 xl:pr-[17rem]">
               <div className={i % 2 === 1 ? "lg:flex lg:flex-col lg:items-end lg:text-right" : undefined}>
                 <div className="flex items-center gap-4">
