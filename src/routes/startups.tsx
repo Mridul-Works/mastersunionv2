@@ -1603,6 +1603,134 @@ function OutclassSection() {
   );
 }
 
+function FounderPoster({ v, ratio }: { v: VentureTile; ratio: string }) {
+  return (
+    <article className={`group relative ${ratio} overflow-hidden break-inside-avoid`}>
+      {/* full-bleed founder photo — covers the entire tile */}
+      <img
+        src={v.photo}
+        alt={`${v.company} founders`}
+        loading="lazy"
+        decoding="async"
+        draggable={false}
+        className="absolute inset-0 size-full object-cover object-[50%_30%] transition-transform duration-700 group-hover:scale-[1.03]"
+      />
+
+      {/* top gradient wash for logo + stage */}
+      <div className="absolute inset-x-0 top-0 h-[20%] bg-gradient-to-b from-black/70 via-black/25 to-transparent sm:h-[28%]" />
+
+      {/* top meta */}
+      <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-1 px-2 pt-1.5 sm:gap-3 sm:px-4 sm:pt-3">
+        {v.logo ? (
+          <img
+            src={v.logo.url}
+            alt={v.company}
+            loading="lazy"
+            draggable={false}
+            className="h-2.5 w-auto max-w-[46px] object-contain object-left brightness-0 invert opacity-90 sm:h-3.5 sm:max-w-[92px]"
+          />
+        ) : (
+          <span className="text-[8px] font-medium uppercase tracking-[0.18em] text-white/90 sm:text-[10px]">
+            {v.company}
+          </span>
+        )}
+        <span className="hidden text-[10px] uppercase tracking-[0.16em] text-white/80 sm:inline-block">
+          {v.stage}
+        </span>
+      </div>
+
+      {/* bottom gradient wash for caption */}
+      <div className="absolute inset-x-0 bottom-0 h-[35%] bg-gradient-to-t from-black/85 via-black/50 to-transparent sm:h-[45%]" />
+
+      {/* caption block overlaid on the photo */}
+      <div className="absolute inset-x-0 bottom-0 px-2 pb-1.5 sm:px-4 sm:pb-3">
+        <div className="flex min-w-0 flex-col items-start gap-0.5 sm:flex-row sm:items-end sm:justify-between sm:gap-3">
+          <div className="min-w-0">
+            <p className="truncate text-[10px] leading-[1.05] text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)] sm:text-[clamp(0.95rem,1.6vw,1.35rem)] sm:tracking-[-0.035em]">
+              {v.company}
+            </p>
+            <p className="mt-0.5 hidden text-[10px] uppercase tracking-[0.14em] text-white/75 sm:block">
+              {v.sector}
+            </p>
+          </div>
+          <p className="shrink-0 text-[8px] font-medium leading-none text-white/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)] sm:text-[13px] sm:tracking-[-0.03em] sm:text-white">
+            {v.raised}
+          </p>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function StatPoster({ s, ratio }: { s: StatTile; ratio: string }) {
+  return (
+    <article
+      className={`relative flex ${ratio} flex-col justify-between break-inside-avoid border border-background/10 p-3 sm:p-5`}
+      style={{ background: s.bg, color: s.fg }}
+    >
+      <div className="hidden items-start justify-between gap-3 sm:flex">
+        <span className="text-[10px] font-medium uppercase tracking-[0.18em]" style={{ color: s.sub }}>
+          {s.note}
+        </span>
+        {s.delta ? (
+          <span
+            className="rounded-full border px-2 py-[3px] text-[9px] font-medium tracking-[0.06em]"
+            style={{ borderColor: s.sub, color: s.sub }}
+          >
+            {s.delta}
+          </span>
+        ) : null}
+      </div>
+
+      <div>
+        <p className="whitespace-nowrap text-base font-medium leading-none sm:text-[clamp(2.2rem,5.5vw,3.6rem)] sm:tracking-[-0.05em]">
+          {s.value}
+        </p>
+        <p className="mt-1.5 max-w-[15ch] text-[10px] leading-[1.2] sm:mt-3 sm:text-[clamp(0.95rem,1.5vw,1.3rem)] sm:tracking-[-0.02em]">
+          {s.label}
+        </p>
+      </div>
+
+      <span className="hidden text-[11px] uppercase tracking-[0.18em] sm:block" style={{ color: s.sub }}>
+        Masters&rsquo; Union
+      </span>
+    </article>
+  );
+}
+
+function VentureCtaTile({ t, ratio }: { t: CtaTile; ratio: string }) {
+  return (
+    <a
+      href={t.to}
+      className={`group relative flex ${ratio} flex-col items-start justify-between overflow-hidden break-inside-avoid p-3 transition-transform duration-500 hover:scale-[1.01] sm:p-5`}
+      style={{ background: t.bg, color: t.fg, border: t.border ? `1px solid ${t.border}` : undefined }}
+    >
+      <span className="hidden text-[10px] font-medium uppercase tracking-[0.18em] sm:block" style={{ color: t.sub }}>
+        Entrepreneurship
+      </span>
+
+      <div className="min-w-0">
+        <p className="text-base font-medium leading-none sm:text-[clamp(1.6rem,4.2vw,2.7rem)] sm:tracking-[-0.04em]">
+          {t.headline}
+        </p>
+        <p className="mt-1.5 max-w-[18ch] text-[9px] leading-[1.2] sm:mt-2 sm:text-[clamp(0.85rem,1.3vw,1.05rem)] sm:leading-[1.25]" style={{ color: t.sub }}>
+          {t.body}
+        </p>
+      </div>
+
+      <div className="mt-2 flex items-center gap-1.5 sm:mt-5 sm:gap-2">
+        <span className="text-[7px] font-semibold uppercase tracking-[0.06em] min-[360px]:text-[8px] sm:text-[11px] sm:tracking-[0.14em]">{t.cta}</span>
+        <span
+          className="inline-flex size-5 shrink-0 items-center justify-center rounded-full border transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 sm:size-7"
+          style={{ borderColor: t.sub }}
+        >
+          <ArrowUpRight className="size-3 sm:size-3.5" />
+        </span>
+      </div>
+    </a>
+  );
+}
+
 function DropshippingSection() {
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
   const modalVideo = DROPSHIPPING_VIDEOS.find((v) => v.id === activeVideoId) ?? null;
