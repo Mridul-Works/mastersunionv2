@@ -2067,6 +2067,11 @@ function DropshippingSection() {
         </div>
       </div>
 
+      {/* Divider rule under the dropshipping section */}
+      <div aria-hidden className="spectrum-rule pointer-events-none mt-14 h-px w-full sm:mt-16" />
+
+
+
       {typeof document !== "undefined" &&
         createPortal(
           <AnimatePresence>
