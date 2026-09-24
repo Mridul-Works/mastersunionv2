@@ -120,14 +120,6 @@
 }
 
 @layer utilities {
-  /* VentureDeck headlines must stay Fraunces even inside the page wrapper
-     that forces h2/h3 to the display font with !important. Higher
-     specificity (0,2,1) wins the !important cascade. */
-  .venture-deck h3.vd-head {
-    font-family: var(--font-serif) !important;
-    font-weight: 400 !important;
-  }
-
   .font-serif-italic {
     font-family: var(--font-serif);
     font-style: italic;
