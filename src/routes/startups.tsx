@@ -2054,7 +2054,7 @@ function DropshippingSection() {
                   ref={(element) => { videoCardRefs.current[index] = element; }}
                   className={`group/card absolute overflow-visible bg-foreground shadow-2xl will-change-transform ${
                     index === 0
-                      ? "left-0 right-0 top-[clamp(11.5rem,38svh,22rem)] mx-auto"
+                      ? "left-0 right-0 top-[clamp(11.5rem,40svh,25rem)] sm:top-[clamp(13rem,42svh,27rem)] mx-auto"
                       : "inset-0 m-auto"
                   } ${sizes[index]}`}
                   style={{
