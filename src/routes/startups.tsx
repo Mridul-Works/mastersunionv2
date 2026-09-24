@@ -61,6 +61,22 @@ import ventureLexis from "@/assets/venture-logos/Lexis.png.asset.json";
 import ventureMonarque from "@/assets/venture-logos/Monarque.png.asset.json";
 import ventureNivara from "@/assets/venture-logos/Nivara.png.asset.json";
 import ventureFnor from "@/assets/venture-logos/FNOR.png.asset.json";
+import ventureEightLogo from "@/assets/venture-logos/EIGHT.png.asset.json";
+import ventureBullspreeLogo from "@/assets/venture-logos/Bullspree.png.asset.json";
+import ventureHiveschoolLogo from "@/assets/venture-logos/Hiveschool.png.asset.json";
+import venturePlaysuperLogo from "@/assets/venture-logos/Playsuper.png.asset.json";
+import ventureSeedsAILogo from "@/assets/venture-logos/SeedsAI.png.asset.json";
+import sharkMemoTagLogo from "@/assets/sharktank/MemoTag.png.asset.json";
+import sharkMetaFashionLogo from "@/assets/sharktank/MetaFashion.png.asset.json";
+import brandPhotoEight from "@/assets/founders/brand/eight.jpg";
+import brandPhotoBullspree from "@/assets/founders/brand/bullspree.jpg";
+import brandPhotoHiveschool from "@/assets/founders/brand/hiveschool.jpg";
+import brandPhotoLexis from "@/assets/founders/brand/lexis.jpg";
+import brandPhotoMemotag from "@/assets/founders/brand/memotag.jpg";
+import brandPhotoMetafashion from "@/assets/founders/brand/metafashion.jpg";
+import brandPhotoPlaysuper from "@/assets/founders/brand/playsuper.jpg";
+import brandPhotoSeedsai from "@/assets/founders/brand/seedsai.jpg";
+import brandPhotoWoodys from "@/assets/founders/brand/woodys.jpg";
 import { onScrollFrame } from "@/lib/scroll-driver";
 
 const NAV: { id: string; label: string }[] = [
@@ -160,12 +176,217 @@ const DROPSHIPPING_STATS = [
   { value: "150+", label: "Businesses built", sub: "From first sale to scale" },
 ];
 
-const DROPSHIPPING_TOP = [
-  { name: "Zeller Crystals", revenue: "₹14.17L", body: "India's first crystal couture brand." },
-  { name: "The Frenzie Store", revenue: "₹14L", body: "A hair-care brand built around frizz-free, shiny, smooth results." },
-  { name: "Khareedo.shop", revenue: "₹11.8L", body: "Drones, home decor, and orthopaedic pillows under one storefront." },
-  { name: "ThriftFly", revenue: "₹11.3L", body: "A travel-discounts platform built as a student side hustle." },
+/* ============ Founders in the making — mosaic (from the homepage funding board) ============ */
+
+type VentureTile = {
+  company: string;
+  founder: string;
+  photo: string;
+  logo?: { url: string };
+  sector: string;
+  stage: string;
+  raised: string;
+  note?: string;
+};
+
+const FOUNDER_VENTURES: VentureTile[] = [
+  {
+    company: "Eight.Network",
+    founder: "Mohit Goswami, Mohit Paliwal, Yugal Tamang · Co'21",
+    photo: brandPhotoEight,
+    logo: ventureEightLogo,
+    sector: "Audio streaming",
+    stage: "Venture-backed",
+    raised: "$3.1M",
+    note: "~$5M ARR",
+  },
+  {
+    company: "PlaySuper",
+    founder: "Shouradeep Chakraborty, Abhir Das, Upamanyu Chatterjee · Co'24",
+    photo: brandPhotoPlaysuper,
+    logo: venturePlaysuperLogo,
+    sector: "Gaming commerce",
+    stage: "Seed · 4 rounds",
+    raised: "$1.69M",
+    note: "Latest $1M seed, Sep 2025",
+  },
+  {
+    company: "Bullspree",
+    founder: "Dharmil Bavishi, Harsh Dhanawat, Divyansh Mathur",
+    photo: brandPhotoBullspree,
+    logo: ventureBullspreeLogo,
+    sector: "Sports gaming",
+    stage: "Seed · 2 rounds",
+    raised: "$1.5M",
+    note: "₹2 Cr (Sep '21) + ₹1 Cr (Feb '22)",
+  },
+  {
+    company: "MemoTag",
+    founder: "Reyansh Juneja, Japnoor Kaur Sandhu · UG '28",
+    photo: brandPhotoMemotag,
+    logo: sharkMemoTagLogo,
+    sector: "Dementia care wearables",
+    stage: "Early stage",
+    raised: "~₹2.5 Cr",
+    note: "Founder-stated",
+  },
+  {
+    company: "Meta Fashion",
+    founder: "Arjun Goel · UG TBM '28",
+    photo: brandPhotoMetafashion,
+    logo: sharkMetaFashionLogo,
+    sector: "Fashion tech",
+    stage: "Pre-seed",
+    raised: "~$400K",
+  },
+  {
+    company: "Hive School",
+    founder: "Nikhil Gaur · PGP '25",
+    photo: brandPhotoHiveschool,
+    logo: ventureHiveschoolLogo,
+    sector: "EdTech · sales school",
+    stage: "Grant + revenue",
+    raised: "₹2 Cr run rate",
+  },
+  {
+    company: "Lexi's",
+    founder: "MU student founders",
+    photo: brandPhotoLexis,
+    logo: ventureLexis,
+    sector: "Cloud kitchen",
+    stage: "Student-founded",
+    raised: "₹1 Cr+ ARR",
+  },
+  {
+    company: "Seeds AI",
+    founder: "MU student founders",
+    photo: brandPhotoSeedsai,
+    logo: ventureSeedsAILogo,
+    sector: "Applied AI",
+    stage: "Pre-seed",
+    raised: "Undisclosed",
+  },
+  {
+    company: "Woody's Pizzeria",
+    founder: "MU student founders",
+    photo: brandPhotoWoodys,
+    logo: ventureWoodys,
+    sector: "F&B · QSR",
+    stage: "Bootstrapped",
+    raised: "Revenue-funded",
+  },
 ];
+
+type StatTile = {
+  kind: "stat";
+  value: string;
+  delta?: string;
+  label: string;
+  note: string;
+  bg: string;
+  fg: string;
+  sub: string;
+};
+
+type CtaTile = {
+  kind: "cta";
+  headline: string;
+  body: string;
+  cta: string;
+  to: string;
+  bg: string;
+  fg: string;
+  sub: string;
+  border?: string;
+};
+
+const BOTTLE_GREEN = "#006A4E";
+const MUSTARD = "#F5E7C8";
+const INK = "#111111";
+
+const FOUNDER_STATS: StatTile[] = [
+  {
+    kind: "stat",
+    value: "120+",
+    delta: "▲ 24 YoY",
+    label: "Student startups launched during the programme",
+    note: "MU Ventures",
+    bg: BOTTLE_GREEN,
+    fg: "#FFFFFF",
+    sub: "rgba(255,255,255,0.66)",
+  },
+  {
+    kind: "stat",
+    value: "₹85 Cr+",
+    label: "Raised by alumni in seed & pre-seed rounds",
+    note: "Capital raised",
+    bg: MUSTARD,
+    fg: INK,
+    sub: "rgba(17,17,17,0.62)",
+  },
+  {
+    kind: "stat",
+    value: "$10M",
+    label: "In-house fund deployed via MU Ventures",
+    note: "Campus fund",
+    bg: INK,
+    fg: "#FFFFFF",
+    sub: "rgba(255,255,255,0.7)",
+  },
+  {
+    kind: "stat",
+    value: "40+",
+    label: "Founder mentors — unicorn & YC operators",
+    note: "Mentor bench",
+    bg: BOTTLE_GREEN,
+    fg: "#FFFFFF",
+    sub: "rgba(255,255,255,0.66)",
+  },
+];
+
+const FOUNDER_CTA: CtaTile = {
+  kind: "cta",
+  headline: "Build here",
+  body: "Explore the full portfolio of student-led ventures, grants and founder support.",
+  cta: "See all startups",
+  to: "#cta",
+  bg: "#FFFFFF",
+  fg: BOTTLE_GREEN,
+  sub: "rgba(0,106,78,0.62)",
+  border: "rgba(0,106,78,0.28)",
+};
+
+/** Irregular mosaic rhythm — alternating tile heights. */
+const MOSAIC_RATIOS = [
+  "aspect-[4/5]",
+  "aspect-square",
+  "aspect-[3/4]",
+  "aspect-[4/5]",
+  "aspect-square",
+  "aspect-[3/4]",
+];
+
+/** Ventures interleaved with stat tiles (stat after every two ventures), plus a CTA tile. */
+const FOUNDER_TILES: Array<VentureTile | StatTile | CtaTile> = (() => {
+  const out: Array<VentureTile | StatTile | CtaTile> = [];
+  let s = 0;
+  FOUNDER_VENTURES.forEach((v, i) => {
+    out.push(v);
+    if (i % 2 === 1 && s < FOUNDER_STATS.length) out.push(FOUNDER_STATS[s++]);
+  });
+  while (s < FOUNDER_STATS.length) out.push(FOUNDER_STATS[s++]);
+  out.push(FOUNDER_CTA);
+  return out;
+})();
+
+/** Round-robin the tiles into 5 balanced columns so the grid fills the row exactly. */
+const FOUNDER_COLUMNS: Array<Array<{ tile: VentureTile | StatTile | CtaTile; index: number }>> = (() => {
+  const cols: Array<Array<{ tile: VentureTile | StatTile | CtaTile; index: number }>> = [[], [], [], [], []];
+  FOUNDER_TILES.forEach((tile, index) => {
+    cols[index % cols.length].push({ tile, index });
+  });
+  return cols;
+})();
 
 const OUTCLASS_MOMENTS = [
   {
@@ -1382,6 +1603,134 @@ function OutclassSection() {
   );
 }
 
+function FounderPoster({ v, ratio }: { v: VentureTile; ratio: string }) {
+  return (
+    <article className={`group relative ${ratio} overflow-hidden break-inside-avoid`}>
+      {/* full-bleed founder photo — covers the entire tile */}
+      <img
+        src={v.photo}
+        alt={`${v.company} founders`}
+        loading="lazy"
+        decoding="async"
+        draggable={false}
+        className="absolute inset-0 size-full object-cover object-[50%_30%] transition-transform duration-700 group-hover:scale-[1.03]"
+      />
+
+      {/* top gradient wash for logo + stage */}
+      <div className="absolute inset-x-0 top-0 h-[20%] bg-gradient-to-b from-black/70 via-black/25 to-transparent sm:h-[28%]" />
+
+      {/* top meta */}
+      <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-1 px-2 pt-1.5 sm:gap-3 sm:px-4 sm:pt-3">
+        {v.logo ? (
+          <img
+            src={v.logo.url}
+            alt={v.company}
+            loading="lazy"
+            draggable={false}
+            className="h-2.5 w-auto max-w-[46px] object-contain object-left brightness-0 invert opacity-90 sm:h-3.5 sm:max-w-[92px]"
+          />
+        ) : (
+          <span className="text-[8px] font-medium uppercase tracking-[0.18em] text-white/90 sm:text-[10px]">
+            {v.company}
+          </span>
+        )}
+        <span className="hidden text-[10px] uppercase tracking-[0.16em] text-white/80 sm:inline-block">
+          {v.stage}
+        </span>
+      </div>
+
+      {/* bottom gradient wash for caption */}
+      <div className="absolute inset-x-0 bottom-0 h-[35%] bg-gradient-to-t from-black/85 via-black/50 to-transparent sm:h-[45%]" />
+
+      {/* caption block overlaid on the photo */}
+      <div className="absolute inset-x-0 bottom-0 px-2 pb-1.5 sm:px-4 sm:pb-3">
+        <div className="flex min-w-0 flex-col items-start gap-0.5 sm:flex-row sm:items-end sm:justify-between sm:gap-3">
+          <div className="min-w-0">
+            <p className="truncate text-[10px] leading-[1.05] text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)] sm:text-[clamp(0.95rem,1.6vw,1.35rem)] sm:tracking-[-0.035em]">
+              {v.company}
+            </p>
+            <p className="mt-0.5 hidden text-[10px] uppercase tracking-[0.14em] text-white/75 sm:block">
+              {v.sector}
+            </p>
+          </div>
+          <p className="shrink-0 text-[8px] font-medium leading-none text-white/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)] sm:text-[13px] sm:tracking-[-0.03em] sm:text-white">
+            {v.raised}
+          </p>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function StatPoster({ s, ratio }: { s: StatTile; ratio: string }) {
+  return (
+    <article
+      className={`relative flex ${ratio} flex-col justify-between break-inside-avoid border border-background/10 p-3 sm:p-5`}
+      style={{ background: s.bg, color: s.fg }}
+    >
+      <div className="hidden items-start justify-between gap-3 sm:flex">
+        <span className="text-[10px] font-medium uppercase tracking-[0.18em]" style={{ color: s.sub }}>
+          {s.note}
+        </span>
+        {s.delta ? (
+          <span
+            className="rounded-full border px-2 py-[3px] text-[9px] font-medium tracking-[0.06em]"
+            style={{ borderColor: s.sub, color: s.sub }}
+          >
+            {s.delta}
+          </span>
+        ) : null}
+      </div>
+
+      <div>
+        <p className="whitespace-nowrap text-base font-medium leading-none sm:text-[clamp(2.2rem,5.5vw,3.6rem)] sm:tracking-[-0.05em]">
+          {s.value}
+        </p>
+        <p className="mt-1.5 max-w-[15ch] text-[10px] leading-[1.2] sm:mt-3 sm:text-[clamp(0.95rem,1.5vw,1.3rem)] sm:tracking-[-0.02em]">
+          {s.label}
+        </p>
+      </div>
+
+      <span className="hidden text-[11px] uppercase tracking-[0.18em] sm:block" style={{ color: s.sub }}>
+        Masters&rsquo; Union
+      </span>
+    </article>
+  );
+}
+
+function VentureCtaTile({ t, ratio }: { t: CtaTile; ratio: string }) {
+  return (
+    <a
+      href={t.to}
+      className={`group relative flex ${ratio} flex-col items-start justify-between overflow-hidden break-inside-avoid p-3 transition-transform duration-500 hover:scale-[1.01] sm:p-5`}
+      style={{ background: t.bg, color: t.fg, border: t.border ? `1px solid ${t.border}` : undefined }}
+    >
+      <span className="hidden text-[10px] font-medium uppercase tracking-[0.18em] sm:block" style={{ color: t.sub }}>
+        Entrepreneurship
+      </span>
+
+      <div className="min-w-0">
+        <p className="text-base font-medium leading-none sm:text-[clamp(1.6rem,4.2vw,2.7rem)] sm:tracking-[-0.04em]">
+          {t.headline}
+        </p>
+        <p className="mt-1.5 max-w-[18ch] text-[9px] leading-[1.2] sm:mt-2 sm:text-[clamp(0.85rem,1.3vw,1.05rem)] sm:leading-[1.25]" style={{ color: t.sub }}>
+          {t.body}
+        </p>
+      </div>
+
+      <div className="mt-2 flex items-center gap-1.5 sm:mt-5 sm:gap-2">
+        <span className="text-[7px] font-semibold uppercase tracking-[0.06em] min-[360px]:text-[8px] sm:text-[11px] sm:tracking-[0.14em]">{t.cta}</span>
+        <span
+          className="inline-flex size-5 shrink-0 items-center justify-center rounded-full border transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 sm:size-7"
+          style={{ borderColor: t.sub }}
+        >
+          <ArrowUpRight className="size-3 sm:size-3.5" />
+        </span>
+      </div>
+    </a>
+  );
+}
+
 function DropshippingSection() {
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
   const modalVideo = DROPSHIPPING_VIDEOS.find((v) => v.id === activeVideoId) ?? null;
@@ -1394,7 +1743,50 @@ function DropshippingSection() {
   const [, setActiveVideo] = useState(0);
   const collageRef = useRef<HTMLDivElement | null>(null);
   const videoCardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const foundersGridRef = useRef<HTMLDivElement | null>(null);
   const prefersReducedMotion = useReducedMotion();
+
+  // One observer on the founders mosaic drives a single staggered reveal.
+  useEffect(() => {
+    const grid = foundersGridRef.current;
+    if (!grid) return;
+    const tiles = Array.from(grid.querySelectorAll<HTMLElement>("[data-tile]"));
+    if (tiles.length === 0) return;
+
+    if (prefersReducedMotion || typeof IntersectionObserver === "undefined") return;
+
+    let cancelled = false;
+    let ctx: { revert: () => void } | null = null;
+
+    void import("gsap").then(({ gsap }) => {
+      if (cancelled) return;
+      ctx = gsap.context(() => {
+        gsap.set(tiles, { autoAlpha: 0, y: 26 });
+        const io = new IntersectionObserver(
+          (entries) => {
+            if (!entries.some((e) => e.isIntersecting)) return;
+            io.disconnect();
+            gsap.to(tiles, {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.75,
+              ease: "power3.out",
+              stagger: { each: 0.055 },
+              clearProps: "transform,opacity,visibility",
+            });
+          },
+          { threshold: 0.08, rootMargin: "0px 0px -6% 0px" },
+        );
+        io.observe(grid);
+      }, grid);
+    });
+
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
+  }, [prefersReducedMotion]);
+
 
   useEffect(() => {
     const geometry = { top: 0, height: 1, w0: 0, h0: 0, center0: 0, containerH: 0, ws: 0, hs: 0 };
@@ -1695,32 +2087,82 @@ function DropshippingSection() {
         </div>
       </Reveal>
 
-      <div className="mt-12 flex items-end justify-between gap-4 sm:mt-14">
-        <Reveal>
+      <div className="mt-12 border-t border-background/10 pt-8 sm:mt-16">
+        <div className="mb-4 flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
           <div>
-            <div className="eyebrow text-background/55">Then I put it in front of real people.</div>
-            <h3 className="mt-3 text-[clamp(1.4rem,2.8vw,2.2rem)] font-medium">Selected student ventures</h3>
+            <p className="font-mono text-[9px] uppercase tracking-[0.28em] text-background/40 sm:text-[10px]">
+              Student ventures · funding board
+            </p>
+            <h3 className="mb-3 mt-1.5 font-display text-[clamp(1.7rem,4vw,2.9rem)] font-medium leading-[1.02] tracking-[-0.03em] sm:mb-5 sm:mt-2">
+              Founders{" "}
+              <em className="font-serif-italic font-light">in the making</em>
+            </h3>
           </div>
-        </Reveal>
-        <span className="hidden font-mono text-[9px] uppercase tracking-[0.2em] text-background/35 sm:block">Swipe to explore</span>
-      </div>
+          <a
+            href="#portfolio"
+            className="inline-flex items-center gap-2 rounded-full border border-background/20 px-3 py-1.5 text-[10px] font-semibold tracking-[0.02em] text-background/85 transition-colors hover:bg-background hover:text-foreground"
+          >
+            See All Ventures <ArrowRight className="size-3" />
+          </a>
+        </div>
 
-      <div className="-mx-4 mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-3 sm:-mx-7 sm:px-7 md:-mx-8 md:px-8 lg:-mx-12 lg:px-12 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {DROPSHIPPING_TOP.map((venture, index) => (
-          <Reveal key={venture.name} delay={index * 0.04} className="w-[82vw] max-w-[400px] shrink-0 snap-start sm:w-[50vw] lg:w-[33vw]">
-            <article className="group h-full border-t border-background/20 pt-4">
-              <Placeholder kind="image" aspect="aspect-[4/5]" note={`${venture.name} — product detail`} className="rounded-[6px]" />
-              <div className="mt-5 flex items-start gap-3">
-                <LogoBadge size="size-9" />
-                <div className="min-w-0">
-                  <h3 className="text-[1rem] font-medium">{venture.name}</h3>
-                  <div className="mt-1 font-mono text-[9px] uppercase tracking-[0.18em] text-background/50">{venture.revenue} revenue</div>
-                  <p className="mt-3 text-[0.88rem] leading-[1.6] text-background/68">{venture.body}</p>
+        <div ref={foundersGridRef}>
+          {/* Mobile + tablet masonry keeps variable-height cards tightly packed. */}
+          <div className="columns-3 gap-[3px] sm:columns-4 xl:hidden">
+            {FOUNDER_TILES.map((t, i) => {
+              const ratio = MOSAIC_RATIOS[i % MOSAIC_RATIOS.length];
+              if ("kind" in t && t.kind === "cta") {
+                return (
+                  <div key="cta-startups-mobile" data-tile className="mb-[3px] inline-block w-full break-inside-avoid align-top">
+                    <VentureCtaTile t={t} ratio={ratio} />
+                  </div>
+                );
+              }
+              if ("kind" in t) {
+                return (
+                  <div key={`mobile-stat-${t.value}`} data-tile className="mb-[3px] inline-block w-full break-inside-avoid align-top">
+                    <StatPoster s={t} ratio={ratio} />
+                  </div>
+                );
+              }
+              return (
+                <div key={`mobile-${t.company}`} data-tile className="mb-[3px] inline-block w-full break-inside-avoid align-top">
+                  <FounderPoster v={t} ratio={ratio} />
                 </div>
+              );
+            })}
+          </div>
+
+          {/* Desktop brand mosaic — explicit equal-width columns fill the row edge to edge. */}
+          <div className="hidden grid-cols-5 gap-[3px] xl:grid">
+            {FOUNDER_COLUMNS.map((col, c) => (
+              <div key={c} className="flex flex-col gap-[3px]">
+                {col.map(({ tile: t, index: i }) => {
+                  const ratio = MOSAIC_RATIOS[(i + c) % MOSAIC_RATIOS.length];
+                  if ("kind" in t && t.kind === "cta") {
+                    return (
+                      <div key="cta-startups" data-tile>
+                        <VentureCtaTile t={t} ratio={ratio} />
+                      </div>
+                    );
+                  }
+                  if ("kind" in t) {
+                    return (
+                      <div key={`stat-${t.value}`} data-tile>
+                        <StatPoster s={t} ratio={ratio} />
+                      </div>
+                    );
+                  }
+                  return (
+                    <div key={t.company} data-tile>
+                      <FounderPoster v={t} ratio={ratio} />
+                    </div>
+                  );
+                })}
               </div>
-            </article>
-          </Reveal>
-        ))}
+            ))}
+          </div>
+        </div>
       </div>
       {typeof document !== "undefined" &&
         createPortal(
