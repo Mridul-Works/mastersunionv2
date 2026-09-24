@@ -1239,30 +1239,33 @@ function SparkCarousel({
       <div
         ref={storyRef}
         className="relative mt-5 sm:mt-7 md:mt-8"
-        style={{ height: `${(count + 2.5) * 100}svh` }}
+        style={{ height: `${100 + count * 45}svh` }}
       >
         <div ref={stickyRef} className="sticky top-0 flex min-h-[100svh] items-center overflow-hidden pt-4 pb-16 md:pt-5 md:pb-16 lg:pt-8 lg:pb-8">
         <div className="-mt-12 w-full pt-0 sm:-mt-20 sm:pt-1 md:-mt-28 md:pt-2 lg:-mt-40">
           <div className="grid grid-cols-[minmax(0,1fr)_minmax(72px,0.28fr)_minmax(0,1fr)] items-stretch gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(120px,0.3fr)_minmax(0,1fr)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(180px,0.36fr)_minmax(0,1fr)] md:gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(240px,0.4fr)_minmax(0,1fr)] lg:gap-10">
-            <motion.div
-              key={`left-${active}`}
-              initial={reduceMotion ? false : { opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reduceMotion ? 0 : 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col justify-center"
-            >
+            <div className="flex flex-col justify-center">
               <div className="eyebrow mb-2 text-center text-background/45 sm:mb-3">
                 {company.founder} — {company.cohort}
               </div>
-              <Placeholder
-                kind="image"
-                aspect="aspect-[1200/896]"
-                src={company.founderImage}
-                alt={company.founderImage ? `${company.founder} — founders of ${company.name}` : undefined}
-                note={`${company.name} — founder at work`}
-                className="rounded-[6px]"
-              />
-            </motion.div>
+              <div className="relative overflow-hidden rounded-[6px]">
+                <motion.div
+                  key={`left-${active}`}
+                  initial={reduceMotion ? false : { y: "100%" }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: reduceMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <Placeholder
+                    kind="image"
+                    aspect="aspect-[1200/896]"
+                    src={company.founderImage}
+                    alt={company.founderImage ? `${company.founder} — founders of ${company.name}` : undefined}
+                    note={`${company.name} — founder at work`}
+                    className="rounded-[6px]"
+                  />
+                </motion.div>
+              </div>
+            </div>
 
             <div
               ref={companyRailRef}
@@ -1292,32 +1295,29 @@ function SparkCarousel({
               </div>
             </div>
 
-            <motion.div
-              key={`right-${active}`}
-              initial={reduceMotion ? false : { opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reduceMotion ? 0 : 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col justify-center"
-            >
+            <div className="flex flex-col justify-center">
               <div className="eyebrow mb-2 text-center text-background/45 sm:mb-3">
                 {company.product}
               </div>
-              <Placeholder
-                kind="image"
-                aspect="aspect-[1200/896]"
-                note={`${company.name} — product detail`}
-                className="rounded-[6px]"
-              />
-            </motion.div>
+              <div className="relative overflow-hidden rounded-[6px]">
+                <motion.div
+                  key={`right-${active}`}
+                  initial={reduceMotion ? false : { y: "100%" }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: reduceMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <Placeholder
+                    kind="image"
+                    aspect="aspect-[1200/896]"
+                    note={`${company.name} — product detail`}
+                    className="rounded-[6px]"
+                  />
+                </motion.div>
+              </div>
+            </div>
           </div>
 
-          <motion.div
-            key={`copy-${active}`}
-            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.7, delay: reduceMotion ? 0 : 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto mt-2.5 max-w-5xl border-t border-background/15 pt-8 text-center sm:mt-4 sm:pt-10"
-          >
+          <div className="mx-auto mt-2.5 max-w-5xl border-t border-background/15 pt-8 text-center sm:mt-4 sm:pt-10">
             <div className="mx-auto max-w-4xl rounded-[6px] border border-background/15 bg-background/[0.03] px-5 py-4 sm:px-8 sm:py-5">
               <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-background/50">
                 {company.founder}
@@ -1326,7 +1326,7 @@ function SparkCarousel({
                 {company.body}
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
       </div>
