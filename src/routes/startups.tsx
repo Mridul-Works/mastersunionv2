@@ -1435,7 +1435,7 @@ function FounderStoriesChapters() {
     <section id="founder-stories" className="relative overflow-x-clip bg-foreground text-background">
       <span aria-hidden className="pointer-events-none absolute left-[6%] right-[6%] top-0 z-[1] h-px bg-background/15" />
 
-      <div className="relative z-[2] mx-auto w-full max-w-7xl px-5 pb-12 pt-20 sm:px-8 sm:pb-16 sm:pt-28">
+      <div className="relative z-[2] mx-auto w-full max-w-7xl px-5 pb-12 pt-20 sm:px-8 sm:pb-16 sm:pt-28 xl:pr-[17rem]">
         <Reveal>
           <Eyebrow>Founder Stories · {String(total).padStart(2, "0")} Chapters</Eyebrow>
         </Reveal>
@@ -1472,8 +1472,8 @@ function FounderStoriesChapters() {
         </Reveal>
       </div>
 
-      <div className="pointer-events-none absolute inset-0 z-[90] hidden xl:block">
-        <nav aria-label="Chapter progress" className="sticky top-1/2 -translate-y-1/2 pr-7 text-right">
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-[90] hidden w-[16rem] xl:block">
+        <nav aria-label="Chapter progress" className="sticky top-1/2 -translate-y-1/2 pr-8 text-right">
           <ol className="space-y-2">
             {FOUNDER_CHAPTERS.map((c, i) => (
               <li key={c.name} className="pointer-events-auto">
@@ -1502,8 +1502,8 @@ function FounderStoriesChapters() {
           }}
           className="relative border-t border-background/10"
         >
-          <div className="flex min-h-[100svh] flex-col justify-center py-14 sm:py-20">
-            <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+          <div className="flex min-h-[100svh] flex-col justify-center py-14 pb-[7.5rem] sm:py-20 md:pb-[6.5rem]">
+            <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 xl:pr-[17rem]">
               <div className={i % 2 === 1 ? "lg:flex lg:flex-col lg:items-end lg:text-right" : undefined}>
                 <div className="flex items-center gap-4">
                   <span aria-hidden className="h-px w-10 bg-background/25" />
@@ -1514,12 +1514,14 @@ function FounderStoriesChapters() {
                     </span>
                   )}
                 </div>
-                <h3 className="mt-7 font-serif-italic !font-serif !font-light text-[clamp(3.2rem,11vw,9rem)] leading-[0.86] tracking-[-0.03em]">
-                  {chapter.lines.map((line) => (
-                    <span key={line} className="block">
-                      {line}
-                    </span>
-                  ))}
+                <h3 className="mt-7">
+                  <span className="block font-serif-italic !font-serif !font-light text-[clamp(3.2rem,11vw,9rem)] leading-[0.86] tracking-[-0.03em]">
+                    {chapter.lines.map((line) => (
+                      <span key={line} className="block">
+                        {line}
+                      </span>
+                    ))}
+                  </span>
                 </h3>
                 <p className="mt-9 max-w-2xl text-[clamp(1.05rem,1.6vw,1.4rem)] font-light leading-[1.5] text-background/70">
                   {chapter.lede}
@@ -1533,7 +1535,7 @@ function FounderStoriesChapters() {
             </div>
           </div>
 
-          <div className="mx-auto w-full max-w-7xl px-5 pb-20 sm:px-8 sm:pb-28">
+          <div className="mx-auto w-full max-w-7xl px-5 pb-20 sm:px-8 sm:pb-28 xl:pr-[17rem]">
             <div className="grid gap-12 lg:grid-cols-12 lg:gap-x-16">
               <div className="lg:col-span-7 lg:col-start-4">
                 <ol className="space-y-9 sm:space-y-11">
