@@ -1502,12 +1502,12 @@ function FounderStoriesChapters() {
           }}
           className="relative border-t border-background/10"
         >
-          <div className="flex min-h-[100svh] flex-col justify-start pt-[11vh] pb-[7.5rem] sm:pt-[12vh] md:pb-[6.5rem]">
+          <div className="flex min-h-[100svh] flex-col justify-start pt-[8vh] pb-[7.5rem] sm:pt-[9vh] md:pb-[6.5rem]">
             <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 xl:pr-[17rem]">
               <div className={i % 2 === 1 ? "lg:flex lg:flex-col lg:items-end lg:text-right" : undefined}>
                 <div className="flex items-center gap-4">
                   <span aria-hidden className="h-px w-10 bg-background/25" />
-                  <Eyebrow>Chapter {String(i + 1).padStart(2, "0")} · {chapter.product}</Eyebrow>
+                  <Eyebrow>Chapter {String(i + 1).padStart(2, "0")}<span className="hidden sm:inline"> · {chapter.product}</span></Eyebrow>
                   {chapter.logo && (
                     <span className="flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full bg-background p-1.5">
                       <img src={chapter.logo} alt={`${chapter.name} logo`} className="h-full w-full object-contain" />
