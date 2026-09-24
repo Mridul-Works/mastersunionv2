@@ -2091,11 +2091,11 @@ function DropshippingSection() {
         <div className="mb-4 flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
           <div>
             <p className="font-mono text-[9px] uppercase tracking-[0.28em] text-background/40 sm:text-[10px]">
-              Student ventures · funding board
+              Selected student ventures
             </p>
             <h3 className="mb-3 mt-1.5 font-display text-[clamp(1.7rem,4vw,2.9rem)] font-medium leading-[1.02] tracking-[-0.03em] sm:mb-5 sm:mt-2">
-              Founders{" "}
-              <em className="font-serif-italic font-light">in the making</em>
+              Then I put it in front of{" "}
+              <em className="font-serif-italic font-light">real people</em>
             </h3>
           </div>
         </div>
