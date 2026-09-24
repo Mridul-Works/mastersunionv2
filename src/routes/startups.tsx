@@ -2023,7 +2023,7 @@ function DropshippingSection() {
       </Reveal>
 
       <div className="mt-8 sm:mt-10 md:mt-12">
-        <div ref={collageRef} data-dropshipping-collage className="relative h-[100svh] overflow-x-clip">
+        <div ref={collageRef} data-dropshipping-collage className="relative h-[86svh] overflow-x-clip sm:h-[88svh]">
           <div className="relative h-full overflow-hidden border-t border-background/10">
             <div className="pointer-events-none absolute inset-x-4 top-5 z-20 flex items-start justify-between sm:inset-x-8 lg:inset-x-12 lg:top-9">
               <div className="flex items-center gap-3 pt-1.5 sm:pt-2.5">
@@ -2041,7 +2041,7 @@ function DropshippingSection() {
 
             {DROPSHIPPING_VIDEOS.map((video, index) => {
               const sizes = [
-                "aspect-[4/5] w-[min(76vw,410px)] sm:w-[min(52vw,430px)] lg:w-[min(32vw,calc((100svh-17.8125rem)/1.25),470px)]",
+                "aspect-[4/5] w-[min(76vw,410px)] sm:w-[min(52vw,430px)] lg:w-[min(32vw,calc((88svh-15rem)/1.25),470px)]",
                 "aspect-[3/4] w-[min(66vw,340px)] sm:w-[min(35vw,360px)]",
                 "aspect-[3/4] w-[min(66vw,340px)] sm:w-[min(35vw,360px)]",
                 "aspect-[3/4] w-[min(66vw,340px)] sm:w-[min(35vw,360px)]",
@@ -2087,7 +2087,7 @@ function DropshippingSection() {
         </div>
       </div>
 
-      <div className="mt-12 border-t border-background/10 pt-8 sm:mt-16">
+      <div className="mt-8 border-t border-background/10 pt-8 sm:mt-12">
         <div className="mb-4 flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
           <div>
             <p className="font-mono text-[9px] uppercase tracking-[0.28em] text-background/40 sm:text-[10px]">
