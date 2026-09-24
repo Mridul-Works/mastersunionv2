@@ -412,7 +412,7 @@ const OUTCLASS_MOMENTS = [
   },
 ];
 
-type Stage = { n: string; name: string; grant: string | null; body: string; culmination?: boolean };
+type Stage = { n: string; name: string; grant: string | null; body: string; image: string; culmination?: boolean };
 
 const VIP_STAGES: Stage[] = [
   {
@@ -420,30 +420,35 @@ const VIP_STAGES: Stage[] = [
     name: "Pre-Seed",
     grant: "₹15–20L",
     body: "Bust the myths, find a real problem worth solving, pick the right co-founders, learn to talk to customers — validated in front of founders, VCs, and alumni.",
+    image: brandPhotoMetafashion,
   },
   {
     n: "02",
     name: "MVP",
     grant: "₹15–20L",
     body: "Build the smallest real version of the idea, prove customer centricity, ship on no-to-low-code tools, and defend it at MVP Demo Day.",
+    image: brandPhotoSeedsai,
   },
   {
     n: "03",
     name: "Go-to-Market",
     grant: "₹20L",
     body: "Learn the marketing playbook and understand your funnel — turning a working product into a repeatable one.",
+    image: brandPhotoPlaysuper,
   },
   {
     n: "04",
     name: "Product-Market Fit",
     grant: "₹25L",
     body: "One final dry run, then Demo Day.",
+    image: brandPhotoHiveschool,
   },
   {
     n: "05",
     name: "Demo Day",
     grant: null,
     body: "150+ venture capitalists and angel investors in the room, assessing student startups for real funding.",
+    image: sharkTankStageImg.url,
     culmination: true,
   },
 ];
@@ -2232,109 +2237,146 @@ function DropshippingSection() {
 }
 
 function VipJourney({ stages }: { stages: Stage[] }) {
-  const storyRef = useRef<HTMLDivElement>(null);
-  const stickyRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const pointerStartRef = useRef<number | null>(null);
   const [active, setActive] = useState(0);
+  const [direction, setDirection] = useState<1 | -1>(1);
   const reduceMotion = useReducedMotion();
 
+  const goTo = (next: number) => {
+    const bounded = Math.max(0, Math.min(stages.length - 1, next));
+    if (bounded === active) return;
+    setDirection(bounded > active ? 1 : -1);
+    setActive(bounded);
+  };
+
   useEffect(() => {
-    const story = storyRef.current;
-    if (!story || reduceMotion) return;
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      if (!window.matchMedia("(min-width: 1024px)").matches) return;
-      const rect = story.getBoundingClientRect();
-      const stickyHeight = stickyRef.current?.offsetHeight ?? window.innerHeight;
-      const range = Math.max(1, rect.height - stickyHeight);
-      const progress = Math.min(1, Math.max(0, -rect.top / range));
-      setActive(Math.min(stages.length - 1, Math.round(progress * (stages.length - 1))));
+    const card = cardRef.current;
+    if (!card) return;
+    let visible = false;
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting && entry.intersectionRatio > 0.25;
+    }, { threshold: [0, 0.25, 1] });
+    observer.observe(card);
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (!visible) return;
+      if (event.key === "ArrowRight") goTo(active + 1);
+      if (event.key === "ArrowLeft") goTo(active - 1);
     };
-    const onScroll = () => {
-      if (!frame) frame = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    window.addEventListener("keydown", onKeyDown);
     return () => {
-      if (frame) cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      observer.disconnect();
+      window.removeEventListener("keydown", onKeyDown);
     };
-  }, [reduceMotion, stages.length]);
+  }, [active, stages.length]);
+
+  const stage = stages[active];
+  const progress = ((active + 1) / stages.length) * 100;
 
   return (
-    <>
-      <div ref={storyRef} className="relative hidden h-[340svh] lg:block">
-        <div ref={stickyRef} className="sticky top-0 flex min-h-[100svh] items-center py-14">
-          <div className="w-full">
-            <div className="relative grid grid-cols-5 border-y border-background/15 py-6">
-              <div aria-hidden className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-background/12" />
-              <motion.div
-                aria-hidden
-                className="absolute left-0 top-1/2 h-px -translate-y-1/2 bg-accent"
-                animate={{ width: `${(active / Math.max(1, stages.length - 1)) * 100}%` }}
-                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              />
-              {stages.map((stage, index) => (
-                <div key={stage.name} className="relative z-[1] flex flex-col items-center px-2 text-center">
-                  <span className={`size-3 rounded-full border transition-colors duration-500 ${index <= active ? "border-accent bg-accent" : "border-background/35 bg-foreground"}`} />
-                  <span className={`mt-4 font-mono text-[9px] font-semibold uppercase tracking-[0.18em] transition-colors duration-500 ${index === active ? "text-background" : index < active ? "text-background/55" : "text-background/30"}`}>
-                    {stage.name}
-                  </span>
-                </div>
-              ))}
+    <div
+      ref={cardRef}
+      className="relative mt-10 h-[min(78svh,48rem)] min-h-[38rem] overflow-hidden rounded-[8px] border border-background/15 bg-background text-foreground sm:mt-12 md:h-[min(82svh,52rem)] md:min-h-[42rem] lg:mt-16 lg:min-h-[44rem]"
+      onPointerDown={(event) => { pointerStartRef.current = event.clientX; }}
+      onPointerUp={(event) => {
+        const start = pointerStartRef.current;
+        pointerStartRef.current = null;
+        if (start === null || Math.abs(event.clientX - start) < 60) return;
+        goTo(active + (event.clientX < start ? 1 : -1));
+      }}
+    >
+      <AnimatePresence mode="wait" custom={direction}>
+        <motion.div
+          key={stage.name}
+          custom={direction}
+          initial={reduceMotion ? false : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: reduceMotion ? 0 : 0.55, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute inset-0 grid md:grid-cols-[minmax(0,1.7fr)_minmax(19rem,0.8fr)]"
+        >
+          <div className="relative min-h-0 overflow-hidden">
+            <motion.img
+              src={stage.image}
+              alt={`${stage.name} stage of the Venture Initiation Programme`}
+              className="h-full w-full object-cover"
+              initial={reduceMotion ? false : { scale: 1.08, x: direction * 28 }}
+              animate={{ scale: 1, x: 0 }}
+              exit={reduceMotion ? undefined : { scale: 1.03, x: direction * -18 }}
+              transition={{ duration: reduceMotion ? 0 : 0.9, ease: [0.22, 1, 0.36, 1] }}
+            />
+            <div aria-hidden className="absolute inset-0 bg-linear-to-t from-foreground/90 via-foreground/10 to-foreground/35 md:bg-linear-to-r md:from-foreground/20 md:via-transparent md:to-foreground/35" />
+            <div className="absolute inset-x-5 top-5 flex items-start justify-between text-background sm:inset-x-7 sm:top-7 lg:inset-x-10 lg:top-9">
+              <div>
+                <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-background/60">The Venture Initiation Programme</p>
+                <p className="mt-2 max-w-[12ch] font-display text-[clamp(1.25rem,2.2vw,2rem)] font-medium leading-[0.95]">From Idea to Demo Day</p>
+              </div>
+              <span className="font-mono text-[10px] tracking-[0.16em] text-background/65">{stage.n} / {String(stages.length).padStart(2, "0")}</span>
             </div>
-
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={stages[active].name}
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.35 }}
-                className="mt-10 grid grid-cols-12 items-center gap-12"
-              >
-                <div className="col-span-5">
-                  <div className="eyebrow text-background/45">Stage {stages[active].n}</div>
-                  <h3 className="mt-4 max-w-[12ch] text-[clamp(2.4rem,4.4vw,4.8rem)] font-medium leading-[0.98]">{stages[active].name}</h3>
-                  {stages[active].grant && <div className="mt-5 font-mono text-[10px] uppercase tracking-[0.2em] text-background/50">Grant · {stages[active].grant}</div>}
-                  <p className="mt-6 max-w-[44ch] text-[15px] leading-[1.75] text-background/70">{stages[active].body}</p>
-                </div>
-                <div className="col-span-7">
-                  <Placeholder kind="image" aspect="aspect-[16/10]" note={`${stages[active].name} — venture journey`} className="rounded-[6px]" />
-                </div>
-              </motion.div>
-            </AnimatePresence>
+            <motion.span
+              aria-hidden
+              className="absolute bottom-1 left-3 font-serif-italic text-[clamp(9rem,22vw,20rem)] leading-none text-background/12 sm:left-6"
+              initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: reduceMotion ? 0 : 0.75 }}
+            >
+              {stage.n}
+            </motion.span>
           </div>
-        </div>
-      </div>
 
-      <div className="mt-10 lg:hidden">
-        {stages.map((stage, index) => (
-          <Reveal key={stage.name} delay={index * 0.04}>
-            <article className="relative border-l border-background/20 pb-10 pl-7 last:pb-0 sm:grid sm:grid-cols-12 sm:gap-7 sm:pl-9">
-              <span aria-hidden className={`absolute -left-[5px] top-0 size-[9px] rounded-full ${stage.culmination ? "bg-accent" : "border border-accent bg-foreground"}`} />
-              <div className="sm:col-span-5">
-                <div className="eyebrow text-background/45">{stage.n}</div>
-                <h3 className="mt-2 text-[clamp(1.45rem,4vw,2.1rem)] font-medium leading-tight">{stage.name}</h3>
-                {stage.grant && <div className="mt-3 font-mono text-[9px] uppercase tracking-[0.18em] text-background/50">Grant · {stage.grant}</div>}
+          <div className="relative z-10 flex min-h-[22rem] flex-col justify-between border-t border-foreground/15 bg-background px-5 py-6 sm:px-8 sm:py-8 md:min-h-0 md:border-l md:border-t-0 lg:px-10 lg:py-10">
+            <motion.div
+              initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: reduceMotion ? 0 : 0.55, delay: reduceMotion ? 0 : 0.12 }}
+            >
+              <div className="flex items-center gap-2 font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-foreground/55">
+                <span className={`size-1.5 rounded-full ${stage.culmination ? "bg-accent" : "bg-primary"}`} />
+                Stage {stage.n}
               </div>
-              <div className="mt-4 sm:col-span-7 sm:mt-0">
-                <p className="text-[13px] leading-[1.65] text-background/70 sm:text-[14px]">{stage.body}</p>
+              <h3 className="mt-5 max-w-[9ch] font-serif-italic text-[clamp(2.8rem,5vw,5.7rem)] font-light leading-[0.88] text-foreground">{stage.name}</h3>
+              <p className="mt-6 max-w-[34ch] text-[13px] leading-[1.65] text-foreground/65 sm:text-[14px] lg:mt-8 lg:text-[15px] lg:leading-[1.75]">{stage.body}</p>
+              <div className="mt-7 flex min-h-10 items-end gap-8 border-t border-foreground/15 pt-4 lg:mt-9">
+                <div>
+                  <span className="block font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/40">Milestone</span>
+                  <span className="mt-1 block text-[13px] font-medium text-foreground">{stage.culmination ? "Investor showcase" : "Stage validation"}</span>
+                </div>
+                {stage.grant ? (
+                  <div>
+                    <span className="block font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/40">Grant</span>
+                    <span className="mt-1 block text-[13px] font-medium text-foreground">{stage.grant}</span>
+                  </div>
+                ) : null}
               </div>
-            </article>
-          </Reveal>
-        ))}
-      </div>
-    </>
+            </motion.div>
+
+            <div className="mt-7 flex items-end justify-between gap-5">
+              <div className="min-w-0 flex-1">
+                <div className="h-px overflow-hidden bg-foreground/15">
+                  <motion.div className="h-full origin-left bg-primary" animate={{ width: `${progress}%` }} transition={{ duration: reduceMotion ? 0 : 0.5 }} />
+                </div>
+                <p className="mt-3 font-mono text-[8px] uppercase tracking-[0.18em] text-foreground/40">Step {stage.n} of {String(stages.length).padStart(2, "0")}</p>
+              </div>
+              <div className="flex shrink-0 gap-2">
+                <button type="button" aria-label="Previous VIP stage" onClick={() => goTo(active - 1)} disabled={active === 0} className="flex size-11 items-center justify-center rounded-full border border-foreground/20 text-foreground transition-colors hover:bg-foreground hover:text-background disabled:pointer-events-none disabled:opacity-25">
+                  <ArrowRight className="size-4 rotate-180" strokeWidth={1.5} />
+                </button>
+                <button type="button" aria-label="Next VIP stage" onClick={() => goTo(active + 1)} disabled={active === stages.length - 1} className="flex size-11 items-center justify-center rounded-full bg-foreground text-background transition-opacity hover:opacity-80 disabled:pointer-events-none disabled:opacity-25">
+                  <ArrowRight className="size-4" strokeWidth={1.5} />
+                </button>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+    </div>
   );
 }
 
 function VipSection() {
   return (
     <Section id="journey" tone="paper">
-      <div className="grid gap-8 sm:gap-10 lg:grid-cols-12 lg:items-end">
+      <div className="grid gap-6 sm:gap-8 lg:grid-cols-12 lg:items-end">
         <div className="lg:col-span-7">
           <Reveal><Eyebrow>The Venture Initiation Programme (VIP)</Eyebrow></Reveal>
           <Reveal delay={0.05}>
@@ -2344,7 +2386,7 @@ function VipSection() {
           </Reveal>
         </div>
         <Reveal delay={0.1} className="lg:col-span-5">
-          <div className="eyebrow mb-4 text-background/45">Then I decided to build it properly.</div>
+          <div className="eyebrow mb-3 text-background/45">Then I decided to build it properly.</div>
           <p className="max-w-[56ch] text-[13px] leading-[1.6] text-background/70 lg:ml-auto md:text-[15px] md:leading-[1.75]">
             Students build a business from 0 to 1, working through the real moving parts — pricing,
             positioning, cash flow — not case studies about someone else&apos;s. The VIP is a structured track,
