@@ -176,12 +176,217 @@ const DROPSHIPPING_STATS = [
   { value: "150+", label: "Businesses built", sub: "From first sale to scale" },
 ];
 
-const DROPSHIPPING_TOP = [
-  { name: "Zeller Crystals", revenue: "₹14.17L", body: "India's first crystal couture brand." },
-  { name: "The Frenzie Store", revenue: "₹14L", body: "A hair-care brand built around frizz-free, shiny, smooth results." },
-  { name: "Khareedo.shop", revenue: "₹11.8L", body: "Drones, home decor, and orthopaedic pillows under one storefront." },
-  { name: "ThriftFly", revenue: "₹11.3L", body: "A travel-discounts platform built as a student side hustle." },
+/* ============ Founders in the making — mosaic (from the homepage funding board) ============ */
+
+type VentureTile = {
+  company: string;
+  founder: string;
+  photo: string;
+  logo?: { url: string };
+  sector: string;
+  stage: string;
+  raised: string;
+  note?: string;
+};
+
+const FOUNDER_VENTURES: VentureTile[] = [
+  {
+    company: "Eight.Network",
+    founder: "Mohit Goswami, Mohit Paliwal, Yugal Tamang · Co'21",
+    photo: brandPhotoEight,
+    logo: ventureEightLogo,
+    sector: "Audio streaming",
+    stage: "Venture-backed",
+    raised: "$3.1M",
+    note: "~$5M ARR",
+  },
+  {
+    company: "PlaySuper",
+    founder: "Shouradeep Chakraborty, Abhir Das, Upamanyu Chatterjee · Co'24",
+    photo: brandPhotoPlaysuper,
+    logo: venturePlaysuperLogo,
+    sector: "Gaming commerce",
+    stage: "Seed · 4 rounds",
+    raised: "$1.69M",
+    note: "Latest $1M seed, Sep 2025",
+  },
+  {
+    company: "Bullspree",
+    founder: "Dharmil Bavishi, Harsh Dhanawat, Divyansh Mathur",
+    photo: brandPhotoBullspree,
+    logo: ventureBullspreeLogo,
+    sector: "Sports gaming",
+    stage: "Seed · 2 rounds",
+    raised: "$1.5M",
+    note: "₹2 Cr (Sep '21) + ₹1 Cr (Feb '22)",
+  },
+  {
+    company: "MemoTag",
+    founder: "Reyansh Juneja, Japnoor Kaur Sandhu · UG '28",
+    photo: brandPhotoMemotag,
+    logo: sharkMemoTagLogo,
+    sector: "Dementia care wearables",
+    stage: "Early stage",
+    raised: "~₹2.5 Cr",
+    note: "Founder-stated",
+  },
+  {
+    company: "Meta Fashion",
+    founder: "Arjun Goel · UG TBM '28",
+    photo: brandPhotoMetafashion,
+    logo: sharkMetaFashionLogo,
+    sector: "Fashion tech",
+    stage: "Pre-seed",
+    raised: "~$400K",
+  },
+  {
+    company: "Hive School",
+    founder: "Nikhil Gaur · PGP '25",
+    photo: brandPhotoHiveschool,
+    logo: ventureHiveschoolLogo,
+    sector: "EdTech · sales school",
+    stage: "Grant + revenue",
+    raised: "₹2 Cr run rate",
+  },
+  {
+    company: "Lexi's",
+    founder: "MU student founders",
+    photo: brandPhotoLexis,
+    logo: ventureLexis,
+    sector: "Cloud kitchen",
+    stage: "Student-founded",
+    raised: "₹1 Cr+ ARR",
+  },
+  {
+    company: "Seeds AI",
+    founder: "MU student founders",
+    photo: brandPhotoSeedsai,
+    logo: ventureSeedsAILogo,
+    sector: "Applied AI",
+    stage: "Pre-seed",
+    raised: "Undisclosed",
+  },
+  {
+    company: "Woody's Pizzeria",
+    founder: "MU student founders",
+    photo: brandPhotoWoodys,
+    logo: ventureWoodys,
+    sector: "F&B · QSR",
+    stage: "Bootstrapped",
+    raised: "Revenue-funded",
+  },
 ];
+
+type StatTile = {
+  kind: "stat";
+  value: string;
+  delta?: string;
+  label: string;
+  note: string;
+  bg: string;
+  fg: string;
+  sub: string;
+};
+
+type CtaTile = {
+  kind: "cta";
+  headline: string;
+  body: string;
+  cta: string;
+  to: string;
+  bg: string;
+  fg: string;
+  sub: string;
+  border?: string;
+};
+
+const BOTTLE_GREEN = "#006A4E";
+const MUSTARD = "#F5E7C8";
+const INK = "#111111";
+
+const FOUNDER_STATS: StatTile[] = [
+  {
+    kind: "stat",
+    value: "120+",
+    delta: "▲ 24 YoY",
+    label: "Student startups launched during the programme",
+    note: "MU Ventures",
+    bg: BOTTLE_GREEN,
+    fg: "#FFFFFF",
+    sub: "rgba(255,255,255,0.66)",
+  },
+  {
+    kind: "stat",
+    value: "₹85 Cr+",
+    label: "Raised by alumni in seed & pre-seed rounds",
+    note: "Capital raised",
+    bg: MUSTARD,
+    fg: INK,
+    sub: "rgba(17,17,17,0.62)",
+  },
+  {
+    kind: "stat",
+    value: "$10M",
+    label: "In-house fund deployed via MU Ventures",
+    note: "Campus fund",
+    bg: INK,
+    fg: "#FFFFFF",
+    sub: "rgba(255,255,255,0.7)",
+  },
+  {
+    kind: "stat",
+    value: "40+",
+    label: "Founder mentors — unicorn & YC operators",
+    note: "Mentor bench",
+    bg: BOTTLE_GREEN,
+    fg: "#FFFFFF",
+    sub: "rgba(255,255,255,0.66)",
+  },
+];
+
+const FOUNDER_CTA: CtaTile = {
+  kind: "cta",
+  headline: "Build here",
+  body: "Explore the full portfolio of student-led ventures, grants and founder support.",
+  cta: "See all startups",
+  to: "#cta",
+  bg: "#FFFFFF",
+  fg: BOTTLE_GREEN,
+  sub: "rgba(0,106,78,0.62)",
+  border: "rgba(0,106,78,0.28)",
+};
+
+/** Irregular mosaic rhythm — alternating tile heights. */
+const MOSAIC_RATIOS = [
+  "aspect-[4/5]",
+  "aspect-square",
+  "aspect-[3/4]",
+  "aspect-[4/5]",
+  "aspect-square",
+  "aspect-[3/4]",
+];
+
+/** Ventures interleaved with stat tiles (stat after every two ventures), plus a CTA tile. */
+const FOUNDER_TILES: Array<VentureTile | StatTile | CtaTile> = (() => {
+  const out: Array<VentureTile | StatTile | CtaTile> = [];
+  let s = 0;
+  FOUNDER_VENTURES.forEach((v, i) => {
+    out.push(v);
+    if (i % 2 === 1 && s < FOUNDER_STATS.length) out.push(FOUNDER_STATS[s++]);
+  });
+  while (s < FOUNDER_STATS.length) out.push(FOUNDER_STATS[s++]);
+  out.push(FOUNDER_CTA);
+  return out;
+})();
+
+/** Round-robin the tiles into 5 balanced columns so the grid fills the row exactly. */
+const FOUNDER_COLUMNS: Array<Array<{ tile: VentureTile | StatTile | CtaTile; index: number }>> = (() => {
+  const cols: Array<Array<{ tile: VentureTile | StatTile | CtaTile; index: number }>> = [[], [], [], [], []];
+  FOUNDER_TILES.forEach((tile, index) => {
+    cols[index % cols.length].push({ tile, index });
+  });
+  return cols;
+})();
 
 const OUTCLASS_MOMENTS = [
   {
