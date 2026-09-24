@@ -1127,6 +1127,7 @@ function SparkCarousel({
   const companyRailRef = useRef<HTMLDivElement>(null);
   const nameTrackRef = useRef<HTMLDivElement>(null);
   const videoCardRef = useRef<HTMLButtonElement>(null);
+  const bsVideoScaleRef = useRef<HTMLDivElement>(null);
   const scrollFrameRef = useRef(0);
   const lastActiveRef = useRef(active);
   const lastTrackOffsetRef = useRef<number | null>(null);
@@ -1210,6 +1211,32 @@ function SparkCarousel({
       window.removeEventListener("orientationchange", schedule);
     };
   }, [count, onActiveChange]);
+
+  // "The Building Starts Here" card: starts small, grows to full size as it
+  // scrolls into view. Driven by the shared scroll driver, fully reversible.
+  useEffect(() => {
+    if (reduceMotion) return;
+    const el = bsVideoScaleRef.current;
+    if (!el) return;
+    let scale = 0.45;
+    const apply = () => {
+      el.style.transform = `scale(${scale.toFixed(4)})`;
+    };
+    apply();
+    return onScrollFrame(
+      apply,
+      () => {
+        const vh = window.innerHeight || 1;
+        const rect = el.getBoundingClientRect();
+        // 0 when the card's top sits at the viewport bottom edge, 1 once the
+        // card's vertical center reaches the viewport center.
+        const start = vh;
+        const end = vh / 2 - rect.height / 2;
+        const p = Math.min(1, Math.max(0, (start - rect.top) / Math.max(1, start - end)));
+        scale = 0.45 + 0.55 * (1 - (1 - p) * (1 - p));
+      },
+    );
+  }, [reduceMotion]);
 
   const scrollToCompany = (index: number) => {
     const story = storyRef.current;
@@ -1367,6 +1394,7 @@ function SparkCarousel({
               <br />
               students become entrepreneurs.
             </p>
+            <div ref={bsVideoScaleRef} className="will-change-transform" style={{ transformOrigin: "center center" }}>
             <button
               ref={videoCardRef}
               type="button"
@@ -1387,6 +1415,7 @@ function SparkCarousel({
                 </span>
               </span>
             </button>
+            </div>
             <div
               aria-label="Student venture journey"
               className="mx-auto mt-8 flex w-full max-w-4xl flex-wrap items-center justify-center gap-x-3 gap-y-2 sm:mt-10 sm:gap-x-4"
