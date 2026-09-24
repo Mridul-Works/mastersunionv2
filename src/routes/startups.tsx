@@ -463,27 +463,6 @@ const VIP_STAGES: Stage[] = [
   },
 ];
 
-type Episode = { label: string; body: string; culmination?: boolean };
-
-const STARTUP_CHALLENGE_EPISODES: Episode[] = [
-  {
-    label: "Episode 1",
-    body: "Founders of 73 Boston, NOVA School, and Samarpana take leading Indian investors through the journey of their market research.",
-  },
-  {
-    label: "Episode 2",
-    body: "Fundee, Buzzinga, and Zwel's founders pitch to over 100 venture capitalists to show why their ideas are worth investing in.",
-  },
-  {
-    label: "Episode 3",
-    body: "Crispee, Soul Gappa, and Modulus showcase their startup ideas, vying for mentorship and funding from key investors.",
-  },
-  {
-    label: "Grand Finale",
-    body: "The top three startups secure funding worth over ₹30 lakh, plus exclusive 1:1 mentorship from India's biggest investors.",
-    culmination: true,
-  },
-];
 
 type Beat = { stage: string; body: string };
 
@@ -2441,19 +2420,10 @@ function VipSection() {
       </Reveal>
 
       <VipJourney stages={VIP_STAGES} />
-
-      <Reveal delay={0.2} className="mt-12 border-t border-background/15 pt-10 sm:mt-14 sm:pt-12 md:mt-16">
-        <Eyebrow>The Startup Challenge</Eyebrow>
-      </Reveal>
-      <Reveal delay={0.24}>
-        <p className="mt-4 max-w-[64ch] text-[13px] leading-[1.6] text-background/70 md:text-[15px] md:leading-[1.75]">
-          A four-part video series that tracks student ventures from first pitch to funded company.
-        </p>
-      </Reveal>
-      <EpisodeStrip episodes={STARTUP_CHALLENGE_EPISODES} />
     </Section>
   );
 }
+
 
 function ScrollCarousel({
   children,
