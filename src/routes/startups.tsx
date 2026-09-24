@@ -872,7 +872,7 @@ function Section({
           {id.replace("-", " ")}
         </span>
       ) : null}
-      <div className={`relative z-[1] mx-auto w-full ${container} px-4 py-16 sm:px-7 sm:py-20 md:px-8 md:py-24 lg:px-12 lg:py-32`}>{children}</div>
+      <div className={`relative z-[1] mx-auto w-full ${container} ${padClass}`}>{children}</div>
     </section>
   );
 }
