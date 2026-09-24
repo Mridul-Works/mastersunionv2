@@ -2372,7 +2372,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
 
 function VipSection() {
   return (
-    <Section id="journey" tone="paper">
+    <Section id="journey" tone="paper" tightTop>
       <div className="grid gap-6 sm:gap-8 lg:grid-cols-12 lg:items-end">
         <div className="lg:col-span-7">
           <Reveal><Eyebrow>The Venture Initiation Programme (VIP)</Eyebrow></Reveal>
