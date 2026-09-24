@@ -1504,7 +1504,7 @@ function VentureSlide({
 
           <VentureStaggered delay={0.25} dur={dur} key={`title-${slide.n}`}>
             <h3
-              className="mt-3 font-normal text-background md:mt-5"
+              className="vd-head mt-3 font-normal text-background md:mt-5"
               style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(28px, 4vw, 54px)", lineHeight: 1.04, letterSpacing: "-0.01em" }}
             >
               {slide.headline}
@@ -1621,7 +1621,7 @@ function VentureIntroSlide({
           <div className="w-full max-w-[420px] bg-gradient-to-t from-foreground/95 via-foreground/80 to-transparent pb-2 pt-6 sm:pb-3 sm:pt-10 md:bg-transparent md:p-0">
             <VentureStaggered delay={0.28} dur={dur} key={`intro-title-${index}`}>
               <h3
-                className="font-normal text-background"
+                className="vd-head font-normal text-background"
                 style={{ fontFamily: "var(--font-serif)", fontSize: "clamp(30px, 4.2vw, 58px)", lineHeight: 1.04, letterSpacing: "-0.01em" }}
               >
                 {slide.headline}
@@ -1768,7 +1768,7 @@ function VentureDeck({ ventures }: { ventures: typeof DROPSHIPPING_TOP }) {
   return (
     <div
       ref={sectionRef}
-      className="relative -mx-4 h-[clamp(30rem,70svh,35rem)] touch-pan-y select-none overflow-hidden bg-foreground text-background sm:-mx-7 sm:h-[clamp(32rem,82svh,43.75rem)] md:-mx-8 md:h-[min(92dvh,820px)] lg:-mx-12"
+      className="venture-deck relative -mx-4 h-[clamp(30rem,70svh,35rem)] touch-pan-y select-none overflow-hidden bg-foreground text-background sm:-mx-7 sm:h-[clamp(32rem,82svh,43.75rem)] md:-mx-8 md:h-[min(92dvh,820px)] lg:-mx-12"
     >
       <div className="pointer-events-none absolute left-5 top-5 z-30 font-mono text-[11px] tracking-[0.15em] text-background/70 md:left-10 md:top-6 md:text-[12px] md:text-background/45">
         <AnimatePresence mode="popLayout">
