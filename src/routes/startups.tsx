@@ -1290,7 +1290,7 @@ function SparkCarousel({
       <div
         ref={storyRef}
         className="relative mt-5 sm:mt-7 md:mt-8"
-        style={{ height: `${count * 100}svh` }}
+        style={{ height: `${count * 55}svh` }}
       >
         <div ref={stickyRef} className="sticky top-0 flex min-h-[100svh] items-end overflow-hidden pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+88px)] md:pt-4 md:pb-[84px] lg:pt-4 lg:pb-[84px]">
         <div className="w-full pt-0 sm:pt-1 md:pt-2 lg:pt-0">
