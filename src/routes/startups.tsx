@@ -2287,7 +2287,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
   return (
     <div
       ref={cardRef}
-      className="relative mt-10 h-[min(78svh,48rem)] min-h-[38rem] overflow-hidden rounded-[8px] border border-background/15 bg-background text-foreground sm:mt-12 md:h-[min(82svh,52rem)] md:min-h-[42rem] lg:mt-16 lg:min-h-[44rem]"
+      className="relative mt-10 h-[min(78svh,48rem)] min-h-[38rem] overflow-hidden rounded-[8px] border border-background/15 bg-[#F5E7C8] text-foreground sm:mt-12 md:h-[min(82svh,52rem)] md:min-h-[42rem] lg:mt-16 lg:min-h-[44rem]"
       onPointerDown={(event) => { pointerStartRef.current = event.clientX; }}
       onPointerUp={(event) => {
         const start = pointerStartRef.current;
@@ -2335,7 +2335,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
             </motion.span>
           </div>
 
-          <div className="relative z-10 flex min-h-[22rem] flex-col justify-between border-t border-foreground/15 bg-background px-5 py-6 sm:px-8 sm:py-8 md:min-h-0 md:border-l md:border-t-0 lg:px-10 lg:py-10">
+          <div className="relative z-10 flex min-h-[22rem] flex-col justify-between border-t border-foreground/15 bg-[#F5E7C8] px-5 py-6 sm:px-8 sm:py-8 md:min-h-0 md:border-l md:border-t-0 lg:px-10 lg:py-10">
             <motion.div
               initial={reduceMotion ? false : { opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
