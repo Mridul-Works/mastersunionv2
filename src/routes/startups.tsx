@@ -176,6 +176,12 @@ const DROPSHIPPING_STATS = [
   { value: "150+", label: "Businesses built", sub: "From first sale to scale" },
 ];
 
+const VIP_METRICS = [
+  { value: "1.5 Cr+", label: "Grants given by MU" },
+  { value: "100+", label: "Startups Incubated" },
+  { value: "70+", label: "Students pitched at Demo Days" },
+];
+
 /* ============ Founders in the making — mosaic (from the homepage funding board) ============ */
 
 type VentureTile = {
