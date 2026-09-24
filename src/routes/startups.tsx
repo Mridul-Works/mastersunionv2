@@ -402,6 +402,7 @@ const OUTCLASS_MOMENTS = [
     label: "Dropshipping stores",
     body: "Taking risks, testing ideas, and putting something into the world.",
     media: "Students running a live storefront",
+    image: outclassDropshippingImg.url,
   },
   {
     n: "02",
@@ -1613,7 +1614,20 @@ function OutclassSection() {
                       </p>
                     </div>
                     <div className="md:col-span-7">
-                      <Placeholder kind="image" aspect="aspect-[16/10]" note={moment.media} className="rounded-[6px]" />
+                      {moment.image ? (
+                        <div className="relative aspect-[16/10] overflow-hidden rounded-[6px]">
+                          <img
+                            src={moment.image}
+                            alt={moment.media}
+                            loading="lazy"
+                            decoding="async"
+                            draggable={false}
+                            className="absolute inset-0 size-full object-cover"
+                          />
+                        </div>
+                      ) : (
+                        <Placeholder kind="image" aspect="aspect-[16/10]" note={moment.media} className="rounded-[6px]" />
+                      )}
                     </div>
                   </div>
                 </motion.article>
