@@ -2406,6 +2406,23 @@ function VipSection() {
         </Reveal>
       </div>
 
+      <Reveal delay={0.16} className="mt-8 sm:mt-10">
+        <div className="overflow-hidden rounded-2xl border border-background/15 bg-background/[0.03]">
+          <div className="grid grid-cols-1 divide-y divide-background/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+            {VIP_METRICS.map((stat) => (
+              <div key={stat.label} className="min-h-[5.5rem] px-5 py-4 sm:min-h-0 sm:px-8 sm:py-5">
+                <div className="font-display text-[clamp(1.7rem,2.6vw,2.2rem)] font-normal leading-none tracking-[-0.01em]">
+                  {stat.value}
+                </div>
+                <div className="mt-2.5 font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-background/60 sm:text-[10px]">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Reveal>
+
       <VipJourney stages={VIP_STAGES} />
 
       <Reveal delay={0.2} className="mt-12 border-t border-background/15 pt-10 sm:mt-14 sm:pt-12 md:mt-16">
