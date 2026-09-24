@@ -1835,7 +1835,7 @@ function DropshippingSection() {
       const edge = compact ? 12 : Math.min(48, Math.max(20, vw * 0.03));
       // Top margin clears the "Field Film / Build in public" label row;
       // bottom margin clears the floating bottom navigation bar.
-      const topSafe = compact ? 72 : vw < 1024 ? 84 : 96;
+      const topSafe = compact ? 104 : vw < 1024 ? 116 : 140;
       const bottomSafe = compact ? 88 : vw < 1024 ? 96 : 104;
       const desktop = vw >= 1024;
       const mainTop = desktop
