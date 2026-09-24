@@ -32,6 +32,7 @@ import foundersVideoWebm from "@/assets/hero-3.webm.asset.json";
 import entrepreneurshipReport2021 from "@/assets/entrepreneurship-report-2021-25.pdf.asset.json";
 import entrepreneurshipReportUg from "@/assets/entrepreneurship-report-ug-programmes.pdf.asset.json";
 import studentEntrepreneurshipVideo from "@/assets/MU_Student_Entreprenuership_Video-2.mp4.asset.json";
+import bsHighlightVideo from "@/assets/bs-highlight.mp4";
 import instaVideo1 from "@/assets/insta-video-1.mp4.asset.json";
 import instaVideo1Poster from "@/assets/insta-video-1-frame.jpg.asset.json";
 import instaVideo2 from "@/assets/insta-video-2.mp4.asset.json";
@@ -1403,12 +1404,29 @@ function SparkCarousel({
               className="group mx-auto mt-10 block w-full overflow-hidden rounded-2xl border border-background/15 text-left transition-transform duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60 sm:mt-12 sm:max-w-4xl md:max-w-5xl lg:max-w-6xl"
             >
               <span className="relative block aspect-video w-full overflow-hidden">
-                <img
-                  src={sparkVideoThumb}
-                  alt="Students presenting on stage at Masters' Union"
-                  loading="lazy"
-                  className="block h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                />
+                {/* muted highlight loop autoplays on the card; the play
+                    button still opens the full video with sound */}
+                {reduceMotion ? (
+                  <img
+                    src={sparkVideoThumb}
+                    alt="Students presenting on stage at Masters' Union"
+                    loading="lazy"
+                    className="block h-full w-full object-cover"
+                  />
+                ) : (
+                  <video
+                    src={bsHighlightVideo}
+                    poster={sparkVideoThumb}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    tabIndex={-1}
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 block h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
+                )}
                 <span className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-black/15" />
                 <span className="absolute left-1/2 top-1/2 inline-flex size-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-background/95 text-foreground shadow-lg transition-transform duration-300 group-hover:scale-105 sm:size-20">
                   <Play className="ml-0.5 size-6 fill-current sm:size-7" strokeWidth={2} />
