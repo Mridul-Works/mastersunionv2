@@ -2158,6 +2158,11 @@ function DropshippingSection() {
           </div>
         </div>
       </div>
+      <div
+        aria-hidden
+        className="mt-14 h-px w-full sm:mt-16"
+        style={{ background: "linear-gradient(to right, transparent, oklch(0.75 0.15 215) 12%, oklch(0.88 0.18 95) 50%, oklch(0.65 0.22 45) 88%, transparent)" }}
+      />
       {typeof document !== "undefined" &&
         createPortal(
           <AnimatePresence>
