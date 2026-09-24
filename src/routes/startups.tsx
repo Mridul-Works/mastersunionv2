@@ -981,15 +981,6 @@ function KeyMetrics({ dominant, supporting, dark = false }: { dominant: Metric; 
   );
 }
 
-const STORY_MEDIA: Record<string, { image?: string; logo?: string }> = {
-  Eight: { image: eightVentureImg.url, logo: ventureEightLogo.url },
-  Bullspree: { image: bullspreeVentureImg.url, logo: ventureBullspreeLogo.url },
-  PlaySuper: { image: playsuperVentureImg.url, logo: venturePlaysuperLogo.url },
-  "Hive School": { image: hiveschoolVentureImg.url, logo: ventureHiveschoolLogo.url },
-  SeedsAI: { image: seedsaiVentureImg.url, logo: ventureSeedsAILogo.url },
-  MemoTag: { logo: sharkMemoTagLogo.url },
-  "Meta Fashion": { logo: sharkMetaFashionLogo.url },
-};
 
 type StoryBeat = { stage: string; body: string };
 
@@ -3953,7 +3944,7 @@ function StartupsPage() {
       <VipSection />
       <VenturesMosaicSection />
 
-      <FounderStoriesGallery />
+      <FounderStoriesChapters />
 
 
       <Section id="sharktank" tone="dark">
