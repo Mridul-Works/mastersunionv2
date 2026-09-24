@@ -1675,23 +1675,23 @@ function DropshippingSection() {
         </div>
       </div>
 
-      <Reveal delay={0.18} className="mt-7 border-y border-background/15 sm:mt-9">
-        <div className="grid grid-cols-2 lg:grid-cols-[1.35fr_0.8fr_0.8fr]">
-          {DROPSHIPPING_STATS.map((stat, index) => (
-            <div
-              key={stat.label}
-              className={`flex min-h-32 flex-col justify-end border-background/15 px-4 py-6 sm:min-h-40 sm:px-7 sm:py-8 ${
-                index === 0 ? "col-span-2 border-b lg:col-span-1 lg:border-b-0 lg:border-r" : index === 1 ? "border-r" : ""
-              }`}
-            >
-              <div className={index === 0 ? "text-[clamp(3.4rem,8vw,6.8rem)] font-medium leading-[0.84]" : "text-[clamp(2rem,4vw,3.3rem)] font-medium leading-none"}>
-                {stat.value}
+      <Reveal delay={0.18} className="mt-7 sm:mt-9">
+        <div className="overflow-hidden rounded-2xl border border-background/15 bg-background/[0.03]">
+          <div className="grid grid-cols-1 divide-y divide-background/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+            {DROPSHIPPING_STATS.map((stat) => (
+              <div key={stat.label} className="min-h-[7.5rem] px-5 py-6 sm:min-h-[8.5rem] sm:px-8 sm:py-7">
+                <div className="font-display text-[clamp(1.9rem,3vw,2.6rem)] font-normal leading-none tracking-[-0.01em]">
+                  {stat.value}
+                </div>
+                <div className="mt-3 font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-background/60 sm:text-[10px]">
+                  {stat.label}
+                </div>
+                <div className="mt-1.5 text-[11px] leading-snug text-background/45 sm:text-[12px]">
+                  {stat.sub}
+                </div>
               </div>
-              <div className="mt-3 font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-background/50 sm:text-[10px]">
-                {stat.label}
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </Reveal>
 
