@@ -1286,7 +1286,7 @@ function FounderStoriesGallery() {
                             src={image}
                             onLoad={(e) => setImageOrientation(e.currentTarget.naturalHeight > e.currentTarget.naturalWidth ? "portrait" : "landscape")}
                             alt={`${story.founder}, founder of ${story.name}`}
-                            className={`no-img-zoom h-full w-full ${story.name === "Bullspree" ? "object-cover object-[center_34%]" : imageOrientation === "portrait" ? "object-contain" : "object-cover"}`}
+                            className={`no-img-zoom h-full w-full ${story.name === "Bullspree" ? "object-contain object-center" : imageOrientation === "portrait" ? "object-contain" : "object-cover"}`}
                           />
                         ) : (
                           <Placeholder kind="image" aspect="h-full" note={story.name} className="!border-0" />
