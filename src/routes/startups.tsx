@@ -1178,6 +1178,61 @@ function FounderStoriesGallery() {
     });
   };
 
+  const magazineRef = useRef<HTMLDivElement>(null);
+  const turnPageRef = useRef(turnPage);
+  turnPageRef.current = turnPage;
+  useEffect(() => {
+    const el = magazineRef.current;
+    if (!el) return;
+    let lastTurn = 0;
+    let wheelAccum = 0;
+    const turn = (dir: 1 | -1) => {
+      const now = Date.now();
+      if (now - lastTurn < 600) return;
+      lastTurn = now;
+      turnPageRef.current(dir);
+    };
+    const inView = () => {
+      const r = el.getBoundingClientRect();
+      return r.top < window.innerHeight * 0.6 && r.bottom > window.innerHeight * 0.4;
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      const t = e.target as HTMLElement | null;
+      if (t && (t.isContentEditable || /INPUT|TEXTAREA|SELECT/.test(t.tagName))) return;
+      if (!el.contains(document.activeElement) && !inView()) return;
+      e.preventDefault();
+      turn(e.key === "ArrowRight" ? 1 : -1);
+    };
+    const onWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+      e.preventDefault();
+      wheelAccum += e.deltaX;
+      if (Math.abs(wheelAccum) > 60) {
+        turn(wheelAccum > 0 ? 1 : -1);
+        wheelAccum = 0;
+      }
+    };
+    let sx = 0, sy = 0;
+    const onTouchStart = (e: TouchEvent) => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; };
+    const onTouchEnd = (e: TouchEvent) => {
+      const dx = e.changedTouches[0].clientX - sx;
+      const dy = e.changedTouches[0].clientY - sy;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) turn(dx < 0 ? 1 : -1);
+    };
+    window.addEventListener("keydown", onKey);
+    el.addEventListener("wheel", onWheel, { passive: false });
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchend", onTouchEnd, { passive: true });
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      el.removeEventListener("wheel", onWheel);
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchend", onTouchEnd);
+    };
+  }, []);
+
+
   return (
     <section id="founder-stories" className="relative overflow-x-clip bg-foreground py-20 text-background sm:py-24 md:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
@@ -1195,7 +1250,7 @@ function FounderStoriesGallery() {
           </p>
         </div>
 
-        <div className="relative mt-10 [overflow-anchor:none] [perspective:2200px] sm:mt-12 md:mt-14">
+        <div ref={magazineRef} role="region" aria-roledescription="carousel" aria-label="Founder stories magazine — use left and right arrow keys or swipe to turn pages" className="relative mt-10 touch-pan-y [overflow-anchor:none] [perspective:2200px] sm:mt-12 md:mt-14">
           <article style={{ ["--accent" as string]: STORY_ACCENTS[activeStory % STORY_ACCENTS.length], ["--paper" as string]: STORY_PAPER, backgroundColor: "var(--paper)" }} className="no-img-zoom relative grid h-[110rem] grid-rows-[minmax(0,1.3fr)_minmax(0,1fr)] overflow-hidden rounded-[2px] text-foreground shadow-2xl sm:h-[82rem] md:h-[52rem] md:grid-cols-2 md:grid-rows-1 md:overflow-visible md:[transform-style:preserve-3d]">
               <div style={{ backgroundColor: "var(--paper)" }} className="relative flex min-h-0 flex-col overflow-hidden border-b border-foreground/15 px-6 pb-5 pt-6 sm:px-9 sm:pb-6 sm:pt-7 md:origin-right md:rotate-y-[1.35deg] md:rounded-l-[5px] md:border-b-0 md:px-10 md:pb-6 md:shadow-[-16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)] lg:px-14 lg:pt-8">
                 <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-r from-transparent via-foreground/[0.035] to-foreground/15" />
