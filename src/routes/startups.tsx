@@ -1251,62 +1251,138 @@ function FounderStoriesGallery() {
                 <span aria-hidden className="absolute bottom-0 right-0 size-10 bg-gradient-to-br from-background via-background to-foreground/10 shadow-[-5px_-5px_12px_var(--background)]" />
               </div>
 
-              <div className="relative flex min-h-0 flex-col overflow-hidden bg-background md:origin-left md:-rotate-y-[1.35deg] md:rounded-r-[5px] md:shadow-[16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)]">
-                {/* Top half — story continues */}
-                <div className="flex min-h-0 shrink-0 basis-auto flex-col justify-center px-6 pb-4 pt-8 sm:px-9 sm:pt-10 md:px-10 lg:px-14 lg:pt-10">
-                  <div className="mb-5 flex items-center justify-between border-b border-foreground/20 pb-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/50">
-                    <span>{story.name} · continued</span>
-                  </div>
-                  <div className="grid grid-cols-1 items-start gap-3 text-[13px] leading-[1.62] text-foreground/80 lg:grid-cols-2 lg:gap-7 xl:text-[14px]">
-                    <div className="space-y-3">
-                      {editorial.paragraphs.slice(4, 6).map((paragraph) => (
-                        <p key={paragraph}>{paragraph}</p>
-                      ))}
+              <div className="relative flex min-h-0 flex-col overflow-hidden bg-background px-6 pb-5 pt-8 sm:px-9 sm:pb-6 sm:pt-10 md:origin-left md:-rotate-y-[1.35deg] md:rounded-r-[5px] md:pl-16 md:pr-10 md:shadow-[16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)] lg:pr-14">
+                {(() => {
+                  const rest = editorial.paragraphs.slice(4);
+                  const header = (
+                    <div className="mb-4 flex shrink-0 items-center justify-between border-b border-foreground/20 pb-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/50">
+                      <span>{story.name} · continued</span>
                     </div>
-                    <div className="space-y-3">
-                      {editorial.paragraphs.slice(6).map((paragraph) => (
-                        <p key={paragraph}>{paragraph}</p>
-                      ))}
-                      <p className="border-l-2 border-primary pl-4 font-serif-italic text-[1.15rem] leading-[1.35] text-primary">
-                        &ldquo;{story.product}&rdquo;
-                      </p>
+                  );
+                  const quote = (big = false) => (
+                    <p className={`border-l-2 border-(--accent) pl-4 font-serif-italic leading-[1.35] text-(--accent) ${big ? "text-[1.5rem]" : "text-[1.15rem]"}`}>
+                      &ldquo;{story.product}&rdquo;
+                    </p>
+                  );
+                  const paras = (list: string[]) => list.map((p) => <p key={p}>{p}</p>);
+                  const body = "text-[13px] leading-[1.62] text-foreground/80 xl:text-[14px]";
+                  const imageBox = (extra = "") => (
+                    <div className={`flex min-h-0 flex-col ${extra}`}>
+                      <div className="relative min-h-0 flex-1 overflow-hidden bg-muted">
+                        {image ? (
+                          <img
+                            src={image}
+                            onLoad={(e) => setImageOrientation(e.currentTarget.naturalHeight > e.currentTarget.naturalWidth ? "portrait" : "landscape")}
+                            alt={`${story.founder}, founder of ${story.name}`}
+                            className={`no-img-zoom h-full w-full ${imageOrientation === "portrait" ? "object-contain" : "object-cover"}`}
+                          />
+                        ) : (
+                          <Placeholder kind="image" aspect="h-full" note={story.name} className="!border-0" />
+                        )}
+                      </div>
+                      <div className="mt-3 flex min-h-8 shrink-0 items-center justify-center gap-2 overflow-hidden whitespace-nowrap font-mono uppercase leading-none tracking-[0.2em] text-foreground/45">
+                        <span className="text-[8px]">Founder portrait</span>
+                        <span aria-hidden className="text-[8px]">·</span>
+                        <span className="truncate text-[11px]">{story.founder}</span>
+                        <span aria-hidden className="text-[8px]">·</span>
+                        <span className="shrink-0 text-[8px]">{story.cohort}</span>
+                      </div>
                     </div>
-                  </div>
-                </div>
-
-                {/* Bottom half — image, orientation-aware */}
-                <div className="relative flex min-h-0 flex-1 flex-col bg-background px-6 pb-5 pt-2 sm:px-6 sm:pb-6 md:ml-8 md:px-6 lg:px-6">
-                  <div className="relative min-h-0 flex-1 overflow-hidden bg-muted">
-                    {image ? (
-                      <img
-                        src={image}
-                        onLoad={(e) => setImageOrientation(e.currentTarget.naturalHeight > e.currentTarget.naturalWidth ? "portrait" : "landscape")}
-                        alt={`${story.founder}, founder of ${story.name}`}
-                        className={`h-full w-full grayscale ${imageOrientation === "portrait" ? "object-contain" : "object-cover"}`}
-                      />
-                    ) : (
-                      <Placeholder kind="image" aspect="h-full" note={story.name} className="!border-0" />
-                    )}
-                  </div>
-                  <div className="mt-3 flex min-h-8 shrink-0 items-center justify-center gap-2 overflow-hidden whitespace-nowrap font-mono uppercase leading-none tracking-[0.2em] text-foreground/45">
-                    <span className="text-[8px]">Founder portrait</span>
-                    <span aria-hidden className="text-[8px]">·</span>
-                    <span className="truncate text-[11px]">{story.founder}</span>
-                    <span aria-hidden className="text-[8px]">·</span>
-                    <span className="shrink-0 text-[8px]">{story.cohort}</span>
-                  </div>
-                  <div className="flex shrink-0 items-center justify-end border-t border-foreground/15 pt-3">
-                    <button
-                      type="button"
-                      onMouseDown={(event) => event.preventDefault()}
-                      onClick={() => turnPage(1)}
-                      aria-label="Go to next founder story"
-                      className="group flex shrink-0 items-center gap-2 font-mono text-[9px] uppercase leading-none tracking-[0.2em] text-foreground/45 transition-colors hover:text-primary"
-                    >
-                      Next
-                      <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={1.5} />
-                    </button>
-                  </div>
+                  );
+                  const layout = activeStory % 7;
+                  let content: ReactNode;
+                  if (layout === 0) {
+                    // Text top, image bottom
+                    content = (
+                      <>
+                        {header}
+                        <div className={`grid shrink-0 grid-cols-1 items-start gap-3 lg:grid-cols-2 lg:gap-7 ${body}`}>
+                          <div className="space-y-3">{paras(rest.slice(0, 2))}</div>
+                          <div className="space-y-3">{paras(rest.slice(2))}{quote()}</div>
+                        </div>
+                        {imageBox("mt-5 flex-1")}
+                      </>
+                    );
+                  } else if (layout === 1) {
+                    // Image top, text bottom
+                    content = (
+                      <>
+                        {imageBox("flex-1")}
+                        <div className="mt-4">{header}</div>
+                        <div className={`grid shrink-0 grid-cols-1 items-start gap-3 lg:grid-cols-2 lg:gap-7 ${body}`}>
+                          <div className="space-y-3">{paras(rest.slice(0, 2))}</div>
+                          <div className="space-y-3">{paras(rest.slice(2))}{quote()}</div>
+                        </div>
+                      </>
+                    );
+                  } else if (layout === 2 || layout === 3) {
+                    // Tall image column beside a single text column
+                    const text = (
+                      <div className={`flex min-h-0 flex-col justify-center space-y-3 overflow-hidden ${body}`}>
+                        {header}
+                        {paras(rest)}
+                        {quote()}
+                      </div>
+                    );
+                    content = (
+                      <div className="grid min-h-0 flex-1 grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-7">
+                        {layout === 2 ? <>{imageBox("min-h-[18rem] lg:min-h-0")}{text}</> : <>{text}{imageBox("min-h-[18rem] lg:min-h-0")}</>}
+                      </div>
+                    );
+                  } else if (layout === 4) {
+                    // Pull-quote lead, image, text below
+                    content = (
+                      <>
+                        {header}
+                        <div className="shrink-0">{quote(true)}</div>
+                        {imageBox("mt-5 flex-1")}
+                        <div className={`mt-4 grid shrink-0 grid-cols-1 items-start gap-3 lg:grid-cols-2 lg:gap-7 ${body}`}>
+                          <div className="space-y-3">{paras(rest.slice(0, 2))}</div>
+                          <div className="space-y-3">{paras(rest.slice(2))}</div>
+                        </div>
+                      </>
+                    );
+                  } else if (layout === 5) {
+                    // Text sandwich — image framed between two text bands
+                    content = (
+                      <>
+                        {header}
+                        <div className={`shrink-0 space-y-3 ${body}`}>{paras(rest.slice(0, 1))}</div>
+                        {imageBox("my-5 flex-1")}
+                        <div className={`grid shrink-0 grid-cols-1 items-start gap-3 lg:grid-cols-2 lg:gap-7 ${body}`}>
+                          <div className="space-y-3">{paras(rest.slice(1))}</div>
+                          <div>{quote()}</div>
+                        </div>
+                      </>
+                    );
+                  } else {
+                    // Wide column text beside an inset image stacked with the quote
+                    content = (
+                      <>
+                        {header}
+                        <div className="grid min-h-0 flex-1 grid-cols-1 gap-6 lg:grid-cols-[1.1fr_1fr] lg:gap-7">
+                          <div className={`space-y-3 overflow-hidden ${body}`}>{paras(rest)}</div>
+                          <div className="flex min-h-0 flex-col gap-5">
+                            {imageBox("min-h-[16rem] flex-1 lg:min-h-0")}
+                            {quote()}
+                          </div>
+                        </div>
+                      </>
+                    );
+                  }
+                  return <div className="flex min-h-0 flex-1 flex-col">{content}</div>;
+                })()}
+                <div className="mt-3 flex shrink-0 items-center justify-end border-t border-foreground/15 pt-3">
+                  <button
+                    type="button"
+                    onMouseDown={(event) => event.preventDefault()}
+                    onClick={() => turnPage(1)}
+                    aria-label="Go to next founder story"
+                    className="group flex shrink-0 items-center gap-2 font-mono text-[9px] uppercase leading-none tracking-[0.2em] text-foreground/45 transition-colors hover:text-(--accent)"
+                  >
+                    Next
+                    <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={1.5} />
+                  </button>
                 </div>
 
                 <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 hidden w-14 bg-gradient-to-r from-foreground/25 via-foreground/8 to-transparent mix-blend-multiply md:block" />
