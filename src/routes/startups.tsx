@@ -1148,10 +1148,29 @@ function FounderStoriesGallery() {
 
   const turnPage = (direction: 1 | -1) => {
     const scrollY = window.scrollY;
+    const lenis = (window as unknown as {
+      __lenis?: {
+        stop?: () => void;
+        start?: () => void;
+        scrollTo?: (target: number, options?: { immediate?: boolean; force?: boolean }) => void;
+      };
+    }).__lenis;
+    lenis?.stop?.();
     setActiveStory((current) => (current + direction + total) % total);
-    requestAnimationFrame(() => {
+    const restoreScroll = () => {
+      lenis?.scrollTo?.(scrollY, { immediate: true, force: true });
       window.scrollTo({ top: scrollY, behavior: "instant" as ScrollBehavior });
-      requestAnimationFrame(() => window.scrollTo({ top: scrollY, behavior: "instant" as ScrollBehavior }));
+    };
+    restoreScroll();
+    requestAnimationFrame(() => {
+      restoreScroll();
+      requestAnimationFrame(() => {
+        restoreScroll();
+        window.setTimeout(() => {
+          restoreScroll();
+          lenis?.start?.();
+        }, 80);
+      });
     });
   };
 
@@ -1175,17 +1194,17 @@ function FounderStoriesGallery() {
         <div className="relative mt-10 [overflow-anchor:none] [perspective:2200px] sm:mt-12 md:mt-14">
           <div aria-hidden className="absolute -bottom-3 left-[3%] right-[3%] top-3 bg-background/20 shadow-2xl" />
           <article className="relative grid h-[110rem] grid-rows-[minmax(0,1.3fr)_minmax(0,1fr)] overflow-hidden rounded-[2px] bg-background text-foreground shadow-2xl sm:h-[82rem] md:h-[52rem] md:grid-cols-2 md:grid-rows-1 md:overflow-visible md:[transform-style:preserve-3d]">
-              <div className="relative flex min-h-0 flex-col overflow-hidden border-b border-foreground/15 bg-background px-6 pb-7 pt-8 sm:px-9 sm:pb-9 sm:pt-10 md:origin-right md:rotate-y-[1.35deg] md:rounded-l-[5px] md:border-b-0 md:px-10 md:pb-8 md:shadow-[-16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)] lg:px-14 lg:pt-12">
+              <div className="relative flex min-h-0 flex-col overflow-hidden border-b border-foreground/15 bg-background px-6 pb-5 pt-6 sm:px-9 sm:pb-6 sm:pt-7 md:origin-right md:rotate-y-[1.35deg] md:rounded-l-[5px] md:border-b-0 md:px-10 md:pb-6 md:shadow-[-16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)] lg:px-14 lg:pt-8">
                 <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-r from-transparent via-foreground/[0.035] to-foreground/15" />
                 <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-foreground/[0.035] to-transparent" />
-                <div className="mb-7 flex items-center justify-between border-y border-foreground/70 py-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/60">
+                <div className="mb-4 flex items-center justify-between border-y border-foreground/70 py-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/60">
                   <span>Masters&apos; Union</span>
                   <span>The founders&apos; issue · 2026</span>
                 </div>
-                <div className="flex items-start justify-between gap-5 border-b border-primary/70 pb-5">
+                <div className="flex items-start justify-between gap-5 border-b border-primary/70 pb-3">
                   <div>
                     <p className="font-serif-italic text-[clamp(1.4rem,2.4vw,2.2rem)] leading-none text-primary">Meet the founder</p>
-                    <h3 className="mt-3 text-[clamp(2.1rem,4.6vw,4.7rem)] font-light leading-[0.92]">{story.name}</h3>
+                    <h3 className="mt-2 text-[clamp(2.1rem,4.6vw,4.7rem)] font-light leading-[0.92]">{story.name}</h3>
                   </div>
                   {media.logo && (
                     <span className="flex h-12 w-20 shrink-0 items-center justify-center p-1 sm:h-14 sm:w-24">
@@ -1194,14 +1213,14 @@ function FounderStoriesGallery() {
                   )}
                 </div>
 
-                <p className="mt-6 max-w-[54ch] font-serif-italic text-[1.05rem] leading-[1.45] text-foreground/80">
+                <p className="mt-4 max-w-[54ch] font-serif-italic text-[1.05rem] leading-[1.45] text-foreground/80">
                   {editorial.dek}
                 </p>
-                <div className="py-6">
-                  <div className="grid grid-cols-2 gap-x-5 gap-y-4 border-b border-primary/60 pb-5 sm:grid-cols-4">
+                <div className="py-4">
+                  <div className="grid grid-cols-2 gap-x-5 gap-y-3 border-b border-primary/60 pb-3 sm:grid-cols-4">
                     <div>
                       <p className="font-serif-italic text-[1.35rem] leading-[1.08] text-primary">{story.founder}</p>
-                      <p className="mt-2 font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/55">{story.cohort}</p>
+                      <p className="mt-1 font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/55">{story.cohort}</p>
                     </div>
                     {editorial.facts.map((fact) => (
                       <div key={fact.label}>
@@ -1210,7 +1229,7 @@ function FounderStoriesGallery() {
                       </div>
                     ))}
                   </div>
-                  <div className="mt-5 columns-1 gap-7 space-y-3 text-[12px] leading-[1.62] text-foreground/80 sm:text-[13px] lg:columns-2">
+                  <div className="mt-3 columns-1 gap-7 space-y-2 text-[12px] leading-[1.62] text-foreground/80 sm:text-[13px] lg:columns-2">
                     {editorial.paragraphs.slice(0, 4).map((paragraph, index) => (
                       <p
                         key={paragraph}
@@ -1222,7 +1241,7 @@ function FounderStoriesGallery() {
                   </div>
                 </div>
 
-                <div className="mt-auto flex items-center justify-between border-t border-foreground/15 pt-5">
+                <div className="mt-auto flex shrink-0 items-center justify-between border-t border-foreground/15 pt-3">
                   <button
                     type="button"
                     onMouseDown={(event) => event.preventDefault()}
