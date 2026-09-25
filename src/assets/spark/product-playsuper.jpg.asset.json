@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "asset_id": "30ba4ae5-260c-4dfe-989c-934c2a0dd19b",
+  "asset_id": "cf360f0a-3287-4565-8183-8e48e7ce1bf0",
   "project_id": "79e3b574-96e7-4811-a43f-99492a9fe2c6",
-  "url": "/__l5e/assets-v1/30ba4ae5-260c-4dfe-989c-934c2a0dd19b/spark-product-playsuper.jpg",
-  "r2_key": "a/v1/79e3b574-96e7-4811-a43f-99492a9fe2c6/30ba4ae5-260c-4dfe-989c-934c2a0dd19b/spark-product-playsuper.jpg",
-  "original_filename": "spark-product-playsuper.jpg",
-  "size": 142008,
+  "url": "/__l5e/assets-v1/cf360f0a-3287-4565-8183-8e48e7ce1bf0/product-playsuper.jpg",
+  "r2_key": "a/v1/79e3b574-96e7-4811-a43f-99492a9fe2c6/cf360f0a-3287-4565-8183-8e48e7ce1bf0/product-playsuper.jpg",
+  "original_filename": "product-playsuper.jpg",
+  "size": 130189,
   "content_type": "image/jpeg",
-  "created_at": "2026-09-25T09:59:19Z"
+  "created_at": "2026-09-25T10:05:24Z"
 }
