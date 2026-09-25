@@ -1167,10 +1167,11 @@ function FounderStoriesGallery() {
                     type="button"
                     onMouseDown={(event) => event.preventDefault()}
                     onClick={() => turnPage(1)}
-                    className="group flex items-center gap-3 font-serif-italic text-[1.25rem] text-foreground transition-colors hover:text-primary"
+                    aria-label="Go to next founder story"
+                    className="group flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/45 transition-colors hover:text-primary"
                   >
-                    Flip the page
-                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={1.5} />
+                    Next
+                    <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={1.5} />
                   </button>
                 </div>
                 <span aria-hidden className="absolute bottom-0 right-0 size-10 bg-gradient-to-br from-background via-background to-foreground/10 shadow-[-5px_-5px_12px_var(--background)]" />
