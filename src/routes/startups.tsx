@@ -1090,7 +1090,7 @@ function FounderStoriesGallery() {
                 </div>
               </div>
               <div className="flex flex-1 flex-col gap-5 p-5 sm:p-6">
-                <p className="text-[14px] leading-[1.65] text-background/75">{story.body}</p>
+                <p className="max-w-[38ch] text-[14px] leading-[1.65] text-background/75">{story.body}</p>
                 <p className="mt-auto border-t border-background/10 pt-4 text-[12px] text-background/55">
                   {story.founder} <span className="text-background/30">—</span> {story.cohort}
                 </p>
@@ -1513,7 +1513,7 @@ function SparkCarousel({
                   <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-background/50">
                     {item.founder}
                   </div>
-                  <p className="mx-auto mt-2.5 text-[0.98rem] leading-[1.6] text-background/70 sm:mt-3 md:text-[1.05rem] md:leading-[1.65]">
+                  <p className="mx-auto mt-2.5 max-w-[60ch] text-[0.98rem] leading-[1.6] text-background/70 sm:mt-3 md:text-[1.05rem] md:leading-[1.65]">
                     {item.body}
                   </p>
                 </div>
@@ -1722,7 +1722,7 @@ function StoryBeats({ beats, dark = false }: { beats: Beat[]; dark?: boolean }) 
             </span>
             <div className="min-w-0">
               <div className="eyebrow text-background/70">{b.stage}</div>
-              <p className="mt-2 text-[0.96rem] leading-[1.6] text-background/75 sm:text-[1rem] md:text-[1.02rem] md:leading-[1.65]">
+              <p className="mt-2 max-w-[58ch] text-[0.96rem] leading-[1.6] text-background/75 sm:text-[1rem] md:text-[1.02rem] md:leading-[1.65]">
                 {b.body}
               </p>
             </div>
@@ -2733,7 +2733,7 @@ function PortfolioCard({ company, delay = 0, featured = false }: { company: Comp
         </div>
         <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-background/50">{company.founder}</div>
         <div className={`mt-4 font-medium tracking-[-0.02em] ${featured ? "text-[1.6rem]" : "text-[1.15rem]"}`}>{company.metric}</div>
-        <p className={`mt-3 leading-[1.6] text-background/70 ${featured ? "max-w-[60ch] text-[1rem]" : "text-[0.92rem]"}`}>
+        <p className={`mt-3 leading-[1.6] text-background/70 ${featured ? "max-w-[60ch] text-[1rem]" : "max-w-[38ch] text-[0.92rem]"}`}>
           {company.description}
         </p>
       </article>
@@ -3456,7 +3456,7 @@ function StartupsPage() {
         </div>
       </header>
 
-      <div className="relative z-10 bg-foreground font-display text-background [&_h2]:!font-display [&_h2]:!font-semibold [&_h2]:!leading-[1.04] [&_h2]:!tracking-normal [&_h3]:!font-display [&_h3]:!font-semibold [&_h3]:!tracking-normal [&_p]:font-display [&_p]:font-normal">
+      <div className="relative z-10 bg-foreground font-display text-background [&_h2]:!font-display [&_h2]:!font-semibold [&_h2]:!leading-[1.04] [&_h2]:!tracking-normal [&_h3]:!font-display [&_h3]:!font-semibold [&_h3]:!tracking-normal [&_p]:max-w-[62ch] [&_p]:font-display [&_p]:font-normal">
       <Section id="spark" tone="light" container="max-w-7xl">
         <div className="grid grid-cols-1 gap-5 border-b border-background/20 pb-8 sm:gap-6 sm:pb-10 md:grid-cols-12 md:items-end md:gap-10 md:pb-12 lg:gap-12 lg:pb-14">
           <div className="md:col-span-8">
@@ -3503,7 +3503,7 @@ function StartupsPage() {
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-6 max-w-[64ch] text-[13px] leading-[1.6] text-background/75 md:text-[15px] md:leading-[1.75] md:mt-7">
+          <p className="mt-6 max-w-[60ch] text-[13px] leading-[1.6] text-background/75 md:text-[15px] md:leading-[1.75] md:mt-7">
             Masters&apos; Union students have pitched on India&apos;s biggest startup stage — not as
             alumni years removed from campus, but while still building.
           </p>
@@ -3538,7 +3538,7 @@ function StartupsPage() {
                 >
                   {f.founder} · {f.cohort}
                 </div>
-                <p className={`mt-4 text-[0.95rem] leading-[1.65] ${selectedShark === i ? "text-background/75" : "text-background/75"}`}>
+                <p className={`mt-4 max-w-[38ch] text-[0.95rem] leading-[1.65] ${selectedShark === i ? "text-background/75" : "text-background/75"}`}>
                   {f.description}
                 </p>
               </button>
@@ -3569,7 +3569,7 @@ function StartupsPage() {
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-6 max-w-[66ch] text-[13px] leading-[1.6] text-background/70 md:text-[15px] md:leading-[1.75] md:mt-7">
+          <p className="mt-6 max-w-[60ch] text-[13px] leading-[1.6] text-background/70 md:text-[15px] md:leading-[1.75] md:mt-7">
             A separate pipeline, built for Class IX–XII students, not current Masters&apos; Union
             enrollees — a launchpad for teen founders to create, pitch, and take their first cheque, with
             past judges including Ashneer Grover, Ankur Warikoo, Techburner, and Sarthak Ahuja.
@@ -3641,7 +3641,7 @@ function StartupsPage() {
         </div>
 
         <Reveal delay={0.2}>
-          <p className="mt-10 max-w-[68ch] text-[13px] leading-[1.6] text-background/70 md:text-[15px] md:leading-[1.75] md:mt-12">
+          <p className="mt-10 max-w-[60ch] text-[13px] leading-[1.6] text-background/70 md:text-[15px] md:leading-[1.75] md:mt-12">
             More than half of these startups have raised over $1 million. Together, their founders have
             created 500+ jobs since 2021. And when a startup doesn&apos;t make it, the founder walks away
             with sharper skills, real experience, and often, an incredible job offer anyway.
@@ -3663,8 +3663,8 @@ function StartupsPage() {
 
         <div className="mt-9 grid grid-cols-1 gap-8 sm:mt-11 sm:gap-10 md:mt-14 md:grid-cols-[1fr_0.55fr] md:items-start md:gap-10 lg:gap-12">
           <Reveal key={selectedQuote}>
-            <figure>
-              <blockquote className="text-balance text-[clamp(1.3rem,2.6vw,2rem)] italic leading-[1.4] text-background/90">
+            <figure className="max-w-[42rem]">
+              <blockquote className="max-w-[34ch] text-balance text-[clamp(1.3rem,2.6vw,2rem)] italic leading-[1.4] text-background/90">
                 &ldquo;{activeQuote.quote}&rdquo;
               </blockquote>
               <div className="mt-8 flex items-center gap-4">
@@ -3743,7 +3743,7 @@ function StartupsPage() {
           </h2>
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="mt-6 max-w-[66ch] text-[13px] leading-[1.6] text-background/70 md:text-[15px] md:leading-[1.75] md:mt-7">
+          <p className="mt-6 max-w-[60ch] text-[13px] leading-[1.6] text-background/70 md:text-[15px] md:leading-[1.75] md:mt-7">
             Masters&apos; Union&apos;s undergraduate cohort has its own entrepreneurship track — and its
             own portfolio. In the 2025–26 cycle alone, UG founders have been granted ₹75L+ and generated
             ₹14Cr+ in revenue, with two startups earning Shark Tank India pitches.
@@ -3758,7 +3758,7 @@ function StartupsPage() {
                   <LogoBadge size="size-8" />
                   <h3 className="text-[1.05rem] font-medium">{v.name}</h3>
                 </div>
-                <p className="mt-3 text-[0.92rem] leading-[1.6] text-background/70">{v.pitch}</p>
+                <p className="mt-3 max-w-[38ch] text-[0.92rem] leading-[1.6] text-background/70">{v.pitch}</p>
               </article>
             </Reveal>
           ))}
@@ -3810,7 +3810,7 @@ function StartupsPage() {
             <Reveal key={r.name} delay={i * 0.05}>
               <li className="h-full border-background/10 p-5 sm:p-6 md:p-8 lg:p-9">
                 <span className="font-serif-italic text-[1rem]">{r.name}</span>
-                <p className="mt-3 max-w-[70ch] text-[13px] leading-[1.6] text-background/80 md:text-[15px] md:leading-[1.75]">{r.body}</p>
+                <p className="mt-3 max-w-[58ch] text-[13px] leading-[1.6] text-background/80 md:text-[15px] md:leading-[1.75]">{r.body}</p>
               </li>
             </Reveal>
           ))}
