@@ -1110,6 +1110,13 @@ function FounderStoriesGallery() {
   const media = STORY_MEDIA[story.name] ?? {};
   const image = media.image ?? story.founderImage;
   const editorial = FOUNDER_EDITORIAL[story.name];
+  const [imageOrientation, setImageOrientation] = useState<"portrait" | "landscape">("landscape");
+  useEffect(() => {
+    if (!image) return;
+    const probe = new Image();
+    probe.onload = () => setImageOrientation(probe.naturalHeight > probe.naturalWidth ? "portrait" : "landscape");
+    probe.src = image;
+  }, [image]);
 
   const turnPage = (direction: 1 | -1) => {
     setActiveStory((current) => (current + direction + total) % total);
@@ -1134,7 +1141,7 @@ function FounderStoriesGallery() {
 
         <div className="relative mt-10 [overflow-anchor:none] [perspective:2200px] sm:mt-12 md:mt-14">
           <div aria-hidden className="absolute -bottom-3 left-[3%] right-[3%] top-3 bg-background/20 shadow-2xl" />
-          <article className="relative grid h-[90rem] grid-rows-[minmax(0,2fr)_minmax(0,1fr)] overflow-hidden rounded-[2px] bg-background text-foreground shadow-2xl sm:h-[82rem] md:h-[52rem] md:grid-cols-2 md:grid-rows-1 md:overflow-visible md:[transform-style:preserve-3d]">
+          <article className="relative grid h-[110rem] grid-rows-[minmax(0,1.3fr)_minmax(0,1fr)] overflow-hidden rounded-[2px] bg-background text-foreground shadow-2xl sm:h-[82rem] md:h-[52rem] md:grid-cols-2 md:grid-rows-1 md:overflow-visible md:[transform-style:preserve-3d]">
               <div className="relative flex min-h-0 flex-col overflow-hidden border-b border-foreground/15 bg-background px-6 pb-7 pt-8 sm:px-9 sm:pb-9 sm:pt-10 md:origin-right md:rotate-y-[1.35deg] md:rounded-l-[5px] md:border-b-0 md:px-10 md:pb-8 md:shadow-[-16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)] lg:px-14 lg:pt-12">
                 <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-r from-transparent via-foreground/[0.035] to-foreground/15" />
                 <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-foreground/[0.035] to-transparent" />
@@ -1171,7 +1178,7 @@ function FounderStoriesGallery() {
                     </div>
                   </div>
                   <div className="space-y-3 text-[12px] leading-[1.62] text-foreground/80 sm:text-[13px]">
-                    {editorial.paragraphs.map((paragraph, index) => (
+                    {editorial.paragraphs.slice(0, 1).map((paragraph, index) => (
                       <p
                         key={paragraph}
                         className={index === 0 ? "first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[3.1rem] first-letter:leading-[0.78] first-letter:text-primary" : ""}
@@ -1206,23 +1213,79 @@ function FounderStoriesGallery() {
                 <span aria-hidden className="absolute bottom-0 right-0 size-10 bg-gradient-to-br from-background via-background to-foreground/10 shadow-[-5px_-5px_12px_var(--background)]" />
               </div>
 
-              <div className="relative min-h-0 overflow-hidden bg-muted md:origin-left md:-rotate-y-[1.35deg] md:rounded-r-[5px] md:shadow-[16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)]">
-                {image ? (
-                  <img src={image} alt={`${story.founder}, founder of ${story.name}`} className="h-full w-full object-cover grayscale" />
-                ) : (
-                  <Placeholder kind="image" aspect="h-full" note={story.name} className="!border-0" />
-                )}
-                <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-transparent to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-5 p-6 text-background sm:p-8 lg:p-10">
-                  <div>
-                    <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-background/65">Founder portrait</p>
-                    <p className="mt-2 max-w-[24ch] text-[1.2rem] leading-[1.2]">{story.founder}</p>
+              <div className="relative flex min-h-0 flex-col overflow-hidden bg-background md:origin-left md:-rotate-y-[1.35deg] md:rounded-r-[5px] md:shadow-[16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)]">
+                {/* Top half — story continues */}
+                <div className="flex min-h-0 basis-1/2 flex-col px-6 pb-5 pt-8 sm:px-9 sm:pt-10 md:px-10 lg:px-14 lg:pt-12">
+                  <div className="mb-5 flex items-center justify-between border-b border-foreground/20 pb-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/50">
+                    <span>{story.name} · continued</span>
+                    <span>{story.cohort}</span>
                   </div>
-                  <span className="font-mono text-[10px] tracking-[0.22em] text-background/65">
-                    {String(activeStory + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-                  </span>
+                  <div className="columns-1 gap-7 space-y-3 text-[12px] leading-[1.62] text-foreground/80 sm:text-[13px] lg:columns-2">
+                    {editorial.paragraphs.slice(1).map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                    <p className="break-inside-avoid border-l-2 border-primary pl-4 font-serif-italic text-[1.15rem] leading-[1.35] text-primary">
+                      &ldquo;{story.product}&rdquo;
+                    </p>
+                  </div>
                 </div>
-                <div aria-hidden className="absolute inset-y-0 left-0 hidden w-14 bg-gradient-to-r from-foreground/35 via-foreground/12 to-transparent mix-blend-multiply md:block" />
+
+                {/* Bottom half — image, orientation-aware */}
+                <div className="relative min-h-0 basis-1/2 overflow-hidden border-t border-foreground/15 bg-muted">
+                  {image ? (
+                    imageOrientation === "portrait" ? (
+                      <div className="grid h-full grid-cols-[1fr_auto_1fr] items-stretch">
+                        <div className="flex flex-col justify-between p-4 font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/55 sm:p-6">
+                          <span>Founder portrait</span>
+                          <div className="space-y-3">
+                            {editorial.facts.slice(0, 2).map((f) => (
+                              <div key={f.label}>
+                                <p className="text-foreground/40">{f.label}</p>
+                                <p className="mt-1 font-sans text-[11px] normal-case tracking-normal text-foreground">{f.value}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        <img
+                          src={image}
+                          onLoad={(e) => setImageOrientation(e.currentTarget.naturalHeight > e.currentTarget.naturalWidth ? "portrait" : "landscape")}
+                          alt={`${story.founder}, founder of ${story.name}`}
+                          className="h-full w-auto max-w-[60vw] object-contain grayscale md:max-w-[22rem]"
+                        />
+                        <div className="flex flex-col items-end justify-between p-4 text-right font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/55 sm:p-6">
+                          <span>{String(activeStory + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}</span>
+                          <div>
+                            <p className="text-foreground/40">Founder</p>
+                            <p className="mt-1 font-serif-italic text-[1rem] normal-case tracking-normal text-primary">{story.founder}</p>
+                            <p className="mt-2 text-foreground/40">{story.cohort}</p>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <>
+                        <img
+                          src={image}
+                          onLoad={(e) => setImageOrientation(e.currentTarget.naturalHeight > e.currentTarget.naturalWidth ? "portrait" : "landscape")}
+                          alt={`${story.founder}, founder of ${story.name}`}
+                          className="h-full w-full object-cover grayscale"
+                        />
+                        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-transparent to-transparent" />
+                        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-5 p-6 text-background sm:p-8">
+                          <div>
+                            <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-background/65">Founder portrait</p>
+                            <p className="mt-2 max-w-[24ch] text-[1.1rem] leading-[1.2]">{story.founder}</p>
+                          </div>
+                          <span className="font-mono text-[10px] tracking-[0.22em] text-background/65">
+                            {String(activeStory + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+                          </span>
+                        </div>
+                      </>
+                    )
+                  ) : (
+                    <Placeholder kind="image" aspect="h-full" note={story.name} className="!border-0" />
+                  )}
+                </div>
+                <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 hidden w-14 bg-gradient-to-r from-foreground/25 via-foreground/8 to-transparent mix-blend-multiply md:block" />
               </div>
               <div aria-hidden className="pointer-events-none absolute inset-y-0 left-1/2 z-20 hidden w-[4.5rem] -translate-x-1/2 md:block">
                 <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-transparent via-foreground/[0.055] to-foreground/30 mix-blend-multiply" />
