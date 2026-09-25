@@ -1223,7 +1223,7 @@ function FounderStoriesGallery() {
                 </div>
 
 
-                <p className="mt-3 max-w-[54ch] font-serif-italic text-[1.05rem] leading-[1.45] text-foreground/80">
+                <p className="mt-3 max-w-[54ch] font-serif-italic text-[1.05rem] leading-[1.45] text-(--accent)">
                   {editorial.dek}
                 </p>
                 <div className="py-3">
@@ -1277,7 +1277,7 @@ function FounderStoriesGallery() {
                   const paras = (list: string[]) => list.map((p) => <p key={p}>{p}</p>);
                   const body = "text-[13px] leading-[1.62] text-foreground/80 xl:text-[14px]";
                   const imageBox = (extra = "") => (
-                    <div className={`flex min-h-0 flex-col ${extra}`}>
+                    <div className={`flex min-h-0 min-w-0 flex-col ${extra}`}>
                       <div className="relative min-h-0 flex-1 overflow-hidden bg-muted">
                         {image ? (
                           <img
@@ -1328,7 +1328,7 @@ function FounderStoriesGallery() {
                   } else if (layout === 2 || layout === 3) {
                     // Tall image column beside a single text column
                     const text = (
-                      <div className={`flex min-h-0 flex-col justify-center space-y-3 overflow-hidden ${body}`}>
+                      <div className={`flex min-h-0 min-w-0 flex-col justify-center space-y-3 overflow-hidden ${body}`}>
                         {header}
                         {paras(rest)}
                         {quote()}
@@ -1371,8 +1371,8 @@ function FounderStoriesGallery() {
                       <>
                         {header}
                         <div className="grid min-h-0 flex-1 grid-cols-1 gap-6 lg:grid-cols-[1.1fr_1fr] lg:gap-7">
-                          <div className={`space-y-3 overflow-hidden ${body}`}>{paras(rest)}</div>
-                          <div className="flex min-h-0 flex-col gap-5">
+                          <div className={`min-w-0 space-y-3 overflow-hidden ${body}`}>{paras(rest)}</div>
+                          <div className="flex min-h-0 min-w-0 flex-col gap-5">
                             {imageBox("min-h-[16rem] flex-1 lg:min-h-0")}
                             {quote()}
                           </div>
