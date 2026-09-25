@@ -1131,6 +1131,16 @@ const FOUNDER_EDITORIAL: Record<
   },
 };
 
+const STORY_ACCENTS = [
+  "oklch(0.52 0.15 35)",
+  "oklch(0.45 0.14 255)",
+  "oklch(0.45 0.13 330)",
+  "oklch(0.55 0.12 75)",
+  "oklch(0.48 0.09 200)",
+  "oklch(0.48 0.17 20)",
+  "oklch(0.42 0.1 290)",
+];
+
 function FounderStoriesGallery() {
   const [activeStory, setActiveStory] = useState(0);
   const total = SPARK_EXAMPLES.length;
@@ -1192,7 +1202,7 @@ function FounderStoriesGallery() {
         </div>
 
         <div className="relative mt-10 [overflow-anchor:none] [perspective:2200px] sm:mt-12 md:mt-14">
-          <article className="relative grid h-[110rem] grid-rows-[minmax(0,1.3fr)_minmax(0,1fr)] overflow-hidden rounded-[2px] bg-background text-foreground shadow-2xl sm:h-[82rem] md:h-[52rem] md:grid-cols-2 md:grid-rows-1 md:overflow-visible md:[transform-style:preserve-3d]">
+          <article style={{ ["--accent" as string]: STORY_ACCENTS[activeStory % STORY_ACCENTS.length] }} className="no-img-zoom relative grid h-[110rem] grid-rows-[minmax(0,1.3fr)_minmax(0,1fr)] overflow-hidden rounded-[2px] bg-background text-foreground shadow-2xl sm:h-[82rem] md:h-[52rem] md:grid-cols-2 md:grid-rows-1 md:overflow-visible md:[transform-style:preserve-3d]">
               <div className="relative flex min-h-0 flex-col overflow-hidden border-b border-foreground/15 bg-background px-6 pb-5 pt-6 sm:px-9 sm:pb-6 sm:pt-7 md:origin-right md:rotate-y-[1.35deg] md:rounded-l-[5px] md:border-b-0 md:px-10 md:pb-6 md:shadow-[-16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)] lg:px-14 lg:pt-8">
                 <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-r from-transparent via-foreground/[0.035] to-foreground/15" />
                 <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-foreground/[0.035] to-transparent" />
@@ -1200,9 +1210,9 @@ function FounderStoriesGallery() {
                   <span>Masters&apos; Union</span>
                   <span>The founders&apos; issue · 2026</span>
                 </div>
-                <div className="flex items-start justify-between gap-5 border-b border-primary/70 pb-3">
+                <div className="flex items-start justify-between gap-5 border-b border-(--accent)/70 pb-3">
                   <div className="min-w-0">
-                    <p className="font-serif-italic text-[clamp(1.4rem,2.4vw,2.2rem)] leading-none text-primary">Meet the founder</p>
+                    <p className="font-serif-italic text-[clamp(1.4rem,2.4vw,2.2rem)] leading-none text-(--accent)">Meet the founder</p>
                     <h3 className="mt-2 break-words pb-1 text-[clamp(2.1rem,4.6vw,4.7rem)] font-light leading-[1]">{story.name}</h3>
                   </div>
                   {media.logo && (
@@ -1217,7 +1227,7 @@ function FounderStoriesGallery() {
                   {editorial.dek}
                 </p>
                 <div className="py-3">
-                  <div className="grid grid-cols-3 items-center gap-x-5 gap-y-3 border-b border-primary/60 pb-2 text-center">
+                  <div className="grid grid-cols-3 items-center gap-x-5 gap-y-3 border-b border-(--accent)/60 pb-2 text-center">
                     {editorial.facts.map((fact) => (
                       <div key={fact.label} className="flex min-h-10 flex-col items-center justify-center">
                         <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/45">{fact.label}</p>
@@ -1229,7 +1239,7 @@ function FounderStoriesGallery() {
                     {editorial.paragraphs.slice(0, 4).map((paragraph, index) => (
                       <p
                         key={paragraph}
-                        className={`break-inside-avoid ${index >= 2 ? "hidden min-[1100px]:block" : ""} ${index === 0 ? "first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[3.1rem] first-letter:leading-[0.78] first-letter:text-primary" : ""}`}
+                        className={`break-inside-avoid ${index >= 2 ? "hidden min-[1100px]:block" : ""} ${index === 0 ? "first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[3.1rem] first-letter:leading-[0.78] first-letter:text-(--accent)" : ""}`}
                       >
                         {paragraph}
                       </p>
@@ -1243,7 +1253,7 @@ function FounderStoriesGallery() {
                     onMouseDown={(event) => event.preventDefault()}
                     onClick={() => turnPage(-1)}
                     aria-label="Flip to previous founder story"
-                    className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/45 transition-colors hover:text-primary"
+                    className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/45 transition-colors hover:text-(--accent)"
                   >
                     <ArrowLeft className="size-3.5" strokeWidth={1.5} /> Previous
                   </button>
