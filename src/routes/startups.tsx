@@ -1148,10 +1148,23 @@ function FounderStoriesGallery() {
 
   const turnPage = (direction: 1 | -1) => {
     const scrollY = window.scrollY;
+    const lenis = (window as unknown as {
+      __lenis?: {
+        stop?: () => void;
+        start?: () => void;
+        scrollTo?: (target: number, options?: { immediate?: boolean; force?: boolean }) => void;
+      };
+    }).__lenis;
+    lenis?.stop?.();
     setActiveStory((current) => (current + direction + total) % total);
     requestAnimationFrame(() => {
+      lenis?.scrollTo?.(scrollY, { immediate: true, force: true });
       window.scrollTo({ top: scrollY, behavior: "instant" as ScrollBehavior });
-      requestAnimationFrame(() => window.scrollTo({ top: scrollY, behavior: "instant" as ScrollBehavior }));
+      requestAnimationFrame(() => {
+        lenis?.scrollTo?.(scrollY, { immediate: true, force: true });
+        window.scrollTo({ top: scrollY, behavior: "instant" as ScrollBehavior });
+        lenis?.start?.();
+      });
     });
   };
 
