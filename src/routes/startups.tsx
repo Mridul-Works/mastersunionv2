@@ -2308,8 +2308,8 @@ function OcShot({
 
 const ocConfig = {
     eyebrow: "/ 03 — OutClass",
-    title: ["Learning outside", "the classroom"],
-    body: "OutClass is where classroom theory meets the real world. Every term, you build live ventures, create under pressure and ship to real customers — graded on outcomes in the market, not marks on a sheet.",
+    title: ["Half the curriculum", "doesn't happen in a classroom."],
+    body: "At Masters' Union, real growth doesn't come from case studies — it comes from taking risks, testing ideas, and putting something into the world.",
     tracks: [
       {
         tag: "OutClass · Runs across terms",
