@@ -1200,10 +1200,10 @@ function FounderStoriesGallery() {
                   <span>Masters&apos; Union</span>
                   <span>The founders&apos; issue · 2026</span>
                 </div>
-                <div className="flex items-start justify-between gap-5 border-b border-primary/70 pb-3">
-                  <div>
+                <div className="flex items-start justify-between gap-5 border-b border-primary/70 pb-4">
+                  <div className="min-w-0">
                     <p className="font-serif-italic text-[clamp(1.4rem,2.4vw,2.2rem)] leading-none text-primary">Meet the founder</p>
-                    <h3 className="mt-2 text-[clamp(2.1rem,4.6vw,4.7rem)] font-light leading-[0.92]">{story.name}</h3>
+                    <h3 className="mt-2 break-words pb-1 text-[clamp(2.1rem,4.6vw,4.7rem)] font-light leading-[1]">{story.name}</h3>
                   </div>
                   {media.logo && (
                     <span className="flex h-12 w-20 shrink-0 items-center justify-center p-1 sm:h-14 sm:w-24">
@@ -1211,6 +1211,7 @@ function FounderStoriesGallery() {
                     </span>
                   )}
                 </div>
+
 
                 <p className="mt-4 max-w-[54ch] font-serif-italic text-[1.05rem] leading-[1.45] text-foreground/80">
                   {editorial.dek}
@@ -1282,60 +1283,30 @@ function FounderStoriesGallery() {
                 </div>
 
                 {/* Bottom half — image, orientation-aware */}
-                <div className="relative min-h-0 basis-1/2 overflow-hidden border-t border-foreground/15 bg-muted md:ml-8">
-                  {image ? (
-                    imageOrientation === "portrait" ? (
-                      <div className="grid h-full grid-cols-[1fr_auto_1fr] items-stretch">
-                        <div className="flex flex-col justify-between p-4 font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/55 sm:p-6">
-                          <span>Founder portrait</span>
-                          <div className="space-y-3">
-                            {editorial.facts.slice(0, 2).map((f) => (
-                              <div key={f.label}>
-                                <p className="text-foreground/40">{f.label}</p>
-                                <p className="mt-1 font-sans text-[11px] normal-case tracking-normal text-foreground">{f.value}</p>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                        <img
-                          src={image}
-                          onLoad={(e) => setImageOrientation(e.currentTarget.naturalHeight > e.currentTarget.naturalWidth ? "portrait" : "landscape")}
-                          alt={`${story.founder}, founder of ${story.name}`}
-                          className="h-full w-auto max-w-[60vw] object-contain grayscale md:max-w-[22rem]"
-                        />
-                        <div className="flex flex-col items-end justify-between p-4 text-right font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/55 sm:p-6">
-                          <span>{String(activeStory + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}</span>
-                          <div>
-                            <p className="text-foreground/40">Founder</p>
-                            <p className="mt-1 font-serif-italic text-[1rem] normal-case tracking-normal text-primary">{story.founder}</p>
-                            <p className="mt-2 text-foreground/40">{story.cohort}</p>
-                          </div>
-                        </div>
-                      </div>
+                <div className="relative flex min-h-0 basis-1/2 flex-col border-t border-foreground/15 bg-background px-6 pb-5 pt-5 sm:px-9 sm:pb-6 md:ml-8 md:px-10 md:pb-6 lg:px-14">
+                  <div className="relative min-h-0 flex-1 overflow-hidden bg-muted">
+                    {image ? (
+                      <img
+                        src={image}
+                        onLoad={(e) => setImageOrientation(e.currentTarget.naturalHeight > e.currentTarget.naturalWidth ? "portrait" : "landscape")}
+                        alt={`${story.founder}, founder of ${story.name}`}
+                        className={`h-full w-full grayscale ${imageOrientation === "portrait" ? "object-contain" : "object-cover"}`}
+                      />
                     ) : (
-                      <>
-                        <img
-                          src={image}
-                          onLoad={(e) => setImageOrientation(e.currentTarget.naturalHeight > e.currentTarget.naturalWidth ? "portrait" : "landscape")}
-                          alt={`${story.founder}, founder of ${story.name}`}
-                          className="h-full w-full object-cover grayscale"
-                        />
-                        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-transparent to-transparent" />
-                        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-5 p-6 text-background sm:p-8">
-                          <div>
-                            <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-background/65">Founder portrait</p>
-                            <p className="mt-2 max-w-[24ch] text-[1.1rem] leading-[1.2]">{story.founder}</p>
-                          </div>
-                          <span className="font-mono text-[10px] tracking-[0.22em] text-background/65">
-                            {String(activeStory + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-                          </span>
-                        </div>
-                      </>
-                    )
-                  ) : (
-                    <Placeholder kind="image" aspect="h-full" note={story.name} className="!border-0" />
-                  )}
+                      <Placeholder kind="image" aspect="h-full" note={story.name} className="!border-0" />
+                    )}
+                  </div>
+                  <div className="mt-3 flex shrink-0 items-end justify-between gap-5 border-t border-primary/60 pt-2">
+                    <div className="min-w-0">
+                      <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/45">Founder portrait</p>
+                      <p className="mt-1 truncate font-serif-italic text-[1.05rem] leading-[1.2] text-primary">{story.founder}</p>
+                    </div>
+                    <span className="shrink-0 font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/45">
+                      {story.cohort} · {String(activeStory + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+                    </span>
+                  </div>
                 </div>
+
                 <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 hidden w-14 bg-gradient-to-r from-foreground/25 via-foreground/8 to-transparent mix-blend-multiply md:block" />
               </div>
               <div aria-hidden className="pointer-events-none absolute inset-y-0 left-1/2 z-20 hidden w-[4.5rem] -translate-x-1/2 md:block">
