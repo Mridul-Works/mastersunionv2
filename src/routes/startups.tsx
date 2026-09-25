@@ -21,13 +21,6 @@ import {
 import eightVentureImg from "@/assets/founders/ventures/eight.jpg.asset.json";
 import bullspreeVentureImg from "@/assets/founders/ventures/bullspree.jpg.asset.json";
 import outclassDropshippingImg from "@/assets/outclass-dropshipping.jpg.asset.json";
-import sparkProductEight from "@/assets/spark/product-eight.jpg.asset.json";
-import sparkProductPlaysuper from "@/assets/spark/product-playsuper.jpg.asset.json";
-import sparkProductBullspree from "@/assets/spark/product-bullspree.jpg.asset.json";
-import sparkProductMemotag from "@/assets/spark/product-memotag.jpg.asset.json";
-import sparkProductHiveschool from "@/assets/spark/product-hiveschool.jpg.asset.json";
-import sparkProductMetafashion from "@/assets/spark/product-metafashion.jpg.asset.json";
-import sparkProductSeedsai from "@/assets/spark/product-seedsai.jpg.asset.json";
 import outclassContentBrandsImg from "@/assets/outclass/content-brands.jpg";
 import outclassScratchImg from "@/assets/outclass/start-from-scratch.jpg";
 import hiveschoolVentureImg from "@/assets/founders/ventures/hiveschool.jpg.asset.json";
@@ -117,7 +110,8 @@ const SPARK_EXAMPLES: {
   product: string;
   body: string;
   founderImage?: string;
-  productImage?: string;
+  videoId: string;
+  videoTitle: string;
 }[] = [
   {
     name: "Eight",
@@ -126,7 +120,8 @@ const SPARK_EXAMPLES: {
     product: "The Stage for Stories",
     body: "Mohit Paliwal, Mohit Goswami, and Yugal Tamang realized at a Masters' Union cafeteria table that not everyone wants to be seen, but everyone has a story worth telling — Eight became the stage for it.",
     founderImage: sparkEightFounders.url,
-    productImage: sparkProductEight.url,
+    videoId: "5pl8XK-KbSA",
+    videoTitle: "A Case that a Billion People Couldn't Solve — an Eight original",
   },
   {
     name: "PlaySuper",
@@ -135,7 +130,8 @@ const SPARK_EXAMPLES: {
     product: "Rewards for Casual Gamers",
     body: "Shouradeep Chakraborty and his co-founders saw India's 438M casual gamers churning out of games that gave nothing back — PlaySuper is the rewards platform that turns loyalty into real-world incentives.",
     founderImage: brandPhotoPlaysuper,
-    productImage: sparkProductPlaysuper.url,
+    videoId: "ykiJMKL172c",
+    videoTitle: "Building India's First Gaming Commerce Platform — Masters' Union podcast",
   },
   {
     name: "Bullspree",
@@ -144,7 +140,8 @@ const SPARK_EXAMPLES: {
     product: "The Stock Market Playground",
     body: "Dharmil Bavishi went from supply-chain analyst to the CEO's office, then asked why learning to invest felt so intimidating — Bullspree turns India's curiosity about markets into financial confidence.",
     founderImage: brandPhotoBullspree,
-    productImage: sparkProductBullspree.url,
+    videoId: "6CRzYqi5rTQ",
+    videoTitle: "Bullspree's full pitch — Shark Tank India Season 2",
   },
   {
     name: "MemoTag",
@@ -153,7 +150,8 @@ const SPARK_EXAMPLES: {
     product: "AI Wearable for Dementia Care",
     body: "Reyansh Juneja started MemoTag while still an undergraduate — an AI-driven wearable purpose-built for dementia care, designed to catch the moments caregivers can't.",
     founderImage: brandPhotoMemotag,
-    productImage: sparkProductMemotag.url,
+    videoId: "4oJT3mkjJ-U",
+    videoTitle: "MemoTag on Shark Tank India Season 4",
   },
   {
     name: "Hive School",
@@ -162,7 +160,8 @@ const SPARK_EXAMPLES: {
     product: "India's First Sales School",
     body: "Nikhil Gaur built a ₹2 Cr run rate while still a student — Hive School is India's first Sales School, training the next generation of GTM operators companies are desperate to hire.",
     founderImage: brandPhotoHiveschool,
-    productImage: sparkProductHiveschool.url,
+    videoId: "x-aSw4UlJZs",
+    videoTitle: "Pitching our vision on Shark Tank — HiveSchool",
   },
   {
     name: "Meta Fashion",
@@ -171,7 +170,8 @@ const SPARK_EXAMPLES: {
     product: "Phygital Fashion Commerce",
     body: "Arjun Goel is connecting in-game discovery with real-world fashion — Meta Fashion's phygital commerce lets players find a look inside the game and wear it outside it.",
     founderImage: brandPhotoMetafashion,
-    productImage: sparkProductMetafashion.url,
+    videoId: "Yw1xPaAhPM8",
+    videoTitle: "Meta Fashion: Roblox meets real-world couture — Shark Tank India Season 5",
   },
   {
     name: "SeedsAI",
@@ -180,7 +180,8 @@ const SPARK_EXAMPLES: {
     product: "AI for NBFC Review",
     body: "Shubham Khatri and Vansh Miglani didn't start with a business plan. They started by shadowing NBFC call-center agents and noticing how much time was wasted on manual review.",
     founderImage: sparkSeedsAiFounders.url,
-    productImage: sparkProductSeedsai.url,
+    videoId: "gHFnxkAvLhs",
+    videoTitle: "How to actually raise funds from a VC — Behind Closed Doors, Masters' Union",
   },
 ];
 
@@ -1392,6 +1393,7 @@ function SparkCarousel({
   const lastTrackOffsetRef = useRef<number | null>(null);
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const [videoOrigin, setVideoOrigin] = useState<DOMRect | null>(null);
+  const [ytVideoId, setYtVideoId] = useState<string | null>(null);
   const modalVideoRef = useRef<HTMLVideoElement>(null);
   const reduceMotion = useReducedMotion();
   const count = companies.length;
@@ -1428,6 +1430,15 @@ function SparkCarousel({
   useEffect(() => {
     lastActiveRef.current = active;
   }, [active]);
+
+  useEffect(() => {
+    if (!ytVideoId) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setYtVideoId(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [ytVideoId]);
 
   useEffect(() => {
     if (!videoModalOpen) return;
@@ -1622,14 +1633,34 @@ function SparkCarousel({
                   animate={{ y: 0 }}
                   transition={{ duration: reduceMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <Placeholder
-                    kind="image"
-                    aspect="aspect-[1200/896]"
-                    src={company.productImage}
-                    alt={company.productImage ? `${company.name} — ${company.product}` : undefined}
-                    note={`${company.name} — product detail`}
-                    className="rounded-[6px]"
-                  />
+                  <button
+                    type="button"
+                    onClick={() => setYtVideoId(company.videoId)}
+                    aria-label={`Play video: ${company.videoTitle}`}
+                    className="group relative block aspect-[1200/896] w-full cursor-pointer overflow-hidden rounded-[6px] border border-background/15 bg-black/40 text-left focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60"
+                  >
+                    <img
+                      src={`https://i.ytimg.com/vi/${company.videoId}/hqdefault.jpg`}
+                      alt={`${company.name} — ${company.videoTitle}`}
+                      loading="lazy"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                    <span aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/30" />
+                    <span
+                      aria-hidden
+                      className="absolute left-1/2 top-1/2 flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/45 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-black/60 sm:size-16"
+                    >
+                      <Play className="ml-0.5 size-5 fill-white text-white sm:size-6" />
+                    </span>
+                    <span className="absolute inset-x-0 bottom-0 flex flex-col gap-1 p-4 sm:p-5">
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/55">
+                        Watch — {company.name}
+                      </span>
+                      <span className="text-[0.8rem] leading-snug text-white/85 sm:text-[0.85rem]">
+                        {company.videoTitle}
+                      </span>
+                    </span>
+                  </button>
                 </motion.div>
               </div>
             </div>
@@ -1833,6 +1864,54 @@ function SparkCarousel({
             </motion.button>
           </motion.div>
           )}
+          </AnimatePresence>,
+          document.body
+        )}
+      {typeof document !== "undefined" &&
+        createPortal(
+          <AnimatePresence>
+            {ytVideoId && (
+              <motion.div
+                role="dialog"
+                aria-modal="true"
+                aria-label={`${company.name} video`}
+                initial={reduceMotion ? false : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: reduceMotion ? 0 : 0.3 }}
+                className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm sm:p-8"
+                onClick={() => setYtVideoId(null)}
+              >
+                <motion.div
+                  initial={reduceMotion ? false : { opacity: 0, scale: 0.94, y: 12 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: 8 }}
+                  transition={{ duration: reduceMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  className="aspect-video w-full max-w-5xl overflow-hidden rounded-[6px] border border-white/15 bg-black shadow-2xl"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <iframe
+                    src={`https://www.youtube.com/embed/${ytVideoId}?autoplay=1&rel=0`}
+                    title={`${company.name} — video`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="h-full w-full"
+                  />
+                </motion.div>
+                <motion.button
+                  type="button"
+                  aria-label="Close video"
+                  onClick={() => setYtVideoId(null)}
+                  initial={reduceMotion ? false : { opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ delay: reduceMotion ? 0 : 0.2, duration: reduceMotion ? 0 : 0.2 }}
+                  className="absolute right-4 top-4 inline-flex size-10 items-center justify-center rounded-full border border-white/25 text-white/80 transition-colors hover:bg-white/10 hover:text-white sm:right-6 sm:top-6"
+                >
+                  <X className="size-5" strokeWidth={2} />
+                </motion.button>
+              </motion.div>
+            )}
           </AnimatePresence>,
           document.body
         )}
