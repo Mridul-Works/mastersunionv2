@@ -1229,11 +1229,11 @@ function FounderStoriesGallery() {
                       </div>
                     ))}
                   </div>
-                  <div className="mt-3 columns-1 gap-7 space-y-2 text-[12px] leading-[1.62] text-foreground/80 sm:text-[13px] lg:columns-2">
+                  <div className="mt-2 columns-1 gap-7 space-y-2 text-[12px] leading-[1.62] text-foreground/80 sm:text-[13px] lg:columns-2">
                     {editorial.paragraphs.slice(0, 4).map((paragraph, index) => (
                       <p
                         key={paragraph}
-                        className={`break-inside-avoid ${index === 0 ? "first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[3.1rem] first-letter:leading-[0.78] first-letter:text-primary" : ""}`}
+                        className={`break-inside-avoid ${index >= 2 ? "hidden min-[1100px]:block" : ""} ${index === 0 ? "first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[3.1rem] first-letter:leading-[0.78] first-letter:text-primary" : ""}`}
                       >
                         {paragraph}
                       </p>
@@ -1286,10 +1286,10 @@ function FounderStoriesGallery() {
                       <Placeholder kind="image" aspect="h-full" note={story.name} className="!border-0" />
                     )}
                   </div>
-                  <div className="mt-3 flex shrink-0 items-end justify-between gap-5 border-t border-foreground/15 pt-3">
+                  <div className="mt-3 flex shrink-0 items-end justify-between gap-5 border-t border-foreground/15 pt-4">
                     <div className="min-w-0">
                       <p className="font-mono text-[8px] uppercase leading-none tracking-[0.2em] text-foreground/45">Founder portrait</p>
-                      <p className="mt-1.5 truncate font-mono text-[11px] uppercase leading-none tracking-[0.2em] text-foreground/45">{story.founder}</p>
+                      <p className="mt-2 truncate font-mono text-[11px] uppercase leading-none tracking-[0.2em] text-foreground/45">{story.founder}</p>
                     </div>
                     <button
                       type="button"
