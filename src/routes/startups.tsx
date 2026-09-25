@@ -2601,7 +2601,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={reduceMotion ? undefined : { opacity: 0, y: -16, scale: 0.985 }}
               transition={{ duration: reduceMotion ? 0 : 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="relative z-20 aspect-[4/5] h-full max-h-[17rem] overflow-hidden rounded-xl border border-primary/40 shadow-2xl sm:max-h-[20rem] md:max-h-[26rem] lg:max-h-[32rem]"
+              className="relative z-20 aspect-[4/5] h-full max-h-[17rem] overflow-hidden rounded-xl border border-background/20 shadow-2xl sm:max-h-[20rem] md:max-h-[26rem] lg:max-h-[32rem]"
             >
               <motion.img
                 src={stage.image}
@@ -2613,7 +2613,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
               />
               <div aria-hidden className="absolute inset-0 bg-linear-to-t from-foreground/90 via-transparent to-foreground/20" />
               <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-background/25 bg-foreground/25 px-3 py-1.5 backdrop-blur-md">
-                <span className={`size-1.5 rounded-full ${stage.culmination ? "bg-accent" : "bg-primary"}`} />
+                <span className="size-1.5 rounded-full bg-accent" />
                 <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-background">VIP Stage</span>
               </div>
               <div className="absolute inset-x-5 bottom-5">
@@ -2633,13 +2633,13 @@ function VipJourney({ stages }: { stages: Stage[] }) {
               exit={reduceMotion ? undefined : { opacity: 0, y: -10 }}
               transition={{ duration: reduceMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
             >
-              <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-primary">The Venture Initiation Programme</p>
+              <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-accent">The Venture Initiation Programme</p>
               <div className="mt-4 flex items-baseline gap-3 sm:mt-5">
-                <span className="font-serif-italic text-3xl text-primary lg:text-4xl">{stage.n}</span>
+                <span className="font-serif-italic text-3xl text-accent lg:text-4xl">{stage.n}</span>
                 <span aria-hidden className="h-px flex-1 bg-background/15" />
                 <span className="font-mono text-xs text-background/35">{String(stages.length).padStart(2, "0")}</span>
               </div>
-              <h3 className="mt-5 max-w-[12ch] font-display text-[clamp(1.45rem,2.4vw,2.2rem)] font-semibold uppercase leading-[1.05] text-primary">{stage.name}</h3>
+              <h3 className="mt-5 max-w-[12ch] font-display text-[clamp(1.45rem,2.4vw,2.2rem)] font-semibold uppercase leading-[1.05] text-background">{stage.name}</h3>
               <p className="mt-4 max-w-[36ch] text-[13px] leading-[1.65] text-background/72 sm:text-[14px] lg:mt-5 lg:text-[15px] lg:leading-[1.7]">{stage.body}</p>
               <div className="relative mt-5 overflow-hidden rounded-lg border border-background/10 bg-background/[0.05] p-4 sm:p-5 lg:mt-7 lg:rounded-2xl lg:p-6">
                 <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-background/45">{stage.grant ? "Stage grant" : "Investors in the room"}</span>
@@ -2651,7 +2651,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
           <div className="mt-5 flex items-end justify-between gap-4">
             <div className="min-w-0 flex-1">
               <div className="h-px overflow-hidden bg-background/15">
-                <motion.div className="h-full origin-left bg-primary" animate={{ width: `${progress}%` }} transition={{ duration: reduceMotion ? 0 : 0.45 }} />
+                <motion.div className="h-full origin-left bg-accent" animate={{ width: `${progress}%` }} transition={{ duration: reduceMotion ? 0 : 0.45 }} />
               </div>
               <p className="mt-3 font-mono text-[8px] uppercase tracking-[0.18em] text-background/40">Step {stage.n} of {String(stages.length).padStart(2, "0")}</p>
             </div>
