@@ -968,144 +968,130 @@ function KeyMetrics({ dominant, supporting, dark = false }: { dominant: Metric; 
 }
 
 const STORY_MEDIA: Record<string, { image?: string; logo?: string }> = {
-  Eight: { image: eightVentureImg.url, logo: ventureEightLogo.url },
+  Eight: { image: sparkEightFounders.url, logo: ventureEightLogo.url },
   Bullspree: { image: bullspreeVentureImg.url, logo: ventureBullspreeLogo.url },
   PlaySuper: { image: playsuperVentureImg.url, logo: venturePlaysuperLogo.url },
   "Hive School": { image: hiveschoolVentureImg.url, logo: ventureHiveschoolLogo.url },
-  SeedsAI: { image: seedsaiVentureImg.url, logo: ventureSeedsAILogo.url },
-  MemoTag: { logo: sharkMemoTagLogo.url },
-  "Meta Fashion": { logo: sharkMetaFashionLogo.url },
+  SeedsAI: { image: sparkSeedsAiFounders.url, logo: ventureSeedsAILogo.url },
+  MemoTag: { image: brandPhotoMemotag, logo: sharkMemoTagLogo.url },
+  "Meta Fashion": { image: brandPhotoMetafashion, logo: sharkMetaFashionLogo.url },
 };
 
 function FounderStoriesGallery() {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] = useState(0);
-  const [atStart, setAtStart] = useState(true);
-  const [atEnd, setAtEnd] = useState(false);
+  const [activeStory, setActiveStory] = useState(0);
+  const [pageDirection, setPageDirection] = useState<1 | -1>(1);
+  const reduceMotion = useReducedMotion();
   const total = SPARK_EXAMPLES.length;
+  const story = SPARK_EXAMPLES[activeStory];
+  const media = STORY_MEDIA[story.name] ?? {};
+  const image = media.image ?? story.founderImage;
 
-  useEffect(() => {
-    const el = trackRef.current;
-    if (!el) return;
-    const update = () => {
-      const max = el.scrollWidth - el.clientWidth;
-      setProgress(max > 0 ? el.scrollLeft / max : 0);
-      setAtStart(el.scrollLeft <= 4);
-      setAtEnd(el.scrollLeft >= max - 4);
-    };
-    update();
-    el.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    return () => {
-      el.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
-    };
-  }, []);
-
-  const step = (dir: 1 | -1) => {
-    const el = trackRef.current;
-    if (!el) return;
-    const card = el.querySelector<HTMLElement>("[data-story-card]");
-    const amount = card ? card.offsetWidth + 20 : el.clientWidth * 0.8;
-    el.scrollBy({ left: dir * amount, behavior: "smooth" });
+  const turnPage = (direction: 1 | -1) => {
+    setPageDirection(direction);
+    setActiveStory((current) => (current + direction + total) % total);
   };
 
   return (
     <section id="founder-stories" className="relative overflow-x-clip bg-foreground py-20 text-background sm:py-24 md:py-28">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <Reveal>
+        <div className="flex items-end justify-between gap-6">
+          <Reveal>
+            <div>
               <Eyebrow>Founder Stories · {String(total).padStart(2, "0")} Ventures</Eyebrow>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h2 className="mt-5 max-w-[20ch] text-[clamp(1.8rem,4.2vw,3.6rem)] font-light leading-[1.08]">
-                Seven founders.{" "}
-                <span className="font-serif-italic !font-serif !font-light !text-background/70">Seven first moves.</span>
+              <h2 className="mt-5 max-w-[22ch] text-[clamp(1.8rem,4.2vw,3.6rem)] font-light leading-[1.08]">
+                Open the stories behind the first move.
               </h2>
-            </Reveal>
-          </div>
-          <Reveal delay={0.1} className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => step(-1)}
-              disabled={atStart}
-              aria-label="Previous story"
-              className="flex size-12 items-center justify-center rounded-full border border-background/25 text-background transition-colors hover:bg-background hover:text-foreground disabled:pointer-events-none disabled:opacity-30"
-            >
-              <ArrowLeft className="size-4" strokeWidth={1.5} />
-            </button>
-            <button
-              type="button"
-              onClick={() => step(1)}
-              disabled={atEnd}
-              aria-label="Next story"
-              className="flex size-12 items-center justify-center rounded-full border border-background/25 text-background transition-colors hover:bg-background hover:text-foreground disabled:pointer-events-none disabled:opacity-30"
-            >
-              <ArrowRight className="size-4" strokeWidth={1.5} />
-            </button>
+            </div>
           </Reveal>
+          <p className="hidden font-mono text-[10px] uppercase tracking-[0.24em] text-background/45 sm:block">
+            {String(activeStory + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+          </p>
         </div>
-      </div>
 
-      <div
-        ref={trackRef}
-        tabIndex={0}
-        aria-label="Founder stories"
-        className="mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-6 [scrollbar-width:none] sm:mt-12 md:mt-14 [&::-webkit-scrollbar]:hidden"
-        style={{ paddingInline: "max(1.25rem, calc((100vw - 80rem) / 2 + 2rem))", scrollPaddingInline: "max(1.25rem, calc((100vw - 80rem) / 2 + 2rem))" }}
-      >
-        {SPARK_EXAMPLES.map((story, i) => {
-          const media = STORY_MEDIA[story.name] ?? {};
-          const image = media.image ?? story.founderImage;
-          return (
-            <article
+        <div className="relative mt-10 [perspective:1800px] sm:mt-12 md:mt-14">
+          <div aria-hidden className="absolute -bottom-4 left-[4%] right-[4%] top-4 bg-background/15 shadow-2xl" />
+          <AnimatePresence mode="wait" custom={pageDirection}>
+            <motion.article
               key={story.name}
-              data-story-card
-              className="group relative flex w-[82vw] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-background/15 bg-background/[0.03] sm:w-[360px] lg:w-[400px]"
+              custom={pageDirection}
+              initial={reduceMotion ? { opacity: 0 } : { opacity: 0, rotateY: pageDirection > 0 ? -82 : 82, x: pageDirection > 0 ? 24 : -24 }}
+              animate={{ opacity: 1, rotateY: 0, x: 0 }}
+              exit={reduceMotion ? { opacity: 0 } : { opacity: 0, rotateY: pageDirection > 0 ? 82 : -82, x: pageDirection > 0 ? -24 : 24 }}
+              transition={{ duration: reduceMotion ? 0.2 : 0.72, ease: [0.22, 1, 0.36, 1] }}
+              style={{ transformOrigin: pageDirection > 0 ? "left center" : "right center", transformStyle: "preserve-3d" }}
+              className="relative grid min-h-[46rem] overflow-hidden bg-background text-foreground shadow-2xl md:min-h-[40rem] md:grid-cols-2"
             >
-              <div className="relative aspect-[4/5] overflow-hidden">
+              <div className="relative flex min-h-[31rem] flex-col border-b border-foreground/15 px-6 pb-7 pt-8 sm:px-9 sm:pb-9 sm:pt-10 md:min-h-0 md:border-b-0 md:border-r md:px-10 md:pb-8 lg:px-14 lg:pt-12">
+                <div className="flex items-start justify-between gap-5 border-b border-primary/70 pb-5">
+                  <div>
+                    <p className="font-mono text-[9px] uppercase tracking-[0.26em] text-primary">Meet the founder</p>
+                    <h3 className="mt-2 text-[clamp(2.1rem,4.6vw,4.7rem)] font-light leading-[0.92]">{story.name}</h3>
+                  </div>
+                  {media.logo && (
+                    <span className="flex h-12 w-20 shrink-0 items-center justify-center p-1 sm:h-14 sm:w-24">
+                      <img src={media.logo} alt={`${story.name} logo`} className="max-h-full max-w-full object-contain" />
+                    </span>
+                  )}
+                </div>
+
+                <div className="grid gap-7 py-7 sm:grid-cols-[0.78fr_1.22fr] sm:gap-8 md:grid-cols-1 lg:grid-cols-[0.82fr_1.18fr]">
+                  <div>
+                    <p className="font-serif-italic text-[1.55rem] leading-[1.08] text-primary">{story.founder}</p>
+                    <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/55">{story.cohort}</p>
+                    <div className="mt-6 border-t border-primary/60 pt-5">
+                      <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-primary">The venture</p>
+                      <p className="mt-2 max-w-[22ch] text-[13px] font-medium leading-[1.45]">{story.product}</p>
+                    </div>
+                  </div>
+                  <div className="space-y-4 text-[13px] leading-[1.68] text-foreground/80 sm:text-[14px]">
+                    <p>{story.body}</p>
+                    <p className="border-l border-primary/70 pl-4 font-serif-italic text-[1.12rem] leading-[1.45] text-foreground">
+                      Built from observation, shaped on campus, and tested in the real world.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-auto flex items-center justify-between border-t border-foreground/15 pt-5">
+                  <button
+                    type="button"
+                    onClick={() => turnPage(-1)}
+                    aria-label="Flip to previous founder story"
+                    className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/45 transition-colors hover:text-primary"
+                  >
+                    <ArrowLeft className="size-3.5" strokeWidth={1.5} /> Previous
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => turnPage(1)}
+                    className="group flex items-center gap-3 font-serif-italic text-[1.25rem] text-foreground transition-colors hover:text-primary"
+                  >
+                    Flip the page
+                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={1.5} />
+                  </button>
+                </div>
+                <span aria-hidden className="absolute bottom-0 right-0 size-10 bg-gradient-to-br from-background via-background to-foreground/10 shadow-[-5px_-5px_12px_var(--background)]" />
+              </div>
+
+              <div className="relative min-h-[29rem] overflow-hidden bg-muted md:min-h-0">
                 {image ? (
-                  <img
-                    src={image}
-                    alt={`${story.name} — ${story.founder}`}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                  />
+                  <img src={image} alt={`${story.founder}, founder of ${story.name}`} className="h-full w-full object-cover grayscale" />
                 ) : (
                   <Placeholder kind="image" aspect="h-full" note={story.name} className="!border-0" />
                 )}
-                <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-foreground via-foreground/30 to-transparent" />
-                <span className="absolute left-5 top-5 font-mono text-[11px] tracking-[0.28em] text-background/70">
-                  {String(i + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-                </span>
-                {media.logo && (
-                  <span className="absolute right-5 top-5 flex size-11 items-center justify-center overflow-hidden rounded-full bg-background p-1.5">
-                    <img src={media.logo} alt={`${story.name} logo`} className="h-full w-full object-contain" />
+                <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-transparent to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-5 p-6 text-background sm:p-8 lg:p-10">
+                  <div>
+                    <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-background/65">Founder portrait</p>
+                    <p className="mt-2 max-w-[24ch] text-[1.2rem] leading-[1.2]">{story.founder}</p>
+                  </div>
+                  <span className="font-mono text-[10px] tracking-[0.22em] text-background/65">
+                    {String(activeStory + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
                   </span>
-                )}
-                <div className="absolute inset-x-5 bottom-5">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-background/60">{story.product}</p>
-                  <h3 className="mt-2 text-[1.75rem] leading-none">{story.name}</h3>
                 </div>
+                <div aria-hidden className="absolute inset-y-0 left-0 hidden w-5 bg-gradient-to-r from-foreground/20 to-transparent md:block" />
               </div>
-              <div className="flex flex-1 flex-col gap-5 p-5 sm:p-6">
-                <p className="max-w-[38ch] text-[14px] leading-[1.65] text-background/75">{story.body}</p>
-                <p className="mt-auto border-t border-background/10 pt-4 text-[12px] text-background/55">
-                  {story.founder} <span className="text-background/30">—</span> {story.cohort}
-                </p>
-              </div>
-            </article>
-          );
-        })}
-      </div>
-
-      <div className="mx-auto mt-6 max-w-7xl px-5 sm:px-8">
-        <div className="h-px w-full bg-background/10">
-          <div
-            className="h-px bg-gradient-to-r from-sky-400 via-yellow-300 to-orange-400 transition-[width] duration-150"
-            style={{ width: `${Math.max(8, progress * 100)}%` }}
-          />
+            </motion.article>
+          </AnimatePresence>
         </div>
       </div>
     </section>
