@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "asset_id": "76547db9-e01c-4e50-bb1d-5e85d3da6e85",
+  "asset_id": "6e66a5d1-1ae2-48a6-84c7-51b98bca014c",
   "project_id": "79e3b574-96e7-4811-a43f-99492a9fe2c6",
-  "url": "/__l5e/assets-v1/76547db9-e01c-4e50-bb1d-5e85d3da6e85/spark-product-metafashion.jpg",
-  "r2_key": "a/v1/79e3b574-96e7-4811-a43f-99492a9fe2c6/76547db9-e01c-4e50-bb1d-5e85d3da6e85/spark-product-metafashion.jpg",
-  "original_filename": "spark-product-metafashion.jpg",
-  "size": 139659,
+  "url": "/__l5e/assets-v1/6e66a5d1-1ae2-48a6-84c7-51b98bca014c/product-metafashion.jpg",
+  "r2_key": "a/v1/79e3b574-96e7-4811-a43f-99492a9fe2c6/6e66a5d1-1ae2-48a6-84c7-51b98bca014c/product-metafashion.jpg",
+  "original_filename": "product-metafashion.jpg",
+  "size": 150946,
   "content_type": "image/jpeg",
-  "created_at": "2026-09-25T09:59:30Z"
+  "created_at": "2026-09-25T10:05:58Z"
 }
