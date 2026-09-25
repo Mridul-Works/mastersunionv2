@@ -1160,6 +1160,7 @@ function FounderStoriesGallery() {
                 <div className="mt-auto flex items-center justify-between border-t border-foreground/15 pt-5">
                   <button
                     type="button"
+                    onMouseDown={(event) => event.preventDefault()}
                     onClick={() => turnPage(-1)}
                     aria-label="Flip to previous founder story"
                     className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/45 transition-colors hover:text-primary"
@@ -1168,6 +1169,7 @@ function FounderStoriesGallery() {
                   </button>
                   <button
                     type="button"
+                    onMouseDown={(event) => event.preventDefault()}
                     onClick={() => turnPage(1)}
                     className="group flex items-center gap-3 font-serif-italic text-[1.25rem] text-foreground transition-colors hover:text-primary"
                   >
