@@ -1300,7 +1300,7 @@ function FounderStoriesGallery() {
                     </div>
                   );
                   const layout = activeStory % 7;
-                  let content: ReactNode;
+                  let content: React.ReactNode;
                   if (layout === 0) {
                     // Text top, image bottom
                     content = (
