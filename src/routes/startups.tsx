@@ -1101,6 +1101,7 @@ function FounderStoriesGallery() {
               return (
                 <motion.div
                   key={turningPage.id}
+                  data-magazine-page-leaf
                   aria-hidden="true"
                   initial={{ rotateY: 0 }}
                   animate={{ rotateY: isForward ? -180 : 180 }}
