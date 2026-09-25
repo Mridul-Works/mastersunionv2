@@ -1393,6 +1393,7 @@ function SparkCarousel({
   const lastTrackOffsetRef = useRef<number | null>(null);
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const [videoOrigin, setVideoOrigin] = useState<DOMRect | null>(null);
+  const [ytVideoId, setYtVideoId] = useState<string | null>(null);
   const modalVideoRef = useRef<HTMLVideoElement>(null);
   const reduceMotion = useReducedMotion();
   const count = companies.length;
@@ -1429,6 +1430,15 @@ function SparkCarousel({
   useEffect(() => {
     lastActiveRef.current = active;
   }, [active]);
+
+  useEffect(() => {
+    if (!ytVideoId) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setYtVideoId(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [ytVideoId]);
 
   useEffect(() => {
     if (!videoModalOpen) return;
@@ -1623,14 +1633,34 @@ function SparkCarousel({
                   animate={{ y: 0 }}
                   transition={{ duration: reduceMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <Placeholder
-                    kind="image"
-                    aspect="aspect-[1200/896]"
-                    src={company.productImage}
-                    alt={company.productImage ? `${company.name} — ${company.product}` : undefined}
-                    note={`${company.name} — product detail`}
-                    className="rounded-[6px]"
-                  />
+                  <button
+                    type="button"
+                    onClick={() => setYtVideoId(company.videoId)}
+                    aria-label={`Play video: ${company.videoTitle}`}
+                    className="group relative block aspect-[1200/896] w-full cursor-pointer overflow-hidden rounded-[6px] border border-background/15 bg-black/40 text-left focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60"
+                  >
+                    <img
+                      src={`https://i.ytimg.com/vi/${company.videoId}/hqdefault.jpg`}
+                      alt={`${company.name} — ${company.videoTitle}`}
+                      loading="lazy"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                    <span aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/30" />
+                    <span
+                      aria-hidden
+                      className="absolute left-1/2 top-1/2 flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/45 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-black/60 sm:size-16"
+                    >
+                      <Play className="ml-0.5 size-5 fill-white text-white sm:size-6" />
+                    </span>
+                    <span className="absolute inset-x-0 bottom-0 flex flex-col gap-1 p-4 sm:p-5">
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/55">
+                        Watch — {company.name}
+                      </span>
+                      <span className="text-[0.8rem] leading-snug text-white/85 sm:text-[0.85rem]">
+                        {company.videoTitle}
+                      </span>
+                    </span>
+                  </button>
                 </motion.div>
               </div>
             </div>
