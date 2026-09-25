@@ -1225,7 +1225,7 @@ function FounderStoriesGallery() {
                       </div>
                     ))}
                   </div>
-                  <div className="mt-2 columns-1 gap-7 space-y-2 text-[12px] leading-[1.62] text-foreground/80 sm:text-[13px] lg:columns-2">
+                  <div className="mt-2 columns-1 gap-7 space-y-2 text-[13px] leading-[1.62] text-foreground/80 sm:text-[14px] lg:columns-2 xl:text-[15px]">
                     {editorial.paragraphs.slice(0, 4).map((paragraph, index) => (
                       <p
                         key={paragraph}
