@@ -1267,7 +1267,7 @@ function FounderStoriesGallery() {
 
               <div className="relative flex min-h-0 flex-col overflow-hidden bg-background md:origin-left md:-rotate-y-[1.35deg] md:rounded-r-[5px] md:shadow-[16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)]">
                 {/* Top half — story continues */}
-                <div className="flex min-h-0 basis-[52%] flex-col px-6 pb-4 pt-8 sm:px-9 sm:pt-10 md:basis-[58%] md:px-10 lg:basis-[48%] lg:px-14 lg:pt-10">
+                <div className="flex min-h-0 shrink-0 basis-auto flex-col px-6 pb-4 pt-8 sm:px-9 sm:pt-10 md:px-10 lg:px-14 lg:pt-10">
                   <div className="mb-5 flex items-center justify-between border-b border-foreground/20 pb-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/50">
                     <span>{story.name} · continued</span>
                     <span>{story.cohort}</span>
@@ -1283,7 +1283,7 @@ function FounderStoriesGallery() {
                 </div>
 
                 {/* Bottom half — image, orientation-aware */}
-                <div className="relative flex min-h-0 basis-[48%] flex-col border-t border-foreground/15 bg-background px-6 pb-5 pt-3 sm:px-6 sm:pb-5 md:basis-[42%] md:ml-8 md:px-6 md:pb-6 lg:basis-[52%] lg:px-6">
+                <div className="relative flex min-h-0 flex-1 flex-col bg-background px-6 pb-4 pt-2 sm:px-6 md:ml-8 md:px-6 lg:px-6">
                   <div className="relative min-h-0 flex-1 overflow-hidden bg-muted">
                     {image ? (
                       <img
