@@ -2218,150 +2218,764 @@ function StoryBeats({ beats, dark = false }: { beats: Beat[]; dark?: boolean }) 
   );
 }
 
-function OutclassSection() {
-  const [active, setActive] = useState(0);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+/* ---- OutClass — ported verbatim from Masters Union Website PGP Bharat page ---- */
+function OcReveal({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") { setVisible(true); return; }
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { setVisible(true); io.disconnect(); }
+    }, { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return <div ref={ref} data-visible={visible} className={`reveal ${className}`} style={{ transitionDelay: `${delay}ms` }}>{children}</div>;
+}
+
+function OcCleanVideo({ videoId, className = "", title = "Video", poster, hidePlayButton = false, startAt = 0 }: { videoId: string; className?: string; title?: string; poster?: string; hidePlayButton?: boolean; startAt?: number }) {
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+  return (
+    <>
+      <button type="button" onClick={() => setOpen(true)} aria-label={`Play ${title}`} className={`group relative block overflow-hidden bg-black ${className}`}>
+        {poster && <img decoding="async" src={poster} alt={title} loading="lazy" width={1280} height={720} className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />}
+        {!hidePlayButton && (
+          <span className="absolute inset-0 flex items-center justify-center bg-black/10 transition-colors group-hover:bg-black/20">
+            <span className="flex size-12 items-center justify-center rounded-full bg-white/90 text-black shadow-sm backdrop-blur transition-transform duration-300 group-hover:scale-110">
+              <svg viewBox="0 0 24 24" className="ml-0.5 size-4 fill-current"><path d="M8 5v14l11-7z" /></svg>
+            </span>
+          </span>
+        )}
+      </button>
+      {open && typeof document !== "undefined" && createPortal(
+        <div role="dialog" aria-modal="true" aria-label={title} onClick={() => setOpen(false)} className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm">
+          <button type="button" aria-label="Close video" onClick={() => setOpen(false)} className="absolute right-5 top-5 flex size-9 items-center justify-center rounded-full bg-white/90 text-black">✕</button>
+          <div onClick={(e) => e.stopPropagation()} className="aspect-video w-full max-w-[1000px] overflow-hidden bg-black shadow-2xl">
+            <iframe src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1${startAt > 0 ? `&start=${startAt}` : ""}`} title={title} allow="autoplay; encrypted-media; picture-in-picture; fullscreen" referrerPolicy="strict-origin-when-cross-origin" className="h-full w-full" />
+          </div>
+        </div>, document.body)}
+    </>
+  );
+}
+
+const oc_creatorThumb = { url: "https://id-preview--2d788020-316b-498d-8a41-05a20ec6036e.lovable.app/__l5e/assets-v1/f930bb37-169d-4746-bec9-912368005f03/creator-challenge-plain-thumb.jpg" };
+const oc_d2cBrandFair = { url: "https://id-preview--2d788020-316b-498d-8a41-05a20ec6036e.lovable.app/__l5e/assets-v1/12861321-90b0-466b-9c2e-35158fd1d416/d2c-brand-fair.jpg" };
+const oc_fairCeramics = { url: "https://id-preview--2d788020-316b-498d-8a41-05a20ec6036e.lovable.app/__l5e/assets-v1/9e728cf2-9308-4c68-94a0-f004895cf45a/p1139656.jpg" };
+const oc_fairJewels = { url: "https://id-preview--2d788020-316b-498d-8a41-05a20ec6036e.lovable.app/__l5e/assets-v1/a4b9bbf8-4924-4df3-b77f-be0580dba1bb/p1139684.jpg" };
+const oc_fairNight = { url: "https://id-preview--2d788020-316b-498d-8a41-05a20ec6036e.lovable.app/__l5e/assets-v1/139f8449-94a3-4b7c-aaf7-36ac55d5c12e/p1139731.jpg" };
+const oc_fairCrafts = { url: "https://id-preview--2d788020-316b-498d-8a41-05a20ec6036e.lovable.app/__l5e/assets-v1/06407e3a-5607-4409-a877-b6302be02ba2/p1139696.jpg" };
+const oc_creator1 = { url: "https://id-preview--2d788020-316b-498d-8a41-05a20ec6036e.lovable.app/__l5e/assets-v1/4feacb1e-d781-43b0-b0bf-abbeb87e31c0/page48_img27_3107x3821.jpg" };
+const oc_creator2 = { url: "https://id-preview--2d788020-316b-498d-8a41-05a20ec6036e.lovable.app/__l5e/assets-v1/a75079a6-f071-44cb-928a-9d34a7d35f07/page50_img12_2803x4096.jpg" };
+const oc_creator3 = { url: "https://id-preview--2d788020-316b-498d-8a41-05a20ec6036e.lovable.app/__l5e/assets-v1/8092397c-43ff-42be-92cf-d583aa646f86/page50_img28_3325x4081.jpg" };
+const oc_creator4 = { url: "https://id-preview--2d788020-316b-498d-8a41-05a20ec6036e.lovable.app/__l5e/assets-v1/845d9f79-924c-4c49-b226-e5173444f334/page51_img02_2803x4096.jpg" };
+const oc_creator5 = { url: "https://id-preview--2d788020-316b-498d-8a41-05a20ec6036e.lovable.app/__l5e/assets-v1/09a77c52-03e5-41d6-b99e-4cad8ed68dc8/page51_img16_3015x3821.jpg" };
+const oc_creator6 = { url: "https://id-preview--2d788020-316b-498d-8a41-05a20ec6036e.lovable.app/__l5e/assets-v1/677e03f9-ca18-4293-adc0-27a46c8a7ac2/page52_img11_2802x4096.jpg" };
+const oc_creator7 = { url: "https://id-preview--2d788020-316b-498d-8a41-05a20ec6036e.lovable.app/__l5e/assets-v1/2bb70289-78e5-4651-84ad-d69930f9bdb7/page52_img16_2167x2496.jpg" };
+const oc_melaFounders = { url: "https://id-preview--2d788020-316b-498d-8a41-05a20ec6036e.lovable.app/__l5e/assets-v1/5d7540a9-c941-4753-934d-381446535dd7/p1104702-2.jpg" };
+const oc_melaVideo = { url: "https://id-preview--2d788020-316b-498d-8a41-05a20ec6036e.lovable.app/__l5e/assets-v1/0c054351-76e0-4a5f-b10a-90c4afe5346d/d2c-mela.mp4" };
+
+/** Photo tile used in the moodboard sheet. */
+function OcShot({
+  src,
+  className = "",
+  imgClassName = "",
+}: {
+  src: string;
+  className?: string;
+  imgClassName?: string;
+}) {
+  return (
+    <div className={`group/shot relative overflow-hidden bg-[oklch(0.94_0.01_60)] ${className}`}>
+      <div className="pointer-events-none absolute inset-0 z-10 border border-white/10" />
+      <img decoding="async"
+        src={src}
+        alt=""
+        loading="lazy"
+        className={`h-full w-full object-cover transition-transform duration-500 group-hover/shot:scale-[1.03] ${imgClassName}`}
+      />
+    </div>
+  );
+}
+
+const ocConfig = {
+    eyebrow: "/ 03 — OutClass",
+    title: ["Learning outside", "the classroom"],
+    body: "OutClass is where classroom theory meets the real world. Every term, you build live ventures, create under pressure and ship to real customers — graded on outcomes in the market, not marks on a sheet.",
+    tracks: [
+      {
+        tag: "OutClass · Runs across terms",
+        title: "Build a D2C Brand",
+        body: "Every student ships a live consumer brand — sourced, launched and scaled on Amazon, Blinkit, Instagram and their own store. Graded on real customers and real revenue, not slides.",
+        arc: [],
+        stats: [
+          { k: "₹3.38 Cr", v: "Total revenue generated, Cohort '25" },
+          { k: "50", v: "Teams competing simultaneously" },
+          { k: "₹4L+", v: "Average revenue per team, Term 1" },
+        ],
+      },
+      {
+        tag: "OutClass · Runs across terms",
+        title: "Creator Challenge",
+        body: "From Term 2, every student builds a personal brand on YouTube, Instagram or LinkedIn — scripting, filming, editing and distributing weekly. Graded on real audience growth in the wild.",
+        arc: [],
+        stats: [
+          { k: "50M+", v: "Cumulative views generated" },
+          { k: "2.5M+", v: "Followers built by past cohorts" },
+          { k: "40+", v: "Creators past 100k followers" },
+        ],
+      },
+    ],
+  };
+
+const oc_chip =
+  "inline-block bg-white px-2.5 py-1 font-tech text-[9px] font-semibold uppercase tracking-[0.22em] text-[#050505]";
+const oc_micro = "font-tech text-[9px] uppercase tracking-[0.24em] text-white/55";
+const oc_label = "font-tech text-[9px] uppercase tracking-[0.28em] text-white/70";
+
+const OcCREATOR_SESSION_VIDEOS = [
+  {
+    id: "B_Uh5V4xD4k",
+    title: "Tanmay Bhat on campus",
+    type: "Masterclass",
+    blurb:
+      "A masterclass on virality. Tanmay breaks down what makes content spread — hook structures, format design, and the repeatable systems behind hit videos.",
+  },
+  {
+    id: "0sMWviewwqs",
+    title: "Nas Daily fireside chat",
+    type: "Fireside chat",
+    blurb:
+      "Nuseir Yassin on how AI is transforming business, content creation, and the future of work — and what creators should build next.",
+  },
+  {
+    id: "YMfW0nRii3s",
+    title: "Sahiba Bali on the creator economy",
+    type: "Fireside chat",
+    blurb:
+      "Marketing, personal branding, consumer psychology, entrepreneurship, and career growth in the AI era — a sharp take on building in public.",
+  },
+  {
+    id: "dng2KDh5_LA",
+    title: "Sharan Hegde masterclass",
+    type: "Masterclass",
+    blurb:
+      "How money truly works and why most financial decisions fail in the long run — a practical framework for thinking about wealth.",
+  },
+];
+
+
+/** Hover-edge auto-scroll: pointer near an edge glides the rail that way. */
+function oc_useEdgeGlide(railRef: React.RefObject<HTMLDivElement | null>) {
+  const speedRef = useRef(0);
+  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    let next = 0;
-    return onScrollFrame(
-      () => {
-        if (next !== active) setActive(next);
-      },
-      () => {
-        const vh = window.innerHeight || 1;
-        // A card becomes "active" once its top has reached the pin line.
-        const line = vh * 0.34;
-        let found = 0;
-        cardRefs.current.forEach((el, i) => {
-          if (!el) return;
-          const top = el.getBoundingClientRect().top;
-          if (top <= line + 4) found = Math.max(found, i);
-        });
-        next = found;
-      },
-    );
-  }, [active]);
+    const el = railRef.current;
+    if (!el) return;
 
+    const step = () => {
+      const v = speedRef.current;
+      if (v !== 0) {
+        const max = el.scrollWidth - el.clientWidth;
+        el.scrollLeft = Math.max(0, Math.min(max, el.scrollLeft + v));
+      }
+      rafRef.current = requestAnimationFrame(step);
+    };
+    rafRef.current = requestAnimationFrame(step);
+
+    const onMove = (e: PointerEvent | MouseEvent) => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const zone = Math.min(220, rect.width * 0.25);
+      const maxSpeed = 16;
+      if (x < zone) speedRef.current = -maxSpeed * (1 - x / zone);
+      else if (x > rect.width - zone) speedRef.current = maxSpeed * (1 - (rect.width - x) / zone);
+      else speedRef.current = 0;
+    };
+    const onLeave = () => {
+      speedRef.current = 0;
+    };
+    el.addEventListener("pointermove", onMove);
+    el.addEventListener("mousemove", onMove);
+    el.addEventListener("pointerleave", onLeave);
+    el.addEventListener("mouseleave", onLeave);
+    return () => {
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+      speedRef.current = 0;
+      el.removeEventListener("pointermove", onMove);
+      el.removeEventListener("mousemove", onMove);
+      el.removeEventListener("pointerleave", onLeave);
+      el.removeEventListener("mouseleave", onLeave);
+    };
+  }, [railRef]);
+}
+
+/**
+ * Creator Challenge — editorial poster rail.
+ * Bold, image-driven social poster cards in a horizontal filmstrip.
+ * Supports: native trackpad swipe, wheel scroll, drag-to-scroll, arrow buttons.
+ */
+function OcCreatorChallengeStrip({
+  track,
+  index,
+}: {
+  track: (typeof ocConfig.tracks)[number];
+  index: number;
+}) {
+  const railRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  oc_useEdgeGlide(railRef);
+
+  useEffect(() => {
+    const el = railRef.current;
+    if (!el) return;
+    const update = () => {
+      setCanScrollLeft(el.scrollLeft > 4);
+      setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 4);
+    };
+    update();
+    el.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      el.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  const scrollBy = (dir: number) => {
+    const el = railRef.current;
+    if (!el) return;
+    const card = el.querySelector("article") as HTMLElement | null;
+    const step = card ? card.offsetWidth + 20 : 340;
+    el.scrollBy({ left: dir * step, behavior: "smooth" });
+  };
+
+  return (
+    <OcReveal className="mt-12 border-t border-white/12 pt-8">
+      <div className="grid gap-6 lg:grid-cols-12">
+        <div className="lg:col-span-6">
+          <span className={oc_chip}>Track {String(index + 1).padStart(2, "0")}</span>
+          <h3 className="mt-4 font-display text-[clamp(1.9rem,4.2vw,3.1rem)] font-semibold leading-[0.98] tracking-tight">
+            {track.title}
+          </h3>
+        </div>
+        <div className="lg:col-span-6 lg:pt-2">
+          <div aria-hidden className="h-px w-full bg-border" />
+          <p className="mt-4 max-w-xl text-[13.5px] leading-relaxed text-white/55">
+            {track.body}
+          </p>
+        </div>
+      </div>
+
+      <div className="relative mt-8">
+        <div
+          ref={railRef}
+          className="no-scrollbar flex gap-5 overflow-x-auto pb-2"
+        >
+
+          {/* 00 — The Brief */}
+          <article className="group relative flex aspect-[3/4] w-[300px] shrink-0 snap-center flex-col justify-between overflow-hidden bg-[#1E5631] p-7 text-white sm:w-[330px] lg:w-[360px]">
+            <div className="absolute inset-0 z-0 opacity-20">
+              <img decoding="async"
+                src={oc_creator1.url}
+                alt=""
+                loading="lazy"
+                className="h-full w-full object-cover grayscale transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+            <div className="absolute inset-0 z-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+
+            <div className="relative z-10 flex items-start justify-between">
+              <span className="bg-[#d92828] px-2 py-1 font-tech text-[9px] font-bold uppercase tracking-[0.2em] text-white">
+                00 // Intro
+              </span>
+              <svg className="h-4 w-4 text-white/50" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
+            </div>
+
+            <div className="relative z-10">
+              <h4 className="font-display text-[clamp(1.8rem,3.4vw,2.6rem)] font-black italic leading-[0.9] tracking-tighter whitespace-nowrap">
+                The Brief.
+              </h4>
+              <p className="mt-5 max-w-[260px] font-tech text-[10px] font-medium uppercase leading-relaxed tracking-widest text-white/80">
+                Build an audience. Not just a deck. Graded on reach, retention and revenue.
+              </p>
+              <div className="mt-6 grid grid-cols-3 gap-2 border-t border-white/20 pt-4">
+                {track.stats.map((s) => (
+                  <div key={s.k}>
+                    <p className="font-display text-[clamp(0.85rem,1.1vw,1rem)] font-semibold leading-none">
+                      {s.k}
+                    </p>
+                    <p className="mt-1.5 text-[8px] leading-snug text-white/60">{s.v}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </article>
+
+
+          {/* 02 — Step 01: Onboarding */}
+          <article className="group relative flex aspect-[3/4] w-[300px] shrink-0 snap-center flex-col justify-end overflow-hidden border border-black/5 bg-[#f5f3ee] p-6 sm:w-[330px] lg:w-[360px]">
+            <div className="absolute inset-0 z-0">
+              <img decoding="async"
+                src={oc_creator2.url}
+                alt=""
+                loading="lazy"
+                className="h-full w-full object-cover grayscale contrast-125 transition-transform duration-700 group-hover:scale-110"
+              />
+            </div>
+            <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#141414]/80 via-transparent to-[#141414]/90" />
+
+            <div className="absolute top-6 left-6 right-6 z-10 flex items-start justify-between">
+              <div className="text-white">
+                <div className="font-display text-[3.2rem] font-black leading-none">01</div>
+                <div className="font-tech text-[10px] font-bold uppercase tracking-[0.2em] opacity-80">
+                  Step
+                </div>
+              </div>
+              <div className="font-tech text-[10px] font-bold uppercase tracking-[0.2em] text-white/60 [writing-mode:vertical-rl]">
+                OutClass // Onboarding
+              </div>
+            </div>
+
+            <div className="relative z-10 text-white">
+              <h4 className="font-display text-[clamp(1.5rem,2.6vw,2rem)] font-semibold leading-[1.05] whitespace-nowrap">
+                Onboarding <span className="italic font-light opacity-80">& Setup.</span>
+              </h4>
+              <div className="my-4 h-px w-full bg-[#050505]/30" />
+              <p className="max-w-[260px] font-tech text-[10px] font-medium uppercase leading-relaxed tracking-wider text-white/70">
+                Creative vision on the table, mentor matched, workflow defined.
+              </p>
+            </div>
+          </article>
+
+          {/* 03 — Step 02: Content Development */}
+          <article className="group relative flex aspect-[3/4] w-[300px] shrink-0 snap-center flex-col justify-between overflow-hidden bg-[#1b4fd1] p-6 text-white sm:w-[330px] lg:w-[360px]">
+            <div className="absolute inset-0 z-0">
+              <img decoding="async"
+                src={oc_creator7.url}
+                alt=""
+                loading="lazy"
+                className="h-full w-full object-cover mix-blend-luminosity transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+            <div className="absolute inset-0 z-0 bg-blue-900/40 mix-blend-multiply" />
+
+            <div className="relative z-10">
+              <span className="mb-3 inline-block bg-[#f2c94c] px-2 py-0.5 font-tech text-[9px] font-black uppercase tracking-tighter text-[#141414]">
+                Phase Two
+              </span>
+              <h4 className="font-display text-[clamp(1.7rem,3vw,2.3rem)] font-black uppercase leading-[0.95] tracking-tighter whitespace-nowrap">
+                Content Dev.
+              </h4>
+            </div>
+
+            <div className="relative z-10 mt-auto flex items-end justify-between">
+              <p className="max-w-[220px] font-tech text-[10px] font-bold uppercase leading-snug tracking-wider text-white/90">
+                Crafting bold narratives for the modern algorithm.
+              </p>
+              <span className="font-display text-5xl font-black italic text-white/20">02</span>
+            </div>
+          </article>
+
+          {/* 04 — Step 03: Evaluation & Recognition */}
+          <article className="group relative flex aspect-[3/4] w-[300px] shrink-0 snap-center flex-col justify-between overflow-hidden bg-[#141414] p-6 text-[#f5f3ee] sm:w-[330px] lg:w-[360px]">
+
+
+            <div className="relative z-10 flex items-center justify-between">
+              <div className="h-0.5 w-12 bg-[#d92828]" />
+              <span className="font-tech text-[10px] font-bold uppercase tracking-[0.3em] text-white/70">
+                Finale
+              </span>
+            </div>
+
+            <div className="relative z-10 flex flex-1 flex-col items-center justify-center text-center">
+              <h4 className="font-display text-[clamp(1.4rem,2.4vw,1.8rem)] font-serif italic leading-[1.1] whitespace-nowrap">
+                Evaluation &{" "}
+                <span className="font-display text-[clamp(1.6rem,2.8vw,2.1rem)] font-black not-italic text-[#d92828]">
+                  Recognition
+                </span>
+              </h4>
+            </div>
+
+            <div className="relative z-10 bg-[#f5f3ee] p-4 text-[#141414]">
+              <p className="font-tech text-[9px] font-bold uppercase leading-snug tracking-wider">
+                Showcase before expert judges. Standout teams win ₹1L+ in recognition.
+              </p>
+            </div>
+          </article>
+        </div>
+
+        {/* Scroll arrows */}
+        <button
+          type="button"
+          aria-label="Scroll left"
+          onClick={() => scrollBy(-1)}
+          disabled={!canScrollLeft}
+          className={`absolute top-1/2 -left-3 z-20 hidden h-11 w-11 -translate-y-1/2 items-center justify-center border-2 border-white bg-[#050505] text-white transition-all lg:flex ${
+            canScrollLeft ? "opacity-100 hover:bg-white hover:text-[#050505]" : "opacity-0"
+          }`}
+        >
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          aria-label="Scroll right"
+          onClick={() => scrollBy(1)}
+          disabled={!canScrollRight}
+          className={`absolute top-1/2 -right-3 z-20 hidden h-11 w-11 -translate-y-1/2 items-center justify-center border-2 border-white bg-[#050505] text-white transition-all lg:flex ${
+            canScrollRight ? "opacity-100 hover:bg-white hover:text-[#050505]" : "opacity-0"
+          }`}
+        >
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      <div className="mt-3 flex items-center justify-between">
+        <p className={oc_micro}>Intro · Film · Steps</p>
+        <p className={oc_micro}>Hover left or right edge to scroll</p>
+      </div>
+    </Reveal>
+  );
+}
+
+function OcDeck({ track, index }: { track: (typeof ocConfig.tracks)[number]; index: number }) {
+  const railRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+  const total = 4;
+
+  oc_useEdgeGlide(railRef);
+
+  const scrollTo = (i: number) => {
+    const el = railRef.current;
+    if (!el) return;
+    const child = el.children[i] as HTMLElement | undefined;
+    if (child) el.scrollTo({ left: child.offsetLeft - 1, behavior: "smooth" });
+  };
 
 
   return (
-    <Section id="doing" tone="paper">
-      {/* Main divider rule above the section */}
-      <div aria-hidden className="spectrum-rule pointer-events-none absolute left-[6%] right-[6%] top-0 z-[2] h-px" />
-      <div className="grid gap-8 border-b border-background/15 pb-10 sm:gap-10 sm:pb-12 lg:grid-cols-12 lg:items-end lg:pb-16">
-        <div className="lg:col-span-8">
-          <Reveal><Eyebrow>The Outclass</Eyebrow></Reveal>
-          <Reveal delay={0.05}>
-            <h2 className="mt-5 max-w-[18ch] text-[clamp(1.6rem,3.4vw,2.8rem)] font-medium leading-[1.12] tracking-[-0.02em] sm:mt-6 md:leading-[1.08]">
-              Half the curriculum doesn&apos;t happen in a classroom.
-            </h2>
-          </Reveal>
+    <OcReveal className="mt-12 border-t border-white/12 pt-8">
+      {/* Track head */}
+      <div className="grid gap-6 lg:grid-cols-12">
+        <div className="lg:col-span-6">
+          <span className={oc_chip}>Track {String(index + 1).padStart(2, "0")}</span>
+          <h3 className="mt-4 font-display text-[clamp(1.9rem,4.2vw,3.1rem)] font-semibold leading-[0.98] tracking-tight">
+            {track.title}
+          </h3>
         </div>
-        <Reveal delay={0.1} className="lg:col-span-4">
-          <p className="max-w-[42ch] text-[13px] leading-[1.6] text-background/70 md:ml-auto md:text-[15px] md:leading-[1.75]">
-            At Masters&apos; Union, real growth doesn&apos;t come from case studies — it comes from taking risks,
-            testing ideas, and putting something into the world.
+        <div className="lg:col-span-6 lg:pt-2">
+          <div aria-hidden className="h-px w-full bg-border" />
+          <p className="mt-4 max-w-xl text-[13.5px] leading-relaxed text-white/55">
+            {track.body}
           </p>
-        </Reveal>
+        </div>
       </div>
 
-      <div className="mt-10 grid gap-8 sm:mt-12 md:mt-16 lg:grid-cols-[minmax(180px,0.42fr)_minmax(0,1.58fr)] lg:gap-14">
-        <aside className="hidden self-start lg:sticky lg:top-[38svh] lg:flex lg:flex-col">
-          <div className="eyebrow text-background/45">So I started doing something about it.</div>
+      {/* OcDeck rail */}
+      <div
+        ref={railRef}
+        onScroll={(e) => {
+          const el = e.currentTarget;
+          const w = (el.children[0] as HTMLElement)?.offsetWidth || 1;
+          setActive(Math.min(total - 1, Math.round(el.scrollLeft / (w + 16))));
+        }}
+        className="no-scrollbar mt-8 flex items-stretch gap-4 overflow-x-auto pb-1"
+      >
+        {/* 01 — Overview poster */}
+        <article className="group relative flex aspect-[3/4] w-[300px] shrink-0 flex-col justify-between overflow-hidden bg-[#1E5631] p-6 text-white sm:w-[330px] lg:w-[380px]">
+          <div className="absolute inset-0 z-0">
+            <img decoding="async"
+              src={oc_d2cBrandFair.url}
+              alt=""
+              loading="lazy"
+              className="h-full w-full object-cover opacity-30 mix-blend-luminosity transition-transform duration-700 group-hover:scale-105"
+            />
+          </div>
+          <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#1E5631]/70 via-[#1E5631]/85 to-[#1E5631]" />
 
-          <ol className="mt-8 border-l border-background/15">
-            {OUTCLASS_MOMENTS.map((moment, index) => (
-              <li
-                key={moment.n}
-                className={`relative border-l py-3 pl-5 transition-all duration-500 ${
-                  index === active ? "-ml-px border-accent text-background" : "border-transparent text-background/35"
-                }`}
-              >
-                <span className="font-mono text-[10px] uppercase tracking-[0.2em]">{moment.n} — {moment.action}</span>
-              </li>
-            ))}
-          </ol>
-        </aside>
-
-        <div className="relative pb-16 sm:pb-20 lg:pb-0">
-          {OUTCLASS_MOMENTS.map((moment, index) => {
-            const depth = Math.max(0, Math.min(active - index, 3));
-            return (
-            <div
-              key={moment.n}
-              ref={(el) => { cardRefs.current[index] = el; }}
-              className="sticky mb-8 last:mb-0 sm:mb-10 lg:mb-14"
-              style={{ top: `calc(3rem + ${index * 1.25}rem)`, zIndex: index + 1 }}
-            >
-
-              <div
-                className="transition-[transform,filter] duration-700 ease-out"
-                style={{
-                  transformOrigin: "top center",
-                  transform: `scale(${1 - depth * 0.018})`,
-                  filter: depth > 0 ? `blur(${Math.min(depth * 4, 10)}px)` : "blur(0px)",
-                }}
-              >
-                <motion.article
-                  initial={{ opacity: 0, y: 28 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative overflow-hidden rounded-2xl border border-background/15 bg-foreground shadow-[0_-18px_40px_-28px_rgba(0,0,0,0.85),0_30px_70px_-35px_rgba(0,0,0,0.9)]"
-                >
-                  <div
-
-                    aria-hidden
-                    className="pointer-events-none absolute inset-0 z-[3] bg-foreground transition-opacity duration-500"
-                    style={{ opacity: depth * 0.16 }}
-                  />
-                  <div aria-hidden className="pointer-events-none absolute inset-0 bg-background/[0.04]" />
-
-                  <div className="relative grid gap-7 p-6 sm:gap-9 sm:p-9 md:grid-cols-12 md:items-center md:gap-8 md:p-10 lg:p-12">
-                    <div className="md:col-span-5">
-                      <span className="block font-display text-[clamp(4rem,10vw,8.5rem)] font-light leading-[0.82] text-background/12">
-                        {moment.n}
-                      </span>
-                      <div className="mt-5 flex items-center gap-3">
-                        <span aria-hidden className="h-px w-9 bg-accent" />
-                        <span className="eyebrow text-background/65">{moment.action}</span>
-                      </div>
-                      <h3 className="mt-4 max-w-[15ch] text-[clamp(1.5rem,3.2vw,2.65rem)] font-medium leading-[1.05]">
-                        {moment.label}
-                      </h3>
-                      <p className="mt-4 max-w-[34ch] text-[13px] leading-[1.65] text-background/65 md:text-[15px] md:leading-[1.75]">
-                        {moment.body}
-                      </p>
-                    </div>
-                    <div className="md:col-span-7">
-                      {moment.image ? (
-                        <div className="relative aspect-[16/10] overflow-hidden rounded-[6px]">
-                          <img
-                            src={moment.image}
-                            alt={moment.media}
-                            loading="lazy"
-                            decoding="async"
-                            draggable={false}
-                            className="absolute inset-0 size-full object-cover"
-                          />
-                        </div>
-                      ) : (
-                        <Placeholder kind="image" aspect="aspect-[16/10]" note={moment.media} className="rounded-[6px]" />
-                      )}
-                    </div>
-                  </div>
-                </motion.article>
+          <div className="relative z-10 flex items-start justify-between">
+            <div>
+              <div className="font-display text-[3.2rem] font-black leading-none">01</div>
+              <div className="font-tech text-[10px] font-bold uppercase tracking-[0.2em] opacity-70">
+                Overview
               </div>
             </div>
+            <div className="font-tech text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 [writing-mode:vertical-rl]">
+              OutClass // D2C
+            </div>
+          </div>
+
+          <div className="relative z-10">
+            <h4 className="font-display text-[clamp(1.7rem,3vw,2.2rem)] font-semibold leading-[0.98]">
+              Graded on real customers
+              <br />
+              <span className="font-light italic opacity-85">and revenue.</span>
+            </h4>
+            <div className="my-4 h-px w-full bg-[#050505]/25" />
+            <p className="max-w-[260px] text-[12.5px] leading-relaxed text-white/75">
+              Every student ships a live consumer brand — sourced, launched and scaled on Amazon,
+              Blinkit, Instagram and their own store.
+            </p>
+            <div className="mt-5 grid grid-cols-2 gap-x-4 gap-y-3 border-t border-white/20 pt-4">
+              {track.stats.map((s) => (
+                <div key={s.k}>
+                  <p className="font-display text-[clamp(1rem,1.5vw,1.35rem)] font-semibold leading-none whitespace-pre-wrap">
+                    {s.k}
+                  </p>
+                  <p className="mt-1 font-tech text-[9px] uppercase leading-snug tracking-[0.14em] text-white/60">
+                    {s.v}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </article>
+
+        {/* 02 — Past D2C Mela poster */}
+        <article className="group relative flex aspect-[3/4] w-[300px] shrink-0 flex-col justify-between overflow-hidden bg-[#d92828] p-6 text-white sm:w-[330px] lg:w-[380px]">
+          <div className="absolute inset-0 z-0">
+            <img decoding="async"
+              src={oc_melaFounders.url}
+              alt=""
+              loading="lazy"
+              className="h-full w-full object-cover mix-blend-luminosity transition-transform duration-700 group-hover:scale-105"
+            />
+          </div>
+          <div className="absolute inset-0 z-0 bg-[#d92828]/55 mix-blend-multiply" />
+          <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#141414]/70 to-transparent" />
+
+          <div className="relative z-10">
+            <span className="mb-3 inline-block bg-[#f2c94c] px-2 py-0.5 font-tech text-[9px] font-black uppercase tracking-tighter text-[#141414]">
+              Past D2C Mela
+            </span>
+            <h4 className="font-display text-[clamp(2rem,3.6vw,2.9rem)] font-black uppercase leading-[0.85] tracking-tighter">
+              Brands
+              <br />
+              Sold.
+            </h4>
+          </div>
+
+          <div className="relative z-10 mt-auto flex items-end justify-between gap-4">
+            <p className="max-w-[220px] font-tech text-[10.5px] font-bold uppercase leading-snug tracking-wider text-white/90">
+              Founders behind the counter, products on the shelf, cash at the till — every stall is
+              a student-run brand selling to paying customers.
+            </p>
+            <span className="font-display text-6xl font-black italic text-white/25">02</span>
+          </div>
+        </article>
+
+        {/* 03 — 9:16 film */}
+        <article className="group relative flex aspect-[9/16] w-[214px] shrink-0 overflow-hidden bg-[#f2c94c] sm:w-[236px] lg:w-[272px]">
+          <video
+            src={oc_melaVideo.url}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#141414]/75 via-transparent to-[#141414]/40" />
+          <span className="pointer-events-none absolute left-0 top-0 z-10 bg-[#f2c94c] px-3 py-1 font-tech text-[9.5px] font-black uppercase tracking-[0.18em] text-[#141414]">
+            D2C Mela Film
+          </span>
+          <div className="pointer-events-none absolute inset-x-5 bottom-5 z-10 text-white">
+            <h4 className="font-display text-[1.5rem] font-semibold italic leading-[1]">
+              Mela, in motion
+            </h4>
+            <p className="mt-2 font-tech text-[9px] uppercase tracking-[0.2em] text-white/70">
+              Series 01-C · 03
+            </p>
+          </div>
+        </article>
+
+        {/* 04 — Gallery poster */}
+        <article className="group relative flex aspect-[3/4] w-[300px] shrink-0 flex-col overflow-hidden bg-[#141414] p-5 text-[#f5f3ee] sm:w-[330px] lg:w-[380px]">
+          <div className="flex items-center justify-between">
+            <div className="h-0.5 w-12 bg-[#f2c94c]" />
+            <span className="font-tech text-[10px] font-bold uppercase tracking-[0.3em] text-white/60">
+              Gallery · 4 Frames
+            </span>
+          </div>
+
+          <div className="mt-4 grid flex-1 grid-cols-6 grid-rows-6 gap-2">
+            <OcShot src={oc_fairCeramics.url} className="col-span-3 row-span-3" />
+            <OcShot src={oc_fairJewels.url} className="col-span-3 row-span-2" />
+            <OcShot src={oc_fairCrafts.url} className="col-span-3 row-span-4" />
+            <OcShot src={oc_fairNight.url} className="col-span-3 row-span-3" />
+          </div>
+
+          <h4 className="mt-4 font-display text-[clamp(1.5rem,2.6vw,2rem)] font-black uppercase leading-[0.9] tracking-tighter">
+            Shelves,
+            <span className="italic font-light normal-case"> stalls & sell-outs.</span>
+          </h4>
+        </article>
+      </div>
+
+
+      {/* OcDeck pager */}
+      <div className="mt-4 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          {Array.from({ length: total }, (_, i) => (
+            <button
+              key={i}
+              type="button"
+              aria-label={`Go to slide ${i + 1}`}
+              onClick={() => scrollTo(i)}
+              className={`h-[3px] transition-all duration-300 ${
+                active === i ? "w-8 bg-white" : "w-4 bg-white/20 hover:bg-white/40"
+              }`}
+            />
+          ))}
+        </div>
+        <p className={oc_micro}>Scroll →</p>
+      </div>
+    </Reveal>
+  );
+}
+
+/** Compact white sub-section: sessions with India's top creators. */
+function OcCreatorSessions() {
+  const railRef = useRef<HTMLDivElement>(null);
+  oc_useEdgeGlide(railRef);
+
+  return (
+    <OcReveal className="mt-10 border-t border-white/12 pt-8">
+      <div className="grid gap-6 lg:grid-cols-12">
+        <div className="lg:col-span-6">
+          <span className={oc_chip}>Series 02</span>
+          <h3 className="mt-4 font-display text-[clamp(1.9rem,4.2vw,3.1rem)] font-semibold leading-[0.98] tracking-tight">
+            Creator Sessions
+          </h3>
+        </div>
+        <div className="lg:col-span-6 lg:pt-2">
+          <div aria-hidden className="h-px w-full bg-border" />
+          <p className="mt-4 max-w-xl text-[13.5px] leading-relaxed text-white/55">
+            India&rsquo;s biggest creators — across finance, comedy, tech and business — come on
+            campus to teach how audiences are actually built.
+          </p>
+        </div>
+      </div>
+
+      <div className="relative mt-8">
+        <div
+          ref={railRef}
+          className="no-scrollbar flex gap-5 overflow-x-auto pb-2"
+        >
+
+
+          {OcCREATOR_SESSION_VIDEOS.map((v, i) => {
+            const tag = ["#1b4fd1", "#1E5631", "#d92828", "#141414"][i % 4];
+            return (
+              <article
+                key={v.id}
+                className="group flex w-[320px] shrink-0 flex-col sm:w-[420px] lg:w-[480px]"
+              >
+                <div className="relative aspect-video w-full overflow-hidden bg-[#141414]">
+                  <OcCleanVideo
+                    videoId={v.id}
+                    title={v.title}
+                    poster={`https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg`}
+                    className="h-full w-full [&_img]:h-full [&_img]:w-full [&_img]:object-cover [&_img]:transition-opacity [&_img]:duration-500 group-hover:[&_img]:opacity-80"
+                    hidePlayButton
+                  />
+                  <div className="pointer-events-none absolute inset-0 grid place-items-center">
+                    <div className="grid h-14 w-14 place-items-center bg-[#f2c94c] transition-transform duration-300 group-hover:scale-110">
+                      <div className="ml-1 h-0 w-0 border-b-[9px] border-l-[15px] border-t-[9px] border-b-transparent border-l-[#141414] border-t-transparent" />
+                    </div>
+                  </div>
+                  <span
+                    className="pointer-events-none absolute left-0 top-0 px-3 py-1 font-tech text-[9.5px] font-bold uppercase tracking-[0.18em] text-white"
+                    style={{ backgroundColor: tag }}
+                  >
+                    {v.type}
+                  </span>
+                </div>
+
+                <div className="mt-5">
+                  <h4 className="font-display text-[clamp(1.25rem,1.9vw,1.6rem)] font-semibold leading-[1.05] text-white underline-offset-4 group-hover:underline">
+                    {v.title}
+                  </h4>
+                  <div className="mt-3 flex items-center gap-3">
+                    <span className="font-tech text-[10px] font-bold uppercase tracking-[0.18em] text-white">
+                      Session {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span aria-hidden className="h-px flex-1 bg-white/20" />
+                  </div>
+                  <p className="mt-3 max-w-[440px] text-[13px] leading-relaxed text-white/55">
+                    {v.blurb}
+                  </p>
+                </div>
+              </article>
             );
           })}
 
+
         </div>
       </div>
-    </Section>
+
+      <div className="mt-3 flex items-center justify-between">
+        <p className={oc_micro}>Creator sessions</p>
+        <p className={oc_micro}>Hover left or right edge to scroll</p>
+      </div>
+    </Reveal>
   );
 }
+
+
+function OutclassSection() {
+  return (
+    <section id="outclass" className="relative scroll-mt-24 bg-[#050505] py-12 sm:py-16">
+      <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-10">
+        <OcReveal className="grid gap-6 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <p className="eyebrow text-white/60">{ocConfig.eyebrow}</p>
+            <h2 className="mt-5 font-display text-[clamp(1.9rem,4.2vw,3.1rem)] font-semibold leading-[0.98] tracking-tight">
+              {ocConfig.title[0]}
+              <br />
+              {ocConfig.title[1]}
+            </h2>
+          </div>
+          <div className="lg:col-span-5 lg:pt-2">
+            <div aria-hidden className="h-px w-full bg-border" />
+            <p className="mt-4 text-[13.5px] leading-relaxed text-white/55">
+              {ocConfig.body}
+            </p>
+          </div>
+        </Reveal>
+
+        {ocConfig.tracks.map((t, i) => (
+          <Fragment key={t.title}>
+            {i === 1 ? (
+              <OcCreatorChallengeStrip track={t} index={i} />
+            ) : (
+              <OcDeck track={t} index={i} />
+            )}
+            {i === 1 ? <OcCreatorSessions /> : null}
+          </Fragment>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 
 function FounderPoster({ v, ratio }: { v: VentureTile; ratio: string }) {
   return (
