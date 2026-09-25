@@ -1273,7 +1273,7 @@ function FounderStoriesGallery() {
                 </div>
 
                 {/* Bottom half — image, orientation-aware */}
-                <div className="relative flex min-h-0 flex-1 flex-col bg-background px-6 pb-4 pt-2 sm:px-6 md:ml-8 md:px-6 lg:px-6">
+                <div className="relative flex min-h-0 flex-1 flex-col bg-background px-6 pb-2 pt-2 sm:px-6 md:ml-8 md:px-6 lg:px-6">
                   <div className="relative min-h-0 flex-1 overflow-hidden bg-muted">
                     {image ? (
                       <img
