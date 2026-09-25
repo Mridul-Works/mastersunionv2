@@ -1196,11 +1196,11 @@ function FounderStoriesGallery() {
               <div className="relative flex min-h-0 flex-col overflow-hidden border-b border-foreground/15 bg-background px-6 pb-5 pt-6 sm:px-9 sm:pb-6 sm:pt-7 md:origin-right md:rotate-y-[1.35deg] md:rounded-l-[5px] md:border-b-0 md:px-10 md:pb-6 md:shadow-[-16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)] lg:px-14 lg:pt-8">
                 <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-r from-transparent via-foreground/[0.035] to-foreground/15" />
                 <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-foreground/[0.035] to-transparent" />
-                <div className="mb-4 flex items-center justify-between border-y border-foreground/70 py-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/60">
+                <div className="mb-3 flex items-center justify-between border-y border-foreground/70 py-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/60">
                   <span>Masters&apos; Union</span>
                   <span>The founders&apos; issue · 2026</span>
                 </div>
-                <div className="flex items-start justify-between gap-5 border-b border-primary/70 pb-4">
+                <div className="flex items-start justify-between gap-5 border-b border-primary/70 pb-3">
                   <div className="min-w-0">
                     <p className="font-serif-italic text-[clamp(1.4rem,2.4vw,2.2rem)] leading-none text-primary">Meet the founder</p>
                     <h3 className="mt-2 break-words pb-1 text-[clamp(2.1rem,4.6vw,4.7rem)] font-light leading-[1]">{story.name}</h3>
@@ -1213,11 +1213,11 @@ function FounderStoriesGallery() {
                 </div>
 
 
-                <p className="mt-4 max-w-[54ch] font-serif-italic text-[1.05rem] leading-[1.45] text-foreground/80">
+                <p className="mt-3 max-w-[54ch] font-serif-italic text-[1.05rem] leading-[1.45] text-foreground/80">
                   {editorial.dek}
                 </p>
-                <div className="py-4">
-                  <div className="grid grid-cols-2 gap-x-5 gap-y-3 border-b border-primary/60 pb-3 sm:grid-cols-4">
+                <div className="py-3">
+                  <div className="grid grid-cols-2 gap-x-5 gap-y-3 border-b border-primary/60 pb-2 sm:grid-cols-4">
                     <div>
                       <p className="font-serif-italic text-[1.35rem] leading-[1.08] text-primary">{story.founder}</p>
                       <p className="mt-1 font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/55">{story.cohort}</p>
@@ -1229,11 +1229,11 @@ function FounderStoriesGallery() {
                       </div>
                     ))}
                   </div>
-                  <div className="mt-3 columns-1 gap-7 space-y-2 text-[12px] leading-[1.62] text-foreground/80 sm:text-[13px] lg:columns-2">
+                  <div className="mt-2 columns-1 gap-7 space-y-2 text-[12px] leading-[1.62] text-foreground/80 sm:text-[13px] lg:columns-2">
                     {editorial.paragraphs.slice(0, 4).map((paragraph, index) => (
                       <p
                         key={paragraph}
-                        className={`break-inside-avoid ${index === 0 ? "first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[3.1rem] first-letter:leading-[0.78] first-letter:text-primary" : ""}`}
+                        className={`break-inside-avoid ${index >= 2 ? "hidden min-[1100px]:block" : ""} ${index === 0 ? "first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[3.1rem] first-letter:leading-[0.78] first-letter:text-primary" : ""}`}
                       >
                         {paragraph}
                       </p>
@@ -1251,23 +1251,13 @@ function FounderStoriesGallery() {
                   >
                     <ArrowLeft className="size-3.5" strokeWidth={1.5} /> Previous
                   </button>
-                  <button
-                    type="button"
-                    onMouseDown={(event) => event.preventDefault()}
-                    onClick={() => turnPage(1)}
-                    aria-label="Go to next founder story"
-                    className="group flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/45 transition-colors hover:text-primary"
-                  >
-                    Next
-                    <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={1.5} />
-                  </button>
                 </div>
                 <span aria-hidden className="absolute bottom-0 right-0 size-10 bg-gradient-to-br from-background via-background to-foreground/10 shadow-[-5px_-5px_12px_var(--background)]" />
               </div>
 
               <div className="relative flex min-h-0 flex-col overflow-hidden bg-background md:origin-left md:-rotate-y-[1.35deg] md:rounded-r-[5px] md:shadow-[16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)]">
                 {/* Top half — story continues */}
-                <div className="flex min-h-0 basis-[52%] flex-col px-6 pb-4 pt-8 sm:px-9 sm:pt-10 md:basis-[58%] md:px-10 lg:basis-[48%] lg:px-14 lg:pt-10">
+                <div className="flex min-h-0 shrink-0 basis-auto flex-col px-6 pb-4 pt-8 sm:px-9 sm:pt-10 md:px-10 lg:px-14 lg:pt-10">
                   <div className="mb-5 flex items-center justify-between border-b border-foreground/20 pb-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/50">
                     <span>{story.name} · continued</span>
                     <span>{story.cohort}</span>
@@ -1283,7 +1273,7 @@ function FounderStoriesGallery() {
                 </div>
 
                 {/* Bottom half — image, orientation-aware */}
-                <div className="relative flex min-h-0 basis-[48%] flex-col border-t border-foreground/15 bg-background px-6 pb-5 pt-3 sm:px-6 sm:pb-5 md:basis-[42%] md:ml-8 md:px-6 md:pb-6 lg:basis-[52%] lg:px-6">
+                <div className="relative flex min-h-0 flex-1 flex-col bg-background px-6 pb-2 pt-2 sm:px-6 md:ml-8 md:px-6 lg:px-6">
                   <div className="relative min-h-0 flex-1 overflow-hidden bg-muted">
                     {image ? (
                       <img
@@ -1296,14 +1286,21 @@ function FounderStoriesGallery() {
                       <Placeholder kind="image" aspect="h-full" note={story.name} className="!border-0" />
                     )}
                   </div>
-                  <div className="mt-3 flex shrink-0 items-end justify-between gap-5 border-t border-primary/60 pt-2">
+                  <div className="mt-3 flex shrink-0 items-end justify-between gap-5 border-t border-foreground/15 pt-4">
                     <div className="min-w-0">
-                      <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/45">Founder portrait</p>
-                      <p className="mt-1 truncate font-mono text-[11px] uppercase tracking-[0.2em] text-foreground/45">{story.founder}</p>
+                      <p className="font-mono text-[8px] uppercase leading-none tracking-[0.2em] text-foreground/45">Founder portrait</p>
+                      <p className="mt-2 truncate font-mono text-[11px] uppercase leading-none tracking-[0.2em] text-foreground/45">{story.founder}</p>
                     </div>
-                    <span className="shrink-0 font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/45">
-                      {story.cohort} · {String(activeStory + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-                    </span>
+                    <button
+                      type="button"
+                      onMouseDown={(event) => event.preventDefault()}
+                      onClick={() => turnPage(1)}
+                      aria-label="Go to next founder story"
+                      className="group flex shrink-0 items-center gap-2 font-mono text-[9px] uppercase leading-none tracking-[0.2em] text-foreground/45 transition-colors hover:text-primary"
+                    >
+                      Next
+                      <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={1.5} />
+                    </button>
                   </div>
                 </div>
 
