@@ -1251,16 +1251,6 @@ function FounderStoriesGallery() {
                   >
                     <ArrowLeft className="size-3.5" strokeWidth={1.5} /> Previous
                   </button>
-                  <button
-                    type="button"
-                    onMouseDown={(event) => event.preventDefault()}
-                    onClick={() => turnPage(1)}
-                    aria-label="Go to next founder story"
-                    className="group flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/45 transition-colors hover:text-primary"
-                  >
-                    Next
-                    <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={1.5} />
-                  </button>
                 </div>
                 <span aria-hidden className="absolute bottom-0 right-0 size-10 bg-gradient-to-br from-background via-background to-foreground/10 shadow-[-5px_-5px_12px_var(--background)]" />
               </div>
@@ -1296,14 +1286,26 @@ function FounderStoriesGallery() {
                       <Placeholder kind="image" aspect="h-full" note={story.name} className="!border-0" />
                     )}
                   </div>
-                  <div className="mt-3 flex shrink-0 items-end justify-between gap-5 border-t border-primary/60 pt-2">
+                  <div className="mt-3 flex shrink-0 items-end justify-between gap-5 border-t border-foreground/15 pt-3">
                     <div className="min-w-0">
-                      <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/45">Founder portrait</p>
-                      <p className="mt-1 truncate font-mono text-[11px] uppercase tracking-[0.2em] text-foreground/45">{story.founder}</p>
+                      <p className="font-mono text-[8px] uppercase leading-none tracking-[0.2em] text-foreground/45">Founder portrait</p>
+                      <p className="mt-1.5 truncate font-mono text-[11px] uppercase leading-none tracking-[0.2em] text-foreground/45">{story.founder}</p>
                     </div>
-                    <span className="shrink-0 font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/45">
-                      {story.cohort} · {String(activeStory + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-                    </span>
+                    <div className="flex shrink-0 items-end gap-7">
+                      <span className="font-mono text-[8px] uppercase leading-none tracking-[0.2em] text-foreground/45">
+                        {story.cohort} · {String(activeStory + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+                      </span>
+                      <button
+                        type="button"
+                        onMouseDown={(event) => event.preventDefault()}
+                        onClick={() => turnPage(1)}
+                        aria-label="Go to next founder story"
+                        className="group flex items-center gap-2 font-mono text-[9px] uppercase leading-none tracking-[0.2em] text-foreground/45 transition-colors hover:text-primary"
+                      >
+                        Next
+                        <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={1.5} />
+                      </button>
+                    </div>
                   </div>
                 </div>
 
