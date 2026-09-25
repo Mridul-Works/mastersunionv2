@@ -1026,7 +1026,6 @@ function FounderStoriesGallery() {
 
   return (
     <section id="founder-stories" className="relative overflow-x-clip bg-foreground py-20 text-background sm:py-24 md:py-28">
-      <span aria-hidden className="absolute left-[6%] right-[6%] top-0 h-px bg-background/15" />
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
