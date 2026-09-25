@@ -1092,7 +1092,7 @@ function FounderStoriesGallery() {
         <div className="flex items-end justify-between gap-6">
           <Reveal>
             <div>
-              <Eyebrow>Founder Stories · {String(total).padStart(2, "0")} Ventures</Eyebrow>
+              <Eyebrow>Founder Stories</Eyebrow>
               <h2 className="mt-5 max-w-[24ch] text-[clamp(1.8rem,4.2vw,3.6rem)] font-light leading-[1.08]">
                 The founders&apos; issue.
               </h2>
