@@ -2651,7 +2651,7 @@ function OcCreatorChallengeStrip({
         <p className={oc_micro}>Intro · Film · Steps</p>
         <p className={oc_micro}>Hover left or right edge to scroll</p>
       </div>
-    </Reveal>
+    </OcReveal>
   );
 }
 
@@ -2847,7 +2847,7 @@ function OcDeck({ track, index }: { track: (typeof ocConfig.tracks)[number]; ind
         </div>
         <p className={oc_micro}>Scroll →</p>
       </div>
-    </Reveal>
+    </OcReveal>
   );
 }
 
@@ -2935,7 +2935,7 @@ function OcCreatorSessions() {
         <p className={oc_micro}>Creator sessions</p>
         <p className={oc_micro}>Hover left or right edge to scroll</p>
       </div>
-    </Reveal>
+    </OcReveal>
   );
 }
 
@@ -2959,7 +2959,7 @@ function OutclassSection() {
               {ocConfig.body}
             </p>
           </div>
-        </Reveal>
+        </OcReveal>
 
         {ocConfig.tracks.map((t, i) => (
           <Fragment key={t.title}>
