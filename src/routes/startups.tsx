@@ -21,6 +21,8 @@ import {
 import eightVentureImg from "@/assets/founders/ventures/eight.jpg.asset.json";
 import bullspreeVentureImg from "@/assets/founders/ventures/bullspree.jpg.asset.json";
 import outclassDropshippingImg from "@/assets/outclass-dropshipping.jpg.asset.json";
+import outclassContentBrandsImg from "@/assets/outclass/content-brands.jpg";
+import outclassScratchImg from "@/assets/outclass/start-from-scratch.jpg";
 import hiveschoolVentureImg from "@/assets/founders/ventures/hiveschool.jpg.asset.json";
 import lexisVentureImg from "@/assets/founders/ventures/lexis.jpg.asset.json";
 import playsuperVentureImg from "@/assets/founders/ventures/playsuper.jpg.asset.json";
@@ -434,7 +436,7 @@ const OUTCLASS_MOMENTS = [
     label: "Content brands",
     body: "Real growth doesn’t come from case studies.",
     media: "A student content brand going live",
-    image: null,
+    image: outclassContentBrandsImg,
   },
   {
     n: "03",
@@ -442,7 +444,7 @@ const OUTCLASS_MOMENTS = [
     label: "Start companies from scratch",
     body: "Half the curriculum happens outside the classroom, from day one.",
     media: "Students building a company after class",
-    image: null,
+    image: outclassScratchImg,
   },
 ];
 
