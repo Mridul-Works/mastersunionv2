@@ -125,6 +125,7 @@ const SPARK_EXAMPLES: {
     cohort: "PGP TBM 2024",
     product: "Rewards for Casual Gamers",
     body: "Shouradeep Chakraborty and his co-founders saw India's 438M casual gamers churning out of games that gave nothing back — PlaySuper is the rewards platform that turns loyalty into real-world incentives.",
+    founderImage: brandPhotoPlaysuper,
   },
   {
     name: "Bullspree",
@@ -132,6 +133,7 @@ const SPARK_EXAMPLES: {
     cohort: "PGP TBM 2021",
     product: "The Stock Market Playground",
     body: "Dharmil Bavishi went from supply-chain analyst to the CEO's office, then asked why learning to invest felt so intimidating — Bullspree turns India's curiosity about markets into financial confidence.",
+    founderImage: brandPhotoBullspree,
   },
   {
     name: "MemoTag",
@@ -139,6 +141,7 @@ const SPARK_EXAMPLES: {
     cohort: "UG TBM 2028",
     product: "AI Wearable for Dementia Care",
     body: "Reyansh Juneja started MemoTag while still an undergraduate — an AI-driven wearable purpose-built for dementia care, designed to catch the moments caregivers can't.",
+    founderImage: brandPhotoMemotag,
   },
   {
     name: "Hive School",
@@ -146,6 +149,7 @@ const SPARK_EXAMPLES: {
     cohort: "PGP TBM 2024",
     product: "India's First Sales School",
     body: "Nikhil Gaur built a ₹2 Cr run rate while still a student — Hive School is India's first Sales School, training the next generation of GTM operators companies are desperate to hire.",
+    founderImage: brandPhotoHiveschool,
   },
   {
     name: "Meta Fashion",
@@ -153,6 +157,7 @@ const SPARK_EXAMPLES: {
     cohort: "UG TBM 2028",
     product: "Phygital Fashion Commerce",
     body: "Arjun Goel is connecting in-game discovery with real-world fashion — Meta Fashion's phygital commerce lets players find a look inside the game and wear it outside it.",
+    founderImage: brandPhotoMetafashion,
   },
   {
     name: "SeedsAI",
