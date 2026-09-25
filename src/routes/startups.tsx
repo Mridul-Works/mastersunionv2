@@ -1243,13 +1243,29 @@ function FounderStoriesGallery() {
                     <div className={`absolute inset-y-0 w-16 ${isForward ? "left-0 bg-gradient-to-r" : "right-0 bg-gradient-to-l"} from-foreground/25 to-transparent`} />
                   </div>
                   <div className="absolute inset-0 overflow-hidden bg-background shadow-2xl [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                    <div className="flex h-full flex-col justify-between p-10 lg:p-14">
-                      <div className="border-y border-foreground/70 py-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/55">The founders&apos; issue</div>
-                      <div>
-                        <p className="font-serif-italic text-[2rem] text-primary">Turning to</p>
-                        <p className="mt-3 text-[clamp(2.5rem,5vw,5rem)] font-light leading-none">{story.name}</p>
+                    <div className="flex h-full flex-col p-8 lg:p-11">
+                      <div className="flex items-center justify-between border-y border-foreground/70 py-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/55">
+                        <span>Masters&apos; Union</span>
+                        <span>The founders&apos; issue · 2026</span>
                       </div>
-                      <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-foreground/45">Masters&apos; Union · Founder stories</p>
+                      <div className="mt-6 border-b border-primary/70 pb-4">
+                        <p className="font-serif-italic text-[1.45rem] leading-none text-primary">Meet the founder</p>
+                        <p className="mt-2 text-[clamp(2rem,3.6vw,3.5rem)] font-light leading-none">{story.name}</p>
+                      </div>
+                      <p className="mt-5 font-serif-italic text-[1rem] leading-[1.45] text-foreground/75">{editorial.dek}</p>
+                      <div className="mt-5 space-y-3 text-[0.72rem] leading-[1.55] text-foreground/78 lg:text-[0.78rem]">
+                        {editorial.paragraphs.map((paragraph) => (
+                          <p key={paragraph}>{paragraph}</p>
+                        ))}
+                      </div>
+                      <div className="mt-auto grid grid-cols-3 gap-3 border-t border-primary/60 pt-4">
+                        {editorial.facts.map((fact) => (
+                          <div key={fact.label} className="min-w-0">
+                            <p className="font-mono text-[7px] uppercase tracking-[0.18em] text-foreground/45">{fact.label}</p>
+                            <p className="mt-1 break-words text-[0.68rem] leading-[1.3]">{fact.value}</p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                     <div className={`absolute inset-y-0 w-16 ${isForward ? "right-0 bg-gradient-to-l" : "left-0 bg-gradient-to-r"} from-foreground/25 to-transparent`} />
                   </div>
