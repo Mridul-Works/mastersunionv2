@@ -1196,11 +1196,11 @@ function FounderStoriesGallery() {
               <div className="relative flex min-h-0 flex-col overflow-hidden border-b border-foreground/15 bg-background px-6 pb-5 pt-6 sm:px-9 sm:pb-6 sm:pt-7 md:origin-right md:rotate-y-[1.35deg] md:rounded-l-[5px] md:border-b-0 md:px-10 md:pb-6 md:shadow-[-16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)] lg:px-14 lg:pt-8">
                 <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-r from-transparent via-foreground/[0.035] to-foreground/15" />
                 <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-foreground/[0.035] to-transparent" />
-                <div className="mb-4 flex items-center justify-between border-y border-foreground/70 py-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/60">
+                <div className="mb-3 flex items-center justify-between border-y border-foreground/70 py-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/60">
                   <span>Masters&apos; Union</span>
                   <span>The founders&apos; issue · 2026</span>
                 </div>
-                <div className="flex items-start justify-between gap-5 border-b border-primary/70 pb-4">
+                <div className="flex items-start justify-between gap-5 border-b border-primary/70 pb-3">
                   <div className="min-w-0">
                     <p className="font-serif-italic text-[clamp(1.4rem,2.4vw,2.2rem)] leading-none text-primary">Meet the founder</p>
                     <h3 className="mt-2 break-words pb-1 text-[clamp(2.1rem,4.6vw,4.7rem)] font-light leading-[1]">{story.name}</h3>
@@ -1213,11 +1213,11 @@ function FounderStoriesGallery() {
                 </div>
 
 
-                <p className="mt-4 max-w-[54ch] font-serif-italic text-[1.05rem] leading-[1.45] text-foreground/80">
+                <p className="mt-3 max-w-[54ch] font-serif-italic text-[1.05rem] leading-[1.45] text-foreground/80">
                   {editorial.dek}
                 </p>
-                <div className="py-4">
-                  <div className="grid grid-cols-2 gap-x-5 gap-y-3 border-b border-primary/60 pb-3 sm:grid-cols-4">
+                <div className="py-3">
+                  <div className="grid grid-cols-2 gap-x-5 gap-y-3 border-b border-primary/60 pb-2 sm:grid-cols-4">
                     <div>
                       <p className="font-serif-italic text-[1.35rem] leading-[1.08] text-primary">{story.founder}</p>
                       <p className="mt-1 font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/55">{story.cohort}</p>
