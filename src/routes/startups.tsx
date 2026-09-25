@@ -2942,7 +2942,10 @@ function OcCreatorSessions() {
 
 function OutclassSection() {
   return (
-    <section id="outclass" className="relative scroll-mt-24 bg-[#050505] py-12 sm:py-16">
+    <section
+      id="outclass"
+      className="relative scroll-mt-24 bg-[#050505] py-12 [--font-display:'Bricolage_Grotesque',Inter,system-ui,sans-serif] sm:py-16 [&_h2]:!leading-[0.98] [&_h2]:!tracking-tight [&_h3]:!leading-[0.98] [&_h3]:!tracking-tight"
+    >
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-10">
         <OcReveal className="grid gap-6 lg:grid-cols-12">
           <div className="lg:col-span-7">
