@@ -977,6 +977,103 @@ const STORY_MEDIA: Record<string, { image?: string; logo?: string }> = {
   "Meta Fashion": { image: brandPhotoMetafashion, logo: sharkMetaFashionLogo.url },
 };
 
+const FOUNDER_EDITORIAL: Record<
+  string,
+  { dek: string; paragraphs: string[]; facts: { label: string; value: string }[] }
+> = {
+  Eight: {
+    dek: "A cafeteria-table observation became an audio storytelling company built for people who would rather listen than be seen.",
+    paragraphs: [
+      "Mohit Paliwal, Mohit Goswami and Yugal Tamang began with a simple tension: not everyone wants to be on camera, but everyone has a story worth telling. That insight gave Eight its first shape — a stage made for voices.",
+      "The company did not stay attached to its first format. When live audio began losing momentum, the founders moved toward microdrama, choosing the audience's changing behaviour over the comfort of the original idea.",
+      "That willingness to rebuild turned a campus conversation into a venture-backed audio platform with more than five million downloads.",
+    ],
+    facts: [
+      { label: "Category", value: "Audio storytelling" },
+      { label: "Signal", value: "5M+ downloads" },
+      { label: "Stage", value: "Venture-backed" },
+    ],
+  },
+  PlaySuper: {
+    dek: "A second-time founding team turned a difficult reset into a new thesis for India's casual gaming economy.",
+    paragraphs: [
+      "Before PlaySuper, the founders had already built and exited CollegeShala. The 2023 edtech downturn then forced a hard reset — one that made them look for a larger, more durable consumer problem.",
+      "They found it among India's hundreds of millions of casual gamers. Studios could acquire players, but struggled to keep them engaged when their time inside a game created no value beyond the screen.",
+      "PlaySuper became the rewards layer between play and real-world incentives. The venture has since raised across four rounds, transforming an industry observation into a gaming-commerce company.",
+    ],
+    facts: [
+      { label: "Category", value: "Gaming commerce" },
+      { label: "Funding", value: "$1.69M" },
+      { label: "Stage", value: "Seed · 4 rounds" },
+    ],
+  },
+  Bullspree: {
+    dek: "An intimidating investing experience was redesigned as a market playground where curiosity could become confidence.",
+    paragraphs: [
+      "Dharmil Bavishi moved from supply-chain work into the CEO's office, carrying with him a persistent question: why did learning to invest still feel inaccessible to so many first-time participants?",
+      "Bullspree answered by replacing passive instruction with experiential learning. Users could understand markets by participating, practising and building confidence before the stakes felt overwhelming.",
+      "The idea grew into a retail-investing platform with more than ten lakh registered users and took Dharmil to the Shark Tank India stage.",
+    ],
+    facts: [
+      { label: "Category", value: "Fintech" },
+      { label: "Community", value: "10L+ users" },
+      { label: "Milestone", value: "Shark Tank · S2" },
+    ],
+  },
+  MemoTag: {
+    dek: "A student founder looked at the gaps between medical visits and built for the moments dementia caregivers cannot always see.",
+    paragraphs: [
+      "Reyansh Juneja began MemoTag while still an undergraduate, focusing on a care problem that often unfolds quietly: important behavioural changes can happen long before a clinician sees the patient again.",
+      "The venture is developing an AI-driven wearable for dementia care, designed to create a more continuous picture for families and care teams instead of relying only on isolated appointments.",
+      "MemoTag's early progress carried the idea from campus to Shark Tank India, where a deeply personal care challenge became a national-stage pitch.",
+    ],
+    facts: [
+      { label: "Category", value: "Dementia care" },
+      { label: "Product", value: "AI wearable" },
+      { label: "Milestone", value: "Shark Tank · S4" },
+    ],
+  },
+  "Hive School": {
+    dek: "A missing pathway into sales became a school built around the craft companies need but conventional classrooms rarely teach.",
+    paragraphs: [
+      "Nikhil Gaur saw a mismatch in the talent market: companies were searching for capable sales and go-to-market operators, while aspiring professionals had few places to learn the work by doing it.",
+      "Hive School was built as India's first dedicated sales school, placing practice, industry exposure and operator thinking at the centre of the learning experience.",
+      "Built while Nikhil was still a student, the venture reached a ₹2 crore run rate and later took its education thesis to Shark Tank India.",
+    ],
+    facts: [
+      { label: "Category", value: "Sales education" },
+      { label: "Run rate", value: "₹2 Cr" },
+      { label: "Milestone", value: "Shark Tank · S4" },
+    ],
+  },
+  "Meta Fashion": {
+    dek: "A fashion discovery inside a game became a bridge between digital identity and the clothes people wear outside it.",
+    paragraphs: [
+      "Arjun Goel began with a behaviour native to a new generation: players were using virtual worlds not only to compete, but to discover and express a personal style.",
+      "Meta Fashion connects that digital discovery to physical commerce. A look encountered in-game can move beyond the avatar and become something the player can wear in real life.",
+      "The result is a phygital fashion venture that treats games as a new storefront — one where culture, identity and commerce meet.",
+    ],
+    facts: [
+      { label: "Category", value: "Fashion tech" },
+      { label: "Model", value: "Phygital commerce" },
+      { label: "Stage", value: "Pre-seed" },
+    ],
+  },
+  SeedsAI: {
+    dek: "Hours spent beside NBFC call-centre teams revealed a manual review problem hiding in plain sight.",
+    paragraphs: [
+      "Shubham Khatri and Vansh Miglani did not begin with a polished business plan. They began by shadowing collection agents and listening to how much operational time disappeared into manual call review.",
+      "SeedsAI turned that observation into voice intelligence for NBFC collections and compliance — helping teams examine conversations systematically rather than sampling them by hand.",
+      "The venture grew from field research into an applied-AI business, reaching ₹60 lakh in annual recurring revenue in FY25.",
+    ],
+    facts: [
+      { label: "Category", value: "AI · Fintech" },
+      { label: "Product", value: "Voice intelligence" },
+      { label: "FY25 ARR", value: "₹60L" },
+    ],
+  },
+};
+
 function FounderStoriesGallery() {
   const [activeStory, setActiveStory] = useState(0);
   const [turningPage, setTurningPage] = useState<{ storyIndex: number; direction: 1 | -1; id: number } | null>(null);
@@ -985,6 +1082,7 @@ function FounderStoriesGallery() {
   const story = SPARK_EXAMPLES[activeStory];
   const media = STORY_MEDIA[story.name] ?? {};
   const image = media.image ?? story.founderImage;
+  const editorial = FOUNDER_EDITORIAL[story.name];
 
   const turnPage = (direction: 1 | -1) => {
     if (turningPage) return;
@@ -1029,20 +1127,31 @@ function FounderStoriesGallery() {
                   )}
                 </div>
 
-                <div className="grid gap-7 py-7 sm:grid-cols-[0.72fr_1.28fr] sm:gap-8 md:grid-cols-1 lg:grid-cols-[0.74fr_1.26fr]">
+                <p className="mt-6 max-w-[54ch] font-serif-italic text-[1.05rem] leading-[1.45] text-foreground/80">
+                  {editorial.dek}
+                </p>
+                <div className="grid gap-7 py-6 sm:grid-cols-[0.7fr_1.3fr] sm:gap-8 md:grid-cols-1 lg:grid-cols-[0.7fr_1.3fr]">
                   <div>
                     <p className="font-serif-italic text-[1.55rem] leading-[1.08] text-primary">{story.founder}</p>
                     <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/55">{story.cohort}</p>
-                    <div className="mt-6 border-t border-primary/60 pt-5">
-                      <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-primary">The venture</p>
-                      <p className="mt-2 max-w-[22ch] text-[13px] font-medium leading-[1.45]">{story.product}</p>
+                    <div className="mt-6 space-y-4 border-t border-primary/60 pt-5">
+                      {editorial.facts.map((fact) => (
+                        <div key={fact.label}>
+                          <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/45">{fact.label}</p>
+                          <p className="mt-1 text-[12px] font-medium leading-[1.35]">{fact.value}</p>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                  <div className="space-y-4 text-[13px] leading-[1.68] text-foreground/80 sm:text-[14px]">
-                    <p className="first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[3.2rem] first-letter:leading-[0.78] first-letter:text-primary">{story.body}</p>
-                    <p className="border-l border-primary/70 pl-4 font-serif-italic text-[1.12rem] leading-[1.45] text-foreground">
-                      Built from observation, shaped on campus, and tested in the real world.
-                    </p>
+                  <div className="space-y-3 text-[12px] leading-[1.62] text-foreground/80 sm:text-[13px]">
+                    {editorial.paragraphs.map((paragraph, index) => (
+                      <p
+                        key={paragraph}
+                        className={index === 0 ? "first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[3.1rem] first-letter:leading-[0.78] first-letter:text-primary" : ""}
+                      >
+                        {paragraph}
+                      </p>
+                    ))}
                   </div>
                 </div>
 
