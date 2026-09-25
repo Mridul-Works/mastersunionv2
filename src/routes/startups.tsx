@@ -21,6 +21,13 @@ import {
 import eightVentureImg from "@/assets/founders/ventures/eight.jpg.asset.json";
 import bullspreeVentureImg from "@/assets/founders/ventures/bullspree.jpg.asset.json";
 import outclassDropshippingImg from "@/assets/outclass-dropshipping.jpg.asset.json";
+import sparkProductEight from "@/assets/spark/product-eight.jpg.asset.json";
+import sparkProductPlaysuper from "@/assets/spark/product-playsuper.jpg.asset.json";
+import sparkProductBullspree from "@/assets/spark/product-bullspree.jpg.asset.json";
+import sparkProductMemotag from "@/assets/spark/product-memotag.jpg.asset.json";
+import sparkProductHiveschool from "@/assets/spark/product-hiveschool.jpg.asset.json";
+import sparkProductMetafashion from "@/assets/spark/product-metafashion.jpg.asset.json";
+import sparkProductSeedsai from "@/assets/spark/product-seedsai.jpg.asset.json";
 import outclassContentBrandsImg from "@/assets/outclass/content-brands.jpg";
 import outclassScratchImg from "@/assets/outclass/start-from-scratch.jpg";
 import hiveschoolVentureImg from "@/assets/founders/ventures/hiveschool.jpg.asset.json";
@@ -110,6 +117,7 @@ const SPARK_EXAMPLES: {
   product: string;
   body: string;
   founderImage?: string;
+  productImage?: string;
 }[] = [
   {
     name: "Eight",
