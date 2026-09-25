@@ -1131,6 +1131,16 @@ const FOUNDER_EDITORIAL: Record<
   },
 };
 
+const STORY_ACCENTS = [
+  "oklch(0.52 0.15 35)",
+  "oklch(0.45 0.14 255)",
+  "oklch(0.45 0.13 330)",
+  "oklch(0.55 0.12 75)",
+  "oklch(0.48 0.09 200)",
+  "oklch(0.48 0.17 20)",
+  "oklch(0.42 0.1 290)",
+];
+
 function FounderStoriesGallery() {
   const [activeStory, setActiveStory] = useState(0);
   const total = SPARK_EXAMPLES.length;
@@ -1192,7 +1202,7 @@ function FounderStoriesGallery() {
         </div>
 
         <div className="relative mt-10 [overflow-anchor:none] [perspective:2200px] sm:mt-12 md:mt-14">
-          <article className="relative grid h-[110rem] grid-rows-[minmax(0,1.3fr)_minmax(0,1fr)] overflow-hidden rounded-[2px] bg-background text-foreground shadow-2xl sm:h-[82rem] md:h-[52rem] md:grid-cols-2 md:grid-rows-1 md:overflow-visible md:[transform-style:preserve-3d]">
+          <article style={{ ["--accent" as string]: STORY_ACCENTS[activeStory % STORY_ACCENTS.length] }} className="no-img-zoom relative grid h-[110rem] grid-rows-[minmax(0,1.3fr)_minmax(0,1fr)] overflow-hidden rounded-[2px] bg-background text-foreground shadow-2xl sm:h-[82rem] md:h-[52rem] md:grid-cols-2 md:grid-rows-1 md:overflow-visible md:[transform-style:preserve-3d]">
               <div className="relative flex min-h-0 flex-col overflow-hidden border-b border-foreground/15 bg-background px-6 pb-5 pt-6 sm:px-9 sm:pb-6 sm:pt-7 md:origin-right md:rotate-y-[1.35deg] md:rounded-l-[5px] md:border-b-0 md:px-10 md:pb-6 md:shadow-[-16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)] lg:px-14 lg:pt-8">
                 <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-r from-transparent via-foreground/[0.035] to-foreground/15" />
                 <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-foreground/[0.035] to-transparent" />
@@ -1200,9 +1210,9 @@ function FounderStoriesGallery() {
                   <span>Masters&apos; Union</span>
                   <span>The founders&apos; issue · 2026</span>
                 </div>
-                <div className="flex items-start justify-between gap-5 border-b border-primary/70 pb-3">
+                <div className="flex items-start justify-between gap-5 border-b border-(--accent)/70 pb-3">
                   <div className="min-w-0">
-                    <p className="font-serif-italic text-[clamp(1.4rem,2.4vw,2.2rem)] leading-none text-primary">Meet the founder</p>
+                    <p className="font-serif-italic text-[clamp(1.4rem,2.4vw,2.2rem)] leading-none text-(--accent)" style={{ color: "var(--accent)" }}>Meet the founder</p>
                     <h3 className="mt-2 break-words pb-1 text-[clamp(2.1rem,4.6vw,4.7rem)] font-light leading-[1]">{story.name}</h3>
                   </div>
                   {media.logo && (
@@ -1213,11 +1223,11 @@ function FounderStoriesGallery() {
                 </div>
 
 
-                <p className="mt-3 max-w-[54ch] font-serif-italic text-[1.05rem] leading-[1.45] text-foreground/80">
+                <p className="mt-3 max-w-[54ch] font-serif-italic text-[1.05rem] leading-[1.45] text-(--accent)" style={{ color: "var(--accent)" }}>
                   {editorial.dek}
                 </p>
                 <div className="py-3">
-                  <div className="grid grid-cols-3 items-center gap-x-5 gap-y-3 border-b border-primary/60 pb-2 text-center">
+                  <div className="grid grid-cols-3 items-center gap-x-5 gap-y-3 border-b border-(--accent)/60 pb-2 text-center">
                     {editorial.facts.map((fact) => (
                       <div key={fact.label} className="flex min-h-10 flex-col items-center justify-center">
                         <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/45">{fact.label}</p>
@@ -1229,7 +1239,7 @@ function FounderStoriesGallery() {
                     {editorial.paragraphs.slice(0, 4).map((paragraph, index) => (
                       <p
                         key={paragraph}
-                        className={`break-inside-avoid ${index >= 2 ? "hidden min-[1100px]:block" : ""} ${index === 0 ? "first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[3.1rem] first-letter:leading-[0.78] first-letter:text-primary" : ""}`}
+                        className={`break-inside-avoid ${index >= 2 ? "hidden min-[1100px]:block" : ""} ${index === 0 ? "first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[3.1rem] first-letter:leading-[0.78] first-letter:text-(--accent)" : ""}`}
                       >
                         {paragraph}
                       </p>
@@ -1243,7 +1253,7 @@ function FounderStoriesGallery() {
                     onMouseDown={(event) => event.preventDefault()}
                     onClick={() => turnPage(-1)}
                     aria-label="Flip to previous founder story"
-                    className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/45 transition-colors hover:text-primary"
+                    className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/45 transition-colors hover:text-(--accent)"
                   >
                     <ArrowLeft className="size-3.5" strokeWidth={1.5} /> Previous
                   </button>
@@ -1251,62 +1261,138 @@ function FounderStoriesGallery() {
                 <span aria-hidden className="absolute bottom-0 right-0 size-10 bg-gradient-to-br from-background via-background to-foreground/10 shadow-[-5px_-5px_12px_var(--background)]" />
               </div>
 
-              <div className="relative flex min-h-0 flex-col overflow-hidden bg-background md:origin-left md:-rotate-y-[1.35deg] md:rounded-r-[5px] md:shadow-[16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)]">
-                {/* Top half — story continues */}
-                <div className="flex min-h-0 shrink-0 basis-auto flex-col justify-center px-6 pb-4 pt-8 sm:px-9 sm:pt-10 md:px-10 lg:px-14 lg:pt-10">
-                  <div className="mb-5 flex items-center justify-between border-b border-foreground/20 pb-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/50">
-                    <span>{story.name} · continued</span>
-                  </div>
-                  <div className="grid grid-cols-1 items-start gap-3 text-[13px] leading-[1.62] text-foreground/80 lg:grid-cols-2 lg:gap-7 xl:text-[14px]">
-                    <div className="space-y-3">
-                      {editorial.paragraphs.slice(4, 6).map((paragraph) => (
-                        <p key={paragraph}>{paragraph}</p>
-                      ))}
+              <div className="relative flex min-h-0 flex-col overflow-hidden bg-background px-6 pb-5 pt-8 sm:px-9 sm:pb-6 sm:pt-10 md:origin-left md:-rotate-y-[1.35deg] md:rounded-r-[5px] md:pl-16 md:pr-10 md:shadow-[16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)] lg:pr-14">
+                {(() => {
+                  const rest = editorial.paragraphs.slice(4);
+                  const header = (
+                    <div className="mb-4 flex shrink-0 items-center justify-between border-b border-foreground/20 pb-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/50">
+                      <span>{story.name} · continued</span>
                     </div>
-                    <div className="space-y-3">
-                      {editorial.paragraphs.slice(6).map((paragraph) => (
-                        <p key={paragraph}>{paragraph}</p>
-                      ))}
-                      <p className="border-l-2 border-primary pl-4 font-serif-italic text-[1.15rem] leading-[1.35] text-primary">
-                        &ldquo;{story.product}&rdquo;
-                      </p>
+                  );
+                  const quote = (big = false) => (
+                    <p style={{ color: "var(--accent)" }} className={`border-l-2 border-(--accent) pl-4 font-serif-italic leading-[1.35] text-(--accent) ${big ? "text-[1.5rem]" : "text-[1.15rem]"}`}>
+                      &ldquo;{story.product}&rdquo;
+                    </p>
+                  );
+                  const paras = (list: string[]) => list.map((p) => <p key={p}>{p}</p>);
+                  const body = "text-[13px] leading-[1.62] text-foreground/80 xl:text-[14px]";
+                  const imageBox = (extra = "") => (
+                    <div className={`flex min-h-0 min-w-0 flex-col ${extra}`}>
+                      <div className="relative min-h-0 flex-1 overflow-hidden bg-muted">
+                        {image ? (
+                          <img
+                            src={image}
+                            onLoad={(e) => setImageOrientation(e.currentTarget.naturalHeight > e.currentTarget.naturalWidth ? "portrait" : "landscape")}
+                            alt={`${story.founder}, founder of ${story.name}`}
+                            className={`no-img-zoom h-full w-full ${imageOrientation === "portrait" ? "object-contain" : "object-cover"}`}
+                          />
+                        ) : (
+                          <Placeholder kind="image" aspect="h-full" note={story.name} className="!border-0" />
+                        )}
+                      </div>
+                      <div className="mt-3 flex min-h-8 shrink-0 flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center font-mono uppercase leading-none tracking-[0.2em] text-foreground/45">
+                        <span className="text-[8px]">Founder portrait</span>
+                        <span aria-hidden className="text-[8px]">·</span>
+                        <span className="truncate text-[11px]">{story.founder}</span>
+                        <span aria-hidden className="text-[8px]">·</span>
+                        <span className="shrink-0 text-[8px]">{story.cohort}</span>
+                      </div>
                     </div>
-                  </div>
-                </div>
-
-                {/* Bottom half — image, orientation-aware */}
-                <div className="relative flex min-h-0 flex-1 flex-col bg-background px-6 pb-5 pt-2 sm:px-6 sm:pb-6 md:ml-8 md:px-6 lg:px-6">
-                  <div className="relative min-h-0 flex-1 overflow-hidden bg-muted">
-                    {image ? (
-                      <img
-                        src={image}
-                        onLoad={(e) => setImageOrientation(e.currentTarget.naturalHeight > e.currentTarget.naturalWidth ? "portrait" : "landscape")}
-                        alt={`${story.founder}, founder of ${story.name}`}
-                        className={`h-full w-full grayscale ${imageOrientation === "portrait" ? "object-contain" : "object-cover"}`}
-                      />
-                    ) : (
-                      <Placeholder kind="image" aspect="h-full" note={story.name} className="!border-0" />
-                    )}
-                  </div>
-                  <div className="mt-3 flex min-h-8 shrink-0 items-center justify-center gap-2 overflow-hidden whitespace-nowrap font-mono uppercase leading-none tracking-[0.2em] text-foreground/45">
-                    <span className="text-[8px]">Founder portrait</span>
-                    <span aria-hidden className="text-[8px]">·</span>
-                    <span className="truncate text-[11px]">{story.founder}</span>
-                    <span aria-hidden className="text-[8px]">·</span>
-                    <span className="shrink-0 text-[8px]">{story.cohort}</span>
-                  </div>
-                  <div className="flex shrink-0 items-center justify-end border-t border-foreground/15 pt-3">
-                    <button
-                      type="button"
-                      onMouseDown={(event) => event.preventDefault()}
-                      onClick={() => turnPage(1)}
-                      aria-label="Go to next founder story"
-                      className="group flex shrink-0 items-center gap-2 font-mono text-[9px] uppercase leading-none tracking-[0.2em] text-foreground/45 transition-colors hover:text-primary"
-                    >
-                      Next
-                      <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={1.5} />
-                    </button>
-                  </div>
+                  );
+                  const layout = activeStory % 7;
+                  let content: React.ReactNode;
+                  if (layout === 0) {
+                    // Text top, image bottom
+                    content = (
+                      <>
+                        {header}
+                        <div className={`grid shrink-0 grid-cols-1 items-start gap-3 lg:grid-cols-2 lg:gap-7 ${body}`}>
+                          <div className="space-y-3">{paras(rest.slice(0, 2))}</div>
+                          <div className="space-y-3">{paras(rest.slice(2))}{quote()}</div>
+                        </div>
+                        {imageBox("mt-5 flex-1")}
+                      </>
+                    );
+                  } else if (layout === 1) {
+                    // Image top, text bottom
+                    content = (
+                      <>
+                        {imageBox("flex-1")}
+                        <div className="mt-4">{header}</div>
+                        <div className={`grid shrink-0 grid-cols-1 items-start gap-3 lg:grid-cols-2 lg:gap-7 ${body}`}>
+                          <div className="space-y-3">{paras(rest.slice(0, 2))}</div>
+                          <div className="space-y-3">{paras(rest.slice(2))}{quote()}</div>
+                        </div>
+                      </>
+                    );
+                  } else if (layout === 2 || layout === 3) {
+                    // Tall image column beside a single text column
+                    const text = (
+                      <div className={`flex min-h-0 min-w-0 flex-col justify-center space-y-3 overflow-hidden ${body}`}>
+                        {header}
+                        {paras(rest)}
+                        {quote()}
+                      </div>
+                    );
+                    content = (
+                      <div className="grid min-h-0 flex-1 grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-7">
+                        {layout === 2 ? <>{imageBox("min-h-[18rem] lg:min-h-0")}{text}</> : <>{text}{imageBox("min-h-[18rem] lg:min-h-0")}</>}
+                      </div>
+                    );
+                  } else if (layout === 4) {
+                    // Pull-quote lead, image, text below
+                    content = (
+                      <>
+                        {header}
+                        <div className="shrink-0">{quote(true)}</div>
+                        {imageBox("mt-5 flex-1")}
+                        <div className={`mt-4 grid shrink-0 grid-cols-1 items-start gap-3 lg:grid-cols-2 lg:gap-7 ${body}`}>
+                          <div className="space-y-3">{paras(rest.slice(0, 2))}</div>
+                          <div className="space-y-3">{paras(rest.slice(2))}</div>
+                        </div>
+                      </>
+                    );
+                  } else if (layout === 5) {
+                    // Text sandwich — image framed between two text bands
+                    content = (
+                      <>
+                        {header}
+                        <div className={`shrink-0 space-y-3 ${body}`}>{paras(rest.slice(0, 1))}</div>
+                        {imageBox("my-5 flex-1")}
+                        <div className={`grid shrink-0 grid-cols-1 items-start gap-3 lg:grid-cols-2 lg:gap-7 ${body}`}>
+                          <div className="space-y-3">{paras(rest.slice(1))}</div>
+                          <div>{quote()}</div>
+                        </div>
+                      </>
+                    );
+                  } else {
+                    // Wide column text beside an inset image stacked with the quote
+                    content = (
+                      <>
+                        {header}
+                        <div className="grid min-h-0 flex-1 grid-cols-1 gap-6 lg:grid-cols-[1.1fr_1fr] lg:gap-7">
+                          <div className={`min-w-0 space-y-3 overflow-hidden ${body}`}>{paras(rest)}</div>
+                          <div className="flex min-h-0 min-w-0 flex-col gap-5">
+                            {imageBox("min-h-[16rem] flex-1 lg:min-h-0")}
+                            {quote()}
+                          </div>
+                        </div>
+                      </>
+                    );
+                  }
+                  return <div className="flex min-h-0 flex-1 flex-col">{content}</div>;
+                })()}
+                <div className="mt-3 flex shrink-0 items-center justify-end border-t border-foreground/15 pt-3">
+                  <button
+                    type="button"
+                    onMouseDown={(event) => event.preventDefault()}
+                    onClick={() => turnPage(1)}
+                    aria-label="Go to next founder story"
+                    className="group flex shrink-0 items-center gap-2 font-mono text-[9px] uppercase leading-none tracking-[0.2em] text-foreground/45 transition-colors hover:text-(--accent)"
+                  >
+                    Next
+                    <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={1.5} />
+                  </button>
                 </div>
 
                 <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 hidden w-14 bg-gradient-to-r from-foreground/25 via-foreground/8 to-transparent mix-blend-multiply md:block" />
