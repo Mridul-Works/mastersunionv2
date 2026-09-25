@@ -1132,14 +1132,16 @@ const FOUNDER_EDITORIAL: Record<
 };
 
 const STORY_ACCENTS = [
-  "oklch(0.52 0.15 35)",
-  "oklch(0.45 0.14 255)",
-  "oklch(0.45 0.13 330)",
-  "oklch(0.55 0.12 75)",
-  "oklch(0.48 0.09 200)",
-  "oklch(0.48 0.17 20)",
-  "oklch(0.42 0.1 290)",
+  "#BD114A",
+  "#D75656",
+  "#FAE251",
+  "#BD114A",
+  "#D75656",
+  "#FAE251",
+  "#BD114A",
 ];
+
+const STORY_PAPER = "#EEEEEE";
 
 function FounderStoriesGallery() {
   const [activeStory, setActiveStory] = useState(0);
@@ -1202,8 +1204,8 @@ function FounderStoriesGallery() {
         </div>
 
         <div className="relative mt-10 [overflow-anchor:none] [perspective:2200px] sm:mt-12 md:mt-14">
-          <article style={{ ["--accent" as string]: STORY_ACCENTS[activeStory % STORY_ACCENTS.length] }} className="no-img-zoom relative grid h-[110rem] grid-rows-[minmax(0,1.3fr)_minmax(0,1fr)] overflow-hidden rounded-[2px] bg-background text-foreground shadow-2xl sm:h-[82rem] md:h-[52rem] md:grid-cols-2 md:grid-rows-1 md:overflow-visible md:[transform-style:preserve-3d]">
-              <div className="relative flex min-h-0 flex-col overflow-hidden border-b border-foreground/15 bg-background px-6 pb-5 pt-6 sm:px-9 sm:pb-6 sm:pt-7 md:origin-right md:rotate-y-[1.35deg] md:rounded-l-[5px] md:border-b-0 md:px-10 md:pb-6 md:shadow-[-16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)] lg:px-14 lg:pt-8">
+          <article style={{ ["--accent" as string]: STORY_ACCENTS[activeStory % STORY_ACCENTS.length], ["--paper" as string]: STORY_PAPER, backgroundColor: "var(--paper)" }} className="no-img-zoom relative grid h-[110rem] grid-rows-[minmax(0,1.3fr)_minmax(0,1fr)] overflow-hidden rounded-[2px] text-foreground shadow-2xl sm:h-[82rem] md:h-[52rem] md:grid-cols-2 md:grid-rows-1 md:overflow-visible md:[transform-style:preserve-3d]">
+              <div style={{ backgroundColor: "var(--paper)" }} className="relative flex min-h-0 flex-col overflow-hidden border-b border-foreground/15 px-6 pb-5 pt-6 sm:px-9 sm:pb-6 sm:pt-7 md:origin-right md:rotate-y-[1.35deg] md:rounded-l-[5px] md:border-b-0 md:px-10 md:pb-6 md:shadow-[-16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)] lg:px-14 lg:pt-8">
                 <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-r from-transparent via-foreground/[0.035] to-foreground/15" />
                 <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-foreground/[0.035] to-transparent" />
                 <div className="mb-3 flex items-center justify-between border-y border-foreground/70 py-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/60">
@@ -1261,7 +1263,7 @@ function FounderStoriesGallery() {
                 <span aria-hidden className="absolute bottom-0 right-0 size-10 bg-gradient-to-br from-background via-background to-foreground/10 shadow-[-5px_-5px_12px_var(--background)]" />
               </div>
 
-              <div className="relative flex min-h-0 flex-col overflow-hidden bg-background px-6 pb-5 pt-8 sm:px-9 sm:pb-6 sm:pt-10 md:origin-left md:-rotate-y-[1.35deg] md:rounded-r-[5px] md:pl-16 md:pr-10 md:shadow-[16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)] lg:pr-14">
+              <div style={{ backgroundColor: "var(--paper)" }} className="relative flex min-h-0 flex-col overflow-hidden px-6 pb-5 pt-8 sm:px-9 sm:pb-6 sm:pt-10 md:origin-left md:-rotate-y-[1.35deg] md:rounded-r-[5px] md:pl-16 md:pr-10 md:shadow-[16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)] lg:pr-14">
                 {(() => {
                   const rest = editorial.paragraphs.slice(4);
                   const header = (
@@ -1284,7 +1286,7 @@ function FounderStoriesGallery() {
                             src={image}
                             onLoad={(e) => setImageOrientation(e.currentTarget.naturalHeight > e.currentTarget.naturalWidth ? "portrait" : "landscape")}
                             alt={`${story.founder}, founder of ${story.name}`}
-                            className={`no-img-zoom h-full w-full ${imageOrientation === "portrait" ? "object-contain" : "object-cover"}`}
+                            className={`no-img-zoom h-full w-full ${story.name === "Bullspree" ? "object-contain object-center" : imageOrientation === "portrait" ? "object-contain" : "object-cover"}`}
                           />
                         ) : (
                           <Placeholder kind="image" aspect="h-full" note={story.name} className="!border-0" />
@@ -1301,7 +1303,23 @@ function FounderStoriesGallery() {
                   );
                   const layout = activeStory % 7;
                   let content: React.ReactNode;
-                  if (layout === 0) {
+                  if (story.name === "SeedsAI") {
+                    // Landscape-led field report: copy frames a wide founder photograph.
+                    content = (
+                      <>
+                        {header}
+                        <div className={`grid shrink-0 grid-cols-1 items-start gap-3 lg:grid-cols-[1.15fr_0.85fr] lg:gap-7 ${body}`}>
+                          <div className="space-y-3">{paras(rest.slice(0, 1))}</div>
+                          <div>{quote()}</div>
+                        </div>
+                        {imageBox("my-4 min-h-[18rem] flex-1")}
+                        <div className={`grid shrink-0 grid-cols-1 items-start gap-3 lg:grid-cols-2 lg:gap-7 ${body}`}>
+                          <div className="space-y-3">{paras(rest.slice(1, 2))}</div>
+                          <div className="space-y-3">{paras(rest.slice(2))}</div>
+                        </div>
+                      </>
+                    );
+                  } else if (layout === 0) {
                     // Text top, image bottom
                     content = (
                       <>
