@@ -1076,8 +1076,6 @@ const FOUNDER_EDITORIAL: Record<
 
 function FounderStoriesGallery() {
   const [activeStory, setActiveStory] = useState(0);
-  const [turningPage, setTurningPage] = useState<{ storyIndex: number; direction: 1 | -1; id: number } | null>(null);
-  const reduceMotion = useReducedMotion();
   const total = SPARK_EXAMPLES.length;
   const story = SPARK_EXAMPLES[activeStory];
   const media = STORY_MEDIA[story.name] ?? {};
@@ -1085,9 +1083,7 @@ function FounderStoriesGallery() {
   const editorial = FOUNDER_EDITORIAL[story.name];
 
   const turnPage = (direction: 1 | -1) => {
-    if (turningPage) return;
-    setTurningPage({ storyIndex: activeStory, direction, id: Date.now() });
-    setActiveStory((activeStory + direction + total) % total);
+    setActiveStory((current) => (current + direction + total) % total);
   };
 
   return (
