@@ -446,6 +446,12 @@ const OUTCLASS_MOMENTS = [
   },
 ];
 
+import vipPreseedImg from "@/assets/vip/vip-preseed.jpg.asset.json";
+import vipMvpImg from "@/assets/vip/vip-mvp.jpg.asset.json";
+import vipGtmImg from "@/assets/vip/vip-gtm.jpg.asset.json";
+import vipPmfImg from "@/assets/vip/vip-pmf.jpg.asset.json";
+import vipDemodayImg from "@/assets/vip/vip-demoday.jpg.asset.json";
+
 type Stage = { n: string; name: string; grant: string | null; body: string; image: string; culmination?: boolean };
 
 const VIP_STAGES: Stage[] = [
@@ -454,35 +460,35 @@ const VIP_STAGES: Stage[] = [
     name: "Pre-Seed",
     grant: "₹15–20L",
     body: "Bust the myths, find a real problem worth solving, pick the right co-founders, learn to talk to customers — validated in front of founders, VCs, and alumni.",
-    image: brandPhotoMetafashion,
+    image: vipPreseedImg.url,
   },
   {
     n: "02",
     name: "MVP",
     grant: "₹15–20L",
     body: "Build the smallest real version of the idea, prove customer centricity, ship on no-to-low-code tools, and defend it at MVP Demo Day.",
-    image: brandPhotoSeedsai,
+    image: vipMvpImg.url,
   },
   {
     n: "03",
     name: "Go-to-Market",
     grant: "₹20L",
     body: "Learn the marketing playbook and understand your funnel — turning a working product into a repeatable one.",
-    image: brandPhotoPlaysuper,
+    image: vipGtmImg.url,
   },
   {
     n: "04",
     name: "Product-Market Fit",
     grant: "₹25L",
     body: "One final dry run, then Demo Day.",
-    image: brandPhotoHiveschool,
+    image: vipPmfImg.url,
   },
   {
     n: "05",
     name: "Demo Day",
     grant: null,
     body: "150+ venture capitalists and angel investors in the room, assessing student startups for real funding.",
-    image: sharkTankStageImg.url,
+    image: vipDemodayImg.url,
     culmination: true,
   },
 ];
