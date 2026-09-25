@@ -1200,10 +1200,10 @@ function FounderStoriesGallery() {
                   <span>Masters&apos; Union</span>
                   <span>The founders&apos; issue · 2026</span>
                 </div>
-                <div className="flex items-start justify-between gap-5 border-b border-primary/70 pb-3">
-                  <div>
+                <div className="flex items-start justify-between gap-5 border-b border-primary/70 pb-4">
+                  <div className="min-w-0">
                     <p className="font-serif-italic text-[clamp(1.4rem,2.4vw,2.2rem)] leading-none text-primary">Meet the founder</p>
-                    <h3 className="mt-2 text-[clamp(2.1rem,4.6vw,4.7rem)] font-light leading-[0.92]">{story.name}</h3>
+                    <h3 className="mt-2 break-words pb-1 text-[clamp(2.1rem,4.6vw,4.7rem)] font-light leading-[1]">{story.name}</h3>
                   </div>
                   {media.logo && (
                     <span className="flex h-12 w-20 shrink-0 items-center justify-center p-1 sm:h-14 sm:w-24">
@@ -1211,6 +1211,7 @@ function FounderStoriesGallery() {
                     </span>
                   )}
                 </div>
+
 
                 <p className="mt-4 max-w-[54ch] font-serif-italic text-[1.05rem] leading-[1.45] text-foreground/80">
                   {editorial.dek}
