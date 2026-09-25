@@ -1107,10 +1107,10 @@ function FounderStoriesGallery() {
           </p>
         </div>
 
-        <div className="relative mt-10 [perspective:2200px] sm:mt-12 md:mt-14">
+        <div className="relative mt-10 [overflow-anchor:none] [perspective:2200px] sm:mt-12 md:mt-14">
           <div aria-hidden className="absolute -bottom-3 left-[3%] right-[3%] top-3 bg-background/20 shadow-2xl" />
-          <article className="relative grid min-h-[46rem] overflow-hidden rounded-[2px] bg-background text-foreground shadow-2xl md:min-h-[42rem] md:grid-cols-2 md:overflow-visible md:[transform-style:preserve-3d]">
-              <div className="relative flex min-h-[31rem] flex-col overflow-hidden border-b border-foreground/15 bg-background px-6 pb-7 pt-8 sm:px-9 sm:pb-9 sm:pt-10 md:min-h-0 md:origin-right md:rotate-y-[1.35deg] md:rounded-l-[5px] md:border-b-0 md:px-10 md:pb-8 md:shadow-[-16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)] lg:px-14 lg:pt-12">
+          <article className="relative grid h-[90rem] grid-rows-[minmax(0,2fr)_minmax(0,1fr)] overflow-hidden rounded-[2px] bg-background text-foreground shadow-2xl sm:h-[82rem] md:h-[42rem] md:grid-cols-2 md:grid-rows-1 md:overflow-visible md:[transform-style:preserve-3d]">
+              <div className="relative flex min-h-0 flex-col overflow-hidden border-b border-foreground/15 bg-background px-6 pb-7 pt-8 sm:px-9 sm:pb-9 sm:pt-10 md:origin-right md:rotate-y-[1.35deg] md:rounded-l-[5px] md:border-b-0 md:px-10 md:pb-8 md:shadow-[-16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)] lg:px-14 lg:pt-12">
                 <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-r from-transparent via-foreground/[0.035] to-foreground/15" />
                 <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-foreground/[0.035] to-transparent" />
                 <div className="mb-7 flex items-center justify-between border-y border-foreground/70 py-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/60">
@@ -1178,7 +1178,7 @@ function FounderStoriesGallery() {
                 <span aria-hidden className="absolute bottom-0 right-0 size-10 bg-gradient-to-br from-background via-background to-foreground/10 shadow-[-5px_-5px_12px_var(--background)]" />
               </div>
 
-              <div className="relative min-h-[29rem] overflow-hidden bg-muted md:min-h-0 md:origin-left md:-rotate-y-[1.35deg] md:rounded-r-[5px] md:shadow-[16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)]">
+              <div className="relative min-h-0 overflow-hidden bg-muted md:origin-left md:-rotate-y-[1.35deg] md:rounded-r-[5px] md:shadow-[16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)]">
                 {image ? (
                   <img src={image} alt={`${story.founder}, founder of ${story.name}`} className="h-full w-full object-cover grayscale" />
                 ) : (
