@@ -1109,8 +1109,10 @@ function FounderStoriesGallery() {
 
         <div className="relative mt-10 [perspective:2200px] sm:mt-12 md:mt-14">
           <div aria-hidden className="absolute -bottom-3 left-[3%] right-[3%] top-3 bg-background/20 shadow-2xl" />
-          <article className="relative grid min-h-[46rem] overflow-hidden bg-background text-foreground shadow-2xl md:min-h-[42rem] md:grid-cols-2">
-              <div className="relative flex min-h-[31rem] flex-col border-b border-foreground/15 px-6 pb-7 pt-8 sm:px-9 sm:pb-9 sm:pt-10 md:min-h-0 md:border-b-0 md:px-10 md:pb-8 lg:px-14 lg:pt-12">
+          <article className="relative grid min-h-[46rem] overflow-hidden rounded-[2px] bg-background text-foreground shadow-2xl md:min-h-[42rem] md:grid-cols-2 md:overflow-visible md:[transform-style:preserve-3d]">
+              <div className="relative flex min-h-[31rem] flex-col overflow-hidden border-b border-foreground/15 bg-background px-6 pb-7 pt-8 sm:px-9 sm:pb-9 sm:pt-10 md:min-h-0 md:origin-right md:rotate-y-[1.35deg] md:rounded-l-[5px] md:border-b-0 md:px-10 md:pb-8 md:shadow-[-16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)] lg:px-14 lg:pt-12">
+                <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-r from-transparent via-foreground/[0.035] to-foreground/15" />
+                <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-foreground/[0.035] to-transparent" />
                 <div className="mb-7 flex items-center justify-between border-y border-foreground/70 py-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/60">
                   <span>Masters&apos; Union</span>
                   <span>The founders&apos; issue · 2026</span>
@@ -1176,7 +1178,7 @@ function FounderStoriesGallery() {
                 <span aria-hidden className="absolute bottom-0 right-0 size-10 bg-gradient-to-br from-background via-background to-foreground/10 shadow-[-5px_-5px_12px_var(--background)]" />
               </div>
 
-              <div className="relative min-h-[29rem] overflow-hidden bg-muted md:min-h-0">
+              <div className="relative min-h-[29rem] overflow-hidden bg-muted md:min-h-0 md:origin-left md:-rotate-y-[1.35deg] md:rounded-r-[5px] md:shadow-[16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)]">
                 {image ? (
                   <img src={image} alt={`${story.founder}, founder of ${story.name}`} className="h-full w-full object-cover grayscale" />
                 ) : (
@@ -1192,9 +1194,16 @@ function FounderStoriesGallery() {
                     {String(activeStory + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
                   </span>
                 </div>
-                <div aria-hidden className="absolute inset-y-0 left-0 hidden w-5 bg-gradient-to-r from-foreground/20 to-transparent md:block" />
+                <div aria-hidden className="absolute inset-y-0 left-0 hidden w-14 bg-gradient-to-r from-foreground/35 via-foreground/12 to-transparent mix-blend-multiply md:block" />
               </div>
-              <div aria-hidden className="pointer-events-none absolute inset-y-0 left-1/2 z-20 hidden w-8 -translate-x-1/2 bg-gradient-to-r from-foreground/10 via-background/40 to-foreground/15 mix-blend-multiply md:block" />
+              <div aria-hidden className="pointer-events-none absolute inset-y-0 left-1/2 z-20 hidden w-[4.5rem] -translate-x-1/2 md:block">
+                <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-transparent via-foreground/[0.055] to-foreground/30 mix-blend-multiply" />
+                <div className="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-r from-foreground/35 via-foreground/10 to-transparent mix-blend-multiply" />
+                <div className="absolute inset-y-[1%] left-1/2 w-px -translate-x-1/2 bg-background/70 shadow-[0_0_12px_color-mix(in_oklab,var(--background)_80%,transparent)]" />
+              </div>
+              <div aria-hidden className="pointer-events-none absolute -top-2 left-1/2 z-30 hidden h-5 w-24 -translate-x-1/2 rounded-[50%] bg-foreground/35 blur-md md:block" />
+              <div aria-hidden className="pointer-events-none absolute -bottom-3 left-1/2 z-30 hidden h-7 w-28 -translate-x-1/2 rounded-[50%] bg-foreground/50 blur-lg md:block" />
+              <div aria-hidden className="pointer-events-none absolute inset-x-[2%] bottom-[-10px] -z-10 hidden h-8 rounded-[50%] bg-foreground/60 blur-lg md:block" />
               <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-3 hidden justify-between px-5 font-mono text-[8px] tracking-[0.2em] text-foreground/35 md:flex">
                 <span>{String(activeStory * 2 + 12).padStart(2, "0")}</span>
                 <span>{String(activeStory * 2 + 13).padStart(2, "0")}</span>
