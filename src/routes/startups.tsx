@@ -1867,6 +1867,54 @@ function SparkCarousel({
           </AnimatePresence>,
           document.body
         )}
+      {typeof document !== "undefined" &&
+        createPortal(
+          <AnimatePresence>
+            {ytVideoId && (
+              <motion.div
+                role="dialog"
+                aria-modal="true"
+                aria-label={`${company.name} video`}
+                initial={reduceMotion ? false : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: reduceMotion ? 0 : 0.3 }}
+                className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm sm:p-8"
+                onClick={() => setYtVideoId(null)}
+              >
+                <motion.div
+                  initial={reduceMotion ? false : { opacity: 0, scale: 0.94, y: 12 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: 8 }}
+                  transition={{ duration: reduceMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  className="aspect-video w-full max-w-5xl overflow-hidden rounded-[6px] border border-white/15 bg-black shadow-2xl"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <iframe
+                    src={`https://www.youtube.com/embed/${ytVideoId}?autoplay=1&rel=0`}
+                    title={`${company.name} — video`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="h-full w-full"
+                  />
+                </motion.div>
+                <motion.button
+                  type="button"
+                  aria-label="Close video"
+                  onClick={() => setYtVideoId(null)}
+                  initial={reduceMotion ? false : { opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ delay: reduceMotion ? 0 : 0.2, duration: reduceMotion ? 0 : 0.2 }}
+                  className="absolute right-4 top-4 inline-flex size-10 items-center justify-center rounded-full border border-white/25 text-white/80 transition-colors hover:bg-white/10 hover:text-white sm:right-6 sm:top-6"
+                >
+                  <X className="size-5" strokeWidth={2} />
+                </motion.button>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body
+        )}
     </div>
   );
 }
