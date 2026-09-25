@@ -3456,7 +3456,7 @@ function StartupsPage() {
         </div>
       </header>
 
-      <div className="relative z-10 bg-foreground font-display text-background [&_h2]:!font-display [&_h2]:!font-semibold [&_h2]:!leading-[1.04] [&_h2]:!tracking-normal [&_h3]:!font-display [&_h3]:!font-semibold [&_h3]:!tracking-normal [&_p]:max-w-[62ch] [&_p]:font-display [&_p]:font-normal">
+      <div className="relative z-10 bg-foreground font-display text-background [&_h2]:!font-display [&_h2]:!font-semibold [&_h2]:!leading-[1.04] [&_h2]:!tracking-normal [&_h3]:!font-display [&_h3]:!font-semibold [&_h3]:!tracking-normal [&_p]:font-display [&_p]:font-normal">
       <Section id="spark" tone="light" container="max-w-7xl">
         <div className="grid grid-cols-1 gap-5 border-b border-background/20 pb-8 sm:gap-6 sm:pb-10 md:grid-cols-12 md:items-end md:gap-10 md:pb-12 lg:gap-12 lg:pb-14">
           <div className="md:col-span-8">
