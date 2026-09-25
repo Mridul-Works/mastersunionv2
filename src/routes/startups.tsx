@@ -1170,17 +1170,17 @@ function FounderStoriesGallery() {
         <div className="relative mt-10 [overflow-anchor:none] [perspective:2200px] sm:mt-12 md:mt-14">
           <div aria-hidden className="absolute -bottom-3 left-[3%] right-[3%] top-3 bg-background/20 shadow-2xl" />
           <article className="relative grid h-[110rem] grid-rows-[minmax(0,1.3fr)_minmax(0,1fr)] overflow-hidden rounded-[2px] bg-background text-foreground shadow-2xl sm:h-[82rem] md:h-[52rem] md:grid-cols-2 md:grid-rows-1 md:overflow-visible md:[transform-style:preserve-3d]">
-              <div className="relative flex min-h-0 flex-col overflow-hidden border-b border-foreground/15 bg-background px-6 pb-7 pt-8 sm:px-9 sm:pb-9 sm:pt-10 md:grid md:grid-rows-[2rem_6.75rem_5.75rem_minmax(0,1fr)_2.25rem] md:origin-right md:rotate-y-[1.35deg] md:rounded-l-[5px] md:border-b-0 md:px-10 md:pb-8 md:shadow-[-16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)] lg:px-14 lg:pt-12">
+              <div className="relative flex min-h-0 flex-col overflow-hidden border-b border-foreground/15 bg-background px-6 pb-7 pt-8 sm:px-9 sm:pb-9 sm:pt-10 md:origin-right md:rotate-y-[1.35deg] md:rounded-l-[5px] md:border-b-0 md:px-10 md:pb-8 md:shadow-[-16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)] lg:px-14 lg:pt-12">
                 <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-r from-transparent via-foreground/[0.035] to-foreground/15" />
                 <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-foreground/[0.035] to-transparent" />
-                <div className="mb-7 flex items-center justify-between border-y border-foreground/70 py-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/60 md:mb-0">
+                <div className="mb-7 flex items-center justify-between border-y border-foreground/70 py-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/60">
                   <span>Masters&apos; Union</span>
                   <span>The founders&apos; issue · 2026</span>
                 </div>
-                <div className="flex min-h-0 items-start justify-between gap-5 overflow-hidden border-b border-primary/70 pb-5 pt-4 md:pt-3">
+                <div className="flex items-start justify-between gap-5 border-b border-primary/70 pb-5">
                   <div>
-                    <p className="font-serif-italic text-[clamp(1.25rem,2vw,1.8rem)] leading-none text-primary">Meet the founder</p>
-                    <h3 className="mt-2 text-[clamp(2rem,3.5vw,3.35rem)] font-light leading-[0.92]">{story.name}</h3>
+                    <p className="font-serif-italic text-[clamp(1.4rem,2.4vw,2.2rem)] leading-none text-primary">Meet the founder</p>
+                    <h3 className="mt-3 text-[clamp(2.1rem,4.6vw,4.7rem)] font-light leading-[0.92]">{story.name}</h3>
                   </div>
                   {media.logo && (
                     <span className="flex h-12 w-20 shrink-0 items-center justify-center p-1 sm:h-14 sm:w-24">
@@ -1189,27 +1189,27 @@ function FounderStoriesGallery() {
                   )}
                 </div>
 
-                <p className="mt-6 max-w-[54ch] overflow-hidden font-serif-italic text-[0.94rem] leading-[1.38] text-foreground/80 md:mt-4 md:line-clamp-3">
+                <p className="mt-6 max-w-[54ch] font-serif-italic text-[1.05rem] leading-[1.45] text-foreground/80">
                   {editorial.dek}
                 </p>
-                <div className="min-h-0 overflow-hidden py-6 md:py-4">
-                  <div className="grid min-h-[4.5rem] grid-cols-2 gap-x-5 gap-y-4 border-b border-primary/60 pb-5 sm:grid-cols-4 md:gap-y-2 md:pb-3">
+                <div className="py-6">
+                  <div className="grid grid-cols-2 gap-x-5 gap-y-4 border-b border-primary/60 pb-5 sm:grid-cols-4">
                     <div>
-                      <p className="font-serif-italic text-[1.15rem] leading-[1.08] text-primary">{story.founder}</p>
+                      <p className="font-serif-italic text-[1.35rem] leading-[1.08] text-primary">{story.founder}</p>
                       <p className="mt-2 font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/55">{story.cohort}</p>
                     </div>
                     {editorial.facts.map((fact) => (
                       <div key={fact.label}>
                         <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/45">{fact.label}</p>
-                        <p className="mt-1 text-[11px] font-medium leading-[1.3]">{fact.value}</p>
+                        <p className="mt-1 text-[12px] font-medium leading-[1.35]">{fact.value}</p>
                       </div>
                     ))}
                   </div>
-                  <div className="mt-4 columns-1 gap-6 space-y-2.5 text-[11px] leading-[1.48] text-foreground/80 lg:columns-2">
+                  <div className="mt-5 columns-1 gap-7 space-y-3 text-[12px] leading-[1.62] text-foreground/80 sm:text-[13px] lg:columns-2">
                     {editorial.paragraphs.slice(0, 4).map((paragraph, index) => (
                       <p
                         key={paragraph}
-                        className={`break-inside-avoid ${index === 0 ? "first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[2.65rem] first-letter:leading-[0.78] first-letter:text-primary" : ""}`}
+                        className={`break-inside-avoid ${index === 0 ? "first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[3.1rem] first-letter:leading-[0.78] first-letter:text-primary" : ""}`}
                       >
                         {paragraph}
                       </p>
@@ -1217,7 +1217,7 @@ function FounderStoriesGallery() {
                   </div>
                 </div>
 
-                <div className="mt-auto flex items-end justify-between border-t border-foreground/15 pt-3 md:mt-0">
+                <div className="mt-auto flex items-center justify-between border-t border-foreground/15 pt-5">
                   <button
                     type="button"
                     onMouseDown={(event) => event.preventDefault()}
@@ -1243,16 +1243,16 @@ function FounderStoriesGallery() {
 
               <div className="relative flex min-h-0 flex-col overflow-hidden bg-background md:origin-left md:-rotate-y-[1.35deg] md:rounded-r-[5px] md:shadow-[16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)]">
                 {/* Top half — story continues */}
-                <div className="flex min-h-0 basis-1/2 flex-col overflow-hidden px-6 pb-5 pt-8 sm:px-9 sm:pt-10 md:px-10 lg:px-14 lg:pt-12">
+                <div className="flex min-h-0 basis-1/2 flex-col px-6 pb-5 pt-8 sm:px-9 sm:pt-10 md:px-10 lg:px-14 lg:pt-12">
                   <div className="mb-5 flex items-center justify-between border-b border-foreground/20 pb-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/50">
                     <span>{story.name} · continued</span>
                     <span>{story.cohort}</span>
                   </div>
-                  <div className="min-h-0 columns-1 gap-6 space-y-2.5 overflow-hidden text-[11px] leading-[1.48] text-foreground/80 lg:columns-2">
+                  <div className="columns-1 gap-7 space-y-3 text-[12px] leading-[1.62] text-foreground/80 sm:text-[13px] lg:columns-2">
                     {editorial.paragraphs.slice(4).map((paragraph) => (
                       <p key={paragraph}>{paragraph}</p>
                     ))}
-                    <p className="break-inside-avoid border-l-2 border-primary pl-3 font-serif-italic text-[1rem] leading-[1.3] text-primary">
+                    <p className="break-inside-avoid border-l-2 border-primary pl-4 font-serif-italic text-[1.15rem] leading-[1.35] text-primary">
                       &ldquo;{story.product}&rdquo;
                     </p>
                   </div>
