@@ -979,7 +979,7 @@ const STORY_MEDIA: Record<string, { image?: string; logo?: string }> = {
 
 function FounderStoriesGallery() {
   const [activeStory, setActiveStory] = useState(0);
-  const [pageDirection, setPageDirection] = useState<1 | -1>(1);
+  const [turningPage, setTurningPage] = useState<{ storyIndex: number; direction: 1 | -1; id: number } | null>(null);
   const reduceMotion = useReducedMotion();
   const total = SPARK_EXAMPLES.length;
   const story = SPARK_EXAMPLES[activeStory];
@@ -987,8 +987,9 @@ function FounderStoriesGallery() {
   const image = media.image ?? story.founderImage;
 
   const turnPage = (direction: 1 | -1) => {
-    setPageDirection(direction);
-    setActiveStory((current) => (current + direction + total) % total);
+    if (turningPage) return;
+    setTurningPage({ storyIndex: activeStory, direction, id: Date.now() });
+    setActiveStory((activeStory + direction + total) % total);
   };
 
   return (
@@ -998,8 +999,8 @@ function FounderStoriesGallery() {
           <Reveal>
             <div>
               <Eyebrow>Founder Stories · {String(total).padStart(2, "0")} Ventures</Eyebrow>
-              <h2 className="mt-5 max-w-[22ch] text-[clamp(1.8rem,4.2vw,3.6rem)] font-light leading-[1.08]">
-                Open the stories behind the first move.
+              <h2 className="mt-5 max-w-[24ch] text-[clamp(1.8rem,4.2vw,3.6rem)] font-light leading-[1.08]">
+                The founders&apos; issue.
               </h2>
             </div>
           </Reveal>
@@ -1008,24 +1009,18 @@ function FounderStoriesGallery() {
           </p>
         </div>
 
-        <div className="relative mt-10 [perspective:1800px] sm:mt-12 md:mt-14">
-          <div aria-hidden className="absolute -bottom-4 left-[4%] right-[4%] top-4 bg-background/15 shadow-2xl" />
-          <AnimatePresence mode="wait" custom={pageDirection}>
-            <motion.article
-              key={story.name}
-              custom={pageDirection}
-              initial={reduceMotion ? { opacity: 0 } : { opacity: 0, rotateY: pageDirection > 0 ? -82 : 82, x: pageDirection > 0 ? 24 : -24 }}
-              animate={{ opacity: 1, rotateY: 0, x: 0 }}
-              exit={reduceMotion ? { opacity: 0 } : { opacity: 0, rotateY: pageDirection > 0 ? 82 : -82, x: pageDirection > 0 ? -24 : 24 }}
-              transition={{ duration: reduceMotion ? 0.2 : 0.72, ease: [0.22, 1, 0.36, 1] }}
-              style={{ transformOrigin: pageDirection > 0 ? "left center" : "right center", transformStyle: "preserve-3d" }}
-              className="relative grid min-h-[46rem] overflow-hidden bg-background text-foreground shadow-2xl md:min-h-[40rem] md:grid-cols-2"
-            >
-              <div className="relative flex min-h-[31rem] flex-col border-b border-foreground/15 px-6 pb-7 pt-8 sm:px-9 sm:pb-9 sm:pt-10 md:min-h-0 md:border-b-0 md:border-r md:px-10 md:pb-8 lg:px-14 lg:pt-12">
+        <div className="relative mt-10 [perspective:2200px] sm:mt-12 md:mt-14">
+          <div aria-hidden className="absolute -bottom-3 left-[3%] right-[3%] top-3 bg-background/20 shadow-2xl" />
+          <article className="relative grid min-h-[46rem] overflow-hidden bg-background text-foreground shadow-2xl md:min-h-[42rem] md:grid-cols-2">
+              <div className="relative flex min-h-[31rem] flex-col border-b border-foreground/15 px-6 pb-7 pt-8 sm:px-9 sm:pb-9 sm:pt-10 md:min-h-0 md:border-b-0 md:px-10 md:pb-8 lg:px-14 lg:pt-12">
+                <div className="mb-7 flex items-center justify-between border-y border-foreground/70 py-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/60">
+                  <span>Masters&apos; Union</span>
+                  <span>The founders&apos; issue · 2026</span>
+                </div>
                 <div className="flex items-start justify-between gap-5 border-b border-primary/70 pb-5">
                   <div>
-                    <p className="font-mono text-[9px] uppercase tracking-[0.26em] text-primary">Meet the founder</p>
-                    <h3 className="mt-2 text-[clamp(2.1rem,4.6vw,4.7rem)] font-light leading-[0.92]">{story.name}</h3>
+                    <p className="font-serif-italic text-[clamp(1.4rem,2.4vw,2.2rem)] leading-none text-primary">Meet the founder</p>
+                    <h3 className="mt-3 text-[clamp(2.1rem,4.6vw,4.7rem)] font-light leading-[0.92]">{story.name}</h3>
                   </div>
                   {media.logo && (
                     <span className="flex h-12 w-20 shrink-0 items-center justify-center p-1 sm:h-14 sm:w-24">
@@ -1034,7 +1029,7 @@ function FounderStoriesGallery() {
                   )}
                 </div>
 
-                <div className="grid gap-7 py-7 sm:grid-cols-[0.78fr_1.22fr] sm:gap-8 md:grid-cols-1 lg:grid-cols-[0.82fr_1.18fr]">
+                <div className="grid gap-7 py-7 sm:grid-cols-[0.72fr_1.28fr] sm:gap-8 md:grid-cols-1 lg:grid-cols-[0.74fr_1.26fr]">
                   <div>
                     <p className="font-serif-italic text-[1.55rem] leading-[1.08] text-primary">{story.founder}</p>
                     <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/55">{story.cohort}</p>
@@ -1044,7 +1039,7 @@ function FounderStoriesGallery() {
                     </div>
                   </div>
                   <div className="space-y-4 text-[13px] leading-[1.68] text-foreground/80 sm:text-[14px]">
-                    <p>{story.body}</p>
+                    <p className="first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[3.2rem] first-letter:leading-[0.78] first-letter:text-primary">{story.body}</p>
                     <p className="border-l border-primary/70 pl-4 font-serif-italic text-[1.12rem] leading-[1.45] text-foreground">
                       Built from observation, shaped on campus, and tested in the real world.
                     </p>
@@ -1090,7 +1085,57 @@ function FounderStoriesGallery() {
                 </div>
                 <div aria-hidden className="absolute inset-y-0 left-0 hidden w-5 bg-gradient-to-r from-foreground/20 to-transparent md:block" />
               </div>
-            </motion.article>
+              <div aria-hidden className="pointer-events-none absolute inset-y-0 left-1/2 z-20 hidden w-8 -translate-x-1/2 bg-gradient-to-r from-foreground/10 via-background/40 to-foreground/15 mix-blend-multiply md:block" />
+              <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-3 hidden justify-between px-5 font-mono text-[8px] tracking-[0.2em] text-foreground/35 md:flex">
+                <span>{String(activeStory * 2 + 12).padStart(2, "0")}</span>
+                <span>{String(activeStory * 2 + 13).padStart(2, "0")}</span>
+              </div>
+          </article>
+
+          <AnimatePresence>
+            {turningPage && (() => {
+              const previousStory = SPARK_EXAMPLES[turningPage.storyIndex];
+              const previousMedia = STORY_MEDIA[previousStory.name] ?? {};
+              const previousImage = previousMedia.image ?? previousStory.founderImage;
+              const isForward = turningPage.direction > 0;
+              return (
+                <motion.div
+                  key={turningPage.id}
+                  data-magazine-page-leaf
+                  aria-hidden="true"
+                  initial={{ rotateY: 0 }}
+                  animate={{ rotateY: isForward ? -180 : 180 }}
+                  transition={{ duration: reduceMotion ? 0.18 : 1.05, ease: [0.45, 0, 0.2, 1] }}
+                  onAnimationComplete={() => setTurningPage(null)}
+                  className={`pointer-events-none absolute inset-y-0 z-40 hidden w-1/2 md:block ${isForward ? "right-0 origin-left" : "left-0 origin-right"}`}
+                  style={{ transformStyle: "preserve-3d" }}
+                >
+                  <div className="absolute inset-0 overflow-hidden bg-background shadow-2xl [backface-visibility:hidden]">
+                    {isForward ? (
+                      previousImage ? <img src={previousImage} alt="" className="h-full w-full object-cover grayscale" /> : <div className="h-full bg-muted" />
+                    ) : (
+                      <div className="flex h-full flex-col p-12">
+                        <p className="font-serif-italic text-3xl text-primary">Meet the founder</p>
+                        <p className="mt-4 text-6xl leading-none">{previousStory.name}</p>
+                        <p className="mt-10 max-w-[32ch] text-sm leading-7 text-foreground/70">{previousStory.body}</p>
+                      </div>
+                    )}
+                    <div className={`absolute inset-y-0 w-16 ${isForward ? "left-0 bg-gradient-to-r" : "right-0 bg-gradient-to-l"} from-foreground/25 to-transparent`} />
+                  </div>
+                  <div className="absolute inset-0 overflow-hidden bg-background shadow-2xl [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                    <div className="flex h-full flex-col justify-between p-10 lg:p-14">
+                      <div className="border-y border-foreground/70 py-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/55">The founders&apos; issue</div>
+                      <div>
+                        <p className="font-serif-italic text-[2rem] text-primary">Turning to</p>
+                        <p className="mt-3 text-[clamp(2.5rem,5vw,5rem)] font-light leading-none">{story.name}</p>
+                      </div>
+                      <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-foreground/45">Masters&apos; Union · Founder stories</p>
+                    </div>
+                    <div className={`absolute inset-y-0 w-16 ${isForward ? "right-0 bg-gradient-to-l" : "left-0 bg-gradient-to-r"} from-foreground/25 to-transparent`} />
+                  </div>
+                </motion.div>
+              );
+            })()}
           </AnimatePresence>
         </div>
       </div>
