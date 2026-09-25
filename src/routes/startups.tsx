@@ -1178,24 +1178,24 @@ function FounderStoriesGallery() {
                 <p className="mt-6 max-w-[54ch] font-serif-italic text-[1.05rem] leading-[1.45] text-foreground/80">
                   {editorial.dek}
                 </p>
-                <div className="grid gap-7 py-6 sm:grid-cols-[0.7fr_1.3fr] sm:gap-8 md:grid-cols-1 lg:grid-cols-[0.7fr_1.3fr]">
-                  <div>
-                    <p className="font-serif-italic text-[1.55rem] leading-[1.08] text-primary">{story.founder}</p>
-                    <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/55">{story.cohort}</p>
-                    <div className="mt-6 space-y-4 border-t border-primary/60 pt-5">
-                      {editorial.facts.map((fact) => (
-                        <div key={fact.label}>
-                          <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/45">{fact.label}</p>
-                          <p className="mt-1 text-[12px] font-medium leading-[1.35]">{fact.value}</p>
-                        </div>
-                      ))}
+                <div className="py-6">
+                  <div className="grid grid-cols-2 gap-x-5 gap-y-4 border-b border-primary/60 pb-5 sm:grid-cols-4">
+                    <div>
+                      <p className="font-serif-italic text-[1.35rem] leading-[1.08] text-primary">{story.founder}</p>
+                      <p className="mt-2 font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/55">{story.cohort}</p>
                     </div>
+                    {editorial.facts.map((fact) => (
+                      <div key={fact.label}>
+                        <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/45">{fact.label}</p>
+                        <p className="mt-1 text-[12px] font-medium leading-[1.35]">{fact.value}</p>
+                      </div>
+                    ))}
                   </div>
-                  <div className="space-y-3 text-[12px] leading-[1.62] text-foreground/80 sm:text-[13px]">
+                  <div className="mt-5 columns-1 gap-7 space-y-3 text-[12px] leading-[1.62] text-foreground/80 sm:text-[13px] lg:columns-2">
                     {editorial.paragraphs.slice(0, 3).map((paragraph, index) => (
                       <p
                         key={paragraph}
-                        className={index === 0 ? "first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[3.1rem] first-letter:leading-[0.78] first-letter:text-primary" : ""}
+                        className={`break-inside-avoid ${index === 0 ? "first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[3.1rem] first-letter:leading-[0.78] first-letter:text-primary" : ""}`}
                       >
                         {paragraph}
                       </p>
