@@ -1555,6 +1555,20 @@ function SparkCarousel({
 
   return (
     <div className="relative">
+      {/* Warm the thumbnail cache ahead of the scroll so each card never
+          flashes an empty frame while it slides in. */}
+      <span
+        aria-hidden
+        className="pointer-events-none fixed left-0 top-0 size-px overflow-hidden opacity-0"
+      >
+        {companies.map((item) => (
+          <img
+            key={`preload-${item.videoId}`}
+            src={`https://i.ytimg.com/vi/${item.videoId}/maxresdefault.jpg`}
+            alt=""
+          />
+        ))}
+      </span>
       <div
         ref={storyRef}
         className="relative mt-5 sm:mt-7 md:mt-8"
@@ -1639,13 +1653,34 @@ function SparkCarousel({
                     aria-label={`Play video: ${company.videoTitle}`}
                     className="group relative block aspect-[1200/896] w-full cursor-pointer overflow-hidden rounded-[6px] border border-background/15 bg-black/40 text-left focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60"
                   >
+                    <span aria-hidden className="absolute inset-0 overflow-hidden">
+                      <img
+                        src={`https://i.ytimg.com/vi/${company.videoId}/maxresdefault.jpg`}
+                        onError={(event) => {
+                          const img = event.currentTarget;
+                          if (!img.dataset.fallback) {
+                            img.dataset.fallback = "1";
+                            img.src = `https://i.ytimg.com/vi/${company.videoId}/hqdefault.jpg`;
+                          }
+                        }}
+                        alt=""
+                        className="h-full w-full scale-[1.35] object-cover blur-[26px] brightness-[0.8]"
+                      />
+                    </span>
                     <img
-                      src={`https://i.ytimg.com/vi/${company.videoId}/hqdefault.jpg`}
+                      src={`https://i.ytimg.com/vi/${company.videoId}/maxresdefault.jpg`}
+                      onError={(event) => {
+                        const img = event.currentTarget;
+                        if (!img.dataset.fallback) {
+                          img.dataset.fallback = "1";
+                          img.src = `https://i.ytimg.com/vi/${company.videoId}/hqdefault.jpg`;
+                        }
+                      }}
                       alt={`${company.name} — ${company.videoTitle}`}
-                      loading="lazy"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      className="absolute inset-0 h-full w-full object-contain transition-[filter] duration-500 group-hover:brightness-[1.06]"
                     />
-                    <span aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/30" />
+                    <span aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/25" />
+                    <span aria-hidden className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black via-black/80 to-transparent" />
                     <span
                       aria-hidden
                       className="absolute left-1/2 top-1/2 flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/45 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-black/60 sm:size-16"
