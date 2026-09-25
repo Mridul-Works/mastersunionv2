@@ -1212,7 +1212,7 @@ function FounderStoriesGallery() {
                 </div>
                 <div className="flex items-start justify-between gap-5 border-b border-(--accent)/70 pb-3">
                   <div className="min-w-0">
-                    <p className="font-serif-italic text-[clamp(1.4rem,2.4vw,2.2rem)] leading-none text-(--accent)">Meet the founder</p>
+                    <p className="font-serif-italic text-[clamp(1.4rem,2.4vw,2.2rem)] leading-none text-(--accent)" style={{ color: "var(--accent)" }}>Meet the founder</p>
                     <h3 className="mt-2 break-words pb-1 text-[clamp(2.1rem,4.6vw,4.7rem)] font-light leading-[1]">{story.name}</h3>
                   </div>
                   {media.logo && (
@@ -1223,7 +1223,7 @@ function FounderStoriesGallery() {
                 </div>
 
 
-                <p className="mt-3 max-w-[54ch] font-serif-italic text-[1.05rem] leading-[1.45] text-(--accent)">
+                <p className="mt-3 max-w-[54ch] font-serif-italic text-[1.05rem] leading-[1.45] text-(--accent)" style={{ color: "var(--accent)" }}>
                   {editorial.dek}
                 </p>
                 <div className="py-3">
@@ -1270,7 +1270,7 @@ function FounderStoriesGallery() {
                     </div>
                   );
                   const quote = (big = false) => (
-                    <p className={`border-l-2 border-(--accent) pl-4 font-serif-italic leading-[1.35] text-(--accent) ${big ? "text-[1.5rem]" : "text-[1.15rem]"}`}>
+                    <p style={{ color: "var(--accent)" }} className={`border-l-2 border-(--accent) pl-4 font-serif-italic leading-[1.35] text-(--accent) ${big ? "text-[1.5rem]" : "text-[1.15rem]"}`}>
                       &ldquo;{story.product}&rdquo;
                     </p>
                   );
@@ -1290,7 +1290,7 @@ function FounderStoriesGallery() {
                           <Placeholder kind="image" aspect="h-full" note={story.name} className="!border-0" />
                         )}
                       </div>
-                      <div className="mt-3 flex min-h-8 shrink-0 items-center justify-center gap-2 overflow-hidden whitespace-nowrap font-mono uppercase leading-none tracking-[0.2em] text-foreground/45">
+                      <div className="mt-3 flex min-h-8 shrink-0 flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center font-mono uppercase leading-none tracking-[0.2em] text-foreground/45">
                         <span className="text-[8px]">Founder portrait</span>
                         <span aria-hidden className="text-[8px]">·</span>
                         <span className="truncate text-[11px]">{story.founder}</span>
