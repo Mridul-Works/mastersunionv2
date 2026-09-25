@@ -21,6 +21,13 @@ import {
 import eightVentureImg from "@/assets/founders/ventures/eight.jpg.asset.json";
 import bullspreeVentureImg from "@/assets/founders/ventures/bullspree.jpg.asset.json";
 import outclassDropshippingImg from "@/assets/outclass-dropshipping.jpg.asset.json";
+import sparkProductEight from "@/assets/spark/product-eight.jpg.asset.json";
+import sparkProductPlaysuper from "@/assets/spark/product-playsuper.jpg.asset.json";
+import sparkProductBullspree from "@/assets/spark/product-bullspree.jpg.asset.json";
+import sparkProductMemotag from "@/assets/spark/product-memotag.jpg.asset.json";
+import sparkProductHiveschool from "@/assets/spark/product-hiveschool.jpg.asset.json";
+import sparkProductMetafashion from "@/assets/spark/product-metafashion.jpg.asset.json";
+import sparkProductSeedsai from "@/assets/spark/product-seedsai.jpg.asset.json";
 import outclassContentBrandsImg from "@/assets/outclass/content-brands.jpg";
 import outclassScratchImg from "@/assets/outclass/start-from-scratch.jpg";
 import hiveschoolVentureImg from "@/assets/founders/ventures/hiveschool.jpg.asset.json";
@@ -110,6 +117,7 @@ const SPARK_EXAMPLES: {
   product: string;
   body: string;
   founderImage?: string;
+  productImage?: string;
 }[] = [
   {
     name: "Eight",
@@ -118,6 +126,7 @@ const SPARK_EXAMPLES: {
     product: "The Stage for Stories",
     body: "Mohit Paliwal, Mohit Goswami, and Yugal Tamang realized at a Masters' Union cafeteria table that not everyone wants to be seen, but everyone has a story worth telling — Eight became the stage for it.",
     founderImage: sparkEightFounders.url,
+    productImage: sparkProductEight.url,
   },
   {
     name: "PlaySuper",
@@ -126,6 +135,7 @@ const SPARK_EXAMPLES: {
     product: "Rewards for Casual Gamers",
     body: "Shouradeep Chakraborty and his co-founders saw India's 438M casual gamers churning out of games that gave nothing back — PlaySuper is the rewards platform that turns loyalty into real-world incentives.",
     founderImage: brandPhotoPlaysuper,
+    productImage: sparkProductPlaysuper.url,
   },
   {
     name: "Bullspree",
@@ -134,6 +144,7 @@ const SPARK_EXAMPLES: {
     product: "The Stock Market Playground",
     body: "Dharmil Bavishi went from supply-chain analyst to the CEO's office, then asked why learning to invest felt so intimidating — Bullspree turns India's curiosity about markets into financial confidence.",
     founderImage: brandPhotoBullspree,
+    productImage: sparkProductBullspree.url,
   },
   {
     name: "MemoTag",
@@ -142,6 +153,7 @@ const SPARK_EXAMPLES: {
     product: "AI Wearable for Dementia Care",
     body: "Reyansh Juneja started MemoTag while still an undergraduate — an AI-driven wearable purpose-built for dementia care, designed to catch the moments caregivers can't.",
     founderImage: brandPhotoMemotag,
+    productImage: sparkProductMemotag.url,
   },
   {
     name: "Hive School",
@@ -150,6 +162,7 @@ const SPARK_EXAMPLES: {
     product: "India's First Sales School",
     body: "Nikhil Gaur built a ₹2 Cr run rate while still a student — Hive School is India's first Sales School, training the next generation of GTM operators companies are desperate to hire.",
     founderImage: brandPhotoHiveschool,
+    productImage: sparkProductHiveschool.url,
   },
   {
     name: "Meta Fashion",
@@ -158,6 +171,7 @@ const SPARK_EXAMPLES: {
     product: "Phygital Fashion Commerce",
     body: "Arjun Goel is connecting in-game discovery with real-world fashion — Meta Fashion's phygital commerce lets players find a look inside the game and wear it outside it.",
     founderImage: brandPhotoMetafashion,
+    productImage: sparkProductMetafashion.url,
   },
   {
     name: "SeedsAI",
@@ -166,6 +180,7 @@ const SPARK_EXAMPLES: {
     product: "AI for NBFC Review",
     body: "Shubham Khatri and Vansh Miglani didn't start with a business plan. They started by shadowing NBFC call-center agents and noticing how much time was wasted on manual review.",
     founderImage: sparkSeedsAiFounders.url,
+    productImage: sparkProductSeedsai.url,
   },
 ];
 
@@ -1610,6 +1625,8 @@ function SparkCarousel({
                   <Placeholder
                     kind="image"
                     aspect="aspect-[1200/896]"
+                    src={company.productImage}
+                    alt={company.productImage ? `${company.name} — ${company.product}` : undefined}
                     note={`${company.name} — product detail`}
                     className="rounded-[6px]"
                   />
