@@ -1147,7 +1147,12 @@ function FounderStoriesGallery() {
   }, [image]);
 
   const turnPage = (direction: 1 | -1) => {
+    const scrollY = window.scrollY;
     setActiveStory((current) => (current + direction + total) % total);
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: scrollY, behavior: "instant" as ScrollBehavior });
+      requestAnimationFrame(() => window.scrollTo({ top: scrollY, behavior: "instant" as ScrollBehavior }));
+    });
   };
 
   return (
