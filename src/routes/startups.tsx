@@ -1299,7 +1299,7 @@ function FounderStoriesGallery() {
                   <div className="mt-3 flex shrink-0 items-end justify-between gap-5 border-t border-primary/60 pt-2">
                     <div className="min-w-0">
                       <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/45">Founder portrait</p>
-                      <p className="mt-1 truncate font-serif-italic text-[1.05rem] leading-[1.2] text-primary">{story.founder}</p>
+                      <p className="mt-1 truncate font-mono text-[11px] uppercase tracking-[0.2em] text-foreground/45">{story.founder}</p>
                     </div>
                     <span className="shrink-0 font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/45">
                       {story.cohort} · {String(activeStory + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
