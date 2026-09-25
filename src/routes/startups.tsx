@@ -1283,7 +1283,7 @@ function FounderStoriesGallery() {
                 </div>
 
                 {/* Bottom half — image, orientation-aware */}
-                <div className="relative min-h-0 basis-1/2 overflow-hidden border-t border-foreground/15 bg-muted">
+                <div className="relative min-h-0 basis-1/2 overflow-hidden border-t border-foreground/15 bg-muted md:ml-8">
                   {image ? (
                     imageOrientation === "portrait" ? (
                       <div className="grid h-full grid-cols-[1fr_auto_1fr] items-stretch">
