@@ -1178,7 +1178,7 @@ function FounderStoriesGallery() {
                     </div>
                   </div>
                   <div className="space-y-3 text-[12px] leading-[1.62] text-foreground/80 sm:text-[13px]">
-                    {editorial.paragraphs.slice(0, 2).map((paragraph, index) => (
+                    {editorial.paragraphs.slice(0, 1).map((paragraph, index) => (
                       <p
                         key={paragraph}
                         className={index === 0 ? "first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[3.1rem] first-letter:leading-[0.78] first-letter:text-primary" : ""}
@@ -1221,7 +1221,7 @@ function FounderStoriesGallery() {
                     <span>{story.cohort}</span>
                   </div>
                   <div className="columns-1 gap-7 space-y-3 text-[12px] leading-[1.62] text-foreground/80 sm:text-[13px] lg:columns-2">
-                    {editorial.paragraphs.slice(2).map((paragraph) => (
+                    {editorial.paragraphs.slice(1).map((paragraph) => (
                       <p key={paragraph}>{paragraph}</p>
                     ))}
                     <p className="break-inside-avoid border-l-2 border-primary pl-4 font-serif-italic text-[1.15rem] leading-[1.35] text-primary">
