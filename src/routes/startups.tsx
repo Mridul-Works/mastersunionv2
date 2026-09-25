@@ -118,20 +118,6 @@ const SPARK_EXAMPLES: {
     founderImage: sparkEightFounders.url,
   },
   {
-    name: "Sanyark Space",
-    founder: "Raghava Kundrapu & Akhileshwar Reddy",
-    cohort: "PGP TBM 2023",
-    product: "LEO Nav-Com Satellites",
-    body: "Raghava Kundrapu spent eight years as an ISRO scientist before his PGP TBM — then teamed up with fellow ISRO veteran Akhileshwar Reddy to build Sanyark Space: LEO satellites that fuse precision navigation with secure communications.",
-  },
-  {
-    name: "Mandrake Bio",
-    founder: "Tanay Lohia",
-    cohort: "PGP TBM 2022",
-    product: "AI-Designed Gene-Editing Enzymes",
-    body: "Tanay Lohia graduated top of his PGP TBM cohort and chose to make life programmable — Mandrake Bio uses generative AI to design gene-editing enzymes from scratch, and just raised ₹16 Cr to prove the approach.",
-  },
-  {
     name: "PlaySuper",
     founder: "Shouradeep Chakraborty & co.",
     cohort: "PGP TBM 2024",
@@ -1034,8 +1020,8 @@ function FounderStoriesGallery() {
             </Reveal>
             <Reveal delay={0.05}>
               <h2 className="mt-5 max-w-[20ch] text-[clamp(1.8rem,4.2vw,3.6rem)] font-light leading-[1.08]">
-                Nine founders.{" "}
-                <span className="font-serif-italic !font-serif !font-light !text-background/70">Nine first moves.</span>
+                Seven founders.{" "}
+                <span className="font-serif-italic !font-serif !font-light !text-background/70">Seven first moves.</span>
               </h2>
             </Reveal>
           </div>
