@@ -2444,6 +2444,8 @@ function VenturesMosaicSection() {
 
   return (
     <Section id="ventures" tone="light">
+      {/* Secondary divider rule under the VIP section */}
+      <div aria-hidden className="pointer-events-none absolute left-[6%] right-[6%] top-0 z-[1] h-px bg-background/15" />
       <div className="mb-4 flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
         <div>
           <p className="font-mono text-[9px] uppercase tracking-[0.28em] text-background/40 sm:text-[10px]">
