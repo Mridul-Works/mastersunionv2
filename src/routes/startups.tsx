@@ -1157,13 +1157,19 @@ function FounderStoriesGallery() {
     }).__lenis;
     lenis?.stop?.();
     setActiveStory((current) => (current + direction + total) % total);
-    requestAnimationFrame(() => {
+    const restoreScroll = () => {
       lenis?.scrollTo?.(scrollY, { immediate: true, force: true });
       window.scrollTo({ top: scrollY, behavior: "instant" as ScrollBehavior });
+    };
+    restoreScroll();
+    requestAnimationFrame(() => {
+      restoreScroll();
       requestAnimationFrame(() => {
-        lenis?.scrollTo?.(scrollY, { immediate: true, force: true });
-        window.scrollTo({ top: scrollY, behavior: "instant" as ScrollBehavior });
-        lenis?.start?.();
+        restoreScroll();
+        window.setTimeout(() => {
+          restoreScroll();
+          lenis?.start?.();
+        }, 80);
       });
     });
   };
