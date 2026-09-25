@@ -1291,21 +1291,16 @@ function FounderStoriesGallery() {
                       <p className="font-mono text-[8px] uppercase leading-none tracking-[0.2em] text-foreground/45">Founder portrait</p>
                       <p className="mt-1.5 truncate font-mono text-[11px] uppercase leading-none tracking-[0.2em] text-foreground/45">{story.founder}</p>
                     </div>
-                    <div className="flex shrink-0 items-end gap-7">
-                      <span className="font-mono text-[8px] uppercase leading-none tracking-[0.2em] text-foreground/45">
-                        {story.cohort} · {String(activeStory + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-                      </span>
-                      <button
-                        type="button"
-                        onMouseDown={(event) => event.preventDefault()}
-                        onClick={() => turnPage(1)}
-                        aria-label="Go to next founder story"
-                        className="group flex items-center gap-2 font-mono text-[9px] uppercase leading-none tracking-[0.2em] text-foreground/45 transition-colors hover:text-primary"
-                      >
-                        Next
-                        <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={1.5} />
-                      </button>
-                    </div>
+                    <button
+                      type="button"
+                      onMouseDown={(event) => event.preventDefault()}
+                      onClick={() => turnPage(1)}
+                      aria-label="Go to next founder story"
+                      className="group flex shrink-0 items-center gap-2 font-mono text-[9px] uppercase leading-none tracking-[0.2em] text-foreground/45 transition-colors hover:text-primary"
+                    >
+                      Next
+                      <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={1.5} />
+                    </button>
                   </div>
                 </div>
 
