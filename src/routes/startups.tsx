@@ -1209,67 +1209,6 @@ function FounderStoriesGallery() {
               </div>
           </article>
 
-          <AnimatePresence>
-            {turningPage && (() => {
-              const previousStory = SPARK_EXAMPLES[turningPage.storyIndex];
-              const previousMedia = STORY_MEDIA[previousStory.name] ?? {};
-              const previousImage = previousMedia.image ?? previousStory.founderImage;
-              const isForward = turningPage.direction > 0;
-              return (
-                <motion.div
-                  key={turningPage.id}
-                  data-magazine-page-leaf
-                  aria-hidden="true"
-                  initial={{ rotateY: 0 }}
-                  animate={{ rotateY: isForward ? -180 : 180 }}
-                  transition={{ duration: reduceMotion ? 0.18 : 1.05, ease: [0.45, 0, 0.2, 1] }}
-                  onAnimationComplete={() => setTurningPage(null)}
-                  className={`pointer-events-none absolute inset-y-0 z-40 hidden w-1/2 md:block ${isForward ? "right-0 origin-left" : "left-0 origin-right"}`}
-                  style={{ transformStyle: "preserve-3d" }}
-                >
-                  <div className="absolute inset-0 overflow-hidden bg-background shadow-2xl [backface-visibility:hidden]">
-                    {isForward ? (
-                      previousImage ? <img src={previousImage} alt="" className="h-full w-full object-cover grayscale" /> : <div className="h-full bg-muted" />
-                    ) : (
-                      <div className="flex h-full flex-col p-12">
-                        <p className="font-serif-italic text-3xl text-primary">Meet the founder</p>
-                        <p className="mt-4 text-6xl leading-none">{previousStory.name}</p>
-                        <p className="mt-10 max-w-[32ch] text-sm leading-7 text-foreground/70">{previousStory.body}</p>
-                      </div>
-                    )}
-                    <div className={`absolute inset-y-0 w-16 ${isForward ? "left-0 bg-gradient-to-r" : "right-0 bg-gradient-to-l"} from-foreground/25 to-transparent`} />
-                  </div>
-                  <div className="absolute inset-0 overflow-hidden bg-background shadow-2xl [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                    <div className="flex h-full flex-col p-8 lg:p-11">
-                      <div className="flex items-center justify-between border-y border-foreground/70 py-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/55">
-                        <span>Masters&apos; Union</span>
-                        <span>The founders&apos; issue · 2026</span>
-                      </div>
-                      <div className="mt-6 border-b border-primary/70 pb-4">
-                        <p className="font-serif-italic text-[1.45rem] leading-none text-primary">Meet the founder</p>
-                        <p className="mt-2 text-[clamp(2rem,3.6vw,3.5rem)] font-light leading-none">{story.name}</p>
-                      </div>
-                      <p className="mt-5 font-serif-italic text-[1rem] leading-[1.45] text-foreground/75">{editorial.dek}</p>
-                      <div className="mt-5 space-y-3 text-[0.72rem] leading-[1.55] text-foreground/78 lg:text-[0.78rem]">
-                        {editorial.paragraphs.map((paragraph) => (
-                          <p key={paragraph}>{paragraph}</p>
-                        ))}
-                      </div>
-                      <div className="mt-auto grid grid-cols-3 gap-3 border-t border-primary/60 pt-4">
-                        {editorial.facts.map((fact) => (
-                          <div key={fact.label} className="min-w-0">
-                            <p className="font-mono text-[7px] uppercase tracking-[0.18em] text-foreground/45">{fact.label}</p>
-                            <p className="mt-1 break-words text-[0.68rem] leading-[1.3]">{fact.value}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    <div className={`absolute inset-y-0 w-16 ${isForward ? "right-0 bg-gradient-to-l" : "left-0 bg-gradient-to-r"} from-foreground/25 to-transparent`} />
-                  </div>
-                </motion.div>
-              );
-            })()}
-          </AnimatePresence>
         </div>
       </div>
     </section>
