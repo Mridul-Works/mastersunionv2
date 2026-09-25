@@ -2553,12 +2553,14 @@ function VipJourney({ stages }: { stages: Stage[] }) {
   }, [active, stages.length]);
 
   const stage = stages[active];
+  const previousStage = stages[Math.max(0, active - 1)];
+  const nextStage = stages[Math.min(stages.length - 1, active + 1)];
   const progress = ((active + 1) / stages.length) * 100;
 
   return (
     <div
       ref={cardRef}
-      className="relative mt-10 h-[min(78svh,48rem)] min-h-[38rem] overflow-hidden rounded-[8px] border border-background/15 bg-[#F5E7C8] text-foreground sm:mt-12 md:h-[min(82svh,52rem)] md:min-h-[42rem] lg:mt-16 lg:min-h-[44rem]"
+      className="relative mt-10 h-[44rem] overflow-hidden rounded-xl border border-background/10 bg-foreground text-background shadow-2xl sm:mt-12 sm:h-[48rem] md:h-[34rem] md:rounded-[2rem] lg:mt-16 lg:h-[40rem]"
       onPointerDown={(event) => { pointerStartRef.current = event.clientX; }}
       onPointerUp={(event) => {
         const start = pointerStartRef.current;
@@ -2567,82 +2569,103 @@ function VipJourney({ stages }: { stages: Stage[] }) {
         goTo(active + (event.clientX < start ? 1 : -1));
       }}
     >
-      <AnimatePresence mode="wait" custom={direction}>
-        <motion.div
-          key={stage.name}
-          custom={direction}
-          initial={reduceMotion ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: reduceMotion ? 0 : 0.28, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute inset-0 grid md:grid-cols-[minmax(0,1.7fr)_minmax(19rem,0.8fr)]"
-        >
-          <div className="relative min-h-0 overflow-hidden">
-            <motion.img
-              src={stage.image}
-              alt={`${stage.name} stage of the Venture Initiation Programme`}
-              className="h-full w-full object-cover"
-              initial={reduceMotion ? false : { scale: 1.08, x: direction * 28 }}
-              animate={{ scale: 1, x: 0 }}
-              exit={reduceMotion ? undefined : { scale: 1.03, x: direction * -18 }}
-              transition={{ duration: reduceMotion ? 0 : 0.55, ease: [0.22, 1, 0.36, 1] }}
-            />
-            <div aria-hidden className="absolute inset-0 bg-linear-to-t from-foreground/90 via-foreground/10 to-foreground/35 md:bg-linear-to-r md:from-foreground/20 md:via-transparent md:to-foreground/35" />
-            <div className="absolute inset-x-5 top-5 flex items-start justify-between text-background sm:inset-x-7 sm:top-7 lg:inset-x-10 lg:top-9">
-              <div>
-                <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-background/60">The Venture Initiation Programme</p>
-                <p className="mt-2 max-w-[12ch] font-display text-[clamp(1.25rem,2.2vw,2rem)] font-medium leading-[0.95]">From Idea to Demo Day</p>
-              </div>
-              <span className="font-mono text-[10px] tracking-[0.16em] text-background/65">{stage.n} / {String(stages.length).padStart(2, "0")}</span>
-            </div>
-            <motion.span
-              aria-hidden
-              className="absolute bottom-1 left-3 font-serif-italic text-[clamp(9rem,22vw,20rem)] leading-none text-background/12 sm:left-6"
-              initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reduceMotion ? 0 : 0.45 }}
+      <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-1/2 bg-linear-to-l from-primary/10 to-transparent" />
+      <div className="grid h-full grid-rows-[43%_57%] md:grid-cols-12 md:grid-rows-1">
+        <div className="relative flex min-h-0 items-center justify-center overflow-hidden p-4 sm:p-6 md:col-span-7 md:p-8 lg:p-12">
+          {active > 0 && (
+            <button
+              type="button"
+              aria-label={`Show ${previousStage.name}`}
+              onClick={() => goTo(active - 1)}
+              className="absolute -left-9 top-1/2 hidden aspect-[4/5] w-[12rem] -translate-y-1/2 overflow-hidden rounded-xl border border-background/10 opacity-25 blur-[2px] transition-all duration-500 hover:opacity-50 hover:blur-none md:block lg:-left-12 lg:w-[15rem]"
             >
-              {stage.n}
-            </motion.span>
-          </div>
+              <img src={previousStage.image} alt="" className="h-full w-full object-cover" />
+            </button>
+          )}
+          {active < stages.length - 1 && (
+            <button
+              type="button"
+              aria-label={`Show ${nextStage.name}`}
+              onClick={() => goTo(active + 1)}
+              className="absolute -right-9 top-1/2 hidden aspect-[4/5] w-[12rem] -translate-y-1/2 overflow-hidden rounded-xl border border-background/10 opacity-25 blur-[2px] transition-all duration-500 hover:opacity-50 hover:blur-none md:block lg:-right-12 lg:w-[15rem]"
+            >
+              <img src={nextStage.image} alt="" className="h-full w-full object-cover" />
+            </button>
+          )}
 
-          <div className="relative z-10 flex min-h-[22rem] flex-col justify-between border-t border-foreground/15 bg-[#F5E7C8] px-5 py-6 sm:px-8 sm:py-8 md:min-h-0 md:border-l md:border-t-0 lg:px-10 lg:py-10">
+          <AnimatePresence mode="wait" custom={direction}>
             <motion.div
-              initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reduceMotion ? 0 : 0.35, delay: reduceMotion ? 0 : 0.08 }}
+              key={stage.name}
+              custom={direction}
+              initial={reduceMotion ? false : { opacity: 0, y: 22, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={reduceMotion ? undefined : { opacity: 0, y: -16, scale: 0.985 }}
+              transition={{ duration: reduceMotion ? 0 : 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="relative z-20 aspect-[4/5] h-full max-h-[17rem] overflow-hidden rounded-xl border border-primary/40 shadow-2xl sm:max-h-[20rem] md:max-h-[26rem] lg:max-h-[32rem]"
             >
-              <div className="flex items-center gap-2 font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-foreground/55">
+              <motion.img
+                src={stage.image}
+                alt={`${stage.name} stage of the Venture Initiation Programme`}
+                className="h-full w-full object-cover"
+                initial={reduceMotion ? false : { scale: 1.07 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: reduceMotion ? 0 : 0.9, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <div aria-hidden className="absolute inset-0 bg-linear-to-t from-foreground/90 via-transparent to-foreground/20" />
+              <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-background/25 bg-foreground/25 px-3 py-1.5 backdrop-blur-md">
                 <span className={`size-1.5 rounded-full ${stage.culmination ? "bg-accent" : "bg-primary"}`} />
-                Stage {stage.n}
+                <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-background">VIP Stage</span>
               </div>
-              <h3 className="mt-5 max-w-[9ch] font-serif-italic text-[clamp(2.8rem,5vw,5.7rem)] font-light leading-[0.88] text-foreground">{stage.name}</h3>
-              <p className="mt-6 max-w-[34ch] text-[13px] leading-[1.65] text-foreground/65 sm:text-[14px] lg:mt-8 lg:text-[15px] lg:leading-[1.75]">{stage.body}</p>
-              <div className="mt-7 min-h-10 border-t border-foreground/15 pt-4 lg:mt-9">
-                <span className="block font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/40">{stage.grant ? "Grant" : "Investors in the room"}</span>
-                <span className="mt-1 block text-[13px] font-medium text-foreground">{stage.grant ?? "150+"}</span>
+              <div className="absolute inset-x-5 bottom-5">
+                <div className="font-mono text-[9px] uppercase tracking-[0.2em] text-background/60">Chapter · {stage.n}</div>
+                <div className="mt-1 font-serif-italic text-[clamp(1.6rem,3vw,2.6rem)] leading-none text-background">{stage.name}</div>
               </div>
             </motion.div>
+          </AnimatePresence>
+        </div>
 
-            <div className="mt-7 flex items-end justify-between gap-5">
-              <div className="min-w-0 flex-1">
-                <div className="h-px overflow-hidden bg-foreground/15">
-                  <motion.div className="h-full origin-left bg-primary" animate={{ width: `${progress}%` }} transition={{ duration: reduceMotion ? 0 : 0.5 }} />
-                </div>
-                <p className="mt-3 font-mono text-[8px] uppercase tracking-[0.18em] text-foreground/40">Step {stage.n} of {String(stages.length).padStart(2, "0")}</p>
+        <div className="relative flex min-h-0 flex-col justify-between border-t border-background/10 bg-background/[0.03] p-5 backdrop-blur-xl sm:p-7 md:col-span-5 md:border-l md:border-t-0 md:p-8 lg:p-10">
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={`vip-story-${stage.name}`}
+              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={reduceMotion ? undefined : { opacity: 0, y: -10 }}
+              transition={{ duration: reduceMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-primary">The Venture Initiation Programme</p>
+              <div className="mt-4 flex items-baseline gap-3 sm:mt-5">
+                <span className="font-serif-italic text-3xl text-primary lg:text-4xl">{stage.n}</span>
+                <span aria-hidden className="h-px flex-1 bg-background/15" />
+                <span className="font-mono text-xs text-background/35">{String(stages.length).padStart(2, "0")}</span>
               </div>
-              <div className="flex shrink-0 gap-2">
-                <button type="button" aria-label="Previous VIP stage" onClick={() => goTo(active - 1)} disabled={active === 0} className="flex size-11 items-center justify-center rounded-full border border-foreground/20 text-foreground transition-colors hover:bg-foreground hover:text-background disabled:pointer-events-none disabled:opacity-25">
-                  <ArrowRight className="size-4 rotate-180" strokeWidth={1.5} />
-                </button>
-                <button type="button" aria-label="Next VIP stage" onClick={() => goTo(active + 1)} disabled={active === stages.length - 1} className="flex size-11 items-center justify-center rounded-full bg-foreground text-background transition-opacity hover:opacity-80 disabled:pointer-events-none disabled:opacity-25">
-                  <ArrowRight className="size-4" strokeWidth={1.5} />
-                </button>
+              <h3 className="mt-5 max-w-[12ch] font-display text-[clamp(1.45rem,2.4vw,2.2rem)] font-semibold uppercase leading-[1.05] text-primary">{stage.name}</h3>
+              <p className="mt-4 max-w-[36ch] text-[13px] leading-[1.65] text-background/72 sm:text-[14px] lg:mt-5 lg:text-[15px] lg:leading-[1.7]">{stage.body}</p>
+              <div className="relative mt-5 overflow-hidden rounded-lg border border-background/10 bg-background/[0.05] p-4 sm:p-5 lg:mt-7 lg:rounded-2xl lg:p-6">
+                <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-background/45">{stage.grant ? "Stage grant" : "Investors in the room"}</span>
+                <strong className="mt-2 block font-serif-italic text-[clamp(1.7rem,3vw,2.8rem)] font-normal leading-none text-background">{stage.grant ?? "150+"}</strong>
               </div>
+            </motion.div>
+          </AnimatePresence>
+
+          <div className="mt-5 flex items-end justify-between gap-4">
+            <div className="min-w-0 flex-1">
+              <div className="h-px overflow-hidden bg-background/15">
+                <motion.div className="h-full origin-left bg-primary" animate={{ width: `${progress}%` }} transition={{ duration: reduceMotion ? 0 : 0.45 }} />
+              </div>
+              <p className="mt-3 font-mono text-[8px] uppercase tracking-[0.18em] text-background/40">Step {stage.n} of {String(stages.length).padStart(2, "0")}</p>
+            </div>
+            <div className="flex shrink-0 gap-2">
+              <button type="button" aria-label="Previous VIP stage" onClick={() => goTo(active - 1)} disabled={active === 0} className="flex size-10 items-center justify-center rounded-full border border-background/20 text-background/70 transition-colors hover:border-background/50 hover:text-background disabled:pointer-events-none disabled:opacity-25 sm:size-12">
+                <ArrowRight className="size-4 rotate-180" strokeWidth={1.5} />
+              </button>
+              <button type="button" aria-label="Next VIP stage" onClick={() => goTo(active + 1)} disabled={active === stages.length - 1} className="flex size-10 items-center justify-center rounded-full bg-background text-foreground transition-opacity hover:opacity-80 disabled:pointer-events-none disabled:opacity-25 sm:size-12">
+                <ArrowRight className="size-4" strokeWidth={1.5} />
+              </button>
             </div>
           </div>
-        </motion.div>
-      </AnimatePresence>
+        </div>
+      </div>
     </div>
   );
 }
