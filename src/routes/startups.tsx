@@ -1680,6 +1680,7 @@ function SparkCarousel({
                       className="absolute inset-0 h-full w-full object-contain transition-[filter] duration-500 group-hover:brightness-[1.06]"
                     />
                     <span aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/25" />
+                    <span aria-hidden className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black via-black/80 to-transparent" />
                     <span
                       aria-hidden
                       className="absolute left-1/2 top-1/2 flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/45 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-black/60 sm:size-16"
