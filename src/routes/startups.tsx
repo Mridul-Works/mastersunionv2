@@ -1257,7 +1257,7 @@ function FounderStoriesGallery() {
                   <div className="mb-5 flex items-center justify-between border-b border-foreground/20 pb-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/50">
                     <span>{story.name} · continued</span>
                   </div>
-                  <div className="grid grid-cols-1 items-start gap-3 text-[13px] leading-[1.62] text-foreground/80 lg:grid-cols-2 lg:gap-7 lg:text-[14px]">
+                  <div className="grid grid-cols-1 items-start gap-3 text-[13px] leading-[1.62] text-foreground/80 lg:grid-cols-2 lg:gap-7 xl:text-[14px]">
                     <div className="space-y-3">
                       {editorial.paragraphs.slice(4, 6).map((paragraph) => (
                         <p key={paragraph}>{paragraph}</p>
