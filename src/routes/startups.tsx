@@ -2930,10 +2930,7 @@ function ByTheNumbers() {
           </Reveal>
         </div>
 
-        <Reveal
-          delay={0.12}
-          className="lg:col-span-5 lg:justify-self-end lg:text-right xl:col-span-4"
-        >
+        <Reveal delay={0.12} className="lg:col-span-5 lg:justify-self-end xl:col-span-4">
           <div className="font-mono text-[10px] uppercase leading-relaxed tracking-[0.2em] text-background/40">
             Total valuation, across 30+ startups
           </div>
