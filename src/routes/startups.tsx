@@ -44,6 +44,12 @@ import instaVideo4 from "@/assets/insta-video-4.mp4.asset.json";
 import instaVideo4Poster from "@/assets/insta-video-4-frame.jpg.asset.json";
 import instaVideo5 from "@/assets/insta-video-5.mp4.asset.json";
 import instaVideo5Poster from "@/assets/insta-video-5-frame.jpg.asset.json";
+import hsslReel1 from "@/assets/hssl-reel-1.mp4.asset.json";
+import hsslReel1Poster from "@/assets/hssl-reel-1-frame.jpg.asset.json";
+import hsslReel2 from "@/assets/hssl-reel-2.mp4.asset.json";
+import hsslReel2Poster from "@/assets/hssl-reel-2-frame.jpg.asset.json";
+import hsslReel3 from "@/assets/hssl-reel-3.mp4.asset.json";
+import hsslReel3Poster from "@/assets/hssl-reel-3-frame.jpg.asset.json";
 import sparkVideoThumb from "@/assets/spark-video-thumb.jpg";
 
 import sparkSeedsAiFounders from "@/assets/spark/seedsai-founders.jpg.asset.json";
