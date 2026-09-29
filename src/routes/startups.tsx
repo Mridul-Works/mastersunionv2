@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
+import { Fragment, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AnimatePresence, motion, useMotionValue, useReducedMotion, useTransform } from "framer-motion";
@@ -3074,7 +3074,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
               type="button"
               aria-label={`Show ${previousStage.name}`}
               onClick={() => goTo(active - 1)}
-              className="absolute -left-9 top-1/2 hidden aspect-[4/5] w-[12rem] -translate-y-1/2 overflow-hidden rounded-xl border border-background/10 opacity-25 blur-[2px] transition-all duration-500 hover:opacity-50 hover:blur-none md:block lg:-left-12 lg:w-[15rem]"
+              className="absolute -left-9 top-1/2 hidden aspect-[4/5] w-[12rem] -translate-y-1/2 overflow-hidden border border-background/10 opacity-25 blur-[2px] transition-all duration-500 hover:opacity-50 hover:blur-none md:block lg:-left-12 lg:w-[15rem]"
             >
               <img src={previousStage.image} alt="" className="h-full w-full object-cover" />
             </button>
@@ -3084,7 +3084,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
               type="button"
               aria-label={`Show ${nextStage.name}`}
               onClick={() => goTo(active + 1)}
-              className="absolute -right-9 top-1/2 hidden aspect-[4/5] w-[12rem] -translate-y-1/2 overflow-hidden rounded-xl border border-background/10 opacity-25 blur-[2px] transition-all duration-500 hover:opacity-50 hover:blur-none md:block lg:-right-12 lg:w-[15rem]"
+              className="absolute -right-9 top-1/2 hidden aspect-[4/5] w-[12rem] -translate-y-1/2 overflow-hidden border border-background/10 opacity-25 blur-[2px] transition-all duration-500 hover:opacity-50 hover:blur-none md:block lg:-right-12 lg:w-[15rem]"
             >
               <img src={nextStage.image} alt="" className="h-full w-full object-cover" />
             </button>
@@ -3098,7 +3098,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={reduceMotion ? undefined : { opacity: 0, y: -16, scale: 0.985 }}
               transition={{ duration: reduceMotion ? 0 : 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="relative z-20 aspect-[4/5] h-full max-h-[17rem] overflow-hidden rounded-xl border border-background/20 shadow-2xl sm:max-h-[20rem] md:max-h-[26rem] lg:max-h-[32rem]"
+              className="relative z-20 aspect-[4/5] h-full max-h-[17rem] overflow-hidden border border-background/20 shadow-2xl sm:max-h-[20rem] md:max-h-[26rem] lg:max-h-[32rem]"
             >
               <motion.img
                 src={stage.image}
@@ -3109,13 +3109,24 @@ function VipJourney({ stages }: { stages: Stage[] }) {
                 transition={{ duration: reduceMotion ? 0 : 0.9, ease: [0.22, 1, 0.36, 1] }}
               />
               <div aria-hidden className="absolute inset-0 bg-linear-to-t from-foreground/90 via-transparent to-foreground/20" />
-              <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-background/25 bg-foreground/25 px-3 py-1.5 backdrop-blur-md">
-                <span className="size-1.5 rounded-full bg-accent" />
-                <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-background">VIP Stage</span>
-              </div>
-              <div className="absolute inset-x-5 bottom-5">
-                <div className="font-mono text-[9px] uppercase tracking-[0.2em] text-background/60">Chapter · {stage.n}</div>
-                <div className="mt-1 font-serif-italic text-[clamp(1.6rem,3vw,2.6rem)] leading-none text-background">{stage.name}</div>
+              {/* Label inside a solid container — green / red, as on the OutClass posters. */}
+              <span className={`absolute left-0 top-0 px-2 py-1 font-tech text-[9px] font-bold uppercase ${active % 2 === 0 ? "bg-accent text-accent-foreground" : "bg-destructive text-destructive-foreground"}`}>
+                VIP · Stage {stage.n}
+              </span>
+              <span aria-hidden className="absolute right-3 top-3 font-tech text-[10px] uppercase tracking-[0.18em] text-background/60 [writing-mode:vertical-rl]">
+                VIP // Journey
+              </span>
+                <div className="absolute inset-x-4 bottom-4">
+                <div className="font-tech text-[10px] font-bold uppercase tracking-[0.18em] text-background/70">Chapter · {stage.n}</div>
+                <div aria-hidden className="my-3 h-px bg-background/30" />
+                <h4 className="font-display text-[clamp(1.05rem,2.9vw,2.3rem)] font-black uppercase leading-[0.85] text-background [text-wrap:balance]">
+                  {stage.name.split(" ").map((word, i, words) => (
+                    <Fragment key={`${word}-${i}`}>
+                      <span className="whitespace-nowrap">{word}</span>
+                      {i < words.length - 1 ? " " : null}
+                    </Fragment>
+                  ))}
+                </h4>
               </div>
             </motion.div>
           </AnimatePresence>
@@ -3136,7 +3147,14 @@ function VipJourney({ stages }: { stages: Stage[] }) {
                 <span aria-hidden className="h-px flex-1 bg-background/15" />
                 <span className="font-mono text-xs text-background/35">{String(stages.length).padStart(2, "0")}</span>
               </div>
-              <h3 className="mt-5 max-w-[12ch] font-display text-[clamp(1.45rem,2.4vw,2.2rem)] font-semibold uppercase leading-[1.05] text-background">{stage.name}</h3>
+              <h3 className="mt-5 max-w-[16ch] font-display text-[clamp(1.45rem,2.4vw,2.2rem)] font-semibold uppercase leading-[1.05] text-background">
+                {stage.name.split(" ").map((word, i, words) => (
+                  <Fragment key={`${word}-${i}`}>
+                    <span className="whitespace-nowrap">{word}</span>
+                    {i < words.length - 1 ? " " : null}
+                  </Fragment>
+                ))}
+              </h3>
               <p className="mt-4 max-w-[36ch] text-[13px] leading-[1.65] text-background/72 sm:text-[14px] lg:mt-5 lg:text-[15px] lg:leading-[1.7]">{stage.body}</p>
               <div className="relative mt-5 overflow-hidden rounded-lg border border-background/10 bg-background/[0.05] p-4 sm:p-5 lg:mt-7 lg:rounded-2xl lg:p-6">
                 <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-background/45">{stage.grant ? "Stage grant" : "Investors in the room"}</span>
