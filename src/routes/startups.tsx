@@ -1916,11 +1916,10 @@ function SparkCarousel({
                     />
                     <span aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/25" />
                     <span aria-hidden className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black via-black/80 to-transparent" />
-                    <span
-                      aria-hidden
-                      className="absolute left-1/2 top-1/2 flex size-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/45 backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-black/60 sm:size-16"
-                    >
-                      <Play className="ml-0.5 size-5 fill-white text-white sm:size-6" />
+                    <span aria-hidden className="absolute inset-0 grid place-items-center">
+                      <span className="grid size-14 place-items-center bg-accent text-accent-foreground">
+                        <Play className="fill-current" />
+                      </span>
                     </span>
                     <span className="absolute inset-x-0 bottom-0 flex flex-col gap-1 p-4 sm:p-5">
                       <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/55">
@@ -2014,8 +2013,10 @@ function SparkCarousel({
                   </video>
                 )}
                 <span className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-black/15" />
-                <span className="absolute left-1/2 top-1/2 inline-flex size-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-background/95 text-foreground shadow-lg transition-transform duration-300 group-hover:scale-105 sm:size-20">
-                  <Play className="ml-0.5 size-6 fill-current sm:size-7" strokeWidth={2} />
+                <span className="absolute inset-0 grid place-items-center">
+                  <span className="grid size-14 place-items-center bg-accent text-accent-foreground">
+                    <Play className="fill-current" />
+                  </span>
                 </span>
               </span>
             </button>
@@ -2685,11 +2686,12 @@ function DropshippingSection() {
             className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100"
           />
         ) : null}
-        <span aria-hidden className="absolute inset-0 flex items-center justify-center">
-          <span className="flex h-[calc(48px/var(--ep-scale,1))] w-[calc(48px/var(--ep-scale,1))] items-center justify-center rounded-full border border-background/40 bg-black/45 backdrop-blur-sm transition-colors duration-300 group-hover:border-background/70 group-hover:bg-black/60 sm:h-[calc(56px/var(--ep-scale,1))] sm:w-[calc(56px/var(--ep-scale,1))]">
-            <svg viewBox="0 0 24 24" className="ml-[calc(2px/var(--ep-scale,1))] h-[calc(16px/var(--ep-scale,1))] w-[calc(16px/var(--ep-scale,1))] fill-background sm:h-[calc(20px/var(--ep-scale,1))] sm:w-[calc(20px/var(--ep-scale,1))]" aria-hidden>
-              <path d="M8 5.5v13l11-6.5-11-6.5Z" />
-            </svg>
+        <span aria-hidden className="absolute inset-0 grid place-items-center">
+          <span
+            className="grid place-items-center bg-accent text-accent-foreground"
+            style={{ width: "calc(56px / var(--ep-scale, 1))", height: "calc(56px / var(--ep-scale, 1))" }}
+          >
+            <Play className="fill-current" />
           </span>
         </span>
       </button>
