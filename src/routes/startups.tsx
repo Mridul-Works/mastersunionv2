@@ -326,7 +326,7 @@ const FOUNDER_VENTURES: VentureTile[] = [
     photo: zenmoFounders.url,
     sector: "D2C / Fashion",
     stage: "Growth-stage",
-    raised: "₹1.5Cr+ revenue",
+    raised: "₹3.5Cr+ revenue",
     description: "An automotive lifestyle brand blending motorsport culture with streetwear.",
   },
   {
