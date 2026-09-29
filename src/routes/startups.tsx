@@ -1251,7 +1251,7 @@ function FounderStoriesGallery() {
         </div>
 
         <div ref={magazineRef} role="region" aria-roledescription="carousel" aria-label="Founder stories magazine — use left and right arrow keys or swipe to turn pages" className="relative mt-10 touch-pan-y [overflow-anchor:none] [perspective:2200px] sm:mt-12 md:mt-14">
-          <article style={{ ["--accent" as string]: STORY_ACCENTS[activeStory % STORY_ACCENTS.length], ["--paper" as string]: STORY_PAPER, backgroundColor: "var(--paper)" }} className="no-img-zoom relative grid h-[110rem] grid-rows-[minmax(0,1.3fr)_minmax(0,1fr)] overflow-hidden rounded-[2px] text-foreground shadow-2xl sm:h-[82rem] md:h-[52rem] md:grid-cols-2 md:grid-rows-1 md:overflow-visible md:[transform-style:preserve-3d]">
+          <article style={{ ["--accent" as string]: STORY_ACCENTS[activeStory % STORY_ACCENTS.length], ["--paper" as string]: STORY_PAPER, backgroundColor: "var(--paper)" }} className="no-img-zoom relative grid h-[110rem] grid-rows-[minmax(0,1.3fr)_minmax(0,1fr)] overflow-hidden rounded-[2px] text-foreground shadow-2xl sm:h-[82rem] md:h-[63rem] lg:h-[52rem] md:grid-cols-2 md:grid-rows-1 md:overflow-visible md:[transform-style:preserve-3d]">
               <div style={{ backgroundColor: "var(--paper)" }} className="relative flex min-h-0 flex-col overflow-hidden border-b border-foreground/15 px-6 pb-5 pt-6 sm:px-9 sm:pb-6 sm:pt-7 md:origin-right md:rotate-y-[1.35deg] md:rounded-l-[5px] md:border-b-0 md:px-10 md:pb-6 md:shadow-[-16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)] lg:px-14 lg:pt-8">
                 <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-r from-transparent via-foreground/[0.035] to-foreground/15" />
                 <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-foreground/[0.035] to-transparent" />
@@ -1288,7 +1288,7 @@ function FounderStoriesGallery() {
                     {editorial.paragraphs.slice(0, 4).map((paragraph, index) => (
                       <p
                         key={paragraph}
-                        className={`break-inside-avoid ${index >= 2 ? "hidden min-[1100px]:block" : ""} ${index === 0 ? "first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[3.1rem] first-letter:leading-[0.78] first-letter:text-(--accent)" : ""}`}
+                        className={`break-inside-avoid ${index === 0 ? "first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[3.1rem] first-letter:leading-[0.78] first-letter:text-(--accent)" : ""}`}
                       >
                         {paragraph}
                       </p>
