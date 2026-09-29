@@ -3533,8 +3533,13 @@ function HsslVideoCards() {
   };
 
   return (
-    <div className="mt-10 sm:mt-12">
-      <div className="grid gap-4 sm:grid-cols-3 sm:gap-5">
+    <div className="mt-12 sm:mt-16">
+      <div
+        role="separator"
+        aria-hidden="true"
+        className="h-px w-full bg-background/15"
+      />
+      <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-3 sm:gap-5">
         {HSSL_REELS.map((reel, i) => (
           <HsslReelCard key={reel.id} reel={reel} index={i} onOpen={open} />
         ))}
@@ -4034,7 +4039,61 @@ function HomepageStyleNav({
   );
 }
 
+// The preview's asset delivery intermittently times out and answers a media request
+// with a 502. One dropped fetch would otherwise leave a card blank for the rest of the
+// session, so re-request a failed image or video a couple of times before giving up.
+function useAssetReload(maxTries = 2) {
+  useEffect(() => {
+    let cancelled = false;
+
+    const claim = (el: Element) => {
+      const tries = Number(el.getAttribute("data-asset-tries") || 0);
+      if (tries >= maxTries) return false;
+      el.setAttribute("data-asset-tries", String(tries + 1));
+      return true;
+    };
+
+    const later = (run: () => void) => {
+      window.setTimeout(() => {
+        if (!cancelled) run();
+      }, 400);
+    };
+
+    const onFailed = (event: Event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const tag = target.tagName.toLowerCase();
+
+      if (tag === "img") {
+        const img = target as HTMLImageElement;
+        const src = img.getAttribute("src");
+        if (!src || src.startsWith("data:") || !claim(img)) return;
+        later(() => {
+          const [path, query = ""] = src.split("?");
+          const params = new URLSearchParams(query);
+          params.set("asset-try", img.getAttribute("data-asset-tries") || "1");
+          img.src = `${path}?${params.toString()}`;
+        });
+        return;
+      }
+
+      if (tag === "video" || tag === "source") {
+        const video = tag === "video" ? (target as HTMLVideoElement) : target.closest("video");
+        if (!video || !claim(video)) return;
+        later(() => video.load());
+      }
+    };
+
+    document.addEventListener("error", onFailed, true);
+    return () => {
+      cancelled = true;
+      document.removeEventListener("error", onFailed, true);
+    };
+  }, [maxTries]);
+}
+
 function StartupsPage() {
+  useAssetReload();
   const [selectedShark, setSelectedShark] = useState(0);
   const [selectedQuote, setSelectedQuote] = useState(0);
   const [selectedSpark, setSelectedSpark] = useState(0);
@@ -4515,16 +4574,22 @@ function StartupsPage() {
           </p>
         </Reveal>
 
-        <div className="mt-9 grid grid-cols-2 gap-px bg-background/10 sm:mt-11 md:mt-12 md:grid-cols-4">
-          {HSSL_STATS.map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.04}>
-              <div className="h-full border-t-2 border-accent bg-background/[0.045] px-5 py-8 transition-colors duration-300 hover:bg-accent/[0.06]">
-                <div className="text-[clamp(1.7rem,3vw,2.6rem)] leading-none tracking-[-0.03em]">{s.value}</div>
-                <div className="mt-4 text-[10px] uppercase leading-relaxed tracking-[0.18em] text-background/55">{s.label}</div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
+        <Reveal delay={0.18} className="mt-8 sm:mt-10">
+          <div className="overflow-hidden rounded-2xl border border-background/15 bg-background/[0.03]">
+            <div className="grid grid-cols-1 divide-y divide-background/10 sm:grid-cols-4 sm:divide-x sm:divide-y-0">
+              {HSSL_STATS.map((stat) => (
+                <div key={stat.label} className="min-h-[5.5rem] px-5 py-4 sm:min-h-0 sm:px-8 sm:py-5">
+                  <div className="font-display text-[clamp(1.7rem,2.6vw,2.2rem)] font-normal leading-none tracking-[-0.01em]">
+                    {stat.value}
+                  </div>
+                  <div className="mt-2.5 font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-background/60 sm:text-[10px]">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
 
         <Reveal delay={0.2} className="mt-14">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-4">
