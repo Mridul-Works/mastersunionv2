@@ -2994,9 +2994,6 @@ function VenturesMosaicSection() {
     <Section id="portfolio" tone="paper">
       <ByTheNumbers />
 
-      <Reveal>
-        <Eyebrow>Selected Companies</Eyebrow>
-      </Reveal>
 
       <Reveal delay={0.05}>
         <h2 className="mb-9 mt-5 max-w-[22ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] tracking-normal sm:mb-11 md:mb-12 md:leading-[1.08]">
