@@ -2203,15 +2203,16 @@ function StoryBeats({ beats, dark = false }: { beats: Beat[]; dark?: boolean }) 
   );
 }
 
+const OUTCLASS_D2C_STATS = [
+  { value: "₹3.38 Cr", label: "Total revenue generated, Cohort '25" },
+  { value: "50", label: "Teams competing simultaneously" },
+  { value: "₹4L+", label: "Average revenue per team, Term 1" },
+];
+
 const OUTCLASS_TRACKS = [
   {
     title: "Build a D2C Brand",
     body: "Every student ships a live consumer brand — sourced, launched and scaled on Amazon, Blinkit, Instagram and their own store. Graded on real customers and real revenue, not slides.",
-    stats: [
-      { value: "₹3.38 Cr", label: "Total revenue generated, Cohort '25" },
-      { value: "50", label: "Teams competing simultaneously" },
-      { value: "₹4L+", label: "Average revenue per team, Term 1" },
-    ],
   },
   {
     title: "Creator Challenge",
@@ -2314,7 +2315,7 @@ function OutclassSection() {
               <img src={outclassd2cBrandFair.url} alt="Student D2C brand fair" loading="lazy" className="absolute inset-0 size-full object-cover opacity-30" />
               <div className="absolute inset-0 bg-gradient-to-b from-bottle/50 via-bottle/80 to-bottle" />
               <div className="relative flex justify-between"><div><div className="font-display text-[3.2rem] font-black leading-none">01</div><div className="font-tech text-[10px] uppercase tracking-[0.2em]">Overview</div></div><span className="font-tech text-[10px] uppercase [writing-mode:vertical-rl]">OutClass // D2C</span></div>
-              <div className="relative"><h4 className="font-display text-[clamp(1.7rem,3vw,2.2rem)] font-semibold leading-[0.98]">Graded on real customers<br /><em className="font-light">and revenue.</em></h4><div className="my-4 h-px bg-background/25" /><p className="text-[12.5px] leading-relaxed text-background/75">Every student ships a live consumer brand — sourced, launched and scaled on Amazon, Blinkit, Instagram and their own store.</p><div className="mt-5 grid grid-cols-2 gap-3 border-t border-background/20 pt-4">{OUTCLASS_TRACKS[0].stats.map(stat => <div key={stat.value}><p className="font-display text-[1.2rem] font-semibold">{stat.value}</p><p className="font-tech text-[9px] uppercase leading-snug text-background/70">{stat.label}</p></div>)}</div></div>
+              <div className="relative"><h4 className="font-display text-[clamp(1.7rem,3vw,2.2rem)] font-semibold leading-[0.98]">Graded on real customers<br /><em className="font-light">and revenue.</em></h4><div className="my-4 h-px bg-background/25" /><p className="text-[12.5px] leading-relaxed text-background/75">Every student ships a live consumer brand — sourced, launched and scaled on Amazon, Blinkit, Instagram and their own store.</p><div className="mt-5 grid grid-cols-2 gap-3 border-t border-background/20 pt-4">{OUTCLASS_D2C_STATS.map(stat => <div key={stat.value}><p className="font-display text-[1.2rem] font-semibold">{stat.value}</p><p className="font-tech text-[9px] uppercase leading-snug text-background/70">{stat.label}</p></div>)}</div></div>
             </article>
             <article className={`${poster} bg-destructive`}>
               <img src={outclassmelaFounders.url} alt="Founders at the D2C Mela" loading="lazy" className="absolute inset-0 size-full object-cover" /><div className="absolute inset-0 bg-destructive/50" /><div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent" />
