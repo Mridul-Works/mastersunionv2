@@ -3363,6 +3363,8 @@ function VipSection() {
         </div>
       </Reveal>
 
+      <VipVideoCard />
+
       <VipJourney stages={VIP_STAGES} />
     </Section>
   );
