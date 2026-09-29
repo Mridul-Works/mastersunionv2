@@ -3274,6 +3274,7 @@ function VipVideoCard() {
               ref={previewRef}
               src={VIP_VIDEO_URL}
               muted
+              autoPlay
               playsInline
               loop
               preload="metadata"
