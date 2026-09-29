@@ -2936,14 +2936,14 @@ function ByTheNumbers() {
           </div>
           <div className="mt-3 font-display text-[clamp(2.9rem,7vw,5.6rem)] font-semibold leading-[0.9] tracking-[-0.045em] tabular-nums">
             ₹593.10
-            <span className="ml-2 align-baseline text-[0.36em] font-normal tracking-normal text-background/30">
+            <span className="ml-2 align-baseline text-[0.36em] font-normal tracking-normal text-background/55">
               Cr
             </span>
           </div>
         </Reveal>
       </div>
 
-      <div className="mt-10 grid grid-cols-1 border-l border-t border-background/10 sm:mt-12 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3">
+      <div className="mt-12 grid grid-cols-1 border-l border-t border-background/10 sm:mt-14 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3">
         {cells.map((s, i) => (
           <Reveal
             key={s.label}
