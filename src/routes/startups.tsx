@@ -3268,6 +3268,18 @@ function VipVideoCard() {
               loading="lazy"
               className="block h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
             />
+            {previewOn && !open && !reduceMotion && (
+              <span aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+                <iframe
+                  key={clip}
+                  title=""
+                  tabIndex={-1}
+                  src={`https://www.youtube-nocookie.com/embed/${VIP_VIDEO_YT_ID}?autoplay=1&mute=1&controls=0&disablekb=1&fs=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&start=${clip}&end=${clip + VIP_PREVIEW_CLIP}`}
+                  allow="autoplay; encrypted-media"
+                  className="absolute left-1/2 top-1/2 h-[300%] w-[300%] -translate-x-1/2 -translate-y-1/2 scale-[0.3334] border-0"
+                />
+              </span>
+            )}
             <span aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-black/15" />
             <span aria-hidden className="absolute inset-0 grid place-items-center">
               <span className="grid size-14 place-items-center bg-accent text-accent-foreground">
