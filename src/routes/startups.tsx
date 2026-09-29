@@ -3074,7 +3074,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
               type="button"
               aria-label={`Show ${previousStage.name}`}
               onClick={() => goTo(active - 1)}
-              className="absolute -left-9 top-1/2 hidden aspect-[4/5] w-[12rem] -translate-y-1/2 overflow-hidden rounded-xl border border-background/10 opacity-25 blur-[2px] transition-all duration-500 hover:opacity-50 hover:blur-none md:block lg:-left-12 lg:w-[15rem]"
+              className="absolute -left-9 top-1/2 hidden aspect-[4/5] w-[12rem] -translate-y-1/2 overflow-hidden border border-background/10 opacity-25 blur-[2px] transition-all duration-500 hover:opacity-50 hover:blur-none md:block lg:-left-12 lg:w-[15rem]"
             >
               <img src={previousStage.image} alt="" className="h-full w-full object-cover" />
             </button>
@@ -3084,7 +3084,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
               type="button"
               aria-label={`Show ${nextStage.name}`}
               onClick={() => goTo(active + 1)}
-              className="absolute -right-9 top-1/2 hidden aspect-[4/5] w-[12rem] -translate-y-1/2 overflow-hidden rounded-xl border border-background/10 opacity-25 blur-[2px] transition-all duration-500 hover:opacity-50 hover:blur-none md:block lg:-right-12 lg:w-[15rem]"
+              className="absolute -right-9 top-1/2 hidden aspect-[4/5] w-[12rem] -translate-y-1/2 overflow-hidden border border-background/10 opacity-25 blur-[2px] transition-all duration-500 hover:opacity-50 hover:blur-none md:block lg:-right-12 lg:w-[15rem]"
             >
               <img src={nextStage.image} alt="" className="h-full w-full object-cover" />
             </button>
@@ -3098,7 +3098,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={reduceMotion ? undefined : { opacity: 0, y: -16, scale: 0.985 }}
               transition={{ duration: reduceMotion ? 0 : 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="relative z-20 aspect-[4/5] h-full max-h-[17rem] overflow-hidden rounded-xl border border-background/20 shadow-2xl sm:max-h-[20rem] md:max-h-[26rem] lg:max-h-[32rem]"
+              className="relative z-20 aspect-[4/5] h-full max-h-[17rem] overflow-hidden border border-background/20 shadow-2xl sm:max-h-[20rem] md:max-h-[26rem] lg:max-h-[32rem]"
             >
               <motion.img
                 src={stage.image}
@@ -3109,13 +3109,17 @@ function VipJourney({ stages }: { stages: Stage[] }) {
                 transition={{ duration: reduceMotion ? 0 : 0.9, ease: [0.22, 1, 0.36, 1] }}
               />
               <div aria-hidden className="absolute inset-0 bg-linear-to-t from-foreground/90 via-transparent to-foreground/20" />
-              <div className="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-background/25 bg-foreground/25 px-3 py-1.5 backdrop-blur-md">
-                <span className="size-1.5 rounded-full bg-accent" />
-                <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-background">VIP Stage</span>
-              </div>
+              {/* Label inside a solid container — green / red, as on the OutClass posters. */}
+              <span className={`absolute left-0 top-0 px-2 py-1 font-tech text-[9px] font-bold uppercase ${active % 2 === 0 ? "bg-accent text-accent-foreground" : "bg-destructive text-destructive-foreground"}`}>
+                VIP · Stage {stage.n}
+              </span>
+              <span aria-hidden className="absolute right-3 top-3 font-tech text-[10px] uppercase tracking-[0.18em] text-background/60 [writing-mode:vertical-rl]">
+                VIP // Journey
+              </span>
               <div className="absolute inset-x-5 bottom-5">
-                <div className="font-mono text-[9px] uppercase tracking-[0.2em] text-background/60">Chapter · {stage.n}</div>
-                <div className="mt-1 font-serif-italic text-[clamp(1.6rem,3vw,2.6rem)] leading-none text-background">{stage.name}</div>
+                <div className="font-tech text-[10px] font-bold uppercase tracking-[0.18em] text-background/70">Chapter · {stage.n}</div>
+                <div aria-hidden className="my-3 h-px bg-background/30" />
+                <h4 className="font-display text-[clamp(1.4rem,3vw,2.4rem)] font-black uppercase leading-[0.85] text-background">{stage.name}</h4>
               </div>
             </motion.div>
           </AnimatePresence>
