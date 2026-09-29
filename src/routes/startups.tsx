@@ -3140,6 +3140,17 @@ function VipJourney({ stages }: { stages: Stage[] }) {
                 <div className="font-mono text-[9px] uppercase tracking-[0.2em] text-background/60">Chapter · {stage.n}</div>
                 <div className="mt-1 font-serif-italic text-[clamp(1.6rem,3vw,2.6rem)] leading-none text-background">{stage.name}</div>
               </div>
+              <Button
+                type="button"
+                variant="ghost"
+                aria-label={`Play the ${VIP_VIDEO_TITLE}`}
+                onClick={openVipVideo}
+                className="group absolute inset-0 z-30 grid place-items-center rounded-none p-0"
+              >
+                <span className="grid size-14 place-items-center bg-accent text-accent-foreground transition-transform duration-300 group-hover:scale-105">
+                  <Play className="fill-current" />
+                </span>
+              </Button>
             </motion.div>
           </AnimatePresence>
         </div>
@@ -3186,6 +3197,38 @@ function VipJourney({ stages }: { stages: Stage[] }) {
           </div>
         </div>
       </div>
+
+      {vipVideoOpen && typeof document !== "undefined" &&
+        createPortal(
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label={VIP_VIDEO_TITLE}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/90 p-4"
+            onClick={closeVipVideo}
+          >
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              aria-label="Close video"
+              onClick={closeVipVideo}
+              className="absolute right-4 top-4 text-background hover:bg-background/10 hover:text-background"
+            >
+              <X />
+            </Button>
+            <div className="aspect-video w-full max-w-5xl overflow-hidden" onClick={(event) => event.stopPropagation()}>
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${VIP_VIDEO_ID}?autoplay=1&rel=0`}
+                title={VIP_VIDEO_TITLE}
+                allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                allowFullScreen
+                className="size-full"
+              />
+            </div>
+          </div>,
+          document.body,
+        )}
     </div>
   );
 }
