@@ -3147,7 +3147,14 @@ function VipJourney({ stages }: { stages: Stage[] }) {
                 <span aria-hidden className="h-px flex-1 bg-background/15" />
                 <span className="font-mono text-xs text-background/35">{String(stages.length).padStart(2, "0")}</span>
               </div>
-              <h3 className="mt-5 max-w-[12ch] font-display text-[clamp(1.45rem,2.4vw,2.2rem)] font-semibold uppercase leading-[1.05] text-background">{stage.name}</h3>
+              <h3 className="mt-5 max-w-[14ch] font-display text-[clamp(1.45rem,2.4vw,2.2rem)] font-semibold uppercase leading-[1.05] text-background">
+                {stage.name.split(" ").map((word, i, words) => (
+                  <Fragment key={`${word}-${i}`}>
+                    <span className="whitespace-nowrap">{word}</span>
+                    {i < words.length - 1 ? " " : null}
+                  </Fragment>
+                ))}
+              </h3>
               <p className="mt-4 max-w-[36ch] text-[13px] leading-[1.65] text-background/72 sm:text-[14px] lg:mt-5 lg:text-[15px] lg:leading-[1.7]">{stage.body}</p>
               <div className="relative mt-5 overflow-hidden rounded-lg border border-background/10 bg-background/[0.05] p-4 sm:p-5 lg:mt-7 lg:rounded-2xl lg:p-6">
                 <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-background/45">{stage.grant ? "Stage grant" : "Investors in the room"}</span>
