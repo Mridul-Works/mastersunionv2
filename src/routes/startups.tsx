@@ -783,6 +783,24 @@ function Eyebrow({ children, dark = false, rule = true }: { children: ReactNode;
   );
 }
 
+const FILM_SECTION_RULE =
+  "linear-gradient(to right, transparent, oklch(0.75 0.15 215) 12%, oklch(0.88 0.18 95) 50%, oklch(0.65 0.22 45) 88%, transparent)";
+
+/**
+ * Homepage section rule — thin inset hairline floating above a section.
+ * A 0.5px band at a fractional device position can rasterise to nothing, so
+ * sections that must read as a visible rule pass heightClass="h-px".
+ */
+function SectionRule({ heightClass = "h-[0.5px]" }: { heightClass?: string }) {
+  return (
+    <div
+      aria-hidden
+      className={`pointer-events-none absolute left-[6%] right-[6%] top-0 z-[1] ${heightClass}`}
+      style={{ background: FILM_SECTION_RULE }}
+    />
+  );
+}
+
 function Section({
   id,
   tone = "light",
@@ -804,8 +822,6 @@ function Section({
       : tone === "dark"
         ? "bg-foreground"
         : "bg-foreground";
-  const FILM_SECTION_RULE =
-    "linear-gradient(to right, transparent, oklch(0.75 0.15 215) 12%, oklch(0.88 0.18 95) 50%, oklch(0.65 0.22 45) 88%, transparent)";
   const padClass = tightTop && tightBottom
     ? "px-4 pt-10 pb-12 sm:px-7 sm:pt-12 sm:pb-16 md:px-8 md:pt-14 md:pb-20 lg:px-12 lg:pt-16 lg:pb-24"
     : tightTop
@@ -816,13 +832,7 @@ function Section({
   return (
     <section id={id} className={`relative ${id === "spark" || id === "doing" || id === "dropshipping" ? "overflow-x-clip overflow-y-visible" : "overflow-hidden"} text-background ${surfaceClass}`}>
       {/* Homepage section rule — thin inset hairline floating above each section */}
-      {id !== "journey" && id !== "ventures" ? (
-        <div
-          aria-hidden
-          className="pointer-events-none absolute left-[6%] right-[6%] top-0 z-[1] h-[0.5px]"
-          style={{ background: FILM_SECTION_RULE }}
-        />
-      ) : null}
+      {id !== "journey" && id !== "ventures" ? <SectionRule /> : null}
       {id ? (
         <span
           aria-hidden
@@ -1147,6 +1157,7 @@ function FounderStoriesGallery() {
 
   return (
     <section id="founder-stories" className="relative overflow-x-clip bg-foreground py-20 text-background sm:py-24 md:py-28">
+      <SectionRule heightClass="h-px" />
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <div className="flex items-end justify-between gap-6">
           <Reveal>
