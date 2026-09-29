@@ -4045,7 +4045,7 @@ function StartupsPage() {
         <Reveal>
           <div className="flex items-start gap-4">
             <EyebrowRule />
-            <div className="flex min-w-0 items-center gap-2">
+            <div className="flex min-w-0 items-start gap-2">
               <GraduationCap className="size-4 shrink-0 text-background/55" strokeWidth={1.75} />
               <Eyebrow rule={false}>High School Startup League</Eyebrow>
             </div>
