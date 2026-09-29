@@ -848,10 +848,22 @@ function Reveal({
   );
 }
 
-function Eyebrow({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
+function EyebrowRule() {
   return (
-    <div className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-background/50">
-      {children}
+    <span
+      aria-hidden
+      className="mt-[8px] h-px w-12 shrink-0 bg-gradient-to-r from-sky-400 via-yellow-300 to-orange-400"
+    />
+  );
+}
+
+function Eyebrow({ children, dark = false, rule = true }: { children: ReactNode; dark?: boolean; rule?: boolean }) {
+  return (
+    <div className="flex items-start gap-4">
+      {rule ? <EyebrowRule /> : null}
+      <div className="min-w-0 font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-background/50">
+        {children}
+      </div>
     </div>
   );
 }
@@ -2299,7 +2311,10 @@ function OutclassSection() {
       <div className="relative mx-auto max-w-[1320px] px-4 sm:px-7 lg:px-12">
         <Reveal className="grid gap-6 lg:grid-cols-12">
           <div className="lg:col-span-7">
-            <p className="font-tech text-[11px] uppercase tracking-[0.32em] text-background/60">OutClass</p>
+            <div className="flex items-start gap-4">
+              <EyebrowRule />
+              <p className="font-tech text-[11px] uppercase tracking-[0.32em] text-background/60">OutClass</p>
+            </div>
             <h2 className="mt-5 font-display text-[clamp(1.9rem,4.2vw,3.1rem)] font-semibold leading-[0.98]">Learning outside<br />the classroom</h2>
           </div>
           <div className="lg:col-span-5 lg:pt-2">
@@ -3931,10 +3946,7 @@ function StartupsPage() {
         <div className="grid grid-cols-1 gap-5 border-b border-background/20 pb-8 sm:gap-6 sm:pb-10 md:grid-cols-12 md:items-end md:gap-10 md:pb-12 lg:gap-12 lg:pb-14">
           <div className="md:col-span-8">
             <Reveal>
-              <div className="flex items-center gap-4">
-                <span aria-hidden className="h-px w-12 bg-gradient-to-r from-sky-400 via-yellow-300 to-orange-400" />
-                <Eyebrow>The Spark</Eyebrow>
-              </div>
+              <Eyebrow>The Spark</Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
               <h2 className="mt-5 max-w-[18ch] font-display text-[1.875rem] font-normal leading-[1.2] tracking-normal">
@@ -3962,9 +3974,12 @@ function StartupsPage() {
 
       <Section id="sharktank" tone="dark">
         <Reveal>
-          <div className="flex items-center gap-2">
-            <Tv className="size-4 text-background/55" strokeWidth={1.75} />
-            <Eyebrow dark>On Shark Tank India</Eyebrow>
+          <div className="flex items-start gap-4">
+            <EyebrowRule />
+            <div className="flex min-w-0 items-start gap-2">
+              <Tv className="size-4 shrink-0 text-background/55" strokeWidth={1.75} />
+              <Eyebrow dark rule={false}>On Shark Tank India</Eyebrow>
+            </div>
           </div>
         </Reveal>
         <Reveal delay={0.05}>
@@ -4028,9 +4043,12 @@ function StartupsPage() {
 
       <Section id="hssl" tone="paper">
         <Reveal>
-          <div className="flex items-center gap-2">
-            <GraduationCap className="size-4 text-background/55" strokeWidth={1.75} />
-            <Eyebrow>High School Startup League</Eyebrow>
+          <div className="flex items-start gap-4">
+            <EyebrowRule />
+            <div className="flex min-w-0 items-start gap-2">
+              <GraduationCap className="size-4 shrink-0 text-background/55" strokeWidth={1.75} />
+              <Eyebrow rule={false}>High School Startup League</Eyebrow>
+            </div>
           </div>
         </Reveal>
         <Reveal delay={0.05}>
