@@ -15,3 +15,5 @@
 - [x] Replace the colored divider rule under the VIP section (top of ventures section) with the plain secondary hairline line
 - [x] Expand each Founder Stories magazine spread with a short, distinct company story instead of repeating Spark copy
 - [x] Move "By the Numbers" inside the Portfolio (Selected Companies) section as its lead-in
+
+- [x] Redesign "By the Numbers" as a structured editorial grid (deck left, lead figure right, hairline stat ledger); image cards untouched
