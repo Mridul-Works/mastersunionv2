@@ -3291,15 +3291,17 @@ function VipVideoCard() {
           </span>
         </button>
         <div className="mt-5 flex justify-center sm:mt-6">
-          <a
-            href={VIP_WATCH_MORE_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-foreground/20 px-5 py-2 font-tech text-[11px] uppercase tracking-[0.18em] transition-colors hover:border-foreground/40 hover:bg-foreground/5"
-          >
-            Watch more
-            <ArrowUpRight className="size-3.5" />
-          </a>
+          <span className="group/frame relative isolate inline-flex rounded-full border border-background/35 p-[5px]">
+            {/* Hover fill: white bleeds outward until it reaches the outer
+                capsule border, while the inner pill stays fully opaque. */}
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-background opacity-0 transition-opacity duration-300 group-hover/frame:opacity-100"
+            />
+            <CtaButton dark href={VIP_WATCH_MORE_URL} className="relative">
+              Watch more
+            </CtaButton>
+          </span>
         </div>
       </div>
       {typeof document !== "undefined" &&
@@ -3459,12 +3461,14 @@ function CtaButton({
   dark = false,
   icon,
   onClick,
+  href,
   className = "",
 }: {
   children: ReactNode;
   dark?: boolean;
   icon?: ReactNode;
   onClick?: () => void;
+  href?: string;
   className?: string;
 }) {
   const classes = `group inline-flex items-center gap-2 rounded-full py-1.5 pl-5 pr-1.5 text-[13px] font-semibold transition-transform hover:-translate-y-px ${
@@ -3487,6 +3491,13 @@ function CtaButton({
       <button type="button" onClick={onClick} className={classes}>
         {inner}
       </button>
+    );
+  }
+  if (href) {
+    return (
+      <a href={href} target="_blank" rel="noreferrer" className={classes}>
+        {inner}
+      </a>
     );
   }
   return (
