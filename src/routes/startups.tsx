@@ -3974,9 +3974,12 @@ function StartupsPage() {
 
       <Section id="sharktank" tone="dark">
         <Reveal>
-          <div className="flex items-center gap-2">
-            <Tv className="size-4 text-background/55" strokeWidth={1.75} />
-            <Eyebrow dark>On Shark Tank India</Eyebrow>
+          <div className="flex items-start gap-4">
+            <EyebrowRule />
+            <div className="flex min-w-0 items-center gap-2">
+              <Tv className="size-4 shrink-0 text-background/55" strokeWidth={1.75} />
+              <Eyebrow dark rule={false}>On Shark Tank India</Eyebrow>
+            </div>
           </div>
         </Reveal>
         <Reveal delay={0.05}>
