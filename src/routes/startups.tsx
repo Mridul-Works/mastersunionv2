@@ -3023,7 +3023,18 @@ function VipJourney({ stages }: { stages: Stage[] }) {
   const pointerStartRef = useRef<number | null>(null);
   const [active, setActive] = useState(0);
   const [direction, setDirection] = useState<1 | -1>(1);
+  const [vipVideoOpen, setVipVideoOpen] = useState(false);
+  const vipVideoOpenRef = useRef(false);
   const reduceMotion = useReducedMotion();
+
+  const openVipVideo = () => {
+    vipVideoOpenRef.current = true;
+    setVipVideoOpen(true);
+  };
+  const closeVipVideo = () => {
+    vipVideoOpenRef.current = false;
+    setVipVideoOpen(false);
+  };
 
   const goTo = (next: number) => {
     const bounded = Math.max(0, Math.min(stages.length - 1, next));
@@ -3041,7 +3052,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
     }, { threshold: [0, 0.25, 1] });
     observer.observe(card);
     const onKeyDown = (event: KeyboardEvent) => {
-      if (!visible) return;
+      if (!visible || vipVideoOpenRef.current) return;
       if (event.key === "ArrowRight") goTo(active + 1);
       if (event.key === "ArrowLeft") goTo(active - 1);
     };
@@ -3051,6 +3062,15 @@ function VipJourney({ stages }: { stages: Stage[] }) {
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [active, stages.length]);
+
+  useEffect(() => {
+    if (!vipVideoOpen) return;
+    const escape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeVipVideo();
+    };
+    window.addEventListener("keydown", escape);
+    return () => window.removeEventListener("keydown", escape);
+  }, [vipVideoOpen]);
 
   const stage = stages[active];
   const previousStage = stages[Math.max(0, active - 1)];
