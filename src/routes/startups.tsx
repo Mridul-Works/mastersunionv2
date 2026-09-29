@@ -2785,17 +2785,26 @@ function DropshippingSection() {
                   <div aria-hidden className="pointer-events-none absolute -inset-2 border border-background/10" />
                   <div className="relative h-full w-full overflow-hidden border border-background/20 bg-foreground">
                     {renderVideo(video)}
-                    <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 z-10 flex items-center justify-between bg-gradient-to-b from-foreground/90 via-foreground/45 to-transparent px-4 pb-14 pt-4">
-                      <span
-                        className="font-mono font-medium uppercase tracking-[0.28em] text-background"
-                        style={{ fontSize: "calc(11px / var(--ep-scale, 1))" }}
+                    <div aria-hidden className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-foreground/70 via-transparent to-foreground/90" />
+                    <span
+                      className="absolute left-0 top-0 z-20 bg-accent px-3 py-1 font-tech font-bold uppercase text-accent-foreground"
+                      style={{ fontSize: "calc(9px / var(--ep-scale, 1))" }}
+                    >
+                      Episode 0{index + 1}
+                    </span>
+                    <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 z-20 p-3 sm:p-4">
+                      <h4
+                        className="font-display font-semibold italic leading-[1.12] text-background"
+                        style={{ fontSize: "calc(13px / var(--ep-scale, 1))" }}
                       >
-                        Episode 0{index + 1}
-                      </span>
-                      <span
-                        className="rounded-full bg-background/80"
-                        style={{ width: "calc(7px / var(--ep-scale, 1))", height: "calc(7px / var(--ep-scale, 1))" }}
-                      />
+                        {video.aria}
+                      </h4>
+                      <p
+                        className="mt-1.5 font-tech uppercase tracking-[0.22em] text-background/65"
+                        style={{ fontSize: "calc(9px / var(--ep-scale, 1))" }}
+                      >
+                        Dropshipping Challenge
+                      </p>
                     </div>
                   </div>
                 </div>
