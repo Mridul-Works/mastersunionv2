@@ -84,7 +84,7 @@ import brandPhotoWoodys from "@/assets/founders/brand/woodys.jpg";
 import reportVwyd from "@/assets/venture-report-crops/vkyd.jpg.asset.json";
 import reportAceCard from "@/assets/venture-report-crops/acecard.jpg.asset.json";
 import reportKhet from "@/assets/venture-report-crops/khet.jpg.asset.json";
-import reportZenmo from "@/assets/venture-report-crops/zenmo.jpg.asset.json";
+import zenmoFounders from "@/assets/founders/zenmo-founders.webp.asset.json";
 import reportInternetHuman from "@/assets/venture-report-crops/internet-human.jpg.asset.json";
 import reportZhor from "@/assets/venture-report-crops/zhor.jpg.asset.json";
 import reportSavra from "@/assets/venture-report-crops/savra.jpg.asset.json";
@@ -323,7 +323,7 @@ const FOUNDER_VENTURES: VentureTile[] = [
   {
     company: "Zenmo",
     founder: "Hritvik Arora",
-    photo: reportZenmo.url,
+    photo: zenmoFounders.url,
     sector: "D2C / Fashion",
     stage: "Growth-stage",
     raised: "₹1.5Cr+ revenue",
