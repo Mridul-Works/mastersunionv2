@@ -1821,7 +1821,7 @@ function SparkCarousel({
                   </span>
                 ))}
               </div>
-              <div className="relative overflow-hidden rounded-[6px]">
+              <div className="relative overflow-hidden">
                 <motion.div
                   key={`left-${active}`}
                   initial={reduceMotion ? false : { y: "100%" }}
@@ -1834,9 +1834,29 @@ function SparkCarousel({
                     src={company.founderImage}
                     alt={company.founderImage ? `${company.founder} — founders of ${company.name}` : undefined}
                     note={`${company.name} — founder at work`}
-                    className="rounded-[6px]"
                   />
                 </motion.div>
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-b from-foreground/60 via-transparent to-foreground/90"
+                />
+                <span className="absolute -left-px -top-px z-20 bg-bottle px-3 py-1 font-tech text-[9px] font-bold uppercase text-background">
+                  Spark · {String(active + 1).padStart(2, "0")}
+                </span>
+                <span
+                  aria-hidden
+                  className="absolute right-3 top-3 z-20 hidden font-tech text-[9px] uppercase tracking-[0.18em] text-background/60 [writing-mode:vertical-rl] min-[700px]:inline-block"
+                >
+                  Spark // Founders
+                </span>
+                <span className="absolute inset-x-4 bottom-3 z-20 sm:bottom-4">
+                  <span className="block font-display text-[clamp(0.8rem,1.6vw,1.3rem)] font-black italic leading-[1.05] text-background">
+                    {company.name}
+                  </span>
+                  <span className="mt-2 hidden font-tech text-[9px] font-bold uppercase tracking-[0.18em] text-background/70 min-[700px]:block sm:text-[10px]">
+                    {company.founder}
+                  </span>
+                </span>
               </div>
             </div>
 
@@ -1876,7 +1896,7 @@ function SparkCarousel({
                   </span>
                 ))}
               </div>
-              <div className="relative overflow-hidden rounded-[6px]">
+              <div className="relative overflow-hidden">
                 <motion.div
                   key={`right-${active}`}
                   initial={reduceMotion ? false : { y: "100%" }}
@@ -1887,7 +1907,7 @@ function SparkCarousel({
                     type="button"
                     onClick={() => setYtVideoId(company.videoId)}
                     aria-label={`Play video: ${company.videoTitle}`}
-                    className="group relative block aspect-[1200/896] w-full cursor-pointer overflow-hidden rounded-[6px] border border-background/15 bg-black/40 text-left focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60"
+                    className="group relative block aspect-[1200/896] w-full cursor-pointer overflow-hidden border border-background/15 bg-black/40 text-left focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60"
                   >
                     <span aria-hidden className="absolute inset-0 overflow-hidden">
                       <img
@@ -1918,16 +1938,25 @@ function SparkCarousel({
                     <span aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/25" />
                     <span aria-hidden className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black via-black/80 to-transparent" />
                     <span aria-hidden className="absolute inset-0 grid place-items-center">
-                      <span className="grid size-14 place-items-center bg-accent text-accent-foreground">
+                      <span className="grid size-9 place-items-center bg-accent text-accent-foreground sm:size-10 lg:size-14">
                         <Play className="fill-current" />
                       </span>
                     </span>
-                    <span className="absolute inset-x-0 bottom-0 flex flex-col gap-1 p-4 sm:p-5">
-                      <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/55">
-                        Watch — {company.name}
-                      </span>
-                      <span className="text-[0.8rem] leading-snug text-white/85 sm:text-[0.85rem]">
+                    <span className="absolute -left-px -top-px z-20 bg-bottle px-3 py-1 font-tech text-[9px] font-bold uppercase text-background">
+                      Spark · {String(active + 1).padStart(2, "0")}
+                    </span>
+                    <span
+                      aria-hidden
+                      className="absolute right-3 top-3 z-20 hidden font-tech text-[9px] uppercase tracking-[0.18em] text-background/60 [writing-mode:vertical-rl] min-[700px]:inline-block"
+                    >
+                      Spark // Film
+                    </span>
+                    <span className="absolute inset-x-4 bottom-3 z-20 flex flex-col gap-2 sm:bottom-4">
+                      <span className="hidden font-display text-[clamp(0.7rem,1.2vw,1.3rem)] font-light italic leading-[1.15] text-background min-[700px]:block min-[700px]:max-h-[2.4em] min-[700px]:overflow-hidden">
                         {company.videoTitle}
+                      </span>
+                      <span className="font-tech text-[9px] font-bold uppercase tracking-[0.18em] text-background/70 sm:text-[10px]">
+                        Watch the film
                       </span>
                     </span>
                   </button>
@@ -1984,7 +2013,7 @@ function SparkCarousel({
               type="button"
               onClick={openVideo}
               aria-label="Watch the Masters' Union student entrepreneurship video"
-              className="group mx-auto mt-10 block w-full overflow-hidden rounded-2xl border border-background/15 text-left transition-transform duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60 sm:mt-12 sm:max-w-4xl md:max-w-5xl lg:max-w-6xl"
+              className="group mx-auto mt-10 block w-full overflow-hidden border border-background/15 text-left transition-transform duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60 sm:mt-12 sm:max-w-4xl md:max-w-5xl lg:max-w-6xl"
             >
               <span className="relative block aspect-video w-full overflow-hidden">
                 {/* muted highlight loop autoplays on the card; the play
@@ -2015,8 +2044,25 @@ function SparkCarousel({
                 )}
                 <span className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-black/15" />
                 <span className="absolute inset-0 grid place-items-center">
-                  <span className="grid size-14 place-items-center bg-accent text-accent-foreground">
+                  <span className="grid size-9 place-items-center bg-accent text-accent-foreground sm:size-10 lg:size-14">
                     <Play className="fill-current" />
+                  </span>
+                </span>
+                <span className="absolute -left-px -top-px z-20 bg-bottle px-3 py-1 font-tech text-[9px] font-bold uppercase text-background">
+                  Masters&apos; Union
+                </span>
+                <span
+                  aria-hidden
+                  className="absolute right-3 top-3 z-20 hidden font-tech text-[9px] uppercase tracking-[0.18em] text-background/60 [writing-mode:vertical-rl] min-[700px]:inline-block"
+                >
+                  Spark // Film
+                </span>
+                <span className="absolute inset-x-4 bottom-3 z-20 flex flex-col gap-2 sm:bottom-4">
+                  <span className="font-display text-[clamp(0.8rem,1.6vw,1.5rem)] font-light italic leading-[1.15] text-background min-[700px]:max-h-[2.4em] min-[700px]:overflow-hidden">
+                    The Building Starts Here
+                  </span>
+                  <span className="font-tech text-[9px] font-bold uppercase tracking-[0.18em] text-background/70 sm:text-[10px]">
+                    Full film
                   </span>
                 </span>
               </span>
