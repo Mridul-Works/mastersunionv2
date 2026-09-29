@@ -459,6 +459,7 @@ import vipMvpImg from "@/assets/vip/vip-mvp.jpg.asset.json";
 import vipGtmImg from "@/assets/vip/vip-gtm.jpg.asset.json";
 import vipPmfImg from "@/assets/vip/vip-pmf.jpg.asset.json";
 import vipDemodayImg from "@/assets/vip/vip-demoday.jpg.asset.json";
+import vipProgramVideo from "@/assets/vip-program.mp4.asset.json";
 
 type Stage = { n: string; name: string; grant: string | null; body: string; image: string; culmination?: boolean };
 
