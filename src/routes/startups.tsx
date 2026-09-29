@@ -2994,14 +2994,8 @@ function VenturesMosaicSection() {
     <Section id="portfolio" tone="paper">
       <ByTheNumbers />
 
+      <div ref={foundersGridRef} className="mt-9 sm:mt-11 md:mt-12">
 
-      <Reveal delay={0.05}>
-        <h2 className="mb-9 mt-5 max-w-[22ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] tracking-normal sm:mb-11 md:mb-12 md:leading-[1.08]">
-          Portfolio
-        </h2>
-      </Reveal>
-
-      <div ref={foundersGridRef}>
         {/* Mobile + tablet masonry keeps variable-height cards tightly packed. */}
         <div className="columns-2 gap-[3px] sm:columns-3 md:columns-4 xl:hidden">
           {FOUNDER_TILES.map((t, i) => {
