@@ -14,4 +14,3 @@
 - [x] Dropshipping cards: posters replaced with real frames extracted from each card's own video
 - [x] Replace the colored divider rule under the VIP section (top of ventures section) with the plain secondary hairline line
 - [x] Expand each Founder Stories magazine spread with a short, distinct company story instead of repeating Spark copy
-- [x] VIP stats row: fourth tile is the programme film (green square play button, popup player)

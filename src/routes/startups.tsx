@@ -228,13 +228,6 @@ const VIP_METRICS = [
   { value: "70+", label: "Students pitched at Demo Days" },
 ];
 
-/** The programme's own film. Opens in the same full-screen popup as the other video cards. */
-const VIP_FILM = {
-  yt: "1PTpdpc4kFc",
-  poster: "https://i.ytimg.com/vi/1PTpdpc4kFc/maxresdefault.jpg",
-  title: "How students learn business by building business",
-};
-
 /* ============ Founders in the making — mosaic (from the homepage funding board) ============ */
 
 type VentureTile = {
@@ -3174,18 +3167,6 @@ function VipJourney({ stages }: { stages: Stage[] }) {
 }
 
 function VipSection() {
-  const [filmOpen, setFilmOpen] = useState(false);
-  const reduceMotion = useReducedMotion();
-
-  useEffect(() => {
-    if (!filmOpen) return;
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setFilmOpen(false);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [filmOpen]);
-
   return (
     <Section id="journey" tone="paper" tightTop>
       <div className="grid gap-6 sm:gap-8 lg:grid-cols-12 lg:items-end">
@@ -3209,18 +3190,9 @@ function VipSection() {
 
       <Reveal delay={0.16} className="mt-8 sm:mt-10">
         <div className="overflow-hidden rounded-2xl border border-background/15 bg-background/[0.03]">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-            {VIP_METRICS.map((stat, i) => (
-              <div
-                key={stat.label}
-                className={`flex min-h-[5.5rem] flex-col justify-center border-background/10 px-5 py-4 sm:min-h-0 sm:px-8 sm:py-5 ${
-                  i === 1
-                    ? "border-t sm:border-t-0 sm:border-l"
-                    : i === 2
-                      ? "border-t lg:border-t-0 lg:border-l"
-                      : ""
-                }`}
-              >
+          <div className="grid grid-cols-1 divide-y divide-background/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+            {VIP_METRICS.map((stat) => (
+              <div key={stat.label} className="min-h-[5.5rem] px-5 py-4 sm:min-h-0 sm:px-8 sm:py-5">
                 <div className="font-display text-[clamp(1.7rem,2.6vw,2.2rem)] font-normal leading-none tracking-[-0.01em]">
                   {stat.value}
                 </div>
@@ -3229,87 +3201,11 @@ function VipSection() {
                 </div>
               </div>
             ))}
-
-            <button
-              type="button"
-              onClick={() => setFilmOpen(true)}
-              aria-label={`Play the Venture Initiation Programme film — ${VIP_FILM.title}`}
-              className="group relative min-h-[8.5rem] overflow-hidden border-t border-background/10 sm:border-t-0 sm:border-l"
-            >
-              <img
-                src={VIP_FILM.poster}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                className="absolute inset-0 size-full object-cover transition-opacity duration-500 group-hover:opacity-75"
-              />
-              <span aria-hidden className="absolute inset-0 bg-linear-to-t from-foreground/90 via-foreground/35 to-foreground/15" />
-              <span className="absolute -left-px -top-px z-10 bg-bottle px-3 py-1 font-tech text-[9px] font-bold uppercase text-background">
-                The VIP film
-              </span>
-              <span className="absolute inset-0 grid place-items-center pb-9">
-                <span className="grid size-14 place-items-center bg-accent text-accent-foreground transition-transform duration-300 group-hover:scale-105">
-                  <Play className="fill-current" />
-                </span>
-              </span>
-              <span className="absolute inset-x-4 bottom-3.5 line-clamp-2 text-left font-serif-italic text-[13px] leading-snug text-background">
-                {VIP_FILM.title}
-              </span>
-            </button>
           </div>
         </div>
       </Reveal>
 
       <VipJourney stages={VIP_STAGES} />
-
-      {typeof document !== "undefined" &&
-        createPortal(
-          <AnimatePresence>
-            {filmOpen && (
-              <motion.div
-                role="dialog"
-                aria-modal="true"
-                aria-label="Venture Initiation Programme film"
-                initial={reduceMotion ? false : { opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: reduceMotion ? 0 : 0.3 }}
-                className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm sm:p-8"
-                onClick={() => setFilmOpen(false)}
-              >
-                <motion.div
-                  initial={reduceMotion ? false : { opacity: 0, scale: 0.94, y: 12 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: 8 }}
-                  transition={{ duration: reduceMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
-                  className="aspect-video w-full max-w-5xl overflow-hidden rounded-[6px] border border-white/15 bg-black shadow-2xl"
-                  onClick={(event) => event.stopPropagation()}
-                >
-                  <iframe
-                    src={`https://www.youtube-nocookie.com/embed/${VIP_FILM.yt}?autoplay=1&rel=0`}
-                    title="Venture Initiation Programme film"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="h-full w-full"
-                  />
-                </motion.div>
-                <motion.button
-                  type="button"
-                  aria-label="Close video"
-                  onClick={() => setFilmOpen(false)}
-                  initial={reduceMotion ? false : { opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ delay: reduceMotion ? 0 : 0.2, duration: reduceMotion ? 0 : 0.2 }}
-                  className="absolute right-4 top-4 inline-flex size-10 items-center justify-center rounded-full border border-white/25 text-white/80 transition-colors hover:bg-white/10 hover:text-white sm:right-6 sm:top-6"
-                >
-                  <X className="size-4" />
-                </motion.button>
-              </motion.div>
-            )}
-          </AnimatePresence>,
-          document.body,
-        )}
     </Section>
   );
 }
