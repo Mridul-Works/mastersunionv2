@@ -2803,7 +2803,7 @@ function DropshippingSection() {
                         className="mt-1.5 font-tech uppercase tracking-[0.22em] text-background/65"
                         style={{ fontSize: "calc(9px / var(--ep-scale, 1))" }}
                       >
-                        Dropshipping Challenge
+                        Field Film
                       </p>
                     </div>
                   </div>
