@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AnimatePresence, motion, useMotionValue, useReducedMotion, useTransform } from "framer-motion";
@@ -459,6 +459,7 @@ import vipMvpImg from "@/assets/vip/vip-mvp.jpg.asset.json";
 import vipGtmImg from "@/assets/vip/vip-gtm.jpg.asset.json";
 import vipPmfImg from "@/assets/vip/vip-pmf.jpg.asset.json";
 import vipDemodayImg from "@/assets/vip/vip-demoday.jpg.asset.json";
+import vipProgramVideo from "@/assets/vip-program.mp4.asset.json";
 
 type Stage = { n: string; name: string; grant: string | null; body: string; image: string; culmination?: boolean };
 
@@ -3166,9 +3167,10 @@ function VipJourney({ stages }: { stages: Stage[] }) {
   );
 }
 
-const VIP_VIDEO_YT_ID = "1PTpdpc4kFc";
+const VIP_VIDEO_URL = vipProgramVideo.url;
+const VIP_WATCH_MORE_URL = "https://youtu.be/1PTpdpc4kFc";
 
-const VIP_VIDEO_DURATION = 111; // seconds, source video length
+const VIP_VIDEO_DURATION = 110; // seconds, source clip length
 const VIP_PREVIEW_CLIP = 10; // seconds shown per preview loop
 
 function randomVipClipStart() {
@@ -3182,19 +3184,11 @@ function VipVideoCard() {
   const [open, setOpen] = useState(false);
   const [origin, setOrigin] = useState<DOMRect | null>(null);
   const reduceMotion = useReducedMotion();
-  // Muted preview: one persistent player that seeks to a new random point every
-  // VIP_PREVIEW_CLIP seconds, so the loop never reloads or stalls.
+  // Muted preview: the same element keeps playing and simply seeks to a new
+  // random moment every VIP_PREVIEW_CLIP seconds — no reload, no gap.
   const [previewOn, setPreviewOn] = useState(false);
-  const [previewVisible, setPreviewVisible] = useState(false);
-  const previewRef = useRef<HTMLIFrameElement>(null);
-  const [firstClip] = useState(() => randomVipClipStart());
-
-  const postToPreview = useCallback((func: string, args: unknown[] = []) => {
-    previewRef.current?.contentWindow?.postMessage(
-      JSON.stringify({ event: "command", func, args }),
-      "*",
-    );
-  }, []);
+  const previewRef = useRef<HTMLVideoElement>(null);
+  const modalVideoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -3210,25 +3204,26 @@ function VipVideoCard() {
     return () => io.disconnect();
   }, [reduceMotion]);
 
-  // Seek to a fresh random moment on a steady beat — no iframe remount, no gap.
   useEffect(() => {
-    if (!previewOn || open || reduceMotion) return;
-    const id = window.setInterval(() => {
-      postToPreview("seekTo", [randomVipClipStart(), true]);
-      postToPreview("playVideo");
-    }, VIP_PREVIEW_CLIP * 1000);
+    const video = previewRef.current;
+    if (!video) return;
+    if (!previewOn || open || reduceMotion) {
+      video.pause();
+      return;
+    }
+    const jump = () => {
+      video.currentTime = randomVipClipStart();
+      void video.play().catch(() => {});
+    };
+    jump();
+    const id = window.setInterval(jump, VIP_PREVIEW_CLIP * 1000);
     return () => window.clearInterval(id);
-  }, [previewOn, open, reduceMotion, postToPreview]);
-
-  // Pause while the full-screen player is open, resume when it closes.
-  useEffect(() => {
-    if (!previewVisible) return;
-    if (open) postToPreview("pauseVideo");
-    else postToPreview("playVideo");
-  }, [open, previewVisible, postToPreview]);
+  }, [previewOn, open, reduceMotion]);
 
   useEffect(() => {
     if (!open) return;
+    const video = modalVideoRef.current;
+    if (video) void video.play().catch(() => {});
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
@@ -3275,35 +3270,18 @@ function VipVideoCard() {
           className="group mx-auto block w-full overflow-hidden rounded-2xl border border-background/15 text-left transition-transform duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60 sm:max-w-4xl md:max-w-5xl lg:max-w-6xl"
         >
           <span className="relative block aspect-video w-full overflow-hidden">
-            <img
-              src={`https://i.ytimg.com/vi/${VIP_VIDEO_YT_ID}/maxresdefault.jpg`}
-              onError={(event) => {
-                const img = event.currentTarget;
-                if (!img.dataset.fallback) {
-                  img.dataset.fallback = "1";
-                  img.src = `https://i.ytimg.com/vi/${VIP_VIDEO_YT_ID}/hqdefault.jpg`;
-                }
-              }}
-              alt="Venture Initiation Program — how students learn business by building business"
-              loading="lazy"
+            <video
+              ref={previewRef}
+              src={VIP_VIDEO_URL}
+              muted
+              autoPlay
+              playsInline
+              loop
+              preload="metadata"
+              tabIndex={-1}
+              aria-hidden
               className="block h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
             />
-            {previewOn && !reduceMotion && (
-              <span
-                aria-hidden
-                className={`pointer-events-none absolute inset-0 overflow-hidden transition-opacity duration-700 ${previewVisible && !open ? "opacity-100" : "opacity-0"}`}
-              >
-                <iframe
-                  ref={previewRef}
-                  title=""
-                  tabIndex={-1}
-                  onLoad={() => window.setTimeout(() => setPreviewVisible(true), 1200)}
-                  src={`https://www.youtube-nocookie.com/embed/${VIP_VIDEO_YT_ID}?enablejsapi=1&autoplay=1&mute=1&controls=0&disablekb=1&fs=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&start=${firstClip}`}
-                  allow="autoplay; encrypted-media"
-                  className="absolute left-1/2 top-1/2 h-[300%] w-[300%] -translate-x-1/2 -translate-y-1/2 scale-[0.3334] border-0"
-                />
-              </span>
-            )}
             <span aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-black/15" />
             <span aria-hidden className="absolute inset-0 grid place-items-center">
               <span className="grid size-14 place-items-center bg-accent text-accent-foreground">
@@ -3312,6 +3290,17 @@ function VipVideoCard() {
             </span>
           </span>
         </button>
+        <div className="mt-5 flex justify-center sm:mt-6">
+          <a
+            href={VIP_WATCH_MORE_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-foreground/20 px-5 py-2 font-tech text-[11px] uppercase tracking-[0.18em] transition-colors hover:border-foreground/40 hover:bg-foreground/5"
+          >
+            Watch more
+            <ArrowUpRight className="size-3.5" />
+          </a>
+        </div>
       </div>
       {typeof document !== "undefined" &&
         createPortal(
@@ -3366,12 +3355,12 @@ function VipVideoCard() {
                   className="fixed aspect-video overflow-hidden border border-background/15 bg-black shadow-2xl"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <iframe
-                    src={`https://www.youtube-nocookie.com/embed/${VIP_VIDEO_YT_ID}?autoplay=1&rel=0&modestbranding=1&playsinline=1`}
-                    title="Venture Initiation Program — how students learn business by building business"
-                    allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
+                  <video
+                    ref={modalVideoRef}
+                    src={VIP_VIDEO_URL}
+                    controls
+                    autoPlay
+                    playsInline
                     className="h-full w-full"
                   />
                 </motion.div>
