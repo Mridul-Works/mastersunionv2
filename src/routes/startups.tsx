@@ -3197,6 +3197,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={`vip-story-${stage.name}`}
+              className="flex min-h-0 flex-1 flex-col"
               initial={reduceMotion ? false : { opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               exit={reduceMotion ? undefined : { opacity: 0, y: -10 }}
@@ -3216,19 +3217,22 @@ function VipJourney({ stages }: { stages: Stage[] }) {
                   </Fragment>
                 ))}
               </h3>
-              <div className="mt-4 space-y-3 sm:mt-5 lg:mt-6">
+              <div
+                data-lenis-prevent
+                className="mt-4 min-h-0 flex-1 space-y-3 overflow-y-auto overscroll-contain pr-1 sm:mt-5 lg:mt-6 [scrollbar-color:color-mix(in_oklab,var(--background)_22%,transparent)_transparent] [scrollbar-width:thin]"
+              >
                 {stage.body.map((para, i) => (
-                  <p key={`${stage.name}-body-${i}`} className="max-w-[40ch] text-[13px] leading-[1.6] text-background/72 sm:text-[14px] lg:text-[14px] lg:leading-[1.65]">{para}</p>
+                  <p key={`${stage.name}-body-${i}`} className="max-w-[40ch] text-[13px] leading-[1.6] text-background/72 sm:text-[14px] lg:leading-[1.65]">{para}</p>
                 ))}
               </div>
-              <div className="relative mt-5 overflow-hidden rounded-lg border border-background/10 bg-background/[0.05] p-4 sm:p-5 lg:mt-7 lg:rounded-2xl lg:p-6">
+              <div className="relative mt-5 shrink-0 overflow-hidden rounded-lg border border-background/10 bg-background/[0.05] p-4 sm:p-5 lg:mt-7 lg:rounded-2xl lg:p-6">
                 <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-background/45">{stage.grant ? "Stage grant" : "Investors in the room"}</span>
                 <strong className="mt-2 block font-display text-[clamp(1.7rem,3vw,2.8rem)] font-bold leading-none text-accent">{stage.grant ?? "150+"}</strong>
               </div>
             </motion.div>
           </AnimatePresence>
 
-          <div className="mt-5 flex items-end justify-between gap-4">
+          <div className="mt-5 flex shrink-0 items-end justify-between gap-4">
             <div className="min-w-0 flex-1">
               <div className="h-px overflow-hidden bg-background/15">
                 <motion.div className="h-full origin-left bg-accent" animate={{ width: `${progress}%` }} transition={{ duration: reduceMotion ? 0 : 0.45 }} />
