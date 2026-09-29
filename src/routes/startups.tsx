@@ -852,14 +852,14 @@ function EyebrowRule() {
   return (
     <span
       aria-hidden
-      className="h-px w-12 shrink-0 bg-gradient-to-r from-sky-400 via-yellow-300 to-orange-400"
+      className="mt-[8px] h-px w-12 shrink-0 bg-gradient-to-r from-sky-400 via-yellow-300 to-orange-400"
     />
   );
 }
 
 function Eyebrow({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-start gap-4">
       <EyebrowRule />
       <div className="min-w-0 font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-background/50">
         {children}
