@@ -1896,7 +1896,7 @@ function SparkCarousel({
                   </span>
                 ))}
               </div>
-              <div className="relative overflow-hidden rounded-[6px]">
+              <div className="relative overflow-hidden">
                 <motion.div
                   key={`right-${active}`}
                   initial={reduceMotion ? false : { y: "100%" }}
@@ -1907,7 +1907,7 @@ function SparkCarousel({
                     type="button"
                     onClick={() => setYtVideoId(company.videoId)}
                     aria-label={`Play video: ${company.videoTitle}`}
-                    className="group relative block aspect-[1200/896] w-full cursor-pointer overflow-hidden rounded-[6px] border border-background/15 bg-black/40 text-left focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60"
+                    className="group relative block aspect-[1200/896] w-full cursor-pointer overflow-hidden border border-background/15 bg-black/40 text-left focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60"
                   >
                     <span aria-hidden className="absolute inset-0 overflow-hidden">
                       <img
@@ -1942,12 +1942,21 @@ function SparkCarousel({
                         <Play className="fill-current" />
                       </span>
                     </span>
-                    <span className="absolute inset-x-0 bottom-0 flex flex-col gap-1 p-4 sm:p-5">
-                      <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/55">
-                        Watch — {company.name}
-                      </span>
-                      <span className="text-[0.8rem] leading-snug text-white/85 sm:text-[0.85rem]">
+                    <span className="absolute -left-px -top-px z-20 bg-bottle px-3 py-1 font-tech text-[9px] font-bold uppercase text-background">
+                      Spark · {String(active + 1).padStart(2, "0")}
+                    </span>
+                    <span
+                      aria-hidden
+                      className="absolute right-3 top-3 z-20 font-tech text-[9px] uppercase tracking-[0.18em] text-background/60 [writing-mode:vertical-rl]"
+                    >
+                      Spark // Film
+                    </span>
+                    <span className="absolute inset-x-4 bottom-4 z-20 flex flex-col gap-2">
+                      <span className="font-display text-[clamp(1rem,1.6vw,1.3rem)] font-light italic leading-[1.15] text-background">
                         {company.videoTitle}
+                      </span>
+                      <span className="font-tech text-[9px] font-bold uppercase tracking-[0.18em] text-background/70 sm:text-[10px]">
+                        Watch the film
                       </span>
                     </span>
                   </button>
