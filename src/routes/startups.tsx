@@ -706,6 +706,34 @@ const HSSL_STATS = [
 ];
 const HSSL_STAGES = ["Ideation", "MVP Showdown", "Investor Pitch"];
 
+/**
+ * Highlight reels for the High School Startup League. Vertical cards, one per
+ * clip: poster frame first, muted preview on hover, full clip in a portal modal.
+ */
+const HSSL_REELS = [
+  {
+    id: "hssl-reel-1",
+    src: hsslReel1.url,
+    poster: hsslReel1Poster.url,
+    title: "Reel 01",
+    meta: "High School Startup League",
+  },
+  {
+    id: "hssl-reel-2",
+    src: hsslReel2.url,
+    poster: hsslReel2Poster.url,
+    title: "Reel 02",
+    meta: "High School Startup League",
+  },
+  {
+    id: "hssl-reel-3",
+    src: hsslReel3.url,
+    poster: hsslReel3Poster.url,
+    title: "Reel 03",
+    meta: "High School Startup League",
+  },
+];
+
 const ECOSYSTEM_STATS = [
   { value: "30+", label: "Startups launched" },
   { value: "₹593.10 Cr", label: "Total valuation" },
