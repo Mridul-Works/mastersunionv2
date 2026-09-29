@@ -3182,9 +3182,19 @@ function VipVideoCard() {
   const [open, setOpen] = useState(false);
   const [origin, setOrigin] = useState<DOMRect | null>(null);
   const reduceMotion = useReducedMotion();
-  // Muted 10s preview loop that jumps to a random point of the film each cycle.
+  // Muted preview: one persistent player that seeks to a new random point every
+  // VIP_PREVIEW_CLIP seconds, so the loop never reloads or stalls.
   const [previewOn, setPreviewOn] = useState(false);
-  const [clip, setClip] = useState(() => randomVipClipStart());
+  const [previewVisible, setPreviewVisible] = useState(false);
+  const previewRef = useRef<HTMLIFrameElement>(null);
+  const [firstClip] = useState(() => randomVipClipStart());
+
+  const postToPreview = useCallback((func: string, args: unknown[] = []) => {
+    previewRef.current?.contentWindow?.postMessage(
+      JSON.stringify({ event: "command", func, args }),
+      "*",
+    );
+  }, []);
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -3200,12 +3210,22 @@ function VipVideoCard() {
     return () => io.disconnect();
   }, [reduceMotion]);
 
+  // Seek to a fresh random moment on a steady beat — no iframe remount, no gap.
   useEffect(() => {
     if (!previewOn || open || reduceMotion) return;
-    setClip(randomVipClipStart());
-    const id = window.setInterval(() => setClip(randomVipClipStart()), (VIP_PREVIEW_CLIP + 1) * 1000);
+    const id = window.setInterval(() => {
+      postToPreview("seekTo", [randomVipClipStart(), true]);
+      postToPreview("playVideo");
+    }, VIP_PREVIEW_CLIP * 1000);
     return () => window.clearInterval(id);
-  }, [previewOn, open, reduceMotion]);
+  }, [previewOn, open, reduceMotion, postToPreview]);
+
+  // Pause while the full-screen player is open, resume when it closes.
+  useEffect(() => {
+    if (!previewVisible) return;
+    if (open) postToPreview("pauseVideo");
+    else postToPreview("playVideo");
+  }, [open, previewVisible, postToPreview]);
 
   useEffect(() => {
     if (!open) return;
