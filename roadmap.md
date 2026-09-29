@@ -19,3 +19,5 @@
 - [x] Redesign "By the Numbers" as a structured editorial grid (deck left, lead figure right, hairline stat ledger); image cards untouched
 
 - [x] Match Portfolio metric figures to the page metric-card scale, shrink cells, relabel to "Portfolio", delete "Not a Straight Line" section
+
+- [x] Place the divider rule above the Founder Stories section (1px hairline so it paints at every scroll offset)
