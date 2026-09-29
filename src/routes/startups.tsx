@@ -2311,7 +2311,7 @@ function OutclassSection() {
       <div className="relative mx-auto max-w-[1320px] px-4 sm:px-7 lg:px-12">
         <Reveal className="grid gap-6 lg:grid-cols-12">
           <div className="lg:col-span-7">
-            <div className="flex items-center gap-4">
+            <div className="flex items-start gap-4">
               <EyebrowRule />
               <p className="font-tech text-[11px] uppercase tracking-[0.32em] text-background/60">OutClass</p>
             </div>
