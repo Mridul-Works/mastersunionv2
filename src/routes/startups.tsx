@@ -4461,8 +4461,8 @@ function StartupsPage() {
         </div>
       </Section>
 
-
       <VenturesMosaicSection />
+
 
       <Section id="reality" tone="dark">
         <Reveal>
