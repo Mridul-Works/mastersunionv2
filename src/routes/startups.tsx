@@ -3025,9 +3025,14 @@ function VipJourney({ stages }: { stages: Stage[] }) {
   const [direction, setDirection] = useState<1 | -1>(1);
   const [vipVideoOpen, setVipVideoOpen] = useState(false);
   const vipVideoOpenRef = useRef(false);
+  const dragGuardRef = useRef(false);
   const reduceMotion = useReducedMotion();
 
   const openVipVideo = () => {
+    if (dragGuardRef.current) {
+      dragGuardRef.current = false;
+      return;
+    }
     vipVideoOpenRef.current = true;
     setVipVideoOpen(true);
   };
@@ -3081,12 +3086,15 @@ function VipJourney({ stages }: { stages: Stage[] }) {
     <div
       ref={cardRef}
       className="relative mt-10 h-[44rem] overflow-hidden rounded-xl border border-background/10 bg-foreground text-background shadow-2xl sm:mt-12 sm:h-[48rem] md:h-[34rem] md:rounded-[2rem] lg:mt-16 lg:h-[40rem]"
-      onPointerDown={(event) => { pointerStartRef.current = event.clientX; }}
+      onPointerDown={(event) => { pointerStartRef.current = event.clientX; dragGuardRef.current = false; }}
       onPointerUp={(event) => {
         const start = pointerStartRef.current;
         pointerStartRef.current = null;
-        if (start === null || Math.abs(event.clientX - start) < 60) return;
-        goTo(active + (event.clientX < start ? 1 : -1));
+        if (start === null) return;
+        const delta = event.clientX - start;
+        if (Math.abs(delta) < 60) return;
+        dragGuardRef.current = true;
+        goTo(active + (delta < 0 ? 1 : -1));
       }}
     >
       <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-1/2 bg-linear-to-l from-primary/10 to-transparent" />
