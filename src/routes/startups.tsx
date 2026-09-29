@@ -2255,7 +2255,7 @@ function OutclassRail({ children, label, paged = false }: { children: ReactNode;
       setCount(items.length);
       let nearest = 0;
       items.forEach((item, i) => {
-        if (Math.abs(item.offsetLeft - el.scrollLeft) < Math.abs(items[nearest].offsetLeft - el.scrollLeft)) nearest = i;
+        if (Math.abs(item.offsetLeft - el.offsetLeft - el.scrollLeft) < Math.abs(items[nearest].offsetLeft - el.offsetLeft - el.scrollLeft)) nearest = i;
       });
       setActive(nearest);
     };
@@ -2267,7 +2267,7 @@ function OutclassRail({ children, label, paged = false }: { children: ReactNode;
   const goTo = (i: number) => {
     const el = rail.current;
     const item = el?.children[i] as HTMLElement | undefined;
-    if (el && item) el.scrollTo({ left: item.offsetLeft, behavior: reduceMotion ? "instant" : "smooth" });
+    if (el && item) el.scrollTo({ left: item.offsetLeft - el.offsetLeft, behavior: reduceMotion ? "instant" : "smooth" });
   };
   return (
     <div className="relative mt-8 min-w-0">
