@@ -766,125 +766,6 @@ const NEXT_GEN = [
   },
 ];
 
-type Company = {
-  name: string;
-  founder: string;
-  category: string;
-  metric: string;
-  description: string;
-};
-
-const PORTFOLIO_PRIMARY: Company[] = [
-  {
-    name: "Eight",
-    founder: "Yugal Tamang, Mohit Paliwal, Mohit Goswami",
-    category: "Tech & Media",
-    metric: "5M+ downloads",
-    description: "Audio-to-microdrama storytelling platform.",
-  },
-  {
-    name: "Nivara",
-    founder: "Vikas Kabra",
-    category: "D2C",
-    metric: "₹15Cr ARR, bootstrapped",
-    description: "Lab-grown diamond jewellery, profitable with zero outside capital.",
-  },
-  {
-    name: "Bullspree",
-    founder: "Dharmil Bavishi",
-    category: "Fintech",
-    metric: "10L+ registered users",
-    description: "Experiential investing platform for India's retail traders.",
-  },
-  {
-    name: "PlaySuper",
-    founder: "Upamanyu Chatterjee, Shouradeep Chakraborty",
-    category: "Gaming",
-    metric: "₹83.5Cr last valuation",
-    description: "Rewards platform helping gaming studios fix retention.",
-  },
-  {
-    name: "Lexi's",
-    founder: "Naveen Balaji, Rhea Melwani, Alex Puthusserry, Ayush Melwani",
-    category: "F&B",
-    metric: "₹1.5Cr+ ARR",
-    description: "Gurgaon's top-rated gourmet sandwich brand.",
-  },
-  {
-    name: "Cryptique",
-    founder: "Parth Agarwal, Akshit Varsani",
-    category: "Web3",
-    metric: "30+ project waitlist in 3 days",
-    description: "An AI-native intelligence layer for Web3 marketing ROI.",
-  },
-];
-
-const PORTFOLIO_MORE: Company[] = [
-  {
-    name: "JustMyRoots",
-    founder: "Karan Sachdeva",
-    category: "Logistics / F&B",
-    metric: "₹500Cr last valuation",
-    description: "Regional food delivery grown into a national logistics backbone.",
-  },
-  {
-    name: "Bambaii Foods",
-    founder: "Gaurav Dasgupta",
-    category: "F&B",
-    metric: "5,000+ customers",
-    description: "Guilt-free snacking, reborn from a failed first batch.",
-  },
-  {
-    name: "Eat Atlas",
-    founder: "Ishita Gupta, Anshul Gupta, Mayuresh Jadhav",
-    category: "F&B",
-    metric: "Top 3, Demo Day",
-    description: "Global-flavor dips in boarding-pass packaging.",
-  },
-  {
-    name: "Woody's Pizzeria",
-    founder: "Kanav Rishi Kumar",
-    category: "F&B",
-    metric: "4.7★ across 3,000+ orders",
-    description: "South Delhi's highest-rated vegetarian pizzeria.",
-  },
-  {
-    name: "SeedsAI",
-    founder: "Vansh Miglani, Shubham Khatri",
-    category: "AI / Fintech",
-    metric: "₹60L ARR (FY25)",
-    description: "AI voice intelligence for NBFC collections and compliance.",
-  },
-  {
-    name: "Blue Brew",
-    founder: "Aditya Rathi",
-    category: "D2C / Fashion",
-    metric: "₹3.6Cr ARR",
-    description: "Fit-first denim and streetwear, profitable and bootstrapped.",
-  },
-  {
-    name: "Flourish Foods",
-    founder: "Sonam Sharma, Nikhil Sharma",
-    category: "F&B",
-    metric: "15x more iron than regular atta",
-    description: "Functional attas engineered for diabetes, iron deficiency, and low energy.",
-  },
-  {
-    name: "Monarque",
-    founder: "Sarthak Khanna",
-    category: "D2C / Perfumes",
-    metric: "₹24L+ ARR",
-    description: "Long-lasting, accessible luxury fragrances.",
-  },
-  {
-    name: "Guardex",
-    founder: "Naman Jain",
-    category: "DeepTech",
-    metric: "Piloted across 5 factories",
-    description: "Turns passive CCTV into AI-powered factory safety monitoring.",
-  },
-];
-
 const REALITY_EXAMPLES = [
   {
     name: "Bambaii Foods",
@@ -2495,7 +2376,8 @@ function OutclassSection() {
 
 function FounderPoster({ v, ratio }: { v: VentureTile; ratio: string }) {
   return (
-    <article className={`group relative ${ratio} overflow-hidden break-inside-avoid bg-foreground`}>
+    <article className={`group relative ${ratio} overflow-hidden break-inside-avoid border border-background/10 bg-foreground transition-all duration-500 hover:-translate-y-1 hover:border-accent/50`}>
+      <span aria-hidden className="absolute inset-x-0 top-0 z-30 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100" />
       {v.photo ? (
         <img
           src={v.photo}
@@ -2577,9 +2459,10 @@ function FounderPoster({ v, ratio }: { v: VentureTile; ratio: string }) {
 function StatPoster({ s, ratio }: { s: StatTile; ratio: string }) {
   return (
     <article
-      className={`relative flex ${ratio} flex-col justify-between break-inside-avoid border border-background/10 p-3 sm:p-5`}
+      className={`group relative flex ${ratio} flex-col justify-between break-inside-avoid border border-background/10 p-3 transition-all duration-500 hover:-translate-y-1 hover:border-accent/50 sm:p-5`}
       style={{ background: s.bg, color: s.fg }}
     >
+      <span aria-hidden className="absolute inset-x-0 top-0 z-10 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100" />
       <div className="hidden items-start justify-between gap-3 sm:flex">
         <span className="text-[10px] font-medium uppercase tracking-[0.18em]" style={{ color: s.sub }}>
           {s.note}
@@ -2614,9 +2497,10 @@ function VentureCtaTile({ t, ratio }: { t: CtaTile; ratio: string }) {
   return (
     <a
       href={t.to}
-      className={`group relative flex ${ratio} flex-col items-start justify-between overflow-hidden break-inside-avoid p-3 transition-transform duration-500 hover:scale-[1.01] sm:p-5`}
+      className={`group relative flex ${ratio} flex-col items-start justify-between overflow-hidden break-inside-avoid border border-background/10 p-3 transition-all duration-500 hover:-translate-y-1 hover:border-accent/50 sm:p-5`}
       style={{ background: t.bg, color: t.fg, border: t.border ? `1px solid ${t.border}` : undefined }}
     >
+      <span aria-hidden className="absolute inset-x-0 top-0 z-10 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100" />
       <span className="hidden text-[10px] font-medium uppercase tracking-[0.18em] sm:block" style={{ color: t.sub }}>
         Entrepreneurship
       </span>
@@ -3090,20 +2974,15 @@ function VenturesMosaicSection() {
   }, [prefersReducedMotion]);
 
   return (
-    <Section id="ventures" tone="light">
-      {/* Secondary divider rule under the VIP section */}
-      <div aria-hidden className="pointer-events-none absolute left-[6%] right-[6%] top-0 z-[1] h-px bg-background/15" />
-      <div className="mb-4 flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
-        <div>
-          <p className="font-mono text-[9px] uppercase tracking-[0.28em] text-background/40 sm:text-[10px]">
-            Selected student ventures
-          </p>
-          <h3 className="mb-3 mt-1.5 font-display text-[clamp(1.7rem,4vw,2.9rem)] font-medium leading-[1.02] tracking-[-0.03em] sm:mb-5 sm:mt-2">
-            Then I put it in front of{" "}
-            <em className="font-serif-italic font-light !text-background">real people</em>
-          </h3>
-        </div>
-      </div>
+    <Section id="portfolio" tone="paper">
+      <Reveal>
+        <Eyebrow>Selected Companies</Eyebrow>
+      </Reveal>
+      <Reveal delay={0.05}>
+        <h2 className="mb-9 mt-5 max-w-[22ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] tracking-normal sm:mb-11 md:mb-12 md:leading-[1.08]">
+          Portfolio
+        </h2>
+      </Reveal>
 
       <div ref={foundersGridRef}>
         {/* Mobile + tablet masonry keeps variable-height cards tightly packed. */}
@@ -3609,31 +3488,6 @@ function VipSection() {
 
 
 
-function PortfolioCard({ company, delay = 0, featured = false }: { company: Company; delay?: number; featured?: boolean }) {
-  return (
-    <Reveal delay={delay} className={featured ? "md:col-span-2" : undefined}>
-      <article className={`group relative h-full overflow-hidden border border-background/10 bg-background/[0.045] p-5 text-background transition-all duration-500 hover:-translate-y-1 hover:border-accent/50 sm:p-6 md:p-7 ${featured ? "md:p-9 lg:p-10" : ""}`}>
-        <span
-          aria-hidden
-          className="absolute inset-x-0 top-0 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100"
-        />
-        <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
-          <div className="flex min-w-0 items-center gap-3">
-            <LogoBadge src={VENTURE_IMAGES[company.name]} alt={`${company.name} logo`} size={featured ? "size-11" : "size-9"} />
-            <h3 className={`font-medium leading-tight ${featured ? "text-[1.6rem]" : "text-[1.1rem]"}`}>{company.name}</h3>
-          </div>
-          <span className="eyebrow shrink-0 text-background/45">{company.category}</span>
-        </div>
-        <div className="mt-2 text-[11px] uppercase tracking-[0.18em] text-background/50">{company.founder}</div>
-        <div className={`mt-4 font-medium tracking-[-0.02em] ${featured ? "text-[1.6rem]" : "text-[1.15rem]"}`}>{company.metric}</div>
-        <p className={`mt-3 leading-[1.6] text-background/70 ${featured ? "max-w-[60ch] text-[1rem]" : "max-w-[38ch] text-[0.92rem]"}`}>
-          {company.description}
-        </p>
-      </article>
-    </Reveal>
-  );
-}
-
 function CtaButton({
   children,
   dark = false,
@@ -3999,7 +3853,6 @@ function HomepageStyleNav({
 }
 
 function StartupsPage() {
-  const [showMorePortfolio, setShowMorePortfolio] = useState(false);
   const [selectedShark, setSelectedShark] = useState(0);
   const [selectedQuote, setSelectedQuote] = useState(0);
   const [selectedSpark, setSelectedSpark] = useState(0);
@@ -4384,7 +4237,6 @@ function StartupsPage() {
       <OutclassSection />
       <DropshippingSection />
       <VipSection />
-      <VenturesMosaicSection />
 
       <FounderStoriesGallery />
 
@@ -4670,35 +4522,7 @@ function StartupsPage() {
         </div>
       </Section>
 
-      <Section id="portfolio" tone="paper">
-        <Reveal>
-          <Eyebrow>Selected Companies</Eyebrow>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[22ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
-            Portfolio
-          </h2>
-        </Reveal>
-
-        <div className="mt-9 grid grid-cols-1 gap-px bg-background/10 sm:mt-11 sm:grid-cols-2 md:mt-12 lg:grid-cols-3">
-          {PORTFOLIO_PRIMARY.map((p, i) => (
-            <PortfolioCard key={p.name} company={p} delay={i * 0.03} featured={i === 0} />
-          ))}
-          {showMorePortfolio &&
-            PORTFOLIO_MORE.map((p, i) => <PortfolioCard key={p.name} company={p} delay={i * 0.03} />)}
-        </div>
-
-        <Reveal delay={0.1} className="mt-10 flex justify-center">
-          <button
-            type="button"
-            onClick={() => setShowMorePortfolio((v) => !v)}
-            className="eyebrow inline-flex items-center gap-2 text-background/70 transition-colors hover:text-background"
-          >
-            {showMorePortfolio ? "Show fewer ventures" : "View all ventures"}
-            <ArrowRight className={`size-3.5 transition-transform duration-300 ${showMorePortfolio ? "-rotate-90" : "rotate-90"}`} />
-          </button>
-        </Reveal>
-      </Section>
+      <VenturesMosaicSection />
 
       <Section id="reality" tone="dark">
         <Reveal>
