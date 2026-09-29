@@ -1938,7 +1938,7 @@ function SparkCarousel({
                     <span aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/25" />
                     <span aria-hidden className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black via-black/80 to-transparent" />
                     <span aria-hidden className="absolute inset-0 grid place-items-center">
-                      <span className="grid size-9 place-items-center bg-accent text-accent-foreground sm:size-11 md:size-12 lg:size-14">
+                      <span className="grid size-9 place-items-center bg-accent text-accent-foreground sm:size-10 lg:size-14">
                         <Play className="fill-current" />
                       </span>
                     </span>
@@ -2044,7 +2044,7 @@ function SparkCarousel({
                 )}
                 <span className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-black/15" />
                 <span className="absolute inset-0 grid place-items-center">
-                  <span className="grid size-9 place-items-center bg-accent text-accent-foreground sm:size-11 md:size-12 lg:size-14">
+                  <span className="grid size-9 place-items-center bg-accent text-accent-foreground sm:size-10 lg:size-14">
                     <Play className="fill-current" />
                   </span>
                 </span>
@@ -2058,7 +2058,7 @@ function SparkCarousel({
                   Spark // Film
                 </span>
                 <span className="absolute inset-x-4 bottom-3 z-20 flex flex-col gap-2 sm:bottom-4">
-                  <span className="font-display text-[clamp(0.95rem,1.8vw,1.5rem)] font-light italic leading-[1.15] text-background">
+                  <span className="font-display text-[clamp(0.8rem,1.6vw,1.5rem)] font-light italic leading-[1.15] text-background min-[700px]:max-h-[2.4em] min-[700px]:overflow-hidden">
                     The Building Starts Here
                   </span>
                   <span className="font-tech text-[9px] font-bold uppercase tracking-[0.18em] text-background/70 sm:text-[10px]">
