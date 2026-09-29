@@ -2917,7 +2917,7 @@ function ByTheNumbers() {
           <Reveal delay={0.05}>
             <h2 className="max-w-[22ch] font-display text-[clamp(1.9rem,4.1vw,3.4rem)] font-medium leading-[1.08] tracking-[-0.02em] text-balance">
               This isn&apos;t three stories. It&apos;s a{" "}
-              <span className="font-serif-italic font-normal">portfolio</span>.
+              <span className="font-serif text-normal italic">portfolio</span>.
             </h2>
           </Reveal>
 
