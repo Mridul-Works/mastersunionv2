@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
+import { Fragment, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AnimatePresence, motion, useMotionValue, useReducedMotion, useTransform } from "framer-motion";
@@ -3121,10 +3121,10 @@ function VipJourney({ stages }: { stages: Stage[] }) {
                 <div aria-hidden className="my-3 h-px bg-background/30" />
                 <h4 className="font-display text-[clamp(1.15rem,3vw,2.4rem)] font-black uppercase leading-[0.85] text-background [text-wrap:balance]">
                   {stage.name.split(" ").map((word, i, words) => (
-                    <span key={`${word}-${i}`} className="whitespace-nowrap">
-                      {word}
-                      {i < words.length - 1 ? " " : ""}
-                    </span>
+                    <Fragment key={`${word}-${i}`}>
+                      <span className="whitespace-nowrap">{word}</span>
+                      {i < words.length - 1 ? " " : null}
+                    </Fragment>
                   ))}
                 </h4>
               </div>
