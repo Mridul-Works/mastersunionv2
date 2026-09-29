@@ -3288,13 +3288,17 @@ function VipVideoCard() {
               loading="lazy"
               className="block h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
             />
-            {previewOn && !open && !reduceMotion && (
-              <span aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+            {previewOn && !reduceMotion && (
+              <span
+                aria-hidden
+                className={`pointer-events-none absolute inset-0 overflow-hidden transition-opacity duration-700 ${previewVisible && !open ? "opacity-100" : "opacity-0"}`}
+              >
                 <iframe
-                  key={clip}
+                  ref={previewRef}
                   title=""
                   tabIndex={-1}
-                  src={`https://www.youtube-nocookie.com/embed/${VIP_VIDEO_YT_ID}?autoplay=1&mute=1&controls=0&disablekb=1&fs=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&start=${clip}&end=${clip + VIP_PREVIEW_CLIP}`}
+                  onLoad={() => window.setTimeout(() => setPreviewVisible(true), 1200)}
+                  src={`https://www.youtube-nocookie.com/embed/${VIP_VIDEO_YT_ID}?enablejsapi=1&autoplay=1&mute=1&controls=0&disablekb=1&fs=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&start=${firstClip}`}
                   allow="autoplay; encrypted-media"
                   className="absolute left-1/2 top-1/2 h-[300%] w-[300%] -translate-x-1/2 -translate-y-1/2 scale-[0.3334] border-0"
                 />
