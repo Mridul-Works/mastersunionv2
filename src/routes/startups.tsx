@@ -262,7 +262,7 @@ const FOUNDER_VENTURES: VentureTile[] = [
     logo: ventureEightLogo,
     sector: "Tech & Media",
     stage: "Venture-backed",
-    raised: "5M+ downloads",
+    raised: "₹13Cr+ ARR · 5M+ downloads",
     description: "Audio-to-microdrama storytelling platform.",
   },
   {
@@ -281,7 +281,7 @@ const FOUNDER_VENTURES: VentureTile[] = [
     logo: ventureBullspreeLogo,
     sector: "Fintech",
     stage: "Seed-funded",
-    raised: "10L+ users",
+    raised: "₹10Cr revenue · 10L+ users",
     description: "Experiential investing platform for India's retail traders.",
   },
   {
@@ -291,7 +291,7 @@ const FOUNDER_VENTURES: VentureTile[] = [
     logo: venturePlaysuperLogo,
     sector: "Gaming",
     stage: "Seed-funded",
-    raised: "₹83.5Cr valuation",
+    raised: "₹83.5Cr valuation · ₹13.4Cr raised",
     description: "Rewards platform helping gaming studios fix retention.",
   },
   {
@@ -347,7 +347,7 @@ const FOUNDER_VENTURES: VentureTile[] = [
     logo: ventureWoodys,
     sector: "F&B",
     stage: "Bootstrapped",
-    raised: "4.7★ · 3,000+ orders",
+    raised: "₹40L revenue · 3,000+ customers",
     description: "South Delhi's highest-rated vegetarian pizzeria.",
   },
   {
@@ -357,7 +357,7 @@ const FOUNDER_VENTURES: VentureTile[] = [
     logo: ventureSeedsAILogo,
     sector: "AI / Fintech",
     stage: "Revenue-stage",
-    raised: "₹60L ARR",
+    raised: "₹60L revenue (FY25)",
     description: "AI voice intelligence for NBFC collections and compliance.",
   },
   {
