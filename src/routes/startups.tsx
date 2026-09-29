@@ -228,6 +228,10 @@ const VIP_METRICS = [
   { value: "70+", label: "Students pitched at Demo Days" },
 ];
 
+// Masters' Union: "Venture Initiation Program | How Students Learn Business by Building Business"
+const VIP_VIDEO_ID = "1PTpdpc4kFc";
+const VIP_VIDEO_TITLE = "Venture Initiation Programme film";
+
 /* ============ Founders in the making — mosaic (from the homepage funding board) ============ */
 
 type VentureTile = {
