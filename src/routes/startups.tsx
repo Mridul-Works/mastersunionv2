@@ -1952,7 +1952,7 @@ function SparkCarousel({
                       Spark // Film
                     </span>
                     <span className="absolute inset-x-4 bottom-3 z-20 flex flex-col gap-2 sm:bottom-4">
-                      <span className="hidden font-display text-[clamp(0.85rem,1.6vw,1.3rem)] font-light italic leading-[1.15] text-background min-[700px]:block">
+                      <span className="hidden font-display text-[clamp(0.8rem,1.4vw,1.3rem)] font-light italic leading-[1.15] text-background min-[700px]:block min-[700px]:max-h-[2.4em] min-[700px]:overflow-hidden">
                         {company.videoTitle}
                       </span>
                       <span className="font-tech text-[9px] font-bold uppercase tracking-[0.18em] text-background/70 sm:text-[10px]">
