@@ -228,10 +228,6 @@ const VIP_METRICS = [
   { value: "70+", label: "Students pitched at Demo Days" },
 ];
 
-// Masters' Union: "Venture Initiation Program | How Students Learn Business by Building Business"
-const VIP_VIDEO_ID = "1PTpdpc4kFc";
-const VIP_VIDEO_TITLE = "Venture Initiation Programme film";
-
 /* ============ Founders in the making — mosaic (from the homepage funding board) ============ */
 
 type VentureTile = {
@@ -3023,23 +3019,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
   const pointerStartRef = useRef<number | null>(null);
   const [active, setActive] = useState(0);
   const [direction, setDirection] = useState<1 | -1>(1);
-  const [vipVideoOpen, setVipVideoOpen] = useState(false);
-  const vipVideoOpenRef = useRef(false);
-  const dragGuardRef = useRef(false);
   const reduceMotion = useReducedMotion();
-
-  const openVipVideo = () => {
-    if (dragGuardRef.current) {
-      dragGuardRef.current = false;
-      return;
-    }
-    vipVideoOpenRef.current = true;
-    setVipVideoOpen(true);
-  };
-  const closeVipVideo = () => {
-    vipVideoOpenRef.current = false;
-    setVipVideoOpen(false);
-  };
 
   const goTo = (next: number) => {
     const bounded = Math.max(0, Math.min(stages.length - 1, next));
@@ -3057,7 +3037,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
     }, { threshold: [0, 0.25, 1] });
     observer.observe(card);
     const onKeyDown = (event: KeyboardEvent) => {
-      if (!visible || vipVideoOpenRef.current) return;
+      if (!visible) return;
       if (event.key === "ArrowRight") goTo(active + 1);
       if (event.key === "ArrowLeft") goTo(active - 1);
     };
@@ -3068,15 +3048,6 @@ function VipJourney({ stages }: { stages: Stage[] }) {
     };
   }, [active, stages.length]);
 
-  useEffect(() => {
-    if (!vipVideoOpen) return;
-    const escape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") closeVipVideo();
-    };
-    window.addEventListener("keydown", escape);
-    return () => window.removeEventListener("keydown", escape);
-  }, [vipVideoOpen]);
-
   const stage = stages[active];
   const previousStage = stages[Math.max(0, active - 1)];
   const nextStage = stages[Math.min(stages.length - 1, active + 1)];
@@ -3086,15 +3057,12 @@ function VipJourney({ stages }: { stages: Stage[] }) {
     <div
       ref={cardRef}
       className="relative mt-10 h-[44rem] overflow-hidden rounded-xl border border-background/10 bg-foreground text-background shadow-2xl sm:mt-12 sm:h-[48rem] md:h-[34rem] md:rounded-[2rem] lg:mt-16 lg:h-[40rem]"
-      onPointerDown={(event) => { pointerStartRef.current = event.clientX; dragGuardRef.current = false; }}
+      onPointerDown={(event) => { pointerStartRef.current = event.clientX; }}
       onPointerUp={(event) => {
         const start = pointerStartRef.current;
         pointerStartRef.current = null;
-        if (start === null) return;
-        const delta = event.clientX - start;
-        if (Math.abs(delta) < 60) return;
-        dragGuardRef.current = true;
-        goTo(active + (delta < 0 ? 1 : -1));
+        if (start === null || Math.abs(event.clientX - start) < 60) return;
+        goTo(active + (event.clientX < start ? 1 : -1));
       }}
     >
       <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-1/2 bg-linear-to-l from-primary/10 to-transparent" />
@@ -3148,17 +3116,6 @@ function VipJourney({ stages }: { stages: Stage[] }) {
                 <div className="font-mono text-[9px] uppercase tracking-[0.2em] text-background/60">Chapter · {stage.n}</div>
                 <div className="mt-1 font-serif-italic text-[clamp(1.6rem,3vw,2.6rem)] leading-none text-background">{stage.name}</div>
               </div>
-              <Button
-                type="button"
-                variant="ghost"
-                aria-label={`Play the ${VIP_VIDEO_TITLE}`}
-                onClick={openVipVideo}
-                className="group absolute inset-0 z-30 grid h-full w-full place-items-center rounded-none p-0 hover:bg-transparent"
-              >
-                <span className="grid size-14 place-items-center bg-accent text-accent-foreground transition-transform duration-300 group-hover:scale-105">
-                  <Play className="fill-current" />
-                </span>
-              </Button>
             </motion.div>
           </AnimatePresence>
         </div>
@@ -3205,38 +3162,6 @@ function VipJourney({ stages }: { stages: Stage[] }) {
           </div>
         </div>
       </div>
-
-      {vipVideoOpen && typeof document !== "undefined" &&
-        createPortal(
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-label={VIP_VIDEO_TITLE}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/90 p-4"
-            onClick={closeVipVideo}
-          >
-            <Button
-              type="button"
-              variant="ghost"
-              size="icon"
-              aria-label="Close video"
-              onClick={closeVipVideo}
-              className="absolute right-4 top-4 text-background hover:bg-background/10 hover:text-background"
-            >
-              <X />
-            </Button>
-            <div className="aspect-video w-full max-w-5xl overflow-hidden" onClick={(event) => event.stopPropagation()}>
-              <iframe
-                src={`https://www.youtube-nocookie.com/embed/${VIP_VIDEO_ID}?autoplay=1&rel=0`}
-                title={VIP_VIDEO_TITLE}
-                allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-                allowFullScreen
-                className="size-full"
-              />
-            </div>
-          </div>,
-          document.body,
-        )}
     </div>
   );
 }
