@@ -1288,7 +1288,7 @@ function FounderStoriesGallery() {
                     {editorial.paragraphs.slice(0, 4).map((paragraph, index) => (
                       <p
                         key={paragraph}
-                        className={`break-inside-avoid ${index >= 2 ? "hidden min-[1100px]:block" : ""} ${index === 0 ? "first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[3.1rem] first-letter:leading-[0.78] first-letter:text-(--accent)" : ""}`}
+                        className={`break-inside-avoid ${index === 0 ? "first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[3.1rem] first-letter:leading-[0.78] first-letter:text-(--accent)" : ""}`}
                       >
                         {paragraph}
                       </p>
