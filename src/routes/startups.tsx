@@ -3612,7 +3612,7 @@ function HsslVideoCards() {
                     playsInline
                     preload="auto"
                     aria-label={`${openReel.title} — ${openReel.meta}`}
-                    className="block h-full w-full bg-black object-cover"
+                    className="block h-full w-full bg-black object-contain"
                   />
                 </motion.div>
                 <button
