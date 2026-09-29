@@ -2013,7 +2013,7 @@ function SparkCarousel({
               type="button"
               onClick={openVideo}
               aria-label="Watch the Masters' Union student entrepreneurship video"
-              className="group mx-auto mt-10 block w-full overflow-hidden rounded-2xl border border-background/15 text-left transition-transform duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60 sm:mt-12 sm:max-w-4xl md:max-w-5xl lg:max-w-6xl"
+              className="group mx-auto mt-10 block w-full overflow-hidden border border-background/15 text-left transition-transform duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60 sm:mt-12 sm:max-w-4xl md:max-w-5xl lg:max-w-6xl"
             >
               <span className="relative block aspect-video w-full overflow-hidden">
                 {/* muted highlight loop autoplays on the card; the play
@@ -2046,6 +2046,23 @@ function SparkCarousel({
                 <span className="absolute inset-0 grid place-items-center">
                   <span className="grid size-14 place-items-center bg-accent text-accent-foreground">
                     <Play className="fill-current" />
+                  </span>
+                </span>
+                <span className="absolute -left-px -top-px z-20 bg-bottle px-3 py-1 font-tech text-[9px] font-bold uppercase text-background">
+                  Masters&apos; Union
+                </span>
+                <span
+                  aria-hidden
+                  className="absolute right-3 top-3 z-20 font-tech text-[9px] uppercase tracking-[0.18em] text-background/60 [writing-mode:vertical-rl]"
+                >
+                  Spark // Film
+                </span>
+                <span className="absolute inset-x-4 bottom-4 z-20 flex flex-col gap-2">
+                  <span className="font-display text-[clamp(1.05rem,1.8vw,1.5rem)] font-light italic leading-[1.15] text-background">
+                    The Building Starts Here
+                  </span>
+                  <span className="font-tech text-[9px] font-bold uppercase tracking-[0.18em] text-background/70 sm:text-[10px]">
+                    Full film
                   </span>
                 </span>
               </span>
