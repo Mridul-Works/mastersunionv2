@@ -2787,7 +2787,7 @@ function DropshippingSection() {
                     {renderVideo(video)}
                     <div aria-hidden className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-foreground/70 via-transparent to-foreground/90" />
                     <span
-                      className="absolute left-0 top-0 z-20 bg-accent px-3 py-1 font-tech font-bold uppercase text-accent-foreground"
+                      className="absolute -left-px -top-px z-20 bg-accent px-3 py-1 font-tech font-bold uppercase text-accent-foreground"
                       style={{ fontSize: "calc(9px / var(--ep-scale, 1))" }}
                     >
                       Episode 0{index + 1}
