@@ -69,6 +69,7 @@ import ventureBullspreeLogo from "@/assets/venture-logos/Bullspree.png.asset.jso
 import ventureHiveschoolLogo from "@/assets/venture-logos/Hiveschool.png.asset.json";
 import venturePlaysuperLogo from "@/assets/venture-logos/Playsuper.png.asset.json";
 import ventureSeedsAILogo from "@/assets/venture-logos/SeedsAI.png.asset.json";
+import ventureGuardexLogo from "@/assets/venture-logos/Guardex.png.asset.json";
 import sharkMemoTagLogo from "@/assets/sharktank/MemoTag.png.asset.json";
 import sharkMetaFashionLogo from "@/assets/sharktank/MetaFashion.png.asset.json";
 import brandPhotoEight from "@/assets/founders/brand/eight.jpg";
@@ -233,99 +234,155 @@ const VIP_METRICS = [
 type VentureTile = {
   company: string;
   founder: string;
-  photo: string;
+  photo?: string;
   logo?: { url: string };
   sector: string;
   stage: string;
   raised: string;
+  description: string;
   note?: string;
 };
 
 const FOUNDER_VENTURES: VentureTile[] = [
   {
-    company: "Eight.Network",
-    founder: "Mohit Goswami, Mohit Paliwal, Yugal Tamang · Co'21",
+    company: "Eight",
+    founder: "Yugal Tamang, Mohit Paliwal, Mohit Goswami",
     photo: brandPhotoEight,
     logo: ventureEightLogo,
-    sector: "Audio streaming",
-    stage: "Venture-backed",
-    raised: "$3.1M",
-    note: "~$5M ARR",
+    sector: "Tech & Media",
+    stage: "Selected company",
+    raised: "5M+ downloads",
+    description: "Audio-to-microdrama storytelling platform.",
   },
   {
-    company: "PlaySuper",
-    founder: "Shouradeep Chakraborty, Abhir Das, Upamanyu Chatterjee · Co'24",
-    photo: brandPhotoPlaysuper,
-    logo: venturePlaysuperLogo,
-    sector: "Gaming commerce",
-    stage: "Seed · 4 rounds",
-    raised: "$1.69M",
-    note: "Latest $1M seed, Sep 2025",
+    company: "Nivara",
+    founder: "Vikas Kabra",
+    logo: ventureNivara,
+    sector: "D2C",
+    stage: "Selected company",
+    raised: "₹15Cr ARR",
+    description: "Lab-grown diamond jewellery, profitable with zero outside capital.",
   },
   {
     company: "Bullspree",
-    founder: "Dharmil Bavishi, Harsh Dhanawat, Divyansh Mathur",
+    founder: "Dharmil Bavishi",
     photo: brandPhotoBullspree,
     logo: ventureBullspreeLogo,
-    sector: "Sports gaming",
-    stage: "Seed · 2 rounds",
-    raised: "$1.5M",
-    note: "₹2 Cr (Sep '21) + ₹1 Cr (Feb '22)",
+    sector: "Fintech",
+    stage: "Selected company",
+    raised: "10L+ users",
+    description: "Experiential investing platform for India's retail traders.",
   },
   {
-    company: "MemoTag",
-    founder: "Reyansh Juneja, Japnoor Kaur Sandhu · UG '28",
-    photo: brandPhotoMemotag,
-    logo: sharkMemoTagLogo,
-    sector: "Dementia care wearables",
-    stage: "Early stage",
-    raised: "~₹2.5 Cr",
-    note: "Founder-stated",
-  },
-  {
-    company: "Meta Fashion",
-    founder: "Arjun Goel · UG TBM '28",
-    photo: brandPhotoMetafashion,
-    logo: sharkMetaFashionLogo,
-    sector: "Fashion tech",
-    stage: "Pre-seed",
-    raised: "~$400K",
-  },
-  {
-    company: "Hive School",
-    founder: "Nikhil Gaur · PGP '25",
-    photo: brandPhotoHiveschool,
-    logo: ventureHiveschoolLogo,
-    sector: "EdTech · sales school",
-    stage: "Grant + revenue",
-    raised: "₹2 Cr run rate",
+    company: "PlaySuper",
+    founder: "Upamanyu Chatterjee, Shouradeep Chakraborty",
+    photo: brandPhotoPlaysuper,
+    logo: venturePlaysuperLogo,
+    sector: "Gaming",
+    stage: "Selected company",
+    raised: "₹83.5Cr valuation",
+    description: "Rewards platform helping gaming studios fix retention.",
   },
   {
     company: "Lexi's",
-    founder: "MU student founders",
+    founder: "Naveen Balaji, Rhea Melwani, Alex Puthusserry, Ayush Melwani",
     photo: brandPhotoLexis,
     logo: ventureLexis,
-    sector: "Cloud kitchen",
-    stage: "Student-founded",
-    raised: "₹1 Cr+ ARR",
+    sector: "F&B",
+    stage: "Selected company",
+    raised: "₹1.5Cr+ ARR",
+    description: "Gurgaon's top-rated gourmet sandwich brand.",
   },
   {
-    company: "Seeds AI",
-    founder: "MU student founders",
-    photo: brandPhotoSeedsai,
-    logo: ventureSeedsAILogo,
-    sector: "Applied AI",
-    stage: "Pre-seed",
-    raised: "Undisclosed",
+    company: "Cryptique",
+    founder: "Parth Agarwal, Akshit Varsani",
+    sector: "Web3",
+    stage: "Selected company",
+    raised: "30+ projects",
+    description: "An AI-native intelligence layer for Web3 marketing ROI.",
+  },
+  {
+    company: "JustMyRoots",
+    founder: "Karan Sachdeva",
+    logo: ventureJustMyRoots,
+    sector: "Logistics / F&B",
+    stage: "Selected company",
+    raised: "₹500Cr valuation",
+    description: "Regional food delivery grown into a national logistics backbone.",
+  },
+  {
+    company: "Bambaii Foods",
+    founder: "Gaurav Dasgupta",
+    logo: ventureBambaii,
+    sector: "F&B",
+    stage: "Selected company",
+    raised: "5,000+ customers",
+    description: "Guilt-free snacking, reborn from a failed first batch.",
+  },
+  {
+    company: "Eat Atlas",
+    founder: "Ishita Gupta, Anshul Gupta, Mayuresh Jadhav",
+    logo: ventureEatAtlas,
+    sector: "F&B",
+    stage: "Selected company",
+    raised: "Top 3, Demo Day",
+    description: "Global-flavor dips in boarding-pass packaging.",
   },
   {
     company: "Woody's Pizzeria",
-    founder: "MU student founders",
+    founder: "Kanav Rishi Kumar",
     photo: brandPhotoWoodys,
     logo: ventureWoodys,
-    sector: "F&B · QSR",
-    stage: "Bootstrapped",
-    raised: "Revenue-funded",
+    sector: "F&B",
+    stage: "Selected company",
+    raised: "4.7★ · 3,000+ orders",
+    description: "South Delhi's highest-rated vegetarian pizzeria.",
+  },
+  {
+    company: "SeedsAI",
+    founder: "Vansh Miglani, Shubham Khatri",
+    photo: brandPhotoSeedsai,
+    logo: ventureSeedsAILogo,
+    sector: "AI / Fintech",
+    stage: "Selected company",
+    raised: "₹60L ARR",
+    description: "AI voice intelligence for NBFC collections and compliance.",
+  },
+  {
+    company: "Blue Brew",
+    founder: "Aditya Rathi",
+    logo: ventureBlueBrew,
+    sector: "D2C / Fashion",
+    stage: "Selected company",
+    raised: "₹3.6Cr ARR",
+    description: "Fit-first denim and streetwear, profitable and bootstrapped.",
+  },
+  {
+    company: "Flourish Foods",
+    founder: "Sonam Sharma, Nikhil Sharma",
+    logo: ventureFlourish,
+    sector: "F&B",
+    stage: "Selected company",
+    raised: "15x more iron",
+    description: "Functional attas engineered for diabetes, iron deficiency, and low energy.",
+  },
+  {
+    company: "Monarque",
+    founder: "Sarthak Khanna",
+    logo: ventureMonarque,
+    sector: "D2C / Perfumes",
+    stage: "Selected company",
+    raised: "₹24L+ ARR",
+    description: "Long-lasting, accessible luxury fragrances.",
+  },
+  {
+    company: "Guardex",
+    founder: "Naman Jain",
+    logo: ventureGuardexLogo,
+    sector: "DeepTech",
+    stage: "Selected company",
+    raised: "5 factory pilots",
+    description: "Turns passive CCTV into AI-powered factory safety monitoring.",
   },
 ];
 
@@ -2426,16 +2483,34 @@ function OutclassSection() {
 
 function FounderPoster({ v, ratio }: { v: VentureTile; ratio: string }) {
   return (
-    <article className={`group relative ${ratio} overflow-hidden break-inside-avoid`}>
-      {/* full-bleed founder photo — covers the entire tile */}
-      <img
-        src={v.photo}
-        alt={`${v.company} founders`}
-        loading="lazy"
-        decoding="async"
-        draggable={false}
-        className="absolute inset-0 size-full object-cover object-[50%_30%] transition-transform duration-700 group-hover:scale-[1.03]"
-      />
+    <article className={`group relative ${ratio} overflow-hidden break-inside-avoid bg-foreground`}>
+      {v.photo ? (
+        <img
+          src={v.photo}
+          alt={`${v.company} founders`}
+          loading="lazy"
+          decoding="async"
+          draggable={false}
+          className="absolute inset-0 size-full object-cover object-[50%_30%] transition-transform duration-700 group-hover:scale-[1.03]"
+        />
+      ) : (
+        <div className="absolute inset-0 grid place-items-center bg-foreground px-5">
+          {v.logo ? (
+            <img
+              src={v.logo.url}
+              alt={`${v.company} logo`}
+              loading="lazy"
+              decoding="async"
+              draggable={false}
+              className="h-auto max-h-[28%] w-[72%] object-contain brightness-0 invert"
+            />
+          ) : (
+            <span className="max-w-full text-center font-display text-[clamp(1.1rem,2.5vw,2rem)] font-semibold text-background">
+              {v.company}
+            </span>
+          )}
+        </div>
+      )}
 
       {/* top gradient wash for logo + stage */}
       <div className="absolute inset-x-0 top-0 h-[20%] bg-gradient-to-b from-black/70 via-black/25 to-transparent sm:h-[28%]" />
@@ -2461,23 +2536,27 @@ function FounderPoster({ v, ratio }: { v: VentureTile; ratio: string }) {
       </div>
 
       {/* bottom gradient wash for caption */}
-      <div className="absolute inset-x-0 bottom-0 h-[35%] bg-gradient-to-t from-black/85 via-black/50 to-transparent sm:h-[45%]" />
+      <div className="absolute inset-x-0 bottom-0 h-[72%] bg-gradient-to-t from-black/95 via-black/65 to-transparent" />
 
       {/* caption block overlaid on the photo */}
-      <div className="absolute inset-x-0 bottom-0 px-2 pb-1.5 sm:px-4 sm:pb-3">
-        <div className="flex min-w-0 flex-col items-start gap-0.5 sm:flex-row sm:items-end sm:justify-between sm:gap-3">
-          <div className="min-w-0">
-            <p className="truncate text-[10px] leading-[1.05] text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)] sm:text-[clamp(0.95rem,1.6vw,1.35rem)] sm:tracking-[-0.035em]">
-              {v.company}
-            </p>
-            <p className="mt-0.5 hidden text-[10px] uppercase tracking-[0.14em] text-white/75 sm:block">
-              {v.sector}
-            </p>
-          </div>
-          <p className="shrink-0 text-[8px] font-medium leading-none text-white/90 drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)] sm:text-[13px] sm:tracking-[-0.03em] sm:text-white">
+      <div className="absolute inset-x-0 bottom-0 px-3 pb-3 sm:px-4 sm:pb-4">
+        <div className="flex min-w-0 items-end justify-between gap-2">
+          <p className="min-w-0 font-display text-[clamp(0.95rem,2vw,1.35rem)] font-medium leading-none text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">
+            {v.company}
+          </p>
+          <p className="shrink-0 font-tech text-[8px] font-bold leading-none text-white sm:text-[10px]">
             {v.raised}
           </p>
         </div>
+        <p className="mt-1.5 font-tech text-[8px] uppercase leading-tight text-white/75 sm:text-[9px]">
+          {v.sector}
+        </p>
+        <p className="mt-2 line-clamp-2 text-[9px] leading-[1.3] text-white/85 sm:text-[11px]">
+          {v.description}
+        </p>
+        <p className="mt-1.5 line-clamp-2 font-tech text-[7px] uppercase leading-[1.25] text-white/60 sm:text-[8px]">
+          {v.founder}
+        </p>
       </div>
     </article>
   );
@@ -3016,7 +3095,7 @@ function VenturesMosaicSection() {
 
       <div ref={foundersGridRef}>
         {/* Mobile + tablet masonry keeps variable-height cards tightly packed. */}
-        <div className="columns-3 gap-[3px] sm:columns-4 xl:hidden">
+        <div className="columns-2 gap-[3px] sm:columns-3 md:columns-4 xl:hidden">
           {FOUNDER_TILES.map((t, i) => {
             const ratio = MOSAIC_RATIOS[i % MOSAIC_RATIOS.length];
             if ("kind" in t && t.kind === "cta") {
