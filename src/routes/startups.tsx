@@ -1504,69 +1504,6 @@ function Placeholder({
   );
 }
 
-function MediaRail({
-  labels,
-  kind = "image",
-  className = "",
-}: {
-  labels: string[];
-  kind?: "image" | "video";
-  className?: string;
-}) {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(0);
-
-  const go = (direction: -1 | 1) => {
-    const track = trackRef.current;
-    if (!track) return;
-    const next = (active + direction + labels.length) % labels.length;
-    const card = track.children[next] as HTMLElement | undefined;
-    if (!card) return;
-    setActive(next);
-    track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: "smooth" });
-  };
-
-  return (
-    <div className={`mt-9 sm:mt-11 md:mt-12 ${className}`}>
-      <div className="mb-5 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-background/15 pb-4">
-        <span className="eyebrow text-background/50">
-          {String(active + 1).padStart(2, "0")} / {String(labels.length).padStart(2, "0")}
-        </span>
-        <div className="flex items-center gap-3">
-          <span className="hidden text-[10px] uppercase tracking-[0.2em] text-background/35 sm:inline">Slide to explore</span>
-          <button type="button" aria-label="Previous media" onClick={() => go(-1)} className="flex size-10 items-center justify-center border border-background/20 text-background transition-colors hover:bg-background/10">
-            <ArrowRight className="size-4 rotate-180" />
-          </button>
-          <button type="button" aria-label="Next media" onClick={() => go(1)} className="flex size-10 items-center justify-center bg-background text-foreground transition-opacity hover:opacity-80">
-            <ArrowRight className="size-4" />
-          </button>
-        </div>
-      </div>
-      <div
-        ref={trackRef}
-        onScroll={(event) => {
-          const track = event.currentTarget;
-          const first = track.children[0] as HTMLElement | undefined;
-          if (!first) return;
-          setActive(Math.min(labels.length - 1, Math.max(0, Math.round(track.scrollLeft / first.offsetWidth))));
-        }}
-        className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-3 [scrollbar-width:none] sm:-mx-7 sm:gap-4 sm:px-7 md:-mx-8 md:gap-5 md:px-8 lg:-mx-12 lg:gap-6 lg:px-12 [&::-webkit-scrollbar]:hidden"
-      >
-        {labels.map((label, index) => (
-          <Reveal key={label} delay={index * 0.05} className="group w-[calc(100vw-2.5rem)] max-w-[32rem] shrink-0 snap-start sm:w-[72vw] md:w-[54vw] lg:w-[31vw]">
-            <div className={`transition-transform duration-700 ease-out group-hover:-translate-y-2 ${index % 2 ? "md:mt-14" : ""}`}>
-              <Placeholder kind={kind} aspect="aspect-[4/5] md:aspect-[5/4]" note={label} />
-              <div className="mt-4 flex items-center justify-between border-t border-background/15 pt-4">
-                <span className="font-serif-italic text-xl text-background/85">{label}</span>
-                <span className="font-mono text-[10px] text-accent">{String(index + 1).padStart(2, "0")}</span>
-              </div>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 function SparkCarousel({
   companies,
