@@ -2385,7 +2385,7 @@ function FounderPoster({ v, ratio }: { v: VentureTile; ratio: string }) {
           loading="lazy"
           decoding="async"
           draggable={false}
-          className="absolute inset-0 size-full object-cover object-[50%_30%] transition-transform duration-700 group-hover:scale-[1.03]"
+          className="absolute inset-0 size-full object-cover object-[50%_30%]"
         />
       ) : (
         <div className="absolute inset-0 grid place-items-center bg-foreground px-5">
@@ -2459,10 +2459,9 @@ function FounderPoster({ v, ratio }: { v: VentureTile; ratio: string }) {
 function StatPoster({ s, ratio }: { s: StatTile; ratio: string }) {
   return (
     <article
-      className={`group relative flex ${ratio} flex-col justify-between break-inside-avoid border border-background/10 p-3 transition-all duration-500 hover:-translate-y-1 hover:border-accent/50 sm:p-5`}
+      className={`relative flex ${ratio} flex-col justify-between break-inside-avoid border border-background/10 p-3 sm:p-5`}
       style={{ background: s.bg, color: s.fg }}
     >
-      <span aria-hidden className="absolute inset-x-0 top-0 z-10 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100" />
       <div className="hidden items-start justify-between gap-3 sm:flex">
         <span className="text-[10px] font-medium uppercase tracking-[0.18em]" style={{ color: s.sub }}>
           {s.note}
@@ -2497,10 +2496,9 @@ function VentureCtaTile({ t, ratio }: { t: CtaTile; ratio: string }) {
   return (
     <a
       href={t.to}
-      className={`group relative flex ${ratio} flex-col items-start justify-between overflow-hidden break-inside-avoid border border-background/10 p-3 transition-all duration-500 hover:-translate-y-1 hover:border-accent/50 sm:p-5`}
+      className={`group relative flex ${ratio} flex-col items-start justify-between overflow-hidden break-inside-avoid p-3 transition-transform duration-500 hover:scale-[1.01] sm:p-5`}
       style={{ background: t.bg, color: t.fg, border: t.border ? `1px solid ${t.border}` : undefined }}
     >
-      <span aria-hidden className="absolute inset-x-0 top-0 z-10 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-300 group-hover:scale-x-100" />
       <span className="hidden text-[10px] font-medium uppercase tracking-[0.18em] sm:block" style={{ color: t.sub }}>
         Entrepreneurship
       </span>
