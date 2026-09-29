@@ -3118,7 +3118,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
   return (
     <div
       ref={cardRef}
-      className="relative mt-10 h-[46rem] overflow-hidden rounded-xl border border-background/10 bg-foreground text-background shadow-2xl sm:mt-12 sm:h-[50rem] md:h-[38rem] md:rounded-[2rem] lg:mt-16 lg:h-[42rem]"
+      className="relative mt-10 h-[52rem] overflow-hidden rounded-xl border border-background/10 bg-foreground text-background shadow-2xl sm:mt-12 sm:h-[54rem] md:h-[40rem] md:rounded-[2rem] lg:mt-16 lg:h-[42rem]"
       onPointerDown={(event) => { pointerStartRef.current = event.clientX; }}
       onPointerUp={(event) => {
         const start = pointerStartRef.current;
@@ -3128,8 +3128,8 @@ function VipJourney({ stages }: { stages: Stage[] }) {
       }}
     >
       <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-1/2 bg-linear-to-l from-primary/10 to-transparent" />
-      <div className="grid h-full grid-rows-[38%_62%] md:grid-cols-12 md:grid-rows-1">
-        <div className="relative flex min-h-0 items-center justify-center overflow-hidden p-4 sm:p-6 md:col-span-7 md:p-8 lg:p-12">
+      <div className="grid h-full grid-rows-[32%_68%] md:grid-cols-12 md:grid-rows-1">
+        <div className="relative flex min-h-0 items-center justify-center overflow-hidden p-4 sm:p-6 md:col-span-6 md:p-8 lg:p-12">
           {active > 0 && (
             <button
               type="button"
@@ -3193,7 +3193,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
           </AnimatePresence>
         </div>
 
-        <div className="relative flex min-h-0 flex-col justify-between border-t border-background/10 bg-background/[0.03] p-5 backdrop-blur-xl sm:p-7 md:col-span-5 md:border-l md:border-t-0 md:p-8 lg:p-10">
+        <div className="relative flex min-h-0 flex-col justify-between border-t border-background/10 bg-background/[0.03] p-5 backdrop-blur-xl sm:p-7 md:col-span-6 md:border-l md:border-t-0 md:p-8 lg:p-10">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={`vip-story-${stage.name}`}
