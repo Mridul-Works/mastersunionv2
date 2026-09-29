@@ -2899,7 +2899,55 @@ function DropshippingSection() {
   );
 }
 
+// "By the Numbers" lives inside the Portfolio section as its lead-in.
+function ByTheNumbers() {
+  return (
+    <div id="scale" className="scroll-mt-24">
+      <Reveal>
+        <Eyebrow dark>By the Numbers</Eyebrow>
+      </Reveal>
+      <Reveal delay={0.05}>
+        <h2 className="mt-5 max-w-[24ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
+          This isn&apos;t three stories. It&apos;s a portfolio.
+        </h2>
+      </Reveal>
+
+      <div className="mt-9 grid grid-cols-1 gap-7 sm:mt-11 sm:gap-8 md:mt-14 md:grid-cols-[1fr_1.2fr] md:items-end md:gap-10 lg:gap-12">
+        <Reveal delay={0.1}>
+          <div className="text-[clamp(3.2rem,8vw,6.5rem)] font-medium leading-[0.92] tracking-[-0.03em]">
+            ₹593.10 Cr
+          </div>
+          <div className="mt-3 text-[11px] uppercase tracking-[0.22em] text-background/55">
+            Total valuation, across 30+ startups
+          </div>
+        </Reveal>
+        <div className="flex flex-wrap gap-3">
+          {ECOSYSTEM_STATS.filter((s) => s.label !== "Total valuation" && s.label !== "Startups launched").map((s, i) => (
+            <Reveal key={s.label} delay={0.05 + i * 0.03}>
+              <div className="border border-background/15 px-5 py-4 transition-colors duration-300 hover:border-background/30">
+                <div className="text-[1.3rem] font-medium leading-none tracking-[-0.02em]">{s.value}</div>
+                <div className="mt-2 text-[9px] uppercase leading-relaxed tracking-[0.16em] text-background/55">{s.label}</div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+
+      <Reveal delay={0.2}>
+        <p className="mt-10 max-w-[60ch] text-[13px] leading-[1.6] text-background/70 md:text-[15px] md:leading-[1.75] md:mt-12">
+          More than half of these startups have raised over $1 million. Together, their founders have
+          created 500+ jobs since 2021. And when a startup doesn&apos;t make it, the founder walks away
+          with sharper skills, real experience, and often, an incredible job offer anyway.
+        </p>
+      </Reveal>
+
+      <MediaRail labels={["Demo Day crowd", "Pitch room", "Investor conversations", "Founder celebrations"]} />
+    </div>
+  );
+}
+
 function VenturesMosaicSection() {
+
   const foundersGridRef = useRef<HTMLDivElement | null>(null);
   const prefersReducedMotion = useReducedMotion();
 
@@ -2946,9 +2994,12 @@ function VenturesMosaicSection() {
 
   return (
     <Section id="portfolio" tone="paper">
+      <ByTheNumbers />
+
       <Reveal>
         <Eyebrow>Selected Companies</Eyebrow>
       </Reveal>
+
       <Reveal delay={0.05}>
         <h2 className="mb-9 mt-5 max-w-[22ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] tracking-normal sm:mb-11 md:mb-12 md:leading-[1.08]">
           Portfolio
@@ -4337,47 +4388,6 @@ function StartupsPage() {
         />
       </Section>
 
-      <Section id="scale" tone="dark">
-        <Reveal>
-          <Eyebrow dark>By the Numbers</Eyebrow>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[24ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
-            This isn&apos;t three stories. It&apos;s a portfolio.
-          </h2>
-        </Reveal>
-
-        <div className="mt-9 grid grid-cols-1 gap-7 sm:mt-11 sm:gap-8 md:mt-14 md:grid-cols-[1fr_1.2fr] md:items-end md:gap-10 lg:gap-12">
-          <Reveal delay={0.1}>
-            <div className="text-[clamp(3.2rem,8vw,6.5rem)] font-medium leading-[0.92] tracking-[-0.03em]">
-              ₹593.10 Cr
-            </div>
-            <div className="mt-3 text-[11px] uppercase tracking-[0.22em] text-background/55">
-              Total valuation, across 30+ startups
-            </div>
-          </Reveal>
-          <div className="flex flex-wrap gap-3">
-            {ECOSYSTEM_STATS.filter((s) => s.label !== "Total valuation" && s.label !== "Startups launched").map((s, i) => (
-              <Reveal key={s.label} delay={0.05 + i * 0.03}>
-                <div className="border border-background/15 px-5 py-4 transition-colors duration-300 hover:border-background/30">
-                  <div className="text-[1.3rem] font-medium leading-none tracking-[-0.02em]">{s.value}</div>
-                  <div className="mt-2 text-[9px] uppercase leading-relaxed tracking-[0.16em] text-background/55">{s.label}</div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-
-        <Reveal delay={0.2}>
-          <p className="mt-10 max-w-[60ch] text-[13px] leading-[1.6] text-background/70 md:text-[15px] md:leading-[1.75] md:mt-12">
-            More than half of these startups have raised over $1 million. Together, their founders have
-            created 500+ jobs since 2021. And when a startup doesn&apos;t make it, the founder walks away
-            with sharper skills, real experience, and often, an incredible job offer anyway.
-          </p>
-        </Reveal>
-
-        <MediaRail labels={["Demo Day crowd", "Pitch room", "Investor conversations", "Founder celebrations"]} />
-      </Section>
 
       <Section id="people" tone="light">
         <Reveal>
