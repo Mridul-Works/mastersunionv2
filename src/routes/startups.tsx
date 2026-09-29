@@ -3145,7 +3145,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
                 variant="ghost"
                 aria-label={`Play the ${VIP_VIDEO_TITLE}`}
                 onClick={openVipVideo}
-                className="group absolute inset-0 z-30 grid place-items-center rounded-none p-0"
+                className="group absolute inset-0 z-30 grid h-full w-full place-items-center rounded-none p-0 hover:bg-transparent"
               >
                 <span className="grid size-14 place-items-center bg-accent text-accent-foreground transition-transform duration-300 group-hover:scale-105">
                   <Play className="fill-current" />
