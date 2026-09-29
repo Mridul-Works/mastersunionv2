@@ -738,33 +738,6 @@ const TESTIMONIALS = [
   },
 ];
 
-const NEXT_GEN = [
-  {
-    name: "Meta Fashion",
-    pitch: "A phygital fashion house building trend-driven digital wearables and virtual-world drops.",
-  },
-  {
-    name: "MemoTag",
-    pitch:
-      "An AI companion that engages patients in clinically structured phone conversations, turning them into graded reports for doctors.",
-  },
-  {
-    name: "Zenmo",
-    pitch: "An automotive-lifestyle apparel brand blending motorsport culture with streetwear.",
-  },
-  {
-    name: "Internet Human Co.",
-    pitch: "AI agents built as tireless “digital employees,” managed like remote team members.",
-  },
-  {
-    name: "Angry Toast",
-    pitch: "A content-first sock and footwear brand for Gen Z, built on creator-led community.",
-  },
-  {
-    name: "AceCard",
-    pitch: "A smart NFC business card that turns a single tap into a full CRM-synced digital profile.",
-  },
-];
 
 const REALITY_EXAMPLES = [
   {
@@ -4488,39 +4461,8 @@ function StartupsPage() {
         </div>
       </Section>
 
-      <Section id="next-gen" tone="light">
-        <Reveal>
-          <Eyebrow>The UG Ecosystem, 2025–26</Eyebrow>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
-            The founders below aren&apos;t waiting for an MBA to start.
-          </h2>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <p className="mt-6 max-w-[60ch] text-[13px] leading-[1.6] text-background/70 md:text-[15px] md:leading-[1.75] md:mt-7">
-            Masters&apos; Union&apos;s undergraduate cohort has its own entrepreneurship track — and its
-            own portfolio. In the 2025–26 cycle alone, UG founders have been granted ₹75L+ and generated
-            ₹14Cr+ in revenue, with two startups earning Shark Tank India pitches.
-          </p>
-        </Reveal>
-
-        <div className="mt-9 grid grid-cols-1 gap-px bg-background/10 sm:mt-11 sm:grid-cols-2 md:mt-12 lg:grid-cols-3">
-          {NEXT_GEN.map((v, i) => (
-            <Reveal key={v.name} delay={i * 0.04}>
-              <article className="group h-full bg-background/[0.045] p-7 transition-colors duration-300 hover:bg-background/[0.08]">
-                <div className="flex items-center gap-3">
-                  <LogoBadge size="size-8" />
-                  <h3 className="text-[1.05rem] font-medium">{v.name}</h3>
-                </div>
-                <p className="mt-3 max-w-[38ch] text-[0.92rem] leading-[1.6] text-background/70">{v.pitch}</p>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
       <VenturesMosaicSection />
+
 
       <Section id="reality" tone="dark">
         <Reveal>
