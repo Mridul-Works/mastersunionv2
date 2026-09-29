@@ -4602,13 +4602,7 @@ function StartupsPage() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.25} className="mt-10">
-          <Placeholder kind="video" aspect="aspect-video" note="High School Startup League highlight reel" />
-        </Reveal>
-        <MediaRail
-          kind="video"
-          labels={["Meet the teen founders", "Prototype lab", "Pitch rehearsal", "The final stage"]}
-        />
+        <HsslVideoCards />
       </Section>
 
 
