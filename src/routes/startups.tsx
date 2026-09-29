@@ -20,9 +20,7 @@ import {
 } from "lucide-react";
 import eightVentureImg from "@/assets/founders/ventures/eight.jpg.asset.json";
 import bullspreeVentureImg from "@/assets/founders/ventures/bullspree.jpg.asset.json";
-import outclassDropshippingImg from "@/assets/outclass-dropshipping.jpg.asset.json";
-import outclassContentBrandsImg from "@/assets/outclass/content-brands.jpg";
-import outclassScratchImg from "@/assets/outclass/start-from-scratch.jpg";
+import { Button } from "@/components/ui/button";
 import hiveschoolVentureImg from "@/assets/founders/ventures/hiveschool.jpg.asset.json";
 import lexisVentureImg from "@/assets/founders/ventures/lexis.jpg.asset.json";
 import playsuperVentureImg from "@/assets/founders/ventures/playsuper.jpg.asset.json";
@@ -442,33 +440,20 @@ const FOUNDER_COLUMNS: Array<Array<{ tile: VentureTile | StatTile | CtaTile; ind
   return cols;
 })();
 
-const OUTCLASS_MOMENTS = [
-  {
-    n: "01",
-    action: "Run",
-    label: "Dropshipping stores",
-    body: "Taking risks, testing ideas, and putting something into the world.",
-    media: "Students running a live storefront",
-    image: outclassDropshippingImg.url,
-  },
-  {
-    n: "02",
-    action: "Launch",
-    label: "Content brands",
-    body: "Real growth doesn’t come from case studies.",
-    media: "A student content brand going live",
-    image: outclassContentBrandsImg,
-  },
-  {
-    n: "03",
-    action: "Build",
-    label: "Start companies from scratch",
-    body: "Half the curriculum happens outside the classroom, from day one.",
-    media: "Students building a company after class",
-    image: outclassScratchImg,
-  },
-];
-
+import outclasscreator1 from "@/assets/startups-outclass/creator1.asset.json";
+import outclasscreator2 from "@/assets/startups-outclass/creator2.asset.json";
+import outclasscreator7 from "@/assets/startups-outclass/creator7.asset.json";
+import outclassd2cBrandFair from "@/assets/startups-outclass/d2cBrandFair.asset.json";
+import outclassfairCeramics from "@/assets/startups-outclass/fairCeramics.asset.json";
+import outclassfairJewels from "@/assets/startups-outclass/fairJewels.asset.json";
+import outclassfairNight from "@/assets/startups-outclass/fairNight.asset.json";
+import outclassfairCrafts from "@/assets/startups-outclass/fairCrafts.asset.json";
+import outclassmelaFounders from "@/assets/startups-outclass/melaFounders.asset.json";
+import outclassmelaVideo from "@/assets/startups-outclass/melaVideo.asset.json";
+import outclassB_Uh5V4xD4k from "@/assets/startups-outclass/B_Uh5V4xD4k.asset.json";
+import outclass0sMWviewwqs from "@/assets/startups-outclass/0sMWviewwqs.asset.json";
+import outclassYMfW0nRii3s from "@/assets/startups-outclass/YMfW0nRii3s.asset.json";
+import outclassdng2KDh5_LA from "@/assets/startups-outclass/dng2KDh5_LA.asset.json";
 import vipPreseedImg from "@/assets/vip/vip-preseed.jpg.asset.json";
 import vipMvpImg from "@/assets/vip/vip-mvp.jpg.asset.json";
 import vipGtmImg from "@/assets/vip/vip-gtm.jpg.asset.json";
@@ -2218,148 +2203,150 @@ function StoryBeats({ beats, dark = false }: { beats: Beat[]; dark?: boolean }) 
   );
 }
 
-function OutclassSection() {
-  const [active, setActive] = useState(0);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+const OUTCLASS_TRACKS = [
+  {
+    title: "Build a D2C Brand",
+    body: "Every student ships a live consumer brand — sourced, launched and scaled on Amazon, Blinkit, Instagram and their own store. Graded on real customers and real revenue, not slides.",
+    stats: [
+      { value: "₹3.38 Cr", label: "Total revenue generated, Cohort '25" },
+      { value: "50", label: "Teams competing simultaneously" },
+      { value: "₹4L+", label: "Average revenue per team, Term 1" },
+    ],
+  },
+  {
+    title: "Creator Challenge",
+    body: "From Term 2, every student builds a personal brand on YouTube, Instagram or LinkedIn — scripting, filming, editing and distributing weekly. Graded on real audience growth in the wild.",
+    stats: [
+      { value: "50M+", label: "Cumulative views generated" },
+      { value: "2.5M+", label: "Followers built by past cohorts" },
+      { value: "40+", label: "Creators past 100k followers" },
+    ],
+  },
+];
 
-  useEffect(() => {
-    let next = 0;
-    return onScrollFrame(
-      () => {
-        if (next !== active) setActive(next);
-      },
-      () => {
-        const vh = window.innerHeight || 1;
-        // A card becomes "active" once its top has reached the pin line.
-        const line = vh * 0.34;
-        let found = 0;
-        cardRefs.current.forEach((el, i) => {
-          if (!el) return;
-          const top = el.getBoundingClientRect().top;
-          if (top <= line + 4) found = Math.max(found, i);
-        });
-        next = found;
-      },
-    );
-  }, [active]);
+const OUTCLASS_SESSIONS = [
+  { id: "B_Uh5V4xD4k", image: outclassB_Uh5V4xD4k.url, title: "Tanmay Bhat on campus", type: "Masterclass", body: "A masterclass on virality. Tanmay breaks down what makes content spread — hook structures, format design, and the repeatable systems behind hit videos." },
+  { id: "0sMWviewwqs", image: outclass0sMWviewwqs.url, title: "Nas Daily fireside chat", type: "Fireside chat", body: "Nuseir Yassin on how AI is transforming business, content creation, and the future of work — and what creators should build next." },
+  { id: "YMfW0nRii3s", image: outclassYMfW0nRii3s.url, title: "Sahiba Bali on the creator economy", type: "Fireside chat", body: "Marketing, personal branding, consumer psychology, entrepreneurship, and career growth in the AI era — a sharp take on building in public." },
+  { id: "dng2KDh5_LA", image: outclassdng2KDh5_LA.url, title: "Sharan Hegde masterclass", type: "Masterclass", body: "How money truly works and why most financial decisions fail in the long run — a practical framework for thinking about wealth." },
+];
 
-
-
+function OutclassTrackHead({ index }: { index: number }) {
+  const track = OUTCLASS_TRACKS[index];
   return (
-    <Section id="doing" tone="paper">
-      {/* Main divider rule above the section */}
-      <div aria-hidden className="spectrum-rule pointer-events-none absolute left-[6%] right-[6%] top-0 z-[2] h-px" />
-      <div className="grid gap-8 border-b border-background/15 pb-10 sm:gap-10 sm:pb-12 lg:grid-cols-12 lg:items-end lg:pb-16">
-        <div className="lg:col-span-8">
-          <Reveal><Eyebrow>The Outclass</Eyebrow></Reveal>
-          <Reveal delay={0.05}>
-            <h2 className="mt-5 max-w-[18ch] text-[clamp(1.6rem,3.4vw,2.8rem)] font-medium leading-[1.12] tracking-[-0.02em] sm:mt-6 md:leading-[1.08]">
-              Half the curriculum doesn&apos;t happen in a classroom.
-            </h2>
-          </Reveal>
+    <div className="grid gap-6 lg:grid-cols-12">
+      <div className="lg:col-span-6">
+        <span className="inline-block bg-background px-2.5 py-1 font-tech text-[9px] font-semibold uppercase tracking-[0.22em] text-foreground">Track {String(index + 1).padStart(2, "0")}</span>
+        <h3 className="mt-4 font-display text-[clamp(1.9rem,4.2vw,3.1rem)] font-semibold leading-[0.98]">{track.title}</h3>
+      </div>
+      <div className="lg:col-span-6 lg:pt-2">
+        <div aria-hidden className="h-px bg-background/20" />
+        <p className="mt-4 max-w-xl text-[13.5px] leading-relaxed text-background/55">{track.body}</p>
+      </div>
+    </div>
+  );
+}
+
+function OutclassRail({ children, label, paged = false }: { children: React.ReactNode; label: string; paged?: boolean }) {
+  const rail = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+  const [count, setCount] = useState(0);
+  const reduceMotion = useReducedMotion();
+  useEffect(() => {
+    const el = rail.current;
+    if (!el) return;
+    const update = () => {
+      const items = Array.from(el.children) as HTMLElement[];
+      setCount(items.length);
+      let nearest = 0;
+      items.forEach((item, i) => {
+        if (Math.abs(item.offsetLeft - el.scrollLeft) < Math.abs(items[nearest].offsetLeft - el.scrollLeft)) nearest = i;
+      });
+      setActive(nearest);
+    };
+    update();
+    el.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => { el.removeEventListener("scroll", update); window.removeEventListener("resize", update); };
+  }, []);
+  const goTo = (i: number) => {
+    const el = rail.current;
+    const item = el?.children[i] as HTMLElement | undefined;
+    if (el && item) el.scrollTo({ left: item.offsetLeft, behavior: reduceMotion ? "instant" : "smooth" });
+  };
+  return (
+    <div className="relative mt-8 min-w-0">
+      <div ref={rail} aria-label={label} className="flex snap-x snap-mandatory items-stretch gap-4 overflow-x-auto pb-2 [scrollbar-width:thin] [&>*]:snap-start">{children}</div>
+      <div className="mt-4 flex items-center justify-between gap-4">
+        {paged ? <div className="flex items-center gap-2">{Array.from({ length: count }, (_, i) => <Button key={i} type="button" variant="ghost" size="icon" aria-label={`Go to slide ${i + 1}`} aria-current={active === i ? "true" : undefined} onClick={() => goTo(i)} className="h-8 w-8 rounded-none p-0 hover:bg-background/10"><span className={`h-[3px] ${active === i ? "w-7 bg-background" : "w-4 bg-background/30"}`} /></Button>)}</div> : <p className="font-tech text-[9px] uppercase tracking-[0.24em] text-background/55">{label}</p>}
+        <div className="flex items-center gap-1">
+          <Button type="button" variant="ghost" size="icon" aria-label={`Previous ${label}`} disabled={active === 0} onClick={() => goTo(active - 1)} className="rounded-none text-background hover:bg-background/10 hover:text-background"><ArrowLeft /></Button>
+          <Button type="button" variant="ghost" size="icon" aria-label={`Next ${label}`} disabled={active === count - 1} onClick={() => goTo(active + 1)} className="rounded-none text-background hover:bg-background/10 hover:text-background"><ArrowRight /></Button>
         </div>
-        <Reveal delay={0.1} className="lg:col-span-4">
-          <p className="max-w-[42ch] text-[13px] leading-[1.6] text-background/70 md:ml-auto md:text-[15px] md:leading-[1.75]">
-            At Masters&apos; Union, real growth doesn&apos;t come from case studies — it comes from taking risks,
-            testing ideas, and putting something into the world.
-          </p>
+      </div>
+    </div>
+  );
+}
+
+function OutclassSection() {
+  const [videoId, setVideoId] = useState<string | null>(null);
+  useEffect(() => {
+    if (!videoId) return;
+    const escape = (event: KeyboardEvent) => { if (event.key === "Escape") setVideoId(null); };
+    window.addEventListener("keydown", escape);
+    return () => window.removeEventListener("keydown", escape);
+  }, [videoId]);
+  const poster = "relative flex aspect-[3/4] w-[min(78vw,300px)] shrink-0 flex-col justify-between overflow-hidden p-6 sm:w-[330px] lg:w-[380px]";
+  return (
+    <section id="doing" className="relative overflow-hidden bg-foreground py-16 text-background sm:py-20">
+      <div aria-hidden className="spectrum-rule pointer-events-none absolute left-[6%] right-[6%] top-0 h-px" />
+      <div className="relative mx-auto max-w-[1320px] px-4 sm:px-7 lg:px-12">
+        <Reveal className="grid gap-6 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <p className="font-tech text-[11px] uppercase tracking-[0.32em] text-background/60">/ 03 — OutClass</p>
+            <h2 className="mt-5 font-display text-[clamp(1.9rem,4.2vw,3.1rem)] font-semibold leading-[0.98]">Learning outside<br />the classroom</h2>
+          </div>
+          <div className="lg:col-span-5 lg:pt-2">
+            <div aria-hidden className="h-px bg-background/20" />
+            <p className="mt-4 text-[13.5px] leading-relaxed text-background/55">OutClass is where classroom theory meets the real world. Every term, you build live ventures, create under pressure and ship to real customers — graded on outcomes in the market, not marks on a sheet.</p>
+          </div>
+        </Reveal>
+
+        <Reveal className="mt-12 border-t border-background/15 pt-8">
+          <OutclassTrackHead index={0} />
+          <OutclassRail label="D2C brand posters" paged>
+            <article className={`${poster} bg-bottle`}>
+              <img src={outclassd2cBrandFair.url} alt="Student D2C brand fair" loading="lazy" className="absolute inset-0 size-full object-cover opacity-30" />
+              <div className="absolute inset-0 bg-gradient-to-b from-bottle/50 via-bottle/80 to-bottle" />
+              <div className="relative flex justify-between"><div><div className="font-display text-[3.2rem] font-black leading-none">01</div><div className="font-tech text-[10px] uppercase tracking-[0.2em]">Overview</div></div><span className="font-tech text-[10px] uppercase [writing-mode:vertical-rl]">OutClass // D2C</span></div>
+              <div className="relative"><h4 className="font-display text-[clamp(1.7rem,3vw,2.2rem)] font-semibold leading-[0.98]">Graded on real customers<br /><em className="font-light">and revenue.</em></h4><div className="my-4 h-px bg-background/25" /><p className="text-[12.5px] leading-relaxed text-background/75">Every student ships a live consumer brand — sourced, launched and scaled on Amazon, Blinkit, Instagram and their own store.</p><div className="mt-5 grid grid-cols-2 gap-3 border-t border-background/20 pt-4">{OUTCLASS_TRACKS[0].stats.map(stat => <div key={stat.value}><p className="font-display text-[1.2rem] font-semibold">{stat.value}</p><p className="font-tech text-[9px] uppercase leading-snug text-background/70">{stat.label}</p></div>)}</div></div>
+            </article>
+            <article className={`${poster} bg-transformation-crimson`}>
+              <img src={outclassmelaFounders.url} alt="Founders at the D2C Mela" loading="lazy" className="absolute inset-0 size-full object-cover" /><div className="absolute inset-0 bg-transformation-crimson/50" /><div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent" />
+              <div className="relative"><span className="bg-accent px-2 py-1 font-tech text-[9px] font-bold uppercase text-accent-foreground">Past D2C Mela</span><h4 className="mt-4 font-display text-[clamp(2rem,3.6vw,2.9rem)] font-black uppercase leading-[0.85]">Brands<br />Sold.</h4></div><div className="relative flex items-end justify-between gap-4"><p className="max-w-[220px] font-tech text-[10px] font-bold uppercase leading-snug">Founders behind the counter, products on the shelf, cash at the till — every stall is a student-run brand selling to paying customers.</p><span className="font-display text-6xl font-black italic opacity-25">02</span></div>
+            </article>
+            <article className="relative aspect-[9/16] w-[min(56vw,214px)] shrink-0 overflow-hidden bg-accent sm:w-[236px] lg:w-[272px]"><video src={outclassmelaVideo.url} autoPlay muted loop playsInline preload="metadata" aria-label="D2C Mela film" className="absolute inset-0 size-full object-cover" /><div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-foreground/75 via-transparent to-foreground/40" /><span className="absolute left-0 top-0 bg-accent px-3 py-1 font-tech text-[9px] font-bold uppercase text-accent-foreground">D2C Mela Film</span><div className="absolute inset-x-5 bottom-5"><h4 className="font-display text-2xl font-semibold italic">Mela, in motion</h4><p className="mt-2 font-tech text-[9px] uppercase">Series 01-C · 03</p></div></article>
+            <article className={`${poster} bg-startup-surface`}><div className="flex items-center justify-between"><span className="h-0.5 w-12 bg-accent" /><span className="font-tech text-[10px] uppercase text-background/60">Gallery · 4 Frames</span></div><div className="mt-4 grid min-h-0 flex-1 grid-cols-6 grid-rows-6 gap-2">{[[outclassfairCeramics.url,"col-span-3 row-span-3"],[outclassfairJewels.url,"col-span-3 row-span-2"],[outclassfairCrafts.url,"col-span-3 row-span-4"],[outclassfairNight.url,"col-span-3 row-span-3"]].map(([src, cls]) => <img key={src} src={src} alt="Student products at the D2C Mela" loading="lazy" className={`size-full min-h-0 object-cover ${cls}`} />)}</div><h4 className="mt-4 font-display text-[clamp(1.5rem,2.6vw,2rem)] font-black uppercase leading-[0.9]">Shelves, <em className="font-light normal-case">stalls & sell-outs.</em></h4></article>
+          </OutclassRail>
+        </Reveal>
+
+        <Reveal className="mt-12 border-t border-background/15 pt-8">
+          <OutclassTrackHead index={1} />
+          <OutclassRail label="Creator Challenge posters" paged>
+            <article className={`${poster} bg-bottle`}><img src={outclasscreator1.url} alt="Student creator at work" loading="lazy" className="absolute inset-0 size-full object-cover opacity-25" /><div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent" /><span className="relative self-start bg-transformation-crimson px-2 py-1 font-tech text-[9px] font-bold uppercase">00 // Intro</span><div className="relative"><h4 className="font-display text-[2.6rem] font-black italic leading-none">The Brief.</h4><p className="mt-5 font-tech text-[10px] uppercase leading-relaxed">Build an audience. Not just a deck. Graded on reach, retention and revenue.</p><div className="mt-6 grid grid-cols-3 gap-2 border-t border-background/20 pt-4">{OUTCLASS_TRACKS[1].stats.map(stat => <div key={stat.value}><p className="font-display text-[1rem] font-semibold">{stat.value}</p><p className="mt-2 text-[8px] leading-snug text-background/65">{stat.label}</p></div>)}</div></div></article>
+            <article className={`${poster} bg-startup-surface`}><img src={outclasscreator2.url} alt="Creator Challenge onboarding" loading="lazy" className="absolute inset-0 size-full object-cover grayscale" /><div className="absolute inset-0 bg-gradient-to-b from-foreground/80 via-transparent to-foreground/90" /><div className="relative flex justify-between"><span className="font-display text-[3.2rem] font-black">01</span><span className="font-tech text-[10px] uppercase [writing-mode:vertical-rl]">OutClass // Onboarding</span></div><div className="relative"><h4 className="font-display text-[2rem] font-semibold">Onboarding <em className="font-light">& Setup.</em></h4><div className="my-4 h-px bg-background/30" /><p className="font-tech text-[10px] uppercase leading-relaxed">Creative vision on the table, mentor matched, workflow defined.</p></div></article>
+            <article className={`${poster} bg-transformation-blue`}><img src={outclasscreator7.url} alt="Student creating content" loading="lazy" className="absolute inset-0 size-full object-cover opacity-55" /><div className="absolute inset-0 bg-transformation-blue/35" /><div className="relative"><span className="bg-accent px-2 py-1 font-tech text-[9px] font-bold uppercase text-accent-foreground">Phase Two</span><h4 className="mt-4 font-display text-[2.3rem] font-black uppercase leading-none">Content Dev.</h4></div><div className="relative flex items-end justify-between"><p className="max-w-[220px] font-tech text-[10px] font-bold uppercase leading-snug">Crafting bold narratives for the modern algorithm.</p><span className="font-display text-5xl font-black italic opacity-25">02</span></div></article>
+            <article className={`${poster} bg-startup-surface`}><div className="flex items-center justify-between"><span className="h-0.5 w-12 bg-transformation-crimson" /><span className="font-tech text-[10px] uppercase text-background/70">Finale</span></div><h4 className="text-center font-serif text-[1.8rem] italic leading-[1.1]">Evaluation & <strong className="block font-display not-italic text-transformation-crimson">Recognition</strong></h4><div className="bg-background p-4 font-tech text-[9px] font-bold uppercase leading-snug text-foreground">Showcase before expert judges. Standout teams win ₹1L+ in recognition.</div></article>
+          </OutclassRail>
+        </Reveal>
+
+        <Reveal className="mt-10 border-t border-background/15 pt-8">
+          <div className="grid gap-6 lg:grid-cols-12"><div className="lg:col-span-6"><span className="bg-background px-2.5 py-1 font-tech text-[9px] font-semibold uppercase text-foreground">Series 02</span><h3 className="mt-4 font-display text-[clamp(1.9rem,4.2vw,3.1rem)] font-semibold leading-none">Creator Sessions</h3></div><div className="lg:col-span-6 lg:pt-2"><div className="h-px bg-background/20" /><p className="mt-4 text-[13.5px] leading-relaxed text-background/55">India’s biggest creators — across finance, comedy, tech and business — come on campus to teach how audiences are actually built.</p></div></div>
+          <OutclassRail label="Creator sessions">{OUTCLASS_SESSIONS.map((session, i) => <article key={session.id} className="w-[min(84vw,320px)] shrink-0 sm:w-[420px] lg:w-[480px]"><Button type="button" variant="ghost" aria-label={`Play ${session.title}`} onClick={() => setVideoId(session.id)} className="group relative block aspect-video h-auto w-full overflow-hidden rounded-none p-0"><img src={session.image} alt="" loading="lazy" className="absolute inset-0 size-full object-cover transition-opacity group-hover:opacity-75" /><span className="absolute inset-0 grid place-items-center"><span className="grid size-14 place-items-center bg-accent text-accent-foreground"><Play className="fill-current" /></span></span><span className="absolute left-0 top-0 bg-bottle px-3 py-1 font-tech text-[9px] font-bold uppercase text-background">{session.type}</span></Button><h4 className="mt-5 font-display text-[clamp(1.25rem,1.9vw,1.6rem)] font-semibold leading-[1.05]">{session.title}</h4><div className="mt-3 flex items-center gap-3"><span className="font-tech text-[10px] font-bold uppercase">Session {String(i + 1).padStart(2, "0")}</span><span className="h-px flex-1 bg-background/20" /></div><p className="mt-3 text-[13px] leading-relaxed text-background/55">{session.body}</p></article>)}</OutclassRail>
         </Reveal>
       </div>
-
-      <div className="mt-10 grid gap-8 sm:mt-12 md:mt-16 lg:grid-cols-[minmax(180px,0.42fr)_minmax(0,1.58fr)] lg:gap-14">
-        <aside className="hidden self-start lg:sticky lg:top-[38svh] lg:flex lg:flex-col">
-          <div className="eyebrow text-background/45">So I started doing something about it.</div>
-
-          <ol className="mt-8 border-l border-background/15">
-            {OUTCLASS_MOMENTS.map((moment, index) => (
-              <li
-                key={moment.n}
-                className={`relative border-l py-3 pl-5 transition-all duration-500 ${
-                  index === active ? "-ml-px border-accent text-background" : "border-transparent text-background/35"
-                }`}
-              >
-                <span className="font-mono text-[10px] uppercase tracking-[0.2em]">{moment.n} — {moment.action}</span>
-              </li>
-            ))}
-          </ol>
-        </aside>
-
-        <div className="relative pb-16 sm:pb-20 lg:pb-0">
-          {OUTCLASS_MOMENTS.map((moment, index) => {
-            const depth = Math.max(0, Math.min(active - index, 3));
-            return (
-            <div
-              key={moment.n}
-              ref={(el) => { cardRefs.current[index] = el; }}
-              className="sticky mb-8 last:mb-0 sm:mb-10 lg:mb-14"
-              style={{ top: `calc(3rem + ${index * 1.25}rem)`, zIndex: index + 1 }}
-            >
-
-              <div
-                className="transition-[transform,filter] duration-700 ease-out"
-                style={{
-                  transformOrigin: "top center",
-                  transform: `scale(${1 - depth * 0.018})`,
-                  filter: depth > 0 ? `blur(${Math.min(depth * 4, 10)}px)` : "blur(0px)",
-                }}
-              >
-                <motion.article
-                  initial={{ opacity: 0, y: 28 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative overflow-hidden rounded-2xl border border-background/15 bg-foreground shadow-[0_-18px_40px_-28px_rgba(0,0,0,0.85),0_30px_70px_-35px_rgba(0,0,0,0.9)]"
-                >
-                  <div
-
-                    aria-hidden
-                    className="pointer-events-none absolute inset-0 z-[3] bg-foreground transition-opacity duration-500"
-                    style={{ opacity: depth * 0.16 }}
-                  />
-                  <div aria-hidden className="pointer-events-none absolute inset-0 bg-background/[0.04]" />
-
-                  <div className="relative grid gap-7 p-6 sm:gap-9 sm:p-9 md:grid-cols-12 md:items-center md:gap-8 md:p-10 lg:p-12">
-                    <div className="md:col-span-5">
-                      <span className="block font-display text-[clamp(4rem,10vw,8.5rem)] font-light leading-[0.82] text-background/12">
-                        {moment.n}
-                      </span>
-                      <div className="mt-5 flex items-center gap-3">
-                        <span aria-hidden className="h-px w-9 bg-accent" />
-                        <span className="eyebrow text-background/65">{moment.action}</span>
-                      </div>
-                      <h3 className="mt-4 max-w-[15ch] text-[clamp(1.5rem,3.2vw,2.65rem)] font-medium leading-[1.05]">
-                        {moment.label}
-                      </h3>
-                      <p className="mt-4 max-w-[34ch] text-[13px] leading-[1.65] text-background/65 md:text-[15px] md:leading-[1.75]">
-                        {moment.body}
-                      </p>
-                    </div>
-                    <div className="md:col-span-7">
-                      {moment.image ? (
-                        <div className="relative aspect-[16/10] overflow-hidden rounded-[6px]">
-                          <img
-                            src={moment.image}
-                            alt={moment.media}
-                            loading="lazy"
-                            decoding="async"
-                            draggable={false}
-                            className="absolute inset-0 size-full object-cover"
-                          />
-                        </div>
-                      ) : (
-                        <Placeholder kind="image" aspect="aspect-[16/10]" note={moment.media} className="rounded-[6px]" />
-                      )}
-                    </div>
-                  </div>
-                </motion.article>
-              </div>
-            </div>
-            );
-          })}
-
-        </div>
-      </div>
-    </Section>
+      {videoId && typeof document !== "undefined" && createPortal(<div role="dialog" aria-modal="true" aria-label="Creator session video" className="fixed inset-0 z-[100] flex items-center justify-center bg-foreground/90 p-4" onClick={() => setVideoId(null)}><Button type="button" variant="ghost" size="icon" aria-label="Close video" onClick={() => setVideoId(null)} className="absolute right-4 top-4 text-background hover:bg-background/10 hover:text-background"><X /></Button><div className="aspect-video w-full max-w-5xl overflow-hidden" onClick={event => event.stopPropagation()}><iframe src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`} title="Creator session" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen className="size-full" /></div></div>, document.body)}
+    </section>
   );
 }
 
