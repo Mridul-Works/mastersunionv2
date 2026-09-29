@@ -3168,12 +3168,44 @@ function VipJourney({ stages }: { stages: Stage[] }) {
 
 const VIP_VIDEO_YT_ID = "1PTpdpc4kFc";
 
+const VIP_VIDEO_DURATION = 111; // seconds, source video length
+const VIP_PREVIEW_CLIP = 10; // seconds shown per preview loop
+
+function randomVipClipStart() {
+  const max = Math.max(1, VIP_VIDEO_DURATION - VIP_PREVIEW_CLIP - 2);
+  return 3 + Math.floor(Math.random() * max);
+}
+
 function VipVideoCard() {
   const scaleRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
   const [origin, setOrigin] = useState<DOMRect | null>(null);
   const reduceMotion = useReducedMotion();
+  // Muted 10s preview loop that jumps to a random point of the film each cycle.
+  const [previewOn, setPreviewOn] = useState(false);
+  const [clip, setClip] = useState(() => randomVipClipStart());
+
+  useEffect(() => {
+    if (reduceMotion) return;
+    const el = cardRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) setPreviewOn(entry.isIntersecting);
+      },
+      { threshold: 0.35 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [reduceMotion]);
+
+  useEffect(() => {
+    if (!previewOn || open || reduceMotion) return;
+    setClip(randomVipClipStart());
+    const id = window.setInterval(() => setClip(randomVipClipStart()), (VIP_PREVIEW_CLIP + 1) * 1000);
+    return () => window.clearInterval(id);
+  }, [previewOn, open, reduceMotion]);
 
   useEffect(() => {
     if (!open) return;
