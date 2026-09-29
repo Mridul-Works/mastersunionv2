@@ -857,10 +857,10 @@ function EyebrowRule() {
   );
 }
 
-function Eyebrow({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
+function Eyebrow({ children, dark = false, rule = true }: { children: ReactNode; dark?: boolean; rule?: boolean }) {
   return (
     <div className="flex items-start gap-4">
-      <EyebrowRule />
+      {rule ? <EyebrowRule /> : null}
       <div className="min-w-0 font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-background/50">
         {children}
       </div>
