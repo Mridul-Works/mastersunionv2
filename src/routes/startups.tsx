@@ -461,42 +461,57 @@ import vipPmfImg from "@/assets/vip/vip-pmf.jpg.asset.json";
 import vipDemodayImg from "@/assets/vip/vip-demoday.jpg.asset.json";
 import vipProgramVideo from "@/assets/vip-program.mp4.asset.json";
 
-type Stage = { n: string; name: string; grant: string | null; body: string; image: string; culmination?: boolean };
+type Stage = { n: string; name: string; grant: string | null; body: string[]; image: string; culmination?: boolean };
 
 const VIP_STAGES: Stage[] = [
   {
     n: "01",
     name: "Pre-Seed",
     grant: "₹15–20L",
-    body: "Bust the myths, find a real problem worth solving, pick the right co-founders, learn to talk to customers — validated in front of founders, VCs, and alumni.",
+    body: [
+      "Bust the myths first. Most first ideas are solutions hunting for a problem, so Pre-Seed is spent outside the building — talking to people who actually have the problem, writing down what the team believes, and letting evidence kill the ideas that don't survive.",
+      "Teams also learn the parts that usually get skipped: choosing co-founders who cover each other's gaps, narrowing down to a problem worth solving, and holding a customer conversation without pitching. The stage ends with every idea tested in front of founders, VCs and alumni.",
+    ],
     image: vipPreseedImg.url,
   },
   {
     n: "02",
     name: "MVP",
     grant: "₹15–20L",
-    body: "Build the smallest real version of the idea, prove customer centricity, ship on no-to-low-code tools, and defend it at MVP Demo Day.",
+    body: [
+      "Build the smallest thing that is still real. Rather than spend the semester on architecture, students ship a working version of the idea — often on no-to-low-code tools — and put it in front of users, watching what people do instead of what they say.",
+      "Customer centricity is the real lesson. Every team has to explain why it built what it built, what it chose to cut, and what surprised it — and defend that story at MVP Demo Day in front of founders, investors and alumni.",
+    ],
     image: vipMvpImg.url,
   },
   {
     n: "03",
     name: "Go-to-Market",
     grant: "₹20L",
-    body: "Learn the marketing playbook and understand your funnel — turning a working product into a repeatable one.",
+    body: [
+      "A working product is not yet a business. This stage teaches the marketing playbook: where customers actually come from, what a channel really costs, and how a funnel is read — acquisition, activation, retention, revenue — until growth stops being an accident.",
+      "Students run live campaigns with real budgets, then report the numbers that matter rather than the flattering ones. That is what turns a product that ran once into one that repeats.",
+    ],
     image: vipGtmImg.url,
   },
   {
     n: "04",
     name: "Product-Market Fit",
     grant: "₹25L",
-    body: "One final dry run, then Demo Day.",
+    body: [
+      "The hardest question in a startup is whether anyone truly needs what you've built. Teams answer it with their own retention, usage and referral behaviour — and when the answer isn't there yet, they learn to say so early and change the plan.",
+      "Then comes one final dry run: the full pitch rehearsed under pressure, with mentors and investors poking at every assumption, so the real room is not the first time a team hears those questions.",
+    ],
     image: vipPmfImg.url,
   },
   {
     n: "05",
     name: "Demo Day",
     grant: null,
-    body: "150+ venture capitalists and angel investors in the room, assessing student startups for real funding.",
+    body: [
+      "The programme ends in a single room. 150+ venture capitalists and angel investors sit across from student founders, hear the pitch, and assess the startup the way a fund would outside campus — for real funding, not a grade.",
+      "It is also where the work begins. The conversations that start at Demo Day carry into the following months, and the teams that go on to raise usually begin with someone who was in that room.",
+    ],
     image: vipDemodayImg.url,
     culmination: true,
   },
@@ -3103,7 +3118,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
   return (
     <div
       ref={cardRef}
-      className="relative mt-10 h-[44rem] overflow-hidden rounded-xl border border-background/10 bg-foreground text-background shadow-2xl sm:mt-12 sm:h-[48rem] md:h-[34rem] md:rounded-[2rem] lg:mt-16 lg:h-[40rem]"
+      className="relative mt-10 h-[52rem] overflow-hidden rounded-xl border border-background/10 bg-foreground text-background shadow-2xl sm:mt-12 sm:h-[54rem] md:h-[40rem] md:rounded-[2rem] lg:mt-16 lg:h-[42rem]"
       onPointerDown={(event) => { pointerStartRef.current = event.clientX; }}
       onPointerUp={(event) => {
         const start = pointerStartRef.current;
@@ -3113,8 +3128,8 @@ function VipJourney({ stages }: { stages: Stage[] }) {
       }}
     >
       <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-1/2 bg-linear-to-l from-primary/10 to-transparent" />
-      <div className="grid h-full grid-rows-[43%_57%] md:grid-cols-12 md:grid-rows-1">
-        <div className="relative flex min-h-0 items-center justify-center overflow-hidden p-4 sm:p-6 md:col-span-7 md:p-8 lg:p-12">
+      <div className="grid h-full grid-rows-[32%_68%] md:grid-cols-12 md:grid-rows-1">
+        <div className="relative flex min-h-0 items-center justify-center overflow-hidden p-4 sm:p-6 md:col-span-6 md:p-8 lg:p-12">
           {active > 0 && (
             <button
               type="button"
@@ -3178,10 +3193,11 @@ function VipJourney({ stages }: { stages: Stage[] }) {
           </AnimatePresence>
         </div>
 
-        <div className="relative flex min-h-0 flex-col justify-between border-t border-background/10 bg-background/[0.03] p-5 backdrop-blur-xl sm:p-7 md:col-span-5 md:border-l md:border-t-0 md:p-8 lg:p-10">
+        <div className="relative flex min-h-0 flex-col justify-between border-t border-background/10 bg-background/[0.03] p-5 backdrop-blur-xl sm:p-7 md:col-span-6 md:border-l md:border-t-0 md:p-8 lg:p-10">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={`vip-story-${stage.name}`}
+              className="flex min-h-0 flex-1 flex-col"
               initial={reduceMotion ? false : { opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               exit={reduceMotion ? undefined : { opacity: 0, y: -10 }}
@@ -3189,7 +3205,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
             >
               <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-accent">The Venture Initiation Programme</p>
               <div className="mt-4 flex items-baseline gap-3 sm:mt-5">
-                <span className="font-display text-3xl font-bold text-background lg:text-4xl">{stage.n}</span>
+                <span className="font-display text-3xl font-bold text-accent lg:text-4xl">{stage.n}</span>
                 <span aria-hidden className="h-px flex-1 bg-background/15" />
                 <span className="font-mono text-xs text-background/35">{String(stages.length).padStart(2, "0")}</span>
               </div>
@@ -3201,15 +3217,22 @@ function VipJourney({ stages }: { stages: Stage[] }) {
                   </Fragment>
                 ))}
               </h3>
-              <p className="mt-4 max-w-[36ch] text-[13px] leading-[1.65] text-background/72 sm:text-[14px] lg:mt-5 lg:text-[15px] lg:leading-[1.7]">{stage.body}</p>
-              <div className="relative mt-5 overflow-hidden rounded-lg border border-background/10 bg-background/[0.05] p-4 sm:p-5 lg:mt-7 lg:rounded-2xl lg:p-6">
+              <div
+                data-lenis-prevent
+                className="mt-4 min-h-0 flex-1 space-y-3 overflow-y-auto overscroll-contain pr-1 sm:mt-5 lg:mt-6 [scrollbar-color:color-mix(in_oklab,var(--background)_22%,transparent)_transparent] [scrollbar-width:thin]"
+              >
+                {stage.body.map((para, i) => (
+                  <p key={`${stage.name}-body-${i}`} className="max-w-[40ch] text-[13px] leading-[1.6] text-background/72 sm:text-[14px] lg:leading-[1.65]">{para}</p>
+                ))}
+              </div>
+              <div className="relative mt-5 shrink-0 overflow-hidden rounded-lg border border-background/10 bg-background/[0.05] p-4 sm:p-5 lg:mt-7 lg:rounded-2xl lg:p-6">
                 <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-background/45">{stage.grant ? "Stage grant" : "Investors in the room"}</span>
-                <strong className="mt-2 block font-display text-[clamp(1.7rem,3vw,2.8rem)] font-bold leading-none text-background">{stage.grant ?? "150+"}</strong>
+                <strong className="mt-2 block font-display text-[clamp(1.7rem,3vw,2.8rem)] font-bold leading-none text-accent">{stage.grant ?? "150+"}</strong>
               </div>
             </motion.div>
           </AnimatePresence>
 
-          <div className="mt-5 flex items-end justify-between gap-4">
+          <div className="mt-5 flex shrink-0 items-end justify-between gap-4">
             <div className="min-w-0 flex-1">
               <div className="h-px overflow-hidden bg-background/15">
                 <motion.div className="h-full origin-left bg-accent" animate={{ width: `${progress}%` }} transition={{ duration: reduceMotion ? 0 : 0.45 }} />
