@@ -1817,7 +1817,7 @@ function SparkCarousel({
               <div className="eyebrow mb-2 grid min-h-[2.75rem] text-center text-background/45 sm:mb-3 sm:min-h-[3rem]">
                 {companies.map((item, index) => (
                   <span key={item.name} aria-hidden={index !== active} className={`col-start-1 row-start-1 self-end ${index === active ? "visible" : "invisible"}`}>
-                    {item.founder} — {item.cohort}
+                    {item.cohort}
                   </span>
                 ))}
               </div>
