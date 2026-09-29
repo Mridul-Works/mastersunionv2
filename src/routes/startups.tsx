@@ -73,23 +73,23 @@ import ventureGuardexLogo from "@/assets/venture-logos/Guardex.png.asset.json";
 import sharkMemoTagLogo from "@/assets/sharktank/MemoTag.png.asset.json";
 import sharkMetaFashionLogo from "@/assets/sharktank/MetaFashion.png.asset.json";
 import brandPhotoEight from "@/assets/founders/brand/eight.jpg";
-import brandPhotoBullspree from "@/assets/founders/brand/bullspree.jpg";
 import brandPhotoHiveschool from "@/assets/founders/brand/hiveschool.jpg";
-import brandPhotoLexis from "@/assets/founders/brand/lexis.jpg";
 import brandPhotoMemotag from "@/assets/founders/brand/memotag.jpg";
 import brandPhotoMetafashion from "@/assets/founders/brand/metafashion.jpg";
-import brandPhotoPlaysuper from "@/assets/founders/brand/playsuper.jpg";
-import brandPhotoSeedsai from "@/assets/founders/brand/seedsai.jpg";
-import brandPhotoWoodys from "@/assets/founders/brand/woodys.jpg";
-import reportVwyd from "@/assets/venture-report-crops/vkyd.jpg.asset.json";
-import reportAceCard from "@/assets/venture-report-crops/acecard.jpg.asset.json";
-import reportKhet from "@/assets/venture-report-crops/khet.jpg.asset.json";
 import zenmoFounders from "@/assets/founders/zenmo-founders.webp.asset.json";
-import reportInternetHuman from "@/assets/venture-report-crops/internet-human.jpg.asset.json";
-import reportZhor from "@/assets/venture-report-crops/zhor.jpg.asset.json";
-import reportSavra from "@/assets/venture-report-crops/savra.jpg.asset.json";
-import reportNomo from "@/assets/venture-report-crops/nomo.jpg.asset.json";
-import reportHouseOfKhakhra from "@/assets/venture-report-crops/house-of-khakhra.jpg.asset.json";
+import liveBullspree from "@/assets/live-venture-founders/bullspree.webp.asset.json";
+import livePlaySuper from "@/assets/live-venture-founders/playsuper.webp.asset.json";
+import liveLexis from "@/assets/live-venture-founders/lexis.webp.asset.json";
+import liveWoodys from "@/assets/live-venture-founders/woodys.webp.asset.json";
+import liveSeedsAi from "@/assets/live-venture-founders/seedsai.webp.asset.json";
+import liveHiveSchool from "@/assets/live-venture-founders/hiveschool.webp.asset.json";
+import liveMemoTag from "@/assets/live-venture-founders/memotag.webp.asset.json";
+import liveNexeraHealth from "@/assets/live-venture-founders/nexera-health.webp.asset.json";
+import liveHookd from "@/assets/live-venture-founders/hookd.webp.asset.json";
+import liveMetaFashion from "@/assets/live-venture-founders/meta-fashion.webp.asset.json";
+import liveBlueBrew from "@/assets/live-venture-founders/blue-brew.webp.asset.json";
+import liveVinyasa from "@/assets/live-venture-founders/vinyasa.webp.asset.json";
+import liveBeyondVeda from "@/assets/live-venture-founders/beyond-veda.webp.asset.json";
 import { onScrollFrame } from "@/lib/scroll-driver";
 import { Button } from "@/components/ui/button";
 
@@ -264,18 +264,18 @@ const FOUNDER_VENTURES: VentureTile[] = [
     description: "Audio-to-microdrama storytelling platform.",
   },
   {
-    company: "VKYD Labs",
-    founder: "Arjun Goel",
-    photo: reportVwyd.url,
-    sector: "Tech / Gaming",
-    stage: "High traction",
-    raised: "₹2.5Cr+ revenue",
-    description: "Digital fashion studio behind Roblox's Glam Girls and 2.5M+ item sales.",
+    company: "HiveSchool",
+    founder: "Nikhil Gaur",
+    photo: liveHiveSchool.url,
+    sector: "Education / Sales",
+    stage: "Shark Tank · Season 4",
+    raised: "PGP TBM Co '24",
+    description: "Building India's first sales school.",
   },
   {
     company: "Bullspree",
     founder: "Dharmil Bavishi",
-    photo: brandPhotoBullspree,
+    photo: liveBullspree.url,
     logo: ventureBullspreeLogo,
     sector: "Fintech",
     stage: "Seed-funded",
@@ -285,7 +285,7 @@ const FOUNDER_VENTURES: VentureTile[] = [
   {
     company: "PlaySuper",
     founder: "Upamanyu Chatterjee, Shouradeep Chakraborty",
-    photo: brandPhotoPlaysuper,
+    photo: livePlaySuper.url,
     logo: venturePlaysuperLogo,
     sector: "Gaming",
     stage: "Seed-funded",
@@ -295,7 +295,7 @@ const FOUNDER_VENTURES: VentureTile[] = [
   {
     company: "Lexi's",
     founder: "Naveen Balaji, Rhea Melwani, Alex Puthusserry, Ayush Melwani",
-    photo: brandPhotoLexis,
+    photo: liveLexis.url,
     logo: ventureLexis,
     sector: "F&B",
     stage: "Student-founded",
@@ -303,22 +303,22 @@ const FOUNDER_VENTURES: VentureTile[] = [
     description: "Gurgaon's top-rated gourmet sandwich brand.",
   },
   {
-    company: "AceCard",
-    founder: "Vedish Kukshal, Shubham Rohatgi",
-    photo: reportAceCard.url,
-    sector: "Tech / B2B SaaS",
-    stage: "Revenue-stage",
-    raised: "₹27L+ revenue",
-    description: "A smart NFC business card and offline sales engine with CRM lead capture.",
+    company: "MemoTag",
+    founder: "Reyansh Juneja",
+    photo: liveMemoTag.url,
+    sector: "AI / Healthtech",
+    stage: "Shark Tank · Season 4",
+    raised: "UG TBM Co '28",
+    description: "An AI-driven wearable for dementia care.",
   },
   {
-    company: "Khet Perfumes",
-    founder: "Madhav Narang, Arhum Jain, Maanya Agrawal",
-    photo: reportKhet.url,
-    sector: "D2C / Perfumes",
-    stage: "Incubated",
-    raised: "₹25L revenue",
-    description: "Homegrown fragrances inspired by Indian stories, nostalgia, and clean formulas.",
+    company: "Nexera Health",
+    founder: "Himanshu Rajpurohit",
+    photo: liveNexeraHealth.url,
+    sector: "Healthtech",
+    stage: "Shark Tank · Season 4",
+    raised: "CEO Challenge",
+    description: "Redefining workplace wellness for employees.",
   },
   {
     company: "Zenmo",
@@ -330,18 +330,18 @@ const FOUNDER_VENTURES: VentureTile[] = [
     description: "An automotive lifestyle brand blending motorsport culture with streetwear.",
   },
   {
-    company: "Internet Human Co.",
-    founder: "Kabir Teria",
-    photo: reportInternetHuman.url,
-    sector: "AI / Automation",
-    stage: "Deployed",
-    raised: "10+ AI agents",
-    description: "AI employees with identity, memory, and communication channels for remote teams.",
+    company: "HookD",
+    founder: "Dia Goel",
+    photo: liveHookd.url,
+    sector: "D2C / Food",
+    stage: "Shark Tank · Season 5",
+    raised: "PGP TBM Co '23",
+    description: "Ready-to-eat non-vegetarian snacks built for India's non-veg consumers.",
   },
   {
     company: "Woody's Pizzeria",
     founder: "Kanav Rishi Kumar",
-    photo: brandPhotoWoodys,
+    photo: liveWoodys.url,
     logo: ventureWoodys,
     sector: "F&B",
     stage: "Bootstrapped",
@@ -351,7 +351,7 @@ const FOUNDER_VENTURES: VentureTile[] = [
   {
     company: "SeedsAI",
     founder: "Vansh Miglani, Shubham Khatri",
-    photo: brandPhotoSeedsai,
+    photo: liveSeedsAi.url,
     logo: ventureSeedsAILogo,
     sector: "AI / Fintech",
     stage: "Revenue-stage",
@@ -359,40 +359,40 @@ const FOUNDER_VENTURES: VentureTile[] = [
     description: "AI voice intelligence for NBFC collections and compliance.",
   },
   {
-    company: "Zhor",
-    founder: "Pratham Dua",
-    photo: reportZhor.url,
-    sector: "D2C / Performance",
-    stage: "Community-led",
-    raised: "20+ collaborations",
-    description: "A community-first performance brand built around India's running culture.",
+    company: "Meta Fashion",
+    founder: "Arjun Goel",
+    photo: liveMetaFashion.url,
+    sector: "Fashion / Gaming",
+    stage: "Shark Tank · Season 5",
+    raised: "UG TBM Co '28",
+    description: "Phygital commerce connecting in-game discovery with real-world fashion.",
   },
   {
-    company: "Savra",
-    founder: "Priyana Sharma, Suvansh Chopra",
-    photo: reportSavra.url,
-    sector: "AI / EdTech",
-    stage: "Early traction",
-    raised: "250+ teachers",
-    description: "An AI co-pilot that saves educators 8–10 hours of repetitive work each week.",
+    company: "Blue Brew",
+    founder: "Aditya Rathi",
+    photo: liveBlueBrew.url,
+    sector: "D2C / Fashion",
+    stage: "Founder Fellowship",
+    raised: "Founder & CEO",
+    description: "Trend-driven, high-quality apparel tailored for Indian consumers.",
   },
   {
-    company: "Nomo",
-    founder: "Harshita Chawla, Swayam Bharadwaj, Adish Gupta",
-    photo: reportNomo.url,
-    sector: "D2C / F&B",
-    stage: "MVP grant",
-    raised: "28K+ dumplings",
-    description: "Gourmet momos and dimsums built around bold fillings and constant innovation.",
+    company: "Vinyasa",
+    founder: "Divya Shah",
+    photo: liveVinyasa.url,
+    sector: "Healthtech",
+    stage: "Founder Fellowship",
+    raised: "Founder & CEO",
+    description: "Mental-health practice software that lets therapists focus on clients.",
   },
   {
-    company: "House of Khakhra",
-    founder: "Purv Patel",
-    photo: reportHouseOfKhakhra.url,
-    sector: "D2C / F&B",
-    stage: "Revenue-stage",
-    raised: "₹10L+ revenue",
-    description: "Preservative-free, protein-rich whole-wheat khakhra for healthier snacking.",
+    company: "Beyond Veda",
+    founder: "Manan Sahai",
+    photo: liveBeyondVeda.url,
+    sector: "D2C / Wellness",
+    stage: "Founder Fellowship",
+    raised: "Founder & CEO",
+    description: "Plant-based, expert-formulated hair and skincare solutions.",
   },
 ];
 
