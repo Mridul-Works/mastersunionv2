@@ -22,3 +22,7 @@
 
 - [x] Place the divider rule above the Founder Stories section (1px hairline so it paints at every scroll offset)
 - [x] High School Startup League: replace the video placeholder and landscape rail with three vertical highlight-reel cards (hover preview, portal player)
+- [x] High School Startup League: use the live site's own three thumbnails as the reel posters
+- [x] High School Startup League: match the Dropshipping Challenge metric bar exactly (container, type, spacing, four columns)
+- [x] High School Startup League: add a plain secondary hairline above the highlight-reel cards
+- [x] Startups page: retry media whose request the preview's asset delivery drops, so a blank card self-heals
