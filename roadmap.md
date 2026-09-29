@@ -21,3 +21,4 @@
 - [x] Match Portfolio metric figures to the page metric-card scale, shrink cells, relabel to "Portfolio", delete "Not a Straight Line" section
 
 - [x] Place the divider rule above the Founder Stories section (1px hairline so it paints at every scroll offset)
+- [x] High School Startup League: replace the video placeholder and landscape rail with three vertical highlight-reel cards (hover preview, portal player)

@@ -44,6 +44,12 @@ import instaVideo4 from "@/assets/insta-video-4.mp4.asset.json";
 import instaVideo4Poster from "@/assets/insta-video-4-frame.jpg.asset.json";
 import instaVideo5 from "@/assets/insta-video-5.mp4.asset.json";
 import instaVideo5Poster from "@/assets/insta-video-5-frame.jpg.asset.json";
+import hsslReel1 from "@/assets/hssl-reel-1.mp4.asset.json";
+import hsslReel1Poster from "@/assets/hssl-reel-1-frame.jpg.asset.json";
+import hsslReel2 from "@/assets/hssl-reel-2.mp4.asset.json";
+import hsslReel2Poster from "@/assets/hssl-reel-2-frame.jpg.asset.json";
+import hsslReel3 from "@/assets/hssl-reel-3.mp4.asset.json";
+import hsslReel3Poster from "@/assets/hssl-reel-3-frame.jpg.asset.json";
 import sparkVideoThumb from "@/assets/spark-video-thumb.jpg";
 
 import sparkSeedsAiFounders from "@/assets/spark/seedsai-founders.jpg.asset.json";
@@ -699,6 +705,34 @@ const HSSL_STATS = [
   { value: "₹20L+", label: "Cash prize / funding pool" },
 ];
 const HSSL_STAGES = ["Ideation", "MVP Showdown", "Investor Pitch"];
+
+/**
+ * Highlight reels for the High School Startup League. Vertical cards, one per
+ * clip: poster frame first, muted preview on hover, full clip in a portal modal.
+ */
+const HSSL_REELS = [
+  {
+    id: "hssl-reel-1",
+    src: hsslReel1.url,
+    poster: hsslReel1Poster.url,
+    title: "Reel 01",
+    meta: "High School Startup League",
+  },
+  {
+    id: "hssl-reel-2",
+    src: hsslReel2.url,
+    poster: hsslReel2Poster.url,
+    title: "Reel 02",
+    meta: "High School Startup League",
+  },
+  {
+    id: "hssl-reel-3",
+    src: hsslReel3.url,
+    poster: hsslReel3Poster.url,
+    title: "Reel 03",
+    meta: "High School Startup League",
+  },
+];
 
 const ECOSYSTEM_STATS = [
   { value: "30+", label: "Startups launched" },
@@ -1470,69 +1504,6 @@ function Placeholder({
   );
 }
 
-function MediaRail({
-  labels,
-  kind = "image",
-  className = "",
-}: {
-  labels: string[];
-  kind?: "image" | "video";
-  className?: string;
-}) {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(0);
-
-  const go = (direction: -1 | 1) => {
-    const track = trackRef.current;
-    if (!track) return;
-    const next = (active + direction + labels.length) % labels.length;
-    const card = track.children[next] as HTMLElement | undefined;
-    if (!card) return;
-    setActive(next);
-    track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: "smooth" });
-  };
-
-  return (
-    <div className={`mt-9 sm:mt-11 md:mt-12 ${className}`}>
-      <div className="mb-5 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-b border-background/15 pb-4">
-        <span className="eyebrow text-background/50">
-          {String(active + 1).padStart(2, "0")} / {String(labels.length).padStart(2, "0")}
-        </span>
-        <div className="flex items-center gap-3">
-          <span className="hidden text-[10px] uppercase tracking-[0.2em] text-background/35 sm:inline">Slide to explore</span>
-          <button type="button" aria-label="Previous media" onClick={() => go(-1)} className="flex size-10 items-center justify-center border border-background/20 text-background transition-colors hover:bg-background/10">
-            <ArrowRight className="size-4 rotate-180" />
-          </button>
-          <button type="button" aria-label="Next media" onClick={() => go(1)} className="flex size-10 items-center justify-center bg-background text-foreground transition-opacity hover:opacity-80">
-            <ArrowRight className="size-4" />
-          </button>
-        </div>
-      </div>
-      <div
-        ref={trackRef}
-        onScroll={(event) => {
-          const track = event.currentTarget;
-          const first = track.children[0] as HTMLElement | undefined;
-          if (!first) return;
-          setActive(Math.min(labels.length - 1, Math.max(0, Math.round(track.scrollLeft / first.offsetWidth))));
-        }}
-        className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-3 [scrollbar-width:none] sm:-mx-7 sm:gap-4 sm:px-7 md:-mx-8 md:gap-5 md:px-8 lg:-mx-12 lg:gap-6 lg:px-12 [&::-webkit-scrollbar]:hidden"
-      >
-        {labels.map((label, index) => (
-          <Reveal key={label} delay={index * 0.05} className="group w-[calc(100vw-2.5rem)] max-w-[32rem] shrink-0 snap-start sm:w-[72vw] md:w-[54vw] lg:w-[31vw]">
-            <div className={`transition-transform duration-700 ease-out group-hover:-translate-y-2 ${index % 2 ? "md:mt-14" : ""}`}>
-              <Placeholder kind={kind} aspect="aspect-[4/5] md:aspect-[5/4]" note={label} />
-              <div className="mt-4 flex items-center justify-between border-t border-background/15 pt-4">
-                <span className="font-serif-italic text-xl text-background/85">{label}</span>
-                <span className="font-mono text-[10px] text-accent">{String(index + 1).padStart(2, "0")}</span>
-              </div>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 function SparkCarousel({
   companies,
@@ -3457,6 +3428,200 @@ function VipVideoCard() {
   );
 }
 
+/** One vertical highlight-reel card: poster, hover preview, square play button. */
+function HsslReelCard({
+  reel,
+  index,
+  onOpen,
+}: {
+  reel: (typeof HSSL_REELS)[number];
+  index: number;
+  onOpen: (reel: (typeof HSSL_REELS)[number], origin: DOMRect | null) => void;
+}) {
+  const cardRef = useRef<HTMLButtonElement>(null);
+  const previewRef = useRef<HTMLVideoElement>(null);
+
+  const startPreview = () => {
+    const el = previewRef.current;
+    if (!el) return;
+    el.muted = true;
+    void el.play().catch(() => {});
+  };
+  const stopPreview = () => {
+    const el = previewRef.current;
+    if (!el) return;
+    el.pause();
+    el.currentTime = 0;
+  };
+
+  return (
+    <Reveal delay={index * 0.06}>
+      <button
+        ref={cardRef}
+        type="button"
+        aria-label={`Play ${reel.title}: ${reel.meta}`}
+        onClick={() => onOpen(reel, cardRef.current?.getBoundingClientRect() ?? null)}
+        onMouseEnter={startPreview}
+        onMouseLeave={stopPreview}
+        onFocus={startPreview}
+        onBlur={stopPreview}
+        className="group relative block aspect-[4/5] w-full overflow-hidden bg-black text-left transition-transform duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60"
+      >
+        <img
+          src={reel.poster}
+          alt=""
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+        />
+        <video
+          ref={previewRef}
+          src={reel.src}
+          muted
+          loop
+          playsInline
+          preload="none"
+          tabIndex={-1}
+          aria-hidden
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100"
+        />
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/60 via-black/10 to-black/85"
+        />
+        <span className="absolute -left-px -top-px z-20 bg-bottle px-3 py-1 font-tech text-[9px] font-bold uppercase text-background">
+          Highlight reel
+        </span>
+        <span aria-hidden className="pointer-events-none absolute inset-0 z-20 grid place-items-center">
+          <span className="grid size-12 place-items-center bg-accent text-accent-foreground transition-transform duration-300 group-hover:scale-105 sm:size-14">
+            <Play className="fill-current" />
+          </span>
+        </span>
+        <span className="absolute inset-x-0 bottom-0 z-20 p-4 sm:p-5">
+          <span className="block font-display text-[clamp(1.15rem,2vw,1.5rem)] font-semibold italic leading-[1.1] text-background">
+            {reel.title}
+          </span>
+          <span className="mt-2 block font-tech text-[9px] uppercase tracking-[0.22em] text-background/65">
+            {reel.meta}
+          </span>
+        </span>
+      </button>
+    </Reveal>
+  );
+}
+
+/** The three High School Startup League reels, as vertical cards. */
+function HsslVideoCards() {
+  const [openReel, setOpenReel] = useState<(typeof HSSL_REELS)[number] | null>(null);
+  const [origin, setOrigin] = useState<DOMRect | null>(null);
+  const reduceMotion = useReducedMotion();
+  const modalRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (!openReel) return;
+    const el = modalRef.current;
+    if (el) void el.play().catch(() => {});
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpenReel(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [openReel]);
+
+  const open = (reel: (typeof HSSL_REELS)[number], rect: DOMRect | null) => {
+    setOrigin(rect);
+    setOpenReel(reel);
+  };
+
+  return (
+    <div className="mt-10 sm:mt-12">
+      <div className="grid gap-4 sm:grid-cols-3 sm:gap-5">
+        {HSSL_REELS.map((reel, i) => (
+          <HsslReelCard key={reel.id} reel={reel} index={i} onOpen={open} />
+        ))}
+      </div>
+
+      {typeof document !== "undefined" &&
+        createPortal(
+          <AnimatePresence>
+            {openReel && (
+              <motion.div
+                role="dialog"
+                aria-modal="true"
+                aria-label={`${openReel.title} — ${openReel.meta}`}
+                initial={reduceMotion ? false : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: reduceMotion ? 0 : 0.3 }}
+                className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-sm"
+                onClick={() => setOpenReel(null)}
+              >
+                <motion.div
+                  initial={
+                    reduceMotion || !origin
+                      ? false
+                      : {
+                          left: origin.left,
+                          top: origin.top,
+                          width: origin.width,
+                          height: origin.height,
+                          borderRadius: 0,
+                        }
+                  }
+                  animate={{
+                    left: "50%",
+                    top: "50%",
+                    width: "min(calc(100vw - 2rem), calc((100svh - 4rem) * 0.8), 28rem)",
+                    height: "min(calc((100vw - 2rem) / 0.8), calc(100svh - 4rem), 35rem)",
+                    x: "-50%",
+                    y: "-50%",
+                    borderRadius: 0,
+                  }}
+                  exit={
+                    reduceMotion || !origin
+                      ? { opacity: 0 }
+                      : {
+                          left: origin.left,
+                          top: origin.top,
+                          width: origin.width,
+                          height: origin.height,
+                          x: 0,
+                          y: 0,
+                          borderRadius: 0,
+                        }
+                  }
+                  transition={{ duration: reduceMotion ? 0 : 0.55, ease: [0.22, 1, 0.36, 1] }}
+                  className="fixed overflow-hidden border border-background/15 bg-black shadow-2xl"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <video
+                    ref={modalRef}
+                    src={openReel.src}
+                    poster={openReel.poster}
+                    controls
+                    autoPlay
+                    playsInline
+                    preload="auto"
+                    aria-label={`${openReel.title} — ${openReel.meta}`}
+                    className="block h-full w-full bg-black object-cover"
+                  />
+                </motion.div>
+                <button
+                  type="button"
+                  aria-label="Close video"
+                  onClick={() => setOpenReel(null)}
+                  className="absolute right-4 top-4 flex size-10 items-center justify-center rounded-full border border-background/20 text-background/80 transition-colors hover:bg-background/10 hover:text-background"
+                >
+                  <X className="size-4" />
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body,
+        )}
+    </div>
+  );
+}
+
 function VipSection() {
   return (
     <Section id="journey" tone="paper" tightTop>
@@ -4374,13 +4539,7 @@ function StartupsPage() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.25} className="mt-10">
-          <Placeholder kind="video" aspect="aspect-video" note="High School Startup League highlight reel" />
-        </Reveal>
-        <MediaRail
-          kind="video"
-          labels={["Meet the teen founders", "Prototype lab", "Pitch rehearsal", "The final stage"]}
-        />
+        <HsslVideoCards />
       </Section>
 
 
