@@ -17,3 +17,5 @@
 - [x] Move "By the Numbers" inside the Portfolio (Selected Companies) section as its lead-in
 
 - [x] Redesign "By the Numbers" as a structured editorial grid (deck left, lead figure right, hairline stat ledger); image cards untouched
+
+- [x] Match Portfolio metric figures to the page metric-card scale, shrink cells, relabel to "Portfolio", delete "Not a Straight Line" section

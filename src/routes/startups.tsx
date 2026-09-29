@@ -738,30 +738,6 @@ const TESTIMONIALS = [
   },
 ];
 
-
-const REALITY_EXAMPLES = [
-  {
-    name: "Bambaii Foods",
-    body: "A ₹60 snack mix that flopped, a founder who called his own product “shit,” a team that disbanded before the real version got built.",
-  },
-  {
-    name: "EIGHT",
-    body: "A full pivot from live audio to microdrama when the founders read that the format itself was aging out.",
-  },
-  {
-    name: "Woody's Pizzeria",
-    body: "Kanav Rishi Kumar's first weekend of full orders came with an early 1-star review before the rating climbed to 4.7 across 3,000+ orders.",
-  },
-  {
-    name: "TrueBrands",
-    body: "Three months in, both the co-founder and tech lead walked away. Mukund Gupta kept going alone until two new interns joined.",
-  },
-  {
-    name: "PlaySuper",
-    body: "Its founders' previous venture, CollegeShala, was acquired — then the 2023 edtech crash forced layoffs at the company that acquired it, before PlaySuper was even an idea.",
-  },
-];
-
 function Reveal({
   children,
   delay = 0,
@@ -2899,7 +2875,7 @@ function DropshippingSection() {
   );
 }
 
-// "By the Numbers" lives inside the Portfolio section as its lead-in.
+// Portfolio lead-in: headline figures, sitting above the company cards.
 // Structured editorial grid: deck left, lead figure right, hairline ledger below.
 function ByTheNumbers() {
   const cells = ECOSYSTEM_STATS.filter(
@@ -2909,7 +2885,7 @@ function ByTheNumbers() {
   return (
     <div id="scale" className="scroll-mt-24">
       <Reveal>
-        <Eyebrow dark>By the Numbers</Eyebrow>
+        <Eyebrow dark>Portfolio</Eyebrow>
       </Reveal>
 
       <div className="mt-9 grid grid-cols-1 gap-x-10 gap-y-9 sm:mt-11 md:mt-14 lg:grid-cols-12 lg:items-end">
@@ -2943,17 +2919,17 @@ function ByTheNumbers() {
         </Reveal>
       </div>
 
-      <div className="mt-12 grid grid-cols-1 border-l border-t border-background/10 sm:mt-14 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3">
+      <div className="mt-10 grid grid-cols-1 border-l border-t border-background/10 sm:mt-12 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3">
         {cells.map((s, i) => (
           <Reveal
             key={s.label}
             delay={0.05 + i * 0.04}
-            className="border-b border-r border-background/10 p-6 transition-colors duration-300 hover:bg-background/[0.04] sm:p-7 lg:p-8"
+            className="min-h-[5.5rem] border-b border-r border-background/10 px-5 py-4 transition-colors duration-300 hover:bg-background/[0.04] sm:px-6 sm:py-5"
           >
-            <div className="font-mono text-[10px] uppercase leading-relaxed tracking-[0.2em] text-background/40">
+            <div className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-background/60 sm:text-[10px]">
               {s.label}
             </div>
-            <div className="mt-4 font-display text-[clamp(1.7rem,3.1vw,2.4rem)] font-medium leading-none tracking-[-0.03em] tabular-nums">
+            <div className="mt-2.5 font-display text-[clamp(1.7rem,2.6vw,2.2rem)] font-normal leading-none tracking-[-0.01em] tabular-nums">
               {s.value}
             </div>
           </Reveal>
@@ -4481,32 +4457,6 @@ function StartupsPage() {
 
       <VenturesMosaicSection />
 
-
-      <Section id="reality" tone="dark">
-        <Reveal>
-          <Eyebrow dark>Not a Straight Line</Eyebrow>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
-            For every launch, there&apos;s a version that didn&apos;t work first.
-          </h2>
-        </Reveal>
-
-        <ul className="mt-10 grid gap-px border-y border-background/10 sm:mt-12 md:mt-14 md:grid-cols-2">
-          {REALITY_EXAMPLES.map((r, i) => (
-            <Reveal key={r.name} delay={i * 0.05}>
-              <li className="h-full border-background/10 p-5 sm:p-6 md:p-8 lg:p-9">
-                <span className="font-serif-italic text-[1rem]">{r.name}</span>
-                <p className="mt-3 max-w-[58ch] text-[13px] leading-[1.6] text-background/80 md:text-[15px] md:leading-[1.75]">{r.body}</p>
-              </li>
-            </Reveal>
-          ))}
-        </ul>
-
-        <Reveal delay={0.2} className="mt-14">
-          <Placeholder kind="video" aspect="aspect-video" dark note="Founder-interview, talking-head" />
-        </Reveal>
-      </Section>
 
       <Section id="cta" tone="dark" container="max-w-4xl">
         <div className="pb-10 pt-4 text-center sm:pb-14 sm:pt-6 md:pb-20 md:pt-12">
