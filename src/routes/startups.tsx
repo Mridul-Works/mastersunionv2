@@ -469,8 +469,8 @@ const VIP_STAGES: Stage[] = [
     name: "Pre-Seed",
     grant: "₹15–20L",
     body: [
-      "Bust the myths first. Most first ideas are solutions hunting for a problem, so Pre-Seed is spent outside the building — talking to people who actually have the problem, writing down what the team believes, and letting evidence kill the ideas that don't survive.",
-      "Teams also learn the parts that usually get skipped: choosing co-founders who cover each other's gaps, narrowing down to a problem worth solving, and holding a customer conversation without pitching. The stage ends with every idea tested in front of founders, VCs and alumni.",
+      "Bust the myths first. Most first ideas are solutions hunting for a problem, so Pre-Seed happens outside the building — talking to people who have it, and letting evidence kill the ideas that don't survive.",
+      "Teams also learn what usually gets skipped: co-founders who cover each other's gaps, a problem narrow enough to own, and customer conversations without pitching. The stage ends with every idea tested in front of founders, VCs and alumni.",
     ],
     image: vipPreseedImg.url,
   },
@@ -479,7 +479,7 @@ const VIP_STAGES: Stage[] = [
     name: "MVP",
     grant: "₹15–20L",
     body: [
-      "Build the smallest thing that is still real. Rather than spend the semester on architecture, students ship a working version of the idea — often on no-to-low-code tools — and put it in front of users, watching what people do instead of what they say.",
+      "Build the smallest thing that is still real. Rather than spend the semester on architecture, students ship a working version — often on no-to-low-code tools — and watch what people do instead of what they say.",
       "Customer centricity is the real lesson. Every team has to explain why it built what it built, what it chose to cut, and what surprised it — and defend that story at MVP Demo Day in front of founders, investors and alumni.",
     ],
     image: vipMvpImg.url,
@@ -499,8 +499,8 @@ const VIP_STAGES: Stage[] = [
     name: "Product-Market Fit",
     grant: "₹25L",
     body: [
-      "The hardest question in a startup is whether anyone truly needs what you've built. Teams answer it with their own retention, usage and referral behaviour — and when the answer isn't there yet, they learn to say so early and change the plan.",
-      "Then comes one final dry run: the full pitch rehearsed under pressure, with mentors and investors poking at every assumption, so the real room is not the first time a team hears those questions.",
+      "The hardest question in a startup is whether anyone truly needs what you've built. Teams answer with their own retention, usage and referral behaviour — and when the answer isn't there yet, they change the plan.",
+      "Then comes one final dry run: the full pitch rehearsed under pressure, with mentors and investors poking at every assumption, so the real room is not their first.",
     ],
     image: vipPmfImg.url,
   },
@@ -510,7 +510,7 @@ const VIP_STAGES: Stage[] = [
     grant: null,
     body: [
       "The programme ends in a single room. 150+ venture capitalists and angel investors sit across from student founders, hear the pitch, and assess the startup the way a fund would outside campus — for real funding, not a grade.",
-      "It is also where the work begins. The conversations that start at Demo Day carry into the following months, and the teams that go on to raise usually begin with someone who was in that room.",
+      "It is also where the work begins. Conversations that start at Demo Day carry into the following months, and teams that raise usually begin with someone who was in that room.",
     ],
     image: vipDemodayImg.url,
     culmination: true,
@@ -3193,7 +3193,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
           </AnimatePresence>
         </div>
 
-        <div className="relative flex min-h-0 flex-col justify-between border-t border-background/10 bg-background/[0.03] p-5 backdrop-blur-xl sm:p-7 md:col-span-6 md:border-l md:border-t-0 md:p-8 lg:p-10">
+        <div className="relative flex min-h-0 flex-col justify-between border-t border-background/10 bg-background/[0.03] p-5 backdrop-blur-xl sm:p-7 md:col-span-6 md:border-l md:border-t-0 md:p-6 lg:p-10">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={`vip-story-${stage.name}`}
@@ -3219,10 +3219,10 @@ function VipJourney({ stages }: { stages: Stage[] }) {
               </h3>
               <div
                 data-lenis-prevent
-                className="mt-4 min-h-0 flex-1 space-y-3 overflow-y-auto overscroll-contain pr-1 sm:mt-5 lg:mt-6 [scrollbar-color:color-mix(in_oklab,var(--background)_22%,transparent)_transparent] [scrollbar-width:thin]"
+                className="mt-3 min-h-0 flex-1 space-y-1.5 overflow-y-auto overscroll-contain sm:mt-4 lg:mt-5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               >
                 {stage.body.map((para, i) => (
-                  <p key={`${stage.name}-body-${i}`} className="max-w-[40ch] text-[13px] leading-[1.6] text-background/72 sm:text-[14px] lg:leading-[1.65]">{para}</p>
+                  <p key={`${stage.name}-body-${i}`} className="text-[13px] leading-[1.5] text-background/72 sm:text-[14px] lg:leading-[1.6]">{para}</p>
                 ))}
               </div>
               <div className="relative mt-5 shrink-0 overflow-hidden rounded-lg border border-background/10 bg-background/[0.05] p-4 sm:p-5 lg:mt-7 lg:rounded-2xl lg:p-6">
