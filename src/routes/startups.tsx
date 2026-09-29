@@ -3119,7 +3119,14 @@ function VipJourney({ stages }: { stages: Stage[] }) {
               <div className="absolute inset-x-5 bottom-5">
                 <div className="font-tech text-[10px] font-bold uppercase tracking-[0.18em] text-background/70">Chapter · {stage.n}</div>
                 <div aria-hidden className="my-3 h-px bg-background/30" />
-                <h4 className="font-display text-[clamp(1.4rem,3vw,2.4rem)] font-black uppercase leading-[0.85] text-background">{stage.name}</h4>
+                <h4 className="font-display text-[clamp(1.15rem,3vw,2.4rem)] font-black uppercase leading-[0.85] text-background [text-wrap:balance]">
+                  {stage.name.split(" ").map((word, i, words) => (
+                    <span key={`${word}-${i}`} className="whitespace-nowrap">
+                      {word}
+                      {i < words.length - 1 ? " " : ""}
+                    </span>
+                  ))}
+                </h4>
               </div>
             </motion.div>
           </AnimatePresence>
