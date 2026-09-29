@@ -3943,10 +3943,7 @@ function StartupsPage() {
         <div className="grid grid-cols-1 gap-5 border-b border-background/20 pb-8 sm:gap-6 sm:pb-10 md:grid-cols-12 md:items-end md:gap-10 md:pb-12 lg:gap-12 lg:pb-14">
           <div className="md:col-span-8">
             <Reveal>
-              <div className="flex items-center gap-4">
-                <span aria-hidden className="h-px w-12 bg-gradient-to-r from-sky-400 via-yellow-300 to-orange-400" />
-                <Eyebrow>The Spark</Eyebrow>
-              </div>
+              <Eyebrow>The Spark</Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
               <h2 className="mt-5 max-w-[18ch] font-display text-[1.875rem] font-normal leading-[1.2] tracking-normal">
