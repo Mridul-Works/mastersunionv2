@@ -43,6 +43,11 @@ import instaVideo3Poster from "@/assets/insta-video-3-frame.jpg.asset.json";
 import instaVideo4 from "@/assets/insta-video-4.mp4.asset.json";
 import instaVideo4Poster from "@/assets/insta-video-4-frame.jpg.asset.json";
 import instaVideo5 from "@/assets/insta-video-5.mp4.asset.json";
+import dsThumb1 from "@/assets/ds-thumb-1.webp.asset.json";
+import dsThumb2 from "@/assets/ds-thumb-2.webp.asset.json";
+import dsThumb3 from "@/assets/ds-thumb-3.webp.asset.json";
+import dsThumb4 from "@/assets/ds-thumb-4.webp.asset.json";
+import dsThumb5 from "@/assets/ds-thumb-5.webp.asset.json";
 import instaVideo5Poster from "@/assets/insta-video-5-frame.jpg.asset.json";
 import hsslReel1 from "@/assets/hssl-reel-1.mp4.asset.json";
 import hsslReel1Poster from "@/assets/hssl-thumbnail-1.webp.asset.json";
@@ -227,11 +232,11 @@ const DROPSHIPPING_VIDEOS: {
   poster: string;
   aria: string;
 }[] = [
-  { id: "highlight", src: instaVideo1.url, poster: instaVideo1Poster.url, aria: "Student entrepreneurship film" },
-  { id: "ventures", src: instaVideo2.url, poster: instaVideo2Poster.url, aria: "Student ventures film" },
-  { id: "campus", src: instaVideo3.url, poster: instaVideo3Poster.url, aria: "Campus film" },
-  { id: "hero-info", src: instaVideo4.url, poster: instaVideo4Poster.url, aria: "Student programme film" },
-  { id: "hero", src: instaVideo5.url, poster: instaVideo5Poster.url, aria: "Student venture film" },
+  { id: "highlight", src: instaVideo1.url, poster: dsThumb1.url, aria: "Student entrepreneurship film" },
+  { id: "ventures", src: instaVideo2.url, poster: dsThumb2.url, aria: "Student ventures film" },
+  { id: "campus", src: instaVideo3.url, poster: dsThumb3.url, aria: "Campus film" },
+  { id: "hero-info", src: instaVideo4.url, poster: dsThumb4.url, aria: "Student programme film" },
+  { id: "hero", src: instaVideo5.url, poster: dsThumb5.url, aria: "Student venture film" },
 ];
 
 const DROPSHIPPING_STATS = [
@@ -3465,7 +3470,7 @@ function HsslReelCard({
         onMouseLeave={stopPreview}
         onFocus={startPreview}
         onBlur={stopPreview}
-        className="group relative block aspect-[4/5] w-full overflow-hidden bg-black text-left transition-transform duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60"
+        className="group relative block aspect-[9/16] w-full overflow-hidden bg-black text-left transition-transform duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60"
       >
         <img
           src={reel.poster}
@@ -3575,8 +3580,8 @@ function HsslVideoCards() {
                   animate={{
                     left: "50%",
                     top: "50%",
-                    width: "min(calc(100vw - 2rem), calc((100svh - 4rem) * 0.8), 28rem)",
-                    height: "min(calc((100vw - 2rem) / 0.8), calc(100svh - 4rem), 35rem)",
+                    width: "min(calc(100vw - 2rem), calc((100svh - 4rem) * 0.5625), 28rem)",
+                    height: "min(calc((100vw - 2rem) / 0.5625), calc(100svh - 4rem), 49.78rem)",
                     x: "-50%",
                     y: "-50%",
                     borderRadius: 0,
