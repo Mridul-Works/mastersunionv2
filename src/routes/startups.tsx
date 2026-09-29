@@ -4327,6 +4327,10 @@ export const Route = createFileRoute("/startups")({
         content:
           "30+ student startups. ₹593 Cr valuation. From dropshipping to Shark Tank: how Masters' Union founders build, test, fail, iterate, pitch, and scale real companies.",
       },
+      { property: "og:title", content: "Entrepreneurship — Masters' Union" },
+      { property: "og:description", content: "Student founders at Masters' Union build real companies through OutClass, venture-building and the market." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: StartupsPage,
