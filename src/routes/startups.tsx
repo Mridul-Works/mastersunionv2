@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AnimatePresence, motion, useMotionValue, useReducedMotion, useTransform } from "framer-motion";
@@ -20,7 +20,6 @@ import {
 } from "lucide-react";
 import eightVentureImg from "@/assets/founders/ventures/eight.jpg.asset.json";
 import bullspreeVentureImg from "@/assets/founders/ventures/bullspree.jpg.asset.json";
-import { Button } from "@/components/ui/button";
 import hiveschoolVentureImg from "@/assets/founders/ventures/hiveschool.jpg.asset.json";
 import lexisVentureImg from "@/assets/founders/ventures/lexis.jpg.asset.json";
 import playsuperVentureImg from "@/assets/founders/ventures/playsuper.jpg.asset.json";
@@ -82,6 +81,7 @@ import brandPhotoPlaysuper from "@/assets/founders/brand/playsuper.jpg";
 import brandPhotoSeedsai from "@/assets/founders/brand/seedsai.jpg";
 import brandPhotoWoodys from "@/assets/founders/brand/woodys.jpg";
 import { onScrollFrame } from "@/lib/scroll-driver";
+import { Button } from "@/components/ui/button";
 
 const NAV: { id: string; label: string }[] = [
   { id: "top", label: "Hero" },
@@ -829,7 +829,7 @@ function Reveal({
   y = 20,
   className = "",
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   delay?: number;
   y?: number;
   className?: string;
@@ -848,7 +848,7 @@ function Reveal({
   );
 }
 
-function Eyebrow({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
+function Eyebrow({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
   return (
     <div className="font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-background/50">
       {children}
@@ -869,7 +869,7 @@ function Section({
   container?: string;
   tightTop?: boolean;
   tightBottom?: boolean;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   const surfaceClass =
     tone === "paper"
@@ -1334,7 +1334,7 @@ function FounderStoriesGallery() {
                     </div>
                   );
                   const layout = activeStory % 7;
-                  let content: React.ReactNode;
+                  let content: ReactNode;
                   if (story.name === "SeedsAI") {
                     // Landscape-led field report: copy frames a wide founder photograph.
                     content = (
@@ -2216,11 +2216,6 @@ const OUTCLASS_TRACKS = [
   {
     title: "Creator Challenge",
     body: "From Term 2, every student builds a personal brand on YouTube, Instagram or LinkedIn — scripting, filming, editing and distributing weekly. Graded on real audience growth in the wild.",
-    stats: [
-      { value: "50M+", label: "Cumulative views generated" },
-      { value: "2.5M+", label: "Followers built by past cohorts" },
-      { value: "40+", label: "Creators past 100k followers" },
-    ],
   },
 ];
 
@@ -2247,7 +2242,7 @@ function OutclassTrackHead({ index }: { index: number }) {
   );
 }
 
-function OutclassRail({ children, label, paged = false }: { children: React.ReactNode; label: string; paged?: boolean }) {
+function OutclassRail({ children, label, paged = false }: { children: ReactNode; label: string; paged?: boolean }) {
   const rail = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
   const [count, setCount] = useState(0);
@@ -2276,7 +2271,7 @@ function OutclassRail({ children, label, paged = false }: { children: React.Reac
   };
   return (
     <div className="relative mt-8 min-w-0">
-      <div ref={rail} aria-label={label} className="flex snap-x snap-mandatory items-stretch gap-4 overflow-x-auto pb-2 [scrollbar-width:thin] [&>*]:snap-start">{children}</div>
+      <div ref={rail} aria-label={label} className="relative flex snap-x snap-mandatory items-stretch gap-4 overflow-x-auto pb-2 [scrollbar-width:thin] [&>*]:snap-start">{children}</div>
       <div className="mt-4 flex items-center justify-between gap-4">
         {paged ? <div className="flex items-center gap-2">{Array.from({ length: count }, (_, i) => <Button key={i} type="button" variant="ghost" size="icon" aria-label={`Go to slide ${i + 1}`} aria-current={active === i ? "true" : undefined} onClick={() => goTo(i)} className="h-8 w-8 rounded-none p-0 hover:bg-background/10"><span className={`h-[3px] ${active === i ? "w-7 bg-background" : "w-4 bg-background/30"}`} /></Button>)}</div> : <p className="font-tech text-[9px] uppercase tracking-[0.24em] text-background/55">{label}</p>}
         <div className="flex items-center gap-1">
@@ -2321,22 +2316,22 @@ function OutclassSection() {
               <div className="relative flex justify-between"><div><div className="font-display text-[3.2rem] font-black leading-none">01</div><div className="font-tech text-[10px] uppercase tracking-[0.2em]">Overview</div></div><span className="font-tech text-[10px] uppercase [writing-mode:vertical-rl]">OutClass // D2C</span></div>
               <div className="relative"><h4 className="font-display text-[clamp(1.7rem,3vw,2.2rem)] font-semibold leading-[0.98]">Graded on real customers<br /><em className="font-light">and revenue.</em></h4><div className="my-4 h-px bg-background/25" /><p className="text-[12.5px] leading-relaxed text-background/75">Every student ships a live consumer brand — sourced, launched and scaled on Amazon, Blinkit, Instagram and their own store.</p><div className="mt-5 grid grid-cols-2 gap-3 border-t border-background/20 pt-4">{OUTCLASS_TRACKS[0].stats.map(stat => <div key={stat.value}><p className="font-display text-[1.2rem] font-semibold">{stat.value}</p><p className="font-tech text-[9px] uppercase leading-snug text-background/70">{stat.label}</p></div>)}</div></div>
             </article>
-            <article className={`${poster} bg-transformation-crimson`}>
-              <img src={outclassmelaFounders.url} alt="Founders at the D2C Mela" loading="lazy" className="absolute inset-0 size-full object-cover" /><div className="absolute inset-0 bg-transformation-crimson/50" /><div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent" />
+            <article className={`${poster} bg-destructive`}>
+              <img src={outclassmelaFounders.url} alt="Founders at the D2C Mela" loading="lazy" className="absolute inset-0 size-full object-cover" /><div className="absolute inset-0 bg-destructive/50" /><div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent" />
               <div className="relative"><span className="bg-accent px-2 py-1 font-tech text-[9px] font-bold uppercase text-accent-foreground">Past D2C Mela</span><h4 className="mt-4 font-display text-[clamp(2rem,3.6vw,2.9rem)] font-black uppercase leading-[0.85]">Brands<br />Sold.</h4></div><div className="relative flex items-end justify-between gap-4"><p className="max-w-[220px] font-tech text-[10px] font-bold uppercase leading-snug">Founders behind the counter, products on the shelf, cash at the till — every stall is a student-run brand selling to paying customers.</p><span className="font-display text-6xl font-black italic opacity-25">02</span></div>
             </article>
             <article className="relative aspect-[9/16] w-[min(56vw,214px)] shrink-0 overflow-hidden bg-accent sm:w-[236px] lg:w-[272px]"><video src={outclassmelaVideo.url} autoPlay muted loop playsInline preload="metadata" aria-label="D2C Mela film" className="absolute inset-0 size-full object-cover" /><div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-foreground/75 via-transparent to-foreground/40" /><span className="absolute left-0 top-0 bg-accent px-3 py-1 font-tech text-[9px] font-bold uppercase text-accent-foreground">D2C Mela Film</span><div className="absolute inset-x-5 bottom-5"><h4 className="font-display text-2xl font-semibold italic">Mela, in motion</h4><p className="mt-2 font-tech text-[9px] uppercase">Series 01-C · 03</p></div></article>
-            <article className={`${poster} bg-startup-surface`}><div className="flex items-center justify-between"><span className="h-0.5 w-12 bg-accent" /><span className="font-tech text-[10px] uppercase text-background/60">Gallery · 4 Frames</span></div><div className="mt-4 grid min-h-0 flex-1 grid-cols-6 grid-rows-6 gap-2">{[[outclassfairCeramics.url,"col-span-3 row-span-3"],[outclassfairJewels.url,"col-span-3 row-span-2"],[outclassfairCrafts.url,"col-span-3 row-span-4"],[outclassfairNight.url,"col-span-3 row-span-3"]].map(([src, cls]) => <img key={src} src={src} alt="Student products at the D2C Mela" loading="lazy" className={`size-full min-h-0 object-cover ${cls}`} />)}</div><h4 className="mt-4 font-display text-[clamp(1.5rem,2.6vw,2rem)] font-black uppercase leading-[0.9]">Shelves, <em className="font-light normal-case">stalls & sell-outs.</em></h4></article>
+            <article className={`${poster} bg-foreground`}><div className="flex items-center justify-between"><span className="h-0.5 w-12 bg-accent" /><span className="font-tech text-[10px] uppercase text-background/60">Gallery · 4 Frames</span></div><div className="mt-4 grid min-h-0 flex-1 grid-cols-6 grid-rows-6 gap-2">{[[outclassfairCeramics.url,"col-span-3 row-span-3"],[outclassfairJewels.url,"col-span-3 row-span-2"],[outclassfairCrafts.url,"col-span-3 row-span-4"],[outclassfairNight.url,"col-span-3 row-span-3"]].map(([src, cls]) => <img key={src} src={src} alt="Student products at the D2C Mela" loading="lazy" className={`size-full min-h-0 object-cover ${cls}`} />)}</div><h4 className="mt-4 font-display text-[clamp(1.5rem,2.6vw,2rem)] font-black uppercase leading-[0.9]">Shelves, <em className="font-light normal-case">stalls & sell-outs.</em></h4></article>
           </OutclassRail>
         </Reveal>
 
         <Reveal className="mt-12 border-t border-background/15 pt-8">
           <OutclassTrackHead index={1} />
           <OutclassRail label="Creator Challenge posters" paged>
-            <article className={`${poster} bg-bottle`}><img src={outclasscreator1.url} alt="Student creator at work" loading="lazy" className="absolute inset-0 size-full object-cover opacity-25" /><div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent" /><span className="relative self-start bg-transformation-crimson px-2 py-1 font-tech text-[9px] font-bold uppercase">00 // Intro</span><div className="relative"><h4 className="font-display text-[2.6rem] font-black italic leading-none">The Brief.</h4><p className="mt-5 font-tech text-[10px] uppercase leading-relaxed">Build an audience. Not just a deck. Graded on reach, retention and revenue.</p><div className="mt-6 grid grid-cols-3 gap-2 border-t border-background/20 pt-4">{OUTCLASS_TRACKS[1].stats.map(stat => <div key={stat.value}><p className="font-display text-[1rem] font-semibold">{stat.value}</p><p className="mt-2 text-[8px] leading-snug text-background/65">{stat.label}</p></div>)}</div></div></article>
-            <article className={`${poster} bg-startup-surface`}><img src={outclasscreator2.url} alt="Creator Challenge onboarding" loading="lazy" className="absolute inset-0 size-full object-cover grayscale" /><div className="absolute inset-0 bg-gradient-to-b from-foreground/80 via-transparent to-foreground/90" /><div className="relative flex justify-between"><span className="font-display text-[3.2rem] font-black">01</span><span className="font-tech text-[10px] uppercase [writing-mode:vertical-rl]">OutClass // Onboarding</span></div><div className="relative"><h4 className="font-display text-[2rem] font-semibold">Onboarding <em className="font-light">& Setup.</em></h4><div className="my-4 h-px bg-background/30" /><p className="font-tech text-[10px] uppercase leading-relaxed">Creative vision on the table, mentor matched, workflow defined.</p></div></article>
-            <article className={`${poster} bg-transformation-blue`}><img src={outclasscreator7.url} alt="Student creating content" loading="lazy" className="absolute inset-0 size-full object-cover opacity-55" /><div className="absolute inset-0 bg-transformation-blue/35" /><div className="relative"><span className="bg-accent px-2 py-1 font-tech text-[9px] font-bold uppercase text-accent-foreground">Phase Two</span><h4 className="mt-4 font-display text-[2.3rem] font-black uppercase leading-none">Content Dev.</h4></div><div className="relative flex items-end justify-between"><p className="max-w-[220px] font-tech text-[10px] font-bold uppercase leading-snug">Crafting bold narratives for the modern algorithm.</p><span className="font-display text-5xl font-black italic opacity-25">02</span></div></article>
-            <article className={`${poster} bg-startup-surface`}><div className="flex items-center justify-between"><span className="h-0.5 w-12 bg-transformation-crimson" /><span className="font-tech text-[10px] uppercase text-background/70">Finale</span></div><h4 className="text-center font-serif text-[1.8rem] italic leading-[1.1]">Evaluation & <strong className="block font-display not-italic text-transformation-crimson">Recognition</strong></h4><div className="bg-background p-4 font-tech text-[9px] font-bold uppercase leading-snug text-foreground">Showcase before expert judges. Standout teams win ₹1L+ in recognition.</div></article>
+            <article className={`${poster} bg-bottle`}><img src={outclasscreator1.url} alt="Student creator at work" loading="lazy" className="absolute inset-0 size-full object-cover opacity-25" /><div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent" /><span className="relative self-start bg-destructive px-2 py-1 font-tech text-[9px] font-bold uppercase">00 // Intro</span><div className="relative"><h4 className="font-display text-[2.6rem] font-black italic leading-none">The Brief.</h4><p className="mt-5 font-tech text-[10px] uppercase leading-relaxed">Build an audience. Not just a deck. Graded on reach, retention and revenue.</p></div></article>
+            <article className={`${poster} bg-foreground`}><img src={outclasscreator2.url} alt="Creator Challenge onboarding" loading="lazy" className="absolute inset-0 size-full object-cover" /><div className="absolute inset-0 bg-gradient-to-b from-foreground/80 via-transparent to-foreground/90" /><div className="relative flex justify-between"><span className="font-display text-[3.2rem] font-black">01</span><span className="font-tech text-[10px] uppercase [writing-mode:vertical-rl]">OutClass // Onboarding</span></div><div className="relative"><h4 className="font-display text-[2rem] font-semibold">Onboarding <em className="font-light">& Setup.</em></h4><div className="my-4 h-px bg-background/30" /><p className="font-tech text-[10px] uppercase leading-relaxed">Creative vision on the table, mentor matched, workflow defined.</p></div></article>
+            <article className={`${poster} bg-primary`}><img src={outclasscreator7.url} alt="Student creating content" loading="lazy" className="absolute inset-0 size-full object-cover opacity-55" /><div className="absolute inset-0 bg-primary/35" /><div className="relative"><span className="bg-accent px-2 py-1 font-tech text-[9px] font-bold uppercase text-accent-foreground">Phase Two</span><h4 className="mt-4 font-display text-[2.3rem] font-black uppercase leading-none">Content Dev.</h4></div><div className="relative flex items-end justify-between"><p className="max-w-[220px] font-tech text-[10px] font-bold uppercase leading-snug">Crafting bold narratives for the modern algorithm.</p><span className="font-display text-5xl font-black italic opacity-25">02</span></div></article>
+            <article className={`${poster} bg-foreground`}><div className="flex items-center justify-between"><span className="h-0.5 w-12 bg-destructive" /><span className="font-tech text-[10px] uppercase text-background/70">Finale</span></div><h4 className="text-center font-serif text-[1.8rem] italic leading-[1.1]">Evaluation & <strong className="block font-display not-italic text-destructive">Recognition</strong></h4><div className="bg-background p-4 font-tech text-[9px] font-bold uppercase leading-snug text-foreground">Showcase before expert judges. Standout teams win ₹1L+ in recognition.</div></article>
           </OutclassRail>
         </Reveal>
 
@@ -3222,9 +3217,9 @@ function CtaButton({
   onClick,
   className = "",
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   dark?: boolean;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   onClick?: () => void;
   className?: string;
 }) {
