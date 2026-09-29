@@ -296,7 +296,6 @@ const FOUNDER_VENTURES: VentureTile[] = [
   {
     company: "Cryptique",
     founder: "Parth Agarwal, Akshit Varsani",
-    logo: { url: "https://app.cryptique.io/login-logo.png" },
     sector: "Web3",
     stage: "Selected company",
     raised: "30+ projects",
