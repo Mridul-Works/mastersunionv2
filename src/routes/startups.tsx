@@ -2940,8 +2940,6 @@ function ByTheNumbers() {
           with sharper skills, real experience, and often, an incredible job offer anyway.
         </p>
       </Reveal>
-
-      <MediaRail labels={["Demo Day crowd", "Pitch room", "Investor conversations", "Founder celebrations"]} />
     </div>
   );
 }
