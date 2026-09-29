@@ -3166,6 +3166,164 @@ function VipJourney({ stages }: { stages: Stage[] }) {
   );
 }
 
+const VIP_VIDEO_YT_ID = "1PTpdpc4kFc";
+
+function VipVideoCard() {
+  const scaleRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLButtonElement>(null);
+  const [open, setOpen] = useState(false);
+  const [origin, setOrigin] = useState<DOMRect | null>(null);
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  // Same scroll transition as the Spark "Building Starts Here" card: starts
+  // small, grows to full size as it enters the viewport, fully reversible.
+  useEffect(() => {
+    if (reduceMotion) return;
+    const el = scaleRef.current;
+    if (!el) return;
+    let scale = 0.45;
+    const apply = () => {
+      el.style.transform = `scale(${scale.toFixed(4)})`;
+    };
+    apply();
+    return onScrollFrame(
+      apply,
+      () => {
+        const vh = window.innerHeight || 1;
+        const rect = el.getBoundingClientRect();
+        const start = vh;
+        const end = vh / 2 - rect.height / 2;
+        const p = Math.min(1, Math.max(0, (start - rect.top) / Math.max(1, start - end)));
+        scale = 0.45 + 0.55 * (1 - (1 - p) * (1 - p));
+      },
+    );
+  }, [reduceMotion]);
+
+  return (
+    <div className="mt-10 sm:mt-12">
+      <div ref={scaleRef} className="will-change-transform" style={{ transformOrigin: "center center" }}>
+        <button
+          ref={cardRef}
+          type="button"
+          onClick={() => {
+            const card = cardRef.current;
+            if (card) setOrigin(card.getBoundingClientRect());
+            setOpen(true);
+          }}
+          aria-label="Watch the Venture Initiation Programme video"
+          className="group mx-auto block w-full overflow-hidden rounded-2xl border border-background/15 text-left transition-transform duration-300 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60 sm:max-w-4xl md:max-w-5xl lg:max-w-6xl"
+        >
+          <span className="relative block aspect-video w-full overflow-hidden">
+            <img
+              src={`https://i.ytimg.com/vi/${VIP_VIDEO_YT_ID}/maxresdefault.jpg`}
+              onError={(event) => {
+                const img = event.currentTarget;
+                if (!img.dataset.fallback) {
+                  img.dataset.fallback = "1";
+                  img.src = `https://i.ytimg.com/vi/${VIP_VIDEO_YT_ID}/hqdefault.jpg`;
+                }
+              }}
+              alt="Venture Initiation Program — how students learn business by building business"
+              loading="lazy"
+              className="block h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+            <span aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-black/15" />
+            <span aria-hidden className="absolute inset-0 grid place-items-center">
+              <span className="grid size-14 place-items-center bg-accent text-accent-foreground">
+                <Play className="fill-current" />
+              </span>
+            </span>
+          </span>
+        </button>
+      </div>
+      {typeof document !== "undefined" &&
+        createPortal(
+          <AnimatePresence>
+            {open && (
+              <motion.div
+                role="dialog"
+                aria-modal="true"
+                aria-label="Venture Initiation Programme video"
+                initial={reduceMotion ? false : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: reduceMotion ? 0 : 0.3 }}
+                className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-sm"
+                onClick={() => setOpen(false)}
+              >
+                <motion.div
+                  initial={
+                    reduceMotion || !origin
+                      ? false
+                      : {
+                          left: origin.left,
+                          top: origin.top,
+                          width: origin.width,
+                          height: origin.height,
+                          borderRadius: 16,
+                        }
+                  }
+                  animate={{
+                    left: "50%",
+                    top: "50%",
+                    width: "min(calc(100vw - 2rem), 64rem)",
+                    height: "auto",
+                    x: "-50%",
+                    y: "-50%",
+                    borderRadius: 16,
+                  }}
+                  exit={
+                    reduceMotion || !origin
+                      ? { opacity: 0 }
+                      : {
+                          left: origin.left,
+                          top: origin.top,
+                          width: origin.width,
+                          height: origin.height,
+                          x: 0,
+                          y: 0,
+                          borderRadius: 16,
+                        }
+                  }
+                  transition={{ duration: reduceMotion ? 0 : 0.55, ease: [0.22, 1, 0.36, 1] }}
+                  className="fixed aspect-video overflow-hidden border border-background/15 bg-black shadow-2xl"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <iframe
+                    src={`https://www.youtube-nocookie.com/embed/${VIP_VIDEO_YT_ID}?autoplay=1&rel=0&modestbranding=1&playsinline=1`}
+                    title="Venture Initiation Program — how students learn business by building business"
+                    allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                    className="h-full w-full"
+                  />
+                </motion.div>
+                <button
+                  type="button"
+                  aria-label="Close video"
+                  onClick={() => setOpen(false)}
+                  className="absolute right-4 top-4 flex size-10 items-center justify-center rounded-full border border-background/20 text-background/80 transition-colors hover:bg-background/10 hover:text-background"
+                >
+                  <X className="size-4" />
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body,
+        )}
+    </div>
+  );
+}
+
 function VipSection() {
   return (
     <Section id="journey" tone="paper" tightTop>
@@ -3204,6 +3362,8 @@ function VipSection() {
           </div>
         </div>
       </Reveal>
+
+      <VipVideoCard />
 
       <VipJourney stages={VIP_STAGES} />
     </Section>
