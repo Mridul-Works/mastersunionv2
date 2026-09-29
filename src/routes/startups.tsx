@@ -3147,7 +3147,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
                 <span aria-hidden className="h-px flex-1 bg-background/15" />
                 <span className="font-mono text-xs text-background/35">{String(stages.length).padStart(2, "0")}</span>
               </div>
-              <h3 className="mt-5 max-w-[14ch] font-display text-[clamp(1.45rem,2.4vw,2.2rem)] font-semibold uppercase leading-[1.05] text-background">
+              <h3 className="mt-5 max-w-[16ch] font-display text-[clamp(1.45rem,2.4vw,2.2rem)] font-semibold uppercase leading-[1.05] text-background">
                 {stage.name.split(" ").map((word, i, words) => (
                   <Fragment key={`${word}-${i}`}>
                     <span className="whitespace-nowrap">{word}</span>
