@@ -1821,7 +1821,7 @@ function SparkCarousel({
                   </span>
                 ))}
               </div>
-              <div className="relative overflow-hidden rounded-[6px]">
+              <div className="relative overflow-hidden">
                 <motion.div
                   key={`left-${active}`}
                   initial={reduceMotion ? false : { y: "100%" }}
@@ -1834,9 +1834,29 @@ function SparkCarousel({
                     src={company.founderImage}
                     alt={company.founderImage ? `${company.founder} — founders of ${company.name}` : undefined}
                     note={`${company.name} — founder at work`}
-                    className="rounded-[6px]"
                   />
                 </motion.div>
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-b from-foreground/60 via-transparent to-foreground/90"
+                />
+                <span className="absolute -left-px -top-px z-20 bg-bottle px-3 py-1 font-tech text-[9px] font-bold uppercase text-background">
+                  Spark · {String(active + 1).padStart(2, "0")}
+                </span>
+                <span
+                  aria-hidden
+                  className="absolute right-3 top-3 z-20 font-tech text-[9px] uppercase tracking-[0.18em] text-background/60 [writing-mode:vertical-rl]"
+                >
+                  Spark // Founders
+                </span>
+                <span className="absolute inset-x-4 bottom-4 z-20">
+                  <span className="block font-display text-[clamp(1rem,1.6vw,1.3rem)] font-black italic leading-[1.05] text-background">
+                    {company.name}
+                  </span>
+                  <span className="mt-2 block font-tech text-[9px] font-bold uppercase tracking-[0.18em] text-background/70 sm:text-[10px]">
+                    {company.founder}
+                  </span>
+                </span>
               </div>
             </div>
 
