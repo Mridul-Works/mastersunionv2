@@ -3245,6 +3245,8 @@ function VipVideoCard() {
       <div ref={scaleRef} className="will-change-transform" style={{ transformOrigin: "center center" }}>
         <button
           ref={cardRef}
+          data-rm={String(!!reduceMotion)}
+          data-prev={String(previewOn)}
           type="button"
           onClick={() => {
             const card = cardRef.current;
