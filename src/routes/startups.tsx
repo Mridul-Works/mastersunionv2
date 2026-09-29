@@ -3189,7 +3189,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
             >
               <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-accent">The Venture Initiation Programme</p>
               <div className="mt-4 flex items-baseline gap-3 sm:mt-5">
-                <span className="font-serif-italic text-3xl text-accent lg:text-4xl">{stage.n}</span>
+                <span className="font-display text-3xl font-bold text-background lg:text-4xl">{stage.n}</span>
                 <span aria-hidden className="h-px flex-1 bg-background/15" />
                 <span className="font-mono text-xs text-background/35">{String(stages.length).padStart(2, "0")}</span>
               </div>
@@ -3204,7 +3204,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
               <p className="mt-4 max-w-[36ch] text-[13px] leading-[1.65] text-background/72 sm:text-[14px] lg:mt-5 lg:text-[15px] lg:leading-[1.7]">{stage.body}</p>
               <div className="relative mt-5 overflow-hidden rounded-lg border border-background/10 bg-background/[0.05] p-4 sm:p-5 lg:mt-7 lg:rounded-2xl lg:p-6">
                 <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-background/45">{stage.grant ? "Stage grant" : "Investors in the room"}</span>
-                <strong className="mt-2 block font-serif-italic text-[clamp(1.7rem,3vw,2.8rem)] font-normal leading-none text-background">{stage.grant ?? "150+"}</strong>
+                <strong className="mt-2 block font-display text-[clamp(1.7rem,3vw,2.8rem)] font-bold leading-none text-background">{stage.grant ?? "150+"}</strong>
               </div>
             </motion.div>
           </AnimatePresence>
