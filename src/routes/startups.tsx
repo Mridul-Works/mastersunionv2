@@ -4043,9 +4043,12 @@ function StartupsPage() {
 
       <Section id="hssl" tone="paper">
         <Reveal>
-          <div className="flex items-center gap-2">
-            <GraduationCap className="size-4 text-background/55" strokeWidth={1.75} />
-            <Eyebrow>High School Startup League</Eyebrow>
+          <div className="flex items-start gap-4">
+            <EyebrowRule />
+            <div className="flex min-w-0 items-center gap-2">
+              <GraduationCap className="size-4 shrink-0 text-background/55" strokeWidth={1.75} />
+              <Eyebrow rule={false}>High School Startup League</Eyebrow>
+            </div>
           </div>
         </Reveal>
         <Reveal delay={0.05}>
