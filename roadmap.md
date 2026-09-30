@@ -34,3 +34,5 @@
 - [x] People section: quote layout rebuilt as a static editorial wall — lead pull quote with small avatar + name at left, three supporting quotes in a row below, each with a small avatar, index and hairline rules; no pinned scroll, no inner scrollbar; quote bodies forced to `!text-background` for contrast; verified 1440/1024/768/640/390 (0 overflow, 0 console errors), typecheck + build clean, nothing published.
 
 - [x] On Shark Tank India: removed the video placeholder below the six founder cards (and the now-unused activeShark value).
+
+- [x] Secondary divider hairline (1px background/15) added above: Dropshipping metrics bar, VIP metrics bar, Portfolio figures grid, Founder Stories magazine, High School Startup League metrics bar; verified 1440/768/390 (0 overflow, 0 console errors), typecheck + build clean, nothing published.
