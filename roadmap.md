@@ -37,3 +37,4 @@
 
 - [x] Secondary divider hairline (1px background/15) added above: Dropshipping metrics bar, VIP metrics bar, Portfolio figures grid, Founder Stories magazine, High School Startup League metrics bar; verified 1440/768/390 (0 overflow, 0 console errors), typecheck + build clean, nothing published.
 - [x] VIP Top Startups strip: larger logos (48→64px tall desktop, 40→56px phone) with wider cells; seamless 46s marquee kept; verified 1440/768/390 (0 overflow, 0 console errors), typecheck + build clean, nothing published.
+- [x] Founder Fellowship: pulled the 14 founder image cards + metric bar from the live page into the "For Those Going All In" section (verified 1440/1024/768/390, build clean, nothing published)
