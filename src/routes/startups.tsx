@@ -2179,6 +2179,223 @@ function SparkCarousel({
   );
 }
 
+function QuoteStory({
+  people,
+  active,
+  onActiveChange,
+}: {
+  people: typeof TESTIMONIALS;
+  active: number;
+  onActiveChange: (index: number) => void;
+}) {
+  const storyRef = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
+  const nameRailRef = useRef<HTMLDivElement>(null);
+  const nameTrackRef = useRef<HTMLDivElement>(null);
+  const scrollFrameRef = useRef(0);
+  const lastActiveRef = useRef(active);
+  const lastTrackOffsetRef = useRef<number | null>(null);
+  const reduceMotion = useReducedMotion();
+  const count = people.length;
+  const person = people[Math.min(active, count - 1)];
+
+  useEffect(() => {
+    lastActiveRef.current = active;
+  }, [active]);
+
+  // Same scroll driver as the Spark story: the sticky viewport reads its own
+  // geometry each frame, so the story runs forward and in reverse with the
+  // trackpad without fighting Lenis.
+  useEffect(() => {
+    const story = storyRef.current;
+    if (!story) return;
+
+    const update = () => {
+      scrollFrameRef.current = 0;
+      const rect = story.getBoundingClientRect();
+      const stickyHeight = stickyRef.current?.offsetHeight || window.innerHeight || 1;
+      const scrollRange = Math.max(1, rect.height - stickyHeight);
+      const progress = Math.min(1, Math.max(0, -rect.top / scrollRange));
+      const rawIndex = progress * Math.max(1, count - 1);
+      const nextActive = Math.min(count - 1, Math.max(0, Math.round(rawIndex)));
+      const personIndex = Math.min(rawIndex, count - 1);
+
+      const rail = nameRailRef.current;
+      const track = nameTrackRef.current;
+      const firstItem = track?.children[0] as HTMLElement | undefined;
+      if (rail && track && firstItem) {
+        const offset = rail.clientHeight / 2 - firstItem.offsetHeight * (personIndex + 0.5);
+        if (lastTrackOffsetRef.current === null || Math.abs(offset - lastTrackOffsetRef.current) > 0.5) {
+          lastTrackOffsetRef.current = offset;
+          track.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0)`;
+        }
+      }
+
+      if (nextActive !== lastActiveRef.current) {
+        lastActiveRef.current = nextActive;
+        onActiveChange(nextActive);
+      }
+    };
+
+    const schedule = () => {
+      if (!scrollFrameRef.current) scrollFrameRef.current = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule, { passive: true });
+    window.addEventListener("orientationchange", schedule, { passive: true });
+    return () => {
+      cancelAnimationFrame(scrollFrameRef.current);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      window.removeEventListener("orientationchange", schedule);
+    };
+  }, [count, onActiveChange]);
+
+  const scrollToPerson = (index: number) => {
+    const story = storyRef.current;
+    if (!story || count <= 1) return;
+
+    lastActiveRef.current = index;
+    onActiveChange(index);
+
+    const stickyHeight = stickyRef.current?.offsetHeight || window.innerHeight || 1;
+    const scrollRange = Math.max(1, story.offsetHeight - stickyHeight);
+    const storyTop = story.getBoundingClientRect().top + window.scrollY;
+    const target = storyTop + scrollRange * (index / Math.max(1, count - 1));
+    const lenis = (window as unknown as {
+      __lenis?: { scrollTo?: (target: number, options?: { duration?: number; force?: boolean }) => void };
+    }).__lenis;
+
+    if (lenis?.scrollTo) {
+      lenis.scrollTo(target, { duration: reduceMotion ? 0 : 0.85, force: true });
+      return;
+    }
+
+    window.scrollTo({ top: target, behavior: reduceMotion ? "auto" : "smooth" });
+  };
+
+  return (
+    <div
+      ref={storyRef}
+      className="relative mt-2 sm:mt-4 md:mt-6"
+      style={{ height: `${count * 55}svh` }}
+    >
+      <div
+        ref={stickyRef}
+        className="sticky top-0 flex min-h-[100svh] items-center overflow-hidden pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+88px)] md:pb-[84px]"
+      >
+        <div className="w-full">
+          <div className="grid grid-cols-[minmax(0,1fr)_minmax(72px,0.28fr)_minmax(0,1.15fr)] items-stretch gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(120px,0.3fr)_minmax(0,1.15fr)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(180px,0.36fr)_minmax(0,1.15fr)] md:gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(240px,0.4fr)_minmax(0,1.15fr)] lg:gap-10">
+            <div className="flex flex-col justify-center">
+              <div className="eyebrow mb-2 grid min-h-[2.75rem] text-center text-background/45 sm:mb-3 sm:min-h-[3rem]">
+                {people.map((p, i) => (
+                  <span key={`role-${p.name}`} aria-hidden={i !== active} className={`col-start-1 row-start-1 self-end ${i === active ? "visible" : "invisible"}`}>
+                    {p.role}
+                  </span>
+                ))}
+              </div>
+              <div className="relative overflow-hidden">
+                <motion.div
+                  key={`portrait-${active}`}
+                  initial={reduceMotion ? false : { y: "100%" }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: reduceMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <Placeholder
+                    kind="image"
+                    aspect="aspect-[4/5]"
+                    src={person.photo}
+                    alt={person.photo ? `${person.name} — ${person.role}` : undefined}
+                    note={`${person.name} — portrait`}
+                  />
+                </motion.div>
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-b from-foreground/50 via-transparent to-foreground/80"
+                />
+                <span className="absolute -left-px -top-px z-20 bg-bottle px-3 py-1 font-tech text-[9px] font-bold uppercase text-background">
+                  Believers · {String(active + 1).padStart(2, "0")}
+                </span>
+                <span
+                  aria-hidden
+                  className="absolute right-3 top-3 z-20 hidden font-tech text-[9px] uppercase tracking-[0.18em] text-background/60 [writing-mode:vertical-rl] min-[700px]:inline-block"
+                >
+                  Mentors // Room
+                </span>
+                <span className="absolute inset-x-4 bottom-3 z-20 sm:bottom-4">
+                  <span className="block font-display text-[clamp(0.8rem,1.6vw,1.3rem)] font-black italic leading-[1.05] text-background">
+                    {person.name}
+                  </span>
+                </span>
+              </div>
+            </div>
+
+            <div
+              ref={nameRailRef}
+              aria-label="Believers story progression"
+              className="relative h-[46svh] overflow-hidden text-center sm:h-[50svh] md:h-[56svh] lg:h-[60svh]"
+            >
+              <span aria-hidden className="pointer-events-none absolute inset-x-3 top-1/2 z-[1] h-px -translate-y-1/2 bg-background/15" />
+              <div
+                ref={nameTrackRef}
+                role="list"
+                className="relative z-[2] w-full will-change-transform"
+              >
+                {people.map((p, i) => (
+                  <div key={`rail-${p.name}`} role="listitem" className="flex min-h-[18svh] w-full shrink-0 items-center justify-center px-2 sm:min-h-[19svh] sm:px-4 md:min-h-[21svh] md:px-6 lg:min-h-[22svh]">
+                    <button
+                      type="button"
+                      aria-current={i === active ? "step" : undefined}
+                      onClick={() => scrollToPerson(i)}
+                      className={`cursor-pointer pr-[0.08em] font-serif-italic text-[clamp(1.1rem,2.4vw,2rem)] leading-[1.1] text-background transition-[opacity,transform] duration-500 hover:opacity-80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60 ${
+                        i === active ? "scale-100 opacity-100" : "scale-[0.82] opacity-20"
+                      }`}
+                    >
+                      {p.name}
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-col justify-center">
+              <div className="eyebrow mb-2 grid min-h-[2.75rem] text-center text-background/45 sm:mb-3 sm:min-h-[3rem]">
+                {people.map((p, i) => (
+                  <span key={`label-${p.name}`} aria-hidden={i !== active} className={`col-start-1 row-start-1 self-end ${i === active ? "visible" : "invisible"}`}>
+                    On the record
+                  </span>
+                ))}
+              </div>
+              <div className="relative overflow-hidden">
+                <motion.div
+                  key={`quote-${active}`}
+                  initial={reduceMotion ? false : { y: "100%" }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: reduceMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <figure className="flex aspect-[4/5] flex-col justify-center border border-background/15 bg-background/[0.03] px-5 py-6 sm:px-8 sm:py-8 md:px-10">
+                    <span aria-hidden className="font-serif text-[clamp(2.2rem,4.5vw,3.4rem)] leading-none text-background/25">
+                      &ldquo;
+                    </span>
+                    <blockquote className="mt-2 text-balance font-serif-italic !font-serif !font-light text-[clamp(1rem,1.8vw,1.4rem)] leading-[1.5] text-background/90">
+                      {person.quote}
+                    </blockquote>
+                    <figcaption className="mt-6 eyebrow text-background/55">
+                      {person.name} · {person.role}
+                    </figcaption>
+                  </figure>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function StoryBeats({ beats, dark = false }: { beats: Beat[]; dark?: boolean }) {
   return (
     <ol className="mt-2 space-y-6 sm:space-y-7 md:space-y-8">
@@ -4176,6 +4393,7 @@ function StartupsPage() {
   useAssetReload();
   const [selectedShark, setSelectedShark] = useState(0);
   const [selectedSpark, setSelectedSpark] = useState(0);
+  const [activeBeliever, setActiveBeliever] = useState(0);
   const reduceHeroMotion = useReducedMotion();
   const heroRef = useRef<HTMLElement>(null);
   const heroTextRef = useRef<HTMLDivElement>(null);
@@ -4686,55 +4904,26 @@ function StartupsPage() {
       </Section>
 
 
-      <Section id="people" tone="light">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-[0.8fr_1.2fr] md:items-start md:gap-14 lg:gap-20">
-          <Reveal className="md:self-start">
-            <div className="md:sticky md:top-28">
+      <Section id="people" tone="light" container="max-w-7xl">
+        <div className="grid grid-cols-1 gap-5 border-b border-background/20 pb-8 sm:gap-6 sm:pb-10 md:grid-cols-12 md:items-end md:gap-10 md:pb-12 lg:gap-12 lg:pb-14">
+          <div className="md:col-span-8">
+            <Reveal>
               <Eyebrow>Mentors, VCs, and Believers</Eyebrow>
-              <h2 className="mt-5 max-w-[26ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="mt-5 max-w-[18ch] font-display text-[1.875rem] font-normal leading-[1.2] tracking-normal">
                 Behind every founder is a room full of people who&apos;ve already done it.
               </h2>
-              <div className="mt-9 hidden items-center gap-3 md:flex" aria-hidden>
-                <span className="h-px w-10 bg-background/30" />
-                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-background/40">Scroll</span>
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <div className="relative">
-              <div
-                className="max-h-[34rem] overflow-y-auto pr-1 md:max-h-[38rem] lg:max-h-[42rem] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-                tabIndex={0}
-                aria-label="Quotes from mentors, VCs and believers"
-              >
-                {TESTIMONIALS.map((t, i) => (
-                  <figure
-                    key={t.name}
-                    className={`flex gap-6 py-9 first:pt-0 last:pb-2 sm:gap-8 ${i > 0 ? "border-t border-background/10" : ""}`}
-                  >
-                    <span className="hidden pt-1.5 font-mono text-[11px] tracking-[0.2em] text-background/35 sm:block">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div className="min-w-0">
-                      <blockquote className="text-balance text-[clamp(1.15rem,1.9vw,1.45rem)] italic leading-[1.55] text-background/90">
-                        &ldquo;{t.quote}&rdquo;
-                      </blockquote>
-                      <figcaption className="mt-5 flex items-center gap-3.5">
-                        <PortraitBadge src={t.photo} alt={t.name} size="size-11" />
-                        <span className="eyebrow text-background/55">
-                          {t.name} · {t.role}
-                        </span>
-                      </figcaption>
-                    </div>
-                  </figure>
-                ))}
-              </div>
-              <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-foreground to-transparent" />
-              <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-foreground to-transparent" />
-            </div>
+            </Reveal>
+          </div>
+          <Reveal delay={0.1} className="md:col-span-4">
+            <p className="max-w-[42ch] text-[13px] leading-[1.6] text-background/70 md:ml-auto md:text-[15px] md:leading-[1.75]">
+              Investors, mentors, and founders who sat in the room — on what they saw.
+            </p>
           </Reveal>
         </div>
+
+        <QuoteStory people={TESTIMONIALS} active={activeBeliever} onActiveChange={setActiveBeliever} />
       </Section>
 
       <Section id="fellowship" tone="dark">
