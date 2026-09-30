@@ -75,7 +75,7 @@ import sparkVideoThumb from "@/assets/spark-video-thumb.jpg";
 
 import muifBanner from "@/assets/muif/banner.webp.asset.json";
 import muifBannerMob from "@/assets/muif/banner-mob.webp.asset.json";
-import muifPerf from "@/assets/muif/perf-ipad.png";
+import muifPerf from "@/assets/muif/perf.webp.asset.json";
 import muifArchit from "@/assets/muif/t-Archit.webp.asset.json";
 import muifMehul from "@/assets/muif/t-mehulJain.webp.asset.json";
 import muifAnkit from "@/assets/muif/t-AnkitSharma.webp.asset.json";
@@ -3726,11 +3726,11 @@ function InvestmentFundSection() {
           <div className="relative border-y border-background/15 py-5 sm:py-7 md:py-9">
             <div aria-hidden className="absolute left-0 top-0 h-px w-16 bg-accent sm:w-24" />
             <img
-              src={muifPerf}
+              src={muifPerf.url}
               alt="Masters' Union Investment Fund portfolio performance dashboard"
               loading="lazy"
               decoding="async"
-              className="no-img-zoom mx-auto block h-auto w-full max-w-4xl object-contain"
+              className="no-img-zoom mx-auto block h-auto w-full object-contain"
             />
           </div>
         </Reveal>
