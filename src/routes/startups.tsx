@@ -4334,11 +4334,14 @@ function SharkTankShowcase({
         role="region"
         aria-label="Shark Tank India founders"
         tabIndex={0}
-        onKeyUp={(event) => {
-          if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
-          event.preventDefault();
-          event.stopPropagation();
-          move(event.key === "ArrowRight" ? 1 : -1);
+        onKeyDown={(event) => {
+          if (event.key === "ArrowLeft") {
+            event.preventDefault();
+            onActiveChange((current) => (current - 1 + SHARK_TANK.length) % SHARK_TANK.length);
+          } else if (event.key === "ArrowRight") {
+            event.preventDefault();
+            onActiveChange((current) => (current + 1) % SHARK_TANK.length);
+          }
         }}
         onTouchStartCapture={(event) => {
           touchStart.current = {
