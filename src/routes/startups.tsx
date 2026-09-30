@@ -15,8 +15,10 @@ import {
   GraduationCap,
   Home,
   Image as ImageIcon,
+  Instagram,
   LayoutGrid,
   Lightbulb,
+  Linkedin,
   Play,
   Rocket,
   ShoppingBag,
@@ -577,6 +579,30 @@ import quoteDivyaGupta from "@/assets/quotes/divya-gupta.jpg.asset.json";
 import quoteSarthakKhanna from "@/assets/quotes/sarthak-khanna.jpg.asset.json";
 import quoteSakshiTuteja from "@/assets/quotes/sakshi-tuteja.jpg.asset.json";
 import quoteSahilDhingra from "@/assets/quotes/sahil-dhingra.jpg.asset.json";
+import ffPhotoRhea from "@/assets/fellowship/p-rhea.webp.asset.json";
+import ffPhotoDivya from "@/assets/fellowship/p-divya.webp.asset.json";
+import ffPhotoManan from "@/assets/fellowship/p-manan.webp.asset.json";
+import ffPhotoUpamanyu from "@/assets/fellowship/p-upamanyu.webp.asset.json";
+import ffPhotoKanav from "@/assets/fellowship/p-kanav.webp.asset.json";
+import ffPhotoSumeet from "@/assets/fellowship/p-sumeet.webp.asset.json";
+import ffPhotoBhavya from "@/assets/fellowship/p-bhavya.webp.asset.json";
+import ffPhotoAditya from "@/assets/fellowship/p-aditya.webp.asset.json";
+import ffPhotoMadhav from "@/assets/fellowship/p-madhav.webp.asset.json";
+import ffPhotoMayuresh from "@/assets/fellowship/p-mayuresh.webp.asset.json";
+import ffPhotoSavrang from "@/assets/fellowship/p-savrang.webp.asset.json";
+import ffPhotoAyush from "@/assets/fellowship/p-ayush.webp.asset.json";
+import ffPhotoShouradeep from "@/assets/fellowship/p-shouradeep.webp.asset.json";
+import ffPhotoNaveen from "@/assets/fellowship/p-naveen.webp.asset.json";
+import ffLogoLexi from "@/assets/fellowship/l-lexi.webp.asset.json";
+import ffLogoVinayasa from "@/assets/fellowship/l-vinayasa.webp.asset.json";
+import ffLogoBeyond from "@/assets/fellowship/l-beyond.webp.asset.json";
+import ffLogoPlaysuper from "@/assets/fellowship/l-playsuper.webp.asset.json";
+import ffLogoWoody from "@/assets/fellowship/l-woody.webp.asset.json";
+import ffLogoSampleset from "@/assets/fellowship/l-sampleset.webp.asset.json";
+import ffLogoBlue from "@/assets/fellowship/l-blue.webp.asset.json";
+import ffLogoSauced from "@/assets/fellowship/l-sauced.webp.asset.json";
+import ffLogoAtlas from "@/assets/fellowship/l-atlas.webp.asset.json";
+import ffLogoEcoveda from "@/assets/fellowship/l-ecoveda.webp.asset.json";
 
 type Stage = { n: string; name: string; grant: string | null; body: string[]; image: string; culmination?: boolean };
 
@@ -792,6 +818,198 @@ const HSSL_STATS = [
   { value: "₹20L+", label: "Cash prize / funding pool" },
 ];
 const HSSL_STAGES = ["Ideation", "MVP Showdown", "Investor Pitch"];
+
+/** Founder Fellowship — live figures from mastersunion.org (Founder Fellowship section). */
+const FELLOW_STATS = [
+  { value: "30+", label: "Students supported" },
+  { value: "25+", label: "Startups supported" },
+  { value: "20Cr+", label: "Funds raised" },
+  { value: "1.2Cr+", label: "Grants given by Masters' Union" },
+];
+
+type FellowFounder = {
+  name: string;
+  role: string;
+  company: string;
+  blurb: string;
+  photo: string;
+  logo: string;
+  social: { kind: "instagram" | "linkedin"; href: string };
+};
+
+/** Founder Fellowship founders — copy, roles and links exactly as on the live Founder Fellowship section. */
+const FELLOW_FOUNDERS: FellowFounder[] = [
+  {
+    name: "Rhea Melwani",
+    role: "Co founder",
+    company: "Lexi's Gourmet Sandwiches",
+    blurb: "Gurgaon's highest-rated gourmet sandwich brand, serving premium, chef-crafted sandwiches loved by food enthusiasts.",
+    photo: ffPhotoRhea.url,
+    logo: ffLogoLexi.url,
+    social: { kind: "instagram", href: "https://www.instagram.com/lexis_sandos/" },
+  },
+  {
+    name: "Divya Shah",
+    role: "CEO",
+    company: "Vinayasa",
+    blurb: "India's first mental health practice management software, helping therapists focus on clients, not admin work.",
+    photo: ffPhotoDivya.url,
+    logo: ffLogoVinayasa.url,
+    social: { kind: "instagram", href: "https://www.instagram.com/vinyasa_health/" },
+  },
+  {
+    name: "Manan Sahai",
+    role: "CEO",
+    company: "Beyond Veda",
+    blurb: "A high-performance, plant-based personal wellness brand delivering expert-formulated hair and skincare solutions.",
+    photo: ffPhotoManan.url,
+    logo: ffLogoBeyond.url,
+    social: { kind: "instagram", href: "https://www.instagram.com/beyond.veda/" },
+  },
+  {
+    name: "Upamanyu Chatterjee",
+    role: "CEO",
+    company: "PlaySuper",
+    blurb: "India's first Gaming Commerce company, turning in-game currency into real-world rewards, boosting engagement for gaming studios.",
+    photo: ffPhotoUpamanyu.url,
+    logo: ffLogoPlaysuper.url,
+    social: { kind: "instagram", href: "https://www.instagram.com/club_playsuper/" },
+  },
+  {
+    name: "Kanav Rishi Kumar",
+    role: "Proprietor",
+    company: "Woody's Pizzeria",
+    blurb: "South Delhi's top-rated pizzeria, serving high-quality vegetarian pizzas with a global twist and an Indian soul.",
+    photo: ffPhotoKanav.url,
+    logo: ffLogoWoody.url,
+    social: { kind: "instagram", href: "https://www.instagram.com/woodyspizzeria/" },
+  },
+  {
+    name: "Sumeet Hanagal",
+    role: "CEO",
+    company: "Sample Set LLC",
+    blurb: "Using AI and data to build cutting-edge enterprise solutions, NLP tools, and custom software for seamless business operations.",
+    photo: ffPhotoSumeet.url,
+    logo: ffLogoSampleset.url,
+    social: { kind: "linkedin", href: "https://www.linkedin.com/company/sampleset/" },
+  },
+  {
+    name: "Bhavya Kothary",
+    role: "CFO",
+    company: "Beyond Veda",
+    blurb: "A high-performance, plant-based personal wellness brand delivering expert-formulated hair and skincare solutions.",
+    photo: ffPhotoBhavya.url,
+    logo: ffLogoBeyond.url,
+    social: { kind: "instagram", href: "https://www.instagram.com/beyond.veda/" },
+  },
+  {
+    name: "Aditya Rathi",
+    role: "CEO",
+    company: "Blue Brew",
+    blurb: "Breaking away from mass fashion with trend-driven, high-quality, and affordable apparel tailored for Indian consumers.",
+    photo: ffPhotoAditya.url,
+    logo: ffLogoBlue.url,
+    social: { kind: "instagram", href: "https://www.instagram.com/bluebrew.in/" },
+  },
+  {
+    name: "Madhav Aggarwal",
+    role: "CEO",
+    company: "Sauced",
+    blurb: "A bold sneaker brand blending culture, creativity, and affordability, redefining Gen Z and millennial fashion.",
+    photo: ffPhotoMadhav.url,
+    logo: ffLogoSauced.url,
+    social: { kind: "instagram", href: "https://www.instagram.com/saucedglobal" },
+  },
+  {
+    name: "Mayuresh Jadhav",
+    role: "CEO",
+    company: "Eat Atlas",
+    blurb: "Reinventing snacking with gourmet dips and artisanal lavash chips, bringing global flavors in a stylish, affordable way.",
+    photo: ffPhotoMayuresh.url,
+    logo: ffLogoAtlas.url,
+    social: { kind: "instagram", href: "https://www.instagram.com/eatatlas.in/" },
+  },
+  {
+    name: "Savrang Jain R",
+    role: "Founder and CEO",
+    company: "Ecoveda Ventures",
+    blurb: "Providing 100% biodegradable, compostable packaging solutions for the HoReCa sector, aiming to lead sustainable packaging across industries.",
+    photo: ffPhotoSavrang.url,
+    logo: ffLogoEcoveda.url,
+    social: { kind: "instagram", href: "https://www.instagram.com/ecoveda___/" },
+  },
+  {
+    name: "Ayush Melwani",
+    role: "Co founder",
+    company: "Lexi's",
+    blurb: "Gurgaon's highest-rated gourmet sandwich brand, serving premium, chef-crafted sandwiches loved by food enthusiasts.",
+    photo: ffPhotoAyush.url,
+    logo: ffLogoLexi.url,
+    social: { kind: "instagram", href: "https://www.instagram.com/lexis_sandos/" },
+  },
+  {
+    name: "Shouradeep C.",
+    role: "COO",
+    company: "PlaySuper",
+    blurb: "India's first Gaming Commerce company, turning in-game currency into real-world rewards, boosting engagement for gaming studios.",
+    photo: ffPhotoShouradeep.url,
+    logo: ffLogoPlaysuper.url,
+    social: { kind: "instagram", href: "https://www.instagram.com/club_playsuper/" },
+  },
+  {
+    name: "Naveen Balaji",
+    role: "Co founder, CEO",
+    company: "Lexi's",
+    blurb: "Gurgaon's highest-rated gourmet sandwich brand, serving premium, chef-crafted sandwiches loved by food enthusiasts.",
+    photo: ffPhotoNaveen.url,
+    logo: ffLogoLexi.url,
+    social: { kind: "instagram", href: "https://www.instagram.com/lexis_sandos/" },
+  },
+];
+
+/** Founder Fellowship founder card: portrait, treated brand logo, name, role, description, social link. */
+function FellowshipFounderCard({ founder }: { founder: FellowFounder }) {
+  const SocialIcon = founder.social.kind === "linkedin" ? Linkedin : Instagram;
+  return (
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-background/15 bg-background/[0.03] transition duration-300 hover:-translate-y-0.5 hover:border-background/30">
+      <div className="aspect-[3/4] w-full overflow-hidden bg-background/5">
+        <img
+          src={founder.photo}
+          alt={founder.name}
+          loading="lazy"
+          data-asset-reload
+          className="h-full w-full object-cover"
+        />
+      </div>
+      <div className="flex flex-1 flex-col gap-3 p-5">
+        <img
+          src={founder.logo}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          data-asset-reload
+          className="h-6 w-auto max-w-[130px] object-contain object-left"
+        />
+        <div>
+          <h3 className="font-display text-lg font-medium leading-snug tracking-[-0.01em]">{founder.name}</h3>
+          <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.2em] text-background/60 sm:text-[10px]">
+            {founder.role} · {founder.company}
+          </p>
+        </div>
+        <p className="text-[13px] leading-[1.6] text-background/65">{founder.blurb}</p>
+        <a
+          href={founder.social.href}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`${founder.name} on ${founder.social.kind === "linkedin" ? "LinkedIn" : "Instagram"}`}
+          className="mt-auto inline-flex size-8 items-center justify-center rounded-full border border-background/20 text-background/70 transition hover:border-background/50 hover:text-background"
+        >
+          <SocialIcon className="size-3.5" aria-hidden />
+        </a>
+      </div>
+    </article>
+  );
+}
 
 /**
  * Highlight reels for the High School Startup League. Vertical cards, one per
@@ -5125,17 +5343,41 @@ function StartupsPage() {
                 had used that runway to build their companies full-time.
               </p>
             </Reveal>
-            <Reveal delay={0.15} className="mt-9">
-              <div className="grid max-w-xl grid-cols-2 gap-3">
-                {["Founder at work", "Mentor session", "Product sprint", "Investor room"].map((label, index) => (
-                  <div key={label} className={index === 1 || index === 3 ? "translate-y-7" : ""}>
-                    <Placeholder kind="image" aspect="aspect-[4/5]" dark note={label} />
-                  </div>
-                ))}
-              </div>
-            </Reveal>
           </div>
         </div>
+
+        <div
+          role="separator"
+          aria-hidden="true"
+          className="mt-10 h-px w-full bg-background/15"
+        />
+        <Reveal delay={0.18} className="mt-8 sm:mt-10">
+          <div className="overflow-hidden rounded-2xl border border-background/15 bg-background/[0.03]">
+            <div className="grid grid-cols-1 divide-y divide-background/10 sm:grid-cols-4 sm:divide-x sm:divide-y-0">
+              {FELLOW_STATS.map((stat) => (
+                <div key={stat.label} className="min-h-[5.5rem] px-5 py-4 sm:min-h-0 sm:px-8 sm:py-5">
+                  <div className="font-display text-[clamp(1.7rem,2.6vw,2.2rem)] font-normal leading-none tracking-[-0.01em]">
+                    {stat.value}
+                  </div>
+                  <div className="mt-2.5 font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-background/60 sm:text-[10px]">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.2} className="mt-14">
+          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-background/55">
+            Our Founders
+          </p>
+          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
+            {FELLOW_FOUNDERS.map((founder) => (
+              <FellowshipFounderCard key={founder.name} founder={founder} />
+            ))}
+          </div>
+        </Reveal>
       </Section>
 
       <VenturesMosaicSection />
