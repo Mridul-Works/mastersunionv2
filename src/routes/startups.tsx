@@ -4687,44 +4687,40 @@ function StartupsPage() {
 
 
       <Section id="people" tone="light">
-        <Reveal>
-          <Eyebrow>Mentors, VCs, and Believers</Eyebrow>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
-            Behind every founder is a room full of people who&apos;ve already done it.
-          </h2>
-        </Reveal>
-
-        <div className="mt-9 grid grid-cols-1 gap-8 sm:mt-11 sm:gap-10 md:mt-14 md:grid-cols-[1fr_0.55fr] md:items-start md:gap-10 lg:gap-12">
-          <Reveal key={selectedQuote}>
-            <figure className="max-w-[42rem]">
-              <blockquote className="max-w-[34ch] text-balance text-[clamp(1.3rem,2.6vw,2rem)] italic leading-[1.4] text-background/90">
-                &ldquo;{activeQuote.quote}&rdquo;
-              </blockquote>
-              <div className="mt-8 flex items-center gap-4">
-                <PortraitBadge src={activeQuote.photo} alt={activeQuote.name} size="size-16" />
-                <figcaption className="eyebrow text-background/55">
-                  {activeQuote.name} · {activeQuote.role}
-                </figcaption>
-              </div>
-            </figure>
+        <div className="grid grid-cols-1 gap-10 sm:gap-12 md:grid-cols-[0.85fr_1.15fr] md:items-start md:gap-12 lg:gap-16">
+          <Reveal className="md:self-start">
+            <div className="md:sticky md:top-24">
+              <Eyebrow>Mentors, VCs, and Believers</Eyebrow>
+              <h2 className="mt-5 max-w-[26ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
+                Behind every founder is a room full of people who&apos;ve already done it.
+              </h2>
+            </div>
           </Reveal>
-          <div className="flex flex-row flex-wrap gap-2 md:flex-col md:items-stretch">
-            {TESTIMONIALS.map((t, i) => (
-              <button
-                key={t.name}
-                type="button"
-                onClick={() => setSelectedQuote(i)}
-                aria-pressed={selectedQuote === i}
-                className={`border-l-2 px-4 py-2 text-left text-[0.85rem] transition-colors duration-300 ${
-                  selectedQuote === i ? "border-background text-background" : "border-background/10 text-background/45 hover:text-background/70"
-                }`}
-              >
-                {t.name}
-              </button>
-            ))}
-          </div>
+
+          <Reveal delay={0.1}>
+            <div
+              className="max-h-[30rem] overflow-y-auto pr-3 md:max-h-[34rem] lg:max-h-[38rem] [scrollbar-width:thin] [scrollbar-color:theme(colors.background/25)_transparent] [&::-webkit-scrollbar]:w-[3px] [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-background/25"
+              tabIndex={0}
+              aria-label="Quotes from mentors, VCs and believers"
+            >
+              {TESTIMONIALS.map((t, i) => (
+                <figure
+                  key={t.name}
+                  className={`py-7 first:pt-0 last:pb-0 ${i > 0 ? "border-t border-background/10" : ""}`}
+                >
+                  <blockquote className="text-balance text-[clamp(1.05rem,1.7vw,1.3rem)] italic leading-[1.5] text-background/90">
+                    &ldquo;{t.quote}&rdquo;
+                  </blockquote>
+                  <figcaption className="mt-5 flex items-center gap-3.5">
+                    <PortraitBadge src={t.photo} alt={t.name} size="size-12" />
+                    <span className="eyebrow text-background/55">
+                      {t.name} · {t.role}
+                    </span>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </Section>
 
