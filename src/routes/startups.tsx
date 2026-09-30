@@ -555,6 +555,10 @@ import vipTopStartupDark12 from "@/assets/vip/top-startups/top-startup-dark-12.p
 import vipTopStartupDark13 from "@/assets/vip/top-startups/top-startup-dark-13.png.asset.json";
 import vipTopStartupDark14 from "@/assets/vip/top-startups/top-startup-dark-14.png.asset.json";
 import vipTopStartupDark15 from "@/assets/vip/top-startups/top-startup-dark-15.png.asset.json";
+import quoteDivyaGupta from "@/assets/quotes/divya-gupta.jpg.asset.json";
+import quoteSarthakKhanna from "@/assets/quotes/sarthak-khanna.jpg.asset.json";
+import quoteSakshiTuteja from "@/assets/quotes/sakshi-tuteja.jpg.asset.json";
+import quoteSahilDhingra from "@/assets/quotes/sahil-dhingra.jpg.asset.json";
 
 type Stage = { n: string; name: string; grant: string | null; body: string[]; image: string; culmination?: boolean };
 
