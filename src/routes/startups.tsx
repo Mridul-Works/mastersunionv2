@@ -3778,7 +3778,7 @@ function InvestmentFundSection() {
                   className="h-full w-full object-cover transition-[filter] duration-300 group-hover:brightness-110"
                 />
                 <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
-                <span className="absolute bottom-3 left-3 bg-accent px-2 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-accent-foreground">
+                <span className="absolute left-0 top-0 bg-accent px-3 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-accent-foreground">
                   {m.role}
                 </span>
               </div>
