@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
+import { Fragment, useEffect, useLayoutEffect, useRef, useState, type Dispatch, type ReactNode, type SetStateAction } from "react";
 import { createPortal } from "react-dom";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AnimatePresence, motion, useMotionValue, useReducedMotion, useTransform } from "framer-motion";
@@ -4287,7 +4287,7 @@ function SharkTankShowcase({
   onActiveChange,
 }: {
   active: number;
-  onActiveChange: (index: number) => void;
+  onActiveChange: Dispatch<SetStateAction<number>>;
 }) {
   const reduceMotion = useReducedMotion();
   const showcaseRef = useRef<HTMLDivElement>(null);
@@ -4296,7 +4296,7 @@ function SharkTankShowcase({
   const activeFounder = SHARK_TANK[active];
 
   const move = (direction: number) => {
-    onActiveChange((active + direction + SHARK_TANK.length) % SHARK_TANK.length);
+    onActiveChange((current) => (current + direction + SHARK_TANK.length) % SHARK_TANK.length);
   };
 
   const moveFromGesture = (direction: -1 | 1) => {
