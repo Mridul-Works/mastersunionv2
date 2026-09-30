@@ -36,3 +36,4 @@
 - [x] On Shark Tank India: removed the video placeholder below the six founder cards (and the now-unused activeShark value).
 
 - [x] Secondary divider hairline (1px background/15) added above: Dropshipping metrics bar, VIP metrics bar, Portfolio figures grid, Founder Stories magazine, High School Startup League metrics bar; verified 1440/768/390 (0 overflow, 0 console errors), typecheck + build clean, nothing published.
+- [x] VIP Top Startups strip: larger logos (48→64px tall desktop, 40→56px phone) with wider cells; seamless 46s marquee kept; verified 1440/768/390 (0 overflow, 0 console errors), typecheck + build clean, nothing published.
