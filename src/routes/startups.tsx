@@ -27,6 +27,8 @@ import {
   Users,
   X,
   type LucideIcon,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import eightVentureImg from "@/assets/founders/ventures/eight.jpg.asset.json";
 import bullspreeVentureImg from "@/assets/founders/ventures/bullspree.jpg.asset.json";
@@ -619,6 +621,12 @@ import ffLogoBlue from "@/assets/fellowship/l-blue.webp.asset.json";
 import ffLogoSauced from "@/assets/fellowship/l-sauced.webp.asset.json";
 import ffLogoAtlas from "@/assets/fellowship/l-atlas.webp.asset.json";
 import ffLogoEcoveda from "@/assets/fellowship/l-ecoveda.webp.asset.json";
+import newsEntrepreneur from "@/assets/news/enterpreneurNews.webp.asset.json";
+import newsPrint from "@/assets/news/printNews.webp.asset.json";
+import newsInc from "@/assets/news/IncNews.webp.asset.json";
+import newsYourStory from "@/assets/news/yourStoryNews.webp.asset.json";
+import newsSme from "@/assets/news/smeNews.webp.asset.json";
+import newsIndianWeb2 from "@/assets/news/indianNews.webp.asset.json";
 
 type Stage = { n: string; name: string; grant: string | null; body: string[]; image: string; culmination?: boolean };
 
@@ -3562,6 +3570,95 @@ const MUIF_REPORTS = [
   { label: "MUIF Annual Performance Report", href: "https://files.mastersunion.link/resources/Annual%20Report-1.pdf", primary: false },
 ];
 
+const IN_THE_NEWS = [
+  { outlet: "Entrepreneurs Today", company: "Bullspree", title: "Bullspree: making a game of the investment process", href: "https://entrepreneurstoday.in/bullspree-making-a-game-of-the-investment-process/", img: newsEntrepreneur.url },
+  { outlet: "ThePrint", company: "The Eight Network", title: "The Eight Network, a first-of-its-kind open interactive social radio, is set to disrupt audio entertainment", href: "https://theprint.in/ani-press-releases/the-eight-network-a-first-of-its-kind-open-interactive-social-radio-is-set-to-disrupt-the-audio-entertainment-space/821297/", img: newsPrint.url },
+  { outlet: "Inc42", company: "Bullspree", title: "How Bullspree is educating the next generation of Indian retail investors", href: "https://inc42.com/startups/bullspree-educating-next-generation-indian-retail-investors/", img: newsInc.url },
+  { outlet: "YourStory", company: "Bullspree", title: "Funding roundup: Bullspree, NymbleUp, plus early-stage capital", href: "https://yourstory.com/2023/01/funding-roundup-bullspree-nymbleup-plus-early-stage-capital", img: newsYourStory.url },
+  { outlet: "SME Street", company: "PlaySuper", title: "PlaySuper secures $500K investment to boost its gaming and commerce model", href: "https://smestreet.in/technology/playsuper-secures-500k-investment-to-boost-gaming-and-commerce-model-8694977", img: newsSme.url },
+  { outlet: "IndianWeb2", company: "PlaySuper", title: "Gaming startup PlaySuper raises $500K in seed funding", href: "https://www.indianweb2.com/2025/02/gaming-startup-playsuper-500k-seed.html", img: newsIndianWeb2.url },
+];
+
+function InTheNewsRail() {
+  const railRef = useRef<HTMLDivElement>(null);
+  const scrollBy = (dir: number) => {
+    const el = railRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-news-card]");
+    el.scrollBy({ left: dir * ((card?.offsetWidth ?? 320) + 20), behavior: "smooth" });
+  };
+  return (
+    <div className="mt-14 sm:mt-16">
+      <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+        <div>
+          <div className="font-mono text-[9px] font-semibold uppercase tracking-[0.24em] text-background/45 sm:text-[10px]">
+            Press coverage
+          </div>
+          <h3 className="mt-3 font-display text-[clamp(1.55rem,3.4vw,2.7rem)] font-medium leading-[1.06] tracking-[-0.015em]">
+            In the <span className="font-serif text-normal italic">news</span>
+          </h3>
+          <p className="mt-3 max-w-[46ch] text-sm leading-relaxed text-background/60">
+            Coverage and features highlighting Masters' Union ventures across leading media platforms.
+          </p>
+        </div>
+        <div className="flex gap-2">
+          {[-1, 1].map((d) => (
+            <button
+              key={d}
+              type="button"
+              onClick={() => scrollBy(d)}
+              aria-label={d < 0 ? "Previous article" : "Next article"}
+              className="grid size-11 place-items-center rounded-full border border-background/25 text-background/80 transition-colors hover:bg-background hover:text-foreground"
+            >
+              {d < 0 ? <ChevronLeft className="size-4" /> : <ChevronRight className="size-4" />}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div
+        ref={railRef}
+        className="mt-8 -mx-4 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-px-4 px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mt-10"
+      >
+        {IN_THE_NEWS.map((n, i) => (
+          <a
+            key={n.href}
+            data-news-card
+            href={n.href}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="group relative flex w-[78vw] shrink-0 snap-start flex-col border border-background/15 bg-background/[0.03] transition-all duration-500 hover:-translate-y-1 hover:border-background/30 sm:w-[340px] lg:w-[380px]"
+          >
+            <span aria-hidden className="absolute left-0 top-0 z-10 h-px w-0 bg-accent transition-all duration-500 group-hover:w-full" />
+            <div className="relative aspect-[758/676] overflow-hidden">
+              <img
+                src={n.img}
+                alt={`${n.outlet}: ${n.title}`}
+                loading="lazy"
+                decoding="async"
+                className="no-img-zoom h-full w-full scale-[1.07] object-cover transition-transform duration-700 group-hover:scale-[1.12]"
+              />
+              <span className="absolute bottom-3 left-3 bg-accent px-2 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-accent-foreground">
+                {n.outlet}
+              </span>
+            </div>
+            <div className="flex flex-1 flex-col gap-4 p-5">
+              <div className="flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.2em] text-background/45">
+                <span>{String(i + 1).padStart(2, "0")} / {n.company}</span>
+                <ArrowUpRight className="size-4 text-background/60 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </div>
+              <p className="text-[15px] leading-snug text-background/90">{n.title}</p>
+              <span className="mt-auto font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-background/60 group-hover:text-background">
+                Read article
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function InvestmentFundSection() {
   const reduceMotion = useReducedMotion();
   const [videoOpen, setVideoOpen] = useState(false);
@@ -3736,6 +3833,9 @@ function InvestmentFundSection() {
           </div>
         </Reveal>
       </div>
+
+      <InTheNewsRail />
+
 
       {typeof document !== "undefined" &&
         createPortal(
