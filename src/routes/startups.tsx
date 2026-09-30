@@ -6072,23 +6072,30 @@ function StartupsPage() {
 
 
 
-      <Section id="cta" tone="dark" container="max-w-4xl">
-        <div className="pb-10 pt-4 text-center sm:pb-14 sm:pt-6 md:pb-20 md:pt-12">
-          <Reveal>
-            <h2 className="text-balance text-[clamp(2rem,7vw,5.5rem)] font-light leading-[1.04] md:leading-[1] tracking-normal">
-              WHAT WILL YOU BUILD?
-            </h2>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <p className="mx-auto mt-7 max-w-[56ch] text-[13px] leading-[1.6] text-background/75 md:text-[15px] md:leading-[1.75] md:mt-8">
-              Every company on this page started the same way every company starts: as nothing. A question.
-              A bad first batch. A frustration nobody else was naming. The only difference between an idea
-              and a startup is whether someone builds it.
-            </p>
-          </Reveal>
-          <Reveal delay={0.16}>
-            <div className="mt-10 flex justify-center">
-              <CtaButton dark>Apply to Masters&apos; Union</CtaButton>
+      <Section id="cta" tone="dark" container="max-w-7xl" tightTop tightBottom>
+        <div className="relative">
+          {/* Giant watermark word — drifts on scroll, passes blurred behind the
+              glass card and is clipped at the section's bottom edge, exactly
+              like the placements page's closing CAREERS band. */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 -bottom-8 z-0 select-none text-center text-[18vw] font-semibold leading-none tracking-[-0.05em] text-background/[0.09] md:-bottom-10"
+          >
+            <Parallax strength={60}>BUILD</Parallax>
+          </div>
+          <Reveal className="relative z-[1] py-14 sm:py-20 md:py-24">
+            <div className="overflow-hidden rounded-[18px] border border-background/15 bg-background/[0.04] px-6 py-10 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.85)] backdrop-blur-xl sm:px-10 sm:py-12 md:px-14 md:py-16">
+              <h2 className="max-w-[14ch] text-balance text-[clamp(2rem,6vw,4.75rem)] font-light leading-[1.04] md:leading-[1.02] tracking-normal">
+                WHAT WILL YOU BUILD?
+              </h2>
+              <p className="mt-6 max-w-[56ch] text-[13px] leading-[1.6] text-background/75 md:mt-7 md:text-[15px] md:leading-[1.75]">
+                Every company on this page started the same way every company starts: as nothing. A question.
+                A bad first batch. A frustration nobody else was naming. The only difference between an idea
+                and a startup is whether someone builds it.
+              </p>
+              <div className="mt-9 md:mt-10">
+                <CtaButton dark>Apply to Masters&apos; Union</CtaButton>
+              </div>
             </div>
           </Reveal>
         </div>
