@@ -5020,7 +5020,7 @@ function StartupsPage() {
                 <span className="eyebrow rounded-full border border-accent px-4 py-2 text-background transition-colors duration-300 hover:bg-accent/10">
                   {stage}
                 </span>
-                {i < HSSL_STAGES.length - 1 && <ArrowRight className="size-3.5 text-background/30" aria-hidden />}
+                {i < HSSL_STAGES.length - 1 && <ArrowRight className="hidden size-3.5 text-background/30 sm:block" aria-hidden />}
               </div>
             ))}
           </div>
