@@ -6083,12 +6083,12 @@ function StartupsPage() {
               like the placements page's closing CAREERS band. */}
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-x-0 -bottom-8 z-0 select-none text-center text-[18vw] font-semibold leading-none tracking-[-0.05em] text-background/[0.09] md:-bottom-10"
+            className="pointer-events-none absolute inset-x-0 -bottom-8 z-0 select-none text-center text-[18vw] font-bold leading-none tracking-[-0.05em] text-background/[0.18] md:-bottom-10"
           >
             <Parallax strength={60}>BUILD</Parallax>
           </div>
           <Reveal className="relative z-[1] py-14 sm:py-20 md:py-24">
-            <div className="overflow-hidden rounded-[18px] border border-background/15 bg-background/[0.04] px-6 py-10 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.85)] backdrop-blur-xl sm:px-10 sm:py-12 md:px-14 md:py-16">
+            <div className="overflow-hidden rounded-[18px] border border-background/20 bg-background/[0.08] px-6 py-10 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.85)] backdrop-blur-2xl backdrop-saturate-150 sm:px-10 sm:py-12 md:px-14 md:py-16">
               <h2 className="max-w-[14ch] text-balance text-[clamp(2rem,6vw,4.75rem)] font-light leading-[1.04] md:leading-[1.02] tracking-normal">
                 WHAT WILL YOU BUILD?
               </h2>
