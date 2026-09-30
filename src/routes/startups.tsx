@@ -3589,8 +3589,7 @@ function InTheNewsRail() {
   };
   return (
     <div className="mt-14 sm:mt-16">
-      <div role="separator" aria-hidden="true" className="h-px w-full bg-background/15" />
-      <div className="mt-10 flex flex-col gap-5 sm:mt-12 md:flex-row md:items-end md:justify-between">
+      <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
         <div>
           <div className="font-mono text-[9px] font-semibold uppercase tracking-[0.24em] text-background/45 sm:text-[10px]">
             Press coverage
@@ -3639,7 +3638,7 @@ function InTheNewsRail() {
                 decoding="async"
                 className="no-img-zoom h-full w-full scale-[1.07] object-cover transition-transform duration-700 group-hover:scale-[1.12]"
               />
-              <span className="absolute left-3 top-3 bg-accent px-2 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-accent-foreground">
+              <span className="absolute bottom-3 left-3 bg-accent px-2 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-accent-foreground">
                 {n.outlet}
               </span>
             </div>
