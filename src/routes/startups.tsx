@@ -3268,25 +3268,30 @@ function VipJourney({ stages }: { stages: Stage[] }) {
 function VipTopStartups() {
   return (
     <Reveal delay={0.08} className="mt-5 sm:mt-6">
-      <div className="overflow-hidden border border-background/15 bg-background text-foreground">
-        <div className="flex items-center justify-between gap-5 border-b border-foreground/10 px-5 py-4 sm:px-7">
-          <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-foreground/55">Top Startups</p>
-          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-foreground/35">Venture Initiation Programme</span>
+      <div className="border-y border-background/15 py-6 sm:py-8">
+        <div className="flex items-center justify-between gap-5 pb-5 sm:pb-6">
+          <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-background/55">Top Startups</p>
+          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-background/35">Venture Initiation Programme</span>
         </div>
-        <div className="grid grid-cols-3 sm:grid-cols-5">
-          {VIP_TOP_STARTUPS.map((startup, index) => (
-            <div
-              key={`${startup.name}-${index}`}
-              className="flex aspect-[2.5/1] min-h-[4.5rem] min-w-0 items-center justify-center overflow-hidden border-b border-r border-foreground/10 bg-background px-3 sm:min-h-[5.5rem] sm:px-4"
-            >
-              <img
-                src={startup.logo}
-                alt={`${startup.name} logo`}
-                loading="lazy"
-                className="block h-full w-full min-w-0 object-contain"
-              />
-            </div>
-          ))}
+        <div className="marquee-hover overflow-hidden" aria-label="Top Startups from the Venture Initiation Programme">
+          <ul className="flex w-max animate-marquee-slow items-center">
+            {[...VIP_TOP_STARTUPS, ...VIP_TOP_STARTUPS].map((startup, index) => (
+              <li
+                key={`${startup.name}-${index}`}
+                aria-hidden={index >= VIP_TOP_STARTUPS.length}
+                className="flex h-14 w-36 shrink-0 items-center justify-center px-5 sm:h-16 sm:w-44 sm:px-7"
+              >
+                <img
+                  src={startup.logo}
+                  alt={index >= VIP_TOP_STARTUPS.length ? "" : `${startup.name} logo`}
+                  loading="lazy"
+                  decoding="async"
+                  data-asset-tries="0"
+                  className="block max-h-10 w-auto max-w-full object-contain opacity-90 sm:max-h-12"
+                />
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </Reveal>
