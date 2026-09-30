@@ -540,6 +540,21 @@ import vipGtmImg from "@/assets/vip/vip-gtm.jpg.asset.json";
 import vipPmfImg from "@/assets/vip/vip-pmf.jpg.asset.json";
 import vipDemodayImg from "@/assets/vip/vip-demoday.jpg.asset.json";
 import vipProgramVideo from "@/assets/vip-program.mp4.asset.json";
+import vipTopStartup1 from "@/assets/vip/top-startups/top-startup-1.webp.asset.json";
+import vipTopStartup2 from "@/assets/vip/top-startups/top-startup-2.webp.asset.json";
+import vipTopStartup3 from "@/assets/vip/top-startups/top-startup-3.webp.asset.json";
+import vipTopStartup4 from "@/assets/vip/top-startups/top-startup-4.webp.asset.json";
+import vipTopStartup5 from "@/assets/vip/top-startups/top-startup-5.webp.asset.json";
+import vipTopStartup6 from "@/assets/vip/top-startups/top-startup-6.webp.asset.json";
+import vipTopStartup7 from "@/assets/vip/top-startups/top-startup-7.webp.asset.json";
+import vipTopStartup8 from "@/assets/vip/top-startups/top-startup-8.webp.asset.json";
+import vipTopStartup9 from "@/assets/vip/top-startups/top-startup-9.webp.asset.json";
+import vipTopStartup10 from "@/assets/vip/top-startups/top-startup-10.webp.asset.json";
+import vipTopStartup11 from "@/assets/vip/top-startups/top-startup-11.webp.asset.json";
+import vipTopStartup12 from "@/assets/vip/top-startups/top-startup-12.webp.asset.json";
+import vipTopStartup13 from "@/assets/vip/top-startups/top-startup-13.webp.asset.json";
+import vipTopStartup14 from "@/assets/vip/top-startups/top-startup-14.webp.asset.json";
+import vipTopStartup15 from "@/assets/vip/top-startups/top-startup-15.webp.asset.json";
 
 type Stage = { n: string; name: string; grant: string | null; body: string[]; image: string; culmination?: boolean };
 
@@ -595,6 +610,24 @@ const VIP_STAGES: Stage[] = [
     image: vipDemodayImg.url,
     culmination: true,
   },
+];
+
+const VIP_TOP_STARTUPS = [
+  { name: "Blue Brew", logo: vipTopStartup1.url },
+  { name: "SeedsAI", logo: vipTopStartup2.url },
+  { name: "Wetee", logo: vipTopStartup3.url },
+  { name: "Amzaar", logo: vipTopStartup4.url },
+  { name: "Aikyam Voices", logo: vipTopStartup5.url },
+  { name: "Beyond Foods", logo: vipTopStartup6.url },
+  { name: "EcoVeda", logo: vipTopStartup7.url },
+  { name: "Eat Atlas", logo: vipTopStartup8.url },
+  { name: "Habiito", logo: vipTopStartup9.url },
+  { name: "PlaySuper", logo: vipTopStartup10.url },
+  { name: "Maarg", logo: vipTopStartup11.url },
+  { name: "Student startup", logo: vipTopStartup12.url },
+  { name: "Student startup", logo: vipTopStartup13.url },
+  { name: "Beyond Veda", logo: vipTopStartup14.url },
+  { name: "HiveSchool", logo: vipTopStartup15.url },
 ];
 
 
@@ -3217,6 +3250,34 @@ function VipJourney({ stages }: { stages: Stage[] }) {
   );
 }
 
+function VipTopStartups() {
+  return (
+    <Reveal delay={0.08} className="mt-5 sm:mt-6">
+      <div className="overflow-hidden border border-background/15 bg-background text-foreground">
+        <div className="flex items-center justify-between gap-5 border-b border-foreground/10 px-5 py-4 sm:px-7">
+          <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-foreground/55">Top Startups</p>
+          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-foreground/35">Venture Initiation Programme</span>
+        </div>
+        <div className="grid grid-cols-3 sm:grid-cols-5">
+          {VIP_TOP_STARTUPS.map((startup, index) => (
+            <div
+              key={`${startup.name}-${index}`}
+              className="flex aspect-[2.5/1] min-h-[4.5rem] items-center justify-center border-b border-r border-foreground/10 bg-background px-2 sm:min-h-[5.5rem] sm:px-4"
+            >
+              <img
+                src={startup.logo}
+                alt={`${startup.name} logo`}
+                loading="lazy"
+                className="h-full w-full object-contain"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </Reveal>
+  );
+}
+
 const VIP_VIDEO_URL = vipProgramVideo.url;
 const VIP_WATCH_MORE_URL = "https://youtu.be/1PTpdpc4kFc";
 
@@ -3674,6 +3735,7 @@ function VipSection() {
       <VipVideoCard />
 
       <VipJourney stages={VIP_STAGES} />
+      <VipTopStartups />
     </Section>
   );
 }

@@ -26,3 +26,4 @@
 - [x] High School Startup League: match the Dropshipping Challenge metric bar exactly (container, type, spacing, four columns)
 - [x] High School Startup League: add a plain secondary hairline above the highlight-reel cards
 - [x] Startups page: retry media whose request the preview's asset delivery drops, so a blank card self-heals
+- [x] Venture Initiative Program: add the live site's exact 15 colored Top Startups logos below the stage slides
