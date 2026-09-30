@@ -628,21 +628,21 @@ const VIP_STAGES: Stage[] = [
 ];
 
 const VIP_TOP_STARTUPS = [
-  { name: "Blue Brew", logo: vipTopStartup1.url },
-  { name: "SeedsAI", logo: vipTopStartup2.url },
-  { name: "Wetee", logo: vipTopStartup3.url },
-  { name: "Amzaar", logo: vipTopStartup4.url },
-  { name: "Aikyam Voices", logo: vipTopStartup5.url },
-  { name: "Beyond Foods", logo: vipTopStartup6.url },
-  { name: "EcoVeda", logo: vipTopStartup7.url },
-  { name: "Eat Atlas", logo: vipTopStartup8.url },
-  { name: "Habiito", logo: vipTopStartup9.url },
-  { name: "PlaySuper", logo: vipTopStartup10.url },
-  { name: "Maarg", logo: vipTopStartup11.url },
-  { name: "Student startup", logo: vipTopStartup12.url },
-  { name: "Student startup", logo: vipTopStartup13.url },
-  { name: "Beyond Veda", logo: vipTopStartup14.url },
-  { name: "HiveSchool", logo: vipTopStartup15.url },
+  { name: "Blue Brew", logo: vipTopStartupDark1.url },
+  { name: "SeedsAI", logo: vipTopStartupDark2.url },
+  { name: "Wetee", logo: vipTopStartupDark3.url },
+  { name: "Amzaar", logo: vipTopStartupDark4.url },
+  { name: "Aikyam Voices", logo: vipTopStartupDark5.url },
+  { name: "Beyond Foods", logo: vipTopStartupDark6.url },
+  { name: "EcoVeda", logo: vipTopStartupDark7.url },
+  { name: "Eat Atlas", logo: vipTopStartupDark8.url },
+  { name: "Habiito", logo: vipTopStartupDark9.url },
+  { name: "PlaySuper", logo: vipTopStartupDark10.url },
+  { name: "Maarg", logo: vipTopStartupDark11.url },
+  { name: "Student startup", logo: vipTopStartupDark12.url },
+  { name: "Student startup", logo: vipTopStartupDark13.url },
+  { name: "Beyond Veda", logo: vipTopStartupDark14.url },
+  { name: "HiveSchool", logo: vipTopStartupDark15.url },
 ];
 
 
