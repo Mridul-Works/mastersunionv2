@@ -1303,7 +1303,7 @@ function FounderStoriesGallery() {
         <div className="flex items-end justify-between gap-6">
           <Reveal>
             <div>
-              <Eyebrow>Founder Stories</Eyebrow>
+              <Eyebrow icon={BookOpen}>Founder Stories</Eyebrow>
               <h2 className="mt-5 max-w-[24ch] text-[clamp(1.8rem,4.2vw,3.6rem)] font-light leading-[1.08]">
                 The founders&apos; issue.
               </h2>
@@ -2446,7 +2446,7 @@ function OutclassSection() {
           <div className="lg:col-span-7">
             <div className="flex items-start gap-4">
               <EyebrowRule />
-              <p className="font-tech text-[11px] uppercase tracking-[0.32em] text-background/60">OutClass</p>
+              <span className="flex min-w-0 items-start gap-2"><Compass className="size-4 shrink-0 text-background/55" strokeWidth={1.75} aria-hidden /><p className="font-tech text-[11px] uppercase tracking-[0.32em] text-background/60">OutClass</p></span>
             </div>
             <h2 className="mt-5 font-display text-[clamp(1.9rem,4.2vw,3.1rem)] font-semibold leading-[0.98]">Learning outside<br />the classroom</h2>
           </div>
@@ -2860,7 +2860,7 @@ function DropshippingSection() {
       <div aria-hidden className="spectrum-rule pointer-events-none absolute left-[6%] right-[6%] top-0 z-[2] h-px" />
       <div className="grid gap-8 sm:gap-10 lg:grid-cols-12 lg:items-end">
         <div className="lg:col-span-7">
-          <Reveal><Eyebrow>Dropshipping Challenge</Eyebrow></Reveal>
+          <Reveal><Eyebrow icon={ShoppingBag}>Dropshipping Challenge</Eyebrow></Reveal>
           <Reveal delay={0.05}>
             <h2 className="mt-4 max-w-[16ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] tracking-normal sm:mt-5 md:leading-[1.08]">
               Build. Launch. Sell.
@@ -3061,7 +3061,7 @@ function ByTheNumbers() {
   return (
     <div id="scale" className="scroll-mt-24">
       <Reveal>
-        <Eyebrow dark>Portfolio</Eyebrow>
+        <Eyebrow dark icon={Briefcase}>Portfolio</Eyebrow>
       </Reveal>
 
       <div className="mt-9 grid grid-cols-1 gap-x-10 gap-y-9 sm:mt-11 md:mt-14 lg:grid-cols-12 lg:items-end">
@@ -3864,7 +3864,7 @@ function VipSection() {
     <Section id="journey" tone="paper" tightTop>
       <div className="grid gap-6 sm:gap-8 lg:grid-cols-12 lg:items-end">
         <div className="lg:col-span-7">
-          <Reveal><Eyebrow>The Venture Initiation Programme (VIP)</Eyebrow></Reveal>
+          <Reveal><Eyebrow icon={Rocket}>The Venture Initiation Programme (VIP)</Eyebrow></Reveal>
           <Reveal delay={0.05}>
             <h2 className="mt-4 max-w-[18ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] tracking-normal sm:mt-5 md:leading-[1.08]">
               From Idea to Demo Day
@@ -4953,7 +4953,7 @@ function StartupsPage() {
         <div className="grid grid-cols-1 gap-5 border-b border-background/20 pb-8 sm:gap-6 sm:pb-10 md:grid-cols-12 md:items-end md:gap-10 md:pb-12 lg:gap-12 lg:pb-14">
           <div className="md:col-span-8">
             <Reveal>
-              <Eyebrow>The Spark</Eyebrow>
+              <Eyebrow icon={Lightbulb}>The Spark</Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
               <h2 className="mt-5 max-w-[18ch] font-display text-[1.875rem] font-normal leading-[1.2] tracking-normal">
@@ -5080,7 +5080,7 @@ function StartupsPage() {
         <div className="grid grid-cols-1 gap-5 border-b border-background/20 pb-8 sm:gap-6 sm:pb-10 md:grid-cols-12 md:items-end md:gap-10 md:pb-12 lg:gap-12 lg:pb-14">
           <div className="md:col-span-8">
             <Reveal>
-              <Eyebrow>Mentors, VCs, and Believers</Eyebrow>
+              <Eyebrow icon={Users}>Mentors, VCs, and Believers</Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
               <h2 className="mt-5 max-w-[18ch] font-display text-[1.875rem] font-normal leading-[1.2] tracking-normal">
@@ -5110,7 +5110,7 @@ function StartupsPage() {
           </Reveal>
           <div>
             <Reveal>
-              <Eyebrow dark>For Those Going All In</Eyebrow>
+              <Eyebrow dark icon={Flame}>For Those Going All In</Eyebrow>
             </Reveal>
             <Reveal delay={0.05}>
               <h2 className="mt-5 max-w-[20ch] text-[clamp(1.75rem,3.8vw,3rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
