@@ -2206,8 +2206,8 @@ function QuoteWall({ people }: { people: typeof TESTIMONIALS }) {
               <span className="eyebrow mt-2 block text-background/50">{lead.role}</span>
             </span>
           </figcaption>
-          <blockquote className="min-w-0 text-balance font-serif-italic !font-serif !font-light text-[clamp(1.35rem,2.9vw,2.3rem)] leading-[1.32] text-background/95">
-            <span aria-hidden className="mr-1 align-top font-serif text-[1.4em] leading-[0] text-bottle/80">
+          <blockquote className="min-w-0 text-balance font-serif-italic !font-serif !font-light !text-background/95 text-[clamp(1.35rem,2.9vw,2.3rem)] leading-[1.32]">
+            <span aria-hidden className="mr-1 align-top font-serif text-[1.4em] leading-[0] text-bottle">
               &ldquo;
             </span>
             {lead.quote}
