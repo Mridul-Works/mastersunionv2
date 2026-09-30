@@ -15,8 +15,10 @@ import {
   GraduationCap,
   Home,
   Image as ImageIcon,
+  Instagram,
   LayoutGrid,
   Lightbulb,
+  Linkedin,
   Play,
   Rocket,
   ShoppingBag,
@@ -577,6 +579,30 @@ import quoteDivyaGupta from "@/assets/quotes/divya-gupta.jpg.asset.json";
 import quoteSarthakKhanna from "@/assets/quotes/sarthak-khanna.jpg.asset.json";
 import quoteSakshiTuteja from "@/assets/quotes/sakshi-tuteja.jpg.asset.json";
 import quoteSahilDhingra from "@/assets/quotes/sahil-dhingra.jpg.asset.json";
+import ffPhotoRhea from "@/assets/fellowship/p-rhea.webp.asset.json";
+import ffPhotoDivya from "@/assets/fellowship/p-divya.webp.asset.json";
+import ffPhotoManan from "@/assets/fellowship/p-manan.webp.asset.json";
+import ffPhotoUpamanyu from "@/assets/fellowship/p-upamanyu.webp.asset.json";
+import ffPhotoKanav from "@/assets/fellowship/p-kanav.webp.asset.json";
+import ffPhotoSumeet from "@/assets/fellowship/p-sumeet.webp.asset.json";
+import ffPhotoBhavya from "@/assets/fellowship/p-bhavya.webp.asset.json";
+import ffPhotoAditya from "@/assets/fellowship/p-aditya.webp.asset.json";
+import ffPhotoMadhav from "@/assets/fellowship/p-madhav.webp.asset.json";
+import ffPhotoMayuresh from "@/assets/fellowship/p-mayuresh.webp.asset.json";
+import ffPhotoSavrang from "@/assets/fellowship/p-savrang.webp.asset.json";
+import ffPhotoAyush from "@/assets/fellowship/p-ayush.webp.asset.json";
+import ffPhotoShouradeep from "@/assets/fellowship/p-shouradeep.webp.asset.json";
+import ffPhotoNaveen from "@/assets/fellowship/p-naveen.webp.asset.json";
+import ffLogoLexi from "@/assets/fellowship/l-lexi.webp.asset.json";
+import ffLogoVinayasa from "@/assets/fellowship/l-vinayasa.webp.asset.json";
+import ffLogoBeyond from "@/assets/fellowship/l-beyond.webp.asset.json";
+import ffLogoPlaysuper from "@/assets/fellowship/l-playsuper.webp.asset.json";
+import ffLogoWoody from "@/assets/fellowship/l-woody.webp.asset.json";
+import ffLogoSampleset from "@/assets/fellowship/l-sampleset.webp.asset.json";
+import ffLogoBlue from "@/assets/fellowship/l-blue.webp.asset.json";
+import ffLogoSauced from "@/assets/fellowship/l-sauced.webp.asset.json";
+import ffLogoAtlas from "@/assets/fellowship/l-atlas.webp.asset.json";
+import ffLogoEcoveda from "@/assets/fellowship/l-ecoveda.webp.asset.json";
 
 type Stage = { n: string; name: string; grant: string | null; body: string[]; image: string; culmination?: boolean };
 
