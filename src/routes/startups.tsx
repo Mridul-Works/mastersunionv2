@@ -1592,9 +1592,9 @@ const FOUNDER_EDITORIAL: Record<
 
 // Per-chapter accent colors sampled from the Entrepreneurship Report palette
 // (teal, blue, deep green, red, gold, amber, moss) — one per chapter, in order.
-const STORY_ACCENTS = ["#0E8074", "#2E6FAE", "#006A4E", "#C13A2E", "#B98A00", "#D97706", "#567D2E"];
+const STORY_ACCENTS = ["#DCE8D4", "#EEE9C2", "#F3C544", "#CFE6EC", "#EEE9C2", "#F3C544", "#DCE8D4"];
 
-const STORY_PAPER = "#FAF9F6";
+const STORY_PAPER = "#FFFFFF";
 
 function FounderStoriesGallery() {
   const [activeStory, setActiveStory] = useState(0);
@@ -1729,9 +1729,9 @@ function FounderStoriesGallery() {
                   </span>
                   <span>The founders&apos; issue · 2026</span>
                 </div>
-                <div className="flex items-start justify-between gap-5 border-b border-(--accent)/70 pb-3">
+                <div className="flex items-start justify-between gap-5 border-b border-foreground/70 pb-3">
                   <div className="min-w-0">
-                    <p className="font-serif-italic text-[clamp(1.4rem,2.4vw,2.2rem)] leading-none text-(--accent)" style={{ color: "var(--accent)" }}>Meet the founder</p>
+                    <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-foreground/55">Meet the founder</p>
                     <h3 className="mt-2 break-words pb-1 text-[clamp(2.1rem,4.6vw,4.7rem)] font-light leading-[1]">{story.name}</h3>
                   </div>
                   {media.logo && (
@@ -1742,11 +1742,11 @@ function FounderStoriesGallery() {
                 </div>
 
 
-                <p className="mt-3 max-w-[54ch] font-serif-italic text-[1.05rem] leading-[1.45] text-(--accent)" style={{ color: "var(--accent)" }}>
+                <p className="mt-3 max-w-[54ch] text-[14px] font-semibold leading-[1.5] text-foreground">
                   {editorial.dek}
                 </p>
                 <div className="py-3">
-                  <div className="grid grid-cols-3 items-center gap-x-5 gap-y-3 border-b border-(--accent)/60 pb-2 text-center">
+                  <div className="grid grid-cols-3 items-center gap-x-5 gap-y-3 border-b border-foreground/20 pb-2 text-center">
                     {editorial.facts.map((fact) => (
                       <div key={fact.label} className="flex min-h-10 flex-col items-center justify-center">
                         <p className="font-mono text-[8px] uppercase tracking-[0.2em] text-foreground/45">{fact.label}</p>
@@ -1758,7 +1758,7 @@ function FounderStoriesGallery() {
                     {editorial.paragraphs.slice(0, 4).map((paragraph, index) => (
                       <p
                         key={paragraph}
-                        className={`break-inside-avoid ${index === 0 ? "first-letter:float-left first-letter:mr-2 first-letter:mt-1 first-letter:font-serif first-letter:text-[3.1rem] first-letter:leading-[0.78] first-letter:text-(--accent)" : ""}`}
+                        className={`break-inside-avoid `}
                       >
                         {paragraph}
                       </p>
@@ -1772,7 +1772,7 @@ function FounderStoriesGallery() {
                     onMouseDown={(event) => event.preventDefault()}
                     onClick={() => turnPage(-1)}
                     aria-label="Flip to previous founder story"
-                    className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/45 transition-colors hover:text-(--accent)"
+                    className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/45 transition-colors hover:text-foreground"
                   >
                     <ArrowLeft className="size-3.5" strokeWidth={1.5} /> Previous
                   </button>
@@ -1786,15 +1786,16 @@ function FounderStoriesGallery() {
                   const header = (
                     <div className="mb-4 flex shrink-0 items-center justify-between gap-4 border-b border-foreground/20 pb-2">
                       <div aria-hidden className="h-px flex-grow bg-foreground/20" />
-                      <span className="shrink-0 bg-foreground px-2.5 py-1 font-mono text-[8px] uppercase tracking-[0.24em] text-(--paper)">
+                      <span className="shrink-0 bg-(--accent) px-3 py-1 text-[11px] font-medium text-foreground">
                         {story.name} · continued
                       </span>
                     </div>
                   );
                   const quote = (big = false) => (
-                    <p style={{ color: "var(--accent)" }} className={`border-l-2 border-(--accent) pl-4 font-serif-italic leading-[1.35] text-(--accent) ${big ? "text-[1.5rem]" : "text-[1.15rem]"}`}>
-                      &ldquo;{story.product}&rdquo;
-                    </p>
+                    <div className={`px-5 py-5 ${activeStory % 3 === 2 ? "bg-foreground text-background" : "bg-(--accent) text-foreground"}`}>
+                      <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] opacity-60">What they built</p>
+                      <p className={`font-medium leading-[1.3] ${big ? "text-[1.35rem]" : "text-[1.1rem]"}`}>{story.product}</p>
+                    </div>
                   );
                   const paras = (list: string[]) => list.map((p) => <p key={p}>{p}</p>);
                   const body = "text-[13px] leading-[1.62] text-foreground/80 xl:text-[14px]";
@@ -1926,7 +1927,7 @@ function FounderStoriesGallery() {
                     onMouseDown={(event) => event.preventDefault()}
                     onClick={() => turnPage(1)}
                     aria-label="Go to next founder story"
-                    className="group flex shrink-0 items-center gap-2 font-mono text-[9px] uppercase leading-none tracking-[0.2em] text-foreground/45 transition-colors hover:text-(--accent)"
+                    className="group flex shrink-0 items-center gap-2 font-mono text-[9px] uppercase leading-none tracking-[0.2em] text-foreground/45 transition-colors hover:text-foreground"
                   >
                     Next
                     <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={1.5} />
