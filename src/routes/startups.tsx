@@ -5343,17 +5343,41 @@ function StartupsPage() {
                 had used that runway to build their companies full-time.
               </p>
             </Reveal>
-            <Reveal delay={0.15} className="mt-9">
-              <div className="grid max-w-xl grid-cols-2 gap-3">
-                {["Founder at work", "Mentor session", "Product sprint", "Investor room"].map((label, index) => (
-                  <div key={label} className={index === 1 || index === 3 ? "translate-y-7" : ""}>
-                    <Placeholder kind="image" aspect="aspect-[4/5]" dark note={label} />
-                  </div>
-                ))}
-              </div>
-            </Reveal>
           </div>
         </div>
+
+        <div
+          role="separator"
+          aria-hidden="true"
+          className="mt-10 h-px w-full bg-background/15"
+        />
+        <Reveal delay={0.18} className="mt-8 sm:mt-10">
+          <div className="overflow-hidden rounded-2xl border border-background/15 bg-background/[0.03]">
+            <div className="grid grid-cols-1 divide-y divide-background/10 sm:grid-cols-4 sm:divide-x sm:divide-y-0">
+              {FELLOW_STATS.map((stat) => (
+                <div key={stat.label} className="min-h-[5.5rem] px-5 py-4 sm:min-h-0 sm:px-8 sm:py-5">
+                  <div className="font-display text-[clamp(1.7rem,2.6vw,2.2rem)] font-normal leading-none tracking-[-0.01em]">
+                    {stat.value}
+                  </div>
+                  <div className="mt-2.5 font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-background/60 sm:text-[10px]">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.2} className="mt-14">
+          <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-background/55">
+            Our Founders
+          </p>
+          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
+            {FELLOW_FOUNDERS.map((founder) => (
+              <FellowshipFounderCard key={founder.name} founder={founder} />
+            ))}
+          </div>
+        </Reveal>
       </Section>
 
       <VenturesMosaicSection />
