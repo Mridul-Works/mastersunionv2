@@ -967,47 +967,225 @@ const FELLOW_FOUNDERS: FellowFounder[] = [
   },
 ];
 
-/** Founder Fellowship founder card: portrait, treated brand logo, name, role, description, social link. */
-function FellowshipFounderCard({ founder }: { founder: FellowFounder }) {
-  const SocialIcon = founder.social.kind === "linkedin" ? Linkedin : Instagram;
+/**
+ * Founder Fellowship founders as a horizontal filmstrip, improvised from the
+ * Shark Tank showcase: a linear track (no deck rotation) where the active
+ * portrait sits centre, neighbours peek in from the edges, and the strip
+ * advances on click, arrow keys, touch swipe, trackpad or the controls below.
+ */
+function FellowshipShowcase() {
+  const [active, setActive] = useState(0);
+  const reduceMotion = useReducedMotion();
+  const showcaseRef = useRef<HTMLDivElement>(null);
+  const touchStart = useRef({ x: 0, y: 0 });
+  const lastGestureAt = useRef(0);
+  const total = FELLOW_FOUNDERS.length;
+  const activeFounder = FELLOW_FOUNDERS[active];
+
+  const move = (direction: number) =>
+    setActive((current) => (current + direction + total) % total);
+
+  const moveFromGesture = (direction: -1 | 1) => {
+    const now = Date.now();
+    if (now - lastGestureAt.current < (reduceMotion ? 120 : 650)) return;
+    lastGestureAt.current = now;
+    move(direction);
+  };
+
+  useEffect(() => {
+    const element = showcaseRef.current;
+    if (!element) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+      const rect = element.getBoundingClientRect();
+      if (rect.top >= window.innerHeight * 0.85 || rect.bottom <= window.innerHeight * 0.15) return;
+      event.preventDefault();
+      move(event.key === "ArrowRight" ? 1 : -1);
+    };
+    const onWheel = (event: WheelEvent) => {
+      if (Math.abs(event.deltaX) < 28 || Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+      event.preventDefault();
+      const now = Date.now();
+      if (now - lastGestureAt.current < (reduceMotion ? 120 : 650)) return;
+      lastGestureAt.current = now;
+      move(event.deltaX > 0 ? 1 : -1);
+    };
+
+    window.addEventListener("keyup", onKey);
+    element.addEventListener("wheel", onWheel, { passive: false });
+    return () => {
+      window.removeEventListener("keyup", onKey);
+      element.removeEventListener("wheel", onWheel);
+    };
+  }, [active, reduceMotion]);
+
+  if (!activeFounder) return null;
+  const SocialIcon = activeFounder.social.kind === "linkedin" ? Linkedin : Instagram;
+
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-background/15 bg-background/[0.03] transition duration-300 hover:-translate-y-0.5 hover:border-background/30">
-      <div className="aspect-[3/4] w-full overflow-hidden bg-background/5">
-        <img
-          src={founder.photo}
-          alt={founder.name}
-          loading="lazy"
-          data-asset-reload
-          className="h-full w-full object-cover"
-        />
-      </div>
-      <div className="flex flex-1 flex-col gap-3 p-5">
-        <img
-          src={founder.logo}
-          alt=""
-          aria-hidden
-          loading="lazy"
-          data-asset-reload
-          className="h-6 w-auto max-w-[130px] object-contain object-left"
-        />
-        <div>
-          <h3 className="font-display text-lg font-medium leading-snug tracking-[-0.01em]">{founder.name}</h3>
-          <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.2em] text-background/60 sm:text-[10px]">
-            {founder.role} · {founder.company}
-          </p>
+    <div className="mt-6">
+      <div
+        ref={showcaseRef}
+        className="outline-none focus-visible:ring-1 focus-visible:ring-background/50"
+        role="region"
+        aria-label="Founder Fellowship founders"
+        tabIndex={0}
+        onTouchStartCapture={(event) => {
+          touchStart.current = {
+            x: event.touches[0]?.clientX ?? 0,
+            y: event.touches[0]?.clientY ?? 0,
+          };
+        }}
+        onTouchEndCapture={(event) => {
+          const touch = event.changedTouches[0];
+          if (!touch) return;
+          const deltaX = touch.clientX - touchStart.current.x;
+          const deltaY = touch.clientY - touchStart.current.y;
+          if (Math.abs(deltaX) < 45 || Math.abs(deltaX) <= Math.abs(deltaY) * 1.25) return;
+          moveFromGesture(deltaX < 0 ? 1 : -1);
+        }}
+      >
+        <div className="relative h-[430px] overflow-hidden sm:h-[500px] lg:h-[560px]" aria-live="polite">
+          {FELLOW_FOUNDERS.map((founder, index) => {
+            let offset = index - active;
+            if (offset > total / 2) offset -= total;
+            if (offset < -total / 2) offset += total;
+            const isActive = offset === 0;
+            const distance = Math.abs(offset);
+            const translate = offset * 62;
+
+            return (
+              <Button
+                key={founder.name}
+                type="button"
+                variant="ghost"
+                onClick={() => setActive(index)}
+                aria-label={
+                  isActive
+                    ? `${founder.name}, ${founder.company}, selected`
+                    : `Show ${founder.name} of ${founder.company}`
+                }
+                aria-current={isActive ? "true" : undefined}
+                className={`group absolute left-1/2 top-1/2 block aspect-[3/4] h-auto w-[64vw] max-w-[280px] overflow-hidden rounded-none border border-background/10 bg-foreground p-0 text-left shadow-[0_32px_70px_-34px_var(--foreground)] transition-[transform,opacity,filter] duration-700 ease-out hover:bg-foreground sm:w-[280px] lg:w-[320px] lg:max-w-[320px] ${
+                  distance > 2 ? "pointer-events-none" : ""
+                }`}
+                style={{
+                  zIndex: 20 - distance,
+                  opacity: distance > 2 ? 0 : isActive ? 1 : 0.45,
+                  filter: isActive ? "none" : "saturate(.65) brightness(.6)",
+                  transform: `translate(calc(-50% + ${translate}%), -50%) scale(${isActive ? 1 : 0.86})`,
+                  transitionDuration: reduceMotion ? "0ms" : undefined,
+                }}
+              >
+                <img
+                  src={founder.photo}
+                  alt={`${founder.name}, ${founder.role} of ${founder.company}`}
+                  loading={isActive ? "eager" : "lazy"}
+                  data-asset-reload
+                  className="absolute inset-0 size-full object-cover object-top"
+                />
+                <span className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-foreground/70 to-transparent" aria-hidden />
+                <span className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-foreground via-foreground/55 to-transparent" aria-hidden />
+                <span className="absolute left-4 top-4 bg-bottle px-3 py-1 font-tech text-[9px] font-bold uppercase text-background">
+                  {founder.role}
+                </span>
+                <span className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+                  <img
+                    src={founder.logo}
+                    alt=""
+                    aria-hidden
+                    loading="lazy"
+                    data-asset-reload
+                    className="mb-3 h-5 w-auto max-w-[110px] object-contain object-left"
+                  />
+                  <span className="block font-display text-[clamp(1.25rem,2.4vw,1.65rem)] font-semibold leading-none text-background">
+                    {founder.name}
+                  </span>
+                  <span className="mt-2 block font-tech text-[9px] font-semibold uppercase tracking-[0.16em] text-background/70">
+                    {founder.company}
+                  </span>
+                </span>
+                <span
+                  className={`absolute inset-x-0 bottom-0 h-[3px] bg-bottle transition-transform duration-500 ${isActive ? "scale-x-100" : "scale-x-0"}`}
+                  aria-hidden
+                />
+              </Button>
+            );
+          })}
         </div>
-        <p className="text-[13px] leading-[1.6] text-background/65">{founder.blurb}</p>
-        <a
-          href={founder.social.href}
-          target="_blank"
-          rel="noreferrer"
-          aria-label={`${founder.name} on ${founder.social.kind === "linkedin" ? "LinkedIn" : "Instagram"}`}
-          className="mt-auto inline-flex size-8 items-center justify-center rounded-full border border-background/20 text-background/70 transition hover:border-background/50 hover:text-background"
-        >
-          <SocialIcon className="size-3.5" aria-hidden />
-        </a>
+
+        <div className="mx-auto mt-2 grid max-w-[860px] grid-cols-[minmax(0,1fr)_auto] items-start gap-4 border-t border-background/15 pt-5 sm:gap-8">
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <h3 className="font-display text-[1.15rem] font-semibold text-background sm:text-[1.35rem]">
+                {activeFounder.name}
+              </h3>
+              <span className="font-tech text-[9px] font-bold uppercase tracking-[0.18em] text-background/45">
+                {activeFounder.role}
+              </span>
+            </div>
+            <p className="mt-1 font-tech text-[9px] uppercase tracking-[0.14em] text-background/55">
+              {activeFounder.company}
+            </p>
+            <p className="mt-3 max-w-[54ch] text-[13px] leading-[1.65] text-background/75 sm:text-[14px]">
+              {activeFounder.blurb}
+            </p>
+          </div>
+
+          <div className="flex shrink-0 flex-col items-end gap-4">
+            <div className="flex items-center gap-1 sm:gap-3">
+              <Button type="button" variant="ghost" size="icon" onClick={() => move(-1)} aria-label="Previous founder" className="min-h-11 min-w-11 rounded-none border border-background/20 text-background hover:bg-background hover:text-foreground">
+                <ArrowLeft className="size-4" strokeWidth={1.5} />
+              </Button>
+              <p className="hidden min-w-14 text-center font-mono text-[10px] text-background/45 sm:block">
+                <strong className="text-base font-medium text-background">{String(active + 1).padStart(2, "0")}</strong> / {String(total).padStart(2, "0")}
+              </p>
+              <Button type="button" variant="ghost" size="icon" onClick={() => move(1)} aria-label="Next founder" className="min-h-11 min-w-11 rounded-none border border-background/20 text-background hover:bg-background hover:text-foreground">
+                <ArrowRight className="size-4" strokeWidth={1.5} />
+              </Button>
+            </div>
+            <div className="flex items-center gap-3">
+              <img
+                src={activeFounder.logo}
+                alt=""
+                aria-hidden
+                data-asset-reload
+                className="h-6 w-auto max-w-[120px] object-contain"
+              />
+              <a
+                href={activeFounder.social.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`${activeFounder.name} on ${activeFounder.social.kind === "linkedin" ? "LinkedIn" : "Instagram"}`}
+                className="inline-flex size-8 items-center justify-center rounded-full border border-background/20 text-background/70 transition hover:border-background/50 hover:text-background"
+              >
+                <SocialIcon className="size-3.5" aria-hidden />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="mx-auto mt-6 flex max-w-[860px] items-center gap-1" role="tablist" aria-label="Choose a founder">
+          {FELLOW_FOUNDERS.map((founder, index) => (
+            <button
+              key={founder.name}
+              type="button"
+              role="tab"
+              aria-selected={index === active}
+              aria-label={`${founder.name}, ${founder.company}`}
+              onClick={() => setActive(index)}
+              className="group flex h-6 min-w-0 flex-1 items-center"
+            >
+              <span
+                className={`block h-px w-full transition-colors duration-300 ${
+                  index === active ? "bg-bottle" : "bg-background/25 group-hover:bg-background/60"
+                }`}
+              />
+            </button>
+          ))}
+        </div>
       </div>
-    </article>
+    </div>
   );
 }
 
