@@ -143,6 +143,7 @@ import liveVinyasa from "@/assets/live-venture-founders/vinyasa.webp.asset.json"
 import liveBeyondVeda from "@/assets/live-venture-founders/beyond-veda.webp.asset.json";
 import { onScrollFrame } from "@/lib/scroll-driver";
 import { Button } from "@/components/ui/button";
+import PlacementsFooter from "@/components/placements/PlacementsFooter";
 
 const NAV: { id: string; label: string }[] = [
   { id: "top", label: "Hero" },
@@ -5955,6 +5956,7 @@ function StartupsPage() {
         </div>
       </Section>
       </div>
+      <PlacementsFooter />
       <div aria-hidden className="fixed inset-x-0 bottom-0 -z-10 h-28 bg-foreground md:hidden" />
     </main>
   );
