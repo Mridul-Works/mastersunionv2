@@ -4961,6 +4961,11 @@ function StartupsPage() {
           </Reveal>
         </div>
 
+        <div
+          role="separator"
+          aria-hidden="true"
+          className="mt-10 h-px w-full bg-background/15"
+        />
         <SharkTankLogoBar />
         <SharkTankShowcase active={selectedShark} onActiveChange={setSelectedShark} />
       </Section>
