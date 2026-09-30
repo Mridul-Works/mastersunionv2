@@ -2215,9 +2215,13 @@ function QuoteWall({ people }: { people: typeof TESTIMONIALS }) {
         </figure>
       </Reveal>
 
-      <div className="mt-10 grid grid-cols-1 gap-x-7 gap-y-9 sm:mt-12 sm:grid-cols-2 sm:gap-y-10 md:mt-16 md:grid-cols-3 md:gap-x-9 lg:gap-x-12">
+      <div className="mt-10 grid grid-cols-1 gap-x-7 gap-y-9 sm:mt-12 sm:grid-cols-2 sm:gap-y-10 md:mt-16 md:gap-x-9 lg:grid-cols-3 lg:gap-x-12">
         {rest.map((p, i) => (
-          <Reveal key={p.name} delay={i * 0.06} className="h-full">
+          <Reveal
+            key={p.name}
+            delay={i * 0.06}
+            className={i === rest.length - 1 ? "h-full sm:col-span-2 lg:col-span-1" : "h-full"}
+          >
             <figure className="group flex h-full flex-col transition-transform duration-500 ease-out hover:-translate-y-1">
               <div className="relative border-t border-background/15 pt-4">
                 <span
