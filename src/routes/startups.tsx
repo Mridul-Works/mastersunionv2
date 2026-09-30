@@ -4291,6 +4291,7 @@ function SharkTankShowcase({
 }) {
   const reduceMotion = useReducedMotion();
   const showcaseRef = useRef<HTMLDivElement>(null);
+  const touchStart = useRef({ x: 0, y: 0 });
   const lastGestureAt = useRef(0);
   const activeFounder = SHARK_TANK[active];
 
@@ -4305,51 +4306,6 @@ function SharkTankShowcase({
     move(direction);
   };
 
-  useEffect(() => {
-    const element = showcaseRef.current;
-    if (!element) return;
-    let touchStartX = 0;
-    let touchStartY = 0;
-
-    const isVisible = () => {
-      const rect = element.getBoundingClientRect();
-      return rect.top < window.innerHeight * 0.85 && rect.bottom > window.innerHeight * 0.15;
-    };
-    const onKey = (event: KeyboardEvent) => {
-      if (!isVisible() || (event.key !== "ArrowLeft" && event.key !== "ArrowRight")) return;
-      event.preventDefault();
-      move(event.key === "ArrowRight" ? 1 : -1);
-    };
-    const onWheel = (event: WheelEvent) => {
-      if (Math.abs(event.deltaX) < 28 || Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
-      event.preventDefault();
-      moveFromGesture(event.deltaX > 0 ? 1 : -1);
-    };
-    const onTouchStart = (event: TouchEvent) => {
-      touchStartX = event.touches[0]?.clientX ?? 0;
-      touchStartY = event.touches[0]?.clientY ?? 0;
-    };
-    const onTouchEnd = (event: TouchEvent) => {
-      const touch = event.changedTouches[0];
-      if (!touch) return;
-      const deltaX = touch.clientX - touchStartX;
-      const deltaY = touch.clientY - touchStartY;
-      if (Math.abs(deltaX) < 45 || Math.abs(deltaX) <= Math.abs(deltaY) * 1.25) return;
-      moveFromGesture(deltaX < 0 ? 1 : -1);
-    };
-
-    window.addEventListener("keydown", onKey);
-    element.addEventListener("wheel", onWheel, { passive: false });
-    element.addEventListener("touchstart", onTouchStart, { passive: true });
-    element.addEventListener("touchend", onTouchEnd, { passive: true });
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      element.removeEventListener("wheel", onWheel);
-      element.removeEventListener("touchstart", onTouchStart);
-      element.removeEventListener("touchend", onTouchEnd);
-    };
-  }, [active, reduceMotion]);
-
   if (!activeFounder) return null;
 
   return (
@@ -4360,6 +4316,32 @@ function SharkTankShowcase({
         role="region"
         aria-label="Shark Tank India founders"
         tabIndex={0}
+        onKeyDownCapture={(event) => {
+          if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+          event.preventDefault();
+          event.stopPropagation();
+          move(event.key === "ArrowRight" ? 1 : -1);
+        }}
+        onWheelCapture={(event) => {
+          if (Math.abs(event.deltaX) < 28 || Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+          event.preventDefault();
+          event.stopPropagation();
+          moveFromGesture(event.deltaX > 0 ? 1 : -1);
+        }}
+        onTouchStartCapture={(event) => {
+          touchStart.current = {
+            x: event.touches[0]?.clientX ?? 0,
+            y: event.touches[0]?.clientY ?? 0,
+          };
+        }}
+        onTouchEndCapture={(event) => {
+          const touch = event.changedTouches[0];
+          if (!touch) return;
+          const deltaX = touch.clientX - touchStart.current.x;
+          const deltaY = touch.clientY - touchStart.current.y;
+          if (Math.abs(deltaX) < 45 || Math.abs(deltaX) <= Math.abs(deltaY) * 1.25) return;
+          moveFromGesture(deltaX < 0 ? 1 : -1);
+        }}
       >
         <div className="relative h-[390px] overflow-hidden sm:h-[470px] lg:h-[540px]" aria-live="polite">
           {SHARK_TANK.map((founder, index) => {
