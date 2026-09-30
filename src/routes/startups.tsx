@@ -4310,11 +4310,10 @@ function SharkTankShowcase({
     const element = showcaseRef.current;
     if (!element) return;
     const onKey = (event: KeyboardEvent) => {
-      const rect = element.getBoundingClientRect();
-      const visible = rect.top < window.innerHeight * 0.85 && rect.bottom > window.innerHeight * 0.15;
-      if (!visible || (event.key !== "ArrowLeft" && event.key !== "ArrowRight")) return;
+      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
       event.preventDefault();
       event.stopPropagation();
+      event.stopImmediatePropagation();
       move(event.key === "ArrowRight" ? 1 : -1);
     };
     const onWheel = (event: WheelEvent) => {
@@ -4326,10 +4325,10 @@ function SharkTankShowcase({
       move(event.deltaX > 0 ? 1 : -1);
     };
 
-    document.addEventListener("keydown", onKey, true);
+    element.addEventListener("keydown", onKey, true);
     element.addEventListener("wheel", onWheel, { passive: false });
     return () => {
-      document.removeEventListener("keydown", onKey, true);
+      element.removeEventListener("keydown", onKey, true);
       element.removeEventListener("wheel", onWheel);
     };
   }, [active, reduceMotion]);
