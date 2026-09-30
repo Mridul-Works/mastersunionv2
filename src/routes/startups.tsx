@@ -1401,14 +1401,14 @@ function Section({
     <section id={id} className={`relative ${id === "spark" || id === "doing" || id === "dropshipping" || id === "people" ? "overflow-x-clip overflow-y-visible" : "overflow-hidden"} text-background ${surfaceClass}`}>
       {/* Homepage section rule — thin inset hairline floating above each section */}
       {id !== "journey" && id !== "ventures" ? <SectionRule heightClass={ruleHeightClass} /> : null}
-      {id ? (
+      {!id || hideWatermark ? null : (
         <span
           aria-hidden
           className="pointer-events-none absolute -right-3 top-6 select-none font-display text-[clamp(4.5rem,14vw,12rem)] font-light uppercase leading-none text-background/[0.025] md:right-6 md:top-8"
         >
           {id.replace("-", " ")}
         </span>
-      ) : null}
+      )}
       <div className={`relative z-[1] mx-auto w-full ${container} ${padClass}`}>{children}</div>
     </section>
   );
