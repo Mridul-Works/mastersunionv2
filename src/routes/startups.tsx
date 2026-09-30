@@ -1369,6 +1369,7 @@ function Section({
   container = "max-w-7xl",
   tightTop = false,
   tightBottom = false,
+  snugBottom = false,
   ruleHeightClass,
   hideWatermark = false,
   children,
@@ -1378,6 +1379,8 @@ function Section({
   container?: string;
   tightTop?: boolean;
   tightBottom?: boolean;
+  /** Pair with tightBottom for an extra-snug gap below the section's last element. */
+  snugBottom?: boolean;
   /** Pass "h-px" when a section's rule must read as a visible hairline. */
   ruleHeightClass?: string;
   /** Suppress the auto corner wordmark (used when the section draws its own giant word). */
@@ -1391,12 +1394,14 @@ function Section({
         ? "bg-foreground"
         : "bg-foreground";
   const padClass = tightTop && tightBottom
-    ? "px-4 pt-10 pb-12 sm:px-7 sm:pt-12 sm:pb-16 md:px-8 md:pt-14 md:pb-20 lg:px-12 lg:pt-16 lg:pb-24"
+    ? "px-4 pt-4 pb-12 sm:px-7 sm:pt-5 sm:pb-16 md:px-8 md:pt-6 md:pb-20 lg:px-12 lg:pt-8 lg:pb-24"
     : tightTop
       ? "px-4 pt-10 pb-16 sm:px-7 sm:pt-12 sm:pb-20 md:px-8 md:pt-14 md:pb-24 lg:px-12 lg:pt-16 lg:pb-32"
-      : tightBottom
-        ? "px-4 pt-16 pb-12 sm:px-7 sm:pt-20 sm:pb-16 md:px-8 md:pt-24 md:pb-20 lg:px-12 lg:pt-32 lg:pb-24"
-        : "px-4 py-16 sm:px-7 sm:py-20 md:px-8 md:py-24 lg:px-12 lg:py-32";
+    : tightBottom
+      ? snugBottom
+        ? "px-4 pt-16 pb-6 sm:px-7 sm:pt-20 sm:pb-8 md:px-8 md:pt-24 md:pb-10 lg:px-12 lg:pt-32 lg:pb-12"
+        : "px-4 pt-16 pb-12 sm:px-7 sm:pt-20 sm:pb-16 md:px-8 md:pt-24 md:pb-20 lg:px-12 lg:pt-32 lg:pb-24"
+      : "px-4 py-16 sm:px-7 sm:py-20 md:px-8 md:py-24 lg:px-12 lg:py-32";
   return (
     <section id={id} className={`relative ${id === "spark" || id === "doing" || id === "dropshipping" || id === "people" ? "overflow-x-clip overflow-y-visible" : "overflow-hidden"} text-background ${surfaceClass}`}>
       {/* Homepage section rule — thin inset hairline floating above each section */}
@@ -3682,7 +3687,7 @@ function InvestmentFundSection() {
   }, [videoOpen]);
 
   return (
-    <Section id="fund" tone="dark" ruleHeightClass="h-px">
+    <Section id="fund" tone="dark" tightBottom snugBottom ruleHeightClass="h-px">
       <div className="grid gap-5 md:grid-cols-[minmax(0,1fr)_minmax(0,340px)] md:items-end md:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,400px)] lg:gap-14">
         <Reveal>
           <div className="min-w-0">
@@ -6087,7 +6092,7 @@ function StartupsPage() {
           >
             <Parallax strength={60}>BUILD</Parallax>
           </div>
-          <Reveal className="relative z-[1] py-14 sm:py-20 md:py-24">
+          <Reveal className="relative z-[1] pt-2 pb-14 sm:pt-3 sm:pb-20 md:pt-4 md:pb-24">
             <div className="overflow-hidden rounded-[18px] border border-background/20 bg-background/[0.08] px-6 py-10 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.85)] backdrop-blur-2xl backdrop-saturate-150 sm:px-10 sm:py-12 md:px-14 md:py-16">
               <h2 className="max-w-[14ch] text-balance text-[clamp(2rem,6vw,4.75rem)] font-light leading-[1.04] md:leading-[1.02] tracking-normal">
                 WHAT WILL YOU BUILD?
