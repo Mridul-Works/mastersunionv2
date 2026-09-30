@@ -4298,7 +4298,7 @@ function SharkTankShowcase({
   };
 
   return (
-    <Reveal delay={0.12} className="mt-10">
+    <div className="mt-10">
       <div
         className="outline-none focus-visible:ring-1 focus-visible:ring-background/50"
         role="region"
@@ -4421,7 +4421,7 @@ function SharkTankShowcase({
           ))}
         </div>
       </div>
-    </Reveal>
+    </div>
   );
 }
 
