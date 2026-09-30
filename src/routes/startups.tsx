@@ -73,6 +73,22 @@ import hsslReel3 from "@/assets/hssl-reel-3.mp4.asset.json";
 import hsslReel3Poster from "@/assets/hssl-thumbnail-3.webp.asset.json";
 import sparkVideoThumb from "@/assets/spark-video-thumb.jpg";
 
+import muifBanner from "@/assets/muif/banner.webp.asset.json";
+import muifBannerMob from "@/assets/muif/banner-mob.webp.asset.json";
+import muifPerf from "@/assets/muif/perf.webp.asset.json";
+import muifArchit from "@/assets/muif/t-Archit.webp.asset.json";
+import muifMehul from "@/assets/muif/t-mehulJain.webp.asset.json";
+import muifAnkit from "@/assets/muif/t-AnkitSharma.webp.asset.json";
+import muifVedant from "@/assets/muif/t-vedant.webp.asset.json";
+import muifKautak from "@/assets/muif/t-kautak.webp.asset.json";
+import muifDevansh from "@/assets/muif/t-Devansh.webp.asset.json";
+import muifNankie from "@/assets/muif/t-nankie.webp.asset.json";
+import muifPradyuman from "@/assets/muif/t-pradyuman.webp.asset.json";
+import muifIshaan from "@/assets/muif/t-Ishaan.webp.asset.json";
+import muifHarsh from "@/assets/muif/t-HarshYadav.webp.asset.json";
+
+
+
 import sparkSeedsAiFounders from "@/assets/spark/seedsai-founders.jpg.asset.json";
 import sparkEightFounders from "@/assets/spark/eight-founders.jpg.asset.json";
 import ventureBlueBrew from "@/assets/venture-logos/BlueBrew.png.asset.json";
