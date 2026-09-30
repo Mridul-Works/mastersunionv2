@@ -924,6 +924,7 @@ function Section({
   container = "max-w-7xl",
   tightTop = false,
   tightBottom = false,
+  ruleHeightClass,
   children,
 }: {
   id?: string;
@@ -931,6 +932,8 @@ function Section({
   container?: string;
   tightTop?: boolean;
   tightBottom?: boolean;
+  /** Pass "h-px" when a section's rule must read as a visible hairline. */
+  ruleHeightClass?: string;
   children: ReactNode;
 }) {
   const surfaceClass =
@@ -949,7 +952,7 @@ function Section({
   return (
     <section id={id} className={`relative ${id === "spark" || id === "doing" || id === "dropshipping" || id === "people" ? "overflow-x-clip overflow-y-visible" : "overflow-hidden"} text-background ${surfaceClass}`}>
       {/* Homepage section rule — thin inset hairline floating above each section */}
-      {id !== "journey" && id !== "ventures" ? <SectionRule /> : null}
+      {id !== "journey" && id !== "ventures" ? <SectionRule heightClass={ruleHeightClass} /> : null}
       {id ? (
         <span
           aria-hidden
@@ -4528,7 +4531,7 @@ function SharkTankLogoBar() {
               <div
                 key={company}
                 title={company}
-                className="group flex h-14 items-center justify-center bg-foreground px-3 transition-colors duration-300 hover:bg-card sm:h-[74px] sm:px-4"
+                className="group flex h-14 items-center justify-center bg-foreground px-3 transition-colors duration-300 hover:bg-foreground/75 sm:h-[74px] sm:px-4"
               >
                 <img
                   decoding="async"
@@ -4967,7 +4970,7 @@ function StartupsPage() {
         <SharkTankShowcase active={selectedShark} onActiveChange={setSelectedShark} />
       </Section>
 
-      <Section id="hssl" tone="paper">
+      <Section id="hssl" tone="paper" ruleHeightClass="h-px">
         <div className="grid gap-5 md:grid-cols-[minmax(0,1fr)_minmax(0,340px)] md:items-end md:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,400px)] lg:gap-14">
           <Reveal>
             <div className="min-w-0">
