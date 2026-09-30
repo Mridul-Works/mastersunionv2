@@ -3898,7 +3898,6 @@ function VenturesMosaicSection() {
           ))}
         </div>
       </div>
-      <div aria-hidden className="spectrum-rule pointer-events-none mt-14 h-px w-full sm:mt-16" />
     </Section>
   );
 }
