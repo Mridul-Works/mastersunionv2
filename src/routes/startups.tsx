@@ -4309,6 +4309,13 @@ function SharkTankShowcase({
   useEffect(() => {
     const element = showcaseRef.current;
     if (!element) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+      const rect = element.getBoundingClientRect();
+      if (rect.top >= window.innerHeight * 0.85 || rect.bottom <= window.innerHeight * 0.15) return;
+      event.preventDefault();
+      move(event.key === "ArrowRight" ? 1 : -1);
+    };
     const onWheel = (event: WheelEvent) => {
       if (Math.abs(event.deltaX) < 28 || Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
       event.preventDefault();
@@ -4318,8 +4325,10 @@ function SharkTankShowcase({
       move(event.deltaX > 0 ? 1 : -1);
     };
 
+    window.addEventListener("keyup", onKey);
     element.addEventListener("wheel", onWheel, { passive: false });
     return () => {
+      window.removeEventListener("keyup", onKey);
       element.removeEventListener("wheel", onWheel);
     };
   }, [active, reduceMotion]);
@@ -4334,12 +4343,6 @@ function SharkTankShowcase({
         role="region"
         aria-label="Shark Tank India founders"
         tabIndex={0}
-        onKeyDown={(event) => {
-          if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
-          event.preventDefault();
-          const direction = event.key === "ArrowRight" ? 1 : -1;
-          document.querySelector<HTMLButtonElement>(`[data-shark-direction="${direction}"]`)?.click();
-        }}
         onTouchStartCapture={(event) => {
           touchStart.current = {
             x: event.touches[0]?.clientX ?? 0,
