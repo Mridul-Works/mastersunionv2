@@ -1369,6 +1369,7 @@ function Section({
   container = "max-w-7xl",
   tightTop = false,
   tightBottom = false,
+  snugBottom = false,
   ruleHeightClass,
   hideWatermark = false,
   children,
