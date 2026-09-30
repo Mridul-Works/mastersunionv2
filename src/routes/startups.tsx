@@ -4736,6 +4736,140 @@ function CtaButton({
   );
 }
 
+const FOOTER_COLUMNS = [
+  {
+    title: "Programs",
+    links: [
+      { label: "PGP in Tech & Business Management", href: "https://mastersunion.org/pgp-technology-and-business-management" },
+      { label: "PGP in Quantitative Finance", href: "/programmes/undergraduate/finance-and-economics" },
+      { label: "UG in Tech & Business Management", href: "https://mastersunion.org/ug-technology-and-business-management" },
+      { label: "Executive Programs", href: "/programmes/executive/pgp-rise-general-management" },
+    ],
+  },
+  {
+    title: "Campus",
+    links: [
+      { label: "Faculty", href: "/faculty" },
+      { label: "Mentors", href: "/mentors" },
+      { label: "Outclass", href: "/how-we-teach" },
+      { label: "Food Lab", href: "/food-lab" },
+      { label: "MU Ventures", href: "/mu-ventures" },
+    ],
+  },
+  {
+    title: "Connect",
+    links: [
+      { label: "Admissions", href: "/applications_center" },
+      { label: "Press & Media", href: "https://mastersunion.org/about-us#newsSetion" },
+      { label: "Careers at MU", href: "https://mastersunion.org/careers" },
+      { label: "Brochure (PDF)", href: entrepreneurshipReport2021.url },
+    ],
+  },
+] as const;
+
+function StartupFooterColumn({
+  title,
+  links,
+}: {
+  title: string;
+  links: readonly { label: string; href: string }[];
+}) {
+  return (
+    <div className="min-w-0 md:col-span-2 lg:col-span-2">
+      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-background sm:text-[11px] sm:tracking-[0.22em]">
+        {title}
+      </p>
+      <ul className="mt-4 space-y-2.5 sm:mt-5 sm:space-y-3">
+        {links.map(({ label, href }) => (
+          <li key={label}>
+            <a
+              href={href}
+              className="block text-[12px] leading-snug text-background/70 transition-colors hover:text-background sm:text-[13px]"
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function StartupsFooter() {
+  const socials = [
+    { label: "Instagram", href: "https://www.instagram.com/masters.union/", Icon: Instagram },
+    { label: "LinkedIn", href: "https://www.linkedin.com/school/mastersunion/", Icon: Linkedin },
+    { label: "YouTube", href: "https://www.youtube.com/@MastersUnion", Icon: Youtube },
+    { label: "X", href: "https://twitter.com/themastersunion", Icon: Twitter },
+  ] as const;
+
+  return (
+    <footer className="border-t border-background/15 bg-foreground pb-[max(5.5rem,env(safe-area-inset-bottom))] text-background md:pb-24">
+      <div className="mx-auto max-w-[1440px] px-5 pb-7 pt-14 sm:px-6 sm:pb-11 sm:pt-16 md:px-10 md:pb-12 md:pt-20">
+        <div className="grid grid-cols-2 gap-x-5 gap-y-9 sm:grid-cols-3 md:grid-cols-12 md:gap-x-6 md:gap-y-10">
+          <div className="col-span-2 border-b border-background/10 pb-8 sm:col-span-3 md:col-span-5 md:border-b-0 md:pb-0">
+            <img
+              decoding="async"
+              loading="lazy"
+              src={footerLogoAsset.url}
+              alt="Masters' Union"
+              className="no-img-zoom h-8 w-auto brightness-0 invert sm:h-10 md:h-12"
+            />
+            <p className="mt-5 max-w-sm text-[12px] leading-relaxed text-background/55 sm:mt-6 sm:text-[13px]">
+              DLF Cyberpark, Phase III
+              <br />
+              Gurugram 122002, India
+              <br />
+              <a href="mailto:hello@mastersunion.org" className="transition-colors hover:text-background">
+                hello@mastersunion.org
+              </a>
+            </p>
+            <div className="mt-5 flex items-center gap-2.5 sm:mt-6">
+              {socials.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  className="flex size-10 shrink-0 items-center justify-center rounded-none border border-background/15 text-background/60 transition-colors hover:border-background hover:text-background"
+                >
+                  <Icon className="size-4" />
+                </a>
+              ))}
+            </div>
+            <div className="mt-7 sm:mt-8">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-background/50 sm:text-[11px]">
+                Accreditations &amp; Memberships
+              </p>
+              <img
+                decoding="async"
+                loading="lazy"
+                src="https://cdn.unionstack.in/uploads/18092026/v1/Frame13213177781.webp"
+                alt="Masters' Union accreditations and memberships"
+                className="no-img-zoom mt-3 h-10 w-auto max-w-full object-contain object-left sm:h-12"
+              />
+            </div>
+          </div>
+
+          {FOOTER_COLUMNS.map((column) => (
+            <StartupFooterColumn key={column.title} {...column} />
+          ))}
+        </div>
+
+        <div className="mt-9 grid gap-4 border-t border-background/10 pt-6 text-[9px] uppercase leading-relaxed tracking-[0.16em] text-background/40 sm:text-[10px] md:mt-10 md:grid-cols-[minmax(0,1fr)_auto] md:items-center md:gap-8 md:pt-7 md:text-[11px] md:tracking-[0.18em]">
+          <span className="min-w-0">© 2026 Masters&apos; Union Education Pvt. Ltd.</span>
+          <div className="flex min-w-0 flex-wrap gap-x-5 gap-y-2 md:justify-end">
+            <a href="https://mastersunion.org/privacy-policy" className="hover:text-background/80">Privacy Policy</a>
+            <a href="https://mastersunion.org/terms-and-conditions" className="hover:text-background/80">Terms &amp; Conditions</a>
+            <a href="https://mastersunion.org/cookie-policy" className="hover:text-background/80">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
 function triggerFileDownload(href: string, filename: string) {
   const link = document.createElement("a");
   link.href = href;
