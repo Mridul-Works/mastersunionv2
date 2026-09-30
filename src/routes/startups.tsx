@@ -73,6 +73,22 @@ import hsslReel3 from "@/assets/hssl-reel-3.mp4.asset.json";
 import hsslReel3Poster from "@/assets/hssl-thumbnail-3.webp.asset.json";
 import sparkVideoThumb from "@/assets/spark-video-thumb.jpg";
 
+import muifBanner from "@/assets/muif/banner.webp.asset.json";
+import muifBannerMob from "@/assets/muif/banner-mob.webp.asset.json";
+import muifPerf from "@/assets/muif/perf.webp.asset.json";
+import muifArchit from "@/assets/muif/t-Archit.webp.asset.json";
+import muifMehul from "@/assets/muif/t-mehulJain.webp.asset.json";
+import muifAnkit from "@/assets/muif/t-AnkitSharma.webp.asset.json";
+import muifVedant from "@/assets/muif/t-vedant.webp.asset.json";
+import muifKautak from "@/assets/muif/t-kautak.webp.asset.json";
+import muifDevansh from "@/assets/muif/t-Devansh.webp.asset.json";
+import muifNankie from "@/assets/muif/t-nankie.webp.asset.json";
+import muifPradyuman from "@/assets/muif/t-pradyuman.webp.asset.json";
+import muifIshaan from "@/assets/muif/t-Ishaan.webp.asset.json";
+import muifHarsh from "@/assets/muif/t-HarshYadav.webp.asset.json";
+
+
+
 import sparkSeedsAiFounders from "@/assets/spark/seedsai-founders.jpg.asset.json";
 import sparkEightFounders from "@/assets/spark/eight-founders.jpg.asset.json";
 import ventureBlueBrew from "@/assets/venture-logos/BlueBrew.png.asset.json";
@@ -3525,7 +3541,248 @@ function ByTheNumbers() {
   );
 }
 
+// ── Masters' Union Investment Fund ────────────────────────────────────────
+const MUIF_VIDEO_ID = "C_6lIbplcy8";
+
+const MUIF_TEAM: { name: string; role: string; photo: string; linkedin: string }[] = [
+  { name: "Archit Bhargava", role: "President", photo: muifArchit.url, linkedin: "https://www.linkedin.com/in/architbhargava20/" },
+  { name: "Mehul Jain", role: "President", photo: muifMehul.url, linkedin: "https://www.linkedin.com/in/mehul-jain-s/" },
+  { name: "Ankit Sharma", role: "Core Member", photo: muifAnkit.url, linkedin: "https://www.linkedin.com/in/ankitsharma1498/" },
+  { name: "Vedant Singhania", role: "Core Member", photo: muifVedant.url, linkedin: "https://www.linkedin.com/in/singhaniavedant/" },
+  { name: "Kautak Sheth", role: "Core Member", photo: muifKautak.url, linkedin: "https://www.linkedin.com/in/kautuk-sheth/" },
+  { name: "Devansh Shukla", role: "Core Member", photo: muifDevansh.url, linkedin: "https://www.linkedin.com/in/devanshshukla1996/" },
+  { name: "Nankie Bawa", role: "Core Member", photo: muifNankie.url, linkedin: "https://www.linkedin.com/in/nankie-bawa-9b2580160/" },
+  { name: "Pradyuman Beriwal", role: "Core Member", photo: muifIshaan.url, linkedin: "https://www.linkedin.com/in/pradyumnberiwal/" },
+  { name: "Ishaan Godha", role: "Core Member", photo: muifHarsh.url, linkedin: "https://www.linkedin.com/in/ishaan-godha/" },
+  { name: "Harsh Yadav", role: "Core Member", photo: muifPradyuman.url, linkedin: "https://www.linkedin.com/in/harshy-yadav-hy/" },
+];
+
+const MUIF_REPORTS = [
+  { label: "MUIF X Sovrenn Perspective Report", href: "https://files.mastersunion.link/uploads/02072025/v1/SovrennxMUIFreport_.pdf", primary: true },
+  { label: "MUIF Annual Performance Report", href: "https://files.mastersunion.link/resources/Annual%20Report-1.pdf", primary: false },
+];
+
+function InvestmentFundSection() {
+  const reduceMotion = useReducedMotion();
+  const [videoOpen, setVideoOpen] = useState(false);
+
+  useEffect(() => {
+    if (!videoOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setVideoOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [videoOpen]);
+
+  return (
+    <Section id="fund" tone="dark">
+      <div className="grid gap-5 md:grid-cols-[minmax(0,1fr)_minmax(0,340px)] md:items-end md:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,400px)] lg:gap-14">
+        <Reveal>
+          <div className="min-w-0">
+            <Eyebrow dark icon={Briefcase}>Investment Fund</Eyebrow>
+            <h2 className="mt-5 max-w-[20ch] font-display text-[clamp(1.9rem,4.1vw,3.4rem)] font-medium leading-[1.08] tracking-[-0.02em] text-balance">
+              What is the Masters&apos; Union{" "}
+              <span className="font-serif text-normal italic">Investment Fund</span>?
+            </h2>
+          </div>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <p className="max-w-[44ch] text-[13px] leading-[1.6] text-background/65 md:text-[15px] md:leading-[1.75]">
+            A student-run fund backing Masters&apos; Union ventures. Watch the film, meet the team behind
+            it, and read the published performance reports.
+          </p>
+        </Reveal>
+      </div>
+
+      {/* Film */}
+      <Reveal delay={0.05} className="mt-10 sm:mt-12 md:mt-14">
+        <button
+          type="button"
+          onClick={() => setVideoOpen(true)}
+          className="group relative block w-full overflow-hidden border border-background/12 bg-background/[0.03] text-left"
+          aria-label="Play the Masters' Union Investment Fund film"
+        >
+          <img
+            src={muifBanner.url}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="no-img-zoom hidden aspect-[16/7] w-full object-cover sm:block"
+          />
+          <img
+            src={muifBannerMob.url}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="no-img-zoom aspect-square w-full object-cover sm:hidden"
+          />
+          <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10" />
+          <div className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-4 p-5 sm:p-7 md:p-9">
+            <div className="min-w-0">
+              <div className="font-mono text-[9px] font-semibold uppercase tracking-[0.24em] text-white/60 sm:text-[10px]">
+                The Film
+              </div>
+              <div className="mt-2 max-w-[18ch] font-display text-[clamp(1.2rem,2.6vw,2rem)] font-medium leading-[1.1] text-white">
+                Masters&apos; Union Investment Fund
+              </div>
+            </div>
+            <span className="inline-flex items-center gap-3 border border-white/25 bg-black/40 px-4 py-2.5 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-sm transition-colors duration-300 group-hover:bg-white group-hover:text-black">
+              <Play className="size-3.5 fill-current" strokeWidth={0} />
+              Watch Video
+            </span>
+          </div>
+        </button>
+      </Reveal>
+
+      {/* Team */}
+      <div role="separator" aria-hidden="true" className="mt-14 h-px w-full bg-background/15 sm:mt-16" />
+
+      <Reveal delay={0.05} className="mt-10 sm:mt-12">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <h3 className="font-display text-[clamp(1.35rem,2.6vw,2rem)] font-medium leading-[1.1] tracking-[-0.015em]">
+            Team behind the <span className="font-serif text-normal italic">Investment Fund</span>
+          </h3>
+          <span className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-background/45 sm:text-[10px]">
+            {MUIF_TEAM.length} members
+          </span>
+        </div>
+      </Reveal>
+
+      <div className="mt-7 grid grid-cols-2 gap-[3px] sm:grid-cols-3 md:mt-9 lg:grid-cols-5">
+        {MUIF_TEAM.map((m, i) => (
+          <Reveal key={m.name} delay={0.03 + (i % 5) * 0.03}>
+            <a
+              href={m.linkedin}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="group relative block overflow-hidden bg-background/[0.04] transition-colors duration-300 hover:bg-background/[0.08]"
+            >
+              <img
+                src={m.photo}
+                alt={m.name}
+                loading="lazy"
+                decoding="async"
+                className="no-img-zoom aspect-[4/5] w-full object-cover"
+              />
+              <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 p-3 sm:p-4">
+                <div className="min-w-0">
+                  <div className="truncate font-display text-[13px] font-medium leading-tight text-white sm:text-[14px]">
+                    {m.name}
+                  </div>
+                  <div className="mt-1 font-mono text-[8px] font-semibold uppercase tracking-[0.2em] text-white/60 sm:text-[9px]">
+                    {m.role}
+                  </div>
+                </div>
+                <span className="inline-flex size-7 shrink-0 items-center justify-center border border-white/25 text-white/75 transition-colors duration-300 group-hover:bg-white group-hover:text-black">
+                  <Linkedin className="size-3.5" strokeWidth={1.75} />
+                </span>
+              </div>
+            </a>
+          </Reveal>
+        ))}
+      </div>
+
+      {/* Portfolio performance */}
+      <div role="separator" aria-hidden="true" className="mt-14 h-px w-full bg-background/15 sm:mt-16" />
+
+      <div className="mt-10 grid gap-8 sm:mt-12 lg:grid-cols-12 lg:items-center lg:gap-12">
+        <div className="lg:col-span-5">
+          <Reveal>
+            <h3 className="max-w-[16ch] font-display text-[clamp(1.35rem,2.6vw,2rem)] font-medium leading-[1.1] tracking-[-0.015em]">
+              Our portfolio <span className="font-serif text-normal italic">performance</span>
+            </h3>
+          </Reveal>
+          <Reveal delay={0.06}>
+            <div className="mt-6 flex flex-col gap-3 sm:mt-7">
+              {MUIF_REPORTS.map((r) => (
+                <a
+                  key={r.label}
+                  href={r.href}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className={`group inline-flex items-center justify-between gap-4 rounded-full border px-5 py-3 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] transition-colors duration-300 ${
+                    r.primary
+                      ? "border-background/25 bg-background text-foreground hover:bg-background/85"
+                      : "border-background/25 text-background/80 hover:bg-background hover:text-foreground"
+                  }`}
+                >
+                  <span className="min-w-0">{r.label}</span>
+                  <Download className="size-4 shrink-0 transition-transform duration-300 group-hover:translate-y-0.5" strokeWidth={1.75} />
+                </a>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+
+        <Reveal delay={0.08} className="lg:col-span-7">
+          <div className="overflow-hidden">
+            <img
+              src={muifPerf.url}
+              alt="Masters' Union Investment Fund portfolio performance dashboard"
+              loading="lazy"
+              decoding="async"
+              className="no-img-zoom w-full object-cover"
+            />
+          </div>
+        </Reveal>
+      </div>
+
+      {typeof document !== "undefined" &&
+        createPortal(
+          <AnimatePresence>
+            {videoOpen && (
+              <motion.div
+                role="dialog"
+                aria-modal="true"
+                aria-label="Masters' Union Investment Fund video"
+                initial={reduceMotion ? false : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: reduceMotion ? 0 : 0.3 }}
+                className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm sm:p-8"
+                onClick={() => setVideoOpen(false)}
+              >
+                <motion.div
+                  initial={reduceMotion ? false : { opacity: 0, scale: 0.94, y: 12 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.96, y: 8 }}
+                  transition={{ duration: reduceMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  className="aspect-video w-full max-w-5xl overflow-hidden rounded-[6px] border border-white/15 bg-black shadow-2xl"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <iframe
+                    src={`https://www.youtube.com/embed/${MUIF_VIDEO_ID}?autoplay=1&rel=0`}
+                    title="Masters' Union Investment Fund"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="h-full w-full"
+                  />
+                </motion.div>
+                <motion.button
+                  type="button"
+                  aria-label="Close video"
+                  onClick={() => setVideoOpen(false)}
+                  initial={reduceMotion ? false : { opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ delay: reduceMotion ? 0 : 0.2, duration: reduceMotion ? 0 : 0.2 }}
+                  className="absolute right-4 top-4 inline-flex size-10 items-center justify-center rounded-full border border-white/25 text-white/80 transition-colors hover:bg-white/10 hover:text-white sm:right-6 sm:top-6"
+                >
+                  <X className="size-5" strokeWidth={2} />
+                </motion.button>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body,
+        )}
+    </Section>
+  );
+}
+
 function VenturesMosaicSection() {
+
 
   const foundersGridRef = useRef<HTMLDivElement | null>(null);
   const prefersReducedMotion = useReducedMotion();
@@ -5564,6 +5821,9 @@ function StartupsPage() {
       </Section>
 
       <VenturesMosaicSection />
+
+      <InvestmentFundSection />
+
 
 
       <Section id="cta" tone="dark" container="max-w-4xl">
