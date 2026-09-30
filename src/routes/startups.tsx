@@ -1293,6 +1293,11 @@ function FounderStoriesGallery() {
           </p>
         </div>
 
+        <div
+          role="separator"
+          aria-hidden="true"
+          className="mt-10 h-px w-full bg-background/15"
+        />
         <div ref={magazineRef} role="region" aria-roledescription="carousel" aria-label="Founder stories magazine — use left and right arrow keys or swipe to turn pages" className="relative mt-10 touch-pan-y [overflow-anchor:none] [perspective:2200px] sm:mt-12 md:mt-14">
           <article style={{ ["--accent" as string]: STORY_ACCENTS[activeStory % STORY_ACCENTS.length], ["--paper" as string]: STORY_PAPER, backgroundColor: "var(--paper)" }} className="no-img-zoom relative grid h-[110rem] grid-rows-[minmax(0,1.3fr)_minmax(0,1fr)] overflow-hidden rounded-[2px] text-foreground shadow-2xl sm:h-[82rem] md:h-[63rem] lg:h-[52rem] md:grid-cols-2 md:grid-rows-1 md:overflow-visible md:[transform-style:preserve-3d]">
               <div style={{ backgroundColor: "var(--paper)" }} className="relative flex min-h-0 flex-col overflow-hidden border-b border-foreground/15 px-6 pb-5 pt-6 sm:px-9 sm:pb-6 sm:pt-7 md:origin-right md:rotate-y-[1.35deg] md:rounded-l-[5px] md:border-b-0 md:px-10 md:pb-6 md:shadow-[-16px_18px_30px_color-mix(in_oklab,var(--foreground)_20%,transparent)] lg:px-14 lg:pt-8">
@@ -2849,6 +2854,11 @@ function DropshippingSection() {
         </Reveal>
       </div>
 
+      <div
+        role="separator"
+        aria-hidden="true"
+        className="mt-10 h-px w-full bg-background/15"
+      />
       <Reveal delay={0.18} className="mt-8 sm:mt-10">
         <div className="overflow-hidden rounded-2xl border border-background/15 bg-background/[0.03]">
           <div className="grid grid-cols-1 divide-y divide-background/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
@@ -3064,6 +3074,11 @@ function ByTheNumbers() {
         </Reveal>
       </div>
 
+      <div
+        role="separator"
+        aria-hidden="true"
+        className="mt-10 h-px w-full bg-background/15"
+      />
       <div className="mt-10 grid grid-cols-1 border-l border-t border-background/10 sm:mt-12 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3">
         {cells.map((s, i) => (
           <Reveal
@@ -3845,6 +3860,11 @@ function VipSection() {
         </Reveal>
       </div>
 
+      <div
+        role="separator"
+        aria-hidden="true"
+        className="mt-10 h-px w-full bg-background/15"
+      />
       <Reveal delay={0.16} className="mt-8 sm:mt-10">
         <div className="overflow-hidden rounded-2xl border border-background/15 bg-background/[0.03]">
           <div className="grid grid-cols-1 divide-y divide-background/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
@@ -4996,6 +5016,11 @@ function StartupsPage() {
         </div>
 
 
+        <div
+          role="separator"
+          aria-hidden="true"
+          className="mt-10 h-px w-full bg-background/15"
+        />
         <Reveal delay={0.18} className="mt-8 sm:mt-10">
           <div className="overflow-hidden rounded-2xl border border-background/15 bg-background/[0.03]">
             <div className="grid grid-cols-1 divide-y divide-background/10 sm:grid-cols-4 sm:divide-x sm:divide-y-0">
