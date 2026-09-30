@@ -4282,6 +4282,149 @@ function useAssetReload(maxTries = 2) {
   }, [maxTries]);
 }
 
+function SharkTankShowcase({
+  active,
+  onActiveChange,
+}: {
+  active: number;
+  onActiveChange: (index: number) => void;
+}) {
+  const reduceMotion = useReducedMotion();
+  const activeFounder = SHARK_TANK[active];
+  if (!activeFounder) return null;
+
+  const move = (direction: number) => {
+    onActiveChange((active + direction + SHARK_TANK.length) % SHARK_TANK.length);
+  };
+
+  return (
+    <Reveal delay={0.12} className="mt-10">
+      <div
+        className="outline-none focus-visible:ring-1 focus-visible:ring-background/50"
+        role="region"
+        aria-label="Shark Tank India founders"
+        tabIndex={0}
+        onKeyDown={(event) => {
+          if (event.key === "ArrowLeft") {
+            event.preventDefault();
+            move(-1);
+          }
+          if (event.key === "ArrowRight") {
+            event.preventDefault();
+            move(1);
+          }
+        }}
+      >
+        <div className="relative h-[390px] overflow-hidden sm:h-[470px] lg:h-[540px]" aria-live="polite">
+          {SHARK_TANK.map((founder, index) => {
+            let offset = index - active;
+            if (offset > SHARK_TANK.length / 2) offset -= SHARK_TANK.length;
+            if (offset < -SHARK_TANK.length / 2) offset += SHARK_TANK.length;
+            const isActive = offset === 0;
+            const distance = Math.abs(offset);
+            const translate = offset * 70;
+            const rotate = offset * 2.25;
+
+            return (
+              <Button
+                key={founder.company}
+                type="button"
+                variant="ghost"
+                onClick={() => onActiveChange(index)}
+                aria-label={isActive ? `${founder.founder}, ${founder.company}, selected` : `Show ${founder.founder} of ${founder.company}`}
+                aria-current={isActive ? "true" : undefined}
+                className={`group absolute left-1/2 top-1/2 block aspect-[3/4] h-auto w-[68vw] max-w-[300px] overflow-hidden rounded-none border-0 bg-foreground p-0 text-left shadow-[0_32px_70px_-34px_var(--foreground)] transition-[transform,opacity,filter] duration-700 ease-out hover:bg-foreground sm:w-[290px] lg:w-[330px] lg:max-w-[330px] ${
+                  distance > 2 ? "pointer-events-none" : ""
+                }`}
+                style={{
+                  zIndex: 20 - distance,
+                  opacity: distance > 2 ? 0 : isActive ? 1 : 0.58,
+                  filter: isActive ? "none" : "saturate(.72) brightness(.62)",
+                  transform: `translate(calc(-50% + ${translate}%), -50%) rotate(${rotate}deg) scale(${isActive ? 1 : 0.82})`,
+                  transitionDuration: reduceMotion ? "0ms" : undefined,
+                }}
+              >
+                {founder.photo && (
+                  <img
+                    src={founder.photo}
+                    alt={`${founder.founder} of ${founder.company} on Shark Tank India`}
+                    loading={isActive ? "eager" : "lazy"}
+                    className="absolute inset-0 size-full object-cover object-top"
+                  />
+                )}
+                <span className="absolute inset-x-0 top-0 h-1/3 bg-gradient-to-b from-foreground/70 to-transparent" aria-hidden />
+                <span className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-foreground via-foreground/55 to-transparent" aria-hidden />
+                <span className="absolute left-4 top-4 bg-bottle px-3 py-1 font-tech text-[9px] font-bold uppercase text-background">
+                  {founder.season}
+                </span>
+                <span className="absolute right-4 top-4 grid size-9 place-items-center border border-background/35 bg-foreground/35 font-mono text-[9px] text-background backdrop-blur-sm">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+                  <span className="block font-display text-[clamp(1.65rem,3vw,2.35rem)] font-semibold leading-none text-background">
+                    {founder.company}
+                  </span>
+                  <span className="mt-2 block font-tech text-[9px] font-semibold uppercase tracking-[0.16em] text-background/70">
+                    {founder.founder} · {founder.cohort}
+                  </span>
+                </span>
+                <span
+                  className={`absolute inset-x-0 bottom-0 h-[3px] bg-bottle transition-transform duration-500 ${isActive ? "scale-x-100" : "scale-x-0"}`}
+                  aria-hidden
+                />
+              </Button>
+            );
+          })}
+        </div>
+
+        <div className="mx-auto mt-2 grid max-w-[760px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 border-t border-background/15 pt-5 sm:gap-8">
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <h3 className="font-display text-[1.15rem] font-semibold text-background sm:text-[1.35rem]">{activeFounder.company}</h3>
+              <span className="font-tech text-[9px] font-bold uppercase tracking-[0.18em] text-background/45">{activeFounder.season}</span>
+            </div>
+            <p className="mt-1 font-tech text-[9px] uppercase tracking-[0.14em] text-background/55">
+              {activeFounder.founder} · {activeFounder.cohort}
+            </p>
+            <p className="mt-3 max-w-[54ch] text-[13px] leading-[1.65] text-background/75 sm:text-[14px]">
+              {activeFounder.description}
+            </p>
+          </div>
+
+          <div className="flex shrink-0 items-center gap-1 sm:gap-3">
+            <Button type="button" variant="ghost" size="icon" onClick={() => move(-1)} aria-label="Previous founder" className="rounded-none border border-background/20 text-background hover:bg-background hover:text-foreground">
+              <ArrowLeft className="size-4" strokeWidth={1.5} />
+            </Button>
+            <p className="hidden min-w-14 text-center font-mono text-[10px] text-background/45 sm:block">
+              <strong className="text-base font-medium text-background">{String(active + 1).padStart(2, "0")}</strong> / {String(SHARK_TANK.length).padStart(2, "0")}
+            </p>
+            <Button type="button" variant="ghost" size="icon" onClick={() => move(1)} aria-label="Next founder" className="rounded-none border border-background/20 text-background hover:bg-background hover:text-foreground">
+              <ArrowRight className="size-4" strokeWidth={1.5} />
+            </Button>
+          </div>
+        </div>
+
+        <div className="mx-auto mt-5 flex max-w-[760px] items-center gap-2" aria-label="Choose a founder">
+          {SHARK_TANK.map((founder, index) => (
+            <Button
+              key={founder.company}
+              type="button"
+              variant="ghost"
+              size="icon"
+              onClick={() => onActiveChange(index)}
+              aria-label={`Show ${founder.founder}`}
+              aria-current={active === index ? "true" : undefined}
+              className="group h-8 min-w-0 flex-1 rounded-none p-0 hover:bg-transparent"
+            >
+              <span className={`h-[3px] transition-all duration-300 ${active === index ? "w-full bg-bottle" : "w-full bg-background/20 group-hover:bg-background/45"}`} />
+            </Button>
+          ))}
+        </div>
+      </div>
+    </Reveal>
+  );
+}
+
 function StartupsPage() {
   useAssetReload();
   const [selectedShark, setSelectedShark] = useState(0);
@@ -4691,55 +4834,7 @@ function StartupsPage() {
           </p>
         </Reveal>
 
-        <Reveal delay={0.12} className="mt-10">
-          <div className="grid grid-cols-3 gap-px bg-background/10 lg:grid-cols-6">
-            {SHARK_TANK.map((f, i) => (
-              <button
-                key={f.company}
-                type="button"
-                onClick={() => setSelectedShark(i)}
-                aria-label={`${f.founder}, ${f.company}`}
-                className={`group relative block aspect-[4/5] overflow-hidden bg-foreground transition-opacity duration-300 ${selectedShark === i ? "opacity-100" : "opacity-80 hover:opacity-100"}`}
-              >
-                {f.photo && <img src={f.photo} alt={`${f.founder} of ${f.company} on Shark Tank India`} loading="lazy" className="absolute inset-0 size-full object-cover" />}
-                <span className={`absolute inset-x-0 bottom-0 h-0.5 bg-bottle transition-opacity duration-300 ${selectedShark === i ? "opacity-100" : "opacity-0"}`} aria-hidden />
-              </button>
-            ))}
-          </div>
-        </Reveal>
-
-        <div className="mt-px grid grid-cols-1 gap-px bg-background/10 sm:grid-cols-3">
-          {SHARK_TANK.map((f, i) => (
-            <Reveal key={f.company} delay={i * 0.05}>
-              <button
-                type="button"
-                onClick={() => setSelectedShark(i)}
-                aria-pressed={selectedShark === i}
-                className={`h-full w-full p-5 text-left transition-colors duration-300 sm:p-6 md:p-7 ${
-                  selectedShark === i ? "bg-background/[0.045] text-background" : "bg-foreground text-background hover:bg-background/[0.06]"
-                }`}
-              >
-                <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
-                  <div className="flex min-w-0 items-center gap-3">
-                    <LogoBadge src={VENTURE_IMAGES[f.company] ?? f.photo} alt={`${f.company}`} dark={selectedShark !== i} />
-                    <h3 className="text-[1.15rem] font-medium">{f.company}</h3>
-                  </div>
-                  <span className={`eyebrow ${selectedShark === i ? "text-background/45" : "text-background/45"}`}>{f.season}</span>
-                </div>
-                <div
-                  className={`mt-3 text-[11px] uppercase tracking-[0.18em] ${
-                    selectedShark === i ? "text-background/50" : "text-background/50"
-                  }`}
-                >
-                  {f.founder} · {f.cohort}
-                </div>
-                <p className={`mt-4 max-w-[38ch] text-[0.95rem] leading-[1.65] ${selectedShark === i ? "text-background/75" : "text-background/75"}`}>
-                  {f.description}
-                </p>
-              </button>
-            </Reveal>
-          ))}
-        </div>
+        <SharkTankShowcase active={selectedShark} onActiveChange={setSelectedShark} />
       </Section>
 
       <Section id="hssl" tone="paper">
