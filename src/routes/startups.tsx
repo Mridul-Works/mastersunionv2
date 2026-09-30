@@ -4424,7 +4424,6 @@ function StartupsPage() {
     return () => ro.disconnect();
   }, []);
 
-  const activeShark = SHARK_TANK[selectedShark];
 
   return (
     <main className="min-h-screen bg-black text-foreground [--foreground:#000000]">
@@ -4716,15 +4715,6 @@ function StartupsPage() {
             </Reveal>
           ))}
         </div>
-
-        <Reveal delay={0.2} className="mt-10">
-          <Placeholder
-            kind="video"
-            aspect="aspect-video md:aspect-[21/9]"
-            dark
-            note={`${activeShark.company} — ${activeShark.season} pitch reel`}
-          />
-        </Reveal>
       </Section>
 
       <Section id="hssl" tone="paper">
