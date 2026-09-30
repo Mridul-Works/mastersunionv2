@@ -1723,7 +1723,10 @@ function FounderStoriesGallery() {
                 <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-r from-transparent via-foreground/[0.035] to-foreground/15" />
                 <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-foreground/[0.035] to-transparent" />
                 <div className="mb-3 flex items-center justify-between border-y border-foreground/70 py-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/60">
-                  <span>Masters&apos; Union</span>
+                  <span className="flex items-center gap-2">
+                    <span aria-hidden className="inline-block size-1.5 shrink-0" style={{ backgroundColor: "var(--accent)" }} />
+                    Masters&apos; Union
+                  </span>
                   <span>The founders&apos; issue · 2026</span>
                 </div>
                 <div className="flex items-start justify-between gap-5 border-b border-(--accent)/70 pb-3">
