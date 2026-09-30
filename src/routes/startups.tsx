@@ -1370,6 +1370,7 @@ function Section({
   tightTop = false,
   tightBottom = false,
   ruleHeightClass,
+  hideWatermark = false,
   children,
 }: {
   id?: string;
@@ -1379,6 +1380,8 @@ function Section({
   tightBottom?: boolean;
   /** Pass "h-px" when a section's rule must read as a visible hairline. */
   ruleHeightClass?: string;
+  /** Suppress the auto corner wordmark (used when the section draws its own giant word). */
+  hideWatermark?: boolean;
   children: ReactNode;
 }) {
   const surfaceClass =
