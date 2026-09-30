@@ -4175,7 +4175,6 @@ function useAssetReload(maxTries = 2) {
 function StartupsPage() {
   useAssetReload();
   const [selectedShark, setSelectedShark] = useState(0);
-  const [selectedQuote, setSelectedQuote] = useState(0);
   const [selectedSpark, setSelectedSpark] = useState(0);
   const reduceHeroMotion = useReducedMotion();
   const heroRef = useRef<HTMLElement>(null);
@@ -4328,7 +4327,6 @@ function StartupsPage() {
   }, []);
 
   const activeShark = SHARK_TANK[selectedShark];
-  const activeQuote = TESTIMONIALS[selectedQuote];
 
   return (
     <main className="min-h-screen bg-black text-foreground [--foreground:#000000]">
