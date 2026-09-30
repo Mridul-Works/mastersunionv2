@@ -4687,38 +4687,51 @@ function StartupsPage() {
 
 
       <Section id="people" tone="light">
-        <div className="grid grid-cols-1 gap-10 sm:gap-12 md:grid-cols-[0.85fr_1.15fr] md:items-start md:gap-12 lg:gap-16">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-[0.8fr_1.2fr] md:items-start md:gap-14 lg:gap-20">
           <Reveal className="md:self-start">
-            <div className="md:sticky md:top-24">
+            <div className="md:sticky md:top-28">
               <Eyebrow>Mentors, VCs, and Believers</Eyebrow>
               <h2 className="mt-5 max-w-[26ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
                 Behind every founder is a room full of people who&apos;ve already done it.
               </h2>
+              <div className="mt-9 hidden items-center gap-3 md:flex" aria-hidden>
+                <span className="h-px w-10 bg-background/30" />
+                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-background/40">Scroll</span>
+              </div>
             </div>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div
-              className="max-h-[30rem] overflow-y-auto pr-3 md:max-h-[34rem] lg:max-h-[38rem] [scrollbar-width:thin] [scrollbar-color:theme(colors.background/25)_transparent] [&::-webkit-scrollbar]:w-[3px] [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-background/25"
-              tabIndex={0}
-              aria-label="Quotes from mentors, VCs and believers"
-            >
-              {TESTIMONIALS.map((t, i) => (
-                <figure
-                  key={t.name}
-                  className={`py-7 first:pt-0 last:pb-0 ${i > 0 ? "border-t border-background/10" : ""}`}
-                >
-                  <blockquote className="text-balance text-[clamp(1.05rem,1.7vw,1.3rem)] italic leading-[1.5] text-background/90">
-                    &ldquo;{t.quote}&rdquo;
-                  </blockquote>
-                  <figcaption className="mt-5 flex items-center gap-3.5">
-                    <PortraitBadge src={t.photo} alt={t.name} size="size-12" />
-                    <span className="eyebrow text-background/55">
-                      {t.name} · {t.role}
+            <div className="relative">
+              <div
+                className="max-h-[34rem] overflow-y-auto pr-1 md:max-h-[38rem] lg:max-h-[42rem] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                tabIndex={0}
+                aria-label="Quotes from mentors, VCs and believers"
+              >
+                {TESTIMONIALS.map((t, i) => (
+                  <figure
+                    key={t.name}
+                    className={`flex gap-6 py-9 first:pt-0 last:pb-2 sm:gap-8 ${i > 0 ? "border-t border-background/10" : ""}`}
+                  >
+                    <span className="hidden pt-1.5 font-mono text-[11px] tracking-[0.2em] text-background/35 sm:block">
+                      {String(i + 1).padStart(2, "0")}
                     </span>
-                  </figcaption>
-                </figure>
-              ))}
+                    <div className="min-w-0">
+                      <blockquote className="text-balance text-[clamp(1.15rem,1.9vw,1.45rem)] italic leading-[1.55] text-background/90">
+                        &ldquo;{t.quote}&rdquo;
+                      </blockquote>
+                      <figcaption className="mt-5 flex items-center gap-3.5">
+                        <PortraitBadge src={t.photo} alt={t.name} size="size-11" />
+                        <span className="eyebrow text-background/55">
+                          {t.name} · {t.role}
+                        </span>
+                      </figcaption>
+                    </div>
+                  </figure>
+                ))}
+              </div>
+              <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-foreground to-transparent" />
+              <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-foreground to-transparent" />
             </div>
           </Reveal>
         </div>
