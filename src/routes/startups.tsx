@@ -3717,7 +3717,7 @@ function InvestmentFundSection() {
         </div>
 
         <Reveal delay={0.08} className="lg:col-span-7">
-          <div className="overflow-hidden border border-background/12 bg-background/[0.03]">
+          <div className="overflow-hidden">
             <img
               src={muifPerf.url}
               alt="Masters' Union Investment Fund portfolio performance dashboard"
