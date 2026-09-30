@@ -4705,7 +4705,7 @@ function StartupsPage() {
                 &ldquo;{activeQuote.quote}&rdquo;
               </blockquote>
               <div className="mt-8 flex items-center gap-4">
-                <PortraitBadge />
+                <PortraitBadge src={activeQuote.photo} alt={activeQuote.name} size="size-16" />
                 <figcaption className="eyebrow text-background/55">
                   {activeQuote.name} · {activeQuote.role}
                 </figcaption>
