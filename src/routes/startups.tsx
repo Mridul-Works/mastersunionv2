@@ -3664,7 +3664,7 @@ function InvestmentFundSection() {
                   alt={m.name}
                   loading="lazy"
                   decoding="async"
-                  className="no-img-zoom h-full w-full object-cover transition-[filter] duration-300 group-hover:brightness-110"
+                  className="h-full w-full object-cover transition-[filter] duration-300 group-hover:brightness-110"
                 />
               </div>
               <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 border-b border-background/15 py-3.5 sm:py-4">
