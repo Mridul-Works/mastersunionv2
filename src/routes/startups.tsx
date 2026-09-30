@@ -1391,7 +1391,7 @@ function Section({
         ? "bg-foreground"
         : "bg-foreground";
   const padClass = tightTop && tightBottom
-    ? "px-4 pt-10 pb-12 sm:px-7 sm:pt-12 sm:pb-16 md:px-8 md:pt-14 md:pb-20 lg:px-12 lg:pt-16 lg:pb-24"
+    ? "px-4 pt-4 pb-12 sm:px-7 sm:pt-5 sm:pb-16 md:px-8 md:pt-6 md:pb-20 lg:px-12 lg:pt-8 lg:pb-24"
     : tightTop
       ? "px-4 pt-10 pb-16 sm:px-7 sm:pt-12 sm:pb-20 md:px-8 md:pt-14 md:pb-24 lg:px-12 lg:pt-16 lg:pb-32"
       : tightBottom
@@ -6087,7 +6087,7 @@ function StartupsPage() {
           >
             <Parallax strength={60}>BUILD</Parallax>
           </div>
-          <Reveal className="relative z-[1] py-14 sm:py-20 md:py-24">
+          <Reveal className="relative z-[1] pt-2 pb-14 sm:pt-3 sm:pb-20 md:pt-4 md:pb-24">
             <div className="overflow-hidden rounded-[18px] border border-background/20 bg-background/[0.08] px-6 py-10 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.85)] backdrop-blur-2xl backdrop-saturate-150 sm:px-10 sm:py-12 md:px-14 md:py-16">
               <h2 className="max-w-[14ch] text-balance text-[clamp(2rem,6vw,4.75rem)] font-light leading-[1.04] md:leading-[1.02] tracking-normal">
                 WHAT WILL YOU BUILD?
