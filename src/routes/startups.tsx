@@ -4311,6 +4311,8 @@ function SharkTankShowcase({
     if (!element) return;
     const onKey = (event: KeyboardEvent) => {
       if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+      const rect = element.getBoundingClientRect();
+      if (rect.top >= window.innerHeight * 0.85 || rect.bottom <= window.innerHeight * 0.15) return;
       event.preventDefault();
       event.stopPropagation();
       event.stopImmediatePropagation();
@@ -4325,10 +4327,10 @@ function SharkTankShowcase({
       move(event.deltaX > 0 ? 1 : -1);
     };
 
-    element.addEventListener("keydown", onKey, true);
+    window.addEventListener("keydown", onKey, true);
     element.addEventListener("wheel", onWheel, { passive: false });
     return () => {
-      element.removeEventListener("keydown", onKey, true);
+      window.removeEventListener("keydown", onKey, true);
       element.removeEventListener("wheel", onWheel);
     };
   }, [active, reduceMotion]);
