@@ -5550,11 +5550,7 @@ function StartupsPage() {
           <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-background/55">
             Our Founders
           </p>
-          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-4">
-            {FELLOW_FOUNDERS.map((founder) => (
-              <FellowshipFounderCard key={founder.name} founder={founder} />
-            ))}
-          </div>
+          <FellowshipShowcase />
         </Reveal>
       </Section>
 
