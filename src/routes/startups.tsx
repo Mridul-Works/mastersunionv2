@@ -48,6 +48,7 @@ import sharkPhoto_hookd from "@/assets/sharktank/hookd.webp.asset.json";
 import sharkPhoto_metafashion from "@/assets/sharktank/metafashion.webp.asset.json";
 import muLogoAsset from "@/assets/mu-logo-dark.png.asset.json";
 import footerLogoAsset from "@/assets/logo-2.png.asset.json";
+import { Parallax } from "@/components/placements/motion";
 import foundersVideo from "@/assets/hero-3.mp4.asset.json";
 import foundersVideoWebm from "@/assets/hero-3.webm.asset.json";
 import entrepreneurshipReport2021 from "@/assets/entrepreneurship-report-2021-25.pdf.asset.json";
@@ -1369,6 +1370,7 @@ function Section({
   tightTop = false,
   tightBottom = false,
   ruleHeightClass,
+  hideWatermark = false,
   children,
 }: {
   id?: string;
@@ -1378,6 +1380,8 @@ function Section({
   tightBottom?: boolean;
   /** Pass "h-px" when a section's rule must read as a visible hairline. */
   ruleHeightClass?: string;
+  /** Suppress the auto corner wordmark (used when the section draws its own giant word). */
+  hideWatermark?: boolean;
   children: ReactNode;
 }) {
   const surfaceClass =
@@ -1397,14 +1401,14 @@ function Section({
     <section id={id} className={`relative ${id === "spark" || id === "doing" || id === "dropshipping" || id === "people" ? "overflow-x-clip overflow-y-visible" : "overflow-hidden"} text-background ${surfaceClass}`}>
       {/* Homepage section rule — thin inset hairline floating above each section */}
       {id !== "journey" && id !== "ventures" ? <SectionRule heightClass={ruleHeightClass} /> : null}
-      {id ? (
+      {!id || hideWatermark ? null : (
         <span
           aria-hidden
           className="pointer-events-none absolute -right-3 top-6 select-none font-display text-[clamp(4.5rem,14vw,12rem)] font-light uppercase leading-none text-background/[0.025] md:right-6 md:top-8"
         >
           {id.replace("-", " ")}
         </span>
-      ) : null}
+      )}
       <div className={`relative z-[1] mx-auto w-full ${container} ${padClass}`}>{children}</div>
     </section>
   );
@@ -6072,23 +6076,30 @@ function StartupsPage() {
 
 
 
-      <Section id="cta" tone="dark" container="max-w-4xl">
-        <div className="pb-10 pt-4 text-center sm:pb-14 sm:pt-6 md:pb-20 md:pt-12">
-          <Reveal>
-            <h2 className="text-balance text-[clamp(2rem,7vw,5.5rem)] font-light leading-[1.04] md:leading-[1] tracking-normal">
-              WHAT WILL YOU BUILD?
-            </h2>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <p className="mx-auto mt-7 max-w-[56ch] text-[13px] leading-[1.6] text-background/75 md:text-[15px] md:leading-[1.75] md:mt-8">
-              Every company on this page started the same way every company starts: as nothing. A question.
-              A bad first batch. A frustration nobody else was naming. The only difference between an idea
-              and a startup is whether someone builds it.
-            </p>
-          </Reveal>
-          <Reveal delay={0.16}>
-            <div className="mt-10 flex justify-center">
-              <CtaButton dark>Apply to Masters&apos; Union</CtaButton>
+      <Section id="cta" tone="dark" container="max-w-7xl" tightTop tightBottom hideWatermark>
+        <div className="relative">
+          {/* Giant watermark word — drifts on scroll, passes blurred behind the
+              glass card and is clipped at the section's bottom edge, exactly
+              like the placements page's closing CAREERS band. */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 -bottom-8 z-0 select-none text-center text-[18vw] font-semibold leading-none tracking-[-0.05em] text-background/[0.09] md:-bottom-10"
+          >
+            <Parallax strength={60}>BUILD</Parallax>
+          </div>
+          <Reveal className="relative z-[1] py-14 sm:py-20 md:py-24">
+            <div className="overflow-hidden rounded-[18px] border border-background/15 bg-background/[0.04] px-6 py-10 shadow-[0_30px_80px_-40px_rgba(0,0,0,0.85)] backdrop-blur-xl sm:px-10 sm:py-12 md:px-14 md:py-16">
+              <h2 className="max-w-[14ch] text-balance text-[clamp(2rem,6vw,4.75rem)] font-light leading-[1.04] md:leading-[1.02] tracking-normal">
+                WHAT WILL YOU BUILD?
+              </h2>
+              <p className="mt-6 max-w-[56ch] text-[13px] leading-[1.6] text-background/75 md:mt-7 md:text-[15px] md:leading-[1.75]">
+                Every company on this page started the same way every company starts: as nothing. A question.
+                A bad first batch. A frustration nobody else was naming. The only difference between an idea
+                and a startup is whether someone builds it.
+              </p>
+              <div className="mt-9 md:mt-10">
+                <CtaButton dark>Apply to Masters&apos; Union</CtaButton>
+              </div>
             </div>
           </Reveal>
         </div>
