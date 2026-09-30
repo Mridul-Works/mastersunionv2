@@ -27,3 +27,5 @@
 - [x] High School Startup League: add a plain secondary hairline above the highlight-reel cards
 - [x] Startups page: retry media whose request the preview's asset delivery drops, so a blank card self-heals
 - [x] Venture Initiative Program: add the live site's exact 15 colored Top Startups logos below the stage slides
+
+- [x] VIP Top Startups: white grid panel replaced with a side-scrolling marquee on the theme background — logo white backgrounds knocked out to transparency, dark marks lightened, saturated colors kept; duplicated 15-logo track, hover pauses, reduced-motion static; verified 1440/1024/768/390 (0 overflow, 0 console errors), typecheck + build clean, nothing published.
