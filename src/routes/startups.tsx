@@ -910,7 +910,7 @@ function Section({
         ? "px-4 pt-16 pb-12 sm:px-7 sm:pt-20 sm:pb-16 md:px-8 md:pt-24 md:pb-20 lg:px-12 lg:pt-32 lg:pb-24"
         : "px-4 py-16 sm:px-7 sm:py-20 md:px-8 md:py-24 lg:px-12 lg:py-32";
   return (
-    <section id={id} className={`relative ${id === "spark" || id === "doing" || id === "dropshipping" ? "overflow-x-clip overflow-y-visible" : "overflow-hidden"} text-background ${surfaceClass}`}>
+    <section id={id} className={`relative ${id === "spark" || id === "doing" || id === "dropshipping" || id === "people" ? "overflow-x-clip overflow-y-visible" : "overflow-hidden"} text-background ${surfaceClass}`}>
       {/* Homepage section rule — thin inset hairline floating above each section */}
       {id !== "journey" && id !== "ventures" ? <SectionRule /> : null}
       {id ? (
