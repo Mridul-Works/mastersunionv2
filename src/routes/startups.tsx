@@ -2313,7 +2313,7 @@ function SparkCarousel({
             <div
               ref={companyRailRef}
               aria-label="Student venture story progression"
-              className="relative h-[46svh] overflow-hidden text-center sm:h-[50svh] md:h-[56svh] lg:h-[60svh]"
+              className="relative order-first h-[26svh] overflow-hidden text-center sm:order-none sm:h-[50svh] md:h-[56svh] lg:h-[60svh]"
             >
               <span aria-hidden className="pointer-events-none absolute inset-x-3 top-1/2 z-[1] h-px -translate-y-1/2 bg-background/15" />
               <div
@@ -2322,7 +2322,7 @@ function SparkCarousel({
                 className="relative z-[2] w-full will-change-transform"
               >
                 {companies.map((item, index) => (
-                  <div key={item.name} role="listitem" className="flex min-h-[18svh] w-full shrink-0 items-center justify-center px-4 sm:min-h-[19svh] sm:px-6 md:min-h-[21svh] md:px-8 lg:min-h-[22svh]">
+                  <div key={item.name} role="listitem" className="flex min-h-[13svh] w-full shrink-0 items-center justify-center px-2 sm:min-h-[19svh] sm:px-6 md:min-h-[21svh] md:px-8 lg:min-h-[22svh]">
                     <button
                       type="button"
                       aria-current={index === active ? "step" : undefined}
