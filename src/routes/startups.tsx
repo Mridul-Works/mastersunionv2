@@ -3777,14 +3777,15 @@ function InvestmentFundSection() {
                   decoding="async"
                   className="h-full w-full object-cover transition-[filter] duration-300 group-hover:brightness-110"
                 />
+                <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+                <span className="absolute bottom-3 left-3 bg-accent px-2 py-1 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] text-accent-foreground">
+                  {m.role}
+                </span>
               </div>
               <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 border-b border-background/15 py-3.5 sm:py-4">
                 <div className="min-w-0">
                   <div className="truncate font-display text-[14px] font-medium leading-tight text-background sm:text-[15px]">
                     {m.name}
-                  </div>
-                  <div className="mt-1.5 font-mono text-[8px] font-semibold uppercase tracking-[0.2em] text-background/50 sm:text-[9px]">
-                    {m.role}
                   </div>
                 </div>
                 <span className="inline-flex size-8 shrink-0 items-center justify-center border border-background/20 text-background/70 transition-colors duration-300 group-hover:bg-background group-hover:text-foreground">
