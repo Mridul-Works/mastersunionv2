@@ -4291,7 +4291,7 @@ function SharkTankShowcase({
 }) {
   const reduceMotion = useReducedMotion();
   const showcaseRef = useRef<HTMLDivElement>(null);
-  const gestureLock = useRef(false);
+  const lastGestureAt = useRef(0);
   const activeFounder = SHARK_TANK[active];
 
   const move = (direction: number) => {
@@ -4299,12 +4299,10 @@ function SharkTankShowcase({
   };
 
   const moveFromGesture = (direction: -1 | 1) => {
-    if (gestureLock.current) return;
-    gestureLock.current = true;
+    const now = Date.now();
+    if (now - lastGestureAt.current < (reduceMotion ? 120 : 650)) return;
+    lastGestureAt.current = now;
     move(direction);
-    window.setTimeout(() => {
-      gestureLock.current = false;
-    }, reduceMotion ? 120 : 650);
   };
 
   useEffect(() => {
@@ -4320,7 +4318,7 @@ function SharkTankShowcase({
     const onKey = (event: KeyboardEvent) => {
       if (!isVisible() || (event.key !== "ArrowLeft" && event.key !== "ArrowRight")) return;
       event.preventDefault();
-      moveFromGesture(event.key === "ArrowRight" ? 1 : -1);
+      move(event.key === "ArrowRight" ? 1 : -1);
     };
     const onWheel = (event: WheelEvent) => {
       if (Math.abs(event.deltaX) < 28 || Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
