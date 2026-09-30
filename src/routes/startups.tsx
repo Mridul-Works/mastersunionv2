@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
+import { Fragment, useEffect, useLayoutEffect, useRef, useState, type Dispatch, type ReactNode, type SetStateAction } from "react";
 import { createPortal } from "react-dom";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AnimatePresence, motion, useMotionValue, useReducedMotion, useTransform } from "framer-motion";
@@ -4287,37 +4287,75 @@ function SharkTankShowcase({
   onActiveChange,
 }: {
   active: number;
-  onActiveChange: (index: number) => void;
+  onActiveChange: Dispatch<SetStateAction<number>>;
 }) {
   const reduceMotion = useReducedMotion();
+  const showcaseRef = useRef<HTMLDivElement>(null);
+  const touchStart = useRef({ x: 0, y: 0 });
+  const lastGestureAt = useRef(0);
   const activeFounder = SHARK_TANK[active];
-  if (!activeFounder) return null;
 
   const move = (direction: number) => {
-    onActiveChange((active + direction + SHARK_TANK.length) % SHARK_TANK.length);
+    onActiveChange((current) => (current + direction + SHARK_TANK.length) % SHARK_TANK.length);
   };
+
+  const moveFromGesture = (direction: -1 | 1) => {
+    const now = Date.now();
+    if (now - lastGestureAt.current < (reduceMotion ? 120 : 650)) return;
+    lastGestureAt.current = now;
+    move(direction);
+  };
+
+  useEffect(() => {
+    const element = showcaseRef.current;
+    if (!element) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+      const rect = element.getBoundingClientRect();
+      if (rect.top >= window.innerHeight * 0.85 || rect.bottom <= window.innerHeight * 0.15) return;
+      event.preventDefault();
+      move(event.key === "ArrowRight" ? 1 : -1);
+    };
+    const onWheel = (event: WheelEvent) => {
+      if (Math.abs(event.deltaX) < 28 || Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+      event.preventDefault();
+      const now = Date.now();
+      if (now - lastGestureAt.current < (reduceMotion ? 120 : 650)) return;
+      lastGestureAt.current = now;
+      move(event.deltaX > 0 ? 1 : -1);
+    };
+
+    window.addEventListener("keyup", onKey);
+    element.addEventListener("wheel", onWheel, { passive: false });
+    return () => {
+      window.removeEventListener("keyup", onKey);
+      element.removeEventListener("wheel", onWheel);
+    };
+  }, [active, reduceMotion]);
+
+  if (!activeFounder) return null;
 
   return (
     <div className="mt-10">
       <div
+        ref={showcaseRef}
         className="outline-none focus-visible:ring-1 focus-visible:ring-background/50"
         role="region"
         aria-label="Shark Tank India founders"
         tabIndex={0}
-        onClick={(event) => {
-          const directionControl = (event.target as Element).closest<HTMLElement>("[data-shark-direction]");
-          const direction = Number(directionControl?.dataset.sharkDirection);
-          if (direction === -1 || direction === 1) move(direction);
+        onTouchStartCapture={(event) => {
+          touchStart.current = {
+            x: event.touches[0]?.clientX ?? 0,
+            y: event.touches[0]?.clientY ?? 0,
+          };
         }}
-        onKeyDown={(event) => {
-          if (event.key === "ArrowLeft") {
-            event.preventDefault();
-            move(-1);
-          }
-          if (event.key === "ArrowRight") {
-            event.preventDefault();
-            move(1);
-          }
+        onTouchEndCapture={(event) => {
+          const touch = event.changedTouches[0];
+          if (!touch) return;
+          const deltaX = touch.clientX - touchStart.current.x;
+          const deltaY = touch.clientY - touchStart.current.y;
+          if (Math.abs(deltaX) < 45 || Math.abs(deltaX) <= Math.abs(deltaY) * 1.25) return;
+          moveFromGesture(deltaX < 0 ? 1 : -1);
         }}
       >
         <div className="relative h-[390px] overflow-hidden sm:h-[470px] lg:h-[540px]" aria-live="polite">
@@ -4397,13 +4435,13 @@ function SharkTankShowcase({
           </div>
 
           <div className="flex shrink-0 items-center gap-1 sm:gap-3">
-            <Button type="button" variant="ghost" size="icon" data-shark-direction="-1" aria-label="Previous founder" className="rounded-none border border-background/20 text-background hover:bg-background hover:text-foreground">
+            <Button type="button" variant="ghost" size="icon" data-shark-direction="-1" onClick={() => move(-1)} aria-label="Previous founder" className="min-h-11 min-w-11 rounded-none border border-background/20 text-background hover:bg-background hover:text-foreground">
               <ArrowLeft className="size-4" strokeWidth={1.5} />
             </Button>
             <p className="hidden min-w-14 text-center font-mono text-[10px] text-background/45 sm:block">
               <strong className="text-base font-medium text-background">{String(active + 1).padStart(2, "0")}</strong> / {String(SHARK_TANK.length).padStart(2, "0")}
             </p>
-            <Button type="button" variant="ghost" size="icon" data-shark-direction="1" aria-label="Next founder" className="rounded-none border border-background/20 text-background hover:bg-background hover:text-foreground">
+            <Button type="button" variant="ghost" size="icon" data-shark-direction="1" onClick={() => move(1)} aria-label="Next founder" className="min-h-11 min-w-11 rounded-none border border-background/20 text-background hover:bg-background hover:text-foreground">
               <ArrowRight className="size-4" strokeWidth={1.5} />
             </Button>
           </div>
