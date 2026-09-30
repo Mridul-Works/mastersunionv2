@@ -889,12 +889,25 @@ function EyebrowRule() {
   );
 }
 
-function Eyebrow({ children, dark = false, rule = true }: { children: ReactNode; dark?: boolean; rule?: boolean }) {
+function Eyebrow({
+  children,
+  dark = false,
+  rule = true,
+  icon: Icon,
+}: {
+  children: ReactNode;
+  dark?: boolean;
+  rule?: boolean;
+  icon?: LucideIcon;
+}) {
   return (
     <div className="flex items-start gap-4">
       {rule ? <EyebrowRule /> : null}
-      <div className="min-w-0 font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-background/50">
-        {children}
+      <div className="flex min-w-0 items-start gap-2">
+        {Icon ? <Icon className="size-4 shrink-0 text-background/55" strokeWidth={1.75} aria-hidden /> : null}
+        <div className="min-w-0 font-mono text-[11px] font-semibold uppercase tracking-[0.32em] text-background/50">
+          {children}
+        </div>
       </div>
     </div>
   );
