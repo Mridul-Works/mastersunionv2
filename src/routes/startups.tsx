@@ -1590,9 +1590,11 @@ const FOUNDER_EDITORIAL: Record<
   },
 };
 
-const STORY_ACCENTS = ["#111111"];
+// Per-chapter accent colors sampled from the Entrepreneurship Report palette
+// (teal, blue, deep green, red, gold, amber, moss) — one per chapter, in order.
+const STORY_ACCENTS = ["#0E8074", "#2E6FAE", "#006A4E", "#C13A2E", "#B98A00", "#D97706", "#567D2E"];
 
-const STORY_PAPER = "#EEEEEE";
+const STORY_PAPER = "#FAF9F6";
 
 function FounderStoriesGallery() {
   const [activeStory, setActiveStory] = useState(0);
@@ -1721,7 +1723,10 @@ function FounderStoriesGallery() {
                 <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-r from-transparent via-foreground/[0.035] to-foreground/15" />
                 <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-foreground/[0.035] to-transparent" />
                 <div className="mb-3 flex items-center justify-between border-y border-foreground/70 py-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/60">
-                  <span>Masters&apos; Union</span>
+                  <span className="flex items-center gap-2">
+                    <span aria-hidden className="inline-block size-1.5 shrink-0" style={{ backgroundColor: "var(--accent)" }} />
+                    Masters&apos; Union
+                  </span>
                   <span>The founders&apos; issue · 2026</span>
                 </div>
                 <div className="flex items-start justify-between gap-5 border-b border-(--accent)/70 pb-3">
@@ -1779,8 +1784,11 @@ function FounderStoriesGallery() {
                 {(() => {
                   const rest = editorial.paragraphs.slice(4);
                   const header = (
-                    <div className="mb-4 flex shrink-0 items-center justify-between border-b border-foreground/20 pb-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/50">
-                      <span>{story.name} · continued</span>
+                    <div className="mb-4 flex shrink-0 items-center justify-between gap-4 border-b border-foreground/20 pb-2">
+                      <div aria-hidden className="h-px flex-grow bg-foreground/20" />
+                      <span className="shrink-0 bg-foreground px-2.5 py-1 font-mono text-[8px] uppercase tracking-[0.24em] text-(--paper)">
+                        {story.name} · continued
+                      </span>
                     </div>
                   );
                   const quote = (big = false) => (
