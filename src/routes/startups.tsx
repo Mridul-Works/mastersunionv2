@@ -4249,7 +4249,6 @@ function StartupsPage() {
   useAssetReload();
   const [selectedShark, setSelectedShark] = useState(0);
   const [selectedSpark, setSelectedSpark] = useState(0);
-  const [activeBeliever, setActiveBeliever] = useState(0);
   const reduceHeroMotion = useReducedMotion();
   const heroRef = useRef<HTMLElement>(null);
   const heroTextRef = useRef<HTMLDivElement>(null);
