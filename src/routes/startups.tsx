@@ -738,6 +738,27 @@ const SHARK_TANK: SharkTankEntry[] = [
     season: "Season 4",
     description: "MemoTag is building an AI-driven wearable for dementia care.",
   },
+  {
+    company: "Nexera Health",
+    founder: "Himanshu Rajpurohit",
+    cohort: "CEO Challenge",
+    season: "Season 4",
+    description: "Nexera Health is redefining workplace wellness for employees.",
+  },
+  {
+    company: "HookD",
+    founder: "Dia Goel",
+    cohort: "PGP TBM Co '23",
+    season: "Season 5",
+    description: "HookD is building India’s first ready-to-eat non-vegetarian snacking brand for the country’s 70% non-veg consumers.",
+  },
+  {
+    company: "Meta Fashion",
+    founder: "Arjun Goel",
+    cohort: "UG TBM Co '28",
+    season: "Season 5",
+    description: "Meta Fashion is building the infrastructure for phygital commerce, connecting in-game discovery with real-world fashion.",
+  },
 ];
 
 const HSSL_STATS = [
