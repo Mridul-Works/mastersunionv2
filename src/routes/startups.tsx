@@ -555,6 +555,10 @@ import vipTopStartupDark12 from "@/assets/vip/top-startups/top-startup-dark-12.p
 import vipTopStartupDark13 from "@/assets/vip/top-startups/top-startup-dark-13.png.asset.json";
 import vipTopStartupDark14 from "@/assets/vip/top-startups/top-startup-dark-14.png.asset.json";
 import vipTopStartupDark15 from "@/assets/vip/top-startups/top-startup-dark-15.png.asset.json";
+import quoteDivyaGupta from "@/assets/quotes/divya-gupta.jpg.asset.json";
+import quoteSarthakKhanna from "@/assets/quotes/sarthak-khanna.jpg.asset.json";
+import quoteSakshiTuteja from "@/assets/quotes/sakshi-tuteja.jpg.asset.json";
+import quoteSahilDhingra from "@/assets/quotes/sahil-dhingra.jpg.asset.json";
 
 type Stage = { n: string; name: string; grant: string | null; body: string[]; image: string; culmination?: boolean };
 
@@ -789,24 +793,28 @@ const TESTIMONIALS = [
       "I came in expecting good ideas, but what I saw were real businesses. Students with traction, customers, and actual revenues. The ambition in that room was electric. This is what business education should be.",
     name: "Divya Gupta",
     role: "Director, Aavishkar Capital",
+    photo: quoteDivyaGupta.url,
   },
   {
     quote:
       "This journey was more than just building a brand — it was about finding purpose and passion in every step... It wasn't just business; it became a home for our grit and growth.",
     name: "Sarthak Khanna",
     role: "Founder, Monarque",
+    photo: quoteSarthakKhanna.url,
   },
   {
     quote:
       "Masters' Union provided the environment and mentorship to transform a simple question into a meaningful product.",
     name: "Sakshi Tuteja",
     role: "Founder, Yango",
+    photo: quoteSakshiTuteja.url,
   },
   {
     quote:
       "I found some of the problem statements genuinely compelling, especially those being tackled by Cryptique, Guardex, and Spawnright.",
     name: "Sahil Dhingra",
     role: "VP, Info Edge Ventures",
+    photo: quoteSahilDhingra.url,
   },
 ];
 
@@ -4697,7 +4705,7 @@ function StartupsPage() {
                 &ldquo;{activeQuote.quote}&rdquo;
               </blockquote>
               <div className="mt-8 flex items-center gap-4">
-                <PortraitBadge />
+                <PortraitBadge src={activeQuote.photo} alt={activeQuote.name} size="size-16" />
                 <figcaption className="eyebrow text-background/55">
                   {activeQuote.name} · {activeQuote.role}
                 </figcaption>
