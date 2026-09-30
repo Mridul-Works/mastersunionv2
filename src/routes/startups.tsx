@@ -284,7 +284,6 @@ const FOUNDER_VENTURES: VentureTile[] = [
   },
   {
     company: "HiveSchool",
-    photo: sharkPhoto_hiveschool.url,
     founder: "Nikhil Gaur",
     photo: liveHiveSchool.url,
     sector: "Education / Sales",
@@ -294,7 +293,6 @@ const FOUNDER_VENTURES: VentureTile[] = [
   },
   {
     company: "Bullspree",
-    photo: sharkPhoto_bullspree.url,
     founder: "Dharmil Bavishi",
     photo: liveBullspree.url,
     logo: ventureBullspreeLogo,
@@ -325,7 +323,6 @@ const FOUNDER_VENTURES: VentureTile[] = [
   },
   {
     company: "MemoTag",
-    photo: sharkPhoto_memotag.url,
     founder: "Reyansh Juneja",
     photo: liveMemoTag.url,
     sector: "AI / Healthtech",
@@ -335,7 +332,6 @@ const FOUNDER_VENTURES: VentureTile[] = [
   },
   {
     company: "Nexera Health",
-    photo: sharkPhoto_nexera.url,
     founder: "Himanshu Rajpurohit",
     photo: liveNexeraHealth.url,
     sector: "Healthtech",
@@ -354,7 +350,6 @@ const FOUNDER_VENTURES: VentureTile[] = [
   },
   {
     company: "HookD",
-    photo: sharkPhoto_hookd.url,
     founder: "Dia Goel",
     photo: liveHookd.url,
     sector: "D2C / Food",
@@ -384,7 +379,6 @@ const FOUNDER_VENTURES: VentureTile[] = [
   },
   {
     company: "Meta Fashion",
-    photo: sharkPhoto_metafashion.url,
     founder: "Arjun Goel",
     photo: liveMetaFashion.url,
     sector: "Fashion / Gaming",
@@ -731,6 +725,7 @@ type SharkTankEntry = { company: string; founder: string; cohort: string; season
 const SHARK_TANK: SharkTankEntry[] = [
   {
     company: "Bullspree",
+    photo: sharkPhoto_bullspree.url,
     founder: "Dharmil Bavishi",
     cohort: "PGP TBM Co'21",
     season: "Season 2",
@@ -738,6 +733,7 @@ const SHARK_TANK: SharkTankEntry[] = [
   },
   {
     company: "HiveSchool",
+    photo: sharkPhoto_hiveschool.url,
     founder: "Nikhil Gaur",
     cohort: "PGP TBM Co'24",
     season: "Season 4",
@@ -745,6 +741,7 @@ const SHARK_TANK: SharkTankEntry[] = [
   },
   {
     company: "MemoTag",
+    photo: sharkPhoto_memotag.url,
     founder: "Reyansh Juneja",
     cohort: "UG TBM Co'28",
     season: "Season 4",
@@ -752,6 +749,7 @@ const SHARK_TANK: SharkTankEntry[] = [
   },
   {
     company: "Nexera Health",
+    photo: sharkPhoto_nexera.url,
     founder: "Himanshu Rajpurohit",
     cohort: "CEO Challenge",
     season: "Season 4",
@@ -759,6 +757,7 @@ const SHARK_TANK: SharkTankEntry[] = [
   },
   {
     company: "HookD",
+    photo: sharkPhoto_hookd.url,
     founder: "Dia Goel",
     cohort: "PGP TBM Co '23",
     season: "Season 5",
@@ -766,6 +765,7 @@ const SHARK_TANK: SharkTankEntry[] = [
   },
   {
     company: "Meta Fashion",
+    photo: sharkPhoto_metafashion.url,
     founder: "Arjun Goel",
     cohort: "UG TBM Co '28",
     season: "Season 5",
