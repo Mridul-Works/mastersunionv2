@@ -3687,7 +3687,7 @@ function InvestmentFundSection() {
   }, [videoOpen]);
 
   return (
-    <Section id="fund" tone="dark" tightBottom ruleHeightClass="h-px">
+    <Section id="fund" tone="dark" tightBottom snugBottom ruleHeightClass="h-px">
       <div className="grid gap-5 md:grid-cols-[minmax(0,1fr)_minmax(0,340px)] md:items-end md:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,400px)] lg:gap-14">
         <Reveal>
           <div className="min-w-0">
