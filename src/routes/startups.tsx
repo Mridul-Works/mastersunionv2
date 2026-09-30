@@ -4779,7 +4779,7 @@ function StartupsPage() {
           </Reveal>
         </div>
 
-        <QuoteStory people={TESTIMONIALS} active={activeBeliever} onActiveChange={setActiveBeliever} />
+        <QuoteWall people={TESTIMONIALS} />
       </Section>
 
       <Section id="fellowship" tone="dark">
