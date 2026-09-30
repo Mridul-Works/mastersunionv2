@@ -1742,7 +1742,7 @@ function FounderStoriesGallery() {
                 </div>
 
 
-                <p className="mt-3 max-w-[54ch] text-[14px] font-semibold leading-[1.5] text-foreground">
+                <p className="mt-3 bg-(--accent) px-4 py-3 text-[14px] font-semibold leading-[1.5] text-foreground">
                   {editorial.dek}
                 </p>
                 <div className="py-3">
