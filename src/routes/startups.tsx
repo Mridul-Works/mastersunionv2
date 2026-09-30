@@ -3687,28 +3687,34 @@ function InvestmentFundSection() {
       {/* Portfolio performance */}
       <div role="separator" aria-hidden="true" className="mt-14 h-px w-full bg-background/15 sm:mt-16" />
 
-      <div className="mt-10 grid gap-8 sm:mt-12 lg:grid-cols-12 lg:items-center lg:gap-12">
-        <div className="lg:col-span-5">
+      <div className="mt-10 sm:mt-12">
+        <div className="grid gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,540px)] md:items-end md:gap-10">
           <Reveal>
-            <h3 className="max-w-[16ch] font-display text-[clamp(1.35rem,2.6vw,2rem)] font-medium leading-[1.1] tracking-[-0.015em]">
-              Our portfolio <span className="font-serif text-normal italic">performance</span>
-            </h3>
+            <div>
+              <div className="font-mono text-[9px] font-semibold uppercase tracking-[0.24em] text-background/45 sm:text-[10px]">
+                Published performance
+              </div>
+              <h3 className="mt-3 max-w-[16ch] font-display text-[clamp(1.55rem,3.4vw,2.7rem)] font-medium leading-[1.06] tracking-[-0.015em]">
+                Our portfolio <span className="font-serif text-normal italic">performance</span>
+              </h3>
+            </div>
           </Reveal>
+
           <Reveal delay={0.06}>
-            <div className="mt-6 flex flex-col gap-3 sm:mt-7">
+            <div className="grid gap-2.5 sm:grid-cols-2">
               {MUIF_REPORTS.map((r) => (
                 <a
                   key={r.label}
                   href={r.href}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className={`group inline-flex items-center justify-between gap-4 rounded-full border px-5 py-3 font-mono text-[10px] font-semibold uppercase tracking-[0.18em] transition-colors duration-300 ${
+                  className={`group inline-flex min-h-12 items-center justify-between gap-4 rounded-full border px-5 py-3 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] transition-colors duration-300 sm:text-[10px] ${
                     r.primary
                       ? "border-background/25 bg-background text-foreground hover:bg-background/85"
                       : "border-background/25 text-background/80 hover:bg-background hover:text-foreground"
                   }`}
                 >
-                  <span className="min-w-0">{r.label}</span>
+                  <span className="min-w-0 leading-[1.35]">{r.label}</span>
                   <Download className="size-4 shrink-0 transition-transform duration-300 group-hover:translate-y-0.5" strokeWidth={1.75} />
                 </a>
               ))}
@@ -3716,14 +3722,15 @@ function InvestmentFundSection() {
           </Reveal>
         </div>
 
-        <Reveal delay={0.08} className="lg:col-span-7">
-          <div className="overflow-hidden">
+        <Reveal delay={0.08} className="mt-8 sm:mt-10 md:mt-12">
+          <div className="relative border-y border-background/15 py-5 sm:py-7 md:py-9">
+            <div aria-hidden className="absolute left-0 top-0 h-px w-16 bg-accent sm:w-24" />
             <img
               src={muifPerf.url}
               alt="Masters' Union Investment Fund portfolio performance dashboard"
               loading="lazy"
               decoding="async"
-              className="no-img-zoom w-full object-cover"
+              className="no-img-zoom mx-auto block h-auto w-full object-contain"
             />
           </div>
         </Reveal>
