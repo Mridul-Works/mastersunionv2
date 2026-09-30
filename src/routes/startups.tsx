@@ -4304,6 +4304,11 @@ function SharkTankShowcase({
         role="region"
         aria-label="Shark Tank India founders"
         tabIndex={0}
+        onClick={(event) => {
+          const directionControl = (event.target as Element).closest<HTMLElement>("[data-shark-direction]");
+          const direction = Number(directionControl?.dataset.sharkDirection);
+          if (direction === -1 || direction === 1) move(direction);
+        }}
         onKeyDown={(event) => {
           if (event.key === "ArrowLeft") {
             event.preventDefault();
@@ -4392,13 +4397,13 @@ function SharkTankShowcase({
           </div>
 
           <div className="flex shrink-0 items-center gap-1 sm:gap-3">
-            <Button type="button" variant="ghost" size="icon" onPointerUp={() => move(-1)} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); move(-1); } }} aria-label="Previous founder" className="rounded-none border border-background/20 text-background hover:bg-background hover:text-foreground">
+            <Button type="button" variant="ghost" size="icon" data-shark-direction="-1" aria-label="Previous founder" className="rounded-none border border-background/20 text-background hover:bg-background hover:text-foreground">
               <ArrowLeft className="size-4" strokeWidth={1.5} />
             </Button>
             <p className="hidden min-w-14 text-center font-mono text-[10px] text-background/45 sm:block">
               <strong className="text-base font-medium text-background">{String(active + 1).padStart(2, "0")}</strong> / {String(SHARK_TANK.length).padStart(2, "0")}
             </p>
-            <Button type="button" variant="ghost" size="icon" onPointerUp={() => move(1)} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); move(1); } }} aria-label="Next founder" className="rounded-none border border-background/20 text-background hover:bg-background hover:text-foreground">
+            <Button type="button" variant="ghost" size="icon" data-shark-direction="1" aria-label="Next founder" className="rounded-none border border-background/20 text-background hover:bg-background hover:text-foreground">
               <ArrowRight className="size-4" strokeWidth={1.5} />
             </Button>
           </div>
