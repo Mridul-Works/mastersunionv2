@@ -5085,6 +5085,41 @@ function homeNavScrollToId(id: string) {
   else window.scrollTo({ top: y, behavior: "smooth" });
 }
 
+// Styling copied verbatim from the homepage SectionNav (cta-gradient-pill +
+// home-nav-apply + sage-nav-gradient-progress), scoped to this page's nav.
+const HOME_NAV_CSS = `
+.home-nav-root{--hn-cyan:oklch(0.75 0.15 215);--hn-yellow:oklch(0.88 0.18 95);--hn-orange:oklch(0.65 0.22 45);--hn-teal:#006A4E}
+.home-nav-root .home-nav-apply{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.8rem;min-width:8.75rem;height:2.25rem;min-height:2.25rem;padding:.4rem 1.15rem;border:1.5px solid transparent;border-radius:9999px;background:linear-gradient(oklch(0.16 0.004 285),oklch(0.16 0.004 285)) padding-box,linear-gradient(100deg,var(--hn-cyan),var(--hn-yellow) 53%,var(--hn-orange)) border-box;color:oklch(0.98 0 0);font-size:.875rem;line-height:1;letter-spacing:0;white-space:nowrap;box-shadow:none;transform:none;transition:none}
+.home-nav-root .home-nav-apply-arrow{display:inline-block;flex:none;background:linear-gradient(135deg,var(--hn-cyan) 10%,var(--hn-yellow) 55%,var(--hn-orange));-webkit-background-clip:text;background-clip:text;color:transparent;font-size:1.1rem;font-weight:500;line-height:.7}
+.home-nav-root .home-nav-progress{background-image:linear-gradient(90deg,var(--hn-teal),var(--hn-yellow),var(--hn-orange),var(--hn-teal));background-size:300% 100%;animation:home-nav-flow 2.4s linear infinite;box-shadow:0 0 8px color-mix(in oklab,var(--hn-yellow) 65%,transparent),0 0 16px color-mix(in oklab,var(--hn-teal) 55%,transparent)}
+.home-nav-root .home-nav-progress::after{content:"";position:absolute;right:-2px;top:50%;width:7px;height:7px;border-radius:999px;background:var(--hn-orange);box-shadow:0 0 10px color-mix(in oklab,var(--hn-orange) 80%,transparent);transform:translateY(-50%)}
+@keyframes home-nav-flow{from{background-position:0% 50%}to{background-position:300% 50%}}
+`;
+
+// Homepage reveal: the nav slides up once the page has scrolled past 12px.
+function useHomeNavScrollReveal() {
+  const [revealed, setRevealed] = useState(false);
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      setRevealed(window.scrollY > 12);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, []);
+  return revealed;
+}
+
 /**
  * Floating bottom nav reproducing the finished Masters' Union homepage's
  * SectionNav design (pill shape, scroll-progress rail, logo + clock, active
@@ -5122,76 +5157,71 @@ function HomepageStyleNav({
     }
   };
 
+  const revealed = useHomeNavScrollReveal();
+
   return (
-    <header
-      className={`fixed inset-x-0 bottom-0 z-[100] hidden px-3 pb-3 transition-opacity duration-[2200ms] delay-500 ease-out sm:px-5 sm:pb-4 lg:block ${
-        visible ? "opacity-100" : "pointer-events-none opacity-0"
-      }`}
-    >
-      <div
-        className={
-          "relative mx-auto flex h-10 max-w-[1320px] items-center justify-between gap-2 overflow-hidden rounded-full border px-3 transition-all duration-300 sm:gap-4 sm:px-5 lg:h-11 " +
-          (scrolled
-            ? "border-border bg-background/85 shadow-[0_-18px_50px_-28px_rgba(0,0,0,0.28)] backdrop-blur-xl"
-            : "border-border/60 bg-background/80 shadow-[0_-12px_40px_-30px_rgba(0,0,0,0.25)] backdrop-blur-md")
-        }
+    <>
+      <style>{HOME_NAV_CSS}</style>
+      <header
+        className={`home-nav-root fixed inset-x-0 bottom-0 z-[100] hidden px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-5 md:pb-[max(1rem,env(safe-area-inset-bottom))] lg:block origin-bottom transform-gpu transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[transform,opacity] motion-reduce:transition-none ${
+          visible && revealed
+            ? "pointer-events-auto translate-y-0 scale-100 opacity-100"
+            : "pointer-events-none translate-y-[calc(100%+1.5rem)] scale-[0.98] opacity-0"
+        }`}
       >
-        <span
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-[2px] origin-left transition-transform duration-150"
-          style={{
-            transform: `scaleX(${progress})`,
-            backgroundImage: "linear-gradient(91deg, #39B5D7 -6.14%, #F7D544 47.02%, #E38330 99.71%)",
-          }}
-        />
+        <div
+          className={
+            "relative mx-auto flex h-[3.25rem] max-w-[1320px] items-center justify-between gap-2 overflow-hidden rounded-full border border-border px-3 py-1.5 shadow-[0_-18px_50px_-28px_rgba(0,0,0,0.35)] backdrop-blur-xl transition-all duration-300 sm:gap-4 sm:px-5 " +
+            (scrolled ? "bg-background/95 shadow-[0_-18px_50px_-28px_rgba(0,0,0,0.48)]" : "border-border/60 bg-background/80")
+          }
+        >
+          <span
+            aria-hidden
+            className="home-nav-progress pointer-events-none absolute inset-x-3 top-0 h-0.5 origin-left rounded-full transition-transform duration-150 will-change-transform"
+            style={{ transform: `scaleX(${progress})` }}
+          />
 
-        <a href="/" className="flex min-w-0 shrink-0 items-center gap-3" aria-label="Masters' Union home">
-          <img decoding="async" loading="eager" src={muLogoAsset.url} alt="Masters' Union" className="h-4 w-auto sm:h-5 lg:h-6" />
-          <span className="hidden h-6 w-px bg-border md:block" />
-          <span className="hidden font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground md:block">
-            {clock}
-          </span>
-        </a>
-
-        <nav aria-label="Sections" className="hidden min-w-0 items-center gap-0.5 lg:flex">
-          {items.map((item) => (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              onClick={(e) => {
-                e.preventDefault();
-                goTo(item.id);
-              }}
-              className={
-                "whitespace-nowrap rounded-full px-2.5 py-1.5 text-[12px] font-medium transition-[color,background-color] duration-300 ease-out " +
-                (active === item.id
-                  ? "bg-foreground/[0.07] text-foreground"
-                  : "text-foreground/70 hover:bg-foreground/[0.06] hover:text-foreground")
-              }
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex shrink-0 items-center gap-2">
-          <span className="hidden font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground xl:inline">
-            {activeLabel}
-          </span>
-
-          <a
-            href={applyHref}
-            onClick={handleApply}
-            className="group inline-flex items-center gap-1.5 rounded-full bg-primary py-0.5 pl-3 pr-0.5 text-[12px] font-semibold text-primary-foreground transition-transform hover:-translate-y-px sm:pl-3.5"
-          >
-            Apply
-            <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary-foreground text-primary transition-transform duration-300 group-hover:rotate-45">
-              <ArrowUpRight className="h-3 w-3" strokeWidth={2.25} />
+          <a href="/" className="flex min-w-0 shrink-0 items-center gap-3" aria-label="Masters' Union home">
+            <img decoding="async" loading="eager" src={muLogoAsset.url} alt="Masters' Union" className="h-4 w-auto sm:h-5 lg:h-6" />
+            <span className="hidden h-6 w-px bg-border md:block" />
+            <span className="hidden font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground md:block">
+              {clock}
             </span>
           </a>
+
+          <nav aria-label="Sections" className="hidden min-w-0 items-center gap-0.5 lg:flex">
+            {items.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  goTo(item.id);
+                }}
+                className={
+                  "whitespace-nowrap rounded-full px-2.5 py-1.5 text-[12px] font-medium transition-[color,background-color] duration-300 ease-out " +
+                  (active === item.id
+                    ? "bg-foreground/[0.07] text-foreground"
+                    : "text-foreground/70 hover:bg-foreground/[0.06] hover:text-foreground")
+                }
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex shrink-0 items-center gap-2">
+            <span className="hidden font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground xl:inline">
+              {activeLabel}
+            </span>
+            <a href={applyHref} onClick={handleApply} className="home-nav-apply group inline-flex items-center rounded-full font-medium">
+              Apply Now
+              <span className="home-nav-apply-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </>
   );
 }
 
