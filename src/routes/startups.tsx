@@ -2413,6 +2413,7 @@ function SparkCarousel({
                 </motion.div>
               </div>
             </div>
+           </div>
           </div>
 
           <div className="mx-auto mt-2.5 max-w-5xl border-t border-background/15 pt-8 text-center sm:mt-4 sm:pt-10">
