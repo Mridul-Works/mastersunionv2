@@ -2261,8 +2261,7 @@ function SparkCarousel({
       >
         <div ref={stickyRef} className="sticky top-0 flex min-h-[100svh] items-end overflow-hidden pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+88px)] md:pt-4 md:pb-[84px] lg:pt-4 lg:pb-[84px]">
         <div className="w-full pt-0 sm:pt-1 md:pt-2 lg:pt-0">
-          <div className="grid grid-cols-1 items-stretch gap-3 sm:grid-cols-[minmax(0,1fr)_minmax(120px,0.3fr)_minmax(0,1fr)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(180px,0.36fr)_minmax(0,1fr)] md:gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(240px,0.4fr)_minmax(0,1fr)] lg:gap-10">
-           <div className="grid grid-cols-2 items-stretch gap-2 sm:contents">
+          <div className="grid grid-cols-2 items-stretch gap-3 sm:grid-cols-[minmax(0,1fr)_minmax(120px,0.3fr)_minmax(0,1fr)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(180px,0.36fr)_minmax(0,1fr)] md:gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(240px,0.4fr)_minmax(0,1fr)] lg:gap-10">
             <div className="flex flex-col justify-center">
               <div className="eyebrow mb-2 grid min-h-[2.75rem] text-center text-background/45 sm:mb-3 sm:min-h-[3rem]">
                 {companies.map((item, index) => (
@@ -2313,7 +2312,7 @@ function SparkCarousel({
             <div
               ref={companyRailRef}
               aria-label="Student venture story progression"
-              className="relative order-first h-[26svh] overflow-hidden text-center sm:order-none sm:h-[50svh] md:h-[56svh] lg:h-[60svh]"
+              className="relative order-first col-span-2 h-[26svh] overflow-hidden text-center sm:order-none sm:col-span-1 sm:h-[50svh] md:h-[56svh] lg:h-[60svh]"
             >
               <span aria-hidden className="pointer-events-none absolute inset-x-3 top-1/2 z-[1] h-px -translate-y-1/2 bg-background/15" />
               <div
@@ -2413,7 +2412,6 @@ function SparkCarousel({
                 </motion.div>
               </div>
             </div>
-           </div>
           </div>
 
           <div className="mx-auto mt-2.5 max-w-5xl border-t border-background/15 pt-8 text-center sm:mt-4 sm:pt-10">
