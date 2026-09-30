@@ -2232,7 +2232,7 @@ function QuoteWall({ people }: { people: typeof TESTIMONIALS }) {
                   {String(i + 2).padStart(2, "0")}
                 </span>
               </div>
-              <blockquote className="mt-4 grow font-serif-italic !font-serif !font-light !text-background/85 text-[clamp(1rem,1.25vw,1.15rem)] leading-[1.6]">
+              <blockquote className="mt-4 max-w-[80ch] grow font-serif-italic !font-serif !font-light !text-background/85 text-[clamp(1rem,1.25vw,1.15rem)] leading-[1.6]">
                 {p.quote}
               </blockquote>
               <figcaption className="mt-6 flex items-center gap-3 border-t border-background/10 pt-4">
