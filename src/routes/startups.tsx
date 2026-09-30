@@ -4290,11 +4290,22 @@ function SharkTankShowcase({
   onActiveChange: (index: number) => void;
 }) {
   const reduceMotion = useReducedMotion();
+  const gestureStartX = useRef<number | null>(null);
+  const gestureLock = useRef(false);
   const activeFounder = SHARK_TANK[active];
   if (!activeFounder) return null;
 
   const move = (direction: number) => {
     onActiveChange((active + direction + SHARK_TANK.length) % SHARK_TANK.length);
+  };
+
+  const moveFromGesture = (direction: -1 | 1) => {
+    if (gestureLock.current) return;
+    gestureLock.current = true;
+    move(direction);
+    window.setTimeout(() => {
+      gestureLock.current = false;
+    }, reduceMotion ? 120 : 650);
   };
 
   return (
@@ -4304,19 +4315,30 @@ function SharkTankShowcase({
         role="region"
         aria-label="Shark Tank India founders"
         tabIndex={0}
-        onClick={(event) => {
-          const directionControl = (event.target as Element).closest<HTMLElement>("[data-shark-direction]");
-          const direction = Number(directionControl?.dataset.sharkDirection);
-          if (direction === -1 || direction === 1) move(direction);
+        onWheel={(event) => {
+          if (Math.abs(event.deltaX) < 28 || Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+          event.preventDefault();
+          moveFromGesture(event.deltaX > 0 ? 1 : -1);
+        }}
+        onTouchStart={(event) => {
+          gestureStartX.current = event.touches[0]?.clientX ?? null;
+        }}
+        onTouchEnd={(event) => {
+          const startX = gestureStartX.current;
+          gestureStartX.current = null;
+          if (startX === null) return;
+          const endX = event.changedTouches[0]?.clientX;
+          if (endX === undefined || Math.abs(endX - startX) < 45) return;
+          moveFromGesture(endX < startX ? 1 : -1);
         }}
         onKeyDown={(event) => {
           if (event.key === "ArrowLeft") {
             event.preventDefault();
-            move(-1);
+            moveFromGesture(-1);
           }
           if (event.key === "ArrowRight") {
             event.preventDefault();
-            move(1);
+            moveFromGesture(1);
           }
         }}
       >
@@ -4397,13 +4419,13 @@ function SharkTankShowcase({
           </div>
 
           <div className="flex shrink-0 items-center gap-1 sm:gap-3">
-            <Button type="button" variant="ghost" size="icon" data-shark-direction="-1" aria-label="Previous founder" className="rounded-none border border-background/20 text-background hover:bg-background hover:text-foreground">
+            <Button type="button" variant="ghost" size="icon" onClick={() => move(-1)} aria-label="Previous founder" className="min-h-11 min-w-11 rounded-none border border-background/20 text-background hover:bg-background hover:text-foreground">
               <ArrowLeft className="size-4" strokeWidth={1.5} />
             </Button>
             <p className="hidden min-w-14 text-center font-mono text-[10px] text-background/45 sm:block">
               <strong className="text-base font-medium text-background">{String(active + 1).padStart(2, "0")}</strong> / {String(SHARK_TANK.length).padStart(2, "0")}
             </p>
-            <Button type="button" variant="ghost" size="icon" data-shark-direction="1" aria-label="Next founder" className="rounded-none border border-background/20 text-background hover:bg-background hover:text-foreground">
+            <Button type="button" variant="ghost" size="icon" onClick={() => move(1)} aria-label="Next founder" className="min-h-11 min-w-11 rounded-none border border-background/20 text-background hover:bg-background hover:text-foreground">
               <ArrowRight className="size-4" strokeWidth={1.5} />
             </Button>
           </div>
