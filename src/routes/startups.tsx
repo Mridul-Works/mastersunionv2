@@ -26,6 +26,12 @@ import playsuperVentureImg from "@/assets/founders/ventures/playsuper.jpg.asset.
 import seedsaiVentureImg from "@/assets/founders/ventures/seedsai.jpg.asset.json";
 import woodysVentureImg from "@/assets/founders/ventures/woodys.jpg.asset.json";
 import sharkTankStageImg from "@/assets/founders/sharktank-stage.jpg.asset.json";
+import sharkPhoto_bullspree from "@/assets/sharktank/bullspree.webp.asset.json";
+import sharkPhoto_hiveschool from "@/assets/sharktank/hiveschool.webp.asset.json";
+import sharkPhoto_memotag from "@/assets/sharktank/memotag.webp.asset.json";
+import sharkPhoto_nexera from "@/assets/sharktank/nexera.webp.asset.json";
+import sharkPhoto_hookd from "@/assets/sharktank/hookd.webp.asset.json";
+import sharkPhoto_metafashion from "@/assets/sharktank/metafashion.webp.asset.json";
 import muLogoAsset from "@/assets/mu-logo-dark.png.asset.json";
 import foundersVideo from "@/assets/hero-3.mp4.asset.json";
 import foundersVideoWebm from "@/assets/hero-3.webm.asset.json";
@@ -278,6 +284,7 @@ const FOUNDER_VENTURES: VentureTile[] = [
   },
   {
     company: "HiveSchool",
+    photo: sharkPhoto_hiveschool.url,
     founder: "Nikhil Gaur",
     photo: liveHiveSchool.url,
     sector: "Education / Sales",
@@ -287,6 +294,7 @@ const FOUNDER_VENTURES: VentureTile[] = [
   },
   {
     company: "Bullspree",
+    photo: sharkPhoto_bullspree.url,
     founder: "Dharmil Bavishi",
     photo: liveBullspree.url,
     logo: ventureBullspreeLogo,
@@ -317,6 +325,7 @@ const FOUNDER_VENTURES: VentureTile[] = [
   },
   {
     company: "MemoTag",
+    photo: sharkPhoto_memotag.url,
     founder: "Reyansh Juneja",
     photo: liveMemoTag.url,
     sector: "AI / Healthtech",
@@ -326,6 +335,7 @@ const FOUNDER_VENTURES: VentureTile[] = [
   },
   {
     company: "Nexera Health",
+    photo: sharkPhoto_nexera.url,
     founder: "Himanshu Rajpurohit",
     photo: liveNexeraHealth.url,
     sector: "Healthtech",
@@ -344,6 +354,7 @@ const FOUNDER_VENTURES: VentureTile[] = [
   },
   {
     company: "HookD",
+    photo: sharkPhoto_hookd.url,
     founder: "Dia Goel",
     photo: liveHookd.url,
     sector: "D2C / Food",
@@ -373,6 +384,7 @@ const FOUNDER_VENTURES: VentureTile[] = [
   },
   {
     company: "Meta Fashion",
+    photo: sharkPhoto_metafashion.url,
     founder: "Arjun Goel",
     photo: liveMetaFashion.url,
     sector: "Fashion / Gaming",
@@ -715,7 +727,7 @@ const EATATLAS_BEATS: Beat[] = [
 ];
 
 
-type SharkTankEntry = { company: string; founder: string; cohort: string; season: string; description: string };
+type SharkTankEntry = { company: string; founder: string; cohort: string; season: string; description: string; photo?: string };
 const SHARK_TANK: SharkTankEntry[] = [
   {
     company: "Bullspree",
@@ -4680,7 +4692,20 @@ function StartupsPage() {
         </Reveal>
 
         <Reveal delay={0.12} className="mt-10">
-          <Placeholder kind="image" src={sharkTankStageImg.url} alt="Shark Tank India stage" aspect="aspect-[21/9]" dark />
+          <div className="grid grid-cols-3 gap-px bg-background/10 lg:grid-cols-6">
+            {SHARK_TANK.map((f, i) => (
+              <button
+                key={f.company}
+                type="button"
+                onClick={() => setSelectedShark(i)}
+                aria-label={`${f.founder}, ${f.company}`}
+                className={`group relative block aspect-[4/5] overflow-hidden bg-foreground transition-opacity duration-300 ${selectedShark === i ? "opacity-100" : "opacity-80 hover:opacity-100"}`}
+              >
+                {f.photo && <img src={f.photo} alt={`${f.founder} of ${f.company} on Shark Tank India`} loading="lazy" className="absolute inset-0 size-full object-cover" />}
+                <span className={`absolute inset-x-0 bottom-0 h-0.5 bg-bottle transition-opacity duration-300 ${selectedShark === i ? "opacity-100" : "opacity-0"}`} aria-hidden />
+              </button>
+            ))}
+          </div>
         </Reveal>
 
         <div className="mt-px grid grid-cols-1 gap-px bg-background/10 sm:grid-cols-3">
@@ -4696,7 +4721,7 @@ function StartupsPage() {
               >
                 <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
                   <div className="flex min-w-0 items-center gap-3">
-                    <LogoBadge src={VENTURE_IMAGES[f.company]} alt={`${f.company} logo`} dark={selectedShark !== i} />
+                    <LogoBadge src={VENTURE_IMAGES[f.company] ?? f.photo} alt={`${f.company}`} dark={selectedShark !== i} />
                     <h3 className="text-[1.15rem] font-medium">{f.company}</h3>
                   </div>
                   <span className={`eyebrow ${selectedShark === i ? "text-background/45" : "text-background/45"}`}>{f.season}</span>
