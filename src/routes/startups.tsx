@@ -3404,7 +3404,7 @@ function VipTopStartups() {
               <li
                 key={`${startup.name}-${index}`}
                 aria-hidden={index >= VIP_TOP_STARTUPS.length}
-                className="flex h-14 w-36 shrink-0 items-center justify-center px-5 sm:h-16 sm:w-44 sm:px-7"
+                className="flex h-20 w-48 shrink-0 items-center justify-center px-6 sm:h-24 sm:w-60 sm:px-8"
               >
                 <img
                   src={startup.logo}
@@ -3412,7 +3412,7 @@ function VipTopStartups() {
                   loading="lazy"
                   decoding="async"
                   data-asset-tries="0"
-                  className="block max-h-10 w-auto max-w-full object-contain opacity-90 sm:max-h-12"
+                  className="block max-h-14 w-auto max-w-full object-contain opacity-90 sm:max-h-16"
                 />
               </li>
             ))}
