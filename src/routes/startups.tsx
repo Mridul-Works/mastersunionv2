@@ -3262,13 +3262,13 @@ function VipTopStartups() {
           {VIP_TOP_STARTUPS.map((startup, index) => (
             <div
               key={`${startup.name}-${index}`}
-              className="flex aspect-[2.5/1] min-h-[4.5rem] items-center justify-center border-b border-r border-foreground/10 bg-background px-2 sm:min-h-[5.5rem] sm:px-4"
+              className="flex aspect-[2.5/1] min-h-[4.5rem] min-w-0 items-center justify-center overflow-hidden border-b border-r border-foreground/10 bg-background px-2 sm:min-h-[5.5rem] sm:px-4"
             >
               <img
                 src={startup.logo}
                 alt={`${startup.name} logo`}
                 loading="lazy"
-                className="h-full w-full object-contain"
+                className="block h-full min-w-0 max-w-full object-contain"
               />
             </div>
           ))}
