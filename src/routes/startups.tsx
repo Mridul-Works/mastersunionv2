@@ -3413,7 +3413,7 @@ function VipJourney({ stages }: { stages: Stage[] }) {
 
 function VipTopStartups() {
   return (
-    <Reveal delay={0.08} className="mt-5 sm:mt-6">
+    <Reveal delay={0.08} className="mt-14 sm:mt-16">
       <div className="border-y border-background/15 py-6 sm:py-8">
         <div className="flex items-center justify-between gap-5 pb-5 sm:pb-6">
           <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-background/55">Top Startups</p>
