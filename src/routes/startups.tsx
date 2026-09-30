@@ -1590,9 +1590,11 @@ const FOUNDER_EDITORIAL: Record<
   },
 };
 
-const STORY_ACCENTS = ["#111111"];
+// Per-chapter accent colors sampled from the Entrepreneurship Report palette
+// (teal, blue, deep green, red, gold, amber, moss) — one per chapter, in order.
+const STORY_ACCENTS = ["#0E8074", "#2E6FAE", "#006A4E", "#C13A2E", "#B98A00", "#D97706", "#567D2E"];
 
-const STORY_PAPER = "#EEEEEE";
+const STORY_PAPER = "#FAF9F6";
 
 function FounderStoriesGallery() {
   const [activeStory, setActiveStory] = useState(0);
@@ -1779,8 +1781,11 @@ function FounderStoriesGallery() {
                 {(() => {
                   const rest = editorial.paragraphs.slice(4);
                   const header = (
-                    <div className="mb-4 flex shrink-0 items-center justify-between border-b border-foreground/20 pb-2 font-mono text-[8px] uppercase tracking-[0.24em] text-foreground/50">
-                      <span>{story.name} · continued</span>
+                    <div className="mb-4 flex shrink-0 items-center justify-between gap-4 border-b border-foreground/20 pb-2">
+                      <div aria-hidden className="h-px flex-grow bg-foreground/20" />
+                      <span className="shrink-0 bg-foreground px-2.5 py-1 font-mono text-[8px] uppercase tracking-[0.24em] text-(--paper)">
+                        {story.name} · continued
+                      </span>
                     </div>
                   );
                   const quote = (big = false) => (
