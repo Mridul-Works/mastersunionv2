@@ -4309,15 +4309,13 @@ function SharkTankShowcase({
   useEffect(() => {
     const element = showcaseRef.current;
     if (!element) return;
-    const advance = (direction: -1 | 1) => {
-      element.querySelector<HTMLButtonElement>(`[data-shark-direction="${direction}"]`)?.click();
-    };
     const onKey = (event: KeyboardEvent) => {
       const rect = element.getBoundingClientRect();
       const visible = rect.top < window.innerHeight * 0.85 && rect.bottom > window.innerHeight * 0.15;
       if (!visible || (event.key !== "ArrowLeft" && event.key !== "ArrowRight")) return;
       event.preventDefault();
-      advance(event.key === "ArrowRight" ? 1 : -1);
+      event.stopPropagation();
+      move(event.key === "ArrowRight" ? 1 : -1);
     };
     const onWheel = (event: WheelEvent) => {
       if (Math.abs(event.deltaX) < 28 || Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
@@ -4325,16 +4323,16 @@ function SharkTankShowcase({
       const now = Date.now();
       if (now - lastGestureAt.current < (reduceMotion ? 120 : 650)) return;
       lastGestureAt.current = now;
-      advance(event.deltaX > 0 ? 1 : -1);
+      move(event.deltaX > 0 ? 1 : -1);
     };
 
-    window.addEventListener("keydown", onKey);
+    document.addEventListener("keydown", onKey, true);
     element.addEventListener("wheel", onWheel, { passive: false });
     return () => {
-      window.removeEventListener("keydown", onKey);
+      document.removeEventListener("keydown", onKey, true);
       element.removeEventListener("wheel", onWheel);
     };
-  }, [reduceMotion]);
+  }, [active, reduceMotion]);
 
   if (!activeFounder) return null;
 
@@ -4346,18 +4344,6 @@ function SharkTankShowcase({
         role="region"
         aria-label="Shark Tank India founders"
         tabIndex={0}
-        onKeyDownCapture={(event) => {
-          if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
-          event.preventDefault();
-          event.stopPropagation();
-          move(event.key === "ArrowRight" ? 1 : -1);
-        }}
-        onWheelCapture={(event) => {
-          if (Math.abs(event.deltaX) < 28 || Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
-          event.preventDefault();
-          event.stopPropagation();
-          moveFromGesture(event.deltaX > 0 ? 1 : -1);
-        }}
         onTouchStartCapture={(event) => {
           touchStart.current = {
             x: event.touches[0]?.clientX ?? 0,
