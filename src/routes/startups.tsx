@@ -48,6 +48,7 @@ import sharkPhoto_hookd from "@/assets/sharktank/hookd.webp.asset.json";
 import sharkPhoto_metafashion from "@/assets/sharktank/metafashion.webp.asset.json";
 import muLogoAsset from "@/assets/mu-logo-dark.png.asset.json";
 import footerLogoAsset from "@/assets/logo-2.png.asset.json";
+import { Parallax } from "@/components/placements/motion";
 import foundersVideo from "@/assets/hero-3.mp4.asset.json";
 import foundersVideoWebm from "@/assets/hero-3.webm.asset.json";
 import entrepreneurshipReport2021 from "@/assets/entrepreneurship-report-2021-25.pdf.asset.json";
