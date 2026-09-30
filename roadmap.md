@@ -31,3 +31,4 @@
 - [x] VIP Top Startups: white grid panel replaced with a side-scrolling marquee on the theme background — logo white backgrounds knocked out to transparency, dark marks lightened, saturated colors kept; duplicated 15-logo track, hover pauses, reduced-motion static; verified 1440/1024/768/390 (0 overflow, 0 console errors), typecheck + build clean, nothing published.
 
 - [x] People section: two-column layout, heading left (sticky), quotes scrollable right — done
+- [x] People section: quote layout rebuilt as a static editorial wall — lead pull quote with small avatar + name at left, three supporting quotes in a row below, each with a small avatar, index and hairline rules; no pinned scroll, no inner scrollbar; quote bodies forced to `!text-background` for contrast; verified 1440/1024/768/640/390 (0 overflow, 0 console errors), typecheck + build clean, nothing published.
