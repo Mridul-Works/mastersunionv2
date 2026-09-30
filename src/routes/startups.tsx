@@ -5822,6 +5822,9 @@ function StartupsPage() {
 
       <VenturesMosaicSection />
 
+      <InvestmentFundSection />
+
+
 
       <Section id="cta" tone="dark" container="max-w-4xl">
         <div className="pb-10 pt-4 text-center sm:pb-14 sm:pt-6 md:pb-20 md:pt-12">
