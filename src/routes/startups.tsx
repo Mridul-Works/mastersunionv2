@@ -3649,33 +3649,34 @@ function InvestmentFundSection() {
         </div>
       </Reveal>
 
-      <div className="mt-7 grid grid-cols-2 gap-[3px] sm:grid-cols-3 md:mt-9 lg:grid-cols-5">
+      <div className="mt-7 grid gap-x-4 gap-y-8 sm:grid-cols-2 sm:gap-x-5 md:mt-9 lg:grid-cols-3 xl:grid-cols-4">
         {MUIF_TEAM.map((m, i) => (
-          <Reveal key={m.name} delay={0.03 + (i % 5) * 0.03}>
+          <Reveal key={m.name} delay={0.03 + (i % 4) * 0.03}>
             <a
               href={m.linkedin}
               target="_blank"
               rel="noreferrer noopener"
-              className="group relative block overflow-hidden bg-background/[0.04] transition-colors duration-300 hover:bg-background/[0.08]"
+              className="group block min-w-0"
             >
-              <img
-                src={m.photo}
-                alt={m.name}
-                loading="lazy"
-                decoding="async"
-                className="no-img-zoom aspect-[4/5] w-full object-cover"
-              />
-              <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 p-3 sm:p-4">
+              <div className="relative aspect-[464/260] overflow-hidden bg-background/[0.04]">
+                <img
+                  src={m.photo}
+                  alt={m.name}
+                  loading="lazy"
+                  decoding="async"
+                  className="no-img-zoom h-full w-full object-cover transition-[filter] duration-300 group-hover:brightness-110"
+                />
+              </div>
+              <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3 border-b border-background/15 py-3.5 sm:py-4">
                 <div className="min-w-0">
-                  <div className="truncate font-display text-[13px] font-medium leading-tight text-white sm:text-[14px]">
+                  <div className="truncate font-display text-[14px] font-medium leading-tight text-background sm:text-[15px]">
                     {m.name}
                   </div>
-                  <div className="mt-1 font-mono text-[8px] font-semibold uppercase tracking-[0.2em] text-white/60 sm:text-[9px]">
+                  <div className="mt-1.5 font-mono text-[8px] font-semibold uppercase tracking-[0.2em] text-background/50 sm:text-[9px]">
                     {m.role}
                   </div>
                 </div>
-                <span className="inline-flex size-7 shrink-0 items-center justify-center border border-white/25 text-white/75 transition-colors duration-300 group-hover:bg-white group-hover:text-black">
+                <span className="inline-flex size-8 shrink-0 items-center justify-center border border-background/20 text-background/70 transition-colors duration-300 group-hover:bg-background group-hover:text-foreground">
                   <Linkedin className="size-3.5" strokeWidth={1.75} />
                 </span>
               </div>
@@ -3701,14 +3702,14 @@ function InvestmentFundSection() {
           </Reveal>
 
           <Reveal delay={0.06}>
-            <div className="grid gap-2.5 sm:grid-cols-2">
+            <div className="flex flex-col items-stretch gap-2.5 lg:flex-row lg:justify-end">
               {MUIF_REPORTS.map((r) => (
                 <a
                   key={r.label}
                   href={r.href}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className={`group inline-flex min-h-12 items-center justify-between gap-4 rounded-full border px-5 py-3 font-mono text-[9px] font-semibold uppercase tracking-[0.16em] transition-colors duration-300 sm:text-[10px] ${
+                  className={`group inline-flex min-h-12 items-center justify-between gap-4 rounded-full border px-4 py-3 font-mono text-[8px] font-semibold uppercase tracking-[0.12em] whitespace-nowrap transition-colors duration-300 sm:px-5 sm:text-[9px] ${
                     r.primary
                       ? "border-background/25 bg-background text-foreground hover:bg-background/85"
                       : "border-background/25 text-background/80 hover:bg-background hover:text-foreground"
