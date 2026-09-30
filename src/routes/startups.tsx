@@ -151,7 +151,7 @@ import { Button } from "@/components/ui/button";
 const NAV: { id: string; label: string }[] = [
   { id: "top", label: "Hero" },
   { id: "journey", label: "Journey" },
-  { id: "eight", label: "Stories" },
+  { id: "founder-stories", label: "Stories" },
   { id: "sharktank", label: "Shark Tank" },
   { id: "portfolio", label: "Portfolio" },
 ];
