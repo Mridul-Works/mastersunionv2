@@ -1379,6 +1379,8 @@ function Section({
   container?: string;
   tightTop?: boolean;
   tightBottom?: boolean;
+  /** Pair with tightBottom for an extra-snug gap below the section's last element. */
+  snugBottom?: boolean;
   /** Pass "h-px" when a section's rule must read as a visible hairline. */
   ruleHeightClass?: string;
   /** Suppress the auto corner wordmark (used when the section draws its own giant word). */
