@@ -6091,6 +6091,7 @@ function StartupsPage() {
           </Reveal>
         </div>
       </Section>
+      <StartupsFooter />
       </div>
       <div aria-hidden className="fixed inset-x-0 bottom-0 -z-10 h-28 bg-foreground md:hidden" />
     </main>
