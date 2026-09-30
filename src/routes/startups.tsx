@@ -555,6 +555,21 @@ import vipTopStartup12 from "@/assets/vip/top-startups/top-startup-12.webp.asset
 import vipTopStartup13 from "@/assets/vip/top-startups/top-startup-13.webp.asset.json";
 import vipTopStartup14 from "@/assets/vip/top-startups/top-startup-14.webp.asset.json";
 import vipTopStartup15 from "@/assets/vip/top-startups/top-startup-15.webp.asset.json";
+import vipTopStartupDark1 from "@/assets/vip/top-startups/top-startup-dark-1.png.asset.json";
+import vipTopStartupDark2 from "@/assets/vip/top-startups/top-startup-dark-2.png.asset.json";
+import vipTopStartupDark3 from "@/assets/vip/top-startups/top-startup-dark-3.png.asset.json";
+import vipTopStartupDark4 from "@/assets/vip/top-startups/top-startup-dark-4.png.asset.json";
+import vipTopStartupDark5 from "@/assets/vip/top-startups/top-startup-dark-5.png.asset.json";
+import vipTopStartupDark6 from "@/assets/vip/top-startups/top-startup-dark-6.png.asset.json";
+import vipTopStartupDark7 from "@/assets/vip/top-startups/top-startup-dark-7.png.asset.json";
+import vipTopStartupDark8 from "@/assets/vip/top-startups/top-startup-dark-8.png.asset.json";
+import vipTopStartupDark9 from "@/assets/vip/top-startups/top-startup-dark-9.png.asset.json";
+import vipTopStartupDark10 from "@/assets/vip/top-startups/top-startup-dark-10.png.asset.json";
+import vipTopStartupDark11 from "@/assets/vip/top-startups/top-startup-dark-11.png.asset.json";
+import vipTopStartupDark12 from "@/assets/vip/top-startups/top-startup-dark-12.png.asset.json";
+import vipTopStartupDark13 from "@/assets/vip/top-startups/top-startup-dark-13.png.asset.json";
+import vipTopStartupDark14 from "@/assets/vip/top-startups/top-startup-dark-14.png.asset.json";
+import vipTopStartupDark15 from "@/assets/vip/top-startups/top-startup-dark-15.png.asset.json";
 
 type Stage = { n: string; name: string; grant: string | null; body: string[]; image: string; culmination?: boolean };
 
