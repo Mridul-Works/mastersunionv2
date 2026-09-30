@@ -87,8 +87,12 @@ import ventureHiveschoolLogo from "@/assets/venture-logos/Hiveschool.png.asset.j
 import venturePlaysuperLogo from "@/assets/venture-logos/Playsuper.png.asset.json";
 import ventureSeedsAILogo from "@/assets/venture-logos/SeedsAI.png.asset.json";
 import ventureGuardexLogo from "@/assets/venture-logos/Guardex.png.asset.json";
+import sharkNexeraLogo from "@/assets/sharktank/NexeraHealth.png.asset.json";
+import sharkHookDLogo from "@/assets/sharktank/HookD.png.asset.json";
 import sharkMemoTagLogo from "@/assets/sharktank/MemoTag.png.asset.json";
 import sharkMetaFashionLogo from "@/assets/sharktank/MetaFashion.png.asset.json";
+import sharkBullspreeLogo from "@/assets/sharktank/Bullspree.png.asset.json";
+import sharkHiveSchoolLogo from "@/assets/sharktank/HiveSchool.png.asset.json";
 import brandPhotoEight from "@/assets/founders/brand/eight.jpg";
 import brandPhotoBullspree from "@/assets/founders/brand/bullspree.jpg";
 import brandPhotoHiveschool from "@/assets/founders/brand/hiveschool.jpg";
@@ -4468,6 +4472,81 @@ function SharkTankShowcase({
   );
 }
 
+const SHARK_TANK_LOGOS = [
+  { company: "Nexera Health", logo: sharkNexeraLogo.url },
+  { company: "HookD", logo: sharkHookDLogo.url },
+  { company: "Meta Fashion", logo: sharkMetaFashionLogo.url },
+  { company: "Bullspree", logo: sharkBullspreeLogo.url },
+  { company: "HiveSchool", logo: sharkHiveSchoolLogo.url },
+  { company: "MemoTag", logo: sharkMemoTagLogo.url },
+] as const;
+
+function SharkTankLogoBar() {
+  return (
+    <div
+      className="relative mt-10 overflow-hidden text-background"
+      style={{
+        background: "linear-gradient(120deg, #16150F 0%, #221F19 45%, #1A1814 72%, #100F0C 100%)",
+      }}
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(75% 90% at 4% 0%, rgba(184,145,70,0.20) 0%, rgba(184,145,70,0) 62%), radial-gradient(70% 80% at 96% 100%, rgba(79,163,240,0.14) 0%, rgba(79,163,240,0) 60%)",
+        }}
+      />
+
+      <div className="relative grid gap-4 p-4 sm:gap-6 sm:p-6 md:grid-cols-[minmax(0,300px)_1px_1fr] md:items-center md:gap-9 md:p-9">
+        <div>
+          <p className="font-mono text-[10px] font-bold uppercase tracking-[0.34em] text-[#C9A34E]">
+            Featured on
+          </p>
+          <h3
+            className="mt-3 text-[clamp(1.7rem,3vw,2.35rem)] font-bold uppercase leading-[0.95] tracking-[-0.015em]"
+            style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
+          >
+            <span className="text-[#4FA3F0]">Shark Tank</span>{" "}
+            <span className="text-[#F5CE4B]">India.</span>
+          </h3>
+          <p className="mt-3 max-w-[30ch] text-[12.5px] leading-relaxed text-background/60">
+            Six student-founded ventures pitched on India&apos;s biggest startup stage.
+          </p>
+          <p className="mt-4 inline-flex items-center gap-2 border border-background/15 bg-background/5 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.22em] text-background/70">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#F5CE4B]" />
+            {SHARK_TANK_LOGOS.length} ventures on air
+          </p>
+        </div>
+
+        <div aria-hidden className="hidden h-full w-px bg-background/10 md:block" />
+
+        <div className="grid grid-cols-2 gap-px overflow-hidden bg-background/10 sm:grid-cols-3">
+          {SHARK_TANK_LOGOS.map(({ company, logo }) => {
+            const isMeta = /meta\s*fashion/i.test(company);
+            return (
+              <div
+                key={company}
+                title={company}
+                className="group flex h-14 items-center justify-center bg-foreground px-3 transition-colors duration-300 hover:bg-card sm:h-[74px] sm:px-4"
+              >
+                <img
+                  decoding="async"
+                  src={logo}
+                  alt={company}
+                  loading="lazy"
+                  style={{ transform: isMeta ? "scale(0.82)" : undefined }}
+                  className="max-h-7 w-full object-contain opacity-90 brightness-0 invert transition-opacity duration-300 group-hover:opacity-100"
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function StartupsPage() {
   useAssetReload();
   const [selectedShark, setSelectedShark] = useState(0);
@@ -4877,6 +4956,7 @@ function StartupsPage() {
           </p>
         </Reveal>
 
+        <SharkTankLogoBar />
         <SharkTankShowcase active={selectedShark} onActiveChange={setSelectedShark} />
       </Section>
 
