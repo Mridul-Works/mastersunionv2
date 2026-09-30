@@ -3268,7 +3268,7 @@ function VipTopStartups() {
                 src={startup.logo}
                 alt={`${startup.name} logo`}
                 loading="lazy"
-                className="block h-full min-w-0 max-w-full object-contain"
+                className="block h-full w-full min-w-0 object-contain"
               />
             </div>
           ))}
