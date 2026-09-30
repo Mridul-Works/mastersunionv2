@@ -540,21 +540,21 @@ import vipGtmImg from "@/assets/vip/vip-gtm.jpg.asset.json";
 import vipPmfImg from "@/assets/vip/vip-pmf.jpg.asset.json";
 import vipDemodayImg from "@/assets/vip/vip-demoday.jpg.asset.json";
 import vipProgramVideo from "@/assets/vip-program.mp4.asset.json";
-import vipTopStartup1 from "@/assets/vip/top-startups/top-startup-1.webp.asset.json";
-import vipTopStartup2 from "@/assets/vip/top-startups/top-startup-2.webp.asset.json";
-import vipTopStartup3 from "@/assets/vip/top-startups/top-startup-3.webp.asset.json";
-import vipTopStartup4 from "@/assets/vip/top-startups/top-startup-4.webp.asset.json";
-import vipTopStartup5 from "@/assets/vip/top-startups/top-startup-5.webp.asset.json";
-import vipTopStartup6 from "@/assets/vip/top-startups/top-startup-6.webp.asset.json";
-import vipTopStartup7 from "@/assets/vip/top-startups/top-startup-7.webp.asset.json";
-import vipTopStartup8 from "@/assets/vip/top-startups/top-startup-8.webp.asset.json";
-import vipTopStartup9 from "@/assets/vip/top-startups/top-startup-9.webp.asset.json";
-import vipTopStartup10 from "@/assets/vip/top-startups/top-startup-10.webp.asset.json";
-import vipTopStartup11 from "@/assets/vip/top-startups/top-startup-11.webp.asset.json";
-import vipTopStartup12 from "@/assets/vip/top-startups/top-startup-12.webp.asset.json";
-import vipTopStartup13 from "@/assets/vip/top-startups/top-startup-13.webp.asset.json";
-import vipTopStartup14 from "@/assets/vip/top-startups/top-startup-14.webp.asset.json";
-import vipTopStartup15 from "@/assets/vip/top-startups/top-startup-15.webp.asset.json";
+import vipTopStartupDark1 from "@/assets/vip/top-startups/top-startup-dark-1.png.asset.json";
+import vipTopStartupDark2 from "@/assets/vip/top-startups/top-startup-dark-2.png.asset.json";
+import vipTopStartupDark3 from "@/assets/vip/top-startups/top-startup-dark-3.png.asset.json";
+import vipTopStartupDark4 from "@/assets/vip/top-startups/top-startup-dark-4.png.asset.json";
+import vipTopStartupDark5 from "@/assets/vip/top-startups/top-startup-dark-5.png.asset.json";
+import vipTopStartupDark6 from "@/assets/vip/top-startups/top-startup-dark-6.png.asset.json";
+import vipTopStartupDark7 from "@/assets/vip/top-startups/top-startup-dark-7.png.asset.json";
+import vipTopStartupDark8 from "@/assets/vip/top-startups/top-startup-dark-8.png.asset.json";
+import vipTopStartupDark9 from "@/assets/vip/top-startups/top-startup-dark-9.png.asset.json";
+import vipTopStartupDark10 from "@/assets/vip/top-startups/top-startup-dark-10.png.asset.json";
+import vipTopStartupDark11 from "@/assets/vip/top-startups/top-startup-dark-11.png.asset.json";
+import vipTopStartupDark12 from "@/assets/vip/top-startups/top-startup-dark-12.png.asset.json";
+import vipTopStartupDark13 from "@/assets/vip/top-startups/top-startup-dark-13.png.asset.json";
+import vipTopStartupDark14 from "@/assets/vip/top-startups/top-startup-dark-14.png.asset.json";
+import vipTopStartupDark15 from "@/assets/vip/top-startups/top-startup-dark-15.png.asset.json";
 
 type Stage = { n: string; name: string; grant: string | null; body: string[]; image: string; culmination?: boolean };
 
@@ -613,21 +613,21 @@ const VIP_STAGES: Stage[] = [
 ];
 
 const VIP_TOP_STARTUPS = [
-  { name: "Blue Brew", logo: vipTopStartup1.url },
-  { name: "SeedsAI", logo: vipTopStartup2.url },
-  { name: "Wetee", logo: vipTopStartup3.url },
-  { name: "Amzaar", logo: vipTopStartup4.url },
-  { name: "Aikyam Voices", logo: vipTopStartup5.url },
-  { name: "Beyond Foods", logo: vipTopStartup6.url },
-  { name: "EcoVeda", logo: vipTopStartup7.url },
-  { name: "Eat Atlas", logo: vipTopStartup8.url },
-  { name: "Habiito", logo: vipTopStartup9.url },
-  { name: "PlaySuper", logo: vipTopStartup10.url },
-  { name: "Maarg", logo: vipTopStartup11.url },
-  { name: "Student startup", logo: vipTopStartup12.url },
-  { name: "Student startup", logo: vipTopStartup13.url },
-  { name: "Beyond Veda", logo: vipTopStartup14.url },
-  { name: "HiveSchool", logo: vipTopStartup15.url },
+  { name: "Blue Brew", logo: vipTopStartupDark1.url },
+  { name: "SeedsAI", logo: vipTopStartupDark2.url },
+  { name: "Wetee", logo: vipTopStartupDark3.url },
+  { name: "Amzaar", logo: vipTopStartupDark4.url },
+  { name: "Aikyam Voices", logo: vipTopStartupDark5.url },
+  { name: "Beyond Foods", logo: vipTopStartupDark6.url },
+  { name: "EcoVeda", logo: vipTopStartupDark7.url },
+  { name: "Eat Atlas", logo: vipTopStartupDark8.url },
+  { name: "Habiito", logo: vipTopStartupDark9.url },
+  { name: "PlaySuper", logo: vipTopStartupDark10.url },
+  { name: "Maarg", logo: vipTopStartupDark11.url },
+  { name: "Student startup", logo: vipTopStartupDark12.url },
+  { name: "Student startup", logo: vipTopStartupDark13.url },
+  { name: "Beyond Veda", logo: vipTopStartupDark14.url },
+  { name: "HiveSchool", logo: vipTopStartupDark15.url },
 ];
 
 
@@ -3253,25 +3253,30 @@ function VipJourney({ stages }: { stages: Stage[] }) {
 function VipTopStartups() {
   return (
     <Reveal delay={0.08} className="mt-5 sm:mt-6">
-      <div className="overflow-hidden border border-background/15 bg-background text-foreground">
-        <div className="flex items-center justify-between gap-5 border-b border-foreground/10 px-5 py-4 sm:px-7">
-          <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-foreground/55">Top Startups</p>
-          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-foreground/35">Venture Initiation Programme</span>
+      <div className="border-y border-background/15 py-6 sm:py-8">
+        <div className="flex items-center justify-between gap-5 pb-5 sm:pb-6">
+          <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-background/55">Top Startups</p>
+          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-background/35">Venture Initiation Programme</span>
         </div>
-        <div className="grid grid-cols-3 sm:grid-cols-5">
-          {VIP_TOP_STARTUPS.map((startup, index) => (
-            <div
-              key={`${startup.name}-${index}`}
-              className="flex aspect-[2.5/1] min-h-[4.5rem] min-w-0 items-center justify-center overflow-hidden border-b border-r border-foreground/10 bg-background px-3 sm:min-h-[5.5rem] sm:px-4"
-            >
-              <img
-                src={startup.logo}
-                alt={`${startup.name} logo`}
-                loading="lazy"
-                className="block h-full w-full min-w-0 object-contain"
-              />
-            </div>
-          ))}
+        <div className="marquee-hover overflow-hidden" aria-label="Top Startups from the Venture Initiation Programme">
+          <ul className="flex w-max animate-marquee-slow items-center">
+            {[...VIP_TOP_STARTUPS, ...VIP_TOP_STARTUPS].map((startup, index) => (
+              <li
+                key={`${startup.name}-${index}`}
+                aria-hidden={index >= VIP_TOP_STARTUPS.length}
+                className="flex h-14 w-36 shrink-0 items-center justify-center px-5 sm:h-16 sm:w-44 sm:px-7"
+              >
+                <img
+                  src={startup.logo}
+                  alt={index >= VIP_TOP_STARTUPS.length ? "" : `${startup.name} logo`}
+                  loading="lazy"
+                  decoding="async"
+                  data-asset-tries="0"
+                  className="block max-h-10 w-auto max-w-full object-contain opacity-90 sm:max-h-12"
+                />
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </Reveal>
