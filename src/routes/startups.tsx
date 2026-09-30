@@ -4306,6 +4306,36 @@ function SharkTankShowcase({
     move(direction);
   };
 
+  useEffect(() => {
+    const element = showcaseRef.current;
+    if (!element) return;
+    const advance = (direction: -1 | 1) => {
+      element.querySelector<HTMLButtonElement>(`[data-shark-direction="${direction}"]`)?.click();
+    };
+    const onKey = (event: KeyboardEvent) => {
+      const rect = element.getBoundingClientRect();
+      const visible = rect.top < window.innerHeight * 0.85 && rect.bottom > window.innerHeight * 0.15;
+      if (!visible || (event.key !== "ArrowLeft" && event.key !== "ArrowRight")) return;
+      event.preventDefault();
+      advance(event.key === "ArrowRight" ? 1 : -1);
+    };
+    const onWheel = (event: WheelEvent) => {
+      if (Math.abs(event.deltaX) < 28 || Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+      event.preventDefault();
+      const now = Date.now();
+      if (now - lastGestureAt.current < (reduceMotion ? 120 : 650)) return;
+      lastGestureAt.current = now;
+      advance(event.deltaX > 0 ? 1 : -1);
+    };
+
+    window.addEventListener("keydown", onKey);
+    element.addEventListener("wheel", onWheel, { passive: false });
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      element.removeEventListener("wheel", onWheel);
+    };
+  }, [reduceMotion]);
+
   if (!activeFounder) return null;
 
   return (
@@ -4420,13 +4450,13 @@ function SharkTankShowcase({
           </div>
 
           <div className="flex shrink-0 items-center gap-1 sm:gap-3">
-            <Button type="button" variant="ghost" size="icon" onClick={() => move(-1)} aria-label="Previous founder" className="min-h-11 min-w-11 rounded-none border border-background/20 text-background hover:bg-background hover:text-foreground">
+            <Button type="button" variant="ghost" size="icon" data-shark-direction="-1" onClick={() => move(-1)} aria-label="Previous founder" className="min-h-11 min-w-11 rounded-none border border-background/20 text-background hover:bg-background hover:text-foreground">
               <ArrowLeft className="size-4" strokeWidth={1.5} />
             </Button>
             <p className="hidden min-w-14 text-center font-mono text-[10px] text-background/45 sm:block">
               <strong className="text-base font-medium text-background">{String(active + 1).padStart(2, "0")}</strong> / {String(SHARK_TANK.length).padStart(2, "0")}
             </p>
-            <Button type="button" variant="ghost" size="icon" onClick={() => move(1)} aria-label="Next founder" className="min-h-11 min-w-11 rounded-none border border-background/20 text-background hover:bg-background hover:text-foreground">
+            <Button type="button" variant="ghost" size="icon" data-shark-direction="1" onClick={() => move(1)} aria-label="Next founder" className="min-h-11 min-w-11 rounded-none border border-background/20 text-background hover:bg-background hover:text-foreground">
               <ArrowRight className="size-4" strokeWidth={1.5} />
             </Button>
           </div>
