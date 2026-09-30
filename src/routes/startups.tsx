@@ -4335,13 +4335,10 @@ function SharkTankShowcase({
         aria-label="Shark Tank India founders"
         tabIndex={0}
         onKeyDown={(event) => {
-          if (event.key === "ArrowLeft") {
-            event.preventDefault();
-            onActiveChange((current) => (current - 1 + SHARK_TANK.length) % SHARK_TANK.length);
-          } else if (event.key === "ArrowRight") {
-            event.preventDefault();
-            onActiveChange((current) => (current + 1) % SHARK_TANK.length);
-          }
+          if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+          event.preventDefault();
+          const direction = event.key === "ArrowRight" ? 1 : -1;
+          document.querySelector<HTMLButtonElement>(`[data-shark-direction="${direction}"]`)?.click();
         }}
         onTouchStartCapture={(event) => {
           touchStart.current = {
