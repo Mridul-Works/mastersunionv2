@@ -3658,6 +3658,8 @@ function InTheNewsRail() {
           </a>
         ))}
       </div>
+
+      <div role="separator" aria-hidden="true" className="mt-14 h-px w-full bg-background/15 sm:mt-16" />
     </div>
   );
 }
