@@ -2179,218 +2179,74 @@ function SparkCarousel({
   );
 }
 
-function QuoteStory({
-  people,
-  active,
-  onActiveChange,
-}: {
-  people: typeof TESTIMONIALS;
-  active: number;
-  onActiveChange: (index: number) => void;
-}) {
-  const storyRef = useRef<HTMLDivElement>(null);
-  const stickyRef = useRef<HTMLDivElement>(null);
-  const nameRailRef = useRef<HTMLDivElement>(null);
-  const nameTrackRef = useRef<HTMLDivElement>(null);
-  const scrollFrameRef = useRef(0);
-  const lastActiveRef = useRef(active);
-  const lastTrackOffsetRef = useRef<number | null>(null);
-  const reduceMotion = useReducedMotion();
-  const count = people.length;
-  const person = people[Math.min(active, count - 1)];
-
-  useEffect(() => {
-    lastActiveRef.current = active;
-  }, [active]);
-
-  // Same scroll driver as the Spark story: the sticky viewport reads its own
-  // geometry each frame, so the story runs forward and in reverse with the
-  // trackpad without fighting Lenis.
-  useEffect(() => {
-    const story = storyRef.current;
-    if (!story) return;
-
-    const update = () => {
-      scrollFrameRef.current = 0;
-      const rect = story.getBoundingClientRect();
-      const stickyHeight = stickyRef.current?.offsetHeight || window.innerHeight || 1;
-      const scrollRange = Math.max(1, rect.height - stickyHeight);
-      const progress = Math.min(1, Math.max(0, -rect.top / scrollRange));
-      const rawIndex = progress * Math.max(1, count - 1);
-      const nextActive = Math.min(count - 1, Math.max(0, Math.round(rawIndex)));
-      const personIndex = Math.min(rawIndex, count - 1);
-
-      const rail = nameRailRef.current;
-      const track = nameTrackRef.current;
-      const firstItem = track?.children[0] as HTMLElement | undefined;
-      if (rail && track && firstItem) {
-        const offset = rail.clientHeight / 2 - firstItem.offsetHeight * (personIndex + 0.5);
-        if (lastTrackOffsetRef.current === null || Math.abs(offset - lastTrackOffsetRef.current) > 0.5) {
-          lastTrackOffsetRef.current = offset;
-          track.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0)`;
-        }
-      }
-
-      if (nextActive !== lastActiveRef.current) {
-        lastActiveRef.current = nextActive;
-        onActiveChange(nextActive);
-      }
-    };
-
-    const schedule = () => {
-      if (!scrollFrameRef.current) scrollFrameRef.current = requestAnimationFrame(update);
-    };
-
-    update();
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule, { passive: true });
-    window.addEventListener("orientationchange", schedule, { passive: true });
-    return () => {
-      cancelAnimationFrame(scrollFrameRef.current);
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
-      window.removeEventListener("orientationchange", schedule);
-    };
-  }, [count, onActiveChange]);
-
-  const scrollToPerson = (index: number) => {
-    const story = storyRef.current;
-    if (!story || count <= 1) return;
-
-    lastActiveRef.current = index;
-    onActiveChange(index);
-
-    const stickyHeight = stickyRef.current?.offsetHeight || window.innerHeight || 1;
-    const scrollRange = Math.max(1, story.offsetHeight - stickyHeight);
-    const storyTop = story.getBoundingClientRect().top + window.scrollY;
-    const target = storyTop + scrollRange * (index / Math.max(1, count - 1));
-    const lenis = (window as unknown as {
-      __lenis?: { scrollTo?: (target: number, options?: { duration?: number; force?: boolean }) => void };
-    }).__lenis;
-
-    if (lenis?.scrollTo) {
-      lenis.scrollTo(target, { duration: reduceMotion ? 0 : 0.85, force: true });
-      return;
-    }
-
-    window.scrollTo({ top: target, behavior: reduceMotion ? "auto" : "smooth" });
-  };
+function QuoteWall({ people }: { people: typeof TESTIMONIALS }) {
+  const [lead, ...rest] = people;
 
   return (
-    <div
-      ref={storyRef}
-      className="relative mt-2 sm:mt-4 md:mt-6"
-      style={{ height: `${count * 55}svh` }}
-    >
-      <div
-        ref={stickyRef}
-        className="sticky top-0 flex min-h-[100svh] items-center overflow-hidden pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+88px)] md:pb-[84px]"
-      >
-        <div className="w-full">
-          <div className="grid grid-cols-[minmax(0,1fr)_minmax(72px,0.28fr)_minmax(0,1.15fr)] items-stretch gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(120px,0.3fr)_minmax(0,1.15fr)] sm:gap-4 md:grid-cols-[minmax(0,1fr)_minmax(180px,0.36fr)_minmax(0,1.15fr)] md:gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(240px,0.4fr)_minmax(0,1.15fr)] lg:gap-10">
-            <div className="flex flex-col justify-center">
-              <div className="eyebrow mb-2 grid min-h-[2.75rem] text-center text-background/45 sm:mb-3 sm:min-h-[3rem]">
-                {people.map((p, i) => (
-                  <span key={`role-${p.name}`} aria-hidden={i !== active} className={`col-start-1 row-start-1 self-end ${i === active ? "visible" : "invisible"}`}>
-                    {p.role}
-                  </span>
-                ))}
-              </div>
-              <div className="relative overflow-hidden">
-                <motion.div
-                  key={`portrait-${active}`}
-                  initial={reduceMotion ? false : { y: "100%" }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: reduceMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <Placeholder
-                    kind="image"
-                    aspect="aspect-[4/5]"
-                    src={person.photo}
-                    alt={person.photo ? `${person.name} — ${person.role}` : undefined}
-                    note={`${person.name} — portrait`}
-                  />
-                </motion.div>
+    <div className="mt-8 sm:mt-10 md:mt-12">
+      <div className="flex items-center justify-between gap-6 border-t border-background/15 pt-4">
+        <span className="eyebrow text-background/45">In the room</span>
+        <span className="eyebrow shrink-0 text-background/45">
+          {String(people.length).padStart(2, "0")} voices
+        </span>
+      </div>
+
+      <Reveal className="mt-9 sm:mt-11 md:mt-14">
+        <figure className="grid grid-cols-1 items-end gap-5 sm:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] sm:gap-8 lg:grid-cols-[minmax(0,0.6fr)_minmax(0,1.9fr)] lg:gap-14">
+          <figcaption className="flex items-center gap-4 sm:flex-col sm:items-start sm:gap-5">
+            <PortraitBadge
+              src={lead.photo}
+              alt={lead.photo ? `${lead.name} — ${lead.role}` : undefined}
+              size="size-12 sm:size-14"
+            />
+            <span className="min-w-0">
+              <span className="block font-display text-[clamp(1.15rem,1.9vw,1.6rem)] font-semibold leading-[1.1] tracking-tight">
+                {lead.name}
+              </span>
+              <span className="eyebrow mt-2 block text-background/50">{lead.role}</span>
+            </span>
+          </figcaption>
+          <blockquote className="min-w-0 text-balance font-serif-italic !font-serif !font-light text-[clamp(1.35rem,2.9vw,2.3rem)] leading-[1.32] text-background/95">
+            <span aria-hidden className="mr-1 align-top font-serif text-[1.4em] leading-[0] text-bottle/80">
+              &ldquo;
+            </span>
+            {lead.quote}
+          </blockquote>
+        </figure>
+      </Reveal>
+
+      <div className="mt-10 grid grid-cols-1 gap-x-7 gap-y-9 sm:mt-12 sm:grid-cols-2 sm:gap-y-10 md:mt-16 md:grid-cols-3 md:gap-x-9 lg:gap-x-12">
+        {rest.map((p, i) => (
+          <Reveal key={p.name} delay={i * 0.06} className="h-full">
+            <figure className="group flex h-full flex-col transition-transform duration-500 ease-out hover:-translate-y-1">
+              <div className="relative border-t border-background/15 pt-4">
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-b from-foreground/50 via-transparent to-foreground/80"
+                  className="absolute -top-px left-0 h-px w-0 bg-bottle transition-[width] duration-500 ease-out group-hover:w-full"
                 />
-                <span className="absolute -left-px -top-px z-20 bg-bottle px-3 py-1 font-tech text-[9px] font-bold uppercase text-background">
-                  Believers · {String(active + 1).padStart(2, "0")}
+                <span className="eyebrow text-background/40">
+                  {String(i + 2).padStart(2, "0")}
                 </span>
-                <span
-                  aria-hidden
-                  className="absolute right-3 top-3 z-20 hidden font-tech text-[9px] uppercase tracking-[0.18em] text-background/60 [writing-mode:vertical-rl] min-[700px]:inline-block"
-                >
-                  Mentors // Room
-                </span>
-                <span className="absolute inset-x-4 bottom-3 z-20 sm:bottom-4">
-                  <span className="block font-display text-[clamp(0.8rem,1.6vw,1.3rem)] font-black italic leading-[1.05] text-background">
-                    {person.name}
+              </div>
+              <blockquote className="mt-4 grow font-serif-italic !font-serif !font-light text-[clamp(1rem,1.25vw,1.15rem)] leading-[1.6] text-background/85">
+                {p.quote}
+              </blockquote>
+              <figcaption className="mt-6 flex items-center gap-3 border-t border-background/10 pt-4">
+                <PortraitBadge
+                  src={p.photo}
+                  alt={p.photo ? `${p.name} — ${p.role}` : undefined}
+                  size="size-9 sm:size-10"
+                />
+                <span className="min-w-0">
+                  <span className="block truncate text-[13px] font-semibold text-background/90">
+                    {p.name}
                   </span>
+                  <span className="eyebrow mt-1 block truncate text-background/45">{p.role}</span>
                 </span>
-              </div>
-            </div>
-
-            <div
-              ref={nameRailRef}
-              aria-label="Believers story progression"
-              className="relative h-[46svh] overflow-hidden text-center sm:h-[50svh] md:h-[56svh] lg:h-[60svh]"
-            >
-              <span aria-hidden className="pointer-events-none absolute inset-x-3 top-1/2 z-[1] h-px -translate-y-1/2 bg-background/15" />
-              <div
-                ref={nameTrackRef}
-                role="list"
-                className="relative z-[2] w-full will-change-transform"
-              >
-                {people.map((p, i) => (
-                  <div key={`rail-${p.name}`} role="listitem" className="flex min-h-[18svh] w-full shrink-0 items-center justify-center px-2 sm:min-h-[19svh] sm:px-4 md:min-h-[21svh] md:px-6 lg:min-h-[22svh]">
-                    <button
-                      type="button"
-                      aria-current={i === active ? "step" : undefined}
-                      onClick={() => scrollToPerson(i)}
-                      className={`cursor-pointer pr-[0.08em] font-serif-italic text-[clamp(1.1rem,2.4vw,2rem)] leading-[1.1] text-background transition-[opacity,transform] duration-500 hover:opacity-80 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-background/60 ${
-                        i === active ? "scale-100 opacity-100" : "scale-[0.82] opacity-20"
-                      }`}
-                    >
-                      {p.name}
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="flex flex-col justify-center">
-              <div className="eyebrow mb-2 grid min-h-[2.75rem] text-center text-background/45 sm:mb-3 sm:min-h-[3rem]">
-                {people.map((p, i) => (
-                  <span key={`label-${p.name}`} aria-hidden={i !== active} className={`col-start-1 row-start-1 self-end ${i === active ? "visible" : "invisible"}`}>
-                    On the record
-                  </span>
-                ))}
-              </div>
-              <div className="relative overflow-hidden">
-                <motion.div
-                  key={`quote-${active}`}
-                  initial={reduceMotion ? false : { y: "100%" }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: reduceMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <figure className="flex aspect-[4/5] flex-col justify-center border border-background/15 bg-background/[0.03] px-5 py-6 sm:px-8 sm:py-8 md:px-10">
-                    <span aria-hidden className="font-serif text-[clamp(2.2rem,4.5vw,3.4rem)] leading-none text-background/25">
-                      &ldquo;
-                    </span>
-                    <blockquote className="mt-2 text-balance font-serif-italic !font-serif !font-light text-[clamp(1rem,1.8vw,1.4rem)] leading-[1.5] text-background/90">
-                      {person.quote}
-                    </blockquote>
-                    <figcaption className="mt-6 eyebrow text-background/55">
-                      {person.name} · {person.role}
-                    </figcaption>
-                  </figure>
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        </div>
+              </figcaption>
+            </figure>
+          </Reveal>
+        ))}
       </div>
     </div>
   );
