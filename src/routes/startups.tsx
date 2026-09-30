@@ -6076,7 +6076,7 @@ function StartupsPage() {
 
 
 
-      <Section id="cta" tone="dark" container="max-w-7xl" tightTop tightBottom>
+      <Section id="cta" tone="dark" container="max-w-7xl" tightTop tightBottom hideWatermark>
         <div className="relative">
           {/* Giant watermark word — drifts on scroll, passes blurred behind the
               glass card and is clipped at the section's bottom edge, exactly
