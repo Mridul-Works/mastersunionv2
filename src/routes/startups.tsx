@@ -4968,27 +4968,30 @@ function StartupsPage() {
       </Section>
 
       <Section id="hssl" tone="paper">
-        <Reveal>
-          <div className="flex items-start gap-4">
-            <EyebrowRule />
-            <div className="flex min-w-0 items-start gap-2">
-              <GraduationCap className="size-4 shrink-0 text-background/55" strokeWidth={1.75} />
-              <Eyebrow rule={false}>High School Startup League</Eyebrow>
+        <div className="grid gap-5 md:grid-cols-[minmax(0,1fr)_minmax(0,340px)] md:items-end md:gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,400px)] lg:gap-14">
+          <Reveal>
+            <div className="min-w-0">
+              <div className="flex items-start gap-4">
+                <EyebrowRule />
+                <div className="flex min-w-0 items-start gap-2">
+                  <GraduationCap className="size-4 shrink-0 text-background/55" strokeWidth={1.75} />
+                  <Eyebrow rule={false}>High School Startup League</Eyebrow>
+                </div>
+              </div>
+              <h2 className="mt-5 max-w-[26ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
+                The founders here haven&apos;t graduated high school yet.
+              </h2>
             </div>
-          </div>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <h2 className="mt-5 max-w-[26ch] text-[clamp(1.75rem,3.8vw,3.2rem)] font-light leading-[1.12] md:leading-[1.08] tracking-normal">
-            The founders here haven&apos;t graduated high school yet.
-          </h2>
-        </Reveal>
-        <Reveal delay={0.1}>
-          <p className="mt-6 max-w-[60ch] text-[13px] leading-[1.6] text-background/70 md:text-[15px] md:leading-[1.75] md:mt-7">
-            A separate pipeline, built for Class IX–XII students, not current Masters&apos; Union
-            enrollees — a launchpad for teen founders to create, pitch, and take their first cheque, with
-            past judges including Ashneer Grover, Ankur Warikoo, Techburner, and Sarthak Ahuja.
-          </p>
-        </Reveal>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="mt-6 max-w-[60ch] text-[13px] leading-[1.6] text-background/70 md:mt-0 md:text-[15px] md:leading-[1.75]">
+              A separate pipeline, built for Class IX–XII students, not current Masters&apos; Union
+              enrollees — a launchpad for teen founders to create, pitch, and take their first cheque, with
+              past judges including Ashneer Grover, Ankur Warikoo, Techburner, and Sarthak Ahuja.
+            </p>
+          </Reveal>
+        </div>
+
 
         <Reveal delay={0.18} className="mt-8 sm:mt-10">
           <div className="overflow-hidden rounded-2xl border border-background/15 bg-background/[0.03]">
