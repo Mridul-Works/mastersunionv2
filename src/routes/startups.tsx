@@ -3730,7 +3730,7 @@ function InvestmentFundSection() {
               alt="Masters' Union Investment Fund portfolio performance dashboard"
               loading="lazy"
               decoding="async"
-              className="no-img-zoom mx-auto block h-auto w-full object-contain"
+              className="no-img-zoom mx-auto block h-auto w-full max-w-4xl object-contain"
             />
           </div>
         </Reveal>
